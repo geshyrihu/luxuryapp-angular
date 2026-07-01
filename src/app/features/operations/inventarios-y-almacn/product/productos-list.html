@@ -85,22 +85,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:package-outline"
-          title="Sin productos"
-          message="No hay productos registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="filteredDataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="mobileDataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

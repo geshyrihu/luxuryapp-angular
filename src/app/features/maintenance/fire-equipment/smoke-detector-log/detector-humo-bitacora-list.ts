@@ -8,7 +8,7 @@ import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/labe
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -26,7 +26,7 @@ import { DetectorHumoBitacoraPdfService } from "./detector-humo-bitacora-pdf.ser
   selector: "app-detector-humo-bitacora-list",
   templateUrl: "./detector-humo-bitacora-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     DataViewMobile,
@@ -89,7 +89,7 @@ export class DetectorHumoBitacoraList implements OnInit {
     }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF �€” Bit�cora Detectores de Humo",
+      "Reporte PDF �€” Bit�cora Detectores de Humo",
       this.dialogHandlerS.sizeSm,
     );
     if (result)

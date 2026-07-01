@@ -9,10 +9,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-purchase-request-products",
   templateUrl: "./purchase-request-products.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     CommonModule,
@@ -35,7 +37,7 @@ export class PurchaseRequestProducts {
 
   onModalForm(item: any) {
     // Emitimos el objeto 'item' completo.
-    // El componente padre (PurchaseRequestDetailComponent) lo recibiró.
+    // El componente padre (PurchaseRequestDetailComponent) lo recibirï¿½.
     this.editProductRequest.emit(item);
   }
   onUpdateData() {

@@ -29,7 +29,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">Nó</th>
+      <th class="table-col-5">Nï¿½</th>
       <th colspan="2" class="table-col-30" pSortableColumn="fullName">
         COLABORADOR
         <p-sortIcon field="fullName" />
@@ -48,7 +48,7 @@
         pSortableColumn="celularPersonal"
         class="no-print"
       >
-        Télefono
+        Tï¿½lefono
         <p-sortIcon field="celularPersonal" />
       </th>
       <th class="table-col-30" pSortableColumn="email">
@@ -112,22 +112,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="7">
-        <app-empty-state
-          icon="mdi:account-group-outline"
-          title="Sin empleados"
-          message="No hay empleados registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   (add)="showModalAddEmployee()"
   [data]="dataSignal()"
@@ -154,7 +146,7 @@
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.workPositionName }}{{ item.celularPersonal ? ' · ' +
+          {{ item.workPositionName }}{{ item.celularPersonal ? ' ï¿½ ' +
           item.celularPersonal : '' }}
         </p>
         <p class="text-xs m-0 text-color-secondary">

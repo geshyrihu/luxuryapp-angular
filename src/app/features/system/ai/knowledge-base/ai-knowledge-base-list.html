@@ -71,15 +71,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:brain"
-          title="Sin art�culos"
-          message="No hay art�culos de conocimiento registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />

@@ -36,7 +36,7 @@
       <ng-template #header>
         <tr>
           <th>Nombre</th>
-          <th>Descripción</th>
+          <th>Descripciï¿½n</th>
           <th>Rol Asignado</th>
           <th class="table-col-15">Acciones</th>
         </tr>
@@ -65,16 +65,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="4">
-            <app-empty-state
-              icon="mdi:file-document-outline"
-              title="Sin plantillas"
-              message="No hay plantillas registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="4" />
+  </ng-template>
     </p-table>
     <!-- Mobile View -->
     <app-data-view-mobile

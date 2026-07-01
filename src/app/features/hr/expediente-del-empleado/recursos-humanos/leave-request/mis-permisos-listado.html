@@ -38,7 +38,7 @@
         <p-sortIcon field="status" />
       </th>
 
-      <th>Aprobación</th>
+      <th>Aprobaciï¿½n</th>
       <th>Adjunto</th>
       <th class="no-print"></th>
     </tr>
@@ -101,22 +101,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="7">
-        <app-empty-state
-          icon="mdi:calendar-check-outline"
-          title="Sin permisos"
-          message="No hay permisos registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

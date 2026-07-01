@@ -31,7 +31,7 @@ cb_departamento; track item) {
     <tr>
       <th class="table-col-4">ID</th>
       <th class="table-col-6">ESTATUS</th>
-      <th class="table-col-30">DESCRIPCIÓN</th>
+      <th class="table-col-30">DESCRIPCIï¿½N</th>
       <th class="table-col-25">OBSERVACION</th>
       <th class="table-col-9">ARCHIVO</th>
       <th class="table-col-9">SUBIO</th>
@@ -75,7 +75,7 @@ cb_departamento; track item) {
           @if (item.archivo) {
           <il-button-view-pdf
             [url]="item.archivo"
-            fileName="Entrega | Recepción"
+            fileName="Entrega | Recepciï¿½n"
           />
           }
         </div>
@@ -119,14 +119,6 @@ cb_departamento; track item) {
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:home-switch-outline"
-          title="Sin registros"
-          message="No hay registros de entrega-recepcion."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
 </p-table>

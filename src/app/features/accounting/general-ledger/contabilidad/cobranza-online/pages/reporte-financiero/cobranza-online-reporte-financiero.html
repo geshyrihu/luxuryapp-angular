@@ -50,11 +50,11 @@
       </div>
 
       <!-- Boton consultar -->
-      <p-button
+      <il-button
         id="btnConsultarReporteFinanciero"
         label="Consultar"
-        icon="mdi:magnify"
-        (onClick)="onConsultar()"
+        iconClass="mdi:magnify"
+        (clicked)="onConsultar()"
         [loading]="loading()"
         [disabled]="!hasCustomer()"
       />

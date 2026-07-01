@@ -66,15 +66,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   </ng-template>
 
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="7">
-        <app-empty-state
-          icon="mdi:wallet-outline"
-          title="Sin presupuesto"
-          message="No hay cuentas presupuestales para el año fiscal seleccionado."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
   <ng-template #body let-item>
     <tr>

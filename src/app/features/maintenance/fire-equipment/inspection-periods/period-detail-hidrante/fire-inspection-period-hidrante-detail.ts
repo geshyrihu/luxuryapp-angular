@@ -1,5 +1,14 @@
 ﻿import { CommonModule, Location } from "@angular/common";
-import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
+import {
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  ViewChild,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -7,6 +16,10 @@ import { TagModule } from "primeng/tag";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  WebButtonIcon,
+  WebButtonLabel,
+} from "../../../../../core/components/buttons/web";
 import { FireCycleInspectionHidranteForm } from "../cycle-checklist-hidrante/fire-cycle-inspection-hidrante-form";
 
 declare class BarcodeDetector {
@@ -17,7 +30,14 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-fire-inspection-period-hidrante-detail",
   templateUrl: "./fire-inspection-period-hidrante-detail.html",
-  imports: [CommonModule, FormsModule, ButtonModule, TagModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonModule,
+    TagModule,
+    WebButtonIcon,
+    WebButtonLabel,
+  ],
 })
 export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
   apiResponseS = inject(ApiResponseService);
@@ -47,7 +67,11 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
     const cycleItems: any[] = this.activeCycle()?.items ?? [];
     return this.periodItems().map((p) => {
       const cycleItem = cycleItems.find((c) => c.equipmentId === p.hydrantId);
-      return { ...p, cycleStatus: cycleItem?.status ?? null, inspectedAt: cycleItem?.inspectedAt ?? null };
+      return {
+        ...p,
+        cycleStatus: cycleItem?.status ?? null,
+        inspectedAt: cycleItem?.inspectedAt ?? null,
+      };
     });
   });
 
@@ -64,9 +88,15 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
   onLoadData() {
     Promise.all([
       this.apiResponseS.onGetItem(`FireInspectionPeriod/${this.periodId}`),
-      this.apiResponseS.onGetList(`FireInspectionPeriodItems/hidrante/list/${this.periodId}`),
-      this.apiResponseS.onGetItem(`FireInspectionCycle/active/${this.periodId}`),
-      this.apiResponseS.onGetList(`InventarioHidrante/list/${this.customerIdS.customerId()}`),
+      this.apiResponseS.onGetList(
+        `FireInspectionPeriodItems/hidrante/list/${this.periodId}`,
+      ),
+      this.apiResponseS.onGetItem(
+        `FireInspectionCycle/active/${this.periodId}`,
+      ),
+      this.apiResponseS.onGetList(
+        `InventarioHidrante/list/${this.customerIdS.customerId()}`,
+      ),
     ]).then(([period, items, cycle, inventory]: any) => {
       this.period.set(period);
       this.periodItems.set(items ?? []);
@@ -89,12 +119,17 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
   }
 
   async onGenerateCycle() {
-    await this.apiResponseS.onPost(`FireInspectionCycle/generate/${this.periodId}`, {});
+    await this.apiResponseS.onPost(
+      `FireInspectionCycle/generate/${this.periodId}`,
+      {},
+    );
     this.onLoadData();
   }
 
   async onRemoveItem(id: string) {
-    const ok = await this.apiResponseS.onDelete(`FireInspectionPeriodItems/hidrante/${id}`);
+    const ok = await this.apiResponseS.onDelete(
+      `FireInspectionPeriodItems/hidrante/${id}`,
+    );
     if (ok) this.onLoadData();
   }
 
@@ -104,7 +139,12 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
       return;
     }
     if (item.cycleStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. óDeseas actualizar los datos?")) return;
+      if (
+        !window.confirm(
+          "Este equipo ya fue inspeccionado. óDeseas actualizar los datos?",
+        )
+      )
+        return;
     }
     await this.dialogHandlerS.openDialog(
       FireCycleInspectionHidranteForm,
@@ -115,14 +155,32 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
     this.onLoadData();
   }
 
-  statusSeverity(status: string | null): "success" | "info" | "warn" | "danger" | "secondary" {
+  statusSeverity(
+    status: string | null,
+  ): "success" | "info" | "warn" | "danger" | "secondary" {
     if (!status) return "secondary";
-    return ({ Realizada: "success", Pendiente: "info", NoRealizada: "danger" } as any)[status] ?? "secondary";
+    return (
+      (
+        {
+          Realizada: "success",
+          Pendiente: "info",
+          NoRealizada: "danger",
+        } as any
+      )[status] ?? "secondary"
+    );
   }
 
   statusLabel(status: string | null): string {
     if (!status) return "Sin ciclo";
-    return ({ Realizada: "Realizada", Pendiente: "Pendiente", NoRealizada: "No Realizada" } as any)[status] ?? status;
+    return (
+      (
+        {
+          Realizada: "Realizada",
+          Pendiente: "Pendiente",
+          NoRealizada: "No Realizada",
+        } as any
+      )[status] ?? status
+    );
   }
 
   async startScan() {
@@ -130,7 +188,9 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
     this.scanStatus.set("Iniciando cómara...");
     this.scanning.set(true);
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" },
+      });
       const video = this.videoEl.nativeElement;
       video.srcObject = this.stream;
       await video.play();
@@ -138,7 +198,9 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
       this.scanLoop(video);
     } catch {
       this.scanning.set(false);
-      this.scanError.set("No se pudo acceder a la cómara. Verifica los permisos.");
+      this.scanError.set(
+        "No se pudo acceder a la cómara. Verifica los permisos.",
+      );
       this.scanStatus.set("");
     }
   }
@@ -149,7 +211,9 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
       this.animationId = requestAnimationFrame(async () => {
         if (!this.scanning()) return;
         const barcodes = await detector.detect(video).catch(() => []);
-        const qr = barcodes.find((b) => b.rawValue.startsWith("luxuryapp://inspect/"));
+        const qr = barcodes.find((b) =>
+          b.rawValue.startsWith("luxuryapp://inspect/"),
+        );
         if (qr) {
           this.stopScan();
           await this.resolveQr(qr.rawValue);
@@ -167,12 +231,17 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
     const equipmentId = segments.length >= 2 ? segments[1] : segments[0];
     const match = this.periodItems().find((p) => p.hydrantId === equipmentId);
     if (!match) {
-      this.scanError.set("Este equipo no pertenece al periodo de inspección actual.");
+      this.scanError.set(
+        "Este equipo no pertenece al periodo de inspección actual.",
+      );
       return;
     }
     const cycleItems: any[] = this.activeCycle()?.items ?? [];
     const cycleItem = cycleItems.find((c) => c.equipmentId === match.hydrantId);
-    await this.openChecklist({ ...match, cycleStatus: cycleItem?.status ?? null });
+    await this.openChecklist({
+      ...match,
+      cycleStatus: cycleItem?.status ?? null,
+    });
   }
 
   stopScan() {

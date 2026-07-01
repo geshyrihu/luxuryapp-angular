@@ -47,14 +47,14 @@
       </th>
 
       <th class="table-col-10" pSortableColumn="fixedPhone">
-        Télefono fijo
+        Tï¿½lefono fijo
         <p-sortIcon field="fixedPhone" />
       </th>
       <th class="table-col-10" pSortableColumn="extencion">
-        Extensión
+        Extensiï¿½n
         <p-sortIcon field="extencion" />
       </th>
-      <th class="table-col-10">Télefono</th>
+      <th class="table-col-10">Tï¿½lefono</th>
       <th class="table-col-10" pSortableColumn="email">
         Email
         <p-sortIcon field="email" />
@@ -111,15 +111,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:account-tie-outline"
-          title="Sin propietarios"
-          message="No hay propietarios registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -153,7 +145,7 @@
       </div>
       <ion-label>
         <h3>{{ item.habitant }}</h3>
-        <p>{{ item.property }} ó {{ item.phoneNumber }}</p>
+        <p>{{ item.property }} ï¿½ {{ item.phoneNumber }}</p>
         <p>{{ item.email }}</p>
       </ion-label>
       <app-action-menu slot="end">

@@ -8,7 +8,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -27,7 +27,7 @@ import { ProductEntryForm } from "./product-entry-form";
   selector: "app-list-entradas",
   templateUrl: "./product-entry-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,
@@ -50,7 +50,7 @@ export class ProductEntryList {
   customerIdS = inject(CustomerIdService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // Señales
+  // Seï¿½ales
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {

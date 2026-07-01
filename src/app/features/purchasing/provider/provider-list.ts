@@ -24,7 +24,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -46,7 +46,7 @@ import { ProviderUse } from "./provider-use";
   selector: "app-provider-list",
   templateUrl: "./provider-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

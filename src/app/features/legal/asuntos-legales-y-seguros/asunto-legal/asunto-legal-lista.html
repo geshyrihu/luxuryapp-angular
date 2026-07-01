@@ -72,7 +72,7 @@
         @for ( legalMatter of category.legalMatters; track legalMatter; let i =
         $index ) {
         <tr>
-          <!-- índice -->
+          <!-- ï¿½ndice -->
           <td>{{ rowIndex + 1 }}.{{ i + 1 }}</td>
           <td>{{ legalMatter.title }}</td>
           <td>{{ legalMatter.isInternal ? "Interno" : "Externo" }}</td>
@@ -100,21 +100,13 @@
         }
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="4">
-            <app-empty-state
-              icon="mdi:scale-balance"
-              title="Sin asuntos"
-              message="No hay asuntos legales registrados."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="4" />
+  </ng-template>
     </p-table>
   </div>
 </div>
 
-<!-- ?? INICIO: Vista para móviles -->
+<!-- ?? INICIO: Vista para mï¿½viles -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -122,7 +114,7 @@
   <ng-container customFilters>
     <il-button
       (clicked)="onModalEditCategorie({ id: '', title: 'Agregar categoria' })"
-      label="Agregar Categoría"
+      label="Agregar Categorï¿½a"
       icon="add-outline"
       customClass="w-full mb-2"
     />

@@ -1,10 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
@@ -38,10 +40,13 @@ function buildTodayInputValue() {
     DataViewMobile,
     IonItem,
     IonLabel,
+    WebButtonLabel,
+    WebButtonIcon,
   ],
   templateUrl: "./cobranza-online-analysis.html",
 })
 export class CobranzaOnlineAnalysis {
+  private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
   private apiResponseS = inject(ApiResponseService);
 
@@ -216,5 +221,9 @@ export class CobranzaOnlineAnalysis {
       );
     this.data.set(result ?? null);
     this.loading.set(false);
+  }
+
+  navigateTo(route: string) {
+    if (route) this.router.navigateByUrl(route);
   }
 }

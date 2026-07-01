@@ -26,10 +26,12 @@ import { SolicitudAltaForm } from "src/app/features/recruitment/reclutamiento-y-
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-solicitudes-cliente-list",
   templateUrl: "./solicitudes-cliente-list.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,
     WebButtonLabelEdit,
@@ -49,7 +51,7 @@ export class SolicitudesClienteList {
   router = inject(Router);
   authS = inject(AuthService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // Declaración e inicialización de variables
+  // Declaraciï¿½n e inicializaciï¿½n de variables
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -60,7 +62,7 @@ export class SolicitudesClienteList {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diï¿½logo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {

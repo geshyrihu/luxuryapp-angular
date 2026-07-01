@@ -19,7 +19,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th class="table-col-md">Número</th>
+        <th class="table-col-md">Nï¿½mero</th>
         <th class="table-col-md">Tipo</th>
         <th class="table-col-sm">Inicio</th>
         <th class="table-col-sm">Fin</th>
@@ -33,7 +33,7 @@
         <td>{{ item.contractNumber }}</td>
         <td>{{ item.contractType }}</td>
         <td>{{ item.startDate | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy') : '—' }}</td>
+        <td>{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy') : 'ï¿½' }}</td>
         <td class="text-right">
           {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
         </td>
@@ -56,16 +56,8 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:file-sign"
-            title="Sin contratos"
-            message="No hay contratos registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
   </p-table>
 
   <app-data-view-mobile
@@ -93,7 +85,7 @@
           <h2 class="font-bold">{{ item.contractNumber }}</h2>
           <p class="text-sm text-500">{{ item.contractType }}</p>
           <p class="text-sm text-500">
-            {{ item.startDate | date:'dd/MM/yyyy' }} — {{ item.endDate ?
+            {{ item.startDate | date:'dd/MM/yyyy' }} ï¿½ {{ item.endDate ?
             (item.endDate | date:'dd/MM/yyyy') : 'Indefinido' }}
           </p>
           <p class="text-sm">

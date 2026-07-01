@@ -3,7 +3,7 @@
     <div>
       <h2 class="org-chart-page__title">Organigrama de Puestos</h2>
       <p class="org-chart-page__subtitle">
-        {{ totalNodes() }} puestos · {{ vacantCount() }} vacantes
+        {{ totalNodes() }} puestos ï¿½ {{ vacantCount() }} vacantes
       </p>
     </div>
 
@@ -201,30 +201,27 @@
                     </td>
                     <td>
                       <div class="org-editor-actions">
-                        <button
-                          type="button"
-                          class="org-editor-action"
+                        <il-button
+                          label="Subir"
+                          size="small"
+                          variant="text"
                           [disabled]="!canMoveNodeUp(row.node) || reassignLoading()"
-                          (click)="reorderNode(row.node, -1); $event.stopPropagation()"
-                        >
-                          Subir
-                        </button>
-                        <button
-                          type="button"
-                          class="org-editor-action"
+                          (clicked)="reorderNode(row.node, -1); $event.stopPropagation()"
+                        />
+                        <il-button
+                          label="Bajar"
+                          size="small"
+                          variant="text"
                           [disabled]="!canMoveNodeDown(row.node) || reassignLoading()"
-                          (click)="reorderNode(row.node, 1); $event.stopPropagation()"
-                        >
-                          Bajar
-                        </button>
-                        <button
-                          type="button"
-                          class="org-editor-action"
+                          (clicked)="reorderNode(row.node, 1); $event.stopPropagation()"
+                        />
+                        <il-button
+                          label="A raiz"
+                          size="small"
+                          variant="text"
                           [disabled]="reassignLoading()"
-                          (click)="moveNodeToRoot(row.node); $event.stopPropagation()"
-                        >
-                          A raiz
-                        </button>
+                          (clicked)="moveNodeToRoot(row.node); $event.stopPropagation()"
+                        />
                       </div>
                     </td>
                   </tr>
@@ -371,7 +368,7 @@
                     {{ node.data.orgNode.roleDisplayName }}
                   </div>
                   <div class="org-graph-card__meta">
-                    {{ node.data.orgNode.departmentName }} ·
+                    {{ node.data.orgNode.departmentName }} ï¿½
                     {{ node.data.orgNode.folio }}
                   </div>
                 </div>

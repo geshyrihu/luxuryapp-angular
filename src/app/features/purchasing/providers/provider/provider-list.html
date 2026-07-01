@@ -1,4 +1,4 @@
-<!-- Tabla principal de proveedores con paginación, filtros y acciones -->
+<!-- Tabla principal de proveedores con paginaciï¿½n, filtros y acciones -->
 <p-table
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
@@ -14,7 +14,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   styleClass="custom-table p-1 hidden md:block"
 >
-  <!-- CAPTION: Filtros y botón de agregar -->
+  <!-- CAPTION: Filtros y botï¿½n de agregar -->
   <ng-template #caption>
     <div class="grid align-items-center">
       <div class="col-12 md:col-3">
@@ -35,7 +35,7 @@
       <div class="col-12 md:col-3 mt-4">
         <custom-search-input-signal
           (searchChange)="applyGlobalFilter($event)"
-          placeholder="Buscar aquí..."
+          placeholder="Buscar aquï¿½..."
         />
       </div>
       <div class="hidden md:block md:col-4"></div>
@@ -63,7 +63,7 @@
         [class]="item.autorizado ? 'border-green-500' : 'border-red-500'"
       >
         <div class="grid">
-          <!-- Categoría y tipo -->
+          <!-- Categorï¿½a y tipo -->
           <div
             class="col-12 flex justify-content-between align-items-center mb-2"
           >
@@ -73,7 +73,7 @@
             <app-icon
               [icon]="'mdi:card-account-details'"
               class="cursor-pointer text-primary text-xl"
-              pTooltip="Ver Ficha Técnica"
+              pTooltip="Ver Ficha Tï¿½cnica"
               (click)="showModalCardProveedor(item)"
             ></app-icon>
           </div>
@@ -159,7 +159,7 @@
                 />
                 } @if (item.repair) {
                 <p-tag
-                  value="Reparación"
+                  value="Reparaciï¿½n"
                   severity="secondary"
                   styleClass="text-xs"
                 />
@@ -168,7 +168,7 @@
             </div>
           </div>
 
-          <!-- Acciones y Categorías -->
+          <!-- Acciones y Categorï¿½as -->
           <div class="col-12 mt-3 pt-3 border-top-1 surface-border">
             <div
               class="flex flex-wrap align-items-center justify-content-between gap-3"
@@ -232,15 +232,7 @@
     </div>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:store-outline"
-          title="Sin proveedores"
-          message="No hay proveedores registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
 </p-table>
 
@@ -263,7 +255,7 @@
       <ion-label>
         <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
         <p class="text-sm text-600">
-          {{ item.nameProvider }} · {{ item.tipoServicio }}
+          {{ item.nameProvider }} ï¿½ {{ item.tipoServicio }}
         </p>
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       </ion-label>

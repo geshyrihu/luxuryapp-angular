@@ -1,6 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
@@ -32,7 +32,7 @@ interface LeaveRequestEditDTO {
   imports: [
     ReactiveFormsModule,
     CardModule,
-    ButtonModule,
+    WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputTime,

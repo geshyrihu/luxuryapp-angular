@@ -2,10 +2,10 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
 import { InputTextModule } from "primeng/inputtext";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
@@ -17,19 +17,19 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     DataViewModule,
     CardModule,
     InputTextModule,
-    ButtonModule,
+    WebButtonLabel,
    AppIcon],
   template: `
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">
         <div class="flex align-items-center ">
-          <h2 class="m-0">Galería de Diagramas</h2>
-          <p-button
-            label="Gestión"
-            icon="mdi:format-list-bulleted"
-            (click)="onOpenList()"
+          <h2 class="m-0">Galerï¿½a de Diagramas</h2>
+          <il-button
+            label="Gestiï¿½n"
+            iconClass="mdi:format-list-bulleted"
+            (clicked)="onOpenList()"
             severity="secondary"
-            [text]="true"
+            variant="text"
           />
         </div>
         <span class="p-input-icon-left">
@@ -68,13 +68,13 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 </div>
                 <ng-template #footer>
                   <div class="flex ">
-                    <button
-                      pButton
+                    <il-button
                       label="Visualizar"
-                      icon="mdi:eye-outline"
-                      class="p-button-success w-full"
-                      (click)="onView(diagram.id)"
-                    ></button>
+                      iconClass="mdi:eye-outline"
+                      severity="success"
+                      customClass="w-full"
+                      (clicked)="onView(diagram.id)"
+                    />
                   </div>
                 </ng-template>
               </p-card>

@@ -195,14 +195,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="5">
-        <app-empty-state
-          icon="mdi:email-outline"
-          title="Sin destinatarios"
-          message="No hay destinatarios registrados para el reporte."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
 </p-table>

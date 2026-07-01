@@ -14,11 +14,13 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",
   styleUrls: ["./reporte-envio-financieros.scss"],
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,
     TooltipModule,

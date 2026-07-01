@@ -19,7 +19,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelTracking } from "src/app/core/components/buttons/web/label/button-tracking";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -44,7 +44,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
   selector: "app-ticket-legal-lista",
   templateUrl: "./ticket-legal-lista.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
     TableModule,
@@ -180,7 +180,7 @@ export class TicketLegalLista implements OnInit {
       2: "CONCLUIDO",
       4: "CANCELADO",
     };
-    // Paleta Office ó discreta, bien en PowerPoint
+    // Paleta Office ÔøΩ discreta, bien en PowerPoint
     const STATUS_COLOR: Record<number, string> = {
       0: "FFED7D31", // naranja suave
       1: "FF4472C4", // azul medio
@@ -209,7 +209,7 @@ export class TicketLegalLista implements OnInit {
       { header: "ASUNTO", key: "title", width: 40 },
       { header: "RESPONSABLE", key: "assignee", width: 24 },
       { header: "ESTATUS", key: "status", width: 14 },
-      { header: "FECHA CONCLUSI”N", key: "completionDate", width: 18 },
+      { header: "FECHA CONCLUSIÔøΩN", key: "completionDate", width: 18 },
       { header: "D√çAS", key: "dias", width: 8 },
     ];
 
@@ -240,7 +240,7 @@ export class TicketLegalLista implements OnInit {
         customer: item.customer,
         title: `${item.title ?? ""}${item.description ? "\n" + item.description : ""}`,
         assignee: item.assignee,
-        status: STATUS_LABEL[status] ?? "ó",
+        status: STATUS_LABEL[status] ?? "ÔøΩ",
         completionDate: item.completionDate ?? "",
         dias: item.diferenciaDias ?? "",
       });

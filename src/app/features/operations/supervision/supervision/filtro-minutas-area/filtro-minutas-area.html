@@ -75,15 +75,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="7">
-        <app-empty-state
-          icon="mdi:clipboard-text-outline"
-          title="Sin registros"
-          message="No hay registros para esta area."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />

@@ -20,12 +20,12 @@
         class="flex-1"
         (keydown.enter)="send()"
       />
-      <p-button
+      <il-button
         label="Enviar"
-        icon="mdi:send"
+        iconClass="mdi:send"
         [loading]="loading()"
         [disabled]="!url()"
-        (onClick)="send()"
+        (clicked)="send()"
       />
     </div>
 
@@ -83,21 +83,21 @@
                     placeholder="Valor"
                     class="flex-1"
                   />
-                  <p-button
-                    icon="mdi:close"
+                  <iw-button
+                    iconClass="mdi:close"
                     severity="danger"
-                    [text]="true"
+                    variant="text"
                     size="small"
-                    (onClick)="removeParam(i)"
+                    (clicked)="removeParam(i)"
                   />
                 </div>
               }
-              <p-button
+              <il-button
                 label="Agregar param"
-                icon="mdi:plus"
-                [text]="true"
+                iconClass="mdi:plus"
+                variant="text"
                 size="small"
-                (onClick)="addParam()"
+                (clicked)="addParam()"
               />
             </div>
           </p-tabpanel>
@@ -124,21 +124,21 @@
                     placeholder="Valor"
                     class="flex-1"
                   />
-                  <p-button
-                    icon="mdi:close"
+                  <iw-button
+                    iconClass="mdi:close"
                     severity="danger"
-                    [text]="true"
+                    variant="text"
                     size="small"
-                    (onClick)="removeHeader(i)"
+                    (clicked)="removeHeader(i)"
                   />
                 </div>
               }
-              <p-button
+              <il-button
                 label="Agregar header"
-                icon="mdi:plus"
-                [text]="true"
+                iconClass="mdi:plus"
+                variant="text"
                 size="small"
-                (onClick)="addHeader()"
+                (clicked)="addHeader()"
               />
             </div>
           </p-tabpanel>
@@ -173,13 +173,12 @@
             {{ statusCode() }}
           </span>
           <span class="text-500 text-xs">{{ durationMs() }} ms</span>
-          <p-button
-            icon="mdi:content-copy"
-            [text]="true"
+          <iw-button
+            iconClass="mdi:content-copy"
+            variant="text"
             size="small"
-            pTooltip="Copiar respuesta"
-            (onClick)="copyToClipboard(prettyResponse())"
-            class="ml-auto"
+            (clicked)="copyToClipboard(prettyResponse())"
+            customClass="ml-auto"
           />
         }
         @if (loading()) {
@@ -232,13 +231,13 @@
     <div class="surface-card border-round shadow-1 p-3">
       <div class="flex align-items-center justify-content-between mb-2">
         <span class="font-semibold text-sm text-700">Historial reciente</span>
-        <p-button
+        <il-button
           label="Limpiar"
-          icon="mdi:trash-can"
+          iconClass="mdi:trash-can"
           severity="danger"
-          [text]="true"
+          variant="text"
           size="small"
-          (onClick)="clearHistory()"
+          (clicked)="clearHistory()"
         />
       </div>
       <div class="flex flex-column gap-1" style="max-height: 160px; overflow-y: auto">

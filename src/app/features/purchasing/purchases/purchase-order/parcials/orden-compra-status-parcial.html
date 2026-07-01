@@ -9,16 +9,14 @@
       <span class="font-semibold text-sm text-white">ESTATUS DE COMPRA</span>
     </div>
     @if (!bloqueada()) {
-    <p-button
+    <iw-button
       size="small"
       variant="text"
       rounded
-      (onClick)="onModalOrdenCompraStatus()"
-      pTooltip="Editar estatus"
-      styleClass="text-white"
-    >
-      <app-icon icon="mdi:pencil" />
-    </p-button>
+      (clicked)="onModalOrdenCompraStatus()"
+      customClass="text-white"
+      iconClass="mdi:pencil"
+    />
     }
   </div>
 

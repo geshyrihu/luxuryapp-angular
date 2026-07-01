@@ -24,7 +24,7 @@
       <!-- Cabecera de la tabla principal -->
       <ng-template #caption>
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
-          <!-- Botones de acción -->
+          <!-- Botones de acciï¿½n -->
           <il-button
             iconClass="mdi:printer"
             label="PENDIENTES"
@@ -51,14 +51,14 @@
             />
             <il-button
               iconClass="mdi:account-group"
-              label="COMITÉ"
+              label="COMITï¿½"
               size="sm"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
               (clicked)="onLoadData(0)"
             />
             <il-button
               iconClass="mdi:cog"
-              label="OPERACIÓN"
+              label="OPERACIï¿½N"
               size="sm"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
               (clicked)="onLoadData(2)"
@@ -226,10 +226,10 @@
                 />
                 <il-button-confirm
                   iconClass="mdi:email-outline"
-                  label="Enviar a Comité"
-                  swalTitle="Confirmar envío"
+                  label="Enviar a Comitï¿½"
+                  swalTitle="Confirmar envï¿½o"
                   swalText="Esta seguro de que desea enviar la minuta?"
-                  swalConfirmButtonText="Sí, enviar"
+                  swalConfirmButtonText="Sï¿½, enviar"
                   (confirmed)="onSendEmailMeeting(item.id)"
                 />
                 <il-button-item
@@ -258,16 +258,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="7">
-            <app-empty-state
-              icon="mdi:notebook-outline"
-              title="Sin minutas"
-              message="No hay minutas registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
 
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
@@ -276,7 +268,7 @@
   </div>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <div class="block md:hidden">
   <div class="card border-none shadow-none">
     <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
@@ -321,7 +313,7 @@
             />
             <il-button
               iconClass="mdi:account-group"
-              label="COMITÉ"
+              label="COMITï¿½"
               size="sm"
               [fluid]="true"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
@@ -329,7 +321,7 @@
             />
             <il-button
               iconClass="mdi:cog"
-              label="OPERACIÓN"
+              label="OPERACIï¿½N"
               size="sm"
               [fluid]="true"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
@@ -381,10 +373,10 @@
                     (clicked)="exportToExcel(item.id)"
                   />
                   <il-button-confirm
-                    label="Enviar a Comité"
-                    swalTitle="Confirmar envío"
-                    swalText="¿Está seguro de que desea enviar la minuta?"
-                    swalConfirmButtonText="Sí, enviar"
+                    label="Enviar a Comitï¿½"
+                    swalTitle="Confirmar envï¿½o"
+                    swalText="ï¿½Estï¿½ seguro de que desea enviar la minuta?"
+                    swalConfirmButtonText="Sï¿½, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
                   />
                   <il-button-item

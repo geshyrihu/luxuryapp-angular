@@ -60,9 +60,9 @@
           }
         </td>
         <td class="font-medium">{{ item.fullName }}</td>
-        <td>{{ item.numberEmployee ?? '—' }}</td>
-        <td>{{ item.puesto || '—' }}</td>
-        <td>{{ item.departamento || '—' }}</td>
+        <td>{{ item.numberEmployee ?? 'ï¿½' }}</td>
+        <td>{{ item.puesto || 'ï¿½' }}</td>
+        <td>{{ item.departamento || 'ï¿½' }}</td>
         <td class="text-center">
           <span
             [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
@@ -80,16 +80,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:account-group-outline"
-            title="Sin empleados"
-            message="No hay empleados registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
 
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
@@ -115,9 +107,9 @@
         </div>
         <ion-label>
           <h2 class="font-bold">{{ item.fullName }}</h2>
-          <p class="text-sm text-500">No. {{ item.numberEmployee ?? '—' }}</p>
-          <p class="text-sm text-500">{{ item.puesto || '—' }}</p>
-          <p class="text-sm text-500">{{ item.departamento || '—' }}</p>
+          <p class="text-sm text-500">No. {{ item.numberEmployee ?? 'ï¿½' }}</p>
+          <p class="text-sm text-500">{{ item.puesto || 'ï¿½' }}</p>
+          <p class="text-sm text-500">{{ item.departamento || 'ï¿½' }}</p>
           <p class="text-sm">
             <span
               [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"

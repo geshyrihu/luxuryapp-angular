@@ -1,7 +1,7 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
@@ -24,7 +24,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     CommonModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
-    ButtonModule,
+    WebButtonLabel,
     DatePipe,
     TagModule,
     DividerModule,
@@ -68,7 +68,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           <div class="mb-4">
             <div class="flex items-center mb-2">
               <app-icon [icon]="'mdi:history'" class="text-xl"></app-icon>
-              <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
+              <h5 class="mb-0 font-semibold">Historial (ï¿½ltimos 3 meses)</h5>
             </div>
             <p class="text-600">
               El empleado ha solicitado
@@ -88,7 +88,7 @@ import { ApprovalInfoService } from "./approval-info.service";
               <h5 class="mb-0 font-semibold">Saldo de Vacaciones</h5>
             </div>
             <p class="text-600">
-              Días disponibles:
+              Dï¿½as disponibles:
               <p-tag
                 [value]="vacationBalance?.availableDays ?? 0"
                 severity="success"
@@ -171,16 +171,16 @@ import { ApprovalInfoService } from "./approval-info.service";
         </div>
 
         <div class="flex justify-end mt-5">
-          <p-button
-            (click)="ref.close(false)"
+          <il-button
+            (clicked)="ref.close(false)"
             label="Cancelar"
-            [text]="true"
+            variant="text"
             severity="secondary"
           />
-          <p-button
-            (click)="onApprove()"
+          <il-button
+            (clicked)="onApprove()"
             label="Aprobar Solicitud"
-            icon="mdi:check"
+            iconClass="mdi:check"
             [loading]="submitting"
           />
         </div>

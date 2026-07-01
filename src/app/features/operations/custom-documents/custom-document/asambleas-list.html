@@ -49,16 +49,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="5">
-            <app-empty-state
-              icon="mdi:account-group-outline"
-              title="Sin asambleas"
-              message="No hay asambleas registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -66,8 +58,8 @@
   </div>
 </div>
 
-<!-- Vista para móviles -->
-<!-- Vista para móviles -->
+<!-- Vista para mï¿½viles -->
+<!-- Vista para mï¿½viles -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"

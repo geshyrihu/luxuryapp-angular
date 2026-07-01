@@ -54,15 +54,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:receipt-text-outline"
-          title="Sin usos CFDI"
-          message="No hay usos de CFDI registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />

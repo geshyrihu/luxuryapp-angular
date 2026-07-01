@@ -7,16 +7,14 @@
       <span class="font-semibold text-sm text-white">DATOS DE PAGO</span>
     </div>
     @if (!bloqueada()) {
-    <p-button
+    <iw-button
       size="small"
       variant="text"
       rounded
-      (onClick)="onModalOrdenCompraDatosPago()"
-      pTooltip="Editar datos de pago"
-      styleClass="text-white"
-    >
-      <app-icon icon="mdi:pencil" />
-    </p-button>
+      (clicked)="onModalOrdenCompraDatosPago()"
+      customClass="text-white"
+      iconClass="mdi:pencil"
+    />
     }
   </div>
 

@@ -9,7 +9,7 @@ import {
 } from "src/app/core/components/buttons/web/label";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -32,7 +32,7 @@ import { PropiedadesForm } from "./propiedades-form";
   selector: "app-propiedades-list",
   templateUrl: "./propiedades-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     WebButtonLabelEdit,
@@ -135,11 +135,11 @@ export class PropiedadesList {
     }
 
     Swal.fire({
-      title: "Confirmar Importación",
-      text: "Asegórate de que el archivo utiliza el formato de la plantilla descargada. óDeseas continuar?",
+      title: "Confirmar Importaciï¿½n",
+      text: "Asegï¿½rate de que el archivo utiliza el formato de la plantilla descargada. ï¿½Deseas continuar?",
       icon: "info",
       showCancelButton: true,
-      confirmButtonText: "Sí, importar",
+      confirmButtonText: "Sï¿½, importar",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {

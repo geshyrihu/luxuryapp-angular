@@ -31,7 +31,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">N°</th>
+      <th class="table-col-5">Nï¿½</th>
       <th colspan="2" class="table-col-30" pSortableColumn="fullName">
         COLABORADOR
         <p-sortIcon field="fullName" />
@@ -46,7 +46,7 @@
       </th>
 
       <th class="table-col-30 no-print">
-        TÉLEFONO
+        Tï¿½LEFONO
         <p-sortIcon field="personalCellPhone" />
       </th>
       <th class="table-col-30" pSortableColumn="personalEmail">
@@ -90,22 +90,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="7">
-        <app-empty-state
-          icon="mdi:badge-account-outline"
-          title="Sin empleados"
-          message="No hay empleados externos registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

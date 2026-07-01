@@ -22,9 +22,11 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-reglamentos",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,
     NgbTooltipModule,
@@ -106,7 +108,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "Ocurrié un error al consultar el documento. Por favor intenta de nuevo.",
+        "Ocurriï¿½ un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);
@@ -118,7 +120,7 @@ export class Reglamentos {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificación de óxito
+        // Opcional: Mostrar una notificaciï¿½n de ï¿½xito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario

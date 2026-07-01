@@ -62,24 +62,18 @@
                 (clicked)="onLoadData(true)"
                 [disabled]="isSearchDisabled"
               />
-              <button
-                type="button"
-                class="p-button p-button-outlined p-button-sm"
-                pTooltip="Actualizar lista"
-                tooltipPosition="top"
-                (click)="onLoadData(true)"
-              >
-                <app-icon [icon]="'mdi:refresh'" />
-              </button>
-              <button
-                type="button"
-                class="p-button p-button-outlined p-button-sm"
-                pTooltip="Eliminar todos"
-                tooltipPosition="top"
-                (click)="onDeleteAll()"
-              >
-                <app-icon [icon]="'mdi:delete-outline'" />
-              </button>
+              <iw-button
+                iconClass="mdi:refresh"
+                variant="outline"
+                size="small"
+                (clicked)="onLoadData(true)"
+              />
+              <iw-button
+                iconClass="mdi:delete-outline"
+                variant="outline"
+                size="small"
+                (clicked)="onDeleteAll()"
+              />
             </div>
           </div>
         </div>
@@ -158,16 +152,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="5">
-            <app-empty-state
-              icon="mdi:file-chart-outline"
-              title="Sin logs"
-              message="No hay registros de log."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
     </p-table>
   </div>
 

@@ -11,7 +11,7 @@ import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/labe
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -27,7 +27,7 @@ import { RadioComunicacionForm } from "./radio-comunicacion-form";
   selector: "app-radio-comunicacion-list",
   templateUrl: "./radio-comunicacion-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     ImageModule,
     WebButtonLabelEdit,
@@ -181,7 +181,7 @@ export class RadioComunicacionList {
               <td style="background-color: ${bg}; padding: 10px; vertical-align: middle;">
                 <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Modelo: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.modelo || "N/A")}</span></div>
                 <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Serie: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.serie || "N/A")}</span></div>
-                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Batería: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.bateria || "N/A")}</span></div>
+                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Baterï¿½a: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.bateria || "N/A")}</span></div>
                 <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Responsable: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.applicationUser || "N/A")} / ${this.htmlPrintS.esc(item.departament || "N/A")}</span></div>
               </td>
             </tr>
@@ -205,7 +205,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Radio Comunicación", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Radio Comunicaciï¿½n", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <table class="data-table">

@@ -1,13 +1,12 @@
 <div class="hangfire-shell">
   <div class="hangfire-toolbar">
-    <button
-      pButton
-      type="button"
-      icon="mdi:external-link"
+    <il-button
+      iconClass="mdi:external-link"
       label="Abrir panel"
-      class="p-button-sm p-button-outlined"
-      (click)="openDashboard()"
-    ></button>
+      size="small"
+      variant="outline"
+      (clicked)="openDashboard()"
+    />
   </div>
 
   <iframe

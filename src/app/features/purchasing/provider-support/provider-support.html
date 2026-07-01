@@ -80,15 +80,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="5">
-        <app-empty-state
-          icon="mdi:store-outline"
-          title="Sin proveedores"
-          message="No hay proveedores registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
 </p-table>
 
@@ -120,7 +112,7 @@
       </div>
       <ion-label>
         <h3>{{ item.fullName }}</h3>
-        <p>{{ item.nameComercial }} · {{ item.applicationRoleName }}</p>
+        <p>{{ item.nameComercial }} ï¿½ {{ item.applicationRoleName }}</p>
         <p>{{ item.nameCustomer }}</p>
       </ion-label>
       <app-action-menu slot="end">

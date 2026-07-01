@@ -35,12 +35,12 @@
                   <app-icon
                     [icon]="msg.role === 'user' ? 'mdi:account' : 'mdi:sparkles'"
                   ></app-icon>
-                  <p-button
+                  <iw-button
                     *ngIf="msg.role === 'assistant'"
-                    icon="mdi:volume-high"
+                    iconClass="mdi:volume-high"
                     size="small"
-                    styleClass="p-button-text p-button-sm"
-                    (onClick)="replayMessage(msg)"
+                    variant="text"
+                    (clicked)="replayMessage(msg)"
                   />
                 </div>
 
@@ -90,15 +90,17 @@
               Preguntas Sugeridas
             </div>
             <div class="flex flex-column gap-2">
-              <p-button
+              <il-button
                 *ngFor="let q of suggestedQuestions"
-                (onClick)="setQuery(q)"
+                (clicked)="setQuery(q)"
                 [label]="q"
                 size="small"
-                styleClass="p-button-outlined p-button-secondary text-xs justify-content-start w-full"
-                icon="mdi:help-circle"
-              >
-              </p-button>
+                variant="outline"
+                severity="secondary"
+                styleClass="text-xs justify-content-start w-full"
+                iconClass="mdi:help-circle"
+              />
+
             </div>
           </div>
 
@@ -107,21 +109,23 @@
               Controles
             </div>
             <div class="flex flex-column gap-2">
-              <p-button
-                icon="mdi:volume-high"
+              <il-button
+                iconClass="mdi:volume-high"
                 label="Releer última respuesta"
                 size="small"
-                styleClass="p-button-text p-button-sm justify-content-start"
+                variant="text"
+                styleClass="justify-content-start"
                 [disabled]="loading() || messages().length === 0"
-                (onClick)="replayMessage(messages()[messages().length - 1])"
+                (clicked)="replayMessage(messages()[messages().length - 1])"
               />
-              <p-button
-                icon="mdi:stop"
+              <il-button
+                iconClass="mdi:stop"
                 label="Detener audio"
                 size="small"
-                styleClass="p-button-text p-button-sm justify-content-start"
+                variant="text"
+                styleClass="justify-content-start"
                 [disabled]="!speaking()"
-                (onClick)="stopAudio()"
+                (clicked)="stopAudio()"
               />
             </div>
           </div>
@@ -140,13 +144,12 @@
             [disabled]="loading()"
             class="border-round-left-3xl pl-4"
           />
-          <p-button
-            icon="mdi:send"
-            (onClick)="sendQuery()"
+          <iw-button
+            iconClass="mdi:send"
+            (clicked)="sendQuery()"
             [disabled]="loading() || !currentQuery()"
-            styleClass="p-button-primary border-round-right-3xl px-4"
-          >
-          </p-button>
+            styleClass="border-round-right-3xl px-4"
+          />
         </div>
       </div>
     </div>

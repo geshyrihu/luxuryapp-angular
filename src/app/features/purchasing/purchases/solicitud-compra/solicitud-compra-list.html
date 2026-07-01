@@ -95,7 +95,7 @@
         SOLICITA
         <p-sortIcon field="solicita" />
       </th>
-      <th class="table-col-44">DESCRIPCIóN</th>
+      <th class="table-col-44">DESCRIPCIï¿½N</th>
       <th class="table-col-5 text-center">COT</th>
       <th class="table-col-13">OC</th>
       <th class="table-col-10"></th>
@@ -149,15 +149,15 @@
       <td>
         @for (orden of item.ordenesRelacionadas; track orden.id) {
         <div class="inline-flex align-items-center mb-1 mr-1">
-          <button
-            type="button"
-            class="btn no-print btn-ghost-warning btn--pill btn-sm"
-            (click)="onViewPurchaseOrder(orden.id)"
-            pTooltip="Ver Orden de Compra"
-            tooltipPosition="top"
-          >
-            {{ orden.folio }}
-          </button>
+          <il-button
+            [label]="orden.folio"
+            (clicked)="onViewPurchaseOrder(orden.id)"
+            variant="ghost"
+            severity="warning"
+            size="small"
+            rounded
+            customClass="no-print"
+          />
           <span
             class="mdi:close cursor-pointer text-red-500 hover:text-red-700 ml-1"
             style="font-size: 0.8rem; margin-left: -1.5rem; z-index: 1"
@@ -177,15 +177,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:clipboard-list-outline"
-          title="Sin solicitudes"
-          message="No hay solicitudes de compra registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
@@ -233,7 +225,7 @@
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
-        <p>{{ item.solicita }} ó Folio: {{ item.folio }}</p>
+        <p>{{ item.solicita }} ï¿½ Folio: {{ item.folio }}</p>
         <p>{{ item.fechaSolicitud | date }}</p>
       </ion-label>
       <app-action-menu slot="end">

@@ -19,7 +19,7 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="ePosicionComite">
-        <p class="card-title">Posición</p>
+        <p class="card-title">Posiciï¿½n</p>
         <p-sortIcon field="ePosicionComite" />
       </th>
       <th pSortableColumn="nameProperty">
@@ -70,7 +70,7 @@
           <il-button-delete (confirmed)="onDelete(item.id)" />
 
           <il-button-send-email
-            confirmMessage="Enviar usuario y contraseña de acceso."
+            confirmMessage="Enviar usuario y contraseï¿½a de acceso."
             (confirmed)="onSendCredential(item.id)"
           />
         </div>
@@ -79,22 +79,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:account-group-outline"
-          title="Sin miembros"
-          message="No hay miembros del comite registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -138,7 +130,7 @@
             label="Eliminar"
           />
           <il-button-send-email
-            confirmMessage="Enviar usuario y contraseña de acceso."
+            confirmMessage="Enviar usuario y contraseï¿½a de acceso."
             (confirmed)="onSendCredential(item.id)"
             label="Enviar"
           />

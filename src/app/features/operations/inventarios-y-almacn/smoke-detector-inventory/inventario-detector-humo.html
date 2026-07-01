@@ -27,7 +27,7 @@
         <il-button-item
           (clicked)="onViewPeriodos()"
           label="Periodos"
-          tooltip="Configurar periodos de inspección"
+          tooltip="Configurar periodos de inspecciï¿½n"
         />
         <il-button-download
           (clicked)="downloadTemplate()"
@@ -58,13 +58,13 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" pSortableColumn="localCode">
-        Código <p-sortIcon field="localCode" />
+        Cï¿½digo <p-sortIcon field="localCode" />
       </th>
       <th class="table-col-30" pSortableColumn="detectorType">
         Tipo <p-sortIcon field="detectorType" />
       </th>
       <th class="table-col-35" pSortableColumn="location">
-        Ubicación <p-sortIcon field="location" />
+        Ubicaciï¿½n <p-sortIcon field="location" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -103,15 +103,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="5">
-        <app-empty-state
-          icon="mdi:smoke-detector-outline"
-          title="Sin detectores"
-          message="No hay detectores de humo registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -140,7 +132,7 @@
       (click)="onViewPeriodos()"
     >
       <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
-      Periodos de Inspección
+      Periodos de Inspecciï¿½n
     </ion-button>
   </div>
   <ng-template #listItemTemplate let-item>
@@ -166,7 +158,7 @@
       </div>
       <ion-label>
         <h3>
-          {{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.detectorType
+          {{ item.localCode ? item.localCode + ' ï¿½ ' : '' }}{{ item.detectorType
           }}
         </h3>
         <p>{{ item.location }}</p>

@@ -138,16 +138,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="6">
-            <app-empty-state
-              icon="mdi:account-group-outline"
-              title="Sin usuarios"
-              message="No hay usuarios registrados."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>

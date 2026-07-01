@@ -6,7 +6,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -26,7 +26,7 @@ import { AddendumTemplateFormComponent } from "./addendum-template-form";
   selector: "app-addendum-template-list",
   templateUrl: "./addendum-template-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     DatePipe,
     TableModule,
     PrimeNgCustomCaption,

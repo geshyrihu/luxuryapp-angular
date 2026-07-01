@@ -8,10 +8,12 @@ import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-cont-minuta-seguimientos",
   templateUrl: "./cont-minuta-seguimientos.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     WebButtonLabel,

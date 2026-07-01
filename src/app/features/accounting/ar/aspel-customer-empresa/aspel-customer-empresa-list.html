@@ -16,7 +16,7 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
+      (add)="onModalForm({ id: '', title: 'Nueva Configuraciï¿½n' })"
       [dt]="dt"
     />
   </ng-template>
@@ -54,25 +54,17 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="4">
-        <app-empty-state
-          icon="mdi:domain"
-          title="Sin configuraciones"
-          message="No hay configuraciones de cliente-empresa registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="4" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Configuraciï¿½n' })"
   [globalFilterFields]="['customerName', 'empresa', 'customerIdAspelId']"
   [dt]="dt"
 >

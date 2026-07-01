@@ -76,7 +76,6 @@
                 severity="secondary"
                 variant="ghost-text"
                 size="sm"
-                ngbTooltip="Diagnóstico Visual"
                 (clicked)="openVision()"
               />
               <il-button
@@ -84,7 +83,6 @@
                 severity="help"
                 variant="ghost-text"
                 size="sm"
-                ngbTooltip="Resumen IA"
                 (clicked)="generateDailyReport()"
               />
               @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
@@ -94,7 +92,6 @@
                 severity="danger"
                 variant="ghost-text"
                 size="sm"
-                ngbTooltip="Enviar Reporte Ejecutivo"
                 (clicked)="sendExecutiveReport()"
               />
               }

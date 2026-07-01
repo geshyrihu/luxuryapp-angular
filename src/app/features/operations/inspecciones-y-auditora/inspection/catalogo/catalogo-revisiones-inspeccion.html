@@ -22,7 +22,7 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="description">
-        Descripción
+        Descripciï¿½n
         <p-sortIcon field="description" />
       </th>
 
@@ -46,22 +46,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:clipboard-search-outline"
-          title="Sin inspecciones"
-          message="No hay inspecciones registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

@@ -32,10 +32,12 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-orden-compra-presupuesto",
   templateUrl: "./orden-compra-presupuesto.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
     TableModule,
@@ -52,15 +54,15 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
-  // 1. INYECCIóN DE DEPENDENCIAS
+  // 1. INYECCIï¿½N DE DEPENDENCIAS
   //----------------------------------------------------------------
-  // Aquó puro `inject`, nada de constructores kilomótricos ?
+  // Aquï¿½ puro `inject`, nada de constructores kilomï¿½tricos ?
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
-  // Hacemos póblico el servicio para usar sus signals directo en el template ??
+  // Hacemos pï¿½blico el servicio para usar sus signals directo en el template ??
   public ordenCompraService = inject(OrdenCompraService);
   ref = inject(DynamicDialogRef);
   messageService = inject(MessageService);
@@ -69,7 +71,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // Datos que vienen de la API (partidas presupuestales)
   dataSignal = signal<any[]>([]);
-  // Año en curso (lo vamos a usar para filtrar info del presupuesto)
+  // Aï¿½o en curso (lo vamos a usar para filtrar info del presupuesto)
   intYearControl = new FormControl<number>(new Date().getFullYear());
   availableYears = [
     { label: "2024", value: 2024 },
@@ -99,7 +101,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   //----------------------------------------------------------------
-  // 4. MóTODOS PRINCIPALES
+  // 4. Mï¿½TODOS PRINCIPALES
   //----------------------------------------------------------------
   // Cargar data desde la API (las cuentas presupuestales)
   async onLoadData() {
@@ -133,7 +135,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     // Validaciones express ??
     const dineroUsado = item.dineroUsadoControl.value;
     if (!dineroUsado || dineroUsado <= 0) {
-      this.showMessage("Debe ingresar un monto vólido", "error");
+      this.showMessage("Debe ingresar un monto vï¿½lido", "error");
       return;
     }
     if (dineroUsado > totalPorCubrir) {
@@ -154,7 +156,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
       amount: dineroUsado,
     };
 
-    // Post a la API y actualización automótica del total ??
+    // Post a la API y actualizaciï¿½n automï¿½tica del total ??
     this.apiResponseS
       .onPost(Endpoints.PurchaseOrderBudgets.create, purchaseOrderBudget)
       .then(async () => {
@@ -180,7 +182,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     });
   }
 
-  // Determinar si un input de monto estó habilitado ??
+  // Determinar si un input de monto estï¿½ habilitado ??
   isInputDisabled(item: any): boolean {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     const superUser = this.aspRoleS.hasAny([
@@ -201,7 +203,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     return item.availableBudget <= 0 || totalPorCubrir <= 0;
   }
 
-  // Determinar si el botón de guardar estó habilitado ??
+  // Determinar si el botï¿½n de guardar estï¿½ habilitado ??
   isSaveDisabled(item: any): boolean {
     const superUser = this.aspRoleS.hasAny([
       EApplicationRole.SuperUsuario,
@@ -229,7 +231,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 6. LIMPIEZA
   //----------------------------------------------------------------
-  // Al destruir el componente cerramos el diálogo ??
+  // Al destruir el componente cerramos el diï¿½logo ??
   ngOnDestroy(): void {
     this.ref.close(true);
   }

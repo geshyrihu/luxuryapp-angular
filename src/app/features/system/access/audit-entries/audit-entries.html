@@ -73,15 +73,12 @@
                 iconClass="mdi:magnify"
                 (clicked)="onLoadData(true)"
               />
-              <button
-                type="button"
-                class="p-button p-button-outlined p-button-sm"
-                pTooltip="Actualizar lista"
-                tooltipPosition="top"
-                (click)="onLoadData(true)"
-              >
-                <app-icon [icon]="'mdi:refresh'" />
-              </button>
+              <iw-button
+                iconClass="mdi:refresh"
+                variant="outline"
+                size="small"
+                (clicked)="onLoadData(true)"
+              />
             </div>
           </div>
         </div>
@@ -166,16 +163,8 @@
         }
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="6">
-            <app-empty-state
-              icon="mdi:file-search-outline"
-              title="Sin cambios registrados"
-              message="No hay entradas de auditoría con los filtros actuales."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
     </p-table>
   </div>
 

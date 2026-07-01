@@ -134,16 +134,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="11">
-            <app-empty-state
-              icon="mdi:calendar-outline"
-              title="Sin eventos"
-              message="No hay eventos registrados."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="11" />
+  </ng-template>
     </p-table>
 
     <app-data-view-mobile

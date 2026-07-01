@@ -189,16 +189,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="16">
-            <app-empty-state
-              icon="mdi:cart-outline"
-              title="Sin órdenes"
-              message="No hay órdenes de compra registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="16" />
+  </ng-template>
     </p-table>
   </div>
   }

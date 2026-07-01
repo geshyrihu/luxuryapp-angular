@@ -73,15 +73,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="11">
-        <app-empty-state
-          icon="mdi:clipboard-text-outline"
-          title="Sin evaluaciones"
-          message="No hay evaluaciones registradas para el período seleccionado."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="11" />
   </ng-template>
   <ng-template #body let-rowIndex="rowIndex" let-item>
     <tr>

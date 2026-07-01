@@ -17,10 +17,12 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",
   templateUrl: "./recepcion-pipas-agua-reporte.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
     DatePickerModule,
@@ -190,7 +192,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua — Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Recepciï¿½n de Pipas de Agua ï¿½ Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
@@ -202,7 +204,7 @@ ${this.htmlPrintS.getStandardCss()}
           <div class="kmdi:percent">${this.totalRecepciones()}</div>
         </div>
         <div class="kmdi:card">
-          <div class="kmdi:format-title">Total m³ descargados</div>
+          <div class="kmdi:format-title">Total mï¿½ descargados</div>
           <div class="kmdi:percent blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
@@ -213,7 +215,7 @@ ${this.htmlPrintS.getStandardCss()}
           </thead>
           <tbody>
             <tr>
-              <td>Importe total (precio con IVA × m³)</td>
+              <td>Importe total (precio con IVA ï¿½ mï¿½)</td>
               <td style="text-align: right; font-weight: bold;">${fmtMoney(this.totalConIVA())}</td>
             </tr>
             <tr>
@@ -225,7 +227,7 @@ ${this.htmlPrintS.getStandardCss()}
               <td style="color: #6b7280; text-align: right;">${fmtMoney(this.ivaDesglosado())}</td>
             </tr>
             <tr>
-              <td style="color: #dc2626; font-weight: bold;">Retención 4%</td>
+              <td style="color: #dc2626; font-weight: bold;">Retenciï¿½n 4%</td>
               <td style="color: #dc2626; text-align: right; font-weight: bold;">(${fmtMoney(this.retencion())})</td>
             </tr>
             <tr style="background-color: #003A62; color: white;">
@@ -243,10 +245,10 @@ ${this.htmlPrintS.getStandardCss()}
         <tr>
           <th>Empresa</th>
           <th>Placas / Cap.</th>
-          <th>Llegada / Término</th>
+          <th>Llegada / Tï¿½rmino</th>
           <th style="text-align: center;">Cisterna ant ? des</th>
           <th style="text-align: center;">Medidor ini ? fin</th>
-          <th style="text-align: right;">m³</th>
+          <th style="text-align: right;">mï¿½</th>
           <th style="text-align: right;">Costo / Importe</th>
           <th>Personal</th>
         </tr>
@@ -286,8 +288,8 @@ ${this.htmlPrintS.getStandardCss()}
             (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
           "Medidor inicial": item.lecturaMedidorInicial,
           "Medidor final": item.lecturaMedidorFinal,
-          "m³ ingresados": m3,
-          "Costo m³": item.costoMetroCubico,
+          "mï¿½ ingresados": m3,
+          "Costo mï¿½": item.costoMetroCubico,
           "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
           "Colaborador mtto": item.colaboradorMtto ?? "",
           "Guardia testigo": item.guardiaSeguridad ?? "",

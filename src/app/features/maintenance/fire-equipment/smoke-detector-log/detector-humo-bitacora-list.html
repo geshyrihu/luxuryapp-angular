@@ -19,7 +19,7 @@
         />
       </div>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+        (add)="onModalForm({ id: '', title: 'Nueva Inspecciï¿½n' })"
         [dt]="dt"
       />
     </div>
@@ -30,7 +30,7 @@
       <th class="table-col-10">Hora</th>
       <th class="table-col-10">Sin Obstr.</th>
       <th class="table-col-10">Sin Contam.</th>
-      <th class="table-col-10">Sin Daños</th>
+      <th class="table-col-10">Sin Daï¿½os</th>
       <th class="table-col-10">LED Ok</th>
       <th class="table-col-10">Montaje</th>
       <th>Observaciones</th>
@@ -85,7 +85,7 @@
       <td class="no-print">
         <div class="flex justify-content-center">
           <il-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspecciï¿½n' })"
           />
           <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -93,15 +93,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:smoke-detector-outline"
-          title="Sin registros"
-          message="No hay registros de detectores de humo."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -111,7 +103,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspecciï¿½n' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
@@ -145,7 +137,7 @@
           >
           <small
             [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
-            >Sin Daños</small
+            >Sin Daï¿½os</small
           >
           <small [class]="item.ledStatusOk ? 'text-green-600' : 'text-red-600'"
             >LED Ok</small
@@ -160,7 +152,7 @@
         <app-action-menu>
           <ng-container actions>
             <il-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspecciï¿½n' })"
               label="Editar"
             />
             <il-button-delete

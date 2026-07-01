@@ -34,7 +34,7 @@
     <ng-template #header>
       <tr>
         <th class="w-8rem" pSortableColumn="folio">
-          CÓDIGO <p-sortIcon field="folio" />
+          Cï¿½DIGO <p-sortIcon field="folio" />
         </th>
         <th class="w-auto" pSortableColumn="applicationRoleName">
           PUESTO <p-sortIcon field="applicationRoleName" />
@@ -107,8 +107,8 @@
             <il-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconClass="mdi:book"
-              label="Descripción"
-              [pTooltip]="'Descripción de puesto'"
+              label="Descripciï¿½n"
+              [pTooltip]="'Descripciï¿½n de puesto'"
             />
             <il-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
@@ -133,16 +133,8 @@
       </div>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:briefcase-outline"
-            title="Sin puestos"
-            message="No hay puestos de trabajo registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
   </p-table>
 </div>
 
@@ -221,7 +213,7 @@
             <il-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconName="book-outline"
-              label="Descripción"
+              label="Descripciï¿½n"
             />
             <il-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"

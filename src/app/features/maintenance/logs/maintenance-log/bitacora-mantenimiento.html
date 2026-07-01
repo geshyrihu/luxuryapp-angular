@@ -53,14 +53,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="1">
-        <app-empty-state
-          icon="mdi:clipboard-text-outline"
-          title="Sin registros"
-          message="No se encontraron bitácoras de mantenimiento para los filtros seleccionados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="1" />
   </ng-template>
 </p-table>

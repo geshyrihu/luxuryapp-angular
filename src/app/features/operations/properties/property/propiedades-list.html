@@ -74,7 +74,7 @@
         <p-sortIcon field="unitNumber" />
       </th>
       <th class="w-7rem text-small" pSortableColumn="areaM2">
-        Área m²
+        ï¿½rea mï¿½
         <p-sortIcon field="areaM2" />
       </th>
       <th class="w-8rem text-small" pSortableColumn="indivisoPercentage">
@@ -137,15 +137,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="11">
-        <app-empty-state
-          icon="mdi:home-city-outline"
-          title="Sin propiedades"
-          message="No hay propiedades registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="11" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -185,7 +177,7 @@
           item.unitNumber }} }
         </p>
         <p>
-          @if (item.areaM2) { Área: {{ item.areaM2 | number:'1.2-2' }} m² } @if
+          @if (item.areaM2) { ï¿½rea: {{ item.areaM2 | number:'1.2-2' }} mï¿½ } @if
           (item.indivisoPercentage) { &middot; Indiviso: {{
           item.indivisoPercentage | percent:'1.2-5' }} }
         </p>

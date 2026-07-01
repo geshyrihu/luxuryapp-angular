@@ -13,20 +13,18 @@
     <div class="field mb-3">
       <label class="block mb-2 font-medium text-sm">Tipo de día</label>
       <div class="flex gap-2">
-        <button
-          pButton
-          type="button"
-          [outlined]="isPartial()"
-          (click)="onLeaveModeChange('full')"
-          class="flex-1"
-        >Día completo</button>
-        <button
-          pButton
-          type="button"
-          [outlined]="!isPartial()"
-          (click)="onLeaveModeChange('partial')"
-          class="flex-1"
-        >Parcial</button>
+        <il-button
+          label="Día completo"
+          [variant]="isPartial() ? 'outline' : 'solid'"
+          (clicked)="onLeaveModeChange('full')"
+          styleClass="flex-1"
+        />
+        <il-button
+          label="Parcial"
+          [variant]="!isPartial() ? 'outline' : 'solid'"
+          (clicked)="onLeaveModeChange('partial')"
+          styleClass="flex-1"
+        />
       </div>
     </div>
 

@@ -16,9 +16,11 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-asambleas",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -70,7 +72,7 @@ export class Asambleas {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificación de óxito
+        // Opcional: Mostrar una notificaciï¿½n de ï¿½xito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario

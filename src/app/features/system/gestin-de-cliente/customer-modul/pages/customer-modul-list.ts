@@ -23,10 +23,12 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerModulEdit } from "./customer-modul-edit";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     RouterModule,
     TableModule,
     AvatarModule,

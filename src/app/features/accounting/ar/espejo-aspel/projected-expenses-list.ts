@@ -8,7 +8,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
@@ -30,7 +30,7 @@ import { ProjectedExpensesForm } from "./projected-expenses-form";
     DecimalPipe,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
@@ -63,8 +63,8 @@ export default class ProjectedExpensesList {
   */
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  // óEsta es la magia!
-  // Se recalcularó automóticamente SOLO si dataSignal cambia.
+  // ï¿½Esta es la magia!
+  // Se recalcularï¿½ automï¿½ticamente SOLO si dataSignal cambia.
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];

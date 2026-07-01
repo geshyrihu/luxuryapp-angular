@@ -147,11 +147,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state icon="mdi:chart-bar" title="Sin estados financieros" message="No hay estados financieros registrados." />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />

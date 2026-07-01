@@ -5,6 +5,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { SelectModule } from "primeng/select";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -35,7 +36,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 
 @Component({
   selector: "app-cobranza-online-reporte-financiero",
-  imports: [CommonModule, FormsModule, ButtonModule, SelectModule, DataViewMobile, IonItem, IonLabel],
+  imports: [CommonModule, FormsModule, ButtonModule, SelectModule, DataViewMobile, IonItem, IonLabel, WebButtonLabel],
   templateUrl: "./cobranza-online-reporte-financiero.html",
 })
 export class CobranzaOnlineReporteFinanciero {

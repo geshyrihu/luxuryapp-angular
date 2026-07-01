@@ -69,21 +69,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:gauge"
-          title="Sin lecturas"
-          message="No hay lecturas de medidores registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

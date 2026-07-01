@@ -288,16 +288,8 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <tr>
-            <td colspan="13">
-              <app-empty-state
-                icon="mdi:engine-outline"
-                title="Sin equipos"
-                message="No hay equipos registrados."
-              />
-            </td>
-          </tr>
-        </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="13" />
+  </ng-template>
       </p-table>
       } @else {
       <div class="text-center text-500 p-4 surface-100 border-round italic">

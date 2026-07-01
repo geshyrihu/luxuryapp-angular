@@ -15,7 +15,7 @@ import { DatePickerModule } from "primeng/datepicker";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 // import { Subscription } from "rxjs"; // Removed
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
@@ -42,7 +42,7 @@ import { ProductReturn } from "./product-return";
   selector: "app-product-output-list",
   templateUrl: "./product-output-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     PrimeNgCustomTableFooter,
@@ -63,7 +63,7 @@ import { ProductReturn } from "./product-return";
   providers: [PaginationService],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
-  // Inyección de Dependencias
+  // Inyecciï¿½n de Dependencias
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -94,7 +94,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
   selectedDateControl = new FormControl<Date | null>(null);
   filterControl = new FormControl<string>("");
 
-  // Configuración de la tabla
+  // Configuraciï¿½n de la tabla
   // loading = signal(true); // Replaced by toSignal
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

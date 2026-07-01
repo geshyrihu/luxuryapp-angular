@@ -10,10 +10,12 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-comites-list",
   templateUrl: "./comites-list.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,

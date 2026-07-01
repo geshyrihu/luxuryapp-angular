@@ -53,16 +53,8 @@
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="6">
-          <app-empty-state
-            icon="mdi:file-document-outline"
-            title="Sin plantillas"
-            message="No hay plantillas registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
   </p-table>
 
   <app-data-view-mobile
@@ -89,7 +81,7 @@
         <ion-label>
           <h2 class="font-bold">{{ item.name }}</h2>
           <p class="text-sm text-500">
-            {{ item.addendumType }} · v{{ item.version }}
+            {{ item.addendumType }} ï¿½ v{{ item.version }}
           </p>
           <p class="text-sm text-500">
             {{ item.createdAt | date:'dd/MM/yyyy' }}

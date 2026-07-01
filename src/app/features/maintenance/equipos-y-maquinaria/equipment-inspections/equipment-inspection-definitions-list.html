@@ -85,14 +85,6 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:clipboard-list-outline"
-          title="Sin definiciones"
-          message="No hay definiciones de inspección registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
 </p-table>

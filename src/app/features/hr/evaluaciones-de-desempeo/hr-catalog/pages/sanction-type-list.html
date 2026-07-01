@@ -15,7 +15,7 @@
   >
     <ng-template #caption>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
+        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanciï¿½n' })"
         [dt]="dt"
       />
     </ng-template>
@@ -26,7 +26,7 @@
           Severidad <p-sortIcon field="severityLevel" />
         </th>
         <th pSortableColumn="isTermination" class="text-center">
-          Es Terminación <p-sortIcon field="isTermination" />
+          Es Terminaciï¿½n <p-sortIcon field="isTermination" />
         </th>
         <th pSortableColumn="requiresHRApproval" class="text-center">
           Requiere RH <p-sortIcon field="requiresHRApproval" />
@@ -43,14 +43,14 @@
         <td>{{ item.severityLevel }}</td>
         <td class="text-center">
           @if (item.isTermination) {
-          <span class="badge badge-danger">Sí</span>
+          <span class="badge badge-danger">Sï¿½</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
         </td>
         <td class="text-center">
           @if (item.requiresHRApproval) {
-          <span class="badge badge-warning">Sí</span>
+          <span class="badge badge-warning">Sï¿½</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
@@ -65,7 +65,7 @@
         <td class="no-print">
           <div class="flex">
             <il-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Sanción' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Sanciï¿½n' })"
             />
             <il-button-delete (confirmed)="onDelete(item.id)" />
           </div>
@@ -73,25 +73,17 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="6">
-          <app-empty-state
-            icon="mdi:gavel"
-            title="Sin sanciones"
-            message="No hay sanciones registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
   </p-table>
 
-  <!-- ?? INICIO: Componente adaptado para versión móvil -->
+  <!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
   <app-data-view-mobile
     [data]="items()"
-    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
+    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanciï¿½n' })"
     [globalFilterFields]="globalFilterFields"
     [dt]="dt"
   >
@@ -115,10 +107,10 @@
           <h2 class="text-base font-semibold">{{ item.name }}</h2>
           <p class="text-sm text-wrap">
             <strong>Severidad:</strong> {{ item.severityLevel }} |
-            <strong>Terminación:</strong> {{ item.isTermination ? 'Sí' : 'No' }}
+            <strong>Terminaciï¿½n:</strong> {{ item.isTermination ? 'Sï¿½' : 'No' }}
           </p>
           <p class="text-sm">
-            <strong>Requiere RH:</strong> {{ item.requiresHRApproval ? 'Sí' :
+            <strong>Requiere RH:</strong> {{ item.requiresHRApproval ? 'Sï¿½' :
             'No' }} |
             <strong>Estado:</strong>
             @if (item.isActive) {
@@ -145,5 +137,5 @@
       </ion-item>
     </ng-template>
   </app-data-view-mobile>
-  <!-- ?? FIN: Componente adaptado para versión móvil -->
+  <!-- ?? FIN: Componente adaptado para versiï¿½n mï¿½vil -->
 </div>

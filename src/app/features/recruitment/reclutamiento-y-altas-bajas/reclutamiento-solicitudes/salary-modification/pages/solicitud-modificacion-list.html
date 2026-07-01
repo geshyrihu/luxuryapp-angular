@@ -74,15 +74,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="10">
-        <app-empty-state
-          icon="mdi:currency-usd"
-          title="Sin solicitudes"
-          message="No hay solicitudes de modificación salarial."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="10" />
   </ng-template>
   <ng-template pTemplate="paginatorleft">
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -109,7 +101,7 @@
         <h3>{{ item.employee }}</h3>
         <p>{{ item.applicationRoleCurrent }} ? {{ item.applicationRoleNew }}</p>
         <p>
-          {{ item.currentSalary }} ? {{ item.finalSalary }} · {{ item.status }}
+          {{ item.currentSalary }} ? {{ item.finalSalary }} ï¿½ {{ item.status }}
         </p>
       </ion-label>
       <app-action-menu slot="end">

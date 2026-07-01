@@ -23,7 +23,7 @@
       <tr>
         <th pSortableColumn="name">Nombre <p-sortIcon field="name" /></th>
         <th pSortableColumn="category">
-          Categoría <p-sortIcon field="category" />
+          Categorï¿½a <p-sortIcon field="category" />
         </th>
         <th pSortableColumn="defaultSeverity">
           Severidad por Defecto <p-sortIcon field="defaultSeverity" />
@@ -57,22 +57,14 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="5">
-          <app-empty-state
-            icon="mdi:alert-circle-outline"
-            title="Sin incidencias"
-            message="No hay incidencias registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
   </p-table>
 
-  <!-- ?? INICIO: Componente adaptado para versión móvil -->
+  <!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
   <app-data-view-mobile
     [data]="items()"
     (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Incidencia' })"
@@ -98,7 +90,7 @@
         <ion-label>
           <h2 class="text-base font-semibold">{{ item.name }}</h2>
           <p class="text-sm text-wrap">
-            <strong>Categoría:</strong> {{ item.category }} |
+            <strong>Categorï¿½a:</strong> {{ item.category }} |
             <strong>Severidad:</strong> {{ item.defaultSeverity }}
           </p>
           <p class="text-sm">
@@ -127,5 +119,5 @@
       </ion-item>
     </ng-template>
   </app-data-view-mobile>
-  <!-- ?? FIN: Componente adaptado para versión móvil -->
+  <!-- ?? FIN: Componente adaptado para versiï¿½n mï¿½vil -->
 </div>

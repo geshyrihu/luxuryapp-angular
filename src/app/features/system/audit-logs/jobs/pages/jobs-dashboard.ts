@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-jobs-dashboard",
   templateUrl: "./jobs-dashboard.html",
-  imports: [ButtonModule],
+  imports: [WebButtonLabel],
   styles: [
     `
       .hangfire-shell {

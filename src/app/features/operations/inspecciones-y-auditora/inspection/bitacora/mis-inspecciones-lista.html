@@ -30,7 +30,7 @@
       <ng-template #header>
         <tr>
           <th>Estado</th>
-          <th>Inspección</th>
+          <th>Inspecciï¿½n</th>
           <th>Departamento</th>
           <th>Frecuencia</th>
           <th class="table-col-10"></th>
@@ -75,20 +75,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="5">
-            <app-empty-state
-              icon="mdi:clipboard-search-outline"
-              title="Sin inspecciones"
-              message="No hay inspecciones registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
     </p-table>
   </div>
 
-  <!-- ?? INICIO: Componente adaptado para versión móvil -->
+  <!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [showAdd]="false"

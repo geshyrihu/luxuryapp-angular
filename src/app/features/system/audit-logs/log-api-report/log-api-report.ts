@@ -12,7 +12,7 @@ import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -42,7 +42,7 @@ interface LogEntry {
 @Component({
   selector: "app-log-api-report",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

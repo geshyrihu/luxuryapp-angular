@@ -16,8 +16,8 @@
   /* Soporte global para colgroup cols */
   colgroup col {
     // Porcentajes
-    @each $pct in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20, 25,
-      28, 30, 32, 33, 35, 40, 45, 50, 55, 60, 66, 70, 75, 80, 90, 100
+    @each $pct in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20,
+      25, 28, 30, 32, 33, 35, 40, 45, 50, 55, 60, 66, 70, 75, 80, 90, 100
     {
       &.table-col-#{$pct} {
         width: ($pct * 1%) !important;
@@ -25,13 +25,27 @@
     }
 
     // Clases basadas en rem
-    &.table-col-icon { width: 3rem !important; }
-    &.table-col-xs { width: 5rem !important; }
-    &.table-col-sm { width: 8rem !important; }
-    &.table-col-md { width: 10rem !important; }
-    &.table-col-lg { width: 15rem !important; }
-    &.table-col-xl { width: 20rem !important; }
-    &.table-col-actions { width: 8rem !important; }
+    &.table-col-icon {
+      width: 3rem !important;
+    }
+    &.table-col-xs {
+      width: 5rem !important;
+    }
+    &.table-col-sm {
+      width: 8rem !important;
+    }
+    &.table-col-md {
+      width: 10rem !important;
+    }
+    &.table-col-lg {
+      width: 15rem !important;
+    }
+    &.table-col-xl {
+      width: 20rem !important;
+    }
+    &.table-col-actions {
+      width: 8rem !important;
+    }
 
     @each $rem in 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 18 {
       &.table-col-#{$rem}rem {
@@ -40,7 +54,9 @@
     }
 
     // Clases basadas en píxeles
-    @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140, 150, 160, 260, 320 {
+    @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140, 150,
+      160, 260, 320
+    {
       &.table-col-#{$px}px {
         width: #{$px}px !important;
       }
@@ -210,13 +226,27 @@
     // Columnas con ancho fijo porcentual
     .p-datatable-thead > tr > th,
     .p-datatable-tbody > tr > td {
-      &.table-col-7  { width: 7%; }
-      &.table-col-5  { width: 5%; }
-      &.table-col-12 { width: 12%; }
-      &.table-col-50 { width: 50%; }
-      &.table-col-3  { width: 3%; }
-      &.table-col-13 { width: 13%; }
-      &.table-col-10 { width: 10%; }
+      &.table-col-7 {
+        width: 7%;
+      }
+      &.table-col-5 {
+        width: 5%;
+      }
+      &.table-col-12 {
+        width: 12%;
+      }
+      &.table-col-50 {
+        width: 50%;
+      }
+      &.table-col-3 {
+        width: 3%;
+      }
+      &.table-col-13 {
+        width: 13%;
+      }
+      &.table-col-10 {
+        width: 10%;
+      }
     }
 
     // Celda de descripción — permite truncado multi-línea
@@ -226,4 +256,3 @@
     }
   }
 }
-

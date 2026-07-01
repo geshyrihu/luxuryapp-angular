@@ -94,15 +94,7 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="5">
-        <app-empty-state
-          icon="mdi:wallet-outline"
-          title="Sin fondeos"
-          message="No hay registros de fondeo para mostrar."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
 </p-table>
 

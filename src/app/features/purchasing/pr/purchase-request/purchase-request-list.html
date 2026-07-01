@@ -75,7 +75,7 @@
         <p-sortIcon field="requestedBy" />
       </th>
       <th class="table-col-32 text-sm" pSortableColumn="area">
-        ÁREA
+        ï¿½REA
         <p-sortIcon field="area" />
       </th>
       <th
@@ -83,7 +83,7 @@
         class="text-sm"
         pSortableColumn="expenseJustification"
       >
-        JUSTIFICACIÓN
+        JUSTIFICACIï¿½N
         <p-sortIcon field="expenseJustification" />
       </th>
       <th class="table-col-10"></th>
@@ -125,15 +125,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:clipboard-list-outline"
-          title="Sin solicitudes"
-          message="No hay solicitudes de compra registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
@@ -168,7 +160,7 @@
       </div>
       <ion-label>
         <h3>{{ item.requestedBy }}</h3>
-        <p>{{ item.area }} · Folio: {{ item.folio }}</p>
+        <p>{{ item.area }} ï¿½ Folio: {{ item.folio }}</p>
         <p>{{ item.requestDate | date }}</p>
       </ion-label>
       <app-action-menu slot="end">

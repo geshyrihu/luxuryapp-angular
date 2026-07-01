@@ -67,15 +67,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:account-plus-outline"
-          title="Sin solicitudes"
-          message="No hay solicitudes de alta registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
   <ng-template pTemplate="paginatorleft">
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -100,8 +92,8 @@
       </div>
       <ion-label>
         <h3>{{ item.nameEmployee }}</h3>
-        <p>{{ item.nameCustomer }} · {{ item.applicationRole }}</p>
-        <p>{{ item.executionDate }} · {{ item.status }}</p>
+        <p>{{ item.nameCustomer }} ï¿½ {{ item.applicationRole }}</p>
+        <p>{{ item.executionDate }} ï¿½ {{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

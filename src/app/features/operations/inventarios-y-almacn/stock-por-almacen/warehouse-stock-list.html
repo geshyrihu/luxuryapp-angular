@@ -120,21 +120,13 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="7">
-            <app-empty-state
-              icon="mdi:warehouse"
-              title="Sin inventario"
-              message="No hay stock registrado."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
     </p-table>
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="addProductos({ id: 0, title: 'Agregar Registro' })"

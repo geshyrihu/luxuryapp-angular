@@ -6,7 +6,7 @@ import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ImageCompressionService } from "src/app/core/services/image-compression.service";
@@ -20,7 +20,7 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 @Component({
   selector: "app-incident-attachments",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     FileUploadModule,
     TableModule,

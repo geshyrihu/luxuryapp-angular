@@ -9,16 +9,16 @@
     </div>
 
     <div class="flex gap-2">
-      <p-button
+      <il-button
         label="Volver al dashboard"
         severity="secondary"
-        [outlined]="true"
-        routerLink="/contabilidad/collections"
+        variant="outline"
+        (clicked)="navigateTo('/contabilidad/collections')"
       />
-      <p-button
+      <il-button
         label="Actualizar listado"
         severity="secondary"
-        (click)="onLoadData()"
+        (clicked)="onLoadData()"
       />
     </div>
   </div>
@@ -130,14 +130,12 @@
           <td>{{ item.movementCount }}</td>
           <td>{{ item.lastConcept || "-" }}</td>
           <td>
-            <button
-              pButton
-              type="button"
-              class="p-button-sm p-button-outlined"
-              (click)="$event.stopPropagation(); onSelectRow(item)"
-            >
-              Ver histórico
-            </button>
+            <il-button
+              label="Ver histórico"
+              size="small"
+              variant="outline"
+              (clicked)="$event.stopPropagation(); onSelectRow(item)"
+            />
           </td>
         </tr>
       </ng-template>

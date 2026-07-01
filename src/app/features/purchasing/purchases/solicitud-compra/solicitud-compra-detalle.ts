@@ -8,10 +8,12 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
 import { ProductoEdit } from "./producto-edit";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-solicitud-compra-detalle",
   templateUrl: "./solicitud-compra-detalle.html",
-  imports: [TableModule, WebButtonLabelEdit, WebButtonLabelDelete],
+  imports: [
+    PrimeNgCustomTableEmptyMessage,TableModule, WebButtonLabelEdit, WebButtonLabelDelete],
 })
 export class SolicitudCompraDetalle {
   apiResponseS = inject(ApiResponseService);

@@ -7,16 +7,14 @@
       <span class="font-semibold text-sm text-white">DATOS PRINCIPALES</span>
     </div>
     @if (!bloqueada()) {
-    <p-button
+    <iw-button
       size="small"
       variant="text"
       rounded
-      (onClick)="onModalOrdenCompra()"
-      pTooltip="Editar datos principales"
-      styleClass="text-white"
-    >
-      <app-icon icon="mdi:pencil" />
-    </p-button>
+      (clicked)="onModalOrdenCompra()"
+      customClass="text-white"
+      iconClass="mdi:pencil"
+    />
     }
   </div>
 

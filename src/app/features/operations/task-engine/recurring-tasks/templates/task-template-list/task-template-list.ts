@@ -9,7 +9,7 @@ import {
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -20,7 +20,7 @@ import { TaskTemplateForm } from "../task-template-form/task-template-form";
   selector: "app-task-template-list",
   templateUrl: "./task-template-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     ActionMenu,
     WebButtonLabelActiveDesactive,
     WebButtonLabelDelete,

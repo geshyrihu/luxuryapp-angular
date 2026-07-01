@@ -10,7 +10,7 @@ import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -20,7 +20,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 @Component({
   selector: "app-mis-inspecciones-lista",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     ActionMenu,
     CardModule,
     NgbTooltipModule,

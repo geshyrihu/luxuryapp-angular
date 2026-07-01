@@ -1,9 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
-import { TooltipModule } from "primeng/tooltip";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ICustomerImageDTO } from "../models/customer.dto";
@@ -12,7 +11,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
-  imports: [CommonModule, ImageModule, ButtonModule, TooltipModule, AppIcon],
+  imports: [CommonModule, ImageModule, AppIcon, WebButtonIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);

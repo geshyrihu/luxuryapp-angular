@@ -1,7 +1,8 @@
 ﻿import { HttpClient } from "@angular/common/http";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
@@ -19,7 +20,7 @@ interface ITaskAreaGroup {
 @Component({
   selector: "app-task-pending-board",
   templateUrl: "./task-pending-board.html",
-  imports: [ButtonModule, ImageModule, TagModule, AppIcon],
+  imports: [WebButtonLabel, WebButtonIcon, ImageModule, TagModule, AppIcon],
 })
 export class TaskPendingBoard implements OnInit {
   private readonly route = inject(ActivatedRoute);

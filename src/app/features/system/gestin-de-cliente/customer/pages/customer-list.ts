@@ -20,7 +20,7 @@ import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/bu
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -40,7 +40,7 @@ import { CustomerImages } from "./customer-images";
   selector: "app-customer-list",
   templateUrl: "./customer-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,
     NgbTooltipModule,

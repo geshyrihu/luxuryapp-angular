@@ -64,16 +64,8 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <tr>
-            <td colspan="3">
-              <app-empty-state
-                icon="mdi:notebook-outline"
-                title="Sin minutas"
-                message="No hay minutas registradas."
-              />
-            </td>
-          </tr>
-        </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="3" />
+  </ng-template>
       </p-table>
 
       @if (!items().length && !loading()) {

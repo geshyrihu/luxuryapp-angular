@@ -1,9 +1,11 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -35,9 +37,12 @@ import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspecti
     DataViewMobile,
     IonItem,
     IonLabel,
+    WebButtonLabel,
+    WebButtonIcon,
   ],
 })
 export class CobranzaOnlineInspection {
+  private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
   private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -158,5 +163,9 @@ export class CobranzaOnlineInspection {
     const month = parsedDate.toLocaleDateString("es-MX", { month: "short" });
     const year = parsedDate.getFullYear().toString().slice(-2);
     return `${day}-${month}-${year}`;
+  }
+
+  navigateTo(route: string) {
+    if (route) this.router.navigateByUrl(route);
   }
 }

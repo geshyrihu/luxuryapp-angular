@@ -15,10 +15,10 @@
   >
     <ng-template #caption>
       <div class="flex align-items-center justify-content-between p-2">
-        <h5 class="m-0 text-xl font-bold text-700">Gestión de Diagramas</h5>
+        <h5 class="m-0 text-xl font-bold text-700">Gestiï¿½n de Diagramas</h5>
         <div class="flex gap-2">
           <il-button
-            label="Galería"
+            label="Galerï¿½a"
             iconClass="mdi:image-multiple"
             severity="secondary"
             variant="ghost-text"
@@ -35,7 +35,7 @@
           Nombre <p-sortIcon field="name"></p-sortIcon>
         </th>
         <th pSortableColumn="updateAt" class="table-col-15rem">
-          Última Actualización <p-sortIcon field="updateAt"></p-sortIcon>
+          ï¿½ltima Actualizaciï¿½n <p-sortIcon field="updateAt"></p-sortIcon>
         </th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -60,7 +60,7 @@
             <il-button
               iconClass="mdi:palette"
               (clicked)="onOpenEditor(diagram.id)"
-              ngbTooltip="Abrir Editor Gráfico"
+              ngbTooltip="Abrir Editor Grï¿½fico"
               variant="text"
               severity="info"
               label="Editor"
@@ -87,16 +87,8 @@
       </div>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="3">
-          <app-empty-state
-            icon="mdi:chart-tree"
-            title="Sin diagramas"
-            message="No hay diagramas registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="3" />
+  </ng-template>
   </p-table>
 </div>
 

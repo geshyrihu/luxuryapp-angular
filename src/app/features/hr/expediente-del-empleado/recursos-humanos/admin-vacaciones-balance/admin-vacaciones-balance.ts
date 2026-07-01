@@ -23,9 +23,11 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { VacationBalanceAdminViewDto } from "../interfaces/vacation-balance-admin-view.interface";
 import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-admin-vacaciones-balance",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     CardModule,
     TableModule,

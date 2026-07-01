@@ -9,7 +9,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -28,7 +28,7 @@ import { EntregaRecepcionClienteForm } from "src/app/features/operations/propert
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     WebButtonLabelEdit,
     WebButtonLabelItem,
     WebButtonLabelDelete,

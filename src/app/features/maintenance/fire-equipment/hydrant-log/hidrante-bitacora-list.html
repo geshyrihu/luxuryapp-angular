@@ -19,7 +19,7 @@
         />
       </div>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+        (add)="onModalForm({ id: '', title: 'Nueva Inspecciï¿½n' })"
         [dt]="dt"
       />
     </div>
@@ -32,8 +32,8 @@
       <th class="table-col-10">Cristal</th>
       <th class="table-col-10">Llave</th>
       <th class="table-col-10">Manguera</th>
-      <th class="table-col-10">Chiflón</th>
-      <th class="table-col-10">Válvula</th>
+      <th class="table-col-10">Chiflï¿½n</th>
+      <th class="table-col-10">Vï¿½lvula</th>
       <th class="table-col-10">Cerradura</th>
       <th>Estado Gabinete</th>
       <th></th>
@@ -103,7 +103,7 @@
       <td class="no-print">
         <div class="flex justify-content-center">
           <il-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspecciï¿½n' })"
           />
           <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -111,15 +111,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="11">
-        <app-empty-state
-          icon="mdi:pipe"
-          title="Sin registros"
-          message="No hay registros de bitácora de hidrantes."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="11" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -129,7 +121,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspecciï¿½n' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
@@ -166,7 +158,7 @@
           >
           <small
             [class]="item.valveOperational ? 'text-green-600' : 'text-red-600'"
-            >Válvula</small
+            >Vï¿½lvula</small
           >
         </div>
       </ion-label>
@@ -174,7 +166,7 @@
         <app-action-menu>
           <ng-container actions>
             <il-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspecciï¿½n' })"
               label="Editar"
             />
             <il-button-delete

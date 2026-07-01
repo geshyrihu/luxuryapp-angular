@@ -60,16 +60,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="6">
-          <app-empty-state
-            icon="mdi:inbox-arrow-down"
-            title="Sin pendientes"
-            message="No hay solicitudes pendientes de aprobación."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
   </p-table>
 </div>
 

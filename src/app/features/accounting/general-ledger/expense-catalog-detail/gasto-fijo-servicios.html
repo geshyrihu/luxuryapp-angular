@@ -71,26 +71,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:package-variant-closed"
-          title="Sin productos agregados"
-          message="No hay productos agregados a este gasto fijo."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:package-outline"
-          title="Sin productos"
-          message="No hay productos en el catálogo. Agregue productos desde la sección de catálogo."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
 </p-table>
 

@@ -8,7 +8,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web/label/button-send-email";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -26,9 +26,9 @@ import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
 @Component({
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
-  // Añadido para Angular 20
+  // Aï¿½adido para Angular 20
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     NgbTooltipModule,
     WebButtonLabelEdit,

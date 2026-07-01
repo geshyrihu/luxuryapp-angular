@@ -14,7 +14,7 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -116,7 +116,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
   selector: "app-juntas-mensuales-session",
   templateUrl: "./juntas-mensuales-session.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     RouterModule,
     TableModule,

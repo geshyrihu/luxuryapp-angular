@@ -88,21 +88,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="13">
-        <app-empty-state
-          icon="mdi:pool"
-          title="Sin registros"
-          message="No hay registros de piscina."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="13" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -139,21 +131,21 @@
         <!-- Mediciones en Grid Compacto -->
         <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Cl:</strong> {{ item.cl || "ó" }}
+            <strong class="text-primary">Cl:</strong> {{ item.cl || "ï¿½" }}
           </div>
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Ph:</strong> {{ item.ph || "ó" }}
+            <strong class="text-primary">Ph:</strong> {{ item.ph || "ï¿½" }}
           </div>
           <div class="col-4 p-0 pb-1">
             <strong class="text-primary">Alk:</strong> {{ item.alkalinidad ||
-            "ó" }}
+            "ï¿½" }}
           </div>
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Dur:</strong> {{ item.dureza || "ó" }}
+            <strong class="text-primary">Dur:</strong> {{ item.dureza || "ï¿½" }}
           </div>
           <div class="col-4 p-0 pb-1">
             <strong class="text-primary">Tem:</strong> {{ item.temperatura ||
-            "ó" }}
+            "ï¿½" }}
           </div>
         </div>
 

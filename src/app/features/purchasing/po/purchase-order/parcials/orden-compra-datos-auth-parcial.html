@@ -8,14 +8,13 @@
       <span class="text-sm font-semibold">Pendiente de autorización</span>
     </div>
     @if (!isAuthorizationDisabled()) {
-    <p-button
+    <il-button
       label="Autorizar"
       size="small"
       severity="success"
-      (onClick)="onAutorizarCompra()"
-    >
-      <app-icon icon="mdi:check-circle" />
-    </p-button>
+      (clicked)="onAutorizarCompra()"
+      iconClass="mdi:check-circle"
+    />
     } @else {
     <div class="flex align-items-center gap-2">
       <app-icon [icon]="'mdi:alert'" class="text-red-500"></app-icon>
@@ -41,15 +40,14 @@
       </div>
     </div>
     @if (canRevoke()) {
-    <p-button
+    <il-button
       label="Revocar"
       size="small"
       severity="danger"
-      variant="outlined"
-      (onClick)="onDeautorizarCompra()"
-    >
-      <app-icon icon="mdi:undo" />
-    </p-button>
+      variant="outline"
+      (clicked)="onDeautorizarCompra()"
+      iconClass="mdi:undo"
+    />
     }
   </div>
 </p-message>

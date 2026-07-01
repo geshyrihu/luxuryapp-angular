@@ -72,8 +72,8 @@
         ESTATUS
         <p-sortIcon field="status" />
       </th>
-      <th class="table-col-10">FECHA CONCLUSIÓN</th>
-      <th class="table-col-3">DÍAS</th>
+      <th class="table-col-10">FECHA CONCLUSIï¿½N</th>
+      <th class="table-col-3">Dï¿½AS</th>
       <th colspan="2" class="table-col-7">SEGUIMIENTO</th>
     </tr>
   </ng-template>
@@ -129,22 +129,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="10">
-        <app-empty-state
-          icon="mdi:ticket-outline"
-          title="Sin tickets"
-          message="No hay tickets legales registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? Versión móvil -->
+<!-- ?? Versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

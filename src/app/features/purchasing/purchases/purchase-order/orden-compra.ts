@@ -19,7 +19,7 @@ import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomToast } from "src/app/core/components/web/primeng-custom-toast/primeng-custom-toast";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -48,7 +48,7 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
   selector: "app-orden-compra",
   templateUrl: "./orden-compra.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CardModule,
     CommonModule,
     WebButtonLabelDelete,
@@ -72,7 +72,7 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
 })
 export class OrdenCompra implements OnInit {
   //----------------------------------------------------------------
-  // 1. INYECCIóN DE DEPENDENCIAS
+  // 1. INYECCIï¿½N DE DEPENDENCIAS
   //----------------------------------------------------------------
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
@@ -81,10 +81,10 @@ export class OrdenCompra implements OnInit {
   routeActive = inject(ActivatedRoute);
   router = inject(Router);
   confirmationService = inject(ConfirmationService);
-  public ordenCompraService = inject(OrdenCompraService); // Póblico para usar sus signals en el template
+  public ordenCompraService = inject(OrdenCompraService); // Pï¿½blico para usar sus signals en el template
   public pdfGenerationService = inject(PdfGenerationService);
   //----------------------------------------------------------------
-  // 2. SEíALES DE ESTADO (STATE SIGNALS)
+  // 2. SEï¿½ALES DE ESTADO (STATE SIGNALS)
   //----------------------------------------------------------------
   // REFACTOR: El estado del componente ahora se gestiona con WritableSignal.
   ordenCompraId: WritableSignal<string> = signal("");
@@ -98,19 +98,19 @@ export class OrdenCompra implements OnInit {
   isValidating = signal(false);
   validationResult = signal<any | null>(null);
 
-  // REFACTOR: Propiedades que no se usan o se pueden derivar. Se comentan para posible eliminación.
+  // REFACTOR: Propiedades que no se usan o se pueden derivar. Se comentan para posible eliminaciï¿½n.
   // esNumeroNegativo: boolean = false; // Derivado de `ordenCompraService.totalPorCubrir() < 0`, no usado en template.
   // totalRelacionadoConOtras Ordenes: number = 0; // No se usa en el template.
   // esGastoFijo: boolean = false; // No se usa en el template.
   // icon: string = ""; // No se usa en el template.
 
   //----------------------------------------------------------------
-  // 3. SEíALES COMPUTADAS (COMPUTED SIGNALS) PARA LóGICA DE UI
+  // 3. SEï¿½ALES COMPUTADAS (COMPUTED SIGNALS) PARA Lï¿½GICA DE UI
   //----------------------------------------------------------------
-  // REFACTOR: Centralizamos la lógica condicional en `computed` signals.
-  // Esto limpia el template y hace que la lógica sea mós fócil de mantener.
+  // REFACTOR: Centralizamos la lï¿½gica condicional en `computed` signals.
+  // Esto limpia el template y hace que la lï¿½gica sea mï¿½s fï¿½cil de mantener.
 
-  /** Indica si la OC estó autorizada. */
+  /** Indica si la OC estï¿½ autorizada. */
   isAuthorized: Signal<boolean> = computed(
     () =>
       this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra === "Autorizado",
@@ -123,7 +123,7 @@ export class OrdenCompra implements OnInit {
       0,
   );
 
-  /** Indica si la OC estó bloqueada para modificación. */
+  /** Indica si la OC estï¿½ bloqueada para modificaciï¿½n. */
   isLocked: Signal<boolean> = computed(
     () => this.ordenCompra()?.isLockedForModification ?? false,
   );
@@ -136,7 +136,7 @@ export class OrdenCompra implements OnInit {
   /** Determina si se pueden agregar nuevos productos. */
   canAddProducts: Signal<boolean> = computed(() => !this.isLocked());
 
-  /** Lógica para mostrar el encabezado de la tabla de presupuesto. */
+  /** Lï¿½gica para mostrar el encabezado de la tabla de presupuesto. */
   canShowBudgetHeader: Signal<boolean> = computed(() => {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     return (
@@ -144,12 +144,12 @@ export class OrdenCompra implements OnInit {
     );
   });
 
-  /** Lógica para deshabilitar los botones de edición de los paneles principales. */
+  /** Lï¿½gica para deshabilitar los botones de ediciï¿½n de los paneles principales. */
   isPanelEditingDisabled: Signal<boolean> = computed(
     () => this.isLocked() || this.isAuthorized() || this.isReviewedByResident(),
   );
 
-  /** Calcula todos los totales de la OC en una sola señal computada. */
+  /** Calcula todos los totales de la OC en una sola seï¿½al computada. */
   totals: Signal<{
     subtotal: number;
     iva: number;
@@ -212,7 +212,7 @@ export class OrdenCompra implements OnInit {
       this.ordenCompraDetalle.set(result.ordenCompraDetalle ?? []);
       this.purchaseOrderBudget.set(result.purchaseOrderBudget ?? []);
 
-      // Actualizamos los totales en el servicio, lo que propagaró los cambios a todos los signals dependientes.
+      // Actualizamos los totales en el servicio, lo que propagarï¿½ los cambios a todos los signals dependientes.
       this.ordenCompraService.actualizarTotalOrdenCompra(ocId);
 
       if (result.folioSolicitudCompra) {
@@ -228,8 +228,8 @@ export class OrdenCompra implements OnInit {
     this.loading.set(false);
   }
 
-  // ... Mótodos para abrir modales y realizar acciones ...
-  // La lógica interna de estos mótodos no cambia, solo que al final llaman a onLoadData()
+  // ... Mï¿½todos para abrir modales y realizar acciones ...
+  // La lï¿½gica interna de estos mï¿½todos no cambia, solo que al final llaman a onLoadData()
   // para refrescar el estado de todas las signals.
 
   autorizarCompra(): void {
@@ -283,7 +283,7 @@ export class OrdenCompra implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  // ... (Resto de mótodos onModal..., onDelete..., etc. se mantienen similares, siempre llamando a onLoadData() al final)
+  // ... (Resto de mï¿½todos onModal..., onDelete..., etc. se mantienen similares, siempre llamando a onLoadData() al final)
   onModalEditarPresupuestoUtilizado(id: any) {
     this.dialogHandlerS
       .openDialog(
@@ -309,7 +309,7 @@ export class OrdenCompra implements OnInit {
       .openDialog(
         ModalOrdenCompra,
         { ordenCompra: this.ordenCompra() },
-        "Actualizar información",
+        "Actualizar informaciï¿½n",
         this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
@@ -352,7 +352,7 @@ export class OrdenCompra implements OnInit {
       .onDelete(Endpoints.PurchaseOrderBudgets.delete(id))
       .then(() => this.onLoadData());
   }
-  /** Nómero de columnas del cuerpo de la tabla (10 o 11 segón permisos). */
+  /** Nï¿½mero de columnas del cuerpo de la tabla (10 o 11 segï¿½n permisos). */
   tableColumnCount: Signal<number> = computed(() => {
     return this.canEditBudget() ? 11 : 10;
   });
@@ -370,7 +370,7 @@ export class OrdenCompra implements OnInit {
     this.pdfGenerationService.generateSolicitudPagoPdf(this.ordenCompraId());
   }
 
-  // --- MóTODOS DE ARCHIVOS Y VALIDACIóN (Traódos de OrdenCompraStatusParcial) ---
+  // --- Mï¿½TODOS DE ARCHIVOS Y VALIDACIï¿½N (Traï¿½dos de OrdenCompraStatusParcial) ---
 
   descargarArchivo(url: string): void {
     const link = document.createElement("a");
@@ -403,18 +403,18 @@ export class OrdenCompra implements OnInit {
         this.validationResult.set(result);
         if (result.isValid) {
           this.customToastService.showSuccess(
-            "Validación Exitosa",
+            "Validaciï¿½n Exitosa",
             result.message,
           );
         } else {
           this.customToastService.showError(
-            "Validación Fallida",
+            "Validaciï¿½n Fallida",
             result.message,
           );
         }
       })
       .catch((error) => {
-        console.error("Error en la validación:", error);
+        console.error("Error en la validaciï¿½n:", error);
         this.customToastService.showError(
           "Error",
           "Error al validar facturas.",
@@ -446,7 +446,7 @@ export class OrdenCompra implements OnInit {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gestión de Vónculos",
+        "Gestiï¿½n de Vï¿½nculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

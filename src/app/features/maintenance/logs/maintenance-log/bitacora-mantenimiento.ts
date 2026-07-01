@@ -20,10 +20,12 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-bitacora-mantenimiento",
   templateUrl: "./bitacora-mantenimiento.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     WebButtonLabelDelete,

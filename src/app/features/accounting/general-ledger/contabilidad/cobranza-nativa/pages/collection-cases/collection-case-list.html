@@ -83,16 +83,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="8">
-          <app-empty-state
-            icon="mdi:cash-remove"
-            title="Sin casos de cobranza"
-            message="No hay casos activos. Ejecuta la evaluación para detectar morosidad grave."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
   </p-table>
 
   <!-- Vista mobile -->

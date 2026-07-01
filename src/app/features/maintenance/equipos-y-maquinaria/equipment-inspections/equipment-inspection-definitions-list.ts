@@ -13,7 +13,7 @@ import { Tag } from "primeng/tag";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -32,7 +32,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
   selector: "app-equipment-inspection-definitions-list",
   templateUrl: "./equipment-inspection-definitions-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     Tag,

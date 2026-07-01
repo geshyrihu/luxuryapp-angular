@@ -18,8 +18,8 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th class="table-col-md">Número</th>
-        <th class="table-col-lg">Título</th>
+        <th class="table-col-md">Nï¿½mero</th>
+        <th class="table-col-lg">Tï¿½tulo</th>
         <th class="table-col-md">Tipo</th>
         <th class="table-col-sm text-center">Estatus</th>
         <th class="table-col-sm">Fecha Efectiva</th>
@@ -43,7 +43,7 @@
         </td>
         <td>{{ item.effectiveDate | date:'dd/MM/yyyy' }}</td>
         <td>
-          {{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : '—' }}
+          {{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : 'ï¿½' }}
         </td>
         <td class="text-center">
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
@@ -71,16 +71,8 @@
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:file-plus-outline"
-            title="Sin addenda"
-            message="No hay addendas registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
   </p-table>
 
   <app-data-view-mobile
@@ -106,7 +98,7 @@
         </div>
         <ion-label>
           <h2 class="font-bold">
-            {{ item.addendumNumber }} — {{ item.title }}
+            {{ item.addendumNumber }} ï¿½ {{ item.title }}
           </h2>
           <p class="text-sm text-500">{{ item.addendumType }}</p>
           <p class="text-sm text-500">

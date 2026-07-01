@@ -9,7 +9,7 @@ import {
 } from "src/app/core/components/buttons/web/label";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import {
   ETypeEmpresa,
   StatusBadge,
@@ -36,7 +36,7 @@ import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     DataViewMobile,
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     IonItem,
     IonLabel,
     PrimeNgCustomCaption,

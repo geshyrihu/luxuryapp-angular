@@ -4,7 +4,7 @@ import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -15,7 +15,7 @@ import { IncidentWitnessFormComponent } from "./incident-witness-form";
 @Component({
   selector: "app-incident-witnesses",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,
     WebButtonLabelDelete,

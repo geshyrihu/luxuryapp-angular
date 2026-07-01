@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import * as FileSaver from "file-saver";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
@@ -84,6 +85,7 @@ interface IWeeklyExecutiveReport {
     MultiAxisChart,
     RangoCalendarioyyyymmdd,
     CustomInputMultiselectSignal,
+    WebButtonLabel,
     WebButtonLabelDownload,
     PrimeNgCustomCaption,
   ],

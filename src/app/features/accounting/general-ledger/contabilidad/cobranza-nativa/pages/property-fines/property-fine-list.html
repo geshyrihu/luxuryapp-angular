@@ -81,16 +81,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="8">
-          <app-empty-state
-            icon="mdi:gavel"
-            title="Sin multas"
-            message="No hay multas registradas para este condominio."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
   </p-table>
 </div>
 

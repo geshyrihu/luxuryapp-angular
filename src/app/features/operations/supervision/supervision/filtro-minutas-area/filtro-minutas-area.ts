@@ -14,10 +14,12 @@ import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-filtro-minutas-area",
   templateUrl: "./filtro-minutas-area.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

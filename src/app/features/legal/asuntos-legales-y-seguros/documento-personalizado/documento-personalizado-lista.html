@@ -52,16 +52,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="5">
-          <app-empty-state
-            icon="mdi:file-document-outline"
-            title="Sin documentos"
-            message="No hay documentos personalizados registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -96,7 +88,7 @@
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
-        <p>Folio: {{ item.folio }} ó {{ item.createAt }}</p>
+        <p>Folio: {{ item.folio }} ï¿½ {{ item.createAt }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

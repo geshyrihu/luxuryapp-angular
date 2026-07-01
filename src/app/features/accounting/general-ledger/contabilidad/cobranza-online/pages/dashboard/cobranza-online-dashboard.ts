@@ -1,6 +1,8 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
 import { IconFieldModule } from "primeng/iconfield";
@@ -41,6 +43,8 @@ import type {
     InputTextModule,
     PieChart,
     AppIcon,
+    WebButtonLabel,
+    WebButtonIcon,
   ],
   templateUrl: "./cobranza-online-dashboard.html",
   styles: `
@@ -326,6 +330,7 @@ import type {
   `,
 })
 export class CobranzaOnlineDashboard {
+  private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
   private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -934,5 +939,9 @@ export class CobranzaOnlineDashboard {
     this.selectedStatement.set(typedStatement);
     this.selectedMovement.set(typedStatement?.movimientos?.[0] ?? null);
     this.detailLoading.set(false);
+  }
+
+  navigateTo(route: string) {
+    if (route) this.router.navigateByUrl(route);
   }
 }

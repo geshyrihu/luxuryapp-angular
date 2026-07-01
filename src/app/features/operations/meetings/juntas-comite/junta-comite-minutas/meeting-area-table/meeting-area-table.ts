@@ -10,6 +10,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
 export interface DetailEvent {
   meetingId: any;
@@ -26,6 +27,7 @@ export interface SeguimientoEvent {
 @Component({
   selector: "app-area-details-table",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     WebButtonLabelItem,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
@@ -54,7 +56,7 @@ export class AreaDetailsTable {
   editSeguimiento = output<SeguimientoEvent>();
   deleteSeguimiento = output<number>();
 
-  // --- métodos para emitir eventos al componente padre ---
+  // --- mï¿½todos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
@@ -99,7 +101,7 @@ export class AreaDetailsTable {
     this.deleteSeguimiento.emit(seguimientoId);
   }
 
-  // --- métodos de ayuda para la vista (Helpers) ---
+  // --- mï¿½todos de ayuda para la vista (Helpers) ---
 
   /** Devuelve la clase CSS para el badge de estatus. */
   /** Devuelve el severity de PrimeNG para el estatus. */
@@ -132,5 +134,5 @@ export class AreaDetailsTable {
     }
   }
 
-  // Elimina el método getStatusIcon ya que usamos emojis
+  // Elimina el mï¿½todo getStatusIcon ya que usamos emojis
 }

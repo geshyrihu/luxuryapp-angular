@@ -15,7 +15,7 @@
         type="month"
         customClass="w-15rem"
         (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-        pTooltip="Seleccionar Mes y Año"
+        pTooltip="Seleccionar Mes y Aï¿½o"
         tooltipPosition="top"
         [horizontal]="false"
         [noMargin]="true"
@@ -33,7 +33,7 @@
       </div>
       <il-button
         iconClass="mdi:file-document-outline"
-        label="Reporte de órdenes"
+        label="Reporte de ï¿½rdenes"
         (click)="onNavigateToReport()"
         variant="outlined"
       />
@@ -102,14 +102,14 @@
   <ng-template #groupheader let-item>
     <tr>
       <td colspan="8" class="font-bold text-sm surface-100 px-3 py-2">
-        {{ item.equipoClasificacion || 'Sin Categoría' }}
+        {{ item.equipoClasificacion || 'Sin Categorï¿½a' }}
       </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
       <td>
-        <!-- Esto mostrará los últimos 5 dígitos -->
+        <!-- Esto mostrarï¿½ los ï¿½ltimos 5 dï¿½gitos -->
         {{ item.maintenanceCalendarId | slice:-5 }}
       </td>
       <!-- {{ item.machineryId }} | -->
@@ -185,19 +185,11 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:wrench-outline"
-          title="Sin ordenes"
-          message="No hay ordenes de servicio registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
+<!-- ?? INICIO: Contenido visible solo en pantallas pequeï¿½as (hasta md) -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="
@@ -212,9 +204,9 @@
   [dt]="dt"
 >
   <ng-container customFilters>
-    <!-- tu bloque aquó -->
+    <!-- tu bloque aquï¿½ -->
     <div class="card-body p-0">
-      <!-- Sección Título y Fecha -->
+      <!-- Secciï¿½n Tï¿½tulo y Fecha -->
       <div class="flex flex-column mb-3">
         <ion-item lines="none" class="ion-no-padding transparent-item">
           <ion-label
@@ -230,7 +222,7 @@
             type="month"
             customClass="w-full"
             (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-            pTooltip="Seleccionar Mes y Año"
+            pTooltip="Seleccionar Mes y Aï¿½o"
             tooltipPosition="top"
             [horizontal]="false"
           />
@@ -252,11 +244,11 @@
         }
       </ion-segment>
 
-      <!-- Botón Reporte -->
+      <!-- Botï¿½n Reporte -->
       <div class="mb-2">
         <il-button-item
           iconName="document-text-outline"
-          label="Reporte de órdenes"
+          label="Reporte de ï¿½rdenes"
           (click)="onNavigateToReport()"
           variant="outlined"
           fullWidth="true"
@@ -282,7 +274,7 @@
     </div>
   </ng-container>
 
-  <!-- Lista de órdenes de servicio en formato de tarjeta -->
+  <!-- Lista de ï¿½rdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
       <div
@@ -398,19 +390,19 @@
       display: none !important;
     }
 
-    /* 2. Forzar visualización de la Tabla */
+    /* 2. Forzar visualizaciï¿½n de la Tabla */
     .custom-table {
       display: block !important;
       visibility: visible !important;
       width: 100% !important;
     }
 
-    /* Resetear las clases de ocultamiento para impresión */
+    /* Resetear las clases de ocultamiento para impresiï¿½n */
     .hidden.md\:block {
       display: block !important;
     }
 
-    /* 3. Ocultar Vista Móvil */
+    /* 3. Ocultar Vista Mï¿½vil */
     app-data-view-mobile {
       display: none !important;
     }
@@ -419,9 +411,9 @@
     .p-datatable-header,
     /* El Caption con filtros */
     .p-paginator-bottom,
-    /* Paginación */
+    /* Paginaciï¿½n */
     .no-print {
-      /* Clase utilitaria para columnas específicas */
+      /* Clase utilitaria para columnas especï¿½ficas */
       display: none !important;
     }
 
@@ -446,7 +438,7 @@
       font-weight: bold;
     }
 
-    /* Configuración de Pógina */
+    /* Configuraciï¿½n de Pï¿½gina */
     @page {
       size: landscape;
       /* Sugerir horizontal para tablas anchas */

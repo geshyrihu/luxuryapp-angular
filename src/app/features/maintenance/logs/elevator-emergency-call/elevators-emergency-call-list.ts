@@ -6,7 +6,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -22,7 +22,7 @@ import { ElevatorsEmergencyCallForm } from "./elevators-emergency-call-form";
   selector: "app-elevators-emergency-call-list",
   templateUrl: "./elevators-emergency-call-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
 
     PrimeNgCustomCaption,
@@ -48,7 +48,7 @@ export class ElevatorsEmergencyCallList {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diï¿½logo modal
 
   constructor() {
     effect(() => {

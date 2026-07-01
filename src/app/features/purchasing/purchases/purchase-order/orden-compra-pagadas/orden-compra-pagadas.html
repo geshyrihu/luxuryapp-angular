@@ -45,7 +45,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-3">Nó</th>
+      <th class="table-col-3">Nï¿½</th>
       <th class="table-col-6" pSortableColumn="fechaSolicitud">
         Fecha
         <p-sortIcon field="fechaSolicitud" />
@@ -63,7 +63,7 @@
         <p-sortIcon field="proveedor" />
       </th>
       <th class="table-col-25" pSortableColumn="justificacionGasto">
-        Justificación
+        Justificaciï¿½n
         <p-sortIcon field="justificacionGasto" />
       </th>
       <th class="table-col-10" pSortableColumn="total">
@@ -90,15 +90,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:cart-outline"
-          title="Sin órdenes"
-          message="No hay órdenes de compra registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -133,9 +125,9 @@
       </div>
       <ion-label>
         <h3>{{ item.proveedor }}</h3>
-        <p>Folio: {{ item.folio }} ó Factura: {{ item.factura }}</p>
+        <p>Folio: {{ item.folio }} ï¿½ Factura: {{ item.factura }}</p>
         <p>
-          Total: {{ item.total | number:'1.2-2' }} ó {{ item.fechaSolicitud |
+          Total: {{ item.total | number:'1.2-2' }} ï¿½ {{ item.fechaSolicitud |
           date:'dd/MM/yyyy':'UTC' }}
         </p>
       </ion-label>

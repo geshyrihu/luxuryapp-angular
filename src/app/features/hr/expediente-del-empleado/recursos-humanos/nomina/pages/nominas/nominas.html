@@ -100,15 +100,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:file-document-outline"
-          title="Sin nóminas"
-          message="No hay nóminas generadas para este cliente."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
 </p-table>
 

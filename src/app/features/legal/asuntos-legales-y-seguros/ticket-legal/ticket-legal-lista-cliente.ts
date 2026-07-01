@@ -7,7 +7,7 @@ import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
 import { WebButtonLabelTracking } from "src/app/core/components/buttons/web/label/button-tracking";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -28,7 +28,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
   selector: "app-ticket-legal-lista-cliente",
   templateUrl: "./ticket-legal-lista-cliente.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,
     TooltipModule,

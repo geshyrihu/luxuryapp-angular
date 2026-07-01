@@ -11,22 +11,22 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <!-- CAMBIO: El título y el ID inicial se ajustan para Almacén -->
+    <!-- CAMBIO: El tï¿½tulo y el ID inicial se ajustan para Almacï¿½n -->
     <primeng-custom-caption
       [showAdd]="isAdmin"
-      (add)="onModalForm({ id: '', title: 'Nuevo Almacén' })"
+      (add)="onModalForm({ id: '', title: 'Nuevo Almacï¿½n' })"
       [dt]="dt"
     />
   </ng-template>
   <ng-template #header>
     <tr>
-      <!-- CAMBIO: Columnas y campos de ordenamiento para Almacén -->
+      <!-- CAMBIO: Columnas y campos de ordenamiento para Almacï¿½n -->
       <th pSortableColumn="nombre">
         Nombre
         <p-sortIcon field="nombre" />
       </th>
       <th pSortableColumn="ubicacion">
-        Ubicación
+        Ubicaciï¿½n
         <p-sortIcon field="ubicacion" />
       </th>
       <th pSortableColumn="activo">
@@ -38,7 +38,7 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <!-- CAMBIO: Propiedades del objeto 'item' para Almacén -->
+      <!-- CAMBIO: Propiedades del objeto 'item' para Almacï¿½n -->
       <td>{{ item.nombre }}</td>
       <td>{{ item.ubicacion }}</td>
       <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
@@ -63,26 +63,18 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="4">
-        <app-empty-state
-          icon="mdi:warehouse"
-          title="Sin inventario"
-          message="No hay stock registrado."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="4" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [showAdd]="isAdmin"
-  (add)="onModalForm({ id: '', title: 'Nuevo Almacén' })"
+  (add)="onModalForm({ id: '', title: 'Nuevo Almacï¿½n' })"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
 >

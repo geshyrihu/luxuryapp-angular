@@ -19,7 +19,7 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th>Ubicación</th>
+      <th>Ubicaciï¿½n</th>
       <th>Area</th>
       <th class="table-col-5"></th>
     </tr>
@@ -56,15 +56,7 @@
     }
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:palette-outline"
-          title="Sin pinturas"
-          message="No hay inventario de pintura."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />

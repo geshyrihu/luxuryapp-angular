@@ -113,15 +113,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:account-group-outline"
-          title="Sin empleados"
-          message="Sin empleados en esta nómina."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
 </p-table>
 

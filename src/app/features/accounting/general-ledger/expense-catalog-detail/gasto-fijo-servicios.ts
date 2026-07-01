@@ -28,10 +28,12 @@ import {
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-gasto-fijo-servicios",
   templateUrl: "./gasto-fijo-servicios.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
     TableModule,

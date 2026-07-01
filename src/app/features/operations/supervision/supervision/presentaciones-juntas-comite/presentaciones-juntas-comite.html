@@ -42,15 +42,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:presentation"
-          title="Sin presentaciones"
-          message="No hay presentaciones de junta para el período seleccionado."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
   <ng-template #body let-i="rowIndex" let-item>
     <tr>
@@ -150,7 +142,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields"

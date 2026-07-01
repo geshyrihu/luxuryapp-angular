@@ -78,11 +78,11 @@
         <p-sortIcon field="customerName" />
       </th>
       <th pSortableColumn="publishedAt">
-        Publicación
+        Publicaciï¿½n
         <p-sortIcon field="publishedAt" />
       </th>
       <th pSortableColumn="expirationDate">
-        Expiración
+        Expiraciï¿½n
         <p-sortIcon field="expirationDate" />
       </th>
       <th class="no-print"></th>
@@ -141,7 +141,7 @@
           <il-button-item
             [routerLink]="['/announcements/analytics', item.id]"
             iconClass="mdi:chart-bar"
-            label="Analóticas"
+            label="Analï¿½ticas"
           />
         </div>
       </td>
@@ -149,18 +149,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state icon="mdi:bullhorn-outline" title="Sin comunicados" message="No hay comunicados registrados." />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -257,7 +253,7 @@
             <il-button-item
               [routerLink]="['/announcements/analytics', item.id]"
               iconName="bar-chart-outline"
-              label="Analóticas"/>
+              label="Analï¿½ticas"/>
           </ng-container>
         </app-action-menu>
       </div>

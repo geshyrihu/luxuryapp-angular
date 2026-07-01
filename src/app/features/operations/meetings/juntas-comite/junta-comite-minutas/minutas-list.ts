@@ -2,7 +2,7 @@ import { Component, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
 import { AccordionModule } from "primeng/accordion";
 import { ButtonModule } from "primeng/button";
@@ -49,7 +49,7 @@ import { MinutaPdfService } from "./minuta-pdf.service";
   selector: "app-minutas-list",
   templateUrl: "./minutas-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,
     ButtonModule,

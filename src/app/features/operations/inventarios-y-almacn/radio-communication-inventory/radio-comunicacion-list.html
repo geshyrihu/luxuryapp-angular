@@ -19,22 +19,14 @@
     />
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="10">
-        <app-empty-state
-          icon="mdi:radio-handheld"
-          title="Sin equipos"
-          message="No hay equipos de comunicacion registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th>Nº</th>
+      <th>Nï¿½</th>
       <th pSortableColumn="fotografia">
         Fotografia <p-sortIcon field="fotografia" />
       </th>
@@ -115,9 +107,9 @@
         ></app-icon>
       </div>
       <ion-label>
-        <h3>{{ item.marca }} — {{ item.modelo }}</h3>
-        <p>Serie: {{ item.serie }} | Batería: {{ item.bateria }}</p>
-        <p>{{ item.applicationUser }} · {{ item.departament }}</p>
+        <h3>{{ item.marca }} ï¿½ {{ item.modelo }}</h3>
+        <p>Serie: {{ item.serie }} | Baterï¿½a: {{ item.bateria }}</p>
+        <p>{{ item.applicationUser }} ï¿½ {{ item.departament }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

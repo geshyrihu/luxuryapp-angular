@@ -10,7 +10,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -33,7 +33,7 @@ const date = new Date();
   selector: "app-listado-anual-mantenimiento",
   templateUrl: "./listado-anual-mantenimiento.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
     SelectModule,
@@ -80,7 +80,7 @@ export class ListadoAnualMantenimiento {
   groupedData = computed(() => {
     const data = this.dataSignal();
     return data.reduce((acc: any, item: any) => {
-      const key = item.inventoryCategory || "Sin Categoría";
+      const key = item.inventoryCategory || "Sin Categorï¿½a";
       if (!acc[key]) {
         acc[key] = [];
       }

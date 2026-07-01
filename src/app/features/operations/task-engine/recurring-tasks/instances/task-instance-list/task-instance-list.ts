@@ -11,7 +11,7 @@ import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -25,7 +25,7 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
   selector: "app-task-instance-list",
   templateUrl: "./task-instance-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     ActionMenu,
     CommonModule,
     WebButtonLabel,

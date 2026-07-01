@@ -9,23 +9,23 @@ import {
   viewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-view",
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, WebButtonLabel],
   template: `
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">
         <h2 class="m-0">{{ diagram()?.name }}</h2>
-        <p-button
+        <il-button
           label="Volver"
-          icon="mdi:arrow-left"
-          (click)="goBack()"
-          [text]="true"
+          iconClass="mdi:arrow-left"
+          (clicked)="goBack()"
+          variant="text"
           severity="secondary"
         />
       </div>
@@ -104,7 +104,7 @@ export class DiagramView implements OnInit, AfterViewInit {
   }
 
   loadViewerScript() {
-    // Si el script ya esté cargado, lo reinicializamos
+    // Si el script ya estï¿½ cargado, lo reinicializamos
     if ((window as any).GraphViewer) {
       this.renderDiagram();
       return;
@@ -126,7 +126,7 @@ export class DiagramView implements OnInit, AfterViewInit {
     }
 
     // El script de draw.io busca elementos con clase 'mxgraph' al cargar
-    // Si lo cargamos dinámicamente, podemos forzar el procesamiento
+    // Si lo cargamos dinï¿½micamente, podemos forzar el procesamiento
     if (
       (window as any).GraphViewer &&
       (window as any).GraphViewer.processElements

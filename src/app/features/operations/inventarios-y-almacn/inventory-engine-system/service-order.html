@@ -1,8 +1,7 @@
 <div class="text-right">
   <il-button
-    ngbTooltip="Agregar Servicio"
     [customClass]="'btn-outline-primary'"
-    icon="mdi:plus"
+    iconClass="mdi:plus"
     label="Nuevo Servicio"
     (clicked)="
       showModalMaintenanceCalendar({
@@ -76,8 +75,7 @@
           <!-- Duplicar Servicio -->
           <!-- Editar  -->
           <il-button
-            icon="edit"
-            ngbTooltip="Editar"
+            iconClass="mdi:edit"
             (clicked)="
                   showModalMaintenanceCalendar({
                     id: item.id,

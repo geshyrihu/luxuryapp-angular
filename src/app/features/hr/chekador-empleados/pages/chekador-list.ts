@@ -6,7 +6,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { ImageModule } from "primeng/image";
 import { InputTextModule } from "primeng/inputtext";
@@ -26,13 +27,16 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { IRegistroChecador } from "../models/chekador-empleados.models";
 import { ChekadorEmpleadosService } from "../services/chekador-empleados.service";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-chekador-list",
   templateUrl: "./chekador-list.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,
-    ButtonModule,
+    WebButtonLabel,
+    WebButtonIcon,
     CheckboxModule,
     ImageModule,
     InputTextModule,

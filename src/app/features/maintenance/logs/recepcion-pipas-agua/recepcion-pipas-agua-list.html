@@ -15,7 +15,7 @@
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
     >
-      <!-- IZQUIERDA: Título y Navegación entre vistas -->
+      <!-- IZQUIERDA: Tï¿½tulo y Navegaciï¿½n entre vistas -->
       <div class="flex flex-column sm:flex-row align-items-center gap-3">
         <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
           Recepcion de Pipas
@@ -82,8 +82,8 @@
       <th class="text-center" style="min-width: 160px">
         Medidor inicial / final
       </th>
-      <th class="text-right" style="min-width: 80px">m³</th>
-      <th class="text-right" style="min-width: 90px">Costo m³</th>
+      <th class="text-right" style="min-width: 80px">mï¿½</th>
+      <th class="text-right" style="min-width: 90px">Costo mï¿½</th>
       <th style="min-width: 150px">Colaborador mtto</th>
       <th style="min-width: 130px">Guardia testigo</th>
       <th style="min-width: 160px">Fotos</th>
@@ -216,15 +216,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="13">
-        <app-empty-state
-          icon="mdi:water-pump"
-          title="Sin recepciones"
-          message="No hay recepciones de agua registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="13" />
   </ng-template>
 
   <ng-template #paginatorleft>
@@ -294,7 +286,7 @@
         <p>
           {{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' : 'UTC' }}
           <span *ngIf="item.horaTermino">
-            — {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span
+            ï¿½ {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span
           >
           <span *ngIf="!item.horaTermino" class="text-orange-500">
             (en curso)</span
@@ -305,7 +297,7 @@
             <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
           </div>
           <div class="col-6 p-0">
-            <strong>m³:</strong>
+            <strong>mï¿½:</strong>
             {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
             '1.0-0' }}
           </div>
@@ -315,7 +307,7 @@
             item.nivelCisternaDespues | number: '1.0-0' }}%
           </div>
           <div class="col-6 p-0">
-            <strong>Costo m³:</strong> {{ item.costoMetroCubico | number:
+            <strong>Costo mï¿½:</strong> {{ item.costoMetroCubico | number:
             '1.2-2' }}
           </div>
           <div *ngIf="item.colaboradorMtto" class="col-12 p-0">

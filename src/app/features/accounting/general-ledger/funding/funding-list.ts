@@ -20,9 +20,11 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FaqsFondeo } from "src/app/features/accounting/fondeos-y-reporteo/funding/faqs-fondeo";
 import { FundingForm } from "./funding-form";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-funding-list",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     WebButtonLabel,

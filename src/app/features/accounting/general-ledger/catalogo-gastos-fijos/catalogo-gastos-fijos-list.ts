@@ -19,14 +19,14 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     IonAccordion,
     IonAccordionGroup,
     ...CATALOGO_GASTOS_FIJOS_LIST_MODULES,

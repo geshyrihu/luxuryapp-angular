@@ -43,15 +43,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:gauge"
-          title="Sin categor�as"
-          message="No hay categor�as de medidores."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />

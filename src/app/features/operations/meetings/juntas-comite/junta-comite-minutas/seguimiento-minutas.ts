@@ -25,10 +25,12 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ContMinutaSeguimientos } from "src/app/features/accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-seguimiento-minutas",
   templateUrl: "./seguimiento-minutas.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     WebButtonLabelItem,
     CommonModule,
     TableModule,

@@ -9,8 +9,8 @@
           <app-icon icon="mdi:calculator-variant" class="text-2xl"></app-icon>
         </div>
         <div>
-          <h5 class="m-0 font-bold text-900">Módulo Contable: Presentaciones</h5>
-          <span class="text-600 text-sm">Carga y gestión de reportes financieros para juntas mensuales</span>
+          <h5 class="m-0 font-bold text-900">Mï¿½dulo Contable: Presentaciones</h5>
+          <span class="text-600 text-sm">Carga y gestiï¿½n de reportes financieros para juntas mensuales</span>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
     <!-- Info Banner for Accountant -->
     <div class="p-3 border-round-lg bg-cyan-50 text-cyan-800 text-sm flex align-items-center gap-2">
       <app-icon icon="mdi:information-outline" class="text-xl"></app-icon>
-      <span>Como contador, su responsabilidad es cargar el reporte financiero antes de la validación final.</span>
+      <span>Como contador, su responsabilidad es cargar el reporte financiero antes de la validaciï¿½n final.</span>
     </div>
 
     <!-- Rows Container (Full Width Row-Cards) -->
@@ -52,7 +52,7 @@
           @if (item.archivoFinal) {
             <div class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border-round-lg font-bold border-1 border-green-100">
               <app-icon icon="mdi:lock"></app-icon>
-              <span>SESIÓN FINALIZADA</span>
+              <span>SESIï¿½N FINALIZADA</span>
             </div>
           }
         </div>
@@ -114,7 +114,7 @@
 
             <!-- Side Content: Other Areas Status -->
             <div class="col-12 md:col-5 pl-4 flex flex-column gap-3">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider">Disponibilidad de otras áreas</span>
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Disponibilidad de otras ï¿½reas</span>
               
               <div class="flex flex-column gap-2">
                 <!-- Status Row: Portada -->
@@ -138,7 +138,7 @@
 
               @if (item.archivoFinal) {
                 <div class="mt-2">
-                  <il-button-view-pdf [url]="item.archivoFinal" fileName="Presentacion_Final" label="VER PRESENTACIÓN FINAL" [fluid]="true" severity="success" size="sm" customClass="justify-content-start px-3" />
+                  <il-button-view-pdf [url]="item.archivoFinal" fileName="Presentacion_Final" label="VER PRESENTACIï¿½N FINAL" [fluid]="true" severity="success" size="sm" customClass="justify-content-start px-3" />
                 </div>
               }
             </div>
@@ -151,7 +151,7 @@
         <app-icon icon="mdi:file-clock-outline" class="text-6xl text-300"></app-icon>
         <div>
           <h6 class="m-0 font-bold text-900">Sin sesiones pendientes</h6>
-          <p class="text-600">No hay juntas programadas que requieran su intervención contable en este momento.</p>
+          <p class="text-600">No hay juntas programadas que requieran su intervenciï¿½n contable en este momento.</p>
         </div>
       </div>
       }
@@ -197,7 +197,7 @@
             }
           </div>
           <p-tag
-            [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
+            [value]="item.enviadoComite ? 'Enviado a Comitï¿½' : 'No enviado a Comitï¿½'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             styleClass="text-xs"
           ></p-tag>
@@ -325,7 +325,7 @@
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
                   />
-                  <button-delete
+                  <il-button-delete
                     (confirmed)="onDeleteFile(item.id, 'Operaciones')"
                   />
                 </div>
@@ -351,9 +351,9 @@
                 <il-button-confirm
                   icon="mdi:send"
                   label="Validar y enviar a comite"
-                  swalTitle="óEnviar presentación?"
-                  swalText="La presentación seró enviada al Comité."
-                  swalConfirmButtonText="Sí, enviar"
+                  swalTitle="ï¿½Enviar presentaciï¿½n?"
+                  swalText="La presentaciï¿½n serï¿½ enviada al Comitï¿½."
+                  swalConfirmButtonText="Sï¿½, enviar"
                   swalIcon="warning"
                   (confirmed)="onValidarPresentacion(item.id)"
                   customClass="w-full"
@@ -361,9 +361,9 @@
                 <il-button-confirm
                   icon="mdi:check-circle"
                   label="Solo validar"
-                  swalTitle="óValidar presentación?"
-                  swalText="Confirmo que la presentación es correcta y se crearó versión final."
-                  swalConfirmButtonText="Sí, estó correcta, validar"
+                  swalTitle="ï¿½Validar presentaciï¿½n?"
+                  swalText="Confirmo que la presentaciï¿½n es correcta y se crearï¿½ versiï¿½n final."
+                  swalConfirmButtonText="Sï¿½, estï¿½ correcta, validar"
                   swalIcon="info"
                   (confirmed)="onOnlyValidate(item.id)"
                   customClass="w-full p-button-secondary"

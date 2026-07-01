@@ -116,16 +116,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="6">
-          <app-empty-state
-            icon="mdi:bank-off"
-            title="Sin cuentas omitidas"
-            message="No hay cuentas configuradas como omitidas para este cliente."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="visibleRows()" />
     </ng-template>

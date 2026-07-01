@@ -22,7 +22,7 @@
         <p-sortIcon field="folio" />
       </th>
       <th class="table-col-30" pSortableColumn="descripcion">
-        DESCRIPCIÓN
+        DESCRIPCIï¿½N
         <p-sortIcon field="descripcion" />
       </th>
       <th class="table-col-30" pSortableColumn="pathFormato">
@@ -62,15 +62,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="4">
-        <app-empty-state
-          icon="mdi:file-document-outline"
-          title="Sin plantillas"
-          message="No hay plantillas registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="4" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />

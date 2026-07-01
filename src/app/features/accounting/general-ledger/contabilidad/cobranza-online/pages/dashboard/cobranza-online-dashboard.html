@@ -39,33 +39,33 @@
             (change)="onDateChange($any($event.target).value)"
           />
         </div>
-        <p-button
+        <il-button
           label="Análisis"
           size="small"
           severity="secondary"
-          [outlined]="true"
-          routerLink="/contabilidad/collections/analysis"
+          variant="outline"
+          (clicked)="navigateTo('/contabilidad/collections/analysis')"
         />
-        <p-button
+        <il-button
           label="Listado base"
           size="small"
           severity="secondary"
-          [outlined]="true"
-          routerLink="/contabilidad/collections/inspection"
+          variant="outline"
+          (clicked)="navigateTo('/contabilidad/collections/inspection')"
         />
-        <p-button
+        <il-button
           label="Cuentas omitidas"
           size="small"
           severity="secondary"
-          [outlined]="true"
-          routerLink="/contabilidad/collections/exclusions"
+          variant="outline"
+          (clicked)="navigateTo('/contabilidad/collections/exclusions')"
         />
-        <p-button
+        <il-button
           [label]="syncRunning() ? 'Sincronizando...' : 'Refrescar Aspel'"
           size="small"
           [loading]="syncRunning()"
           [disabled]="syncRunning()"
-          (click)="onSyncNow()"
+          (clicked)="onSyncNow()"
         />
       </div>
     </div>
@@ -218,12 +218,12 @@
           en contexto.
         </div>
       </div>
-      <p-button
+      <il-button
         label="Nueva cuota vigente"
         size="small"
         severity="secondary"
-        [outlined]="true"
-        (click)="onModialForm()"
+        variant="outline"
+        (clicked)="onModialForm()"
       />
     </div>
 
@@ -271,12 +271,12 @@
               {{ template.chargeType }} · {{ template.calculationMethod }}
             </div>
           </div>
-          <p-button
-            icon="mdi:pencil"
+          <iw-button
+            iconClass="mdi:pencil"
             size="small"
             severity="secondary"
-            [text]="true"
-            (click)="onModialForm(template.id)"
+            variant="text"
+            (clicked)="onModialForm(template.id)"
           />
         </div>
 

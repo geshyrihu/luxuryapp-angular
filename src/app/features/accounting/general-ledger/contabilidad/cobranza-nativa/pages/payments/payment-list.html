@@ -95,16 +95,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:cash-check"
-            title="Sin pagos"
-            message="No hay pagos registrados para este período."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
   </p-table>
 </div>
 

@@ -3,15 +3,12 @@
     <label class="block mb-2 field-label">Tipo de asunto *</label>
     <div class="flex flex-wrap gap-2">
       @for (option of subjectTypeOptions(); track option.value) {
-      <button
-        type="button"
-        class="p-button p-component p-button-sm"
-        [class.p-button-outlined]="form.controls.subjectType.value !== option.value"
-        [class.p-button-primary]="form.controls.subjectType.value === option.value"
-        (click)="selectSubjectType(option.value)"
-      >
-        <span class="p-button-label">{{ option.label }}</span>
-      </button>
+      <il-button
+        size="small"
+        [label]="option.label"
+        [variant]="form.controls.subjectType.value === option.value ? 'solid' : 'outline'"
+        (clicked)="selectSubjectType(option.value)"
+      />
       }
     </div>
     @if (getSubjectTypeDescription()) {
@@ -25,15 +22,12 @@
     <label class="block mb-2 field-label">Modalidad *</label>
     <div class="flex flex-wrap gap-2">
       @for (option of modalityOptions(); track option.value) {
-      <button
-        type="button"
-        class="p-button p-component p-button-sm"
-        [class.p-button-outlined]="form.controls.modality.value !== option.value"
-        [class.p-button-primary]="form.controls.modality.value === option.value"
-        (click)="selectModality(option.value)"
-      >
-        <span class="p-button-label">{{ option.label }}</span>
-      </button>
+      <il-button
+        size="small"
+        [label]="option.label"
+        [variant]="form.controls.modality.value === option.value ? 'solid' : 'outline'"
+        (clicked)="selectModality(option.value)"
+      />
       }
     </div>
     @if (getModalityDescription()) {
@@ -275,13 +269,12 @@
           organizacion de la asamblea.
         </small>
       </div>
-      <button
-        class="p-button p-component p-button-sm"
+      <il-button
+        size="small"
+        label="Agregar invitado"
         type="button"
-        (click)="addAssemblyInvitee()"
-      >
-        <span class="p-button-label">Agregar invitado</span>
-      </button>
+        (clicked)="addAssemblyInvitee()"
+      />
     </div>
     <div class="flex flex-column gap-3" formArrayName="assemblyInvitees">
       @for (invitee of assemblyInviteesArray.controls; track invitee; let index
@@ -296,19 +289,13 @@
           <span class="font-semibold text-color-secondary"
             >Invitado {{ index + 1 }}</span
           >
-          <button
-            class="p-button p-component p-button-sm p-button-text p-button-icon-only"
-            [ngClass]="invitee.controls.isImplicit.value ? 'p-button-secondary' : 'p-button-danger'"
+          <iw-button
+            [iconClass]="invitee.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
+            [severity]="invitee.controls.isImplicit.value ? 'secondary' : 'danger'"
             type="button"
-            (click)="removeAssemblyInvitee(index)"
+            (clicked)="removeAssemblyInvitee(index)"
             [disabled]="invitee.controls.isImplicit.value"
-            [title]="invitee.controls.isImplicit.value ? 'Invitado requerido (no se puede quitar)' : 'Quitar invitado'"
-          >
-            <app-icon
-              [icon]="invitee.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
-              class="text-xl"
-            />
-          </button>
+          />
         </div>
 
         <div class="col-12 md:col-4 py-1 px-1">
@@ -436,13 +423,12 @@
           esta junta.
         </small>
       </div>
-      <button
-        class="p-button p-component p-button-sm"
+      <il-button
+        size="small"
+        label="Agregar invitado"
         type="button"
-        (click)="addGuest()"
-      >
-        <span class="p-button-label">Agregar invitado</span>
-      </button>
+        (clicked)="addGuest()"
+      />
     </div>
 
     <div class="flex flex-column gap-3" formArrayName="guests">
@@ -474,19 +460,13 @@
         </div>
 
         <div class="flex-none flex align-items-center h-full">
-          <button
-            class="p-button p-component p-button-sm p-button-text p-button-icon-only"
-            [ngClass]="guest.controls.isImplicit.value ? 'p-button-secondary' : 'p-button-danger'"
+          <iw-button
+            [iconClass]="guest.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
+            [severity]="guest.controls.isImplicit.value ? 'secondary' : 'danger'"
             type="button"
-            (click)="removeGuest(index)"
+            (clicked)="removeGuest(index)"
             [disabled]="guest.controls.isImplicit.value"
-            [title]="guest.controls.isImplicit.value ? 'Invitado requerido (no se puede quitar)' : 'Quitar invitado'"
-          >
-            <app-icon
-              [icon]="guest.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
-              class="text-xl"
-            />
-          </button>
+          />
         </div>
       </div>
       }
@@ -504,29 +484,24 @@
     @if (isEditMode() && (originalEventDetail()?.isRecurring ||
     isRecurring())) {
     <div class="flex gap-2">
-      <button
-        class="p-button p-component p-button-outlined p-button-sm"
+      <il-button
+        variant="outline"
+        size="small"
         type="button"
         [disabled]="form.invalid || submittingSeries() || deletingSeries()"
-        (click)="onSubmitSeries()"
-      >
-        <span class="p-button-label">
-          {{ submittingSeries() ? "Actualizando serie..." : "Guardar toda la
-          serie" }}
-        </span>
-      </button>
+        [label]="submittingSeries() ? 'Actualizando serie...' : 'Guardar toda la serie'"
+        (clicked)="onSubmitSeries()"
+      />
       @if (originalEventDetail()?.isRecurring) {
-      <button
-        class="p-button p-component p-button-danger p-button-outlined p-button-sm"
+      <il-button
+        severity="danger"
+        variant="outline"
+        size="small"
         type="button"
         [disabled]="submittingSeries() || deletingSeries()"
-        (click)="onDeleteSeries()"
-      >
-        <span class="p-button-label">
-          {{ deletingSeries() ? "Eliminando serie..." : "Eliminar toda la serie"
-          }}
-        </span>
-      </button>
+        [label]="deletingSeries() ? 'Eliminando serie...' : 'Eliminar toda la serie'"
+        (clicked)="onDeleteSeries()"
+      />
       }
     </div>
     }

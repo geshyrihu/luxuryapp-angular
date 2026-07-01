@@ -44,15 +44,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:ruler"
-          title="Sin unidades"
-          message="No hay unidades de medida registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
 
   <ng-template #paginatorleft>

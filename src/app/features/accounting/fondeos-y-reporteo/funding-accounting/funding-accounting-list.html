@@ -95,15 +95,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:calculator"
-          title="Sin fondeos contables"
-          message="No hay registros contables de fondeos."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -143,8 +135,8 @@
       </div>
       <ion-label>
         <h3>{{ item.period }}</h3>
-        <p>Verificó: {{ item.verifiedByName || '? En espera' }}</p>
-        <p>Autorizó: {{ item.authorizedByName || '? En espera' }}</p>
+        <p>Verificï¿½: {{ item.verifiedByName || '? En espera' }}</p>
+        <p>Autorizï¿½: {{ item.authorizedByName || '? En espera' }}</p>
       </ion-label>
     </ion-item>
   </ng-template>

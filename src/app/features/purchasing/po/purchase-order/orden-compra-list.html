@@ -12,7 +12,7 @@
   styleClass="custom-table card hidden md:block orden-compra-table"
 >
   <ng-template #caption>
-    <!-- ??? Fila 1: Filtros de Categorización (Tipos de Gasto) -->
+    <!-- ??? Fila 1: Filtros de Categorizaciï¿½n (Tipos de Gasto) -->
     <div class="grid p-0 mb-3 align-items-stretch">
       @for (tipo of tiposDeGasto; track tipo.id) {
       <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
@@ -42,11 +42,11 @@
       }
     </div>
 
-    <!-- ??? Contenedor Maestro: Alineación Perfecta (Título + Buscador + Acciones) -->
+    <!-- ??? Contenedor Maestro: Alineaciï¿½n Perfecta (Tï¿½tulo + Buscador + Acciones) -->
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round shadow-1"
     >
-      <!-- IZQUIERDA: Título y Buscador (Toma el espacio libre) -->
+      <!-- IZQUIERDA: Tï¿½tulo y Buscador (Toma el espacio libre) -->
       <div
         class="flex flex-column sm:flex-row align-items-center gap-3 flex-grow-1"
       >
@@ -132,7 +132,7 @@
         <p-sortIcon field="fechaSolicitud" />
       </th>
       <th pSortableColumn="equipoOInstalacion">
-        DESCRIPCIóN
+        DESCRIPCIï¿½N
         <p-sortIcon field="equipoOInstalacion" />
       </th>
       <th pSortableColumn="justificacionGasto">
@@ -253,15 +253,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:cart-outline"
-          title="Sin órdenes"
-          message="No hay órdenes de compra registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
@@ -363,9 +355,9 @@
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
-        <p>{{ item.proveedor }} ó Folio: {{ item.folio }}</p>
+        <p>{{ item.proveedor }} ï¿½ Folio: {{ item.folio }}</p>
         <p>
-          Total: ${{ item.total | number:'1.2-2' }} ó {{ item.fechaSolicitud |
+          Total: ${{ item.total | number:'1.2-2' }} ï¿½ {{ item.fechaSolicitud |
           date:'d MMM yyyy':'UTC' }}
         </p>
       </ion-label>

@@ -29,16 +29,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="3">
-          <app-empty-state
-            icon="mdi:receipt-outline"
-            title="Sin comprobantes"
-            message="No hay comprobantes de pago."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="3" />
+  </ng-template>
   </p-table>
 
   <div class="mb-4">

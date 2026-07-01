@@ -26,7 +26,7 @@
     </div>
   </ng-template>
 
-  <!-- Encabezado de las columnas (define quó columnas se mostrarón para cada item) -->
+  <!-- Encabezado de las columnas (define quï¿½ columnas se mostrarï¿½n para cada item) -->
   <ng-template #header>
     <tr>
       <!-- Ajusta los pSortableColumn field a las propiedades DENTRO de los objetos 'Contracts' -->
@@ -46,7 +46,7 @@
         <p-sortIcon field="startDateFilter" />
       </th>
       <th pSortableColumn="endDateFilter">
-        Tórmino
+        Tï¿½rmino
         <p-sortIcon field="endDateFilter" />
       </th>
       <th pSortableColumn="tagLabel">
@@ -61,7 +61,7 @@
       </th>
       <th>Documento</th>
       <th></th>
-      <!-- Aóadido encabezado para columna de opciones -->
+      <!-- Aï¿½adido encabezado para columna de opciones -->
     </tr>
   </ng-template>
 
@@ -70,7 +70,7 @@
     <tr pRowGroupHeader>
       <!-- La celda abarca todas las columnas definidas en el header -->
       <td [attr.colspan]="9">
-        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, Tórmino, Estado, Vigencia, Documento, Opciones -->
+        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, Tï¿½rmino, Estado, Vigencia, Documento, Opciones -->
         <!-- Muestra el nombre del grupo -->
         <strong class="font-bold ml-2 p-0 font-size-24">
           {{ group.typeOfContract }}
@@ -106,7 +106,7 @@
       </td>
       <td>{{ item.validity }}</td>
       <td class="text-center">
-        <!-- Alineación opcional -->
+        <!-- Alineaciï¿½n opcional -->
         @if (item.document) {
         <il-button-view-pdf
           iconClass="mdi:file-pdf-box"
@@ -136,15 +136,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:file-sign"
-          title="Sin contratos"
-          message="No hay contratos registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
 </p-table>
 

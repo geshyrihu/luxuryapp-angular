@@ -1,14 +1,12 @@
 <!-- Selector de nomina -->
 <div class="flex flex-wrap gap-2 mb-3">
   @for (n of nominas(); track n.value) {
-  <button
-    type="button"
-    class="p-button p-button-sm"
-    [class.p-button-outlined]="nominaSeleccionada() !== n.value"
-    (click)="cambiarNomina(n.value)"
-  >
-    {{ n.label }}
-  </button>
+  <il-button
+    [label]="n.label"
+    size="small"
+    [variant]="nominaSeleccionada() !== n.value ? 'outline' : 'solid'"
+    (clicked)="cambiarNomina(n.value)"
+  />
   }
 </div>
 

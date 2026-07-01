@@ -91,16 +91,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="8">
-          <app-empty-state
-            icon="mdi:cash-remove"
-            title="Sin cargos"
-            message="No hay cargos registrados para este período."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
   </p-table>
 </div>
 

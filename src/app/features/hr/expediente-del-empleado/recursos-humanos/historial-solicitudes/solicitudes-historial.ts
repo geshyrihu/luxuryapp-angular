@@ -37,6 +37,7 @@ import Swal from "sweetalert2";
 import { PermisoDetalleModal } from "../calendario-vacaciones-permisos/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../calendario-vacaciones-permisos/modal-vacacion-detalle";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 interface LeaveHistoryItemDTO {
   id: string;
   customerName?: string;
@@ -86,6 +87,7 @@ interface IHistorialSolicitud {
   selector: "app-solicitudes-historial",
   templateUrl: "./solicitudes-historial.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
     TableModule,
@@ -158,16 +160,16 @@ export class SolicitudesHistorial implements OnInit {
     const { value: reason } = await Swal.fire({
       title: "Cancelar Solicitud",
       input: "textarea",
-      inputLabel: `Motivo de cancelación para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
-      inputPlaceholder: "Ingresa el motivo de la cancelación aquí...",
+      inputLabel: `Motivo de cancelaciï¿½n para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
+      inputPlaceholder: "Ingresa el motivo de la cancelaciï¿½n aquï¿½...",
       inputValidator: (value) => {
         if (!value) {
-          return "El motivo de la cancelación es obligatorio.";
+          return "El motivo de la cancelaciï¿½n es obligatorio.";
         }
         return null;
       },
       showCancelButton: true,
-      confirmButtonText: "Confirmar Cancelación",
+      confirmButtonText: "Confirmar Cancelaciï¿½n",
       cancelButtonText: "No Cancelar",
       icon: "warning",
     });
@@ -278,7 +280,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "leave",
-            daysRequested: `${diffDays} día(s)`,
+            daysRequested: `${diffDays} dï¿½a(s)`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };
@@ -298,7 +300,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "vacation",
-            daysRequested: `${item.requestedDays} día(s) (${item.seniorityYearDescription})`,
+            daysRequested: `${item.requestedDays} dï¿½a(s) (${item.seniorityYearDescription})`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };

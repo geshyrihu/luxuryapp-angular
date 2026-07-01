@@ -74,16 +74,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="7">
-            <app-empty-state
-              icon="mdi:package-up"
-              title="Sin entradas"
-              message="No hay entradas de producto registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -91,7 +83,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"

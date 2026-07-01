@@ -22,9 +22,11 @@ import {
 } from "../../interfaces/nomina-encabezado.interface";
 import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-editar-empleado-nomina";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-nomina-detalle",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     TagModule,

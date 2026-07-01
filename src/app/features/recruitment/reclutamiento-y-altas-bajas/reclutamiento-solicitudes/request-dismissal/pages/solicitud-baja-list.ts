@@ -19,7 +19,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
@@ -36,7 +36,7 @@ import { SolicitudBajaUpdateStatus } from "../components/solicitud-baja-update-s
   selector: "app-solicitud-baja-list",
   templateUrl: "./solicitud-baja-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     TagModule,

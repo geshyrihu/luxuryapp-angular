@@ -9,7 +9,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -32,7 +32,7 @@ import { OwnerForm } from "./owner-form";
   selector: "app-owner-list",
   templateUrl: "./owner-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,
     PrimeNgCustomCaption,
@@ -123,11 +123,11 @@ export class OwnerList {
 
       let comparisonResult;
 
-      // Si ambos son numéricos, los comparamos como enteros
+      // Si ambos son numï¿½ricos, los comparamos como enteros
       if (!isNaN(parseInt(xPart, 10)) && !isNaN(parseInt(yPart, 10))) {
         comparisonResult = parseInt(xPart, 10) - parseInt(yPart, 10);
       } else {
-        // Si no son numéricos, comparamos como cadenas
+        // Si no son numï¿½ricos, comparamos como cadenas
         comparisonResult = xPart.localeCompare(yPart);
       }
 
@@ -136,7 +136,7 @@ export class OwnerList {
       }
     }
 
-    // Si todos los elementos hasta ahora son iguales, el mós corto es menor
+    // Si todos los elementos hasta ahora son iguales, el mï¿½s corto es menor
     return xMatches.length - yMatches.length;
   }
 }

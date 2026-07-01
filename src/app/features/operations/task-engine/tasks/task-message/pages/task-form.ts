@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
@@ -64,7 +64,7 @@ import { DateService } from "src/app/core/services/date.service";
     ReactiveFormsModule,
     CardModule,
     FileUploadModule,
-    ButtonModule,
+    WebButtonIcon,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,
@@ -98,14 +98,14 @@ export class TaskForm implements OnInit {
   cb_legal_matter = signal<ISelectItem[]>([]);
   cb_predecessors = signal<ISelectItem[]>([]);
 
-  // Signals para previews de imógenes
+  // Signals para previews de imï¿½genes
   beforeWorkPreview = signal<string | null>(null);
   afterWorkPreview = signal<string | null>(null);
 
   isLegalWorkGroup = signal(false);
   private workGroupLegalMap = new Map<string, boolean>();
 
-  // Definición estricta del formulario
+  // Definiciï¿½n estricta del formulario
   form: FormGroup<ITaskMessageForm> = this.formB.group({
     id: new FormControl<string>(
       { value: "", disabled: true },
@@ -159,7 +159,7 @@ export class TaskForm implements OnInit {
     if (this.config.data?.ticketGroupId) {
       setTimeout(async () => {
         let ticketGroupId = String(this.config.data.ticketGroupId);
-        // Garantizar que la capitalización (casing) coincida exactamente con la opción cargada
+        // Garantizar que la capitalizaciï¿½n (casing) coincida exactamente con la opciï¿½n cargada
         const exactMatch = this.cb_ticket_group().find(
           (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase(),
         );
@@ -253,7 +253,7 @@ export class TaskForm implements OnInit {
       dependsOnTaskId: result.dependsOnTaskId ?? null,
     });
 
-    // Vistas previas de imógenes
+    // Vistas previas de imï¿½genes
     if (result.beforeWorkPreview) {
       this.beforeWorkPreview.set(result.beforeWorkPreview);
     }
@@ -301,7 +301,7 @@ export class TaskForm implements OnInit {
 
       if (isHeic) {
         try {
-          // Convertir explícitamente a Blob puro a través de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
+          // Convertir explï¿½citamente a Blob puro a travï¿½s de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
           const buffer = await file.arrayBuffer();
           const heicBlob = new Blob([buffer], {
             type: file.type || "image/heic",
@@ -321,7 +321,7 @@ export class TaskForm implements OnInit {
           });
         } catch (heicError) {
           console.warn(
-            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
+            "heic2any fallï¿½ al analizar el archivo, intentando como fallback nativo...",
             heicError,
           );
           // Si falla, fileToProcess sigue siendo el archivo original.

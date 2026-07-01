@@ -18,9 +18,11 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 import ModalGenerarNomina from "./modal-generar-nomina/modal-generar-nomina";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-nominas",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     TagModule,

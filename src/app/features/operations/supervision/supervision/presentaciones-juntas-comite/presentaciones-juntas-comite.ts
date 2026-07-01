@@ -16,10 +16,12 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-presentaciones-juntas-comite",
   templateUrl: "./presentaciones-juntas-comite.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
     NgbTooltipModule,

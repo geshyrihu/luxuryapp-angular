@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BadgeModule } from "primeng/badge";
-import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { TextareaModule } from "primeng/textarea";
-import { TooltipModule } from "primeng/tooltip";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -31,13 +31,13 @@ interface HistoryEntry {
   templateUrl: "./mini-postman.html",
   imports: [
     FormsModule,
-    ButtonModule,
     InputTextModule,
     SelectModule,
     TabsModule,
     TextareaModule,
-    TooltipModule,
     BadgeModule,
+    WebButtonLabel,
+    WebButtonIcon,
     AppIcon,
   ],
 })

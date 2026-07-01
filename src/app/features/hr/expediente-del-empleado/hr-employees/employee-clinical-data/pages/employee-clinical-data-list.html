@@ -46,15 +46,7 @@
 
   @if (dataSignal().length === 0) {
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:medical-bag"
-          title="Sin datos clínicos"
-          message="No hay datos clínicos registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
   }
 </p-table>

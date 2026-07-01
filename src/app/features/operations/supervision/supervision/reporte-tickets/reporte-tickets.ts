@@ -15,10 +15,12 @@ import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-reporte-tickets",
   templateUrl: "./reporte-tickets.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,
     TagModule,

@@ -33,7 +33,7 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th>Título</th>
+        <th>Tï¿½tulo</th>
         <th>Prioridad</th>
         <th>Estado</th>
         <th>Programada para</th>
@@ -54,16 +54,14 @@
         <td>
           <il-button
             (clicked)="onCompleteTask(task)"
-            icon="mdi:check"
+            iconClass="mdi:check"
             [disabled]="task.status === 1"
-            tooltip="Completar Tarea"
           />
           <il-button-confirm
             (confirmed)="onReopenTask(task.id)"
-            icon="mdi:undo"
+            iconClass="mdi:undo"
             [disabled]="task.status !== 1"
-            confirmMessage="¿Estás seguro de reabrir esta tarea?"
-            tooltip="Reabrir Tarea"
+            confirmMessage="ï¿½Estï¿½s seguro de reabrir esta tarea?"
           />
         </td>
       </tr>
@@ -80,16 +78,8 @@
       />
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="5">
-          <app-empty-state
-            icon="mdi:repeat"
-            title="Sin instancias"
-            message="No hay instancias de tareas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
   </p-table>
 
   <!-- Mobile View -->
@@ -136,7 +126,7 @@
               label="Reabrir"
               (confirmed)="onReopenTask(task.id)"
               [disabled]="task.status !== 1"
-              confirmMessage="¿Estás seguro de reabrir esta tarea?"
+              confirmMessage="ï¿½Estï¿½s seguro de reabrir esta tarea?"
             />
           </ng-container>
         </app-action-menu>

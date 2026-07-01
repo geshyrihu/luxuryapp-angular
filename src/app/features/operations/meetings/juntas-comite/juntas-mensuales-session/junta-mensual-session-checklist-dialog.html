@@ -106,13 +106,12 @@
             ></textarea>
           </td>
           <td>
-            <button
-              pButton
+            <il-button
               type="button"
-              icon="mdi:content-save"
+              iconClass="mdi:content-save"
               label="Guardar"
-              (click)="onSaveRow(item)"
-            ></button>
+              (clicked)="onSaveRow(item)"
+            />
           </td>
         </tr>
       </ng-template>
@@ -121,12 +120,11 @@
   }
 
   <div class="flex justify-content-end">
-    <button
-      pButton
+    <il-button
       type="button"
-      icon="mdi:check"
+      iconClass="mdi:check"
       label="Cerrar"
-      (click)="onClose()"
-    ></button>
+      (clicked)="onClose()"
+    />
   </div>
 </div>

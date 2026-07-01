@@ -56,15 +56,7 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="5">
-        <app-empty-state
-          icon="mdi:file-document-outline"
-          title="Sin documentos"
-          message="No se encontraron documentos."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
 </p-table>
 

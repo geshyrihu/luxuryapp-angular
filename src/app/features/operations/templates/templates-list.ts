@@ -22,7 +22,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -43,7 +43,7 @@ import { TemplatesForm } from "./templates-form";
   selector: "app-templates-list",
   templateUrl: "./templates-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     InputTextModule,
@@ -71,7 +71,7 @@ export class TemplatesList implements OnInit {
 
   // Usar el servicio global para scrollHeight
   scrollHeight = this.tableScrollHeightS.scrollHeight;
-  // Señales
+  // Seï¿½ales
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {

@@ -9,7 +9,7 @@ import {
 } from "src/app/core/components/buttons/web/label";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -27,7 +27,7 @@ import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
   selector: "app-estado-financiero-list",
   templateUrl: "./estado-financiero-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,
     NgbTooltipModule,
@@ -54,7 +54,7 @@ export class EstadoFinancieroList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acciÛn
+  // Signals para controlar el estado de procesamiento de cada acciÔøΩn
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -74,7 +74,7 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // FunciÛn para verificar si un botÛn est· procesando
+  // FunciÔøΩn para verificar si un botÔøΩn estÔøΩ procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -91,7 +91,7 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // FunciÛn para abrir un cuadro de di·logo modal para agregar el archivo
+  // FunciÔøΩn para abrir un cuadro de diÔøΩlogo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -186,7 +186,7 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // ‚‚‚Ç¨†√Ç¬ê autoMaximize = true
+      true, // ÔøΩÔøΩ‚Ç¨ÔøΩ√Ç¬ê autoMaximize = true
     );
   }
 }

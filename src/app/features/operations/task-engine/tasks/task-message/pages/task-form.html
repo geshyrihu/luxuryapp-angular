@@ -1,12 +1,12 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <!-- Guía de usuario para mejorar la consistencia de datos -->
+  <!-- Guï¿½a de usuario para mejorar la consistencia de datos -->
   <div
     class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
   >
     <app-icon [icon]="'mdi:information'" class="text-blue-600 text-xl mt-1"></app-icon>
     <div class="flex-1">
       <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
-        Guía de registro
+        Guï¿½a de registro
       </div>
       <p class="m-0 text-blue-800 text-sm line-height-3">
         Para facilitar el seguimiento y generar reportes precisos, por favor:
@@ -17,7 +17,7 @@
           <span>
             <strong>Ãreas consistentes:</strong> Usa siempre el mismo nombre
             para un mismo lugar (ej:
-            <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
+            <em>Administraciï¿½n, TORRE 1 s5, Ludoteca, Alberca</em>).
           </span>
         </li>
         <li class="mb-1 flex align-items-start">
@@ -25,8 +25,8 @@
           <span>
             <strong>Evidencia visual:</strong> Toma las fotos en
             <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
-            al detalle. Usa el <strong>mismo ángulo</strong> para el antes y
-            después.
+            al detalle. Usa el <strong>mismo ï¿½ngulo</strong> para el antes y
+            despuï¿½s.
           </span>
         </li>
       </ul>
@@ -60,16 +60,16 @@
   <custom-input-text-signal
     [control]="form.controls.title"
     label="Area"
-    placeholder="Ej: Administración, Pasillo Principal..."
-    description="Usa nombres consistentes para áreas (ej: Administración, TORRE 1 s5, Ludoteca)."
+    placeholder="Ej: Administraciï¿½n, Pasillo Principal..."
+    description="Usa nombres consistentes para ï¿½reas (ej: Administraciï¿½n, TORRE 1 s5, Ludoteca)."
   />
   }
 
   <custom-input-textarea-signal
     [control]="form.controls.description"
-    label="Descripción"
+    label="Descripciï¿½n"
     placeholder="Describe el problema de forma simple y concisa..."
-    description="Sé específico, simple y conciso (máx. 250 caracteres)."
+    description="Sï¿½ especï¿½fico, simple y conciso (mï¿½x. 250 caracteres)."
     [maxLength]="250"
   />
 
@@ -85,7 +85,7 @@
     <div class="col-12 md:col-6">
       <custom-input-date-signal
         [control]="form.controls.scheduledDate"
-        label="Fecha de programación"
+        label="Fecha de programaciï¿½n"
         placeholder="fecha"
       />
     </div>
@@ -101,16 +101,16 @@
         label="Asignar"
         placeholder="Selecciona colaborador"
         [filter]="true"
-        description="Si se deja vacío, se asignará a los responsables del grupo."
+        description="Si se deja vacï¿½o, se asignarï¿½ a los responsables del grupo."
       />
     </div>
     <div class="col-12 md:col-6">
       <!-- Este es por si es ticket concluido -->
       <custom-input-date-signal
         [control]="form.controls.closedDate"
-        label="Fecha de término"
+        label="Fecha de tï¿½rmino"
         placeholder="fecha de cierre"
-        description="Al colocar esta fecha, el ticket se marcará como completado."
+        description="Al colocar esta fecha, el ticket se marcarï¿½ como completado."
       />
     </div>
   </div>
@@ -122,7 +122,7 @@
     placeholder="Ninguna (sin dependencia)"
     [data]="cb_predecessors()"
     [filter]="true"
-    description="Esta tarea se ejecutará después de la seleccionada."
+    description="Esta tarea se ejecutarï¿½ despuï¿½s de la seleccionada."
   />
   }
 
@@ -140,12 +140,12 @@
       <custom-input-check-signal
         [control]="form.controls.documentCloud"
         label=""
-        placeholder="Documentación en la nube"
+        placeholder="Documentaciï¿½n en la nube"
       />
       <custom-input-check-signal
         [control]="form.controls.documentEmail"
         label=""
-        placeholder="Documentación por email"
+        placeholder="Documentaciï¿½n por email"
       />
     </div>
   </div>
@@ -156,7 +156,7 @@
       <small class="text-500 italic">
         <app-icon [icon]="'mdi:camera'" class="mr-1"></app-icon>
         Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
-        ángulo.
+        ï¿½ngulo.
       </small>
     </div>
     <div class="col-12 md:col-6">
@@ -195,15 +195,15 @@
                 class="flex align-items-center justify-content-center gap-3 p-3 border-2 border-dashed surface-border border-round-xl bg-gray-50 hover:surface-100 transition-colors cursor-pointer"
                 (click)="fub.choose()"
               >
-                <p-button
+                <il-button
                   label="Seleccionar"
-                  icon="mdi:plus"
-                  (onClick)="$event.stopPropagation(); fub.choose()"
+                  iconClass="mdi:plus"
+                  (clicked)="$event.stopPropagation(); fub.choose()"
                   severity="secondary"
                   size="small"
                 />
                 <span class="text-500 font-medium text-sm"
-                  >Arrastra aquí la foto</span
+                  >Arrastra aquï¿½ la foto</span
                 >
               </div>
               } @else {
@@ -219,22 +219,21 @@
                   alt="Before Work Preview"
                 />
                 <div class="absolute top-0 right-0 m-2">
-                  <p-button
-                    icon="mdi:close"
-                    [rounded]="true"
+                  <iw-button
+                    iconClass="mdi:close"
                     severity="danger"
                     size="small"
-                    (onClick)="$event.stopPropagation(); onFileChange(null, 'beforeWork'); fub.clear()"
+                    (clicked)="$event.stopPropagation(); onFileChange(null, 'beforeWork'); fub.clear()"
                   />
                 </div>
               </div>
               <div class="flex justify-content-center">
-                <p-button
+                <il-button
                   label="Cambiar foto"
-                  icon="mdi:refresh"
-                  [text]="true"
+                  iconClass="mdi:refresh"
+                  variant="text"
                   size="small"
-                  (onClick)="fub.choose()"
+                  (clicked)="fub.choose()"
                 />
               </div>
               }
@@ -259,7 +258,7 @@
         >
           <ng-template #header>
             <span class="font-bold text-xs uppercase text-700"
-              >Foto del después</span
+              >Foto del despuï¿½s</span
             >
           </ng-template>
           <ng-template #content>
@@ -280,15 +279,15 @@
                 class="flex align-items-center justify-content-center gap-3 p-3 border-2 border-dashed surface-border border-round-xl bg-gray-50 hover:surface-100 transition-colors cursor-pointer"
                 (click)="fua.choose()"
               >
-                <p-button
+                <il-button
                   label="Seleccionar"
-                  icon="mdi:plus"
-                  (onClick)="$event.stopPropagation(); fua.choose()"
+                  iconClass="mdi:plus"
+                  (clicked)="$event.stopPropagation(); fua.choose()"
                   severity="secondary"
                   size="small"
                 />
                 <span class="text-500 font-medium text-sm"
-                  >Arrastra aquí la foto</span
+                  >Arrastra aquï¿½ la foto</span
                 >
               </div>
               } @else {
@@ -304,22 +303,21 @@
                   alt="After Work Preview"
                 />
                 <div class="absolute top-0 right-0 m-2">
-                  <p-button
-                    icon="mdi:close"
-                    [rounded]="true"
+                  <iw-button
+                    iconClass="mdi:close"
                     severity="danger"
                     size="small"
-                    (onClick)="$event.stopPropagation(); onFileChange(null, 'afterWork'); fua.clear()"
+                    (clicked)="$event.stopPropagation(); onFileChange(null, 'afterWork'); fua.clear()"
                   />
                 </div>
               </div>
               <div class="flex justify-content-center">
-                <p-button
+                <il-button
                   label="Cambiar foto"
-                  icon="mdi:refresh"
-                  [text]="true"
+                  iconClass="mdi:refresh"
+                  variant="text"
                   size="small"
-                  (onClick)="fua.choose()"
+                  (clicked)="fua.choose()"
                 />
               </div>
               }

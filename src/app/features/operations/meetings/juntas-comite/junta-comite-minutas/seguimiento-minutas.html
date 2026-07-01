@@ -13,11 +13,11 @@
   styleClass="custom-table card hidden md:block border-none shadow-1"
 >
   <ng-template #caption>
-    <!-- Contenedor Maestro: Apila en móvil, alinea en línea en escritorio -->
+    <!-- Contenedor Maestro: Apila en mï¿½vil, alinea en lï¿½nea en escritorio -->
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
     >
-      <!-- LADO IZQUIERDO: Buscador y Título (Toma el espacio libre) -->
+      <!-- LADO IZQUIERDO: Buscador y Tï¿½tulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
         <primeng-custom-caption
           [dt]="dt"
@@ -163,15 +163,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:notebook-outline"
-          title="Sin minutas"
-          message="No hay minutas registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
 
   <ng-template #paginatorleft>

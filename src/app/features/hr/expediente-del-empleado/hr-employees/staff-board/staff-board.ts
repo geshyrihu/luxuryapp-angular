@@ -18,7 +18,7 @@ import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/bu
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -48,7 +48,7 @@ import { CardEmployee } from "../employees/pages/card-employee";
   templateUrl: "./staff-board.html",
   styleUrl: "./staff-board.scss",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,
     TagModule,
@@ -80,22 +80,22 @@ export class StaffBoard {
   readonly tablePrimeNgRows = getTablePrimeNgRows();
 
   readonly departamentLabels: Record<number, string> = {
-    [EDepartament.Administracion]: "Administración",
+    [EDepartament.Administracion]: "Administraciï¿½n",
     [EDepartament.Legal]: "Legal",
     [EDepartament.Contabilidad]: "Contabilidad",
     [EDepartament.Mantenimiento]: "Mantenimiento",
     [EDepartament.Limpieza]: "Limpieza",
     [EDepartament.Operaciones]: "Operaciones",
-    [EDepartament.Jardineria]: "Jardinería",
+    [EDepartament.Jardineria]: "Jardinerï¿½a",
     [EDepartament.Sistemas]: "Sistemas",
     [EDepartament.Seguridad]: "Seguridad",
     [EDepartament.Constructora]: "Constructora",
-    [EDepartament.Supervision]: "Supervisión",
-    [EDepartament.Direcciones]: "Dirección",
+    [EDepartament.Supervision]: "Supervisiï¿½n",
+    [EDepartament.Direcciones]: "Direcciï¿½n",
     [EDepartament.RecusrosHumanos]: "Recursos Humanos",
     [EDepartament.Reclutamiento]: "Reclutamiento",
-    [EDepartament.Recepcion]: "Recepción",
-    [EDepartament.Mensajeria]: "Mensajería",
+    [EDepartament.Recepcion]: "Recepciï¿½n",
+    [EDepartament.Mensajeria]: "Mensajerï¿½a",
     [EDepartament.Ludoteca]: "Ludoteca",
     [EDepartament.NA]: "Sin Departamento",
   };
@@ -354,7 +354,7 @@ export class StaffBoard {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DESCRIPCIóN de puesto: " + applicationRoleName,
+      "DESCRIPCIï¿½N de puesto: " + applicationRoleName,
       DialogSize.lg,
     );
   }
@@ -388,7 +388,7 @@ export class StaffBoard {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el botón si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
+  /** Muestra el botï¿½n si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: IWorkPosition): boolean {
     return !item.positionRequest;
   }

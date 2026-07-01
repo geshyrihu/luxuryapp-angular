@@ -54,11 +54,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="2">
-        <app-empty-state icon="mdi:file-document-outline" title="Sin reportes" message="No hay reportes disponibles para este periodo." />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="2" />
   </ng-template>
 </p-table>
 

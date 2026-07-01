@@ -9,7 +9,7 @@ import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/labe
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -25,7 +25,7 @@ import { InventarioLlaveForm } from "./inventario-llave-form";
   selector: "app-inventario-llaves-list",
   templateUrl: "./inventario-llaves-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
@@ -114,7 +114,7 @@ export class InventarioLlavesList {
       const groups = sortedData.reduce(
         (acc, item) => {
           const classification =
-            item.equipoClasificacion || "SIN CLASIFICACIÓN";
+            item.equipoClasificacion || "SIN CLASIFICACIï¿½N";
           if (!acc[classification]) acc[classification] = [];
           acc[classification].push(item);
           return acc;
@@ -170,9 +170,9 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th>Descripción</th>
+          <th>Descripciï¿½n</th>
           <th>Marca</th>
-          <th style="width: 80px;">Número</th>
+          <th style="width: 80px;">Nï¿½mero</th>
           <th style="width: 80px;">Cant.</th>
         </tr>
       </thead>

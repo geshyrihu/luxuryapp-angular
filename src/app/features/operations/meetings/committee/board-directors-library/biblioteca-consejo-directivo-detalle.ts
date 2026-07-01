@@ -27,9 +27,11 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-biblioteca-consejo-directivo-detalle",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabelViewPdf,
     DataViewMobile,
@@ -66,7 +68,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
         this.pageTitle = data["title"];
         this.documentType = data["documentType"];
         console.log("Tipo de documento:", this.documentType);
-        console.log("Título de la pógina:", this.pageTitle);
+        console.log("Tï¿½tulo de la pï¿½gina:", this.pageTitle);
         this.onLoadData();
       }
     });

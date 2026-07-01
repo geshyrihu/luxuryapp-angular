@@ -60,15 +60,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="3">
-        <app-empty-state
-          icon="mdi:store-outline"
-          title="Sin proveedores"
-          message="No hay proveedores registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
 </p-table>
 <app-data-view-mobile

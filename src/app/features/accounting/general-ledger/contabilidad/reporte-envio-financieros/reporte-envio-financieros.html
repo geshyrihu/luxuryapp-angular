@@ -73,14 +73,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="13">
-        <app-empty-state
-          icon="mdi:file-document-outline"
-          title="Sin reportes"
-          message="No hay reportes de envío financieros para el año seleccionado."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="13" />
   </ng-template>
 </p-table>

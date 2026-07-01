@@ -78,15 +78,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:account-search-outline"
-          title="Sin vacantes"
-          message="No hay vacantes registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -111,7 +103,7 @@
       </div>
       <ion-label>
         <h3>{{ item.applicationRoleName }}</h3>
-        <p>{{ item.customer }} · {{ item.requestDate }}</p>
+        <p>{{ item.customer }} ï¿½ {{ item.requestDate }}</p>
         <p>{{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">

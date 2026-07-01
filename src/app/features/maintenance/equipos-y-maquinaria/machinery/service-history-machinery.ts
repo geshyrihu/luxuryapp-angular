@@ -12,10 +12,12 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ServiceOrderForm } from "src/app/features/operations/field-service/service-order/service-order-form";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-service-history-machinery",
   templateUrl: "./service-history-machinery.html",
-  imports: [TableModule, NgbTooltipModule, WebButtonLabel, PrimeNgCustomCaption],
+  imports: [
+    PrimeNgCustomTableEmptyMessage,TableModule, NgbTooltipModule, WebButtonLabel, PrimeNgCustomCaption],
 })
 export class ServiceHistoryMachinery implements OnInit {
   apiResponseS = inject(ApiResponseService);

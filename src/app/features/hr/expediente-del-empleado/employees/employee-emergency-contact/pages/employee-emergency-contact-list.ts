@@ -11,7 +11,7 @@ import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -28,7 +28,7 @@ import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form"
   selector: "employee-emergency-contact-list",
   templateUrl: "./employee-emergency-contact-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     TooltipModule,

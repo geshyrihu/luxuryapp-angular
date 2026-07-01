@@ -78,16 +78,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="8">
-            <app-empty-state
-              icon="mdi:elevator-passenger-outline"
-              title="Sin registros"
-              message="No hay registros de elevadores."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -95,7 +87,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -140,10 +132,10 @@
         </p>
         <div class="flex flex-column gap-1 mt-1">
           <small class="text-xs text-500"
-            >Reportó: {{ item.personWhoReports }}</small
+            >Reportï¿½: {{ item.personWhoReports }}</small
           >
           <small class="text-xs text-500"
-            >Atendió: {{ item.technicianWhoAttended }}</small
+            >Atendiï¿½: {{ item.technicianWhoAttended }}</small
           >
         </div>
       </ion-label>

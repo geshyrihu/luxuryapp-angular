@@ -22,17 +22,17 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="descripcion">
-        Descripción <p-sortIcon field="descripcion" />
+        Descripciï¿½n <p-sortIcon field="descripcion" />
       </th>
       <th pSortableColumn="marca">Marca <p-sortIcon field="marca" /></th>
       <th pSortableColumn="numeroLlave">
-        Número <p-sortIcon field="numeroLlave" />
+        Nï¿½mero <p-sortIcon field="numeroLlave" />
       </th>
       <th pSortableColumn="cantidad">
         Cantidad <p-sortIcon field="cantidad" />
       </th>
       <th pSortableColumn="equipoClasificacion">
-        Clasificación <p-sortIcon field="equipoClasificacion" />
+        Clasificaciï¿½n <p-sortIcon field="equipoClasificacion" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -55,15 +55,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:key-outline"
-          title="Sin llaves"
-          message="No hay llaves registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -102,7 +94,7 @@
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
         <p>
-          {{ item.marca }} | Nº {{ item.numeroLlave }} | Cant: {{ item.cantidad
+          {{ item.marca }} | Nï¿½ {{ item.numeroLlave }} | Cant: {{ item.cantidad
           }}
         </p>
         <p>{{ item.equipoClasificacion }}</p>

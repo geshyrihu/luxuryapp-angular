@@ -19,7 +19,7 @@
         <div
           class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
         >
-          <!-- IZQUIERDA: Título y Status Filter -->
+          <!-- IZQUIERDA: Tï¿½tulo y Status Filter -->
           <div class="flex flex-column sm:flex-row align-items-center gap-3">
             <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
               Mis tickets asignados
@@ -111,9 +111,9 @@
           <td class="text-center text-xs text-600">
             {{ item.creator | initialsAbbr }}
           </td>
-          <td class="text-xs text-600">{{ item.scheduledAt || '—' }}</td>
+          <td class="text-xs text-600">{{ item.scheduledAt || 'ï¿½' }}</td>
           <td class="text-center text-xs text-600 hidden md:table-cell">
-            {{ item.closedAtDate || '—' }}
+            {{ item.closedAtDate || 'ï¿½' }}
           </td>
           <td class="text-center">
             <strong class="text-xs">{{ item.daysDifference }}</strong>
@@ -199,16 +199,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="19">
-            <app-empty-state
-              icon="mdi:checkbox-multiple-outline"
-              title="Sin tareas"
-              message="No hay tareas registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="19" />
+  </ng-template>
     </p-table>
     }
   </div>
@@ -230,8 +222,6 @@
         <il-button-add
           label="Agregar"
           iconClass="mdi:plus"
-          [pTooltip]="'Agregar'"
-          tooltipPosition="top"
           customClass="p-button-outlined"
           (clicked)="
         onModalAdd({
@@ -370,12 +360,12 @@
   </div>
 
   <!-- ================================================================
-       REPORTE  DE TAREAS PENDIENTES — solo visible al imprimir
+       REPORTE  DE TAREAS PENDIENTES ï¿½ solo visible al imprimir
        ================================================================ -->
   <div class="print-task-report">
     <div class="print-report-header">
       <div class="print-report-header-left">
-        <h2>Reporte — Mis Tareas Pendientes</h2>
+        <h2>Reporte ï¿½ Mis Tareas Pendientes</h2>
         <p>Mis tareas asignadas pendientes</p>
       </div>
       <div class="print-report-header-right">
@@ -449,9 +439,9 @@
             <div class="print-desc">{{ item.description }}</div>
             }
           </td>
-          <td style="font-size: 7.5pt">{{ item.creator || '—' }}</td>
+          <td style="font-size: 7.5pt">{{ item.creator || 'ï¿½' }}</td>
           <td style="font-size: 7.5pt; white-space: nowrap">
-            {{ item.scheduledAt || '—' }}
+            {{ item.scheduledAt || 'ï¿½' }}
           </td>
           <td>
             <span
@@ -465,7 +455,7 @@
             {{ item.daysDifference }}
           </td>
           <td style="text-align: center; font-size: 9pt">
-            @if (item.beforeWork || item.afterWork) { ? } @else { — }
+            @if (item.beforeWork || item.afterWork) { ? } @else { ï¿½ }
           </td>
           <td>
             @if (item.lastFollowUp) {
@@ -480,7 +470,7 @@
             >
             <p class="print-followup">{{ item.lastFollowUp }}</p>
             } @else {
-            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">—</span>
+            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">ï¿½</span>
             }
           </td>
         </tr>
@@ -489,7 +479,7 @@
     </table>
 
     <div class="print-report-footer">
-      <span>Luxury Building Group — Sistema de Gestion Operativa</span>
+      <span>Luxury Building Group ï¿½ Sistema de Gestion Operativa</span>
       <span>Generado el {{ today }}</span>
     </div>
   </div>

@@ -9,17 +9,17 @@
         </p>
       </div>
       <div class="flex gap-2 flex-wrap">
-        <p-button
+        <il-button
           label="Volver al dashboard"
           severity="secondary"
-          [outlined]="true"
-          routerLink="/contabilidad/collections"
+          variant="outline"
+          (clicked)="navigateTo('/contabilidad/collections')"
         />
-        <p-button
+        <il-button
           label="Ver listado base"
           severity="secondary"
-          [outlined]="true"
-          routerLink="/contabilidad/collections/inspection"
+          variant="outline"
+          (clicked)="navigateTo('/contabilidad/collections/inspection')"
         />
       </div>
     </div>

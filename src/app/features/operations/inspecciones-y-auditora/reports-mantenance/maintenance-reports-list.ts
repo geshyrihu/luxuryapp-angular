@@ -10,7 +10,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -33,7 +33,7 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     PageTitleReport,
     CustomInputTextSignal,
     DataViewMobile,
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     IonItem,
     IonLabel,
   ],

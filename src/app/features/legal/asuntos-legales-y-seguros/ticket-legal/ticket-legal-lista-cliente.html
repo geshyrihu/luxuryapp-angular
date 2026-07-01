@@ -27,10 +27,10 @@
           <th class="table-col-10 font-size-12">FECHA SOLICITUD</th>
           <th class="table-col-10 font-size-12">SOLICITA</th>
           <th class="table-col-10 font-size-12">ASUNTO</th>
-          <th class="table-col-10 font-size-12">DESCRIPCIÓN</th>
+          <th class="table-col-10 font-size-12">DESCRIPCIï¿½N</th>
           <th class="table-col-10 font-size-12">ESTATUS</th>
-          <th class="table-col-10 font-size-12">FECHA DE CONCLUSIÓN</th>
-          <th class="table-col-10 font-size-12">DÍAS</th>
+          <th class="table-col-10 font-size-12">FECHA DE CONCLUSIï¿½N</th>
+          <th class="table-col-10 font-size-12">Dï¿½AS</th>
           <th class="table-col-10 font-size-12">SEGUIMIENTO</th>
         </tr>
       </ng-template>
@@ -81,16 +81,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="9">
-            <app-empty-state
-              icon="mdi:ticket-outline"
-              title="Sin tickets"
-              message="No hay tickets legales registrados."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="9" />
+  </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -98,7 +90,7 @@
   </div>
 </div>
 
-<!-- ?? Versión móvil -->
+<!-- ?? Versiï¿½n mï¿½vil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -153,9 +145,9 @@
               />
               <div class="text-right">
                 <p class="m-0">
-                  Conclusión: {{ item.completionDate ?? "Pendiente" }}
+                  Conclusiï¿½n: {{ item.completionDate ?? "Pendiente" }}
                 </p>
-                <p class="m-0 font-bold">Días: {{ item.diferenciaDias }}</p>
+                <p class="m-0 font-bold">Dï¿½as: {{ item.diferenciaDias }}</p>
               </div>
             </div>
           </ion-label>

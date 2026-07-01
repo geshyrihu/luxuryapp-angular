@@ -1,4 +1,4 @@
-<!-- La tabla ahora es genérica y se alimenta de los inputs -->
+<!-- La tabla ahora es genï¿½rica y se alimenta de los inputs -->
 <p-table [value]="details()" dataKey="id" styleClass="p-datatable-sm">
   <ng-template #header>
     <!-- Cabecera con acciones para agregar y enviar email -->
@@ -18,7 +18,7 @@
             [label]="'Enviar Email a ' + title()"
             [ngbTooltip]="'Enviar Email a ' + title()"
             classButton="btn btn-sm btn-light"
-            swalConfirmButtonText="Sí, enviar"
+            swalConfirmButtonText="Sï¿½, enviar"
             (confirmed)="onSendAreaEmail()"
           />
           }
@@ -107,14 +107,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:clipboard-text-outline"
-          [title]="'Sin registros'"
-          [message]="'Sin registros para ' + title() + '.'"
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
 </p-table>

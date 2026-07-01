@@ -65,16 +65,8 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:gavel"
-            title="Sin sanciones"
-            message="No hay sanciones registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
   </p-table>
 
   <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">

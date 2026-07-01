@@ -58,14 +58,14 @@
   </ng-template>
 
   <ng-template #header>
-    <!-- 🟢 Fila de Agrupaci�n Visual -->
+    <!-- 🟢 Fila de Agrupaci�n Visual -->
     <tr>
       <th
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
         style="padding: 0.5rem"
       >
-        <app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>GESTI�N DEL
+        <app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>GESTI�N DEL
         PUESTO DE TRABAJO
       </th>
       <th
@@ -78,7 +78,7 @@
       </th>
     </tr>
 
-    <!-- ⚪ Fila de T�tulos de Columna -->
+    <!-- ⚪ Fila de T�tulos de Columna -->
     <tr>
       <th style="width: 18%" pSortableColumn="applicationRoleName">
         PUESTO <p-sortIcon field="applicationRoleName" />
@@ -166,7 +166,7 @@
               }
               <il-button-item
                 iconClass="mdi:clipboard-text"
-                label="Descripci�n"
+                label="Descripci�n"
                 (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
               />
               <il-button-item
@@ -248,7 +248,7 @@
             </app-action-menu>
           </div>
           } @else {
-          <!-- -- Puesto vacante � CDK drop zone -- -->
+          <!-- -- Puesto vacante � CDK drop zone -- -->
           <div
             [id]="'drop-pos-' + item.id"
             cdkDropList
@@ -285,16 +285,16 @@
           @if (item.positionRequest) { @if (item.positionRequest.status === 0) {
           <span
             class="badge badge-warning text-xs text-center block py-2"
-            pTooltip="Vacante abierta � esperando alta de colaborador"
+            pTooltip="Vacante abierta � esperando alta de colaborador"
           >
-            🟡 VA-{{ item.positionRequest.folio }} � Vacante abierta
+            🟡 VA-{{ item.positionRequest.folio }} � Vacante abierta
           </span>
           } @else {
           <span
             class="badge badge-info text-xs text-center block py-2"
-            pTooltip="Solicitud de alta enviada � en proceso de reclutamiento"
+            pTooltip="Solicitud de alta enviada � en proceso de reclutamiento"
           >
-            🔵 VA-{{ item.positionRequest.folio }} � Alta en proceso
+            🔵 VA-{{ item.positionRequest.folio }} � Alta en proceso
           </span>
           } }
         </div>
@@ -302,15 +302,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="7">
-        <app-empty-state
-          icon="mdi:account-multiple-outline"
-          title="Sin personal"
-          message="No hay personal registrado."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
 
   <ng-template #paginatorleft>
@@ -338,7 +330,7 @@
     <app-icon [icon]="poolExpanded() ? 'mdi:chevron-up' : 'mdi:chevron-down'"></app-icon>
   </div>
 
-  <!-- Gu�a r�pida -->
+  <!-- Gu�a r�pida -->
   @if (poolExpanded()) {
   <p class="text-sm text-color-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
@@ -389,7 +381,7 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     DRAWER � ASIGNACI�N RÁPIDA (alternativa al DnD)
+     DRAWER � ASIGNACI�N RÁPIDA (alternativa al DnD)
      ═══════════════════════════════════════════════════════════════════ -->
 <p-drawer
   [visible]="drawerVisible()"
@@ -425,7 +417,7 @@
       No hay colaboradores disponibles sin puesto asignado.
     </p>
     } @else { @for (emp of unassignedEmployees(); track emp.applicationUserId) {
-    <!-- DS: menu-item (dropdown/_dropdowns.scss) � flex, hover bg, cursor pointer -->
+    <!-- DS: menu-item (dropdown/_dropdowns.scss) � flex, hover bg, cursor pointer -->
     <div
       class="menu-item"
       style="
@@ -450,7 +442,7 @@
 </p-drawer>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     MODAL � INACTIVOS (Puestos y Colaboradores)
+     MODAL � INACTIVOS (Puestos y Colaboradores)
      ═══════════════════════════════════════════════════════════════════ -->
 <p-dialog
   [visible]="inactivosVisible()"
@@ -460,7 +452,7 @@
   [style]="{ width: '680px' }"
   [draggable]="false"
 >
-  <!-- Tabs de selecci�n -->
+  <!-- Tabs de selecci�n -->
   <div class="flex mb-4">
     <button
       type="button"
@@ -519,7 +511,7 @@
         <span class="text-label">{{ pos.folio }}</span>
         <span class="font-semibold">{{ pos.applicationRoleName }}</span>
         <span class="text-sm text-500"
-          >{{ getDepartamentLabel(pos.departament) }} � {{ pos.turno }}</span
+          >{{ getDepartamentLabel(pos.departament) }} � {{ pos.turno }}</span
         >
       </div>
       <il-button-item

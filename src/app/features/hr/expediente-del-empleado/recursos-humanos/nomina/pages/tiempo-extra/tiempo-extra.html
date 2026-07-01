@@ -1,14 +1,12 @@
 <!-- Selector de periodo -->
 <div class="flex flex-wrap gap-2 mb-3">
   @for (p of periodos(); track p.value) {
-  <button
-    type="button"
-    class="p-button p-button-sm"
-    [class.p-button-outlined]="periodoSeleccionado() !== p.value"
-    (click)="cambiarPeriodo(p.value)"
-  >
-    {{ p.label }}
-  </button>
+  <il-button
+    [label]="p.label"
+    size="small"
+    [variant]="periodoSeleccionado() !== p.value ? 'outline' : 'solid'"
+    (clicked)="cambiarPeriodo(p.value)"
+  />
   }
 </div>
 
@@ -83,15 +81,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:clock-plus-outline"
-          title="Sin tiempo extra"
-          message="No hay registros de tiempo extra."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
 </p-table>
 

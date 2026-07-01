@@ -38,10 +38,12 @@ import { TaskForm } from "../../task-message/pages/task-form";
 import { MyTaskForm } from "./my-task-form";
 import { MyTaskProgram } from "./my-task-program";
 
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-my-assigned-tasks-list",
   templateUrl: "./my-assigned-tasks-list.html",
   imports: [
+    PrimeNgCustomTableEmptyMessage,
     WebButtonLabelEdit,
     WebButtonLabelItem,
     TaskStatus,

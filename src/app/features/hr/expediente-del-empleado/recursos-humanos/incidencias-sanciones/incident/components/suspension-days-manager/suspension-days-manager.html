@@ -68,16 +68,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="3">
-          <app-empty-state
-            icon="mdi:calendar-remove-outline"
-            title="Sin suspensiones"
-            message="No hay días de suspensión registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="3" />
+  </ng-template>
   </p-table>
   }
 </div>

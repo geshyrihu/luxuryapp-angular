@@ -17,11 +17,11 @@
 
       <div class="p-4 md:p-5">
         <div class="mb-3">
-          <p-button
-            icon="mdi:arrow-left"
-            [text]="true"
+          <iw-button
+            iconClass="mdi:arrow-left"
+            variant="text"
             severity="secondary"
-            (onClick)="onBack()"
+            (clicked)="onBack()"
           />
         </div>
 
@@ -50,14 +50,14 @@
               <span>Areas: {{ groupedTasks().length }}</span>
             </div>
           </div>
-          <p-button
-            icon="mdi:file-pdf-box"
+          <il-button
+            iconClass="mdi:file-pdf-box"
             label="Exportar PDF"
             severity="secondary"
-            [outlined]="true"
+            variant="outline"
             size="small"
             [loading]="exportingPdf()"
-            (onClick)="exportPdf()"
+            (clicked)="exportPdf()"
           />
         </div>
       </div>

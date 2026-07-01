@@ -18,12 +18,12 @@
         Nombre
         <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th>Descripción</th>
+      <th>Descripciï¿½n</th>
       <th class="text-center" pSortableColumn="isActive">
         Estado
         <p-sortIcon field="isActive"></p-sortIcon>
       </th>
-      <th class="text-center">Categorías</th>
+      <th class="text-center">Categorï¿½as</th>
       <th class="text-center">Preguntas</th>
       <th class="text-center table-col-10rem"></th>
     </tr>
@@ -51,15 +51,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:file-document-outline"
-          title="Sin plantillas"
-          message="No hay plantillas registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -86,8 +78,8 @@
         <h3>{{ item.name }}</h3>
         <p>{{ item.description }}</p>
         <p>
-          {{ item.isActive ? 'Activa' : 'Inactiva' }} ó {{ item.categoryCount }}
-          categoróas ó {{ item.questionCount }} preguntas
+          {{ item.isActive ? 'Activa' : 'Inactiva' }} ï¿½ {{ item.categoryCount }}
+          categorï¿½as ï¿½ {{ item.questionCount }} preguntas
         </p>
       </ion-label>
       <app-action-menu slot="end">

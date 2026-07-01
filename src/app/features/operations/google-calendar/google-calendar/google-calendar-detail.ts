@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DateService } from "src/app/core/services/date.service";
 
 interface IGoogleCalendarEventListItem {
@@ -26,7 +27,7 @@ interface IGoogleCalendarEventListItem {
 @Component({
   selector: "app-google-calendar-detail",
   templateUrl: "./google-calendar-detail.html",
-  imports: [CommonModule],
+  imports: [CommonModule, WebButtonLabel],
 })
 export class GoogleCalendarDetail {
   private readonly config = inject(DynamicDialogConfig);

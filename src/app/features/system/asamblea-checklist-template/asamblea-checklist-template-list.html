@@ -76,15 +76,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:clipboard-list-outline"
-          title="Sin plantillas"
-          message="No hay plantillas de asamblea."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
 
   <ng-template #paginatorleft>

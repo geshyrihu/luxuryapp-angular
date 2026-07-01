@@ -25,12 +25,12 @@
         @if (!employeeId()) {
         <th class="table-col-lg">Empleado</th>
         }
-        <th class="table-col-lg">Tipo / Categoría</th>
-        <th class="table-col-xl">Descripción</th>
+        <th class="table-col-lg">Tipo / Categorï¿½a</th>
+        <th class="table-col-xl">Descripciï¿½n</th>
         <th class="table-col-md text-center">Severidad</th>
         <th class="table-col-md text-center">Estatus</th>
         <th class="table-col-sm">Fecha</th>
-        <th class="table-col-sm text-center">Sanción</th>
+        <th class="table-col-sm text-center">Sanciï¿½n</th>
         <th class="table-col-sm text-center">Acta</th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -80,7 +80,7 @@
         </td>
         <td class="text-center">
           @if (item.sanctionApplied) {
-          <span class="badge badge-danger">Sí</span>
+          <span class="badge badge-danger">Sï¿½</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
@@ -109,7 +109,7 @@
             />
             }
 
-            <!-- Generar y descargar acta para firma física -->
+            <!-- Generar y descargar acta para firma fï¿½sica -->
             <il-button-download
               iconClass="mdi:file-edit"
               size="small"
@@ -123,7 +123,7 @@
               (click)="onUploadSignedAct(item)"
             />
 
-            <!-- Ver acta firmada en visor — solo si ya fue subida -->
+            <!-- Ver acta firmada en visor ï¿½ solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
             <il-button-view-pdf
               iconClass="mdi:file-pdf-box"
@@ -140,16 +140,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="9">
-          <app-empty-state
-            icon="mdi:alert-circle-outline"
-            title="Sin incidencias"
-            message="No hay incidencias registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="9" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -187,7 +179,7 @@
             >
           </div>
           <p class="text-xs text-500 uppercase mb-1">
-            {{ item.category }} · {{ item.employeeName }}
+            {{ item.category }} ï¿½ {{ item.employeeName }}
           </p>
           <p
             class="text-sm text-700 mb-2 overflow-hidden text-overflow-ellipsis white-space-normal"

@@ -43,7 +43,7 @@
             }
           </div>
 
-          <!-- Botón de Reporte (funcionalidad futura) -->
+          <!-- Botï¿½n de Reporte (funcionalidad futura) -->
           <il-button-download
             label="Generar Reporte"
             iconClass="mdi:file-excel"
@@ -136,23 +136,15 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="7">
-          <app-empty-state
-            icon="mdi:package-down"
-            title="Sin salidas"
-            message="No hay salidas de producto registradas."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
   </p-table>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"

@@ -26,9 +26,9 @@
       >
         <file-upload-drop-zone>
           @if (isFileDragDropAvailable) {
-          <b class="text-primary">Arrastrar y soltar archivos aquí</b><br />o
+          <b class="text-primary">Arrastrar y soltar archivos aquï¿½</b><br />o
           haz clic para seleccionar } @else {
-          <b class="text-primary">Haz clic aquí</b> para seleccionar archivos }
+          <b class="text-primary">Haz clic aquï¿½</b> para seleccionar archivos }
         </file-upload-drop-zone>
       </ng-template>
       <ng-template let-i="index" let-file="file" let-control="control" #item>
@@ -38,7 +38,7 @@
       </ng-template>
     </file-upload>
     <small class="text-color-secondary mt-1 block">
-      JPG, PNG, PDF · Máx. 2 MB por archivo · Máx. {{ MAX_FILES_PER_INCIDENT }}
+      JPG, PNG, PDF ï¿½ Mï¿½x. 2 MB por archivo ï¿½ Mï¿½x. {{ MAX_FILES_PER_INCIDENT }}
       archivos
     </small>
   </div>
@@ -78,7 +78,7 @@
         <tr>
           <th>Tipo</th>
           <th>Nombre</th>
-          <th>Tamaño</th>
+          <th>Tamaï¿½o</th>
           <th>Fecha</th>
           <th class="table-col-actions"></th>
         </tr>
@@ -108,16 +108,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <tr>
-          <td colspan="5">
-            <app-empty-state
-              icon="mdi:alert-circle-outline"
-              title="Sin incidencias"
-              message="No hay incidencias registradas."
-            />
-          </td>
-        </tr>
-      </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
     </p-table>
   </div>
   }

@@ -93,16 +93,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="8">
-          <app-empty-state
-            icon="mdi:view-module-outline"
-            title="Sin m�dulos"
-            message="No hay m�dulos registrados."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>

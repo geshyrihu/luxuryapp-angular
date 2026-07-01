@@ -23,7 +23,7 @@
     <tr>
       <th>Nombre</th>
       <th>Parentesco</th>
-      <th>Télefono</th>
+      <th>Tï¿½lefono</th>
       <th class="table-col-5 no-print"></th>
     </tr>
   </ng-template>
@@ -61,15 +61,7 @@
 
   @if (dataEmergencyContact().length === 0) {
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="8">
-        <app-empty-state
-          icon="mdi:phone-alert-outline"
-          title="Sin contactos"
-          message="No hay contactos de emergencia registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
   }
 </p-table>
@@ -102,7 +94,7 @@
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
-        <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
+        <p>{{ item.relation }} ï¿½ {{ item.phoneNumber }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
@@ -147,7 +139,7 @@
     <tr>
       <th>Nombre</th>
       <th>Parentesco</th>
-      <th>Télefono</th>
+      <th>Tï¿½lefono</th>
       <th class="table-col-5 no-print"></th>
     </tr>
   </ng-template>
@@ -220,7 +212,7 @@
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
-        <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
+        <p>{{ item.relation }} ï¿½ {{ item.phoneNumber }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

@@ -4,9 +4,11 @@ import { TableModule } from "primeng/table";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-funding-order-invoices",
-  imports: [TableModule, WebButtonLabelItem],
+  imports: [
+    PrimeNgCustomTableEmptyMessage,TableModule, WebButtonLabelItem],
   templateUrl: "./funding-order-invoices.html",
 })
 export class FundingOrderInvoices implements OnInit {

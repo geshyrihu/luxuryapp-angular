@@ -1,93 +1,157 @@
 <div class="p-3">
   <div class="flex align-items-center gap-2 mb-3">
-    <p-button icon="pi pi-arrow-left" [text]="true" (onClick)="location.back()" />
+    <iw-button
+      iconClass="pi pi-arrow-left"
+      variant="text"
+      (clicked)="location.back()"
+    />
     <h2 class="m-0">{{ period()?.name ?? 'Periodo de Hidrantes' }}</h2>
     @if (period()?.isActive) {
-      <p-tag value="Activo" severity="success" />
+    <p-tag value="Activo" severity="success" />
     } @else {
-      <p-tag value="Inactivo" severity="danger" />
+    <p-tag value="Inactivo" severity="danger" />
     }
   </div>
 
   @if (period()) {
-    <p class="text-600 mb-3">{{ period().frecuencia }} &bull; Inicio: {{ period().startDate | date:'dd/MM/yyyy' }}</p>
+  <p class="text-600 mb-3">
+    {{ period().frecuencia }} &bull; Inicio: {{ period().startDate |
+    date:'dd/MM/yyyy' }}
+  </p>
   }
 
   <div class="card mb-3">
     <h4 class="mt-0 mb-2">Ciclo Activo</h4>
     @if (activeCycle()) {
-      <div class="flex align-items-center gap-3">
-        <p-tag [value]="activeCycle().status" [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'" />
-        <span class="text-600">{{ activeCycle().periodStart | date:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | date:'dd/MM/yyyy' }}</span>
-        <span class="text-600">{{ activeCycle().items?.length ?? 0 }} equipos</span>
-      </div>
+    <div class="flex align-items-center gap-3">
+      <p-tag
+        [value]="activeCycle().status"
+        [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'"
+      />
+      <span class="text-600"
+        >{{ activeCycle().periodStart | date:'dd/MM/yyyy' }} — {{
+        activeCycle().periodEnd | date:'dd/MM/yyyy' }}</span
+      >
+      <span class="text-600"
+        >{{ activeCycle().items?.length ?? 0 }} equipos</span
+      >
+    </div>
     } @else {
-      <div class="flex align-items-center gap-3">
-        <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
-        <p-button label="Generar Ciclo" icon="pi pi-play" size="small" (onClick)="onGenerateCycle()" />
-      </div>
+    <div class="flex align-items-center gap-3">
+      <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
+      <il-button
+        label="Generar Ciclo"
+        iconClass="pi pi-play"
+        size="small"
+        (clicked)="onGenerateCycle()"
+      />
+    </div>
     }
   </div>
 
   <div class="card mb-3">
     <div class="flex justify-content-between align-items-center mb-3">
-      <h4 class="m-0">Hidrantes en este Periodo ({{ periodItems().length }})</h4>
+      <h4 class="m-0">
+        Hidrantes en este Periodo ({{ periodItems().length }})
+      </h4>
       <div class="flex gap-2">
-        <p-button label="Escanear QR" icon="pi pi-qrcode" [outlined]="true" (onClick)="scanning() ? stopScan() : startScan()" />
-        <p-button [label]="showAddForm() ? 'Cancelar' : 'Agregar Hidrante'" [icon]="showAddForm() ? 'pi pi-times' : 'pi pi-plus'" [outlined]="true" (onClick)="showAddForm.set(!showAddForm())" />
+        <il-button
+          label="Escanear QR"
+          iconClass="pi pi-qrcode"
+          variant="outline"
+          (clicked)="scanning() ? stopScan() : startScan()"
+        />
+        <il-button
+          [label]="showAddForm() ? 'Cancelar' : 'Agregar Hidrante'"
+          [iconClass]="showAddForm() ? 'mdi:close' : 'mdi:plus'"
+          variant="outline"
+          (clicked)="showAddForm.set(!showAddForm())"
+        />
       </div>
     </div>
 
     @if (showAddForm()) {
-      <div class="flex align-items-center gap-2 mb-3 p-3 surface-100 border-round">
-        <select class="p-inputtext w-full" [(ngModel)]="selectedEquipmentId">
-          <option value="">-- Selecciona un hidrante --</option>
-          @for (e of availableEquipment(); track e.id) {
-            <option [value]="e.id">{{ e.localCode ? e.localCode + ' — ' : '' }}{{ e.location }}</option>
-          }
-        </select>
-        <p-button label="Agregar" icon="pi pi-check" (onClick)="onAddItem()" [disabled]="!selectedEquipmentId" />
-      </div>
+    <div
+      class="flex align-items-center gap-2 mb-3 p-3 surface-100 border-round"
+    >
+      <select class="p-inputtext w-full" [(ngModel)]="selectedEquipmentId">
+        <option value="">-- Selecciona un hidrante --</option>
+        @for (e of availableEquipment(); track e.id) {
+        <option [value]="e.id">
+          {{ e.localCode ? e.localCode + ' — ' : '' }}{{ e.location }}
+        </option>
+        }
+      </select>
+      <il-button
+        label="Agregar"
+        iconClass="pi pi-check"
+        (clicked)="onAddItem()"
+        [disabled]="!selectedEquipmentId"
+      />
+    </div>
     }
 
     <div [hidden]="!scanning()" class="mb-3">
-      <video #videoEl autoplay playsinline style="width:100%; max-width:400px; border-radius:8px;"></video>
-      @if (scanStatus()) { <p class="text-600 mt-1">{{ scanStatus() }}</p> }
-      @if (scanError()) { <p class="text-red-500 mt-1">{{ scanError() }}</p> }
+      <video
+        #videoEl
+        autoplay
+        playsinline
+        style="width: 100%; max-width: 400px; border-radius: 8px"
+      ></video>
+      @if (scanStatus()) {
+      <p class="text-600 mt-1">{{ scanStatus() }}</p>
+      } @if (scanError()) {
+      <p class="text-red-500 mt-1">{{ scanError() }}</p>
+      }
     </div>
 
     @if (mergedItems().length === 0) {
-      <p class="text-600 text-center py-3">No hay hidrantes en este periodo.</p>
+    <p class="text-600 text-center py-3">No hay hidrantes en este periodo.</p>
     } @else {
-      <table class="w-full" style="border-collapse:collapse;">
-        <thead>
-          <tr class="surface-100">
-            <th class="p-2 text-left text-600 font-medium">Código</th>
-            <th class="p-2 text-left text-600 font-medium">Ubicación</th>
-            <th class="p-2 text-left text-600 font-medium">Tipo</th>
-            <th class="p-2 text-center text-600 font-medium">Estado</th>
-            <th class="p-2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of mergedItems(); track item.id) {
-            <tr class="border-top-1 border-200">
-              <td class="p-2"><small>{{ item.localCode }}</small></td>
-              <td class="p-2"><small>{{ item.location }}</small></td>
-              <td class="p-2"><small>{{ item.typeDescription }}</small></td>
-              <td class="p-2 text-center">
-                <p-tag [value]="statusLabel(item.cycleStatus)" [severity]="statusSeverity(item.cycleStatus)" />
-              </td>
-              <td class="p-2">
-                <div class="flex gap-1 justify-content-end">
-                  <p-button label="Inspeccionar" icon="pi pi-check-circle" size="small" [outlined]="true" (onClick)="openChecklist(item)" />
-                  <p-button icon="pi pi-trash" severity="danger" size="small" [text]="true" (onClick)="onRemoveItem(item.id)" />
-                </div>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
+    <table class="w-full" style="border-collapse: collapse">
+      <thead>
+        <tr class="surface-100">
+          <th class="p-2 text-left text-600 font-medium">Código</th>
+          <th class="p-2 text-left text-600 font-medium">Ubicación</th>
+          <th class="p-2 text-left text-600 font-medium">Tipo</th>
+          <th class="p-2 text-center text-600 font-medium">Estado</th>
+          <th class="p-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of mergedItems(); track item.id) {
+        <tr class="border-top-1 border-200">
+          <td class="p-2"><small>{{ item.localCode }}</small></td>
+          <td class="p-2"><small>{{ item.location }}</small></td>
+          <td class="p-2"><small>{{ item.typeDescription }}</small></td>
+          <td class="p-2 text-center">
+            <p-tag
+              [value]="statusLabel(item.cycleStatus)"
+              [severity]="statusSeverity(item.cycleStatus)"
+            />
+          </td>
+          <td class="p-2">
+            <div class="flex gap-1 justify-content-end">
+              <il-button
+                label="Inspeccionar"
+                iconClass="pi pi-check-circle"
+                size="small"
+                variant="outline"
+                (clicked)="openChecklist(item)"
+              />
+              <iw-button
+                iconClass="pi pi-trash"
+                severity="danger"
+                size="small"
+                variant="text"
+                (clicked)="onRemoveItem(item.id)"
+              />
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
     }
   </div>
 </div>

@@ -7,7 +7,7 @@ import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -27,7 +27,7 @@ import { FundingForm } from "./funding-form";
     CommonModule,
     TableModule,
     WebButtonLabel,
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

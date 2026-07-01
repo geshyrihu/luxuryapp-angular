@@ -23,17 +23,15 @@
         <il-button
           (clicked)="onOpenScanner()"
           [iconClass]="'mdi:qrcode'"
-          tooltip="Escanear QR"
         />
         <il-button
           (clicked)="onBulkExpiration()"
           [iconClass]="'mdi:calendar'"
-          tooltip="Actualizar fecha de vencimiento a todos"
         />
         <il-button-item
           (clicked)="onViewPeriodos()"
           label="Periodos"
-          tooltip="Configurar periodos de inspección"
+          tooltip="Configurar periodos de inspecciï¿½n"
         />
       </div>
       <primeng-custom-caption
@@ -47,13 +45,13 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" pSortableColumn="localCode">
-        Código <p-sortIcon field="localCode" />
+        Cï¿½digo <p-sortIcon field="localCode" />
       </th>
       <th class="table-col-25" pSortableColumn="extinguisherType">
         Extintor <p-sortIcon field="extinguisherType" />
       </th>
       <th class="table-col-25" pSortableColumn="location">
-        Ubicación <p-sortIcon field="location" />
+        Ubicaciï¿½n <p-sortIcon field="location" />
       </th>
       <th class="table-col-15" pSortableColumn="expirationDate">
         Vencimiento <p-sortIcon field="expirationDate" />
@@ -96,15 +94,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="6">
-        <app-empty-state
-          icon="mdi:fire-extinguisher"
-          title="Sin extintores"
-          message="No hay extintores registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -142,7 +132,7 @@
       (click)="onViewPeriodos()"
     >
       <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
-      Periodos de Inspección
+      Periodos de Inspecciï¿½n
     </ion-button>
   </div>
 
@@ -169,7 +159,7 @@
       </div>
       <ion-label>
         <h3>
-          {{ item.localCode ? item.localCode + ' — ' : '' }}{{
+          {{ item.localCode ? item.localCode + ' ï¿½ ' : '' }}{{
           item.extinguisherType }}
         </h3>
         <p>{{ item.location }}</p>

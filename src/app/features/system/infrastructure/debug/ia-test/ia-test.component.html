@@ -24,12 +24,11 @@
           </custom-input-textarea-signal>
         </div>
 
-        <p-button 
+        <il-button 
           label="Probar Modelo" 
-          icon="mdi:lightning-bolt" 
-          (onClick)="onTestProfile()" 
-          [loading]="isLoading()">
-        </p-button>
+          iconClass="mdi:lightning-bolt" 
+          (clicked)="onTestProfile()" 
+          [loading]="isLoading()" />
       </div>
 
       <div class="col-12 md:col-8">

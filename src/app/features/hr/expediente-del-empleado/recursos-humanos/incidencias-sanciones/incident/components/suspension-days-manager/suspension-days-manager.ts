@@ -13,7 +13,7 @@ import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/but
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -26,7 +26,7 @@ import {
 @Component({
   selector: "app-suspension-days-manager",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
     DatePipe,

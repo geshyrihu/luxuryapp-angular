@@ -11,7 +11,7 @@ import {
 import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -27,7 +27,7 @@ import { PolicyContractForm } from "./policy-contract-form";
   selector: "app-policy-contract-list",
   templateUrl: "./policy-contract-list.html",
   imports: [
-    EmptyState,
+    PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,
     PrimeNgCustomCaption,

@@ -1,14 +1,12 @@
 <!-- Filtro de año -->
 <div class="flex gap-2 mb-3">
   @for (anio of aniosDisponibles; track anio) {
-  <button
-    type="button"
-    class="p-button p-button-sm"
-    [class.p-button-outlined]="anioFiltro() !== anio"
-    (click)="cambiarAnio(anio)"
-  >
-    {{ anio }}
-  </button>
+  <il-button
+    [label]="String(anio)"
+    size="small"
+    [variant]="anioFiltro() !== anio ? 'outline' : 'solid'"
+    (clicked)="cambiarAnio(anio)"
+  />
   }
 </div>
 
@@ -81,15 +79,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="9">
-        <app-empty-state
-          icon="mdi:currency-usd"
-          title="Sin registros"
-          message="No hay registros de nómina."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
 </p-table>
 

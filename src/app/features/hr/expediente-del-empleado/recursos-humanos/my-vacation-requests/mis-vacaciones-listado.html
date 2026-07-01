@@ -42,14 +42,14 @@
           <p-sortIcon field="startDate" />
         </th>
         <th pSortableColumn="requestedDays">
-          Días Solicitados
+          Dï¿½as Solicitados
           <p-sortIcon field="requestedDays" />
         </th>
         <th pSortableColumn="status">
           Estado
           <p-sortIcon field="status" />
         </th>
-        <th>Aprobación</th>
+        <th>Aprobaciï¿½n</th>
         <th class="no-print"></th>
       </tr>
     </ng-template>
@@ -92,7 +92,7 @@
 
         <td class="no-print">
           <div class="flex justify-content-end">
-            <!-- Botón Ver Detalle -->
+            <!-- Botï¿½n Ver Detalle -->
             <il-button-item (clicked)="onDetail(item.id)" label="??" />
 
             @if (item.status === "Pendiente") {
@@ -106,16 +106,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <tr>
-        <td colspan="6">
-          <app-empty-state
-            icon="mdi:beach"
-            title="Sin vacaciones"
-            message="No hay solicitudes de vacaciones."
-          />
-        </td>
-      </tr>
-    </ng-template>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -145,16 +137,16 @@
         <ion-label>
           <h2 class="font-bold">{{ item.requestDate }}</h2>
           <p class="text-sm text-500">
-            {{ item.startDate }} — {{ item.endDate }}
+            {{ item.startDate }} ï¿½ {{ item.endDate }}
           </p>
-          <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
+          <p class="text-sm text-500">Dï¿½as: {{ item.requestedDays }}</p>
           <p class="text-sm">
             <p-tag
               [value]="item.status"
               [severity]="getStatusSeverity(item.status)"
             />
           </p>
-          <p class="text-sm text-500">{{ item.approverFullName || '—' }}</p>
+          <p class="text-sm text-500">{{ item.approverFullName || 'ï¿½' }}</p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>

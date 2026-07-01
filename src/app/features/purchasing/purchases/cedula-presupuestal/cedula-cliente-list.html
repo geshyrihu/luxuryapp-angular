@@ -148,15 +148,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="12">
-        <app-empty-state
-          icon="mdi:wallet-outline"
-          title="Sin cédulas"
-          message="No hay cédulas presupuestales registradas."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="12" />
   </ng-template>
 </p-table>
 }
@@ -191,7 +183,7 @@
         <h3>{{ item.descripcion }}</h3>
         <p>Cuenta: {{ item.numeroCuenta }}</p>
         <p>
-          Mensual: {{ item.presupuestoMensual }} ó Disponible: {{
+          Mensual: {{ item.presupuestoMensual }} ï¿½ Disponible: {{
           item.presupuestoDisponible }}
         </p>
       </ion-label>

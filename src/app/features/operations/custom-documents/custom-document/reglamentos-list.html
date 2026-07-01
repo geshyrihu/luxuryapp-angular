@@ -53,23 +53,15 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr>
-      <td colspan="5">
-        <app-empty-state
-          icon="mdi:scale-balance"
-          title="Sin reglamentos"
-          message="No hay reglamentos registrados."
-        />
-      </td>
-    </tr>
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
-<!-- Vista para móviles -->
-<!-- Vista para móviles -->
+<!-- Vista para mï¿½viles -->
+<!-- Vista para mï¿½viles -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"
@@ -134,7 +126,7 @@
       <div class="p-message-wrapper p-3">
         <span class="p-message-icon mdi:information text-xl"></span>
         <span class="p-message-text ml-2"
-          >Haz una pregunta específica sobre este reglamento y la IA analizaró
+          >Haz una pregunta especï¿½fica sobre este reglamento y la IA analizarï¿½
           el documento para responderte.</span
         >
       </div>
@@ -146,7 +138,7 @@
         id="query"
         rows="4"
         pTextarea
-        placeholder="Ej. óCuóles son las sanciones por ruido excesivo? óCuól es el horario de la alberca?"
+        placeholder="Ej. ï¿½Cuï¿½les son las sanciones por ruido excesivo? ï¿½Cuï¿½l es el horario de la alberca?"
         [formControl]="consultationQueryControl"
         class="w-full"
         [disabled]="consultingDoc()"
