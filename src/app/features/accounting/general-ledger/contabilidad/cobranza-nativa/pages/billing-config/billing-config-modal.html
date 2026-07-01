@@ -1,4 +1,4 @@
-ï»¿<div class="px-3 pt-3">
+<div class="px-3 pt-3">
   @if (isLoading) {
   <div class="flex justify-content-center my-4">
     <app-icon [icon]="'mdi:loading'" class="text-3xl text-primary"></app-icon>
@@ -8,7 +8,7 @@
     <div class="p-3 border-round surface-100 mb-2">
       <custom-input-select-signal
         [control]="form.controls['billingMode']"
-        label="Modo de OperaciÃ³n AR"
+        label="Modo de Operación AR"
         [data]="billingModeOptions()"
         hint="Define si LuxuryApp genera cargos, o si los extrae de Aspel COI."
         [filter]="true"
@@ -19,15 +19,15 @@
       <div class="col-12 md:col-6">
         <custom-input-number-signal
           [control]="form.controls['defaultDueDays']"
-          label="DÃ­as para vencer (Predeterminado)"
-          hint="DÃ­as tras la creaciÃ³n del cargo para fijar la fecha lÃ­mite."
+          label="Días para vencer (Predeterminado)"
+          hint="Días tras la creación del cargo para fijar la fecha límite."
         />
       </div>
       <div class="col-12 md:col-6">
         <custom-input-number-signal
           [control]="form.controls['graceDays']"
-          label="DÃ­as de Gracia"
-          hint="DÃ­as que se perdonan tras el vencimiento antes del recargo."
+          label="Días de Gracia"
+          hint="Días que se perdonan tras el vencimiento antes del recargo."
         />
       </div>
     </div>
@@ -36,12 +36,12 @@
       <custom-input-number-signal
         [control]="form.controls['globalLateFeePercentage']"
         label="Tasa de Mora Global (%)"
-        hint="Opcional: Porcentaje mensual. Si estÃ¡ en blanco, dependerÃ¡ de la polÃ­tica individual de cada cargo."
+        hint="Opcional: Porcentaje mensual. Si está en blanco, dependerá de la política individual de cada cargo."
       />
     </div>
 
     <div class="flex justify-content-end mt-4">
-      <custom-button
+      <il-button
         label="Cancelar"
         iconClass="mdi:close"
         variant="ghost-text"
@@ -49,7 +49,7 @@
         (clicked)="onClose()"
         [disabled]="isLoading"
       />
-      <custom-button-save (clicked)="onSubmit()" [submitting]="isLoading" />
+      <il-button-save (clicked)="onSubmit()" [submitting]="isLoading" />
     </div>
   </form>
   }

@@ -1,4 +1,4 @@
-Ôªøimport {
+import {
   Component,
   computed,
   effect,
@@ -18,10 +18,10 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -57,7 +57,7 @@ interface IAddProductRow {
     ReactiveFormsModule,
     TableModule,
     CustomInputSelectSignal,
-    CustomButton,
+    WebButtonLabel,
     CustomInputTextSignal,
     CustomInputNumberSignal,
     AvatarModule,
@@ -66,40 +66,40 @@ interface IAddProductRow {
   providers: [PaginationService], // Proveer una instancia fresca de PaginationService para este componente
 })
 export class ProductModalAdd implements OnInit, OnDestroy {
-  // --- Inyecci√≥n de Dependencias ---
+  // --- InyecciÛn de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private config = inject(DynamicDialogConfig); // Configuraci√≥n pasada al abrir el di√°logo
-  public ref = inject(DynamicDialogRef); // Referencia al di√°logo din√≥mico para cerrarlo
+  private config = inject(DynamicDialogConfig); // ConfiguraciÛn pasada al abrir el di·logo
+  public ref = inject(DynamicDialogRef); // Referencia al di·logo dinÛmico para cerrarlo
   private authS = inject(AuthService);
   formB = inject(FormBuilder);
   public paginationService =
-    inject<PaginationService<IProductData>>(PaginationService); // Inyectar el servicio de paginaci√≥n gen√≥rico
+    inject<PaginationService<IProductData>>(PaginationService); // Inyectar el servicio de paginaciÛn genÛrico
 
   // --- Estado del Componente ---
-  /** Identificador de la solicitud de compra a la que se agregar√≥n productos. */
+  /** Identificador de la solicitud de compra a la que se agregarÛn productos. */
   public solicitudCompraId: string = "";
   /** Lista de unidades de medida para el dropdown. */
   public cb_unidadMedida: ISelectItem[] = [];
-  /** Indica si se debe mostrar un mensaje de error de validaci√≥n. */
+  /** Indica si se debe mostrar un mensaje de error de validaciÛn. */
   public mensajeError: boolean = false;
-  /** Control para la b√≥squeda para reemplazar ngModel */
+  /** Control para la bÛsqueda para reemplazar ngModel */
   public searchControl = new FormControl<string>("");
 
   formArray = new FormArray<FormGroup<IAddProductRow>>([]);
 
-  // --- Configuraci√≥n de la Tabla PrimeNG ---
-  /** Opciones para el n√≥mero de filas por p√≥gina. */
+  // --- ConfiguraciÛn de la Tabla PrimeNG ---
+  /** Opciones para el nÛmero de filas por pÛgina. */
   public rowsPerPageOptions: number[] = rowsPerPageOptions();
-  /** N√≥mero de filas por defecto para la tabla PrimeNG. */
+  /** NÛmero de filas por defecto para la tabla PrimeNG. */
   public tablePrimeNgRows: number = tablePrimeNgRows();
-  /** Posici√≥n inicial de la paginaci√≥n (√≥ndice del primer registro). */
-  public first: number = 0; // Se actualiza basado en el estado del servicio de paginaci√≥n
+  /** PosiciÛn inicial de la paginaciÛn (Ûndice del primer registro). */
+  public first: number = 0; // Se actualiza basado en el estado del servicio de paginaciÛn
 
   // --- Datos para la Tabla (manejados por PaginationService) ---
   /** Datos actuales mostrados en la tabla. */
   dataSignal = toSignal(this.paginationService.data$, { initialValue: [] });
-  /** N√≥mero total de registros disponibles para la paginaci√≥n. */
+  /** NÛmero total de registros disponibles para la paginaciÛn. */
   totalRecordsSignal = toSignal(this.paginationService.totalRecords$, {
     initialValue: 0,
   });
@@ -140,13 +140,13 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   /**
    * Ciclo de vida OnInit.
    * Se ejecuta una vez que el componente ha sido inicializado.
-   * Aqu√≥ se configuran los datos iniciales y se inicializa el servicio de paginaci√≥n.
+   * AquÛ se configuran los datos iniciales y se inicializa el servicio de paginaciÛn.
    */
   ngOnInit(): void {
     // Obtener datos pasados al modal
     this.solicitudCompraId = this.config.data.solicitudCompraId;
 
-    // Inicializar el servicio de paginaci√≥n
+    // Inicializar el servicio de paginaciÛn
     const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(
       this.solicitudCompraId,
     );
@@ -167,24 +167,24 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.error("Error loading measurement units:", error);
-        this.cb_unidadMedida = []; // Asegurar que sea un array vac√≠o en caso de error
+        this.cb_unidadMedida = []; // Asegurar que sea un array vacÌo en caso de error
       });
   }
 
   /**
-   * Maneja el evento de carga perezosa (paginaci√≥n, ordenamiento) de la tabla PrimeNG.
-   * Delega la l√≥gica al servicio de paginaci√≥n.
+   * Maneja el evento de carga perezosa (paginaciÛn, ordenamiento) de la tabla PrimeNG.
+   * Delega la lÛgica al servicio de paginaciÛn.
    * @param event El evento de carga perezosa emitido por p-table.
    */
   public loadDataLazy(event: any): void {
-    this.first = event.first; // Actualizar 'first' para la sincronizaci√≥n de la vista de PrimeNG
+    this.first = event.first; // Actualizar 'first' para la sincronizaciÛn de la vista de PrimeNG
     this.paginationService.handleLazyLoad(event);
   }
 
   /**
-   * Aplica el filtro de b√≥squeda ingresado por el usuario.
-   * Delega la l√≥gica al servicio de paginaci√≥n.
-   * El servicio resetear√≥ la paginaci√≥n a la primera p√≥gina.
+   * Aplica el filtro de bÛsqueda ingresado por el usuario.
+   * Delega la lÛgica al servicio de paginaciÛn.
+   * El servicio resetearÛ la paginaciÛn a la primera pÛgina.
    */
   public applyFilter(): void {
     this.first = 0; // Resetear 'first' visualmente al aplicar filtro
@@ -192,13 +192,13 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   }
 
   /**
-   * Maneja el env√≠o (agregar) de un producto a la solicitud de compra.
+   * Maneja el envÌo (agregar) de un producto a la solicitud de compra.
    * @param row El FormGroup correspondiente al rowItem de la tabla.
    */
   public onSubmit(row: FormGroup<IAddProductRow>): void {
     const value = row.getRawValue();
 
-    // Validaci√≥n simple
+    // ValidaciÛn simple
     if (
       !value.unidadMedidaId ||
       (value.productoId || 0) === 0 ||
@@ -229,7 +229,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   }
 
   /**
-   * Abre un modal para mostrar la tarjeta de informaci√≥n detallada de un producto.
+   * Abre un modal para mostrar la tarjeta de informaciÛn detallada de un producto.
    * @param productoId El ID del producto para el cual mostrar la tarjeta.
    */
   public onModalTarjetaProducto(productoId: any): void {
@@ -239,7 +239,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       TarjetaProducto,
       { productoId: productoId }, // Datos a pasar al modal TarjetaProductoComponent
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg, // TamA√±o del di√°logo
+      this.dialogHandlerS.sizeLg, // TamAÒo del di·logo
     );
   }
 

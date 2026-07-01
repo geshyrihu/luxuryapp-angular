@@ -79,7 +79,7 @@
         EMAIL <p-sortIcon field="email" />
       </th>
       <th pSortableColumn="phoneNumber" style="width: 10%">
-        TELÉFONO <p-sortIcon field="phoneNumber" />
+        TELï¿½FONO <p-sortIcon field="phoneNumber" />
       </th>
       <th style="width: 5%"></th>
     </tr>
@@ -94,10 +94,10 @@
       <td>{{ item.phoneNumber }}</td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -119,7 +119,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -174,15 +174,13 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

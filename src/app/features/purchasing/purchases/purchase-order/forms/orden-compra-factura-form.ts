@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   inject,
@@ -16,12 +16,12 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importación
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit"; // Added
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal"; // Added
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importaciÃ³n
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit"; // Added
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraFacturaForm {
@@ -39,10 +39,10 @@ export interface IOrdenCompraFacturaForm {
     ReactiveFormsModule,
     CardModule,
     TableModule,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     CustomInputFile,
-    CustomButton,
+    WebButtonLabel,
     CustomInputSelectSignal,
     TooltipModule,
   ],
@@ -61,7 +61,7 @@ export class OrdenCompraFacturaForm implements OnInit {
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
-    { label: "Ingreso (Nota de CrÃ³dito)", value: "E" },
+    { label: "Ingreso (Nota de Cródito)", value: "E" },
   ];
 
   form: FormGroup<IOrdenCompraFacturaForm> =

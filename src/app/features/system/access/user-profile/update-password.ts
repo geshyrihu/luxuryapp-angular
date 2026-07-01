@@ -9,7 +9,7 @@ import {
 import { CardModule } from "primeng/card";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { PasswordModule } from "primeng/password";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { IChangePassword } from "src/app/core/interfaces/change-password.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,7 +22,7 @@ import { AuthService } from "src/app/core/services/auth.service";
     ReactiveFormsModule,
     CardModule,
     PasswordModule,
-    CustomButtonSave,
+    WebButtonLabelSave,
     FloatLabelModule,
   ],
 })
@@ -101,13 +101,3 @@ export class UpdatePasswordComponent implements OnInit {
     return pass1 !== pass2 && this.updatePassword ? true : false;
   }
 }
-
-
-
-
-
-
-
-
-
-

@@ -33,14 +33,13 @@
       />
       <div class="flex justify-content-end mt-3">
         @if (aspRoleS.hasRole(AspRole.SuperUsuario) && id !== '') {
-        <custom-button-send-email
+        <il-button-send-email
           label="Test de prueba"
-          [showLabelOnDesktop]="true"
           [disabled]="submitting()"
           (confirmed)="TestEmail()"
         />
         }
-        <custom-button-save
+        <il-button-save
           [propertyId]="id"
           [disabled]="form.invalid"
           [submitting]="submitting()"

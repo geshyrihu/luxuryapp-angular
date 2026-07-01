@@ -27,8 +27,7 @@
 
       <div class="flex flex-wrap">
         @if (id && id !== "" && id !== "0") {
-        <custom-button
-          [showLabelOnDesktop]="true"
+        <il-button
           iconClass="mdi:whatsapp"
           label="Compartir WA"
           (clicked)="onSendWhatsApp()"
@@ -37,8 +36,7 @@
           class="mr-2"
           size="small"
         />
-        <custom-button
-          [showLabelOnDesktop]="true"
+        <il-button
           iconClass="mdi:email-outline"
           label="Enviar Correo"
           (clicked)="onSendEmail()"
@@ -51,8 +49,7 @@
           [routerLink]="['/purchases/pdf-solicitud-compra', id]"
           class="no-underline mr-2"
         >
-          <custom-button
-            [showLabelOnDesktop]="true"
+          <il-button
             iconClass="mdi:file-pdf-box"
             label="Ver PDF"
             severity="danger"
@@ -60,8 +57,7 @@
             size="small"
           />
         </a>
-        <custom-button
-          [showLabelOnDesktop]="true"
+        <il-button
           iconClass="mdi:table"
           label="Cuadro Comparativo"
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
@@ -71,7 +67,7 @@
           size="small"
         />
         }
-        <custom-button-save
+        <il-button-save
           [propertyId]="id"
           [disabled]="form.invalid"
           [submitting]="submitting()"
@@ -158,7 +154,7 @@
       <span class="text-sm font-bold text-600 uppercase"
         >Órdenes de Compra Relacionadas:</span
       >
-      <custom-button
+      <il-button
         iconClass="mdi:link"
         label="Actualizar Referencias"
         (clicked)="onManageLinks()"

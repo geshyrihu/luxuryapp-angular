@@ -5,17 +5,18 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web/icon/button-active-desactive";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import {
-  CustomBtnActiveDesactive,
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -41,10 +42,13 @@ import { MdEditAccount } from "./md-edit-account";
     ReactiveFormsModule,
     TableModule,
     AvatarModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
-    CustomBtnActiveDesactive,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonLabelItem,
+    WebButtonIconActiveDesactive,
+    WebButtonLabelActiveDesactive,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -52,12 +56,6 @@ import { MdEditAccount } from "./md-edit-account";
     AppIcon,
     CardModule,
     CustomInputSelectSignal,
-
-    CustomBtnActiveDesactive,
-
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
   ],
 })
 export class ApplicationUserList implements OnInit {

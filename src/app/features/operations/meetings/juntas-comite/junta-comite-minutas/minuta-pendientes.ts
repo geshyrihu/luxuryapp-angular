@@ -1,16 +1,16 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -18,7 +18,7 @@ import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-minuta-pendientes",
   templateUrl: "./minuta-pendientes.html",
-  imports: [CommonModule, ReportHeader, SanitizeHtmlPipe, CustomButtonDownload],
+  imports: [CommonModule, ReportHeader, SanitizeHtmlPipe, WebButtonLabelDownload],
 })
 export class MinutaPendientes {
   apiResponseS = inject(ApiResponseService);
@@ -39,13 +39,15 @@ export class MinutaPendientes {
   }
   onLoadData() {
     this.loading.set(true);
-    this.apiResponseS.onGetList(
-      Endpoints.Meetings.allPendingMinutas(this.customerIdS.customerId()),
-    ).then((result: any) => {
-      this.data = result;
-      this.globalFilterFields = globalFilterFields(this.data);
-      this.loading.set(false);
-    });
+    this.apiResponseS
+      .onGetList(
+        Endpoints.Meetings.allPendingMinutas(this.customerIdS.customerId()),
+      )
+      .then((result: any) => {
+        this.data = result;
+        this.globalFilterFields = globalFilterFields(this.data);
+        this.loading.set(false);
+      });
   }
 
   async exportToExcel() {
@@ -61,11 +63,11 @@ export class MinutaPendientes {
 
     // Define columns
     worksheet.columns = [
-      { header: "Ãrea Responsable", key: "area", width: 30 },
+      { header: "Área Responsable", key: "area", width: 30 },
       { header: "Asunto", key: "asunto", width: 40 },
       { header: "Solicitud", key: "solicitud", width: 50 },
-      { header: "Ãšltimo Seguimiento", key: "seguimiento", width: 50 },
-      { header: "Fecha Ãšltimo Seguimiento", key: "fecha", width: 25 },
+      { header: "Último Seguimiento", key: "seguimiento", width: 50 },
+      { header: "Fecha Último Seguimiento", key: "fecha", width: 25 },
       { header: "Estatus", key: "estatus", width: 15 },
     ];
 
@@ -129,4 +131,3 @@ export class MinutaPendientes {
     );
   }
 }
-

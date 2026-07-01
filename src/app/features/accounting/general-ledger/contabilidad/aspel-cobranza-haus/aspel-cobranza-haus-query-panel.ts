@@ -2,9 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import {
   AspelQueryMode,
   AspelQueryRequest,
@@ -20,7 +20,7 @@ import {
     CardModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    CustomButton,
+    WebButtonLabel,
   ],
   template: `
     <p-card styleClass="shadow-none border-1 surface-border">
@@ -52,7 +52,8 @@ import {
               placeholder="Selecciona una cuenta"
             />
             <small class="text-500">
-              Cuenta cargada desde el catálogo {{ sourceLabel }} del ejercicio seleccionado.
+              Cuenta cargada desde el catálogo {{ sourceLabel }} del ejercicio
+              seleccionado.
             </small>
           </div>
         }
@@ -60,7 +61,9 @@ import {
         @if (mode !== "deudas-actuales" && mode !== "detalle-cobranza-rango") {
           <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
             <custom-input-date-signal
-              [label]="mode === 'accounts' ? 'Fecha para ejercicio' : 'Fecha inicio'"
+              [label]="
+                mode === 'accounts' ? 'Fecha para ejercicio' : 'Fecha inicio'
+              "
               [(ngModel)]="request.fechaInicio"
               (ngModelChange)="dateContextChange.emit()"
               [horizontal]="false"
@@ -70,7 +73,9 @@ import {
         } @else {
           <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
             <label class="text-sm font-semibold text-900">Fecha corte</label>
-            <div class="flex align-items-center h-3rem px-3 border-1 surface-border border-round surface-50 text-900 font-medium">
+            <div
+              class="flex align-items-center h-3rem px-3 border-1 surface-border border-round surface-50 text-900 font-medium"
+            >
               Hoy
             </div>
             <small class="text-500">
@@ -79,7 +84,11 @@ import {
           </div>
         }
 
-        @if (mode !== "accounts" && mode !== "deudas-actuales" && mode !== "detalle-cobranza-rango") {
+        @if (
+          mode !== "accounts" &&
+          mode !== "deudas-actuales" &&
+          mode !== "detalle-cobranza-rango"
+        ) {
           <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
             <custom-input-date-signal
               label="Fecha fin"
@@ -92,9 +101,11 @@ import {
         }
 
         <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
-          <label class="hidden lg:block text-sm font-semibold opacity-0">&nbsp;</label>
+          <label class="hidden lg:block text-sm font-semibold opacity-0"
+            >&nbsp;</label
+          >
           <div class="flex gap-2 w-full mt-1 lg:mt-0">
-            <custom-button
+            <il-button
               label="Consultar"
               iconClass="mdi:magnify"
               [loading]="loading"
@@ -102,7 +113,7 @@ import {
               customClass="flex-1"
               (clicked)="search.emit()"
             />
-            <custom-button
+            <il-button
               label="Limpiar"
               iconClass="mdi:eraser"
               customClass="flex-1 p-button-secondary"

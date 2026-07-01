@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,11 +6,11 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -37,7 +37,7 @@ interface IPropertyFineForm {
     CustomInputDecimal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./property-fine-form.html",
 })
@@ -101,7 +101,7 @@ export class PropertyFineForm implements OnInit {
         arts
           .filter((a) => a.isActive)
           .map((a) => ({
-            label: `${a.articleNumber} — ${a.title}`,
+            label: `${a.articleNumber} � ${a.title}`,
             value: a.id,
           })),
       );

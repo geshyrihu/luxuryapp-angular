@@ -10,13 +10,13 @@
         controla incidencias, tiempo extra, prestamos y evidencias desde un solo lugar.
       </p>
       <div class="flex flex-wrap gap-2">
-        <custom-button
+        <il-button
           label="Periodos de nomina"
           iconClass="mdi:calendar"
           size="small"
           (clicked)="navigateTo('/recursos-humanos/nomina/periodos')"
         />
-        <custom-button
+        <il-button
           label="Generar nomina"
           iconClass="mdi:file-check"
           variant="outlined"
@@ -92,7 +92,7 @@
                 <div class="flex gap-2 mt-auto">
                   @if (card.route) {
                     <div class="flex-1">
-                      <custom-button
+                      <il-button
                         label="Abrir"
                         iconClass="mdi:arrow-right"
                         size="small"
@@ -106,7 +106,7 @@
                       Acceso desde otra pagina
                     </span>
                   }
-                  <custom-button
+                  <il-button
                     [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:chevron-down'"
                     variant="outlined"
                     severity="secondary"
@@ -192,7 +192,7 @@
         aplicar los descuentos de prestamos.
       </div>
     </div>
-    <custom-button
+    <il-button
       label="Ver periodos"
       iconClass="mdi:calendar"
       size="small"

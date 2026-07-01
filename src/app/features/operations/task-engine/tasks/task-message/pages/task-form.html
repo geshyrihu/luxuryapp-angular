@@ -1,12 +1,12 @@
-Ôªø<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <!-- Gu√≠a de usuario para mejorar la consistencia de datos -->
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <!-- GuÌa de usuario para mejorar la consistencia de datos -->
   <div
     class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
   >
     <app-icon [icon]="'mdi:information'" class="text-blue-600 text-xl mt-1"></app-icon>
     <div class="flex-1">
       <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
-        Gu√≠a de registro
+        GuÌa de registro
       </div>
       <p class="m-0 text-blue-800 text-sm line-height-3">
         Para facilitar el seguimiento y generar reportes precisos, por favor:
@@ -15,9 +15,9 @@
         <li class="mb-1 flex align-items-start">
           <app-icon [icon]="'mdi:check'" class="text-blue-500 mr-2 mt-1 text-xs"></app-icon>
           <span>
-            <strong>√É¬Åreas consistentes:</strong> Usa siempre el mismo nombre
+            <strong>√Åreas consistentes:</strong> Usa siempre el mismo nombre
             para un mismo lugar (ej:
-            <em>Administraci√≥n, TORRE 1 s5, Ludoteca, Alberca</em>).
+            <em>AdministraciÛn, TORRE 1 s5, Ludoteca, Alberca</em>).
           </span>
         </li>
         <li class="mb-1 flex align-items-start">
@@ -25,8 +25,8 @@
           <span>
             <strong>Evidencia visual:</strong> Toma las fotos en
             <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
-            al detalle. Usa el <strong>mismo √°ngulo</strong> para el antes y
-            despu√©s.
+            al detalle. Usa el <strong>mismo ·ngulo</strong> para el antes y
+            despuÈs.
           </span>
         </li>
       </ul>
@@ -60,16 +60,16 @@
   <custom-input-text-signal
     [control]="form.controls.title"
     label="Area"
-    placeholder="Ej: Administraci√≥n, Pasillo Principal..."
-    description="Usa nombres consistentes para √°reas (ej: Administraci√≥n, TORRE 1 s5, Ludoteca)."
+    placeholder="Ej: AdministraciÛn, Pasillo Principal..."
+    description="Usa nombres consistentes para ·reas (ej: AdministraciÛn, TORRE 1 s5, Ludoteca)."
   />
   }
 
   <custom-input-textarea-signal
     [control]="form.controls.description"
-    label="Descripci√≥n"
+    label="DescripciÛn"
     placeholder="Describe el problema de forma simple y concisa..."
-    description="S√© espec√≠fico, simple y conciso (m√°x. 250 caracteres)."
+    description="SÈ especÌfico, simple y conciso (m·x. 250 caracteres)."
     [maxLength]="250"
   />
 
@@ -85,7 +85,7 @@
     <div class="col-12 md:col-6">
       <custom-input-date-signal
         [control]="form.controls.scheduledDate"
-        label="Fecha de programaci√≥n"
+        label="Fecha de programaciÛn"
         placeholder="fecha"
       />
     </div>
@@ -101,16 +101,16 @@
         label="Asignar"
         placeholder="Selecciona colaborador"
         [filter]="true"
-        description="Si se deja vac√≠o, se asignar√° a los responsables del grupo."
+        description="Si se deja vacÌo, se asignar· a los responsables del grupo."
       />
     </div>
     <div class="col-12 md:col-6">
       <!-- Este es por si es ticket concluido -->
       <custom-input-date-signal
         [control]="form.controls.closedDate"
-        label="Fecha de t√©rmino"
+        label="Fecha de tÈrmino"
         placeholder="fecha de cierre"
-        description="Al colocar esta fecha, el ticket se marcar√° como completado."
+        description="Al colocar esta fecha, el ticket se marcar· como completado."
       />
     </div>
   </div>
@@ -122,7 +122,7 @@
     placeholder="Ninguna (sin dependencia)"
     [data]="cb_predecessors()"
     [filter]="true"
-    description="Esta tarea se ejecutar√° despu√©s de la seleccionada."
+    description="Esta tarea se ejecutar· despuÈs de la seleccionada."
   />
   }
 
@@ -140,12 +140,12 @@
       <custom-input-check-signal
         [control]="form.controls.documentCloud"
         label=""
-        placeholder="Documentaci√≥n en la nube"
+        placeholder="DocumentaciÛn en la nube"
       />
       <custom-input-check-signal
         [control]="form.controls.documentEmail"
         label=""
-        placeholder="Documentaci√≥n por email"
+        placeholder="DocumentaciÛn por email"
       />
     </div>
   </div>
@@ -156,7 +156,7 @@
       <small class="text-500 italic">
         <app-icon [icon]="'mdi:camera'" class="mr-1"></app-icon>
         Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
-        √°ngulo.
+        ·ngulo.
       </small>
     </div>
     <div class="col-12 md:col-6">
@@ -203,7 +203,7 @@
                   size="small"
                 />
                 <span class="text-500 font-medium text-sm"
-                  >Arrastra aqu√≠ la foto</span
+                  >Arrastra aquÌ la foto</span
                 >
               </div>
               } @else {
@@ -259,7 +259,7 @@
         >
           <ng-template #header>
             <span class="font-bold text-xs uppercase text-700"
-              >Foto del despu√©s</span
+              >Foto del despuÈs</span
             >
           </ng-template>
           <ng-template #content>
@@ -288,7 +288,7 @@
                   size="small"
                 />
                 <span class="text-500 font-medium text-sm"
-                  >Arrastra aqu√≠ la foto</span
+                  >Arrastra aquÌ la foto</span
                 >
               </div>
               } @else {
@@ -330,13 +330,13 @@
     </div>
   </div>
   <div class="flex justify-content-end mt-2 gap-2">
-    <custom-button
+    <il-button
       [variant]="'outlined'"
       label="Seguimientos"
       iconClass="mdi:comment-multiple"
       (clicked)="openFollowUp()"
     />
-    <custom-button-save
+    <il-button-save
       [propertyId]="id"
       [disabled]="form.invalid"
       [submitting]="submitting()"

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -7,12 +7,12 @@ import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -39,8 +39,8 @@ import { PeriodoCedulaForm } from "./periodo-cedula-form";
     TagModule,
     TooltipModule,
     PrimeNgCustomCaption,
-    CustomButton,
-    CustomButtonConfirm,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
     DataViewMobile,
     ActionMenu,
     IonItem,

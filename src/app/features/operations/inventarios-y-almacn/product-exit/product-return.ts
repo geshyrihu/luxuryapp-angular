@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -9,9 +9,9 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface IProductReturnForm {
@@ -28,7 +28,7 @@ interface IProductReturnForm {
     ReactiveFormsModule,
     CustomInputNumberSignal,
     CustomInputTextSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CardModule,
   ],
 })
@@ -63,7 +63,7 @@ export class ProductReturn implements OnInit {
 
     this.form.patchValue({ salidaProductoId: data.id });
 
-    // AÃ±adir validador dinÃ³mico para la cantidad mÃ³xima
+    // Añadir validador dinómico para la cantidad móxima
     this.form.controls.cantidadADevolver.setValidators([
       Validators.required,
       Validators.min(1),

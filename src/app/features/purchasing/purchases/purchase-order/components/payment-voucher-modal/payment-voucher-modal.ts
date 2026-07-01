@@ -1,12 +1,12 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -16,8 +16,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     EmptyState,
     CommonModule,
     TableModule,
-    CustomButton,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelDelete,
     CustomInputFile,
   ],
   templateUrl: "./payment-voucher-modal.html",

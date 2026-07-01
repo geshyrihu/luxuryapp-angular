@@ -1,18 +1,18 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ChartConfiguration, ChartData } from "chart.js";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+  WebButtonLabelDelete,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -35,15 +35,15 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButton,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
+    WebButtonLabel,
+    WebButtonLabelDelete,
     PrimeNgCustomTableFooter,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
     DatePipe,
   ],
   templateUrl: "./lista-evaluacion-realizada.html",
@@ -178,7 +178,7 @@ export class ListaEvaluacionRealizada {
         chartImage,
         logo,
         generatedAt,
-        employeeName
+        employeeName,
       );
       const fileName = `Evaluacion-${employeeName.replace(/\s/g, "_")}`;
 
@@ -197,7 +197,7 @@ export class ListaEvaluacionRealizada {
     chartImage: string,
     logo: string | null,
     generatedAt: Date,
-    employeeName: string
+    employeeName: string,
   ): string {
     const formattedEvaluationDate = (() => {
       const date = this.dateS.parseDate(evaluationResult.evaluationDate);
@@ -249,12 +249,16 @@ export class ListaEvaluacionRealizada {
       categoriesHtml += `</div>`;
     });
 
-    const summaryTableHtml = evaluationResult.categories.map((cat: any) => `
+    const summaryTableHtml = evaluationResult.categories
+      .map(
+        (cat: any) => `
       <tr>
         <td style="padding: 4px; border-bottom: 1px solid #ddd;">${this.htmlPrintS.esc(cat.name)}</td>
         <td style="padding: 4px; border-bottom: 1px solid #ddd; text-align: right; font-weight: bold;">${(cat.categoryScore / cat.answers.length).toFixed(2)} / 5.0</td>
       </tr>
-    `).join("");
+    `,
+      )
+      .join("");
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
@@ -313,4 +317,3 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
-

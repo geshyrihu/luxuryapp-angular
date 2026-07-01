@@ -40,34 +40,29 @@
     <div class="col-12">
       <app-action-menu>
         <ng-container actions>
-          <custom-button-item
+          <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Editar' })"
             label="Editar"
-            icon="mdi:pencil"
- [showLabelOnDesktop]="true"/>
-          <custom-button-item
+            icon="mdi:pencil"/>
+          <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Cotizar' })"
-            label="Cotizar"
- [showLabelOnDesktop]="true"/>
-          <custom-button-item
+            label="Cotizar"/>
+          <il-button-item
             (clicked)="
                     onNavigatePage('purchase-request/comparison/' + data.id)
                   "
-            label="Cuadro Comparativo"
- [showLabelOnDesktop]="true"/>
-          <custom-button-item
+            label="Cuadro Comparativo"/>
+          <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Crear Orden' })"
-            label="Crear Orden"
- [showLabelOnDesktop]="true"/>
-          <custom-button-item
+            label="Crear Orden"/>
+          <il-button-item
             (clicked)="
                     onModalAddProduct({
                       purchaseRequestId: data.id,
                       title: 'Agregar productos o servicios',
                     })
                   "
-            label="Agregar productos"
- [showLabelOnDesktop]="true"/>
+            label="Agregar productos"/>
           <div>
             @for (item of purchaseOrders; track item) {
             <p-tag

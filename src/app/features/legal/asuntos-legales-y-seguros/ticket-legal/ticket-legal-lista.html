@@ -33,7 +33,7 @@
         (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
         [dt]="dt"
       />
-      <custom-button-download
+      <il-button-download
         label="Excel"
         (clicked)="exportToExcel()"
         pTooltip="Descargar Excel para PowerPoint"
@@ -113,7 +113,7 @@
       <td>{{ item.completionDate }}</td>
       <td class="text-center">{{ item.diferenciaDias }}</td>
       <td class="text-center">
-        <custom-button-tracking
+        <il-button-tracking
           [ticketId]="item.id"
           [badgeCount]="item.tracking"
           (clickTracking)="onModalSeguimiento($event)"
@@ -121,7 +121,7 @@
       </td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalEdit({ id: item.id, title: 'EDITAR TICKET LEGAL' })"
           />
         </div>
@@ -194,17 +194,17 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               iconName="clipboard-outline"
               label="Seguimiento"
               (clicked)="onModalSeguimiento({ ticketId: item.id, title: 'Seguimiento' })"
-              [showLabelOnDesktop]="true"
+              []="true"
             />
-            <custom-button-item
+            <il-button-item
               iconName="refresh-outline"
               label="Status"
               (clicked)="onModalUpdateStatus({ id: item.id })"
-              [showLabelOnDesktop]="true"
+              []="true"
             />
           </ng-container>
         </app-action-menu>

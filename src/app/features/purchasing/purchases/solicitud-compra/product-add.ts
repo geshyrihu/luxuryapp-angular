@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   OnInit,
@@ -15,10 +15,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -61,8 +61,8 @@ interface IProductSuggestion {
     ReactiveFormsModule,
     FormsModule,
     AutoCompleteModule,
-    CustomButton,
-    CustomButtonSave,
+    WebButtonLabel,
+    WebButtonLabelSave,
     CustomInputSelectSignal,
     CustomInputTextSignal,
   ],
@@ -82,7 +82,7 @@ export class ProductAdd implements OnInit {
     null,
   );
 
-  // Definición estricta del formulario
+  // Definici�n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     productoId: new FormControl<string | null>(null, {

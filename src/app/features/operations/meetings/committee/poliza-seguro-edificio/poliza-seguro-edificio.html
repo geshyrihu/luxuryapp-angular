@@ -16,8 +16,7 @@
     @if (policy.pathDocument) {
     <div class="grid mt-3">
       <div class="col-12">
-        <custom-button-view-pdf
-          [showLabelOnDesktop]="true"
+        <il-button-view-pdf
           [url]="policy.pathDocument"
           fileName="Póliza | Contrato"
         />
@@ -86,7 +85,7 @@
 
   @if (policy.pathDocument) {
   <div class="p-3">
-    <custom-button-view-pdf [url]="policy.pathDocument" fileName="Póliza | Contrato" />
+    <il-button-view-pdf [url]="policy.pathDocument" fileName="Póliza | Contrato" />
   </div>
   }
 

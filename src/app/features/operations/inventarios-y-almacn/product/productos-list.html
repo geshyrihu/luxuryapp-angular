@@ -1,4 +1,4 @@
-ï»¿<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -75,11 +75,11 @@
           @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
           AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
           account_id ) {
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           }
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -100,7 +100,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="mobileDataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -137,16 +137,14 @@
           @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
           AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
           account_id ) {
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
           }
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

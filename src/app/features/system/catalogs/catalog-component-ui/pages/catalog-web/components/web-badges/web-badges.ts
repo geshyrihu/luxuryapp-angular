@@ -9,8 +9,8 @@ import { DividerModule } from "primeng/divider";
 import { OverlayBadgeModule } from "primeng/overlaybadge";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/legacy/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/legacy/buttons/custom-button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
@@ -50,7 +50,7 @@ import {
                 class="text-xs font-bold text-color-secondary uppercase mb-2 block"
                 style="letter-spacing: 0.06em"
               >
-                Severities estándar
+                Severities estï¿½ndar
               </span>
               <div class="flex flex-wrap gap-2">
                 <p-tag value="Success" severity="success" />
@@ -74,7 +74,11 @@ import {
                 <p-tag value="Info" severity="info" [rounded]="true" />
                 <p-tag value="Warning" severity="warn" [rounded]="true" />
                 <p-tag value="Danger" severity="danger" [rounded]="true" />
-                <p-tag value="Secondary" severity="secondary" [rounded]="true" />
+                <p-tag
+                  value="Secondary"
+                  severity="secondary"
+                  [rounded]="true"
+                />
               </div>
             </div>
 
@@ -135,7 +139,7 @@ import {
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="Badges numéricos - p-badge">
+        <p-card header="Badges numï¿½ricos - p-badge">
           <div class="flex flex-column gap-4">
             <div>
               <span
@@ -217,7 +221,7 @@ import {
                 class="text-xs font-bold text-color-secondary uppercase mb-2 block"
                 style="letter-spacing: 0.06em"
               >
-                Básicos
+                Bï¿½sicos
               </span>
               <div class="flex flex-wrap gap-2">
                 <p-chip label="Angular" />
@@ -306,11 +310,13 @@ import {
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="Acciones Contextuales - app-action-menu / app-action-icons-group">
+        <p-card
+          header="Acciones Contextuales - app-action-menu / app-action-icons-group"
+        >
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Usa <strong>ActionIconsGroup</strong> cuando hay 1-2 acciones
             visibles. Usa <strong>ActionMenu</strong> (popover) cuando hay 3 o
-            más o son poco frecuentes.
+            mï¿½s o son poco frecuentes.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -337,7 +343,11 @@ import {
                 ActionMenu (popover)
               </span>
               <app-action-menu [mobileMode]="false">
-                <p-button label="Ver Detalle" icon="mdi:magnify" [text]="true" />
+                <p-button
+                  label="Ver Detalle"
+                  icon="mdi:magnify"
+                  [text]="true"
+                />
                 <p-button
                   label="Exportar PDF"
                   icon="mdi:file-pdf-box"
@@ -365,7 +375,7 @@ import {
                 class="text-xs font-bold text-color-secondary uppercase mb-2 block"
                 style="letter-spacing: 0.06em"
               >
-                Regla de decisión
+                Regla de decisiï¿½n
               </span>
               <div class="flex flex-column gap-2 text-sm">
                 <div class="flex gap-2">
@@ -374,7 +384,10 @@ import {
                     style="color: var(--ds-success)"
                     class="flex-shrink-0 mt-1"
                   />
-                  <span><strong>1-2 acciones frecuentes</strong> -> IconsGroup (visibles)</span>
+                  <span
+                    ><strong>1-2 acciones frecuentes</strong> -> IconsGroup
+                    (visibles)</span
+                  >
                 </div>
                 <div class="flex gap-2">
                   <app-icon
@@ -382,7 +395,10 @@ import {
                     style="color: var(--ds-success)"
                     class="flex-shrink-0 mt-1"
                   />
-                  <span><strong>3+ acciones</strong> o poco frecuentes -> ActionMenu</span>
+                  <span
+                    ><strong>3+ acciones</strong> o poco frecuentes ->
+                    ActionMenu</span
+                  >
                 </div>
                 <div class="flex gap-2">
                   <app-icon
@@ -391,8 +407,8 @@ import {
                     class="flex-shrink-0 mt-1"
                   />
                   <span
-                    ><strong>Nunca</strong> poner 4+ botones visibles en una fila
-                    de tabla.</span
+                    ><strong>Nunca</strong> poner 4+ botones visibles en una
+                    fila de tabla.</span
                   >
                 </div>
               </div>
@@ -417,7 +433,7 @@ export class WebBadges {
 
   readonly erpStates = [
     { label: "Aprobado", severity: "success" as const },
-    { label: "Revisión", severity: "warn" as const },
+    { label: "Revisiï¿½n", severity: "warn" as const },
     { label: "Rechazado", severity: "danger" as const },
     { label: "Borrador", severity: "secondary" as const },
     { label: "En proceso", severity: "info" as const },
@@ -425,4 +441,3 @@ export class WebBadges {
     { label: "Programado", severity: "secondary" as const },
   ];
 }
-

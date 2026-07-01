@@ -111,7 +111,7 @@
   </div>
 
   <div class="flex justify-content-between pt-3 border-top-1 border-200">
-    <custom-button
+    <il-button
       label="Atrós"
       iconClass="mdi:arrow-left"
       variant="ghost-text"
@@ -120,14 +120,14 @@
     />
 
     @if (currentStep() < 4) {
-    <custom-button
+    <il-button
       label="Siguiente"
       iconClass="mdi:arrow-right"
       (clicked)="nextStep()"
       [disabled]="!canProceed()"
     />
     } @else {
-    <custom-button
+    <il-button
       label="Generar Imagen"
       iconClass="mdi:sparkles"
       severity="help"

@@ -15,9 +15,8 @@
   <ng-template #caption>
     <div class="flex justify-content-between">
       <primeng-custom-caption (add)="onCreate()" [dt]="dt" />
-      <custom-button
+      <il-button
         (clicked)="onDownloadAll()"
-        [showLabelOnDesktop]="false"
         label="Descargar Todas"
         icon="mdi:download"
       />
@@ -63,18 +62,18 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit (clicked)="onEdit(item.id)" />
-          <custom-button-item
+          <il-button-edit (clicked)="onEdit(item.id)" />
+          <il-button-item
             (clicked)="onDetail(item.id)"
             label="Detalle"
             [iconClass]="'mdi:receipt'"
           />
-          <custom-button-item
+          <il-button-item
             (clicked)="onDownloadIndividual(item.id, item.employeeName)"
             label="Descargar"
             icon="mdi:download"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       <!-- Opciones -->
@@ -125,17 +124,15 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-item
+          <il-button-item
             (clicked)="onEdit(item.id)"
             label="Editar"
             iconName="create-outline"
-            [showLabelOnDesktop]="true"
           />
 
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

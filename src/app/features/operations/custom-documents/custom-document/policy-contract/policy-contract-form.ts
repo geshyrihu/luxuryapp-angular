@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,13 +8,13 @@ import {
 } from "@angular/forms";
 import { FileUploadModule } from "@iplab/ngx-file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -41,7 +41,7 @@ interface IPolicyContractForm {
   selector: "app-policy-contract-form",
   templateUrl: "./policy-contract-form.html",
   imports: [
-    CustomButtonSave,
+    WebButtonLabelSave,
     CustomInputAutoComplete,
     CustomInputCheckSignal,
     CustomInputDateSignal,

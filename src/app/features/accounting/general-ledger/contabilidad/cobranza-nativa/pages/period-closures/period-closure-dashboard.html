@@ -39,7 +39,7 @@
 
       <div class="field col-12 md:col-3 flex gap-2">
         @if (!currentPeriodClosed()) {
-        <custom-button
+        <il-button
           label="Cerrar Periodo"
           iconClass="mdi:lock"
           severity="warn"
@@ -109,7 +109,7 @@
         <td class="text-sm text-500">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <custom-button
+          <il-button
             label="Reabrir"
             iconClass="mdi:lock-open"
             size="small"
@@ -160,7 +160,7 @@
           }
         </ion-label>
         @if (item.isClosed) {
-        <custom-button
+        <il-button
           slot="end"
           label="Reabrir"
           iconClass="mdi:lock-open"

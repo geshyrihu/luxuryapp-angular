@@ -1,11 +1,11 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { SatFundingDTO } from "src/app/core/interfaces/sat-funding.interface";
@@ -19,7 +19,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,
-    CustomButton,
+    WebButtonLabel,
     DataViewMobile,
     IonItem,
     IonLabel,
@@ -63,4 +63,3 @@ export class SatFundingListComponent implements OnInit {
     this.router.navigate(["/sat-funding", id]);
   }
 }
-

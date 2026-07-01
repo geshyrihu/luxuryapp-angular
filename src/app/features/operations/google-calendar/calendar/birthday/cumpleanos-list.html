@@ -6,10 +6,9 @@
     <!-- Botones de meses agrupados -->
     <div class="flex justify-content-center mb-5 gap-1 flex-wrap">
       @for (month of months; track month; let i = $index) {
-      <custom-button
+      <il-button
         [label]="month"
         [variant]="selectedMonth() !== i ? 'outlined' : null"
-        [showLabelOnDesktop]="true"
         size="small"
         (clicked)="onMonthSelect(i)"
       />

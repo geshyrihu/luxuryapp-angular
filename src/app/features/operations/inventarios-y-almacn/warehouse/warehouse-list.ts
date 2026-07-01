@@ -1,4 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -10,20 +9,21 @@ import {
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -41,14 +41,14 @@ import { WarehouseForm } from "./warehouse-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
   ],
 })
 export class WarehouseList implements OnInit {
@@ -183,9 +183,10 @@ export class WarehouseList implements OnInit {
 
         groups[category].forEach((item, idx) => {
           const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
-          
+
           let color = "#000000";
-          if (item.existencia <= item.stockMin) color = "#dc3545"; // red
+          if (item.existencia <= item.stockMin)
+            color = "#dc3545"; // red
           else if (item.existencia > item.stockMax) color = "#fd7e14"; // orange
 
           tableHtml += `
@@ -209,7 +210,7 @@ ${this.htmlPrintS.getStandardCss()}
   @page { margin: 10mm; }
   .container { max-width: 1000px; }
   .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
-  
+
   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
   .data-table th, .data-table td { padding:8px; border-bottom:1px solid #EEEEEE; }
   .data-table th { background-color: #f8f9fa; font-weight: bold; color: #333; text-align: center; border-bottom: 2px solid #ddd; }
@@ -233,12 +234,15 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
   </div>
-  
+
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;
 
-      this.htmlPrintS.printHtml(html, `Inventario_${warehouseName.replace(/\s+/g, "_")}`);
+      this.htmlPrintS.printHtml(
+        html,
+        `Inventario_${warehouseName.replace(/\s+/g, "_")}`,
+      );
     } catch (e) {
       console.error("Error generating Warehouse PDF", e);
     } finally {
@@ -246,4 +250,3 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 }
-

@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -6,10 +5,11 @@ import { colorPaletteOutline, folderOpenOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -29,14 +29,14 @@ import { InventarioPinturaForm } from "./inventario-pintura-form";
     EmptyState,
     TableModule,
     ImageModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -95,4 +95,3 @@ export class InventarioPintura {
       });
   }
 }
-

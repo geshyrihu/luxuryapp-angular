@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton } from "@ionic/angular/standalone";
@@ -19,13 +19,13 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
@@ -42,19 +42,19 @@ import { MedidorLecturaForm } from "./medidor-lectura-form";
   imports: [
     CommonModule,
     TableModule,
-    CustomButtonAdd,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelAdd,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     DataViewMobile,
     CardModule,
     TooltipModule,
-    CustomButtonItem,
+    WebButtonLabelItem,
     IonButton,
     ActionMenu,
     AppIcon,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
   ],
 })
 export class MedidoresList {
@@ -134,12 +134,12 @@ export class MedidoresList {
   exportExcel(id: any) {
     const urlApi = Endpoints.MeterReadings.exportExcel(id);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      console.log("Datos recibidos de la API para Excel:", result); // Log para depuraciÃ³n
+      console.log("Datos recibidos de la API para Excel:", result); // Log para depuración
       this.datosExcel = result;
       if (result && result.length > 0) {
         this.generate();
       } else {
-        console.log("No se generÃ© el Excel porque no hay datos");
+        console.log("No se generé el Excel porque no hay datos");
       }
     });
   }
@@ -177,4 +177,3 @@ export class MedidoresList {
     this.router.navigate(["/logbook/grafico", id]);
   }
 }
-

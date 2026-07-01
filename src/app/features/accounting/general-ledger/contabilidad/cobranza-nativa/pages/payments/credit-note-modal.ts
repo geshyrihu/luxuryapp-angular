@@ -1,4 +1,4 @@
-ï»¿import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,11 +6,11 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -43,7 +43,7 @@ interface CreditNoteRequestDTO {
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./credit-note-modal.html",
 })
@@ -83,9 +83,9 @@ export default class CreditNoteModalComponent implements OnInit {
   reasonOptions = [
     { label: "Acuerdo de Asamblea", value: "Acuerdo de Asamblea" },
     { label: "Error en cobro duplicado", value: "Error en cobro duplicado" },
-    { label: "PerÃ­odo de cortesÃ­a", value: "PerÃ­odo de cortesÃ­a" },
+    { label: "Período de cortesía", value: "Período de cortesía" },
     { label: "Acuerdo de pago (quita)", value: "Acuerdo de pago (quita)" },
-    { label: "CondonaciÃ³n por siniestro", value: "CondonaciÃ³n por siniestro" },
+    { label: "Condonación por siniestro", value: "Condonación por siniestro" },
     { label: "Otro motivo", value: "Otro motivo" },
   ];
 

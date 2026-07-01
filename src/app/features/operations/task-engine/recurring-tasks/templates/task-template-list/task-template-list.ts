@@ -1,15 +1,15 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomBtnActiveDesactive,
-  CustomButtonDelete,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+  WebButtonLabelActiveDesactive,
+  WebButtonLabelDelete,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,18 +22,18 @@ import { TaskTemplateForm } from "../task-template-form/task-template-form";
   imports: [
     EmptyState,
     ActionMenu,
-    CustomBtnActiveDesactive,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonDelete,
+    WebButtonLabelActiveDesactive,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
+    WebButtonLabelDelete,
     DataViewMobile,
     PrimeNgCustomCaption,
     TableModule,
 
-    CustomButtonItem,
-    CustomBtnActiveDesactive,
-    CustomButtonDelete,
+    WebButtonLabelItem,
+    WebButtonLabelActiveDesactive,
+    WebButtonLabelDelete,
   ],
 })
 export class TaskTemplateList implements OnInit {
@@ -112,4 +112,3 @@ export class TaskTemplateList implements OnInit {
       });
   }
 }
-

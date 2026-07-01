@@ -1,10 +1,10 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -17,10 +17,11 @@ import { IncidentWitnessFormComponent } from "./incident-witness-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButton,
-    CustomButtonDelete,
-    CustomButtonEdit,
-   AppIcon],
+    WebButtonLabel,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    AppIcon,
+  ],
   templateUrl: "./incident-witnesses.html",
 })
 export class IncidentWitnessesComponent implements OnInit {
@@ -102,4 +103,3 @@ export class IncidentWitnessesComponent implements OnInit {
       });
   }
 }
-

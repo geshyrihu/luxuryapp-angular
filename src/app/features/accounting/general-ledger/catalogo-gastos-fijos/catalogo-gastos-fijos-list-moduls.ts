@@ -1,4 +1,4 @@
-﻿import { CommonModule, UpperCasePipe } from "@angular/common";
+import { CommonModule, UpperCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import {
@@ -21,12 +21,12 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 
@@ -35,9 +35,9 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   DataViewMobile,
   CheckboxModule,
   CommonModule,
-  CustomButton,
-  CustomButtonDelete,
-  CustomButtonEdit,
+  WebButtonLabel,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
   CustomInputSelectSignal,
   FormsModule,
   InputTextModule,

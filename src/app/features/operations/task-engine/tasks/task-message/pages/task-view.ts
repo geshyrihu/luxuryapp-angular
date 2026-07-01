@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   IonAvatar,
@@ -31,8 +31,8 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -50,7 +50,7 @@ import { TaskForm } from "./task-form";
   imports: [
     CardModule,
     AvatarModule,
-    CustomButton,
+    WebButtonLabel,
     IonCard,
     IonCardHeader,
     IonCardContent,
@@ -106,7 +106,7 @@ export class TaskView implements OnInit {
       this.ticketGroupId = this.config.data.ticketGroupId;
       this.onLoadData();
     } else {
-      // Obtener el ticketId de los parÃ¡metros de la ruta
+      // Obtener el ticketId de los parámetros de la ruta
       this.route.params.subscribe((params) => {
         this.id = params["ticketMessageId"];
         this.ticketGroupId = params["ticketGroupId"];
@@ -119,7 +119,7 @@ export class TaskView implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.Tasks.view(this.id))
       .then((response: any) => {
-        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md Â§3.12
+        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md §3.12
         setTimeout(() => {
           this.ticket.set(response);
           if (response === null) {
@@ -199,12 +199,12 @@ export class TaskView implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocarÃ¡ el ticket en proceso",
+      text: "Se colocará el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#0d3b66",
       cancelButtonColor: "#9B1B30",
-      confirmButtonText: "SÃ­, en proceso!",
+      confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {
@@ -223,4 +223,3 @@ export class TaskView implements OnInit {
     this.router.navigate(["/Tasks/messages", this.ticketGroupId]);
   }
 }
-

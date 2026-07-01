@@ -125,7 +125,7 @@
 
         <div class="flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
-          <custom-button
+          <il-button
             iconClass="mdi:cog"
             [outlined]="true"
             severity="secondary"
@@ -135,7 +135,7 @@
           }
 
           @if (sharedS.allMonths()) {
-          <custom-button
+          <il-button
             iconClass="mdi:close"
             label="Ninguno"
             ngbTooltip="Ningún mes"
@@ -144,7 +144,7 @@
             severity="info"
           />
           } @else {
-          <custom-button
+          <il-button
             iconClass="mdi:check"
             label="Todos"
             ngbTooltip="Todos los meses"
@@ -155,7 +155,7 @@
           }
 
           @if (activeTabValue() === 'presupuesto') {
-          <custom-button
+          <il-button
             iconClass="mdi:magnify"
             label="Full"
             ngbTooltip="Ver todo!!"
@@ -163,7 +163,7 @@
             variant="outlined"
             severity="info"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:sparkles"
             label="IA"
             ngbTooltip="Analizar con IA"
@@ -174,7 +174,7 @@
           }
 
           @if (sharedS.budgetData()) {
-          <custom-button
+          <il-button
             iconClass="mdi:microsoft-excel"
             label="Excel"
             ngbTooltip="Descargar reporte Excel con indicadores"

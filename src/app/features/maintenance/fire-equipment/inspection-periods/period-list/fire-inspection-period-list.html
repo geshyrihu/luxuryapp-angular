@@ -42,10 +42,10 @@
       </td>
       <td class="no-print" (click)="$event.stopPropagation()">
         <div class="flex justify-content-center">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Periodo' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -101,15 +101,13 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Periodo' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

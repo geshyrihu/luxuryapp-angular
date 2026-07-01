@@ -14,21 +14,21 @@
       </ng-template>
     </p-selectButton>
 
-    <custom-button
+    <il-button
       label="Descargar ({{ selectedFiles().length }})"
       [iconClass]="'mdi:upload'"
       severity="success"
       [disabled]="selectedFiles().length === 0"
       (clicked)="downloadSelectedFiles()"
     >
-    </custom-button>
-    <custom-button
+    </il-button>
+    <il-button
       label="Descargar Todo"
       iconClass="mdi:package"
       severity="help"
       (clicked)="downloadAllFiles()"
     >
-    </custom-button>
+    </il-button>
   </div>
 
   <div class="flex-grow-1 overflow-auto p-1">
@@ -110,13 +110,13 @@
           <td>{{ file.displayName }}</td>
           <td>{{ file.folioOrden }}</td>
           <td class="text-center">
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:eye-outline"
               label="ver"
               [border-round]="true"
               (clicked)="viewPdf(file.url, file.displayName)"
             />
-            <custom-button-item
+            <il-button-item
               [iconClass]="'mdi:upload'"
               label="descargar"
               [border-round]="true"

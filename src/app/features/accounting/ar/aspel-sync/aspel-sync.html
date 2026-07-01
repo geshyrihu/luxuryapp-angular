@@ -41,31 +41,28 @@
     </div>
 
     <div class="flex flex-wrap gap-2 mt-4">
-      <custom-button
+      <il-button
         label="Sincronización Completa"
         iconClass="mdi:sync"
         severity="success"
         [loading]="syncing()"
         [disabled]="!canExecute()"
-        [showLabelOnDesktop]="true"
         (clicked)="syncCompleto()"
       />
-      <custom-button
+      <il-button
         label="Solo Contabilidad"
         iconClass="mdi:book"
         severity="info"
         [loading]="syncing()"
         [disabled]="!canExecute()"
-        [showLabelOnDesktop]="true"
         (clicked)="syncContabilidad()"
       />
-      <custom-button
+      <il-button
         label="Solo Cobranza"
         iconClass="mdi:wallet"
         severity="warning"
         [loading]="syncing()"
         [disabled]="!canExecute()"
-        [showLabelOnDesktop]="true"
         (clicked)="syncCobranza()"
       />
     </div>

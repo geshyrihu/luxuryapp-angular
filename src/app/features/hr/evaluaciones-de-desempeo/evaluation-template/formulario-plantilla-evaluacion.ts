@@ -1,4 +1,4 @@
-锘縤mport {
+import {
   CdkDragDrop,
   DragDropModule,
   moveItemInArray,
@@ -21,13 +21,13 @@ import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -54,9 +54,9 @@ interface ICategoryForm {
     MessageModule,
     TooltipModule,
     FieldsetModule,
-    CustomButton,
-    CustomButtonDelete,
-    CustomButtonSave,
+    WebButtonLabel,
+    WebButtonLabelDelete,
+    WebButtonLabelSave,
     CustomInputCheckSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
@@ -67,7 +67,7 @@ interface ICategoryForm {
   ],
 })
 export class FormularioPlantillaEvaluacion implements OnInit {
-  // Inyecci贸n de dependencias
+  // Inyecci髇 de dependencias
   apiResponseS = inject(ApiResponseService);
   customerSelectS = inject(CustomerIdService);
   activatedRoute = inject(ActivatedRoute);
@@ -78,7 +78,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   submitting = signal(false);
   isEditMode = false;
 
-  // Definici贸n estricta del formulario
+  // Definici髇 estricta del formulario
   form = new FormGroup({
     name: new FormControl<string>("", {
       nonNullable: true,
@@ -132,7 +132,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     });
   }
 
-  // --- M贸todos para manejar el FormArray de Categor铆as ---
+  // --- M髏odos para manejar el FormArray de Categor韆s ---
   get categories(): FormArray<FormGroup<ICategoryForm>> {
     return this.form.controls.categories;
   }
@@ -166,7 +166,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     this.categories.removeAt(index);
   }
 
-  // --- M贸todos para manejar el FormArray anidado de Preguntas ---
+  // --- M髏odos para manejar el FormArray anidado de Preguntas ---
   questions(categoryIndex: number): FormArray<FormGroup<IQuestionForm>> {
     return this.categories.at(categoryIndex).controls.questions;
   }
@@ -278,7 +278,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
 
     if (hasDuplicates || hasOutOfRange) {
       console.warn(
-        `?? Problemas con los 贸rdenes en categor铆a ${categoryIndex + 1}`,
+        `?? Problemas con los 髍denes en categor韆 ${categoryIndex + 1}`,
       );
     }
   }

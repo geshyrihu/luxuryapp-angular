@@ -1,0 +1,15 @@
+export {
+  MobileButtonLabel as IliButton,
+  MobileButtonLabelAdd as IliButtonAdd,
+  MobileButtonLabelEdit as IliButtonEdit,
+  MobileButtonLabelDelete as IliButtonDelete,
+  MobileButtonLabelSave as IliButtonSave,
+  MobileButtonLabelDownload as IliButtonDownload,
+  MobileButtonLabelConfirm as IliButtonConfirm,
+  MobileButtonLabelSendEmail as IliButtonSendEmail,
+  MobileButtonLabelViewPdf as IliButtonViewPdf,
+  MobileButtonLabelTracking as IliButtonTracking,
+  MobileButtonLabelItem as IliButtonItem,
+  MobileButtonLabelActiveDesactive as IliBtnActiveDesactive,
+  MobileButtonLabelActiveDesactive as IliButtonActiveDesactive,
+} from "../mobile/label";

@@ -1,6 +1,6 @@
-﻿<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════════════════════════════════════
      TABLA DE PUESTOS DE TRABAJO
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════════════════════════════ -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
@@ -24,14 +24,14 @@
       <div class="flex flex-wrap gap-2 align-items-end pb-2">
         @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
         AspRole.Reclutamiento ])) {
-        <custom-button
+        <il-button
           (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
           iconClass="mdi:briefcase"
           label="Agregar Puesto"
           severity="info"
           variant="outlined"
         />
-        <custom-button
+        <il-button
           (clicked)="showModalAddEmployee()"
           iconClass="mdi:account"
           label="Agregar Empleado"
@@ -39,14 +39,14 @@
           variant="outlined"
         />
         }
-        <custom-button
+        <il-button
           (clicked)="onOpenInactivos()"
           iconClass="mdi:package"
           label="Inactivos"
           severity="info"
           variant="outlined"
         />
-        <custom-button
+        <il-button
           (clicked)="onOrgChart()"
           iconClass="mdi:sitemap"
           label="Organigrama"
@@ -58,14 +58,14 @@
   </ng-template>
 
   <ng-template #header>
-    <!-- ðŸŸ¢ Fila de Agrupación Visual -->
+    <!-- 🟢 Fila de Agrupaci�n Visual -->
     <tr>
       <th
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
         style="padding: 0.5rem"
       >
-        <app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>GESTIÓN DEL
+        <app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>GESTI�N DEL
         PUESTO DE TRABAJO
       </th>
       <th
@@ -78,7 +78,7 @@
       </th>
     </tr>
 
-    <!-- âšª Fila de Títulos de Columna -->
+    <!-- ⚪ Fila de T�tulos de Columna -->
     <tr>
       <th style="width: 18%" pSortableColumn="applicationRoleName">
         PUESTO <p-sortIcon field="applicationRoleName" />
@@ -114,7 +114,7 @@
         @if (necesitaActualizacion(item)) {
         <div class="flex align-items-center">
           <p-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             pTooltip="Asignar rol al puesto"
           />
@@ -151,44 +151,39 @@
       </td>
       }
 
-      <!-- ACCIONES PUESTO ──────────────────────────────────────────────── -->
+      <!-- ACCIONES PUESTO ------------------------------------------------ -->
       <td>
         <div class="flex align-items-center">
           <app-action-menu>
             <ng-container actions>
               @if (shouldShowVacancyRequest(item)) {
 
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:receipt"
                 label="Solicitar Vacante"
                 (clicked)="onModalSolicitudVacante(item.id)"
-                [showLabelOnDesktop]="true"
               />
               }
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:clipboard-text"
-                label="Descripción"
+                label="Descripci�n"
                 (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
-                [showLabelOnDesktop]="true"
               />
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:clock-outline"
                 label="Horarios"
                 (clicked)="onModalHoursWorkPosition(item.id)"
-                [showLabelOnDesktop]="true"
               />
-              <custom-button-item
+              <il-button-item
                 label="Editar"
                 iconClass="mdi:pencil"
                 (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-                [showLabelOnDesktop]="true"
               />
 
               @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onDelete(item.id)"
                 label="Eliminar"
-                [showLabelOnDesktop]="true"
               />
               }
             </ng-container>
@@ -196,11 +191,11 @@
         </div>
       </td>
 
-      <!-- COLABORADOR ──────────────────────────────────────────────────── -->
+      <!-- COLABORADOR ---------------------------------------------------- -->
       <td class="border-left-2">
         <div class="flex flex-column gap-2">
           @if (!isVacant(item)) {
-          <!-- ── Puesto ocupado ── -->
+          <!-- -- Puesto ocupado -- -->
           <div class="flex align-items-center">
             @if (item.applicationUserPhoto) {
             <p-avatar
@@ -226,37 +221,34 @@
             </div>
             <app-action-menu>
               <ng-container actions>
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:account-edit"
                   label="Perfil"
                   pTooltip="Ir al perfil"
                   (clicked)="onShowEditEmpleado(item)"
-                  [showLabelOnDesktop]="true"
                 />
                 @if (aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Legal,
                 AspRole.CoordinacionLegal, AspRole.RecursosHumanos,
                 AspRole.Reclutamiento ])) {
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:folder-open"
                   label="Expediente"
                   pTooltip="Ver expediente completo"
                   (clicked)="onGoToEmployeeFile(item)"
-                  [showLabelOnDesktop]="true"
                 />
                 } @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:logout"
                   label="Desvincular del puesto"
                   pTooltip="Desvincular del puesto"
                   (clicked)="onUnassignEmployee(item.id)"
-                  [showLabelOnDesktop]="true"
                 />
                 }
               </ng-container>
             </app-action-menu>
           </div>
           } @else {
-          <!-- ── Puesto vacante — CDK drop zone ── -->
+          <!-- -- Puesto vacante � CDK drop zone -- -->
           <div
             [id]="'drop-pos-' + item.id"
             cdkDropList
@@ -275,12 +267,12 @@
               >
             </div>
             <div class="flex gap-1">
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:link"
                 pTooltip="Vincular del pool"
                 (clicked)="onOpenDrawer(item)"
               />
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:account-plus"
                 pTooltip="Registrar nuevo empleado"
                 (clicked)="showModalAddEmployeeFromPosition(item)"
@@ -293,16 +285,16 @@
           @if (item.positionRequest) { @if (item.positionRequest.status === 0) {
           <span
             class="badge badge-warning text-xs text-center block py-2"
-            pTooltip="Vacante abierta — esperando alta de colaborador"
+            pTooltip="Vacante abierta � esperando alta de colaborador"
           >
-            ðŸŸ¡ VA-{{ item.positionRequest.folio }} · Vacante abierta
+            🟡 VA-{{ item.positionRequest.folio }} � Vacante abierta
           </span>
           } @else {
           <span
             class="badge badge-info text-xs text-center block py-2"
-            pTooltip="Solicitud de alta enviada — en proceso de reclutamiento"
+            pTooltip="Solicitud de alta enviada � en proceso de reclutamiento"
           >
-            ðŸ”µ VA-{{ item.positionRequest.folio }} · Alta en proceso
+            🔵 VA-{{ item.positionRequest.folio }} � Alta en proceso
           </span>
           } }
         </div>
@@ -326,9 +318,9 @@
   </ng-template>
 </p-table>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════════════════════════════════════
      POOL DE COLABORADORES SIN PUESTO ASIGNADO
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════════════════════════════ -->
 <div class="card mt-3">
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
@@ -346,7 +338,7 @@
     <app-icon [icon]="poolExpanded() ? 'mdi:chevron-up' : 'mdi:chevron-down'"></app-icon>
   </div>
 
-  <!-- Guía rápida -->
+  <!-- Gu�a r�pida -->
   @if (poolExpanded()) {
   <p class="text-sm text-color-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
@@ -377,12 +369,12 @@
         <span class="chip-name">{{ emp.fullName }}</span>
         <span class="chip-sub">{{ emp.userName }}</span>
       </div>
-      <custom-button-item
+      <il-button-item
         iconClass="mdi:account-edit"
         label="Ver perfil"
         (clicked)="onGoToProfile(emp)"
       />
-      <span cdkDragHandle class="drag-handle">â ¿</span>
+      <span cdkDragHandle class="drag-handle">⠿</span>
 
       <ng-template cdkDragPreview>
         <div class="chip-preview">
@@ -396,9 +388,9 @@
   }
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     DRAWER — ASIGNACIÓN RÃPIDA (alternativa al DnD)
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════════════════════════════════════════════════════════
+     DRAWER � ASIGNACI�N RÁPIDA (alternativa al DnD)
+     ═══════════════════════════════════════════════════════════════════ -->
 <p-drawer
   [visible]="drawerVisible()"
   (visibleChange)="drawerVisible.set($event)"
@@ -433,7 +425,7 @@
       No hay colaboradores disponibles sin puesto asignado.
     </p>
     } @else { @for (emp of unassignedEmployees(); track emp.applicationUserId) {
-    <!-- DS: menu-item (dropdown/_dropdowns.scss) — flex, hover bg, cursor pointer -->
+    <!-- DS: menu-item (dropdown/_dropdowns.scss) � flex, hover bg, cursor pointer -->
     <div
       class="menu-item"
       style="
@@ -457,9 +449,9 @@
   }
 </p-drawer>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     MODAL — INACTIVOS (Puestos y Colaboradores)
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODAL � INACTIVOS (Puestos y Colaboradores)
+     ═══════════════════════════════════════════════════════════════════ -->
 <p-dialog
   [visible]="inactivosVisible()"
   (visibleChange)="inactivosVisible.set($event)"
@@ -468,7 +460,7 @@
   [style]="{ width: '680px' }"
   [draggable]="false"
 >
-  <!-- Tabs de selección -->
+  <!-- Tabs de selecci�n -->
   <div class="flex mb-4">
     <button
       type="button"
@@ -504,7 +496,7 @@
   </div>
 
   } @else if (inactivosTab() === 'positions') {
-  <!-- ── Tab: Puestos inactivos ── -->
+  <!-- -- Tab: Puestos inactivos -- -->
   @if (inactivePositions().length === 0) {
   <div class="alert alert-neutral">
     <app-icon [icon]="'mdi:inbox'" class="alert__icon"></app-icon>
@@ -527,10 +519,10 @@
         <span class="text-label">{{ pos.folio }}</span>
         <span class="font-semibold">{{ pos.applicationRoleName }}</span>
         <span class="text-sm text-500"
-          >{{ getDepartamentLabel(pos.departament) }} · {{ pos.turno }}</span
+          >{{ getDepartamentLabel(pos.departament) }} � {{ pos.turno }}</span
         >
       </div>
-      <custom-button-item
+      <il-button-item
         iconClass="mdi:check"
         label="Activar"
         pTooltip="Activar puesto"
@@ -540,7 +532,7 @@
     }
   </div>
   } } @else {
-  <!-- ── Tab: Colaboradores inactivos ── -->
+  <!-- -- Tab: Colaboradores inactivos -- -->
   @if (inactiveEmployees().length === 0) {
   <div class="alert alert-neutral">
     <app-icon [icon]="'mdi:inbox'" class="alert__icon"></app-icon>
@@ -569,13 +561,13 @@
         }
       </div>
       <div class="flex gap-1">
-        <custom-button-item
+        <il-button-item
           iconClass="mdi:check"
           label="Activar"
           pTooltip="Activar colaborador"
           (clicked)="onActivateEmployee(emp.applicationUserId)"
         />
-        <custom-button-item
+        <il-button-item
           iconClass="mdi:plus"
           label="Activar y asignar"
           pTooltip="Activar y mover al pool para asignar puesto"

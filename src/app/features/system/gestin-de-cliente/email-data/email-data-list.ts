@@ -1,12 +1,15 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonIconSendEmail } from "src/app/core/components/buttons/web/icon/button-send-email";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web/label/button-send-email";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonSendEmail } from "src/app/core/components/web/buttons";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -25,15 +28,16 @@ import { EmailDataForm } from "./email-data-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonSendEmail,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonIconSendEmail,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelSendEmail,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-
-    CustomButtonSendEmail,
   ],
 })
 export class EmailDataList {
@@ -56,17 +60,21 @@ export class EmailDataList {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList(Endpoints.EmailData.getAll).then((result: any) => {
-      this.dataSignal.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.EmailData.getAll)
+      .then((result: any) => {
+        this.dataSignal.set(result);
+      });
   }
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.EmailData.delete(id)).then((result: boolean) => {
-      if (result)
-        this.dataSignal.update((currentData) =>
-          currentData.filter((item) => item.id !== id),
-        );
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.EmailData.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.update((currentData) =>
+            currentData.filter((item) => item.id !== id),
+          );
+      });
   }
 
   onModalForm(data: any) {
@@ -81,13 +89,3 @@ export class EmailDataList {
     this.apiResponseS.onPost(Endpoints.EmailData.sendTestEmail(id), null);
   }
 }
-
-
-
-
-
-
-
-
-
-

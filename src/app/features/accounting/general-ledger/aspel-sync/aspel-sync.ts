@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -7,9 +7,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { AspelSyncService } from "./aspel-sync.service";
@@ -26,7 +26,7 @@ interface IAspelSyncForm {
     ReactiveFormsModule,
     CardModule,
     AppIcon,
-    CustomButton,
+    WebButtonLabel,
     CustomInputNumberSignal,
   ],
 })
@@ -96,7 +96,7 @@ export class AspelSyncComponent {
     if (!this.currentCustomerId()) {
       this.customToastS.showError(
         "Cliente no disponible",
-        "No se encontrÃ³ un cliente activo para sincronizar.",
+        "No se encontró un cliente activo para sincronizar.",
       );
       return;
     }
@@ -104,8 +104,8 @@ export class AspelSyncComponent {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.customToastS.showError(
-        "AÃ±o invÃ¡lido",
-        "Revisa el aÃ±o antes de ejecutar la sincronizaciÃ³n.",
+        "Año inválido",
+        "Revisa el año antes de ejecutar la sincronización.",
       );
       return;
     }
@@ -114,7 +114,7 @@ export class AspelSyncComponent {
     this.lastResult.set(null);
     this.lastAction.set(action);
     this.customToastS.showInfo(
-      "SincronizaciÃ³n iniciada",
+      "Sincronización iniciada",
       "Este proceso puede tardar varios minutos.",
     );
 
@@ -122,15 +122,15 @@ export class AspelSyncComponent {
       .then((result) => {
         this.lastResult.set(result);
         this.customToastS.showSuccess(
-          "SincronizaciÃ³n completada",
-          `La sincronizaciÃ³n ${action} terminÃ³ correctamente.`,
+          "Sincronización completada",
+          `La sincronización ${action} terminó correctamente.`,
         );
       })
       .catch((error) => {
         this.lastResult.set(error?.error ?? error);
         this.customToastS.showError(
-          "SincronizaciÃ³n fallida",
-          `No se pudo completar la sincronizaciÃ³n ${action}.`,
+          "Sincronización fallida",
+          `No se pudo completar la sincronización ${action}.`,
         );
       })
       .finally(() => {

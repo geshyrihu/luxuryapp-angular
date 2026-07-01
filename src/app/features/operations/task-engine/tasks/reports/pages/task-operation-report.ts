@@ -1,12 +1,12 @@
-ï»¿import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ImageModule } from "primeng/image";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelTracking } from "src/app/core/components/buttons/web/label/button-tracking";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomButtonTracking } from "src/app/core/components/web/buttons/custom-button-tracking";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -40,7 +40,7 @@ import { TaskForm } from "../../task-message/pages/task-form";
     TaskReportActions,
     TaskDateRangeSelector,
     TableModule,
-    CustomButtonTracking,
+    WebButtonLabelTracking,
     PrimeNgCustomCaption,
     MenuModule,
     PrimeNgCustomCaption,
@@ -117,7 +117,7 @@ export class TaskMessageOperationReport {
     this.startDate = startDateFormatted;
     this.endDate = endDateFormatted;
 
-    // AquÃ³ puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // Aquó puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData();
   }
 
@@ -188,11 +188,11 @@ export class TaskMessageOperationReport {
   }
 
   onPreviewClicked(): void {
-    // LÃ³gica para la vista previa
+    // Lógica para la vista previa
     this.router.navigate(["/tickets/weekly-report-preview"]);
   }
   onSendReportClicked(): void {
-    // LÃ³gica para enviar el reporte
+    // Lógica para enviar el reporte
     this.dialogHandlerS
       .openDialog(
         SendOperationReport,

@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -15,11 +14,12 @@ import { addIcons } from "ionicons";
 import { documentOutline } from "ionicons/icons";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -41,15 +41,15 @@ import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
     TableModule,
     InputTextModule,
     ReactiveFormsModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonViewPdf,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelViewPdf,
     ActionMenu,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -128,4 +128,3 @@ export class DocumentoPersonalizadoLista implements OnInit {
       });
   }
 }
-

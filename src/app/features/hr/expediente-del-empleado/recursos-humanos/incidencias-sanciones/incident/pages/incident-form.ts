@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -8,10 +8,10 @@ import {
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TabsModule } from "primeng/tabs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateTimeSignal } from "src/app/core/components/inputs/web/custom-input-date-time-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -50,7 +50,7 @@ interface IIncidentForm {
     CustomInputSelectSignal,
     CustomInputDateTimeSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     IncidentAttachmentsComponent,
     IncidentWitnessesComponent,
     SuspensionDaysManager,
@@ -158,7 +158,7 @@ export class IncidentFormComponent implements OnInit {
     });
   }
 
-  /** Cierra el diálogo indicando cambios (recarga la lista padre). */
+  /** Cierra el di�logo indicando cambios (recarga la lista padre). */
   onFinish(): void {
     this.ref.close(true);
   }

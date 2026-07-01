@@ -65,11 +65,11 @@
       </td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar item de checklist' })"
           />
           @if (item.isActive) {
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
@@ -133,16 +133,14 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar item de checklist' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
           @if (item.isActive) {
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
           }
         </ng-container>

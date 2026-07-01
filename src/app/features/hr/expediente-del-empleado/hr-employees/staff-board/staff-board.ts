@@ -1,4 +1,3 @@
-锘縤mport { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   CdkDrag,
   CdkDragDrop,
@@ -13,12 +12,13 @@ import { Dialog } from "primeng/dialog";
 import { Drawer } from "primeng/drawer";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -34,12 +34,12 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { EmployeeProviderForm } from "src/app/features/purchasing/providers/provider/pages/employee-provider-form";
 import { SolicitudVacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form";
 import { IWorkPosition } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/work-position/models/work-position.model";
 import { JobDescriptionForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/work-position/pages/job-description-form";
 import { WorkPositionForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/work-position/pages/work-position-form";
 import { WorkPositionHours } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/work-position/pages/work-position-hours";
-import { EmployeeProviderForm } from "src/app/features/purchasing/providers/provider/pages/employee-provider-form";
 import { IEmployee } from "../employees/models/employee.interface";
 import { CardEmployee } from "../employees/pages/card-employee";
 
@@ -60,10 +60,10 @@ import { CardEmployee } from "../employees/pages/card-employee";
     CdkDropList,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButton,
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     ActionMenu,
     AppIcon,
   ],
@@ -80,22 +80,22 @@ export class StaffBoard {
   readonly tablePrimeNgRows = getTablePrimeNgRows();
 
   readonly departamentLabels: Record<number, string> = {
-    [EDepartament.Administracion]: "Administraci贸n",
+    [EDepartament.Administracion]: "Administraci髇",
     [EDepartament.Legal]: "Legal",
     [EDepartament.Contabilidad]: "Contabilidad",
     [EDepartament.Mantenimiento]: "Mantenimiento",
     [EDepartament.Limpieza]: "Limpieza",
     [EDepartament.Operaciones]: "Operaciones",
-    [EDepartament.Jardineria]: "Jardiner铆a",
+    [EDepartament.Jardineria]: "Jardiner韆",
     [EDepartament.Sistemas]: "Sistemas",
     [EDepartament.Seguridad]: "Seguridad",
     [EDepartament.Constructora]: "Constructora",
-    [EDepartament.Supervision]: "Supervisi贸n",
-    [EDepartament.Direcciones]: "Direcci贸n",
+    [EDepartament.Supervision]: "Supervisi髇",
+    [EDepartament.Direcciones]: "Direcci髇",
     [EDepartament.RecusrosHumanos]: "Recursos Humanos",
     [EDepartament.Reclutamiento]: "Reclutamiento",
-    [EDepartament.Recepcion]: "Recepci贸n",
-    [EDepartament.Mensajeria]: "Mensajer铆a",
+    [EDepartament.Recepcion]: "Recepci髇",
+    [EDepartament.Mensajeria]: "Mensajer韆",
     [EDepartament.Ludoteca]: "Ludoteca",
     [EDepartament.NA]: "Sin Departamento",
   };
@@ -354,7 +354,7 @@ export class StaffBoard {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DESCRIPCI贸N de puesto: " + applicationRoleName,
+      "DESCRIPCI驨 de puesto: " + applicationRoleName,
       DialogSize.lg,
     );
   }
@@ -388,9 +388,8 @@ export class StaffBoard {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el bot贸n si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
+  /** Muestra el bot髇 si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: IWorkPosition): boolean {
     return !item.positionRequest;
   }
 }
-

@@ -1,14 +1,14 @@
-﻿/**
+/**
  * ============================================================================
- * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
- * 
- * Por favor, NO rompan el código.
+ * Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
+ *
+ * Por favor, NO rompan el c�digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -19,9 +19,9 @@ import { analyticsOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -38,12 +38,12 @@ import { BudgetRuleForm } from "./budget-rule-form";
     TableModule,
     ToastModule,
     PrimeNgCustomCaption,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -106,11 +106,10 @@ export class BudgetRuleList implements OnInit {
   }
 
   getRuleTypeLabel(type: number): string {
-    return type === 0 ? "Cuenta Extra" : "Exclusión";
+    return type === 0 ? "Cuenta Extra" : "Exclusi�n";
   }
 
   getScopeLabel(rowCustomerId: string): string {
     return rowCustomerId ? "GLOBAL (Todas las empresas)" : "Solo esta empresa";
   }
 }
-

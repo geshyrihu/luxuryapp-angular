@@ -1,9 +1,9 @@
-﻿import { Component } from "@angular/core";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
+import { Component } from "@angular/core";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 @Component({
   selector: "app-fondeos",
   templateUrl: "./fondeos.html",
-  imports: [CustomButtonDownload],
+  imports: [WebButtonLabelDownload],
 })
 export class Fondeos {
   descargarPDF() {
@@ -11,4 +11,3 @@ export class Fondeos {
     window.open(url, "_blank");
   }
 }
-

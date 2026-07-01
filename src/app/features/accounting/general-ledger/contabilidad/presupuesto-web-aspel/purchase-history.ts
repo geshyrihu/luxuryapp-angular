@@ -1,9 +1,9 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -28,7 +28,7 @@ import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
     AppIcon,
     CommonModule,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -103,6 +103,3 @@ export class PurchaseHistory implements OnInit {
     );
   }
 }
-
-
-

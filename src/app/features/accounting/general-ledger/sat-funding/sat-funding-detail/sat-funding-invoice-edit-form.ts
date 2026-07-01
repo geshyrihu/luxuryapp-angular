@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -9,9 +9,9 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { UpdateSatFundingDetailDTO } from "src/app/core/interfaces/sat-funding-detail.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -32,7 +32,7 @@ interface ISatFundingInvoiceEditForm {
     ReactiveFormsModule,
     InputTextModule,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CustomInputTextSignal,
   ],
 })

@@ -46,7 +46,7 @@
           />
         </div>
         <div class="flex-shrink-0">
-          <custom-button
+          <il-button
             label="Filtrar"
             iconClass="mdi:magnify"
             variant="outlined"
@@ -125,20 +125,20 @@
       <td>{{ item.expirationDate | date: "dd/MM/yyyy":"UTC" }}</td>
       <td>
         <div class="flex">
-          <custom-button-edit (clicked)="onModalForm(item)" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
-          <custom-button-download
+          <il-button-edit (clicked)="onModalForm(item)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-download
             iconClass="mdi:file-pdf-box"
             ngbTooltip="Descargar PDF"
             severity="danger"
             (clicked)="onDownloadPdf(item.id)"
           />
-          <custom-button-item
+          <il-button-item
             (clicked)="onViewPreview(item.id)"
             iconClass="mdi:book"
             label="Vista previa"
           />
-          <custom-button-item
+          <il-button-item
             [routerLink]="['/announcements/analytics', item.id]"
             iconClass="mdi:chart-bar"
             label="Analóticas"
@@ -241,26 +241,23 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit (clicked)="onModalForm(item)"  label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+            <il-button-edit (clicked)="onModalForm(item)"  label="Editar"/>
+            <il-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar"/>
 
-            <custom-button-item
+            <il-button-item
               (clicked)="onDownloadPdf(item.id)"
               iconName="document-text-outline"
-              label="Descargar PDF"
-             [showLabelOnDesktop]="true"/>
+              label="Descargar PDF"/>
 
-            <custom-button-item
+            <il-button-item
               (clicked)="onViewPreview(item.id)"
               iconName="book-outline"
-              label="Vista previa"
-             [showLabelOnDesktop]="true"/>
+              label="Vista previa"/>
 
-            <custom-button-item
+            <il-button-item
               [routerLink]="['/announcements/analytics', item.id]"
               iconName="bar-chart-outline"
-              label="Analóticas"
-             [showLabelOnDesktop]="true"/>
+              label="Analóticas"/>
           </ng-container>
         </app-action-menu>
       </div>

@@ -1,16 +1,16 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -24,7 +24,7 @@ import ModalGenerarNomina from "./modal-generar-nomina/modal-generar-nomina";
     CommonModule,
     TableModule,
     TagModule,
-    CustomButton,
+    WebButtonLabel,
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
@@ -59,7 +59,9 @@ export default class Nominas {
   onLoadData(customerId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<NominaEncabezadoDTO[]>(Endpoints.HR.Nomina.Encabezado.getAll(customerId))
+      .onGetList<
+        NominaEncabezadoDTO[]
+      >(Endpoints.HR.Nomina.Encabezado.getAll(customerId))
       .then((resp: any) => {
         this.data.set(resp ?? []);
         this.loading.set(false);
@@ -118,4 +120,3 @@ export default class Nominas {
     return estadoValue === 3;
   }
 }
-

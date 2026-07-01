@@ -1,9 +1,9 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -14,7 +14,7 @@ import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dt
   selector: "app-approval-detail-modal",
   imports: [
     ReactiveFormsModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputTextAreaSignal,
     DatePipe,
   ],

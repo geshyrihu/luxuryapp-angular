@@ -47,8 +47,8 @@
       <td>{{ item.customerIdAspelId }}</td>
       <td class="text-center">
         <div class="flex justify-content-center">
-          <custom-button-edit (clicked)="onModalForm(item)" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-edit (clicked)="onModalForm(item)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -108,15 +108,13 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm(item)"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (clicked)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

@@ -12,8 +12,8 @@ import {
 import { RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
+import { CustomButton } from "src/app/core/components/buttons/legacy/buttons/custom-button";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";

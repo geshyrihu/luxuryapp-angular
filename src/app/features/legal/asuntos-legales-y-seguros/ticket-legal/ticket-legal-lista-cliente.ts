@@ -1,16 +1,16 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelTracking } from "src/app/core/components/buttons/web/label/button-tracking";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomButtonItem } from "src/app/core/components/web/buttons";
-import { CustomButtonTracking } from "src/app/core/components/web/buttons/custom-button-tracking";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -34,11 +34,11 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButtonTracking,
+    WebButtonLabelTracking,
     ActionMenu,
     DataViewMobile,
     CardModule,
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class TicketLegalListaCliente implements OnInit {
@@ -76,7 +76,12 @@ export class TicketLegalListaCliente implements OnInit {
 
   onModalUpdateStatus(data: any) {
     this.dialogHandlerS
-      .openDialog(TicketLegalActualizarEstado, data, "", this.dialogHandlerS.sizeLg)
+      .openDialog(
+        TicketLegalActualizarEstado,
+        data,
+        "",
+        this.dialogHandlerS.sizeLg,
+      )
       .then((result: boolean) => {
         if (result) {
           this.onLoadData();
@@ -102,4 +107,3 @@ export class TicketLegalListaCliente implements OnInit {
     );
   }
 }
-

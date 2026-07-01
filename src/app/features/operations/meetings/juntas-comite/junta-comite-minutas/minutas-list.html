@@ -25,14 +25,14 @@
       <ng-template #caption>
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
           <!-- Botones de acción -->
-          <custom-button
+          <il-button
             iconClass="mdi:printer"
             label="PENDIENTES"
             severity="danger"
             size="sm"
             [routerLink]="['/committee-meetings/minuta-pendientes']"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:send"
             label="SEGUIMIENTO"
             severity="secondary"
@@ -42,21 +42,21 @@
 
           <!-- Filtros de tipo de junta -->
           <div class="flex gap-1 ml-2">
-            <custom-button
+            <il-button
               iconClass="mdi:bank"
               label="ASAMBLEA"
               size="sm"
               [variant]="tipoJunta === 1 ? null : 'outlined'"
               (clicked)="onLoadData(1)"
             />
-            <custom-button
+            <il-button
               iconClass="mdi:account-group"
               label="COMITÉ"
               size="sm"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
               (clicked)="onLoadData(0)"
             />
-            <custom-button
+            <il-button
               iconClass="mdi:cog"
               label="OPERACIÓN"
               size="sm"
@@ -205,7 +205,7 @@
 
           <!-- GESTIONAR -->
           <td class="text-center">
-            <custom-button
+            <il-button
               iconClass="mdi:file-edit"
               label="GESTIONAR"
               severity="secondary"
@@ -215,47 +215,41 @@
           </td>
 
           <!-- ACCIONES -->
-          <!-- ? DS REGLA: dentro de app-action-menu usar [showLabelOnDesktop]="true" + label en todos los botones -->
+          <!-- ? DS REGLA: dentro de app-action-menu usar + label en todos los botones -->
           <td class="no-print">
             <app-action-menu>
               <ng-container actions>
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:chart-bar"
                   label="Exportar Excel"
                   (clicked)="exportToExcel(item.id)"
-                  [showLabelOnDesktop]="true"
                 />
-                <custom-button-confirm
+                <il-button-confirm
                   iconClass="mdi:email-outline"
                   label="Enviar a Comité"
                   swalTitle="Confirmar envío"
                   swalText="Esta seguro de que desea enviar la minuta?"
                   swalConfirmButtonText="Sí, enviar"
                   (confirmed)="onSendEmailMeeting(item.id)"
-                  [showLabelOnDesktop]="true"
                 />
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:file-pdf-box"
                   label="Minuta PDF"
                   (clicked)="onNavigateMinutaPublico(item.id)"
-                  [showLabelOnDesktop]="true"
                 />
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:clipboard-text"
                   label="Resumen minuta"
                   (clicked)="resumenMinuta(item.id)"
-                  [showLabelOnDesktop]="true"
                 />
-                <custom-button-edit
+                <il-button-edit
                   (clicked)="showModalAddOrEditMeeting({ id: item.id, title: 'Editar' })"
                   label="Editar"
-                  [showLabelOnDesktop]="true"
                 />
                 @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
-                <custom-button-delete
+                <il-button-delete
                   (confirmed)="onDelete(item.id)"
                   label="Eliminar"
-                  [showLabelOnDesktop]="true"
                 />
                 }
               </ng-container>
@@ -302,14 +296,14 @@
           [showSearch]="false"
         />
         <div class="mt-2 flex flex-column gap-2">
-          <custom-button
+          <il-button
             iconClass="mdi:printer"
             label="IMPRIMIR PENDIENTES"
             severity="danger"
             [fluid]="true"
             [routerLink]="['/committee-meetings/minuta-pendientes']"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:send"
             label="SEGUIMIENTO PENDIENTES"
             severity="secondary"
@@ -317,7 +311,7 @@
             [routerLink]="['/committee-meetings/seguimiento-minutas/operaciones']"
           />
           <div class="flex gap-1 mt-1">
-            <custom-button
+            <il-button
               iconClass="mdi:bank"
               label="ASAMBLEA"
               size="sm"
@@ -325,7 +319,7 @@
               [variant]="tipoJunta === 1 ? null : 'outlined'"
               (clicked)="onLoadData(1)"
             />
-            <custom-button
+            <il-button
               iconClass="mdi:account-group"
               label="COMITÉ"
               size="sm"
@@ -333,7 +327,7 @@
               [variant]="tipoJunta === 0 ? null : 'outlined'"
               (clicked)="onLoadData(0)"
             />
-            <custom-button
+            <il-button
               iconClass="mdi:cog"
               label="OPERACIÓN"
               size="sm"
@@ -381,33 +375,29 @@
               </ion-label>
               <app-action-menu slot="end">
                 <ng-container actions>
-                  <custom-button-item
+                  <il-button-item
                     iconName="trending-up-outline"
                     label="Exportar Excel"
                     (clicked)="exportToExcel(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-confirm
+                  <il-button-confirm
                     label="Enviar a Comité"
                     swalTitle="Confirmar envío"
                     swalText="¿Está seguro de que desea enviar la minuta?"
                     swalConfirmButtonText="Sí, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-item
+                  <il-button-item
                     iconName="document-outline"
                     label="Minuta PDF"
                     (clicked)="onGeneretePDF(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-item
+                  <il-button-item
                     iconName="bar-chart-outline"
                     label="Resumen minuta"
                     (clicked)="resumenMinuta(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-edit
+                  <il-button-edit
                     (clicked)="
                       showModalAddOrEditMeeting({
                         id: item.id,
@@ -415,13 +405,11 @@
                       })
                     "
                     label="Editar"
-                    [showLabelOnDesktop]="true"
                   />
                   @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
-                  <custom-button-delete
+                  <il-button-delete
                     label="Eliminar"
                     (confirmed)="onDelete(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   }
                 </ng-container>

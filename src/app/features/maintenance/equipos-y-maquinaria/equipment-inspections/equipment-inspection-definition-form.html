@@ -94,7 +94,7 @@
 
   <p-card header="Criterios de inspeccion">
     <div class="flex justify-content-end mb-3">
-      <custom-button
+      <il-button
         type="button"
         label="Agregar criterio"
         iconClass="mdi:plus"
@@ -107,11 +107,10 @@
       <div [formGroupName]="$index" class="surface-ground border-round p-3">
         <div class="flex justify-content-between align-items-center mb-2">
           <strong>Criterio {{ $index + 1 }}</strong>
-          <custom-button-item
+          <il-button-item
             type="button"
             iconClass="mdi:delete-outline"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
             (clicked)="removeCriterion($index)"
           />
         </div>
@@ -153,7 +152,7 @@
   </p-card>
 
   <div class="mt-3">
-    <custom-button-save
+    <il-button-save
       [propertyId]="definitionId()"
       [disabled]="form.invalid || submitting()"
       [submitting]="submitting()"

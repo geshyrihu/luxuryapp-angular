@@ -5,9 +5,9 @@ import { cashOutline } from "ionicons/icons";
 import { ConfirmationService } from "primeng/api";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -35,15 +35,15 @@ import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
     TableModule,
     EmptyState,
     PrimeNgCustomCaption,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     ConfirmDialogModule,
     DecimalPipe,
     DatePipe,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -148,4 +148,3 @@ export default class PaymentList {
       });
   }
 }
-

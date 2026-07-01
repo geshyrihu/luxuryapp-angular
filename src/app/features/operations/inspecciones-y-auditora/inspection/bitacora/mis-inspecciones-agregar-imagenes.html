@@ -2,7 +2,7 @@
   <!-- Input para cargar imógenes -->
   <div class="flex justify-content-center gap-2 mb-3">
     <!-- Botón para abrir la cómara -->
-    <custom-button
+    <il-button
       iconClass="mdi:camera"
       variant="outlined"
       (clicked)="cameraInput.click()"
@@ -17,7 +17,7 @@
     />
 
     <!-- Botón para abrir la galeróa -->
-    <custom-button
+    <il-button
       iconClass="mdi:image"
       severity="secondary"
       variant="outlined"
@@ -44,7 +44,7 @@
         style="object-fit: cover; aspect-ratio: 1/1"
         alt="Imagen seleccionada"
       />
-      <custom-button
+      <il-button
         iconClass="mdi:delete"
         ngbTooltip="Eliminar"
         severity="danger"
@@ -68,7 +68,7 @@
         style="object-fit: cover; aspect-ratio: 1/1"
         alt="Imagen subida"
       />
-      <custom-button
+      <il-button
         iconClass="mdi:close"
         severity="danger"
         size="sm"
@@ -82,7 +82,7 @@
 
   <!-- Botón para guardar imógenes nuevas -->
   <div class="text-center mt-4">
-    <custom-button
+    <il-button
       label="Guardar imógenes"
       iconClass="mdi:content-save"
       variant="outlined"

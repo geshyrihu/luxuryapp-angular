@@ -1,16 +1,16 @@
-﻿import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { TaskTemplateItem } from "src/app/core/models/recurring-tasks/task-template-item.model";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,8 +22,8 @@ import { TaskTemplateItemForm } from "../task-template-item-form/task-template-i
   templateUrl: "./task-template-items.html",
   imports: [
     ActionMenu,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     DataViewMobile,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -31,8 +31,8 @@ import { TaskTemplateItemForm } from "../task-template-item-form/task-template-i
     TableModule,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export class TaskTemplateItems implements OnInit {
@@ -136,7 +136,7 @@ export class TaskTemplateItems implements OnInit {
     // Base frequency
     switch (freq) {
       case "DAILY":
-        humanReadable += `Cada ${interval} día${interval > 1 ? "s" : ""}`;
+        humanReadable += `Cada ${interval} d�a${interval > 1 ? "s" : ""}`;
         break;
       case "WEEKLY":
         humanReadable += `Cada ${interval} semana${interval > 1 ? "s" : ""}`;
@@ -150,7 +150,7 @@ export class TaskTemplateItems implements OnInit {
       case "MONTHLY":
         humanReadable += `Cada ${interval} mes${interval > 1 ? "es" : ""}`;
         if (rrule["BYMONTHDAY"]) {
-          humanReadable += ` el día ${rrule["BYMONTHDAY"]}`;
+          humanReadable += ` el d�a ${rrule["BYMONTHDAY"]}`;
         } else if (rrule["BYDAY"]) {
           // e.g., "BYDAY=1MO" (first Monday) or "-1FR" (last Friday)
           const byday = rrule["BYDAY"];
@@ -163,7 +163,7 @@ export class TaskTemplateItems implements OnInit {
         }
         break;
       case "YEARLY":
-        humanReadable += `Cada ${interval} Año${interval > 1 ? "s" : ""}`;
+        humanReadable += `Cada ${interval} A�o${interval > 1 ? "s" : ""}`;
         if (rrule["BYMONTH"] && rrule["BYMONTHDAY"]) {
           const month = parseInt(rrule["BYMONTH"], 10);
           humanReadable += ` el ${rrule["BYMONTHDAY"]} de ${this.getMonthName(
@@ -186,13 +186,13 @@ export class TaskTemplateItems implements OnInit {
       case "TU":
         return "Martes";
       case "WE":
-        return "Miórcoles";
+        return "Mi�rcoles";
       case "TH":
         return "Jueves";
       case "FR":
         return "Viernes";
       case "SA":
-        return "Sóbado";
+        return "S�bado";
       case "SU":
         return "Domingo";
       default:
@@ -211,7 +211,7 @@ export class TaskTemplateItems implements OnInit {
       case "4":
         return "cuarto";
       case "-1":
-        return "óltimo";
+        return "�ltimo";
       default:
         return position;
     }
@@ -235,5 +235,3 @@ export class TaskTemplateItems implements OnInit {
     return monthNames[month - 1] || month.toString();
   }
 }
-
-

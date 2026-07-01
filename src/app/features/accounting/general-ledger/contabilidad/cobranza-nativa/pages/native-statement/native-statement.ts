@@ -1,4 +1,4 @@
-﻿import {
+import {
   CommonModule,
   CurrencyPipe,
   DatePipe,
@@ -22,8 +22,8 @@ import {
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -40,7 +40,7 @@ import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
     IonCard,
     IonCardContent,
     IonListHeader,
-    CustomButton,
+    WebButtonLabel,
   ],
   providers: [DatePipe, CurrencyPipe],
   templateUrl: "./native-statement.html",

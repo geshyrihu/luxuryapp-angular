@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,11 +8,11 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -21,7 +21,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
 
-// ID del WorkGroup Legal global — constante de dominio
+// ID del WorkGroup Legal global � constante de dominio
 const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";
 
 interface ILegalTaskForm {
@@ -34,7 +34,7 @@ interface ILegalTaskForm {
   assignee: FormControl<string>;
   title: FormControl<string>;
   description: FormControl<string>;
-  // TODO: Eliminar en Fase 6. Se derivará del TypePerson del creador: Employee → interno, Provider → externo.
+  // TODO: Eliminar en Fase 6. Se derivar� del TypePerson del creador: Employee ? interno, Provider ? externo.
   isInternal: FormControl<boolean | null>;
   documentCloud: FormControl<boolean>;
   documentEmail: FormControl<boolean>;
@@ -50,8 +50,8 @@ interface ILegalTaskForm {
     CustomInputSelectSignal,
     CustomInputAutoComplete,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
-    CustomButton,
+    WebButtonLabelSave,
+    WebButtonLabel,
   ],
 })
 export class TicketLegalForm implements OnInit {

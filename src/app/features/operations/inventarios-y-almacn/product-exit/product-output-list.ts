@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -14,16 +14,16 @@ import { CardModule } from "primeng/card";
 import { DatePickerModule } from "primeng/datepicker";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 // import { Subscription } from "rxjs"; // Removed
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomButtonItem } from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -49,21 +49,21 @@ import { ProductReturn } from "./product-return";
     CustomInputTextSignal,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     ReactiveFormsModule,
     CardModule,
-    CustomButtonDownload,
-    CustomButton,
+    WebButtonLabelDownload,
+    WebButtonLabel,
 
     DatePickerModule,
 
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
   providers: [PaginationService],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
-  // InyecciÃ³n de Dependencias
+  // Inyección de Dependencias
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -94,7 +94,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
   selectedDateControl = new FormControl<Date | null>(null);
   filterControl = new FormControl<string>("");
 
-  // ConfiguraciÃ³n de la tabla
+  // Configuración de la tabla
   // loading = signal(true); // Replaced by toSignal
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

@@ -65,12 +65,11 @@
                 (onSelect)="onDateSelect($event)"
                 fluid
               />
-              <custom-button
+              <il-button
                 (click)="clearDateRange()"
                 label="Limpiar"
                 iconClass="mdi:close"
                 customClass="ml-2"
-                [showLabelOnDesktop]="true"
               />
             </div>
           </div>
@@ -228,7 +227,7 @@
 
     <ng-template #footer>
       <div class="flex justify-content-end">
-        <custom-button-save
+        <il-button-save
           [disabled]="form.invalid || submitting()"
           [submitting]="submitting()"
           label="Registrar Vacaciones"

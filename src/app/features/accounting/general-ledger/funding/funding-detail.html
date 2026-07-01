@@ -24,13 +24,12 @@
 
       @if (isConfirmed() && isRolSuperUsuario()) {
       <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
-        <custom-button
+        <il-button
           label="Revertir confirmacion"
           iconClass="mdi:replay"
           severity="danger"
           size="sm"
           variant="outlined"
-          [showLabelOnDesktop]="true"
           (clicked)="onRevokeConfirmation()"
         />
       </div>
@@ -39,53 +38,48 @@
       @if(!isConfirmed()){
       <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
         @if (!isVerified()) {
-        <custom-button
+        <il-button
           label="Validar"
           iconClass="mdi:check-circle"
           severity="help"
           size="sm"
-          [showLabelOnDesktop]="true"
           (clicked)="onValidate()"
         />
         } @if (isVerified() && !isAuthorized()) {
-        <custom-button
+        <il-button
           label="Revertir verificacion"
           iconClass="mdi:undo"
           severity="secondary"
           size="sm"
           variant="ghost-text"
-          [showLabelOnDesktop]="true"
           (clicked)="onUnvalidate()"
         />
         } @if (isVerified() && !isAuthorized() && (isRolAdministrador() ||
         isRolSuperUsuario())) {
-        <custom-button
+        <il-button
           label="Autorizar"
           iconClass="mdi:verified"
           severity="success"
           size="sm"
-          [showLabelOnDesktop]="true"
           (clicked)="onAuthorize()"
         />
         } @if (isAuthorized() && !isConfirmed() && (isRolAdministrador() ||
         isRolSuperUsuario())) {
-        <custom-button
+        <il-button
           label="Desautorizar"
           iconClass="mdi:lock-open"
           severity="danger"
           size="sm"
           variant="outlined"
-          [showLabelOnDesktop]="true"
           (clicked)="onUnauthorize()"
         />
         } @if (isAuthorized() && !isConfirmed() && (isRolContador() ||
         isRolSuperUsuario())) {
-        <custom-button
+        <il-button
           label="Confirmar recepcion"
           iconClass="mdi:checkbox-marked"
           severity="help"
           size="sm"
-          [showLabelOnDesktop]="true"
           (clicked)="onConfirm()"
         />
         }
@@ -109,7 +103,7 @@
           <div
             class="flex align-items-center gap-1 border-1 surface-border border-round-3xl px-2 py-1 bg-surface-0"
           >
-            <custom-button
+            <il-button
               iconClass="mdi:file-excel"
               ngbTooltip="Excel"
               severity="success"
@@ -136,7 +130,7 @@
               size="small"
               (onClick)="onConciliate()"
             ></p-button> -->
-            <!-- <custom-button
+            <!-- <il-button
               iconClass="mdi:code-tags"
               ngbTooltip="XMLs"
               severity="help"
@@ -145,7 +139,7 @@
               (clicked)="onDownloadXml()"
             /> -->
             } @if (dataSignal().length > 0) {
-            <custom-button
+            <il-button
               iconClass="mdi:printer"
               ngbTooltip="Solicitudes"
               severity="warn"
@@ -154,7 +148,7 @@
               (clicked)="onDownloadAllSolicitudesPago()"
             />
             }
-            <custom-button
+            <il-button
               iconClass="mdi:upload"
               ngbTooltip="Cargar XMLs"
               severity="danger"
@@ -263,7 +257,7 @@
         <span class="font-bold text-900 text-lg"
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
-        <custom-button
+        <il-button
           iconClass="mdi:folder"
           variant="ghost-text"
           severity="secondary"
@@ -444,7 +438,7 @@
           <td class="p-2 text-center">
             <div class="flex justify-content-center align-items-center gap-1">
               <!-- Start Solo lo ve el contador -->
-              <custom-button
+              <il-button
                 iconClass="mdi:wallet"
                 variant="ghost-text"
                 severity="success"
@@ -453,7 +447,7 @@
                 (clicked)="onManagePaymentVouchers(orden)"
               />
               <!-- Start Solo lo ve el contador -->
-              <custom-button
+              <il-button
                 iconClass="mdi:pencil"
                 variant="ghost-text"
                 severity="info"
@@ -462,12 +456,12 @@
                 [disabled]="!canEdit()"
                 (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
               />
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onDeleteOrder(orden.ordenCompraId)"
                 [iconOnly]="true"
                 customClass="w-2rem h-2rem"
                 *ngIf="canEdit()"
-              ></custom-button-delete>
+              ></il-button-delete>
             </div>
           </td>
         </tr>
@@ -489,13 +483,12 @@
         ></p-badge>
       </div>
       @if (isRolAdministrador() || isRolSuperUsuario()) {
-      <custom-button
+      <il-button
         label="Agregar OC fuera de proceso"
         iconClass="mdi:plus"
         severity="warn"
         size="sm"
         variant="outlined"
-        [showLabelOnDesktop]="true"
         (clicked)="onAddFueraFondeo()"
       />
       }
@@ -531,7 +524,7 @@
           </td>
           <td class="text-center">
             <div class="flex gap-1 justify-content-center">
-              <custom-button
+              <il-button
                 iconClass="mdi:eye-outline"
                 variant="text"
                 size="sm"
@@ -539,7 +532,7 @@
                 (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
               />
               @if (isRolAdministrador() || isRolSuperUsuario()) {
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onRemoveFueraFondeo(orden.ordenCompraId)"
                 pTooltip="Desvincular del fondeo"
                 [iconOnly]="true"

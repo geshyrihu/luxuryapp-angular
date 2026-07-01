@@ -1,4 +1,4 @@
-﻿import {
+import {
   Component,
   computed,
   inject,
@@ -22,9 +22,9 @@ import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 import { CommonModule } from "@angular/common";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -63,7 +63,7 @@ interface IOrdenCompraDetalleRowForm {
     InputNumberModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    CustomButtonItem,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     MessageModule,

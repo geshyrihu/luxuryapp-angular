@@ -1,4 +1,4 @@
-ï»¿import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -9,9 +9,9 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -32,7 +32,7 @@ interface IMedidorLecturaForm {
   templateUrl: "./medidor-lectura-form.html",
   imports: [
     ReactiveFormsModule,
-    CustomButtonSave,
+    WebButtonLabelSave,
     InputTextModule,
     CustomInputNumberSignal,
     CustomInputTextSignal,
@@ -51,7 +51,7 @@ export class MedidorLecturaForm implements OnInit {
   dateString: string = "";
   dateStringUltimoRegistro: string = "";
   seRegistroEsteDia: boolean = false;
-  seRegistroEsteDiaMensaje: string = "Ya se cargo el registro de este dÃ­a";
+  seRegistroEsteDiaMensaje: string = "Ya se cargo el registro de este día";
   id: string = "";
   ultimaLectura: number = 0;
   medidorId: string = "";
@@ -110,7 +110,7 @@ export class MedidorLecturaForm implements OnInit {
           this.form.controls.lectura.setErrors({ lecturaMenor: true });
           this.laLecturaEsMenor = true;
         } else {
-          // Si tenÃ­a error lecturaMenor, quitarlo.
+          // Si tenía error lecturaMenor, quitarlo.
           // Nota: setErrors(null) quita todos. Si hay required, se valida solo.
           const errors = this.form.controls.lectura.errors;
           if (errors && errors["lecturaMenor"]) {

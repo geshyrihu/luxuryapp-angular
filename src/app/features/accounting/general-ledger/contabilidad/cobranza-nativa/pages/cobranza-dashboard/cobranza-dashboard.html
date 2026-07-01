@@ -1,4 +1,4 @@
-﻿<div class="p-4 md:p-6 flex flex-column gap-6">
+<div class="p-4 md:p-6 flex flex-column gap-6">
   <!-- Encabezado + Filtro de Meses -->
   <div class="flex align-items-center justify-content-between flex-wrap gap-3">
     <div>
@@ -11,7 +11,7 @@
     </div>
     <div class="flex gap-1">
       @for (m of [3, 6, 12]; track m) {
-      <custom-button
+      <il-button
         [label]="m + ' meses'"
         size="small"
         [severity]="meses() === m ? 'primary' : 'secondary'"
@@ -323,7 +323,7 @@
 
   <!-- Link acceso rapido a pagos -->
   <div class="flex justify-content-end">
-    <custom-button
+    <il-button
       label="Ir a registrar pagos"
       iconClass="mdi:currency-usd"
       variant="outlined"

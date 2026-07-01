@@ -54,17 +54,15 @@
       </td>
       <td>
         <div class="flex justify-content-end gap-1">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:eye-outline"
             label="Ver"
-            [showLabelOnDesktop]="true"
             (clicked)="onView(item.id)"
           />
           @if (!item.isClosed) {
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:check-circle-outline"
             label="Completar"
-            [showLabelOnDesktop]="true"
             (clicked)="onContinue(item.id)"
           />
           }

@@ -1,11 +1,11 @@
-ï»¿import { Component } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 @Component({
   selector: "app-inspeccion-agregar-revision",
-  imports: [CustomInputSelectSignal, CustomButtonSave],
+  imports: [CustomInputSelectSignal, WebButtonLabelSave],
   templateUrl: "./inspeccion-agregar-revision.html",
 })
 export class InspeccionAgregarRevision {
@@ -13,7 +13,7 @@ export class InspeccionAgregarRevision {
 
   readonly revisionOptions = [
     { label: "Iluminacion", value: "Iluminacion" },
-    { label: "PÃ­ntura", value: "PÃ­ntura" },
+    { label: "Píntura", value: "Píntura" },
     { label: "Funcionamiento de chapas", value: "Funcionamiento de chapas" },
     { label: "Estado de carpinteria", value: "Estado de carpinteria" },
     { label: "Funcionamiento w.c.", value: "Funcionamiento w.c." },

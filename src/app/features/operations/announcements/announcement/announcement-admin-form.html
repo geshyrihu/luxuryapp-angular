@@ -76,7 +76,7 @@
       <div class="mb-4">
         <div class="flex justify-content-between align-items-center mb-2">
           <label>Imagen principal (Banner)</label>
-          <custom-button
+          <il-button
             iconClass="mdi:image"
             label="Generar con IA"
             variant="outlined"
@@ -98,7 +98,7 @@
           />
           <div class="flex align-items-center">
             <span class="text-sm text-500">Imagen actual</span>
-            <custom-button-delete (confirmed)="requestDeleteMainImage()" />
+            <il-button-delete (confirmed)="requestDeleteMainImage()" />
           </div>
         </div>
         }
@@ -139,7 +139,7 @@
     <div class="col-12 md:col-6">
       <div class="flex justify-content-between align-items-center mb-2">
         <label class="font-bold">Contenido del Anuncio</label>
-        <custom-button
+        <il-button
           iconClass="mdi:sparkles"
           label="Generar con IA"
           variant="outlined"
@@ -183,7 +183,7 @@
                   <app-icon [icon]="'mdi:file-document-outline'" class="mr-2" /> {{ item.fileName }}
                 </a>
 
-                <custom-button-delete
+                <il-button-delete
                   (confirmed)="requestDeleteAttachment(item)"
                 />
               </div>
@@ -304,7 +304,7 @@
     </div>
   </div>
 
-  <custom-button-save
+  <il-button-save
     class="mt-3 block w-full"
     [propertyId]="id()"
     [disabled]="form.invalid"

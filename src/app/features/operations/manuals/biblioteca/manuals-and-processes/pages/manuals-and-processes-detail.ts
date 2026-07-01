@@ -1,12 +1,12 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -27,7 +27,7 @@ import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
     TagModule,
     DiagramPreviewComponent,
     AppIcon,
-    CustomButton,
+    WebButtonLabel,
   ],
 })
 export class ManualsAndProcessesDetail implements OnInit {
@@ -64,13 +64,13 @@ export class ManualsAndProcessesDetail implements OnInit {
 
     let base = manual.periodicityName || "A Demanda";
     if (manual.periodicity === 0) return "A Demanda";
-    if (manual.periodicity === 1) return "Única Vez";
+    if (manual.periodicity === 1) return "�nica Vez";
     if (manual.periodicity === 2) return "Diario";
 
     // Semanal
     if (manual.periodicity === 3) {
       if (manual.executionDaysOfWeek?.length) {
-        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+        const days = ["Dom", "Lun", "Mar", "Mi�", "Jue", "Vie", "S�b"];
         const selected = manual.executionDaysOfWeek
           .map((d) => days[d])
           .join(", ");
@@ -82,18 +82,18 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Mensual
     if (manual.periodicity === 4) {
       if (manual.executionDayOfMonth) {
-        return `Mensual (Día ${manual.executionDayOfMonth})`;
+        return `Mensual (D�a ${manual.executionDayOfMonth})`;
       }
       if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
-        const weeks = ["1ra", "2da", "3ra", "4ta", "Última"];
+        const weeks = ["1ra", "2da", "3ra", "4ta", "�ltima"];
         const days = [
           "Domingo",
           "Lunes",
           "Martes",
-          "Miércoles",
+          "Mi�rcoles",
           "Jueves",
           "Viernes",
-          "Sábado",
+          "S�bado",
         ];
         const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
         const d = days[manual.executionDaysOfWeek[0]];
@@ -211,13 +211,13 @@ export class ManualsAndProcessesDetail implements OnInit {
   noteEmoji(tipoNota: number): string {
     switch (tipoNota) {
       case 1:
-        return "â„¹ï¸";
+        return "ℹ️";
       case 2:
-        return "âš ï¸";
+        return "⚠️";
       case 3:
-        return "✅";
+        return "?";
       default:
-        return "â€¢";
+        return "•";
     }
   }
 
@@ -275,4 +275,3 @@ export class ManualsAndProcessesDetail implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }
-

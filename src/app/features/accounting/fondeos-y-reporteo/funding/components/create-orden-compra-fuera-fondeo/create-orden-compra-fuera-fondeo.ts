@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -7,10 +7,10 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,9 +22,9 @@ const tipoGastoLabels: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "Caja Chica",
   [ETipoGasto.Extraordinario]: "Gastos Extraordinarios",
   [ETipoGasto.Devoluciones]: "Devoluciones",
-  [ETipoGasto.TarjetaDebito]: "Tarjeta de DÃ©bito",
+  [ETipoGasto.TarjetaDebito]: "Tarjeta de Débito",
   [ETipoGasto.Proyectos]: "Gastos de Proyectos",
-  [ETipoGasto.Nomina]: "NÃ³mina",
+  [ETipoGasto.Nomina]: "Nómina",
   [ETipoGasto.Impuestos]: "Impuestos y Contribuciones",
 };
 
@@ -36,7 +36,7 @@ const tipoGastoLabels: { [key: number]: string } = {
     CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class CreateOrdenCompraFueraFondeo implements OnInit {

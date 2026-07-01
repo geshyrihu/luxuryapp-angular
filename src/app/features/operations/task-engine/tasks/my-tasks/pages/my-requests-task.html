@@ -129,19 +129,18 @@
           <td class="text-center">
             <app-action-menu>
               <ng-container actions>
-                <custom-button-edit
+                <il-button-edit
                   (clicked)="onModalForm({
                       id: item.id,
                       title: 'Editar',
                       ticketGroupId: item.ticketGroupId,
                     })"
-                 label="Editar" [showLabelOnDesktop]="true"/>
+                 label="Editar"/>
 
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:comment"
                   label="Seguimiento"
-                  (clicked)="onFollowUp(item.id)"
-                 [showLabelOnDesktop]="true"/>
+                  (clicked)="onFollowUp(item.id)"/>
               </ng-container>
             </app-action-menu>
           </td>
@@ -217,19 +216,18 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({
                       id: item.id,
                       title: 'Editar',
                       ticketGroupId: item.ticketGroupId,
                     })"
-             label="Editar" [showLabelOnDesktop]="true"/>
+             label="Editar"/>
 
-            <custom-button-item
+            <il-button-item
               iconName="ellipsis-horizontal-outline"
               label="Seguimiento"
-              (clicked)="onFollowUp(item.id)"
-             [showLabelOnDesktop]="true"/>
+              (clicked)="onFollowUp(item.id)"/>
           </ng-container>
         </app-action-menu>
       </div>

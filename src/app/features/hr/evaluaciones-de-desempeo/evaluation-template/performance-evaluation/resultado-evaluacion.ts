@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
@@ -7,7 +7,7 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
@@ -25,11 +25,11 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
     TagModule,
     MessageModule,
     PrimengRadarChart,
-    CustomButton,
+    WebButtonLabel,
   ],
 })
 export class ResultadoEvaluacion {
-  // InyecciÃ³n de servicios
+  // Inyección de servicios
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly htmlPrintS = inject(HtmlPrintService);
@@ -106,7 +106,7 @@ export class ResultadoEvaluacion {
       datasets: [
         {
           data: data,
-          label: "Promedio por CategorÃ­a",
+          label: "Promedio por Categoría",
           backgroundColor: "rgba(54, 162, 235, 0.2)",
           borderColor: "rgb(54, 162, 235)",
           pointBackgroundColor: "rgb(54, 162, 235)",
@@ -133,14 +133,19 @@ export class ResultadoEvaluacion {
       if (!chartImage) {
         this.customToastS.showError(
           "Error",
-          "No se pudo generar la imagen del grÃ¡fico.",
+          "No se pudo generar la imagen del gráfico.",
         );
         return;
       }
 
       const logo = await this.htmlPrintS.getLogoDataUrl();
       const generatedAt = new Date();
-      const html = this.buildReportContent(chartImage, result, logo, generatedAt);
+      const html = this.buildReportContent(
+        chartImage,
+        result,
+        logo,
+        generatedAt,
+      );
       const fileName = `Evaluacion-${result.employeeName.replace(/\s/g, "_")}`;
 
       this.htmlPrintS.printHtml(html, fileName);
@@ -148,7 +153,7 @@ export class ResultadoEvaluacion {
       console.error("Error al exportar a PDF:", error);
       this.customToastS.showError(
         "Error",
-        "OcurriÃ³ un problema al generar el PDF.",
+        "Ocurrió un problema al generar el PDF.",
       );
     }
   }
@@ -157,7 +162,7 @@ export class ResultadoEvaluacion {
     chartImage: string,
     result: any,
     logo: string | null,
-    generatedAt: Date
+    generatedAt: Date,
   ): string {
     const severity = this.finalScoreSeverity();
     const getScoreTagColor = () => {
@@ -212,12 +217,16 @@ export class ResultadoEvaluacion {
       categoriesHtml += `</div>`;
     });
 
-    const summaryTableHtml = result.categories.map((cat: any) => `
+    const summaryTableHtml = result.categories
+      .map(
+        (cat: any) => `
       <tr>
         <td style="padding: 4px; border-bottom: 1px solid #ddd;">${this.htmlPrintS.esc(cat.name)}</td>
         <td style="padding: 4px; border-bottom: 1px solid #ddd; text-align: right; font-weight: bold;">${(cat.categoryScore / cat.answers.length).toFixed(2)} / 5.0</td>
       </tr>
-    `).join("");
+    `,
+      )
+      .join("");
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
@@ -233,12 +242,12 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `EvaluaciÃ³n: ${result.evaluationTemplateName}`, `Empleado: ${result.employeeName}`, generatedAt, "RECURSOS HUMANOS")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `Evaluación: ${result.evaluationTemplateName}`, `Empleado: ${result.employeeName}`, generatedAt, "RECURSOS HUMANOS")}
 
   <div class="body-doc page-break">
     <table style="width: 100%; margin-bottom: 20px;">
       <tr>
-        <td style="width: 33%;"><div class="info-title">Fecha de EvaluaciÃ³n:</div><div class="info-text">${this.formatEvaluationDate(result.evaluationDate)}</div></td>
+        <td style="width: 33%;"><div class="info-title">Fecha de Evaluación:</div><div class="info-text">${this.formatEvaluationDate(result.evaluationDate)}</div></td>
         <td style="width: 33%;">
           <div class="info-title">Empleado Evaluado:</div>
           <div class="info-text">${this.htmlPrintS.esc(result.employeeName)}</div>
@@ -255,19 +264,19 @@ ${this.htmlPrintS.getStandardCss()}
     ${chartImage ? `<div style="text-align: center; margin: 10px 0;"><img src="${chartImage}" style="max-width: 500px; max-height: 250px;" /></div>` : ""}
 
     <div style="text-align: center; margin: 20px 0;">
-      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">PuntuaciÃ³n Final</div>
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Puntuación Final</div>
       <div class="score-tag" style="background-color: ${getScoreTagColor()}">${this.htmlPrintS.esc(result.finalScoreFormatted)}</div>
       <div style="font-size: 12px; color: #6c757d;">Promedio: ${result.finalScore.toFixed(2)} / 5.00</div>
     </div>
 
-    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de DesempeÃ±o por CategorÃ­a</div>
+    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de Desempeño por Categoría</div>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
       ${summaryTableHtml}
     </table>
   </div>
 
   <div class="body-doc">
-    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por CategorÃ­as</div>
+    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por Categorías</div>
     ${categoriesHtml}
   </div>
 
@@ -276,4 +285,3 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
-

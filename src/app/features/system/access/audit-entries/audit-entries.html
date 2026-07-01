@@ -68,7 +68,7 @@
               />
             </div>
             <div class="flex flex-shrink-0 gap-2">
-              <custom-button
+              <il-button
                 label="Buscar"
                 iconClass="mdi:magnify"
                 (clicked)="onLoadData(true)"
@@ -108,7 +108,7 @@
         <tr>
           <td>
             @if (item.operationType === 'Update') {
-            <custom-button
+            <iw-button
               iconClass="mdi:chevron-right"
               variant="ghost-text"
               size="sm"
@@ -232,7 +232,7 @@
               }
             </div>
             } @if (item.operationType === 'Update') {
-            <custom-button
+            <il-button
               label="Ver cambios"
               variant="ghost-text"
               size="sm"
@@ -246,7 +246,7 @@
     </app-data-view-mobile>
 
     @if (data().length < totalRecords()) {
-    <custom-button
+    <il-button
       label="Cargar más"
       severity="secondary"
       [fluid]="true"

@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
+import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -8,16 +8,16 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
-import { FundingExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/services/funding-excel-export.service";
 import { FundingPurchaseDetail } from "src/app/features/accounting/fondeos-y-reporteo/funding/funding-purchase-detail";
 import { FundingDetailDTO } from "src/app/features/accounting/fondeos-y-reporteo/funding/model/funding-detail-dto";
+import { FundingExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/services/funding-excel-export.service";
 @Component({
   selector: "app-funding-accounting-detail",
   imports: [
@@ -30,8 +30,8 @@ import { FundingDetailDTO } from "src/app/features/accounting/fondeos-y-reporteo
     TooltipModule,
     UpperCasePipe,
     DecimalPipe,
-    CustomButton,
-    CustomButtonItem,
+    WebButtonLabel,
+    WebButtonLabelItem,
   ],
   styleUrls: ["./funding-accounting-detail.scss"],
   templateUrl: "./funding-accounting-detail.html",
@@ -39,7 +39,7 @@ import { FundingDetailDTO } from "src/app/features/accounting/fondeos-y-reporteo
 export class FundingAccountingDetail {
   routeActive = inject(ActivatedRoute);
   dialogHandlerS = inject(DialogHandlerService);
-  destroyRef = inject(DestroyRef); // Para la limpieza autom√≥tica de suscripciones.
+  destroyRef = inject(DestroyRef); // Para la limpieza automÛtica de suscripciones.
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   signalRS = inject(SignalRService);
@@ -67,7 +67,7 @@ export class FundingAccountingDetail {
   private routeParamsSignal = toSignal(this.routeActive.params);
 
   constructor() {
-    // Efecto reactivo: cuando el customerId est√≥ listo y cargado, carga los datos
+    // Efecto reactivo: cuando el customerId estÛ listo y cargado, carga los datos
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       const isLoaded = this.customerIdS.customerDataReady();
@@ -198,8 +198,8 @@ export class FundingAccountingDetail {
 
   /**
    * Se dispara cuando el usuario cambia el estado de pago de una orden.
-   * Llama a la API usando el nuevo m√≥todo onPatch para persistir el cambio.
-   * @param orden El objeto completo de la fila que se est√≥ modificando.
+   * Llama a la API usando el nuevo mÛtodo onPatch para persistir el cambio.
+   * @param orden El objeto completo de la fila que se estÛ modificando.
    */
   onPaymentStatusChange(orden: any): void {
     const nuevoEstado = orden.ordenCompraPagadaControl.value;
@@ -209,19 +209,19 @@ export class FundingAccountingDetail {
       `? Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
     );
 
-    // 1. Preparamos la URL y el cuerpo (body) para la petici√≥n PATCH.
+    // 1. Preparamos la URL y el cuerpo (body) para la peticiÛn PATCH.
     const urlApi = `funding/update-purchase-paid-status/${ordenId}`;
     const body = { isPaid: nuevoEstado };
 
-    // 2. Llamamos a nuestro nuevo y flamante m√≥todo onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y √≥xito/error.
+    // 2. Llamamos a nuestro nuevo y flamante mÛtodo onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y Ûxito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
-      // 3. Manejamos el caso de error. Si la API falla, 'success' ser√≥ false.
+      // 3. Manejamos el caso de error. Si la API falla, 'success' serÛ false.
       if (!success) {
-        // √≥CR√≥TICO! Si la actualizaci√≥n fall√≥ en el backend,
+        // ÛCRÛTICO! Si la actualizaciÛn fallÛ en el backend,
         // revertimos el cambio en la UI para que no mienta al usuario.
         console.error(
-          `Fall√≥ la actualizaci√≥n para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
+          `FallÛ la actualizaciÛn para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
         );
         orden.ordenCompraPagadaControl.setValue(!nuevoEstado, {
           emitEvent: false,
@@ -230,5 +230,3 @@ export class FundingAccountingDetail {
     });
   }
 }
-
-

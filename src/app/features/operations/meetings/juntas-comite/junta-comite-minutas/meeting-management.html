@@ -1,9 +1,9 @@
-﻿@if (meetingData()) {
+@if (meetingData()) {
 <div class="p-4">
-  <p-card [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
+  <p-card [header]="'Gesti�n de Minuta: ' + meetingData()?.dateFormat">
     <div class="mb-3 flex align-items-center justify-content-between">
       <a routerLink="/junta-comite/list-minutas" class="no-underline">
-        <custom-button
+        <il-button
           label="VOLVER AL LISTADO"
           iconClass="mdi:arrow-left"
           severity="secondary"

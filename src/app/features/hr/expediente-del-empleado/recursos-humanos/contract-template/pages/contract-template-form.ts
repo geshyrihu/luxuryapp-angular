@@ -1,15 +1,15 @@
-Ôªøimport { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -37,7 +37,7 @@ interface IContractTemplateForm {
     CustomInputSelectSignal,
     CustomInputSwitch,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class ContractTemplateFormComponent implements OnInit {
@@ -50,7 +50,7 @@ export class ContractTemplateFormComponent implements OnInit {
   isEdit = signal(false);
   submitting = signal(false);
   placeholderText =
-    "Usa {{EMPLEADO_NOMBRE}}, {{SALARIO}}, {{FECHA_INICIO}} como variables din√°micas";
+    "Usa {{EMPLEADO_NOMBRE}}, {{SALARIO}}, {{FECHA_INICIO}} como variables din·micas";
 
   form: FormGroup<IContractTemplateForm> = this.fb.group<IContractTemplateForm>(
     {
@@ -68,7 +68,7 @@ export class ContractTemplateFormComponent implements OnInit {
     { value: "Determinado", label: "Determinado" },
     { value: "Temporal", label: "Temporal / Estacional" },
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
-    { value: "Practicas", label: "Pr√°cticas Profesionales" },
+    { value: "Practicas", label: "Pr·cticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
     { value: "Honorarios", label: "Honorarios" },
   ];

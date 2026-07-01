@@ -8,12 +8,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {
   ElevenLabsSettingsService,
@@ -40,7 +40,7 @@ interface ElevenLabsSettingsForm {
     CommonModule,
     ReactiveFormsModule,
     CardModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputSwitch,

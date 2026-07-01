@@ -9,13 +9,13 @@
       >
     </div>
     <div class="flex gap-2">
-      <custom-button
+      <il-button
         iconClass="mdi:book"
         severity="secondary"
         ngbTooltip="Ver guía del módulo"
         routerLink="/contabilidad/reportes/guia"
       />
-      <custom-button-add (clicked)="crear()" ngbTooltip="Crear nuevo reporte" />
+      <il-button-add (clicked)="crear()" ngbTooltip="Crear nuevo reporte" />
     </div>
   </div>
 
@@ -58,13 +58,13 @@
               <td>{{ r.createdAt | date: 'dd/MM/yyyy' }}</td>
               <td>
                 <div class="flex gap-1">
-                  <custom-button
+                  <il-button
                     (clicked)="ver(r.id)"
                     iconClass="mdi:eye-outline"
                     ngbTooltip="Ver reporte"
                   />
-                  <custom-button-edit (clicked)="editar(r.id)" />
-                  <custom-button-delete
+                  <il-button-edit (clicked)="editar(r.id)" />
+                  <il-button-delete
                     (clicked)="confirmarEliminar(r.id, r.name)"
                   />
                 </div>
@@ -99,12 +99,12 @@
                 >{{ r.createdAt | date: 'dd/MM/yyyy' }}</span
               >
               <div class="flex mt-2 justify-content-end gap-1">
-                <custom-button
+                <il-button
                   iconClass="mdi:eye-outline"
                   (clicked)="ver(r.id)"
                 />
-                <custom-button-edit (clicked)="editar(r.id)" />
-                <custom-button-delete
+                <il-button-edit (clicked)="editar(r.id)" />
+                <il-button-delete
                   (clicked)="confirmarEliminar(r.id, r.name)"
                 />
               </div>
@@ -140,7 +140,7 @@
               </td>
               <td>{{ r.createdBy }}</td>
               <td>
-                <custom-button
+                <il-button
                   (clicked)="ver(r.id)"
                   iconClass="mdi:eye-outline"
                   ngbTooltip="Ver plantilla"
@@ -172,7 +172,7 @@
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">Por: {{ r.createdBy }}</span>
               <div class="flex mt-2 justify-content-end">
-                <custom-button
+                <il-button
                   iconClass="mdi:eye-outline"
                   (clicked)="ver(r.id)"
                 />

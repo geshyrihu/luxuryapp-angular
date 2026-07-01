@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -6,10 +5,11 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -28,11 +28,11 @@ import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
     EmptyState,
     TableModule,
     PrimeNgCustomCaption,
-    CustomButton,
-    CustomButtonEdit,
+    WebButtonLabel,
+    WebButtonLabelEdit,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
+    WebButtonLabelEdit,
     IonItem,
     IonLabel,
     DatePipe,
@@ -118,4 +118,3 @@ export default class CollectionCaseList {
     return map[status] ?? "bg-gray-100 text-gray-600";
   }
 }
-

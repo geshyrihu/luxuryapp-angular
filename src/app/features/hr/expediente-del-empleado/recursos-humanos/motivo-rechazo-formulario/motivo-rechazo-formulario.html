@@ -7,16 +7,14 @@
   />
 </div>
 <div class="flex justify-content-end mt-3">
-  <custom-button
+  <il-button
     label="Cancelar"
     variant="text"
-    [showLabelOnDesktop]="true"
     (clicked)="close(null)"
   />
-  <custom-button
+  <il-button
     label="Confirmar Rechazo"
     severity="danger"
-    [showLabelOnDesktop]="true"
     [disabled]="!reasonControl.value"
     customClass="ml-2"
     (clicked)="confirm()"

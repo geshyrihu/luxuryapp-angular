@@ -21,7 +21,7 @@
           />
         </div>
         <div class="flex-none">
-          <custom-button
+          <il-button
             label="Saldo"
             icon="mdi:calendar"
             size="small"
@@ -93,13 +93,13 @@
         <td class="no-print">
           <div class="flex justify-content-end">
             <!-- Botón Ver Detalle -->
-            <custom-button-item (clicked)="onDetail(item.id)" label="??" />
+            <il-button-item (clicked)="onDetail(item.id)" label="??" />
 
             @if (item.status === "Pendiente") {
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <il-button-delete (confirmed)="onDelete(item.id)" />
             }
           </div>
         </td>
@@ -158,18 +158,16 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Ver Detalle"
               iconName="eye-outline"
               (clicked)="onDetail(item.id)"
-              [showLabelOnDesktop]="true"
             />
             @if (item.status === 'Pendiente') {
-            <custom-button-item
+            <il-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              [showLabelOnDesktop]="true"
             />
             }
           </ng-container>

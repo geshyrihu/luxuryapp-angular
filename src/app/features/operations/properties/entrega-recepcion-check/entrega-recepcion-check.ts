@@ -7,7 +7,7 @@ import { AccordionModule } from "primeng/accordion";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 
 @Component({
   selector: "app-entrega-recepcion-check",
@@ -18,7 +18,7 @@ import { CustomButton } from "src/app/core/components/web/buttons/custom-button"
     TableModule,
     TagModule,
     SelectButtonModule,
-    CustomButton,
+    WebButtonLabel,
   ],
   templateUrl: "./entrega-recepcion-check.html",
 })
@@ -46,12 +46,12 @@ export class EntregaRecepcionCheckComponent implements OnInit {
 
     this.auditModules = [
       {
-        name: "Legal y Régimen Condominal",
+        name: "Legal y Rï¿½gimen Condominal",
         icon: "mdi:book",
         items: [
           {
             control:
-              "Escritura Constitutiva del Régimen de Propiedad en Condominio y Reglamento Interno.",
+              "Escritura Constitutiva del Rï¿½gimen de Propiedad en Condominio y Reglamento Interno.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -70,7 +70,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             observations: "",
           },
           {
-            control: "Libro de Actas de Asamblea (físico).",
+            control: "Libro de Actas de Asamblea (fï¿½sico).",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -96,7 +96,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             type: "Recomendable",
             status: null,
             observations:
-              "Máxima validez legal frente a terceros (bancos, juicios).",
+              "Mï¿½xima validez legal frente a terceros (bancos, juicios).",
           },
         ],
       },
@@ -105,13 +105,13 @@ export class EntregaRecepcionCheckComponent implements OnInit {
         icon: "mdi:chart-bar",
         items: [
           {
-            control: "Constancia de Situación Fiscal (RFC) de la A.C.",
+            control: "Constancia de Situaciï¿½n Fiscal (RFC) de la A.C.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
-            control: "Opinión de cumplimiento del SAT actualizada.",
+            control: "Opiniï¿½n de cumplimiento del SAT actualizada.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -125,7 +125,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Declaraciones anuales y mensuales (últimos 5 años) con papeles de trabajo.",
+              "Declaraciones anuales y mensuales (ï¿½ltimos 5 aï¿½os) con papeles de trabajo.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -143,34 +143,34 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             observations: "",
           },
           {
-            control: "Balanzas de comprobación y auxiliares del año en curso.",
+            control: "Balanzas de comprobaciï¿½n y auxiliares del aï¿½o en curso.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "Estados de cuenta bancarios y conciliaciones del año en curso.",
+              "Estados de cuenta bancarios y conciliaciones del aï¿½o en curso.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "Integración de Cuentas por Cobrar (CxC) y Cuentas por Pagar (CxP).",
+              "Integraciï¿½n de Cuentas por Cobrar (CxC) y Cuentas por Pagar (CxP).",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
-            control: "Tokens bancarios y contraseñas de acceso a portales.",
+            control: "Tokens bancarios y contraseï¿½as de acceso a portales.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "[SUGERENCIA] Evidencia de aprobación del presupuesto anual en Acta de Asamblea.",
+              "[SUGERENCIA] Evidencia de aprobaciï¿½n del presupuesto anual en Acta de Asamblea.",
             type: "Obligatorio",
             status: null,
             observations:
@@ -178,7 +178,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "[SUGERENCIA] Política de Inversión y manejo del fondo de reserva.",
+              "[SUGERENCIA] Polï¿½tica de Inversiï¿½n y manejo del fondo de reserva.",
             type: "Recomendable",
             status: null,
             observations:
@@ -210,7 +210,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Opinión de cumplimiento del IMSS e INFONAVIT actualizada.",
+              "Opiniï¿½n de cumplimiento del IMSS e INFONAVIT actualizada.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -223,7 +223,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Declaraciones de riesgo de trabajo y de sueldos y salarios (últimos 5 años).",
+              "Declaraciones de riesgo de trabajo y de sueldos y salarios (ï¿½ltimos 5 aï¿½os).",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -234,7 +234,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             type: "Obligatorio",
             status: null,
             observations:
-              "Obligación de la STPS para prevenir multas y mejorar el ambiente laboral.",
+              "Obligaciï¿½n de la STPS para prevenir multas y mejorar el ambiente laboral.",
           },
           {
             control:
@@ -242,12 +242,12 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             type: "Recomendable",
             status: null,
             observations:
-              "Asegura la correcta entrega y devolución de activos y accesos.",
+              "Asegura la correcta entrega y devoluciï¿½n de activos y accesos.",
           },
         ],
       },
       {
-        name: "Operación y Servicios",
+        name: "Operaciï¿½n y Servicios",
         icon: "mdi:cog",
         items: [
           {
@@ -271,14 +271,14 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Inventario de mobiliario y equipo de oficina y áreas comunes.",
+              "Inventario de mobiliario y equipo de oficina y ï¿½reas comunes.",
             type: "Recomendable",
             status: null,
             observations: "",
           },
           {
             control:
-              "[SUGERENCIA] Fichas de Evaluación de Proveedores Críticos (SLAs).",
+              "[SUGERENCIA] Fichas de Evaluaciï¿½n de Proveedores Crï¿½ticos (SLAs).",
             type: "Recomendable",
             status: null,
             observations:
@@ -286,11 +286,11 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "[SUGERENCIA] Sistema de Gestión de Tickets o Bitácora de Solicitudes/Quejas.",
+              "[SUGERENCIA] Sistema de Gestiï¿½n de Tickets o Bitï¿½cora de Solicitudes/Quejas.",
             type: "Recomendable",
             status: null,
             observations:
-              "Profesionaliza la atención y permite medir la eficiencia operativa.",
+              "Profesionaliza la atenciï¿½n y permite medir la eficiencia operativa.",
           },
         ],
       },
@@ -300,20 +300,20 @@ export class EntregaRecepcionCheckComponent implements OnInit {
         items: [
           {
             control:
-              "Inventario de equipos electromecánicos, CCTV y amenidades.",
+              "Inventario de equipos electromecï¿½nicos, CCTV y amenidades.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "Planos actualizados (arquitectónico, eléctrico, hidrosanitario, etc.).",
+              "Planos actualizados (arquitectï¿½nico, elï¿½ctrico, hidrosanitario, etc.).",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
-            control: "Bitácoras de servicios a equipos.",
+            control: "Bitï¿½coras de servicios a equipos.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -324,32 +324,32 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             type: "Obligatorio",
             status: null,
             observations:
-              "Esencial para prevenir fallas catastróficas y reducir costos a largo plazo.",
+              "Esencial para prevenir fallas catastrï¿½ficas y reducir costos a largo plazo.",
           },
           {
             control:
-              "[SUGERENCIA] Carpeta de Activos con garantías, manuales y fichas técnicas.",
+              "[SUGERENCIA] Carpeta de Activos con garantï¿½as, manuales y fichas tï¿½cnicas.",
             type: "Recomendable",
             status: null,
             observations:
-              "Centraliza la información técnica para agilizar reparaciones.",
+              "Centraliza la informaciï¿½n tï¿½cnica para agilizar reparaciones.",
           },
         ],
       },
       {
-        name: "Protección Civil y Riesgos",
+        name: "Protecciï¿½n Civil y Riesgos",
         icon: "mdi:shield",
         items: [
           {
             control:
-              "Programa Interno de Protección Civil actualizado y registrado.",
+              "Programa Interno de Protecciï¿½n Civil actualizado y registrado.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "Póliza de Seguro de Responsabilidad Civil y Daños al Inmueble (vigente y pagada).",
+              "Pï¿½liza de Seguro de Responsabilidad Civil y Daï¿½os al Inmueble (vigente y pagada).",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -365,25 +365,25 @@ export class EntregaRecepcionCheckComponent implements OnInit {
               "[SUGERENCIA] Dictamen de Seguridad Estructural (si aplica).",
             type: "Obligatorio",
             status: null,
-            observations: "Crítico en zonas sísmicas o edificios antiguos.",
+            observations: "Crï¿½tico en zonas sï¿½smicas o edificios antiguos.",
           },
           {
-            control: "[SUGERENCIA] Dictamen Técnico de Instalación de Gas.",
+            control: "[SUGERENCIA] Dictamen Tï¿½cnico de Instalaciï¿½n de Gas.",
             type: "Obligatorio",
             status: null,
-            observations: "Previene riesgos de explosión o intoxicación.",
+            observations: "Previene riesgos de explosiï¿½n o intoxicaciï¿½n.",
           },
           {
             control:
-              "[SUGERENCIA] Constancias de capacitación de brigadas internas.",
+              "[SUGERENCIA] Constancias de capacitaciï¿½n de brigadas internas.",
             type: "Recomendable",
             status: null,
             observations:
-              "El personal debe saber cómo actuar en una emergencia.",
+              "El personal debe saber cï¿½mo actuar en una emergencia.",
           },
           {
             control:
-              "[SUGERENCIA] Evidencia de simulacros realizados (mínimo 2 por año).",
+              "[SUGERENCIA] Evidencia de simulacros realizados (mï¿½nimo 2 por aï¿½o).",
             type: "Obligatorio",
             status: null,
             observations: "Requisito legal en muchas localidades.",
@@ -391,55 +391,55 @@ export class EntregaRecepcionCheckComponent implements OnInit {
         ],
       },
       {
-        name: "Tecnología, Accesos y Contraseñas",
+        name: "Tecnologï¿½a, Accesos y Contraseï¿½as",
         icon: "mdi:key",
         items: [
           {
             control:
-              "Inventario de contraseñas (equipos, WiFi, apps, plataformas).",
+              "Inventario de contraseï¿½as (equipos, WiFi, apps, plataformas).",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "[SUGERENCIA] Política de Respaldo de Información Crítica (Contable, Legal, etc.).",
+              "[SUGERENCIA] Polï¿½tica de Respaldo de Informaciï¿½n Crï¿½tica (Contable, Legal, etc.).",
             type: "Obligatorio",
             status: null,
             observations:
-              "Define dónde, cada cuánto y quién realiza los respaldos.",
+              "Define dï¿½nde, cada cuï¿½nto y quiï¿½n realiza los respaldos.",
           },
           {
             control:
-              "[SUGERENCIA] Documento de Política de Privacidad de Datos (LFPDPPP).",
+              "[SUGERENCIA] Documento de Polï¿½tica de Privacidad de Datos (LFPDPPP).",
             type: "Recomendable",
             status: null,
             observations:
-              "Demuestra el manejo responsable de la información de los residentes.",
+              "Demuestra el manejo responsable de la informaciï¿½n de los residentes.",
           },
         ],
       },
       {
-        name: "Relación con Comité y Gobierno Interno",
+        name: "Relaciï¿½n con Comitï¿½ y Gobierno Interno",
         icon: "mdi:sitemap",
         items: [
           {
             control:
-              "[SUGERENCIA] Directorio de Miembros del Comité de Vigilancia.",
+              "[SUGERENCIA] Directorio de Miembros del Comitï¿½ de Vigilancia.",
             type: "Recomendable",
             status: null,
             observations: "",
           },
           {
             control:
-              "[SUGERENCIA] Minutas o acuerdos de las sesiones de trabajo con el Comité.",
+              "[SUGERENCIA] Minutas o acuerdos de las sesiones de trabajo con el Comitï¿½.",
             type: "Recomendable",
             status: null,
             observations: "Aporta trazabilidad a las decisiones conjuntas.",
           },
           {
             control:
-              "[SUGERENCIA] Canales y frecuencia de comunicación definidos con el Comité.",
+              "[SUGERENCIA] Canales y frecuencia de comunicaciï¿½n definidos con el Comitï¿½.",
             type: "Recomendable",
             status: null,
             observations:
@@ -472,7 +472,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "[SUGERENCIA] Política de Cobranza Preventiva y Correctiva documentada.",
+              "[SUGERENCIA] Polï¿½tica de Cobranza Preventiva y Correctiva documentada.",
             type: "Recomendable",
             status: null,
             observations:
@@ -513,4 +513,3 @@ export class EntregaRecepcionCheckComponent implements OnInit {
     }));
   }
 }
-

@@ -102,7 +102,7 @@
     <!-- Acciones -->
     <div class="flex">
       @if (activeTab() === 'datos') {
-      <custom-button-save
+      <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"
         [submitting]="submitting()"
@@ -110,7 +110,7 @@
         type="submit"
       />
       } @if (id()) {
-      <custom-button-save
+      <il-button-save
         label="Finalizar"
         type="button"
         (clicked)="onFinish()"

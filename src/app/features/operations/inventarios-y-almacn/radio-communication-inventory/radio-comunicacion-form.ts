@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,12 +8,12 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { IRadioComunicacionForm } from "src/app/core/interfaces/radio-comunicacion-form.interface";
@@ -47,7 +47,7 @@ interface IRadioComunicacionFormGroup {
     CustomInputSelectSignal,
     CustomInputAutoComplete,
     CustomInputImg,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class RadioComunicacionForm implements OnInit {
@@ -209,7 +209,7 @@ export class RadioComunicacionForm implements OnInit {
       formData.append("applicationUserId", String(DTO.applicationUserId));
     }
 
-    // Fotografía (opcional)
+    // Fotograf�a (opcional)
     if (DTO.fotografia) {
       formData.append("fotografia", DTO.fotografia);
     }

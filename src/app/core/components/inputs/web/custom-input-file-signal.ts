@@ -2,8 +2,7 @@ import { Component, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
-// import { CustomButtonDelete } from "../../buttons/web/custom-button-delete";
-import { CustomButtonDelete } from "../../web/buttons";
+import { WebButtonIconDelete } from "../../buttons/web/icon/button-delete";
 import { BaseInputSignal } from "../base/base-input-signal";
 // 📁 COMPONENTE DE INPUT DE ARCHIVO
 // Un componente para seleccionar archivos usando PrimeNG FileUpload.
@@ -14,7 +13,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
     ReactiveFormsModule,
     FileUploadModule,
     ButtonModule,
-    CustomButtonDelete,
+    WebButtonIconDelete,
   ],
   template: `
     <!-- 🏗️ ESTRUCTURA BASE -->
@@ -51,7 +50,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
             }})
           </span>
 
-          <custom-button-delete
+          <iw-button-delete
             [disabled]="disabled()"
             (confirmed)="removeFile()"
           />

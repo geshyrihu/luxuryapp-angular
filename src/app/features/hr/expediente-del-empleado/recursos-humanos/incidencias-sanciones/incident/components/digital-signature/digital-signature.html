@@ -18,21 +18,19 @@
   </div>
 
   <div class="flex mt-3 gap-2">
-    <custom-button
+    <il-button
       label="Limpiar"
       severity="secondary"
       variant="outlined"
       iconClass="mdi:delete"
-      [showLabelOnDesktop]="true"
       (clicked)="clearSignature()"
     />
 
-    <custom-button
+    <il-button
       label="Guardar Firma"
       iconClass="mdi:content-save"
       [disabled]="!hasSignature()"
       (clicked)="saveSignature()"
-      [showLabelOnDesktop]="true"
     />
   </div>
 

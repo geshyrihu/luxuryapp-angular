@@ -36,14 +36,14 @@
         <h2 class="text-xl font-semibold m-0">Categorías y Preguntas</h2>
       </div>
       <div class="flex gap-2">
-        <custom-button
+        <il-button
           iconClass="mdi:plus"
           size="small"
           (clicked)="addCategory()"
           label="Nueva Categoría"
           customClass="p-button-outlined"
         />
-        <custom-button-save
+        <il-button-save
           [propertyId]="id"
           [disabled]="form.invalid"
           [submitting]="submitting()"
@@ -88,14 +88,14 @@
             </div>
 
             <div class="flex gap-2">
-              <custom-button
+              <il-button
                 iconClass="mdi:plus-circle"
                 [size]="'small'"
                 (clicked)="addQuestion(i)"
                 label="Pregunta"
                 customClass="p-button-text p-button-sm"
               />
-              <custom-button-delete (confirmed)="removeCategory(i)" />
+              <il-button-delete (confirmed)="removeCategory(i)" />
             </div>
           </div>
         </ng-template>
@@ -134,7 +134,7 @@
               />
             </div>
 
-            <custom-button-delete (confirmed)="removeQuestion(i, j)" />
+            <il-button-delete (confirmed)="removeQuestion(i, j)" />
           </div>
           }
           
@@ -153,7 +153,7 @@
           <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-200 mb-3 block"></app-icon>
           <span class="text-xl text-500 font-medium">No se han definido categorías</span>
           <p class="text-400 mt-2">Comience agregando una categoría para organizar sus preguntas de evaluación.</p>
-          <custom-button
+          <il-button
             iconClass="mdi:plus"
             (clicked)="addCategory()"
             label="Agregar Primera Categoría"
@@ -165,7 +165,7 @@
 
     <!-- Footer con Acciones -->
     <div class="flex justify-content-end mt-5 pt-4 border-top-1 surface-border">
-      <custom-button-save
+      <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"
         [submitting]="submitting()"

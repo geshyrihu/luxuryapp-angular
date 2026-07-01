@@ -11,8 +11,7 @@
           <span class="text-break">{{ item.period }}</span>
         </div>
         @if (item.hasDocument) {
-        <custom-button-view-pdf
-          [showLabelOnDesktop]="true"
+        <il-button-view-pdf
           [url]="item.nameFileEstadoFinanciero"
           fileName="Informe Financiero"
         />
@@ -54,7 +53,7 @@
 
         <div slot="end" class="flex align-items-center">
           @if (item.hasDocument) {
-          <custom-button-view-pdf
+          <il-button-view-pdf
             [url]="item.nameFileEstadoFinanciero"
             pdf="Informe"
           />

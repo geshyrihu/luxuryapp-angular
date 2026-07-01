@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -6,13 +6,13 @@ import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -42,14 +42,14 @@ import { MyTaskProgram } from "./my-task-program";
   selector: "app-my-assigned-tasks-list",
   templateUrl: "./my-assigned-tasks-list.html",
   imports: [
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     TaskStatus,
     CommonModule,
     TableModule,
-    CustomButtonAdd,
+    WebButtonLabelAdd,
     ActionMenu,
-    CustomButton,
+    WebButtonLabel,
     FormsModule,
     TooltipModule,
     ImageModule,

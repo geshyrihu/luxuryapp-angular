@@ -59,7 +59,7 @@
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
           <td class="no-print">
             <div class="flex">
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onAddEntrada({
                         id: item.id,
                         idProducto: item.productoId,
@@ -67,7 +67,7 @@
                         almacenId: item.almacenId
                       })"
               />
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              <il-button-delete (confirmed)="onDelete(item.id)" />
             </div>
           </td>
           }
@@ -129,7 +129,7 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onAddEntrada({
                       id: item.id,
                       idProducto: item.productoId,
@@ -137,12 +137,10 @@
                       almacenId: item.almacenId
                     })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

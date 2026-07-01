@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -7,18 +7,18 @@ import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import {
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -41,13 +41,13 @@ import { IAnnouncementAdminList } from "./announcement.model";
     ReactiveFormsModule,
     TableModule,
     SelectModule,
-    CustomButton,
-    CustomButtonDownload,
+    WebButtonLabel,
+    WebButtonLabelDownload,
     TagModule,
     TooltipModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -55,9 +55,9 @@ import { IAnnouncementAdminList } from "./announcement.model";
     AppIcon,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     CustomInputSelectSignal,
   ],
   templateUrl: "./announcement-admin-list.html",

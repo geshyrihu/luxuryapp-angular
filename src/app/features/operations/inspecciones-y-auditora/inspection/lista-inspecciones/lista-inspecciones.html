@@ -2,7 +2,7 @@
 <div class="hidden md:block py-3">
   <div class="flex justify-content-between align-items-center mb-1 p-2">
     <h4 class="text-xl font-bold">Listado de Inspecciones</h4>
-    <custom-button
+    <il-button
       iconClass="mdi:plus"
       pTooltip="Nuevo Registro"
       (clicked)="onModalForm({ title: 'Agregar Inspección', id: '' })"
@@ -34,7 +34,7 @@
       [filter]="true"
     />
 
-    <custom-button-item
+    <il-button-item
       iconClass="mdi:book"
       label="Reportes"
       tooltip="Ver reportes de inspección"
@@ -64,16 +64,15 @@
         <div class="flex align-items-center">
           <app-action-menu>
             <ng-container actions>
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-              <custom-button-item
+ label="Editar"/>
+              <il-button-item
                 iconClass="mdi:magnify"
                 label="Detalles"
-                [routerLink]="['/inspections/details/', item.id]"
- [showLabelOnDesktop]="true"/>
-              <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+                [routerLink]="['/inspections/details/', item.id]"/>
+              <il-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar"/>
             </ng-container>
           </app-action-menu>
         </div>
@@ -117,7 +116,7 @@
         [filter]="true"
       />
     </div>
-    <custom-button-item
+    <il-button-item
       class="w-full"
       iconClass="mdi:book"
       label="Ver Reportes"
@@ -140,16 +139,16 @@
       </ion-label>
       <div slot="end">
         <app-action-menu>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-item
+ label="Editar"/>
+          <il-button-item
             (clicked)="false"
             icon="search"
             [routerLink]="['/inspections/details/', item.id]"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+          <il-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar"/>
         </app-action-menu>
       </div>
     </ion-item>

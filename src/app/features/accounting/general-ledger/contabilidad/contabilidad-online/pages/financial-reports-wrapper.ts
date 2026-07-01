@@ -1,11 +1,11 @@
-锘縤mport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TabsModule } from "primeng/tabs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { CobranzaOnlineDashboard } from "../../cobranza-online/pages/dashboard/cobranza-online-dashboard";
 import { AiAgentContabilidadOnlineComponent } from "../components/ai-agent-contabilidad-online/ai-agent-contabilidad-online";
@@ -26,7 +26,7 @@ import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
 
 const REPORT_META = [
   {
-    title: "Estado de Posici贸n Financiera",
+    title: "Estado de Posici髇 Financiera",
     description:
       "Lectura de activo, pasivo y capital al corte del periodo seleccionado.",
   },
@@ -41,7 +41,7 @@ const REPORT_META = [
       "Variante ajustada para clasificaciones irregulares y lectura reforzada de ingresos y gastos.",
   },
   {
-    title: "C茅dula Extraordinaria",
+    title: "C閐ula Extraordinaria",
     description:
       "Seguimiento de recaudado, mejoras, eventos y gastos extraordinarios del periodo.",
   },
@@ -63,7 +63,7 @@ const REPORT_META = [
   {
     title: "Dashboard de Cobranza",
     description:
-      "Vista ejecutiva de cobranza con corte, KPIs, top deudores y detalle operativo por cond贸mino.",
+      "Vista ejecutiva de cobranza con corte, KPIs, top deudores y detalle operativo por cond髆ino.",
   },
   {
     title: "Presupuesto Contabilidad",
@@ -77,7 +77,7 @@ const REPORT_META = [
   {
     title: "Proyectos Aprobados",
     description:
-      "Seguimiento de presupuesto y ejecuci贸n de proyectos aprobados.",
+      "Seguimiento de presupuesto y ejecuci髇 de proyectos aprobados.",
   },
 ] as const;
 
@@ -96,7 +96,7 @@ const REPORT_META = [
     CedulaPresupuestal,
     ReporteFinanciero,
     FlujoEfectivo,
-    CustomButton,
+    WebButtonLabel,
     CobranzaOnlineDashboard,
     PresupuestoContabilidad,
     BancosInversionesComponent,
@@ -131,7 +131,7 @@ export default class FinancialReportsWrapper {
   readonly activeReportDescription = computed(
     () =>
       REPORT_META[this.reportIndex()]?.description ??
-      "Consulta operativa del m贸dulo de contabilidad online.",
+      "Consulta operativa del m骴ulo de contabilidad online.",
   );
 
   readonly periodLabel = computed(() => {

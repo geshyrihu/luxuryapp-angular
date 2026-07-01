@@ -1,14 +1,14 @@
-﻿/**
+/**
  * ============================================================================
- * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
- * 
- * Por favor, NO rompan el código.
+ * Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
+ *
+ * Por favor, NO rompan el c�digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -16,22 +16,22 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
 
 @Component({
   selector: "app-budget-forecast-dialog",
   templateUrl: "./budget-forecast-dialog.html",
-  imports: [CommonModule, CustomButton, TableModule, FormsModule],
+  imports: [CommonModule, WebButtonLabel, TableModule, FormsModule],
 })
 export class BudgetForecastDialog implements OnInit {
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
   private aiService = inject(AiService);
   private customToastService = inject(CustomToastService);
-  
+
   loading = signal<boolean>(true);
   forecastData = signal<any[]>([]);
   selectedForecastItems = signal<any[]>([]);
@@ -48,7 +48,10 @@ export class BudgetForecastDialog implements OnInit {
     const items: BudgetProposalItemDTO[] = this.config.data?.items || [];
 
     if (items.length === 0) {
-      this.customToastService.showWarn("Sin datos", "No hay partidas para proyectar.");
+      this.customToastService.showWarn(
+        "Sin datos",
+        "No hay partidas para proyectar.",
+      );
       this.close();
       return;
     }
@@ -72,12 +75,16 @@ export class BudgetForecastDialog implements OnInit {
 
       const parsed = JSON.parse(jsonResponse);
       const data = parsed.map((aiItem: any) => {
-        const originalItem = items.find((i) => i.accountNumber.toString() === aiItem.accountNumber.toString());
+        const originalItem = items.find(
+          (i) => i.accountNumber.toString() === aiItem.accountNumber.toString(),
+        );
         return {
           ...aiItem,
-          accountName: originalItem?.accountName || '',
+          accountName: originalItem?.accountName || "",
           currentAmount: originalItem?.currentAmount || 0,
-          averageExpense: originalItem ? this.getAverageMonthlyExpense(originalItem) : 0
+          averageExpense: originalItem
+            ? this.getAverageMonthlyExpense(originalItem)
+            : 0,
         };
       });
 
@@ -85,7 +92,10 @@ export class BudgetForecastDialog implements OnInit {
       this.selectedForecastItems.set([...data]);
     } catch (error) {
       console.error(error);
-      this.customToastService.showError("Error", "No se pudo generar la proyección.");
+      this.customToastService.showError(
+        "Error",
+        "No se pudo generar la proyecci�n.",
+      );
       this.close();
     } finally {
       this.loading.set(false);
@@ -103,7 +113,9 @@ export class BudgetForecastDialog implements OnInit {
   private getAverageMonthlyExpense(item: BudgetProposalItemDTO): number {
     if (!item || item.esFilaAgrupadora) return 0;
 
-    const monthToExpensePropertyMap: { [key: string]: keyof BudgetProposalItemDTO } = {
+    const monthToExpensePropertyMap: {
+      [key: string]: keyof BudgetProposalItemDTO;
+    } = {
       enero: "gastoEnero",
       febrero: "gastoFebrero",
       marzo: "gastoMarzo",
@@ -129,9 +141,18 @@ export class BudgetForecastDialog implements OnInit {
       }
     } else {
       expensesToAverage = [
-        item.gastoEnero, item.gastoFebrero, item.gastoMarzo, item.gastoAbril,
-        item.gastoMayo, item.gastoJunio, item.gastoJulio, item.gastoAgosto,
-        item.gastoSeptiembre, item.gastoOctubre, item.gastoNoviembre, item.gastoDiciembre
+        item.gastoEnero,
+        item.gastoFebrero,
+        item.gastoMarzo,
+        item.gastoAbril,
+        item.gastoMayo,
+        item.gastoJunio,
+        item.gastoJulio,
+        item.gastoAgosto,
+        item.gastoSeptiembre,
+        item.gastoOctubre,
+        item.gastoNoviembre,
+        item.gastoDiciembre,
       ].filter((x): x is number => typeof x === "number");
     }
 
@@ -139,4 +160,3 @@ export class BudgetForecastDialog implements OnInit {
     return expensesToAverage.length ? sum / expensesToAverage.length : 0;
   }
 }
-

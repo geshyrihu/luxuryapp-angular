@@ -1,13 +1,13 @@
-﻿import { CommonModule } from "@angular/common";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomBtnActiveDesactive } from "src/app/core/components/web/buttons/custom-button-active-desactive";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -29,15 +29,13 @@ import { LevelThreeAccountForm } from "./level-three-account-form";
     EmptyState,
     CommonModule,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomBtnActiveDesactive,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelActiveDesactive,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-
-
   ],
 })
 export class LevelThreeAccountList implements OnInit {
@@ -78,7 +76,9 @@ export class LevelThreeAccountList implements OnInit {
       .onDelete(Endpoints.AccountingAccounts.delete(id))
       .then((result: boolean) => {
         if (result)
-          this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
       });
   }
 
@@ -96,13 +96,3 @@ export class LevelThreeAccountList implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

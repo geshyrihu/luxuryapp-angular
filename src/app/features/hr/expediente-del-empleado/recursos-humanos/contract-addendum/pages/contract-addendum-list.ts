@@ -1,22 +1,26 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { Component, inject, OnInit, signal } from "@angular/core";
 import { DatePipe } from "@angular/common";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DialogSize } from "src/app/core/enums/dialog-size";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { tablePrimeNgRows, rowsPerPageOptions, globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { DialogSize } from "src/app/core/enums/dialog-size";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ContractAddendumListDTO } from "../models/contract-addendum.dto";
 import { ContractAddendumFormComponent } from "./contract-addendum-form";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-contract-addendum-list",
@@ -27,12 +31,12 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
     DataViewMobile,
     ActionMenu,
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class ContractAddendumList implements OnInit {
@@ -44,37 +48,64 @@ export class ContractAddendumList implements OnInit {
   globalFilter = signal<string>("");
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  globalFilterFields = globalFilterFields(["addendumNumber", "title", "addendumType", "addendumStatus"]);
+  globalFilterFields = globalFilterFields([
+    "addendumNumber",
+    "title",
+    "addendumType",
+    "addendumStatus",
+  ]);
 
   ngOnInit(): void {
     this.onLoadData();
   }
 
   onLoadData(): void {
-    this.apiS.onGetList<ContractAddendumListDTO[]>(Endpoints.HR.ContractAddendum.getAll).then((resp) => {
-      if (resp) this.items.set(resp);
-    });
+    this.apiS
+      .onGetList<
+        ContractAddendumListDTO[]
+      >(Endpoints.HR.ContractAddendum.getAll)
+      .then((resp) => {
+        if (resp) this.items.set(resp);
+      });
   }
 
   onModalForm(data: { id: string; title: string }): void {
-    this.dialogS.openDialog(ContractAddendumFormComponent, { data: { item: null } }, data.title, DialogSize.lg).then(() => this.onLoadData());
+    this.dialogS
+      .openDialog(
+        ContractAddendumFormComponent,
+        { data: { item: null } },
+        data.title,
+        DialogSize.lg,
+      )
+      .then(() => this.onLoadData());
   }
 
   onEdit(item: ContractAddendumListDTO): void {
-    this.dialogS.openDialog(ContractAddendumFormComponent, { data: { item } }, "Editar Adenda", DialogSize.lg).then(() => this.onLoadData());
+    this.dialogS
+      .openDialog(
+        ContractAddendumFormComponent,
+        { data: { item } },
+        "Editar Adenda",
+        DialogSize.lg,
+      )
+      .then(() => this.onLoadData());
   }
 
   onSign(item: ContractAddendumListDTO): void {
-    // TODO: Implementar diálogo de firmar adenda
+    // TODO: Implementar di�logo de firmar adenda
     console.log("Firmar adenda:", item.id);
   }
 
   onCancel(item: ContractAddendumListDTO): void {
-    this.apiS.onPatch(Endpoints.HR.ContractAddendum.cancel(item.id), {}).then(() => this.onLoadData());
+    this.apiS
+      .onPatch(Endpoints.HR.ContractAddendum.cancel(item.id), {})
+      .then(() => this.onLoadData());
   }
 
   onDelete(id: string): void {
-    this.apiS.onDelete(Endpoints.HR.ContractAddendum.delete(id)).then(() => this.onLoadData());
+    this.apiS
+      .onDelete(Endpoints.HR.ContractAddendum.delete(id))
+      .then(() => this.onLoadData());
   }
 
   getAddendumTypeBadge(type: string): string {
@@ -101,4 +132,3 @@ export class ContractAddendumList implements OnInit {
     return map[status] ?? "badge-neutral";
   }
 }
-

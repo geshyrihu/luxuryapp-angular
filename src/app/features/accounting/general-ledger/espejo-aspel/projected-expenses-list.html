@@ -57,12 +57,12 @@
             <div class="flex">
               @if (!item.isFromCalendar) {
 
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="
                 onModal({ id: item.id, title: 'Editar Ejecución' })
                 "
 />
-              <custom-button-delete (confirmed)="onDelete(item.id)"
+              <il-button-delete (confirmed)="onDelete(item.id)"
 />
               }
             </div>
@@ -109,11 +109,11 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModal({ id: item.id, title: 'Editar Ejecución' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+ label="Editar"/>
+          <il-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar"/>
         </ng-container>
       </app-action-menu>
     </ion-item>

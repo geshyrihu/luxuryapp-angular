@@ -43,12 +43,12 @@
           >
         </td>
         <td class="text-center">
-          <custom-button-item
+          <il-button-item
             icon="mdi:eye-outline"
             (click)="onViewDetail(item)"
           />
-          <custom-button-edit (click)="onEdit(item)" />
-          <custom-button-delete (click)="onDelete(item.id)" />
+          <il-button-edit (click)="onEdit(item)" />
+          <il-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
@@ -104,17 +104,15 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Ver"
               iconName="eye-outline"
               (clicked)="onViewDetail(item)"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

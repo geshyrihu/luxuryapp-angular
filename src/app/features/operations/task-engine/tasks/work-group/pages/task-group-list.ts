@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
@@ -15,20 +14,19 @@ import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import {
+  WebButtonLabelActiveDesactive,
+  WebButtonLabel,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import {
-  CustomBtnActiveDesactive,
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import {
-  CustomButton,
-} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -59,17 +57,17 @@ import { TaskGroupForm } from "./task-group-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButton,
-    CustomBtnActiveDesactive,
+    WebButtonLabel,
+    WebButtonLabelActiveDesactive,
     TagModule,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomBtnActiveDesactive,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
+    WebButtonLabelActiveDesactive,
     TooltipModule,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
     StatusBadge,
   ],
@@ -221,5 +219,3 @@ export interface WorkGroupDTO {
   active: boolean;
   isLegalGroup: boolean;
 }
-
-

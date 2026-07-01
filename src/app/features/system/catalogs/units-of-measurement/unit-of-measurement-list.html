@@ -22,7 +22,7 @@
   <ng-template #header>
     <tr>
       <th class="table-col-7 text-small" pSortableColumn="descripcion">
-        DESCRIPCIÓN
+        DESCRIPCIï¿½N
         <p-sortIcon field="descripcion" />
       </th>
 
@@ -35,10 +35,10 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -60,7 +60,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -89,15 +89,13 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

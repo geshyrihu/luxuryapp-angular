@@ -1,8 +1,8 @@
-ï»¿<!-- Header toolbar -->
+<!-- Header toolbar -->
 <div class="flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
-  <!-- Selector de aÃ±o + periodo -->
+  <!-- Selector de año + periodo -->
   <div class="flex flex-wrap align-items-center gap-2">
-    <!-- AÃ±os -->
+    <!-- Años -->
     <div class="flex gap-1">
       @for (anio of aniosDisponibles; track anio) {
       <button
@@ -15,7 +15,7 @@
       </button>
       }
     </div>
-    <!-- Periodos del aÃ±o seleccionado -->
+    <!-- Periodos del año seleccionado -->
     @if (periodos().length) {
     <span class="text-color-secondary mx-1">|</span>
     @for (p of periodos(); track p.value) {
@@ -31,7 +31,7 @@
     }
   </div>
 
-  <!-- Leyenda + botÃ³n guardar -->
+  <!-- Leyenda + botón guardar -->
   <div class="flex align-items-center gap-3 flex-wrap">
     <div class="flex gap-2 flex-wrap">
       @for (entry of statusOrden; track entry) {
@@ -45,7 +45,7 @@
       </span>
       }
     </div>
-    <custom-button
+    <il-button
       label="Guardar Hoja"
       iconClass="mdi:content-save"
       severity="success"
@@ -67,8 +67,8 @@
 @if (!loading() && !periodos().length) {
 <div class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary" style="min-height: 200px">
   <app-icon [icon]="'mdi:calendar-remove'" class="text-5xl"></app-icon>
-  <span class="text-lg">No hay periodos de nÃ³mina para {{ anioFiltro() }}</span>
-  <span class="text-sm">Crea un periodo desde <strong>Periodos de NÃ³mina</strong> para comenzar.</span>
+  <span class="text-lg">No hay periodos de nómina para {{ anioFiltro() }}</span>
+  <span class="text-sm">Crea un periodo desde <strong>Periodos de Nómina</strong> para comenzar.</span>
 </div>
 }
 
@@ -76,7 +76,7 @@
 @if (!loading() && hoja(); as h) {
 <div class="overflow-x-auto" style="max-height: calc(100vh - 220px); overflow-y: auto">
   <table class="hoja-incidencias-table" style="border-collapse: collapse; min-width: max-content">
-    <!-- ENCABEZADO: dÃ­as del calendario -->
+    <!-- ENCABEZADO: días del calendario -->
     <thead style="position: sticky; top: 0; z-index: 10; background: white">
       <tr>
         <!-- Columnas fijas del empleado -->
@@ -92,7 +92,7 @@
         <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">RE</th>
         <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">VA</th>
         <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">IN</th>
-        <!-- Columnas de dÃ­as del periodo -->
+        <!-- Columnas de días del periodo -->
         @for (dia of h.dias; track dia.fecha) {
         <th
           class="hoja-th text-center"
@@ -144,7 +144,7 @@
         <td class="hoja-td text-center text-violet-700 font-semibold">
           {{ getCountOf(emp, "IN") || "" }}
         </td>
-        <!-- Celdas de cada dÃ­a -->
+        <!-- Celdas de cada día -->
         @for (celda of emp.celdas; track celda.fecha) {
         <td
           class="hoja-celda"
@@ -153,7 +153,7 @@
           [class.cursor-pointer]="!isSyncronizada(emp.employeeId, celda.fecha)"
           [pTooltip]="
             statusConfig[getStatus(emp.employeeId, celda.fecha)].label +
-            (isSyncronizada(emp.employeeId, celda.fecha) ? ' (sincronizada)' : ' â€” clic para cambiar')
+            (isSyncronizada(emp.employeeId, celda.fecha) ? ' (sincronizada)' : ' — clic para cambiar')
           "
           (click)="ciclarStatus(emp.employeeId, celda.fecha)"
           (contextmenu)="op.toggle($event); $event.preventDefault()"
@@ -170,7 +170,7 @@
           <span style="position: absolute; top: 1px; right: 2px; font-size: .55rem; color: var(--ds-text-muted)">S</span>
           }
         </td>
-        <!-- Context menu overlay para selecciÃ³n directa -->
+        <!-- Context menu overlay para selección directa -->
         <p-popover #op styleClass="p-0">
           <div class="flex flex-wrap gap-1 p-2" style="max-width: 200px">
             @for (s of statusOrden; track s) {

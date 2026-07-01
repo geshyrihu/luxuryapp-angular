@@ -7,8 +7,8 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 @Component({
   selector: "app-bitacora-filtro-fecha-form",
@@ -17,7 +17,7 @@ import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-but
     ReactiveFormsModule,
     CardModule,
     CustomInputDateSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class BitacoraFiltroFechaForm {

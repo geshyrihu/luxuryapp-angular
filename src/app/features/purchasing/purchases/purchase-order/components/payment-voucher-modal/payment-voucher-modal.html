@@ -15,15 +15,15 @@
         <td>{{ item.uploadDate | date: "short" }}</td>
         <td class="text-center">
           <div class="flex justify-content-center">
-            <custom-button
+            <il-button
               iconClass="mdi:eye-outline"
               [border-round]="true"
               [text]="true"
               (clicked)="viewFile(item.filePath, item.fileName)"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
-            ></custom-button-delete>
+            ></il-button-delete>
           </div>
         </td>
       </tr>
@@ -50,13 +50,13 @@
   </div>
 
   <div class="flex justify-content-end mt-3">
-    <custom-button
+    <il-button
       label="Cerrar"
       iconClass="mdi:close"
       severity="secondary"
       (clicked)="close()"
     />
-    <custom-button
+    <il-button
       label="Subir"
       iconClass="mdi:upload"
       severity="primary"

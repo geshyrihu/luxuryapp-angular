@@ -35,7 +35,7 @@
 
     @if (id) {
     <div class="flex justify-content-end mb-3">
-      <custom-button
+      <il-button
         label="Seguimientos"
         iconClass="mdi:comment-multiple"
         severity="info"
@@ -44,7 +44,7 @@
     </div>
     }
 
-    <custom-button-save
+    <il-button-save
       [propertyId]="id"
       [disabled]="form.invalid"
       [submitting]="submitting()"

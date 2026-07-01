@@ -1,15 +1,15 @@
-﻿import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 @Component({
   selector: "app-mis-inspecciones-agregar-imagenes",
-  imports: [CustomButton, NgbTooltipModule],
+  imports: [WebButtonLabel, NgbTooltipModule],
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })
 export class MisInspeccionesAgregarImagenes {
@@ -101,4 +101,3 @@ export class MisInspeccionesAgregarImagenes {
       });
   }
 }
-

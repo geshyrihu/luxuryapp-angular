@@ -1,12 +1,11 @@
 <!-- Vista Escritorio -->
 <div class="hidden md:flex w-full " role="group" aria-label="Estado">
   @for (item of cb_status; track item.value) {
-  <custom-button
+  <il-button
     [iconClass]="item.icon"
     [label]="item.label"
     [severity]="status === item.value ? getSeverityForStatus(item.value) : 'secondary'"
     [variant]="status === item.value ? null : 'outlined'"
-    [showLabelOnDesktop]="true"
     [fluid]="true"
     class="mb-2"
     (clicked)="onStatusChange(item.value)"

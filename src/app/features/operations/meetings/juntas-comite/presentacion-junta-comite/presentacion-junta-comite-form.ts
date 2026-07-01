@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,8 +8,8 @@ import {
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importaciÃ³n
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importación
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 
@@ -26,8 +26,8 @@ interface IPresentacionJuntaComiteForm {
     ReactiveFormsModule,
     FileUploadModule,
     ButtonModule,
-    CustomButtonSave,
-    CustomButton,
+    WebButtonLabelSave,
+    WebButtonLabel,
   ],
 })
 export class PresentacionJuntaComiteForm implements OnInit {
@@ -61,15 +61,15 @@ export class PresentacionJuntaComiteForm implements OnInit {
     const file = event.files[0];
     this.selectedFile = file;
     this.selectedFileName.set(file.name);
-    // Aunque guardamos en selectedFile, tambiÃ³n podemos ponerlo en el form si queremos validar required
+    // Aunque guardamos en selectedFile, tambión podemos ponerlo en el form si queremos validar required
     this.form.patchValue({ archivo: file });
   }
 
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
-    // ValidaciÃ³n extra si archivo es requerido y no estÃ³ en form validators
-    // El HTML usa !selectedFileName() para deshabilitar botÃ³n.
+    // Validación extra si archivo es requerido y no estó en form validators
+    // El HTML usa !selectedFileName() para deshabilitar botón.
 
     this.id = this.config.data.id;
     const formValue = this.form.getRawValue();
@@ -101,13 +101,3 @@ export class PresentacionJuntaComiteForm implements OnInit {
     this.form.patchValue({ archivo: null });
   }
 }
-
-
-
-
-
-
-
-
-
-

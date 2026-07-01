@@ -34,9 +34,9 @@
             />
           </label>
 
-          <custom-button
+          <il-button
             label="Actualizar vista previa"
-            icon="mdi:refresh"
+            iconClass="mdi:refresh"
             [loading]="loading()"
             (clicked)="onLoadData()"
           />
@@ -181,14 +181,11 @@
                   <span>Vincular minuta</span>
                 </label>
 
-                <custom-button-confirm
+                <il-button-confirm
                   label="Aplicar sugerencias"
-                  icon="mdi:link"
+                  iconClass="mdi:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
-                  swalTitle="Aplicar conciliacion"
                   swalText="Se vincularan los registros seleccionados a la sesion mensual. Esta accion no elimina historico existente."
-                  swalConfirmButtonText="Si, aplicar"
-                  swalCancelButtonText="Cancelar"
                   (confirmed)="onApply(item)"
                 />
               </div>

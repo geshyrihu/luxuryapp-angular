@@ -1,10 +1,10 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -18,7 +18,7 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     CommonModule,
     ReactiveFormsModule,
     CustomInputDateSignal,
-    CustomButton,
+    WebButtonLabel,
     TableModule,
     StatusBadge,
   ],

@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,12 +8,12 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ListboxModule } from "primeng/listbox";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -47,7 +47,7 @@ interface IManualTemplateForm {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     ListboxModule,
     CustomInputMultiselectSignal,
     AppIcon,
@@ -69,7 +69,7 @@ export class ManualsAndProcessesForm implements OnInit {
   // Periodicity options
   periodicityOptions = [
     { label: "A Demanda", value: 0 },
-    { label: "Ãšnica Vez", value: 1 },
+    { label: "Única Vez", value: 1 },
     { label: "Diario", value: 2 },
     { label: "Semanal", value: 3 },
     { label: "Mensual", value: 4 },
@@ -80,10 +80,10 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "Domingo", value: 0 },
     { label: "Lunes", value: 1 },
     { label: "Martes", value: 2 },
-    { label: "MiÃ©rcoles", value: 3 },
+    { label: "Miércoles", value: 3 },
     { label: "Jueves", value: 4 },
     { label: "Viernes", value: 5 },
-    { label: "SÃ¡bado", value: 6 },
+    { label: "Sábado", value: 6 },
   ];
 
   weeksOfMonthOptions = [
@@ -91,7 +91,7 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "2da Semana", value: 2 },
     { label: "3ra Semana", value: 3 },
     { label: "4ta Semana", value: 4 },
-    { label: "Ãšltima Semana", value: 5 },
+    { label: "Última Semana", value: 5 },
   ];
 
   daysOfMonthOptions = Array.from({ length: 31 }, (_, i) => ({

@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,10 +6,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -22,7 +22,7 @@ import { DateService } from "src/app/core/services/date.service";
     ReactiveFormsModule,
     CustomInputDateSignal,
     CustomInputTime,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CustomInputTextSignal,
   ],
 })
@@ -38,7 +38,7 @@ export class PresentacionJuntaAdd implements OnInit {
   filePath: string = "";
   errorMessage: string = "";
 
-  // Definición estricta del formulario
+  // Definici�n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     customerId: new FormControl<string>(this.customerIdS.customerId()),

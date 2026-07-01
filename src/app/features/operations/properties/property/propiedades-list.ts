@@ -1,17 +1,18 @@
-ï»¿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -19,7 +20,6 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IProperty } from "src/app/core/interfaces/property.interface";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -35,17 +35,17 @@ import { PropiedadesForm } from "./propiedades-form";
     EmptyState,
     CommonModule,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     DataViewMobile,
     DataViewMobile,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButton,
+    WebButtonLabel,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export class PropiedadesList {
@@ -77,12 +77,14 @@ export class PropiedadesList {
   }
 
   onDelete(id: any) {
-    return this.apiResponseS.onDelete(Endpoints.Properties.delete(id)).then((result: boolean) => {
-      if (result)
-        this.dataSignal.update((currentData) =>
-          currentData.filter((item) => item.id !== id),
-        );
-    });
+    return this.apiResponseS
+      .onDelete(Endpoints.Properties.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.update((currentData) =>
+            currentData.filter((item) => item.id !== id),
+          );
+      });
   }
   onModalForm(data: any) {
     this.dialogHandlerS
@@ -133,11 +135,11 @@ export class PropiedadesList {
     }
 
     Swal.fire({
-      title: "Confirmar ImportaciÃ³n",
-      text: "AsegÃ³rate de que el archivo utiliza el formato de la plantilla descargada. Ã³Deseas continuar?",
+      title: "Confirmar Importación",
+      text: "Asegórate de que el archivo utiliza el formato de la plantilla descargada. óDeseas continuar?",
       icon: "info",
       showCancelButton: true,
-      confirmButtonText: "SÃ­, importar",
+      confirmButtonText: "Sí, importar",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -153,4 +155,3 @@ export class PropiedadesList {
     });
   }
 }
-

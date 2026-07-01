@@ -69,8 +69,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCargaPortada }}</p>
           </div>
           <div class="mt-1">
-            <custom-button-view-pdf
-              [showLabelOnDesktop]="true"
+            <il-button-view-pdf
               [url]="item.archivoPortada"
               pdf="Portada"
             />
@@ -90,8 +89,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCargaContable }}</p>
           </div>
           <div class="mt-1">
-            <custom-button-view-pdf
-              [showLabelOnDesktop]="true"
+            <il-button-view-pdf
               [url]="item.archivoContable"
               pdf="Portada"
             />
@@ -119,8 +117,7 @@
               icon="mdi:download"
               styleClass="p-button-danger p-button-sm p-button-outlined w-xs mr-1 no-print"
             ></p-button> -->
-            <custom-button-view-pdf
-              [showLabelOnDesktop]="true"
+            <il-button-view-pdf
               [url]="item.archivoJunta"
               pdf="Portada"
             />
@@ -140,8 +137,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCargaSupervisor }}</p>
           </div>
           <div class="mt-1">
-            <custom-button-view-pdf
-              [showLabelOnDesktop]="true"
+            <il-button-view-pdf
               [url]="item.archivoFinal"
               pdf="Portada"
             />
@@ -203,8 +199,7 @@
           <p class="font-bold mb-0">Portada:</p>
           <p class="text-color-secondary mb-0">{{ item.userPortada }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCargaPortada }}</p>
-          <custom-button-view-pdf
-            [showLabelOnDesktop]="true"
+          <il-button-view-pdf
             [url]="item.archivoPortada"
             pdf="Portada"
           />
@@ -217,8 +212,7 @@
           <p class="font-bold mb-0">Contable:</p>
           <p class="text-color-secondary mb-0">{{ item.userContable }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCargaContable }}</p>
-          <custom-button-view-pdf
-            [showLabelOnDesktop]="true"
+          <il-button-view-pdf
             [url]="item.archivoContable"
             pdf="Portada"
           />
@@ -231,8 +225,7 @@
           <p class="font-bold mb-0">Operaciones:</p>
           <p class="text-color-secondary mb-0">{{ item.fullName }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCarga }}</p>
-          <custom-button-view-pdf
-            [showLabelOnDesktop]="true"
+          <il-button-view-pdf
             [url]="item.archivoJunta"
             pdf="Portada"
           />
@@ -247,8 +240,7 @@
           <p class="text-color-secondary mb-0">
             {{ item.fechaCargaSupervisor }}
           </p>
-          <custom-button-view-pdf
-            [showLabelOnDesktop]="true"
+          <il-button-view-pdf
             [url]="item.archivoFinal"
             pdf="Portada"
           />

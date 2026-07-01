@@ -1,4 +1,4 @@
-ï»¿import {
+import {
   Component,
   computed,
   effect,
@@ -12,11 +12,11 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -31,7 +31,7 @@ import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/
   selector: "app-biblioteca-consejo-directivo-detalle",
   imports: [
     TableModule,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
     DataViewMobile,
     CustomSearchInput,
     IonItem,
@@ -66,7 +66,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
         this.pageTitle = data["title"];
         this.documentType = data["documentType"];
         console.log("Tipo de documento:", this.documentType);
-        console.log("TÃ­tulo de la pÃ³gina:", this.pageTitle);
+        console.log("Título de la pógina:", this.pageTitle);
         this.onLoadData();
       }
     });

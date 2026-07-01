@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -19,9 +19,9 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -43,8 +43,8 @@ interface ITicketMessageFollowupForm {
     ReactiveFormsModule,
     FormsModule,
     CardModule,
-    CustomButtonSave,
-    CustomButtonDelete,
+    WebButtonLabelSave,
+    WebButtonLabelDelete,
     ProgressSpinnerModule,
     CustomInputTextAreaSignal,
   ],

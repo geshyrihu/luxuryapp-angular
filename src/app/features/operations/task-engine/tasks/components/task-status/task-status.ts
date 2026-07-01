@@ -13,14 +13,14 @@ import {
   refreshOutline,
   settingsOutline,
 } from "ionicons/icons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "../../task.service";
 @Component({
   selector: "app-task-status",
   templateUrl: "./task-status.html",
-  imports: [FormsModule, CustomButton, IonSegment, IonSegmentButton, IonLabel],
+  imports: [FormsModule, WebButtonLabel, IonSegment, IonSegmentButton, IonLabel],
 })
 export class TaskStatus implements OnInit {
   TaskGroupService = inject(TaskGroupService);
@@ -33,7 +33,7 @@ export class TaskStatus implements OnInit {
   status: string = this.TaskGroupService.taskGroupMessageStatus || "NotStarted";
   statusChange = output<string>();
 
-  isMobile: boolean = false; // Propiedad para detectar móvil
+  isMobile: boolean = false; // Propiedad para detectar mï¿½vil
 
   constructor() {
     addIcons({
@@ -51,10 +51,10 @@ export class TaskStatus implements OnInit {
 
   ngOnInit() {
     this.cb_status = [
-      { value: "NotStarted", label: "Abierto",    icon: "mdi:folder-open" },
+      { value: "NotStarted", label: "Abierto", icon: "mdi:folder-open" },
       { value: "InProgress", label: "En Proceso", icon: "mdi:sync" },
-      { value: "Completed",  label: "Completado", icon: "mdi:check-circle" },
-      { value: "Reopened",   label: "Reabierto",  icon: "mdi:refresh" },
+      { value: "Completed", label: "Completado", icon: "mdi:check-circle" },
+      { value: "Reopened", label: "Reabierto", icon: "mdi:refresh" },
     ];
   }
 
@@ -68,8 +68,8 @@ export class TaskStatus implements OnInit {
     const map: Record<string, string> = {
       NotStarted: "mdi:folder-open",
       InProgress: "mdi:sync",
-      Completed:  "mdi:check-circle",
-      Reopened:   "mdi:refresh",
+      Completed: "mdi:check-circle",
+      Reopened: "mdi:refresh",
     };
     return map[value] || "mdi:circle";
   }
@@ -78,10 +78,9 @@ export class TaskStatus implements OnInit {
     const map: Record<string, "danger" | "warn" | "success" | "info"> = {
       NotStarted: "danger",
       InProgress: "warn",
-      Completed:  "success",
-      Reopened:   "info",
+      Completed: "success",
+      Reopened: "info",
     };
     return map[value] ?? "info";
   }
 }
-

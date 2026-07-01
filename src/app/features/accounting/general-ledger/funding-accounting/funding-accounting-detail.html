@@ -25,7 +25,7 @@
 <div class="mb-1 flex">
   @if (!isConfirmed() && inProgress()) {
 
-  <custom-button
+  <il-button
     label="PROCESAR FONDEO"
     iconClass="mdi:checkbox-marked"
     customClass="mr-1  border-2 border-surface-200"
@@ -34,7 +34,7 @@
   />
   } @if (isConfirmed() && isAuthorized() && inProgress()) {
 
-  <custom-button-item
+  <il-button-item
     label="REABRIR FONDEO"
     iconClass="mdi:arrow-left"
     class="mr-1"
@@ -42,7 +42,7 @@
   />
   } @if (isConfirmed() && inProgress()) {
 
-  <custom-button
+  <il-button
     label="FINALIZAR FONDEO"
     iconClass="mdi:lock"
     customClass="mr-1  border-2 border-surface-200"
@@ -51,7 +51,7 @@
   />
   } @if ( !inProgress()) {
 
-  <custom-button
+  <il-button
     label="REVERTIR FONDEO COMPLETADO"
     iconClass="mdi:alert"
     customClass="mr-1  border-2 border-surface-200"
@@ -59,21 +59,21 @@
     (clicked)="onRevertComplete()"
   />
   } @if (isVerified() && isAuthorized()) {
-  <custom-button
+  <il-button
     iconClass="mdi:chart-bar"
     label="Excel"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onDownloadFileExcel()"
   />
-  <custom-button
+  <il-button
     iconClass="mdi:book"
     label="Pdf"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onDownloadFilePdf()"
   />
-  <custom-button
+  <il-button
     [iconClass]="'mdi:upload'"
     label="Facturas"
     customClass="mr-1  border-2 border-surface-200"

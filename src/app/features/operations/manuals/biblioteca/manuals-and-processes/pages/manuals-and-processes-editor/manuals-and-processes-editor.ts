@@ -1,4 +1,4 @@
-﻿import {
+import {
   CdkDragDrop,
   DragDropModule,
   moveItemInArray,
@@ -18,16 +18,16 @@ import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TagModule } from "primeng/tag";
+import {
+  WebButtonLabelDelete,
+  WebButtonLabelSave,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import {
-  CustomButtonDelete,
-  CustomButtonSave,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -80,9 +80,9 @@ interface IVersionForm {
     SelectButtonModule,
     CustomInputSwitch,
     FileUploadModule,
-    CustomButton,
-    CustomButtonDelete,
-    CustomButtonSave,
+    WebButtonLabel,
+    WebButtonLabelDelete,
+    WebButtonLabelSave,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputMultiselectSignal,

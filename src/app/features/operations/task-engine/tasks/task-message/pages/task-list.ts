@@ -45,13 +45,13 @@ import { PopoverModule } from "primeng/popover";
 import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -74,10 +74,10 @@ import Swal from "sweetalert2";
 
 import { CommonModule } from "@angular/common";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
@@ -131,7 +131,7 @@ import { TaskForm } from "./task-form";
     CustomInputTextSignal,
     TaskStatus,
     CustomInputSelectSignal,
-    CustomButton,
+    WebButtonLabel,
     AvatarModule,
     ImageModule,
     ToggleSwitchModule,
@@ -145,9 +145,9 @@ import { TaskForm } from "./task-form";
     IonLabel,
     IonAvatar,
     IonBadge,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     CommonModule,
     IonGrid,
     IonRow,

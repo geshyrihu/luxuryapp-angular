@@ -20,42 +20,37 @@
           [filter]="true"
         />
       </div>
-      <custom-button
+      <il-button
         label="Ejecutar"
         iconClass="mdi:play"
-        [showLabelOnDesktop]="true"
         [loading]="loading()"
         (clicked)="ejecutar()"
       />
     </div>
     @if (resultado()) {
       <div class="flex gap-2">
-        <custom-button
+        <il-button
           label="Excel"
           iconClass="mdi:file-excel"
           severity="success"
-          [showLabelOnDesktop]="true"
           (clicked)="exportarExcel()"
         />
-        <custom-button
+        <il-button
           label="PDF"
           iconClass="mdi:file-pdf-box"
           severity="danger"
-          [showLabelOnDesktop]="true"
           (clicked)="exportarPdf()"
         />
-        <custom-button
+        <il-button
           label="Compartir"
           iconClass="mdi:link"
           severity="secondary"
-          [showLabelOnDesktop]="true"
           (clicked)="compartir()"
         />
-        <custom-button
+        <il-button
           label="Auditor IA"
           iconClass="mdi:sparkles"
           severity="info"
-          [showLabelOnDesktop]="true"
           (clicked)="aiAgent()?.togglePanel()"
         />
       </div>

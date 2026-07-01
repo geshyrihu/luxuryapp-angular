@@ -1,4 +1,4 @@
-﻿<p-card>
+<p-card>
   <p-table
     [value]="facturas()"
     [tableStyle]="{'min-width': '50rem'}"
@@ -48,8 +48,8 @@
         </td>
         <td>
           <div class="flex gap-1">
-            <custom-button-edit (clicked)="onEditInvoice(invoice)" />
-            <custom-button-delete (confirmed)="onDeleteInvoice(invoice.id)" />
+            <il-button-edit (clicked)="onEditInvoice(invoice)" />
+            <il-button-delete (confirmed)="onDeleteInvoice(invoice.id)" />
           </div>
         </td>
       </tr>
@@ -113,13 +113,13 @@
     </div>
     <div class="col-12 md:col-12 mt-2 flex justify-content-end">
       @if(isEditing()) {
-      <custom-button
+      <il-button
         label="Cancelar"
         severity="secondary"
         (clicked)="onCancelEdit()"
       />
       }
-      <custom-button
+      <il-button
         [label]="isEditing() ? 'Actualizar Factura' : 'Agregar Factura'"
         [iconClass]="isEditing() ? 'mdi:content-save' : 'mdi:plus'"
         (clicked)="onSubmit()"

@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -12,13 +11,14 @@ import {
 } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -43,18 +43,18 @@ import { InventarioHidranteQrService } from "./inventario-hidrante-qr.service";
     AppIcon,
     ImageModule,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
-    CustomButtonDownload,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
+    WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonDownload,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelDownload,
+    WebButtonLabelItem,
     IonButton,
     IonItem,
     IonLabel,
@@ -181,4 +181,3 @@ export class InventarioHidrante {
       });
   }
 }
-

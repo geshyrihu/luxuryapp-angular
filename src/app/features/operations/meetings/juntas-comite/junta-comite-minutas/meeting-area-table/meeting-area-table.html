@@ -5,14 +5,14 @@
     <tr>
       <th colspan="7" class="bg-surface-0 border-none p-3">
         <div class="flex align-items-center gap-2">
-          <custom-button-add
+          <il-button-add
             (clicked)="onAddDetail()"
             [label]="title() | uppercase"
             size="sm"
             [ngbTooltip]="'Agregar pendiente a ' + title()"
           />
           @if (details() && details().length > 0) {
-          <custom-button-confirm
+          <il-button-confirm
             swalTitle="Confirmar"
             [swalText]="'Enviar Email a ' + title()"
             [label]="'Enviar Email a ' + title()"
@@ -68,15 +68,13 @@
               </div>
               <app-action-menu>
                 <ng-container actions>
-                  <custom-button-edit
+                  <il-button-edit
                     (clicked)="onEditSeguimiento(detail.id, item.id)"
                     label="Editar"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-delete
+                  <il-button-delete
                     (confirmed)="onDeleteSeguimiento(item.id)"
                     label="Eliminar"
-                    [showLabelOnDesktop]="true"
                   />
                 </ng-container>
               </app-action-menu>
@@ -89,22 +87,19 @@
         <!-- Acciones a nivel de detalle -->
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:clipboard-text"
               label="Seguimiento"
               (clicked)="onAddSeguimiento(detail.id)"
-              [showLabelOnDesktop]="true"
             />
 
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onEditDetail(detail.id)"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDeleteDetail(detail.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

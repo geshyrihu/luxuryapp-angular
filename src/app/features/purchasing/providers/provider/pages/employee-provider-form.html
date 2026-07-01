@@ -62,7 +62,7 @@
             [required]="true"
           />
         </div>
-        <custom-button-save
+        <il-button-save
           [disabled]="form.invalid"
           [submitting]="submitting()"
           label="Registrar empleado"
@@ -197,7 +197,7 @@
   </div>
   }
 
-  <custom-button-save
+  <il-button-save
     (clicked)="onConfirmarFase2()"
     [submitting]="submitting()"
     label="Confirmar"

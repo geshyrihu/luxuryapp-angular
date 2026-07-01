@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/web/buttons";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -8,21 +8,21 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-implementation-tracking-manual",
 
-  imports: [CommonModule, CustomButton],
+  imports: [CommonModule, WebButtonLabel],
   template: `
     <div class="card p-4">
       <h2 class="text-2xl font-bold mb-4">
-        Verificación Manual: Reporte de Empleados
+        Verificaciï¿½n Manual: Reporte de Empleados
       </h2>
       <p class="mb-4 text-color-secondary">
-        Al presionar el botón a continuación, se encolará un trabajo en segundo
+        Al presionar el botï¿½n a continuaciï¿½n, se encolarï¿½ un trabajo en segundo
         plano para revisar los datos faltantes de los empleados activos y se
-        enviará un reporte al administrador correspondiente (configurado
+        enviarï¿½ un reporte al administrador correspondiente (configurado
         internamente).
       </p>
 
-      <custom-button
-        label="Ejecutar Validación de Empleados"
+      <il-button
+        label="Ejecutar Validaciï¿½n de Empleados"
         iconClass="mdi:send"
         severity="primary"
         [loading]="loading()"
@@ -49,4 +49,3 @@ export class AppImplementationTrackingManual {
       });
   }
 }
-

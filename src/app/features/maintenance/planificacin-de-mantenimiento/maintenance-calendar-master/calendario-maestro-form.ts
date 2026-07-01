@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -11,9 +11,9 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -40,7 +40,7 @@ interface ICalendarioMaestroForm {
     MultiSelectModule,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class CalendarioMaestroForm implements OnInit {
@@ -58,7 +58,7 @@ export class CalendarioMaestroForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  // DefiniciÃ³n estricta del formulario
+  // Definición estricta del formulario
   form: FormGroup<ICalendarioMaestroForm> =
     new FormGroup<ICalendarioMaestroForm>({
       id: new FormControl<string>("", { nonNullable: true }),
@@ -79,7 +79,7 @@ export class CalendarioMaestroForm implements OnInit {
   async ngOnInit() {
     this.id = this.config.data.id || 0;
 
-    // Cargar catÃ³logos
+    // Cargar católogos
     const meses = await firstValueFrom(this.enumSelectS.month(false));
     this.cb_meses.set(meses);
     this.onLoadSelectItem();

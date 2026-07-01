@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -10,12 +10,12 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 // Custom Inputs
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 // Services
-import { CustomButton } from "src/app/core/components/web/buttons";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -28,10 +28,10 @@ import { EBillingMode } from "../../models/enums";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./billing-config-modal.html",
 })

@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -10,9 +9,10 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -36,11 +36,11 @@ import { OrdenCompra } from "../orden-compra";
     SelectButtonModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButtonEdit,
+    WebButtonLabelEdit,
     SelectModule,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
+    WebButtonLabelEdit,
     IonItem,
     IonLabel,
   ],
@@ -92,4 +92,3 @@ export class OrdenCompraPagadas {
       });
   }
 }
-

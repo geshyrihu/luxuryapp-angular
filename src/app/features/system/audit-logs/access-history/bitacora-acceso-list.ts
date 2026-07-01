@@ -11,7 +11,7 @@ import {
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -32,7 +32,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
     TableModule,
     AvatarModule,
     CalendarRange,
-    CustomButton,
+    WebButtonIcon,
     PrimeNgCustomCaption,
     IonItem,
     IonLabel,
@@ -142,4 +142,3 @@ export class BitacoraAcceso {
       });
   }
 }
-

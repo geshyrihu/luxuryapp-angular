@@ -5,7 +5,7 @@ import { ConfirmationService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -19,7 +19,7 @@ import { MantenimientoPreventivoForm } from "src/app/features/operations/google-
     ReactiveFormsModule,
     EditorModule,
     TooltipModule,
-    CustomButton,
+    WebButtonLabel,
   ],
 })
 export class ServiceOrder implements OnInit {
@@ -60,7 +60,7 @@ export class ServiceOrder implements OnInit {
   confirm(event: Event, Id: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: "óDesea Eliminar este registro?",
+      message: "ï¿½Desea Eliminar este registro?",
       icon: "mdi:alert",
       accept: () => {
         //confirm action
@@ -92,5 +92,3 @@ export class ServiceOrder implements OnInit {
       });
   }
 }
-
-

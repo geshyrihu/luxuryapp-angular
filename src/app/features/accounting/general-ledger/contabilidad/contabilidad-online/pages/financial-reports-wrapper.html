@@ -1,4 +1,4 @@
-﻿<section class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report">
+<section class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report">
 
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
@@ -59,7 +59,7 @@
               class="text-primary font-bold uppercase"
               style="letter-spacing: 0.14em"
             >
-              LuxuryApp · Contabilidad Online
+              LuxuryApp � Contabilidad Online
             </small>
             <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
               Estados Financieros
@@ -116,59 +116,53 @@
             </div>
 
             <div class="flex gap-2 flex-wrap align-items-center">
-              <custom-button
+              <il-button
                 iconClass="mdi:refresh"
                 label="Actualizar"
                 variant="outlined"
                 severity="secondary"
                 size="small"
-                [showLabelOnDesktop]="true"
                 (clicked)="refreshReports()"
               />
-              <custom-button
+              <il-button
                 [iconClass]="isPreparing() ? 'mdi:loading pi-spinner' : 'mdi:printer'"
                 [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
                 variant="outlined"
                 severity="secondary"
                 size="small"
-                [showLabelOnDesktop]="true"
                 [disabled]="isPreparing()"
                 (clicked)="printReport()"
               />
-              <custom-button
+              <il-button
                 iconClass="mdi:comment-multiple"
                 label="Explicar IA"
                 variant="outlined"
                 size="small"
                 severity="info"
-                [showLabelOnDesktop]="true"
                 (clicked)="aiAgentExplicador.togglePanel()"
               />
-              <custom-button
+              <il-button
                 iconClass="mdi:sparkles"
                 label="Auditor CO"
                 variant="outlined"
                 size="small"
                 severity="contrast"
-                [showLabelOnDesktop]="true"
                 (clicked)="aiAgentContabilidadOnline.togglePanel()"
               />
-              <custom-button
+              <il-button
                 iconClass="mdi:sparkles"
                 label="Auditor IA"
                 variant="outlined"
                 size="small"
                 severity="help"
-                [showLabelOnDesktop]="true"
                 (clicked)="aiAgent.togglePanel()"
               />
-              <custom-button
+              <il-button
                 iconClass="mdi:external-link"
                 label="Vista cliente"
                 variant="outlined"
                 size="small"
                 severity="success"
-                [showLabelOnDesktop]="true"
                 [disabled]="!clienteUrl()"
                 (clicked)="openClienteView()"
               />

@@ -1,4 +1,4 @@
-<custom-button
+<il-button
   label="Cargar Documentos"
   (clicked)="onModalFormUploadDoc(machineryId)"
   severity="info"
@@ -26,7 +26,7 @@
           </span>
         </a>
         <div class="mt-2">
-          <custom-button-confirm
+          <il-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id)"

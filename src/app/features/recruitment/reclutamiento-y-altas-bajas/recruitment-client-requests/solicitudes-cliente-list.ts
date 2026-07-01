@@ -1,4 +1,4 @@
-Ôªøimport { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -6,8 +6,8 @@ import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -32,8 +32,8 @@ import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-
   imports: [
     TableModule,
     TagModule,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -49,7 +49,7 @@ export class SolicitudesClienteList {
   router = inject(Router);
   authS = inject(AuthService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // Declaraci√≥n e inicializaci√≥n de variables
+  // DeclaraciÛn e inicializaciÛn de variables
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -60,7 +60,7 @@ export class SolicitudesClienteList {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de di√°logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de di·logo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
@@ -166,4 +166,3 @@ export class SolicitudesClienteList {
     }
   }
 }
-

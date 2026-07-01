@@ -12,17 +12,17 @@
         </div>
 
         <div class="flex gap-2 flex-wrap">
-          <custom-button
+          <il-button
             icon="mdi:calendar"
             label="Agenda"
             (clicked)="onOpenAgenda()"
           />
-          <custom-button
+          <il-button
             icon="mdi:image-multiple"
             label="Presentaciones"
             (clicked)="onOpenPresentations()"
           />
-          <custom-button
+          <il-button
             icon="mdi:file-edit"
             label="Minutas"
             (clicked)="onOpenMinutes()"
@@ -133,31 +133,31 @@
 
       <div class="flex gap-2 flex-wrap mt-3">
         @if (canCreateMeeting(detail)) {
-        <custom-button
+        <il-button
           icon="mdi:file-plus"
           label="Generar minuta"
           (clicked)="onCreateMeeting()"
         />
         } @if (canReschedule(detail)) {
-        <custom-button
+        <il-button
           icon="mdi:calendar-plus"
           label="Reprogramar"
           (clicked)="onOpenReschedule()"
         />
         } @if (hasAssemblyChecklist(detail)) {
-        <custom-button
+        <il-button
           icon="mdi:format-list-checks"
           label="Checklist asamblea"
           (clicked)="onOpenAssemblyChecklist()"
         />
         } @if (detail.meetingId) {
-        <custom-button
+        <il-button
           icon="mdi:external-link"
           label="Abrir minuta"
           (clicked)="onOpenMinutes()"
         />
         } @if (canCancel(detail)) {
-        <custom-button-delete
+        <il-button-delete
           label="Cancelar sesion"
           [text]="true"
           confirmMessage="Esta accion cancelara la sesion y, si existe agenda ligada, tambien cancelara el evento de agenda."

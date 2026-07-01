@@ -9,6 +9,19 @@ import {
   IonList,
 } from "@ionic/angular/standalone";
 import {
+  IonButtonActiveDesactive,
+  IonButtonAdd,
+  IonButtonConfirm,
+  IonButtonDelete,
+  IonButtonDownload,
+  IonButtonEdit,
+  IonButtonItem,
+  IonButtonSave,
+  IonButtonSendEmail,
+  IonButtonTracking,
+  IonButtonViewPdf,
+} from "src/app/core/components/buttons/legacy/buttons-mobiil";
+import {
   IonInputCheckbox,
   IonInputCurrency,
   IonInputDate,
@@ -25,19 +38,6 @@ import {
   IonInputToggle,
 } from "src/app/core/components/inputs/mobile";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import {
-  IonButtonActiveDesactive,
-  IonButtonAdd,
-  IonButtonConfirm,
-  IonButtonDelete,
-  IonButtonDownload,
-  IonButtonEdit,
-  IonButtonItem,
-  IonButtonSave,
-  IonButtonSendEmail,
-  IonButtonTracking,
-  IonButtonViewPdf,
-} from "src/app/core/components/mobile/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 

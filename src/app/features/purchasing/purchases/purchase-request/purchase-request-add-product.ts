@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   OnInit,
@@ -16,9 +16,9 @@ import {
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { FluidModule } from "primeng/fluid";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -44,7 +44,7 @@ interface IPurchaseRequestAddProductForm {
     AutoCompleteModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class PurchaseRequestAddProduct implements OnInit {
@@ -76,7 +76,7 @@ export class PurchaseRequestAddProduct implements OnInit {
     );
   }
 
-  // Definición estricta del formulario con new FormGroup
+  // Definici�n estricta del formulario con new FormGroup
   form: FormGroup<IPurchaseRequestAddProductForm> =
     new FormGroup<IPurchaseRequestAddProductForm>({
       id: new FormControl<string | null>(null),

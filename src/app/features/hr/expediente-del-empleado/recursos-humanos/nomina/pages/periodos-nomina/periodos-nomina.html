@@ -67,15 +67,15 @@
       <td>{{ item.totalNominas }}</td>
       <td>
         <div class="flex gap-1">
-          <custom-button-edit (clicked)="openEdit(item)" />
-          <custom-button
+          <il-button-edit (clicked)="openEdit(item)" />
+          <il-button
             iconClass="mdi:calendar-remove"
             severity="secondary"
             variant="ghost-text"
             pTooltip="Dias no habiles"
             (clicked)="openDiasNoHabiles(item)"
           />
-          <custom-button-delete (confirmed)="onDelete(item)" />
+          <il-button-delete (confirmed)="onDelete(item)" />
         </div>
       </td>
     </tr>
@@ -133,8 +133,8 @@
         </div>
       </ion-label>
       <div slot="end" class="flex align-items-center gap-1">
-        <custom-button-edit (clicked)="openEdit(item)" />
-        <custom-button-delete (clicked)="onDelete(item)" />
+        <il-button-edit (clicked)="openEdit(item)" />
+        <il-button-delete (clicked)="onDelete(item)" />
       </div>
     </ion-item>
   </ng-template>

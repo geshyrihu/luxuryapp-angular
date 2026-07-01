@@ -1,15 +1,15 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -29,16 +29,16 @@ import { TaskGroupCategoryForm } from "./task-group-category-form";
     EmptyState,
     CommonModule,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export class TaskGroupCategoryList implements OnInit {
@@ -62,10 +62,12 @@ export class TaskGroupCategoryList implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList(Endpoints.TaskGroupCategories.getAll).then((result: any) => {
-      this.dataSignal.set(result);
-      this.loading.set(false);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.TaskGroupCategories.getAll)
+      .then((result: any) => {
+        this.dataSignal.set(result);
+        this.loading.set(false);
+      });
   }
 
   onDelete(id: any) {
@@ -92,6 +94,4 @@ export class TaskGroupCategoryList implements OnInit {
         if (result) this.onLoadData();
       });
   }
-
 }
-

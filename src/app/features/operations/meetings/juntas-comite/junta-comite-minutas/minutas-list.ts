@@ -1,8 +1,8 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 
 import { AccordionModule } from "primeng/accordion";
 import { ButtonModule } from "primeng/button";
@@ -10,24 +10,24 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonConfirm,
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+  WebButtonLabelConfirm,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -51,7 +51,7 @@ import { MinutaPdfService } from "./minuta-pdf.service";
   imports: [
     EmptyState,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     ButtonModule,
     NgbTooltipModule,
     TooltipModule,
@@ -65,10 +65,10 @@ import { MinutaPdfService } from "./minuta-pdf.service";
     CardModule,
     IonItem,
     IonLabel,
-    CustomButtonConfirm,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelConfirm,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
   ],
 })
 export class MinutasList {
@@ -129,11 +129,13 @@ export class MinutasList {
 
   onLoadData(tipoJuntaEnum: number): void {
     this.tipoJunta = tipoJuntaEnum;
-    this.apiResponseS.onGetList(
-      Endpoints.Meetings.list(this.customerIdS.customerId(), tipoJuntaEnum),
-    ).then((result: IMeetingIndex[]) => {
-      this.dataSignal.set(result);
-    });
+    this.apiResponseS
+      .onGetList(
+        Endpoints.Meetings.list(this.customerIdS.customerId(), tipoJuntaEnum),
+      )
+      .then((result: IMeetingIndex[]) => {
+        this.dataSignal.set(result);
+      });
   }
 
   /**
@@ -152,14 +154,16 @@ export class MinutasList {
    * @param id El ID de la minuta a eliminar.
    */
   onDelete(id: string): void {
-    this.apiResponseS.onDelete(Endpoints.Meetings.delete(id)).then((result: boolean) => {
-      if (result) {
-        // Optimización: Eliminar el item del array local en lugar de recargar todo.
-        this.dataSignal.update((data) =>
-          data.filter((meeting) => meeting.id !== id),
-        );
-      }
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.Meetings.delete(id))
+      .then((result: boolean) => {
+        if (result) {
+          // Optimización: Eliminar el item del array local en lugar de recargar todo.
+          this.dataSignal.update((data) =>
+            data.filter((meeting) => meeting.id !== id),
+          );
+        }
+      });
   }
 
   /**
@@ -167,7 +171,9 @@ export class MinutasList {
    * @param meetingId El ID de la minuta.
    */
   onSendEmailMeeting(meetingId: any): void {
-    this.apiResponseS.onPost(Endpoints.SendEmail.meeting(meetingId)).then(() => {});
+    this.apiResponseS
+      .onPost(Endpoints.SendEmail.meeting(meetingId))
+      .then(() => {});
   }
 
   /**
@@ -265,9 +271,14 @@ export class MinutasList {
           return;
         }
 
-        const dateLabel = meetingData.minuta?.date ? String(meetingData.minuta.date).split(" ")[0] : "N/A";
+        const dateLabel = meetingData.minuta?.date
+          ? String(meetingData.minuta.date).split(" ")[0]
+          : "N/A";
         const tipo = meetingData.minuta?.eTypeMeeting ?? "Junta";
-        this.minutaPdfS.downloadMinuta(meetingData, `Minuta-${tipo}-${dateLabel}`);
+        this.minutaPdfS.downloadMinuta(
+          meetingData,
+          `Minuta-${tipo}-${dateLabel}`,
+        );
       })
       .catch((error) => {
         console.error("Error al obtener datos de la minuta:", error);
@@ -277,8 +288,6 @@ export class MinutasList {
         );
       });
   }
-
-
 
   /**
    * Navega a la pógina de resumen de una minuta.
@@ -294,14 +303,16 @@ export class MinutasList {
    * @param eAreaMinutasDetalles El identificador numérico del área.
    */
   onSendEmail(id: any, eAreaMinutasDetalles: number): void {
-    this.apiResponseS.onPost(
-      Endpoints.Meetings.sendEmailResponsible(
-        id,
-        this.customerIdS.customerId(),
-        eAreaMinutasDetalles,
-        this.authS.infoUserAuth.applicationUserId,
-      ),
-    ).then(() => {});
+    this.apiResponseS
+      .onPost(
+        Endpoints.Meetings.sendEmailResponsible(
+          id,
+          this.customerIdS.customerId(),
+          eAreaMinutasDetalles,
+          this.authS.infoUserAuth.applicationUserId,
+        ),
+      )
+      .then(() => {});
   }
 
   /**
@@ -329,23 +340,25 @@ export class MinutasList {
    * @param id El ID del seguimiento a eliminar.
    */
   onDeleteSeguimiento(id: any): void {
-    this.apiResponseS.onDelete(Endpoints.MeetingDetailsTracking.delete(id)).then(() => {
-      // Optimización: Eliminar el seguimiento del array local.
-      this.dataSignal.update((data) => {
-        data.forEach((meeting) => {
-          ["contable", "operaciones", "legal"].forEach((area) => {
-            meeting[area]?.forEach((detail) => {
-              if (detail.seguimiento) {
-                detail.seguimiento = detail.seguimiento.filter(
-                  (seg) => seg.id !== id,
-                );
-              }
+    this.apiResponseS
+      .onDelete(Endpoints.MeetingDetailsTracking.delete(id))
+      .then(() => {
+        // Optimización: Eliminar el seguimiento del array local.
+        this.dataSignal.update((data) => {
+          data.forEach((meeting) => {
+            ["contable", "operaciones", "legal"].forEach((area) => {
+              meeting[area]?.forEach((detail) => {
+                if (detail.seguimiento) {
+                  detail.seguimiento = detail.seguimiento.filter(
+                    (seg) => seg.id !== id,
+                  );
+                }
+              });
             });
           });
+          return data;
         });
-        return data;
       });
-    });
   }
 
   /**
@@ -353,23 +366,24 @@ export class MinutasList {
    * @param id El ID del detalle a eliminar.
    */
   onDeleteMeetingDetail(id: any): void {
-    this.apiResponseS.onDelete(Endpoints.MeetingsDetails.delete(id)).then(() => {
-      // Optimización: Eliminar el detalle del array local.
-      this.dataSignal.update((data) => {
-        data.forEach((meeting: any) => {
-          meeting.contable =
-            meeting.contable?.filter((detail) => detail.id !== id) || [];
-          meeting.operaciones =
-            meeting.operaciones?.filter((detail) => detail.id !== id) || [];
-          meeting.legal =
-            meeting.legal?.filter((detail) => detail.id !== id) || [];
+    this.apiResponseS
+      .onDelete(Endpoints.MeetingsDetails.delete(id))
+      .then(() => {
+        // Optimización: Eliminar el detalle del array local.
+        this.dataSignal.update((data) => {
+          data.forEach((meeting: any) => {
+            meeting.contable =
+              meeting.contable?.filter((detail) => detail.id !== id) || [];
+            meeting.operaciones =
+              meeting.operaciones?.filter((detail) => detail.id !== id) || [];
+            meeting.legal =
+              meeting.legal?.filter((detail) => detail.id !== id) || [];
+          });
+          return data;
         });
-        return data;
+        // Podríamos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mós simple.
+        // Por simplicidad, una recarga puede ser aceptable aquó si los totales deben ser 100% precisos.
+        this.onLoadData(this.tipoJunta);
       });
-      // Podríamos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mós simple.
-      // Por simplicidad, una recarga puede ser aceptable aquó si los totales deben ser 100% precisos.
-      this.onLoadData(this.tipoJunta);
-    });
   }
 }
-

@@ -1,18 +1,18 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 import { ToolbarModule } from "primeng/toolbar";
+import {
+  WebButtonLabelConfirm,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
-import {
-  CustomButtonConfirm,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
@@ -28,9 +28,9 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     EmptyState,
     ActionMenu,
     CommonModule,
-    CustomButton,
-    CustomButtonConfirm,
-    CustomButtonItem,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
+    WebButtonLabelItem,
     DataViewMobile,
     CustomInputDateSignal,
     ReactiveFormsModule,
@@ -40,8 +40,8 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
 
-    CustomButtonConfirm,
-    CustomButtonItem,
+    WebButtonLabelConfirm,
+    WebButtonLabelItem,
   ],
 })
 export class TaskInstanceList implements OnInit {

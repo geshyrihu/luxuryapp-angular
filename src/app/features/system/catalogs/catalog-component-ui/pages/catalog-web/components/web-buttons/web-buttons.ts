@@ -7,8 +7,8 @@ import { DividerModule } from "primeng/divider";
 import { TooltipModule } from "primeng/tooltip";
 
 import {
-  CustomButton,
   CustomBtnActiveDesactive,
+  CustomButton,
   CustomButtonAdd,
   CustomButtonConfirm,
   CustomButtonDelete,
@@ -19,7 +19,7 @@ import {
   CustomButtonSendEmail,
   CustomButtonTracking,
   CustomButtonViewPdf,
-} from "src/app/core/components/web/buttons";
+} from "src/app/core/components/buttons/legacy/buttons";
 
 @Component({
   selector: "app-web-buttons",
@@ -45,14 +45,14 @@ import {
   ],
   template: `
     <div class="flex flex-column gap-3">
-
       <!-- Botones Custom de la App -->
       <p-card header="Action Buttons (Web Custom)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Botones con lÛgica integrada: confirmaciones SweetAlert2, estados reactivos, descarga y trazabilidad.
+          Botones con lÔøΩgica integrada: confirmaciones SweetAlert2, estados
+          reactivos, descarga y trazabilidad.
         </p>
         <div class="flex flex-wrap gap-2 mb-3">
-          <custom-button label="BotÛn GenÈrico" />
+          <custom-button label="BotÔøΩn GenÔøΩrico" />
           <custom-button-add label="Crear Solicitud" />
           <custom-button-edit label="Editar" />
           <custom-button-save label="Guardar" />
@@ -65,7 +65,9 @@ import {
           <custom-button-item [iconClass]="'mdi:star'" label="Item Especial" />
         </div>
         <p-divider />
-        <p class="text-xs font-semibold text-color-secondary mb-2">Estados Activo / Inactivo</p>
+        <p class="text-xs font-semibold text-color-secondary mb-2">
+          Estados Activo / Inactivo
+        </p>
         <div class="flex gap-2">
           <custom-button-active-desactive [state]="true" />
           <custom-button-active-desactive [state]="false" />
@@ -75,70 +77,141 @@ import {
       <!-- Severidades Filled -->
       <p-card header="PrimeNG ‚Äî Severidades (Filled)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Usa la severidad que coincida con el nivel sem·ntico de la acciÛn.
+          Usa la severidad que coincida con el nivel semÔøΩntico de la acciÔøΩn.
         </p>
         <div class="flex flex-wrap gap-2">
           <p-button label="Primary" />
           <p-button label="Secondary" severity="secondary" />
-          <p-button label="Success"   severity="success" />
-          <p-button label="Info"      severity="info" />
-          <p-button label="Warning"   severity="warn" />
-          <p-button label="Danger"    severity="danger" />
-          <p-button label="Help"      severity="help" />
-          <p-button label="Contrast"  severity="contrast" />
+          <p-button label="Success" severity="success" />
+          <p-button label="Info" severity="info" />
+          <p-button label="Warning" severity="warn" />
+          <p-button label="Danger" severity="danger" />
+          <p-button label="Help" severity="help" />
+          <p-button label="Contrast" severity="contrast" />
         </div>
       </p-card>
 
       <!-- Botones con √çconos -->
       <p-card header="Botones con √çconos">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          √çcono izquierda (default), derecha con <code>iconPos="right"</code>, o solo Ìcono circular.
+          √çcono izquierda (default), derecha con <code>iconPos="right"</code>, o
+          solo ÔøΩcono circular.
         </p>
         <div class="flex flex-wrap gap-2 mb-4">
-          <p-button label="Guardar"    icon="pi pi-save" />
-          <p-button label="Nuevo"      icon="pi pi-plus"      severity="success" />
-          <p-button label="Eliminar"   icon="pi pi-trash"     severity="danger" />
-          <p-button label="Descargar"  icon="pi pi-download"  severity="info" />
-          <p-button label="Siguiente"  icon="pi pi-arrow-right" iconPos="right" severity="secondary" />
-          <p-button label="Buscar"     icon="pi pi-search"    [outlined]="true" />
+          <p-button label="Guardar" icon="pi pi-save" />
+          <p-button label="Nuevo" icon="pi pi-plus" severity="success" />
+          <p-button label="Eliminar" icon="pi pi-trash" severity="danger" />
+          <p-button label="Descargar" icon="pi pi-download" severity="info" />
+          <p-button
+            label="Siguiente"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            severity="secondary"
+          />
+          <p-button label="Buscar" icon="pi pi-search" [outlined]="true" />
         </div>
-        <p class="text-xs font-semibold text-color-secondary mb-2">Solo Ìcono (rounded)</p>
+        <p class="text-xs font-semibold text-color-secondary mb-2">
+          Solo ÔøΩcono (rounded)
+        </p>
         <div class="flex flex-wrap gap-2">
-          <p-button icon="pi pi-plus"     [rounded]="true" pTooltip="Agregar" tooltipPosition="top" />
-          <p-button icon="pi pi-pencil"   [rounded]="true" severity="secondary" pTooltip="Editar" tooltipPosition="top" />
-          <p-button icon="pi pi-trash"    [rounded]="true" severity="danger"    pTooltip="Eliminar" tooltipPosition="top" />
-          <p-button icon="pi pi-download" [rounded]="true" severity="info"      pTooltip="Descargar" tooltipPosition="top" />
-          <p-button icon="pi pi-check"    [rounded]="true" severity="success"   pTooltip="Aprobar" tooltipPosition="top" />
-          <p-button icon="pi pi-times"    [rounded]="true" [outlined]="true" severity="danger" pTooltip="Cancelar" tooltipPosition="top" />
-          <p-button icon="pi pi-cog"      [rounded]="true" [text]="true" severity="secondary" pTooltip="Configurar" tooltipPosition="top" />
-          <p-button icon="pi pi-bell"     [rounded]="true" [text]="true" pTooltip="Notificaciones" tooltipPosition="top" />
+          <p-button
+            icon="pi pi-plus"
+            [rounded]="true"
+            pTooltip="Agregar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-pencil"
+            [rounded]="true"
+            severity="secondary"
+            pTooltip="Editar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-trash"
+            [rounded]="true"
+            severity="danger"
+            pTooltip="Eliminar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-download"
+            [rounded]="true"
+            severity="info"
+            pTooltip="Descargar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-check"
+            [rounded]="true"
+            severity="success"
+            pTooltip="Aprobar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-times"
+            [rounded]="true"
+            [outlined]="true"
+            severity="danger"
+            pTooltip="Cancelar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-cog"
+            [rounded]="true"
+            [text]="true"
+            severity="secondary"
+            pTooltip="Configurar"
+            tooltipPosition="top"
+          />
+          <p-button
+            icon="pi pi-bell"
+            [rounded]="true"
+            [text]="true"
+            pTooltip="Notificaciones"
+            tooltipPosition="top"
+          />
         </div>
       </p-card>
 
-      <!-- TamaÒos y Estados -->
-      <p-card header="TamaÒos y Estados">
+      <!-- TamaÔøΩos y Estados -->
+      <p-card header="TamaÔøΩos y Estados">
         <div class="flex flex-column gap-4">
           <div>
-            <p class="text-xs font-semibold text-color-secondary mb-2">TamaÒos</p>
+            <p class="text-xs font-semibold text-color-secondary mb-2">
+              TamaÔøΩos
+            </p>
             <div class="flex flex-wrap align-items-center gap-2">
-              <p-button label="Small"  size="small" />
+              <p-button label="Small" size="small" />
               <p-button label="Normal" />
-              <p-button label="Large"  size="large" />
+              <p-button label="Large" size="large" />
             </div>
           </div>
           <div>
-            <p class="text-xs font-semibold text-color-secondary mb-2">Estados</p>
+            <p class="text-xs font-semibold text-color-secondary mb-2">
+              Estados
+            </p>
             <div class="flex flex-wrap align-items-center gap-2">
-              <p-button label="Cargando..." [loading]="isLoading()"
-                        (onClick)="simulateLoad()" severity="secondary" />
+              <p-button
+                label="Cargando..."
+                [loading]="isLoading()"
+                (onClick)="simulateLoad()"
+                severity="secondary"
+              />
               <p-button label="Deshabilitado" [disabled]="true" />
-              <p-button label="Raised"   [raised]="true" severity="secondary" />
-              <p-button label="Rounded"  [rounded]="true" />
+              <p-button label="Raised" [raised]="true" severity="secondary" />
+              <p-button label="Rounded" [rounded]="true" />
             </div>
           </div>
           <div>
-            <p class="text-xs font-semibold text-color-secondary mb-2">Ancho completo</p>
-            <p-button label="BotÛn de ancho completo" class="w-full" styleClass="w-full" />
+            <p class="text-xs font-semibold text-color-secondary mb-2">
+              Ancho completo
+            </p>
+            <p-button
+              label="BotÔøΩn de ancho completo"
+              class="w-full"
+              styleClass="w-full"
+            />
           </div>
         </div>
       </p-card>
@@ -146,18 +219,36 @@ import {
       <!-- Badge -->
       <p-card header="Con Badge">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Indicadores de cantidad sobre el botÛn.
+          Indicadores de cantidad sobre el botÔøΩn.
         </p>
         <div class="flex flex-wrap gap-3">
-          <p-button label="Mensajes"  icon="pi pi-envelope" [outlined]="true"
-                    pBadge value="3"  badgeSeverity="danger" />
-          <p-button label="Alertas"   icon="pi pi-bell"     [outlined]="true"
-                    pBadge value="12" badgeSeverity="warn" />
-          <p-button icon="pi pi-inbox" [rounded]="true" [outlined]="true"
-                    pBadge value="5"  pTooltip="Bandeja" tooltipPosition="top" />
+          <p-button
+            label="Mensajes"
+            icon="pi pi-envelope"
+            [outlined]="true"
+            pBadge
+            value="3"
+            badgeSeverity="danger"
+          />
+          <p-button
+            label="Alertas"
+            icon="pi pi-bell"
+            [outlined]="true"
+            pBadge
+            value="12"
+            badgeSeverity="warn"
+          />
+          <p-button
+            icon="pi pi-inbox"
+            [rounded]="true"
+            [outlined]="true"
+            pBadge
+            value="5"
+            pTooltip="Bandeja"
+            tooltipPosition="top"
+          />
         </div>
       </p-card>
-
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -170,4 +261,3 @@ export class WebButtons {
     setTimeout(() => this.isLoading.set(false), 2000);
   }
 }
-

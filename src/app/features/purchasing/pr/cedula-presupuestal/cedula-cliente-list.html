@@ -31,14 +31,14 @@
         />
       </div>
       <div class="col-12 md:col-2">
-        <custom-button
+        <il-button
           (clicked)="editarPeriodo()"
           styleClass="p-button-outlined p-button-primary w-full"
           label="Editar periodo"
         />
       </div>
       <div class="col-12 md:col-2">
-        <custom-button
+        <il-button
           pTooltip="Descargar excel"
           styleClass="p-button-outlined p-button-primary w-full"
           iconClass="mdi:file-excel text-success mr-2"
@@ -124,20 +124,20 @@
       </td>
       <td>
         <div class="flex justify-content-center">
-          <custom-button
+          <il-button
             styleClass="p-button-outlined p-button-primary"
             pTooltip="Gastos realizados"
             iconClass="mdi:cart"
             (clicked)="onModalOrdenesCompraCedula(item.id)"
           />
 
-          <custom-button
+          <il-button
             iconClass="mdi:pencil"
             pTooltip="Editar"
             styleClass="p-button-outlined p-button-secondary"
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-confirm
+          <il-button-confirm
             iconClass="mdi:delete"
             pTooltip="Eliminar"
             styleClass="p-button-outlined p-button-danger"
@@ -197,15 +197,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

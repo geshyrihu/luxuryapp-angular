@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -13,13 +13,13 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { ListboxModule } from "primeng/listbox";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -50,13 +50,13 @@ import { ImageGenerationDialog } from "./components/image-generation-dialog/imag
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,
-    CustomButtonDelete,
-    CustomButtonSave,
+    WebButtonLabelDelete,
+    WebButtonLabelSave,
     ToggleSwitchModule,
     EditorModule,
     DividerModule,
     ListboxModule,
-    CustomButton,
+    WebButtonLabel,
     AppIcon,
   ],
 })
@@ -106,7 +106,7 @@ export class AnnouncementAdminForm implements OnInit {
   ngOnInit() {
     this.id.set(this.config.data?.id);
 
-    // Cargar catÃ³logos siempre, luego datos si es ediciÃ³n
+    // Cargar católogos siempre, luego datos si es edición
     this.loadInitialData().then(() => {
       if (this.id()) {
         this.loadDataForEdit();
@@ -151,7 +151,7 @@ export class AnnouncementAdminForm implements OnInit {
     if (announcementData) {
       this.data.set(announcementData);
 
-      // Preparar objeto para patchValue (excluyendo archivos y lÃ³gica especial)
+      // Preparar objeto para patchValue (excluyendo archivos y lógica especial)
       const { status, announcementType, ...dataToPatch } = announcementData;
 
       this.form.patchValue({
@@ -160,7 +160,7 @@ export class AnnouncementAdminForm implements OnInit {
         expirationDate: this.dateS.parseDate(announcementData.expirationDate),
       });
 
-      // Mapear Status y Type de string a numÃ©rico (si vienen como texto)
+      // Mapear Status y Type de string a numérico (si vienen como texto)
       const statusMap: Record<string, number> = {
         Borrador: 0,
         Publicado: 1,
@@ -172,7 +172,7 @@ export class AnnouncementAdminForm implements OnInit {
         Informativo: 2,
       };
 
-      // Si el backend devuelve strings, los convertimos. Si devuelve nÃ³meros, usamos directo.
+      // Si el backend devuelve strings, los convertimos. Si devuelve nómeros, usamos directo.
       const statusVal =
         typeof status === "string" ? (statusMap[status] ?? 0) : status;
       const typeVal =
@@ -183,7 +183,7 @@ export class AnnouncementAdminForm implements OnInit {
       this.form.controls.status.setValue(statusVal);
       this.form.controls.announcementType.setValue(typeVal);
 
-      // Mapear listas de selecciÃ³n
+      // Mapear listas de selección
       if (announcementData.selectableRoles) {
         this.form.controls.recipientRoleIds.setValue(
           announcementData.selectableRoles
@@ -204,7 +204,7 @@ export class AnnouncementAdminForm implements OnInit {
     this.loadingData.set(false);
   }
 
-  // --- GestiÃ³n de Archivos Existentes ---
+  // --- Gestión de Archivos Existentes ---
 
   requestDeleteMainImage(): void {
     const currentData = this.data();
@@ -218,7 +218,7 @@ export class AnnouncementAdminForm implements OnInit {
     const currentData = this.data();
     if (!currentData?.attachments) return;
 
-    // AÃ±adir a lista de borrado
+    // Añadir a lista de borrado
     this.attachmentsToDelete.update((ids) => [...ids, attachmentToRemove.id]);
 
     // Remover de la vista local (signal)
@@ -228,19 +228,19 @@ export class AnnouncementAdminForm implements OnInit {
     this.data.set({ ...currentData, attachments: updatedAttachments });
   }
 
-  // --- GeneraciÃ³n IA ---
+  // --- Generación IA ---
 
   async generateDraft() {
     const { value: prompt } = await this.swalService.fire({
-      title: "? Asistente de RedacciÃ³n IA",
+      title: "? Asistente de Redacción IA",
       input: "textarea",
-      inputLabel: "Ã³QuÃ³ quieres comunicar?",
+      inputLabel: "óQuó quieres comunicar?",
       inputPlaceholder: "Ej: Mantenimiento de elevadores el lunes...",
       showCancelButton: true,
       confirmButtonText: "Generar",
       showLoaderOnConfirm: true,
       preConfirm: (input) => {
-        if (!input) return this.swalService.error("Escribe una instrucciÃ³n.");
+        if (!input) return this.swalService.error("Escribe una instrucción.");
         return this.aiService
           .generateAnnouncementDraft(input, "Formal")
           .catch((err) => {
@@ -263,7 +263,7 @@ export class AnnouncementAdminForm implements OnInit {
       .openDialog(
         ImageGenerationDialog,
         null,
-        "Generador de ImÃ³genes IA",
+        "Generador de Imógenes IA",
         this.dialogHandlerS.sizeMd,
       )
       .then((blob: any) => {
@@ -346,7 +346,7 @@ export class AnnouncementAdminForm implements OnInit {
           }
         };
 
-        // Campos bÃ³sicos
+        // Campos bósicos
         append("title", rawValue.title);
         append("content", rawValue.content);
         append("announcementType", rawValue.announcementType);

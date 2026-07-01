@@ -22,7 +22,7 @@
           />
         </div>
         <div class="w-full flex justify-content-end">
-          <custom-button-save
+          <il-button-save
             [propertyId]="id"
             [disabled]="form.invalid"
             [submitting]="submitting()"
@@ -65,8 +65,8 @@
 
     <!-- Lado derecho: acciones -->
     <div class="flex flex-shrink-0">
-      <custom-button-edit (clicked)="onEditParticipant(item)" />
-      <custom-button-delete (confirmed)="onDelete(item.id)" />
+      <il-button-edit (clicked)="onEditParticipant(item)" />
+      <il-button-delete (confirmed)="onDelete(item.id)" />
     </div>
   </div>
   }

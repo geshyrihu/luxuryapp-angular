@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,10 +8,10 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
@@ -41,7 +41,7 @@ interface IITaskMessageDTOCloseForm {
     CardModule,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CustomInputImg,
   ],
 })
@@ -88,7 +88,7 @@ export class TaskClose implements OnInit {
         this.form.controls.closedById.setValue(this.authS.applicationUserId);
         this.form.controls.customerId.setValue(this.customerIdS.customerId());
 
-        // Si las imÃ³genes existen, carga las vistas previas
+        // Si las imógenes existen, carga las vistas previas
         if (result.beforeWorkPreview) {
           this.form.controls.beforeWorkPreview.setValue(
             result.beforeWorkPreview,
@@ -101,7 +101,7 @@ export class TaskClose implements OnInit {
       });
   }
 
-  // Para manejar las imÃ³genes 'BeforeWork' y 'AfterWork'
+  // Para manejar las imógenes 'BeforeWork' y 'AfterWork'
   onFileChange(event: any, fieldName: "beforeWork" | "afterWork") {
     const file = event.target.files[0];
     if (file) {

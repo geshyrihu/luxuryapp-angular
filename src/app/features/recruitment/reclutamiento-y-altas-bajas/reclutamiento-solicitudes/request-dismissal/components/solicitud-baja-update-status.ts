@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -7,8 +7,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 // Assuming EStatus enum is available globally or imported
 // For this example, I'll define it here based on the C# enum.
@@ -28,7 +28,7 @@ interface ISolicitudBajaUpdateStatusForm {
 @Component({
   selector: "app-solicitud-baja-update-status",
   templateUrl: "./solicitud-baja-update-status.html",
-  imports: [ReactiveFormsModule, CustomInputSelectSignal, CustomButtonSave],
+  imports: [ReactiveFormsModule, CustomInputSelectSignal, WebButtonLabelSave],
 })
 export class SolicitudBajaUpdateStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);

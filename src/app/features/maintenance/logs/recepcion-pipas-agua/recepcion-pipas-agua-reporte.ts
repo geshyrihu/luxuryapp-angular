@@ -1,10 +1,10 @@
-ï»¿import { CommonModule, formatDate } from "@angular/common";
+import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import FileSaver from "file-saver";
 import { FormsModule } from "@angular/forms";
+import FileSaver from "file-saver";
 import { DatePickerModule } from "primeng/datepicker";
 import { TableModule } from "primeng/table";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -25,7 +25,7 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
     FormsModule,
     DatePickerModule,
     TableModule,
-    CustomButtonDownload,
+    WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],
@@ -40,14 +40,32 @@ export class RecepcionPipasAguaReporte implements OnInit {
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
 
-  customerName = computed(() => this.customerIdS.customerName() || "Cliente activo");
+  customerName = computed(
+    () => this.customerIdS.customerName() || "Cliente activo",
+  );
   customerLogo = computed(
-    () => this.customerIdS.customerPhotoPath() || "assets/images/default-avatar.png",
+    () =>
+      this.customerIdS.customerPhotoPath() ||
+      "assets/images/default-avatar.png",
   );
 
   private readonly _today = new Date();
-  startDate: Date | null = new Date(this._today.getFullYear(), this._today.getMonth(), 1, 0, 0, 0);
-  endDate: Date | null = new Date(this._today.getFullYear(), this._today.getMonth() + 1, 0, 23, 59, 0);
+  startDate: Date | null = new Date(
+    this._today.getFullYear(),
+    this._today.getMonth(),
+    1,
+    0,
+    0,
+    0,
+  );
+  endDate: Date | null = new Date(
+    this._today.getFullYear(),
+    this._today.getMonth() + 1,
+    0,
+    23,
+    59,
+    0,
+  );
 
   private allData: IRecepcionPipaAgua[] = [];
 
@@ -55,7 +73,8 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
   totalM3 = computed(() =>
     this.dataSignal().reduce(
-      (acc, x) => acc + ((x.lecturaMedidorFinal ?? 0) - (x.lecturaMedidorInicial ?? 0)),
+      (acc, x) =>
+        acc + ((x.lecturaMedidorFinal ?? 0) - (x.lecturaMedidorInicial ?? 0)),
       0,
     ),
   );
@@ -123,12 +142,15 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
     let tableHtml = "";
     data.forEach((item, i) => {
-      const m3 = (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
+      const m3 =
+        (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
       const importe = (item.costoMetroCubico ?? 0) * m3;
       const bg = i % 2 === 0 ? "#ffffff" : "#f8fafc";
       const cist = `${Math.round(item.nivelCisternaAntes ?? 0)}% ? ${Math.round(item.nivelCisternaDespues ?? 0)}%<br>(${Math.round((item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0))}%)`;
-      const personal = [item.colaboradorMtto, item.guardiaSeguridad].filter(Boolean).join("<br>");
-      
+      const personal = [item.colaboradorMtto, item.guardiaSeguridad]
+        .filter(Boolean)
+        .join("<br>");
+
       tableHtml += `
         <tr>
           <td style="background-color: ${bg}; padding: 6px;">${this.htmlPrintS.esc(item.empresa ?? "")}</td>
@@ -168,7 +190,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "RecepciÃ³n de Pipas de Agua â€” Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua — Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
@@ -180,7 +202,7 @@ ${this.htmlPrintS.getStandardCss()}
           <div class="kmdi:percent">${this.totalRecepciones()}</div>
         </div>
         <div class="kmdi:card">
-          <div class="kmdi:format-title">Total mÂ³ descargados</div>
+          <div class="kmdi:format-title">Total m³ descargados</div>
           <div class="kmdi:percent blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
@@ -191,7 +213,7 @@ ${this.htmlPrintS.getStandardCss()}
           </thead>
           <tbody>
             <tr>
-              <td>Importe total (precio con IVA Ã— mÂ³)</td>
+              <td>Importe total (precio con IVA × m³)</td>
               <td style="text-align: right; font-weight: bold;">${fmtMoney(this.totalConIVA())}</td>
             </tr>
             <tr>
@@ -203,7 +225,7 @@ ${this.htmlPrintS.getStandardCss()}
               <td style="color: #6b7280; text-align: right;">${fmtMoney(this.ivaDesglosado())}</td>
             </tr>
             <tr>
-              <td style="color: #dc2626; font-weight: bold;">RetenciÃ³n 4%</td>
+              <td style="color: #dc2626; font-weight: bold;">Retención 4%</td>
               <td style="color: #dc2626; text-align: right; font-weight: bold;">(${fmtMoney(this.retencion())})</td>
             </tr>
             <tr style="background-color: #003A62; color: white;">
@@ -221,10 +243,10 @@ ${this.htmlPrintS.getStandardCss()}
         <tr>
           <th>Empresa</th>
           <th>Placas / Cap.</th>
-          <th>Llegada / TÃ©rmino</th>
+          <th>Llegada / Término</th>
           <th style="text-align: center;">Cisterna ant ? des</th>
           <th style="text-align: center;">Medidor ini ? fin</th>
-          <th style="text-align: right;">mÂ³</th>
+          <th style="text-align: right;">m³</th>
           <th style="text-align: right;">Costo / Importe</th>
           <th>Personal</th>
         </tr>
@@ -246,7 +268,8 @@ ${this.htmlPrintS.getStandardCss()}
   exportExcel(): void {
     import("xlsx").then((xlsx) => {
       const rows = this.dataSignal().map((item) => {
-        const m3 = (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
+        const m3 =
+          (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
         return {
           Empresa: item.empresa ?? "",
           Placas: item.placasCamion,
@@ -259,11 +282,12 @@ ${this.htmlPrintS.getStandardCss()}
             : "En curso",
           "Cisterna antes (%)": item.nivelCisternaAntes,
           "Cisterna despues (%)": item.nivelCisternaDespues,
-          "Dif. cisterna (%)": (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
+          "Dif. cisterna (%)":
+            (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
           "Medidor inicial": item.lecturaMedidorInicial,
           "Medidor final": item.lecturaMedidorFinal,
-          "mÂ³ ingresados": m3,
-          "Costo mÂ³": item.costoMetroCubico,
+          "m³ ingresados": m3,
+          "Costo m³": item.costoMetroCubico,
           "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
           "Colaborador mtto": item.colaboradorMtto ?? "",
           "Guardia testigo": item.guardiaSeguridad ?? "",
@@ -280,6 +304,4 @@ ${this.htmlPrintS.getStandardCss()}
       );
     });
   }
-
 }
-

@@ -1,4 +1,4 @@
-Ôªøimport { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -9,11 +9,11 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -43,7 +43,7 @@ interface IProductosForm {
     CustomInputImg,
     CustomInputSelectSignal,
     CustomInputAutoComplete,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class ProductosForm implements OnInit {
@@ -61,7 +61,7 @@ export class ProductosForm implements OnInit {
   readonly cb_category = signal<ISelectItem[]>([]);
   readonly cb_clasificacion = signal<ISelectItem[]>([]);
 
-  // URL base para imagen (podr√≠a ser signal si cambia reactivamente)
+  // URL base para imagen (podrÌa ser signal si cambia reactivamente)
   urlBaseImg = "";
   selectedFile: File | null = null;
 
@@ -95,13 +95,13 @@ export class ProductosForm implements OnInit {
   async ngOnInit(): Promise<void> {
     this.id.set(this.config.data?.id || "");
 
-    // Carga de cat√°logos en paralelo
+    // Carga de cat·logos en paralelo
     const [categories, clasificacion] = await Promise.all([
       this.apiResponseS.onGetSelectItem<ISelectItem[]>("Categories"),
       firstValueFrom(this.enumSelectS.productClasificacion()),
     ]);
 
-    // Actualizaci√≥n de signals (evita NG0100 al ser as√≠ncrono tras await)
+    // ActualizaciÛn de signals (evita NG0100 al ser asÌncrono tras await)
     this.cb_category.set(categories as ISelectItem[]);
     this.cb_clasificacion.set(clasificacion);
 
@@ -125,7 +125,7 @@ export class ProductosForm implements OnInit {
         ? result.categoryId.value
         : result.categoryId;
 
-    // Buscar la categor√≠a completa usando el signal actual
+    // Buscar la categorÌa completa usando el signal actual
     const selectedCategory = this.cb_category().find(
       (item) => item.value === categoryId,
     );

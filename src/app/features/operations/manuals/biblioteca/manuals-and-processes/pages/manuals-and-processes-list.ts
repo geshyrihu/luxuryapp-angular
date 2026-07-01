@@ -1,17 +1,17 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import {
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -40,9 +40,9 @@ interface DeptGroup {
     ButtonModule,
     CardModule,
     CustomSearchInput,
-    CustomButton,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabel,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     DataViewMobile,
     IonItem,
     IonLabel,

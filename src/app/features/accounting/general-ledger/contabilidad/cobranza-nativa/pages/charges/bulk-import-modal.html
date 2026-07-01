@@ -9,7 +9,7 @@
     ></p-message>
 
     <div class="flex justify-content-end mb-3">
-      <custom-button
+      <il-button
         iconClass="mdi:download"
         label="Descargar CSV de Ejemplo"
         variant="outlined"
@@ -35,7 +35,7 @@
   </div>
 
   <div class="flex justify-content-end mt-4">
-    <custom-button
+    <il-button
       label="Cancelar"
       iconClass="mdi:close"
       variant="ghost-text"
@@ -43,7 +43,7 @@
       (clicked)="onClose()"
       [disabled]="isLoading"
     />
-    <custom-button
+    <il-button
       label="Importar Cargos"
       iconClass="mdi:check"
       [disabled]="!selectedFile"
@@ -103,7 +103,7 @@
     }
 
     <div class="flex justify-content-center mt-5">
-      <custom-button
+      <il-button
         label="Cerrar y Actualizar"
         iconClass="mdi:check"
         (clicked)="onClose()"

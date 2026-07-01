@@ -1,4 +1,4 @@
-﻿<div class="fadein">
+<div class="fadein">
   <!-- Filtros propios del componente -->
   <div class="flex mb-4 align-items-end gap-2">
     <div class="mb-0">
@@ -12,8 +12,8 @@
       />
     </div>
     <div class="mb-0">
-      <custom-button
-        label="Cargar Catálogo"
+      <il-button
+        label="Cargar Cat�logo"
         iconClass="mdi:refresh"
         size="sm"
         [loading]="loading()"
@@ -28,7 +28,7 @@
         catalog.periodoPresupuesto }}
       </div>
       <div class="flex gap-1">
-        <custom-button
+        <il-button
           label="Expandir Todo"
           iconClass="mdi:chevron-double-down"
           variant="outlined"
@@ -36,7 +36,7 @@
           size="sm"
           (clicked)="toggleAll(true)"
         />
-        <custom-button
+        <il-button
           label="Colapsar Todo"
           iconClass="mdi:chevron-double-up"
           variant="outlined"
@@ -52,12 +52,12 @@
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4 gap-2">
     <app-icon [icon]="'mdi:loading'"></app-icon>
-    <span>Consultando catálogo en Aspel...</span>
+    <span>Consultando cat�logo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
   <p class="text-color-secondary">
-    No hay datos. Verifique el cliente y el año, luego pulse
-    <strong>Cargar Catálogo</strong>.
+    No hay datos. Verifique el cliente y el a�o, luego pulse
+    <strong>Cargar Cat�logo</strong>.
   </p>
   } @if (data(); as catalog) {
   <!-- Panel de cuentas faltantes -->
@@ -74,9 +74,9 @@
     </div>
     <p class="m-0 text-xs text-700 mb-3">
       Las siguientes cuentas del
-      <strong>Catálogo General LuxuryF</strong> (base para reportes)
+      <strong>Cat�logo General LuxuryF</strong> (base para reportes)
       <strong>no fueron devueltas</strong> por la API de Aspel para este cliente
-      y año. Si deben existir, el contador debe darlas de alta en Aspel COI.
+      y a�o. Si deben existir, el contador debe darlas de alta en Aspel COI.
     </p>
     <div class="flex flex-wrap gap-2">
       @for (faltante of cuentasFaltantes(); track faltante.numeroCuenta) {
@@ -103,14 +103,14 @@
     <div class="flex align-items-center gap-2">
       <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
       <span class="text-green-700 font-medium text-xs">
-        Todas las cuentas Nivel 1 del Catálogo General LuxuryF están presentes
+        Todas las cuentas Nivel 1 del Cat�logo General LuxuryF est�n presentes
         en Aspel.
       </span>
     </div>
   </div>
   }
 
-  <!-- Tabla jerárquica -->
+  <!-- Tabla jer�rquica -->
   <p-table
     [value]="flatData()"
     [tableStyle]="{ 'min-width': '50rem' }"
@@ -119,7 +119,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 180px">No. de cuenta</th>
-        <th style="width: 300px">Descripción</th>
+        <th style="width: 300px">Descripci�n</th>
         <th class="table-col-160px">Origen de datos</th>
         <th class="text-center table-col-60px">Cta.M</th>
         <th class="table-col-90px">Debe</th>
@@ -139,10 +139,10 @@
       >
         <td>
           <div class="flex align-items-center">
-            <!-- â¬†ï¸ â¬‡ï¸ âž¡ï¸ â¬…ï¸ -->
+            <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
             @if (account.nivel === 1) {
-            <custom-button
-              [label]="account.expanded ? 'â¬‡ï¸' : 'âž¡ï¸'"
+            <il-button
+              [label]="account.expanded ? '⬇️' : '➡️'"
               variant="ghost-text"
               size="sm"
               (clicked)="toggleNode(account)"
@@ -166,25 +166,25 @@
           {{ account.descripcion }}
         </td>
         <td class="text-xs text-500">{{ account.origenDatos }}</td>
-        <td class="text-center">{{ account.esCuentaMadre ? "âŒ" : "" }}</td>
+        <td class="text-center">{{ account.esCuentaMadre ? "❌" : "" }}</td>
         <td class="text-xs">
           {{ account.naturaleza === "Deudora" ? "Deudora" : "" }}
         </td>
         <td class="text-xs">
           {{ account.naturaleza === "Acreedora" ? "Acreedora" : "" }}
         </td>
-        <td class="text-center">@if (account.epf) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.er) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.cedP) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.fe) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.aCob) { âœ”ï¸ }</td>
+        <td class="text-center">@if (account.epf) { ✔️ }</td>
+        <td class="text-center">@if (account.er) { ✔️ }</td>
+        <td class="text-center">@if (account.cedP) { ✔️ }</td>
+        <td class="text-center">@if (account.fe) { ✔️ }</td>
+        <td class="text-center">@if (account.aCob) { ✔️ }</td>
       </tr>
       }
     </ng-template>
     <ng-template #emptymessage>
       <tr>
         <td colspan="11" class="text-center py-4 text-color-secondary">
-          No hay cuentas en el resultado de Aspel para este período.
+          No hay cuentas en el resultado de Aspel para este per�odo.
         </td>
       </tr>
     </ng-template>

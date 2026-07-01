@@ -1,12 +1,14 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { DatePipe } from "@angular/common";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableLazyLoadEvent, TableModule } from "primeng/table";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -30,12 +32,12 @@ import { PasswordForm } from "./password-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
     DatePipe,
   ],
 })
@@ -48,7 +50,7 @@ export class PasswordList implements OnInit {
   data = signal<CredentialDetailDTO[]>([]);
   totalRecords = signal(0);
   loading = signal(false);
-  
+
   // Opciones de tabla
   rows = tablePrimeNgRows();
   rowsPerPage = rowsPerPageOptions();
@@ -66,14 +68,14 @@ export class PasswordList implements OnInit {
     this.loading.set(true);
 
     const filter = {
-      page: (event.first! / event.rows!) + 1,
+      page: event.first! / event.rows! + 1,
       pageSize: event.rows,
       search: event.globalFilter || "",
     };
 
     const res = await this.apiS.onPostPaged<CredentialDetailDTO[]>(
       Endpoints.PasswordManager.Credentials.getPaged,
-      filter
+      filter,
     );
 
     if (res) {
@@ -84,7 +86,9 @@ export class PasswordList implements OnInit {
   }
 
   async onDelete(id: string) {
-    const success = await this.apiS.onDelete(Endpoints.PasswordManager.Credentials.delete(id));
+    const success = await this.apiS.onDelete(
+      Endpoints.PasswordManager.Credentials.delete(id),
+    );
     if (success && this.lastLoadEvent) {
       this.loadData(this.lastLoadEvent);
     }
@@ -95,7 +99,7 @@ export class PasswordList implements OnInit {
       PasswordForm,
       { id },
       id ? "Editar Credencial" : "Nueva Credencial",
-      this.dialogS.sizeMd
+      this.dialogS.sizeMd,
     );
 
     if (result && this.lastLoadEvent) {
@@ -103,4 +107,3 @@ export class PasswordList implements OnInit {
     }
   }
 }
-

@@ -1,18 +1,22 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { globalFilterFields, rowsPerPageOptions, tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HidranteChecklist } from "../hydrant-checklist/hidrante-checklist";
@@ -23,10 +27,19 @@ import { HidranteBitacoraPdfService } from "./hidrante-bitacora-pdf.service";
   templateUrl: "./hidrante-bitacora-list.html",
   imports: [
     EmptyState,
-    CommonModule, TableModule, DataViewMobile,
-    CustomButtonDelete, CustomButtonDownload, CustomButtonEdit,
-    PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,
-    IonItem, IonLabel, CustomButtonEdit, CustomButtonDelete,
+    CommonModule,
+    TableModule,
+    DataViewMobile,
+    WebButtonLabelDelete,
+    WebButtonLabelDownload,
+    WebButtonLabelEdit,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
+    ActionMenu,
+    IonItem,
+    IonLabel,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     DatePipe,
   ],
 })
@@ -62,24 +75,37 @@ export class HidranteBitacoraList implements OnInit {
     this.apiResponseS
       .onDelete(`BitacoraHidrante/${id}`)
       .then((result: boolean) => {
-        if (result) this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+        if (result)
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
       });
   }
 
   async onPdfReport() {
-    const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
+    const result = await this.dialogHandlerS.openDialog<{
+      from: Date;
+      to: Date;
+    }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF ââ‚¬â€ Bitácora Hidrantes",
+      "Reporte PDF �€” Bit�cora Hidrantes",
       this.dialogHandlerS.sizeSm,
     );
-    if (result) await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
+    if (result)
+      await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
   }
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(HidranteChecklist, { id: data.id, hydrantId: this.hydrantId }, data.title, this.dialogHandlerS.sizeLg)
-      .then((result: boolean) => { if (result) this.onLoadData(); });
+      .openDialog(
+        HidranteChecklist,
+        { id: data.id, hydrantId: this.hydrantId },
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
   }
 }
-

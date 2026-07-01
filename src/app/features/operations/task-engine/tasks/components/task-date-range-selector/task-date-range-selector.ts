@@ -1,17 +1,17 @@
-﻿import { Component, OnInit, output } from "@angular/core";
+import { Component, OnInit, output } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DateRangeStorageService } from "../../services/date-range-storage.service";
 @Component({
   selector: "app-task-date-range-selector",
   templateUrl: "./task-date-range-selector.html",
-  imports: [ReactiveFormsModule, CustomInputDateSignal, CustomButtonItem],
+  imports: [ReactiveFormsModule, CustomInputDateSignal, WebButtonLabelItem],
 })
 export class TaskDateRangeSelector implements OnInit {
   constructor(private dateRangeStorageService: DateRangeStorageService) {}
 
-  // Modificamos la declaración de dateRange para que use un objeto con from y to
+  // Modificamos la declaraci�n de dateRange para que use un objeto con from y to
   dateRangeControl = new FormControl<{ from: Date | null; to: Date | null }>({
     from: null,
     to: null,

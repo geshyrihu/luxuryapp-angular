@@ -56,9 +56,9 @@
       </td>
       <td>{{ formatRecurrenceRule(item.recurrenceRule) }}</td>
       <td>
-        <custom-button-edit (clicked)="showItemForm(item)"
+        <il-button-edit (clicked)="showItemForm(item)"
 />
-        <custom-button-delete (confirmed)="onDeleteItem(item.id)"
+        <il-button-delete (confirmed)="onDeleteItem(item.id)"
 />
       </td>
     </tr>
@@ -110,10 +110,9 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit label="Editar" (clicked)="showItemForm(item)"
- [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDeleteItem(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+        <il-button-edit label="Editar" (clicked)="showItemForm(item)"/>
+        <il-button-delete (confirmed)="onDeleteItem(item.id)"
+ label="Eliminar"/>
               </ng-container>
       </app-action-menu>
     </ion-item>

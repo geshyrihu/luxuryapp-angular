@@ -50,7 +50,7 @@
       </td>
       <td>
         @if (item.nameFileEstadoFinanciero === null) {
-        <custom-button
+        <il-button
           label="Cargar Informe"
           iconClass="mdi:upload"
           [loading]="isProcessingUpload(item.id)"
@@ -65,7 +65,7 @@
               {{ item.uploadDate }}
             </div>
           </div>
-          <custom-button
+          <il-button
             iconClass="mdi:download"
             variant="ghost-text"
             severity="secondary"
@@ -73,7 +73,7 @@
             (clicked)="viewPdf(item.nameFileEstadoFinanciero,'Informe Financiero')"
           />
           @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
-          <custom-button
+          <il-button
             iconClass="mdi:replay"
             variant="ghost-text"
             severity="warn"
@@ -88,7 +88,7 @@
       <td>
         @if (item.nameFileEstadoFinanciero !== null) { @if
         (item.personWhoAuthorized === "") {
-        <custom-button
+        <il-button
           label="Autorizar"
           iconClass="mdi:checkbox-marked"
           severity="success"
@@ -105,7 +105,7 @@
             </div>
           </div>
           @if (item.personWhoSend === "") {
-          <custom-button
+          <il-button
             iconClass="mdi:replay"
             variant="ghost-text"
             severity="warn"
@@ -120,7 +120,7 @@
       <td class="no-print">
         @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
         !== "" ) { @if (item.personWhoSend === "") {
-        <custom-button-confirm
+        <il-button-confirm
           icon="mdi:send"
           label="ENVIAR PDF"
           styleClass="p-button-primary w-full mb-2"
@@ -235,7 +235,7 @@
         <ng-container actions>
           <!-- 1. Cargar Informe (Si no hay archivo) -->
           @if (!item.nameFileEstadoFinanciero) {
-          <custom-button-item
+          <il-button-item
             iconName="cloud-upload-outline"
             label="Cargar Informe"
             (clicked)="
@@ -243,23 +243,21 @@
                 id: item.id,
                 title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
               })
-            "
- [showLabelOnDesktop]="true"/>
+            "/>
           }
 
           <!-- 2. Acciones si hay archivo -->
           @if (item.nameFileEstadoFinanciero) {
           <!-- Descargar -->
-          <custom-button-item
+          <il-button-item
             iconName="cloud-upload-outline"
             label="Descargar PDF"
             (clicked)="
                 viewPdf(item.nameFileEstadoFinanciero, 'Informe Financiero')
-              "
- [showLabelOnDesktop]="true"/>
+              "/>
           <!-- Actualizar (Si no autorizado ni enviado) -->
           @if (!item.personWhoAuthorized && !item.personWhoSend) {
-          <custom-button-item
+          <il-button-item
             iconName="sync-outline"
             label="Actualizar Archivo"
             (clicked)="
@@ -267,29 +265,26 @@
                   id: item.id,
                   title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
                 })
-              "
- [showLabelOnDesktop]="true"/>
+              "/>
           }
           <!-- Autorizar (Si no autorizado) -->
           @if (!item.personWhoAuthorized) {
-          <custom-button-item
+          <il-button-item
             iconName="checkmark-outline"
             label="Autorizar"
-            (clicked)="onAuthorize(item.id)"
- [showLabelOnDesktop]="true"/>
+            (clicked)="onAuthorize(item.id)"/>
           }
           <!-- Deshacer Autorización (Si autorizado y no enviado) -->
           @if (item.personWhoAuthorized && !item.personWhoSend) {
-          <custom-button-item
+          <il-button-item
             iconName="arrow-back-outline"
             label="Deshacer Autorización"
-            (clicked)="onDesauthorize(item.id)"
- [showLabelOnDesktop]="true"/>
+            (clicked)="onDesauthorize(item.id)"/>
           }
           <!-- Enviar (Si autorizado y no enviado) -->
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
           !item.personWhoSend) {
-          <custom-button-confirm
+          <il-button-confirm
             icon="mdi:send"
             label="ENVIAR"
             styleClass="p-button-text w-full text-left"
@@ -303,8 +298,7 @@
                   title: 'ENVIAR A CONDOMINOS'
                 })
               "
-            [disabled]="isProcessingSend(item.id)"
- [showLabelOnDesktop]="true"/>
+            [disabled]="isProcessingSend(item.id)"/>
           } }
         </ng-container>
       </app-action-menu>

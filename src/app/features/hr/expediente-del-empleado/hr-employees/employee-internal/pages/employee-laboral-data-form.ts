@@ -1,4 +1,4 @@
-﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,11 +8,11 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -34,7 +34,7 @@ import { IEmployeeLaboralDataForm } from "../models/employee-laboral-data-form.i
     CustomInputDateSignal,
     CustomInputCurrencySignal,
     CustomInputNumberSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CardModule,
   ],
 })

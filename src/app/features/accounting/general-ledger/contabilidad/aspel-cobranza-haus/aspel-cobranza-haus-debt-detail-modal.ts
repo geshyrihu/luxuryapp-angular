@@ -1,10 +1,10 @@
-﻿import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
+import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
@@ -17,7 +17,7 @@ import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
     TableModule,
     MessageModule,
     TagModule,
-    CustomButton,
+    WebButtonLabel,
     PrimeNgCustomCaption,
     CurrencyPipe,
     NgClass,
@@ -137,4 +137,3 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     return year ? `${year}-01-01` : undefined;
   }
 }
-

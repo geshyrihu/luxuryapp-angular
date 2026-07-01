@@ -1,15 +1,15 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -40,7 +40,7 @@ interface IWorkContractForm {
     CustomInputDateSignal,
     CustomInputCurrencySignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class WorkContractFormComponent implements OnInit {
@@ -62,7 +62,7 @@ export class WorkContractFormComponent implements OnInit {
     { value: "Determinado", label: "Determinado" },
     { value: "Temporal", label: "Temporal / Estacional" },
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
-    { value: "Practicas", label: "Prácticas Profesionales" },
+    { value: "Practicas", label: "Pr�cticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
     { value: "Honorarios", label: "Honorarios" },
   ];

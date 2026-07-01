@@ -35,13 +35,13 @@
           (change)="onFileSelected($event)"
           accept=".xlsx, .xls"
         />
-        <custom-button
+        <il-button
           label="Importar desde Excel"
           iconClass="mdi:upload"
           severity="success"
           (clicked)="fileInput.click()"
         />
-        <custom-button
+        <il-button
           label="Descargar Plantilla"
           iconClass="mdi:download"
           severity="secondary"
@@ -120,17 +120,17 @@
       </td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:account-group"
             label="Ocupantes"
             (clicked)="showOccupantsDialog(item)"
           />
           @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
           AspRole.SuperUsuario])) {
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
@@ -196,15 +196,13 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

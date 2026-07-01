@@ -1,15 +1,15 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -30,16 +30,16 @@ import { DetectorHumoBitacoraPdfService } from "./detector-humo-bitacora-pdf.ser
     CommonModule,
     TableModule,
     DataViewMobile,
-    CustomButtonDelete,
-    CustomButtonDownload,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelDownload,
+    WebButtonLabelEdit,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     DatePipe,
   ],
 })
@@ -83,10 +83,13 @@ export class DetectorHumoBitacoraList implements OnInit {
   }
 
   async onPdfReport() {
-    const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
+    const result = await this.dialogHandlerS.openDialog<{
+      from: Date;
+      to: Date;
+    }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF ââ‚¬â€ Bitácora Detectores de Humo",
+      "Reporte PDF �€” Bit�cora Detectores de Humo",
       this.dialogHandlerS.sizeSm,
     );
     if (result)
@@ -106,4 +109,3 @@ export class DetectorHumoBitacoraList implements OnInit {
       });
   }
 }
-

@@ -1,4 +1,4 @@
-ï»¿<div class="flex flex-column">
+<div class="flex flex-column">
   <!-- Filtros -->
   <div class="card p-4">
     <div class="flex flex-wrap align-items-end gap-3">
@@ -15,13 +15,13 @@
         [noMargin]="true"
       />
       <div class="flex gap-2">
-        <custom-button
+        <il-button
           label="Filtrar"
           iconClass="mdi:magnify"
           (clicked)="onFilter()"
           [loading]="loading()"
         />
-        <custom-button
+        <il-button
           label="Limpiar"
           iconClass="mdi:close"
           (clicked)="onClearFilters()"
@@ -64,7 +64,7 @@
     </div>
     <div class="col-12 md:col-6 lg:col">
       <div class="card p-4 flex flex-column">
-        <span class="text-500 text-sm">Con SanciÃ³n</span>
+        <span class="text-500 text-sm">Con Sanción</span>
         <span class="text-3xl font-bold text-red-600">
           {{ dashboard()!.sanctionedIncidents }}
         </span>
@@ -72,7 +72,7 @@
     </div>
     <div class="col-12 md:col-6 lg:col">
       <div class="card p-4 flex flex-column">
-        <span class="text-500 text-sm">DÃ­as Prom. ResoluciÃ³n</span>
+        <span class="text-500 text-sm">Días Prom. Resolución</span>
         <span class="text-3xl font-bold text-blue-600">
           {{ dashboard()!.averageResolutionDays }}
         </span>
@@ -80,7 +80,7 @@
     </div>
   </div>
 
-  <!-- GrÃ¡ficos -->
+  <!-- Gráficos -->
   <div class="grid">
     <!-- Incidencias por Mes -->
     <div class="col-12 lg:col-6">
@@ -99,10 +99,10 @@
       </div>
     </div>
 
-    <!-- DistribuciÃ³n por Tipo -->
+    <!-- Distribución por Tipo -->
     <div class="col-12 lg:col-6">
       <div class="card p-4">
-        <h3 class="text-lg font-semibold mb-4">DistribuciÃ³n por Tipo</h3>
+        <h3 class="text-lg font-semibold mb-4">Distribución por Tipo</h3>
         @if (pieChartData()) {
         <p-chart
           type="pie"
@@ -120,7 +120,7 @@
   <!-- Tabla: Top Empleados -->
   <div class="card p-4">
     <h3 class="text-lg font-semibold mb-4">
-      Top Empleados con MÃ¡s Incidencias
+      Top Empleados con Más Incidencias
     </h3>
     <p-table
       [value]="dashboard()!.topEmployees"
@@ -152,10 +152,10 @@
     </p-table>
   </div>
 
-  <!-- DistribuciÃ³n por Severidad -->
+  <!-- Distribución por Severidad -->
   @if (dashboard()!.bySeverity.length > 0) {
   <div class="card p-4">
-    <h3 class="text-lg font-semibold mb-4">DistribuciÃ³n por Severidad</h3>
+    <h3 class="text-lg font-semibold mb-4">Distribución por Severidad</h3>
     <div class="flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
       <div

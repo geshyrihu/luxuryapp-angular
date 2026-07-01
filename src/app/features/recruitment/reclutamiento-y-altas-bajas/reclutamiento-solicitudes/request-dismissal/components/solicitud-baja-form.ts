@@ -1,4 +1,4 @@
-Ôªøimport { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
@@ -12,13 +12,13 @@ import { Router } from "@angular/router";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -37,8 +37,8 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
-    CustomButton,
+    WebButtonLabelSave,
+    WebButtonLabel,
   ],
   styles: [
     `
@@ -60,7 +60,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
         }
 
         /*
-          La librer√≠a posiciona el label como inline-block centrado (left:50% + translate).
+          La librerÌa posiciona el label como inline-block centrado (left:50% + translate).
           Lo convertimos en un bloque que rellena todo el area y usa flex para centrar.
         */
         file-upload label.upload-input {
@@ -216,7 +216,7 @@ export class SolicitudBajaForm implements OnInit {
         this.mensajeRenuncia = "Adjunta la renuncia firmada (PDF/DOCX/IMG).";
       else if (newValue == 2)
         this.mensajeRenuncia =
-          "Adjunta la evidencia o justificaci√≥n de despido (PDF/DOCX/IMG).";
+          "Adjunta la evidencia o justificaciÛn de despido (PDF/DOCX/IMG).";
       else if (newValue == 4)
         this.mensajeRenuncia =
           "Adjunta el acta administrativa firmada (PDF/DOCX/IMG).";
@@ -235,7 +235,7 @@ export class SolicitudBajaForm implements OnInit {
 
       if (newValue == 3) {
         this.mensajeRenuncia =
-          "Las evaluaciones est√°n registradas en el sistema. No se requiere adjuntar documento manual.";
+          "Las evaluaciones est·n registradas en el sistema. No se requiere adjuntar documento manual.";
         if (this.hasEvaluations === null) {
           this.checkEvaluations();
         }

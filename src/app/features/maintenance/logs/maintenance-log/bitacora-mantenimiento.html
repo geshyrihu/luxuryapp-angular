@@ -29,7 +29,7 @@
                 @if (item.emergencia) {
                 <p class="m-0 text-red-500 font-bold">Emergencia</p>
                 } @if (aspRoleS.hasRole(AspRole.JefeMantenimiento)) {
-                <custom-button-confirm
+                <il-button-confirm
                   icon="trash"
                   ngbTooltip="Eliminar"
                   (confirmed)="onDelete(item)"

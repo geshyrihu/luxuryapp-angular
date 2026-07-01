@@ -1,11 +1,11 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -27,11 +27,11 @@ import { EmployeeFileSummaryDTO } from "../models/employee-file.interfaces";
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButtonItem,
+    WebButtonLabelItem,
     CustomInputSelectSignal,
     ActionMenu,
     DataViewMobile,
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class EmployeeFileList {

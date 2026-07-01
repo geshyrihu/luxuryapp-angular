@@ -28,7 +28,7 @@
   </div>
 
   <div class="flex justify-content-end mb-3">
-    <custom-button-add
+    <il-button-add
       label="Agregar días"
       [disabled]="!form.controls.dates.value || !form.controls.dates.value.length || saving()"
       [loading]="saving()"
@@ -63,7 +63,7 @@
         <td>{{ day.suspensionDate | date: "dd/MM/yyyy":"UTC" }}</td>
         <td>{{ day.notes || "—" }}</td>
         <td class="text-center">
-          <custom-button-delete (confirmed)="deleteDay(day.id)" />
+          <il-button-delete (confirmed)="deleteDay(day.id)" />
         </td>
       </tr>
     </ng-template>

@@ -14,7 +14,7 @@
 <!-- DESKTOP VIEW -->
 <div class="hidden md:block animate__animated animate__fadeIn">
   <div class="flex justify-content-between align-items-center mb-3">
-    <custom-button
+    <il-button
       (clicked)="goBack()"
       label="Volver al Listado"
       iconClass="mdi:arrow-left"
@@ -131,54 +131,48 @@
         <!-- Actions -->
         @if (t.seeEditingOptions) {
         <div class="flex flex-wrap gap-2 mb-5">
-          <custom-button
+          <il-button
             (clicked)="onModalForm(t)"
             label="Editar Ticket"
             iconClass="mdi:pencil"
             variant="outlined"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button
+          <il-button
             (clicked)="onFollowUp(t.id)"
             label="Anadir Seguimiento"
             iconClass="mdi:comment-multiple"
             severity="help"
             variant="outlined"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button
+          <il-button
             (clicked)="onProgram(t.id)"
             label="Programar"
             iconClass="mdi:calendar"
             severity="info"
             variant="outlined"
-            [showLabelOnDesktop]="true"
           />
           @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
-          <custom-button
+          <il-button
             (clicked)="onProgress(t.id)"
             label="En Proceso"
             iconClass="mdi:sync"
             severity="warn"
             variant="outlined"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button
+          <il-button
             (clicked)="onClosed(t.id)"
             label="Cerrar Ticket"
             iconClass="mdi:lock"
             severity="success"
             variant="outlined"
-            [showLabelOnDesktop]="true"
           />
           } @if (t.status === 'Cerrado' || t.status === 'Completed') {
-          <custom-button
+          <il-button
             (clicked)="onReopen(t.id)"
             label="Reabrir Ticket"
             iconClass="mdi:lock-open"
             variant="outlined"
             severity="danger"
-            [showLabelOnDesktop]="true"
           />
           }
         </div>

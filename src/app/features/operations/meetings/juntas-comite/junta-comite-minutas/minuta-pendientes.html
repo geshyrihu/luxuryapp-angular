@@ -1,10 +1,9 @@
 <div class="container">
   <app-report-header></app-report-header>
   <div class="flex justify-content-end my-3">
-    <custom-button-download
+    <il-button-download
       label="Exportar a Excel"
       severity="success"
-      [showLabelOnDesktop]="true"
       (clicked)="exportToExcel()"
       [disabled]="loading()"
     />

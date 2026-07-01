@@ -1,4 +1,4 @@
-﻿import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,8 +8,8 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -24,7 +24,7 @@ interface IBulkDateForm {
     ReactiveFormsModule,
     CardModule,
     CustomInputDateSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class InventarioExtintorBulkDateForm {

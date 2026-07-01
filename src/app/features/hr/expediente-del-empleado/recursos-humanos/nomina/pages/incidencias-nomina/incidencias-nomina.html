@@ -31,21 +31,19 @@
     <div class="flex justify-content-between flex-wrap gap-2">
       <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
       <div class="flex gap-2">
-        <custom-button
+        <il-button
           label="Sync Vacaciones"
           iconClass="mdi:sync"
           severity="secondary"
           variant="ghost-text"
-          [showLabelOnDesktop]="true"
           [disabled]="sincronizando()"
           (clicked)="sincronizarVacaciones()"
         />
-        <custom-button
+        <il-button
           label="Sync Permisos"
           iconClass="mdi:sync"
           severity="secondary"
           variant="ghost-text"
-          [showLabelOnDesktop]="true"
           [disabled]="sincronizando()"
           (clicked)="sincronizarPermisos()"
         />
@@ -90,7 +88,7 @@
         />
       </td>
       <td>
-        <custom-button-delete (confirmed)="onDelete(item)" />
+        <il-button-delete (confirmed)="onDelete(item)" />
       </td>
     </tr>
   </ng-template>
@@ -145,7 +143,7 @@
         </div>
       </ion-label>
       <div slot="end">
-        <custom-button-delete (confirmed)="onDelete(item)" />
+        <il-button-delete (confirmed)="onDelete(item)" />
       </div>
     </ion-item>
   </ng-template>

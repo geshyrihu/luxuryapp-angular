@@ -1,4 +1,4 @@
-锘縤mport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -19,12 +19,12 @@ import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -61,14 +61,14 @@ interface ICatalogoGastoFijoForm {
     CustomInputTextAreaSignal,
     CustomInputAutoComplete,
     CustomInputSelectSignal,
-    CustomButton,
-    CustomButtonSave,
+    WebButtonLabel,
+    WebButtonLabelSave,
     CardModule,
     MessageModule,
   ],
 })
 export class CatalogoGastoFijoForm implements OnInit {
-  // Inyecci贸n de dependencias
+  // Inyecci髇 de dependencias
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -178,7 +178,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       formaDePagoId: result.formaDePagoId ? String(result.formaDePagoId) : null,
     });
 
-    // Mapear colecciones seg贸n el DTO: CatalogoGastosFijosDTO
+    // Mapear colecciones seg髇 el DTO: CatalogoGastosFijosDTO
     this.detalles.set(result.detalles || []);
     this.budgets.set(result.presupuesto || []);
   }
@@ -233,7 +233,7 @@ export class CatalogoGastoFijoForm implements OnInit {
     }
   }
 
-  // Gesti贸n de la lista de Presupuesto
+  // Gesti髇 de la lista de Presupuesto
   onAddOrEditBudget() {
     this.dialogHandlerS
       .openDialog(
@@ -249,7 +249,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       });
   }
 
-  // Gesti贸n de la lista de Detalles/Productos
+  // Gesti髇 de la lista de Detalles/Productos
   onAddOrEditDetail() {
     this.dialogHandlerS
       .openDialog(
@@ -311,6 +311,6 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   cantidad: number;
   unidadMedidaid: any;
   precio: number;
-  // Campos adicionales para visualizaci贸n
+  // Campos adicionales para visualizaci髇
   productoDescription?: string;
 }

@@ -2,9 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { SwalService } from "src/app/core/services/swal.service";
@@ -16,7 +16,7 @@ import { SwalService } from "src/app/core/services/swal.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CustomButton,
+    WebButtonLabel,
     TextareaModule,
     TooltipModule,
     AppIcon,
@@ -45,7 +45,7 @@ export class ImageGenerationDialog {
       icon: "mdi:camera",
     },
     {
-      label: "Ilustración",
+      label: "Ilustraciï¿½n",
       value: "digital illustration, vector art, vibrant",
       icon: "mdi:pencil",
     },
@@ -171,7 +171,9 @@ export class ImageGenerationDialog {
       this.recognition.onresult = (event: any) => {
         const transcript = event.results[0][0].transcript;
         const currentVal = this.additionalPromptControl.value || "";
-        this.additionalPromptControl.setValue(currentVal + (currentVal ? " " : "") + transcript);
+        this.additionalPromptControl.setValue(
+          currentVal + (currentVal ? " " : "") + transcript,
+        );
         this.isListening.set(false);
       };
 
@@ -192,10 +194,10 @@ export class ImageGenerationDialog {
     this.generating.set(true);
 
     // Construct Prompt
-    const prompt = `Create an image for a luxury building announcement. 
-    Style: ${this.selectedStyle()}. 
-    Mood: ${this.selectedMood()}. 
-    Main Element: ${this.selectedElement()}. 
+    const prompt = `Create an image for a luxury building announcement.
+    Style: ${this.selectedStyle()}.
+    Mood: ${this.selectedMood()}.
+    Main Element: ${this.selectedElement()}.
     Additional details: ${this.additionalPromptControl.value}.
     Make it professional, high resolution.`;
 
@@ -211,13 +213,3 @@ export class ImageGenerationDialog {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-

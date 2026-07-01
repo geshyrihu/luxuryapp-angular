@@ -1,12 +1,12 @@
-﻿import { Component, DestroyRef, inject, input } from "@angular/core";
+import { Component, DestroyRef, inject, input } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import saveAs from "file-saver";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -25,7 +25,7 @@ import { FilterRequestsService } from "src/app/core/services/filter-requests.ser
   imports: [
     ReactiveFormsModule,
     RouterModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomSearchInput,
@@ -38,10 +38,10 @@ export class FilterRequests {
   filterRequestsService = inject(FilterRequestsService);
   customToastService = inject(CustomToastService);
   menu = [
-    { label: "📋 Vacantes", path: "vacancies" },
-    { label: "✅ Altas", path: "hirings" },
-    { label: "ðŸšª Bajas", path: "dismissals" },
-    { label: "ðŸ’° Modificación de salario", path: "salary-increase" },
+    { label: "?? Vacantes", path: "vacancies" },
+    { label: "? Altas", path: "hirings" },
+    { label: "🚪 Bajas", path: "dismissals" },
+    { label: "💰 Modificaci�n de salario", path: "salary-increase" },
   ];
 
   fechaInicial = new Date(new Date().getFullYear(), 0, 1);
@@ -86,7 +86,7 @@ export class FilterRequests {
           console.error("Error in exportToExcel:", error);
           this.customToastService.showError(
             "Error al crear",
-            "No se pudo completar la operación.",
+            "No se pudo completar la operaci�n.",
           );
         },
       });
@@ -111,10 +111,10 @@ export class FilterRequests {
     );
   }
 
-  // ? Mótodo helper para convertir Date a string "yyyy-MM"
+  // ? M�todo helper para convertir Date a string "yyyy-MM"
   private formatDateToYearMonth(date: Date): string {
     if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-      // Si la fecha no es válida, usa la fecha actual
+      // Si la fecha no es v�lida, usa la fecha actual
       date = new Date();
     }
 

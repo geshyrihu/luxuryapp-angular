@@ -1,10 +1,10 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -17,7 +17,7 @@ import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
     CommonModule,
     FormsModule,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     InputTextModule,
     TagModule,
   ],
@@ -135,4 +135,3 @@ export class CatalogReplica {
     this.loading.set(false);
   }
 }
-

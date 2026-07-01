@@ -2,8 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import {
   AspelDataSource,
   AspelLocalStatusResponse,
@@ -18,7 +18,7 @@ import {
     FormsModule,
     TagModule,
     CustomInputSelectSignal,
-    CustomButton,
+    WebButtonLabel,
   ],
   template: `
     <div
@@ -35,14 +35,15 @@ import {
             (ngModelChange)="dataSourceChange.emit($event)"
           />
           <small class="text-500">
-            Live consulta Aspel en tiempo real. Local usa el snapshot sincronizado.
+            Live consulta Aspel en tiempo real. Local usa el snapshot
+            sincronizado.
           </small>
         </div>
 
         <div class="col-12 xl:col-8">
           <div class="flex flex-column gap-2">
             <div class="flex flex-wrap gap-2">
-              <custom-button
+              <il-button
                 label="Sync cobranza"
                 iconClass="mdi:database-sync-outline"
                 [loading]="syncing"
@@ -50,7 +51,7 @@ import {
                 customClass="p-button-secondary"
                 (clicked)="syncCobranza.emit()"
               />
-              <custom-button
+              <il-button
                 label="Sync completa"
                 iconClass="mdi:sync"
                 [loading]="syncing"
@@ -58,7 +59,7 @@ import {
                 customClass="p-button-secondary"
                 (clicked)="syncCompleta.emit()"
               />
-              <custom-button
+              <il-button
                 label="Status local"
                 iconClass="mdi:server-outline"
                 [loading]="statusLoading"
@@ -70,20 +71,30 @@ import {
 
             <div class="flex flex-wrap align-items-center gap-2 text-sm">
               <span class="text-600">Customer:</span>
-              <p-tag [value]="customerId || 'Sin contexto'" severity="secondary" />
+              <p-tag
+                [value]="customerId || 'Sin contexto'"
+                severity="secondary"
+              />
               <p-tag [value]="'Año sync: ' + syncYear" severity="info" />
               @if (localStatus) {
                 <p-tag
-                  [value]="localStatus.snapshotReady ? 'Snapshot listo' : 'Snapshot incompleto'"
+                  [value]="
+                    localStatus.snapshotReady
+                      ? 'Snapshot listo'
+                      : 'Snapshot incompleto'
+                  "
                   [severity]="localStatus.snapshotReady ? 'success' : 'warn'"
                 />
                 <span class="text-500">
-                  Ctas {{ localStatus.totalAccounts }} · Saldos {{ localStatus.totalBalances }} · Pólizas {{ localStatus.totalPolicies }} · Aux {{ localStatus.totalMovements }}
+                  Ctas {{ localStatus.totalAccounts }} · Saldos
+                  {{ localStatus.totalBalances }} · Pólizas
+                  {{ localStatus.totalPolicies }} · Aux
+                  {{ localStatus.totalMovements }}
                 </span>
               }
             </div>
 
-            @if (dataSource === 'local' && localStatus?.notes) {
+            @if (dataSource === "local" && localStatus?.notes) {
               <small class="text-500">{{ localStatus.notes }}</small>
             }
           </div>

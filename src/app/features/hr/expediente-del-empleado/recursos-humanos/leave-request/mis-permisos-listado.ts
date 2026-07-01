@@ -1,14 +1,14 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -32,17 +32,17 @@ import { PermisoForm } from "./permiso-form";
     CommonModule,
     TableModule,
     TagModule,
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export class MisPermisosListado implements OnInit {
@@ -78,11 +78,13 @@ export class MisPermisosListado implements OnInit {
   }
 
   onDelete(id: string) {
-    this.apiResponseS.onDelete(Endpoints.HR.LeaveRequest.delete(id)).then(() => {
-      this.dataSignal.update((currentData) =>
-        currentData.filter((item) => item.id !== id),
-      );
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.HR.LeaveRequest.delete(id))
+      .then(() => {
+        this.dataSignal.update((currentData) =>
+          currentData.filter((item) => item.id !== id),
+        );
+      });
   }
 
   onModalForm(data: { id: string; title: string }) {
@@ -104,14 +106,3 @@ export class MisPermisosListado implements OnInit {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-

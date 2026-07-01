@@ -66,7 +66,7 @@
       </div>
 
       <div class="flex align-items-center gap-2">
-        <custom-button
+        <il-button
           iconClass="mdi:grid"
           label="Tablero"
           variant="outlined"
@@ -74,7 +74,7 @@
           size="small"
           (clicked)="onPendingBoard()"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:clipboard-text"
           label="Plan de trabajo"
           variant="outlined"
@@ -82,7 +82,7 @@
           size="small"
           (clicked)="onPreviewClickedWorkPlan()"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:eye-outline"
           label="Vista previa"
           variant="outlined"
@@ -90,7 +90,7 @@
           size="small"
           (clicked)="onPreviewWeeklyReport()"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:send"
           label="Enviar reporte"
           variant="outlined"
@@ -98,7 +98,7 @@
           [disabled]="wekklyIsNullOrEmpty()"
           (clicked)="onSendWeeklyReport()"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:printer"
           label="Imprimir pendientes"
           variant="outlined"
@@ -559,44 +559,38 @@
           </a>
           <app-action-menu>
             <ng-container actions>
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:calendar"
                 label="Programar"
                 (clicked)="onProgram(item.id)"
-                [showLabelOnDesktop]="true"
               />
               @if (item.status !== 'Completed') {
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:lock"
                 label="Cerrar"
                 (clicked)="onClosed(item.id)"
-                [showLabelOnDesktop]="true"
               />
               } @if (item.status !== 'InProgress') {
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:sync"
                 label="En proceso"
                 (clicked)="onProgress(item.id)"
-                [showLabelOnDesktop]="true"
               />
               } @if (item.status === 'Completed') {
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:lock-open"
                 label="Reabrir"
                 (clicked)="onReopen(item.id)"
-                [showLabelOnDesktop]="true"
               />
               }
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModalForm(item)"
                 label="Editar"
-                [showLabelOnDesktop]="true"
               />
               @if (isSuperUser()) {
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onDelete(item.id)"
                 label="Eliminar"
-                [showLabelOnDesktop]="true"
               />
               }
             </ng-container>
@@ -866,49 +860,43 @@
       <div slot="end" class="flex align-items-center">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               iconName="chatbubbles-outline"
               [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
               (clicked)="onFollowUp(item.id)"
             />
-            <custom-button-item
+            <il-button-item
               iconName="calendar-outline"
               label="Programar"
               (clicked)="onProgram(item.id)"
-              [showLabelOnDesktop]="true"
             />
             @if (item.status !== 'Completed') {
-            <custom-button-item
+            <il-button-item
               iconName="lock-closed-outline"
               label="Cerrar"
               (clicked)="onClosed(item.id)"
-              [showLabelOnDesktop]="true"
             />
             } @if (item.status !== 'InProgress') {
-            <custom-button-item
+            <il-button-item
               iconName="sync-outline"
               label="En proceso"
               (clicked)="onProgress(item.id)"
-              [showLabelOnDesktop]="true"
             />
             } @if (item.status === 'Completed') {
-            <custom-button-item
+            <il-button-item
               iconName="lock-open-outline"
               label="Reabrir"
               (clicked)="onReopen(item.id)"
-              [showLabelOnDesktop]="true"
             />
             }
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm(item)"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
             @if (isSuperUser()) {
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
             }
           </ng-container>

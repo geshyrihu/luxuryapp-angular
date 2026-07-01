@@ -1,4 +1,4 @@
-ï»¿import { BreakpointObserver } from "@angular/cdk/layout";
+import { BreakpointObserver } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -16,9 +16,9 @@ import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
 import { map } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -41,7 +41,7 @@ import { MisInspeccionesAgregarImagenes } from "src/app/features/operations/insp
     ToggleSwitchModule,
     CustomInputTextAreaSignal,
     ImageModule,
-    CustomButton,
+    WebButtonLabel,
     TooltipModule,
     TableModule,
     DataViewMobile,
@@ -156,7 +156,7 @@ export class MisInspeccionesEjecutar implements OnInit {
         console.log("Datos guardados exitosamente", result);
       })
       .catch((error) => {
-        console.error("Error al guardar revisiÃ³n:", error);
+        console.error("Error al guardar revisión:", error);
       });
   }
 
@@ -194,7 +194,7 @@ export class MisInspeccionesEjecutar implements OnInit {
       .openDialog(
         MisInspeccionesAgregarImagenes,
         { inspectionResultId },
-        "Agregar imÃ¡genes",
+        "Agregar imágenes",
         this.dialogHandlerS.sizeLg,
       )
       .then(() => {

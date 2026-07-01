@@ -1,11 +1,11 @@
-锘縤mport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 
 import { Component, inject, input, signal } from "@angular/core";
 import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importaci贸n
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importaci髇
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -19,7 +19,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     TagModule,
     MessageModule,
     SkeletonModule,
-    CustomButton,
+    WebButtonLabel,
   ],
 })
 export class OrdenCompraFacturasParcial {
@@ -62,18 +62,18 @@ export class OrdenCompraFacturasParcial {
         this.validationResult.set(result);
         if (result.isValid) {
           this.customToastService.showSuccess(
-            "Validaci贸n Exitosa",
+            "Validaci髇 Exitosa",
             result.message,
           );
         } else {
           this.customToastService.showError(
-            "Validaci贸n Fallida",
+            "Validaci髇 Fallida",
             result.message,
           );
         }
       })
       .catch((error) => {
-        console.error("Error en la validaci贸n:", error);
+        console.error("Error en la validaci髇:", error);
         this.customToastService.showError(
           "Error",
           "Error al validar facturas.",
@@ -84,5 +84,3 @@ export class OrdenCompraFacturasParcial {
       });
   }
 }
-
-

@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -15,11 +15,11 @@ import {
   UpdateLateFeePolicyDTO,
 } from "../../models/late-fee-policy.dto";
 
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 interface ILateFeePolicyForm {
   graceDays: FormControl<number>;
@@ -37,7 +37,7 @@ interface ILateFeePolicyForm {
     CustomInputDecimal,
     CustomInputSelectSignal,
     CustomInputCheckSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./late-fee-policy-form.html",
 })

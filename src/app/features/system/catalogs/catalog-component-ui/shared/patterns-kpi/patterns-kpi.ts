@@ -12,6 +12,11 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import {
+  CustomBtnActiveDesactive,
+  CustomButtonDelete,
+  CustomButtonEdit,
+} from "src/app/core/components/buttons/legacy/buttons";
+import {
   CustomInputDateSignal,
   CustomInputSelectSignal,
 } from "src/app/core/components/inputs/web";
@@ -23,11 +28,6 @@ import {
   EStatus,
   StatusBadge,
 } from "src/app/core/components/shared/status-badge/status-badge";
-import {
-  CustomBtnActiveDesactive,
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
@@ -63,10 +63,10 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
   ],
   template: `
     <div class="grid">
-      <!-- 1. Tarjetas KPI (Métricas ERP) -->
+      <!-- 1. Tarjetas KPI (Mï¿½tricas ERP) -->
       <div class="col-12">
         <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
-          Tarjetas de Métricas (KPI Cards)
+          Tarjetas de Mï¿½tricas (KPI Cards)
         </h3>
         <div class="grid mb-4">
           <div class="col-12 md:col-4">
@@ -110,7 +110,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
                   class="text-xs text-yellow-600 mt-2 font-bold flex align-items-center gap-1"
                 >
                   <app-icon [icon]="'mdi:alert'" />
-                  <span>Requiere atención inmediata</span>
+                  <span>Requiere atenciï¿½n inmediata</span>
                 </div>
               </div>
               <div
@@ -155,7 +155,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
       <!-- 2. Barra de Filtros Avanzados -->
       <div class="col-12 mb-4">
         <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
-          Estructura de Búsqueda y Grillas
+          Estructura de Bï¿½squeda y Grillas
         </h3>
         <p-card header="Barra de Filtros Avanzados (Responsive)">
           <form
@@ -183,7 +183,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
             </div>
             <div class="col-12 md:col-3">
               <label class="block text-xs font-bold text-secondary mb-1"
-                >Estado Transacción</label
+                >Estado Transacciï¿½n</label
               >
               <custom-input-select-signal
                 [control]="filterForm()?.controls?.['estado']"
@@ -212,9 +212,9 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
         </p-card>
       </div>
 
-      <!-- 3. Tabla Híbrida + Maestro-Detalle -->
+      <!-- 3. Tabla Hï¿½brida + Maestro-Detalle -->
       <div class="col-12 lg:col-6 mb-4">
-        <p-card header="Tabla Híbrida con Toolbar Alineado y Columnas Fijas">
+        <p-card header="Tabla Hï¿½brida con Toolbar Alineado y Columnas Fijas">
           <div
             class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round mb-3"
           >
@@ -258,7 +258,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
             <ng-template pTemplate="header">
               <tr>
                 <th>Acciones</th>
-                <th>Elemento (Ajuste automático de texto)</th>
+                <th>Elemento (Ajuste automï¿½tico de texto)</th>
                 <th>Status</th>
               </tr>
             </ng-template>
@@ -273,8 +273,8 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
                 <td>
                   <strong>{{ item.name }}</strong>
                   <span class="block text-xs text-secondary mt-1 line-height-2"
-                    >Este texto largo simula una descripción del insumo que debe
-                    hacer salto de línea automático de forma fluida y sin
+                    >Este texto largo simula una descripciï¿½n del insumo que debe
+                    hacer salto de lï¿½nea automï¿½tico de forma fluida y sin
                     desbordar la tabla.</span
                   >
                 </td>
@@ -315,7 +315,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
 
       <!-- 4. Maestro-Detalle -->
       <div class="col-12 lg:col-6 mb-4">
-        <p-card header="Patrón Maestro-Detalle (Expansión de Fila)">
+        <p-card header="Patrï¿½n Maestro-Detalle (Expansiï¿½n de Fila)">
           <p-table
             #dtMaster
             [value]="masterDetailData()"
@@ -442,7 +442,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
 
       <!-- 5. Tarjetas Complejas -->
       <div class="col-12">
-        <p-card header="Tarjetas Complejas e Indicadores Rápidos">
+        <p-card header="Tarjetas Complejas e Indicadores Rï¿½pidos">
           <div class="grid">
             @for (item of complexDataExample; track item.id) {
               <div class="col-12 md:col-6">
@@ -535,7 +535,7 @@ export class PatternsKpi {
   readonly complexDataExample = [
     {
       id: 1,
-      name: "Medidor Eléctrico A1",
+      name: "Medidor Elï¿½ctrico A1",
       folio: "E-1002",
       consumption: "120 kWh",
       status: EStatus.Concluido,

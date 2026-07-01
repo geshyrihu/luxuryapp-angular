@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
@@ -12,10 +12,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -26,13 +26,13 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     ReactiveFormsModule,
     TableModule,
     CardModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputTextSignal,
     CheckboxModule,
     TagModule,
     MessageModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
   ],
   templateUrl: "./property-occupant-manager.html",
 })
@@ -48,7 +48,7 @@ export class PropertyOccupantManager implements OnInit {
   propertyId: any = this.config.data.propertyId;
   propertyName: string = this.config.data.propertyName;
 
-  // Definición estricta del formulario
+  // Definici�n estricta del formulario
   occupantForm = new FormGroup({
     id: new FormControl<string | null>(null),
     fullName: new FormControl<string>("", {
@@ -135,7 +135,7 @@ export class PropertyOccupantManager implements OnInit {
         })
         .finally(() => this.loading.set(false));
     } else {
-      // Añadir
+      // A�adir
       this.apiResponseS
         .onPost<IPropertyOccupant>("PropertyOccupant", occupantData)
         .then((response) => {
@@ -143,12 +143,12 @@ export class PropertyOccupantManager implements OnInit {
             this.occupants.update((current) => [...current, response]);
             this.resetForm();
           } else {
-            this.errorMensaje = "Error al Añadir el ocupante.";
+            this.errorMensaje = "Error al A�adir el ocupante.";
           }
         })
         .catch((error) => {
           this.errorMensaje =
-            error.error?.message || "Error al Añadir el ocupante.";
+            error.error?.message || "Error al A�adir el ocupante.";
           console.error("Error adding occupant:", error);
         })
         .finally(() => this.loading.set(false));

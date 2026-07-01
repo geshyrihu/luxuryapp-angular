@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
@@ -6,8 +6,8 @@ import { ImageModule } from "primeng/image";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -28,7 +28,7 @@ import { TaskForm } from "../../task-message/pages/task-form";
   selector: "app-task-report-work-plan",
   templateUrl: "./task-report-work-plan.html",
   imports: [
-    CustomButton,
+    WebButtonLabel,
 
     TableModule,
     ImageModule,
@@ -105,7 +105,7 @@ export class TaskReportWorkPlan implements OnInit {
   }
 
   onPreviewClicked(): void {
-    // Lógica para la vista previa
+    // L�gica para la vista previa
     this.router.navigate(["/tickets/work-plan-preview"]);
   }
   onModalForm(data: any) {

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -22,10 +22,10 @@ import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -52,8 +52,8 @@ import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/
     MessageModule,
     SkeletonModule,
     CustomInputTextAreaSignal,
-    CustomButton,
-    CustomButtonSave,
+    WebButtonLabel,
+    WebButtonLabelSave,
     TableModule,
     TagModule,
   ],
@@ -198,20 +198,20 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.form.controls.dateRange.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        console.log("ðŸâ€Â [ValueChanges] dateRange:", value);
+        console.log("�” [ValueChanges] dateRange:", value);
         this.dateRangeSignal.set(value);
         this.form.updateValueAndValidity();
       });
   }
 
-  // Nuevo mótodo para capturar la selección manual
+  // Nuevo m�todo para capturar la selecci�n manual
   onDateSelect(value: Date[] | null) {
-    console.log("click 📅 [onSelect] Calendario:", value);
-    // Forzamos la actualización por si el ValueChanges falla
+    console.log("click ?? [onSelect] Calendario:", value);
+    // Forzamos la actualizaci�n por si el ValueChanges falla
     this.dateRangeSignal.set(value);
     this.form.updateValueAndValidity();
     console.log(
-      "ðŸâ€Â Estado Form tras selección:",
+      "�” Estado Form tras selecci�n:",
       this.form.status,
       "Errores:",
       this.form.errors,
@@ -242,7 +242,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.apiResponseS
       .onGetItem(`vacation-request-approvals/${employeeId}/balance`)
       .then((response: VacationBalanceDTO) => {
-        console.log("ðŸâ€Â Balance Cargado:", response);
+        console.log("�” Balance Cargado:", response);
         this.balance.set(response);
         if (response) {
           const hireDate = new Date(response.employeeAdmissionDate);
@@ -257,7 +257,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           }
 
           if (monthsOfService < 6) {
-            console.warn("âš ï¸Â Empleado con menos de 6 meses");
+            console.warn("⚠� Empleado con menos de 6 meses");
             this.eligibilityStatus.set("not-yet-6-months");
             this.form.controls.dateRange.disable();
           } else if (response.seniorityYears < 1 && response.isAdvancePeriod) {
@@ -271,7 +271,7 @@ export class VacacionesPasadasRegistro implements OnInit {
             this.availableAdvanceDaysDisplay.set(null);
             this.form.controls.dateRange.enable();
           } else {
-            console.warn("âš ï¸Â No elegible este Año");
+            console.warn("⚠� No elegible este A�o");
             this.eligibilityStatus.set("not-eligible-this-year");
             this.form.controls.dateRange.disable();
           }
@@ -341,11 +341,11 @@ export class VacacionesPasadasRegistro implements OnInit {
       : balance.availableDays;
 
     console.log(
-      `ðŸâ€Â Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
+      `�” Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
     );
 
     if (requestedDays > available) {
-      console.error("? Error: Días insuficientes");
+      console.error("? Error: D�as insuficientes");
       return {
         notEnoughDays: {
           requested: requestedDays,
@@ -354,7 +354,7 @@ export class VacacionesPasadasRegistro implements OnInit {
       };
     }
 
-    console.log("? Validación exitosa");
+    console.log("? Validaci�n exitosa");
     return null;
   }
 
@@ -399,7 +399,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           // Refrescamos los datos para que el usuario vea el cambio reflejado
           if (currentEmployeeId) {
             console.log(
-              "ðŸâ€Â Refrescando datos para el empleado:",
+              "�” Refrescando datos para el empleado:",
               currentEmployeeId,
             );
             this.refreshBalance();
@@ -408,7 +408,7 @@ export class VacacionesPasadasRegistro implements OnInit {
         } else {
           const error = this.globalErrorS.errorSubject.getValue();
           this.serverError.set(
-            error?.message || "Ocurrió un error inesperado.",
+            error?.message || "Ocurri� un error inesperado.",
           );
         }
       })

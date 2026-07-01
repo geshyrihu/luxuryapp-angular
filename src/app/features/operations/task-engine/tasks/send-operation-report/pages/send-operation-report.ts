@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -12,10 +12,10 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
@@ -36,9 +36,9 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     TagModule,
     TooltipModule,
     CheckboxModule,
-    CustomButton,
-    CustomButtonConfirm,
-    CustomButtonAdd,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
+    WebButtonLabelAdd,
     PrimeNgCustomCaption,
   ],
   templateUrl: "./send-operation-report.html",

@@ -35,7 +35,7 @@
               appendTo="body"
             />
             @if (selectedDateControl.value) {
-            <custom-button
+            <il-button
               iconClass="mdi:close"
               (clicked)="clearFilter()"
               severity="danger"
@@ -44,7 +44,7 @@
           </div>
 
           <!-- Botón de Reporte (funcionalidad futura) -->
-          <custom-button-download
+          <il-button-download
             label="Generar Reporte"
             iconClass="mdi:file-excel"
             severity="success"
@@ -60,7 +60,7 @@
             placeholder="Buscar..."
             [horizontal]="false"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:magnify"
             (clicked)="onLoadData()"
             severity="primary"
@@ -111,7 +111,7 @@
         <td class="no-print">
           <div class="flex">
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <custom-button-edit
+            <il-button-edit
               (clicked)="
                     onEditSalida({
                       id: item.id,
@@ -123,14 +123,14 @@
                   "
             />
             }
-            <custom-button-item
+            <il-button-item
               (clicked)="onReturnProduct(item)"
               emogi="??"
               label="Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
 
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <il-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
@@ -190,7 +190,7 @@
         <app-action-menu>
           <ng-container actions>
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <custom-button-item
+            <il-button-item
               (clicked)="
                 onEditSalida({
                   id: item.id,
@@ -202,20 +202,17 @@
               "
               label="Editar"
               iconName="create-outline"
-              [showLabelOnDesktop]="true"
             />
             }
-            <custom-button-item
+            <il-button-item
               (clicked)="onReturnProduct(item)"
               label="?? Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
-              [showLabelOnDesktop]="true"
             />
 
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

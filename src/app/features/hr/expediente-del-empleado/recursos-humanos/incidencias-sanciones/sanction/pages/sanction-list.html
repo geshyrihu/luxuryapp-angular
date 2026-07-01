@@ -53,7 +53,7 @@
           }
         </td>
         <td class="text-center">
-          <custom-button-item
+          <il-button-item
             icon="mdi:sync"
             title="Cambiar estatus"
             (click)="onChangeStatus(item)"
@@ -110,11 +110,10 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Cambiar estatus"
               iconName="sync-outline"
               (clicked)="onChangeStatus(item)"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

@@ -55,7 +55,7 @@
     [control]="userForm.controls.phoneNumber"
   />
   <div class="flex justify-content-end mt-3">
-    <custom-button
+    <il-button
       label="Siguiente"
       iconClass="mdi:arrow-right"
       [disabled]="submitting()"
@@ -95,7 +95,7 @@
     [control]="memberForm.controls.notes"
   />
   <div class="flex justify-content-end mt-3">
-    <custom-button-save [submitting]="submitting()" />
+    <il-button-save [submitting]="submitting()" />
   </div>
 </form>
 }

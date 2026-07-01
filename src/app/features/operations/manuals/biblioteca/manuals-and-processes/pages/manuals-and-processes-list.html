@@ -23,7 +23,7 @@
           (searchChange)="searchTerm.set($event)"
         />
         @if (isAdmin()) {
-        <custom-button
+        <il-button
           iconClass="mdi:plus"
           label="Nuevo Manual"
           severity="primary"
@@ -145,23 +145,21 @@
             <!-- Botones de Acción -->
             <div class="flex align-items-center gap-1">
               @if (isAdmin()) {
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModalForm({ id: manual.id })"
               />
-              <custom-button
+              <il-button
                 iconClass="mdi:cog"
                 label="Editor"
-                [showLabelOnDesktop]="false"
                 severity="primary"
                 [variant]="'text'"
                 (clicked)="onOpenEditor(manual.id)"
               />
-              <custom-button-delete (confirmed)="onDelete(manual)" />
+              <il-button-delete (confirmed)="onDelete(manual)" />
               }
-              <custom-button
+              <il-button
                 iconClass="mdi:file-document-outline"
                 label="Ver"
-                [showLabelOnDesktop]="false"
                 severity="secondary"
                 [variant]="'text'"
                 (clicked)="onViewTemplate(manual.id)"
@@ -206,8 +204,8 @@
         </ion-label>
         <div slot="end" class="flex align-items-center gap-1" (click)="$event.stopPropagation()">
           @if (isAdmin()) {
-          <custom-button-edit (clicked)="onModalForm({ id: item.id })" />
-          <custom-button-delete (confirmed)="onDelete(item)" />
+          <il-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <il-button-delete (confirmed)="onDelete(item)" />
           }
         </div>
       </ion-item>

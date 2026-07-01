@@ -67,20 +67,18 @@
             ])
           "
         >
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:play-circle-outline"
             label="Iniciar"
-            [showLabelOnDesktop]="true"
             (clicked)="onStartManual(item.id)"
           />
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:power"
             [label]="item.isActive ? 'Desactivar' : 'Activar'"
-            [showLabelOnDesktop]="true"
             (clicked)="onToggleActive(item)"
           />
-          <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-edit (clicked)="onAddOrEdit(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>

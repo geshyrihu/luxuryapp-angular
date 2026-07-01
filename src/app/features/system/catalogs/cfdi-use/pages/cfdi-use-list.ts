@@ -1,16 +1,16 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -31,16 +31,16 @@ import { CfdiUseForm } from "./cfdi-use-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
   ],
 })
 export class CfdiUseList implements OnInit {
@@ -93,4 +93,3 @@ export class CfdiUseList implements OnInit {
       });
   }
 }
-

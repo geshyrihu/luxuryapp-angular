@@ -23,11 +23,11 @@
   <ng-template #header>
     <tr>
       <th class="text-small" pSortableColumn="codigo">
-        Código
+        Cï¿½digo
         <p-sortIcon field="codigo" />
       </th>
       <th class="text-small" pSortableColumn="descripcion">
-        Descripción
+        Descripciï¿½n
         <p-sortIcon field="descripcion" />
       </th>
 
@@ -45,10 +45,10 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -69,7 +69,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -93,7 +93,7 @@
         ></app-icon>
       </div>
 
-      <!-- Jerarquía Visual -->
+      <!-- Jerarquï¿½a Visual -->
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.codigo }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
@@ -103,15 +103,13 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

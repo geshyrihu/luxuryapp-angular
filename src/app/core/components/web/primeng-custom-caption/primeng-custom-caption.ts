@@ -7,14 +7,14 @@
   output,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { IlButtonAdd } from "src/app/core/components/buttons-icon-label/il-button-add";
 import { GlobalTableFilterService } from "src/app/core/services/global-table-filter.service";
 
 @Component({
   selector: "primeng-custom-caption",
   templateUrl: "./primeng-custom-caption.html",
-  imports: [RouterModule, IlButtonAdd, CustomSearchInput],
+  imports: [RouterModule, WebButtonLabelAdd, CustomSearchInput],
   styles: [
     `
       :host {

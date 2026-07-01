@@ -72,7 +72,7 @@
           <td>{{ item.completionDate }}</td>
           <td class="text-center">{{ item.diferenciaDias }}</td>
           <td class="text-center">
-            <custom-button-tracking
+            <il-button-tracking
               [ticketId]="item.id"
               [badgeCount]="item.tracking"
               (clickTracking)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
@@ -162,14 +162,14 @@
 
           <app-action-menu slot="end">
             <ng-container actions>
-              <custom-button-item
+              <il-button-item
                 iconName="book-outline"
                 label="Ver detalles"
                 (clicked)="onModalViewDetail({ id: item.id })"
                 [disabled]="!item.description || item.description.length === 0"
-                [showLabelOnDesktop]="true"
+                []="true"
               />
-              <custom-button-item
+              <il-button-item
                 iconName="ellipsis-horizontal-outline"
                 label="Seguimiento"
                 (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
@@ -177,9 +177,9 @@
                 <p-badge
                   [value]="item.tracking"
                   severity="danger"
-                  [showLabelOnDesktop]="true"
+                  []="true"
                 />
-              </custom-button-item>
+              </il-button-item>
             </ng-container>
           </app-action-menu>
         </ion-item>

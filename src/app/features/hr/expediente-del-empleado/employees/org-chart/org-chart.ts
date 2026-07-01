@@ -1,10 +1,10 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
-  HostListener,
   computed,
   effect,
+  HostListener,
   inject,
   signal,
 } from "@angular/core";
@@ -17,7 +17,7 @@ import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -51,7 +51,7 @@ import {
     CommonModule,
     GraphModule,
     AvatarModule,
-    CustomButton,
+    WebButtonLabel,
     Drawer,
     SelectButtonModule,
     TabsModule,
@@ -92,8 +92,7 @@ export class OrgChart {
     buildOrgChartGraph(this.graphTree(), {
       selectedOriginId: this.selectedOrigin()?.workPositionId ?? null,
       selectedDestId:
-        this.selectedDest()?.workPositionId ??
-        this.dragHoverNodeId(),
+        this.selectedDest()?.workPositionId ?? this.dragHoverNodeId(),
     }),
   );
   readonly totalNodes = computed(
@@ -106,13 +105,17 @@ export class OrgChart {
     () =>
       flattenOrgChartNodes(this.tree()).filter(
         (node) =>
-          node.workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID && !node.hasEmployee,
+          node.workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID &&
+          !node.hasEmployee,
       ).length,
   );
   readonly isCompactViewport = computed(() => this.viewport().width < 960);
   readonly graphView = computed<[number, number]>(() => [
     Math.max(this.viewport().width - (this.isCompactViewport() ? 32 : 72), 720),
-    Math.max(this.viewport().height - (this.isCompactViewport() ? 320 : 260), 560),
+    Math.max(
+      this.viewport().height - (this.isCompactViewport() ? 320 : 260),
+      560,
+    ),
   ]);
   readonly selectedOriginContext = computed(() => {
     const origin = this.selectedOrigin();
@@ -252,11 +255,7 @@ export class OrgChart {
         ? null
         : node.workPositionId;
     const newSortOrder = node.children.length;
-    void this.executeReassign(
-      origin.workPositionId,
-      newParentId,
-      newSortOrder,
-    );
+    void this.executeReassign(origin.workPositionId, newParentId, newSortOrder);
   }
 
   onGraphNodeKeydown(
@@ -295,14 +294,14 @@ export class OrgChart {
     this.selectedDest.set(null);
   }
 
-  onEditorRowDragStart(node: IWorkPositionOrgChartNode, event: DragEvent): void {
+  onEditorRowDragStart(
+    node: IWorkPositionOrgChartNode,
+    event: DragEvent,
+  ): void {
     this.onCardDragStart(node, event);
   }
 
-  onEditorRowDragOver(
-    row: IOrgChartEditorRow,
-    event: DragEvent,
-  ): void {
+  onEditorRowDragOver(row: IOrgChartEditorRow, event: DragEvent): void {
     const origin = this.draggingNode();
     if (!origin || origin.workPositionId === row.node.workPositionId) {
       return;
@@ -330,10 +329,7 @@ export class OrgChart {
     }
   }
 
-  onEditorRowDrop(
-    row: IOrgChartEditorRow,
-    event: DragEvent,
-  ): void {
+  onEditorRowDrop(row: IOrgChartEditorRow, event: DragEvent): void {
     event.preventDefault();
 
     const origin = this.draggingNode();
@@ -459,11 +455,7 @@ export class OrgChart {
         ? null
         : node.workPositionId;
     const newSortOrder = node.children.length;
-    void this.executeReassign(
-      origin.workPositionId,
-      newParentId,
-      newSortOrder,
-    );
+    void this.executeReassign(origin.workPositionId, newParentId, newSortOrder);
   }
 
   onReorderZoneDragOver(
@@ -622,11 +614,7 @@ export class OrgChart {
     this.selectedDest.set(null);
 
     const newParentId = effectiveContext.parent?.workPositionId ?? null;
-    void this.executeReassign(
-      node.workPositionId,
-      newParentId,
-      nextIndex,
-    );
+    void this.executeReassign(node.workPositionId, newParentId, nextIndex);
   }
 
   canMoveNodeUp(node: IWorkPositionOrgChartNode): boolean {
@@ -667,7 +655,9 @@ export class OrgChart {
 
   getNodeAriaLabel(node: IWorkPositionOrgChartNode): string {
     const owner = node.employeeName ?? "Vacante";
-    const department = node.departmentName ? `, departamento ${node.departmentName}` : "";
+    const department = node.departmentName
+      ? `, departamento ${node.departmentName}`
+      : "";
     const role = node.roleDisplayName ? `, puesto ${node.roleDisplayName}` : "";
     const modeHint = this.editMode()
       ? ". Presiona Enter o espacio para seleccionar o reasignar."
@@ -765,4 +755,3 @@ export class OrgChart {
     });
   }
 }
-

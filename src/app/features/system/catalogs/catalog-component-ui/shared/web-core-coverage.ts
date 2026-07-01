@@ -3,6 +3,20 @@ import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import {
+  CustomBtnActiveDesactive,
+  CustomButton,
+  CustomButtonAdd,
+  CustomButtonConfirm,
+  CustomButtonDelete,
+  CustomButtonDownload,
+  CustomButtonEdit,
+  CustomButtonItem,
+  CustomButtonSave,
+  CustomButtonSendEmail,
+  CustomButtonTracking,
+  CustomButtonViewPdf,
+} from "src/app/core/components/buttons/legacy/buttons";
+import {
   CustomInputAutoComplete,
   CustomInputAutoMultiple,
   CustomInputCheckSignal,
@@ -31,20 +45,6 @@ import {
   CustomInputUrl,
   CustomSearchInput,
 } from "src/app/core/components/inputs/web";
-import {
-  CustomBtnActiveDesactive,
-  CustomButton,
-  CustomButtonAdd,
-  CustomButtonConfirm,
-  CustomButtonDelete,
-  CustomButtonDownload,
-  CustomButtonEdit,
-  CustomButtonItem,
-  CustomButtonSave,
-  CustomButtonSendEmail,
-  CustomButtonTracking,
-  CustomButtonViewPdf,
-} from "src/app/core/components/web/buttons";
 
 @Component({
   selector: "app-web-core-coverage",
@@ -499,9 +499,9 @@ import {
           Pantallas objetivo antes que inventario plano
         </h3>
         <p class="web-hero__copy">
-          La cobertura web debe demostrar cómo viven juntos los componentes
-          dentro de módulos reales: filtros, tablas, métricas, acciones
-          contextuales y navegación de detalle.
+          La cobertura web debe demostrar cï¿½mo viven juntos los componentes
+          dentro de mï¿½dulos reales: filtros, tablas, mï¿½tricas, acciones
+          contextuales y navegaciï¿½n de detalle.
         </p>
       </section>
 
@@ -511,8 +511,8 @@ import {
           Showroom de vistas objetivo para escritorio
         </h4>
         <p class="web-panel__copy">
-          Igual que en mobile, el catálogo web debe enseñar pantallas armadas y
-          no sólo una parrilla de controles sueltos.
+          Igual que en mobile, el catï¿½logo web debe enseï¿½ar pantallas armadas y
+          no sï¿½lo una parrilla de controles sueltos.
         </p>
 
         <div class="web-gallery">
@@ -525,7 +525,7 @@ import {
               <span class="web-screen__badge">Ready</span>
             </div>
             <div class="web-screen__hero">
-              <strong>Autorización de presupuesto</strong>
+              <strong>Autorizaciï¿½n de presupuesto</strong>
               <span
                 >Formulario con CTA primario, guardado parcial y datos clave en
                 contexto.</span
@@ -536,7 +536,7 @@ import {
                 class="web-screen__cta web-screen__cta--primary"
                 type="button"
               >
-                Enviar aprobación
+                Enviar aprobaciï¿½n
               </button>
               <button
                 class="web-screen__cta web-screen__cta--secondary"
@@ -573,7 +573,7 @@ import {
               <div class="web-screen__table-row">
                 <strong>Finanzas</strong>
                 <span class="web-screen__status web-screen__status--review"
-                  >Revisión</span
+                  >Revisiï¿½n</span
                 >
                 <strong>$125k</strong>
               </div>
@@ -594,7 +594,7 @@ import {
                 <strong>12</strong>
               </div>
               <div class="web-screen__stat">
-                <span class="web-screen__muted">En revisión</span>
+                <span class="web-screen__muted">En revisiï¿½n</span>
                 <strong>04</strong>
               </div>
               <div class="web-screen__stat">
@@ -607,7 +607,7 @@ import {
                 <div class="web-screen__list-item-main">
                   <strong>QA infraestructura</strong>
                   <span class="web-screen__muted"
-                    >Validación de wrappers y patrones base</span
+                    >Validaciï¿½n de wrappers y patrones base</span
                   >
                 </div>
                 <span class="web-screen__pill">Alta</span>
@@ -698,7 +698,7 @@ import {
                 <div class="web-screen__list-item-main">
                   <strong>Actividad reciente</strong>
                   <span class="web-screen__muted"
-                    >14 movimientos en las últimas 4 horas</span
+                    >14 movimientos en las ï¿½ltimas 4 horas</span
                   >
                 </div>
                 <strong>14 items</strong>

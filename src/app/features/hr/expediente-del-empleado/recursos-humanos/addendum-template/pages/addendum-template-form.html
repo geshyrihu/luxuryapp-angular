@@ -32,12 +32,12 @@
       [placeholder]="placeholderText"
     />
     <div class="flex justify-content-end mt-2">
-      <custom-button
+      <il-button
         label="Cancelar"
         (clicked)="onCancel()"
         customClass="outline"
       />
-      <custom-button-save
+      <il-button-save
         [propertyId]="item()?.id"
         [disabled]="form.invalid"
         [submitting]="submitting()"

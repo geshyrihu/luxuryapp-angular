@@ -12,8 +12,8 @@ import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -62,7 +62,7 @@ import {
     MessageModule,
     TagModule,
     AppIcon,
-    CustomButtonDownload,
+    WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     AspelCobranzaHausSourceToolbar,
@@ -305,8 +305,7 @@ export class AspelCobranzaHaus {
   }
 
   getModeTitle(): string {
-    const sourceSuffix =
-      this.dataSource() === "local" ? "Local" : "Live";
+    const sourceSuffix = this.dataSource() === "local" ? "Local" : "Live";
 
     switch (this.mode()) {
       case "accounts":
@@ -383,7 +382,12 @@ export class AspelCobranzaHaus {
       if (!fechaInicio || !fechaFin || !numCta) return;
       const result =
         await this.apiResponseS.onGetItem<AspelEstadoCuentaResponse>(
-          this.getEstadoCuentaEndpoint(customerId, numCta, fechaInicio, fechaFin),
+          this.getEstadoCuentaEndpoint(
+            customerId,
+            numCta,
+            fechaInicio,
+            fechaFin,
+          ),
         );
       this.estadoCuenta.set(
         result ? this.normalizeEstadoCuentaResponse(result) : null,
@@ -509,9 +513,10 @@ export class AspelCobranzaHaus {
 
     this.localStatusLoading.set(true);
     try {
-      const status = await this.apiResponseS.onGetItem<AspelLocalStatusResponse>(
-        Endpoints.AspelCobranzaLocal.status(customerId, this.getSyncYear()),
-      );
+      const status =
+        await this.apiResponseS.onGetItem<AspelLocalStatusResponse>(
+          Endpoints.AspelCobranzaLocal.status(customerId, this.getSyncYear()),
+        );
       this.localStatus.set(status);
     } finally {
       this.localStatusLoading.set(false);

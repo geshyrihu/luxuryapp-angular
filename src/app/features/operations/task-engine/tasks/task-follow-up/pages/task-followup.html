@@ -38,7 +38,7 @@
     </div>
 
     <div class="flex justify-content-end">
-      <custom-button-save
+      <il-button-save
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
@@ -67,7 +67,7 @@
               {{ follow.createdAt }}
             </span>
             @if (isSuperUser()) {
-            <custom-button-delete (confirmed)="onDelete(follow.id)" />
+            <il-button-delete (confirmed)="onDelete(follow.id)" />
             }
           </div>
         </div>

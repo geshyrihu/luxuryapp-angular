@@ -1,13 +1,13 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "primeng/api";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -25,7 +25,7 @@ import { ReportFilterService } from "./services/financial-report-filter.service"
     TableModule,
     SelectButtonModule,
     ProgressSpinnerModule,
-    CustomButton,
+    WebButtonLabel,
     CustomSearchInput,
     SharedModule,
     AppIcon,
@@ -37,7 +37,7 @@ export class EspejoAspelFull {
   readonly customerIdS = inject(CustomerIdService);
   readonly filterS = inject(ReportFilterService);
 
-  // ── Estado ──────────────────────────────────────────────────────────────────
+  // -- Estado ------------------------------------------------------------------
   loading = signal(false);
   rawData = signal<IEspejoAspelFullResponseDTO | null>(null);
   ocultarSinDatos = signal(false);
@@ -217,7 +217,7 @@ export class EspejoAspelFull {
 
       return resultado;
     } catch (error) {
-      console.error("ðŸ”¥ ERROR FATAL EN FILAS FILTRADAS POR GRUPO:", error);
+      console.error("🔥 ERROR FATAL EN FILAS FILTRADAS POR GRUPO:", error);
       alert("Error capturado: " + (error as any).message);
       return new Map<string, IEspejoFilaTabla[]>();
     }
@@ -246,7 +246,7 @@ export class EspejoAspelFull {
     this.loading.set(false);
   }
 
-  // ── Helpers ─────────────────────────────────────────────────────────────────
+  // -- Helpers -----------------------------------------------------------------
 
   private crearFila(
     numCta: string,
@@ -328,7 +328,7 @@ export class EspejoAspelFull {
         ...prev,
         [codigo]: nivel,
       }));
-      // Damos un pequeño respiro para que Angular procese los miles de filas antes de quitar el spinner
+      // Damos un peque�o respiro para que Angular procese los miles de filas antes de quitar el spinner
       setTimeout(() => {
         this.loading.set(false);
       }, 50);
@@ -343,7 +343,7 @@ export class EspejoAspelFull {
     let hasN3 = filas.some((f) => f.nivel === 3);
     let hasN4 = filas.some((f) => f.nivel === 4);
 
-    // Si la empresa usa máscara de 4 niveles (ej: 401-000-000-000),
+    // Si la empresa usa m�scara de 4 niveles (ej: 401-000-000-000),
     // habilitamos los 4 botones por coherencia con la estructura de Aspel.
     if (
       !hasN4 &&

@@ -25,7 +25,7 @@
           />
         </div>
         <div class="flex-shrink-0" style="width: 150px">
-          <custom-button-active-desactive
+          <il-button-active-desactive
             [state]="value()"
             (stateChange)="onChange($event)"
           />
@@ -92,31 +92,31 @@
         <td class="no-print">
           <div class="flex justify-content-end">
             @if (item.customerId === customerIdS.customerId()) {
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalParticipants(item)"
               iconClass="mdi:account-group"
               label="Integrantes"
               variant="text"
             />
             } @if (hasSuperUsuario()) {
-            <custom-button-item
+            <il-button-item
               (clicked)="SendReportPendingTicketGroupAsync(item)"
               iconClass="mdi:email-outline"
               label="Reporte"
               variant="text"
             />
             }
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <custom-button
+            <il-button
               [iconClass]="item.active ? 'mdi:lock' : 'mdi:lock-open'"
               (click)="onToggleStatus(item.id)"
               [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
               variant="text"
               [severity]="item.active ? 'warn' : 'success'"
             />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <il-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
@@ -148,7 +148,7 @@
 >
   <ng-container customFilters>
     <div class="px-3 pb-3">
-      <custom-button-active-desactive
+      <il-button-active-desactive
         [state]="value()"
         (stateChange)="onChange($event)"
       />
@@ -193,42 +193,37 @@
           <app-action-menu>
             <ng-container actions>
               @if (item.customerId === customerIdS.customerId()) {
-              <custom-button-item
+              <il-button-item
                 (clicked)="onModalParticipants(item)"
                 [label]="'Integrantes (' + item.TaskGroupParticipant + ')'"
                 iconName="people-outline"
               />
               } @if (hasSuperUsuario()) {
-              <custom-button-item
+              <il-button-item
                 iconName="mail-outline"
                 label="Enviar por correo"
                 (clicked)="SendReportPendingTicketGroupAsync(item)"
-                [showLabelOnDesktop]="true"
               />
               }
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
                 label="Editar"
-                [showLabelOnDesktop]="true"
               />
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onDelete(item.id)"
                 label="Eliminar"
-                [showLabelOnDesktop]="true"
               />
               @if (item.active) {
-              <custom-button-item
+              <il-button-item
                 iconName="lock-closed-outline"
                 label="Bloquear"
                 (clicked)="onToggleStatus(item.id)"
-                [showLabelOnDesktop]="true"
               />
               } @if (!item.active) {
-              <custom-button-item
+              <il-button-item
                 iconName="lock-open-outline"
                 label="Desbloquear"
                 (clicked)="onToggleStatus(item.id)"
-                [showLabelOnDesktop]="true"
               />
               }
             </ng-container>

@@ -1,20 +1,14 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import {
-  Component,
-  computed,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -33,14 +27,12 @@ import { ProductosForm } from "./productos-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     AvatarModule,
-
-
   ],
 })
 export class ProductosList implements OnInit {
@@ -80,12 +72,14 @@ export class ProductosList implements OnInit {
   }
 
   onLoadData() {
-    return this.apiResponseS.onGetList(Endpoints.Products.getAll).then((result: any) => {
-      if (result) {
-        this.dataSignal.set(result);
-        this.filteredDataSignal.set(result);
-      }
-    });
+    return this.apiResponseS
+      .onGetList(Endpoints.Products.getAll)
+      .then((result: any) => {
+        if (result) {
+          this.dataSignal.set(result);
+          this.filteredDataSignal.set(result);
+        }
+      });
   }
 
   onLoadMobile() {
@@ -103,14 +97,22 @@ export class ProductosList implements OnInit {
 
   // ... Eliminar registro
   onDelete(id: any) {
-    return this.apiResponseS.onDelete(Endpoints.Products.delete(id)).then((result: boolean) => {
-      if (result) {
-        this.dataSignal.update((data) => data.filter((item) => item.id !== id));
-        this.filteredDataSignal.update((data) => data.filter((item) => item.id !== id));
-        this.mobileDataSignal.update((data) => data.filter((item) => item.id !== id));
-        this.mobileTotalRecords.update((n) => n - 1);
-      }
-    });
+    return this.apiResponseS
+      .onDelete(Endpoints.Products.delete(id))
+      .then((result: boolean) => {
+        if (result) {
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
+          this.filteredDataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
+          this.mobileDataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
+          this.mobileTotalRecords.update((n) => n - 1);
+        }
+      });
   }
 
   loadNextPage(event: any) {
@@ -125,7 +127,8 @@ export class ProductosList implements OnInit {
         }
         event.target.complete();
         const noMore = !result || !result.items?.length;
-        const allLoaded = this.mobileDataSignal().length >= this.mobileTotalRecords();
+        const allLoaded =
+          this.mobileDataSignal().length >= this.mobileTotalRecords();
         if (noMore || allLoaded) event.target.disabled = true;
       });
   }
@@ -135,16 +138,10 @@ export class ProductosList implements OnInit {
     this.dialogHandlerS
       .openDialog(ProductosForm, data, data.title, this.dialogHandlerS.sizeLg)
       .then((result: boolean) => {
-        if (result) { this.onLoadData(); this.onLoadMobile(); }
+        if (result) {
+          this.onLoadData();
+          this.onLoadMobile();
+        }
       });
   }
 }
-
-
-
-
-
-
-
-
-

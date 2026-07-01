@@ -1,26 +1,26 @@
-﻿/**
+/**
  * ============================================================================
- * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
- * 
- * Por favor, NO rompan el código.
+ * Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
+ *
+ * Por favor, NO rompan el c�digo.
  * ============================================================================
  */
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
 @Component({
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
-  imports: [CustomButton],
+  imports: [WebButtonLabel],
 })
 export class BudgetAuditDialog implements OnInit {
   private ref = inject(DynamicDialogRef);
@@ -65,11 +65,11 @@ export class BudgetAuditDialog implements OnInit {
     } catch (error) {
       console.error(error);
       this.auditReportHtml.set(
-        "<p class='text-red-500'>Ocurrió un error al generar la auditoría. Por favor intente nuevamente.</p>",
+        "<p class='text-red-500'>Ocurri� un error al generar la auditor�a. Por favor intente nuevamente.</p>",
       );
       this.customToastService.showError(
         "Error",
-        "No se pudo completar el análisis IA.",
+        "No se pudo completar el an�lisis IA.",
       );
     } finally {
       this.loading.set(false);
@@ -116,4 +116,3 @@ export class BudgetAuditDialog implements OnInit {
     return expenses.length ? sum / expenses.length : 0;
   }
 }
-

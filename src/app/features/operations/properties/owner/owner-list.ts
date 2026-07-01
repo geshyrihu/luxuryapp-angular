@@ -1,15 +1,15 @@
-ï»¿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { homeOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -34,13 +34,13 @@ import { OwnerForm } from "./owner-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -123,11 +123,11 @@ export class OwnerList {
 
       let comparisonResult;
 
-      // Si ambos son numÃ©ricos, los comparamos como enteros
+      // Si ambos son numéricos, los comparamos como enteros
       if (!isNaN(parseInt(xPart, 10)) && !isNaN(parseInt(yPart, 10))) {
         comparisonResult = parseInt(xPart, 10) - parseInt(yPart, 10);
       } else {
-        // Si no son numÃ©ricos, comparamos como cadenas
+        // Si no son numéricos, comparamos como cadenas
         comparisonResult = xPart.localeCompare(yPart);
       }
 
@@ -136,8 +136,7 @@ export class OwnerList {
       }
     }
 
-    // Si todos los elementos hasta ahora son iguales, el mÃ³s corto es menor
+    // Si todos los elementos hasta ahora son iguales, el mós corto es menor
     return xMatches.length - yMatches.length;
   }
 }
-

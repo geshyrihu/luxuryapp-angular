@@ -6,9 +6,10 @@ import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomBtnActiveDesactive } from "src/app/core/components/web/buttons/custom-button-active-desactive";
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web/icon/button-active-desactive";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -34,8 +35,8 @@ import { CustomerModulEdit } from "./customer-modul-edit";
     PrimeNgCustomTableFooter,
     CardModule,
     PrimeNgCustomCaption,
-    CustomBtnActiveDesactive,
-    CustomBtnActiveDesactive,
+    WebButtonIconActiveDesactive,
+    WebButtonLabelActiveDesactive,
     AppIcon,
   ],
 })
@@ -102,4 +103,3 @@ export class CustomerModulList implements OnInit {
     );
   }
 }
-

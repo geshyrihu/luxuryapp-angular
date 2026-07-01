@@ -6,12 +6,11 @@
           <span class="text-xl font-bold">FACTURAS ASOCIADAS</span>
           <div class="flex">
             @if (facturas().length > 0) {
-            <custom-button
+            <il-button
               label="Validar Todas"
               iconClass="mdi:check"
               severity="warning"
               size="small"
-              [showLabelOnDesktop]="true"
               (clicked)="onValidateInvoice()"
               [submitting]="isValidating()"
             />

@@ -15,7 +15,7 @@
       </div>
 
       <div class="flex justify-content-end mb-4">
-        <custom-button
+        <il-button
           label="Criticar con IA"
           iconClass="mdi:lightning-bolt"
           variant="ghost-text"
@@ -25,7 +25,7 @@
           [disabled]="!applicationRoleName()"
           ngbTooltip="Analiza la descripción actual en busca de mejoras"
         />
-        <custom-button
+        <il-button
           label="Generar con IA"
           iconClass="mdi:sparkles"
           variant="ghost-text"
@@ -58,14 +58,14 @@
         ></textarea>
 
         <ng-template #footer>
-          <custom-button
+          <il-button
             label="Cancelar"
             iconClass="mdi:close"
             variant="ghost-text"
             severity="secondary"
             (clicked)="showInstructionsDialog.set(false)"
           />
-          <custom-button
+          <il-button
             label="Generar"
             iconClass="mdi:check"
             severity="help"
@@ -86,7 +86,7 @@
       >
         <div [innerHTML]="analysisResult()" class="line-height-3"></div>
         <ng-template #footer>
-          <custom-button
+          <il-button
             iconClass="mdi:check"
             label="Entendido"
             variant="ghost-text"
@@ -139,7 +139,7 @@
       </div>
 
       <div class="flex justify-content-end pt-4">
-        <custom-button-save
+        <il-button-save
           [propertyId]="id() || ''"
           [disabled]="form.invalid"
           [submitting]="submitting()"

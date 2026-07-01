@@ -54,7 +54,7 @@
 
       <!-- Ejercicio -->
       <div class="flex align-items-center gap-1" style="flex-shrink: 0">
-        <custom-button
+        <il-button
           iconClass="mdi:chevron-left"
           variant="text"
           severity="secondary"
@@ -67,7 +67,7 @@
         >
           {{ filterS.year() }}
         </span>
-        <custom-button
+        <il-button
           iconClass="mdi:chevron-right"
           variant="text"
           severity="secondary"
@@ -95,9 +95,8 @@
         >Ir a:</span
       >
       @for (grupo of grupos(); track grupo.codigo) {
-      <custom-button
+      <il-button
         [label]="grupo.nombre"
-        [showLabelOnDesktop]="true"
         variant="outlined"
         severity="secondary"
         size="small"
@@ -112,9 +111,8 @@
       ></span>
 
       <!-- Filtros de filas -->
-      <custom-button
+      <il-button
         label="Mostrar todo"
-        [showLabelOnDesktop]="true"
         iconClass="mdi:eye-outline"
         size="small"
         [severity]="!ocultarSinDatos() ? 'primary' : 'secondary'"
@@ -122,9 +120,8 @@
         style="flex-shrink: 0"
         (clicked)="ocultarSinDatos.set(false)"
       />
-      <custom-button
+      <il-button
         label="Ocultar sin datos"
-        [showLabelOnDesktop]="true"
         iconClass="mdi:eye-off"
         size="small"
         [severity]="ocultarSinDatos() ? 'primary' : 'secondary'"
@@ -176,9 +173,8 @@
     <!-- Nivel visible -->
     <div class="flex align-items-center gap-1" style="flex-shrink: 0">
       @for (n of getNivelesDisponibles(grupo.codigo); track n) {
-      <custom-button
+      <il-button
         [label]="'N' + n"
-        [showLabelOnDesktop]="true"
         size="small"
         [severity]="getNivelVisible(grupo.codigo) === n ? 'primary' : 'secondary'"
         [variant]="getNivelVisible(grupo.codigo) === n ? null : 'outlined'"

@@ -1,11 +1,11 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   rowsPerPageOptions,
@@ -26,8 +26,8 @@ import ModalPrestamoDetalle from "./modal-prestamo-detalle/modal-prestamo-detall
     CommonModule,
     TableModule,
     TagModule,
-    CustomButton,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelDelete,
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
@@ -119,4 +119,3 @@ export default class PrestamosEmpleado {
     return Math.round((item.pagosRealizados / item.numeroPagos) * 100);
   }
 }
-

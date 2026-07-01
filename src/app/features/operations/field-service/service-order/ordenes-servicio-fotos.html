@@ -1,4 +1,4 @@
-﻿<div class="grid p-2">
+<div class="grid p-2">
   @if (loading()) {
   <div class="col-12 flex justify-content-center">
     <app-icon [icon]="'mdi:loading'" style="font-size: 2rem"></app-icon>
@@ -9,7 +9,7 @@
       class="card shadow-1 border-none surface-card border-round p-0 overflow-hidden"
     >
       <div class="flex justify-content-end p-2">
-        <custom-button-delete (confirmed)="confirmDelete(item.id)" />
+        <il-button-delete (confirmed)="confirmDelete(item.id)" />
       </div>
 
       <div class="flex justify-content-center pb-3 px-3">

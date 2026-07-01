@@ -1,4 +1,4 @@
-ï»¿import {
+import {
   ChangeDetectorRef,
   Component,
   inject,
@@ -16,10 +16,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
 import { lastValueFrom } from "rxjs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -54,7 +54,7 @@ export interface IOrdenCompraDatosPagoForm {
     CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class OrdenCompraDatosPago implements OnInit {
@@ -88,7 +88,7 @@ export class OrdenCompraDatosPago implements OnInit {
       tipoGasto: new FormControl(null),
       provider: new FormControl("", Validators.required),
       fundingPeriod: new FormControl(null),
-      fundingYear: new FormControl(null), // Nuevo control para el AÃ±o de fondeo
+      fundingYear: new FormControl(null), // Nuevo control para el Año de fondeo
       reference: new FormControl(""),
       cuentaClave: new FormControl(""),
     });
@@ -174,7 +174,7 @@ export class OrdenCompraDatosPago implements OnInit {
     this.form.patchValue(result);
   }
 
-  // Nuevo mÃ³todo para generar opciones de AÃ±o
+  // Nuevo mótodo para generar opciones de Año
   private generateYearOptions(): ISelectItem[] {
     const currentYear = new Date().getFullYear();
     return [
@@ -211,7 +211,7 @@ export class OrdenCompraDatosPago implements OnInit {
   }
 
   onSubmit() {
-    // AquÃ³ podrÃ­as AÃ±adir Validators.required al fundingPeriod y fundingYear
+    // Aquó podrías Añadir Validators.required al fundingPeriod y fundingYear
     // si ambos deben ser seleccionados al mismo tiempo.
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach((control) => {

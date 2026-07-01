@@ -1,12 +1,12 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 // PrimeNG
 import { MessageModule } from "primeng/message";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 
 // Services
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -21,7 +21,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [CommonModule, CustomButton, MessageModule, CustomInputFile],
+  imports: [CommonModule, WebButtonLabel, MessageModule, CustomInputFile],
   templateUrl: "./bulk-import-modal.html",
 })
 export default class BulkImportModal implements OnInit {
@@ -70,7 +70,7 @@ export default class BulkImportModal implements OnInit {
 
   downloadTemplate() {
     const csvContent =
-      "PropertyId,Monto,FechaVencimiento,Concepto\n[GUID_AQUI],1500.50,2026-04-01,Saldo Inicial Deuda Histórica\n[GUID_AQUI],400.00,2026-04-01,Saldo Inicial Abril";
+      "PropertyId,Monto,FechaVencimiento,Concepto\n[GUID_AQUI],1500.50,2026-04-01,Saldo Inicial Deuda Hist�rica\n[GUID_AQUI],400.00,2026-04-01,Saldo Inicial Abril";
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");

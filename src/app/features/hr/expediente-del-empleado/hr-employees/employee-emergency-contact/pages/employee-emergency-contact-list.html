@@ -38,7 +38,7 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex justify-content-center">
-          <custom-button
+          <il-button
             icon="edit"
             ngbTooltip="Editar"
             (clicked)="
@@ -49,7 +49,7 @@
               })
             "
           />
-          <custom-button-confirm
+          <il-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 0)"
@@ -106,15 +106,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id, 0)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>
@@ -164,7 +162,7 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex justify-content-center">
-          <custom-button
+          <il-button
             icon="edit"
             ngbTooltip="Editar"
             (clicked)="
@@ -175,7 +173,7 @@
               })
             "
           />
-          <custom-button-confirm
+          <il-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 1)"
@@ -226,15 +224,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id, 1)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

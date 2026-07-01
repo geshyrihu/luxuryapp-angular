@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -6,11 +5,12 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonItem } from "src/app/core/components/web/buttons";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -38,21 +38,19 @@ const date = new Date();
     TableModule,
     SelectModule,
     PrimeNgCustomCaption,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
+    WebButtonLabelDelete,
     CommonModule,
     TooltipModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
 
-
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
 
-
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class ListadoAnualMantenimiento {
@@ -82,7 +80,7 @@ export class ListadoAnualMantenimiento {
   groupedData = computed(() => {
     const data = this.dataSignal();
     return data.reduce((acc: any, item: any) => {
-      const key = item.inventoryCategory || "Sin Categoría";
+      const key = item.inventoryCategory || "Sin Categor�a";
       if (!acc[key]) {
         acc[key] = [];
       }
@@ -102,8 +100,9 @@ export class ListadoAnualMantenimiento {
   }
 
   onLoadData() {
-    const url = `MaintenanceCalendars/list/${this.customerIdS.customerId()}/${this.monthControl.value
-      }`;
+    const url = `MaintenanceCalendars/list/${this.customerIdS.customerId()}/${
+      this.monthControl.value
+    }`;
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.dataSignal.set(result || []);
     });
@@ -159,13 +158,3 @@ export class ListadoAnualMantenimiento {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

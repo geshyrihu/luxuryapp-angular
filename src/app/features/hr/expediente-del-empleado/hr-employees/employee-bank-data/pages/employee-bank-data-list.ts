@@ -1,15 +1,22 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, input, signal } from "@angular/core";
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -25,12 +32,12 @@ import { EmployeeBankDataForm } from "./employee-bank-data-form";
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,
-    CustomButton,
-    CustomButtonConfirm,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
     TooltipModule,
@@ -88,9 +95,10 @@ export class EmployeeBankDataList {
   onDelete(id: string) {
     this.employeeInternalS.deleteBankData(id).then((result: boolean) => {
       if (result) {
-        this.dataSignal.update((items) => items.filter((item) => item.id !== id));
+        this.dataSignal.update((items) =>
+          items.filter((item) => item.id !== id),
+        );
       }
     });
   }
 }
-

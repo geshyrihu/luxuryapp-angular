@@ -1,4 +1,4 @@
-ï»¿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   Component,
   computed,
@@ -41,13 +41,13 @@ import {
   EPaymentStatus,
 } from "../../models/enums";
 
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 interface IPaymentForm {
   propertyId: FormControl<string>;
@@ -72,8 +72,8 @@ interface IPaymentForm {
     CustomInputDateSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
-    CustomButton,
+    WebButtonLabelSave,
+    WebButtonLabel,
     AppIcon,
   ],
   providers: [DatePipe],
@@ -133,12 +133,12 @@ export class Payments implements OnInit {
 
   paymentMethods = [
     {
-      label: "Transferencia ElectrÃ³nica",
+      label: "Transferencia Electrónica",
       value: EPaymentMethod.ElectronicTransfer,
     },
-    { label: "DepÃ³sito / Efectivo", value: EPaymentMethod.Cash },
-    { label: "Tarjeta de CrÃ©dito", value: EPaymentMethod.CreditCard },
-    { label: "Tarjeta de DÃ©bito", value: EPaymentMethod.DebitCard },
+    { label: "Depósito / Efectivo", value: EPaymentMethod.Cash },
+    { label: "Tarjeta de Crédito", value: EPaymentMethod.CreditCard },
+    { label: "Tarjeta de Débito", value: EPaymentMethod.DebitCard },
     { label: "Cheque Nominativo", value: EPaymentMethod.NominativeCheck },
   ];
 
@@ -281,7 +281,7 @@ export class Payments implements OnInit {
     if (selectedCharges.length === 0) {
       if (
         !confirm(
-          "No has seleccionado ningÃºn cargo para aplicar el pago. El pago quedarÃ¡ registrado como saldo a favor sin aplicar. Â¿Continuar?",
+          "No has seleccionado ningún cargo para aplicar el pago. El pago quedará registrado como saldo a favor sin aplicar. ¿Continuar?",
         )
       )
         return;
@@ -343,7 +343,7 @@ export class Payments implements OnInit {
       } else if (paymentRes && selectedCharges.length === 0) {
         this.toastService.showSuccess(
           "Pago Registrado",
-          "El pago fue registrado como saldo a favor, sin aplicarse a cargos especÃ­ficos.",
+          "El pago fue registrado como saldo a favor, sin aplicarse a cargos específicos.",
         );
         this.form.controls.propertyId.setValue("");
       }

@@ -25,7 +25,7 @@
         />
       </div>
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
-        <custom-button
+        <il-button
           iconClass="mdi:close"
           label="Denegadas"
           (clicked)="onSelectStatus(1); statusCompra.set(1)"
@@ -33,7 +33,7 @@
           [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
           size="small"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:check"
           label="Autorizadas"
           (clicked)="onSelectStatus(0); statusCompra.set(0)"
@@ -41,7 +41,7 @@
           [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
           size="small"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:hourglass"
           label="Pendientes"
           (clicked)="onSelectStatus(2); statusCompra.set(2)"
@@ -50,7 +50,7 @@
           size="small"
         />
         @if (isPendingView()) {
-        <custom-button
+        <il-button
           iconClass="mdi:presentation-play"
           label="Modo presentacion"
           (clicked)="onPresentationMode()"
@@ -60,7 +60,7 @@
           [disabled]="selectedSolicitudIds().length === 0"
         />
         }
-        <custom-button
+        <il-button
           iconClass="mdi:link"
           label="Actualizar Referencias"
           (clicked)="onManageLinks()"
@@ -134,7 +134,7 @@
       </td>
 
       <td class="text-center">
-        <custom-button
+        <il-button
           icon="mdi:file-document-multiple"
           [label]="item.cotizacionesCount"
           (clicked)="onCuadroComparativo(item.id)"
@@ -170,8 +170,8 @@
 
       <td>
         <div class="flex">
-          <custom-button-edit (clicked)="onSolicitudCompra(item.id)" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-edit (clicked)="onSolicitudCompra(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -238,15 +238,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onSolicitudCompra(item.id)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>
@@ -256,7 +254,7 @@
 
 @if (isPendingView()) {
 <div class="md:hidden mt-3 flex justify-content-end">
-  <custom-button
+  <il-button
     iconClass="mdi:presentation-play"
     label="Modo presentacion"
     (clicked)="onPresentationMode()"

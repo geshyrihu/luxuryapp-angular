@@ -1,4 +1,4 @@
-﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -7,9 +7,9 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -19,8 +19,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   imports: [
     ReactiveFormsModule,
     InputTextModule,
-    CustomButtonItem,
-    CustomButtonDelete,
+    WebButtonLabelItem,
+    WebButtonLabelDelete,
     CustomInputTextSignal,
   ],
 })

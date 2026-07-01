@@ -26,7 +26,7 @@
             [noMargin]="true"
           />
           <div class="flex-shrink-0" style="width: 160px">
-            <custom-button-active-desactive
+            <il-button-active-desactive
               [state]="state()"
               (stateChange)="onChangeState($event)"
             />
@@ -48,13 +48,13 @@
           <td>{{ template.roleName }}</td>
           <td>
             <div class="flex">
-              <custom-button-item
+              <il-button-item
                 [iconClass]="'mdi:file-document-outline'"
                 label="Items"
                 (clicked)="onManageItems(template.id)"
               />
-              <custom-button-edit (clicked)="showForm(template)" />
-              <custom-button-delete (confirmed)="onDelete(template.id)" />
+              <il-button-edit (clicked)="showForm(template)" />
+              <il-button-delete (confirmed)="onDelete(template.id)" />
             </div>
           </td>
         </tr>
@@ -85,7 +85,7 @@
     >
       <div customFilters>
         <div class="px-4 py-2">
-          <custom-button-active-desactive
+          <il-button-active-desactive
             fluid
             [state]="state()"
             (stateChange)="onChangeState($event)"
@@ -114,20 +114,17 @@
           </ion-label>
           <app-action-menu slot="end">
             <ng-container actions>
-              <custom-button-item
+              <il-button-item
                 label="Administrar Items"
                 (clicked)="onManageItems(template.id)"
-                [showLabelOnDesktop]="true"
               />
-              <custom-button-item
+              <il-button-item
                 label="Editar"
                 (clicked)="showForm(template)"
-                [showLabelOnDesktop]="true"
               />
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onDelete(template.id)"
                 label="Eliminar"
-                [showLabelOnDesktop]="true"
               />
             </ng-container>
           </app-action-menu>

@@ -1,10 +1,10 @@
-ï»¿import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -16,7 +16,7 @@ import { PurchaseRequestProducts } from "./purchase-request-products";
   selector: "app-purchase-request",
   templateUrl: "./purchase-request.html",
   imports: [
-    CustomButtonItem,
+    WebButtonLabelItem,
     CommonModule,
     TagModule,
     ActionMenu,
@@ -63,12 +63,12 @@ export class PurchaseRequest implements OnInit {
     this.productToEdit = productData;
   }
 
-  // mÃ©todo para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
+  // método para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
   clearProductToEdit() {
     this.productToEdit = null;
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
   onModalAddProduct(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -98,4 +98,3 @@ export class PurchaseRequest implements OnInit {
     this.router.navigateByUrl(route);
   }
 }
-

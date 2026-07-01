@@ -1,4 +1,4 @@
-﻿@if (loading()) {
+@if (loading()) {
 <div
   class="flex justify-content-center align-items-center"
   style="min-height: 200px"
@@ -60,12 +60,11 @@
   <ng-template #caption>
     <div class="flex justify-content-between">
       <primeng-custom-caption [dt]="dt" [showAdd]="false" />
-      <custom-button
+      <il-button
         label="Exportar Excel"
         iconClass="mdi:file-excel"
         severity="success"
         variant="ghost-text"
-        [showLabelOnDesktop]="true"
         (clicked)="descargarExcel()"
       />
     </div>
@@ -101,8 +100,8 @@
       </td>
       <td>
         <div class="flex gap-1">
-          <custom-button-edit (clicked)="openEditar(item)" />
-          <custom-button
+          <il-button-edit (clicked)="openEditar(item)" />
+          <il-button
             iconClass="mdi:file-pdf-box"
             severity="danger"
             variant="ghost-text"
@@ -119,7 +118,7 @@
         <app-empty-state
           icon="mdi:account-group-outline"
           title="Sin empleados"
-          message="Sin empleados en esta nómina."
+          message="Sin empleados en esta n�mina."
         />
       </td>
     </tr>
@@ -168,7 +167,7 @@
         </div>
       </ion-label>
       <div slot="end" class="flex gap-1">
-        <custom-button-edit (clicked)="openEditar(item)" />
+        <il-button-edit (clicked)="openEditar(item)" />
       </div>
     </ion-item>
   </ng-template>

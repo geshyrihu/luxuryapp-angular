@@ -1,4 +1,4 @@
-﻿import { Component, inject, signal, viewChild } from "@angular/core";
+import { Component, inject, signal, viewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonLabel,
@@ -8,9 +8,9 @@ import {
 import { MessageModule } from "primeng/message";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TabsModule } from "primeng/tabs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { EspejoAspelExtraordinarios } from "./espejo-aspel-extraordinarios";
 import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
@@ -27,7 +27,7 @@ import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
     IonLabel,
     PresupuestoAspelEjercicioFiscal,
     EspejoAspelExtraordinarios,
-    CustomButton,
+    WebButtonLabel,
     CustomSearchInput,
     CustomInputSelectSignal,
     MessageModule,

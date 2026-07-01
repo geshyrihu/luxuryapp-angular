@@ -1,4 +1,4 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -16,13 +16,13 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomBtnActiveDesactive,
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabelActiveDesactive,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -54,24 +54,24 @@ import { WorkPositionHours } from "./work-position-hours";
     TableModule,
     AvatarModule,
     TagModule,
-    CustomBtnActiveDesactive,
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelActiveDesactive,
+    WebButtonLabelItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     ActionMenu,
     DataViewMobile,
     IonBadge,
     IonItem,
     IonLabel,
-    CustomBtnActiveDesactive,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelActiveDesactive,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
   ],
 })
 export class WorkPositionList {
-  // --- INYECCIÓN DE DEPENDENCIAS ---
+  // --- INYECCI�N DE DEPENDENCIAS ---
   public authS = inject(AuthService);
   readonly apiS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -173,7 +173,7 @@ export class WorkPositionList {
     await this.dialogHandlerS.openDialog(
       JobDescriptionForm,
       { id, jobDescriptionId },
-      "Descripción de puesto: " + roleName,
+      "Descripci�n de puesto: " + roleName,
       DialogSize.md,
     );
   }
@@ -187,7 +187,7 @@ export class WorkPositionList {
     );
   }
 
-  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualización). */
+  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualizaci�n). */
   necesitaActualizacion(item: IWorkPosition): boolean {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
@@ -200,12 +200,12 @@ export class WorkPositionList {
     ) {
       return true;
     }
-    // Lógica adicional de validación si es necesaria
+    // L�gica adicional de validaci�n si es necesaria
     return true;
   }
 
   onValidateShowTIcket(applicationRoleId: string): boolean {
-    // Lógica para mostrar ticket vigente
+    // L�gica para mostrar ticket vigente
     return true;
   }
 
@@ -216,4 +216,3 @@ export class WorkPositionList {
     return !isBlockingStatus;
   }
 }
-

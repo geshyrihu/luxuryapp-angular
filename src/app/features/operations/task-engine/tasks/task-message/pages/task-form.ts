@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -12,14 +12,14 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -69,8 +69,8 @@ import { DateService } from "src/app/core/services/date.service";
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
-    CustomButton,
+    WebButtonLabelSave,
+    WebButtonLabel,
     CustomInputCheckSignal,
     AppIcon,
   ],
@@ -98,14 +98,14 @@ export class TaskForm implements OnInit {
   cb_legal_matter = signal<ISelectItem[]>([]);
   cb_predecessors = signal<ISelectItem[]>([]);
 
-  // Signals para previews de imÃ³genes
+  // Signals para previews de imógenes
   beforeWorkPreview = signal<string | null>(null);
   afterWorkPreview = signal<string | null>(null);
 
   isLegalWorkGroup = signal(false);
   private workGroupLegalMap = new Map<string, boolean>();
 
-  // DefiniciÃ³n estricta del formulario
+  // Definición estricta del formulario
   form: FormGroup<ITaskMessageForm> = this.formB.group({
     id: new FormControl<string>(
       { value: "", disabled: true },
@@ -159,7 +159,7 @@ export class TaskForm implements OnInit {
     if (this.config.data?.ticketGroupId) {
       setTimeout(async () => {
         let ticketGroupId = String(this.config.data.ticketGroupId);
-        // Garantizar que la capitalizaciÃ³n (casing) coincida exactamente con la opciÃ³n cargada
+        // Garantizar que la capitalización (casing) coincida exactamente con la opción cargada
         const exactMatch = this.cb_ticket_group().find(
           (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase(),
         );
@@ -253,7 +253,7 @@ export class TaskForm implements OnInit {
       dependsOnTaskId: result.dependsOnTaskId ?? null,
     });
 
-    // Vistas previas de imÃ³genes
+    // Vistas previas de imógenes
     if (result.beforeWorkPreview) {
       this.beforeWorkPreview.set(result.beforeWorkPreview);
     }
@@ -301,7 +301,7 @@ export class TaskForm implements OnInit {
 
       if (isHeic) {
         try {
-          // Convertir explÃ­citamente a Blob puro a travÃ©s de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
+          // Convertir explícitamente a Blob puro a través de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
           const buffer = await file.arrayBuffer();
           const heicBlob = new Blob([buffer], {
             type: file.type || "image/heic",
@@ -321,7 +321,7 @@ export class TaskForm implements OnInit {
           });
         } catch (heicError) {
           console.warn(
-            "heic2any fallÃ³ al analizar el archivo, intentando como fallback nativo...",
+            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
             heicError,
           );
           // Si falla, fileToProcess sigue siendo el archivo original.

@@ -21,7 +21,7 @@
         [noMargin]="true"
       />
       <div class="flex-shrink-0" style="width: 160px">
-        <custom-button-active-desactive
+        <il-button-active-desactive
           [state]="state"
           (stateChange)="onSortChange($event)"
         />
@@ -36,7 +36,7 @@
         NOMBRE
         <p-sortIcon field="nameCustomer" />
       </th>
-      <th>TÉLEFONOS</th>
+      <th>Tï¿½LEFONOS</th>
       <th class="table-col-10"></th>
     </tr>
   </ng-template>
@@ -61,20 +61,20 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-item
+          <il-button-item
             label="Imagenes"
             iconClass="mdi:image"
             (clicked)="onUpdateImages(item.id)"
           />
-          <custom-button-item
-            label="Dirección"
+          <il-button-item
+            label="Direcciï¿½n"
             iconClass="mdi:map-marker"
             (clicked)="onUpdateAddress(item.id)"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -95,7 +95,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -105,7 +105,7 @@
   <div customFilters>
     <div class="mb-3 flex mt-1 mb-1">
       <div class="m-0">
-        <custom-button-active-desactive
+        <iw-button-active-desactive
           fluid
           [state]="state"
           (stateChange)="onSortChange($event)"
@@ -135,35 +135,29 @@
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.nameCustomer }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.phoneOne }}{{ item.phoneTwo ? ' · ' + item.phoneTwo : '' }}
+          {{ item.phoneOne }}{{ item.phoneTwo ? ' ï¿½ ' + item.phoneTwo : '' }}
         </p>
       </ion-label>
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:image-multiple-outline"
-            ionicIcon="image-outline"
-            label="Imágenes"
+            label="Imï¿½genes"
             (clicked)="onUpdateImages(item.id)"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:map-marker-outline"
-            ionicIcon="location-outline"
-            label="Dirección"
+            label="Direcciï¿½n"
             (clicked)="onUpdateAddress(item.id)"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

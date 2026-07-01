@@ -13,9 +13,9 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
+import { CustomButton } from "src/app/core/components/buttons/legacy/buttons/custom-button";
 import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import Swal from "sweetalert2";

@@ -5,8 +5,8 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -28,7 +28,7 @@ import {
     TooltipModule,
     SkeletonModule,
     AppIcon,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class ApprovalRules implements OnInit {
@@ -45,9 +45,24 @@ export class ApprovalRules implements OnInit {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   readonly scopeOptions = [
-    { label: "N/A",     value: ApprovalScope.None,         icon: "mdi:block-helper",   styleClass: "opt-none" },
-    { label: "Cliente", value: ApprovalScope.SameCustomer, icon: "mdi:account-group", styleClass: "opt-cliente" },
-    { label: "Global",  value: ApprovalScope.Global,       icon: "mdi:earth", styleClass: "opt-global" },
+    {
+      label: "N/A",
+      value: ApprovalScope.None,
+      icon: "mdi:block-helper",
+      styleClass: "opt-none",
+    },
+    {
+      label: "Cliente",
+      value: ApprovalScope.SameCustomer,
+      icon: "mdi:account-group",
+      styleClass: "opt-cliente",
+    },
+    {
+      label: "Global",
+      value: ApprovalScope.Global,
+      icon: "mdi:earth",
+      styleClass: "opt-global",
+    },
   ];
 
   ngOnInit(): void {
@@ -140,4 +155,3 @@ export class ApprovalRules implements OnInit {
       .finally(() => this.saving.set(false));
   }
 }
-

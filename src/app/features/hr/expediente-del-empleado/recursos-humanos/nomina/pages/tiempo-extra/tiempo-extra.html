@@ -67,9 +67,9 @@
       </td>
       <td>
         <div class="flex gap-1">
-          <custom-button-edit (clicked)="openEdit(item)" />
+          <il-button-edit (clicked)="openEdit(item)" />
           @if (!item.aprobado) {
-          <custom-button
+          <il-button
             iconClass="mdi:check"
             severity="success"
             variant="ghost-text"
@@ -77,7 +77,7 @@
             (clicked)="aprobar(item)"
           />
           }
-          <custom-button-delete (confirmed)="onDelete(item)" />
+          <il-button-delete (confirmed)="onDelete(item)" />
         </div>
       </td>
     </tr>
@@ -136,8 +136,8 @@
         </div>
       </ion-label>
       <div slot="end" class="flex gap-1">
-        <custom-button-edit (clicked)="openEdit(item)" />
-        <custom-button-delete (confirmed)="onDelete(item)" />
+        <il-button-edit (clicked)="openEdit(item)" />
+        <il-button-delete (confirmed)="onDelete(item)" />
       </div>
     </ion-item>
   </ng-template>

@@ -55,7 +55,7 @@
               />
             </div>
             <div class="flex align-items-center gap-2">
-              <custom-button
+              <il-button
                 label="Calendario Guia"
                 iconClass="mdi:calendar"
                 [severity]="'secondary'"
@@ -64,7 +64,7 @@
                 pTooltip="Ver calendario de mantenimiento"
                 tooltipPosition="top"
               />
-              <custom-button
+              <il-button
                 label="PDF"
                 iconClass="mdi:file-pdf-box"
                 [severity]="'danger'"
@@ -73,7 +73,7 @@
                 pTooltip="Descargar Inventario PDF"
                 tooltipPosition="top"
               />
-              <custom-button
+              <il-button
                 label="QR Global"
                 iconClass="mdi:qrcode"
                 [severity]="'secondary'"
@@ -83,7 +83,7 @@
                 tooltipPosition="top"
               />
               <div class="flex-shrink-0" style="width: 150px">
-                <custom-button-active-desactive
+                <il-button-active-desactive
                   [state]="stateFilter() === 0"
                   (stateChange)="onSelectState($event ? 0 : 1)"
                 />
@@ -157,38 +157,38 @@
           }
           <td class="no-print">
             <div class="flex">
-              <custom-button-item
+              <il-button-item
                 (clicked)="onDocumentos(item.id)"
                 iconClass="mdi:file-pdf-box"
                 label="Documentos"
                 variant="text"
               />
-              <custom-button-item
+              <il-button-item
                 (clicked)="onServiceHistory(item.id)"
                 iconClass="mdi:file-document-outline"
                 label="Histórico de servicios"
                 variant="text"
               />
-              <custom-button-item
+              <il-button-item
                 (clicked)="onBitacoraIndividual(item.id)"
                 iconClass="mdi:book"
                 label="Bitácora"
                 variant="text"
               />
-              <custom-button-item
+              <il-button-item
                 (clicked)="showModalFichatecnica(item.id)"
                 iconClass="mdi:clipboard-text"
                 label="Ficha técnica"
                 variant="text"
               />
-              <custom-button-item
+              <il-button-item
                 (clicked)="onEquipmentInspections(item)"
                 iconClass="mdi:clipboard-check-outline"
                 label="Inspecciones"
                 variant="text"
               />
               @if (!mostrarPreventivos()) {
-              <custom-button-item
+              <il-button-item
                 (clicked)="openMantenimientosDialog(item)"
                 iconClass="mdi:wrench"
                 label="Mantenimientos"
@@ -196,10 +196,10 @@
               />
               } @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
               AspRole.Administrador, AspRole.SuperUsuario])) {
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModalAddOrEdit({ id: item.id, title: 'Editar registro ' + item.id })"
               />
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              <il-button-delete (confirmed)="onDelete(item.id)" />
               }
             </div>
           </td>
@@ -226,7 +226,7 @@
       <div class="flex justify-content-end mb-3">
         @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
         AspRole.SuperUsuario])) {
-        <custom-button
+        <il-button
           label="Agregar"
           iconClass="mdi:plus"
           (clicked)="onAddMantenimientoDialog(equipo.id)"
@@ -269,16 +269,16 @@
             AspRole.Administrador, AspRole.SuperUsuario])) {
             <td>
               <div class="flex">
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:content-copy"
                   label="Duplicar"
                   variant="text"
                   (clicked)="showModalMaintenanceCalendar({ id: order.id, task: 'copy', machineryId: order.machineryId, header: 'Duplicar Actividad' })"
                 />
-                <custom-button-edit
+                <il-button-edit
                   (clicked)="onEditMantenimientoDialog(order)"
                 />
-                <custom-button-delete
+                <il-button-delete
                   (confirmed)="onDeleteOrderFromDialog(order.id, equipo.id)"
                   [isLinked]="order.hasServiceOrder"
                 />
@@ -351,7 +351,7 @@
     >
       <ng-template select="[customFilters]">
         <div class="px-2 pb-2">
-          <custom-button
+          <il-button
             label="Descargar PDF"
             iconClass="mdi:file-pdf-box"
             [severity]="'danger'"
@@ -359,7 +359,7 @@
             [isFullWidth]="true"
             (clicked)="onDownloadPdf()"
           />
-          <custom-button
+          <il-button
             label="QR Global"
             iconClass="mdi:qrcode"
             [severity]="'secondary'"

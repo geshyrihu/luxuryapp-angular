@@ -45,7 +45,7 @@
             <td>{{ task.priorityDescription }}</td>
             <td>{{ task.scheduledDate | date : "shortTime" }}</td>
             <td>
-              <custom-button
+              <il-button
                 label="Completar"
                 icon="mdi:check"
                 [disabled]="task.status === 1"
@@ -90,7 +90,7 @@
                       [value]="task.status"
                       [status]="task.statusDescription"
                     />
-                    <custom-button
+                    <il-button
                       label="Completar"
                       icon="mdi:check"
                       [disabled]="task.status === 1"

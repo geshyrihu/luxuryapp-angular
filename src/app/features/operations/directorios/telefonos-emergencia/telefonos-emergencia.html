@@ -26,7 +26,7 @@
       class="flex-grow-1 sm:flex-grow-0"
     />
     @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-    <custom-button-add
+    <il-button-add
       label="Agregar"
       (clicked)="onModalForm({ id: '', title: 'Nuevo Registro' })"
     />
@@ -121,10 +121,10 @@
       <div
         class="flex justify-content-end gap-1 p-2 border-top-1 surface-border"
       >
-        <custom-button-edit
+        <il-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
         />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <il-button-delete (confirmed)="onDelete(item.id)" />
       </div>
     </div>
   </div>

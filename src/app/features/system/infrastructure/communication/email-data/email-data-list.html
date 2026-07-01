@@ -48,11 +48,11 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
-          <custom-button-send-email (confirmed)="onSendTestEmail(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-send-email (confirmed)="onSendTestEmail(item.id)" />
         </div>
       </td>
 
@@ -75,7 +75,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -107,20 +107,17 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-send-email
+          <il-button-send-email
             (confirmed)="onSendTestEmail(item.id)"
             label="Enviar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

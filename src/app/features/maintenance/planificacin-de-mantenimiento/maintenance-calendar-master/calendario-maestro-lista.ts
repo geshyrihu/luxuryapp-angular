@@ -6,13 +6,13 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu, MenuModule } from "primeng/menu";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -26,8 +26,8 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
   templateUrl: "./calendario-maestro-lista.html",
   imports: [
     DividerModule,
-    CustomButtonAdd,
-    CustomButtonItem,
+    WebButtonLabelAdd,
+    WebButtonLabelItem,
     TooltipModule,
     MenuModule,
     TagModule,
@@ -35,8 +35,8 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export class CalendarioMaestroLista implements OnInit {
@@ -110,7 +110,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "Información de servicio",
+      "Informaciï¿½n de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }
@@ -138,4 +138,3 @@ export class CalendarioMaestroLista implements OnInit {
       });
   }
 }
-

@@ -4,7 +4,7 @@
     class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="flex align-items-center gap-3">
-      <custom-button
+      <il-button
         iconClass="mdi:arrow-left"
         [variant]="'text'"
         severity="secondary"
@@ -21,7 +21,7 @@
     </div>
     <div class="flex align-items-center gap-2">
       @if (activeTab() === 'pasos') {
-      <custom-button
+      <il-button
         iconClass="mdi:plus"
         label="Agregar Paso"
         severity="primary"
@@ -29,7 +29,7 @@
         (clicked)="onNewPaso()"
       />
       }
-      <custom-button
+      <il-button
         [label]="'Pasos (' + pasos().length + ')'"
         iconClass="mdi:format-list-bulleted"
         [severity]="activeTab() === 'pasos' ? 'primary' : 'secondary'"
@@ -37,7 +37,7 @@
         size="small"
         (clicked)="activeTab.set('pasos')"
       />
-      <custom-button
+      <il-button
         [label]="'Versiones (' + versiones().length + ')'"
         iconClass="mdi:history"
         [severity]="activeTab() === 'versiones' ? 'primary' : 'secondary'"
@@ -45,7 +45,7 @@
         size="small"
         (clicked)="activeTab.set('versiones')"
       />
-      <custom-button
+      <il-button
         [label]="'Adjuntos (' + adjuntos().length + ')'"
         iconClass="mdi:paperclip"
         [severity]="activeTab() === 'adjuntos' ? 'primary' : 'secondary'"
@@ -123,7 +123,7 @@
             (click)="$event.stopPropagation()"
           >
             @if (paso.diagramaId) {
-            <custom-button
+            <il-button
               iconClass="mdi:sitemap"
               [variant]="'text'"
               severity="info"
@@ -132,7 +132,7 @@
               (clicked)="onAbrirDiagrama(paso)"
             />
             }
-            <custom-button-delete (confirmed)="onDeletePaso(paso)" />
+            <il-button-delete (confirmed)="onDeletePaso(paso)" />
           </div>
         </div>
         }
@@ -150,7 +150,7 @@
         <p class="text-500 line-height-3 mb-4">
           Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso de la lista de la izquierda para editarlo, o haz clic en <strong>Agregar Paso</strong> para crear una nueva instrucción.
         </p>
-        <custom-button
+        <il-button
           iconClass="mdi:plus"
           label="Crear Primer Paso"
           severity="primary"
@@ -214,7 +214,7 @@
           </div>
 
           <div class="flex justify-content-end">
-            <custom-button-save [loading]="savingPaso()" />
+            <il-button-save [loading]="savingPaso()" />
           </div>
         </form>
 
@@ -223,7 +223,7 @@
         <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
           <div class="flex align-items-center justify-content-between">
             <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
-            <custom-button
+            <il-button
               [iconClass]="selectedPaso()!.diagramaId ? 'mdi:sitemap' : 'mdi:plus'"
               [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
               [severity]="selectedPaso()!.diagramaId ? 'info' : 'secondary'"
@@ -304,7 +304,7 @@
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
-                <custom-button
+                <il-button
                   iconClass="mdi:close"
                   severity="danger"
                   size="small"
@@ -348,7 +348,7 @@
                 />
               </div>
               <div class="col-12 md:col-2 pb-3 flex justify-content-end">
-                <custom-button
+                <il-button
                   type="submit"
                   label="Agregar"
                   iconClass="mdi:plus"
@@ -367,7 +367,7 @@
               class="relative border-round overflow-hidden border-1 border-200 p-3 bg-white"
             >
               <div class="absolute top-0 right-0 m-2 z-5">
-                <custom-button
+                <il-button
                   iconClass="mdi:delete"
                   severity="danger"
                   size="small"
@@ -405,7 +405,7 @@
                   target="_blank"
                   class="no-underline"
                 >
-                  <custom-button
+                  <il-button
                     iconClass="mdi:external-link"
                     label="Abrir Enlace"
                     severity="info"
@@ -442,7 +442,7 @@
     <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
       <div class="flex align-items-center justify-content-between">
         <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
-        <custom-button
+        <il-button
           iconClass="mdi:plus"
           label="Nueva Version"
           severity="primary"
@@ -495,14 +495,14 @@
             [horizontal]="false"
           />
           <div class="flex justify-content-end gap-2">
-            <custom-button
+            <il-button
               label="Cancelar"
               severity="secondary"
               [variant]="'outlined'"
               size="small"
               (clicked)="showVersionForm.set(false)"
             />
-            <custom-button-save [loading]="savingVersion()" />
+            <il-button-save [loading]="savingVersion()" />
           </div>
         </form>
       </div>
@@ -531,7 +531,7 @@
             <p class="text-sm text-600 m-0">{{ v.descripcionCambio }}</p>
             }
           </div>
-          <custom-button
+          <il-button
             iconClass="mdi:delete"
             [variant]="'text'"
             severity="danger"
@@ -625,14 +625,14 @@
           </div>
           <div class="flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
-              <custom-button
+              <il-button
                 iconClass="mdi:download"
                 [variant]="'text'"
                 severity="info"
                 size="small"
               />
             </a>
-            <custom-button
+            <il-button
               iconClass="mdi:delete"
               [variant]="'text'"
               severity="danger"

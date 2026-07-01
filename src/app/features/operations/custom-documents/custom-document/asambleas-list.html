@@ -41,8 +41,7 @@
           <td class="text-center">{{ item.createAt }}</td>
           <td class="text-center text-break">{{ item.name }}</td>
           <td class="text-center">
-            <custom-button-view-pdf
-              [showLabelOnDesktop]="true"
+            <il-button-view-pdf
               [url]="item.path"
               pdf="Documento"
             />
@@ -106,7 +105,7 @@
           </p>
         </ion-label>
         <div slot="end" class="flex align-items-center">
-          <custom-button-view-pdf [url]="item.path" pdf="Documento Asamblea" />
+          <il-button-view-pdf [url]="item.path" pdf="Documento Asamblea" />
         </div>
       </ion-item>
     </ng-template>

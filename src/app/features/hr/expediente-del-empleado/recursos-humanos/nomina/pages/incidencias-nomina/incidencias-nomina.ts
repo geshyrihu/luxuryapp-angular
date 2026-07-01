@@ -1,13 +1,13 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -31,8 +31,8 @@ import ModalIncidenciaAdd from "./modal-incidencia-add/modal-incidencia-add";
     CommonModule,
     TableModule,
     TagModule,
-    CustomButton,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelDelete,
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
@@ -91,9 +91,9 @@ export default class IncidenciasNomina {
   onLoadData(periodoId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<IncidenciaNominaDTO[]>(
-        Endpoints.HR.Nomina.Incidencias.list(periodoId),
-      )
+      .onGetList<
+        IncidenciaNominaDTO[]
+      >(Endpoints.HR.Nomina.Incidencias.list(periodoId))
       .then((resp: any) => {
         this.data.set(resp ?? []);
         this.loading.set(false);
@@ -130,7 +130,10 @@ export default class IncidenciasNomina {
     const customerId = this.customerIdS.customerId();
     const periodoId = this.periodoSeleccionado();
     if (!periodoId) return;
-    const dto: SincronizarIncidenciasDTO = { periodoNominaId: periodoId, customerId };
+    const dto: SincronizarIncidenciasDTO = {
+      periodoNominaId: periodoId,
+      customerId,
+    };
     this.sincronizando.set(true);
     await this.apiResponseS.onPost(
       Endpoints.HR.Nomina.Incidencias.syncVacaciones,
@@ -144,7 +147,10 @@ export default class IncidenciasNomina {
     const customerId = this.customerIdS.customerId();
     const periodoId = this.periodoSeleccionado();
     if (!periodoId) return;
-    const dto: SincronizarIncidenciasDTO = { periodoNominaId: periodoId, customerId };
+    const dto: SincronizarIncidenciasDTO = {
+      periodoNominaId: periodoId,
+      customerId,
+    };
     this.sincronizando.set(true);
     await this.apiResponseS.onPost(
       Endpoints.HR.Nomina.Incidencias.syncPermisos,
@@ -156,17 +162,16 @@ export default class IncidenciasNomina {
 
   getTipoSeverity(tipo: number): string {
     const map: Record<number, string> = {
-      0: "danger",    // Falta
-      1: "warn",      // Retardo Menor
-      2: "warn",      // Retardo Mayor
-      3: "info",      // Incapacidad
-      4: "success",   // Vacacion
+      0: "danger", // Falta
+      1: "warn", // Retardo Menor
+      2: "warn", // Retardo Mayor
+      3: "info", // Incapacidad
+      4: "success", // Vacacion
       5: "secondary", // Permiso c/Goce
-      6: "contrast",  // Permiso s/Goce
+      6: "contrast", // Permiso s/Goce
       7: "secondary", // Dia Economico
-      8: "danger",    // Otro Descuento
+      8: "danger", // Otro Descuento
     };
     return map[tipo] ?? "secondary";
   }
 }
-

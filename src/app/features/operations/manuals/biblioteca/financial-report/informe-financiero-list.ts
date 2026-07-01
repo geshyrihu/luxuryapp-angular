@@ -1,7 +1,7 @@
-﻿import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -9,11 +9,11 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-informe-financiero",
   imports: [
     TableModule,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
     DataViewMobile,
     IonItem,
     IonLabel,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
   ],
   templateUrl: "./informe-financiero-list.html",
 })
@@ -38,13 +38,3 @@ export class InformeFinanciero {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-

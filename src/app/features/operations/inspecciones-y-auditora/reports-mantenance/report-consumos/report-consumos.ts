@@ -1,12 +1,12 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import * as FileSaver from "file-saver";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
@@ -84,7 +84,7 @@ interface IWeeklyExecutiveReport {
     MultiAxisChart,
     RangoCalendarioyyyymmdd,
     CustomInputMultiselectSignal,
-    CustomButtonDownload,
+    WebButtonLabelDownload,
     PrimeNgCustomCaption,
   ],
 })

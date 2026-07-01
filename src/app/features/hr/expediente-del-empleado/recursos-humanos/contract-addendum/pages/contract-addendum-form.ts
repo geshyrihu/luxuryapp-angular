@@ -1,15 +1,15 @@
-锘縤mport { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -40,7 +40,7 @@ interface IContractAddendumForm {
     CustomInputDateSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class ContractAddendumFormComponent {
@@ -58,18 +58,18 @@ export class ContractAddendumFormComponent {
   form!: FormGroup<IContractAddendumForm>;
 
   cb_addendumType: ISelectItem[] = [
-    { value: "ModificacionSalario", label: "Modificaci贸n de Salario" },
+    { value: "ModificacionSalario", label: "Modificaci髇 de Salario" },
     { value: "CambioPuesto", label: "Cambio de Puesto" },
     { value: "CambioDepartamento", label: "Cambio de Departamento" },
-    { value: "CambioUbicacion", label: "Cambio de Ubicaci贸n" },
-    { value: "ExtensionContrato", label: "Extensi贸n de Contrato" },
-    { value: "ModificacionJornada", label: "Modificaci贸n de Jornada" },
-    { value: "ClausulaAdicional", label: "Cl谩usula Adicional" },
-    { value: "OtrasCondiciones", label: "Otra Condici贸n" },
+    { value: "CambioUbicacion", label: "Cambio de Ubicaci髇" },
+    { value: "ExtensionContrato", label: "Extensi髇 de Contrato" },
+    { value: "ModificacionJornada", label: "Modificaci髇 de Jornada" },
+    { value: "ClausulaAdicional", label: "Cl醬sula Adicional" },
+    { value: "OtrasCondiciones", label: "Otra Condici髇" },
   ];
 
   placeholderText =
-    "Usa {{ADENDA_NUMERO}}, {{VALOR_ANTERIOR}}, {{VALOR_NUEVO}}, {{FECHA_EFECTIVA}} como variables din谩micas";
+    "Usa {{ADENDA_NUMERO}}, {{VALOR_ANTERIOR}}, {{VALOR_NUEVO}}, {{FECHA_EFECTIVA}} como variables din醡icas";
 
   ngOnInit(): void {
     const data = this.config.data?.item as ContractAddendumDetailDTO | null;

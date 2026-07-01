@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   AbstractControl,
   FormArray,
@@ -10,11 +10,11 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -42,7 +42,7 @@ interface IInspeccionsForm {
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputNumberSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./inspecciones-form.html",
 })
@@ -67,7 +67,7 @@ export class InspeccionesForm implements OnInit {
 
   id: string = "";
 
-  // DefiniciÃ³n estricta del formulario
+  // Definición estricta del formulario
   form: FormGroup<IInspeccionsForm> = new FormGroup<IInspeccionsForm>(
     {
       id: new FormControl<string | null>({ value: "", disabled: true }),
@@ -98,10 +98,10 @@ export class InspeccionesForm implements OnInit {
   weekDays = [
     { label: "Lunes", value: 1, key: "day_1" },
     { label: "Martes", value: 2, key: "day_2" },
-    { label: "MiÃ³rcoles", value: 3, key: "day_3" },
+    { label: "Miórcoles", value: 3, key: "day_3" },
     { label: "Jueves", value: 4, key: "day_4" },
     { label: "Viernes", value: 5, key: "day_5" },
-    { label: "SÃ¡bado", value: 6, key: "day_6" },
+    { label: "Sábado", value: 6, key: "day_6" },
     { label: "Domingo", value: 0, key: "day_0" },
   ];
 

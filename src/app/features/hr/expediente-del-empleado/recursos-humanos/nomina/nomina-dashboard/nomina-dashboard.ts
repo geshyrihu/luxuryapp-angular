@@ -1,8 +1,8 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 export type NominaRole =
   | "SuperUsuario"
@@ -64,8 +64,16 @@ const GROUPS: NominaGroup[] = [
           { label: "Configurar factor de prima vacacional (minimo 0.25 LFT)" },
         ],
         endpoints: [
-          { method: "GET", path: "/hr/nomina/configuracion/{customerId}", description: "Obtener configuracion" },
-          { method: "PUT", path: "/hr/nomina/configuracion/{customerId}", description: "Crear o actualizar configuracion (upsert)" },
+          {
+            method: "GET",
+            path: "/hr/nomina/configuracion/{customerId}",
+            description: "Obtener configuracion",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/configuracion/{customerId}",
+            description: "Crear o actualizar configuracion (upsert)",
+          },
         ],
       },
       {
@@ -75,7 +83,12 @@ const GROUPS: NominaGroup[] = [
         route: "/recursos-humanos/nomina/periodos",
         icon: "mdi:calendar",
         bgColor: "#f0fdf4",
-        roles: ["SuperUsuario", "Administrador", "RecursosHumanos", "Direccion"],
+        roles: [
+          "SuperUsuario",
+          "Administrador",
+          "RecursosHumanos",
+          "Direccion",
+        ],
         actions: [
           { label: "Listar periodos del cliente por anio" },
           { label: "Crear nueva quincena con fechas y dias habiles" },
@@ -86,14 +99,46 @@ const GROUPS: NominaGroup[] = [
           { label: "Eliminar periodo (solo si sin nominas)" },
         ],
         endpoints: [
-          { method: "GET",    path: "/hr/nomina/periodos",                              description: "Listar periodos por cliente y anio" },
-          { method: "GET",    path: "/hr/nomina/periodos/{id}",                         description: "Detalle de un periodo" },
-          { method: "POST",   path: "/hr/nomina/periodos",                              description: "Crear periodo" },
-          { method: "PUT",    path: "/hr/nomina/periodos/{id}",                         description: "Actualizar periodo" },
-          { method: "DELETE", path: "/hr/nomina/periodos/{id}",                         description: "Eliminar periodo" },
-          { method: "GET",    path: "/hr/nomina/periodos/{id}/dias-no-habiles",         description: "Listar dias no habiles" },
-          { method: "POST",   path: "/hr/nomina/periodos/{id}/dias-no-habiles",         description: "Agregar dia no habil" },
-          { method: "DELETE", path: "/hr/nomina/periodos/dias-no-habiles/{id}",         description: "Eliminar dia no habil" },
+          {
+            method: "GET",
+            path: "/hr/nomina/periodos",
+            description: "Listar periodos por cliente y anio",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/periodos/{id}",
+            description: "Detalle de un periodo",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/periodos",
+            description: "Crear periodo",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/periodos/{id}",
+            description: "Actualizar periodo",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/periodos/{id}",
+            description: "Eliminar periodo",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/periodos/{id}/dias-no-habiles",
+            description: "Listar dias no habiles",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/periodos/{id}/dias-no-habiles",
+            description: "Agregar dia no habil",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/periodos/dias-no-habiles/{id}",
+            description: "Eliminar dia no habil",
+          },
         ],
         states: ["Abierto", "Cerrado"],
       },
@@ -112,10 +157,17 @@ const GROUPS: NominaGroup[] = [
         route: "/recursos-humanos/nomina/nominas",
         icon: "mdi:file-check",
         bgColor: "#fef9c3",
-        roles: ["SuperUsuario", "Direccion", "Administrador", "RecursosHumanos"],
+        roles: [
+          "SuperUsuario",
+          "Direccion",
+          "Administrador",
+          "RecursosHumanos",
+        ],
         actions: [
           { label: "Listar nominas por cliente y periodo" },
-          { label: "Generar nomina automatica para todos los empleados activos" },
+          {
+            label: "Generar nomina automatica para todos los empleados activos",
+          },
           { label: "Enviar nomina a revision" },
           { label: "Aprobar nomina (requiere rol Direccion o SuperUsuario)" },
           { label: "Marcar nomina como pagada (deposito realizado)" },
@@ -125,16 +177,52 @@ const GROUPS: NominaGroup[] = [
           { label: "Eliminar nomina (solo en estado Borrador)" },
         ],
         endpoints: [
-          { method: "GET",    path: "/hr/nomina",                        description: "Listar nominas" },
-          { method: "GET",    path: "/hr/nomina/{id}",                   description: "Detalle de nomina" },
-          { method: "POST",   path: "/hr/nomina/generar",                description: "Generar nomina automatica" },
-          { method: "PUT",    path: "/hr/nomina/{id}/enviar-revision",   description: "Enviar a revision" },
-          { method: "PUT",    path: "/hr/nomina/{id}/aprobar",           description: "Aprobar nomina" },
-          { method: "PUT",    path: "/hr/nomina/{id}/marcar-pagada",     description: "Marcar como pagada" },
-          { method: "PUT",    path: "/hr/nomina/{id}/cerrar",            description: "Cerrar nomina" },
-          { method: "GET",    path: "/hr/nomina/{id}/exportar-excel",    description: "Exportar a Excel" },
-          { method: "GET",    path: "/hr/nomina/{id}/resumen-ejecutivo", description: "Resumen ejecutivo" },
-          { method: "DELETE", path: "/hr/nomina/{id}",                   description: "Eliminar (solo Borrador)" },
+          { method: "GET", path: "/hr/nomina", description: "Listar nominas" },
+          {
+            method: "GET",
+            path: "/hr/nomina/{id}",
+            description: "Detalle de nomina",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/generar",
+            description: "Generar nomina automatica",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/{id}/enviar-revision",
+            description: "Enviar a revision",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/{id}/aprobar",
+            description: "Aprobar nomina",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/{id}/marcar-pagada",
+            description: "Marcar como pagada",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/{id}/cerrar",
+            description: "Cerrar nomina",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/{id}/exportar-excel",
+            description: "Exportar a Excel",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/{id}/resumen-ejecutivo",
+            description: "Resumen ejecutivo",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/{id}",
+            description: "Eliminar (solo Borrador)",
+          },
         ],
         states: ["Borrador", "EnRevision", "Aprobada", "Pagada", "Cerrada"],
       },
@@ -145,7 +233,12 @@ const GROUPS: NominaGroup[] = [
         route: "/recursos-humanos/nomina/nominas",
         icon: "mdi:format-list-checks",
         bgColor: "#fce7f3",
-        roles: ["SuperUsuario", "Direccion", "Administrador", "RecursosHumanos"],
+        roles: [
+          "SuperUsuario",
+          "Direccion",
+          "Administrador",
+          "RecursosHumanos",
+        ],
         actions: [
           { label: "Ver tabla de empleados con percepciones y deducciones" },
           { label: "Editar linea de un empleado (Borrador o EnRevision)" },
@@ -153,12 +246,29 @@ const GROUPS: NominaGroup[] = [
           { label: "Ver cuenta bancaria (snapshot del momento de generacion)" },
         ],
         endpoints: [
-          { method: "GET", path: "/hr/nomina/{nominaId}/detalles",         description: "Listar empleados de la nomina" },
-          { method: "GET", path: "/hr/nomina/{nominaId}/detalles/{id}",    description: "Detalle de un empleado" },
-          { method: "PUT", path: "/hr/nomina/{nominaId}/detalles/{id}",    description: "Editar percepciones y deducciones" },
-          { method: "GET", path: "/hr/nomina/{nominaId}/detalles/{id}/recibo", description: "Recibo PDF individual" },
+          {
+            method: "GET",
+            path: "/hr/nomina/{nominaId}/detalles",
+            description: "Listar empleados de la nomina",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/{nominaId}/detalles/{id}",
+            description: "Detalle de un empleado",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/{nominaId}/detalles/{id}",
+            description: "Editar percepciones y deducciones",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/{nominaId}/detalles/{id}/recibo",
+            description: "Recibo PDF individual",
+          },
         ],
-        notes: "Se accede desde la pagina de Nominas al hacer clic en Ver detalle de una nomina.",
+        notes:
+          "Se accede desde la pagina de Nominas al hacer clic en Ver detalle de una nomina.",
       },
     ],
   },
@@ -175,11 +285,18 @@ const GROUPS: NominaGroup[] = [
         route: "/recursos-humanos/nomina/incidencias",
         icon: "mdi:alert",
         bgColor: "#fff7ed",
-        roles: ["SuperUsuario", "Administrador", "RecursosHumanos", "Direccion"],
+        roles: [
+          "SuperUsuario",
+          "Administrador",
+          "RecursosHumanos",
+          "Direccion",
+        ],
         actions: [
           { label: "Listar incidencias por periodo y empleado" },
           { label: "Registrar falta injustificada con descuento automatico" },
-          { label: "Registrar retardo (menor o mayor a tolerancia configurada)" },
+          {
+            label: "Registrar retardo (menor o mayor a tolerancia configurada)",
+          },
           { label: "Registrar incapacidad IMSS con folio y tipo" },
           { label: "Registrar vacacion pagada (prima incluida en calculo)" },
           { label: "Registrar permiso con goce de sueldo" },
@@ -189,13 +306,41 @@ const GROUPS: NominaGroup[] = [
           { label: "Eliminar incidencia manual (no las sincronizadas)" },
         ],
         endpoints: [
-          { method: "GET",    path: "/hr/nomina/incidencias",                        description: "Listar incidencias" },
-          { method: "GET",    path: "/hr/nomina/incidencias/{id}",                   description: "Detalle de incidencia" },
-          { method: "POST",   path: "/hr/nomina/incidencias",                        description: "Registrar incidencia" },
-          { method: "PUT",    path: "/hr/nomina/incidencias/{id}",                   description: "Actualizar incidencia" },
-          { method: "DELETE", path: "/hr/nomina/incidencias/{id}",                   description: "Eliminar incidencia manual" },
-          { method: "POST",   path: "/hr/nomina/incidencias/sincronizar-vacaciones", description: "Importar vacaciones aprobadas" },
-          { method: "POST",   path: "/hr/nomina/incidencias/sincronizar-permisos",   description: "Importar permisos aprobados" },
+          {
+            method: "GET",
+            path: "/hr/nomina/incidencias",
+            description: "Listar incidencias",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/incidencias/{id}",
+            description: "Detalle de incidencia",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/incidencias",
+            description: "Registrar incidencia",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/incidencias/{id}",
+            description: "Actualizar incidencia",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/incidencias/{id}",
+            description: "Eliminar incidencia manual",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/incidencias/sincronizar-vacaciones",
+            description: "Importar vacaciones aprobadas",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/incidencias/sincronizar-permisos",
+            description: "Importar permisos aprobados",
+          },
         ],
         states: [
           "FaltaInjustificada",
@@ -224,7 +369,12 @@ const GROUPS: NominaGroup[] = [
         route: "/recursos-humanos/nomina/tiempo-extra",
         icon: "mdi:clock-outline",
         bgColor: "#ede9fe",
-        roles: ["SuperUsuario", "Administrador", "RecursosHumanos", "Direccion"],
+        roles: [
+          "SuperUsuario",
+          "Administrador",
+          "RecursosHumanos",
+          "Direccion",
+        ],
         actions: [
           { label: "Listar tiempo extra por periodo y empleado" },
           { label: "Registrar horas simples (pago doble, primeras 9h/semana)" },
@@ -236,14 +386,46 @@ const GROUPS: NominaGroup[] = [
           { label: "Eliminar registro (solo si no aprobado)" },
         ],
         endpoints: [
-          { method: "GET",    path: "/hr/nomina/tiempo-extra",               description: "Listar tiempo extra" },
-          { method: "GET",    path: "/hr/nomina/tiempo-extra/{id}",          description: "Detalle" },
-          { method: "POST",   path: "/hr/nomina/tiempo-extra",               description: "Registrar tiempo extra" },
-          { method: "PUT",    path: "/hr/nomina/tiempo-extra/{id}",          description: "Actualizar" },
-          { method: "PUT",    path: "/hr/nomina/tiempo-extra/{id}/aprobar",  description: "Aprobar" },
-          { method: "PUT",    path: "/hr/nomina/tiempo-extra/{id}/rechazar", description: "Rechazar con motivo" },
-          { method: "DELETE", path: "/hr/nomina/tiempo-extra/{id}",          description: "Eliminar (no aprobado)" },
-          { method: "POST",   path: "/hr/nomina/tiempo-extra/{id}/evidencias", description: "Subir evidencia fotografica" },
+          {
+            method: "GET",
+            path: "/hr/nomina/tiempo-extra",
+            description: "Listar tiempo extra",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/tiempo-extra/{id}",
+            description: "Detalle",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/tiempo-extra",
+            description: "Registrar tiempo extra",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/tiempo-extra/{id}",
+            description: "Actualizar",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/tiempo-extra/{id}/aprobar",
+            description: "Aprobar",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/tiempo-extra/{id}/rechazar",
+            description: "Rechazar con motivo",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/tiempo-extra/{id}",
+            description: "Eliminar (no aprobado)",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/tiempo-extra/{id}/evidencias",
+            description: "Subir evidencia fotografica",
+          },
         ],
         states: ["PendienteAprobacion", "Aprobado", "Rechazado"],
       },
@@ -262,7 +444,12 @@ const GROUPS: NominaGroup[] = [
         route: "/recursos-humanos/nomina/prestamos",
         icon: "mdi:wallet",
         bgColor: "#d1fae5",
-        roles: ["SuperUsuario", "Direccion", "Administrador", "RecursosHumanos"],
+        roles: [
+          "SuperUsuario",
+          "Direccion",
+          "Administrador",
+          "RecursosHumanos",
+        ],
         actions: [
           { label: "Listar prestamos (filtrar por estado o empleado)" },
           { label: "Solicitar nuevo prestamo indicando monto y quincenas" },
@@ -273,14 +460,46 @@ const GROUPS: NominaGroup[] = [
           { label: "Eliminar solicitud (solo En Revision)" },
         ],
         endpoints: [
-          { method: "GET",    path: "/hr/nomina/prestamos",                     description: "Listar prestamos" },
-          { method: "GET",    path: "/hr/nomina/prestamos/{id}",                description: "Detalle del prestamo" },
-          { method: "GET",    path: "/hr/nomina/prestamos/por-empleado/{id}",   description: "Prestamos activos de un empleado" },
-          { method: "POST",   path: "/hr/nomina/prestamos",                     description: "Solicitar prestamo" },
-          { method: "PUT",    path: "/hr/nomina/prestamos/{id}/autorizar",      description: "Autorizar prestamo" },
-          { method: "PUT",    path: "/hr/nomina/prestamos/{id}/cancelar",       description: "Cancelar prestamo" },
-          { method: "DELETE", path: "/hr/nomina/prestamos/{id}",                description: "Eliminar solicitud" },
-          { method: "GET",    path: "/hr/nomina/prestamos/{id}/historial-pagos", description: "Historial de amortizaciones" },
+          {
+            method: "GET",
+            path: "/hr/nomina/prestamos",
+            description: "Listar prestamos",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/prestamos/{id}",
+            description: "Detalle del prestamo",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/prestamos/por-empleado/{id}",
+            description: "Prestamos activos de un empleado",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/prestamos",
+            description: "Solicitar prestamo",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/prestamos/{id}/autorizar",
+            description: "Autorizar prestamo",
+          },
+          {
+            method: "PUT",
+            path: "/hr/nomina/prestamos/{id}/cancelar",
+            description: "Cancelar prestamo",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/prestamos/{id}",
+            description: "Eliminar solicitud",
+          },
+          {
+            method: "GET",
+            path: "/hr/nomina/prestamos/{id}/historial-pagos",
+            description: "Historial de amortizaciones",
+          },
         ],
         states: ["EnRevision", "Activo", "Completado", "Cancelado"],
       },
@@ -310,17 +529,41 @@ const GROUPS: NominaGroup[] = [
           { label: "Eliminar evidencia" },
         ],
         endpoints: [
-          { method: "GET",    path: "/hr/nomina/{nominaId}/evidencias",    description: "Listar evidencias de una nomina" },
-          { method: "POST",   path: "/hr/nomina/{nominaId}/evidencias",    description: "Subir evidencia (multipart/form-data)" },
-          { method: "DELETE", path: "/hr/nomina/evidencias/{id}",          description: "Eliminar evidencia" },
+          {
+            method: "GET",
+            path: "/hr/nomina/{nominaId}/evidencias",
+            description: "Listar evidencias de una nomina",
+          },
+          {
+            method: "POST",
+            path: "/hr/nomina/{nominaId}/evidencias",
+            description: "Subir evidencia (multipart/form-data)",
+          },
+          {
+            method: "DELETE",
+            path: "/hr/nomina/evidencias/{id}",
+            description: "Eliminar evidencia",
+          },
         ],
-        states: ["NominaFirmada", "TiempoExtra", "Asistencia", "Incapacidad", "Otro"],
+        states: [
+          "NominaFirmada",
+          "TiempoExtra",
+          "Asistencia",
+          "Incapacidad",
+          "Otro",
+        ],
       },
     ],
   },
 ];
 
-type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
+type TagSeverity =
+  | "success"
+  | "info"
+  | "warn"
+  | "danger"
+  | "secondary"
+  | "contrast";
 
 interface HeroMetric {
   label: string;
@@ -332,7 +575,7 @@ interface HeroMetric {
 
 @Component({
   selector: "app-nomina-dashboard",
-  imports: [CustomButton, TagModule, AppIcon],
+  imports: [WebButtonLabel, TagModule, AppIcon],
   templateUrl: "./nomina-dashboard.html",
   styleUrls: ["./nomina-dashboard.scss"],
 })
@@ -385,13 +628,12 @@ export default class NominaDashboard {
 
   roleTagSeverity(role: NominaRole): TagSeverity {
     const map: Record<NominaRole, TagSeverity> = {
-      SuperUsuario:    "warn",
-      Administrador:   "info",
+      SuperUsuario: "warn",
+      Administrador: "info",
       RecursosHumanos: "success",
-      Direccion:       "danger",
-      Gerente:         "secondary",
+      Direccion: "danger",
+      Gerente: "secondary",
     };
     return map[role];
   }
 }
-

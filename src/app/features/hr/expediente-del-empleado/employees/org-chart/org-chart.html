@@ -1,9 +1,9 @@
-ï»¿<div class="org-chart-page">
+<div class="org-chart-page">
   <div class="org-chart-page__header">
     <div>
       <h2 class="org-chart-page__title">Organigrama de Puestos</h2>
       <p class="org-chart-page__subtitle">
-        {{ totalNodes() }} puestos Â· {{ vacantCount() }} vacantes
+        {{ totalNodes() }} puestos · {{ vacantCount() }} vacantes
       </p>
     </div>
 
@@ -48,33 +48,29 @@
           </div>
         } @else {
           <div class="org-chart-toolbar">
-            <custom-button
+            <il-button
               label="Limpiar seleccion"
               variant="text"
-              [showLabelOnDesktop]="true"
               (clicked)="clearSelection()"
             />
 
             @if (selectedOrigin()) {
-              <custom-button
+              <il-button
                 label="Mover a raiz"
                 variant="text"
-                [showLabelOnDesktop]="true"
                 (clicked)="moveSelectedToRoot()"
               />
 
-              <custom-button
+              <il-button
                 label="Mover izquierda"
                 variant="text"
-                [showLabelOnDesktop]="true"
                 [disabled]="!canMoveSelectedUp()"
                 (clicked)="reorderSelected(-1)"
               />
 
-              <custom-button
+              <il-button
                 label="Mover derecha"
                 variant="text"
-                [showLabelOnDesktop]="true"
                 [disabled]="!canMoveSelectedDown()"
                 (clicked)="reorderSelected(1)"
               />
@@ -375,7 +371,7 @@
                     {{ node.data.orgNode.roleDisplayName }}
                   </div>
                   <div class="org-graph-card__meta">
-                    {{ node.data.orgNode.departmentName }} Â·
+                    {{ node.data.orgNode.departmentName }} ·
                     {{ node.data.orgNode.folio }}
                   </div>
                 </div>

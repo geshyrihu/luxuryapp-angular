@@ -1,19 +1,17 @@
-﻿import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import {
   IonAvatar,
-
-
   IonList,
   IonNote,
   IonSegment,
   IonSegmentButton,
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -23,7 +21,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   templateUrl: "./cumpleanos-list.html",
   imports: [
     CardModule,
-    CustomButton,
+    WebButtonLabel,
     AvatarModule,
     TagModule,
     IonSegment,
@@ -68,7 +66,7 @@ export class Cumpleanos implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onMonthSelect(month: number): void {
     this.selectedMonth.set(month);
@@ -91,13 +89,3 @@ export class Cumpleanos implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

@@ -65,7 +65,7 @@
 
       <!-- DERECHA: Acciones Especiales y Filtros de Estado -->
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
-        <custom-button
+        <il-button
           label="Actualizar Referencias"
           iconClass="mdi:link"
           (clicked)="onManageLinks()"
@@ -77,7 +77,7 @@
         <div class="hidden md:block border-left-1 border-300 h-2rem mx-1"></div>
 
         <div class="flex gap-1">
-          <custom-button
+          <il-button
             label="Denegadas"
             iconClass="mdi:close-circle"
             (clicked)="onSelectStatus(1)"
@@ -85,7 +85,7 @@
             [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
             size="sm"
           />
-          <custom-button
+          <il-button
             label="Autorizadas"
             iconClass="mdi:check-circle"
             (clicked)="onSelectStatus(0)"
@@ -93,7 +93,7 @@
             [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
             size="sm"
           />
-          <custom-button
+          <il-button
             label="Pendientes"
             iconClass="mdi:clock-outline"
             (clicked)="onSelectStatus(2)"
@@ -216,41 +216,36 @@
       <td class="no-print oc-cell-actions text-center">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:window-maximize"
               label="Editar en modal"
               (clicked)="onOrdenCompraModal(item.id)"
               variant="text"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onAddOrEdit(item.id)"
               variant="text"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
 
             @if (statusCompra() === 0) {
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:currency-usd"
               label="Solicitud de pago"
               (clicked)="onDownloadSolicitudPagoPdf(item.id)"
               variant="text"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:file-pdf-box"
               label="Orden de compra"
               (clicked)="onDownloadOrdenCompraPdf(item.id)"
               variant="text"
-              [showLabelOnDesktop]="true"
             />
             }
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               variant="text"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>
@@ -317,7 +312,7 @@
       <div>
         <p class="text-xs font-bold mb-2 uppercase text-500">Estado de Orden</p>
         <div class="flex gap-1">
-          <custom-button
+          <il-button
             class="flex-1"
             label="Denegadas"
             (clicked)="onSelectStatus(1)"
@@ -325,7 +320,7 @@
             [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
             size="sm"
           />
-          <custom-button
+          <il-button
             class="flex-1"
             label="Autorizadas"
             (clicked)="onSelectStatus(0)"
@@ -333,7 +328,7 @@
             [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
             size="sm"
           />
-          <custom-button
+          <il-button
             class="flex-1"
             label="Pendientes"
             (clicked)="onSelectStatus(2)"
@@ -376,15 +371,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onAddOrEdit(item.id)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

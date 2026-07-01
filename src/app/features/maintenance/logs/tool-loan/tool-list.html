@@ -16,7 +16,7 @@
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
-    <custom-button-download
+    <il-button-download
       label="Descargar PDF"
       iconClass="mdi:file-pdf-box"
       variant="outlined"
@@ -66,11 +66,11 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
@@ -124,16 +124,14 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
             }
           </ng-container>

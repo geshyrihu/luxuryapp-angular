@@ -27,34 +27,34 @@
       </div>
     </div>
     <div class="flex flex-wrap gap-2 no-print mb-3">
-      <custom-button
+      <il-button
         (clicked)="nivelReporte = 0"
         label="GENERAL"
         [variant]="nivelReporte == 0 ? null : 'outlined'"
       />
-      <custom-button
+      <il-button
         (clicked)="nivelReporte = 1"
         label="OPER1"
         [variant]="nivelReporte == 1 ? null : 'outlined'"
       />
-      <custom-button
+      <il-button
         (clicked)="nivelReporte = 2"
         label="OPER2"
         [variant]="nivelReporte == 2 ? null : 'outlined'"
       />
-      <custom-button
+      <il-button
         (clicked)="mostrar = !mostrar"
         label="MODO REPORTE"
         [variant]="mostrar ? 'outlined' : null"
       />
     </div>
     <div class="flex flex-wrap gap-2 no-print mb-3">
-      <custom-button variant="outlined" label="MINUTAS GENERAL" (clicked)="onLoadDataMinutas()" />
-      <custom-button variant="outlined" label="MINUTAS CONTABLE" (clicked)="onLoadDataMinutaFiltro(0)" />
-      <custom-button variant="outlined" label="MINUTAS OPERACIONES" (clicked)="onLoadDataMinutaFiltro(1)" />
-      <custom-button variant="outlined" label="MINUTAS LEGAL" (clicked)="onLoadDataMinutaFiltro(2)" />
-      <custom-button variant="outlined" label="PREVENTIVOS" (clicked)="onLoadDataPreventivos()" />
-      <custom-button variant="outlined" label="TICKETS" (clicked)="onLoadDataTickets()" />
+      <il-button variant="outlined" label="MINUTAS GENERAL" (clicked)="onLoadDataMinutas()" />
+      <il-button variant="outlined" label="MINUTAS CONTABLE" (clicked)="onLoadDataMinutaFiltro(0)" />
+      <il-button variant="outlined" label="MINUTAS OPERACIONES" (clicked)="onLoadDataMinutaFiltro(1)" />
+      <il-button variant="outlined" label="MINUTAS LEGAL" (clicked)="onLoadDataMinutaFiltro(2)" />
+      <il-button variant="outlined" label="PREVENTIVOS" (clicked)="onLoadDataPreventivos()" />
+      <il-button variant="outlined" label="TICKETS" (clicked)="onLoadDataTickets()" />
     </div>
   </ng-template>
   <ng-template #header>

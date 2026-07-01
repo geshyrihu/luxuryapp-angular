@@ -7,10 +7,9 @@
       </div>
       <div class="flex justify-content-between align-items-center gap-2 flex-wrap">
         <primeng-custom-caption [dt]="dt" (add)="onCreate()" />
-        <custom-button-item
+        <il-button-item
           iconClass="mdi:printer-outline"
           label="Imprimir activas"
-          [showLabelOnDesktop]="true"
           (clicked)="onPrintAll()"
         />
       </div>
@@ -44,16 +43,14 @@
       <td>{{ item.printedAt || "Sin impresion" }}</td>
       <td>
         <div class="flex justify-content-end gap-1">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:printer-outline"
             label="Imprimir"
-            [showLabelOnDesktop]="true"
             (clicked)="onPrint(item.id)"
           />
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:refresh"
             label="Regenerar"
-            [showLabelOnDesktop]="true"
             (clicked)="onRegenerate(item.id)"
           />
         </div>

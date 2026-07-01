@@ -48,22 +48,22 @@
         <td class="text-center">
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
           'Pendiente') {
-          <custom-button-item
+          <il-button-item
             icon="mdi:login"
             title="Firmar"
             (click)="onSign(item)"
           />
-          <custom-button-edit (click)="onEdit(item)" />
+          <il-button-edit (click)="onEdit(item)" />
           } @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
           'Pendiente') {
-          <custom-button-item
+          <il-button-item
             icon="mdi:close-circle"
             title="Cancelar"
             severity="danger"
             (click)="onCancel(item)"
           />
           }
-          <custom-button-delete (click)="onDelete(item.id)" />
+          <il-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
@@ -120,11 +120,10 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

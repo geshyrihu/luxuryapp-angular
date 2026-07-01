@@ -42,7 +42,7 @@
           >
             <span>{{ review.value.label }}</span>
             <div class="ml-auto">
-              <custom-button-confirm
+              <il-button-confirm
                 (clicked)="onRemoveReview(i)"
                 icon="trash"
               />
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <custom-button-save
+      <il-button-save
         [disabled]="form.invalid || reviewsControl.length === 0"
         [submitting]="submitting()"
       />

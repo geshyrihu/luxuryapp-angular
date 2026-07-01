@@ -1,4 +1,4 @@
-﻿<div class="flex flex-column gap-3">
+<div class="flex flex-column gap-3">
   <div
     class="flex flex-column lg:flex-row justify-content-between align-items-start gap-3 p-4 border-round-xl border-1 surface-border surface-ground"
   >
@@ -59,33 +59,29 @@
   @if (canDownloadAccountDocuments()) {
   <div class="flex justify-content-end flex-wrap gap-2">
     @if (mode() === 'detalle-cobranza-rango') {
-    <custom-button-download
+    <il-button-download
       label="Aviso de cobro"
       iconClass="mdi:file-pdf-box"
       severity="danger"
-      [showLabelOnDesktop]="true"
       (clicked)="downloadAvisoCobroPdf()"
     />
-    <custom-button-download
+    <il-button-download
       label="Aviso de cobro Aspel"
       iconClass="mdi:file-pdf-box"
       severity="contrast"
-      [showLabelOnDesktop]="true"
       (clicked)="downloadAvisoCobroPdfAspel()"
     />
     } @if (mode() === 'estado-cuenta-rango') {
-    <custom-button-download
+    <il-button-download
       label="Estado de cuenta"
       iconClass="mdi:file-pdf-box"
       severity="info"
-      [showLabelOnDesktop]="true"
       (clicked)="downloadEstadoCuentaPdf()"
     />
-    <custom-button-download
+    <il-button-download
       label="Estado de cuenta Aspel"
       iconClass="mdi:file-pdf-box"
       severity="contrast"
-      [showLabelOnDesktop]="true"
       (clicked)="downloadEstadoCuentaPdfAspel()"
     />
     }

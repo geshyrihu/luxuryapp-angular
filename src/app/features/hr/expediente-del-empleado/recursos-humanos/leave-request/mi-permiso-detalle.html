@@ -1,4 +1,4 @@
-ï»¿<div
+<div
   class="card p-4 shadow-1 border-round-2xl border-1 surface-border surface-100"
 >
   @if (loading) {
@@ -51,7 +51,7 @@
   <div class="grid mb-2">
     <div class="col-4 font-bold">Archivo Adjunto</div>
     <div class="col-8">
-      <custom-button
+      <il-button
         iconClass="mdi:download"
         label="Descargar"
         (clicked)="onDownloadAttachment()"
@@ -67,7 +67,7 @@
   </div>
   } @if (data.approvalDate) {
   <div class="grid mb-2">
-    <div class="col-4 font-bold">Fecha de AprobaciÃ³n</div>
+    <div class="col-4 font-bold">Fecha de Aprobación</div>
     <div class="col-8">{{ data.approvalDate }}</div>
   </div>
   } } @if (data.status === 'Rechazada') { @if (data.approverName) {
@@ -89,7 +89,7 @@
 
   <div class="mt-4 flex gap-2">
     @if (data.canEdit) {
-    <custom-button
+    <il-button
       iconClass="mdi:pencil"
       label="Editar"
       (clicked)="onEdit()"
@@ -97,7 +97,7 @@
       severity="warning"
     />
     } @if (data.canDelete) {
-    <custom-button
+    <il-button
       iconClass="mdi:delete"
       label="Eliminar"
       (clicked)="onDelete()"
@@ -107,6 +107,6 @@
     }
   </div>
   } @else {
-  <p class="text-center text-color-secondary">No se encontrÃ³ la solicitud.</p>
+  <p class="text-center text-color-secondary">No se encontró la solicitud.</p>
   }
 </div>

@@ -77,14 +77,14 @@
       label="Observaciones de la Decision"
     />
     <div class="flex justify-content-end gap-2 mt-2">
-      <custom-button
+      <il-button
         label="Cancelar Prestamo"
         iconClass="mdi:close"
         severity="danger"
         [disabled]="procesando()"
         (clicked)="cancelar()"
       />
-      <custom-button-save
+      <il-button-save
         label="Autorizar"
         (clicked)="autorizar()"
         [submitting]="procesando()"

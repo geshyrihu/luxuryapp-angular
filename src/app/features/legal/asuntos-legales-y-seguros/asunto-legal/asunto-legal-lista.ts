@@ -1,4 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, signal } from "@angular/core";
 import {
   IonItem,
@@ -12,11 +11,12 @@ import { addOutline, createOutline, trashOutline } from "ionicons/icons";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -32,9 +32,9 @@ import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales
     CardModule,
     TableModule,
     NgbTooltipModule,
-    CustomButton,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     ActionMenu,
     PrimeNgCustomCaption,
     DataViewMobile,
@@ -42,8 +42,8 @@ import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales
     IonItemDivider,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export class AsuntoLegalLista {
@@ -69,9 +69,9 @@ export class AsuntoLegalLista {
     this.apiResponseS
       .onGetList(Endpoints.LegalMatters.getAll)
       .then((result: any) => {
-      // Actualizamos el valor del signal con los datos recibidos
-      this.dataSignal.set(result);
-    });
+        // Actualizamos el valor del signal con los datos recibidos
+        this.dataSignal.set(result);
+      });
   }
 
   // Funcion para eliminar un banco y refres
@@ -107,19 +107,10 @@ export class AsuntoLegalLista {
       });
   }
   onDeleteCategorie(id: string) {
-    this.apiResponseS.onDelete(Endpoints.LegalMatters.deleteCategory(id)).then(() => {
-      this.onLoadData();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.LegalMatters.deleteCategory(id))
+      .then(() => {
+        this.onLoadData();
+      });
   }
 }
-
-
-
-
-
-
-
-
-
-
-

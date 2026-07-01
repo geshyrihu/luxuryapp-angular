@@ -1,4 +1,4 @@
-Ôªø// --------------------------------------------------------------
+// --------------------------------------------------------------
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -14,9 +14,9 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { PrimeNgCustomToast } from "src/app/core/components/web/primeng-custom-toast/primeng-custom-toast";
@@ -43,7 +43,7 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
     TagModule,
     CustomInputNumberSignal,
     ProgressSpinnerModule,
-    CustomButtonItem,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     PrimeNgCustomToast,
@@ -52,15 +52,15 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
-  // 1. INYECCI√≥N DE DEPENDENCIAS
+  // 1. INYECCIÛN DE DEPENDENCIAS
   //----------------------------------------------------------------
-  // Aqu√≥ puro `inject`, nada de constructores kilom√≥tricos ?
+  // AquÛ puro `inject`, nada de constructores kilomÛtricos ?
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
-  // Hacemos p√≥blico el servicio para usar sus signals directo en el template ??
+  // Hacemos pÛblico el servicio para usar sus signals directo en el template ??
   public ordenCompraService = inject(OrdenCompraService);
   ref = inject(DynamicDialogRef);
   messageService = inject(MessageService);
@@ -69,7 +69,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // Datos que vienen de la API (partidas presupuestales)
   dataSignal = signal<any[]>([]);
-  // A√±o en curso (lo vamos a usar para filtrar info del presupuesto)
+  // AÒo en curso (lo vamos a usar para filtrar info del presupuesto)
   intYearControl = new FormControl<number>(new Date().getFullYear());
   availableYears = [
     { label: "2024", value: 2024 },
@@ -99,7 +99,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   //----------------------------------------------------------------
-  // 4. M√≥TODOS PRINCIPALES
+  // 4. MÛTODOS PRINCIPALES
   //----------------------------------------------------------------
   // Cargar data desde la API (las cuentas presupuestales)
   async onLoadData() {
@@ -133,7 +133,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     // Validaciones express ??
     const dineroUsado = item.dineroUsadoControl.value;
     if (!dineroUsado || dineroUsado <= 0) {
-      this.showMessage("Debe ingresar un monto v√≥lido", "error");
+      this.showMessage("Debe ingresar un monto vÛlido", "error");
       return;
     }
     if (dineroUsado > totalPorCubrir) {
@@ -154,7 +154,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
       amount: dineroUsado,
     };
 
-    // Post a la API y actualizaci√≥n autom√≥tica del total ??
+    // Post a la API y actualizaciÛn automÛtica del total ??
     this.apiResponseS
       .onPost(Endpoints.PurchaseOrderBudgets.create, purchaseOrderBudget)
       .then(async () => {
@@ -180,7 +180,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     });
   }
 
-  // Determinar si un input de monto est√≥ habilitado ??
+  // Determinar si un input de monto estÛ habilitado ??
   isInputDisabled(item: any): boolean {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     const superUser = this.aspRoleS.hasAny([
@@ -201,7 +201,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     return item.availableBudget <= 0 || totalPorCubrir <= 0;
   }
 
-  // Determinar si el bot√≥n de guardar est√≥ habilitado ??
+  // Determinar si el botÛn de guardar estÛ habilitado ??
   isSaveDisabled(item: any): boolean {
     const superUser = this.aspRoleS.hasAny([
       EApplicationRole.SuperUsuario,
@@ -229,7 +229,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 6. LIMPIEZA
   //----------------------------------------------------------------
-  // Al destruir el componente cerramos el di√°logo ??
+  // Al destruir el componente cerramos el di·logo ??
   ngOnDestroy(): void {
     this.ref.close(true);
   }

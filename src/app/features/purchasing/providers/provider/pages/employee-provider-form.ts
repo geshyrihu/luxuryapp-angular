@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -8,13 +8,13 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { imageToBase64 } from "src/app/core/helpers/enumeration";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { UserInfoDTO } from "src/app/core/interfaces/user-info.interface";
@@ -38,7 +38,7 @@ type Opcion = "none" | "vacante" | "alta";
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputImg,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CustomInputTextAreaSignal,
   ],
 })
@@ -61,7 +61,7 @@ export class EmployeeProviderForm implements OnInit {
   readonly preselectedPositionRequestId: string | null =
     this.config.data?.positionRequestId ?? null;
 
-  /** Rol del puesto vacante â€” pre-llena applicationRoleId en fase 1. */
+  /** Rol del puesto vacante — pre-llena applicationRoleId en fase 1. */
   readonly preselectedApplicationRoleId: string | null =
     this.config.data?.applicationRoleId ?? null;
 
@@ -151,7 +151,7 @@ export class EmployeeProviderForm implements OnInit {
     this.altaForm.controls.typeContractRegister.setValue(1);
     this.vacanteForm.controls.typeContractRegister.setValue(1);
 
-    // Pre-seleccionar vacante si se abriÃ³ desde un puesto vacante especÃ­fico
+    // Pre-seleccionar vacante si se abrió desde un puesto vacante específico
     if (this.preselectedPositionRequestId) {
       this.altaForm.controls.positionRequestId.setValue(
         this.preselectedPositionRequestId,

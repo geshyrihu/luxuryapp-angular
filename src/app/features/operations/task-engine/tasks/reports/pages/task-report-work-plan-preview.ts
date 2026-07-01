@@ -1,9 +1,9 @@
-ï»¿import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -19,7 +19,7 @@ import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/
     TableModule,
     PrimeNgCustomCaption,
     ReactiveFormsModule,
-    CustomButtonConfirm,
+    WebButtonLabelConfirm,
     CustomInputTextSignal,
     ImageModule,
   ],
@@ -39,8 +39,8 @@ export class TaskReportWorkPlanPreview {
   loading = signal(true);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  year: number = 0; // Almacena el AÃ±o seleccionado
-  numeroSemana: number = 0; // Almacena el nÃ³mero de semana seleccionado
+  year: number = 0; // Almacena el Año seleccionado
+  numeroSemana: number = 0; // Almacena el nómero de semana seleccionado
   weekInputValueControl = new FormControl<string>("");
 
   ngOnInit(): void {
@@ -59,7 +59,7 @@ export class TaskReportWorkPlanPreview {
     );
   }
   onLoadData() {
-    // No sobreescribimos el AÃ±o y la semana seleccionados con los valores actuales
+    // No sobreescribimos el Año y la semana seleccionados con los valores actuales
     this.apiResponseS
       .onGetList(
         Endpoints.TaskWorkPlans.preview(

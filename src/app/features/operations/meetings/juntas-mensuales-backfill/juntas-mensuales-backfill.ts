@@ -1,10 +1,10 @@
-﻿import { CommonModule, DatePipe } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -48,8 +48,8 @@ interface IBackfillSelectionState {
     TableModule,
     TagModule,
     CardModule,
-    CustomButton,
-    CustomButtonConfirm,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
     DatePipe,
   ],
 })
@@ -203,15 +203,18 @@ export class JuntasMensualesBackfill {
   }
 
   private buildSelectionState(items: IJuntaMensualSessionBackfillCandidate[]) {
-    return items.reduce<Record<string, IBackfillSelectionState>>((acc, item) => {
-      acc[item.juntaMensualSessionId] = {
-        applyPresentation:
-          !!item.suggestedPresentation && !item.hasPresentationLinked,
-        applyMeeting: !!item.suggestedMeeting && !item.hasMeetingLinked,
-        applying: false,
-      };
-      return acc;
-    }, {});
+    return items.reduce<Record<string, IBackfillSelectionState>>(
+      (acc, item) => {
+        acc[item.juntaMensualSessionId] = {
+          applyPresentation:
+            !!item.suggestedPresentation && !item.hasPresentationLinked,
+          applyMeeting: !!item.suggestedMeeting && !item.hasMeetingLinked,
+          applying: false,
+        };
+        return acc;
+      },
+      {},
+    );
   }
 
   private resolveSelectionState(sessionId: string): IBackfillSelectionState {
@@ -224,4 +227,3 @@ export class JuntasMensualesBackfill {
     );
   }
 }
-

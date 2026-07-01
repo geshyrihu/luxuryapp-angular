@@ -34,7 +34,7 @@
           <app-rango-calendario-yyyymmdd />
         </div>
         <div class="flex-shrink-0">
-          <custom-button
+          <il-button
             ngbTooltip="Actualizar Información"
             icon="mdi:sync"
             (clicked)="onLoadData()"
@@ -182,15 +182,13 @@
           <ng-container actions>
             @if (applicationUserId == item.applicationUserId ||
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
 
             }

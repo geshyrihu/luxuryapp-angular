@@ -1,14 +1,8 @@
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  computed,
-  inject,
-  input,
-  output,
-} from "@angular/core";
+import { Component, computed, inject, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -30,8 +24,8 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
   imports: [
     CommonModule,
     TableModule,
-    CustomButton,
-    CustomButtonViewPdf,
+    WebButtonLabel,
+    WebButtonLabelViewPdf,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],
@@ -80,20 +74,20 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
           <td class="text-center">
             <div class="flex gap-1 justify-center">
               @if (request.attachmentPath) {
-                <custom-button-view-pdf
+                <il-button-view-pdf
                   [url]="request.attachmentPath"
                   fileName="Comprobante"
                 />
               }
-              <custom-button
-                [showLabelOnDesktop]="true"
+              <il-button
+
                 iconClass="mdi:checkbox-marked"
                 label="Aprobar"
                 size="small"
                 (clicked)="onApprove(request)"
               />
-              <custom-button
-                [showLabelOnDesktop]="true"
+              <il-button
+
                 iconClass="mdi:close"
                 label="Rechazar"
                 size="small"
@@ -156,4 +150,3 @@ export class GenericApprovalPanel {
     this.viewDetail.emit(request);
   }
 }
-

@@ -1,12 +1,12 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { Component, inject, input, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ImageCompressionService } from "src/app/core/services/image-compression.service";
@@ -25,9 +25,10 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
     FileUploadModule,
     TableModule,
     DatePipe,
-    CustomButton,
-    CustomButtonDelete,
-   AppIcon],
+    WebButtonLabel,
+    WebButtonLabelDelete,
+    AppIcon,
+  ],
   templateUrl: "./incident-attachments.html",
 })
 export class IncidentAttachmentsComponent {
@@ -161,4 +162,3 @@ export class IncidentAttachmentsComponent {
     return "text-primary";
   }
 }
-

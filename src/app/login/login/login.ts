@@ -19,10 +19,10 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, of, startWith, switchMap } from "rxjs";
+import { CustomButton } from "src/app/core/components/buttons/legacy/buttons/custom-button";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";

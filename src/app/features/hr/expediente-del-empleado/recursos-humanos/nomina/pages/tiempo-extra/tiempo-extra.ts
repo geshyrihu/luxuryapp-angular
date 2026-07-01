@@ -1,19 +1,19 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -29,9 +29,9 @@ import ModalTiempoExtraAdd from "./modal-tiempo-extra-add/modal-tiempo-extra-add
     CommonModule,
     TableModule,
     TagModule,
-    CustomButton,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
@@ -66,7 +66,10 @@ export default class TiempoExtra {
 
   async loadPeriodos(customerId: string): Promise<void> {
     const anio = new Date().getFullYear();
-    await this.apiResponseS.onPost(Endpoints.HR.Nomina.Periodos.autoCrear(customerId), {});
+    await this.apiResponseS.onPost(
+      Endpoints.HR.Nomina.Periodos.autoCrear(customerId),
+      {},
+    );
     const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
       Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
@@ -81,7 +84,6 @@ export default class TiempoExtra {
     } else {
       this.loading.set(false);
     }
-
   }
 
   onLoadData(periodoId: string): void {
@@ -143,4 +145,3 @@ export default class TiempoExtra {
       });
   }
 }
-

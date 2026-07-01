@@ -50,13 +50,13 @@
           <label for="isResident" class="ml-2">Es Residente</label>
         </div>
         <div class="col-12 text-right">
-          <custom-button
+          <il-button
             label="Cancelar"
             severity="secondary"
             customClass="mr-2"
             (clicked)="resetForm()"
           />
-          <custom-button
+          <il-button
             [label]="occupantForm.controls.id.value ? 'Actualizar' : 'Añadir Ocupante'"
             [disabled]="loading() || occupantForm.invalid"
           />
@@ -106,8 +106,8 @@
         </td>
         <td>
           <div class="flex">
-            <custom-button-edit (clicked)="onEditOccupant(occupant)" />
-            <custom-button-delete (confirmed)="onDeleteOccupant(occupant.id)" />
+            <il-button-edit (clicked)="onEditOccupant(occupant)" />
+            <il-button-delete (confirmed)="onDeleteOccupant(occupant.id)" />
           </div>
         </td>
       </tr>

@@ -1,12 +1,14 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -25,16 +27,16 @@ import { PaymentTypeForm } from "./payment-type-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
   ],
 })
 export class PaymentTypeList implements OnInit {
@@ -59,18 +61,22 @@ export class PaymentTypeList implements OnInit {
     this.onLoadData();
   }
   onLoadData() {
-    this.apiResponseS.onGetList(Endpoints.PaymentTypes.getAll).then((result: any) => {
-      this.data.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.PaymentTypes.getAll)
+      .then((result: any) => {
+        this.data.set(result);
+      });
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.PaymentTypes.delete(id)).then((result: boolean) => {
-      if (result)
-        this.data.update((currentData) =>
-          currentData.filter((item) => item.id !== id),
-        );
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.PaymentTypes.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.data.update((currentData) =>
+            currentData.filter((item) => item.id !== id),
+          );
+      });
   }
 
   onModalForm(data: any) {
@@ -81,12 +87,3 @@ export class PaymentTypeList implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

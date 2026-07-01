@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -10,12 +10,12 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -51,7 +51,7 @@ interface IProductEntryForm {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputAutoComplete,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class ProductEntryForm implements OnInit {
@@ -131,7 +131,7 @@ export class ProductEntryForm implements OnInit {
       this.loadProducts(),
     ]);
 
-    // Cargar datos del formulario después de tener los providers
+    // Cargar datos del formulario despu�s de tener los providers
     if (this.id()) {
       await this.onLoadData();
     }

@@ -23,11 +23,11 @@
   <ng-template #header>
     <tr>
       <th class="text-small" pSortableColumn="codigo">
-        Código
+        Cï¿½digo
         <p-sortIcon field="codigo" />
       </th>
       <th class="text-small" pSortableColumn="descripcion">
-        Descripción
+        Descripciï¿½n
         <p-sortIcon field="descripcion" />
       </th>
 
@@ -45,10 +45,10 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -58,8 +58,8 @@
       <td colspan="3">
         <app-empty-state
           icon="mdi:credit-card-outline"
-          title="Sin métodos"
-          message="No hay métodos de pago registrados."
+          title="Sin mï¿½todos"
+          message="No hay mï¿½todos de pago registrados."
         />
       </td>
     </tr>
@@ -70,7 +70,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -100,15 +100,13 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

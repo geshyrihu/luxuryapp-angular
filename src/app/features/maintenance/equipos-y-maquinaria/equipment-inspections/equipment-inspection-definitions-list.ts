@@ -1,12 +1,19 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, input, OnInit, signal } from "@angular/core";
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -16,9 +23,9 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EquipmentInspectionDefinitionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionDefinitionForm } from "./equipment-inspection-definition-form";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
+import { EquipmentInspectionDefinitionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
 @Component({
@@ -29,9 +36,9 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
     CommonModule,
     TableModule,
     Tag,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
   ],
 })
@@ -102,7 +109,9 @@ export class EquipmentInspectionDefinitionsList implements OnInit {
           machineryId: this.machineryId,
           machineryName: this.machineryName,
         },
-        id ? "Editar definicion de inspeccion" : "Nueva definicion de inspeccion",
+        id
+          ? "Editar definicion de inspeccion"
+          : "Nueva definicion de inspeccion",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
@@ -139,4 +148,3 @@ export class EquipmentInspectionDefinitionsList implements OnInit {
     );
   }
 }
-

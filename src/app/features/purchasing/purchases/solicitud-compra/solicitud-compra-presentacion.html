@@ -9,9 +9,8 @@
   <div
     class="flex justify-content-end align-items-center gap-2 px-2 md:px-3 mb-2"
   >
-    <custom-button
+    <il-button
       iconClass="mdi:chevron-left"
-      [showLabelOnDesktop]="false"
       (clicked)="previousSlide()"
       severity="secondary"
       variant="outlined"
@@ -19,9 +18,8 @@
       [disabled]="currentPage() === 0"
       tooltip="Solicitud anterior"
     />
-    <custom-button
+    <il-button
       iconClass="mdi:chevron-right"
-      [showLabelOnDesktop]="false"
       (clicked)="nextSlide()"
       severity="secondary"
       variant="outlined"
@@ -173,7 +171,7 @@
 
           <div class="flex flex-wrap justify-content-end gap-2 mb-3">
             @if (canOptimizeProducts(solicitud)) {
-            <custom-button
+            <il-button
               [iconClass]="isOptimized(solicitud.id) ? 'mdi:view-list' : 'mdi:table-eye-off'"
               [label]="isOptimized(solicitud.id) ? 'Ver detalle' : 'Optimizar items'"
               (clicked)="toggleOptimizeProducts(solicitud.id)"
@@ -182,7 +180,7 @@
               size="small"
             />
             }
-            <custom-button
+            <il-button
               [iconClass]="isAuthorized(solicitud) ? 'mdi:close' : (isDenied(solicitud) ? 'mdi:cancel' : 'mdi:check')"
               [label]="isAuthorized(solicitud) ? 'Desautorizar' : (isDenied(solicitud) ? 'Resolver' : 'Autorizar')"
               (clicked)="onOpenAutorizarModal(solicitud)"
@@ -253,14 +251,13 @@
                   </div>
                   <div class="flex align-items-end ml-auto">
                     @if (provider.filePath) {
-                    <custom-button-view-pdf
+                    <il-button-view-pdf
                       [url]="provider.filePath"
                       [fileName]="'Cotizacion ' + provider.nameProvider"
                       label="Cotizacion"
                       iconClass="mdi:file-document-outline"
                       variant="outlined"
                       size="small"
-                      [showLabelOnDesktop]="true"
                     />
                     }
                   </div>

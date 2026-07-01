@@ -1,21 +1,21 @@
-﻿<!--
+<!--
   ============================================================================
-  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
-  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+  Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
   FUNCIONAL y ESTABLE. 
   
-  Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
-  sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+  Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+  sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
   
-  Por favor, NO rompan el código.
+  Por favor, NO rompan el c�digo.
   ============================================================================
 -->
 @if (loading()) {
 <div class="flex align-items-center justify-content-center p-4">
   <app-icon [icon]="'mdi:loading'" class="text-4xl mr-3"></app-icon>
   <div class="text-lg">
-    Analizando patrones de gasto de los {{selectedMonthsForAvg().length}} meses seleccionados y calculando inflación ({{inflationRate()}}%)...
+    Analizando patrones de gasto de los {{selectedMonthsForAvg().length}} meses seleccionados y calculando inflaci�n ({{inflationRate()}}%)...
   </div>
 </div>
 } 
@@ -81,20 +81,20 @@
     * Los montos sugeridos se redondearon a centenas.
   </div>
   <div>
-    <custom-button
+    <il-button
       iconClass="mdi:close"
       (clicked)="close()"
       label="Cancelar"
       variant="text"
     />
-    <custom-button
+    <il-button
       iconClass="mdi:check"
       (clicked)="apply()"
       label="Aplicar {{selectedForecastItems().length}} Cambios"
       [disabled]="selectedForecastItems().length === 0"
       severity="success"
     >
-    </custom-button>
+    </il-button>
   </div>
 </div>
 }

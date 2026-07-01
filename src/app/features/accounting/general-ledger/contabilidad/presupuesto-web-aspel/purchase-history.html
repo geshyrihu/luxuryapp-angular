@@ -73,7 +73,7 @@
       <td class="text-right font-bold">{{ item.amount | currency: 'MXN' }}</td>
       <td class="text-center">
         @if (item.invoiceUrl) {
-        <custom-button
+        <il-button
           iconClass="mdi:download"
           variant="ghost-text"
           size="sm"
@@ -134,7 +134,7 @@
           {{ item.amount | currency : "MXN" }}
         </span>
         @if (item.invoiceUrl) {
-        <custom-button
+        <il-button
           iconClass="mdi:download"
           variant="ghost-text"
           size="sm"

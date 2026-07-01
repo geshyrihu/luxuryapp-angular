@@ -1,4 +1,4 @@
-ï»¿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -6,7 +6,7 @@ import { MessageModule } from "primeng/message";
 import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ReconciledItemDTO } from "../../interfaces/sat-reconciliation.dtos";
@@ -21,7 +21,7 @@ import { DateService } from "src/app/core/services/date.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CustomButton,
+    WebButtonLabel,
     TableModule,
     TagModule,
     MessageModule,
@@ -73,7 +73,7 @@ export class SatReconciliationDialog implements OnInit {
       this.legacyFundingId = this.config.data.legacyFundingId;
     } else {
       this.step.set("error");
-      this.errorMessage.set("No se proporcionÃ³ ID de fondeo.");
+      this.errorMessage.set("No se proporcionó ID de fondeo.");
     }
   }
 
@@ -193,7 +193,7 @@ export class SatReconciliationDialog implements OnInit {
       }
     } catch (error: any) {
       this.step.set("error");
-      this.errorMessage.set(error.message || "OcurriÃ³ un error desconocido.");
+      this.errorMessage.set(error.message || "Ocurrió un error desconocido.");
       this.loading.set(false);
     }
   }

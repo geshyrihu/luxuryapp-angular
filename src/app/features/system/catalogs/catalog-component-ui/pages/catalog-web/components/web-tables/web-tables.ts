@@ -10,8 +10,8 @@ import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/legacy/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/legacy/buttons/custom-button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
@@ -61,11 +61,13 @@ interface ErpRow {
   template: `
     <div class="grid">
       <div class="col-12">
-        <p-card header="Tabla ERP - Caption, Filtro, Sort, Paginación y Responsiva">
+        <p-card
+          header="Tabla ERP - Caption, Filtro, Sort, Paginaciï¿½n y Responsiva"
+        >
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Patrón estándar ERP:
+            Patrï¿½n estï¿½ndar ERP:
             <code>primeng-custom-caption</code> + <code>p-table</code> en
-            desktop y <code>app-data-view-mobile</code> en móvil
+            desktop y <code>app-data-view-mobile</code> en mï¿½vil
             (<code>md:hidden</code>).
           </p>
 
@@ -123,10 +125,16 @@ interface ErpRow {
 
             <ng-template #body let-row>
               <tr>
-                <td><strong>{{ row.folio }}</strong></td>
                 <td>
-                  <span class="block font-semibold text-sm">{{ row.nombre }}</span>
-                  <span class="text-xs text-color-secondary">{{ row.depto }}</span>
+                  <strong>{{ row.folio }}</strong>
+                </td>
+                <td>
+                  <span class="block font-semibold text-sm">{{
+                    row.nombre
+                  }}</span>
+                  <span class="text-xs text-color-secondary">{{
+                    row.depto
+                  }}</span>
                 </td>
                 <td>{{ row.depto }}</td>
                 <td>{{ row.fecha }}</td>
@@ -189,7 +197,7 @@ interface ErpRow {
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="Tabla con Selección (checkbox)">
+        <p-card header="Tabla con Selecciï¿½n (checkbox)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Muestra el conteo de seleccionados y activa las acciones masivas en
             el toolbar.
@@ -234,7 +242,9 @@ interface ErpRow {
             <ng-template #body let-row>
               <tr>
                 <td><p-tableCheckbox [value]="row" /></td>
-                <td><strong>{{ row.folio }}</strong></td>
+                <td>
+                  <strong>{{ row.folio }}</strong>
+                </td>
                 <td>{{ row.nombre }}</td>
                 <td><app-status-badge [status]="row.status" /></td>
               </tr>
@@ -247,7 +257,7 @@ interface ErpRow {
         <p-card header="Tabla con Row Expansion (detalle)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Expande una fila para mostrar detalle sin navegar a otra vista.
-            Úsalo solo cuando el detalle es breve y consultivo.
+            ï¿½salo solo cuando el detalle es breve y consultivo.
           </p>
           <p-table [value]="rows" dataKey="id" styleClass="p-datatable-sm">
             <ng-template #header>
@@ -269,7 +279,9 @@ interface ErpRow {
                     size="small"
                   />
                 </td>
-                <td><strong>{{ row.folio }}</strong></td>
+                <td>
+                  <strong>{{ row.folio }}</strong>
+                </td>
                 <td>
                   {{ row.importe | currency: "MXN" : "symbol" : "1.0-0" }}
                 </td>
@@ -322,7 +334,7 @@ export class WebTables {
       fecha: "2026-06-01",
       importe: 45000,
       status: EStatus.Pendiente,
-      detail: "Requiere aprobación de Dirección.",
+      detail: "Requiere aprobaciï¿½n de Direcciï¿½n.",
     },
     {
       id: 2,
@@ -337,27 +349,27 @@ export class WebTables {
     {
       id: 3,
       folio: "ERP-003",
-      nombre: "Adquisición mobiliario administrativo",
-      depto: "Administración",
+      nombre: "Adquisiciï¿½n mobiliario administrativo",
+      depto: "Administraciï¿½n",
       fecha: "2026-06-10",
       importe: 89500,
       status: EStatus.Concluido,
-      detail: "Entregado y firmado en almacén.",
+      detail: "Entregado y firmado en almacï¿½n.",
     },
     {
       id: 4,
       folio: "ERP-004",
-      nombre: "Servicio de limpieza áreas comunes",
+      nombre: "Servicio de limpieza ï¿½reas comunes",
       depto: "Servicios",
       fecha: "2026-06-12",
       importe: 8500,
       status: EStatus.noAutorizado,
-      detail: "Solicitud rechazada por política de techo.",
+      detail: "Solicitud rechazada por polï¿½tica de techo.",
     },
     {
       id: 5,
       folio: "ERP-005",
-      nombre: "Capacitación personal técnico",
+      nombre: "Capacitaciï¿½n personal tï¿½cnico",
       depto: "Recursos Humanos",
       fecha: "2026-06-15",
       importe: 15000,
@@ -367,16 +379,15 @@ export class WebTables {
     {
       id: 6,
       folio: "ERP-006",
-      nombre: "Renovación de licencias de software",
+      nombre: "Renovaciï¿½n de licencias de software",
       depto: "Sistemas",
       fecha: "2026-06-18",
       importe: 32000,
       status: EStatus.Pendiente,
-      detail: "Pendiente de cotización comparativa.",
+      detail: "Pendiente de cotizaciï¿½n comparativa.",
     },
   ];
 
   selectedRowsModel: ErpRow[] = [];
   selectedRows = signal<ErpRow[]>([]);
 }
-

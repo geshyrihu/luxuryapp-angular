@@ -1,4 +1,4 @@
-﻿<!-- Selector de nomina -->
+<!-- Selector de nomina -->
 <div class="flex flex-wrap gap-2 mb-3">
   @for (n of nominas(); track n.value) {
   <button
@@ -41,7 +41,7 @@
       />
     </div>
     <div class="col-12 md:col-1 flex align-items-end">
-      <custom-button-save
+      <il-button-save
         label="Subir"
         iconClass="mdi:upload"
         (clicked)="onSubir()"
@@ -93,14 +93,14 @@
           {{ ev.createdAt | date: "dd/MM/yyyy" }}
         </p>
         <div class="flex gap-2">
-          <custom-button
+          <il-button
             iconClass="mdi:external-link"
             severity="info"
             variant="ghost-text"
             pTooltip="Abrir"
             (clicked)="abrirEvidencia(ev.filePath)"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:delete"
             severity="danger"
             variant="ghost-text"

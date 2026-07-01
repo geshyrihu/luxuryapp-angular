@@ -1,4 +1,4 @@
-ï»¿import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormArray,
@@ -13,8 +13,8 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -35,7 +35,7 @@ import { DateService } from "src/app/core/services/date.service";
     DividerModule,
     CustomInputTextAreaSignal,
     Touchspin,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class RealizarEvaluacion implements OnInit {
@@ -50,7 +50,7 @@ export class RealizarEvaluacion implements OnInit {
   // --- Listas para los Dropdowns ---
   employees: any[] = [];
   templates: any[] = [];
-  // Nueva propiedad para guardar el ID de la evaluaciÃ³n una vez creada
+  // Nueva propiedad para guardar el ID de la evaluación una vez creada
   currentPerformanceEvaluationId: string | null = null;
   submitting = signal(false);
   isEditMode = false;
@@ -88,10 +88,10 @@ export class RealizarEvaluacion implements OnInit {
     // Subscription moved to effect
   }
 
-  // Reemplaza el mÃ³todo loadEvaluationData completo con este:
+  // Reemplaza el mótodo loadEvaluationData completo con este:
   async loadEvaluationData(id: string): Promise<void> {
     try {
-      // 1. Obtener los datos de la evaluaciÃ³n y ESPERAR la respuesta
+      // 1. Obtener los datos de la evaluación y ESPERAR la respuesta
       const data: any = await this.apiResponseS.onGetItem(
         `PerformanceEvaluations/${id}/result`,
       );
@@ -100,7 +100,7 @@ export class RealizarEvaluacion implements OnInit {
       // 2. Rellenar los campos principales del formulario
       this.form.patchValue({
         evaluatorId: data.evaluatorId,
-        evaluatedId: data.employeeId, // Usamos el ID numÃ©rico del empleado
+        evaluatedId: data.employeeId, // Usamos el ID numérico del empleado
         evaluationTemplateId: data.evaluationTemplateId,
         evaluationDate: data.evaluationDate,
       });
@@ -108,7 +108,7 @@ export class RealizarEvaluacion implements OnInit {
       // 3. Cargar la plantilla y ESPERAR a que el FormArray de respuestas se construya
       await this.onTemplateSelect(data.evaluationTemplateId);
 
-      // 4. Ahora que el FormArray estÃ³ listo, rellenar las respuestas
+      // 4. Ahora que el FormArray estó listo, rellenar las respuestas
       const answersArray = this.form.get("answers") as FormArray;
       const allAnswers: any[] =
         data.categories?.flatMap((cat: any) => cat.answers || []) || [];
@@ -128,8 +128,8 @@ export class RealizarEvaluacion implements OnInit {
 
       // 6. Verificar el estado final del formulario (usa getRawValue para ver los deshabilitados)
     } catch (error) {
-      console.error("FallÃ³ la carga de la evaluaciÃ³n:", error);
-      // AquÃ³ podrÃ­as mostrar una notificaciÃ³n al usuario
+      console.error("Falló la carga de la evaluación:", error);
+      // Aquó podrías mostrar una notificación al usuario
     }
   }
 
@@ -163,7 +163,7 @@ export class RealizarEvaluacion implements OnInit {
       .then((response: any) => (this.templates = response));
   }
 
-  // Reemplaza el mÃ³todo onTemplateSelect completo con este:
+  // Reemplaza el mótodo onTemplateSelect completo con este:
   onTemplateSelect(templateId: string): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!templateId) {
@@ -177,7 +177,7 @@ export class RealizarEvaluacion implements OnInit {
         .then((response: any) => {
           this.selectedTemplate = response;
           this.buildAnswersFormArray(); // Construye el FormArray
-          resolve(); // Avisa que ya terminÃ³
+          resolve(); // Avisa que ya terminó
         })
         .catch((error) => {
           console.error("Error loading template:", error);
@@ -243,7 +243,7 @@ export class RealizarEvaluacion implements OnInit {
     return currentIndex + questionIndex;
   }
 
-  // MÃ³todo para manejar cambios directos en el input
+  // Mótodo para manejar cambios directos en el input
   onInputChange(categoryIndex: number, questionIndex: number, event: any) {
     const index = this.getQuestionControlIndex(categoryIndex, questionIndex);
 
@@ -251,13 +251,13 @@ export class RealizarEvaluacion implements OnInit {
       const answerGroup = this.answers.at(index);
       let value = parseInt(event.target.value) || 1;
 
-      // Validar lÃ³mites (min: 1, max: 5)
+      // Validar lómites (min: 1, max: 5)
       if (value < 1) value = 1; // Cambiado de 0 a 1
       if (value > 5) value = 5;
 
       answerGroup.get("score")?.setValue(value);
     } else {
-      console.error("Ã³ndice invÃ³lido:", index);
+      console.error("óndice invólido:", index);
     }
   }
 

@@ -1,19 +1,19 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EquipmentInspectionExecutionDetailDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
+import { EquipmentInspectionExecutionDetailDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
 @Component({
   selector: "app-equipment-inspection-execution-detail",
   templateUrl: "./equipment-inspection-execution-detail.html",
-  imports: [CommonModule, TableModule, Tag, ImageModule, CustomButton],
+  imports: [CommonModule, TableModule, Tag, ImageModule, WebButtonLabel],
 })
 export class EquipmentInspectionExecutionDetail implements OnInit {
   private config = inject(DynamicDialogConfig);
@@ -74,5 +74,3 @@ export class EquipmentInspectionExecutionDetail implements OnInit {
     return this.equipmentInspectionS.getSeverityTag(severity);
   }
 }
-
-

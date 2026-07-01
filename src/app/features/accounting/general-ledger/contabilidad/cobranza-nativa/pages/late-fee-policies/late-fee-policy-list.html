@@ -57,8 +57,8 @@
         </td>
         <td class="text-center">
           <div class="flex justify-content-center">
-            <custom-button-edit (clicked)="onModalForm(item.id)" />
-            <custom-button-delete (customClick)="onDelete(item)" />
+            <il-button-edit (clicked)="onModalForm(item.id)" />
+            <il-button-delete (customClick)="onDelete(item)" />
           </div>
         </td>
       </tr>
@@ -100,15 +100,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm(item.id)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

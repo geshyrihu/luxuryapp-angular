@@ -1,8 +1,8 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
@@ -15,7 +15,7 @@ import { ServiceOrderForm } from "src/app/features/operations/field-service/serv
 @Component({
   selector: "app-service-history-machinery",
   templateUrl: "./service-history-machinery.html",
-  imports: [TableModule, NgbTooltipModule, CustomButton, PrimeNgCustomCaption],
+  imports: [TableModule, NgbTooltipModule, WebButtonLabel, PrimeNgCustomCaption],
 })
 export class ServiceHistoryMachinery implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -59,14 +59,3 @@ export class ServiceHistoryMachinery implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-
-

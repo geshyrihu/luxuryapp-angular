@@ -1,8 +1,8 @@
-ï»¿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -38,7 +38,7 @@ export interface TendenciaMensualDTO {
 
 @Component({
   selector: "app-cobranza-dashboard",
-  imports: [CommonModule, DecimalPipe, CustomButton, AppIcon],
+  imports: [CommonModule, DecimalPipe, WebButtonLabel, AppIcon],
   templateUrl: "./cobranza-dashboard.html",
 })
 export default class CobranzaDashboard {
@@ -49,7 +49,7 @@ export default class CobranzaDashboard {
   metricas = signal<CobranzaMetricasResponseDTO | null>(null);
   meses = signal<number>(6);
 
-  // Computed: barra de tendencia como % del mÃ¡ximo para visualizaciÃ³n
+  // Computed: barra de tendencia como % del máximo para visualización
   maxFacturado = computed(() => {
     const t = this.metricas()?.tendenciaMensual ?? [];
     return Math.max(
@@ -72,7 +72,8 @@ export default class CobranzaDashboard {
     if (!customerId) return;
 
     const res = await this.apiResponseS.onGetItem<CobranzaMetricasResponseDTO>(
-      Endpoints.AccountingCoi.NativeCollection.Analytics.metrics(customerId) + this.meses(),
+      Endpoints.AccountingCoi.NativeCollection.Analytics.metrics(customerId) +
+        this.meses(),
     );
     if (res) this.metricas.set(res);
   }
@@ -83,11 +84,10 @@ export default class CobranzaDashboard {
   }
 
   navigateToPayments() {
-    this.router.navigate(['/cobranza-nativa/payments']);
+    this.router.navigate(["/cobranza-nativa/payments"]);
   }
 
   barWidth(value: number): string {
     return `${Math.round((value / this.maxFacturado()) * 100)}%`;
   }
 }
-

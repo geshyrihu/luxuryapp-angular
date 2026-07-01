@@ -55,7 +55,7 @@
       <td>{{ item.aprobadoPor ?? "-" }}</td>
       <td>
         <div class="flex gap-1">
-          <custom-button
+          <il-button
             iconClass="mdi:eye-outline"
             severity="info"
             variant="ghost-text"
@@ -63,7 +63,7 @@
             (clicked)="verDetalle(item)"
           />
           @if (puedeEnviar(item.estadoValue)) {
-          <custom-button
+          <il-button
             iconClass="mdi:send"
             severity="secondary"
             variant="ghost-text"
@@ -71,7 +71,7 @@
             (clicked)="cambiarEstado(item, 'enviar-revision')"
           />
           } @if (puedeAprobar(item.estadoValue)) {
-          <custom-button
+          <il-button
             iconClass="mdi:check"
             severity="success"
             variant="ghost-text"
@@ -79,7 +79,7 @@
             (clicked)="cambiarEstado(item, 'aprobar')"
           />
           } @if (puedePagar(item.estadoValue)) {
-          <custom-button
+          <il-button
             iconClass="mdi:dollar"
             severity="contrast"
             variant="ghost-text"
@@ -87,7 +87,7 @@
             (clicked)="cambiarEstado(item, 'marcar-pagada')"
           />
           } @if (puedeCerrar(item.estadoValue)) {
-          <custom-button
+          <il-button
             iconClass="mdi:lock"
             severity="secondary"
             variant="ghost-text"
@@ -149,7 +149,7 @@
         </div>
       </ion-label>
       <div slot="end">
-        <custom-button
+        <il-button
           iconClass="mdi:eye-outline"
           severity="info"
           variant="ghost-text"

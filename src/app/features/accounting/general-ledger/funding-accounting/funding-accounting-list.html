@@ -12,7 +12,7 @@
   <ng-template #caption>
     <primeng-custom-caption [dt]="dt" [showAdd]="false" />
 
-    <custom-button-item
+    <il-button-item
       (clicked)="onFaqsFondeo()"
       iconClass="mdi:help-circle"
       label="Ayuda"
@@ -84,10 +84,9 @@
         ></app-icon>
         <!-- <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               (clicked)="onDetails(item.id)"
-              label="?? Detalles"
-               [showLabelOnDesktop]="true"/>
+              label="?? Detalles"/>
             </ng-container>
           </app-action-menu> -->
       </td>

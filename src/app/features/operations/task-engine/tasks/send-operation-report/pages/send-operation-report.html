@@ -2,7 +2,7 @@
 
 <div class="flex flex-wrap align-items-center">
   <!-- Botón Seleccionar Todos -->
-  <custom-button
+  <il-button
     iconClass="mdi:checkbox-marked"
     label="Seleccionar Todos"
     customClass="mr-2"
@@ -11,7 +11,7 @@
   />
 
   <!-- Botón Desmarcar Todos -->
-  <custom-button
+  <il-button
     iconClass="mdi:close-circle"
     label="Desmarcar Todos"
     customClass="mr-2"
@@ -20,37 +20,34 @@
   />
 
   <!-- Botón Agregar PARA -->
-  <custom-button
+  <il-button
     [iconClass]="'mdi:plus'"
     label="Agregar PARA"
     customClass="mr-2"
     size="small"
-    [showLabelOnDesktop]="true"
     (clicked)="onMostrarInput(true, false, false, 'PARA')"
   />
   <!-- [customNgClass]="{ 'p-button-primary': mostrarPara }" -->
 
   <!-- Botón Agregar CC -->
-  <custom-button
+  <il-button
     [iconClass]="'mdi:plus'"
     label="Agregar CC"
     customClass="mr-2"
     size="small"
-    [showLabelOnDesktop]="true"
     (clicked)="onMostrarInput(false, true, false, 'CC')"
   />
   <!-- [customNgClass]="{ 'p-button-primary': mostrarCo }" -->
 
   <!-- Botón Agregar CCO -->
-  <custom-button
+  <il-button
     [iconClass]="'mdi:plus'"
     label="Agregar CCO"
     customClass="mr-2"
     size="small"
-    [showLabelOnDesktop]="true"
     (clicked)="onMostrarInput(false, false, true, 'CCO')"
   />
-  <custom-button-confirm
+  <il-button-confirm
     customClass="mr-2"
     size="small"
     label="Enviar Reporte"
@@ -75,7 +72,7 @@
       />
     </div>
     <div class="col-2 md:col-2">
-      <custom-button-add
+      <il-button-add
         [type]="ButtonTypeSubmit"
         label="Agregar Correo"
         [disabled]="form.invalid"

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -15,11 +15,11 @@ import { DialogModule } from "primeng/dialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import {
   BulkUpdateTipoGastoDTO,
   SatCfdiDTO,
@@ -43,9 +43,9 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     CustomInputDateSignal,
     TooltipModule,
     CardModule,
-    CustomButtonSave,
-    CustomButtonConfirm,
-    CustomButtonEdit,
+    WebButtonLabelSave,
+    WebButtonLabelConfirm,
+    WebButtonLabelEdit,
   ],
 })
 export class SatFundingDetailComponent implements OnInit {

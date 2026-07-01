@@ -1,12 +1,12 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -25,15 +25,15 @@ import { CatalogoActivoForm } from "./catalogo-activo-form";
     EmptyState,
     TableModule,
     PrimeNgCustomCaption,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
   templateUrl: "./catalogo-activo-lista.html",
 })
@@ -61,10 +61,12 @@ export class CatalogoActivoLista {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList(Endpoints.CatalogAssets.getAll).then((result: any) => {
-      // Actualizamos el valor del signal con los datos recibidos
-      this.dataSignal.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.CatalogAssets.getAll)
+      .then((result: any) => {
+        // Actualizamos el valor del signal con los datos recibidos
+        this.dataSignal.set(result);
+      });
   }
 
   // Funcion para eliminar un banco y refres
@@ -112,4 +114,3 @@ export interface CatalogAssetAddOrEdit {
   name: string;
   assetCategory: EAssetCategory;
 }
-

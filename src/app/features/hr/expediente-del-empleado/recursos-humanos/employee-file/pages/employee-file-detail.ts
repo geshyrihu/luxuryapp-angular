@@ -1,10 +1,10 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -24,7 +24,14 @@ import {
 @Component({
   selector: "app-employee-file-detail",
   templateUrl: "./employee-file-detail.html",
-  imports: [DatePipe, CurrencyPipe, TableModule, TabsModule, CustomButtonItem, AppIcon],
+  imports: [
+    DatePipe,
+    CurrencyPipe,
+    TableModule,
+    TabsModule,
+    WebButtonLabelItem,
+    AppIcon,
+  ],
 })
 export class EmployeeFileDetail implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -36,7 +43,7 @@ export class EmployeeFileDetail implements OnInit {
   // Cabecera
   header = signal<EmployeeFileHeaderDTO | null>(null);
 
-  // Tabs — carga lazy por demanda
+  // Tabs � carga lazy por demanda
   personalData = signal<EmployeeFilePersonalDataDTO | null>(null);
   emergencyContacts = signal<EmployeeFileEmergencyContactDTO[]>([]);
   clinicalData = signal<EmployeeFileClinicalDataDTO[]>([]);
@@ -197,4 +204,3 @@ export class EmployeeFileDetail implements OnInit {
     return map[status] ?? "bg-slate-100 text-slate-700";
   }
 }
-

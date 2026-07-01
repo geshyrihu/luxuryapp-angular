@@ -29,7 +29,7 @@
     />
 
     <div class="flex align-items-center gap-1" style="flex-shrink: 0">
-      <custom-button
+      <il-button
         iconClass="mdi:chevron-left"
         variant="text"
         severity="secondary"
@@ -39,7 +39,7 @@
       <span class="font-bold text-900 px-1" style="min-width: 3rem; text-align: center">
         {{ filterS.year() }}
       </span>
-      <custom-button
+      <il-button
         iconClass="mdi:chevron-right"
         variant="text"
         severity="secondary"
@@ -51,9 +51,8 @@
     @if (!loading() && rawData()) {
       <span class="border-left-1 surface-border" style="height: 2rem; flex-shrink: 0"></span>
 
-      <custom-button
+      <il-button
         [label]="soloParciales() ? 'Solo diferencias' : 'Mostrando todo'"
-        [showLabelOnDesktop]="true"
         size="small"
         [severity]="soloParciales() ? 'primary' : 'secondary'"
         [variant]="soloParciales() ? null : 'outlined'"
@@ -115,18 +114,16 @@
         <h2 class="text-lg font-bold text-900 m-0">Catalogo general comparativo</h2>
       </div>
       <div class="flex align-items-center gap-2 flex-wrap justify-content-end">
-        <custom-button-download
+        <il-button-download
           label="Excel"
           iconClass="mdi:file-excel"
           severity="success"
-          [showLabelOnDesktop]="true"
           (clicked)="exportExcel()"
         />
-        <custom-button-download
+        <il-button-download
           label="PDF"
           iconClass="mdi:file-pdf-box"
           severity="danger"
-          [showLabelOnDesktop]="true"
           (clicked)="exportPdf()"
         />
         <div class="text-xs text-500">

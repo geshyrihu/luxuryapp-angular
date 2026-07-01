@@ -1,15 +1,15 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/web/buttons";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -31,13 +31,13 @@ import { PropertyMemberResponseDTO } from "../../models/property-member.dto";
     EmptyState,
     TableModule,
     PrimeNgCustomCaption,
-    CustomButton,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
     IonBadge,
@@ -121,4 +121,3 @@ export default class MemberList {
     );
   }
 }
-

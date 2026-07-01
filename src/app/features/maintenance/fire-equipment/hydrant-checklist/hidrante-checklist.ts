@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -8,12 +8,12 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -43,7 +43,7 @@ interface IHidranteChecklistForm {
   templateUrl: "./hidrante-checklist.html",
   imports: [
     ReactiveFormsModule,
-    CustomButtonSave,
+    WebButtonLabelSave,
     CustomInputCheckSignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,

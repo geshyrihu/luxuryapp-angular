@@ -1,20 +1,20 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import {
   globalFilterFields,
@@ -37,9 +37,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE DÉBITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE Dï¿½BITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "NÓMINA",
+  [ETipoGasto.Nomina]: "Nï¿½MINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -58,87 +58,104 @@ const tipoGastoIcons: { [key: number]: string } = {
 @Component({
   selector: "app-orden-compra-list",
   templateUrl: "./orden-compra-list.html",
-  styles: [`
-    :host ::ng-deep .orden-compra-table .p-datatable-table {
-      table-layout: fixed;
-      width: 100%;
-    }
+  styles: [
+    `
+      :host ::ng-deep .orden-compra-table .p-datatable-table {
+        table-layout: fixed;
+        width: 100%;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-identificadores {
-      width: 9rem;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-identificadores {
+        width: 9rem;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-seguimiento {
-      width: 11rem;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-seguimiento {
+        width: 11rem;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-descripcion {
-      width: 28%;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-descripcion {
+        width: 28%;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-partida {
-      width: 18%;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-partida {
+        width: 18%;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-proveedor {
-      width: 14%;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-proveedor {
+        width: 14%;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-total {
-      width: 7rem;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-total {
+        width: 7rem;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-observaciones,
-    :host ::ng-deep .orden-compra-table .oc-col-autoriza {
-      width: 10%;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-observaciones,
+      :host ::ng-deep .orden-compra-table .oc-col-autoriza {
+        width: 10%;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-col-actions {
-      width: 4rem;
-    }
+      :host ::ng-deep .orden-compra-table .oc-col-actions {
+        width: 4rem;
+      }
 
-    :host ::ng-deep .orden-compra-table .p-datatable-tbody > tr > td.oc-cell-wrap {
-      white-space: normal;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
+      :host
+        ::ng-deep
+        .orden-compra-table
+        .p-datatable-tbody
+        > tr
+        > td.oc-cell-wrap {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
 
-    :host ::ng-deep .orden-compra-table .p-datatable-tbody > tr > td.oc-cell-total,
-    :host ::ng-deep .orden-compra-table .p-datatable-thead > tr > th:nth-child(6) {
-      text-align: right;
-    }
+      :host
+        ::ng-deep
+        .orden-compra-table
+        .p-datatable-tbody
+        > tr
+        > td.oc-cell-total,
+      :host
+        ::ng-deep
+        .orden-compra-table
+        .p-datatable-thead
+        > tr
+        > th:nth-child(6) {
+        text-align: right;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-cell-actions {
-      white-space: normal;
-    }
+      :host ::ng-deep .orden-compra-table .oc-cell-actions {
+        white-space: normal;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-actions-container {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.25rem;
-    }
+      :host ::ng-deep .orden-compra-table .oc-actions-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+      }
 
-    :host ::ng-deep .orden-compra-table .oc-cell-wrap ul {
-      margin: 0;
-      padding-left: 1rem;
-    }
-  `],
+      :host ::ng-deep .orden-compra-table .oc-cell-wrap ul {
+        margin: 0;
+        padding-left: 1rem;
+      }
+    `,
+  ],
   imports: [
     EmptyState,
     CommonModule,
     RouterModule,
     TableModule,
     TagModule,
-    CustomButton,
+    WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -158,7 +175,7 @@ export class OrdenCompraList {
   tipoGasto = signal<number>(ETipoGasto.Fijo);
 
   customTitle = computed(() => {
-    return tipoGastoTitles[this.tipoGasto()] ?? "ÓRDENES DE COMPRA";
+    return tipoGastoTitles[this.tipoGasto()] ?? "ï¿½RDENES DE COMPRA";
   });
 
   tiposDeGasto = Object.keys(ETipoGasto)
@@ -251,7 +268,7 @@ export class OrdenCompraList {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gestión de Vínculos",
+        "Gestiï¿½n de Vï¿½nculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {
@@ -276,5 +293,3 @@ export class OrdenCompraList {
     this.pdfGenerationService.generateSolicitudPagoPdf(ordenCompraId);
   }
 }
-
-

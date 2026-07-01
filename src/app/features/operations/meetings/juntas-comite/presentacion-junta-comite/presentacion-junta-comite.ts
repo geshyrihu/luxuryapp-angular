@@ -1,22 +1,20 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { FieldsetModule } from "primeng/fieldset";
-import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
 import {
-  CustomButtonConfirm,
-  CustomButtonViewPdf,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+  WebButtonLabelConfirm,
+  WebButtonLabelViewPdf,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -27,7 +25,6 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
 import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
 @Component({
@@ -35,23 +32,22 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
   templateUrl: "./presentacion-junta-comite.html",
   imports: [
     CommonModule,
-    CustomButton,
+    WebButtonLabel,
     NgbTooltipModule,
     TagModule,
     FieldsetModule,
     DataViewMobile,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonConfirm,
-    CustomButtonViewPdf,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelConfirm,
+    WebButtonLabelViewPdf,
     CardModule,
-    CustomButtonConfirm,
-    CustomButtonViewPdf,
+    WebButtonLabelConfirm,
+    WebButtonLabelViewPdf,
     AppIcon,
   ],
 })
 export class PresentacionJuntaComite {
-
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
@@ -224,4 +220,3 @@ export interface PresentacionJuntaComiteDTO {
   enviadoComite: boolean;
   idAnterior: number;
 }
-

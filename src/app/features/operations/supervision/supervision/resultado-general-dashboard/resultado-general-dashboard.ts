@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -6,8 +6,8 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
 import {
   globalFilterFields,
@@ -26,7 +26,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     CommonModule,
     FormsModule,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     MultiSelectModule,
     CustomInputTextSignal,
     TagModule,

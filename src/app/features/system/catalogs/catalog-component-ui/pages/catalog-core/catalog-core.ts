@@ -7,7 +7,10 @@ import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/web/buttons";
+import {
+  CustomButtonDelete,
+  CustomButtonEdit,
+} from "src/app/core/components/buttons/legacy/buttons";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ConfirmDialog } from "src/app/core/components/shared/confirm-dialog/confirm-dialog";
@@ -15,10 +18,18 @@ import { DateRange } from "src/app/core/components/shared/date-range/date-range"
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { FileUpload } from "src/app/core/components/shared/file-upload/file-upload";
 import { Loader } from "src/app/core/components/shared/loader/loader";
-import { NotificationCenter } from "src/app/core/components/shared/notification-center/notification-center";
-import { NotificationItem } from "src/app/core/components/shared/notification-center/notification-center";
-import { EStatus, StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
-import { Wizard, WizardStep } from "src/app/core/components/shared/wizard/wizard";
+import {
+  NotificationCenter,
+  NotificationItem,
+} from "src/app/core/components/shared/notification-center/notification-center";
+import {
+  EStatus,
+  StatusBadge,
+} from "src/app/core/components/shared/status-badge/status-badge";
+import {
+  Wizard,
+  WizardStep,
+} from "src/app/core/components/shared/wizard/wizard";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { CommonCoreCoverage } from "../../shared/common-core-coverage";
 
@@ -62,7 +73,9 @@ import { CommonCoreCoverage } from "../../shared/common-core-coverage";
         <div class="col-12 lg:col-6">
           <p-card header="Navegacion y UX base">
             <div class="flex flex-column gap-4">
-              <div class="surface-ground p-3 border-round flex flex-column gap-3">
+              <div
+                class="surface-ground p-3 border-round flex flex-column gap-3"
+              >
                 <h4 class="mt-0 mb-2 text-color-secondary">Status Badge</h4>
                 <div class="flex gap-2 flex-wrap">
                   <app-status-badge [status]="EStatus.Concluido" />
@@ -73,8 +86,12 @@ import { CommonCoreCoverage } from "../../shared/common-core-coverage";
                 </div>
               </div>
 
-              <div class="surface-ground p-3 border-round flex flex-column gap-3">
-                <h4 class="mt-0 mb-2 text-color-secondary">App Icon (SVG/MDI)</h4>
+              <div
+                class="surface-ground p-3 border-round flex flex-column gap-3"
+              >
+                <h4 class="mt-0 mb-2 text-color-secondary">
+                  App Icon (SVG/MDI)
+                </h4>
                 <div class="flex gap-3 text-2xl text-primary">
                   <app-icon icon="mdi:account" />
                   <app-icon icon="mdi:cog" />
@@ -82,7 +99,9 @@ import { CommonCoreCoverage } from "../../shared/common-core-coverage";
                 </div>
               </div>
 
-              <div class="surface-ground p-3 border-round relative min-h-[150px]">
+              <div
+                class="surface-ground p-3 border-round relative min-h-[150px]"
+              >
                 <h4 class="mt-0 mb-2 text-color-secondary">Loader (Spinner)</h4>
                 <app-loader></app-loader>
               </div>
@@ -128,15 +147,23 @@ import { CommonCoreCoverage } from "../../shared/common-core-coverage";
 
         <div class="col-12 lg:col-4">
           <p-card header="Notification Center">
-            <div class="surface-ground p-3 border-round flex align-items-center justify-content-center" style="min-height: 120px">
-              <app-notification-center [notifications]="sampleNotifications" [unreadCount]="2" />
+            <div
+              class="surface-ground p-3 border-round flex align-items-center justify-content-center"
+              style="min-height: 120px"
+            >
+              <app-notification-center
+                [notifications]="sampleNotifications"
+                [unreadCount]="2"
+              />
             </div>
           </p-card>
         </div>
 
         <div class="col-12 lg:col-6">
           <p-card header="Confirm Dialog">
-            <div class="surface-ground p-3 border-round flex flex-column align-items-center gap-3">
+            <div
+              class="surface-ground p-3 border-round flex flex-column align-items-center gap-3"
+            >
               <p class="text-sm text-color-secondary m-0">
                 Dialogo de confirmacion con variante danger.
               </p>
@@ -250,4 +277,3 @@ export class CatalogCore {
 
   wizardActiveStep = signal(1);
 }
-

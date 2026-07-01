@@ -1,16 +1,16 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -26,8 +26,8 @@ import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
   imports: [
     CommonModule,
     TableModule,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     PrimeNgCustomCaption,
     CardModule,
   ],
@@ -62,9 +62,13 @@ export class BitacoraMantenimiento {
 
   fechasSignal = toSignal(this.rangoCalendarioService.fechas$, {
     initialValue: {
-      fechaInicio: this.dateS.getDateFormat(this.rangoCalendarioService.fechaInicioDateFull),
-      fechaFinal: this.dateS.getDateFormat(this.rangoCalendarioService.fechaFinalDateFull)
-    }
+      fechaInicio: this.dateS.getDateFormat(
+        this.rangoCalendarioService.fechaInicioDateFull,
+      ),
+      fechaFinal: this.dateS.getDateFormat(
+        this.rangoCalendarioService.fechaFinalDateFull,
+      ),
+    },
   });
 
   constructor() {
@@ -78,8 +82,8 @@ export class BitacoraMantenimiento {
     });
 
     effect(() => {
-        const customerId: string = this.customerIdS.customerId();
-        if (customerId) this.onLoadData();
+      const customerId: string = this.customerIdS.customerId();
+      if (customerId) this.onLoadData();
     });
   }
   onLoadData() {
@@ -96,9 +100,11 @@ export class BitacoraMantenimiento {
   }
 
   onDelete(item: any) {
-    this.apiResponseS.onDelete(Endpoints.BitacoraMantenimiento.delete(item.id)).then(() => {
-      this.dataSignal.update((data) => data.filter((d) => d.id !== item.id));
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.BitacoraMantenimiento.delete(item.id))
+      .then(() => {
+        this.dataSignal.update((data) => data.filter((d) => d.id !== item.id));
+      });
   }
 
   onModalFormBiacora(data: any) {
@@ -125,14 +131,3 @@ export class BitacoraMantenimiento {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-

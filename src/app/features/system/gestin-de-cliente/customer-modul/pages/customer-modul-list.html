@@ -18,7 +18,7 @@
         <div
           class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3"
         >
-          <!-- Parte Izquierda: Título y búsqueda -->
+          <!-- Parte Izquierda: Tï¿½tulo y bï¿½squeda -->
           <div class="flex-grow-1">
             <primeng-custom-caption
               [showAdd]="false"
@@ -31,7 +31,7 @@
           <!-- Parte Derecha: Filtros adicionales -->
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
             <div style="width: 150px">
-              <custom-button-active-desactive
+              <il-button-active-desactive
                 [state]="state"
                 (stateChange)="onSelectActive($event)"
               />
@@ -42,7 +42,7 @@
       <ng-template #header>
         <tr>
           <th class="table-col-40">Cliente</th>
-          <th class="table-col-20">Número Cliente</th>
+          <th class="table-col-20">Nï¿½mero Cliente</th>
           <th class="table-col-20">Registrado</th>
           <th class="table-col-15">Estado</th>
           <th class="table-col-5"></th>
@@ -99,7 +99,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -110,7 +110,7 @@
       <h5 class="m-0 mb-3 text-secondary text-xs uppercase tracking-wider">
         Filtrar por Estado
       </h5>
-      <custom-button-active-desactive
+      <iw-button-active-desactive
         fluid
         [state]="state"
         (stateChange)="onSelectActive($event)"

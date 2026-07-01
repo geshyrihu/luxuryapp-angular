@@ -1,15 +1,15 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonItem } from "src/app/core/components/web/buttons";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -23,19 +23,19 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
 import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
 @Component({
   selector: "app-legal-pendientes-minuta",
   templateUrl: "./legal-pendientes-minuta.html",
   imports: [
     EmptyState,
-    CustomButtonEdit,
-    CustomButtonAdd,
+    WebButtonLabelEdit,
+    WebButtonLabelAdd,
     CommonModule,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     TagModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -43,7 +43,7 @@ import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-c
     DataViewMobile,
     SanitizeHtmlPipe,
 
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class LegalPendientesMinuta implements OnInit {
@@ -136,4 +136,3 @@ export class LegalPendientesMinuta implements OnInit {
     this.onLoadData();
   }
 }
-

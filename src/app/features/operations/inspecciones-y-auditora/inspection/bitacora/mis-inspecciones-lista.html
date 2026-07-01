@@ -133,18 +133,16 @@
         <app-action-menu slot="end">
           <ng-container actions>
             @if (item.isRealized) {
-            <custom-button-item
+            <il-button-item
               label="Ver resultado"
               iconName="book-outline"
               [routerLink]="['/inspections/result', item.id]"
-              [showLabelOnDesktop]="true"
             />
             }
-            <custom-button-item
+            <il-button-item
               label="Inspeccionar"
               iconName="chevron-forward-outline"
               [routerLink]="['/logbook/my-inspection', item.id]"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

@@ -1,7 +1,7 @@
-ï»¿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -23,10 +23,10 @@ import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
     IonItem,
     IonLabel,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
   ],
   templateUrl: "./asambleas-list.html",
 })
@@ -70,20 +70,10 @@ export class Asambleas {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificaciÃ³n de Ã³xito
+        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

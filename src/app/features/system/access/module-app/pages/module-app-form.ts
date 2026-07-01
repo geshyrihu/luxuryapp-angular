@@ -10,10 +10,10 @@ import {
 import { RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -40,7 +40,7 @@ interface IModuleAppForm {
     CustomInputTextSignal,
     CustomInputCheckSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     RouterModule,
   ],
   templateUrl: "./module-app-form.html",

@@ -2,18 +2,16 @@
   <div class="card-container">
     <div class="flex flex-wrap justify-content-between mb-4">
       <div class="flex gap-2">
-        <custom-button
+        <il-button
           iconClass="mdi:content-save"
           label="Guardar"
-          [showLabelOnDesktop]="true"
           (clicked)="onSaveChanges()"
           variant="outlined"
           severity="success"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:file-pdf-box"
           label="Crear Orden"
-          [showLabelOnDesktop]="true"
           (clicked)="onModalCreateOrdenCompra()"
           severity="info"
           variant="text"
@@ -29,27 +27,24 @@
           (change)="onFileSelect($event)"
         />
 
-        <custom-button
+        <il-button
           iconClass="mdi:upload"
           label="Adjuntar/Actualizar"
-          [showLabelOnDesktop]="true"
           (clicked)="fileInput.click()"
           variant="outlined"
           severity="warning"
         />
 
         @if (cotizacionProveedor?.filePath) {
-        <custom-button-view-pdf
+        <il-button-view-pdf
           [url]="cotizacionProveedor.filePath"
           pdf="Cotizacion"
           [fileName]="'Cotizacion'"
           label="Ver PDF"
-          [showLabelOnDesktop]="true"
         />
-        <custom-button
+        <il-button
           iconClass="mdi:delete"
           label="Eliminar Archivo"
-          [showLabelOnDesktop]="true"
           (clicked)="onRemoveFile()"
           severity="danger"
           variant="outlined"
@@ -58,10 +53,9 @@
       </div>
 
       <div class="flex">
-        <custom-button
+        <il-button
           iconClass="mdi:delete"
           label="Eliminar Proveedor"
-          [showLabelOnDesktop]="true"
           (clicked)="onDeleteProvider()"
           severity="danger"
           variant="text"

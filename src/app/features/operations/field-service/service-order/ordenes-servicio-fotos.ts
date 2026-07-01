@@ -1,8 +1,8 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -11,7 +11,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [CustomButtonDelete, ImageModule],
+  imports: [WebButtonLabelDelete, ImageModule],
   providers: [ConfirmationService, MessageService],
 })
 export class OrdenesServicioFotos implements OnInit {
@@ -35,7 +35,10 @@ export class OrdenesServicioFotos implements OnInit {
   async onLoadData() {
     this.loading.set(true);
     try {
-      const urlApi = Endpoints.ServiceOrders.photos(this.id(), this.customerIdS.customerId());
+      const urlApi = Endpoints.ServiceOrders.photos(
+        this.id(),
+        this.customerIdS.customerId(),
+      );
       const result = await this.apiResponseS.onGetList<any[]>(urlApi);
       this.data.set(result);
     } finally {
@@ -52,4 +55,3 @@ export class OrdenesServicioFotos implements OnInit {
     await this.onLoadData();
   }
 }
-

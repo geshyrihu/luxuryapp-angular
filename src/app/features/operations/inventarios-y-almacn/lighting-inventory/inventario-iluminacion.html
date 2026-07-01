@@ -49,10 +49,10 @@
       <td>{{ itm.cantidad }}</td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(itm.id)" />
+          <il-button-delete (confirmed)="onDelete(itm.id)" />
         </div>
       </td>
     </tr>
@@ -123,15 +123,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(itm.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

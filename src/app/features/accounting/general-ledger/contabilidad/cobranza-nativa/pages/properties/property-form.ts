@@ -1,4 +1,4 @@
-﻿// import { Component, inject, OnInit, signal } from "@angular/core";
+// import { Component, inject, OnInit, signal } from "@angular/core";
 // import {
 //   FormBuilder,
 //   FormControl,
@@ -8,7 +8,7 @@
 // } from "@angular/forms";
 // import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 // import { Endpoints } from "src/app/core/constants/endpoints";
-// import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+// import { WebButtonLabelSave } from "src/app/core/components/web/buttons/custom-button-save";
 // import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 // import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 // import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -33,7 +33,7 @@
 //     CustomInputTextSignal,
 //     CustomInputMaskSignal,
 //     CustomInputNumberSignal,
-//     CustomButtonSave,
+//     WebButtonLabelSave,
 //   ],
 //   templateUrl: "./property-form.html",
 // })

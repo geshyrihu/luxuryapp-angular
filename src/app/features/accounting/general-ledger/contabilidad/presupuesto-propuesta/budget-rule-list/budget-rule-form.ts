@@ -1,14 +1,14 @@
-﻿/**
+/**
  * ============================================================================
- * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el código.
+ * Por favor, NO rompan el c�digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -20,9 +20,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -37,7 +37,7 @@ import {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./budget-rule-form.html",
 })
@@ -47,7 +47,7 @@ export class BudgetRuleForm implements OnInit {
   config = inject(DynamicDialogConfig);
   fb = inject(FormBuilder);
 
-  // Propiedades requeridas por CustomButtonSave
+  // Propiedades requeridas por WebButtonLabelSave
   id = "";
   submitting = signal(false);
 
@@ -61,8 +61,8 @@ export class BudgetRuleForm implements OnInit {
 
   // Opciones para el selector de tipo
   ruleTypes = [
-    { label: "Cuenta Extra (Inclusión)", value: 0 },
-    { label: "Exclusión (Ocultar)", value: 1 },
+    { label: "Cuenta Extra (Inclusi�n)", value: 0 },
+    { label: "Exclusi�n (Ocultar)", value: 1 },
   ];
 
   initialData: any;
@@ -72,13 +72,13 @@ export class BudgetRuleForm implements OnInit {
 
     this.id = this.initialData.id || "";
 
-    // Configurar customerId desde el contexto si es creación
+    // Configurar customerId desde el contexto si es creaci�n
     if (!this.id && this.initialData.customerId) {
       this.form.patchValue({ customerId: this.initialData.customerId });
     }
 
     if (this.id) {
-      // Si tuvióramos endpoint GET by ID:
+      // Si tuvi�ramos endpoint GET by ID:
       // this.onLoadData();
       // Como no, asumimos que viene en data o lo pasamos completo
       this.form.patchValue(this.initialData);

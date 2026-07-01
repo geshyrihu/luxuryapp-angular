@@ -1,16 +1,16 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -23,9 +23,9 @@ import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-fo
   imports: [
     CommonModule,
     FormsModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputSelectSignal,
-    CustomButtonItem,
+    WebButtonLabelItem,
     ActionMenu,
     RouterModule,
     TooltipModule,
@@ -33,9 +33,9 @@ import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-fo
     IonItem,
     IonLabel,
     IonText,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
   ],
   templateUrl: "./lista-inspecciones.html",
 })
@@ -93,7 +93,7 @@ export class ListaInspecciones {
         this.inspeccionesOriginalesSignal.set(result);
 
         const data: any[] = result;
-        // Extraer Ã³reas responsables del arreglo y eliminar duplicados
+        // Extraer óreas responsables del arreglo y eliminar duplicados
         const areas = [...new Set(data.map((item) => item.areaResponsable))];
         this.areasResponsablesSignal.set(
           areas.map((area: string) => ({
@@ -112,7 +112,7 @@ export class ListaInspecciones {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

@@ -1,6 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -10,15 +7,18 @@ import { cartOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { Subscription } from "rxjs";
 import { TooltipModule } from "primeng/tooltip";
+import { Subscription } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -43,19 +43,20 @@ import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-mana
     TableModule,
     TagModule,
     TooltipModule,
-    CustomButton,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
     IonIcon,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class SolicitudCompraList {
   apiResponseS = inject(ApiResponseService);
@@ -98,7 +99,10 @@ export class SolicitudCompraList {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.PurchaseRequests.listSolicitudCompraByCustomerAndStatus(this.customerIdS.customerId(), this.solicitudCompraService.onGetStatusFiltro()),
+        Endpoints.PurchaseRequests.listSolicitudCompraByCustomerAndStatus(
+          this.customerIdS.customerId(),
+          this.solicitudCompraService.onGetStatusFiltro(),
+        ),
       )
       .then((result: any) => {
         const normalized = Array.from(result || []);
@@ -198,7 +202,9 @@ export class SolicitudCompraList {
 
   areAllVisibleSelected(): boolean {
     return this.isPendingView() && this.data().length > 0
-      ? this.data().every((item) => this.selectedSolicitudIds().includes(item.id))
+      ? this.data().every((item) =>
+          this.selectedSolicitudIds().includes(item.id),
+        )
       : false;
   }
 
@@ -228,7 +234,9 @@ export class SolicitudCompraList {
       return;
     }
 
-    this.data.update((prev) => prev.map((item, index) => ({ ...item, sortOrder: index })));
+    this.data.update((prev) =>
+      prev.map((item, index) => ({ ...item, sortOrder: index })),
+    );
     this.selectedSolicitudIds.set(
       this.data()
         .filter((item) => item.selectedForPresentation)
@@ -294,5 +302,3 @@ export class SolicitudCompraList {
     });
   }
 }
-
-

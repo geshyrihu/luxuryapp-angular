@@ -1,22 +1,26 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DatePipe } from "@angular/common";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { DialogSize } from "src/app/core/enums/dialog-size";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { tablePrimeNgRows, rowsPerPageOptions, globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ContractTemplateListDTO } from "../models/contract-template.dto";
-import { ContractTemplateFormComponent } from "./contract-template-form";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { DialogSize } from "src/app/core/enums/dialog-size";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ContractTemplateListDTO } from "../models/contract-template.dto";
+import { ContractTemplateFormComponent } from "./contract-template-form";
 
 @Component({
   selector: "app-contract-template-list",
@@ -27,12 +31,12 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelItem,
     DataViewMobile,
     ActionMenu,
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class ContractTemplateList implements OnInit {
@@ -52,25 +56,46 @@ export class ContractTemplateList implements OnInit {
   }
 
   onLoadData(): void {
-    this.apiS.onGetList<ContractTemplateListDTO[]>(Endpoints.HR.ContractTemplate.getAll).then((resp) => {
-      if (resp) this.items.set(resp);
-    });
+    this.apiS
+      .onGetList<
+        ContractTemplateListDTO[]
+      >(Endpoints.HR.ContractTemplate.getAll)
+      .then((resp) => {
+        if (resp) this.items.set(resp);
+      });
   }
 
   onModalForm(data: { id: string; title: string }): void {
-    this.dialogS.openDialog(ContractTemplateFormComponent, { item: null }, data.title, DialogSize.lg).then(() => this.onLoadData());
+    this.dialogS
+      .openDialog(
+        ContractTemplateFormComponent,
+        { item: null },
+        data.title,
+        DialogSize.lg,
+      )
+      .then(() => this.onLoadData());
   }
 
   onEdit(item: ContractTemplateListDTO): void {
-    this.dialogS.openDialog(ContractTemplateFormComponent, { item }, "Editar Machote", DialogSize.lg).then(() => this.onLoadData());
+    this.dialogS
+      .openDialog(
+        ContractTemplateFormComponent,
+        { item },
+        "Editar Machote",
+        DialogSize.lg,
+      )
+      .then(() => this.onLoadData());
   }
 
   onToggleActive(item: ContractTemplateListDTO): void {
-    this.apiS.onPatch(Endpoints.HR.ContractTemplate.toggleActive(item.id), {}).then(() => this.onLoadData());
+    this.apiS
+      .onPatch(Endpoints.HR.ContractTemplate.toggleActive(item.id), {})
+      .then(() => this.onLoadData());
   }
 
   onDelete(id: string): void {
-    this.apiS.onDelete(Endpoints.HR.ContractTemplate.delete(id)).then(() => this.onLoadData());
+    this.apiS
+      .onDelete(Endpoints.HR.ContractTemplate.delete(id))
+      .then(() => this.onLoadData());
   }
 }
-

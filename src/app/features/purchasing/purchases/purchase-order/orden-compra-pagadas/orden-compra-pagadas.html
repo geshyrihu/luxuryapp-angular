@@ -85,7 +85,7 @@
       </td>
       <td>{{ item.total | number: '1.2-2' }}</td>
       <td class="text-center">
-        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <il-button-edit (clicked)="onAddOrEdit(item.id)" />
       </td>
     </tr>
   </ng-template>
@@ -141,10 +141,9 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onAddOrEdit(item.id)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

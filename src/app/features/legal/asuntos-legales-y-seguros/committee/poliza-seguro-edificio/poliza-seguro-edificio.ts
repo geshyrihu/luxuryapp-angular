@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import {
   IonItem,
@@ -16,7 +16,7 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -27,12 +27,12 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   imports: [
     CommonModule,
     CardModule,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
     IonList,
     IonListHeader,
     IonItem,
     IonLabel,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
     AppIcon,
   ],
   templateUrl: "./poliza-seguro-edificio.html",
@@ -76,5 +76,3 @@ export class PolizaSeguroEdificio {
     );
   }
 }
-
-

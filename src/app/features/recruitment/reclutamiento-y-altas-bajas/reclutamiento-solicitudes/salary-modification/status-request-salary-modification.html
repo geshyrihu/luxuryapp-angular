@@ -47,12 +47,12 @@
         <td>Opciones</td>
         <td>
           <div class="flex justify-content-end">
-            <custom-button
+            <il-button
               icon="edit"
               ngbTooltip="Editar"
               (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
             />
-            <custom-button-confirm
+            <il-button-confirm
               icon="trash"
               ngbTooltip="Eliminar"
               (confirmed)="onDelete(dataSignal().id)"

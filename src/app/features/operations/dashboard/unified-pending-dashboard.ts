@@ -15,9 +15,9 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -38,13 +38,13 @@ import { PendingItemDTO } from "./models/pending-item.dto";
 
 // Recruitment Dialog Components
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { TicketLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { ServiceOrderForm } from "src/app/features/operations/field-service/service-order/service-order-form";
+import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { SolicitudAltaStatusForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/components/solicitud-alta-status-form";
 import { SolicitudBajaUpdateStatus } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-update-status";
 import { ModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
-import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { TicketLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
-import { ServiceOrderForm } from "src/app/features/operations/field-service/service-order/service-order-form";
 
 @Component({
   selector: "app-unified-pending-dashboard",
@@ -56,7 +56,7 @@ import { ServiceOrderForm } from "src/app/features/operations/field-service/serv
     IconFieldModule,
     CardModule,
     AvatarModule,
-    CustomButton,
+    WebButtonLabel,
     TooltipModule,
     PrimeNgCustomTableFooter,
     PrimeNgCustomCaption,
@@ -545,4 +545,3 @@ export class UnifiedPendingDashboard {
     });
   }
 }
-

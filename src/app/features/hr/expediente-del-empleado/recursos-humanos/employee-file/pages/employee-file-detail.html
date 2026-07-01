@@ -1,4 +1,4 @@
-﻿<!-- ── Cabecera ────────────────────────────────────────────────────────────── -->
+<!-- -- Cabecera -------------------------------------------------------------- -->
 @if (header()) {
 <div
   class="card mb-4 p-4 border-round-xl shadow-2 border-top-3 border-primary overflow-hidden"
@@ -50,7 +50,7 @@
           ></app-icon>
           <span class="text-500">No.</span>
           <strong class="text-800"
-            >{{ header()!.numberEmployee ?? '—' }}</strong
+            >{{ header()!.numberEmployee ?? '�' }}</strong
           >
         </div>
         <div
@@ -66,7 +66,7 @@
           class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
         >
           <app-icon [icon]="'mdi:phone'" class="text-primary"></app-icon>
-          <strong class="text-800">{{ header()!.phoneNumber || '—' }}</strong>
+          <strong class="text-800">{{ header()!.phoneNumber || '�' }}</strong>
         </div>
         @if (header()!.dateAdmission) {
         <div
@@ -85,7 +85,7 @@
 </div>
 }
 
-<!-- ── Pestañas ─────────────────────────────────────────────────────────────── -->
+<!-- -- Pesta�as --------------------------------------------------------------- -->
 <p-tabs [value]="0" (valueChange)="onTabChange($event)">
   <p-tablist>
     <p-tab [value]="0"
@@ -97,7 +97,7 @@
     >
     <p-tab [value]="2"
       ><app-icon [icon]="'mdi:heart-outline'" class="mr-2"></app-icon
-      >Clínicos</p-tab
+      >Cl�nicos</p-tab
     >
     <p-tab [value]="3"
       ><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Bancarios</p-tab
@@ -130,7 +130,7 @@
     <p-tabpanel [value]="0">
       @if (personalData(); as pd) {
       <div class="flex flex-column gap-4 py-3">
-        <!-- Identificación -->
+        <!-- Identificaci�n -->
         <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
           <ng-template pTemplate="header">
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
@@ -142,7 +142,7 @@
                   class="text-primary"
                 ></app-icon>
               </div>
-              <h4 class="m-0 font-bold text-900">Identificación</h4>
+              <h4 class="m-0 font-bold text-900">Identificaci�n</h4>
             </div>
           </ng-template>
           <div class="grid row-gap-3">
@@ -159,7 +159,7 @@
                 >CURP</label
               >
               <p class="font-semibold text-900 m-0 font-mono text-sm">
-                {{ pd.curp || '—' }}
+                {{ pd.curp || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
@@ -167,28 +167,28 @@
                 >RFC</label
               >
               <p class="font-semibold text-900 m-0 font-mono text-sm">
-                {{ pd.rfc || '—' }}
+                {{ pd.rfc || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
                 >NSS</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.nss || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.nss || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
                 >Fecha de Nacimiento</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '—' }}
+                {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Género</label
+                >G�nero</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.sex || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.sex || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
@@ -201,7 +201,7 @@
                 [rounded]="true"
               ></p-tag>
               } @else {
-              <p class="m-0 text-500">—</p>
+              <p class="m-0 text-500">�</p>
               }
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
@@ -209,7 +209,7 @@
                 >Nacionalidad</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ pd.nationality || '—' }}
+                {{ pd.nationality || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
@@ -217,7 +217,7 @@
                 >Estado Civil</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ pd.maritalStatus || '—' }}
+                {{ pd.maritalStatus || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
@@ -225,7 +225,7 @@
                 >Nivel Educativo</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ pd.educationLevel || '—' }}
+                {{ pd.educationLevel || '�' }}
               </p>
             </div>
           </div>
@@ -257,7 +257,7 @@
                 </div>
                 <div class="col-12 sm:col-6">
                   <label class="text-xs font-bold text-500 uppercase block mb-1"
-                    >Teléfono Móvil</label
+                    >Tel�fono M�vil</label
                   >
                   <p class="font-semibold text-900 m-0">
                     {{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}
@@ -265,10 +265,10 @@
                 </div>
                 <div class="col-12 sm:col-6">
                   <label class="text-xs font-bold text-500 uppercase block mb-1"
-                    >Teléfono Local</label
+                    >Tel�fono Local</label
                   >
                   <p class="font-semibold text-900 m-0">
-                    {{ pd.localPhone || '—' }}
+                    {{ pd.localPhone || '�' }}
                   </p>
                 </div>
                 <div class="col-12 sm:col-6">
@@ -276,7 +276,7 @@
                     >Fecha de Ingreso</label
                   >
                   <p class="font-semibold text-900 m-0">
-                    {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '—' }}
+                    {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '�' }}
                   </p>
                 </div>
               </div>
@@ -303,7 +303,7 @@
           </div>
         </div>
 
-        <!-- Dirección -->
+        <!-- Direcci�n -->
         <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
           <ng-template pTemplate="header">
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
@@ -315,7 +315,7 @@
                   class="text-orange-500"
                 ></app-icon>
               </div>
-              <h4 class="m-0 font-bold text-900">Dirección de Residencia</h4>
+              <h4 class="m-0 font-bold text-900">Direcci�n de Residencia</h4>
             </div>
           </ng-template>
           <div class="grid row-gap-3">
@@ -323,51 +323,51 @@
               <label class="text-xs font-bold text-500 uppercase block mb-1"
                 >Calle</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.street || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.street || '�' }}</p>
             </div>
             <div class="col-12 sm:col-2 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Nº Ext</label
+                >N� Ext</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.number || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.number || '�' }}</p>
             </div>
             <div class="col-12 sm:col-2 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Nº Int</label
+                >N� Int</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ pd.unitNumber || '—' }}
+                {{ pd.unitNumber || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
                 >Colonia</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.district || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.district || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Alcaldía / Municipio</label
+                >Alcald�a / Municipio</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.townHall || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.townHall || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
                 >Ciudad / Estado</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.city || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.city || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >País</label
+                >Pa�s</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.country || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.country || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-3">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Código Postal</label
+                >C�digo Postal</label
               >
-              <p class="font-semibold text-900 m-0">{{ pd.zipCode || '—' }}</p>
+              <p class="font-semibold text-900 m-0">{{ pd.zipCode || '�' }}</p>
             </div>
           </div>
         </p-card>
@@ -398,7 +398,7 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Nombre</th>
-            <th>Teléfono</th>
+            <th>Tel�fono</th>
             <th>Parentesco</th>
             <th>Tipo</th>
           </tr>
@@ -435,7 +435,7 @@
       }
     </p-tabpanel>
 
-    <!-- Tab 3: Datos clínicos -->
+    <!-- Tab 3: Datos cl�nicos -->
     <p-tabpanel [value]="2">
       @if (clinicalData().length > 0) {
       <p-table
@@ -446,7 +446,7 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Padecimiento / Alergia</th>
-            <th>Observaciones y Descripción</th>
+            <th>Observaciones y Descripci�n</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
@@ -471,7 +471,7 @@
             class="text-4xl text-green-400"
           ></app-icon>
         </div>
-        <p class="text-500 m-0">Sin condiciones clínicas registradas.</p>
+        <p class="text-500 m-0">Sin condiciones cl�nicas registradas.</p>
       </div>
       }
     </p-tabpanel>
@@ -486,11 +486,11 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Institución Bancaria</th>
-            <th>Número de Cuenta</th>
+            <th>Instituci�n Bancaria</th>
+            <th>N�mero de Cuenta</th>
             <th>CLABE Interbancaria</th>
             <th>Titular de la Cuenta</th>
-            <th>Información de Contacto</th>
+            <th>Informaci�n de Contacto</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
@@ -502,7 +502,7 @@
             <td>
               <div class="flex flex-column">
                 <span>{{ item.phoneNumber }}</span>
-                <small class="text-500">{{ item.relacion || '—' }}</small>
+                <small class="text-500">{{ item.relacion || '�' }}</small>
               </div>
             </td>
           </tr>
@@ -570,7 +570,7 @@
             <td class="font-bold text-primary">
               {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
             </td>
-            <td><small class="text-500">{{ item.notes || '—' }}</small></td>
+            <td><small class="text-500">{{ item.notes || '�' }}</small></td>
           </tr>
         </ng-template>
       </p-table>
@@ -604,7 +604,7 @@
                   class="text-primary"
                 ></app-icon>
               </div>
-              <h4 class="m-0 font-bold text-900">Posición Actual</h4>
+              <h4 class="m-0 font-bold text-900">Posici�n Actual</h4>
             </div>
           </ng-template>
           <div class="grid row-gap-3">
@@ -613,7 +613,7 @@
                 >Puesto Actual</label
               >
               <p class="font-black text-900 m-0 text-xl">
-                {{ wp.puesto || '—' }}
+                {{ wp.puesto || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
@@ -621,7 +621,7 @@
                 >Departamento</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ wp.departamento || '—' }}
+                {{ wp.departamento || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
@@ -629,18 +629,18 @@
                 >Jefe Directo</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ wp.managerName || '—' }}
+                {{ wp.managerName || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Folio Posición</label
+                >Folio Posici�n</label
               >
-              <p class="font-semibold text-900 m-0">#{{ wp.folio || '—' }}</p>
+              <p class="font-semibold text-900 m-0">#{{ wp.folio || '�' }}</p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Sueldo de Contratación</label
+                >Sueldo de Contrataci�n</label
               >
               <p class="font-black text-primary m-0 text-2xl">
                 {{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}
@@ -651,15 +651,15 @@
                 >Turno Asignado</label
               >
               <p class="font-semibold text-900 m-0">
-                {{ wp.turnoTrabajo || '—' }}
+                {{ wp.turnoTrabajo || '�' }}
               </p>
             </div>
             <div class="col-12 sm:col-6 lg:col-4">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Estado de Ocupación</label
+                >Estado de Ocupaci�n</label
               >
               <p-tag
-                [value]="wp.state || '—'"
+                [value]="wp.state || '�'"
                 severity="info"
                 [rounded]="true"
               ></p-tag>
@@ -709,7 +709,7 @@
             </div>
             <div class="col-12 sm:col-6 lg:col">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Miércoles</label
+                >Mi�rcoles</label
               >
               @if (wp.miercolesEntrada && wp.miercolesSalida) {
               <p class="font-semibold text-900 m-0">
@@ -745,7 +745,7 @@
             </div>
             <div class="col-12 sm:col-6 lg:col">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Sábado</label
+                >S�bado</label
               >
               @if (wp.sabadoEntrada && wp.sabadoSalida) {
               <p class="font-semibold text-900 m-0">
@@ -795,7 +795,7 @@
                 <th>Folio</th>
                 <th>Movimiento de Puesto</th>
                 <th>Ajuste Salarial</th>
-                <th>Fecha de Aplicación</th>
+                <th>Fecha de Aplicaci�n</th>
                 <th>Estatus</th>
               </tr>
             </ng-template>
@@ -846,7 +846,7 @@
             class="text-4xl text-300"
           ></app-icon>
         </div>
-        <p class="text-500 m-0">Sin información de posición laboral activa.</p>
+        <p class="text-500 m-0">Sin informaci�n de posici�n laboral activa.</p>
       </div>
       }
     </p-tabpanel>
@@ -878,10 +878,10 @@
           <div class="grid row-gap-3">
             <div class="col-6 sm:col-4 lg:col-2 text-center">
               <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Antigüedad</label
+                >Antig�edad</label
               >
               <p class="font-black text-900 m-0 text-xl">
-                {{ vl.balance.seniorityYears }} años
+                {{ vl.balance.seniorityYears }} a�os
               </p>
             </div>
             <div class="col-6 sm:col-4 lg:col-2 text-center">
@@ -972,7 +972,7 @@
                   }
                 </td>
                 <td>
-                  <small class="text-500">{{ item.reason || '—' }}</small>
+                  <small class="text-500">{{ item.reason || '�' }}</small>
                 </td>
               </tr>
             </ng-template>
@@ -1060,9 +1060,9 @@
           <tr>
             <th>Incidencia</th>
             <th>Severidad</th>
-            <th>Investigación</th>
+            <th>Investigaci�n</th>
             <th>Fecha Hechos</th>
-            <th>Sanción Aplicada</th>
+            <th>Sanci�n Aplicada</th>
             <th class="text-center">Acta</th>
           </tr>
         </ng-template>
@@ -1102,13 +1102,13 @@
                 >
               </div>
               } @else {
-              <span class="text-400 text-sm italic">Sin sanción</span>
+              <span class="text-400 text-sm italic">Sin sanci�n</span>
               }
             </td>
             <td class="text-center">
               <div class="flex justify-content-center">
                 @if (item.isActGenerated) {
-                <custom-button-item
+                <il-button-item
                   iconClass="mdi:file-pdf-box"
                   label="Ver Acta"
                   [size]="'small'"
@@ -1177,11 +1177,11 @@
             <div class="flex align-items-center gap-4 mt-2 sm:mt-0">
               <div class="text-center">
                 <span class="text-xs text-500 uppercase block mb-1"
-                  >Calificación</span
+                  >Calificaci�n</span
                 >
                 <span class="text-3xl font-black text-primary">
                   {{ eval.finalScore != null ? (eval.finalScore |
-                  number:'1.1-1') : '—' }}
+                  number:'1.1-1') : '�' }}
                 </span>
               </div>
               <div class="flex flex-column align-items-end gap-1">
@@ -1220,7 +1220,7 @@
           ></app-icon>
         </div>
         <p class="text-500 m-0">
-          No se han realizado evaluaciones de desempeño a este colaborador.
+          No se han realizado evaluaciones de desempe�o a este colaborador.
         </p>
       </div>
       }
@@ -1366,7 +1366,7 @@
               </div>
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block mb-1"
-                  >Firma Nóminas</span
+                  >Firma N�minas</span
                 >
                 @if (d.isAuthorizedByPayroll) {
                 <div class="flex align-items-center gap-2">
@@ -1400,14 +1400,14 @@
                   >Asistencia Legal</span
                 >
                 <p-tag
-                  [value]="d.lawyerAssistance ? 'Sí' : 'No'"
+                  [value]="d.lawyerAssistance ? 'S�' : 'No'"
                   [severity]="d.lawyerAssistance ? 'warn' : 'secondary'"
                   [rounded]="true"
                 ></p-tag>
               </div>
               <div class="col-12">
                 <span class="text-xs text-500 uppercase block mb-1"
-                  >Justificación</span
+                  >Justificaci�n</span
                 >
                 <p
                   class="m-0 text-700 italic border-left-3 border-red-200 pl-3 line-height-3"
@@ -1417,10 +1417,10 @@
               </div>
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block mb-1"
-                  >Último día</span
+                  >�ltimo d�a</span
                 >
                 <span class="font-bold text-900"
-                  >{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || '—' }}</span
+                  >{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || '�' }}</span
                 >
               </div>
             </div>
@@ -1495,7 +1495,7 @@
                     <strong>{{ eval.templateName }}</strong> - {{
                     eval.evaluationDate | date:'dd/MM/yyyy' }}
                     <span class="ml-2 text-500"
-                      >Calificación: {{ eval.finalScore | number:'1.0-2'
+                      >Calificaci�n: {{ eval.finalScore | number:'1.0-2'
                       }}</span
                     >
                   </div>

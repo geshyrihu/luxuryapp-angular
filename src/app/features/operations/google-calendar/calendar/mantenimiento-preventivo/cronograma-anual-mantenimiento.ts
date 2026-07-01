@@ -23,8 +23,8 @@ import { checkboxOutline, createOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import {
@@ -50,7 +50,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
   imports: [
     TableModule,
     FormsModule,
-    CustomButtonItem,
+    WebButtonLabelItem,
     CommonModule,
     TooltipModule,
     PrimeNgCustomCaption,
@@ -67,7 +67,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
 export class CronogramaAnualMantenimiento {
   TooltipPlacement = TooltipPlacement;
   readonly resolvePrimeIcon = resolvePrimeIcon;
-  // --- Inyección de Dependencias ---
+  // --- Inyecciï¿½n de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
@@ -82,7 +82,7 @@ export class CronogramaAnualMantenimiento {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // ? MEJORA: Filtros globales calculados dinómicamente
+  // ? MEJORA: Filtros globales calculados dinï¿½micamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -169,7 +169,7 @@ export class CronogramaAnualMantenimiento {
     this.selectedMobileMonth.set(event.detail.value);
   }
 
-  // --- Lógica de Carga y Filtro de Datos ---
+  // --- Lï¿½gica de Carga y Filtro de Datos ---
   onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
     let endpoint = `MaintenanceCalendars/CronogramaAnual/${customerId}`;
@@ -234,7 +234,7 @@ export class CronogramaAnualMantenimiento {
   // --- Acciones de la Interfaz ---
 
   onModalForm(data: any): void {
-    // Si data es solo un ID (nómero), lo adaptamos, o si es objeto lo usamos
+    // Si data es solo un ID (nï¿½mero), lo adaptamos, o si es objeto lo usamos
     const id = typeof data === "number" ? data : data.id;
 
     this.dialogHandlerS
@@ -352,7 +352,7 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th style="width: 25%;">DESCRIPCIÓN</th>
+          <th style="width: 25%;">DESCRIPCIï¿½N</th>
           ${monthsHeaders}
         </tr>
       </thead>
@@ -386,4 +386,3 @@ ${this.htmlPrintS.getStandardCss()}
     return index;
   }
 }
-

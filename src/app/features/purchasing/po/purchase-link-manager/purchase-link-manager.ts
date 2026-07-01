@@ -1,4 +1,4 @@
-﻿import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
+import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -15,9 +15,9 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -30,7 +30,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     ReactiveFormsModule,
     TableModule,
     CardModule,
-    CustomButton,
+    WebButtonLabel,
     CustomInputTextSignal,
     TagModule,
     TooltipModule,

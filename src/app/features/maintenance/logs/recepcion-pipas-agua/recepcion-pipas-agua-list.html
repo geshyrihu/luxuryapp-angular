@@ -202,15 +202,15 @@
       </td>
       <td>
         <div class="flex">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:file-pdf-box"
             tooltip="Descargar soporte PDF"
             (clicked)="onDownloadPdf(item)"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -329,20 +329,17 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-download
+          <il-button-download
             (clicked)="onDownloadPdf(item)"
             label="Descargar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

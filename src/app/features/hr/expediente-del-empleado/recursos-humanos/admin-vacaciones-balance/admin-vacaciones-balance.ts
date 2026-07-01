@@ -7,11 +7,11 @@ import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -29,11 +29,11 @@ import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit
     CommonModule,
     CardModule,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     TagModule,
     DynamicDialogModule,
     PrimeNgCustomCaption,
-    CustomButtonEdit,
+    WebButtonLabelEdit,
     DataViewMobile,
     ToastModule,
     ConfirmDialogModule,
@@ -70,9 +70,9 @@ export class AdminVacacionesBalance {
   onLoadData(customerId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<VacationBalanceAdminViewDto[]>(
-        Endpoints.HR.VacationBalanceAdmin.byCustomer(customerId),
-      )
+      .onGetList<
+        VacationBalanceAdminViewDto[]
+      >(Endpoints.HR.VacationBalanceAdmin.byCustomer(customerId))
       .then((resp) => {
         this.dataSignal.set(resp ?? []);
         this.loading.set(false);
@@ -85,8 +85,8 @@ export class AdminVacacionesBalance {
 
     this.confirmationService.confirm({
       message:
-        "¿Estás seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregirá los días totales de cada empleado según su antigüedad actual. Esta acción no se puede deshacer.",
-      header: "Confirmación",
+        "ï¿½Estï¿½s seguro de recalcular todos los balances de vacaciones para este cliente? Esta acciï¿½n corregirï¿½ los dï¿½as totales de cada empleado segï¿½n su antigï¿½edad actual. Esta acciï¿½n no se puede deshacer.",
+      header: "Confirmaciï¿½n",
       icon: "mdi:alert",
       accept: () => {
         this.loading.set(true);
@@ -98,10 +98,10 @@ export class AdminVacacionesBalance {
           .then((result) => {
             this.messageService.add({
               severity: result ? "success" : "warn",
-              summary: result ? "Completado" : "Atención",
+              summary: result ? "Completado" : "Atenciï¿½n",
               detail: result
                 ? "Los balances de vacaciones se recalcularon correctamente."
-                : "No se pudo completar el recálculo de balances.",
+                : "No se pudo completar el recï¿½lculo de balances.",
             });
             this.onLoadData(customerId);
           })
@@ -134,4 +134,3 @@ export class AdminVacacionesBalance {
       });
   }
 }
-

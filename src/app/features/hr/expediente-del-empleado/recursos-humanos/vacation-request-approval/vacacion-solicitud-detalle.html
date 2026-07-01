@@ -72,14 +72,14 @@
   </div>
   @if (requestData().status === 'Pending') {
   <div class="card-footer text-right">
-    <custom-button
+    <il-button
       severity="success"
       iconClass="mdi:check"
       label="Aprobar"
       (clicked)="onApprove()"
       [disabled]="submitting()"
       customClass="mr-2"
-    /><custom-button
+    /><il-button
       severity="danger"
       iconClass="mdi:close"
       label="Rechazar"

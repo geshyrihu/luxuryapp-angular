@@ -8,7 +8,7 @@
       <h5 class="card-title">{{ data.departamentName }}</h5>
       <small class="text-color-secondary">{{ data.inspectionName }}</small>
     </div>
-    <custom-button
+    <il-button
       icon="plus"
       pTooltip="Agregar"
       (clicked)="
@@ -32,7 +32,7 @@
       </div>
       <app-action-menu class="inline-block text-right">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="
                   onModalInspectionCondominiumAssetEdit({
                     title: 'Editar área',
@@ -41,15 +41,14 @@
                     inspectionCondominiumAssetId: item.inspectionCondominiumAssetId
                   })
                 "
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-item
+ label="Editar"/>
+          <il-button-item
             [iconClass]="'mdi:plus'"
             label="Agregar Revisión"
-            (clicked)="onModalAddRevision()"
- [showLabelOnDesktop]="true"/>
-          <custom-button-delete
+            (clicked)="onModalAddRevision()"/>
+          <il-button-delete
             (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId, data.amenities)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+ label="Eliminar"/>
         </ng-container>
       </app-action-menu>
     </li>
@@ -60,9 +59,9 @@
 
       <app-action-menu class="inline-block text-right">
         <ng-container actions>
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDeleteReview(review.id, item.reviews)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+ label="Eliminar"/>
         </ng-container>
       </app-action-menu>
     </li>

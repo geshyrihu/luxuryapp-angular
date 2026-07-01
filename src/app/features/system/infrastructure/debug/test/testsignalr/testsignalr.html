@@ -15,20 +15,20 @@
         />
       </div>
       <div class="col-12 md:col-6 flex flex-column md:flex-row">
-        <custom-button
+        <il-button
           (clicked)="sendSignalRToUser()"
           [disabled]="!selectedUserId()"
           iconClass="mdi:send"
           label="Enviar SignalR"
         />
-        <custom-button
+        <il-button
           severity="success"
           (clicked)="sendOneSignalToUser()"
           [disabled]="!selectedUserId()"
           iconClass="mdi:bell"
           label="Enviar Push (OneSignal)"
         />
-        <custom-button
+        <il-button
           severity="success"
           (clicked)="sendOneSignalWebToUser()"
           [disabled]="!selectedUserId()"
@@ -65,7 +65,7 @@
         />
       </div>
       <div class="col-12 md:col-4 flex align-items-end">
-        <custom-button
+        <il-button
           [fluid]="true"
           (clicked)="sendSignalRToUsers()"
           [disabled]="!selectedUserIds().length"

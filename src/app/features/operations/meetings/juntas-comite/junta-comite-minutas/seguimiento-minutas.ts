@@ -1,23 +1,22 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -29,10 +28,11 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 @Component({
   selector: "app-seguimiento-minutas",
   templateUrl: "./seguimiento-minutas.html",
-  imports: [CustomButtonItem, 
+  imports: [
+    WebButtonLabelItem,
     CommonModule,
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     ActionMenu,
@@ -70,7 +70,12 @@ export class SeguimientoMinuta {
 
   onLoadData(filtro: number) {
     this.apiResponseS
-      .onGetList(Endpoints.Meetings.seguimientoMinutas(this.customerIdS.customerId(), filtro))
+      .onGetList(
+        Endpoints.Meetings.seguimientoMinutas(
+          this.customerIdS.customerId(),
+          filtro,
+        ),
+      )
       .then((result: any) => this.dataSignal.set(result));
   }
 
@@ -107,9 +112,11 @@ export class SeguimientoMinuta {
   }
 
   onDeleteSeguimiento(id: any) {
-    this.apiResponseS.onDelete(Endpoints.MeetingDetailsTracking.delete(id)).then(() => {
-      this.onLoadData(this.statusFiltro);
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.MeetingDetailsTracking.delete(id))
+      .then(() => {
+        this.onLoadData(this.statusFiltro);
+      });
   }
 
   onModalTodosSeguimientos(idItem: number) {
@@ -131,4 +138,3 @@ export class SeguimientoMinuta {
     this.onLoadData(filtro);
   }
 }
-

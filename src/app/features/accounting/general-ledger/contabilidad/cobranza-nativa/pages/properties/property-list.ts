@@ -1,12 +1,12 @@
-﻿// import { DecimalPipe } from "@angular/common";
+// import { DecimalPipe } from "@angular/common";
 // import { Component, effect, inject, signal } from "@angular/core";
 // import { IonItem, IonLabel } from "@ionic/angular/standalone";
 // import { TableModule } from "primeng/table";
 // import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-// import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-// import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-// import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-// import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+// import { WebButtonLabelDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+// import { WebButtonLabelEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+// import { WebButtonLabelDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+// import { WebButtonLabelEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 // import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 // import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 // import {
@@ -39,12 +39,12 @@
 //   imports: [
 //     TableModule,
 //     PrimeNgCustomCaption,
-//     CustomButtonEdit,
-//     CustomButtonDelete,
+//     WebButtonLabelEdit,
+//     WebButtonLabelDelete,
 //     DataViewMobile,
 //     ActionMenu,
-//     CustomButtonEdit,
-//     CustomButtonDelete,
+//     WebButtonLabelEdit,
+//     WebButtonLabelDelete,
 //     IonItem,
 //     IonLabel,
 //     DecimalPipe,

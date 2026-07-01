@@ -1,17 +1,16 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, signal } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
   templateUrl: "./ordenes-servicio-reporte-proveedor.html",
-  imports: [TableModule, CustomButtonDelete],
+  imports: [TableModule, WebButtonLabelDelete],
 })
 export class OrdenesServicioReporteProveedor {
   config = inject(DynamicDialogConfig);
@@ -35,7 +34,10 @@ export class OrdenesServicioReporteProveedor {
   }
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = Endpoints.ServiceOrders.reporteProveedor(this.id, customerId);
+    const urlApi = Endpoints.ServiceOrders.reporteProveedor(
+      this.id,
+      customerId,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -49,13 +51,3 @@ export class OrdenesServicioReporteProveedor {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-

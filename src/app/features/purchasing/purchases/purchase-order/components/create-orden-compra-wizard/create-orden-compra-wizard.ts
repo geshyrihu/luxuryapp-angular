@@ -25,10 +25,10 @@ import { TagModule } from "primeng/tag"; // Added
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -43,9 +43,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE Dï¿½BITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "NóMINA",
+  [ETipoGasto.Nomina]: "Nï¿½MINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -79,7 +79,7 @@ interface IStep3Form {
     AutoCompleteModule,
     AutoCompleteModule,
     AvatarModule,
-    CustomButton,
+    WebButtonLabel,
     CommonModule,
     CustomInputAutoComplete,
     CustomInputSelectSignal,
@@ -153,8 +153,8 @@ export class CreateOrdenCompraWizard implements OnInit {
 
   constructor() {
     this.items = [
-      { label: "Información General" },
-      { label: "Añadir Productos" },
+      { label: "Informaciï¿½n General" },
+      { label: "Aï¿½adir Productos" },
       { label: "Asignar Presupuesto" },
       { label: "Facturas" },
       { label: "Resumen" },
@@ -310,7 +310,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       .openDialog(
         OrdenCompraDetalleForm,
         data,
-        productData.productoId ? "Editar Artóculo" : "Añadir Artóculo",
+        productData.productoId ? "Editar Artï¿½culo" : "Aï¿½adir Artï¿½culo",
         this.dialogHandlerS.sizeMd,
       )
       .then((result: any) => {
@@ -506,16 +506,16 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.providerControl.valid
       ) {
         return this.customToastS.showError(
-          "Formulario Invólido",
-          "Por favor, complete todos los campos de Información General.",
+          "Formulario Invï¿½lido",
+          "Por favor, complete todos los campos de Informaciï¿½n General.",
         );
       }
     }
     if (this.activeIndex === 1) {
       if (this.itemsSignal().length === 0) {
         return this.customToastS.showError(
-          "Formulario Invólido",
-          "Debe Añadir al menos un producto.",
+          "Formulario Invï¿½lido",
+          "Debe Aï¿½adir al menos un producto.",
         );
       }
     }
@@ -525,8 +525,8 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.apiResponseS.validateForm(this.step3Form)
       ) {
         return this.customToastS.showError(
-          "Formulario Invólido",
-          "Debe Añadir al menos una cuenta de presupuesto.",
+          "Formulario Invï¿½lido",
+          "Debe Aï¿½adir al menos una cuenta de presupuesto.",
         );
       }
     }
@@ -550,15 +550,15 @@ export class CreateOrdenCompraWizard implements OnInit {
     ) {
       this.activeIndex = 0;
       return this.customToastS.showError(
-        "Formulario Invólido",
-        "La información general estó incompleta.",
+        "Formulario Invï¿½lido",
+        "La informaciï¿½n general estï¿½ incompleta.",
       );
     }
     if (this.itemsSignal().length === 0) {
       this.activeIndex = 1;
       return this.customToastS.showError(
-        "Formulario Invólido",
-        "Debe Añadir al menos un producto.",
+        "Formulario Invï¿½lido",
+        "Debe Aï¿½adir al menos un producto.",
       );
     }
     if (
@@ -567,8 +567,8 @@ export class CreateOrdenCompraWizard implements OnInit {
     ) {
       this.activeIndex = 2;
       return this.customToastS.showError(
-        "Formulario Invólido",
-        "La información de presupuesto estó incompleta.",
+        "Formulario Invï¿½lido",
+        "La informaciï¿½n de presupuesto estï¿½ incompleta.",
       );
     }
 

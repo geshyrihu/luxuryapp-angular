@@ -44,20 +44,20 @@
       <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-item
+          <il-button-item
             (clicked)="onViewProducts(item.id)"
             label="Ver Productos"
             iconClass="mdi:package"
           />
-          <custom-button-item
+          <il-button-item
             (clicked)="onDownloadInventory(item.id, item.nombre)"
             label="Descargar Inventario"
             iconClass="mdi:file-pdf-box"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -112,27 +112,23 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               (clicked)="onViewProducts(item.id)"
               label="Ver Productos"
               iconName="cube-outline"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               (clicked)="onDownloadInventory(item.id, item.nombre)"
               label="Descargar Inventario"
               iconName="document-text-outline"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

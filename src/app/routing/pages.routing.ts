@@ -584,6 +584,14 @@ export const pagesRoutes: Routes = [
     data: { title: "Operaciones", breadcrumb: "Operaciones" },
   },
   {
+    path: "initial-implementation",
+    loadChildren: () =>
+      import(
+        "src/app/features/operations/initial-implementation/initial-implementation.routing"
+      ).then((m) => m.initialImplementationRoutes),
+    data: { title: "Implementación Inicial", breadcrumb: "Implementación Inicial" },
+  },
+  {
     path: "purchasing",
     loadChildren: () =>
       import("src/app/features/purchasing/purchasing.routing").then(

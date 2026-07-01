@@ -1,9 +1,9 @@
-﻿import { Component, output } from "@angular/core";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { Component, output } from "@angular/core";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 @Component({
   selector: "app-task-report-actions",
   templateUrl: "./task-report-actions.html",
-  imports: [CustomButton],
+  imports: [WebButtonLabel],
 })
 export class TaskReportActions {
   previewClicked = output<void>();
@@ -16,4 +16,3 @@ export class TaskReportActions {
     this.sendReportClicked.emit();
   }
 }
-

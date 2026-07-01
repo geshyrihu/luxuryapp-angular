@@ -1,16 +1,17 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonViewPdf,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelViewPdf,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -21,7 +22,6 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CustomBtnActiveDesactive } from "src/app/core/components/web/buttons/custom-button-active-desactive";
 import { PolicyContractForm } from "./policy-contract-form";
 @Component({
   selector: "app-policy-contract-list",
@@ -32,16 +32,16 @@ import { PolicyContractForm } from "./policy-contract-form";
     TagModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    CustomButtonViewPdf,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomBtnActiveDesactive,
+    WebButtonLabelViewPdf,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelActiveDesactive,
     IonItem,
     IonLabel,
     ActionMenu,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonViewPdf,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelViewPdf,
   ],
 })
 export class PolicyContractList {
@@ -142,4 +142,3 @@ export class PolicyContractList {
     }
   }
 }
-

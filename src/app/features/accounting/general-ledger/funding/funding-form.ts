@@ -1,10 +1,10 @@
-﻿import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -17,7 +17,7 @@ import { SignalRService } from "src/app/core/services/signalr.service";
     ReactiveFormsModule,
     CardModule,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class FundingForm implements OnInit {
@@ -33,7 +33,7 @@ export class FundingForm implements OnInit {
   public submitting = signal(false);
   public cb_fondeos = signal<ISelectItem[]>([]);
 
-  // Definición Estricta del Formulario
+  // Definici�n Estricta del Formulario
   public form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     period: new FormControl<string | null>(null),

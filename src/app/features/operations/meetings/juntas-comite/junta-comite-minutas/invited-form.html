@@ -12,14 +12,14 @@
     </div>
     <div class="col-2 mb-2">
       @if (invitado.value) {
-      <custom-button-item [iconClass]="'mdi:plus'" (clicked)="onSubmit()" />
+      <il-button-item [iconClass]="'mdi:plus'" (clicked)="onSubmit()" />
       }
     </div>
   </div>
   @for (item of listaInvitados(); track item.id) {
   <div class="flex align-items-center justify-content-between p-2">
     {{ item.invitado }}
-    <custom-button-delete (confirmed)="onDelete(item.id)" />
+    <il-button-delete (confirmed)="onDelete(item.id)" />
   </div>
   }
 </div>

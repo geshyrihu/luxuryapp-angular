@@ -29,12 +29,12 @@
       <td>{{ item.description }}</td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <custom-button
+          <il-button
             icon="edit"
             ngbTooltip="Editar"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
           />
-          <custom-button-confirm
+          <il-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id)"
@@ -86,15 +86,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

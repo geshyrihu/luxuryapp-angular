@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
@@ -10,15 +10,15 @@ import { FileUploadModule } from "primeng/fileupload";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
-// DefiniciÃ³n de un Ã³tem de factura analizada extendido para el frontend
+// Definición de un ótem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {
   tempId: string;
   xmlFileName: string;
@@ -64,7 +64,7 @@ type ModalStatus =
     CustomInputCheckSignal,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    CustomButton,
+    WebButtonLabel,
   ],
   templateUrl: "./funding-upload-invoices-modal.html",
   providers: [DialogService],
@@ -92,7 +92,7 @@ export class FundingUploadInvoicesModal {
       (item) => item.selected() && (item.status === 0 || item.status === 5),
     ).length;
   });
-  createButtonLabel = computed(() => `Crear ${this.selectedCount()} Ã³rdenes`);
+  createButtonLabel = computed(() => `Crear ${this.selectedCount()} órdenes`);
 
   constructor() {
     this.fundingId = this.config.data.fundingId;

@@ -1,16 +1,16 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -40,15 +40,15 @@ import { WarehouseStockEdit } from "./warehouse-stock-edit";
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     CardModule,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
   ],
 })
 export class WarehouseStockList {
@@ -59,7 +59,7 @@ export class WarehouseStockList {
   route = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // Señales
+  // Se�ales
   dataSignal = signal<any[]>([]);
   almacenIdFromRoute: string | null = null;
 
@@ -211,4 +211,3 @@ export class WarehouseStockList {
     );
   }
 }
-

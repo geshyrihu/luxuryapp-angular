@@ -1,4 +1,4 @@
-ï»¿<div class="p-4" style="min-height: 400px">
+<div class="p-4" style="min-height: 400px">
   @switch (status()) { @case ('initial') {
   <p-fileUpload
     name="files[]"
@@ -12,7 +12,7 @@
       <div class="text-center p-5 border-2 border-dashed border-round-md">
         <app-icon [icon]="'mdi:cloud-upload'" class="text-4xl text-primary"></app-icon>
         <p class="mt-3 text-lg">
-          Arrastra y suelta archivos aquÃ³ para subirlos.
+          Arrastra y suelta archivos aquó para subirlos.
         </p>
       </div>
     </ng-template>
@@ -25,12 +25,12 @@
   } @case ('creating') {
   <div class="flex flex-column justify-content-center align-items-center" style="height: 400px">
     <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary"></app-icon>
-    <p class="mt-3 text-lg">Creando Ã³rdenes de compra...</p>
+    <p class="mt-3 text-lg">Creando órdenes de compra...</p>
   </div>
   } @case ('preview') {
-  <h5>Resultados del AnÃ³lisis</h5>
+  <h5>Resultados del Anólisis</h5>
   <p>
-    Revisa la informaciÃ³n y selecciona las Ã³rdenes de compra que deseas crear.
+    Revisa la información y selecciona las órdenes de compra que deseas crear.
   </p>
 
   <p-table
@@ -50,7 +50,7 @@
         <th>Proveedor</th>
         <th>Total</th>
         <th class="table-col-20">Tipo de Gasto</th>
-        <th class="table-col-25">JustificaciÃ³n</th>
+        <th class="table-col-25">Justificación</th>
       </tr>
     </ng-template>
     <ng-template #body let-item>
@@ -73,7 +73,7 @@
           } @case(2) {
           <p-tag
             severity="danger"
-            value="XML InvÃ³lido"
+            value="XML Invólido"
             [pTooltip]="item.statusMessage"
           ></p-tag>
           } @case(3) {
@@ -131,13 +131,13 @@
   </p-table>
 
   <div class="flex justify-content-end mt-4">
-    <custom-button
+    <il-button
       (clicked)="onCreateOrders()"
       [label]="createButtonLabel()"
       severity="success"
       [disabled]="selectedCount() === 0"
     >
-    </custom-button>
+    </il-button>
   </div>
   } }
 </div>

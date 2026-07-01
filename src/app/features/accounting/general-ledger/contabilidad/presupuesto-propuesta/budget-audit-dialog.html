@@ -1,14 +1,14 @@
-﻿<!--
+<!--
   ============================================================================
-  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
-  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+  Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
   FUNCIONAL y ESTABLE. 
   
-  Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
-  sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+  Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+  sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
   
-  Por favor, NO rompan el código.
+  Por favor, NO rompan el c�digo.
   ============================================================================
 -->
 <div class="p-4">
@@ -27,20 +27,19 @@
     <div [innerHTML]="auditReportHtml()"></div>
     } @else {
     <div class="text-center p-4 text-500 italic">
-      No se pudo generar el reporte de auditoría.
+      No se pudo generar el reporte de auditor�a.
     </div>
     }
   </div>
 
   <div class="flex justify-content-end mt-4 pt-3 border-top-1 border-100">
-    <custom-button
+    <il-button
       iconClass="mdi:check"
       (clicked)="close()"
       label="Entendido"
       severity="success"
-      [showLabelOnDesktop]="true"
     >
-    </custom-button>
+    </il-button>
   </div>
   }
 </div>

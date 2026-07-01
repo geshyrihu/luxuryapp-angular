@@ -7,11 +7,11 @@ import { Table, TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
 import {
-  CustomButton,
-  CustomButtonAdd,
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
+  WebButtonLabel,
+  WebButtonLabelAdd,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -31,10 +31,10 @@ import { IReportDefinitionList } from "../../models/report-definition.interface"
     TabsModule,
     TagModule,
     ConfirmDialogModule,
-    CustomButtonAdd,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButton,
+    WebButtonLabelAdd,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabel,
     DataViewMobile,
   ],
   providers: [ConfirmationService],
@@ -107,4 +107,3 @@ export class ReportCatalog implements OnInit {
     this.cargar();
   }
 }
-

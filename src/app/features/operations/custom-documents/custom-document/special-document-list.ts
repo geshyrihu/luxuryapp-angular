@@ -1,9 +1,9 @@
-ï»¿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -17,8 +17,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 import { DocumentoPersonalizadoForm } from "src/app/features/legal/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-form";
+import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 @Component({
   selector: "app-special-document-list",
   imports: [
@@ -29,7 +29,7 @@ import { DocumentoPersonalizadoForm } from "src/app/features/legal/asuntos-legal
     TooltipModule,
     IonItem,
     IonLabel,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
   ],
   templateUrl: "./special-document-list.html",
 })
@@ -92,20 +92,10 @@ export class SpecialDocumentList {
     this.apiResponseS
       .onPut(Endpoints.SpecialDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificaciÃ³n de Ã³xito
+        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

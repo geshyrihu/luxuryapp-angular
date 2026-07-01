@@ -71,7 +71,7 @@
           </span>
         </td>
         <td class="text-center">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:folder-open"
             label="Ver Expediente"
             (click)="onViewFile(item)"
@@ -128,11 +128,10 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Ver Expediente"
               iconName="folder-open-outline"
               (clicked)="onViewFile(item)"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

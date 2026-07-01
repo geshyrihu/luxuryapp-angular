@@ -36,12 +36,11 @@
       <td class="text-center">{{ item.createAt }}</td>
       <td class="text-center text-break">{{ item.name }}</td>
       <td class="text-center flex justify-content-center">
-        <custom-button-view-pdf
-          [showLabelOnDesktop]="true"
+        <il-button-view-pdf
           [url]="item.path"
           fileName="Reglamentos"
         />
-        <custom-button
+        <il-button
           label="IA"
           iconClass="mdi:comment-multiple"
           variant="outlined"
@@ -107,8 +106,8 @@
           </p>
         </ion-label>
         <div slot="end" class="flex align-items-center gap-1">
-          <custom-button-view-pdf [url]="item.path" pdf="Reglamento" />
-          <custom-button
+          <il-button-view-pdf [url]="item.path" pdf="Reglamento" />
+          <il-button
             iconClass="mdi:comment-multiple"
             severity="info"
             variant="ghost-text"
@@ -169,14 +168,14 @@
   </div>
 
   <ng-template #footer>
-    <custom-button
+    <il-button
       label="Cancelar"
       iconClass="mdi:close"
       variant="ghost-text"
       [disabled]="consultingDoc()"
       (clicked)="showConsultationDialog.set(false)"
     />
-    <custom-button
+    <il-button
       label="Consultar"
       iconClass="mdi:magnify"
       [loading]="consultingDoc()"

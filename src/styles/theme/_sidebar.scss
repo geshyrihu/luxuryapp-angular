@@ -332,24 +332,18 @@ body.theme-dark .p-panelmenu {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  /* Breadcrumb text visibility */
-  .p-breadcrumb {
-    background: transparent !important;
-    border: none !important;
+  /* PrimeNG 21 breadcrumb design tokens (cascadan al componente hijo) */
+  --p-breadcrumb-background: transparent;
+  --p-breadcrumb-border-color: transparent;
+  --p-breadcrumb-item-color: rgba(255, 255, 255, 0.85);
+  --p-breadcrumb-item-hover-color: #ffffff;
+  --p-breadcrumb-item-active-color: #ffffff;
+  --p-breadcrumb-item-icon-color: rgba(255, 255, 255, 0.85);
+  --p-breadcrumb-item-icon-hover-color: #ffffff;
+  --p-breadcrumb-separator-color: rgba(255, 255, 255, 0.5);
 
-    .p-breadcrumb-list {
-      .p-menuitem-link {
-        color: rgba(255, 255, 255, 0.75) !important;
-
-        &:hover {
-          color: rgba(255, 255, 255, 1) !important;
-        }
-      }
-
-      .p-menuitem-separator {
-        color: rgba(255, 255, 255, 0.35) !important;
-      }
-    }
+  .customer-name {
+    color: rgba(255, 255, 255, 0.95) !important;
   }
 
   /* Button icons visibility */
@@ -409,6 +403,23 @@ app-header-employee-monitor .toolbar-icon-btn {
 /* Customer name in header */
 app-header-employee-monitor .customer-name {
   color: rgba(255, 255, 255, 0.95);
+}
+
+/* Breadcrumb blanco en header oscuro
+   styleClass="header-breadcrumb" se aplica al <nav class="p-breadcrumb header-breadcrumb"> */
+nav.header-breadcrumb,
+nav.header-breadcrumb * {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: transparent !important;
+}
+
+nav.header-breadcrumb {
+  border: none !important;
+}
+
+nav.header-breadcrumb .p-breadcrumb-separator,
+nav.header-breadcrumb .p-breadcrumb-separator * {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
 /* Customer selector button */

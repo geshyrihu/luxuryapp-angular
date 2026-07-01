@@ -61,11 +61,11 @@
       <!-- Opciones -->
       <td>
         <div class="flex justify-content-center">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:content-save"
             (clicked)="onUpdateProductoAgregado(item)"
           />
-          <custom-button-delete (confirmed)="deleteProductoAgregado(item.id)" />
+          <il-button-delete (confirmed)="deleteProductoAgregado(item.id)" />
         </div>
       </td>
     </tr>
@@ -166,7 +166,7 @@
 
       <td>
         <div class="flex justify-content-center">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:content-save"
             (clicked)="onSubmit(item)"
           />

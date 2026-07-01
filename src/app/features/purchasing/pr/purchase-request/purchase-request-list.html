@@ -31,7 +31,7 @@
         />
       </div>
       <div class="col-12 p-0">
-        <custom-button
+        <il-button
           type="button"
           [class]="
             statusFilter() !== 1
@@ -43,7 +43,7 @@
         />
       </div>
       <div class="col-12 p-0">
-        <custom-button
+        <il-button
           (clicked)="onSelectStatus(0)"
           class="w-full"
           [text]="statusFilter() !== 0"
@@ -51,7 +51,7 @@
         />
       </div>
       <div class="col-12 p-0">
-        <custom-button
+        <il-button
           (clicked)="onSelectStatus(3)"
           class="w-full"
           [outlined]="statusFilter() !== 3"
@@ -103,23 +103,20 @@
             @if ( aspRoleS.hasAny([ AspRole.Asistente,
             AspRole.JefeMantenimiento, AspRole.Administrador,
             AspRole.SuperUsuario, ]) ) {
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               label="Detalles"
               iconName="information-circle-outline"
               routerLink="/purchase-request/detail/{{item.id}}"
-              [showLabelOnDesktop]="true"
             />
             } @if ( aspRoleS.hasAny([AspRole.SuperUsuario,
             AspRole.Administrador]) ) {
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
             }
           </ng-container>
@@ -175,15 +172,13 @@
         <p>{{ item.requestDate | date }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit
+        <il-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
-          [showLabelOnDesktop]="true"
         />
-        <custom-button-delete
+        <il-button-delete
           (confirmed)="onDelete(item.id)"
           label="Eliminar"
-          [showLabelOnDesktop]="true"
         />
       </app-action-menu>
     </ion-item>

@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -12,6 +11,7 @@ import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -19,8 +19,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
@@ -33,8 +33,8 @@ import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form"
     TableModule,
     TooltipModule,
     PrimeNgCustomCaption,
-    CustomButton,
-    CustomButtonConfirm,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
     DataViewMobile,
     ActionMenu,
     IonItem,
@@ -136,4 +136,3 @@ export class EmployeeEmergencyContactList implements OnInit {
       });
   }
 }
-

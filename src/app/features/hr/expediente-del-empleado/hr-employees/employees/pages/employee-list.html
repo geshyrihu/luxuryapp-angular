@@ -20,7 +20,7 @@
           ])
         "
       />
-      <custom-button-active-desactive
+      <il-button-active-desactive
         [state]="activo()"
         (stateChange)="onSelectActive($event)"
       />
@@ -99,7 +99,7 @@
         <div class="flex justify-content-center">
           @if ( aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Administrador,
           AspRole.Asistente, AspRole.Reclutamiento ]) ) {
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:dots-vertical"
             label="Opciones"
             tooltipPosition="left"
@@ -164,11 +164,10 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-item
+          <il-button-item
             (clicked)="onShowEditEmpleado(item.applicationUserId, item.employeeId, item.fullName)"
             label="Editar"
             iconName="create-outline"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

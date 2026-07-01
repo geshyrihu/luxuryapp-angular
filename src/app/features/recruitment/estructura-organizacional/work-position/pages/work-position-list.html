@@ -23,7 +23,7 @@
           />
         </div>
         <div class="col-12 sm:col-2">
-          <custom-button-active-desactive
+          <il-button-active-desactive
             [state]="state()"
             (stateChange)="onSelectActive($event)"
           />
@@ -65,7 +65,7 @@
           @if (necesitaActualizacion(item)) {
           <div class="flex align-items-center">
             <p-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
               pTooltip="Este puesto requiere que se le asigne un rol"
             />
@@ -97,30 +97,30 @@
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
             @if (shouldShowVacancyRequest(item)) {
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
               iconClass="mdi:account-plus"
               label="Solicitar vacante"
               [pTooltip]="'Solicitar vacante'"
             />
             }
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconClass="mdi:book"
               label="Descripción"
               [pTooltip]="'Descripción de puesto'"
             />
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
               iconClass="mdi:clock-outline"
               label="Horarios"
               [pTooltip]="'Horarios de trabajo'"
             />
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             />
             @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <il-button-delete (confirmed)="onDelete(item.id)" />
             }
           </div>
         </td>
@@ -157,7 +157,7 @@
       customFilters
       class="flex justify-content-end p-2 border-bottom-1 surface-border"
     >
-      <custom-button-active-desactive (stateChange)="onSelectActive($event)" />
+      <il-button-active-desactive (stateChange)="onSelectActive($event)" />
     </div>
 
     <ng-template #listItemTemplate let-item>
@@ -212,35 +212,30 @@
         <app-action-menu slot="end">
           <ng-container actions>
             @if (shouldShowVacancyRequest(item)) {
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
               iconName="person-add-outline"
               label="Solicitar vacante"
-              [showLabelOnDesktop]="true"
             />
             }
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconName="book-outline"
               label="Descripción"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
               iconName="time-outline"
               label="Horarios"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
             @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
             }
           </ng-container>

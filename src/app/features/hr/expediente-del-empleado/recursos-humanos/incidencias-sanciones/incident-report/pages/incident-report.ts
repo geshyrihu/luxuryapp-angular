@@ -1,13 +1,13 @@
-ï»¿import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import saveAs from "file-saver";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -33,7 +33,7 @@ interface IReportFilterForm {
     ReactiveFormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    CustomButton,
+    WebButtonLabel,
   ],
 })
 export class IncidentReport {
@@ -50,12 +50,12 @@ export class IncidentReport {
   form!: FormGroup<IReportFilterForm>;
 
   cb_category: ISelectItem[] = [
-    { value: "", label: "Todas las categorÃ­as" },
+    { value: "", label: "Todas las categorías" },
     { value: "Conducta", label: "Conducta" },
-    { value: "Desempeno", label: "DesempeÃ±o" },
+    { value: "Desempeno", label: "Desempeño" },
     { value: "Seguridad", label: "Seguridad" },
     { value: "Asistencia", label: "Asistencia" },
-    { value: "Etica", label: "Ã‰tica" },
+    { value: "Etica", label: "Ética" },
   ];
 
   cb_severity: ISelectItem[] = [

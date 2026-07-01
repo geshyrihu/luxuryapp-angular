@@ -1,14 +1,14 @@
-﻿/**
+/**
  * ============================================================================
- * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el código.
+ * Por favor, NO rompan el c�digo.
  * ============================================================================
  */
 import { Component, inject, OnInit, signal } from "@angular/core";
@@ -20,11 +20,11 @@ import { ListboxModule } from "primeng/listbox";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
 import { TextareaModule } from "primeng/textarea";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
@@ -37,7 +37,7 @@ import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledge
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputFile,
-    CustomButton,
+    WebButtonLabel,
     TagModule,
     CardModule,
     MessageModule,

@@ -22,7 +22,7 @@
       />
       <div class="flex flex-wrap gap-1">
         @for (item of filtroEquipos; track item) {
-        <custom-button
+        <il-button
           [ngbTooltip]="'Ver ' + item.nombre"
           [iconClass]="item.icon"
           variant="outlined"
@@ -31,13 +31,13 @@
         />
         }
       </div>
-      <custom-button
+      <il-button
         iconClass="mdi:file-document-outline"
         label="Reporte de órdenes"
         (click)="onNavigateToReport()"
         variant="outlined"
       />
-      <custom-button
+      <il-button
         iconClass="mdi:table"
         label="Reporte por categoria"
         (click)="onNavigateToReportTabla()"
@@ -151,27 +151,27 @@
       </td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:printer"
             label="Imprimir soporte"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             variant="outlined"
           />
 
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:image"
             label="Cargar imagen"
             (clicked)="onModalFormUploadImg(item.id)"
             variant="outlined"
           />
 
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:paperclip"
             label="Cargar documentos"
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outlined"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onEdit({
                   id: item.id,
                   title: 'Editar',
@@ -179,7 +179,7 @@
                   providerId: item.providerId
                 })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -254,7 +254,7 @@
 
       <!-- Botón Reporte -->
       <div class="mb-2">
-        <custom-button-item
+        <il-button-item
           iconName="document-text-outline"
           label="Reporte de órdenes"
           (click)="onNavigateToReport()"
@@ -263,7 +263,7 @@
         />
       </div>
       <div class="mb-2">
-        <custom-button-item
+        <il-button-item
           iconName="grid-outline"
           label="Reporte por categoria"
           (click)="onNavigateToReportTabla()"
@@ -341,28 +341,25 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               iconName="print-outline"
               label="Imprimir soporte"
               [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-              [showLabelOnDesktop]="true"
             />
 
-            <custom-button-item
+            <il-button-item
               iconName="image-outline"
               label="Cargar imagen"
               (clicked)="onModalFormUploadImg(item.id)"
-              [showLabelOnDesktop]="true"
             />
 
-            <custom-button-item
+            <il-button-item
               iconName="ellipsis-horizontal-outline"
               label="Cargar documentos"
               (clicked)="onModalFormUploadDoc(item.id)"
               variant="outlined"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onEdit({
                     id: item.id,
                     title: 'Editar',
@@ -370,12 +367,10 @@
                     providerId: item.providerId
                     })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

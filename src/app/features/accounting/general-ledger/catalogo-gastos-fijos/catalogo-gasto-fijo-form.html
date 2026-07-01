@@ -76,8 +76,7 @@
           >Guarda primero para poder agregar Productos y Presupuesto.</p-message
         >
         } @if (id()) {
-        <custom-button
-          [showLabelOnDesktop]="true"
+        <il-button
           iconClass="mdi:dollar"
           label="Presupuesto"
           size="small"
@@ -86,8 +85,7 @@
           severity="info"
         />
 
-        <custom-button
-          [showLabelOnDesktop]="true"
+        <il-button
           iconClass="mdi:shopping"
           label="Producto | Servicio"
           size="small"
@@ -97,7 +95,7 @@
         />
 
         }
-        <custom-button-save
+        <il-button-save
           [propertyId]="id()"
           customClass="mt-0"
           [disabled]="form.invalid"

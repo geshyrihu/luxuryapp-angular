@@ -1,14 +1,13 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
@@ -31,14 +30,16 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
 @Component({
   selector: "app-agenda-supervision",
   templateUrl: "./agenda-supervision.html",
-  imports: [CustomButtonDelete, CustomButtonEdit, 
+  imports: [
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     CommonModule,
     FormsModule,
     TableModule,
     MultiSelectModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CustomButton,
+    WebButtonLabel,
     ActionMenu,
     RangoCalendarioyyyymmdd,
   ],
@@ -139,13 +140,3 @@ export class AgendaSupervision implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

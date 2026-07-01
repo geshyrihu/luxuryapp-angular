@@ -28,66 +28,52 @@
     <div
       class="flex align-items-center justify-content-end gap-2 overflow-x-auto"
     >
-      <custom-button
+      <il-button
         [iconClass]="cleanView ? 'mdi:eye-outline' : 'mdi:eye-off'"
         [label]="cleanView ? 'Mostrar vista' : 'Limpiar vista'"
-        [showLabelOnDesktop]="false"
         (clicked)="toggleCleanView()"
         severity="secondary"
         variant="outlined"
-        [tooltip]="cleanView ? 'Mostrar acciones' : 'Ocultar acciones y controles'"
         size="small"
-        tooltipPosition="left"
       />
       @if (!cleanView && cotizacionProveedorSignal().length > 1) {
-      <custom-button
+      <il-button
         iconClass="mdi:chip"
         label="AI Auditoria"
-        [showLabelOnDesktop]="false"
         (clicked)="onAnalyzeAI()"
         [disabled]="isAnalyzing"
         severity="help"
-        tooltip="Analizar con Inteligencia Artificial"
         size="small"
-        tooltipPosition="left"
       />
-      <custom-button
+      <il-button
         iconClass="mdi:chart-bar"
         label="Evaluar"
-        [showLabelOnDesktop]="false"
         (clicked)="evaluarPrecioIndependiente = !evaluarPrecioIndependiente"
         [variant]="!evaluarPrecioIndependiente ? 'outlined' : undefined"
         severity="warning"
-        tooltip="Evaluar"
         size="small"
-        tooltipPosition="left"
       />
       @if (canOptimizeProducts()) {
-      <custom-button
+      <il-button
         [iconClass]="optimizeProducts ? 'mdi:view-list' : 'mdi:table-eye-off'"
         [label]="optimizeProducts ? 'Ver detalle' : 'Optimizar'"
         (clicked)="toggleOptimizeProducts()"
         severity="info"
         variant="outlined"
-        tooltip="Compactar productos para vista ejecutiva"
         size="small"
-        tooltipPosition="left"
       />
       } } @if (!cleanView && cotizacionProveedorSignal().length < 3) {
-      <custom-button
+      <il-button
         iconClass="mdi:plus"
         label="Agregar cotizacion"
         variant="outlined"
         (clicked)="onModalAddProveedor()"
-        tooltip="Agregar Cotizacion"
-        tooltipPosition="left"
         size="small"
       />
       } @if (!cleanView) {
-      <custom-button
+      <il-button
         iconClass="mdi:wallet-outline"
         label="Agregar presupuesto"
-        [showLabelOnDesktop]="true"
         (clicked)="onOpenAddBudgetModal()"
         severity="contrast"
         variant="outlined"
@@ -101,20 +87,18 @@
         multiple
         (change)="onEvidenceFilesSelected($event)"
       />
-      <custom-button
+      <il-button
         iconClass="mdi:image-multiple"
         label="Seleccionar fotos"
-        [showLabelOnDesktop]="true"
         (clicked)="evidenceInput.click()"
         severity="secondary"
         variant="outlined"
         [disabled]="evidenciasSignal().length >= 4"
         size="small"
       />
-      <custom-button
+      <il-button
         iconClass="mdi:upload"
         label="Subir fotos"
-        [showLabelOnDesktop]="true"
         (clicked)="onUploadEvidenceFiles()"
         [disabled]="selectedEvidenceFiles.length === 0"
         severity="success"
@@ -122,10 +106,9 @@
         size="small"
       />
       }
-      <custom-button
+      <il-button
         [iconClass]="isAuthorized() ? 'mdi:close' : (isDenied() ? 'mdi:cancel' : 'mdi:check')"
         [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
-        [showLabelOnDesktop]="true"
         (clicked)="onOpenAutorizarModal()"
         [severity]="isAuthorized() ? 'danger' : (isDenied() ? 'warning' : 'success')"
         variant="outlined"
@@ -167,7 +150,7 @@
         <div class="flex align-items-center gap-2">
           <span class="font-semibold text-sm">Requiere contrato:</span>
           @if (!cleanView) {
-          <custom-button
+          <il-button
             [iconClass]="solicitudCompra?.requiereContrato ? 'mdi:file-sign' : 'mdi:file-document-outline'"
             [label]="solicitudCompra?.requiereContrato ? 'Si requiere' : 'No requiere'"
             [severity]="solicitudCompra?.requiereContrato ? 'success' : 'secondary'"
@@ -194,23 +177,21 @@
             &mdash; {{ solicitudCompra.comiteEvento.title }}
           </span>
           @if (!cleanView) {
-          <custom-button
+          <il-button
             iconClass="mdi:calendar-edit"
             label="Cambiar"
             size="small"
             severity="secondary"
             variant="text"
-            tooltip="Cambiar junta asignada"
             (clicked)="onOpenAsignarJuntaModal()"
           />
           } } @else { @if (!cleanView) {
-          <custom-button
+          <il-button
             iconClass="mdi:calendar-plus"
             label="Asignar junta"
             size="small"
             severity="info"
             variant="outlined"
-            tooltip="Seleccionar la junta donde se presentara esta solicitud"
             (clicked)="onOpenAsignarJuntaModal()"
           />
           } @else {
@@ -260,14 +241,12 @@
                   {{ evidencia.isPending ? "Pendiente de carga" : "Guardada" }}
                 </small>
                 @if (!cleanView && !evidencia.isPending) {
-                <custom-button
+                <il-button
                   iconClass="mdi:delete"
                   label="Eliminar"
-                  [showLabelOnDesktop]="false"
                   (clicked)="onDeleteEvidence(evidencia.id)"
                   severity="danger"
                   variant="text"
-                  tooltip="Eliminar foto"
                 />
                 }
               </div>
@@ -427,7 +406,7 @@
         [style.width.%]="50 / cotizacionProveedorSignal().length"
       >
         @if (proveedor.filePath) {
-        <custom-button-view-pdf [url]="proveedor.filePath" pdf="Cotizacion" />
+        <il-button-view-pdf [url]="proveedor.filePath" pdf="Cotizacion" />
         }
       </td>
       }
@@ -480,13 +459,11 @@
         </td>
         <td class="text-center">
           @if (!cleanView) {
-          <custom-button
+          <il-button
             iconClass="mdi:delete"
-            [showLabelOnDesktop]="false"
             (clicked)="onDeleteBudget(budget.id)"
             severity="danger"
             variant="text"
-            tooltip="Eliminar presupuesto"
             size="small"
           />
           }
@@ -524,14 +501,14 @@
 
   <ng-template #footer>
     <div class="flex justify-content-end gap-2">
-      <custom-button
+      <il-button
         label="Cancelar"
         severity="secondary"
         variant="outlined"
         size="small"
         (clicked)="onCancelAddBudgetModal()"
       />
-      <custom-button
+      <il-button
         label="Continuar"
         iconClass="mdi:arrow-right"
         severity="contrast"
@@ -560,7 +537,7 @@
 
   <ng-template #footer>
     <div class="flex justify-content-end pt-3">
-      <custom-button
+      <il-button
         label="Cerrar Reporte"
         icon="mdi:check"
         (clicked)="showAiModal=false"

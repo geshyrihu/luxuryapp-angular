@@ -137,7 +137,7 @@
       AspRole.SuperUsuario, ]) ) {
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -148,7 +148,7 @@
                 "
           />
 
-          <custom-button-item
+          <il-button-item
             (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -160,7 +160,7 @@
             label="Duplicar"
             iconClass="mdi:content-copy"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             [isLinked]="item.hasServiceOrder"
           />
@@ -260,7 +260,7 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -270,9 +270,8 @@
                   })
                 "
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -283,13 +282,11 @@
                 "
               label="Duplicar"
               iconName="document-text-outline"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               [isLinked]="item.hasServiceOrder"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

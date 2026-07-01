@@ -39,22 +39,20 @@
       <td>{{ item.folio }}</td>
       <td>{{ item.name | uppercase }}</td>
       <td class="text-center">
-        <custom-button-view-pdf [url]="item.path" fileName="Formato" />
+        <il-button-view-pdf [url]="item.path" fileName="Formato" />
       </td>
       <!-- Opciones -->
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>
@@ -110,15 +108,13 @@
         <p>Folio: {{ item.folio }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit
+        <il-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
-          [showLabelOnDesktop]="true"
         />
-        <custom-button-delete
+        <il-button-delete
           (confirmed)="onDelete(item.id)"
           label="Eliminar"
-          [showLabelOnDesktop]="true"
         />
       </app-action-menu>
     </ion-item>

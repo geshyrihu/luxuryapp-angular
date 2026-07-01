@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -9,10 +9,10 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -36,7 +36,7 @@ interface IDocumentoPersonalizadoForm {
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputFile,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./documento-personalizado-form.html",
 })
@@ -95,7 +95,7 @@ export class DocumentoPersonalizadoForm implements OnInit {
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
-    // ValidaciÃ³n para creaciÃ³n: archivo es obligatorio
+    // Validación para creación: archivo es obligatorio
     if (this.id === "" && !this.file) {
       this.fileError = true;
       return;

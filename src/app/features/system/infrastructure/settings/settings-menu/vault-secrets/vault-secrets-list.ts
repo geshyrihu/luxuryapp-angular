@@ -1,12 +1,14 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -20,8 +22,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { VaultSecretSummary } from "./vault-secret.model";
 import { VaultSecretForm } from "./vault-secret-form";
+import { VaultSecretSummary } from "./vault-secret.model";
 
 @Component({
   selector: "app-vault-secrets-list",
@@ -30,9 +32,11 @@ import { VaultSecretForm } from "./vault-secret-form";
     EmptyState,
     DatePipe,
     TableModule,
-    CustomButton,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -45,7 +49,9 @@ export class VaultSecretsList {
   tableScrollHeightS = inject(TableScrollHeightService);
   aspRoleS = inject(AspRoleService);
 
-  readonly isSuperUsuario = this.aspRoleS.roleSignal(EApplicationRole.SuperUsuario);
+  readonly isSuperUsuario = this.aspRoleS.roleSignal(
+    EApplicationRole.SuperUsuario,
+  );
 
   dataSignal = signal<VaultSecretSummary[]>([]);
   loading = signal(true);
@@ -72,7 +78,12 @@ export class VaultSecretsList {
 
   onModalAddForm(): void {
     this.dialogHandlerS
-      .openDialog(VaultSecretForm, {}, "Nuevo Secreto", this.dialogHandlerS.sizeLg)
+      .openDialog(
+        VaultSecretForm,
+        {},
+        "Nuevo Secreto",
+        this.dialogHandlerS.sizeLg,
+      )
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -107,4 +118,3 @@ export class VaultSecretsList {
       });
   }
 }
-

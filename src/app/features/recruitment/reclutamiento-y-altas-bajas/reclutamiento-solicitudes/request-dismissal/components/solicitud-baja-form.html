@@ -188,7 +188,7 @@
                 </strong>
 
                 <div class="flex-shrink-0">
-                  <custom-button
+                  <il-button
                     icon="plus"
                     label="Agregar descuento"
                     customClass="p-button-danger p-button-outlined"
@@ -241,7 +241,7 @@
                       </div>
                     </div>
                     <div class="col-12 md:col-2">
-                      <custom-button
+                      <il-button
                         label="Borrar"
                         variant="outlined"
                         severity="danger"
@@ -329,7 +329,7 @@
       </div>
     </div>
     <div class="flex justify-content-end mt-4">
-      <custom-button-save
+      <il-button-save
         label="Solicitar baja"
         [disabled]="form.invalid || this.filesControl.status === 'INVALID' || (tipobaja() == 3 && hasEvaluations === false)"
         [submitting]="submitting()"

@@ -31,7 +31,7 @@
             class="w-full"
           />
         </div>
-        <custom-button
+        <il-button
           label="Buscar Deuda"
           iconClass="mdi:magnify"
           (clicked)="searchPendingCharges()"
@@ -142,7 +142,7 @@
             }
 
             <div class="pt-4 flex flex-column">
-              <custom-button-save
+              <il-button-save
                 [disabled]="form.invalid || submitting() || (totalSelectedToApply() > form.controls.amount.value)"
                 label="Generar Recibo y Asignar"
                 class="w-full"

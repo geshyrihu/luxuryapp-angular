@@ -1,15 +1,15 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { EquipmentQrResolveDTO } from "./equipment-inspection.models";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
+import { EquipmentQrResolveDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
 @Component({
   selector: "app-equipment-inspection-qr-entry",
   templateUrl: "./equipment-inspection-qr-entry.html",
-  imports: [CommonModule, CustomButton, EquipmentInspectionExecutionForm],
+  imports: [CommonModule, WebButtonLabel, EquipmentInspectionExecutionForm],
 })
 export class EquipmentInspectionQrEntry implements OnInit {
   private route = inject(ActivatedRoute);
@@ -50,5 +50,3 @@ export class EquipmentInspectionQrEntry implements OnInit {
     this.router.navigateByUrl("/inventory/areas-equipment");
   }
 }
-
-

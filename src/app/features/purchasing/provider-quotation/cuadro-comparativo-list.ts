@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   effect,
@@ -15,8 +15,8 @@ import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -39,8 +39,8 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
     TableModule,
     DividerModule,
     ImageModule,
-    CustomButton,
-    CustomButtonViewPdf,
+    WebButtonLabel,
+    WebButtonLabelViewPdf,
     DialogModule,
   ],
 })
@@ -850,4 +850,3 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       });
   }
 }
-

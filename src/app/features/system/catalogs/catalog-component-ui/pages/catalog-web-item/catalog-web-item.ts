@@ -43,16 +43,6 @@ import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import {
-  CustomInputCheckSignal,
-  CustomInputCurrencySignal,
-  CustomInputDateSignal,
-  CustomInputMultiselectSignal,
-  CustomInputNumberSignal,
-  CustomInputSelectSignal,
-  CustomInputTextSignal,
-} from "src/app/core/components/inputs/web";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import {
   CustomButton,
   CustomButtonAdd,
   CustomButtonConfirm,
@@ -62,7 +52,17 @@ import {
   CustomButtonSave,
   CustomButtonSendEmail,
   CustomButtonViewPdf,
-} from "src/app/core/components/web/buttons";
+} from "src/app/core/components/buttons/legacy/buttons";
+import {
+  CustomInputCheckSignal,
+  CustomInputCurrencySignal,
+  CustomInputDateSignal,
+  CustomInputMultiselectSignal,
+  CustomInputNumberSignal,
+  CustomInputSelectSignal,
+  CustomInputTextSignal,
+} from "src/app/core/components/inputs/web";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 const WEB_ITEM_LABELS: Record<string, string> = {
   accordion: "Accordion",
@@ -167,26 +167,26 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           <p-card header="Accordion - p-accordion">
             <p-accordion>
               <p-accordion-panel value="0">
-                <p-accordion-header>Sección 1</p-accordion-header>
+                <p-accordion-header>Secciï¿½n 1</p-accordion-header>
                 <p-accordion-content
                   ><p class="m-0">
-                    Contenido de la primera sección.
+                    Contenido de la primera secciï¿½n.
                   </p></p-accordion-content
                 >
               </p-accordion-panel>
               <p-accordion-panel value="1">
-                <p-accordion-header>Sección 2</p-accordion-header>
+                <p-accordion-header>Secciï¿½n 2</p-accordion-header>
                 <p-accordion-content
                   ><p class="m-0">
-                    Contenido de la segunda sección.
+                    Contenido de la segunda secciï¿½n.
                   </p></p-accordion-content
                 >
               </p-accordion-panel>
               <p-accordion-panel value="2">
-                <p-accordion-header>Sección 3</p-accordion-header>
+                <p-accordion-header>Secciï¿½n 3</p-accordion-header>
                 <p-accordion-content
                   ><p class="m-0">
-                    Contenido de la tercera sección.
+                    Contenido de la tercera secciï¿½n.
                   </p></p-accordion-content
                 >
               </p-accordion-panel>
@@ -211,7 +211,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               [model]="[
                 { label: 'Inicio' },
                 { label: 'Sistema' },
-                { label: 'Catálogos' },
+                { label: 'Catï¿½logos' },
                 { label: 'Proveedores' },
               ]"
               [home]="{ icon: 'mdi:home' }"
@@ -243,10 +243,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             <p-card header="Action Buttons (Custom) - custom-button-*">
               <p class="text-sm text-secondary m-0 mb-3">
                 Usalos para acciones ERP: guardar, editar, eliminar, descargar,
-                etc. Funcionan en web y mobile automáticamente.
+                etc. Funcionan en web y mobile automï¿½ticamente.
               </p>
               <div class="flex flex-wrap gap-2">
-                <custom-button label="Genérico" />
+                <custom-button label="Genï¿½rico" />
                 <custom-button-add label="Crear" />
                 <custom-button-edit label="Editar" />
                 <custom-button-save label="Guardar" />
@@ -263,10 +263,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             <p-card header="Icon Button con borde - patron shell/layout">
               <p class="text-sm text-secondary m-0 mb-3">
                 Para botones de shell (sidebar toggle, header actions) que
-                requieren un aspecto específico con borde y tamaño fijo, usa
+                requieren un aspecto especï¿½fico con borde y tamaï¿½o fijo, usa
                 <code>&lt;button class="ds-icon-btn"&gt;</code> con tokens DS en
                 el SCSS. No uses <code>p-button</code> - sus variantes
-                cromáticas entran en conflicto con el estilo propio del botón.
+                cromï¿½ticas entran en conflicto con el estilo propio del botï¿½n.
               </p>
 
               <!-- Ejemplo visual -->
@@ -643,7 +643,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               pTextarea
               rows="4"
               [(ngModel)]="textAreaVal"
-              placeholder="Escribe aquí..."
+              placeholder="Escribe aquï¿½..."
               class="w-full"
             ></textarea>
           </p-card>

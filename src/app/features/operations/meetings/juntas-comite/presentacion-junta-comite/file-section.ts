@@ -1,10 +1,10 @@
-﻿import { Component, input, output } from "@angular/core";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { Component, input, output } from "@angular/core";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 @Component({
   selector: "app-file-section",
   templateUrl: "./file-section.html",
-  imports: [CustomButtonViewPdf, CustomButton],
+  imports: [WebButtonLabelViewPdf, WebButtonLabel],
 })
 export class FileSection {
   title = input<string>();
@@ -19,13 +19,3 @@ export class FileSection {
   onDelete = output<void>();
   onUpload = output<void>();
 }
-
-
-
-
-
-
-
-
-
-

@@ -96,13 +96,13 @@
           <div class="flex align-items-center gap-2">
             @if (item.investigationStatus === 'Reportado' ||
             item.investigationStatus === 'EnInvestigacion') {
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:check-circle"
               label="Resolver"
               (click)="onResolve(item)"
             />
-            <custom-button-edit (click)="onEdit(item)" />
-            <custom-button-item
+            <il-button-edit (click)="onEdit(item)" />
+            <il-button-item
               iconClass="mdi:close-circle"
               label="Cancelar"
               (click)="onCancel(item)"
@@ -110,14 +110,14 @@
             }
 
             <!-- Generar y descargar acta para firma física -->
-            <custom-button-download
+            <il-button-download
               iconClass="mdi:file-edit"
               size="small"
               (clicked)="onGenerateAct(item)"
             />
 
             <!-- Subir acta firmada escaneada -->
-            <custom-button-item
+            <il-button-item
               iconClass="mdi:upload"
               [label]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
               (click)="onUploadSignedAct(item)"
@@ -125,7 +125,7 @@
 
             <!-- Ver acta firmada en visor — solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
-            <custom-button-view-pdf
+            <il-button-view-pdf
               iconClass="mdi:file-pdf-box"
               [url]="item.administrativeActPdfUrl"
               fileName="Acta Administrativa"
@@ -134,7 +134,7 @@
             />
             }
 
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <il-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
@@ -210,17 +210,15 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               label="Resolver"
               iconName="checkmark-circle-outline"
               (clicked)="onResolve(item)"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

@@ -1,14 +1,14 @@
-﻿/**
+/**
  * ============================================================================
- * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este m�dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l�gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci�n expl�cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el código.
+ * Por favor, NO rompan el c�digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -18,8 +18,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { RippleModule } from "primeng/ripple";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAvailableAccountDTO } from "./models/IAvailableAccountDto";
 
@@ -33,7 +33,7 @@ interface ISearchForm {
     CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
-    CustomButton,
+    WebButtonLabel,
     MessageModule,
     RippleModule,
   ],
@@ -47,14 +47,14 @@ export class AccountModalAdd implements OnInit {
   loading = signal(true);
   availableAccounts = signal<IAvailableAccountDTO[]>([]);
   filteredAccounts = signal<IAvailableAccountDTO[]>([]);
-  selectedAccounts = signal<string[]>([]); // Para selección móltiple
+  selectedAccounts = signal<string[]>([]); // Para selecci�n m�ltiple
   errorMensaje: string | null = null;
 
   customerId: string = this.config.data.customerId;
   fiscalYear: number = this.config.data.fiscalYear;
   proposalId: string = this.config.data.proposalId;
 
-  // Definición estricta del formulario
+  // Definici�n estricta del formulario
   searchForm = new FormGroup<ISearchForm>({
     searchTerm: new FormControl<string>("", { nonNullable: true }),
   });

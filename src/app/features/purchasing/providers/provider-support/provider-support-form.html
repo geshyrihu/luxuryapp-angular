@@ -1,4 +1,4 @@
-﻿<div class="grid">
+<div class="grid">
   <div>
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       @if(cb_providers().length == 0){
@@ -60,7 +60,7 @@
       }
 
       <div class="text-center mt-3">
-        <custom-button-save
+        <il-button-save
           [propertyId]="id"
           [disabled]="form.invalid"
           [loading]="submitting()"

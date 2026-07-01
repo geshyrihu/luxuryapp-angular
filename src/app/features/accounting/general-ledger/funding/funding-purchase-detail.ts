@@ -1,17 +1,17 @@
-ï»¿import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
+import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-funding-purchase-detail",
-  imports: [CommonModule, CustomButton, CurrencyPipe, DecimalPipe],
+  imports: [CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe],
   templateUrl: "./funding-purchase-detail.html",
 })
 export class FundingPurchaseDetail {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
-  // El tipo 'any' es por simplicidad, idealmente aquÃ­ irÃ­a la interfaz del DTO
+  // El tipo 'any' es por simplicidad, idealmente aquí iría la interfaz del DTO
   data = signal<any>(null);
   ordenCompraId: string = "";
   submitting = signal(false);
@@ -31,13 +31,3 @@ export class FundingPurchaseDetail {
     window.print();
   }
 }
-
-
-
-
-
-
-
-
-
-

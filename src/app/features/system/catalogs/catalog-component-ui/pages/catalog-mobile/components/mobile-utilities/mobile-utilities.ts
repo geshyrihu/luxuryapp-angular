@@ -1,8 +1,16 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonBadge, IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
+import {
+  IonBadge,
+  IonItem,
+  IonLabel,
+  IonList,
+} from "@ionic/angular/standalone";
+import {
+  IonButtonDelete,
+  IonButtonEdit,
+} from "src/app/core/components/buttons/legacy/buttons-mobiil";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/mobile/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
@@ -28,12 +36,16 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
       <div class="mobile-card-body flex flex-column gap-4">
         <div>
           <div class="section-label">Action Menu</div>
-          <p class="section-desc">Menu contextual reutilizable para listas y tarjetas mobile.</p>
+          <p class="section-desc">
+            Menu contextual reutilizable para listas y tarjetas mobile.
+          </p>
           <div class="utility-surface">
             <div class="utility-row">
               <div>
                 <strong class="utility-title">Solicitud SC-2026-041</strong>
-                <div class="utility-subtitle">Opciones rapidas para una fila mobile</div>
+                <div class="utility-subtitle">
+                  Opciones rapidas para una fila mobile
+                </div>
               </div>
               <app-action-menu>
                 <ion-button-edit label="Editar" />
@@ -45,7 +57,9 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
         <div>
           <div class="section-label">Data View Mobile</div>
-          <p class="section-desc">Vista maestra para listados mobile con template proyectado.</p>
+          <p class="section-desc">
+            Vista maestra para listados mobile con template proyectado.
+          </p>
           <div class="utility-frame">
             <app-data-view-mobile
               [data]="utilityRows"
@@ -62,7 +76,9 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                         <strong class="utility-title">{{ item.title }}</strong>
                         <div class="utility-subtitle">{{ item.folio }}</div>
                       </div>
-                      <ion-badge [color]="item.badgeColor">{{ item.status }}</ion-badge>
+                      <ion-badge [color]="item.badgeColor">{{
+                        item.status
+                      }}</ion-badge>
                     </div>
                   </ion-label>
                 </ion-item>
@@ -74,12 +90,14 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <div>
           <div class="section-label">Tap To Top</div>
           <p class="section-desc">
-            Boton flotante para volver al inicio. En esta pantalla ya esta montado y aparece cuando haces scroll suficiente.
+            Boton flotante para volver al inicio. En esta pantalla ya esta
+            montado y aparece cuando haces scroll suficiente.
           </p>
           <div class="utility-surface utility-surface--muted">
             <strong class="utility-title">Componente activo en vivo</strong>
             <div class="utility-subtitle">
-              Desplazate dentro del catalogo mobile y veras el boton flotante en la esquina.
+              Desplazate dentro del catalogo mobile y veras el boton flotante en
+              la esquina.
             </div>
           </div>
           <app-tap-to-top />
@@ -156,4 +174,3 @@ export class MobileUtilities {
     },
   ];
 }
-

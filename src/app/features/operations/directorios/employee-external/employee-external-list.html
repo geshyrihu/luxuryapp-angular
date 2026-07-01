@@ -21,7 +21,7 @@
         />
       </div>
       <div class="col-12 sm:col-2">
-        <custom-button-active-desactive
+        <il-button-active-desactive
           [state]="activo"
           (stateChange)="onSelectActive($event)"
         />
@@ -76,15 +76,15 @@
       <td>{{ item.personalEmail }}</td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ userId: item.applicationUserId, title: 'Editar' })"
           />
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:account"
             label="Usuario App"
             (clicked)="onModalUserApp(item.applicationUserId)"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -138,21 +138,18 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-item
+          <il-button-item
             iconName="person-outline"
             label="Usuario App"
             (clicked)="onModalUserApp(item.applicationUserId)"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

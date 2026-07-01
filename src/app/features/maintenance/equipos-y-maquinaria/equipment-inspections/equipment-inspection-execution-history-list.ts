@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -11,7 +11,7 @@ import {
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
@@ -19,9 +19,9 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EquipmentInspectionExecutionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionExecutionDetail } from "./equipment-inspection-execution-detail";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
+import { EquipmentInspectionExecutionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
 @Component({
@@ -31,7 +31,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
     CommonModule,
     TableModule,
     Tag,
-    CustomButtonItem,
+    WebButtonLabelItem,
     PrimeNgCustomCaption,
   ],
 })
@@ -129,5 +129,3 @@ export class EquipmentInspectionExecutionHistoryList implements OnInit {
     return this.equipmentInspectionS.getSeverityTag(severity);
   }
 }
-
-

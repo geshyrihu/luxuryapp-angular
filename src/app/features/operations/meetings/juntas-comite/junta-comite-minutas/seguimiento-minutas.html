@@ -29,28 +29,28 @@
 
       <!-- LADO DERECHO: Filtros, Acciones y Toggles -->
       <div class="flex flex-column sm:flex-row align-items-center gap-1">
-        <custom-button
+        <il-button
           label="Pendientes"
           [severity]="statusFiltro == 0 ? 'primary' : 'info'"
           [variant]="statusFiltro != 0 ? 'ghost-text' : null"
           size="sm"
           (clicked)="onFiltrarData(0)"
         />
-        <custom-button
+        <il-button
           label="Concluidos"
           [severity]="statusFiltro == 1 ? 'primary' : 'info'"
           [variant]="statusFiltro != 1 ? 'ghost-text' : null"
           size="sm"
           (clicked)="onFiltrarData(1)"
         />
-        <custom-button
+        <il-button
           label="No Autorizados"
           [severity]="statusFiltro == 2 ? 'primary' : 'info'"
           [variant]="statusFiltro != 2 ? 'ghost-text' : null"
           size="sm"
           (clicked)="onFiltrarData(2)"
         />
-        <custom-button
+        <il-button
           label="Todos"
           [severity]="statusFiltro == 4 ? 'primary' : 'info'"
           [variant]="statusFiltro != 4 ? 'ghost-text' : null"
@@ -137,19 +137,17 @@
       <td style="width: 3%" class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Ver todos los seguimientos"
               iconClass="mdi:format-list-bulleted"
               (clicked)="onModalTodosSeguimientos(item.id)"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               label="Agregar Seguimiento"
               iconClass="mdi:plus-circle"
               (clicked)="onModalFormSeguimiento(item.id, 0)"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               label="Editar"
               iconClass="mdi:pencil"
               (clicked)="
@@ -158,7 +156,6 @@
                   header: 'Editar Asunto'
                 })
               "
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>
@@ -186,28 +183,28 @@
 <app-data-view-mobile [dt]="dt" [data]="dataSignal()" [showAdd]="false">
   <div customFilters>
     <div class="flex flex-wrap gap-1 p-2">
-      <custom-button
+      <il-button
         label="Pendientes"
         [severity]="statusFiltro == 0 ? 'primary' : 'info'"
         [variant]="statusFiltro != 0 ? 'ghost-text' : null"
         size="sm"
         (clicked)="onFiltrarData(0)"
       />
-      <custom-button
+      <il-button
         label="Concluidos"
         [severity]="statusFiltro == 1 ? 'primary' : 'info'"
         [variant]="statusFiltro != 1 ? 'ghost-text' : null"
         size="sm"
         (clicked)="onFiltrarData(1)"
       />
-      <custom-button
+      <il-button
         label="No Autorizados"
         [severity]="statusFiltro == 2 ? 'primary' : 'info'"
         [variant]="statusFiltro != 2 ? 'ghost-text' : null"
         size="sm"
         (clicked)="onFiltrarData(2)"
       />
-      <custom-button
+      <il-button
         label="Todos"
         [severity]="statusFiltro == 4 ? 'primary' : 'info'"
         [variant]="statusFiltro != 4 ? 'ghost-text' : null"
@@ -264,25 +261,22 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-item
+          <il-button-item
             label="Ver seguimientos"
             iconName="list-outline"
             (clicked)="onModalTodosSeguimientos(item.id)"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-item
+          <il-button-item
             label="Agregar Seguimiento"
             iconName="add-circle-outline"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-item
+          <il-button-item
             label="Editar"
             iconName="create-outline"
             (clicked)="
               onModalFormMinutaDetalle({ id: item.id, header: 'Editar Asunto' })
             "
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

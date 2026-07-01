@@ -36,7 +36,7 @@
       <td class="text-center">{{ item.completedItems }}</td>
       <td><span [class]="statusClass(item.status)">{{ item.status }}</span></td>
       <td>
-        <custom-button-item
+        <il-button-item
           label="Detalle"
           (clicked)="onViewDetail(item.id)"
           tooltip="Ver detalle del ciclo"
@@ -98,10 +98,9 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Ver Detalle"
               (clicked)="onViewDetail(item.id)"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

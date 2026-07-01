@@ -1,4 +1,4 @@
-﻿import {
+import {
   Component,
   ElementRef,
   HostListener,
@@ -7,15 +7,16 @@
   viewChild,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 
 @Component({
   selector: "app-digital-signature",
-  imports: [FormsModule, CustomButton],
+  imports: [FormsModule, WebButtonLabel],
   templateUrl: "./digital-signature.html",
 })
 export class DigitalSignatureComponent {
-  canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>("signatureCanvas");
+  canvasRef =
+    viewChild.required<ElementRef<HTMLCanvasElement>>("signatureCanvas");
 
   signatureSaved = output<string>();
   canvasWidth = 400;
@@ -117,4 +118,3 @@ export class DigitalSignatureComponent {
     this.signatureSaved.emit(dataUrl);
   }
 }
-

@@ -136,7 +136,7 @@
               <div class="flex gap-1 ml-2">
                 @for (filtro of filtroEquipos; track trackByFiltro($index,
                 filtro)) {
-                <custom-button-item
+                <il-button-item
                   [iconClass]="getFiltroIconClass(filtro.emoji)"
                   [tooltip]="'Ver ' + filtro.nombre"
                   tooltipPosition="bottom"

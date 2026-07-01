@@ -71,7 +71,7 @@
 
             <!-- Action Icons Group -->
             <app-action-icons-group>
-              <custom-button
+              <il-button
                 iconClass="mdi:camera"
                 severity="secondary"
                 variant="ghost-text"
@@ -79,7 +79,7 @@
                 ngbTooltip="Diagnóstico Visual"
                 (clicked)="openVision()"
               />
-              <custom-button
+              <il-button
                 iconClass="mdi:sparkles"
                 severity="help"
                 variant="ghost-text"
@@ -89,7 +89,7 @@
               />
               @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
               <div class="border-left-1 surface-border h-1rem mx-1"></div>
-              <custom-button
+              <il-button
                 iconClass="mdi:email-outline"
                 severity="danger"
                 variant="ghost-text"

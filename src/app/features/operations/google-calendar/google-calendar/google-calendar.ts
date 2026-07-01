@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -17,13 +16,14 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -76,13 +76,13 @@ interface IGoogleCalendarEventListItem {
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
-    CustomButton,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     IonItem,
     IonLabel,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
   ],
 })
 export class GoogleCalendar {
@@ -347,7 +347,9 @@ export class GoogleCalendar {
     return "Pendiente de sincronizar";
   }
 
-  getStatusSeverity(item: IGoogleCalendarEventListItem): "success" | "info" | "warn" | "secondary" {
+  getStatusSeverity(
+    item: IGoogleCalendarEventListItem,
+  ): "success" | "info" | "warn" | "secondary" {
     const label = this.getStatusLabel(item);
     if (label === "Sincronizado con Google") return "success";
     if (label === "Solo local (historico)") return "info";
@@ -395,4 +397,3 @@ export class GoogleCalendar {
     return this.dateS.parseDate(normalized) ?? null;
   }
 }
-

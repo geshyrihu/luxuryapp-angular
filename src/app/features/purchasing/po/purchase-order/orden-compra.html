@@ -35,7 +35,7 @@
           ({{oc.folioSolicitudCompra}}) pero no estó vinculada
           formalmente.</span
         >
-        <custom-button
+        <il-button
           label="Vincular Ahora"
           size="sm"
           variant="ghost-text"
@@ -101,7 +101,7 @@
 <!-- Colocar en esta zoan el boton para agregar facturas -->
 @if (ordenCompra(); as oc) {
 <div class="flex justify-content-end mb-2">
-  <custom-button
+  <il-button
     label="Administrar Facturas"
     iconClass="mdi:cog"
     severity="secondary"
@@ -178,10 +178,10 @@
           <td>{{ item.amount | number: '1.2-2' }}</td>
           <td>
             <div class="flex">
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModalEditarPresupuestoUtilizado(item.id)"
               />
-              <custom-button-delete
+              <il-button-delete
                 (confirmed)="onDeleteOrdenCompraPresupuesto(item.id)"
               />
             </div>
@@ -209,31 +209,28 @@
     <p-card styleClass="p-0">
       <div class="flex flex-column">
         @if (solicitudCompraId() > 0) {
-        <custom-button-item
+        <il-button-item
           iconClass="mdi:dollar"
           label="Cuadro Comparativo"
           [routerLink]="['//purchases/cuadro-comparativo/', solicitudCompraId()]"
           variant="text"
           customClass="w-full justify-content-start"
-          [showLabelOnDesktop]="true"
         />
         } @if (isAuthorized()) {
-        <custom-button-item
+        <il-button-item
           iconClass="mdi:cart"
           label="Orden de Compra"
           (click)="onDownloadOrdenCompraPdf()"
           variant="text"
           customClass="w-full justify-content-start"
-          [showLabelOnDesktop]="true"
         />
 
-        <custom-button-item
+        <il-button-item
           iconClass="mdi:wallet"
           label="Solicitud de Pago"
           (click)="onDownloadSolicitudPagoPdf()"
           variant="text"
           customClass="w-full justify-content-start"
-          [showLabelOnDesktop]="true"
         />
         }
       </div>
@@ -321,8 +318,8 @@
       <td>
         @if (canEditBudget()) {
         <div class="flex">
-          <custom-button-edit (clicked)="onModalEditarDetalle(item)" />
-          <custom-button-delete (confirmed)="onDeleteProduct(item.id)" />
+          <il-button-edit (clicked)="onModalEditarDetalle(item)" />
+          <il-button-delete (confirmed)="onDeleteProduct(item.id)" />
         </div>
         }
       </td>

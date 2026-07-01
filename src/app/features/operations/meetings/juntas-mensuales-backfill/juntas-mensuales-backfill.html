@@ -34,7 +34,7 @@
             />
           </label>
 
-          <custom-button
+          <il-button
             label="Actualizar vista previa"
             icon="mdi:refresh"
             [loading]="loading()"
@@ -181,7 +181,7 @@
                   <span>Vincular minuta</span>
                 </label>
 
-                <custom-button-confirm
+                <il-button-confirm
                   label="Aplicar sugerencias"
                   icon="mdi:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"

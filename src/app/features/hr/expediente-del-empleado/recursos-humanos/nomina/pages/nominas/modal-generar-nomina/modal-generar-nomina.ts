@@ -1,9 +1,9 @@
-﻿import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -18,7 +18,7 @@ import { PeriodoNominaDTO } from "../../../interfaces/periodo-nomina.interface";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./modal-generar-nomina.html",
 })

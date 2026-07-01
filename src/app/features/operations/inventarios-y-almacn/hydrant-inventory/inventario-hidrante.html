@@ -14,33 +14,30 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <custom-button-item
+        <il-button-item
           (clicked)="onOpenScanner()"
           [iconClass]="'mdi:qrcode'"
           tooltip="Escanear QR"
         />
-        <custom-button-download
+        <il-button-download
           (clicked)="onDownloadAllQr()"
           label="QR"
           tooltip="Descargar todos los QR"
         />
-        <custom-button-item
+        <il-button-item
           (clicked)="onViewPeriodos()"
           label="Periodos"
           tooltip="Configurar periodos de inspección"
-          [showLabelOnDesktop]="true"
         />
-        <custom-button-download
+        <il-button-download
           (clicked)="downloadTemplate()"
           label="Plantilla"
           tooltip="Descargar plantilla Excel"
-          [showLabelOnDesktop]="true"
         />
-        <custom-button-download
+        <il-button-download
           (clicked)="fileInput.click()"
           label="Importar"
           tooltip="Importar desde Excel"
-          [showLabelOnDesktop]="true"
         />
         <input
           type="file"
@@ -92,19 +89,19 @@
       <td><small>{{ item.location }}</small></td>
       <td>
         <div class="flex">
-          <custom-button-item
+          <il-button-item
             (clicked)="onViewHistory(item)"
             tooltip="Ver historial de inspecciones"
             [iconClass]="'mdi:format-list-bulleted'"
           />
-          <custom-button-download
+          <il-button-download
             (clicked)="onDownloadQr(item)"
             tooltip="Descargar QR"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -180,26 +177,22 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-item
+          <il-button-item
             (clicked)="onViewHistory(item)"
             label="Historial"
             iconName="list-outline"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-download
+          <il-button-download
             (clicked)="onDownloadQr(item)"
             label="QR"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

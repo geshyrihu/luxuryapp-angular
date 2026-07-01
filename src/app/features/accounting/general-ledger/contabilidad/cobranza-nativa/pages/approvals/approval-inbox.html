@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -47,7 +47,7 @@
         </td>
         <td class="text-center">
           @if (item.status === EFinancialApprovalStatus.Pendiente) {
-          <custom-button
+          <il-button
             label="Revisar"
             iconClass="mdi:eye-outline"
             size="small"
@@ -65,7 +65,7 @@
           <app-empty-state
             icon="mdi:inbox-arrow-down"
             title="Sin pendientes"
-            message="No hay solicitudes pendientes de aprobación."
+            message="No hay solicitudes pendientes de aprobaci�n."
           />
         </td>
       </tr>
@@ -100,10 +100,9 @@
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="openDetail(item)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

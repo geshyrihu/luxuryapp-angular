@@ -61,10 +61,10 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Conocimiento' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id!)" />
+          <iw-button-delete (confirmed)="onDelete(item.id!)" />
         </div>
       </td>
       <!-- Opciones -->
@@ -75,8 +75,8 @@
       <td colspan="6">
         <app-empty-state
           icon="mdi:brain"
-          title="Sin artículos"
-          message="No hay artículos de conocimiento registrados."
+          title="Sin artï¿½culos"
+          message="No hay artï¿½culos de conocimiento registrados."
         />
       </td>
     </tr>
@@ -86,7 +86,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: 0, title: 'Nuevo Conocimiento' })"
@@ -121,15 +121,13 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id!)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

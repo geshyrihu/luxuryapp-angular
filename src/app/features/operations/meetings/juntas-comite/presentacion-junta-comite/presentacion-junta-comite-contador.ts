@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationService } from "primeng/api";
@@ -6,15 +6,15 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { FieldsetModule } from "primeng/fieldset";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
-  CustomButtonConfirm,
-  CustomButtonViewPdf,
-} from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+  WebButtonLabelConfirm,
+  WebButtonLabelViewPdf,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -32,17 +32,17 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
   templateUrl: "./presentacion-junta-comite-contador.html",
   imports: [
     CommonModule,
-    CustomButton,
+    WebButtonLabel,
     NgbTooltipModule,
     TagModule,
     FieldsetModule,
     DataViewMobile,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonViewPdf,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelViewPdf,
     CardModule,
-    CustomButtonConfirm,
-    CustomButtonViewPdf,
+    WebButtonLabelConfirm,
+    WebButtonLabelViewPdf,
     AppIcon,
   ],
 })
@@ -219,4 +219,3 @@ export interface PresentacionJuntaComiteDTO {
   enviadoComite: boolean;
   idAnterior: number;
 }
-

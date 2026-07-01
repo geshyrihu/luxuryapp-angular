@@ -1,11 +1,11 @@
-ï»¿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AccordionModule } from "primeng/accordion";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 interface RouteEntry {
   path: string;
@@ -30,8 +30,9 @@ interface FrontendRoute {
     AccordionModule,
     TagModule,
     DividerModule,
-    CustomButton,
-   AppIcon],
+    WebButtonLabel,
+    AppIcon,
+  ],
   templateUrl: "./report-guide.html",
 })
 export class ReportGuide {
@@ -42,7 +43,7 @@ export class ReportGuide {
       path: "/contabilidad/reportes",
       component: "ReportCatalog",
       description:
-        'CatÃ¡logo de reportes del cliente. Lista "Mis Reportes" y "Plantillas". Permite crear, editar, ver y eliminar reportes.',
+        'Catálogo de reportes del cliente. Lista "Mis Reportes" y "Plantillas". Permite crear, editar, ver y eliminar reportes.',
     },
     {
       path: "/contabilidad/reportes/nuevo",
@@ -54,18 +55,18 @@ export class ReportGuide {
       path: "/contabilidad/reportes/editar/:id",
       component: "ReportBuilder",
       description:
-        "EdiciÃ³n de reporte existente. Carga la definiciÃ³n del reporte por ID y permite modificarla.",
+        "Edición de reporte existente. Carga la definición del reporte por ID y permite modificarla.",
     },
     {
       path: "/contabilidad/reportes/ver/:id",
       component: "ReportViewer",
       description:
-        "EjecuciÃ³n y visualizaciÃ³n del reporte. Permite filtrar por aÃ±o/mes, exportar a Excel o PDF, compartir enlace y consultar el Auditor IA.",
+        "Ejecución y visualización del reporte. Permite filtrar por año/mes, exportar a Excel o PDF, compartir enlace y consultar el Auditor IA.",
     },
     {
       path: "/contabilidad/reportes/guia",
       component: "ReportGuide",
-      description: "Esta guÃ­a prÃ¡ctica del mÃ³dulo.",
+      description: "Esta guía práctica del módulo.",
     },
   ];
 
@@ -87,7 +88,7 @@ export class ReportGuide {
     {
       method: "GET",
       path: "/api/dynamic-reports/{id}",
-      description: "Obtiene la definiciÃ³n completa de un reporte por ID.",
+      description: "Obtiene la definición completa de un reporte por ID.",
       params: "id: Guid del reporte",
       response:
         "ReportDefinitionDTO (incluye Body con sections/columns y changeHistory)",
@@ -103,7 +104,7 @@ export class ReportGuide {
       method: "PUT",
       path: "/api/dynamic-reports/{id}",
       description:
-        "Actualiza un reporte existente. Agrega automÃ¡ticamente una entrada al historial de cambios.",
+        "Actualiza un reporte existente. Agrega automáticamente una entrada al historial de cambios.",
       params: "id: Guid del reporte",
       body: "ReportDefinitionDTO",
       response: "ReportDefinitionDTO actualizado con changeHistory",
@@ -143,7 +144,7 @@ export class ReportGuide {
       method: "GET",
       path: "/api/dynamic-reports/accounts/{customerId}/{year}",
       description:
-        "CatÃ¡logo de cuentas contables del cliente para el aÃ±o indicado. Usado por el autocomplete en el Builder.",
+        "Catálogo de cuentas contables del cliente para el año indicado. Usado por el autocomplete en el Builder.",
       params: "customerId: Guid, year: int",
       response: "AccountCatalogItemDTO[] { code, name, level }",
     },
@@ -159,30 +160,30 @@ export class ReportGuide {
     {
       tipo: "subtotal",
       descripcion:
-        "Suma los renglones referenciados en sourceRowIds dentro de la misma secciÃ³n. Puede usarse bold + indent para estilo.",
+        "Suma los renglones referenciados en sourceRowIds dentro de la misma sección. Puede usarse bold + indent para estilo.",
       ejemplo: "Total Ingresos = suma de account rows de ingresos",
     },
     {
       tipo: "grandTotal",
       descripcion:
-        "Suma de mÃºltiples renglones (sourceRowIds) que pueden estar en distintas secciones. Aparece en las tarjetas KPI (summary-cards).",
+        "Suma de múltiples renglones (sourceRowIds) que pueden estar en distintas secciones. Aparece en las tarjetas KPI (summary-cards).",
       ejemplo: "Resultado Neto = Total Ingresos - Total Gastos",
     },
     {
       tipo: "formula",
       descripcion:
-        "ExpresiÃ³n aritmÃ©tica libre usando [rowId] como variable. Evaluada con DataTable.Compute(). Permite cÃ¡lculos de razones financieras.",
+        "Expresión aritmética libre usando [rowId] como variable. Evaluada con DataTable.Compute(). Permite cálculos de razones financieras.",
       ejemplo: "Margen% = [row-ingresos] / [row-egresos] * 100",
     },
     {
       tipo: "header",
       descripcion:
-        "Encabezado visual (sin valor). Ãštil para separar grupos de renglones con un tÃ­tulo.",
-      ejemplo: "â”€â”€ INGRESOS OPERATIVOS â”€â”€",
+        "Encabezado visual (sin valor). Útil para separar grupos de renglones con un título.",
+      ejemplo: "-- INGRESOS OPERATIVOS --",
     },
     {
       tipo: "spacer",
-      descripcion: "Fila vacÃ­a para separaciÃ³n visual.",
+      descripcion: "Fila vacía para separación visual.",
       ejemplo: "",
     },
   ];
@@ -191,7 +192,7 @@ export class ReportGuide {
     {
       tipo: "month",
       campo: "month (1-12)",
-      descripcion: "Valor del mes exacto indicado. Ejemplo: mes=3 â†’ Marzo.",
+      descripcion: "Valor del mes exacto indicado. Ejemplo: mes=3 ? Marzo.",
     },
     {
       tipo: "accumulated",
@@ -208,7 +209,7 @@ export class ReportGuide {
       tipo: "annual",
       campo: "(ignorado)",
       descripcion:
-        "Suma de los 12 meses del aÃ±o. Para presupuesto suma los 12 montos de presupuesto.",
+        "Suma de los 12 meses del año. Para presupuesto suma los 12 montos de presupuesto.",
     },
   ];
 
@@ -216,7 +217,7 @@ export class ReportGuide {
     {
       tipo: "table-simple",
       descripcion:
-        "Tabla estÃ¡ndar. Una fila por renglon, una columna por periodo. Formato numÃ©rico con indentaciÃ³n segÃºn indent.",
+        "Tabla estándar. Una fila por renglon, una columna por periodo. Formato numérico con indentación según indent.",
     },
     {
       tipo: "table-twoColumn",
@@ -231,7 +232,7 @@ export class ReportGuide {
     {
       tipo: "table-budgetVsActual",
       descripcion:
-        "Tabla de 5 columnas: Real | Presupuesto | VariaciÃ³n | % VariaciÃ³n. Colorea en verde/rojo la variaciÃ³n.",
+        "Tabla de 5 columnas: Real | Presupuesto | Variación | % Variación. Colorea en verde/rojo la variación.",
     },
     {
       tipo: "summary-cards",
@@ -296,4 +297,3 @@ export class ReportGuide {
   ]
 }`;
 }
-

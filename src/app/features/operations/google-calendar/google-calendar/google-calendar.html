@@ -88,7 +88,7 @@
           </td>
           <td>
             @if (canOpenAssemblyChecklist(item)) {
-            <custom-button
+            <il-button
               label="Checklist"
               icon="mdi:format-list-checks"
               [noMargin]="true"
@@ -127,8 +127,8 @@
           </td>
           @if (canManageItem(item)) {
           <td class="flex gap-2">
-            <custom-button-edit (clicked)="onModalForm(item.id)" />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <il-button-edit (clicked)="onModalForm(item.id)" />
+            <il-button-delete (confirmed)="onDelete(item.id)" />
           </td>
           }
         </tr>
@@ -178,7 +178,7 @@
             <p>Invitados: {{ item.guestCount }}</p>
             @if (canOpenAssemblyChecklist(item)) {
             <div class="mt-2">
-              <custom-button
+              <il-button
                 label="Checklist asamblea"
                 icon="mdi:format-list-checks"
                 [noMargin]="true"
@@ -192,15 +192,13 @@
             <app-action-menu>
               <ng-container actions>
                 @if (canManageItem(item)) {
-                <custom-button-edit
+                <il-button-edit
                   (clicked)="onModalForm(item.id)"
                   label="Editar"
-                  [showLabelOnDesktop]="true"
                 />
-                <custom-button-delete
+                <il-button-delete
                   (confirmed)="onDelete(item.id)"
                   label="Eliminar"
-                  [showLabelOnDesktop]="true"
                 />
                 }
               </ng-container>

@@ -1,4 +1,4 @@
-ï»¿import { animate, style, transition, trigger } from "@angular/animations";
+import { animate, style, transition, trigger } from "@angular/animations";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
@@ -24,15 +24,15 @@ export interface IWarehouseForm {
   responsablesIds: FormControl<string[] | null>;
 }
 /**
- * Componente para agregar o editar un almacÃ³n.
- * Permite gestionar informaciÃ³n bÃ³sica del almacÃ³n y asignar responsables si el usuario es administrador.
+ * Componente para agregar o editar un almacón.
+ * Permite gestionar información bósica del almacón y asignar responsables si el usuario es administrador.
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 
@@ -42,8 +42,8 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
   imports: [
     CardModule,
     CustomInputTextSignal,
-    CustomButtonSave,
-    CustomButton,
+    WebButtonLabelSave,
+    WebButtonLabel,
     DragDropModule,
     ReactiveFormsModule,
   ],
@@ -57,7 +57,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
   ],
 })
 export class WarehouseForm implements OnInit {
-  // InyecciÃ³n de servicios mediante inject()
+  // Inyección de servicios mediante inject()
   apiResponseS = inject(ApiResponseService);
   formBuilder = inject(FormBuilder);
   config = inject(DynamicDialogConfig);
@@ -66,9 +66,9 @@ export class WarehouseForm implements OnInit {
   customerIdS = inject(CustomerIdService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // SeÃ±ales reactivas
-  submitting = signal(false); // Indica si se estÃ³ enviando el formulario
-  id: string = ""; // ID del almacÃ³n (si es ediciÃ³n)
+  // Señales reactivas
+  submitting = signal(false); // Indica si se estó enviando el formulario
+  id: string = ""; // ID del almacón (si es edición)
 
   // Signals para manejo de usuarios (solo visible para admins)
   cb_users = signal<any[]>([]);
@@ -81,25 +81,25 @@ export class WarehouseForm implements OnInit {
   availableUsers: any[] = [];
   assignedUsers: any[] = [];
 
-  // Campo de bÃ³squeda para filtrar usuarios disponibles
+  // Campo de bósqueda para filtrar usuarios disponibles
   searchAvailable = new FormControl("");
 
   // Formulario reactivo
   form: FormGroup<IWarehouseForm> = this.formBuilder.group({
     id: [""],
-    nombre: ["", [Validators.required, Validators.minLength(5)]], // Nombre del almacÃ³n (mÃ³nimo 5 caracteres)
-    ubicacion: ["", Validators.required], // UbicaciÃ³n del almacÃ³n
+    nombre: ["", [Validators.required, Validators.minLength(5)]], // Nombre del almacón (mónimo 5 caracteres)
+    ubicacion: ["", Validators.required], // Ubicación del almacón
     customerId: [this.customerIdS.customerId()], // ID del cliente actual
     applicationUserId: [this.authS.applicationUserId], // Usuario que crea/actualiza
     responsablesIds: [[] as string[]], // IDs de los usuarios responsables (solo para admins)
   });
 
-  // Propiedad para almacenar todos los usuarios cargados (para evitar mÃ³ltiples llamadas)
+  // Propiedad para almacenar todos los usuarios cargados (para evitar móltiples llamadas)
   private allUsers: any[] = [];
 
   /**
-   * MÃ³todo de inicializaciÃ³n del componente.
-   * Carga los datos del almacÃ³n si es ediciÃ³n o prepara para creaciÃ³n.
+   * Mótodo de inicialización del componente.
+   * Carga los datos del almacón si es edición o prepara para creación.
    */
   async ngOnInit(): Promise<void> {
     this.id = this.config.data.id;
@@ -114,14 +114,14 @@ export class WarehouseForm implements OnInit {
     }
 
     if (this.id !== "") {
-      this.onLoadData(); // Carga los datos del almacÃ³n existente
+      this.onLoadData(); // Carga los datos del almacón existente
     } else if (
       this.aspRoleS.anyOf([
         EApplicationRole.Administrador,
         EApplicationRole.SuperUsuario,
       ])()
     ) {
-      this.availableUsers = [...this.allUsers]; // Todos los usuarios estÃ¡n disponibles para nuevo almacÃ³n
+      this.availableUsers = [...this.allUsers]; // Todos los usuarios están disponibles para nuevo almacón
     }
   }
 
@@ -142,16 +142,16 @@ export class WarehouseForm implements OnInit {
   }
 
   /**
-   * Carga los datos del almacÃ³n cuando se estÃ³ en modo ediciÃ³n.
+   * Carga los datos del almacón cuando se estó en modo edición.
    */
   onLoadData() {
     this.apiResponseS
       .onGetItem(Endpoints.Almacen.getById(this.id))
       .then((result: any) => {
-        // Llenamos los campos bÃ³sicos del formulario
+        // Llenamos los campos bósicos del formulario
         this.form.patchValue(result);
 
-        // Separamos usuarios disponibles y asignados segÃ³n los datos cargados
+        // Separamos usuarios disponibles y asignados segón los datos cargados
         const assignedIds = result.responsablesIds || [];
         this.assignedUsers = this.allUsers.filter((u) =>
           assignedIds.includes(u.value),
@@ -166,8 +166,8 @@ export class WarehouseForm implements OnInit {
   }
 
   /**
-   * Maneja el envÃ­o del formulario.
-   * Guarda primero el almacÃ³n y luego asigna los responsables si aplica.
+   * Maneja el envío del formulario.
+   * Guarda primero el almacón y luego asigna los responsables si aplica.
    */
   async onSubmit() {
     const savedWarehouse = await FormHelper.submitCrud({
@@ -200,7 +200,7 @@ export class WarehouseForm implements OnInit {
 
       this.ref.close(true);
     } catch (error) {
-      console.error("Error al guardar el almacÃ³n:", error);
+      console.error("Error al guardar el almacón:", error);
     } finally {
       this.submitting.set(false);
     }
@@ -245,7 +245,7 @@ export class WarehouseForm implements OnInit {
   }
 
   /**
-   * Filtra la lista de usuarios disponibles segÃ³n el texto de bÃ³squeda.
+   * Filtra la lista de usuarios disponibles segón el texto de bósqueda.
    * @returns Lista de usuarios filtrados
    */
   filteredAvailableUsers() {

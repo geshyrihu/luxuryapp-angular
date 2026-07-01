@@ -1,14 +1,14 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -32,7 +32,7 @@ interface IIncidentTypeForm {
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class IncidentTypeForm implements OnInit {
@@ -45,7 +45,7 @@ export class IncidentTypeForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  // âœ… OBLIGATORIO: Cargar selects de enums desde el servicio
+  // ? OBLIGATORIO: Cargar selects de enums desde el servicio
   cb_category = signal<ISelectItem[]>([]);
   cb_severity = signal<ISelectItem[]>([]);
 
@@ -63,7 +63,7 @@ export class IncidentTypeForm implements OnInit {
     // El data.id viene directamente del listado: { id: 'xxx', title: 'Editar' }
     this.id = this.config.data?.id || "";
 
-    // Inicializar formulario para modo creaciÃ³n
+    // Inicializar formulario para modo creación
     this.form = this.fb.group<IIncidentTypeForm>({
       name: this.fb.control(""),
       description: this.fb.control(""),
@@ -76,14 +76,14 @@ export class IncidentTypeForm implements OnInit {
   }
 
   onLoadData(): void {
-    // El backend retorna IncidentTypeDetailDTO con Category y DefaultSeverity como int (valor numÃ©rico del enum)
+    // El backend retorna IncidentTypeDetailDTO con Category y DefaultSeverity como int (valor numérico del enum)
     this.apiS
       .onGetItem<IncidentTypeDetailDTO>(
         Endpoints.Settings.incidentTypeById(this.id),
       )
       .then((result) => {
         if (result) {
-          // âœ… No se necesita conversiÃ³n - el backend ya retorna el valor numÃ©rico correcto
+          // ? No se necesita conversión - el backend ya retorna el valor numérico correcto
           this.form.patchValue(result);
         }
       });

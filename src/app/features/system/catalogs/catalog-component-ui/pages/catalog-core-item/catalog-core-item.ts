@@ -10,7 +10,7 @@ import { TagModule } from "primeng/tag";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/web/buttons";
+} from "src/app/core/components/buttons/legacy/buttons";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
@@ -285,9 +285,7 @@ const CORE_LABELS: Record<string, string> = {
             </p>
             <div class="flex gap-4">
               <div>
-                <p class="text-xs font-bold text-secondary mb-2">
-                  Correcto
-                </p>
+                <p class="text-xs font-bold text-secondary mb-2">Correcto</p>
                 <app-action-menu>
                   <ng-container actions>
                     <custom-button-edit
@@ -631,9 +629,7 @@ const CORE_LABELS: Record<string, string> = {
 
         <!-- 13.3.2 -->
         @case ("comparisontable") {
-          <p-card
-            header="Comparison Table - Comparativa de features"
-          >
+          <p-card header="Comparison Table - Comparativa de features">
             <app-comparison-table
               [items]="comparisonItems"
               highlightColumn="Pro"
@@ -681,9 +677,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("splitpane") {
-          <p-card
-            header="Split Pane - Paneles redimensionables"
-          >
+          <p-card header="Split Pane - Paneles redimensionables">
             <app-split-pane
               direction="horizontal"
               height="280px"
@@ -719,8 +713,7 @@ const CORE_LABELS: Record<string, string> = {
           <p-card header="Command Palette - Ctrl+K">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
-                El Command Palette es un diálogo global. Haz clic para
-                abrirlo:
+                El Command Palette es un diálogo global. Haz clic para abrirlo:
               </p>
               <p-button
                 label="Abrir Command Palette (Ctrl+K)"
@@ -728,8 +721,8 @@ const CORE_LABELS: Record<string, string> = {
                 (onClick)="cmdPaletteVisible.set(true)"
               />
               <p class="text-xs text-secondary m-0">
-                También puedes presionar <kbd>Ctrl+K</kbd> cuando el
-                diálogo esté registrado.
+                También puedes presionar <kbd>Ctrl+K</kbd> cuando el diálogo
+                esté registrado.
               </p>
             </div>
             <app-command-palette
@@ -742,8 +735,7 @@ const CORE_LABELS: Record<string, string> = {
           <p-card header="Tour / Onboarding - Paso a paso">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
-                Inicia el tour para ver el componente de onboarding en
-                acción:
+                Inicia el tour para ver el componente de onboarding en acción:
               </p>
               <p-button
                 label="Iniciar Tour"
@@ -797,9 +789,7 @@ const CORE_LABELS: Record<string, string> = {
 
         <!-- 13.3.3 -->
         @case ("otpinput") {
-          <p-card
-            header="OTP Input - 2FA / Verificación"
-          >
+          <p-card header="OTP Input - 2FA / Verificación">
             <div class="flex flex-column gap-4">
               <div>
                 <p class="text-sm font-bold mb-2">
@@ -836,9 +826,7 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("themeswitcher") {
-          <p-card
-            header="Theme Switcher - Light / Dark / High Contrast"
-          >
+          <p-card header="Theme Switcher - Light / Dark / High Contrast">
             <app-theme-switcher />
           </p-card>
         }
@@ -875,9 +863,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("tristateswitch") {
-          <p-card
-            header="Tristate Switch - Sí / No / Indeterminado"
-          >
+          <p-card header="Tristate Switch - Sí / No / Indeterminado">
             <div class="flex flex-column gap-3">
               <app-tristate-switch
                 [(value)]="tristateValue"
@@ -939,16 +925,12 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("barcodeinput") {
-          <p-card
-            header="Barcode / QR Input - Escaneo + teclado"
-          >
+          <p-card header="Barcode / QR Input - Escaneo + teclado">
             <app-barcode-input />
           </p-card>
         }
         @case ("realtimeindicator") {
-          <p-card
-            header="Realtime Indicator - Estado de conexión live"
-          >
+          <p-card header="Realtime Indicator - Estado de conexión live">
             <div class="flex flex-column gap-3">
               <app-realtime-indicator
                 status="live"
@@ -992,16 +974,12 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("leadscoring") {
-          <p-card
-            header="Lead Scoring - Puntuación visual de lead CRM"
-          >
+          <p-card header="Lead Scoring - Puntuación visual de lead CRM">
             <app-lead-scoring [categories]="leadCategories" />
           </p-card>
         }
         @case ("approvalworkflow") {
-          <p-card
-            header="Approval Workflow - Flujo de aprobación"
-          >
+          <p-card header="Approval Workflow - Flujo de aprobación">
             <app-approval-workflow [nodes]="approvalNodes" />
           </p-card>
         }
@@ -1053,9 +1031,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("formbuilder") {
-          <p-card
-            header="Form Builder - JSON Schema dinámico"
-          >
+          <p-card header="Form Builder - JSON Schema dinámico">
             <app-form-builder
               title="Formulario generado desde schema"
               [schema]="formSchema"
@@ -1063,28 +1039,24 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("printview") {
-          <p-card
-            header="Print View - Vista de impresión"
-          >
+          <p-card header="Print View - Vista de impresión">
             <app-print-view
               title="Reporte de Gastos - Junio 2026"
               subtitle="Departamento de Operaciones"
             >
               <p>
-                Contenido del reporte que se optimiza para impresión con
-                CSS @media print.
+                Contenido del reporte que se optimiza para impresión con CSS
+                @media print.
               </p>
               <p>
-                Las áreas de navegación y el sidebar quedan
-                ocultos automáticamente.
+                Las áreas de navegación y el sidebar quedan ocultos
+                automáticamente.
               </p>
             </app-print-view>
           </p-card>
         }
         @case ("customer360") {
-          <p-card
-            header="Customer 360 - Vista completa de cliente CRM"
-          >
+          <p-card header="Customer 360 - Vista completa de cliente CRM">
             <app-customer-360 [data]="customer360Data" />
           </p-card>
         }
@@ -1098,9 +1070,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("heatmap") {
-          <p-card
-            header="Heatmap - Actividad por hora/día"
-          >
+          <p-card header="Heatmap - Actividad por hora/día">
             <app-heatmap
               title="Actividad semanal"
               [data]="heatmapData"
@@ -1114,9 +1084,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("pivottable") {
-          <p-card
-            header="Pivot Table - Análisis multidimensional"
-          >
+          <p-card header="Pivot Table - Análisis multidimensional">
             <app-pivot-table
               title="Ventas por área y mes"
               [data]="pivotData"
@@ -1511,8 +1479,7 @@ export class CatalogCoreItem {
       id: "1",
       author: "Juan García",
       authorInitials: "JG",
-      content:
-        "El cliente solicitó extensión de plazo de pago a 45 días.",
+      content: "El cliente solicitó extensión de plazo de pago a 45 días.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
@@ -2034,4 +2001,3 @@ export class CatalogCoreItem {
     },
   ];
 }
-

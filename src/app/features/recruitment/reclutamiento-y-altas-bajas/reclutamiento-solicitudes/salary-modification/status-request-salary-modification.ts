@@ -1,10 +1,10 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -17,7 +17,7 @@ import { StatusRequestSalaryModificationForm } from "./status-request-salary-mod
 @Component({
   selector: "app-status-request-salary-modification",
   templateUrl: "./status-request-salary-modification.html",
-  imports: [CardModule, NgbTooltipModule, CustomButton, CustomButtonConfirm],
+  imports: [CardModule, NgbTooltipModule, WebButtonLabel, WebButtonLabelConfirm],
 })
 export class StatusRequestSalaryModification implements OnInit {
   private statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
@@ -87,14 +87,3 @@ export class StatusRequestSalaryModification implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-
-

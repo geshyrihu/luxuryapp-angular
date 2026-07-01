@@ -5,8 +5,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Added
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Added
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -18,8 +18,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     CheckboxModule,
     TableModule,
     TooltipModule,
-    CustomButton,
-    CustomButtonItem,
+    WebButtonLabel,
+    WebButtonLabelItem,
   ],
   templateUrl: "./funding-group-files.html",
 })
@@ -117,7 +117,7 @@ export class FundingGroupFiles implements OnInit {
   downloadSelectedFiles() {
     if (this.selectedFiles().length === 0) return;
 
-    // Descarga secuencial bósica
+    // Descarga secuencial bï¿½sica
     this.selectedFiles().forEach((file) => {
       this.descargarArchivo(file.url);
     });
@@ -165,5 +165,3 @@ export class FundingGroupFiles implements OnInit {
     this.ref.close();
   }
 }
-
-

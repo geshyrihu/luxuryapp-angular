@@ -1,10 +1,10 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
@@ -14,8 +14,8 @@ import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/jun
   imports: [
     CommonModule,
     TableModule,
-    CustomButton,
-    CustomButtonConfirm,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
     NgbTooltip,
   ],
 })
@@ -65,13 +65,3 @@ export class ContMinutaSeguimientos implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

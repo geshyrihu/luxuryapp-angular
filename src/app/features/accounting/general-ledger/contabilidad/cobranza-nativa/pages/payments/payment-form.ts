@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -16,11 +16,11 @@ import {
 } from "../../models/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
 
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 interface IPaymentEditForm {
   propertyId: FormControl<string>;
@@ -39,7 +39,7 @@ interface IPaymentEditForm {
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
   templateUrl: "./payment-form.html",
 })
@@ -62,13 +62,13 @@ export class PaymentForm implements OnInit {
 
   methodOptions = [
     {
-      label: "Transferencia electrÃ³nica",
+      label: "Transferencia electrónica",
       value: EPaymentMethod.ElectronicTransfer,
     },
     { label: "Efectivo", value: EPaymentMethod.Cash },
     { label: "Cheque nominativo", value: EPaymentMethod.NominativeCheck },
-    { label: "Tarjeta de crÃ©dito", value: EPaymentMethod.CreditCard },
-    { label: "Tarjeta de dÃ©bito", value: EPaymentMethod.DebitCard },
+    { label: "Tarjeta de crédito", value: EPaymentMethod.CreditCard },
+    { label: "Tarjeta de débito", value: EPaymentMethod.DebitCard },
     { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined },
   ];
 

@@ -115,7 +115,7 @@
   (click): Ejecuta la función deseada.
   p-badge: Muestra el contador. Se oculta si el contador es 0.
 -->
-              <custom-button-tracking
+              <il-button-tracking
                 iconClass="mdi:star-outline"
                 ngbTooltip="Dar seguimiento"
                 [badgeCount]="item.ticketMessageFollowUp"
@@ -124,29 +124,26 @@
               <app-action-menu>
                 <ng-container actions>
                   @if (item.status !== "Completed") {
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
 
                   } @if (item.status !== "Completed") {
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   } @if (item.status === "Completed") {
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   } @if (item.status !== "Completed") {
-                  <custom-button-edit
+                  <il-button-edit
                     (clicked)="
                           onModalForm({
                             id: item.id,
@@ -155,7 +152,6 @@
                           })
                         "
                     label="Editar"
-                    [showLabelOnDesktop]="true"
                   />
 
                   }
@@ -195,7 +191,7 @@
           (ngModelChange)="searchTextSignal.set($event)"
           [horizontal]="false"
         />
-        <custom-button-add
+        <il-button-add
           label="Agregar"
           iconClass="mdi:plus"
           [pTooltip]="'Agregar'"
@@ -211,7 +207,7 @@
       </div>
 
       <div class="flex mb-1">
-        <custom-button
+        <il-button
           iconClass="mdi:hourglass"
           label="Pend.."
           variant="outlined"
@@ -219,7 +215,7 @@
           (clicked)="onLoadData(0)"
         />
 
-        <custom-button
+        <il-button
           iconClass="mdi:sync"
           label="Reab.."
           variant="outlined"
@@ -227,7 +223,7 @@
           (clicked)="onLoadData(3)"
         />
 
-        <custom-button
+        <il-button
           iconClass="mdi:cog"
           label="Proc.."
           variant="outlined"
@@ -235,7 +231,7 @@
           (clicked)="onLoadData(1)"
         />
 
-        <custom-button
+        <il-button
           iconClass="mdi:check"
           label="Term.."
           variant="outlined"
@@ -296,43 +292,37 @@
             <div>
               <app-action-menu>
                 <ng-container actions>
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:clipboard-text"
                     label="Seguimiento"
                     (clicked)="onFollowUp(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   @if (item.status !== "Completed") {
-                  <custom-button-edit
+                  <il-button-edit
                     (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
                     label="Editar"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:sync"
                     label="En proceso"
                     (clicked)="onProgress(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   } @if (item.status !== "Completed") {
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   } @if (item.status === "Completed") {
-                  <custom-button-item
+                  <il-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
-                    [showLabelOnDesktop]="true"
                   />
                   }
                 </ng-container>

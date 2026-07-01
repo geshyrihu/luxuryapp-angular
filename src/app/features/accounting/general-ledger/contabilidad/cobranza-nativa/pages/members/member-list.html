@@ -47,7 +47,7 @@
                 >&middot; Cta: {{ item.accountNumber }}</span
               >
             </div>
-            <custom-button
+            <il-button
               label="Nuevo Miembro"
               iconClass="mdi:account-plus"
               severity="success"
@@ -104,11 +104,11 @@
         </td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
-            <custom-button-edit
+            <il-button-edit
               (clicked)="onModalForm(item.id, item.propertyId)"
             />
             @if (item.isActive) {
-            <custom-button-delete
+            <il-button-delete
               title="Dar de baja"
               confirmHeader="Dar de baja"
               confirmMessage="óConfirma dar de baja a este miembro?"
@@ -116,7 +116,7 @@
               (confirmed)="onEndMembership(item)"
             />
             }
-            <custom-button-delete
+            <il-button-delete
               iconClass="mdi:account-minus"
               title="Eliminar usuario del sistema"
               confirmHeader="Eliminar usuario"
@@ -171,22 +171,19 @@
       }
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm(item.id, item.propertyId)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
           @if (item.isActive) {
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onEndMembership(item)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
           }
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDeleteUser(item)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

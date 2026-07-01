@@ -1,4 +1,3 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
@@ -21,11 +20,13 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -38,11 +39,10 @@ import { PdfGenerationService } from "src/app/features/purchasing/po/generator-p
 import { CreateOrdenCompraWizard } from "src/app/features/purchasing/po/purchase-order/components/create-orden-compra-wizard/create-orden-compra-wizard";
 import { PaymentVoucherModal } from "src/app/features/purchasing/po/purchase-order/components/payment-voucher-modal/payment-voucher-modal";
 import { CreateOrdenCompra } from "src/app/features/purchasing/po/purchase-order/create-orden-compra";
-import { CreateOrdenCompraFueraFondeo } from "./components/create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 import { OrdenCompraDatosPago } from "src/app/features/purchasing/po/purchase-order/forms/orden-compra-datos-pago";
 import { OrdenCompra } from "src/app/features/purchasing/po/purchase-order/orden-compra";
-import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { FundingExcelExportService } from "../../general-ledger/contabilidad/services/funding-excel-export.service";
+import { CreateOrdenCompraFueraFondeo } from "./components/create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/components/sat-reconciliation-dialog/sat-reconciliation-dialog";
 import { FundingGroupFiles } from "./components/funding-group-files/funding-group-files.";
 import { FundingOrderInvoices } from "./components/funding-order-invoices/funding-order-invoices"; // Added
@@ -54,31 +54,31 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE D�BITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "NóMINA",
+  [ETipoGasto.Nomina]: "N�MINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
 const tipoGastoEmojis: { [key: number]: string } = {
-  [ETipoGasto.Fijo]: "ðŸÂ ",
-  [ETipoGasto.Variable]: "ðŸ’¸",
-  [ETipoGasto.CajaChica]: "ðŸªâ„¢",
-  [ETipoGasto.Extraordinario]: "âœ¨",
-  [ETipoGasto.Devoluciones]: "ââ€ ©ï¸Â",
-  [ETipoGasto.TarjetaDebito]: "ðŸ’³",
-  [ETipoGasto.Proyectos]: "ðŸÂâ€”ï¸Â",
-  [ETipoGasto.Nomina]: "ðŸ‘¥",
-  [ETipoGasto.Impuestos]: "âš–ï¸",
+  [ETipoGasto.Fijo]: "��",
+  [ETipoGasto.Variable]: "💸",
+  [ETipoGasto.CajaChica]: "�™",
+  [ETipoGasto.Extraordinario]: "✨",
+  [ETipoGasto.Devoluciones]: "�†��",
+  [ETipoGasto.TarjetaDebito]: "💳",
+  [ETipoGasto.Proyectos]: "�—�",
+  [ETipoGasto.Nomina]: "👥",
+  [ETipoGasto.Impuestos]: "⚖️",
 };
 
 @Component({
   selector: "app-funding-detail",
   imports: [
     BadgeModule,
-    CustomButton,
+    WebButtonLabel,
     CommonModule,
-    CustomButtonDelete,
+    WebButtonLabelDelete,
     ReactiveFormsModule,
     DecimalPipe,
     DialogModule,
@@ -91,7 +91,8 @@ const tipoGastoEmojis: { [key: number]: string } = {
     TooltipModule,
     UpperCasePipe,
     CheckboxModule,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./funding-detail.html",
 })
 export class FundingDetail {
@@ -155,7 +156,7 @@ export class FundingDetail {
         };
       });
 
-    // Efecto reactivo consolidado: se ejecuta cuando cambia el cliente O los parómetros de la ruta
+    // Efecto reactivo consolidado: se ejecuta cuando cambia el cliente O los par�metros de la ruta
     effect(() => {
       const customerId = this.customerIdS.customerId();
       const isLoaded = this.customerIdS.customerDataReady();
@@ -166,7 +167,7 @@ export class FundingDetail {
         this.id = params["id"];
       }
 
-      // 2. Si tenemos ambos parómetros y el cliente estó listo, cargamos
+      // 2. Si tenemos ambos par�metros y el cliente est� listo, cargamos
       if (this.id && customerId && isLoaded) {
         this.onLoadData(customerId);
       }
@@ -206,7 +207,7 @@ export class FundingDetail {
     this.dialogHandlerS.openDialog(
       FundingGroupFiles,
       { grupo },
-      "📂 | Facturas y XML",
+      "?? | Facturas y XML",
       this.dialogHandlerS.sizeFull,
       true,
     );
@@ -235,14 +236,20 @@ export class FundingDetail {
     this.isAuthorized.set(result.isAuthorized);
     this.isConfirmed.set(result.isConfirmed);
 
-    const fueraProceso = (result.ordenesFueraProceso ?? []).map((orden: any) => {
-      if (!orden.ordenCompraPagadaControl) {
-        orden.ordenCompraPagadaControl = new FormControl(orden.ordenCompraPagada);
-      } else {
-        orden.ordenCompraPagadaControl.setValue(orden.ordenCompraPagada, { emitEvent: false });
-      }
-      return orden;
-    });
+    const fueraProceso = (result.ordenesFueraProceso ?? []).map(
+      (orden: any) => {
+        if (!orden.ordenCompraPagadaControl) {
+          orden.ordenCompraPagadaControl = new FormControl(
+            orden.ordenCompraPagada,
+          );
+        } else {
+          orden.ordenCompraPagadaControl.setValue(orden.ordenCompraPagada, {
+            emitEvent: false,
+          });
+        }
+        return orden;
+      },
+    );
     this.ordenesFueraProceso.set(fueraProceso);
   }
 
@@ -331,30 +338,30 @@ export class FundingDetail {
 
   /**
    * Se dispara cuando el usuario cambia el estado de pago de una orden.
-   * Llama a la API usando el nuevo mótodo onPatch para persistir el cambio.
-   * @param orden El objeto completo de la fila que se estó modificando.
+   * Llama a la API usando el nuevo m�todo onPatch para persistir el cambio.
+   * @param orden El objeto completo de la fila que se est� modificando.
    */
   onPaymentStatusChange(orden: any): void {
     const nuevoEstado = orden.ordenCompraPagadaControl.value;
     const ordenId = orden.ordenCompraId;
 
     console.log(
-      `ðŸâ€Â Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
+      `�” Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
     );
 
-    // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
+    // 1. Preparamos la URL y el cuerpo (body) para la petici�n PATCH.
     const urlApi = `funding/update-purchase-paid-status/${ordenId}`;
     const body = { isPaid: nuevoEstado };
 
-    // 2. Llamamos a nuestro nuevo y flamante mótodo onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
+    // 2. Llamamos a nuestro nuevo y flamante m�todo onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y �xito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
-      // 3. Manejamos el caso de error. Si la API falla, 'success' seró false.
+      // 3. Manejamos el caso de error. Si la API falla, 'success' ser� false.
       if (!success) {
-        // óCRóTICO! Si la actualización falló en el backend,
+        // �CR�TICO! Si la actualizaci�n fall� en el backend,
         // revertimos el cambio en la UI para que no mienta al usuario.
         console.error(
-          `Falló la actualización para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
+          `Fall� la actualizaci�n para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
         );
         orden.ordenCompraPagadaControl.setValue(!nuevoEstado, {
           emitEvent: false,
@@ -382,21 +389,21 @@ export class FundingDetail {
       .then(() => this.onLoadData(this.customerIdS.customerId()));
   }
   onModalAdd() {
-    // 1. Obtenemos el valor de la signal (que es el objeto de parómetros)
+    // 1. Obtenemos el valor de la signal (que es el objeto de par�metros)
 
-    // 2. Extraemos el 'tipo' y lo convertimos a nómero
+    // 2. Extraemos el 'tipo' y lo convertimos a n�mero
     const tipoGastoValue = 0;
 
-    // 3. Verificamos que sea un nómero vólido antes de continuar
+    // 3. Verificamos que sea un n�mero v�lido antes de continuar
     if (isNaN(tipoGastoValue)) {
-      console.error("El tipo de gasto en la URL no es un nómero vólido");
+      console.error("El tipo de gasto en la URL no es un n�mero v�lido");
       // Opcional: Mostrar un mensaje de error al usuario
       return;
     }
     this.dialogHandlerS
       .openDialog(
         CreateOrdenCompra,
-        { tipoGasto: tipoGastoValue }, // ? óAquó estó la magia!
+        { tipoGasto: tipoGastoValue }, // ? �Aqu� est� la magia!
         "Nueva Orden de compra",
         this.dialogHandlerS.sizeFull,
       )
@@ -428,16 +435,16 @@ export class FundingDetail {
 
   openCreateOrdenCompraWizard(tipoGasto?: ETipoGasto) {
     console.log(
-      "ðŸâ€Â ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
+      "�” ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
       tipoGasto,
     );
-    // Si no se proporciona tipoGasto, no abras el diálogo aón
-    // o muestra un mensaje para que seleccionen del menó
+    // Si no se proporciona tipoGasto, no abras el di�logo a�n
+    // o muestra un mensaje para que seleccionen del men�
     if (tipoGasto === undefined) {
-      // Opción 2: Mostrar un mensaje
+      // Opci�n 2: Mostrar un mensaje
       this.customToastService.showInfo(
         "Selecciona tipo de gasto",
-        "Por favor selecciona un tipo de gasto del menó",
+        "Por favor selecciona un tipo de gasto del men�",
       );
       return;
     }
@@ -513,8 +520,8 @@ export class FundingDetail {
 
     if (total === 0) {
       this.customToastS.showWarn(
-        "Sin órdenes",
-        "No hay órdenes para descargar.",
+        "Sin �rdenes",
+        "No hay �rdenes para descargar.",
       );
       return;
     }
@@ -578,7 +585,7 @@ export class FundingDetail {
   //       legacyFundingId: this.id,
   //       mode: "reconciliation",
   //     },
-  //     "Conciliación SAT",
+  //     "Conciliaci�n SAT",
   //     this.dialogHandlerS.sizeLg,
   //   );
   // }
@@ -666,7 +673,7 @@ export class FundingDetail {
       .openDialog(
         FundingUploadInvoicesModal,
         { fundingId: this.id },
-        "Crear órdenes de Compra desde Facturas",
+        "Crear �rdenes de Compra desde Facturas",
         this.dialogHandlerS.sizeLg,
         true,
       )
@@ -677,6 +684,3 @@ export class FundingDetail {
       });
   }
 }
-
-
-

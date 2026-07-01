@@ -1,4 +1,4 @@
-锘縤mport {
+import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -23,12 +23,12 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -70,10 +70,10 @@ export interface ISolicitudCompraForm {
     CustomInputDateSignal,
     // CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     ProductAdd,
     SolicitudCompraDetalle,
-    CustomButton,
+    WebButtonLabel,
     DividerModule,
     BadgeModule,
     AppIcon,
@@ -133,10 +133,10 @@ export class SolicitudCompra implements OnInit {
     );
   }
 
-  // Manejar productos a帽adidos localmente antes de guardar cabecera
+  // Manejar productos a馻didos localmente antes de guardar cabecera
   onAddedLocal(product: any) {
     this.tempProducts.update((prev) => [...prev, product]);
-    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deber铆a ser nada)
+    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deber韆 ser nada)
     this.SolicitudCompraDetalle = [...this.SolicitudCompraDetalle, product];
     this.cdr.detectChanges();
   }
@@ -235,7 +235,7 @@ export class SolicitudCompra implements OnInit {
 
         this.tempProducts.set([]);
         this.customToastS.showSuccess(
-          "贸xito",
+          "髕ito",
           "Solicitud y productos guardados correctamente",
         );
       } else {
@@ -307,18 +307,18 @@ export class SolicitudCompra implements OnInit {
 
   onSendEmail() {
     if (!this.solicitudCompra) return;
-    const subject = `Solicitud de Cotizaci贸n - Folio: ${this.solicitudCompra.folio}`;
+    const subject = `Solicitud de Cotizaci髇 - Folio: ${this.solicitudCompra.folio}`;
     const body = this.getFormattedMessage();
     const mailUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailUrl;
   }
 
   getFormattedMessage(): string {
-    let message = `*Solicitud de Cotizaci贸n*\n`;
+    let message = `*Solicitud de Cotizaci髇*\n`;
     message += `Folio: ${this.solicitudCompra.folio}\n`;
     message += `Solicita: ${this.solicitudCompra.solicita}\n`;
     if (this.solicitudCompra.equipoOInstalacion)
-      message += `谩rea/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
+      message += `醨ea/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
     message += `\n*Detalle de Requerimiento:*\n`;
 
     this.SolicitudCompraDetalle.forEach((item, index) => {
@@ -334,7 +334,7 @@ export class SolicitudCompra implements OnInit {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gesti贸n de V贸nculos",
+        "Gesti髇 de V髇culos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

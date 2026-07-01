@@ -1,9 +1,9 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -14,7 +14,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     ReactiveFormsModule,
     CardModule,
     CustomInputSelectSignal,
-    CustomButton,
+    WebButtonLabel,
   ],
 })
 export class TicketLegalActualizarEstado implements OnInit {

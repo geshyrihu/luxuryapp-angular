@@ -50,7 +50,7 @@
             </div>
             <div class="flex align-items-center gap-2">
               @if (isAdmin()) {
-              <custom-button
+              <il-button
                 class="no-print"
                 iconClass="mdi:cog"
                 label="Editor"
@@ -59,7 +59,7 @@
                 (clicked)="onOpenEditor(manual()!.id)"
               />
               }
-              <custom-button
+              <il-button
                 class="no-print"
                 iconClass="mdi:printer"
                 label="Descargar PDF"
@@ -73,7 +73,7 @@
 
       <div class="p-4 md:p-5">
         <div class="mb-3">
-          <custom-button
+          <il-button
             class="no-print"
             iconClass="mdi:arrow-left"
             [variant]="'text'"

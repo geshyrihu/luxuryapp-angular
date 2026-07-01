@@ -1,11 +1,11 @@
-﻿import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, ViewChild } from "@angular/core";
 import { Carousel, CarouselModule } from "primeng/carousel";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,8 +22,8 @@ import Swal from "sweetalert2";
     CarouselModule,
     ImageModule,
     TableModule,
-    CustomButton,
-    CustomButtonViewPdf,
+    WebButtonLabel,
+    WebButtonLabelViewPdf,
   ],
   styles: [
     `
@@ -33,7 +33,11 @@ import Swal from "sweetalert2";
 
       .presentation-shell {
         background:
-          radial-gradient(circle at top right, rgba(25, 118, 210, 0.08), transparent 26%),
+          radial-gradient(
+            circle at top right,
+            rgba(25, 118, 210, 0.08),
+            transparent 26%
+          ),
           linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
         min-height: 100%;
         overflow-x: hidden;
@@ -78,7 +82,11 @@ import Swal from "sweetalert2";
 
       .presentation-accent {
         height: 0.45rem;
-        background: linear-gradient(90deg, var(--primary-color) 0%, #0ea5e9 100%);
+        background: linear-gradient(
+          90deg,
+          var(--primary-color) 0%,
+          #0ea5e9 100%
+        );
       }
 
       .presentation-kicker {
@@ -122,7 +130,10 @@ export class SolicitudCompraPresentacion {
 
   autorizacionOptions: ISelectItem[] = [
     { label: "Comite", value: EAutorizacionCuadroComparativo.Comite },
-    { label: "Administrador", value: EAutorizacionCuadroComparativo.Administrador },
+    {
+      label: "Administrador",
+      value: EAutorizacionCuadroComparativo.Administrador,
+    },
     { label: "Supervisor", value: EAutorizacionCuadroComparativo.Supervisor },
     { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion },
   ];
@@ -156,7 +167,9 @@ export class SolicitudCompraPresentacion {
 
   async onLoadSolicitudes(ids: string[]) {
     const requests = ids.map((id) =>
-      this.apiResponseS.onGetItem(Endpoints.PurchaseRequests.cuadroComparativo(id)),
+      this.apiResponseS.onGetItem(
+        Endpoints.PurchaseRequests.cuadroComparativo(id),
+      ),
     );
 
     const results = await Promise.all(requests);
@@ -193,9 +206,18 @@ export class SolicitudCompraPresentacion {
     const budgets: any[] = Array.from(item?.budgets || []);
     const evidencias: any[] = Array.from(item?.evidencias || []).slice(0, 4);
 
-    const total1 = detalles.reduce((sum: number, detail: any) => sum + (detail.total || 0), 0);
-    const total2 = detalles.reduce((sum: number, detail: any) => sum + (detail.total2 || 0), 0);
-    const total3 = detalles.reduce((sum: number, detail: any) => sum + (detail.total3 || 0), 0);
+    const total1 = detalles.reduce(
+      (sum: number, detail: any) => sum + (detail.total || 0),
+      0,
+    );
+    const total2 = detalles.reduce(
+      (sum: number, detail: any) => sum + (detail.total2 || 0),
+      0,
+    );
+    const total3 = detalles.reduce(
+      (sum: number, detail: any) => sum + (detail.total3 || 0),
+      0,
+    );
     const cheapestTotal = this.getCheapestTotal([total1, total2, total3]);
 
     return {
@@ -240,7 +262,8 @@ export class SolicitudCompraPresentacion {
       dineroDisponible:
         budgets.length > 0
           ? budgets.reduce(
-              (sum: number, budget: any) => sum + (budget.presupuestoRestante || 0),
+              (sum: number, budget: any) =>
+                sum + (budget.presupuestoRestante || 0),
               0,
             )
           : 0,
@@ -281,7 +304,10 @@ export class SolicitudCompraPresentacion {
       {
         id: `${solicitud.id}-grouped`,
         producto: `PRODUCTOS AGRUPADOS (${details.length} PARTIDAS)`,
-        cantidad: details.reduce((sum: number, item: any) => sum + (item.cantidad || 0), 0),
+        cantidad: details.reduce(
+          (sum: number, item: any) => sum + (item.cantidad || 0),
+          0,
+        ),
         unidadMedida: "Lote",
         total: solicitud.total1,
         total2: solicitud.total2,
@@ -291,7 +317,9 @@ export class SolicitudCompraPresentacion {
   }
 
   getBudgetAccumulated(budget: any): number {
-    return (budget.totalGastadoEjecutado || 0) + (budget.totalGastosPendientes || 0);
+    return (
+      (budget.totalGastadoEjecutado || 0) + (budget.totalGastosPendientes || 0)
+    );
   }
 
   getProviderColumnWidth(providerCount: number): number {
@@ -322,7 +350,7 @@ export class SolicitudCompraPresentacion {
       },
       inputValidator: (value: string) => {
         if (!value) {
-          return "Selecciona una opción.";
+          return "Selecciona una opci�n.";
         }
         return null;
       },
@@ -339,13 +367,12 @@ export class SolicitudCompraPresentacion {
       return;
     }
 
-    const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
-      (acc, item) => {
-        acc[String(item.value)] = String(item.label);
-        return acc;
-      },
-      {},
-    );
+    const inputOptions = this.autorizacionOptions.reduce<
+      Record<string, string>
+    >((acc, item) => {
+      acc[String(item.value)] = String(item.label);
+      return acc;
+    }, {});
 
     const { value } = await this.swalService.fire({
       title: "Autorizar solicitud",
@@ -353,7 +380,8 @@ export class SolicitudCompraPresentacion {
       inputOptions,
       inputPlaceholder: "Selecciona quien autoriza",
       inputValue:
-        solicitud?.autorizadaPor !== null && solicitud?.autorizadaPor !== undefined
+        solicitud?.autorizadaPor !== null &&
+        solicitud?.autorizadaPor !== undefined
           ? String(solicitud.autorizadaPor)
           : "",
       showCancelButton: true,
@@ -378,14 +406,16 @@ export class SolicitudCompraPresentacion {
     });
   }
 
-  async onOpenNoAutorizaModal(solicitudId: string, autorizadaPor: number | null) {
-    const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
-      (acc, item) => {
-        acc[String(item.value)] = String(item.label);
-        return acc;
-      },
-      {},
-    );
+  async onOpenNoAutorizaModal(
+    solicitudId: string,
+    autorizadaPor: number | null,
+  ) {
+    const inputOptions = this.autorizacionOptions.reduce<
+      Record<string, string>
+    >((acc, item) => {
+      acc[String(item.value)] = String(item.label);
+      return acc;
+    }, {});
 
     const result = await this.swalService.fire({
       title: "No se autoriza",
@@ -410,8 +440,12 @@ export class SolicitudCompraPresentacion {
       cancelButtonText: "Cancelar",
       focusConfirm: false,
       preConfirm: () => {
-        const select = document.getElementById("swal-authorizer") as HTMLSelectElement | null;
-        const textarea = document.getElementById("swal-reason") as HTMLTextAreaElement | null;
+        const select = document.getElementById(
+          "swal-authorizer",
+        ) as HTMLSelectElement | null;
+        const textarea = document.getElementById(
+          "swal-reason",
+        ) as HTMLTextAreaElement | null;
         const selectedAutorizadaPor = select?.value ?? "";
         const motivo = textarea?.value?.trim() ?? "";
 
@@ -421,7 +455,9 @@ export class SolicitudCompraPresentacion {
         }
 
         if (!motivo) {
-          Swal.showValidationMessage("Debes indicar el motivo de no autorizacion.");
+          Swal.showValidationMessage(
+            "Debes indicar el motivo de no autorizacion.",
+          );
           return null;
         }
 
@@ -495,4 +531,3 @@ export class SolicitudCompraPresentacion {
     this.currentPage.set(nextPage);
   }
 }
-

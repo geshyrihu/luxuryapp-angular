@@ -69,7 +69,7 @@
                 @dropAnimation
               >
                 <span>{{ user.label }}</span>
-                <custom-button
+                <il-button
                   iconClass="mdi:delete"
                   severity="danger"
                   variant="ghost-text"
@@ -84,7 +84,7 @@
       }
 
       <!-- Botón de envío del formulario -->
-      <custom-button-save
+      <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"
         [submitting]="submitting()"

@@ -19,7 +19,7 @@
         <div
           class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3"
         >
-          <!-- Parte Izquierda: Título y búsqueda -->
+          <!-- Parte Izquierda: Tï¿½tulo y bï¿½squeda -->
           <div class="flex-grow-1">
             <primeng-custom-caption
               (add)="onModalForm('', 'Crear Cuenta')"
@@ -57,7 +57,7 @@
               />
             </div>
             <div style="width: 150px">
-              <custom-button-active-desactive
+              <iw-button-active-desactive
                 [state]="applicationUserState"
                 (stateChange)="onSelectActive($event)"
               />
@@ -83,7 +83,7 @@
             CORREO
             <p-sortIcon field="email" />
           </th>
-          <th class="table-col-15">TÉLEFONO</th>
+          <th class="table-col-15">Tï¿½LEFONO</th>
           <th class="table-col-5"></th>
         </tr>
       </ng-template>
@@ -114,25 +114,25 @@
           <td class="no-print">
             <div class="flex">
               @if (item.active) {
-              <custom-button-item
+              <il-button-item
                 (clicked)="onToBlockAccount(item.id)"
                 iconClass="mdi:lock"
                 label="Bloquear"
               />
               } @if (!item.active) {
-              <custom-button-item
+              <il-button-item
                 (clicked)="onToUnlockAccount(item.id)"
                 iconClass="mdi:lock-open"
                 label="Desbloquear"
               />
               }
-              <custom-button-item
+              <il-button-item
                 (clicked)="onModalEditAccount(item.id, item.email)"
                 iconClass="mdi:account"
                 label="Permisos"
               />
-              <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
-              <custom-button-delete (confirmed)="DeleteUserId(item.id)" />
+              <iw-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
+              <iw-button-delete (confirmed)="DeleteUserId(item.id)" />
             </div>
           </td>
         </tr>
@@ -155,7 +155,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versiï¿½n mï¿½vil -->
 <app-data-view-mobile
   [data]="filteredDataSignal()"
   (add)="onModalForm('', 'Crear Cuenta')"
@@ -192,7 +192,7 @@
         />
       </div>
       <div class="col-2 m-0">
-        <custom-button-active-desactive
+        <iw-button-active-desactive
           fluid
           [state]="applicationUserState"
           (stateChange)="onSelectActive($event)"
@@ -227,7 +227,7 @@
           <span style="color: var(--ds-primary)" class="font-medium"
             >{{ item.userName }}</span
           >
-          <span class="mx-1 text-color-secondary">·</span>
+          <span class="mx-1 text-color-secondary">ï¿½</span>
           <span class="text-color-secondary uppercase">{{ item.role }}</span>
         </p>
         <p class="text-xs m-0 text-color-secondary">
@@ -248,35 +248,30 @@
       <app-action-menu slot="end">
         <ng-container actions>
           @if (item.active) {
-          <custom-button-item
+          <il-button-item
             (clicked)="onToBlockAccount(item.id)"
             iconName="lock-closed-outline"
             label="Bloquear"
-            [showLabelOnDesktop]="true"
           />
           } @if (!item.active) {
-          <custom-button-item
+          <il-button-item
             (clicked)="onToUnlockAccount(item.id)"
             iconName="lock-open-outline"
             label="Desbloquear"
-            [showLabelOnDesktop]="true"
           />
           }
-          <custom-button-item
+          <il-button-item
             (clicked)="onModalEditAccount(item.id, item.email)"
             iconName="person-outline"
             label="Permisos"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm(item.id, 'Editar')"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="DeleteUserId(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

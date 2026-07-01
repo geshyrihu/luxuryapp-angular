@@ -1,4 +1,4 @@
-锘縤mport { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -9,10 +9,10 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -46,7 +46,7 @@ interface IWarehouseStockRowForm {
     PrimeNgCustomTableFooter,
     CustomInputNumberSignal,
     ReactiveFormsModule,
-    CustomButtonItem,
+    WebButtonLabelItem,
     CustomSearchInput,
   ],
 })
@@ -73,10 +73,10 @@ export class WarehouseStockAdd implements OnInit {
   loading = signal(true);
   totalRecords: number = 0; // Total de registros para paginador
 
-  // Configuraci贸n de paginaci贸n y filtro
-  rows: number = 30; // Registros por p谩gina
-  first: number = 0; // 脙聧ndice del primer registro
-  page: number = 1; // P谩gina actual
+  // Configuraci髇 de paginaci髇 y filtro
+  rows: number = 30; // Registros por p醙ina
+  first: number = 0; // 脥ndice del primer registro
+  page: number = 1; // P醙ina actual
   searchTerm: string = ""; // Filtro global
 
   tablePrimeNgRows: number = tablePrimeNgRows();
@@ -93,7 +93,7 @@ export class WarehouseStockAdd implements OnInit {
 
   ngOnInit(): void {
     this.onLoadSelectItem();
-    // La primera carga es disparada autom谩ticamente por el (onLazyLoad) de p-table
+    // La primera carga es disparada autom醫icamente por el (onLazyLoad) de p-table
   }
 
   onModalTarjetaProducto(productoId: any): void {
@@ -194,10 +194,10 @@ export class WarehouseStockAdd implements OnInit {
 
     const value = rowGroup.getRawValue();
 
-    // Validar que Stock M贸nimo < Stock M贸ximo
+    // Validar que Stock M髇imo < Stock M髕imo
     if (value.stockMax && value.stockMin && value.stockMin >= value.stockMax) {
       rowGroup.controls.errorMessage.setValue(
-        "El 'Stock M贸nimo' no puede ser mayor o igual al 'Stock M贸ximo'.",
+        "El 'Stock M髇imo' no puede ser mayor o igual al 'Stock M髕imo'.",
       );
       return;
     }

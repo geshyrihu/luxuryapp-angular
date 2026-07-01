@@ -1,9 +1,9 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importaci�n
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
 import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importación
-import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -16,7 +16,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   selector: "app-activos-documentos",
 
   templateUrl: "./activos-documentos.html",
-  imports: [NgbTooltipModule, CustomButtonConfirm, CustomButton],
+  imports: [NgbTooltipModule, WebButtonLabelConfirm, WebButtonLabel],
 })
 export class ActivosDocumentos implements OnInit {
   apiResponseS = inject(ApiResponseService);

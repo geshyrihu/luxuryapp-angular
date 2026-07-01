@@ -97,23 +97,23 @@
           <td class="text-center">{{ item.compraRequerida }}</td>
           <td class="no-print">
             <div class="flex">
-              <custom-button-item
+              <il-button-item
                 [iconClass]="'mdi:plus'"
                 label="Entrada"
                 (clicked)="onAddEntrada({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:minus"
                 label="Salida"
                 (clicked)="onAddSalida({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="editProductos({ id: item.id, title: 'Editar' })"
               />
               @if (item.existencia <= 0) {
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              <il-button-delete (confirmed)="onDelete(item.id)" />
               }
             </div>
           </td>
@@ -182,7 +182,7 @@
 
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               iconName="add-outline"
               label="Entrada"
               (clicked)="
@@ -193,10 +193,9 @@
                   almacenId: item.almacenId
                 })
               "
-              [showLabelOnDesktop]="true"
             />
 
-            <custom-button-item
+            <il-button-item
               iconName="ellipsis-horizontal-outline"
               label="Salida"
               (clicked)="
@@ -208,19 +207,16 @@
                   almacenId: item.almacenId
                 })
               "
-              [showLabelOnDesktop]="true"
             />
 
-            <custom-button-edit
+            <il-button-edit
               (clicked)="editProductos({ id: item.id, title: 'Editar' })"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
             @if (item.existencia <= 0) {
-            <custom-button-delete
+            <il-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
-              [showLabelOnDesktop]="true"
             />
             }
           </ng-container>

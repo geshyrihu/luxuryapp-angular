@@ -20,7 +20,7 @@
           }
         </div>
         @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-        <custom-button-add (clicked)="onModalForm(0, item.eMonth)"
+        <il-button-add (clicked)="onModalForm(0, item.eMonth)"
 />
         }
       </div>
@@ -34,7 +34,7 @@
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
             <div class="flex-shrink-0">
               <p-menu #menu [model]="menuItems()" [popup]="true"></p-menu>
-              <custom-button-item
+              <il-button-item
                 iconClass="mdi:menu"
                 (clicked)="onSelectItem(evento, menu, $event)"
               />
@@ -106,10 +106,10 @@
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
           <app-action-menu>
             <ng-container actions>
-            <custom-button-edit (clicked)="onModalForm(item.id, item.eMonth)"
- label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+            <il-button-edit (clicked)="onModalForm(item.id, item.eMonth)"
+ label="Editar"/>
+            <il-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar"/>
                       </ng-container>
           </app-action-menu>
           }

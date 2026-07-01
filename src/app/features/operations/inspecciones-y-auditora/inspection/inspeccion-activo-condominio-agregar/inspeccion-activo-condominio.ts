@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
   FormControl,
@@ -9,10 +9,10 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -36,7 +36,7 @@ interface IReviewForm {
     CustomInputAutoComplete,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class InspeccionActivoCondominio implements OnInit {
@@ -167,7 +167,7 @@ export class InspeccionActivoCondominio implements OnInit {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
     if (this.reviewsControl.length === 0) {
-      console.error("Debe agregar al menos una revisión");
+      console.error("Debe agregar al menos una revisi�n");
       return;
     }
 

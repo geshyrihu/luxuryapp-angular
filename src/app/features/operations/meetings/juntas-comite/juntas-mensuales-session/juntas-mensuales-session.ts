@@ -1,4 +1,3 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule, DatePipe } from "@angular/common";
 import {
   Component,
@@ -13,8 +12,9 @@ import { Router, RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -122,8 +122,8 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
     TableModule,
     CardModule,
     TagModule,
-    CustomButton,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelDelete,
     DatePipe,
   ],
 })
@@ -388,4 +388,3 @@ export class JuntasMensualesSession {
     return this.dateS.parseDate(normalized) ?? null;
   }
 }
-

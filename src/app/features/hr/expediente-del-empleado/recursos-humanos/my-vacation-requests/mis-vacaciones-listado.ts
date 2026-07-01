@@ -1,15 +1,17 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { TagModule } from "primeng/tag";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -21,8 +23,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { getStatusSeverity } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationRequestMyDTO } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/interfaces/vacation-request.interface";
 import { VacacionesForm } from "./vacaciones-form";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
@@ -30,15 +30,15 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
     EmptyState,
     TableModule,
     TagModule,
-    CustomButton,
-    CustomButtonItem,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabel,
+    WebButtonLabelItem,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     ActionMenu,
     DataViewMobile,
-    CustomButtonItem,
+    WebButtonLabelItem,
   ],
 })
 export class MisVacacionesListado implements OnInit {
@@ -78,10 +78,10 @@ export class MisVacacionesListado implements OnInit {
     this.apiResponseS
       .onDelete(Endpoints.HR.VacationRequest.delete(id))
       .then(() => {
-      this.dataSignal.update((currentData) =>
-        currentData.filter((item) => item.id !== id),
-      );
-    });
+        this.dataSignal.update((currentData) =>
+          currentData.filter((item) => item.id !== id),
+        );
+      });
   }
 
   onModalForm(data: { id: string; title: string }) {
@@ -100,11 +100,3 @@ export class MisVacacionesListado implements OnInit {
     this.router.navigate(["/recursos-humanos/vacaciones", id, "detalle"]);
   }
 }
-
-
-
-
-
-
-
-

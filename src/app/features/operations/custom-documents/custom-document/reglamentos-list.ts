@@ -1,20 +1,20 @@
-ï»¿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DialogModule } from "primeng/dialog";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { TableModule } from "primeng/table";
 import { TextareaModule } from "primeng/textarea";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
-    globalFilterFields,
-    rowsPerPageOptions,
-    tablePrimeNgRows,
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { AiService } from "src/app/core/services/ai.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -26,18 +26,18 @@ import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/
   selector: "app-reglamentos",
   imports: [
     TableModule,
-    CustomButton,
+    WebButtonLabel,
     NgbTooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
     DialogModule,
     TextareaModule,
     ReactiveFormsModule,
     IonItem,
     IonLabel,
-    CustomButtonViewPdf,
+    WebButtonLabelViewPdf,
   ],
   templateUrl: "./reglamentos-list.html",
 })
@@ -106,7 +106,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "OcurriÃ© un error al consultar el documento. Por favor intenta de nuevo.",
+        "Ocurrié un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);
@@ -118,20 +118,10 @@ export class Reglamentos {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificaciÃ³n de Ã³xito
+        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

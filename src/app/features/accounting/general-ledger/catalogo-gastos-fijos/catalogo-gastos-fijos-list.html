@@ -28,7 +28,7 @@
 
         <!-- Grupo 1ra Quincena -->
 
-        <custom-button
+        <il-button
           (clicked)="selectByQuincena(0)"
           label="Marcar 1ra Quincena"
           size="small"
@@ -37,7 +37,7 @@
           [iconClass]="isFirstQuincenaSelected() ?  'mdi:check' : 'mdi:close'"
         />
 
-        <custom-button
+        <il-button
           (clicked)="generateOrdenesPorQuincena(0)"
           label="Generar 1ra Quincena"
           iconClass="mdi:calendar"
@@ -48,7 +48,7 @@
 
         <!-- Grupo 2da Quincena -->
 
-        <custom-button
+        <il-button
           (clicked)="selectByQuincena(1)"
           label="Marcar 2da Quincena"
           pTooltip="Seleccionar ótems de 2da Quincena"
@@ -58,7 +58,7 @@
           [iconClass]="isSecondQuincenaSelected() ?'mdi:check' : 'mdi:close'"
         />
 
-        <custom-button
+        <il-button
           [label]="'Generar 2da Quincena'"
           (clicked)="generateOrdenesPorQuincena(1)"
           iconClass="mdi:calendar"
@@ -80,7 +80,7 @@
       <div class="grid sm:grid md:grid lg:grid gap-1 w-full">
         @for (month of fundingPeriodsByMonth(); track month.monthName) {
         <div class="p-1">
-          <custom-button
+          <il-button
             (clicked)="selectMonth(month.monthName)"
             [label]="month.monthName | uppercase"
             [variant]="selectedMonthName() === month.monthName ? null : 'outlined'"
@@ -243,10 +243,10 @@
 
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <il-button-edit
             [routerLink]="['/purchases/catalogo-gastos-fijos-form', item.id]"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -394,12 +394,12 @@
           <div slot="end">
             <app-action-menu>
               <ng-container actions>
-              <custom-button-edit
+              <il-button-edit
                 (clicked)="onModal({ id: item.id, title: 'Editar' })"
-               label="Editar" [showLabelOnDesktop]="true"></custom-button-edit>
-              <custom-button-delete
+               label="Editar"></il-button-edit>
+              <il-button-delete
                 (confirmed)="onDelete(item.id)"
-              ></custom-button-delete>
+              ></il-button-delete>
                           </ng-container>
             </app-action-menu>
           </div>

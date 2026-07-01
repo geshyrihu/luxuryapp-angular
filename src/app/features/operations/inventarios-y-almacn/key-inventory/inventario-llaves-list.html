@@ -13,7 +13,7 @@
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
-    <custom-button-download
+    <il-button-download
       label="Descargar PDF"
       (clicked)="onDownloadPdf()"
       class="mt-1"
@@ -46,10 +46,10 @@
       <td><small>{{ item.equipoClasificacion }}</small></td>
       <td class="no-print">
         <div class="flex">
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -76,7 +76,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <div customFilters style="padding: 4px 16px 8px">
-    <custom-button-download (clicked)="onDownloadPdf()" />
+    <il-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
@@ -109,15 +109,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDelete(item.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

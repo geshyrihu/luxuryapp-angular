@@ -1,15 +1,15 @@
-锘縤mport { Component, inject, OnInit, signal, viewChild } from "@angular/core";
+import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -29,8 +29,8 @@ import { TaskGroupService } from "../../task.service";
     CustomInputSelectSignal,
     CustomInputImg,
     CustomInputTextAreaSignal,
-    CustomButton,
-    CustomButtonSave,
+    WebButtonLabel,
+    WebButtonLabelSave,
     AvatarModule,
     ImageAnalysisDialogComponent,
   ],
@@ -56,8 +56,8 @@ export class MyTaskForm implements OnInit {
   form = this.formB.nonNullable.group({
     id: [{ value: "", disabled: true }],
     ticketGroupId: [this.config.data.ticketGroupId, Validators.required], // ticketGroupId
-    title: ["", [Validators.required, Validators.maxLength(100)]], // T铆tulo
-    description: ["", [Validators.required, Validators.maxLength(150)]], // Descripci贸n
+    title: ["", [Validators.required, Validators.maxLength(100)]], // T韙ulo
+    description: ["", [Validators.required, Validators.maxLength(150)]], // Descripci髇
     priority: [1, Validators.required], // Prioridad (enum)
     creatorId: [this.authS.applicationUserId], // Id del creador
     customerId: [this.customerIdS.customerId()], // Id del cliente
@@ -91,7 +91,7 @@ export class MyTaskForm implements OnInit {
     this.cb_ticket_group.set(ticketGroups ?? []);
   }
 
-  // Para manejar las im贸genes 'BeforeWork' y 'AfterWork'
+  // Para manejar las im骻enes 'BeforeWork' y 'AfterWork'
   onFileChange(event: any, fieldName: "beforeWork" | "afterWork") {
     const file = event.target.files[0];
     if (file) {
@@ -116,7 +116,7 @@ export class MyTaskForm implements OnInit {
       .onGetItem(Endpoints.Tasks.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
-        // Si las im贸genes existen, carga las vistas previas
+        // Si las im骻enes existen, carga las vistas previas
         if (result.beforeWorkPreview) {
           this.form.controls.beforeWorkPreview.setValue(
             result.beforeWorkPreview,
@@ -140,8 +140,8 @@ export class MyTaskForm implements OnInit {
   onVisionResult(analysis: string) {
     const currentDesc = this.form.controls.description.value || "";
     const newDesc = currentDesc
-      ? `${currentDesc}\n\n--- An贸lisis IA ---\n${analysis}`
-      : `--- An贸lisis IA ---\n${analysis}`;
+      ? `${currentDesc}\n\n--- An髄isis IA ---\n${analysis}`
+      : `--- An髄isis IA ---\n${analysis}`;
 
     this.form.controls.description.setValue(newDesc);
   }
@@ -162,7 +162,7 @@ export class MyTaskForm implements OnInit {
           // Should be FormArray check if used? Re-add if missing from logic but it wasn't in form definition before? Wait, line 140 checks key === "images" but it wasn't in form group. I will keep it logic wise if added dynamically or keep strict based on form.
           // Original form didn't have 'images' in group definition, so keys(controls) wouldn't iterate it unless added dynamically. Assuming static structure first.
         } else if (key === "beforeWork" || key === "afterWork") {
-          // Manejar las im贸genes de beforeWork y afterWork
+          // Manejar las im骻enes de beforeWork y afterWork
           const file = value as File;
           if (file) {
             formData.append(key, file, file.name);
@@ -173,7 +173,7 @@ export class MyTaskForm implements OnInit {
             const formattedDate = new Date(value).toISOString().split("T")[0]; // Formato 'YYYY-MM-DD'
             formData.append(key, formattedDate);
           } else {
-            formData.append(key, ""); // Si no hay valor, se env铆a como vac铆o
+            formData.append(key, ""); // Si no hay valor, se env韆 como vac韔
           }
         } else {
           // Verifica si el valor es null antes de agregarlo a FormData
@@ -182,7 +182,7 @@ export class MyTaskForm implements OnInit {
         }
       });
 
-      // Verifica si es creaci贸n o actualizaci贸n
+      // Verifica si es creaci髇 o actualizaci髇
       if (this.id === "") {
         this.apiResponseS
           .onPost(Endpoints.Tasks.create, formData)

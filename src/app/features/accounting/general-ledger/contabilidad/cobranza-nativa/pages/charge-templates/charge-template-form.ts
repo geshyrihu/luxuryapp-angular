@@ -1,4 +1,4 @@
-﻿import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -23,13 +23,13 @@ import {
 } from "../../models/enums";
 
 // Custom Inputs
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 
 interface IChargeTemplateForm {
   name: FormControl<string>;
@@ -59,7 +59,7 @@ interface IChargeTemplateForm {
     CustomInputCheckSignal,
     CustomInputDateSignal,
     CustomInputNumberSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
     ButtonModule,
   ],
   templateUrl: "./charge-template-form.html",

@@ -1,8 +1,8 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -26,7 +26,7 @@ interface VacationApprovalDetailDTO {
 @Component({
   selector: "app-vacacion-solicitud-detalle",
   templateUrl: "./vacacion-solicitud-detalle.html",
-  imports: [CardModule, TagModule, CustomButton],
+  imports: [CardModule, TagModule, WebButtonLabel],
 })
 export class VacacionSolicitudDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -96,5 +96,3 @@ export class VacacionSolicitudDetalle implements OnInit {
       });
   }
 }
-
-

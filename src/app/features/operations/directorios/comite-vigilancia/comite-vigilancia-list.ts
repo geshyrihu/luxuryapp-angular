@@ -1,14 +1,14 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web/label/button-send-email";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonSendEmail } from "src/app/core/components/web/buttons/custom-button-send-email";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -26,23 +26,23 @@ import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
 @Component({
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
-  // Añadido para Angular 20
+  // A�adido para Angular 20
   imports: [
     EmptyState,
     TableModule,
     NgbTooltipModule,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    CustomButtonSendEmail,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelSendEmail,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonSendEmail,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelSendEmail,
   ],
 })
 export class ComiteVigilanciaList {
@@ -112,13 +112,3 @@ export class ComiteVigilanciaList {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

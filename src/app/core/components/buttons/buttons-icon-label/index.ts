@@ -1,0 +1,15 @@
+export {
+  WebButtonLabel as IlButton,
+  WebButtonLabelAdd as IlButtonAdd,
+  WebButtonLabelEdit as IlButtonEdit,
+  WebButtonLabelDelete as IlButtonDelete,
+  WebButtonLabelSave as IlButtonSave,
+  WebButtonLabelDownload as IlButtonDownload,
+  WebButtonLabelConfirm as IlButtonConfirm,
+  WebButtonLabelSendEmail as IlButtonSendEmail,
+  WebButtonLabelViewPdf as IlButtonViewPdf,
+  WebButtonLabelTracking as IlButtonTracking,
+  WebButtonLabelItem as IlButtonItem,
+  WebButtonLabelActiveDesactive as IlBtnActiveDesactive,
+  WebButtonLabelActiveDesactive as IlButtonActiveDesactive,
+} from "../web/label";

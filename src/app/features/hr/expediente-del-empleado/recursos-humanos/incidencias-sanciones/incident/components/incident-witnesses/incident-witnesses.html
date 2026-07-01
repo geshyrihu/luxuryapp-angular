@@ -11,10 +11,9 @@
         >({{ witnesses().length }})</span
       >
     </div>
-    <custom-button
+    <il-button
       iconClass="mdi:plus"
       label="Agregar Testigo"
-      [showLabelOnDesktop]="true"
       severity="secondary"
       [size]="'small'"
       (clicked)="openAddDialog()"
@@ -65,8 +64,8 @@
         </td>
         <td>
           <div class="flex gap-1">
-            <custom-button-edit (clicked)="openEditDialog(witness)" />
-            <custom-button-delete (confirmed)="deleteWitness(witness)" />
+            <il-button-edit (clicked)="openEditDialog(witness)" />
+            <il-button-delete (confirmed)="deleteWitness(witness)" />
           </div>
         </td>
       </tr>

@@ -108,36 +108,32 @@
         </div>
 
         <div class="flex flex-wrap gap-2 mt-3">
-          <custom-button
-            label="Guardar configuración"
-            iconClass="mdi:content-save"
-            severity="success"
-            [showLabelOnDesktop]="true"
-            (clicked)="saveSettings()"
-          />
-          <custom-button
-            label="Probar audio"
-            iconClass="mdi:volume-high"
-            severity="info"
-            [showLabelOnDesktop]="true"
-            [loading]="testingAudio()"
-            (clicked)="testAudio()"
-          />
-          <custom-button
-            label="Detener audio"
-            iconClass="mdi:stop"
-            severity="secondary"
-            [showLabelOnDesktop]="true"
-            (clicked)="stopAudio()"
-          />
-          <custom-button
-            label="Recargar voces"
-            iconClass="mdi:refresh"
-            severity="contrast"
-            [showLabelOnDesktop]="true"
-            [loading]="loadingVoices()"
-            (clicked)="loadVoices()"
-          />
+        <il-button
+          label="Guardar configuración"
+          iconClass="mdi:content-save"
+          severity="success"
+          (clicked)="saveSettings()"
+        />
+        <il-button
+          label="Probar audio"
+          iconClass="mdi:volume-high"
+          severity="info"
+          [loading]="testingAudio()"
+          (clicked)="testAudio()"
+        />
+        <il-button
+          label="Detener audio"
+          iconClass="mdi:stop"
+          severity="secondary"
+          (clicked)="stopAudio()"
+        />
+        <il-button
+          label="Recargar voces"
+          iconClass="mdi:refresh"
+          severity="contrast"
+          [loading]="loadingVoices()"
+          (clicked)="loadVoices()"
+        />
         </div>
 
         @if (selectedVoicePreview()) {
@@ -177,11 +173,10 @@
             <strong>Próximo corte:</strong>
             {{ sub.nextBillingDate ? (sub.nextBillingDate | date: "mediumDate") : "N/D" }}
           </div>
-          <custom-button
+          <il-button
             label="Actualizar estado"
             iconClass="mdi:sync"
             severity="warning"
-            [showLabelOnDesktop]="true"
             [loading]="loadingSubscription()"
             (clicked)="loadSubscription()"
           />
@@ -190,11 +185,10 @@
             No fue posible cargar la suscripción. Revisa la API Key configurada
             en backend.
           </div>
-          <custom-button
+          <il-button
             label="Reintentar"
             iconClass="mdi:refresh"
             severity="warning"
-            [showLabelOnDesktop]="true"
             (clicked)="loadSubscription()"
           />
           }

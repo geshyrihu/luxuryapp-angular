@@ -72,7 +72,7 @@
           [style]="{ minWidth: '195px' }"
         />
       </div>
-      <custom-button-download (clicked)="onDownloadPdf()" />
+      <il-button-download (clicked)="onDownloadPdf()" />
     </div>
   </div>
   <div class="bg-yellow-500" style="height: 0.2rem"></div>
@@ -190,7 +190,7 @@
       [showAdd]="false"
     >
       <ng-template #extraButtons>
-        <custom-button-download (clicked)="exportExcel()" />
+        <il-button-download (clicked)="exportExcel()" />
       </ng-template>
     </primeng-custom-caption>
   </ng-template>

@@ -198,13 +198,13 @@
                 item.ivaAplicado / 100) | currency: "MXN" }}
               </td>
               <td class="text-center">
-                <custom-button
+                <il-button
                   iconClass="mdi:pencil"
                   variant="text"
                   severity="info"
                   (clicked)="editItem(item, i)"
                 />
-                <custom-button
+                <il-button
                   iconClass="mdi:delete"
                   variant="text"
                   severity="danger"
@@ -288,7 +288,7 @@
                 ></p-inputNumber>
               </td>
               <td>
-                <custom-button
+                <il-button
                   iconClass="mdi:delete"
                   severity="danger"
                   variant="text"
@@ -469,7 +469,7 @@
   </div>
 
   <div class="wizard-navigation mt-4 flex justify-content-between">
-    <custom-button
+    <il-button
       label="Anterior"
       iconClass="mdi:arrow-left"
       (clicked)="prevStep()"
@@ -478,14 +478,14 @@
     />
 
     @if (activeIndex < items.length - 1) {
-    <custom-button
+    <il-button
       label="Siguiente"
       iconClass="mdi:arrow-right"
       (clicked)="nextStep()"
       iconPosition="right"
     />
     } @if (activeIndex === items.length - 1) {
-    <custom-button
+    <il-button
       label="Finalizar y Crear Orden"
       iconClass="mdi:check"
       (clicked)="onSubmit()"

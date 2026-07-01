@@ -4,10 +4,10 @@ import { FormsModule } from "@angular/forms";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ReportFilterService } from "../espejo-aspel-full/services/financial-report-filter.service";
@@ -27,8 +27,8 @@ import {
     TableModule,
     SelectButtonModule,
     ProgressSpinnerModule,
-    CustomButton,
-    CustomButtonDownload,
+    WebButtonLabel,
+    WebButtonLabelDownload,
     CustomSearchInput,
     AppIcon,
   ],

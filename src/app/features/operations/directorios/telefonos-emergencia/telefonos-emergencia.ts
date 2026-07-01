@@ -1,11 +1,11 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -19,9 +19,9 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
   imports: [
     AppIcon,
     AvatarModule,
-    CustomButtonAdd,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelAdd,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     CustomSearchInput,
     TooltipModule,
   ],

@@ -40,12 +40,12 @@
           }
         </td>
         <td class="text-center">
-          <custom-button-item
+          <il-button-item
             [icon]="item.isActive ? 'mdi:toggle-switch' : 'mdi:toggle-switch-off-outline'"
             (click)="onToggleActive(item)"
           />
-          <custom-button-edit (click)="onEdit(item)" />
-          <custom-button-delete (click)="onDelete(item.id)" />
+          <il-button-edit (click)="onEdit(item)" />
+          <il-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
@@ -104,13 +104,12 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item
+            <il-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
-              [showLabelOnDesktop]="true"
             />
-            <custom-button-item
+            <il-button-item
               [label]="item.isActive ? 'Desactivar' : 'Activar'"
               iconName="toggle-outline"
               (clicked)="onToggleActive(item)"

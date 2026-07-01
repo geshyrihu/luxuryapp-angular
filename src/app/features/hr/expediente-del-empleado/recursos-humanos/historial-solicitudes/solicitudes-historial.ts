@@ -1,4 +1,4 @@
-ï»¿import { CommonModule, DatePipe } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import {
   Component,
   computed,
@@ -12,11 +12,11 @@ import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { firstValueFrom } from "rxjs";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -90,8 +90,8 @@ interface IHistorialSolicitud {
     ReactiveFormsModule,
     TableModule,
     TagModule,
-    CustomButtonItem,
-    CustomButton,
+    WebButtonLabelItem,
+    WebButtonLabel,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     DataViewMobile,
@@ -158,16 +158,16 @@ export class SolicitudesHistorial implements OnInit {
     const { value: reason } = await Swal.fire({
       title: "Cancelar Solicitud",
       input: "textarea",
-      inputLabel: `Motivo de cancelaciÃ³n para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
-      inputPlaceholder: "Ingresa el motivo de la cancelaciÃ³n aquÃ­...",
+      inputLabel: `Motivo de cancelación para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
+      inputPlaceholder: "Ingresa el motivo de la cancelación aquí...",
       inputValidator: (value) => {
         if (!value) {
-          return "El motivo de la cancelaciÃ³n es obligatorio.";
+          return "El motivo de la cancelación es obligatorio.";
         }
         return null;
       },
       showCancelButton: true,
-      confirmButtonText: "Confirmar CancelaciÃ³n",
+      confirmButtonText: "Confirmar Cancelación",
       cancelButtonText: "No Cancelar",
       icon: "warning",
     });
@@ -278,7 +278,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "leave",
-            daysRequested: `${diffDays} dÃ­a(s)`,
+            daysRequested: `${diffDays} día(s)`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };
@@ -298,7 +298,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "vacation",
-            daysRequested: `${item.requestedDays} dÃ­a(s) (${item.seniorityYearDescription})`,
+            daysRequested: `${item.requestedDays} día(s) (${item.seniorityYearDescription})`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };

@@ -48,12 +48,12 @@
 
         <!-- Botún de Descarga PDF (Ancho fijo preventivo) -->
         <div class="flex-shrink-0">
-          <custom-button
+          <il-button
             label="?? Descargar PDF"
             iconClass="mdi:download"
             variant="outlined"
             (clicked)="onDownloadPdf()"
-          ></custom-button>
+          ></il-button>
         </div>
       </div>
     </div>
@@ -137,17 +137,17 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <custom-button-item
+          <il-button-item
             iconClass="mdi:comment"
             label="Seguimientos"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
-          <custom-button-item
+          <il-button-item
             [iconClass]="'mdi:plus'"
             label="Agregar seguimiento"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto', })"
           />
         </div>
@@ -196,10 +196,9 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto' })"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

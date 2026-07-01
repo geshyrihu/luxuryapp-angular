@@ -1,14 +1,14 @@
-ï»¿import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
@@ -28,8 +28,8 @@ import { ProjectedExpensesForm } from "./projected-expenses-form";
     CommonModule,
     TableModule,
     DecimalPipe,
-    CustomButtonEdit,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
     EmptyState,
     PrimeNgCustomCaption,
     DataViewMobile,
@@ -37,8 +37,8 @@ import { ProjectedExpensesForm } from "./projected-expenses-form";
     CardModule,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
   ],
 })
 export default class ProjectedExpensesList {
@@ -63,8 +63,8 @@ export default class ProjectedExpensesList {
   */
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  // Ã³Esta es la magia!
-  // Se recalcularÃ³ automÃ³ticamente SOLO si dataSignal cambia.
+  // óEsta es la magia!
+  // Se recalcularó automóticamente SOLO si dataSignal cambia.
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -105,13 +105,3 @@ export default class ProjectedExpensesList {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

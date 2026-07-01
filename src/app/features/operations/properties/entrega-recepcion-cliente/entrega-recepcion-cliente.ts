@@ -1,15 +1,15 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -29,13 +29,13 @@ import { EntregaRecepcionClienteForm } from "src/app/features/operations/propert
   templateUrl: "./entrega-recepcion-cliente.html",
   imports: [
     EmptyState,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
+    WebButtonLabelDelete,
     CommonModule,
     TableModule,
-    CustomButton,
-    CustomButtonViewPdf,
+    WebButtonLabel,
+    WebButtonLabelViewPdf,
     ActionMenu,
     PrimeNgCustomCaption,
   ],
@@ -166,4 +166,3 @@ export class EntregaRecepcionClienteLista {
     window.open(url, "_blank");
   }
 }
-

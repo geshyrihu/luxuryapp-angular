@@ -25,7 +25,7 @@
           [style]="{ 'min-width': '300px' }"
           [noMargin]="true"
         />
-        <custom-button
+        <il-button
           label="Consultar"
           iconClass="mdi:magnify"
           [disabled]="!propertyIdCtrl.value || loading()"
@@ -119,7 +119,7 @@
       >
         <div class="flex justify-content-between align-items-center mb-4">
           <h3 class="text-lg font-bold text-800">Movimientos (Kardex)</h3>
-          <custom-button
+          <il-button
             label="Descargar PDF"
             iconClass="mdi:printer"
             severity="secondary"
@@ -201,7 +201,7 @@
                 number:'1.4-4' }}%
               </p>
             </div>
-            <custom-button
+            <il-button
               iconClass="mdi:printer"
               label="PDF"
               variant="outlined"

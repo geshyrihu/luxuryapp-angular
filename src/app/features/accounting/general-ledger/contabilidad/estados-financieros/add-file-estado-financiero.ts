@@ -1,14 +1,14 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-add-file-estado-financiero",
   templateUrl: "./add-file-estado-financiero.html",
-  imports: [ReactiveFormsModule, CustomInputFile, CustomButtonSave],
+  imports: [ReactiveFormsModule, CustomInputFile, WebButtonLabelSave],
 })
 export class AddFileEstadoFinanciero implements OnInit {
   formB = inject(FormBuilder);

@@ -1,17 +1,17 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-  CustomButtonItem,
-} from "src/app/core/components/web/buttons";
-import { CustomBtnActiveDesactive } from "src/app/core/components/web/buttons/custom-button-active-desactive";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelItem,
+} from "src/app/core/components/buttons/web/label";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -30,19 +30,19 @@ import { EmployeeExternalForm } from "./employee-external-form";
   imports: [
     EmptyState,
     TableModule,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
+    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    CustomBtnActiveDesactive,
+    WebButtonLabelActiveDesactive,
     IonItem,
     IonLabel,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelItem,
     AvatarModule,
   ],
   providers: [provideFlatpickrDefaults()],
@@ -61,13 +61,13 @@ export class EmployeeExternalList {
   getAllEmployeeActive: any = [];
   ref: DynamicDialogRef;
 
-  // óCAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
+  // �CAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
         // El effect se encarga de la carga inicial de datos
-        // tan pronto como el customerId estó disponible.
+        // tan pronto como el customerId est� disponible.
         this.onLoadData();
       }
     });
@@ -87,13 +87,13 @@ export class EmployeeExternalList {
         ),
       )
       .then((result: any) => {
-        console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
+        console.log("?? ~ EmployeeExternalList ~ onLoadData ~ result:", result);
         return this.dataSignal.set(result);
       });
   }
 
   onModalForm(data: any) {
-    console.log("🚀 ~ EmployeeExternalList ~ onModalForm ~ data:", data);
+    console.log("?? ~ EmployeeExternalList ~ onModalForm ~ data:", data);
     this.dialogHandlerS
       .openDialog(
         EmployeeExternalForm,
@@ -111,7 +111,7 @@ export class EmployeeExternalList {
       .openDialog(
         EmployeeExternalAppUser,
         { applicationUserId },
-        "Usuario de Aplicación",
+        "Usuario de Aplicaci�n",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
@@ -146,4 +146,3 @@ export class EmployeeExternalList {
     );
   }
 }
-

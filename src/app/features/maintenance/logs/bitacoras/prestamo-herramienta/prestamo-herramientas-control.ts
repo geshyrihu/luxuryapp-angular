@@ -1,15 +1,16 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -21,7 +22,6 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-control";
 @Component({
   selector: "app-prestamo-herramientas-control",
@@ -30,8 +30,8 @@ import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-cont
     EmptyState,
     CommonModule,
     TableModule,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     PrimeNgCustomCaption,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -92,7 +92,9 @@ export class PrestamoHerramientasControl {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.ToolLoans.listByCustomer(this.customerIdS.customerId());
+    const urlApi = Endpoints.ToolLoans.listByCustomer(
+      this.customerIdS.customerId(),
+    );
     const httpParams = {
       page: this.page,
       recordsNumber: this.rows,
@@ -136,13 +138,3 @@ export class PrestamoHerramientasControl {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

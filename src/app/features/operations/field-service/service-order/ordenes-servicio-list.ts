@@ -13,16 +13,16 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Importar WebButtonLabel
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonItem } from "src/app/core/components/web/buttons";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Importar CustomButton
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -45,10 +45,10 @@ import { UploadImgForm } from "./upload-img-form";
   imports: [
     EmptyState,
     CommonModule,
-    CustomButtonDelete,
-    CustomButtonEdit,
-    CustomButton, // Añadir CustomButton a imports
-    CustomButtonItem,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabel, // Aï¿½adir WebButtonLabel a imports
+    WebButtonLabelItem,
     DataViewMobile,
     ActionMenu,
     ReactiveFormsModule,
@@ -63,7 +63,7 @@ import { UploadImgForm } from "./upload-img-form";
     IonSegmentButton,
     IonItem,
     IonLabel,
-    CustomButtonItem,
+    WebButtonLabelItem,
     AppIcon,
   ],
 })
@@ -75,7 +75,7 @@ export class OrdenesServicio {
   reporteOrdenesServicioService = inject(ReporteOrdenesServicioService);
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
-  periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
+  periodMonthService = inject(PeriodMonthService); // Asegurarse de que estï¿½ inyectado
   pdfService = inject(OrdenesServicioListPdfService);
 
   mm: number;
@@ -118,7 +118,7 @@ export class OrdenesServicio {
   onReloadOrdenes(id: any, filtroEquiposValue: any) {
     this.filtroEquiposValue = filtroEquiposValue;
     this.filtroId = id;
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el método correcto
+    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el mï¿½todo correcto
 
     if (this.filtroId === 10) {
       this.onLoadPintura();
@@ -137,7 +137,7 @@ export class OrdenesServicio {
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);
-    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el método correcto
+    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el mï¿½todo correcto
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {

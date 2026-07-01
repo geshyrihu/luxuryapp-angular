@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -19,8 +19,8 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { PanelModule } from "primeng/panel";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -49,7 +49,7 @@ interface VacationRequestEditDTO {
     MessageModule,
     CustomInputDateSignal,
     // CustomInputTextAreaSignal,
-    CustomButtonSave,
+    WebButtonLabelSave,
   ],
 })
 export class VacacionesForm implements OnInit {
@@ -65,7 +65,7 @@ export class VacacionesForm implements OnInit {
   balance: VacationBalanceDTO | null = null;
   currentYear = new Date().getFullYear();
   disabledDates = signal<Date[]>([]); // Signal para fechas deshabilitadas
-  diasFestivos = signal<Date[]>([]); // Signal para dÃ­as festivos
+  diasFestivos = signal<Date[]>([]); // Signal para días festivos
 
   // Crear signals que escuchen los cambios del formulario
   private startDateSignal = signal<Date | null>(null);
@@ -105,7 +105,7 @@ export class VacacionesForm implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    // TODO: Cargar dinÃ³micamente los aÃ±os si el rango de fechas abarca mÃ³s de uno.
+    // TODO: Cargar dinómicamente los años si el rango de fechas abarca mós de uno.
     this.loadHolidays(this.currentYear);
     this.loadAvailableYearsAndBalance();
     this.loadExistingRequests();
@@ -138,7 +138,7 @@ export class VacacionesForm implements OnInit {
               : targetDate.getFullYear();
           if (computedYear !== this.currentYear) {
             this.currentYear = computedYear;
-            // Refresca el AÃ±o mostrado en UI y recalcula los pending days correctos
+            // Refresca el Año mostrado en UI y recalcula los pending days correctos
             this.reloadBalanceForYear(this.currentYear);
           }
         }
@@ -159,8 +159,8 @@ export class VacacionesForm implements OnInit {
         const holidays = response.map((item) => {
           const date = new Date(item.fecha);
           // La fecha de la API viene como YYYY-MM-DD. Al crear un new Date()
-          // puede interpretarse como UTC, pero para la comparaciÃ³n en el cliente,
-          // es mÃ³s seguro tratarlo con la zona horaria local. Re-ajustamos a UTC 00:00.
+          // puede interpretarse como UTC, pero para la comparación en el cliente,
+          // es mós seguro tratarlo con la zona horaria local. Re-ajustamos a UTC 00:00.
           return new Date(
             Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
           );
@@ -176,9 +176,9 @@ export class VacacionesForm implements OnInit {
         url += `&excludeRequestId=${this.id}`;
       }
       this.balance = await this.apiResponseS.onGetItem<VacationBalanceDTO>(url);
-      this.form.updateValueAndValidity(); // Forzar re-validaciÃ³n con el nuevo saldo
+      this.form.updateValueAndValidity(); // Forzar re-validación con el nuevo saldo
     } catch (e) {
-      console.error("Error al recargar el saldo para el AÃ±o:", year, e);
+      console.error("Error al recargar el saldo para el Año:", year, e);
     }
   }
 
@@ -195,12 +195,12 @@ export class VacacionesForm implements OnInit {
         this.currentYear = this.balance.year;
       }
 
-      // 2. Obtener lista de aÃ±os para el selector
+      // 2. Obtener lista de años para el selector
       const response = await this.apiResponseS.onGetList<
         { label: string; value: number }[]
       >(Endpoints.HR.VacationRequest.availableYears);
       if (response && response.length > 0) {
-        // Aseguramos que el AÃ±o devuelto por el backend estÃ³ pre-seleccionado
+        // Aseguramos que el Año devuelto por el backend estó pre-seleccionado
         const yearOption = response.find((y) => y.value === this.currentYear);
         if (!yearOption) {
           this.currentYear = response[response.length - 1].value;
@@ -210,7 +210,7 @@ export class VacacionesForm implements OnInit {
       console.error("Error loading available years or balance:", error);
     }
 
-    // 3. Cargar la data del form (si es ediciÃ³n) o validar de inmediato
+    // 3. Cargar la data del form (si es edición) o validar de inmediato
     if (this.id) {
       this.apiResponseS
         .onGetItem<VacationRequestEditDTO>(
@@ -263,7 +263,7 @@ export class VacacionesForm implements OnInit {
           }
         });
         this.disabledDates.set(datesToDisable);
-        // Forzar validaciÃ³n una vez que sabemos quÃ³ fechan colisionan
+        // Forzar validación una vez que sabemos quó fechan colisionan
         this.form.updateValueAndValidity();
       });
   }
@@ -322,7 +322,7 @@ export class VacacionesForm implements OnInit {
       return null; // Espera a que cargue el balance
     }
 
-    // Calcula dÃ­as solicitados
+    // Calcula días solicitados
     const requested = this.calculateDaysBetweenDates(
       start,
       end,
@@ -331,7 +331,7 @@ export class VacacionesForm implements OnInit {
 
     // Regla 1: Prevenir que la solicitud contenga fechas anteriores al ingreso del empleado
     const admissionDate = new Date(this.balance.employeeAdmissionDate);
-    admissionDate.setUTCHours(0, 0, 0, 0); // Limpiar horas para no afectar la comparaciÃ³n.
+    admissionDate.setUTCHours(0, 0, 0, 0); // Limpiar horas para no afectar la comparación.
     const startUTC = new Date(start);
     startUTC.setUTCHours(0, 0, 0, 0);
 
@@ -340,7 +340,7 @@ export class VacacionesForm implements OnInit {
     }
 
     // Regla 2: Empalme con solicitudes previas.
-    // Asegura que ninguna fecha dentro del rango caiga en un dÃ­a previamente bloqueado (aprobado/pendiente).
+    // Asegura que ninguna fecha dentro del rango caiga en un día previamente bloqueado (aprobado/pendiente).
     let hasOverlap = false;
     let currentDate = new Date(startUTC);
     const endDateUTC = new Date(end);
@@ -378,8 +378,8 @@ export class VacacionesForm implements OnInit {
       };
     }
 
-    // Regla 4: LÃ³mite estricto de Adelanto (RN-006)
-    // Extra-candado solo para empleados de Nuevo Ingreso (<1 AÃ±o)
+    // Regla 4: Lómite estricto de Adelanto (RN-006)
+    // Extra-candado solo para empleados de Nuevo Ingreso (<1 Año)
     if (this.balance.isAdvancePeriod) {
       if (requested > this.balance.availableAdvanceDays) {
         return {
@@ -419,7 +419,7 @@ export class VacacionesForm implements OnInit {
 
     if (!result) {
       const error = this.globalErrorS.errorSubject.getValue();
-      this.serverError.set(error?.message || "OcurriÃ³ un error inesperado.");
+      this.serverError.set(error?.message || "Ocurrió un error inesperado.");
     }
   }
 }

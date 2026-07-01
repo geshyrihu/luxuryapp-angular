@@ -17,14 +17,14 @@
       <div class="flex align-items-center justify-content-between p-2">
         <h5 class="m-0 text-xl font-bold text-700">Gestión de Diagramas</h5>
         <div class="flex gap-2">
-          <custom-button
+          <il-button
             label="Galería"
             iconClass="mdi:image-multiple"
             severity="secondary"
             variant="ghost-text"
             (clicked)="onOpenGallery()"
           />
-          <custom-button-add (clicked)="onAddDiagram()" />
+          <il-button-add (clicked)="onAddDiagram()" />
         </div>
       </div>
     </ng-template>
@@ -49,7 +49,7 @@
         </td>
         <td>
           <div class="flex justify-content-center gap-2">
-            <custom-button
+            <il-button
               iconClass="mdi:pencil"
               (clicked)="onEditDiagram(diagram.id)"
               ngbTooltip="Editar Propiedades"
@@ -57,7 +57,7 @@
               severity="secondary"
               label="Propiedades"
             />
-            <custom-button
+            <il-button
               iconClass="mdi:palette"
               (clicked)="onOpenEditor(diagram.id)"
               ngbTooltip="Abrir Editor Gráfico"
@@ -65,7 +65,7 @@
               severity="info"
               label="Editor"
             />
-            <custom-button
+            <il-button
               iconClass="mdi:eye-outline"
               (clicked)="onViewDiagram(diagram.id)"
               ngbTooltip="Visualizar Diagrama"
@@ -73,7 +73,7 @@
               severity="success"
               label="Ver"
             />
-            <custom-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
+            <il-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
           </div>
         </td>
       </tr>
@@ -123,31 +123,27 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit
+          <il-button-edit
             (clicked)="onEditDiagram(diagram.id)"
             label="Editar"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:palette"
             (clicked)="onOpenEditor(diagram.id)"
             label="Editor"
             variant="text"
             severity="info"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button
+          <il-button
             iconClass="mdi:eye-outline"
             (clicked)="onViewDiagram(diagram.id)"
             label="Ver"
             variant="text"
             severity="success"
-            [showLabelOnDesktop]="true"
           />
-          <custom-button-delete
+          <il-button-delete
             (confirmed)="onDeleteDiagram(diagram.id)"
             label="Eliminar"
-            [showLabelOnDesktop]="true"
           />
         </ng-container>
       </app-action-menu>

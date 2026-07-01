@@ -12,7 +12,7 @@
         propiedades que superan el umbral.
       </div>
     </div>
-    <custom-button
+    <il-button
       label="Evaluar y Escalar Ahora"
       iconClass="mdi:alert"
       severity="warn"
@@ -77,7 +77,7 @@
           {{ item.activities.length }}
         </td>
         <td class="text-center">
-          <custom-button-edit (clicked)="openDetail(item)" />
+          <il-button-edit (clicked)="openDetail(item)" />
         </td>
       </tr>
     </ng-template>
@@ -124,10 +124,9 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-edit
+            <il-button-edit
               (clicked)="openDetail(item)"
               label="Editar"
-              [showLabelOnDesktop]="true"
             />
           </ng-container>
         </app-action-menu>

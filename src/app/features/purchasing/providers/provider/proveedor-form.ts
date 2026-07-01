@@ -1,4 +1,4 @@
-ï»¿import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -11,6 +11,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
@@ -19,7 +20,6 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -74,7 +74,7 @@ interface IProveedorForm {
     CustomInputAutoComplete,
     CustomInputFile,
     CustomInputImg,
-    CustomButtonSave,
+    WebButtonLabelSave,
     InputTextModule,
   ],
 })
@@ -230,15 +230,15 @@ export class ProveedorForm implements OnInit {
   onCreateFormData(DTO: any): FormData {
     const formData = new FormData();
 
-    // Convertimos el objeto DTO a FormData dinÃ³micamente
+    // Convertimos el objeto DTO a FormData dinómicamente
     Object.keys(DTO).forEach((key) => {
       const value = DTO[key];
       if (value === null || value === undefined) {
-        return; // No AÃ±adir valores nulos
+        return; // No Añadir valores nulos
       }
 
       if (key === "categorias" && Array.isArray(value)) {
-        // Caso especial para el array de categorÃ­as
+        // Caso especial para el array de categorías
         value.forEach((category: any) => {
           formData.append("categorias", category.value);
         });
@@ -246,12 +246,12 @@ export class ProveedorForm implements OnInit {
         // Caso especial para booleanos
         formData.append(key, String(value));
       } else {
-        // Para todos los demÃ³s tipos (string, number, File)
+        // Para todos los demós tipos (string, number, File)
         formData.append(key, value);
       }
     });
 
-    // Aseguramos que el applicationUserId siempre estÃ³ presente
+    // Aseguramos que el applicationUserId siempre estó presente
     formData.append("applicationUserId", String(this.authS.applicationUserId));
     formData.set("customerId", String(this.customerIdS.customerId()));
 

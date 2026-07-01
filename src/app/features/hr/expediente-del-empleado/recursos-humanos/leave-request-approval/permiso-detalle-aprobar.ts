@@ -1,8 +1,8 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { getStatusSeverity } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
@@ -25,7 +25,7 @@ interface LeaveApprovalDetailDTO {
 @Component({
   selector: "app-leave-request-detail-for-aproved",
   templateUrl: "./permiso-detalle-aprobar.html",
-  imports: [CardModule, TagModule, CustomButton],
+  imports: [CardModule, TagModule, WebButtonLabel],
 })
 export class PermisoDetalleAprobar implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -102,5 +102,3 @@ export class PermisoDetalleAprobar implements OnInit {
       });
   }
 }
-
-
