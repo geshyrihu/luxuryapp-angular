@@ -1,5 +1,5 @@
-﻿@if (dataSignal()) {
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="p-3">
     <p-table
@@ -46,7 +46,7 @@
             <p-sortIcon field="priority" />
           </th>
           <th class="table-col-10" pSortableColumn="scheduledAtFilter">
-            PROGRAMACIóN
+            PROGRAMACI�N
             <p-sortIcon field="scheduledAtFilter" />
           </th>
           <th class="table-col-10" pSortableColumn="dateFinishedFiltro">
@@ -151,7 +151,7 @@
   </div>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versi�n m�vil -->
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -208,7 +208,7 @@
                 Cierre: {{ item.closedAtDate ?? "Pendiente" }}
               </p>
               <p class="m-0 font-bold text-xs">
-                Días: {{ item.daysDifference }}
+                D�as: {{ item.daysDifference }}
               </p>
             </div>
           </div>

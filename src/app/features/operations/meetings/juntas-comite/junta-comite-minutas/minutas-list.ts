@@ -87,7 +87,7 @@ export class MinutasList {
   ref: DynamicDialogRef;
   public AspRole = EApplicationRole;
 
-  /** Tipo de junta actual que se estÃƒ¡ mostrando ('Comité', 'Asamblea', etc.). */
+  /** Tipo de junta actual que se está mostrando ('Comité', 'Asamblea', etc.). */
   tipoJunta: number = 1;
 
   /** Opciones de configuración para la tabla PrimeNG. */
@@ -289,9 +289,9 @@ export class MinutasList {
   }
 
   /**
-   * Envía un correo electrónico a los responsables de un Ãƒ¡rea específica de una minuta.
+   * Envía un correo electrónico a los responsables de un área específica de una minuta.
    * @param id El ID de la minuta.
-   * @param eAreaMinutasDetalles El identificador numérico del Ãƒ¡rea.
+   * @param eAreaMinutasDetalles El identificador numérico del área.
    */
   onSendEmail(id: any, eAreaMinutasDetalles: number): void {
     this.apiResponseS.onPost(

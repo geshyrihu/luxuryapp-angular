@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -22,7 +22,7 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="description">
-        Descripción
+        Descripci�n
         <p-sortIcon field="description" />
       </th>
 
@@ -61,7 +61,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

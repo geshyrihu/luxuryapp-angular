@@ -1,4 +1,4 @@
-﻿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -10,11 +10,11 @@
   styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
-    <!-- Contenedor Maestro: Apila en móvil, alinea en línea en escritorio -->
+    <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
     >
-      <!-- LADO IZQUIERDO: Buscador y Título (Toma el espacio libre) -->
+      <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
         <primeng-custom-caption
           [title]="'Contabilidad'"
@@ -46,10 +46,10 @@
           />
         </div>
 
-        <!-- Botón de Descarga PDF (Ancho fijo preventivo) -->
+        <!-- Botún de Descarga PDF (Ancho fijo preventivo) -->
         <div class="flex-shrink-0">
           <custom-button
-            label="📄 Descargar PDF"
+            label="?? Descargar PDF"
             iconClass="mdi:download"
             variant="outlined"
             (clicked)="onDownloadPdf()"
@@ -191,7 +191,7 @@
 
       <ion-label>
         <h3>{{ item.titulo | titlecase }}</h3>
-        <p>{{ item.cliente }} ó Folio: {{ item.folio }}</p>
+        <p>{{ item.cliente }} é Folio: {{ item.folio }}</p>
         <p>{{ item.fechaSolicitud }}</p>
       </ion-label>
       <app-action-menu slot="end">

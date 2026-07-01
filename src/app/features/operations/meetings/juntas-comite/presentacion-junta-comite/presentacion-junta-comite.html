@@ -1,4 +1,4 @@
-ï»¿@if (dataSignal()) {
+@if (dataSignal()) {
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="flex flex-column gap-3">
@@ -10,14 +10,14 @@
         </div>
         <div>
           <h5 class="m-0 font-bold text-900">Presentaciones de Junta</h5>
-          <span class="text-600 text-sm">GestiÃ³n centralizada de documentos y validaciones</span>
+          <span class="text-600 text-sm">Gestión centralizada de documentos y validaciones</span>
         </div>
       </div>
       <div class="flex gap-2">
         <custom-button
           variant="outlined"
           iconClass="mdi:plus"
-          label="NUEVA PRESENTACIÃ“N"
+          label="NUEVA PRESENTACIÓN"
           size="sm"
           (clicked)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
           [showLabelOnDesktop]="true"
@@ -46,9 +46,9 @@
               </div>
             </div>
             <div class="flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider">Enviado ComitÃ©</span>
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Enviado Comité</span>
               <div class="flex align-items-center gap-2">
-                <p-tag [value]="item.enviadoComite ? 'SÃ' : 'NO'" 
+                <p-tag [value]="item.enviadoComite ? 'SÍ' : 'NO'" 
                        [severity]="item.enviadoComite ? 'success' : 'warning'"
                        styleClass="text-xs"></p-tag>
                 @if (item.enviadoComite) {
@@ -62,7 +62,7 @@
             @if (item.archivoFinal) {
               <div class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border-round-lg font-bold border-1 border-green-100">
                 <app-icon icon="mdi:lock"></app-icon>
-                <span>VERSIÃ“N FINAL</span>
+                <span>VERSIÓN FINAL</span>
               </div>
             }
             @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
@@ -168,7 +168,7 @@
                   <custom-button-view-pdf [url]="item.archivoFinal" fileName="Presentacion_Final" label="DESCARGAR FINAL" severity="success" [fluid]="true" iconClass="mdi:file-certificate" [showLabelOnDesktop]="true" customClass="justify-content-start px-3" />
                   <div class="flex align-items-center justify-content-between mt-1">
                     <div class="flex flex-column">
-                      <small class="text-600 font-medium">ValidÃ³: {{ item.applicationUserSupervisor }}</small>
+                      <small class="text-600 font-medium">Validó: {{ item.applicationUserSupervisor }}</small>
                       <small class="text-500">{{ item.fechaCargaSupervisor }}</small>
                     </div>
                     @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
@@ -181,11 +181,11 @@
                 <div class="flex flex-column gap-2">
                   <custom-button-confirm
                     iconClass="mdi:email-send"
-                    label="ENVIAR COMITÃ‰"
+                    label="ENVIAR COMITÉ"
                     [fluid]="true"
-                    swalTitle="Â¿Enviar presentaciÃ³n?"
-                    swalText="Se notificarÃ¡ a todos los miembros."
-                    swalConfirmButtonText="SÃ­, enviar"
+                    swalTitle="¿Enviar presentación?"
+                    swalText="Se notificará a todos los miembros."
+                    swalConfirmButtonText="Sí, enviar"
                     [showLabelOnDesktop]="true"
                     customClass="justify-content-start px-3"
                     (confirmed)="onValidarPresentacion(item.id)"
@@ -195,8 +195,8 @@
                     label="VALIDAR"
                     [fluid]="true"
                     severity="secondary"
-                    swalTitle="Â¿Validar sin enviar?"
-                    swalText="Se generarÃ¡ la versiÃ³n final sin enviar correos."
+                    swalTitle="¿Validar sin enviar?"
+                    swalText="Se generará la versión final sin enviar correos."
                     [showLabelOnDesktop]="true"
                     customClass="justify-content-start px-3"
                     (confirmed)="onOnlyValidate(item.id)"
@@ -263,7 +263,7 @@
             }
           </div>
           <p-tag
-            [value]="item.enviadoComite ? 'Enviado a ComitÃ©' : 'No enviado a ComitÃ©'"
+            [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             styleClass="text-xs"
           ></p-tag>
@@ -417,9 +417,9 @@
                 <custom-button-confirm
                   icon="mdi:send"
                   label="Validar y enviar a comite"
-                  swalTitle="Ã³Enviar presentaciÃ³n?"
-                  swalText="La presentaciÃ³n serÃ³ enviada al ComitÃ©."
-                  swalConfirmButtonText="SÃ­, enviar"
+                  swalTitle="óEnviar presentación?"
+                  swalText="La presentación seró enviada al Comité."
+                  swalConfirmButtonText="Sí, enviar"
                   swalIcon="warning"
                   (confirmed)="onValidarPresentacion(item.id)"
                   customClass="w-full"
@@ -427,9 +427,9 @@
                 <custom-button-confirm
                   icon="mdi:check-circle"
                   label="Solo validar"
-                  swalTitle="Ã³Validar presentaciÃ³n?"
-                  swalText="Confirmo que la presentaciÃ³n es correcta y se crearÃ³ versiÃ³n final."
-                  swalConfirmButtonText="SÃ­, estÃ³ correcta, validar"
+                  swalTitle="óValidar presentación?"
+                  swalText="Confirmo que la presentación es correcta y se crearó versión final."
+                  swalConfirmButtonText="Sí, estó correcta, validar"
                   swalIcon="info"
                   (confirmed)="onOnlyValidate(item.id)"
                   customClass="w-full p-button-secondary"

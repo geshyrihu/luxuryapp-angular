@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -12,17 +12,17 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   template: `
     <div class="card p-4">
       <h2 class="text-2xl font-bold mb-4">
-        Verificaci√≥n Manual: Reporte de Empleados
+        VerificaciÛn Manual: Reporte de Empleados
       </h2>
       <p class="mb-4 text-color-secondary">
-        Al presionar el bot√≥n a continuaci√≥n, se encolar√° un trabajo en segundo
+        Al presionar el botÛn a continuaciÛn, se encolar· un trabajo en segundo
         plano para revisar los datos faltantes de los empleados activos y se
-        enviar√° un reporte al administrador correspondiente (configurado
+        enviar· un reporte al administrador correspondiente (configurado
         internamente).
       </p>
 
       <custom-button
-        label="Ejecutar Validaci√≥n de Empleados"
+        label="Ejecutar ValidaciÛn de Empleados"
         iconClass="mdi:send"
         severity="primary"
         [loading]="loading()"

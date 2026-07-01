@@ -1,4 +1,4 @@
-ï»¿<div class="card">
+<div class="card">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -42,14 +42,14 @@
           <p-sortIcon field="startDate" />
         </th>
         <th pSortableColumn="requestedDays">
-          DÃ­as Solicitados
+          Días Solicitados
           <p-sortIcon field="requestedDays" />
         </th>
         <th pSortableColumn="status">
           Estado
           <p-sortIcon field="status" />
         </th>
-        <th>AprobaciÃ³n</th>
+        <th>Aprobación</th>
         <th class="no-print"></th>
       </tr>
     </ng-template>
@@ -92,7 +92,7 @@
 
         <td class="no-print">
           <div class="flex justify-content-end">
-            <!-- BotÃ³n Ver Detalle -->
+            <!-- Botón Ver Detalle -->
             <custom-button-item (clicked)="onDetail(item.id)" label="??" />
 
             @if (item.status === "Pendiente") {
@@ -145,16 +145,16 @@
         <ion-label>
           <h2 class="font-bold">{{ item.requestDate }}</h2>
           <p class="text-sm text-500">
-            {{ item.startDate }} â€” {{ item.endDate }}
+            {{ item.startDate }} — {{ item.endDate }}
           </p>
-          <p class="text-sm text-500">DÃ­as: {{ item.requestedDays }}</p>
+          <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
           <p class="text-sm">
             <p-tag
               [value]="item.status"
               [severity]="getStatusSeverity(item.status)"
             />
           </p>
-          <p class="text-sm text-500">{{ item.approverFullName || 'â€”' }}</p>
+          <p class="text-sm text-500">{{ item.approverFullName || '—' }}</p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>

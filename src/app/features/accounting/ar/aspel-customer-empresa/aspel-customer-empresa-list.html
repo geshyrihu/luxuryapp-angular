@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -16,7 +16,7 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
+      (add)="onModalForm({ id: '', title: 'Nueva Configuraci�n' })"
       [dt]="dt"
     />
   </ng-template>
@@ -69,10 +69,10 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Configuraci�n' })"
   [globalFilterFields]="['customerName', 'empresa', 'customerIdAspelId']"
   [dt]="dt"
 >

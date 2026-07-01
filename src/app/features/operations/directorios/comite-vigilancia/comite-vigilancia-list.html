@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -19,7 +19,7 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="ePosicionComite">
-        <p class="card-title">PosiciÃ³n</p>
+        <p class="card-title">Posición</p>
         <p-sortIcon field="ePosicionComite" />
       </th>
       <th pSortableColumn="nameProperty">
@@ -70,7 +70,7 @@
           <custom-button-delete (confirmed)="onDelete(item.id)" />
 
           <custom-button-send-email
-            confirmMessage="Enviar usuario y contraseÃ±a de acceso."
+            confirmMessage="Enviar usuario y contraseña de acceso."
             (confirmed)="onSendCredential(item.id)"
           />
         </div>
@@ -94,7 +94,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -140,7 +140,7 @@
             [showLabelOnDesktop]="true"
           />
           <custom-button-send-email
-            confirmMessage="Enviar usuario y contraseÃ±a de acceso."
+            confirmMessage="Enviar usuario y contraseña de acceso."
             (confirmed)="onSendCredential(item.id)"
             label="Enviar"
             [showLabelOnDesktop]="true"

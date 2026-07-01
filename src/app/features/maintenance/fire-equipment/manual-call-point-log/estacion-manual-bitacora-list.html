@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -20,7 +20,7 @@
         />
       </div>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nueva InspecciÃ³n' })"
+        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
         [dt]="dt"
       />
     </div>
@@ -34,7 +34,7 @@
       <th class="table-col-10">Palanca</th>
       <th class="table-col-10">Cristal</th>
       <th class="table-col-10">Montaje</th>
-      <th class="table-col-10">SeÃ±alizaciÃ³n</th>
+      <th class="table-col-10">Señalización</th>
       <th>Observaciones</th>
       <th></th>
     </tr>
@@ -95,7 +95,7 @@
       <td class="no-print">
         <div class="flex justify-content-center">
           <custom-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar InspecciÃ³n' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
           />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -121,7 +121,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva InspecciÃ³n' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
@@ -159,7 +159,7 @@
             >Cristal</small
           >
           <small [class]="item.signageOk ? 'text-green-600' : 'text-red-600'"
-            >SeÃ±alizaciÃ³n</small
+            >Señalización</small
           >
         </div>
       </ion-label>
@@ -167,7 +167,7 @@
         <app-action-menu>
           <ng-container actions>
             <custom-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar InspecciÃ³n' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
               label="Editar"
               [showLabelOnDesktop]="true"
             />

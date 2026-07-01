@@ -1,5 +1,5 @@
-Ôªø@if (dataSignal()) {
-<!-- üñ•Ô∏è Pantallas medianas y grandes -->
+@if (dataSignal()) {
+<!-- ??? Pantallas medianas y grandes -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -27,10 +27,10 @@
           <th class="table-col-10 font-size-12">FECHA SOLICITUD</th>
           <th class="table-col-10 font-size-12">SOLICITA</th>
           <th class="table-col-10 font-size-12">ASUNTO</th>
-          <th class="table-col-10 font-size-12">DESCRIPCI√ìN</th>
+          <th class="table-col-10 font-size-12">DESCRIPCI”N</th>
           <th class="table-col-10 font-size-12">ESTATUS</th>
-          <th class="table-col-10 font-size-12">FECHA DE CONCLUSI√ìN</th>
-          <th class="table-col-10 font-size-12">D√çAS</th>
+          <th class="table-col-10 font-size-12">FECHA DE CONCLUSI”N</th>
+          <th class="table-col-10 font-size-12">DÕAS</th>
           <th class="table-col-10 font-size-12">SEGUIMIENTO</th>
         </tr>
       </ng-template>
@@ -98,7 +98,7 @@
   </div>
 </div>
 
-<!-- üì± Versi√≥n m√≥vil -->
+<!-- ?? VersiÛn mÛvil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -153,9 +153,9 @@
               />
               <div class="text-right">
                 <p class="m-0">
-                  Conclusi√≥n: {{ item.completionDate ?? "Pendiente" }}
+                  ConclusiÛn: {{ item.completionDate ?? "Pendiente" }}
                 </p>
-                <p class="m-0 font-bold">D√≠as: {{ item.diferenciaDias }}</p>
+                <p class="m-0 font-bold">DÌas: {{ item.diferenciaDias }}</p>
               </div>
             </div>
           </ion-label>

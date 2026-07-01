@@ -1,4 +1,4 @@
-锘縤mport { CommonModule, CurrencyPipe } from "@angular/common";
+import { CommonModule, CurrencyPipe } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -61,11 +61,11 @@ interface ErpRow {
   template: `
     <div class="grid">
       <div class="col-12">
-        <p-card header="Tabla ERP - Caption, Filtro, Sort, Paginaci贸n y Responsiva">
+        <p-card header="Tabla ERP - Caption, Filtro, Sort, Paginaci髇 y Responsiva">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Patr贸n est谩ndar ERP:
+            Patr髇 est醤dar ERP:
             <code>primeng-custom-caption</code> + <code>p-table</code> en
-            desktop y <code>app-data-view-mobile</code> en m贸vil
+            desktop y <code>app-data-view-mobile</code> en m髒il
             (<code>md:hidden</code>).
           </p>
 
@@ -189,7 +189,7 @@ interface ErpRow {
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="Tabla con Selecci贸n (checkbox)">
+        <p-card header="Tabla con Selecci髇 (checkbox)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Muestra el conteo de seleccionados y activa las acciones masivas en
             el toolbar.
@@ -247,7 +247,7 @@ interface ErpRow {
         <p-card header="Tabla con Row Expansion (detalle)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Expande una fila para mostrar detalle sin navegar a otra vista.
-            脷salo solo cuando el detalle es breve y consultivo.
+            趕alo solo cuando el detalle es breve y consultivo.
           </p>
           <p-table [value]="rows" dataKey="id" styleClass="p-datatable-sm">
             <ng-template #header>
@@ -322,7 +322,7 @@ export class WebTables {
       fecha: "2026-06-01",
       importe: 45000,
       status: EStatus.Pendiente,
-      detail: "Requiere aprobaci贸n de Direcci贸n.",
+      detail: "Requiere aprobaci髇 de Direcci髇.",
     },
     {
       id: 2,
@@ -337,27 +337,27 @@ export class WebTables {
     {
       id: 3,
       folio: "ERP-003",
-      nombre: "Adquisici贸n mobiliario administrativo",
-      depto: "Administraci贸n",
+      nombre: "Adquisici髇 mobiliario administrativo",
+      depto: "Administraci髇",
       fecha: "2026-06-10",
       importe: 89500,
       status: EStatus.Concluido,
-      detail: "Entregado y firmado en almac茅n.",
+      detail: "Entregado y firmado en almac閚.",
     },
     {
       id: 4,
       folio: "ERP-004",
-      nombre: "Servicio de limpieza 谩reas comunes",
+      nombre: "Servicio de limpieza 醨eas comunes",
       depto: "Servicios",
       fecha: "2026-06-12",
       importe: 8500,
       status: EStatus.noAutorizado,
-      detail: "Solicitud rechazada por pol铆tica de techo.",
+      detail: "Solicitud rechazada por pol韙ica de techo.",
     },
     {
       id: 5,
       folio: "ERP-005",
-      nombre: "Capacitaci贸n personal t茅cnico",
+      nombre: "Capacitaci髇 personal t閏nico",
       depto: "Recursos Humanos",
       fecha: "2026-06-15",
       importe: 15000,
@@ -367,12 +367,12 @@ export class WebTables {
     {
       id: 6,
       folio: "ERP-006",
-      nombre: "Renovaci贸n de licencias de software",
+      nombre: "Renovaci髇 de licencias de software",
       depto: "Sistemas",
       fecha: "2026-06-18",
       importe: 32000,
       status: EStatus.Pendiente,
-      detail: "Pendiente de cotizaci贸n comparativa.",
+      detail: "Pendiente de cotizaci髇 comparativa.",
     },
   ];
 

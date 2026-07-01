@@ -104,7 +104,7 @@ export class ListProvider implements OnInit {
   label: string = "Agregar";
   rolAuth: boolean = false; // La inicializaremos en ngOnInit
 
-  // Referencia para diÃƒ¡logos
+  // Referencia para diálogos
   ref: DynamicDialogRef;
 
   // Opciones de filtro para tipo de servicio y nivel de acceso

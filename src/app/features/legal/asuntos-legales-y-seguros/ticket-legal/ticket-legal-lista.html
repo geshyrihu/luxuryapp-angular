@@ -1,4 +1,4 @@
-﻿<div class="flex align-items-center gap-3 mb-3">
+<div class="flex align-items-center gap-3 mb-3">
   <label class="font-semibold text-sm text-600 white-space-nowrap"
     >Filtrar por cliente:</label
   >
@@ -13,7 +13,7 @@
   />
 </div>
 
-<!-- 🖥️ Pantallas medianas y grandes -->
+<!-- ??? Pantallas medianas y grandes -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -72,8 +72,8 @@
         ESTATUS
         <p-sortIcon field="status" />
       </th>
-      <th class="table-col-10">FECHA CONCLUSIÓN</th>
-      <th class="table-col-3">DÍAS</th>
+      <th class="table-col-10">FECHA CONCLUSI�N</th>
+      <th class="table-col-3">D�AS</th>
       <th colspan="2" class="table-col-7">SEGUIMIENTO</th>
     </tr>
   </ng-template>
@@ -144,7 +144,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 Versión móvil -->
+<!-- ?? Versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

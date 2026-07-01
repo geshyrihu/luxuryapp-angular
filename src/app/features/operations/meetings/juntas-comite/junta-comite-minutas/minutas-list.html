@@ -1,5 +1,5 @@
-﻿@if (dataSignal()) {
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
@@ -24,7 +24,7 @@
       <!-- Cabecera de la tabla principal -->
       <ng-template #caption>
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
-          <!-- Botones de acción -->
+          <!-- Botones de acci�n -->
           <custom-button
             iconClass="mdi:printer"
             label="PENDIENTES"
@@ -51,14 +51,14 @@
             />
             <custom-button
               iconClass="mdi:account-group"
-              label="COMITÉ"
+              label="COMIT�"
               size="sm"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
               (clicked)="onLoadData(0)"
             />
             <custom-button
               iconClass="mdi:cog"
-              label="OPERACIÓN"
+              label="OPERACI�N"
               size="sm"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
               (clicked)="onLoadData(2)"
@@ -215,7 +215,7 @@
           </td>
 
           <!-- ACCIONES -->
-          <!-- ✅ DS REGLA: dentro de app-action-menu usar [showLabelOnDesktop]="true" + label en todos los botones -->
+          <!-- ? DS REGLA: dentro de app-action-menu usar [showLabelOnDesktop]="true" + label en todos los botones -->
           <td class="no-print">
             <app-action-menu>
               <ng-container actions>
@@ -227,10 +227,10 @@
                 />
                 <custom-button-confirm
                   iconClass="mdi:email-outline"
-                  label="Enviar a Comité"
-                  swalTitle="Confirmar envío"
+                  label="Enviar a Comit�"
+                  swalTitle="Confirmar env�o"
                   swalText="Esta seguro de que desea enviar la minuta?"
-                  swalConfirmButtonText="Sí, enviar"
+                  swalConfirmButtonText="S�, enviar"
                   (confirmed)="onSendEmailMeeting(item.id)"
                   [showLabelOnDesktop]="true"
                 />
@@ -282,7 +282,7 @@
   </div>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versi�n m�vil -->
 <div class="block md:hidden">
   <div class="card border-none shadow-none">
     <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
@@ -327,7 +327,7 @@
             />
             <custom-button
               iconClass="mdi:account-group"
-              label="COMITÉ"
+              label="COMIT�"
               size="sm"
               [fluid]="true"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
@@ -335,7 +335,7 @@
             />
             <custom-button
               iconClass="mdi:cog"
-              label="OPERACIÓN"
+              label="OPERACI�N"
               size="sm"
               [fluid]="true"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
@@ -388,10 +388,10 @@
                     [showLabelOnDesktop]="true"
                   />
                   <custom-button-confirm
-                    label="Enviar a Comité"
-                    swalTitle="Confirmar envío"
-                    swalText="¿Está seguro de que desea enviar la minuta?"
-                    swalConfirmButtonText="Sí, enviar"
+                    label="Enviar a Comit�"
+                    swalTitle="Confirmar env�o"
+                    swalText="�Est� seguro de que desea enviar la minuta?"
+                    swalConfirmButtonText="S�, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
                     [showLabelOnDesktop]="true"
                   />

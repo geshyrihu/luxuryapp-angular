@@ -1,11 +1,11 @@
-﻿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block py-3">
   <div class="flex justify-content-between align-items-center mb-1 p-2">
     <h4 class="text-xl font-bold">Listado de Inspecciones</h4>
     <custom-button
       iconClass="mdi:plus"
       pTooltip="Nuevo Registro"
-      (clicked)="onModalForm({ title: 'Agregar Inspección', id: '' })"
+      (clicked)="onModalForm({ title: 'Agregar Inspecci�n', id: '' })"
     />
   </div>
 
@@ -15,7 +15,7 @@
       [ngModel]="selectedAreaSignal()"
       (ngModelChange)="selectedAreaSignal.set($event)"
       [data]="areasResponsablesSignal()"
-      placeholder="Todas las áreas"
+      placeholder="Todas las �reas"
       [horizontal]="false"
       [filter]="true"
     />
@@ -37,7 +37,7 @@
     <custom-button-item
       iconClass="mdi:book"
       label="Reportes"
-      tooltip="Ver reportes de inspección"
+      tooltip="Ver reportes de inspecci�n"
       [routerLink]="['/inspections/inspection-report-list']"
 />
   </div>
@@ -87,12 +87,12 @@
   }
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   class="md:hidden"
   [isGrouped]="true"
   [groupedData]="groupedData()"
-  (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
+  (add)="onModalForm({ title: 'Agregar Inspecci�n', id: '' })"
 >
   <div customFilters class="px-2 pb-2">
     <div class="flex mb-2">
@@ -101,7 +101,7 @@
         [ngModel]="selectedAreaSignal()"
         (ngModelChange)="selectedAreaSignal.set($event)"
         [data]="areasResponsablesSignal()"
-        placeholder="Todas las áreas"
+        placeholder="Todas las �reas"
         [filter]="true"
       />
       <custom-input-select-signal

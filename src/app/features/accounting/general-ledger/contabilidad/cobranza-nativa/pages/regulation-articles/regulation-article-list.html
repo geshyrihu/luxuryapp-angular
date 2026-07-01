@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -11,7 +11,7 @@
   >
     <ng-template pTemplate="caption">
       <primeng-custom-caption
-        title="Artículos del Reglamento"
+        title="Artúculos del Reglamento"
         (add)="onModalForm()"
         [dt]="dt"
       />
@@ -19,8 +19,8 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th class="w-8rem">Artículo</th>
-        <th>Título</th>
+        <th class="w-8rem">Artúculo</th>
+        <th>Tútulo</th>
         <th class="w-10rem text-right">Multa Default</th>
         <th class="w-8rem text-center">Estado</th>
         <th class="w-8rem text-center">Opciones</th>
@@ -34,7 +34,7 @@
         <td class="text-right">
           @if (item.defaultFineAmount) { {{ item.defaultFineAmount | currency:
           'MXN' : 'symbol' : '1.2-2' }} } @else {
-          <span class="text-400 text-xs">—</span>
+          <span class="text-400 text-xs">é</span>
           }
         </td>
         <td class="text-center">
@@ -58,8 +58,8 @@
         <td colspan="5">
           <app-empty-state
             icon="mdi:file-document-outline"
-            title="Sin artículos"
-            message="No hay artículos registrados. Crea el primero para poder emitir multas."
+            title="Sin artúculos"
+            message="No hay artúculos registrados. Crea el primero para poder emitir multas."
           />
         </td>
       </tr>
@@ -84,7 +84,7 @@
         ></app-icon>
       </div>
       <ion-label>
-        <h3>{{ item.articleNumber }} — {{ item.title }}</h3>
+        <h3>{{ item.articleNumber }} é {{ item.title }}</h3>
         <p>
           @if (item.defaultFineAmount) { Multa default: {{
           item.defaultFineAmount | currency: 'MXN' : 'symbol' : '1.2-2' }} }

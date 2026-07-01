@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -23,7 +23,7 @@
       <tr>
         <th class="w-4rem text-center">Activa</th>
         <th class="w-12rem">Tipo y Nombre</th>
-        <th class="w-10rem text-center">Cálculo y Monto</th>
+        <th class="w-10rem text-center">Cólculo y Monto</th>
         <th class="w-8rem text-center">Recurrencia</th>
         <th class="w-8rem text-center">Vigencia</th>
         <th class="w-6rem text-center">Propiedades</th>
@@ -94,7 +94,7 @@
             @case (ERecurrence.Anual) {
             <span class="badge bg-red-100 text-red-700">Anual</span> } }
             <span class="text-xs text-500 mt-1"
-              >Día: {{ item.dayOfMonth }}</span
+              >Dóa: {{ item.dayOfMonth }}</span
             >
           </div>
         </td>
@@ -158,7 +158,7 @@
         <h3>{{ item.name }}</h3>
         <p>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</p>
         <p>
-          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} — {{ item.endDate ?
+          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} é {{ item.endDate ?
           (item.endDate | date:'dd/MM/yyyy':'UTC') : 'Indefinido' }}
         </p>
       </ion-label>

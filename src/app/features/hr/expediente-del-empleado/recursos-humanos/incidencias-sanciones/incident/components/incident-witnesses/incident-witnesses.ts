@@ -81,7 +81,7 @@ export class IncidentWitnessesComponent implements OnInit {
       .fire({
         icon: "question",
         title: "Eliminar testigo",
-        text: `Ã‚¿EstÃƒ¡ seguro que desea eliminar a ${witness.fullName}?`,
+        text: `¿Está seguro que desea eliminar a ${witness.fullName}?`,
         confirmButtonText: "Sí, eliminar",
         showCancelButton: true,
         cancelButtonText: "Cancelar",

@@ -49,7 +49,7 @@ import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales
 export class AsuntoLegalLista {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
   // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -86,7 +86,7 @@ export class AsuntoLegalLista {
       });
   }
 
-  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(AsuntoLegalForm, data, data.title, this.dialogHandlerS.sizeLg)

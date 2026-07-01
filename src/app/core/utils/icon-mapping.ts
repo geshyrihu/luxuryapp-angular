@@ -36,7 +36,7 @@ export const PRIME_TO_ICONIFY: Record<string, string> = {
   "chart-line": "mdi:chart-line",
   check: "mdi:check",
   "check-circle": "mdi:check-circle",
-  "check-square": "mdi:check-square",
+  "check-square": "mdi:checkbox-marked",
   "chevron-down": "mdi:chevron-down",
   "chevron-left": "mdi:chevron-left",
   "chevron-right": "mdi:chevron-right",
@@ -184,7 +184,7 @@ export function resolveToIconify(
   if (!iconName) return fallback;
 
   // Ya está en formato Iconify (ej. "mdi:account-group")
-  if (iconName.includes(":")) return iconName;
+  if (iconName.startsWith("mdi:") || iconName.includes(":")) return iconName;
 
   // Limpiar formatos comunes de PrimeIcons y clases de CSS
   const cleanName = iconName
@@ -201,7 +201,7 @@ export function resolveToIconify(
   const mapped = PRIME_TO_ICONIFY[cleanName];
   if (mapped) return mapped;
 
-  // Si no está mapeado, intentar usarlo como mdi:name
+  // Si no está mapeado, intentar usarlo como mdi:prefijo
   // Pero primero verificar si parece una clase de PrimeIcons no mapeada
   return `mdi:${cleanName}`;
 }

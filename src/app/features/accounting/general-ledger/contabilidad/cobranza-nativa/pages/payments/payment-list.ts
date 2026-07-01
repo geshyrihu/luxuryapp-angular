@@ -1,4 +1,4 @@
-﻿import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
@@ -112,7 +112,7 @@ export default class PaymentList {
       .openDialog(
         CreditNoteModalComponent,
         { customerId },
-        "Emitir Nota de Crédito / Condonación",
+        "Emitir Nota de Cródito / Condonación",
         this.dialogHandlerS.sizeMd,
       )
       .then((res: boolean) => {
@@ -122,7 +122,7 @@ export default class PaymentList {
 
   onCancelPayment(item: CobranzaPaymentResponseDTO) {
     this.confirmationS.confirm({
-      message: `¿Deseas cancelar el pago de <strong>${item.propertyFullName}</strong> por <strong>$${item.amount.toFixed(2)}</strong>?<br/><span class="text-sm text-gray-500">Esta acción revertirá los cargos aplicados a este pago.</span>`,
+      message: `óDeseas cancelar el pago de <strong>${item.propertyFullName}</strong> por <strong>$${item.amount.toFixed(2)}</strong>?<br/><span class="text-sm text-gray-500">Esta acción revertiré los cargos aplicados a este pago.</span>`,
       header: "Cancelar Pago Rebotado",
       icon: "mdi:alert",
       acceptLabel: "Sí, cancelar pago",

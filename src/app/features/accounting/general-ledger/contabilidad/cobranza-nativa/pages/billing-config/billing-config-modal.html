@@ -1,7 +1,7 @@
-<div class="px-3 pt-3">
+﻿<div class="px-3 pt-3">
   @if (isLoading) {
   <div class="flex justify-content-center my-4">
-    <app-icon [icon]="'mdi:spin'" class="text-3xl text-primary"></app-icon>
+    <app-icon [icon]="'mdi:loading'" class="text-3xl text-primary"></app-icon>
   </div>
   } @else {
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">

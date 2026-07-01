@@ -1,4 +1,4 @@
-ï»¿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <p-table
     [globalFilterFields]="globalFilterFields()"
@@ -27,7 +27,7 @@
       <tr pRowGroupHeader>
         <td colspan="7" class="p-3">
           <span class="font-bold"
-            >{{ item.pathParent ? item.pathParent : "MÃ³dulos Principales"
+            >{{ item.pathParent ? item.pathParent : "Módulos Principales"
             }}</span
           >
         </td>
@@ -73,7 +73,7 @@
         <td>{{ item.routerLink }}</td>
         <td class="text-center">
           <p-tag
-            [value]="item.viewMobil ? 'SÃ­' : 'No'"
+            [value]="item.viewMobil ? 'Sí' : 'No'"
             [severity]="item.viewMobil ? 'success' : 'danger'"
             class="p-2"
           />
@@ -97,8 +97,8 @@
         <td colspan="8">
           <app-empty-state
             icon="mdi:view-module-outline"
-            title="Sin mÃ³dulos"
-            message="No hay mÃ³dulos registrados."
+            title="Sin módulos"
+            message="No hay módulos registrados."
           />
         </td>
       </tr>
@@ -109,7 +109,7 @@
   </p-table>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

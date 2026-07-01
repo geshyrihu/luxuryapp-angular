@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -31,7 +31,7 @@
         <p-sortIcon field="shortName" />
       </th>
       <th pSortableColumn="largeName">
-        Razón social
+        Raz�n social
         <p-sortIcon field="largeName" />
       </th>
       <th class="no-print"></th>
@@ -47,8 +47,10 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            [showLabelOnDesktop]="false"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+            [showLabelOnDesktop]="false" />
         </div>
       </td>
       <!-- Opciones -->
@@ -70,7 +72,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

@@ -1,4 +1,4 @@
-ï»¿<div>
+<div>
   <div class="hidden md:block no-print">
     @if (dataSignal() && dataSignal() !== undefined) {
     <p-table
@@ -19,7 +19,7 @@
         <div
           class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
         >
-          <!-- IZQUIERDA: TÃ­tulo y Status Filter -->
+          <!-- IZQUIERDA: Título y Status Filter -->
           <div class="flex flex-column sm:flex-row align-items-center gap-3">
             <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
               Mis tickets asignados
@@ -111,9 +111,9 @@
           <td class="text-center text-xs text-600">
             {{ item.creator | initialsAbbr }}
           </td>
-          <td class="text-xs text-600">{{ item.scheduledAt || 'â€”' }}</td>
+          <td class="text-xs text-600">{{ item.scheduledAt || '—' }}</td>
           <td class="text-center text-xs text-600 hidden md:table-cell">
-            {{ item.closedAtDate || 'â€”' }}
+            {{ item.closedAtDate || '—' }}
           </td>
           <td class="text-center">
             <strong class="text-xs">{{ item.daysDifference }}</strong>
@@ -380,12 +380,12 @@
   </div>
 
   <!-- ================================================================
-       REPORTE  DE TAREAS PENDIENTES â€” solo visible al imprimir
+       REPORTE  DE TAREAS PENDIENTES — solo visible al imprimir
        ================================================================ -->
   <div class="print-task-report">
     <div class="print-report-header">
       <div class="print-report-header-left">
-        <h2>Reporte â€” Mis Tareas Pendientes</h2>
+        <h2>Reporte — Mis Tareas Pendientes</h2>
         <p>Mis tareas asignadas pendientes</p>
       </div>
       <div class="print-report-header-right">
@@ -459,9 +459,9 @@
             <div class="print-desc">{{ item.description }}</div>
             }
           </td>
-          <td style="font-size: 7.5pt">{{ item.creator || 'â€”' }}</td>
+          <td style="font-size: 7.5pt">{{ item.creator || '—' }}</td>
           <td style="font-size: 7.5pt; white-space: nowrap">
-            {{ item.scheduledAt || 'â€”' }}
+            {{ item.scheduledAt || '—' }}
           </td>
           <td>
             <span
@@ -475,7 +475,7 @@
             {{ item.daysDifference }}
           </td>
           <td style="text-align: center; font-size: 9pt">
-            @if (item.beforeWork || item.afterWork) { âœ“ } @else { â€” }
+            @if (item.beforeWork || item.afterWork) { ? } @else { — }
           </td>
           <td>
             @if (item.lastFollowUp) {
@@ -490,7 +490,7 @@
             >
             <p class="print-followup">{{ item.lastFollowUp }}</p>
             } @else {
-            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">â€”</span>
+            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">—</span>
             }
           </td>
         </tr>
@@ -499,7 +499,7 @@
     </table>
 
     <div class="print-report-footer">
-      <span>Luxury Building Group â€” Sistema de Gestion Operativa</span>
+      <span>Luxury Building Group — Sistema de Gestion Operativa</span>
       <span>Generado el {{ today }}</span>
     </div>
   </div>

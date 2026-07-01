@@ -58,8 +58,8 @@ export class BankList implements OnInit {
   // Usar el servicio global para scrollHeight
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  // Ã‚¡Esta es la magia!
-  // Se recalcularÃƒ¡ automÃƒ¡ticamente SOLO si dataSignal cambia.
+  // ¡Esta es la magia!
+  // Se recalculará automáticamente SOLO si dataSignal cambia.
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -96,7 +96,7 @@ export class BankList implements OnInit {
       });
   }
 
-  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeLg)

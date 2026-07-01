@@ -54,7 +54,7 @@ export class EstadoFinancieroList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acciÃƒÆ’Ã‚Â³n
+  // Signals para controlar el estado de procesamiento de cada acción
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -74,7 +74,7 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // FunciÃƒÆ’Ã‚Â³n para verificar si un botÃƒÆ’Ã‚Â³n estÃƒÆ’Ã‚¡ procesando
+  // Función para verificar si un botón está procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -91,7 +91,7 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // FunciÃƒÆ’Ã‚Â³n para abrir un cuadro de diÃƒÆ’Ã‚¡logo modal para agregar el archivo
+  // Función para abrir un cuadro de diálogo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -186,7 +186,7 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // ÃƒÂ¢Ã¢â‚¬Â Ã‚Â autoMaximize = true
+      true, // âââ‚¬ Ã‚Â autoMaximize = true
     );
   }
 }

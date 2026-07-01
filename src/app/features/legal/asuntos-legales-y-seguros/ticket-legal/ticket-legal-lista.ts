@@ -178,7 +178,7 @@ export class TicketLegalLista implements OnInit {
       2: "CONCLUIDO",
       4: "CANCELADO",
     };
-    // Paleta Office â€” discreta, bien en PowerPoint
+    // Paleta Office — discreta, bien en PowerPoint
     const STATUS_COLOR: Record<number, string> = {
       0: "FFED7D31", // naranja suave
       1: "FF4472C4", // azul medio
@@ -224,7 +224,7 @@ export class TicketLegalLista implements OnInit {
         customer:       item.customer,
         title:          `${item.title ?? ""}${item.description ? "\n" + item.description : ""}`,
         assignee:       item.assignee,
-        status:         STATUS_LABEL[status] ?? "â€”",
+        status:         STATUS_LABEL[status] ?? "—",
         completionDate: item.completionDate ?? "",
         dias:           item.diferenciaDias ?? "",
       });

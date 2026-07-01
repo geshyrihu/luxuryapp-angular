@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -22,7 +22,7 @@
         <th class="w-8rem text-center">Días de Gracia</th>
         <th class="w-10rem">Tipo</th>
         <th class="w-8rem text-right">Tasa / Monto</th>
-        <th class="w-10rem text-center">Interés Compuesto</th>
+        <th class="w-10rem text-center">Interós Compuesto</th>
         <th class="w-10rem text-right">Monto Máximo</th>
         <th class="w-8rem text-center">Opciones</th>
       </tr>
@@ -96,7 +96,7 @@
           Tasa: {{ item.rate | number:'1.2-2' }}{{ item.type ===
           ELateFeeType.Porcentaje ? '%' : '' }}
         </p>
-        <p>Máx: {{ item.maxRate | number:'1.2-2' }}</p>
+        <p>Míx: {{ item.maxRate | number:'1.2-2' }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

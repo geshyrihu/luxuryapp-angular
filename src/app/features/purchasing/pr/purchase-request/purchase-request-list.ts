@@ -57,7 +57,7 @@ export class PurchaseRequestList {
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  data = signal<any[]>([]); // Ã‚¡MEJORA! data también es un signal
+  data = signal<any[]>([]); // ¡MEJORA! data también es un signal
   public AspRole = EApplicationRole;
 
   globalFilterFields: string[] = [];
@@ -100,15 +100,15 @@ export class PurchaseRequestList {
     }
   }
   async onDelete(id: any) {
-    // Ã‚¡MEJORA! En lugar de filtrar localmente, recargamos desde el servidor
+    // ¡MEJORA! En lugar de filtrar localmente, recargamos desde el servidor
     // para asegurar que la vista es 100% consistente con la base de datos.
     await this.apiResponseS.onDelete(Endpoints.PurchaseRequests.delete(id));
     this.onLoadData(this.customerIdS.customerId(), this.statusFilter());
   }
 
   onSelectStatus(status: number) {
-    // Ã‚¡CAMBIO CLAVE! La única responsabilidad de este método es actualizar el estado.
-    // Ya no llama a onLoadData. El `effect` se encargarÃƒ¡ de eso automÃƒ¡ticamente.
+    // ¡CAMBIO CLAVE! La única responsabilidad de este método es actualizar el estado.
+    // Ya no llama a onLoadData. El `effect` se encargará de eso automáticamente.
     this.statusFilter.set(status);
   }
 
@@ -122,7 +122,7 @@ export class PurchaseRequestList {
       )
       .then((result: boolean) => {
         if (result) {
-          // Ã‚¡MEJORA! Recargamos los datos usando los valores actuales de los signals.
+          // ¡MEJORA! Recargamos los datos usando los valores actuales de los signals.
           this.onLoadData(this.customerIdS.customerId(), this.statusFilter());
         }
       });

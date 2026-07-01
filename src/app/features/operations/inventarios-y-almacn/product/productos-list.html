@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -88,7 +88,7 @@
     <tr>
       <td colspan="6">
         <app-empty-state
-          icon="mdi:package-variant-outline"
+          icon="mdi:package-outline"
           title="Sin productos"
           message="No hay productos registrados."
         />
@@ -100,7 +100,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="mobileDataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -121,7 +121,7 @@
         "
       >
         <app-icon
-          icon="mdi:package-variant-outline"
+          icon="mdi:package-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
         ></app-icon>
       </div>

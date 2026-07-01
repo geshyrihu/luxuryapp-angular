@@ -422,6 +422,24 @@ export const EndpointsTenant = {
       `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${numCta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
   },
 
+  AspelCobranzaLocal: {
+    accounts: (customerId: string, year: number) =>
+      `aspel-cobranza-local/accounts?customerId=${customerId}&year=${year}`,
+    detalleCobranzaRango: (customerId: string, numCta: string) =>
+      `aspel-cobranza-local/detalle-cobranza-rango?customerId=${customerId}&numCta=${numCta}`,
+    deudasActuales: (customerId: string) =>
+      `aspel-cobranza-local/deudas-actuales?customerId=${customerId}`,
+    estadoCuentaRango: (
+      customerId: string,
+      numCta: string,
+      fechaInicio: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza-local/estado-cuenta-rango?customerId=${customerId}&numCta=${numCta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    status: (customerId: string, year: number) =>
+      `aspel-cobranza-local/status?customerId=${customerId}&year=${year}`,
+  },
+
   ContabilidadOnline: {
     FinancialStatements: {
       epf: (customerId: string, year: number, mes: number) =>

@@ -1,4 +1,4 @@
-<!-- Selector de nomina -->
+﻿<!-- Selector de nomina -->
 <div class="flex flex-wrap gap-2 mb-3">
   @for (n of nominas(); track n.value) {
   <button
@@ -55,7 +55,7 @@
 <!-- Galeria por tipo -->
 @if (loading()) {
 <div class="flex justify-content-center my-4">
-  <app-icon [icon]="'mdi:spin'" class="text-3xl text-primary"></app-icon>
+  <app-icon [icon]="'mdi:loading'" class="text-3xl text-primary"></app-icon>
 </div>
 } @else if (evidencias().length === 0) {
 <div class="flex justify-content-center align-items-center py-6 text-500">
@@ -76,12 +76,10 @@
       [style.background]="getCardColor(ev.tipoEvidencia)"
     >
       <div class="flex flex-column align-items-center gap-2">
-        <i
-          class="pi text-3xl"
-          [class.pi-file-pdf]="ev.contentType === 'application/pdf'"
-          [class.pi-image]="ev.contentType?.startsWith('image')"
-          [class.pi-file]="!ev.contentType?.startsWith('image') && ev.contentType !== 'application/pdf'"
-        ></i>
+        <app-icon
+          [icon]="ev.contentType === 'application/pdf' ? 'mdi:file-pdf-box' : ev.contentType?.startsWith('image') ? 'mdi:image' : 'mdi:file-document-outline'"
+          class="text-3xl"
+        ></app-icon>
         <p
           class="text-xs text-center m-0 font-semibold"
           style="word-break: break-word"

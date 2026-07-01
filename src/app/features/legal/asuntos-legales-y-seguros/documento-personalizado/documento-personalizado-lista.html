@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
@@ -96,7 +96,7 @@
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
-        <p>Folio: {{ item.folio }} ó {{ item.createAt }}</p>
+        <p>Folio: {{ item.folio }} � {{ item.createAt }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

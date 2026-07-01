@@ -7,6 +7,8 @@
    glassmorphism y NO deben reemplazarse con variables del tema.
    ═══════════════════════════════════════════════════════════════════════════ */
 
+@use "../core/colors" as c;
+
 .glass-auth-card {
   /* Vista Móvil (Nativa): Sin bordes, sombras ni fondo cristal para integrarse con la pantalla completa */
   background: transparent !important;
@@ -49,4 +51,37 @@
 .glass-auth-card input,
 .glass-auth-card textarea {
   color: var(--ds-text-primary, #1c1c1e) !important;
+}
+
+// ── AUTH DARK PANEL (login, reset-password, recover-password) ─────────────
+.auth-dark-panel {
+  background: rgba(var(--ds-bg-auth-panel-rgb), 0.4);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.auth-dark-panel label,
+.auth-dark-panel h2,
+.auth-dark-panel p,
+.auth-dark-panel .text-900,
+.auth-dark-panel .text-700,
+.auth-dark-panel .text-600 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.auth-dark-panel input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+.auth-dark-panel input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.auth-dark-panel .p-password i {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.auth-dark-panel .p-password-meter {
+  background: rgba(255, 255, 255, 0.2) !important;
 }

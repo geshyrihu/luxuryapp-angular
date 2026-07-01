@@ -63,7 +63,7 @@ export class SuspensionDaysManager implements OnInit {
     return new Date(`${isoStr.substring(0, 10)}T00:00:00`);
   }
 
-  /** Fechas ya registradas Ã¢â‚¬â€ para deshabilitar en el datepicker */
+  /** Fechas ya registradas ââ‚¬â€ para deshabilitar en el datepicker */
   disabledDates = computed(() =>
     this.days().map((d) => this.parseLocalDate(String(d.suspensionDate))),
   );
@@ -125,19 +125,19 @@ export class SuspensionDaysManager implements OnInit {
 
     if (sorted.length === 0) return;
 
-    // Validar lunes (1) y sÃƒ¡bado (6)
+    // Validar lunes (1) y sábado (6)
     const invalidas = sorted.filter(
       (f) => f.getDay() === 1 || f.getDay() === 6,
     );
     if (invalidas.length > 0) {
       this.toastS.showWarn(
         "Días no permitidos",
-        `Las suspensiones no aplican en lunes ni sÃƒ¡bado: ${invalidas.map((d) => d.toLocaleDateString("es-MX")).join(", ")}`,
+        `Las suspensiones no aplican en lunes ni sábado: ${invalidas.map((d) => d.toLocaleDateString("es-MX")).join(", ")}`,
       );
       return;
     }
 
-    // Validar días consecutivos (cuando hay mÃƒ¡s de 1)
+    // Validar días consecutivos (cuando hay más de 1)
     if (sorted.length > 1) {
       for (let i = 0; i < sorted.length - 1; i++) {
         const diffDias = Math.round(
@@ -153,7 +153,7 @@ export class SuspensionDaysManager implements OnInit {
       }
     }
 
-    // Validar mÃƒ¡ximo 8 días total
+    // Validar máximo 8 días total
     const totalActual = this.days().length;
     if (totalActual + sorted.length > 8) {
       this.toastS.showWarn(

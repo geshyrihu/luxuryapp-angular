@@ -1,4 +1,4 @@
-Ôªø<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -12,7 +12,7 @@
   styleClass="custom-table card hidden md:block orden-compra-table"
 >
   <ng-template #caption>
-    <!-- üóÇÔ∏è Fila 1: Filtros de Categorizaci√≥n (Tipos de Gasto) -->
+    <!-- ??? Fila 1: Filtros de CategorizaciÛn (Tipos de Gasto) -->
     <div class="grid p-0 mb-3 align-items-stretch">
       @for (tipo of tiposDeGasto; track tipo.id) {
       <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
@@ -42,11 +42,11 @@
       }
     </div>
 
-    <!-- üõ†Ô∏è Contenedor Maestro: Alineaci√≥n Perfecta (T√≠tulo + Buscador + Acciones) -->
+    <!-- ??? Contenedor Maestro: AlineaciÛn Perfecta (TÌtulo + Buscador + Acciones) -->
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round shadow-1"
     >
-      <!-- IZQUIERDA: T√≠tulo y Buscador (Toma el espacio libre) -->
+      <!-- IZQUIERDA: TÌtulo y Buscador (Toma el espacio libre) -->
       <div
         class="flex flex-column sm:flex-row align-items-center gap-3 flex-grow-1"
       >
@@ -132,7 +132,7 @@
         <p-sortIcon field="fechaSolicitud" />
       </th>
       <th pSortableColumn="equipoOInstalacion">
-        DESCRIPCI√≥N
+        DESCRIPCIÛN
         <p-sortIcon field="equipoOInstalacion" />
       </th>
       <th pSortableColumn="justificacionGasto">
@@ -262,8 +262,8 @@
       <td colspan="9">
         <app-empty-state
           icon="mdi:cart-outline"
-          title="Sin √≥rdenes"
-          message="No hay √≥rdenes de compra registradas."
+          title="Sin Ûrdenes"
+          message="No hay Ûrdenes de compra registradas."
         />
       </td>
     </tr>
@@ -368,9 +368,9 @@
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
-        <p>{{ item.proveedor }} √≥ Folio: {{ item.folio }}</p>
+        <p>{{ item.proveedor }} Û Folio: {{ item.folio }}</p>
         <p>
-          Total: ${{ item.total | number:'1.2-2' }} √≥ {{ item.fechaSolicitud |
+          Total: ${{ item.total | number:'1.2-2' }} Û {{ item.fechaSolicitud |
           date:'d MMM yyyy':'UTC' }}
         </p>
       </ion-label>

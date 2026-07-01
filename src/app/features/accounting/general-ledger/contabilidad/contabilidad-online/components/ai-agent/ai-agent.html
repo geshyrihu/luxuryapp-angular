@@ -33,10 +33,9 @@
                 [ngClass]="msg.role === 'user' ? 'bg-primary text-white border-noround-right' : 'surface-200 text-800 border-noround-left'"
               >
                 <div class="flex align-items-center justify-content-between gap-2 mb-2">
-                  <i
-                    class="pi"
-                    [ngClass]="msg.role === 'user' ? 'mdi:account' : 'mdi:sparkles'"
-                  ></i>
+                  <app-icon
+                    [icon]="msg.role === 'user' ? 'mdi:account' : 'mdi:sparkles'"
+                  ></app-icon>
                   <p-button
                     *ngIf="msg.role === 'assistant'"
                     icon="mdi:volume-high"

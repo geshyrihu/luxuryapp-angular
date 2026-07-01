@@ -1,4 +1,4 @@
-ï»¿@if (aspRoleS.roleSignal(AspRole.JefeMantenimiento)()) { @for (item of
+@if (aspRoleS.roleSignal(AspRole.JefeMantenimiento)()) { @for (item of
 cb_departamento; track item) {
 <custom-button
   [customClass]="' mb-1'"
@@ -31,7 +31,7 @@ cb_departamento; track item) {
     <tr>
       <th class="table-col-4">ID</th>
       <th class="table-col-6">ESTATUS</th>
-      <th class="table-col-30">DESCRIPCIÃ“N</th>
+      <th class="table-col-30">DESCRIPCIÓN</th>
       <th class="table-col-25">OBSERVACION</th>
       <th class="table-col-9">ARCHIVO</th>
       <th class="table-col-9">SUBIO</th>
@@ -75,7 +75,7 @@ cb_departamento; track item) {
           @if (item.archivo) {
           <custom-button-view-pdf
             [url]="item.archivo"
-            fileName="Entrega | RecepciÃ³n"
+            fileName="Entrega | Recepción"
           />
           }
         </div>

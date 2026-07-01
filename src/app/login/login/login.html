@@ -17,7 +17,13 @@
     }
     <div
       class="absolute top-0 left-0 w-full h-full"
-      style="background: linear-gradient(135deg, rgba(27, 54, 93, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);"
+      style="
+        background: linear-gradient(
+          135deg,
+          rgba(27, 54, 93, 0.4) 0%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+      "
     ></div>
   </div>
 
@@ -27,159 +33,160 @@
   <div class="relative z-10 flex w-full h-full">
     <!-- Lado Izquierdo: Formulario de Login -->
     <div
-    class="w-full lg:w-5 flex flex-column align-items-center justify-content-center relative px-4 md:px-6 py-8 z-20 shadow-8 auth-dark-panel"
-  >
-    <!-- Barra superior dorada (Accent) -->
-    <div
-      class="absolute top-0 left-0 w-full h-1rem"
-      style="background-color: var(--ds-secondary)"
-    ></div>
+      class="w-full lg:w-5 flex flex-column align-items-center justify-content-center relative px-4 md:px-6 py-8 z-20 shadow-8 auth-dark-panel"
+    >
+      <!-- Barra superior dorada (Accent) -->
+      <div
+        class="absolute top-0 left-0 w-full h-1rem"
+        style="background-color: var(--ds-secondary)"
+      ></div>
 
-    <div class="w-full max-w-25rem relative z-10 fadein animation-duration-500">
-      <!-- Logo y Bienvenida -->
-      <div class="text-center mb-6">
-        <img
-          class="mx-auto mb-4 w-12rem md:w-15rem h-auto drop-shadow-md"
-          src="assets/images/login/LBG-blanco.png"
-          alt="Logo Luxury Building Group"
-          width="240"
-          height="92"
-          priority
-        />
-        <h2 class="text-2xl md:text-3xl font-bold mb-2 tracking-tight">
-          Bienvenido de nuevo
-        </h2>
-        <p class="text-base m-0 font-light">
-          Inicia sesión en tu portal ERP Premium
-        </p>
-      </div>
-
-      <!-- Formulario -->
-      <form
-        class="flex flex-column gap-4"
-        [formGroup]="loginForm"
-        (ngSubmit)="onSubmit()"
+      <div
+        class="w-full max-w-25rem relative z-10 fadein animation-duration-500"
       >
-        <div class="p-fluid">
-          <custom-input-text-signal
-            [control]="loginForm.controls['userName']"
-            id="username-global"
-            label="Usuario"
-            placeholder="Ej: jperez"
-            [horizontal]="false"
-            [noMargin]="true"
-            customClass="h-3rem text-lg"
+        <!-- Logo y Bienvenida -->
+        <div class="text-center mb-6">
+          <img
+            class="mx-auto mb-4 w-12rem md:w-15rem h-auto drop-shadow-md"
+            src="assets/images/login/LBG-blanco.png"
+            alt="Logo Luxury Building Group"
+            width="240"
+            height="92"
+            priority
           />
+          <h2 class="text-2xl md:text-3xl font-bold mb-2 tracking-tight">
+            Bienvenido de nuevo
+          </h2>
+          <p class="text-base m-0 font-light">Inicia sesión</p>
         </div>
 
-        <div class="p-fluid">
-          <custom-input-password-signal
-            [control]="loginForm.controls['password']"
-            id="password-global"
-            label="Contraseña"
-            placeholder="••••••••"
-            [horizontal]="false"
-            [showStrengthIndicator]="false"
-            [noMargin]="true"
-            customClass="h-3rem text-lg"
-          />
-        </div>
-
-        <!-- Recordarme / Olvidaste Contraseña -->
-        <div class="flex align-items-center justify-content-between mt-2">
-          <div class="flex align-items-center">
-            <custom-input-check-signal
-              [control]="loginForm.controls['rememberMe']"
-              id="checkbox-remember-global"
-              placeholder="Recordarme"
+        <!-- Formulario -->
+        <form
+          class="flex flex-column gap-4"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="p-fluid">
+            <custom-input-text-signal
+              [control]="loginForm.controls['userName']"
+              id="username-global"
+              label="Usuario"
+              placeholder="Ej: jperez"
               [horizontal]="false"
-              [onlyInput]="true"
               [noMargin]="true"
+              customClass="h-3rem text-lg"
             />
           </div>
-          <a
-            [routerLink]="['/auth/recovery-password']"
-            class="font-semibold text-sm transition-colors"
-            style="color: var(--ds-secondary); text-decoration: none"
-          >
-            ¿Olvidaste tu contraseña?
-          </a>
-        </div>
 
-        <!-- Botón Iniciar Sesión (Gold) -->
-        <div class="mt-4">
-          <custom-button
-            type="submit"
-            label="INICIAR SESIÓN"
-            icon="mdi:login"
-            [loading]="loading()"
-            [disabled]="isSubmitDisabled()"
-            [fluid]="true"
-            [showLabelOnDesktop]="true"
-            severity="warning"
-            customClass="w-full shadow-4"
-          ></custom-button>
-        </div>
-
-        <!-- Mensaje de error -->
-        @if (errorMessage()) {
-        <div class="mt-3 fadein animation-duration-300">
-          <div
-            class="flex align-items-center p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1"
-          >
-            <app-icon
-              icon="mdi:alert-circle-outline"
-              class="text-xl mr-3"
-            ></app-icon>
-            <span class="text-sm font-medium">{{ errorMessage() }}</span>
+          <div class="p-fluid">
+            <custom-input-password-signal
+              [control]="loginForm.controls['password']"
+              id="password-global"
+              label="Contraseña"
+              placeholder="••••••••"
+              [horizontal]="false"
+              [showStrengthIndicator]="false"
+              [noMargin]="true"
+              customClass="h-3rem text-lg"
+            />
           </div>
-        </div>
-        }
-      </form>
-    </div>
 
-    <!-- Footer / Copyright -->
-    <div
-      class="absolute bottom-0 left-0 w-full text-center pb-4 text-400 text-xs"
-    >
-      &copy; 2026 Luxury Building Group. Todos los derechos reservados.
-    </div>
-  </div>
+          <!-- Recordarme / Olvidaste Contraseña -->
+          <div class="flex align-items-center justify-content-between mt-2">
+            <div class="flex align-items-center">
+              <custom-input-check-signal
+                [control]="loginForm.controls['rememberMe']"
+                id="checkbox-remember-global"
+                placeholder="Recordarme"
+                [horizontal]="false"
+                [onlyInput]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <a
+              [routerLink]="['/auth/recovery-password']"
+              class="font-semibold text-sm transition-colors"
+              style="color: var(--ds-secondary); text-decoration: none"
+            >
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
 
-  <!-- Lado Derecho: Branding (Oculto en pantallas pequeñas, visible en lg) -->
-  <div
-    class="hidden lg:flex lg:w-7 relative align-items-center justify-content-center"
-  >
-    <!-- Contenido Branding Flotante -->
-    <div
-      class="relative z-10 text-white max-w-30rem text-center fadein animation-duration-1000"
-    >
-      <div
-        class="mb-5 inline-flex align-items-center justify-content-center w-5rem h-5rem border-circle shadow-6"
-        style="
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        "
-      >
-        <app-icon
-          icon="mdi:star"
-          class="text-4xl"
-          style="color: var(--ds-secondary)"
-        ></app-icon>
+          <!-- Botón Iniciar Sesión (Gold) -->
+          <div class="mt-4">
+            <custom-button
+              type="submit"
+              label="INICIAR SESIÓN"
+              icon="mdi:login"
+              [loading]="loading()"
+              [disabled]="isSubmitDisabled()"
+              [fluid]="true"
+              [showLabelOnDesktop]="true"
+              severity="warning"
+              customClass="shadow-4"
+            ></custom-button>
+          </div>
+
+          <!-- Mensaje de error -->
+          @if (errorMessage()) {
+          <div class="mt-3 fadein animation-duration-300">
+            <div
+              class="flex align-items-center p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1"
+            >
+              <app-icon
+                icon="mdi:alert-circle-outline"
+                class="text-xl mr-3"
+              ></app-icon>
+              <span class="text-sm font-medium">{{ errorMessage() }}</span>
+            </div>
+          </div>
+          }
+        </form>
       </div>
-      <h1
-        class="text-6xl font-bold mb-4 line-height-2 text-white drop-shadow-lg"
+
+      <!-- Footer / Copyright -->
+      <div
+        class="absolute bottom-0 left-0 w-full text-center pb-4 text-400 text-xs"
       >
-        Excelencia <br />
-        <span style="color: var(--ds-secondary)">Inmobiliaria</span>
-      </h1>
-      <p
-        class="text-xl line-height-3 text-200 mt-4 px-4 font-light drop-shadow-md"
+        &copy; 2026 Luxury Building Group. Todos los derechos reservados.
+      </div>
+    </div>
+
+    <!-- Lado Derecho: Branding (Oculto en pantallas pequeñas, visible en lg) -->
+    <div
+      class="hidden lg:flex lg:w-7 relative align-items-center justify-content-center"
+    >
+      <!-- Contenido Branding Flotante -->
+      <div
+        class="relative z-10 text-white max-w-30rem text-center fadein animation-duration-1000"
       >
-        Gestiona recursos, proyectos y operaciones.
-      </p>
-      <!-- con la suite tecnológica definitiva diseñada para líderes de la industria. -->
+        <div
+          class="mb-5 inline-flex align-items-center justify-content-center w-5rem h-5rem border-circle shadow-6"
+          style="
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+          "
+        >
+          <app-icon
+            icon="mdi:star"
+            class="text-4xl"
+            style="color: var(--ds-secondary)"
+          ></app-icon>
+        </div>
+        <h1
+          class="text-6xl font-bold mb-4 line-height-2 text-white drop-shadow-lg"
+        >
+          Excelencia <br />
+          <span style="color: var(--ds-secondary)">Inmobiliaria</span>
+        </h1>
+        <p
+          class="text-xl line-height-3 text-200 mt-4 px-4 font-light drop-shadow-md"
+        >
+          Gestiona recursos, proyectos y operaciones.
+        </p>
+        <!-- con la suite tecnológica definitiva diseñada para líderes de la industria. -->
+      </div>
     </div>
   </div>
 </div>

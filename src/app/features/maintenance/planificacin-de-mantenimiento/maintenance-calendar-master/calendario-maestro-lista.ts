@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { MenuItem } from "primeng/api";
 import { DividerModule } from "primeng/divider";
@@ -110,7 +110,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "Información de servicio",
+      "Informaci�n de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }

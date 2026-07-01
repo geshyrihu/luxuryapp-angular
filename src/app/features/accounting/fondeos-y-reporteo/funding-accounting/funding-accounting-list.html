@@ -1,4 +1,4 @@
-﻿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -37,44 +37,44 @@
       <td>
         @if (item.createdByName) {
         <div>
-          <p class="card-text">✅ {{ item.createdByName }}</p>
+          <p class="card-text">? {{ item.createdByName }}</p>
           {{ item.createdAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">⏳ En espera</p>
+        <p class="text-color-secondary">? En espera</p>
         }
       </td>
 
       <td>
         @if (item.verifiedByName) {
         <div>
-          <p class="card-text">✅ {{ item.verifiedByName }}</p>
+          <p class="card-text">? {{ item.verifiedByName }}</p>
           {{ item.verifiedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">⏳ En espera</p>
+        <p class="text-color-secondary">? En espera</p>
         }
       </td>
 
       <td>
         @if (item.authorizedByName) {
         <div>
-          <p class="card-text">✅ {{ item.authorizedByName }}</p>
+          <p class="card-text">? {{ item.authorizedByName }}</p>
           {{ item.authorizedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">⏳ En espera</p>
+        <p class="text-color-secondary">? En espera</p>
         }
       </td>
 
       <td>
         @if (item.confirmedByName) {
         <div>
-          <p class="card-text">✅ {{ item.confirmedByName }}</p>
+          <p class="card-text">? {{ item.confirmedByName }}</p>
           {{ item.confirmedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">⏳ En espera</p>
+        <p class="text-color-secondary">? En espera</p>
         }
       </td>
 
@@ -88,7 +88,7 @@
           <ng-container actions>
             <custom-button-item
               (clicked)="onDetails(item.id)"
-              label="🔍 Detalles"
+              label="?? Detalles"
                [showLabelOnDesktop]="true"/>
             </ng-container>
           </app-action-menu> -->
@@ -144,8 +144,8 @@
       </div>
       <ion-label>
         <h3>{{ item.period }}</h3>
-        <p>Verificó: {{ item.verifiedByName || '⏳ En espera' }}</p>
-        <p>Autorizó: {{ item.authorizedByName || '⏳ En espera' }}</p>
+        <p>Verific�: {{ item.verifiedByName || '? En espera' }}</p>
+        <p>Autoriz�: {{ item.authorizedByName || '? En espera' }}</p>
       </ion-label>
     </ion-item>
   </ng-template>

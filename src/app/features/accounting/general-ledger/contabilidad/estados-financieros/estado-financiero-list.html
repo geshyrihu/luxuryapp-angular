@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   #dt
   [value]="dataSignal()"
@@ -38,7 +38,7 @@
       <th>
         <div class="flex align-items-center">
           <p-tag value="4" severity="info" styleClass="mr-2"></p-tag>
-          <span class="font-semibold">ENVÍO</span>
+          <span class="font-semibold">ENVíO</span>
         </div>
       </th>
     </tr>
@@ -90,7 +90,7 @@
         (item.personWhoAuthorized === "") {
         <custom-button
           label="Autorizar"
-          iconClass="mdi:check-square"
+          iconClass="mdi:checkbox-marked"
           severity="success"
           [loading]="isProcessingAuthorize(item.id)"
           (clicked)="onAuthorize(item.id)"
@@ -125,7 +125,7 @@
           label="ENVIAR PDF"
           styleClass="p-button-primary w-full mb-2"
           swalTitle="óEnviar estados financieros?"
-          swalText="El informe financiero (PDF) seró enviado."
+          swalText="El informe financiero (PDF) seré enviado."
           swalConfirmButtonText="Sí, enviar"
           swalIcon="warning"
           (confirmed)="onSendEstadosFinancieros({
@@ -157,7 +157,7 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   class="block md:hidden"
   [data]="dataSignal()"
@@ -213,7 +213,7 @@
               }
             </div>
           </div>
-          <!-- ENVÍO -->
+          <!-- ENVíO -->
           <div class="flex align-items-center">
             <p-tag value="4" severity="info" class="text-xs"></p-tag>
             <div class="flex flex-column">

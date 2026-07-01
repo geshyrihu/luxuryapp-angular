@@ -1,6 +1,6 @@
-<!-- ═══════════════════════════════════════════════════════════════════
+﻿<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      TABLA DE PUESTOS DE TRABAJO
-     ═══════════════════════════════════════════════════════════════════ -->
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
@@ -58,7 +58,7 @@
   </ng-template>
 
   <ng-template #header>
-    <!-- 🟢 Fila de Agrupación Visual -->
+    <!-- ðŸŸ¢ Fila de Agrupación Visual -->
     <tr>
       <th
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
@@ -78,7 +78,7 @@
       </th>
     </tr>
 
-    <!-- ⚪ Fila de Títulos de Columna -->
+    <!-- âšª Fila de Títulos de Columna -->
     <tr>
       <th style="width: 18%" pSortableColumn="applicationRoleName">
         PUESTO <p-sortIcon field="applicationRoleName" />
@@ -295,14 +295,14 @@
             class="badge badge-warning text-xs text-center block py-2"
             pTooltip="Vacante abierta — esperando alta de colaborador"
           >
-            🟡 VA-{{ item.positionRequest.folio }} · Vacante abierta
+            ðŸŸ¡ VA-{{ item.positionRequest.folio }} · Vacante abierta
           </span>
           } @else {
           <span
             class="badge badge-info text-xs text-center block py-2"
             pTooltip="Solicitud de alta enviada — en proceso de reclutamiento"
           >
-            🔵 VA-{{ item.positionRequest.folio }} · Alta en proceso
+            ðŸ”µ VA-{{ item.positionRequest.folio }} · Alta en proceso
           </span>
           } }
         </div>
@@ -326,9 +326,9 @@
   </ng-template>
 </p-table>
 
-<!-- ═══════════════════════════════════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      POOL DE COLABORADORES SIN PUESTO ASIGNADO
-     ═══════════════════════════════════════════════════════════════════ -->
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="card mt-3">
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
@@ -340,10 +340,10 @@
         >{{ unassignedEmployees().length }}</span
       >
       @if (assignLoading()) {
-      <app-icon [icon]="'mdi:spin'" class="text-sm"></app-icon>
+      <app-icon [icon]="'mdi:loading'" class="text-sm"></app-icon>
       }
     </div>
-    <i [class]="poolExpanded() ? 'mdi:chevron-up' : 'mdi:chevron-down'"></i>
+    <app-icon [icon]="poolExpanded() ? 'mdi:chevron-up' : 'mdi:chevron-down'"></app-icon>
   </div>
 
   <!-- Guía rápida -->
@@ -382,7 +382,7 @@
         label="Ver perfil"
         (clicked)="onGoToProfile(emp)"
       />
-      <span cdkDragHandle class="drag-handle">⠿</span>
+      <span cdkDragHandle class="drag-handle">â ¿</span>
 
       <ng-template cdkDragPreview>
         <div class="chip-preview">
@@ -396,9 +396,9 @@
   }
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════
-     DRAWER — ASIGNACIÓN RÁPIDA (alternativa al DnD)
-     ═══════════════════════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     DRAWER — ASIGNACIÓN RÃPIDA (alternativa al DnD)
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <p-drawer
   [visible]="drawerVisible()"
   (visibleChange)="drawerVisible.set($event)"
@@ -426,7 +426,7 @@
 
     @if (assignLoading()) {
     <div class="flex justify-content-center py-4">
-      <app-icon [icon]="'mdi:spin'" class="text-2xl"></app-icon>
+      <app-icon [icon]="'mdi:loading'" class="text-2xl"></app-icon>
     </div>
     } @else if (unassignedEmployees().length === 0) {
     <p class="text-center text-500 py-4 m-0">
@@ -457,9 +457,9 @@
   }
 </p-drawer>
 
-<!-- ═══════════════════════════════════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      MODAL — INACTIVOS (Puestos y Colaboradores)
-     ═══════════════════════════════════════════════════════════════════ -->
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <p-dialog
   [visible]="inactivosVisible()"
   (visibleChange)="inactivosVisible.set($event)"
@@ -500,7 +500,7 @@
 
   @if (inactivosLoading()) {
   <div class="flex justify-content-center py-8">
-    <app-icon [icon]="'mdi:spin'" class="text-3xl"></app-icon>
+    <app-icon [icon]="'mdi:loading'" class="text-3xl"></app-icon>
   </div>
 
   } @else if (inactivosTab() === 'positions') {

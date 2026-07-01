@@ -1,4 +1,4 @@
-﻿<!-- Desktop View -->
+<!-- Desktop View -->
 <div class="hidden md:block">
   <p-table
     #dt
@@ -54,7 +54,7 @@
             class="flex align-items-center justify-content-center border-round flex-shrink-0 w-3rem h-3rem mx-auto"
             [style.backgroundColor]="item.color || 'var(--primary-color)'"
           >
-            <span class="text-white text-xl">{{ item.emoji || '📁' }}</span>
+            <span class="text-white text-xl">{{ item.emoji || '??' }}</span>
           </div>
         </td>
         <td>
@@ -162,7 +162,7 @@
             class="w-2rem h-2rem flex align-items-center justify-content-center flex-shrink-0 text-2xl"
             [style.color]="item.color || 'var(--primary-color)'"
           >
-            <span>{{ item.emoji || '📁' }}</span>
+            <span>{{ item.emoji || '??' }}</span>
           </div>
 
           <div class="flex-1 min-w-0">

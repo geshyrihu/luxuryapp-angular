@@ -126,7 +126,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
       const m3 = (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
       const importe = (item.costoMetroCubico ?? 0) * m3;
       const bg = i % 2 === 0 ? "#ffffff" : "#f8fafc";
-      const cist = `${Math.round(item.nivelCisternaAntes ?? 0)}% → ${Math.round(item.nivelCisternaDespues ?? 0)}%<br>(${Math.round((item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0))}%)`;
+      const cist = `${Math.round(item.nivelCisternaAntes ?? 0)}% ? ${Math.round(item.nivelCisternaDespues ?? 0)}%<br>(${Math.round((item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0))}%)`;
       const personal = [item.colaboradorMtto, item.guardiaSeguridad].filter(Boolean).join("<br>");
       
       tableHtml += `
@@ -135,7 +135,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
           <td style="background-color: ${bg}; padding: 6px;">${this.htmlPrintS.esc(item.placasCamion)}<br>${(item.capacidadPipa ?? 0).toLocaleString("es-MX")} L</td>
           <td style="background-color: ${bg}; padding: 6px;">${fmtDate(item.horaLlegada)}<br>${fmtDate(item.horaTermino)}</td>
           <td style="background-color: ${bg}; padding: 6px; text-align: center;">${cist}</td>
-          <td style="background-color: ${bg}; padding: 6px; text-align: center;">${Math.round(item.lecturaMedidorInicial ?? 0)} → ${Math.round(item.lecturaMedidorFinal ?? 0)}</td>
+          <td style="background-color: ${bg}; padding: 6px; text-align: center;">${Math.round(item.lecturaMedidorInicial ?? 0)} ? ${Math.round(item.lecturaMedidorFinal ?? 0)}</td>
           <td style="background-color: ${bg}; padding: 6px; text-align: right; font-weight: bold;">${Math.round(m3)}</td>
           <td style="background-color: ${bg}; padding: 6px; text-align: right;">${(item.costoMetroCubico ?? 0).toFixed(2)}<br>${fmtMoney(importe)}</td>
           <td style="background-color: ${bg}; padding: 6px;">${personal}</td>
@@ -168,7 +168,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua â€” Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua — Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
@@ -176,12 +176,12 @@ ${this.htmlPrintS.getStandardCss()}
     <div class="kmdi:grid">
       <div class="kmdi:cards">
         <div class="kmdi:card">
-          <div class="kmdi:title">Total recepciones</div>
-          <div class="kmdi:value">${this.totalRecepciones()}</div>
+          <div class="kmdi:format-title">Total recepciones</div>
+          <div class="kmdi:percent">${this.totalRecepciones()}</div>
         </div>
         <div class="kmdi:card">
-          <div class="kmdi:title">Total mÂ³ descargados</div>
-          <div class="kmdi:value blue">${Math.round(this.totalM3())}</div>
+          <div class="kmdi:format-title">Total m³ descargados</div>
+          <div class="kmdi:percent blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
       <div>
@@ -191,7 +191,7 @@ ${this.htmlPrintS.getStandardCss()}
           </thead>
           <tbody>
             <tr>
-              <td>Importe total (precio con IVA Ã— mÂ³)</td>
+              <td>Importe total (precio con IVA × m³)</td>
               <td style="text-align: right; font-weight: bold;">${fmtMoney(this.totalConIVA())}</td>
             </tr>
             <tr>
@@ -222,9 +222,9 @@ ${this.htmlPrintS.getStandardCss()}
           <th>Empresa</th>
           <th>Placas / Cap.</th>
           <th>Llegada / Término</th>
-          <th style="text-align: center;">Cisterna ant → des</th>
-          <th style="text-align: center;">Medidor ini → fin</th>
-          <th style="text-align: right;">mÂ³</th>
+          <th style="text-align: center;">Cisterna ant ? des</th>
+          <th style="text-align: center;">Medidor ini ? fin</th>
+          <th style="text-align: right;">m³</th>
           <th style="text-align: right;">Costo / Importe</th>
           <th>Personal</th>
         </tr>
@@ -262,8 +262,8 @@ ${this.htmlPrintS.getStandardCss()}
           "Dif. cisterna (%)": (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
           "Medidor inicial": item.lecturaMedidorInicial,
           "Medidor final": item.lecturaMedidorFinal,
-          "mÂ³ ingresados": m3,
-          "Costo mÂ³": item.costoMetroCubico,
+          "m³ ingresados": m3,
+          "Costo m³": item.costoMetroCubico,
           "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
           "Colaborador mtto": item.colaboradorMtto ?? "",
           "Guardia testigo": item.guardiaSeguridad ?? "",

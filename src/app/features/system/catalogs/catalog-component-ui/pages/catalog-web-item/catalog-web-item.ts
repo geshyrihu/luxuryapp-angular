@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import {
   FormBuilder,
@@ -167,26 +167,26 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           <p-card header="Accordion - p-accordion">
             <p-accordion>
               <p-accordion-panel value="0">
-                <p-accordion-header>Secci√≥n 1</p-accordion-header>
+                <p-accordion-header>SecciÛn 1</p-accordion-header>
                 <p-accordion-content
                   ><p class="m-0">
-                    Contenido de la primera secci√≥n.
+                    Contenido de la primera secciÛn.
                   </p></p-accordion-content
                 >
               </p-accordion-panel>
               <p-accordion-panel value="1">
-                <p-accordion-header>Secci√≥n 2</p-accordion-header>
+                <p-accordion-header>SecciÛn 2</p-accordion-header>
                 <p-accordion-content
                   ><p class="m-0">
-                    Contenido de la segunda secci√≥n.
+                    Contenido de la segunda secciÛn.
                   </p></p-accordion-content
                 >
               </p-accordion-panel>
               <p-accordion-panel value="2">
-                <p-accordion-header>Secci√≥n 3</p-accordion-header>
+                <p-accordion-header>SecciÛn 3</p-accordion-header>
                 <p-accordion-content
                   ><p class="m-0">
-                    Contenido de la tercera secci√≥n.
+                    Contenido de la tercera secciÛn.
                   </p></p-accordion-content
                 >
               </p-accordion-panel>
@@ -211,7 +211,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               [model]="[
                 { label: 'Inicio' },
                 { label: 'Sistema' },
-                { label: 'Cat√°logos' },
+                { label: 'Cat·logos' },
                 { label: 'Proveedores' },
               ]"
               [home]="{ icon: 'mdi:home' }"
@@ -243,10 +243,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             <p-card header="Action Buttons (Custom) - custom-button-*">
               <p class="text-sm text-secondary m-0 mb-3">
                 Usalos para acciones ERP: guardar, editar, eliminar, descargar,
-                etc. Funcionan en web y mobile autom√°ticamente.
+                etc. Funcionan en web y mobile autom·ticamente.
               </p>
               <div class="flex flex-wrap gap-2">
-                <custom-button label="Gen√©rico" />
+                <custom-button label="GenÈrico" />
                 <custom-button-add label="Crear" />
                 <custom-button-edit label="Editar" />
                 <custom-button-save label="Guardar" />
@@ -263,10 +263,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             <p-card header="Icon Button con borde - patron shell/layout">
               <p class="text-sm text-secondary m-0 mb-3">
                 Para botones de shell (sidebar toggle, header actions) que
-                requieren un aspecto espec√≠fico con borde y tama√±o fijo, usa
+                requieren un aspecto especÌfico con borde y tamaÒo fijo, usa
                 <code>&lt;button class="ds-icon-btn"&gt;</code> con tokens DS en
                 el SCSS. No uses <code>p-button</code> - sus variantes
-                crom√°ticas entran en conflicto con el estilo propio del bot√≥n.
+                crom·ticas entran en conflicto con el estilo propio del botÛn.
               </p>
 
               <!-- Ejemplo visual -->
@@ -643,7 +643,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               pTextarea
               rows="4"
               [(ngModel)]="textAreaVal"
-              placeholder="Escribe aqu√≠..."
+              placeholder="Escribe aquÌ..."
               class="w-full"
             ></textarea>
           </p-card>

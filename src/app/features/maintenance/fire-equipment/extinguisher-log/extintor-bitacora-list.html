@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -20,7 +20,7 @@
         />
       </div>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nueva InspecciÃ³n' })"
+        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
         [dt]="dt"
       />
     </div>
@@ -29,10 +29,10 @@
     <tr>
       <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
       <th class="table-col-10">Hora</th>
-      <th class="table-col-10">PresiÃ³n</th>
+      <th class="table-col-10">Presión</th>
       <th class="table-col-10">Seguro</th>
       <th class="table-col-10">Etiquetas</th>
-      <th class="table-col-10">Sin DaÃ±os</th>
+      <th class="table-col-10">Sin Daños</th>
       <th>Observaciones</th>
       <th></th>
     </tr>
@@ -77,7 +77,7 @@
       <td class="no-print">
         <div class="flex justify-content-center">
           <custom-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar InspecciÃ³n' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
           />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -90,7 +90,7 @@
         <app-empty-state
           icon="mdi:fire-extinguisher"
           title="Sin registros"
-          message="No hay registros de bitÃ¡cora de extintores."
+          message="No hay registros de bitácora de extintores."
         />
       </td>
     </tr>
@@ -103,7 +103,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva InspecciÃ³n' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
@@ -139,7 +139,7 @@
           >
           <small
             [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
-            >Sin DaÃ±os</small
+            >Sin Daños</small
           >
         </div>
       </ion-label>
@@ -147,7 +147,7 @@
         <app-action-menu>
           <ng-container actions>
             <custom-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar InspecciÃ³n' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
               label="Editar"
               [showLabelOnDesktop]="true"
             />

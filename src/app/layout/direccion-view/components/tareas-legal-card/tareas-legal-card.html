@@ -1,6 +1,6 @@
-@if (cargando()) {
+﻿@if (cargando()) {
   <div class="flex align-items-center gap-2 py-3">
-    <app-icon icon="mdi:spin"  class="ner text-primary ds-animate-spin"></app-icon>
+    <app-icon icon="mdi:loading"  class="ner text-primary ds-animate-spin"></app-icon>
     <span class="text-sm text-500">Cargando tareas...</span>
   </div>
 } @else if (!resumen() || resumen()!.total === 0) {
@@ -41,7 +41,7 @@
               <div class="flex align-items-start justify-content-between gap-2">
                 <div class="flex align-items-center gap-2 min-w-0 flex-auto">
                   @if (tarea.esAltaPrioridad) {
-                    <app-icon icon="mdi:flag-fill" class="text-xs text-ds-danger flex-none"
+                    <app-icon icon="mdi:flag" class="text-xs text-ds-danger flex-none"
                       pTooltip="Alta prioridad"></app-icon>
                   }
                   <span class="text-xs flex-none text-color-secondary">{{ tarea.folio }}</span>

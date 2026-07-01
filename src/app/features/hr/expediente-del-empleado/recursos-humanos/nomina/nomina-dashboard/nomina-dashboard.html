@@ -31,7 +31,7 @@
       @for (metric of heroMetrics; track metric.label) {
         <article class="nom-metric">
           <span [class]="'nom-metric__icon nom-metric__icon--' + metric.tone">
-            <i [class]="metric.icon"></i>
+            <app-icon [icon]="metric.icon"></app-icon>
           </span>
           <div>
             <strong>{{ metric.value }}</strong>
@@ -67,7 +67,7 @@
                 <!-- Icon + title + roles -->
                 <div class="flex align-items-start gap-2 mb-2">
                   <div class="nom-card__icon" [style.background]="card.bgColor">
-                    <i [class]="card.icon + ' text-sm text-800'"></i>
+                    <app-icon [icon]="card.icon" class="text-sm text-800"></app-icon>
                   </div>
                   <div class="flex-1">
                     <div class="font-semibold text-900 text-sm">{{ card.title }}</div>

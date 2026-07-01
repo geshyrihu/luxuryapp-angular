@@ -55,7 +55,7 @@ export class CatalogoRevisionesInspeccion {
   /*
   /PRIME NG TABLE OPTIONS
   */
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -76,7 +76,7 @@ export class CatalogoRevisionesInspeccion {
     });
   }
 
-  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

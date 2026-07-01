@@ -119,7 +119,7 @@ export class TaskView implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.Tasks.view(this.id))
       .then((response: any) => {
-        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md Â§3.12
+        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md §3.12
         setTimeout(() => {
           this.ticket.set(response);
           if (response === null) {

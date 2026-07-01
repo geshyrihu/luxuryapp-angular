@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -122,7 +122,7 @@
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
-        <p>{{ item.concept }} · {{ item.amount | number:'1.2-2' }}</p>
+        <p>{{ item.concept }} é {{ item.amount | number:'1.2-2' }}</p>
         <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
       </ion-label>
       <app-action-menu slot="end">

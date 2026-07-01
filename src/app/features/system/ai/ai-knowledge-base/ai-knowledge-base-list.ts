@@ -1,4 +1,4 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
@@ -73,7 +73,7 @@ export class AiKnowledgeBaseList implements OnInit {
 
   async onDelete(id: string) {
     this.confirmationService.confirm({
-      message: "Ã‚¿EstÃƒ¡s seguro de que quieres eliminar este registro?",
+      message: "Â�EstÃ�s seguro de que quieres eliminar este registro?",
       header: "Confirmar",
       icon: "mdi:alert",
       accept: async () => {

@@ -204,7 +204,8 @@
 // ── VARIANTES OUTLINE ─────────────────────────────────────────
 // Fondo transparente con borde de color
 
-.btn-outline {
+.btn-outline,
+.btn-outline-primary {
   @extend .btn;
   background-color: transparent;
   color: var(--ds-primary);
@@ -272,10 +273,13 @@
 }
 
 // ── VARIANTE GHOST ────────────────────────────────────────────
-// Sin borde, solo texto con hover sutil
+// Tinte muy sutil del color semántico en reposo (≈8% opacidad).
+// Diferencia visual vs "text" que siempre es transparente.
+// En hover muestra el tinte completo (ds-*-light).
+
 .btn-ghost {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-text-secondary), transparent 92%);
   color: var(--ds-text-secondary);
   border-color: transparent;
 
@@ -287,7 +291,7 @@
 
 .btn-ghost-primary {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-primary), transparent 92%);
   color: var(--ds-primary);
   border-color: transparent;
 
@@ -298,7 +302,7 @@
 
 .btn-ghost-help {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-help), transparent 92%);
   color: var(--ds-help);
   border-color: transparent;
 
@@ -309,7 +313,7 @@
 
 .btn-ghost-contrast {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-contrast), transparent 92%);
   color: var(--ds-contrast);
   border-color: transparent;
 
@@ -366,8 +370,14 @@
 }
 
 // Ancho completo
-.btn-block {
+.btn-block,
+.btn-fluid {
   width: 100%;
+}
+
+// Host wrapper para botones fluidos (custom-button, custom-button-add, etc.)
+.custom-button-fluid {
+  display: block;
 }
 
 // ── BOTÓN DE ÍCONO ────────────────────────────────────────────
@@ -401,7 +411,7 @@
 
 .btn-ghost-secondary {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-text-secondary), transparent 92%);
   color: var(--ds-text-secondary);
   border-color: transparent;
 
@@ -413,7 +423,7 @@
 
 .btn-ghost-info {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-info), transparent 92%);
   color: var(--ds-info);
   border-color: transparent;
 
@@ -424,7 +434,7 @@
 
 .btn-ghost-danger {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-danger), transparent 92%);
   color: var(--ds-danger);
   border-color: transparent;
 
@@ -435,7 +445,7 @@
 
 .btn-ghost-success {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-success), transparent 92%);
   color: var(--ds-success);
   border-color: transparent;
 
@@ -446,7 +456,7 @@
 
 .btn-ghost-warning {
   @extend .btn;
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--ds-warning), transparent 92%);
   color: var(--ds-warning);
   border-color: transparent;
 
@@ -636,4 +646,90 @@
 .btn-icon-shell--contrast {
   --btn-icon-shell-bg: rgba(15, 23, 42, 0.1);
   --btn-icon-shell-color: var(--ds-text-primary);
+}
+
+// ── VARIANTE TEXT ─────────────────────────────────────────────
+// Más sutil que ghost: el hover es neutro (no teñido con el color semántico)
+// ghost  → hover muestra fondo teñido del color (ds-primary-light, ds-danger-light…)
+// text   → hover muestra fondo neutro (ds-bg-sunken), solo el texto lleva color
+
+.btn-text-primary {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-primary);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
+}
+
+.btn-text-secondary {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-text-secondary);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-primary);
+  }
+}
+
+.btn-text-success {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-success);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
+}
+
+.btn-text-info {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-info);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
+}
+
+.btn-text-warning {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-warning);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
+}
+
+.btn-text-danger {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-danger);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
+}
+
+.btn-text-help {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-help);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
+}
+
+.btn-text-contrast {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-contrast);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+  }
 }

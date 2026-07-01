@@ -1,5 +1,5 @@
-﻿@if (dataSignal()) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal()) {
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -95,7 +95,7 @@
   </div>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -140,10 +140,10 @@
         </p>
         <div class="flex flex-column gap-1 mt-1">
           <small class="text-xs text-500"
-            >Reportó: {{ item.personWhoReports }}</small
+            >Report�: {{ item.personWhoReports }}</small
           >
           <small class="text-xs text-500"
-            >Atendió: {{ item.technicianWhoAttended }}</small
+            >Atendi�: {{ item.technicianWhoAttended }}</small
           >
         </div>
       </ion-label>

@@ -1,4 +1,4 @@
-ï»¿<!-- Tabla principal de proveedores con paginaciÃ³n, filtros y acciones -->
+<!-- Tabla principal de proveedores con paginación, filtros y acciones -->
 <p-table
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
@@ -14,7 +14,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   styleClass="custom-table p-1 hidden md:block"
 >
-  <!-- CAPTION: Filtros y botÃ³n de agregar -->
+  <!-- CAPTION: Filtros y botón de agregar -->
   <ng-template #caption>
     <div class="grid align-items-center">
       <div class="col-12 md:col-3">
@@ -35,7 +35,7 @@
       <div class="col-12 md:col-3 mt-4">
         <custom-search-input-signal
           (searchChange)="applyGlobalFilter($event)"
-          placeholder="Buscar aquÃ­..."
+          placeholder="Buscar aquí..."
         />
       </div>
       <div class="hidden md:block md:col-4"></div>
@@ -63,7 +63,7 @@
         [class]="item.autorizado ? 'border-green-500' : 'border-red-500'"
       >
         <div class="grid">
-          <!-- CategorÃ­a y tipo -->
+          <!-- Categoría y tipo -->
           <div
             class="col-12 flex justify-content-between align-items-center mb-2"
           >
@@ -73,7 +73,7 @@
             <app-icon
               [icon]="'mdi:card-account-details'"
               class="cursor-pointer text-primary text-xl"
-              pTooltip="Ver Ficha TÃ©cnica"
+              pTooltip="Ver Ficha Técnica"
               (click)="showModalCardProveedor(item)"
             ></app-icon>
           </div>
@@ -159,7 +159,7 @@
                 />
                 } @if (item.repair) {
                 <p-tag
-                  value="ReparaciÃ³n"
+                  value="Reparación"
                   severity="secondary"
                   styleClass="text-xs"
                 />
@@ -168,7 +168,7 @@
             </div>
           </div>
 
-          <!-- Acciones y CategorÃ­as -->
+          <!-- Acciones y Categorías -->
           <div class="col-12 mt-3 pt-3 border-top-1 surface-border">
             <div
               class="flex flex-wrap align-items-center justify-content-between gap-3"
@@ -263,7 +263,7 @@
       <ion-label>
         <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
         <p class="text-sm text-600">
-          {{ item.nameProvider }} Â· {{ item.tipoServicio }}
+          {{ item.nameProvider }} · {{ item.tipoServicio }}
         </p>
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       </ion-label>

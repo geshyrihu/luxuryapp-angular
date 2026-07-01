@@ -1,10 +1,10 @@
 <!-- Botón con el mismo aspecto que el sidebar-toggle — clase DS con tokens -->
 <button
-  type="button"
-  class="sidebar-toggle-btn ml-2"
   (click)="drawerVisible.set(true)"
+  class="toolbar-icon-btn"
   pTooltip="Notificaciones"
   tooltipPosition="bottom"
+  type="button"
 >
   <p-overlaybadge
     [value]="messageInNotRead()"
@@ -23,6 +23,7 @@
   [showCloseIcon]="true"
   header="Notificaciones"
   [style]="{ width: '450px' }"
+  appendTo="body"
 >
   <!-- Contenedor con scroll para la lista -->
   <p-scrollPanel [style]="{ width: '100%', height: 'calc(100vh - 120px)' }">

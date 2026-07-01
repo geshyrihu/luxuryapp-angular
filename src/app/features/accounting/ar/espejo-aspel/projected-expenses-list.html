@@ -1,4 +1,4 @@
-ï»¿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 @if (dataSignal()) {
 <div class="hidden md:block">
   <div class="card">
@@ -18,7 +18,7 @@
     >
       <ng-template #caption>
         <primeng-custom-caption
-          (add)="onModal({ id: '', title: 'Nueva EjecuciÃ³n Presupuestaria' })"
+          (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
           [dt]="dt"
         />
       </ng-template>
@@ -34,7 +34,7 @@
             Concepto <p-sortIcon field="concept" />
           </th>
           <th pSortableColumn="description">
-            DescripciÃ³n <p-sortIcon field="description" />
+            Descripción <p-sortIcon field="description" />
           </th>
           <th pSortableColumn="budgetedAmount">
             Monto Presupuestado <p-sortIcon field="budgetedAmount" />
@@ -59,7 +59,7 @@
 
               <custom-button-edit
                 (clicked)="
-                onModal({ id: item.id, title: 'Editar EjecuciÃ³n' })
+                onModal({ id: item.id, title: 'Editar Ejecución' })
                 "
               />
               <custom-button-delete (confirmed)="onDelete(item.id)" />
@@ -73,7 +73,7 @@
           <td colspan="7">
             <app-empty-state
               icon="mdi:file-table-outline"
-              title="Sin ejecuciÃ³n presupuestaria"
+              title="Sin ejecución presupuestaria"
               message="No hay gastos proyectados registrados."
             />
           </td>
@@ -84,11 +84,11 @@
 </div>
 }
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 @if (dataSignal()) {
 <app-data-view-mobile
   [data]="dataSignal()"
-  (add)="onModal({ id: '', title: 'Nueva EjecuciÃ³n Presupuestaria' })"
+  (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
@@ -120,7 +120,7 @@
       <app-action-menu slot="end">
         <ng-container actions>
           <custom-button-edit
-            (clicked)="onModal({ id: item.id, title: 'Editar EjecuciÃ³n' })"
+            (clicked)="onModal({ id: item.id, title: 'Editar Ejecución' })"
             label="Editar"
             [showLabelOnDesktop]="true"
           />

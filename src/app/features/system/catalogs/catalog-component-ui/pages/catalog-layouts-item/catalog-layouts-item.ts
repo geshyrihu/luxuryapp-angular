@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -9,7 +9,7 @@ import { TagModule } from "primeng/tag";
 const LAYOUTS_LABELS: Record<string, string> = {
   fullwidth: "Full Width",
   sidebarcontent: "Sidebar + Content",
-  masterdetail: "Master√≥Detail",
+  masterdetail: "MasterÛDetail",
   wizard: "Wizard (Stepper)",
   splitpanels: "Split Panels",
 };
@@ -24,7 +24,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
       </div>
       <p-card>
         <p class="text-color-secondary">
-          Layout <strong>{{ label }}</strong> √≥ consulta la secci√≥n completa de
+          Layout <strong>{{ label }}</strong> Û consulta la secciÛn completa de
           Layouts para ver todas las variantes con ejemplos visuales.
         </p>
         <p-divider />

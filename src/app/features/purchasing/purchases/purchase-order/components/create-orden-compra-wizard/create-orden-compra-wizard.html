@@ -457,7 +457,7 @@
         <ul>
           @for (file of uploadedFiles(); track $index) {
           <li>
-            <i [class]="getActionIcon(file.name)" class="mr-2"></i>
+            <app-icon [icon]="getActionIcon(file.name)" [ngClass]="getActionIconClass(file.name)" class="mr-2"></app-icon>
             {{ file.name }}
           </li>
           }

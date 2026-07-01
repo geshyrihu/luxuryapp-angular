@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -147,7 +147,7 @@ export class Sidebar {
                 { label: "Pie Chart", icon: "mdi:chart-pie", routerLink: [...this.catalogBase, 'charts', 'pie'] },
                 { label: "Line Chart", icon: "mdi:chart-line", routerLink: [...this.catalogBase, 'charts', 'line'] },
                 { label: "Doughnut Chart", icon: "mdi:chart-donut", routerLink: [...this.catalogBase, 'charts', 'doughnut'] },
-                { label: "Radar Chart", icon: "mdi:chart-radar", routerLink: [...this.catalogBase, 'charts', 'radar'] },
+                { label: "Radar Chart", icon: "mdi:radar", routerLink: [...this.catalogBase, 'charts', 'radar'] },
               ],
             },
           ],
@@ -164,7 +164,7 @@ export class Sidebar {
             { label: "Notification Center", icon: "mdi:bell-outline", routerLink: [...this.catalogBase, 'core', 'notificationcenter'] },
             { label: "PrimeNg Custom Caption", icon: "mdi:table-headers-eye", routerLink: [...this.catalogBase, 'core', 'primengcustomcaption'] },
             { label: "Status Badge", icon: "mdi:check-circle", routerLink: [...this.catalogBase, 'core', 'statusbadge'] },
-            { label: "Wizard", icon: "mdi:steps", routerLink: [...this.catalogBase, 'core', 'wizard'] },
+            { label: "Wizard", icon: "mdi:stairs", routerLink: [...this.catalogBase, 'core', 'wizard'] },
             { label: "Empty State", icon: "mdi:inbox-outline", routerLink: [...this.catalogBase, 'core', 'emptystate'] },
             { label: "Confirm Dialog", icon: "mdi:alert-circle", routerLink: [...this.catalogBase, 'core', 'confirmdialog'] },
             { label: "Date Range", icon: "mdi:calendar-range", routerLink: [...this.catalogBase, 'core', 'daterange'] },
@@ -181,7 +181,7 @@ export class Sidebar {
             { label: "Stat Card", icon: "mdi:chart-line", routerLink: [...this.catalogBase, 'core', 'statcard'] },
             { label: "Skeleton Presets", icon: "mdi:card-bulleted-outline", routerLink: [...this.catalogBase, 'core', 'skeletonpresets'] },
             // 13.3.2
-            { label: "Comparison Table", icon: "mdi:table-compare", routerLink: [...this.catalogBase, 'core', 'comparisontable'] },
+            { label: "Comparison Table", icon: "mdi:table-large", routerLink: [...this.catalogBase, 'core', 'comparisontable'] },
             { label: "Activity Log", icon: "mdi:history", routerLink: [...this.catalogBase, 'core', 'activitylog'] },
             { label: "Kanban Board", icon: "mdi:view-column", routerLink: [...this.catalogBase, 'core', 'kanbanboard'] },
             { label: "Tree Table", icon: "mdi:file-tree", routerLink: [...this.catalogBase, 'core', 'treetable'] },
@@ -264,6 +264,7 @@ export class Sidebar {
                 { label: "Color Validation", routerLink: [...this.catalogBase, 'guia', 'colorvalidation'] },
                 { label: "Component Catalog", routerLink: [...this.catalogBase, 'guia', 'componentcatalog'] },
                 { label: "Button Rules", routerLink: [...this.catalogBase, 'guia', 'buttonrules'] },
+                { label: "Button Catalog", icon: "mdi:button-cursor", routerLink: [...this.catalogBase, 'guia', 'buttoncatalog'] },
                 { label: "Reference Form", routerLink: [...this.catalogBase, 'guia', 'referenceform'] },
               ],
             },

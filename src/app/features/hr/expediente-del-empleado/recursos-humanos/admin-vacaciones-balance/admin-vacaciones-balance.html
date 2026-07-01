@@ -1,6 +1,6 @@
-ï»¿<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
 
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   #dt
   [value]="dataSignal()"
@@ -33,14 +33,14 @@
         Empleado <p-sortIcon field="fullName" />
       </th>
       <th pSortableColumn="hireDate">
-        ContrataciÃ³n <p-sortIcon field="hireDate" />
+        Contratación <p-sortIcon field="hireDate" />
       </th>
       <th pSortableColumn="seniorityYears">
-        AntigÃ³edad <p-sortIcon field="seniorityYears" />
+        Antigóedad <p-sortIcon field="seniorityYears" />
       </th>
-      <th>DÃ­as por AntigÃ³edad</th>
-      <th>DÃ­as Tomados</th>
-      <th>DÃ­as Pendientes</th>
+      <th>Días por Antigóedad</th>
+      <th>Días Tomados</th>
+      <th>Días Pendientes</th>
       <th>Adelanto Permitido</th>
       <th>Adelanto Disponible</th>
       <th pSortableColumn="currentSystemBalance">
@@ -54,7 +54,7 @@
     <tr [class.p-datatable-discrepant]="item.isDiscrepant">
       <td>{{ item.fullName }}</td>
       <td>{{ item.hireDate | date: "dd/MM/yyyy" }}</td>
-      <td>{{ item.seniorityYears }} aÃ±os</td>
+      <td>{{ item.seniorityYears }} años</td>
       <td>{{ item.entitledDaysByLaw }}</td>
       <td>{{ item.takenDays }}</td>
       <td>{{ item.pendingDays }}</td>
@@ -68,7 +68,7 @@
       <td>
         <p-tag
           [severity]="getSeverity(item.isDiscrepant)"
-          [value]="item.isDiscrepant ? 'SÃ³' : 'No'"
+          [value]="item.isDiscrepant ? 'Só' : 'No'"
         ></p-tag>
       </td>
       <td>
@@ -89,7 +89,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [dt]="dt"

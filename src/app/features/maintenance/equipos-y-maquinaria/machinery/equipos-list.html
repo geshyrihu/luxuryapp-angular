@@ -35,7 +35,7 @@
               "
               (click)="onSelectCategory(category.id)"
             >
-              <i [class]="category.emoji"></i>
+              <app-icon [icon]="category.emoji"></app-icon>
               <span class="font-medium text-sm">{{ category.name }}</span>
             </div>
             }
@@ -334,7 +334,7 @@
         (click)="onSelectCategory(category.id)"
       >
         <ion-label class="flex align-items-center">
-          <i [class]="category.emoji"></i>
+          <app-icon [icon]="category.emoji"></app-icon>
           {{ category.name }}
         </ion-label>
       </ion-chip>

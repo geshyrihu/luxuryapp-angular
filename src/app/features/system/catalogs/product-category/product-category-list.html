@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -49,8 +49,8 @@
       <td colspan="3">
         <app-empty-state
           icon="mdi:tag-outline"
-          title="Sin categorías"
-          message="No hay categorías de productos."
+          title="Sin categor�as"
+          message="No hay categor�as de productos."
         />
       </td>
     </tr>
@@ -61,7 +61,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+﻿import { Injectable } from "@angular/core";
 @Injectable({
   providedIn: "root",
 })
@@ -11,7 +11,7 @@ export class LayoutService {
       layout_type: "ltr",
       layout_version: "dark-sidebar",
       sidebar_type: "compact-wrapper",
-      icon: "mdi:stroke-svg",
+      icon: "mdi:draw-pen",
     },
     color: {
       primary_color: "#6f5a99",

@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -15,7 +15,7 @@
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
     >
-      <!-- IZQUIERDA: TÃ­tulo y NavegaciÃ³n entre vistas -->
+      <!-- IZQUIERDA: Título y Navegación entre vistas -->
       <div class="flex flex-column sm:flex-row align-items-center gap-3">
         <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
           Recepcion de Pipas
@@ -82,8 +82,8 @@
       <th class="text-center" style="min-width: 160px">
         Medidor inicial / final
       </th>
-      <th class="text-right" style="min-width: 80px">mÂ³</th>
-      <th class="text-right" style="min-width: 90px">Costo mÂ³</th>
+      <th class="text-right" style="min-width: 80px">m³</th>
+      <th class="text-right" style="min-width: 90px">Costo m³</th>
       <th style="min-width: 150px">Colaborador mtto</th>
       <th style="min-width: 130px">Guardia testigo</th>
       <th style="min-width: 160px">Fotos</th>
@@ -111,14 +111,14 @@
       <td class="text-center">
         <small class="flex justify-content-center align-items-center gap-1">
           <span>{{ item.nivelCisternaAntes | number: '1.0-0' }}%</span>
-          <span class="text-400">â†’</span>
+          <span class="text-400">?</span>
           <span>{{ item.nivelCisternaDespues | number: '1.0-0' }}%</span>
         </small>
       </td>
       <td class="text-center">
         <small class="flex justify-content-center align-items-center gap-1">
           <span>{{ item.lecturaMedidorInicial | number: '1.0-0' }}</span>
-          <span class="text-400">â†’</span>
+          <span class="text-400">?</span>
           <span>{{ item.lecturaMedidorFinal | number: '1.0-0' }}</span>
         </small>
       </td>
@@ -294,7 +294,7 @@
         <p>
           {{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' : 'UTC' }}
           <span *ngIf="item.horaTermino">
-            â€” {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span
+            — {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span
           >
           <span *ngIf="!item.horaTermino" class="text-orange-500">
             (en curso)</span
@@ -305,17 +305,17 @@
             <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
           </div>
           <div class="col-6 p-0">
-            <strong>mÂ³:</strong>
+            <strong>m³:</strong>
             {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
             '1.0-0' }}
           </div>
           <div class="col-6 p-0">
             <strong>Cisterna:</strong>
-            {{ item.nivelCisternaAntes | number: '1.0-0' }}% â†’ {{
+            {{ item.nivelCisternaAntes | number: '1.0-0' }}% ? {{
             item.nivelCisternaDespues | number: '1.0-0' }}%
           </div>
           <div class="col-6 p-0">
-            <strong>Costo mÂ³:</strong> {{ item.costoMetroCubico | number:
+            <strong>Costo m³:</strong> {{ item.costoMetroCubico | number:
             '1.2-2' }}
           </div>
           <div *ngIf="item.colaboradorMtto" class="col-12 p-0">

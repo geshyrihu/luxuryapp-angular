@@ -273,7 +273,7 @@ export class SolicitudCompraList {
   onUnlinkPurchaseOrder(ordenCompraId: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "óEstÃƒ¡ seguro de que desea desvincular esta orden de compra?",
+      text: "óEstá seguro de que desea desvincular esta orden de compra?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Sí, desvincular",

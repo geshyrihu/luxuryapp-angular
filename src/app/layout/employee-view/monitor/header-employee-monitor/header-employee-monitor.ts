@@ -1,6 +1,7 @@
 import { CommonModule, Location } from "@angular/common";
 import {
   Component,
+  computed,
   effect,
   inject,
   input,
@@ -20,7 +21,7 @@ import {
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { ButtonModule } from "primeng/button";
-import { SelectModule } from "primeng/select";
+import { MenuModule } from "primeng/menu";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
@@ -58,17 +59,16 @@ import { AiService } from "src/app/core/services/ai.service";
     TextareaModule,
     FormsModule,
     ReactiveFormsModule,
+    MenuModule,
     NotificationsGadget,
     ProfileMonitor,
     ProgressSpinnerModule,
     RouterModule,
     SelectButtonModule,
-    SelectModule,
     ToolbarModule,
     TooltipModule,
   ],
   templateUrl: "./header-employee-monitor.html",
-  styleUrl: "./header-employee-monitor.scss",
 })
 export class HeaderEmployeeMonitor implements OnInit {
   isCommitteeView = input<boolean>(false);
@@ -109,6 +109,15 @@ export class HeaderEmployeeMonitor implements OnInit {
   public readonly cb_customer = toSignal(this.authS.customerAccess$, {
     initialValue: [],
   });
+
+  public customerMenuItems = computed<MenuItem[]>(() =>
+    this.cb_customer().map((c: any) => ({
+      label: c.label,
+      data: { image: c.image, value: c.value },
+      styleClass: c.value === this.customerId() ? 'font-bold' : '',
+      command: () => this.selectCustomer(c.value),
+    }))
+  );
 
   // AI Modal Signals
   public displayAiModal = signal<boolean>(false);

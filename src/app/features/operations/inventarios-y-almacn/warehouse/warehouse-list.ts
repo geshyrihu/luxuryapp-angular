@@ -118,7 +118,7 @@ export class WarehouseList implements OnInit {
   }
 
   onModalForm(data: any) {
-    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diÃƒ¡logo
+    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diálogo
     this.dialogHandlerS
       .openDialog(
         WarehouseForm,
@@ -127,7 +127,7 @@ export class WarehouseList implements OnInit {
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
-        // Si el diÃƒ¡logo se cerró con un resultado exitoso, recargamos los datos
+        // Si el diálogo se cerró con un resultado exitoso, recargamos los datos
         if (result) {
           this.onLoadData();
         }

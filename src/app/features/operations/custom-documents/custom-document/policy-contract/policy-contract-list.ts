@@ -132,13 +132,13 @@ export class PolicyContractList {
   }
   getTagSeverity(tagLabel: string | null): "success" | "warn" | "danger" {
     if (tagLabel === "Vigente") {
-      return "success"; // Si no hay etiqueta, consideramos que estÃƒ¡ vigente
+      return "success"; // Si no hay etiqueta, consideramos que está vigente
     }
     if (tagLabel === "Próximo a vencer") {
-      return "warn"; // Si no hay etiqueta, consideramos que estÃƒ¡ vigente
+      return "warn"; // Si no hay etiqueta, consideramos que está vigente
     }
     if (tagLabel === "Vencido") {
-      return "danger"; // Si no hay etiqueta, consideramos que estÃƒ¡ vigente
+      return "danger"; // Si no hay etiqueta, consideramos que está vigente
     }
   }
 }

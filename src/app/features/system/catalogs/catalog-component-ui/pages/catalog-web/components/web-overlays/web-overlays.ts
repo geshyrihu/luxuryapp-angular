@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ConfirmationService, MessageService } from "primeng/api";
@@ -52,12 +52,12 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
 
     <div class="grid">
 
-      <!-- ── Dialogs ──────────────────────────────────────────────── -->
+      <!-- -- Dialogs ------------------------------------------------ -->
       <div class="col-12">
-        <p-card header="Dialogs â€” p-dialog">
+        <p-card header="Dialogs — p-dialog">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Reserva los dialogs para decisiones breves (confirmar, editar un campo, ver un detalle).
-            Si el usuario necesita capturar información extensa, navega a una pantalla dedicada.
+            Si el usuario necesita capturar informaci�n extensa, navega a una pantalla dedicada.
           </p>
 
           <div class="grid">
@@ -81,18 +81,18 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
                 <app-icon icon="mdi:form-select" class="text-4xl text-primary" />
                 <div>
                   <strong class="block">Con formulario</strong>
-                  <p class="m-0 text-sm text-color-secondary mt-1">Edición rápida de un campo o un grupo pequeño.</p>
+                  <p class="m-0 text-sm text-color-secondary mt-1">Edici�n r�pida de un campo o un grupo peque�o.</p>
                 </div>
                 <p-button label="Abrir" size="small" (onClick)="dialogs.form.set(true)" />
               </div>
             </div>
 
-            <!-- Confirmación destructiva -->
+            <!-- Confirmaci�n destructiva -->
             <div class="col-12 md:col-6 xl:col-3">
               <div class="surface-ground border-round p-4 flex flex-column align-items-center gap-3 text-center">
                 <app-icon icon="mdi:alert-outline" class="text-4xl" style="color:var(--ds-danger)" />
                 <div>
-                  <strong class="block">Confirmación destructiva</strong>
+                  <strong class="block">Confirmaci�n destructiva</strong>
                   <p class="m-0 text-sm text-color-secondary mt-1">Siempre confirma acciones irreversibles.</p>
                 </div>
                 <p-button label="Eliminar" size="small" severity="danger"
@@ -123,7 +123,7 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
                 <app-icon icon="mdi:file-document-outline" class="text-3xl text-primary" />
                 <div>
                   <strong class="block">ERP-2026-042</strong>
-                  <span class="text-sm text-color-secondary">Solicitud de compra â€” Sistemas</span>
+                  <span class="text-sm text-color-secondary">Solicitud de compra — Sistemas</span>
                 </div>
                 <p-tag value="Pendiente" severity="warn" [rounded]="true" class="ml-auto" />
               </div>
@@ -153,7 +153,7 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
               <div>
                 <label class="block text-sm font-medium mb-1">Observaciones</label>
                 <textarea pTextarea [(ngModel)]="editObs" rows="3" class="w-full"
-                          placeholder="Descripción breve sin lenguaje ambiguo."></textarea>
+                          placeholder="Descripci�n breve sin lenguaje ambiguo."></textarea>
               </div>
             </div>
             <ng-template #footer>
@@ -163,33 +163,33 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
           </p-dialog>
 
           <!-- Dialog: Destructivo -->
-          <p-dialog header="Confirmar Eliminación" [(visible)]="dialogs.danger"
+          <p-dialog header="Confirmar Eliminaci�n" [(visible)]="dialogs.danger"
                     [modal]="true" [style]="{width: 'min(92vw, 26rem)'}" [draggable]="false">
             <div class="flex align-items-start gap-3">
               <div class="flex-shrink-0 border-round p-2 mt-1" style="background:var(--ds-danger-light)">
                 <app-icon icon="mdi:trash-can-outline" style="color:var(--ds-danger)" class="text-2xl" />
               </div>
               <div>
-                <strong class="block text-color">¿Eliminar ERP-2026-042?</strong>
+                <strong class="block text-color">�Eliminar ERP-2026-042?</strong>
                 <p class="m-0 mt-1 text-sm text-color-secondary line-height-3">
-                  Esta acción es irreversible. Se eliminará el registro y todos sus documentos asociados.
+                  Esta acci�n es irreversible. Se eliminar� el registro y todos sus documentos asociados.
                 </p>
               </div>
             </div>
             <ng-template #footer>
               <p-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="dialogs.danger.set(false)" />
-              <p-button label="Sí, eliminar" severity="danger" icon="mdi:trash-can" (onClick)="deleteRecord()" />
+              <p-button label="S�, eliminar" severity="danger" icon="mdi:trash-can" (onClick)="deleteRecord()" />
             </ng-template>
           </p-dialog>
 
           <!-- Dialog: Grande -->
-          <p-dialog header="Vista Completa â€” Solicitudes del Mes" [(visible)]="dialogs.large"
+          <p-dialog header="Vista Completa — Solicitudes del Mes" [(visible)]="dialogs.large"
                     [modal]="true" [maximizable]="true" [style]="{width: 'min(96vw, 64rem)'}" [draggable]="false">
             <div class="flex flex-column gap-3">
-              <p-message severity="info" text="Este dialog es ideal para reportes de solo consulta. Para edición extensa, usa una vista dedicada." />
+              <p-message severity="info" text="Este dialog es ideal para reportes de solo consulta. Para edici�n extensa, usa una vista dedicada." />
               <div class="surface-ground border-round p-4 text-center text-color-secondary">
                 <app-icon icon="mdi:table-large" class="text-5xl mb-3 block mx-auto" />
-                <span class="text-sm">Tabla completa ERP iría aquí â€” con paginación, filtros y export PDF.</span>
+                <span class="text-sm">Tabla completa ERP ir�a aqu� — con paginaci�n, filtros y export PDF.</span>
               </div>
             </div>
             <ng-template #footer>
@@ -200,11 +200,11 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
         </p-card>
       </div>
 
-      <!-- ── Drawer (Side Panel) ─────────────────────────────────── -->
+      <!-- -- Drawer (Side Panel) ----------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Drawer â€” Panel lateral / inferior">
+        <p-card header="Drawer — Panel lateral / inferior">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Úsalo para filtros avanzados, detalles contextuales o navegación secundaria
+            �salo para filtros avanzados, detalles contextuales o navegaci�n secundaria
             sin abandonar la vista actual.
           </p>
           <div class="flex flex-wrap gap-2">
@@ -234,7 +234,7 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
             </ng-template>
           </p-drawer>
 
-          <p-drawer header="Navegación" [(visible)]="drawers.left" position="left"
+          <p-drawer header="Navegaci�n" [(visible)]="drawers.left" position="left"
                     [style]="{width: 'min(92vw, 20rem)'}">
             <nav class="flex flex-column gap-1">
               @for (n of drawerNav; track n.label) {
@@ -246,14 +246,14 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
             </nav>
           </p-drawer>
 
-          <p-drawer header="Detalle rápido" [(visible)]="drawers.bottom" position="bottom"
+          <p-drawer header="Detalle r�pido" [(visible)]="drawers.bottom" position="bottom"
                     [style]="{height: '280px'}">
             <div class="flex flex-column gap-2 text-sm">
               <div class="p-3 surface-ground border-round flex align-items-center gap-3">
                 <app-icon icon="mdi:file-document-outline" class="text-2xl text-primary" />
                 <div>
-                  <strong class="block">ERP-2026-042 â€” Solicitud de compra</strong>
-                  <span class="text-color-secondary">Sistemas Â· $45,000 MXN</span>
+                  <strong class="block">ERP-2026-042 — Solicitud de compra</strong>
+                  <span class="text-color-secondary">Sistemas · $45,000 MXN</span>
                 </div>
                 <p-tag value="Pendiente" severity="warn" [rounded]="true" class="ml-auto" />
               </div>
@@ -265,12 +265,12 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
         </p-card>
       </div>
 
-      <!-- ── Popover & ConfirmPopup ───────────────────────────────── -->
+      <!-- -- Popover & ConfirmPopup --------------------------------- -->
       <div class="col-12 lg:col-6">
         <p-card header="Popover & ConfirmPopup">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             El popover muestra contenido contextual anclado al elemento que lo dispara.
-            El ConfirmPopup es la versión inline de la confirmación destructiva.
+            El ConfirmPopup es la versi�n inline de la confirmaci�n destructiva.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -284,10 +284,10 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
                 <div class="flex flex-column gap-2" style="max-width:260px">
                   <strong class="text-sm">Regla de presupuesto</strong>
                   <p class="m-0 text-sm text-color-secondary line-height-3">
-                    El importe máximo para aprobación directa por Supervisor es $50,000 MXN.
-                    Solicitudes mayores requieren firma de Dirección.
+                    El importe m�ximo para aprobaci�n directa por Supervisor es $50,000 MXN.
+                    Solicitudes mayores requieren firma de Direcci�n.
                   </p>
-                  <p-tag value="Nivel 2 Â· Operaciones" severity="info" [rounded]="true" />
+                  <p-tag value="Nivel 2 · Operaciones" severity="info" [rounded]="true" />
                 </div>
               </p-popover>
             </div>
@@ -317,7 +317,7 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
             <div>
               <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">ConfirmPopup (inline)</span>
               <div class="flex gap-2">
-                <custom-button-edit label="Editar" (clicked)="showToast('Edición abierta')" />
+                <custom-button-edit label="Editar" (clicked)="showToast('Edici�n abierta')" />
                 <custom-button-delete label="Eliminar" (clicked)="confirmDelete($event)" />
               </div>
             </div>
@@ -325,12 +325,12 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
         </p-card>
       </div>
 
-      <!-- ── Tooltips ──────────────────────────────────────────────── -->
+      <!-- -- Tooltips ------------------------------------------------ -->
       <div class="col-12">
-        <p-card header="Tooltips â€” pTooltip">
+        <p-card header="Tooltips — pTooltip">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Los tooltips complementan icons y controles icónicos.
-            <strong>Nunca sustituyen labels en acciones críticas</strong> â€” un botón importante
+            Los tooltips complementan icons y controles ic�nicos.
+            <strong>Nunca sustituyen labels en acciones cr�ticas</strong> — un bot�n importante
             debe tener label visible, no solo tooltip.
           </p>
 
@@ -359,7 +359,7 @@ import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-but
                 <p-button icon="mdi:eye" [rounded]="true" [text]="true" severity="info"
                           pTooltip="Vista previa" tooltipPosition="top" />
                 <p-button label="Con delay" severity="secondary" [outlined]="true" size="small"
-                          pTooltip="Aparece después de 800 ms" tooltipPosition="top" [tooltipOptions]="{showDelay: 800}" />
+                          pTooltip="Aparece despu�s de 800 ms" tooltipPosition="top" [tooltipOptions]="{showDelay: 800}" />
               </div>
             </div>
           </div>
@@ -411,10 +411,10 @@ export class WebOverlays {
   editObs  = "";
 
   readonly detailFields = [
-    { label: "Ãrea",      value: "Sistemas" },
+    { label: "Área",      value: "Sistemas" },
     { label: "Importe",   value: "$45,000" },
     { label: "Fecha",     value: "01/06/2026" },
-    { label: "Solicitó",  value: "Carlos M." },
+    { label: "Solicit�",  value: "Carlos M." },
     { label: "Prioridad", value: "Alta" },
     { label: "Vence",     value: "30/06/2026" },
   ];
@@ -431,7 +431,7 @@ export class WebOverlays {
     { label: "Solicitudes",   icon: "mdi:file-document" },
     { label: "Aprobaciones",  icon: "mdi:check-circle" },
     { label: "Reportes",      icon: "mdi:chart-bar" },
-    { label: "Configuración", icon: "mdi:cog" },
+    { label: "Configuraci�n", icon: "mdi:cog" },
   ];
 
   readonly popoverActions = [
@@ -444,9 +444,9 @@ export class WebOverlays {
   readonly tooltipPositions = ["top", "bottom", "left", "right"];
 
   readonly tooltipRules = [
-    { titulo: "Complementa, no sustituye", icon: "mdi:check-circle", color: "var(--ds-success)", desc: "Úsalo en botones icónicos donde el label no cabe. Acciones críticas siempre necesitan label visible." },
-    { titulo: "Texto conciso",             icon: "mdi:check-circle", color: "var(--ds-success)", desc: "Máximo una oración. Si necesitas más de una línea, usa un Popover informativo." },
-    { titulo: "Sin tooltips en mobile",    icon: "mdi:close-circle", color: "var(--ds-danger)",  desc: "Hover no existe en pantallas táctiles. Los labels deben ser suficientes en mobile." },
+    { titulo: "Complementa, no sustituye", icon: "mdi:check-circle", color: "var(--ds-success)", desc: "�salo en botones ic�nicos donde el label no cabe. Acciones cr�ticas siempre necesitan label visible." },
+    { titulo: "Texto conciso",             icon: "mdi:check-circle", color: "var(--ds-success)", desc: "M�ximo una oraci�n. Si necesitas m�s de una l�nea, usa un Popover informativo." },
+    { titulo: "Sin tooltips en mobile",    icon: "mdi:close-circle", color: "var(--ds-danger)",  desc: "Hover no existe en pantallas t�ctiles. Los labels deben ser suficientes en mobile." },
   ];
 
   saveForm() {
@@ -462,7 +462,7 @@ export class WebOverlays {
   confirmDelete(event: Event) {
     this.confirmSvc.confirm({
       target: event.target as EventTarget,
-      message: "¿Eliminar este registro?",
+      message: "�Eliminar este registro?",
       icon: "mdi:trash-can",
       rejectLabel: "Cancelar",
       acceptLabel: "Eliminar",

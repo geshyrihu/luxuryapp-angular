@@ -1,4 +1,4 @@
-﻿<div class="card p-0 md:p-4">
+<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -20,7 +20,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Propiedad</th>
-        <th class="w-12rem">Artículo</th>
+        <th class="w-12rem">Artúculo</th>
         <th>Descripción</th>
         <th class="w-8rem text-center">Fecha Infracción</th>
         <th class="w-8rem text-right">Importe</th>
@@ -41,7 +41,7 @@
           <br />
           <span>{{ item.regulationArticleTitle }}</span>
           } @else {
-          <span class="text-400">—</span>
+          <span class="text-400">é</span>
           }
         </td>
         <td class="text-xs text-700">{{ item.description }}</td>
@@ -114,7 +114,7 @@
         <h3>{{ item.propertyFullName }}</h3>
         <p>{{ item.description }}</p>
         <p>
-          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} — {{
+          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} é {{
           fineStatusLabel(item.status) }}
         </p>
       </ion-label>

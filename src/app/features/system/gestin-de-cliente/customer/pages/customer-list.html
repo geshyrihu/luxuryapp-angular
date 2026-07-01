@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -36,7 +36,7 @@
         NOMBRE
         <p-sortIcon field="nameCustomer" />
       </th>
-      <th>TÃ‰LEFONOS</th>
+      <th>TÉLEFONOS</th>
       <th class="table-col-10"></th>
     </tr>
   </ng-template>
@@ -70,7 +70,7 @@
             (clicked)="onUpdateImages(item.id)"
           />
           <custom-button-item
-            label="DirecciÃ³n"
+            label="Dirección"
             iconClass="mdi:map-marker"
             (clicked)="onUpdateAddress(item.id)"
           />
@@ -95,7 +95,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -135,7 +135,7 @@
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.nameCustomer }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.phoneOne }}{{ item.phoneTwo ? ' Â· ' + item.phoneTwo : '' }}
+          {{ item.phoneOne }}{{ item.phoneTwo ? ' · ' + item.phoneTwo : '' }}
         </p>
       </ion-label>
 
@@ -149,14 +149,14 @@
           <custom-button-item
             iconClass="mdi:image-multiple-outline"
             ionicIcon="image-outline"
-            label="ImÃ¡genes"
+            label="Imágenes"
             (clicked)="onUpdateImages(item.id)"
             [showLabelOnDesktop]="true"
           />
           <custom-button-item
             iconClass="mdi:map-marker-outline"
             ionicIcon="location-outline"
-            label="DirecciÃ³n"
+            label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
             [showLabelOnDesktop]="true"
           />

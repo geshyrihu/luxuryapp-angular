@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { CardModule } from "primeng/card";
@@ -85,8 +85,8 @@ export class AdminVacacionesBalance {
 
     this.confirmationService.confirm({
       message:
-        "¬øEst√°s seguro de recalcular todos los balances de vacaciones para este cliente? Esta acci√≥n corregir√° los d√≠as totales de cada empleado seg√∫n su antig√ºedad actual. Esta acci√≥n no se puede deshacer.",
-      header: "Confirmaci√≥n",
+        "øEst·s seguro de recalcular todos los balances de vacaciones para este cliente? Esta acciÛn corregir· los dÌas totales de cada empleado seg˙n su antig¸edad actual. Esta acciÛn no se puede deshacer.",
+      header: "ConfirmaciÛn",
       icon: "mdi:alert",
       accept: () => {
         this.loading.set(true);
@@ -98,10 +98,10 @@ export class AdminVacacionesBalance {
           .then((result) => {
             this.messageService.add({
               severity: result ? "success" : "warn",
-              summary: result ? "Completado" : "Atenci√≥n",
+              summary: result ? "Completado" : "AtenciÛn",
               detail: result
                 ? "Los balances de vacaciones se recalcularon correctamente."
-                : "No se pudo completar el rec√°lculo de balances.",
+                : "No se pudo completar el rec·lculo de balances.",
             });
             this.onLoadData(customerId);
           })

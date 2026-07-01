@@ -1,5 +1,5 @@
-﻿@if (dataSignal()) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal()) {
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -21,7 +21,7 @@
             Nombre
             <p-sortIcon field="name" />
           </th>
-          <th>Ubicación</th>
+          <th>Ubicaci�n</th>
           <th>Volumen</th>
           <th colspan="2">Tipo</th>
         </tr>
@@ -62,7 +62,7 @@
               <custom-button-delete (confirmed)="onDelete(item.id)" />
               <custom-button-item
                 iconClass="mdi:book"
-                label="Bitácora"
+                label="Bit�cora"
                 [routerLink]="['/logbook/piscina-bitacora/', item.id]"
               />
             </div>
@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -112,7 +112,7 @@
           </div>
           <ion-label>
             <h2 class="font-bold m-0 text-base">{{ item.name }}</h2>
-            <p class="text-sm text-500 m-0">📍 {{ item.ubication }}</p>
+            <p class="text-sm text-500 m-0">?? {{ item.ubication }}</p>
             <div class="flex mt-1">
               <small class="text-xs"
                 ><strong class="text-primary">Vol:</strong> {{ item.volumen
@@ -139,7 +139,7 @@
                 />
                 <custom-button-item
                   iconName="book-outline"
-                  label="Bitácora"
+                  label="Bit�cora"
                   [routerLink]="['/logbook/piscina-bitacora/', item.id]"
                   [showLabelOnDesktop]="true"
                 />

@@ -1,4 +1,4 @@
-ï»¿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields"
@@ -102,7 +102,7 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -139,21 +139,21 @@
         <!-- Mediciones en Grid Compacto -->
         <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Cl:</strong> {{ item.cl || "Ã³" }}
+            <strong class="text-primary">Cl:</strong> {{ item.cl || "ó" }}
           </div>
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Ph:</strong> {{ item.ph || "Ã³" }}
+            <strong class="text-primary">Ph:</strong> {{ item.ph || "ó" }}
           </div>
           <div class="col-4 p-0 pb-1">
             <strong class="text-primary">Alk:</strong> {{ item.alkalinidad ||
-            "Ã³" }}
+            "ó" }}
           </div>
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Dur:</strong> {{ item.dureza || "Ã³" }}
+            <strong class="text-primary">Dur:</strong> {{ item.dureza || "ó" }}
           </div>
           <div class="col-4 p-0 pb-1">
             <strong class="text-primary">Tem:</strong> {{ item.temperatura ||
-            "Ã³" }}
+            "ó" }}
           </div>
         </div>
 
@@ -163,20 +163,20 @@
             class="flex align-items-center gap-1"
             [class.opacity-50]="!item.cepillado"
           >
-            <i
-              class="pi"
-              [class]="item.cepillado ? 'mdi:check text-green-600' : 'mdi:close text-400'"
-            ></i>
+            <app-icon
+              [icon]="item.cepillado ? 'mdi:check' : 'mdi:close'"
+              [class]="item.cepillado ? 'text-green-600' : 'text-400'"
+            ></app-icon>
             <small class="text-xs">Cepillado</small>
           </div>
           <div
             class="flex align-items-center gap-1 ml-3"
             [class.opacity-50]="!item.aspirado"
           >
-            <i
-              class="pi"
-              [class]="item.aspirado ? 'mdi:check text-green-600' : 'mdi:close text-400'"
-            ></i>
+            <app-icon
+              [icon]="item.aspirado ? 'mdi:check' : 'mdi:close'"
+              [class]="item.aspirado ? 'text-green-600' : 'text-400'"
+            ></app-icon>
             <small class="text-xs">Aspirado</small>
           </div>
         </div>

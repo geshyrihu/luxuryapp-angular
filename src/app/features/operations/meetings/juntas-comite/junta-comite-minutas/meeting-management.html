@@ -1,4 +1,4 @@
-@if (meetingData()) {
+﻿@if (meetingData()) {
 <div class="p-4">
   <p-card [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
     <div class="mb-3 flex align-items-center justify-content-between">
@@ -79,7 +79,7 @@
 </div>
 } @else {
 <div class="flex align-items-center justify-content-center h-screen">
-  <app-icon [icon]="'mdi:spin'" class="text-4xl text-primary"></app-icon>
+  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary"></app-icon>
   <span class="ml-3 text-lg font-medium text-700"
     >Cargando detalles de la minuta...</span
   >

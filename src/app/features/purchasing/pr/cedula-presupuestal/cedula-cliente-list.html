@@ -1,5 +1,5 @@
-﻿@if (dataSignal() !== null) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal() !== null) {
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -152,8 +152,8 @@
       <td colspan="12">
         <app-empty-state
           icon="mdi:wallet-outline"
-          title="Sin cédulas"
-          message="No hay cédulas presupuestales registradas."
+          title="Sin c�dulas"
+          message="No hay c�dulas presupuestales registradas."
         />
       </td>
     </tr>
@@ -191,7 +191,7 @@
         <h3>{{ item.descripcion }}</h3>
         <p>Cuenta: {{ item.numeroCuenta }}</p>
         <p>
-          Mensual: {{ item.presupuestoMensual }} ó Disponible: {{
+          Mensual: {{ item.presupuestoMensual }} � Disponible: {{
           item.presupuestoDisponible }}
         </p>
       </ion-label>

@@ -1,7 +1,7 @@
-<!-- Elemento que activa el Drawer -->
+<!-- Trigger: avatar + chevron -->
 <div
   class="flex align-items-center cursor-pointer p-1 border-round-lg hover:bg-white-alpha-10 transition-colors"
-  (click)="profileDrawerVisible.set(true)"
+  (click)="profilePopover.toggle($event)"
 >
   <p-avatar
     [image]="profileImageUrl || 'assets/images/default-avatar.png'"
@@ -13,48 +13,34 @@
   <app-icon icon="mdi:chevron-down" class="text-white opacity-60" />
 </div>
 
-<!-- Drawer lateral de PrimeNG para el menú de perfil -->
-<p-drawer
-  [(visible)]="profileDrawerVisible"
-  position="right"
-  header="Menú"
-  [style]="{ width: '320px' }"
->
-  <div class="flex flex-column gap-2">
-    <custom-button
-      label="Cambiar contraseña"
-      variant="text"
-      severity="secondary"
-      icon="mdi:account-key-outline"
-      [routerLink]="[profileRoute()]"
-      (clicked)="profileDrawerVisible.set(false)"
-      [fluid]="true"
-      [showLabelOnDesktop]="true"
-      customClass="justify-content-start font-semibold text-lg px-2"
-    ></custom-button>
+<p-popover #profilePopover appendTo="body">
+  <div class="profile-popup-menu">
+    <button
+      class="profile-popup-item"
+      (click)="navigateToProfile(); profilePopover.hide()"
+    >
+      <i class="pi pi-key"></i>
+      <span>Cambiar contraseña</span>
+    </button>
 
     @if (updateService.isUpdateAvailable()) {
-    <custom-button
-      label="Actualizar Aplicación"
-      variant="text"
-      severity="info"
-      icon="mdi:update"
-      (clicked)="onUpdateClick(); profileDrawerVisible.set(false)"
-      [fluid]="true"
-      [showLabelOnDesktop]="true"
-      customClass="justify-content-start font-semibold text-lg px-2"
-    ></custom-button>
+    <button
+      class="profile-popup-item"
+      (click)="onUpdateClick(); profilePopover.hide()"
+    >
+      <i class="pi pi-sync"></i>
+      <span>Actualizar Aplicación</span>
+    </button>
     }
 
-    <custom-button
-      label="Cerrar sesión"
-      variant="text"
-      severity="danger"
-      icon="mdi:logout"
-      (clicked)="logOut(); profileDrawerVisible.set(false)"
-      [fluid]="true"
-      [showLabelOnDesktop]="true"
-      customClass="justify-content-start font-semibold text-lg px-2"
-    ></custom-button>
+    <div class="profile-popup-separator"></div>
+
+    <button
+      class="profile-popup-item profile-popup-item--danger"
+      (click)="logOut()"
+    >
+      <i class="pi pi-sign-out"></i>
+      <span>Cerrar sesión</span>
+    </button>
   </div>
-</p-drawer>
+</p-popover>

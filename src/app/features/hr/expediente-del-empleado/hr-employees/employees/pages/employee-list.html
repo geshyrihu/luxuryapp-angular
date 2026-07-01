@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -29,7 +29,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">NÃ³</th>
+      <th class="table-col-5">Nó</th>
       <th colspan="2" class="table-col-30" pSortableColumn="fullName">
         COLABORADOR
         <p-sortIcon field="fullName" />
@@ -48,7 +48,7 @@
         pSortableColumn="celularPersonal"
         class="no-print"
       >
-        TÃ©lefono
+        Télefono
         <p-sortIcon field="celularPersonal" />
       </th>
       <th class="table-col-30" pSortableColumn="email">
@@ -127,7 +127,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   (add)="showModalAddEmployee()"
   [data]="dataSignal()"
@@ -154,7 +154,7 @@
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.workPositionName }}{{ item.celularPersonal ? ' Â· ' +
+          {{ item.workPositionName }}{{ item.celularPersonal ? ' · ' +
           item.celularPersonal : '' }}
         </p>
         <p class="text-xs m-0 text-color-secondary">

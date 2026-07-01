@@ -1,4 +1,4 @@
-﻿<div class="card p-3 md:p-4">
+<div class="card p-3 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -24,7 +24,7 @@
         <th class="w-8rem">No. Cuenta</th>
         <th class="w-6rem text-center">Torre</th>
         <th class="w-6rem text-center">Piso</th>
-        <th class="w-8rem text-right">m²</th>
+        <th class="w-8rem text-right">mí</th>
         <th class="w-8rem text-right">Indiviso %</th>
         <th class="w-6rem text-center">Cajones</th>
         <th class="w-6rem text-center">Opciones</th>
@@ -38,18 +38,18 @@
         <td class="text-center text-sm">{{ item.tower }}</td>
         <td class="text-center text-sm">{{ item.floor }}</td>
         <td class="text-right text-sm">
-          {{ item.areaM2 != null ? (item.areaM2 | number:'1.2-2') : '—' }}
+          {{ item.areaM2 != null ? (item.areaM2 | number:'1.2-2') : 'é' }}
         </td>
         <td class="text-right text-sm">
           {{ item.indivisoPercentage != null ? (item.indivisoPercentage |
-          number:'1.4-4') + '%' : '—' }}
+          number:'1.4-4') + '%' : 'é' }}
         </td>
-        <td class="text-center text-sm">{{ item.parkingSlots ?? '—' }}</td>
+        <td class="text-center text-sm">{{ item.parkingSlots ?? 'é' }}</td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
             <custom-button-edit (clicked)="onModalForm(item.id)" />
             <custom-button-delete
-              confirmMessage="¿Eliminar la propiedad {{ item.fullName }}? Esta acción no se puede deshacer."
+              confirmMessage="óEliminar la propiedad {{ item.fullName }}? Esta acción no se puede deshacer."
               (confirmed)="onDelete(item)"
             />
           </div>
@@ -89,8 +89,8 @@
         <h3>{{ item.fullName }}</h3>
         <p>Cta: {{ item.accountNumber }}</p>
         <p>
-          {{ item.areaM2 != null ? (item.areaM2 | number:'1.2-2') + ' m²' : ''
-          }} {{ item.indivisoPercentage != null ? '· ' +
+          {{ item.areaM2 != null ? (item.areaM2 | number:'1.2-2') + ' mí' : ''
+          }} {{ item.indivisoPercentage != null ? 'é ' +
           (item.indivisoPercentage | number:'1.4-4') + '%' : '' }}
         </p>
       </ion-label>

@@ -1,4 +1,4 @@
-<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+﻿<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <!-- Guía de usuario para mejorar la consistencia de datos -->
   <div
     class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
@@ -15,7 +15,7 @@
         <li class="mb-1 flex align-items-start">
           <app-icon [icon]="'mdi:check'" class="text-blue-500 mr-2 mt-1 text-xs"></app-icon>
           <span>
-            <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
+            <strong>Ãreas consistentes:</strong> Usa siempre el mismo nombre
             para un mismo lugar (ej:
             <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
           </span>
@@ -187,7 +187,7 @@
               <div
                 class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
               >
-                <app-icon [icon]="'mdi:spin'"></app-icon>
+                <app-icon [icon]="'mdi:loading'"></app-icon>
                 <span class="text-sm">Procesando imagen...</span>
               </div>
               } @else if (!beforeWorkPreview()) {
@@ -272,7 +272,7 @@
               <div
                 class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
               >
-                <app-icon [icon]="'mdi:spin'"></app-icon>
+                <app-icon [icon]="'mdi:loading'"></app-icon>
                 <span class="text-sm">Procesando imagen...</span>
               </div>
               } @else if (!afterWorkPreview()) {

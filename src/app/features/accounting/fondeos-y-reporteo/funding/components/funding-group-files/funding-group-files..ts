@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -117,7 +117,7 @@ export class FundingGroupFiles implements OnInit {
   downloadSelectedFiles() {
     if (this.selectedFiles().length === 0) return;
 
-    // Descarga secuencial bósica
+    // Descarga secuencial b�sica
     this.selectedFiles().forEach((file) => {
       this.descargarArchivo(file.url);
     });

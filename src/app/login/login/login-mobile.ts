@@ -21,6 +21,7 @@ import {
   IonContent,
   IonSpinner,
 } from "@ionic/angular/standalone";
+import { startWith } from "rxjs";
 import { catchError, finalize, of, switchMap } from "rxjs";
 import { IonInputPassword } from "src/app/core/components/inputs/mobile/ion-input-password";
 import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
@@ -74,7 +75,7 @@ import { SecurityService } from "src/app/core/services/security.service";
           <!-- Bottom Sheet Card -->
           <div class="lm-card shadow-8 fadeinup animation-duration-500">
             <h2 class="lm-title">Bienvenido</h2>
-            <p class="lm-subtitle">Ingresa a tu cuenta ERP Premium</p>
+            <p class="lm-subtitle">Ingresa a tu cuenta</p>
 
             <form
               [formGroup]="loginForm"
@@ -314,8 +315,13 @@ export class LoginMobile implements OnInit {
     rememberMe: [false],
   });
 
+  private readonly formStatus = toSignal(
+    this.loginForm.statusChanges.pipe(startWith(this.loginForm.status)),
+    { initialValue: this.loginForm.status },
+  );
+
   readonly isSubmitDisabled = computed(
-    () => this.loginForm.invalid || this.loading(),
+    () => this.formStatus() !== "VALID" || this.loading(),
   );
 
   private preservedRedirectUrl = "/";
@@ -327,6 +333,7 @@ export class LoginMobile implements OnInit {
       "/";
     this.onLoadForm();
     this.securityS.resetAuthData();
+    this.loaderService.hide();
   }
 
   onLoadForm(): void {

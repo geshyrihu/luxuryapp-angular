@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -20,10 +20,10 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 
 /**
- * âœ¨ COMPONENTE GENÉRICO PARA PANELES DE APROBACIÓN âœ¨
+ * ✨ COMPONENTE GEN�RICO PARA PANELES DE APROBACI�N ✨
  *
- * Basado en el estándar de tablas del proyecto (Referencia: BankList).
- * Utiliza Signal Inputs para una reactividad óptima.
+ * Basado en el est�ndar de tablas del proyecto (Referencia: BankList).
+ * Utiliza Signal Inputs para una reactividad �ptima.
  */
 @Component({
   selector: "app-generic-approval-panel",
@@ -87,7 +87,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
               }
               <custom-button
                 [showLabelOnDesktop]="true"
-                iconClass="mdi:check-square"
+                iconClass="mdi:checkbox-marked"
                 label="Aprobar"
                 size="small"
                 (clicked)="onApprove(request)"
@@ -126,7 +126,7 @@ export class GenericApprovalPanel {
   columns = input<{ field: string; header: string; isDate?: boolean }[]>([]);
   loading = input<boolean>(false);
 
-  // --- CONFIGURACIÓN ---
+  // --- CONFIGURACI�N ---
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
@@ -136,8 +136,8 @@ export class GenericApprovalPanel {
   reject = output<ApprovalPanelRequest>();
   viewDetail = output<ApprovalPanelRequest>();
 
-  // --- LÓGICA ---
-  // Se recalcula automáticamente cuando 'requests' cambia.
+  // --- L�GICA ---
+  // Se recalcula autom�ticamente cuando 'requests' cambia.
   globalFilterFields = computed(() => {
     const data = this.requests();
     if (!data || data.length === 0) return [];

@@ -1,4 +1,4 @@
-ï»¿@if (dataSignal()) {
+@if (dataSignal()) {
 <p-table
   (onLazyLoad)="loadDataLazy($event)"
   [globalFilterFields]="globalFilterFields"
@@ -86,8 +86,8 @@
       <td colspan="6">
         <app-empty-state
           icon="mdi:tools"
-          title="Sin prÃ©stamos"
-          message="No hay prÃ©stamos de herramientas registrados."
+          title="Sin préstamos"
+          message="No hay préstamos de herramientas registrados."
         />
       </td>
     </tr>
@@ -97,7 +97,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal().items"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

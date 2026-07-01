@@ -1,27 +1,5 @@
-.sidebar-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  background: #ffffff;
-  border: 1px solid var(--ds-border);
-  border-radius: 6px;
-  color: var(--ds-text-primary);
-  cursor: pointer;
-  transition: background-color 150ms ease, border-color 150ms ease;
-  flex-shrink: 0;
-
-  &:hover {
-    background-color: var(--ds-bg-sunken);
-    border-color: var(--ds-border-strong);
-  }
-
-  &:active {
-    transform: scale(0.96);
-  }
-
+/* Badge size override for the bell button */
+.toolbar-icon-btn {
   ::ng-deep .p-overlaybadge .p-badge {
     min-width: 14px;
     height: 14px;

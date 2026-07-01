@@ -1,6 +1,6 @@
-@if (cargando()) {
+﻿@if (cargando()) {
   <div class="flex align-items-center gap-2 py-6 justify-content-center">
-    <app-icon icon="mdi:spin" style="font-size:1.5rem" class="ner text-primary ds-animate-spin"></app-icon>
+    <app-icon icon="mdi:loading" style="font-size:1.5rem" class="ner text-primary ds-animate-spin"></app-icon>
     <span class="text-500">Cargando contratos...</span>
   </div>
 } @else if (!resumen() || resumen()!.total === 0) {
@@ -30,11 +30,10 @@
           </div>
           <div class="flex align-items-center gap-3">
             <span class="text-xs text-500">{{ customer.total }} contrato{{ customer.total === 1 ? '' : 's' }}</span>
-            <i
-              class="pi text-400 text-xs"
-              [class.pi-chevron-down]="!estaExpandido(customer.customerName)"
-              [class.pi-chevron-up]="estaExpandido(customer.customerName)"
-            ></i>
+            <app-icon
+              [icon]="estaExpandido(customer.customerName) ? 'mdi:chevron-up' : 'mdi:chevron-down'"
+              class="text-400 text-xs"
+            ></app-icon>
           </div>
         </div>
 

@@ -8,7 +8,9 @@
   grid-column: 1 / -1;
   grid-row: 1;
   height: 70px;
-  background-color: var(--header-bg, var(--ds-text-primary));
+  background-image: url('/assets/images/image-15.jpg');
+  background-size: cover;
+  background-position: center 30%;
   border-bottom: none;
 }
 

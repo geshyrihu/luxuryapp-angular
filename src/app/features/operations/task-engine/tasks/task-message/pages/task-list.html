@@ -1,4 +1,4 @@
-ï»¿@if (dataSignal().items && dataSignal().items !== undefined) {
+@if (dataSignal().items && dataSignal().items !== undefined) {
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -415,7 +415,7 @@
               <app-icon
                 [icon]="'mdi:clock-outline'"
                 class="text-orange-600"
-                pTooltip="Urgente: MÃ¡s de 15 dÃ­as sin programar"
+                pTooltip="Urgente: Más de 15 días sin programar"
               ></app-icon>
               } @if (item.priority === 'High') {
               <app-icon
@@ -825,7 +825,7 @@
           {{ item.description }}
         </p>
 
-        <!-- Evidencias (Antes y DespuÃ©s) -->
+        <!-- Evidencias (Antes y Después) -->
         <div class="flex gap-2 mt-2">
           @if (item.beforeWork) {
           <p-image
@@ -839,7 +839,7 @@
           } @if (item.afterWork) {
           <p-image
             [src]="item.afterWork"
-            alt="DespuÃ©s"
+            alt="Después"
             width="45"
             [imageStyle]="{ 'border-radius': '6px', 'object-fit': 'cover', 'aspect-ratio': '1/1' }"
             [preview]="true"
@@ -919,7 +919,7 @@
 </app-data-view-mobile>
 
 <!-- ================================================================
-     REPORTE EJECUTIVO DE TAREAS PENDIENTES â€” solo visible al imprimir
+     REPORTE EJECUTIVO DE TAREAS PENDIENTES — solo visible al imprimir
      ================================================================ -->
 <div class="print-task-report">
   <div class="print-report-header">
@@ -998,9 +998,9 @@
           <div class="print-desc">{{ item.description }}</div>
           }
         </td>
-        <td style="font-size: 7.5pt">{{ item.assignee || 'â€”' }}</td>
+        <td style="font-size: 7.5pt">{{ item.assignee || '—' }}</td>
         <td style="font-size: 7.5pt; white-space: nowrap">
-          {{ item.scheduledAt || 'â€”' }}
+          {{ item.scheduledAt || '—' }}
         </td>
         <td>
           <span
@@ -1014,7 +1014,7 @@
           {{ item.daysDifference }}
         </td>
         <td style="text-align: center; font-size: 9pt">
-          @if (item.beforeWork || item.afterWork) { âœ“ } @else { â€” }
+          @if (item.beforeWork || item.afterWork) { ? } @else { — }
         </td>
         <td>
           @if (item.lastFollowUp) {
@@ -1029,7 +1029,7 @@
           >
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span style="font-size: 7.5pt; color: var(--ds-text-muted)">â€”</span>
+          <span style="font-size: 7.5pt; color: var(--ds-text-muted)">—</span>
           }
         </td>
       </tr>
@@ -1038,7 +1038,7 @@
   </table>
 
   <div class="print-report-footer">
-    <span>Luxury Building Group â€” Sistema de Gestion Operativa</span>
+    <span>Luxury Building Group — Sistema de Gestion Operativa</span>
     <span>Generado el {{ today }}</span>
   </div>
 </div>

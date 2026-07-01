@@ -1,4 +1,4 @@
-<div class="fadein">
+﻿<div class="fadein">
   <!-- Filtros propios del componente -->
   <div class="flex mb-4 align-items-end gap-2">
     <div class="mb-0">
@@ -51,7 +51,7 @@
 
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4 gap-2">
-    <app-icon [icon]="'mdi:spin'"></app-icon>
+    <app-icon [icon]="'mdi:loading'"></app-icon>
     <span>Consultando catálogo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -139,10 +139,10 @@
       >
         <td>
           <div class="flex align-items-center">
-            <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
+            <!-- â¬†ï¸ â¬‡ï¸ âž¡ï¸ â¬…ï¸ -->
             @if (account.nivel === 1) {
             <custom-button
-              [label]="account.expanded ? '⬇️' : '➡️'"
+              [label]="account.expanded ? 'â¬‡ï¸' : 'âž¡ï¸'"
               variant="ghost-text"
               size="sm"
               (clicked)="toggleNode(account)"
@@ -166,18 +166,18 @@
           {{ account.descripcion }}
         </td>
         <td class="text-xs text-500">{{ account.origenDatos }}</td>
-        <td class="text-center">{{ account.esCuentaMadre ? "❌" : "" }}</td>
+        <td class="text-center">{{ account.esCuentaMadre ? "âŒ" : "" }}</td>
         <td class="text-xs">
           {{ account.naturaleza === "Deudora" ? "Deudora" : "" }}
         </td>
         <td class="text-xs">
           {{ account.naturaleza === "Acreedora" ? "Acreedora" : "" }}
         </td>
-        <td class="text-center">@if (account.epf) { ✔️ }</td>
-        <td class="text-center">@if (account.er) { ✔️ }</td>
-        <td class="text-center">@if (account.cedP) { ✔️ }</td>
-        <td class="text-center">@if (account.fe) { ✔️ }</td>
-        <td class="text-center">@if (account.aCob) { ✔️ }</td>
+        <td class="text-center">@if (account.epf) { âœ”ï¸ }</td>
+        <td class="text-center">@if (account.er) { âœ”ï¸ }</td>
+        <td class="text-center">@if (account.cedP) { âœ”ï¸ }</td>
+        <td class="text-center">@if (account.fe) { âœ”ï¸ }</td>
+        <td class="text-center">@if (account.aCob) { âœ”ï¸ }</td>
       </tr>
       }
     </ng-template>

@@ -1,4 +1,4 @@
-﻿import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Component, inject, OnInit, output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
@@ -33,7 +33,7 @@ export class TaskStatus implements OnInit {
   status: string = this.TaskGroupService.taskGroupMessageStatus || "NotStarted";
   statusChange = output<string>();
 
-  isMobile: boolean = false; // Propiedad para detectar móvil
+  isMobile: boolean = false; // Propiedad para detectar m�vil
 
   constructor() {
     addIcons({

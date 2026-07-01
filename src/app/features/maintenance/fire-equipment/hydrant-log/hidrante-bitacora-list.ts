@@ -70,7 +70,7 @@ export class HidranteBitacoraList implements OnInit {
     const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF Ã¢â‚¬â€ BitÃƒ¡cora Hidrantes",
+      "Reporte PDF ââ‚¬â€ Bitácora Hidrantes",
       this.dialogHandlerS.sizeSm,
     );
     if (result) await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);

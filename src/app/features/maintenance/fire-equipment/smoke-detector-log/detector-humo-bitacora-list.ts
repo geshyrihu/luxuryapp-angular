@@ -86,7 +86,7 @@ export class DetectorHumoBitacoraList implements OnInit {
     const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF Ã¢â‚¬â€ BitÃƒ¡cora Detectores de Humo",
+      "Reporte PDF ââ‚¬â€ Bitácora Detectores de Humo",
       this.dialogHandlerS.sizeSm,
     );
     if (result)

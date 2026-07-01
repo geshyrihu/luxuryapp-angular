@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
@@ -24,6 +24,7 @@ import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { ButtonCatalog } from "./components/button-catalog/button-catalog";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
@@ -33,6 +34,7 @@ const GUIA_LABELS: Record<string, string> = {
   componentcatalog: "Component Catalog",
   buttonrules: "Button Rules",
   referenceform: "Reference Form",
+  buttoncatalog: "Button Catalog",
 };
 
 @Component({
@@ -61,7 +63,7 @@ const GUIA_LABELS: Record<string, string> = {
     TextareaModule,
     ToggleSwitchModule,
     ToolbarModule,
-    AppIcon,
+    AppIcon, ButtonCatalog,
   ],
   template: `
     <section class="fadein">
@@ -131,7 +133,7 @@ const GUIA_LABELS: Record<string, string> = {
 
         @case ('colorvalidation') {
           <p-message severity="info" class="mb-4 block"
-            text="Tipografía y paleta de color están centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allí para la referencia completa con tokens CSS copiables." />
+            text="Tipograf�a y paleta de color est�n centralizados en la secci�n 'Tokens &amp; Identidad Visual'. Ve all� para la referencia completa con tokens CSS copiables." />
           <p-card>
             <p-table [value]="colorAssessment" responsiveLayout="scroll" styleClass="p-datatable-sm">
               <ng-template #header><tr><th>Rol</th><th>Actual</th><th>Veredicto</th><th>Sugerencia</th></tr></ng-template>
@@ -152,7 +154,7 @@ const GUIA_LABELS: Record<string, string> = {
           <p-card>
             <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="p-datatable-sm">
               <ng-template #header>
-                <tr><th>Familia</th><th>Selector</th><th>Ubicación</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
+                <tr><th>Familia</th><th>Selector</th><th>Ubicaci�n</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
               </ng-template>
               <ng-template #body let-item>
                 <tr>
@@ -189,6 +191,10 @@ const GUIA_LABELS: Record<string, string> = {
             </div>
             }
           </div>
+        }
+
+        @case ('buttoncatalog') {
+          <app-button-catalog />
         }
 
         @case ('referenceform') {
@@ -323,8 +329,8 @@ export class CatalogGuiaItem {
   ];
 
   readonly componentCatalog = [
-    { family: "Botones unificados", selector: "custom-button-*", source: "core/components/web/buttons", useCase: "Acciones estandarizadas. Auto-detectan plataforma.", preferredFor: "CRUD, acciones por fila, guardar, editar, eliminar.", avoidWhen: "Nunca â€” reemplazaron ios-button-* eliminados.", status: "Usar" as const },
-    { family: "Inputs unificados", selector: "custom-input-*-signal", source: "core/components/web/inputs", useCase: "CVA completo. Auto-detectan plataforma.", preferredFor: "Todos los formularios â€” web y mobile.", avoidWhen: "Nunca â€” reemplazaron ion-input-* eliminados.", status: "Usar" as const },
+    { family: "Botones unificados", selector: "custom-button-*", source: "core/components/web/buttons", useCase: "Acciones estandarizadas. Auto-detectan plataforma.", preferredFor: "CRUD, acciones por fila, guardar, editar, eliminar.", avoidWhen: "Nunca — reemplazaron ios-button-* eliminados.", status: "Usar" as const },
+    { family: "Inputs unificados", selector: "custom-input-*-signal", source: "core/components/web/inputs", useCase: "CVA completo. Auto-detectan plataforma.", preferredFor: "Todos los formularios — web y mobile.", avoidWhen: "Nunca — reemplazaron ion-input-* eliminados.", status: "Usar" as const },
     { family: "Mobile data", selector: "app-data-view-mobile", source: "core/components/data-view-mobile", useCase: "Listado mobile agrupado con template proyectado.", preferredFor: "Reemplazar tablas densas en pantallas pequenas.", avoidWhen: "Comparacion tabular de muchas columnas en desktop.", status: "Mobile" as const },
     { family: "Acciones contextuales", selector: "app-action-menu", source: "core/components/action-menu", useCase: "Menu de acciones por fila con PrimeNG Popover.", preferredFor: "Mas de dos acciones secundarias.", avoidWhen: "Accion primaria visible.", status: "Usar" as const },
     { family: "Tabla PrimeNG", selector: "primeng-custom-caption / footer", source: "core/components/primeng-custom-*", useCase: "Piezas auxiliares para tablas ERP.", preferredFor: "Listados con busqueda, caption y pie.", avoidWhen: "Listados mobile donde convenga DataViewMobile.", status: "Usar" as const },

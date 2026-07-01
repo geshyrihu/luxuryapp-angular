@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -13,14 +13,14 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      [title]="'Inventario de IluminaciÃ³n'"
+      [title]="'Inventario de Iluminación'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th>UbicaciÃ³n</th>
+      <th>Ubicación</th>
       <th>Area</th>
       <th>Cantidad</th>
       <th class="table-col-5"></th>

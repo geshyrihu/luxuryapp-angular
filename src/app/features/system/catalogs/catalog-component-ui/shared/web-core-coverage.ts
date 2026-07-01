@@ -1,4 +1,4 @@
-锘縤mport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -499,9 +499,9 @@ import {
           Pantallas objetivo antes que inventario plano
         </h3>
         <p class="web-hero__copy">
-          La cobertura web debe demostrar c贸mo viven juntos los componentes
-          dentro de m贸dulos reales: filtros, tablas, m茅tricas, acciones
-          contextuales y navegaci贸n de detalle.
+          La cobertura web debe demostrar c髆o viven juntos los componentes
+          dentro de m骴ulos reales: filtros, tablas, m閠ricas, acciones
+          contextuales y navegaci髇 de detalle.
         </p>
       </section>
 
@@ -511,8 +511,8 @@ import {
           Showroom de vistas objetivo para escritorio
         </h4>
         <p class="web-panel__copy">
-          Igual que en mobile, el cat谩logo web debe ense帽ar pantallas armadas y
-          no s贸lo una parrilla de controles sueltos.
+          Igual que en mobile, el cat醠ogo web debe ense馻r pantallas armadas y
+          no s髄o una parrilla de controles sueltos.
         </p>
 
         <div class="web-gallery">
@@ -525,7 +525,7 @@ import {
               <span class="web-screen__badge">Ready</span>
             </div>
             <div class="web-screen__hero">
-              <strong>Autorizaci贸n de presupuesto</strong>
+              <strong>Autorizaci髇 de presupuesto</strong>
               <span
                 >Formulario con CTA primario, guardado parcial y datos clave en
                 contexto.</span
@@ -536,7 +536,7 @@ import {
                 class="web-screen__cta web-screen__cta--primary"
                 type="button"
               >
-                Enviar aprobaci贸n
+                Enviar aprobaci髇
               </button>
               <button
                 class="web-screen__cta web-screen__cta--secondary"
@@ -559,7 +559,7 @@ import {
             </div>
             <div class="web-screen__table">
               <div class="web-screen__table-head">
-                <span>脙聛rea</span>
+                <span>脕rea</span>
                 <span>Estado</span>
                 <span>Monto</span>
               </div>
@@ -573,7 +573,7 @@ import {
               <div class="web-screen__table-row">
                 <strong>Finanzas</strong>
                 <span class="web-screen__status web-screen__status--review"
-                  >Revisi贸n</span
+                  >Revisi髇</span
                 >
                 <strong>$125k</strong>
               </div>
@@ -594,7 +594,7 @@ import {
                 <strong>12</strong>
               </div>
               <div class="web-screen__stat">
-                <span class="web-screen__muted">En revisi贸n</span>
+                <span class="web-screen__muted">En revisi髇</span>
                 <strong>04</strong>
               </div>
               <div class="web-screen__stat">
@@ -607,7 +607,7 @@ import {
                 <div class="web-screen__list-item-main">
                   <strong>QA infraestructura</strong>
                   <span class="web-screen__muted"
-                    >Validaci贸n de wrappers y patrones base</span
+                    >Validaci髇 de wrappers y patrones base</span
                   >
                 </div>
                 <span class="web-screen__pill">Alta</span>
@@ -698,7 +698,7 @@ import {
                 <div class="web-screen__list-item-main">
                   <strong>Actividad reciente</strong>
                   <span class="web-screen__muted"
-                    >14 movimientos en las 煤ltimas 4 horas</span
+                    >14 movimientos en las 鷏timas 4 horas</span
                   >
                 </div>
                 <strong>14 items</strong>

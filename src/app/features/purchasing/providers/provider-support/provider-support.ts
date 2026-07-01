@@ -48,7 +48,7 @@ export class ProviderSupport implements OnInit {
   dataSignal = signal<IProviderSupportList[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
@@ -69,7 +69,7 @@ export class ProviderSupport implements OnInit {
   }
 
   //Modal Agregar o editar
-  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar información sobre un CustomerProvider
+  // Función para abrir un cuadro de diálogo modal para agregar o editar información sobre un CustomerProvider
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

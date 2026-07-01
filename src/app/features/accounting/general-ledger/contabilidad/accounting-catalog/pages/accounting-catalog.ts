@@ -40,7 +40,7 @@ export class AccountingCatalog {
 
   // Señales
   groupedDataSignal = signal<GroupedAccountingCatalogDTO[]>([]);
-  // ✅ flattenedData con descripción del padre â€” listo para agrupar en p-table
+  // ✅ flattenedData con descripción del padre — listo para agrupar en p-table
   flattenedDataSignal = computed<AccountingCatalogWithParent[]>(() => {
     return this.groupedDataSignal()
       .flatMap((group) =>
@@ -54,7 +54,7 @@ export class AccountingCatalog {
       .sort((a, b) => (a.cuentaPadre || "").localeCompare(b.cuentaPadre || ""));
   });
 
-  // ✅ Datos agrupados para mobile (clave = "código â€” descripción")
+  // ✅ Datos agrupados para mobile (clave = "código — descripción")
   mobileGroupedData = computed<{ [key: string]: AccountingCatalogDTO[] }>(
     () => {
       const result: { [key: string]: AccountingCatalogDTO[] } = {};

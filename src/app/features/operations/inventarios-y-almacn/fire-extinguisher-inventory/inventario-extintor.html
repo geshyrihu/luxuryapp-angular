@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -22,18 +22,18 @@
         />
         <custom-button
           (clicked)="onOpenScanner()"
-          icon="pi pi-qrcode"
+          [iconClass]="'mdi:qrcode'"
           tooltip="Escanear QR"
         />
         <custom-button
           (clicked)="onBulkExpiration()"
-          icon="pi pi-calendar"
+          [iconClass]="'mdi:calendar'"
           tooltip="Actualizar fecha de vencimiento a todos"
         />
         <custom-button-item
           (clicked)="onViewPeriodos()"
           label="Periodos"
-          tooltip="Configurar periodos de inspecciÃ³n"
+          tooltip="Configurar periodos de inspección"
         />
       </div>
       <primeng-custom-caption
@@ -47,13 +47,13 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" pSortableColumn="localCode">
-        CÃ³digo <p-sortIcon field="localCode" />
+        Código <p-sortIcon field="localCode" />
       </th>
       <th class="table-col-25" pSortableColumn="extinguisherType">
         Extintor <p-sortIcon field="extinguisherType" />
       </th>
       <th class="table-col-25" pSortableColumn="location">
-        UbicaciÃ³n <p-sortIcon field="location" />
+        Ubicación <p-sortIcon field="location" />
       </th>
       <th class="table-col-15" pSortableColumn="expirationDate">
         Vencimiento <p-sortIcon field="expirationDate" />
@@ -81,7 +81,7 @@
           <custom-button-item
             (clicked)="onViewHistory(item)"
             tooltip="Ver historial de inspecciones"
-            icon="pi pi-list"
+            [iconClass]="'mdi:format-list-bulleted'"
           />
           <custom-button-download
             (clicked)="onDownloadQr(item)"
@@ -142,7 +142,7 @@
       (click)="onViewPeriodos()"
     >
       <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
-      Periodos de InspecciÃ³n
+      Periodos de Inspección
     </ion-button>
   </div>
 
@@ -169,7 +169,7 @@
       </div>
       <ion-label>
         <h3>
-          {{ item.localCode ? item.localCode + ' â€” ' : '' }}{{
+          {{ item.localCode ? item.localCode + ' — ' : '' }}{{
           item.extinguisherType }}
         </h3>
         <p>{{ item.location }}</p>

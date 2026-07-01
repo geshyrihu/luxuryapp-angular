@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
@@ -43,9 +43,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE DÃ³BITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "NÃ³MINA",
+  [ETipoGasto.Nomina]: "NóMINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -153,8 +153,8 @@ export class CreateOrdenCompraWizard implements OnInit {
 
   constructor() {
     this.items = [
-      { label: "InformaciÃ³n General" },
-      { label: "AÃ±adir Productos" },
+      { label: "Información General" },
+      { label: "Añadir Productos" },
       { label: "Asignar Presupuesto" },
       { label: "Facturas" },
       { label: "Resumen" },
@@ -310,7 +310,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       .openDialog(
         OrdenCompraDetalleForm,
         data,
-        productData.productoId ? "Editar ArtÃ³culo" : "AÃ±adir ArtÃ³culo",
+        productData.productoId ? "Editar Artóculo" : "Añadir Artóculo",
         this.dialogHandlerS.sizeMd,
       )
       .then((result: any) => {
@@ -469,9 +469,15 @@ export class CreateOrdenCompraWizard implements OnInit {
   }
 
   getActionIcon(fileName: string): string {
-    if (fileName.endsWith(".pdf")) return "mdi:file-pdf-box text-red-500";
-    if (fileName.endsWith(".xml")) return "mdi:file-code text-blue-500";
+    if (fileName.endsWith(".pdf")) return "mdi:file-pdf-box";
+    if (fileName.endsWith(".xml")) return "mdi:file-code";
     return "mdi:file-document-outline";
+  }
+
+  getActionIconClass(fileName: string): string {
+    if (fileName.endsWith(".pdf")) return "text-red-500";
+    if (fileName.endsWith(".xml")) return "text-blue-500";
+    return "";
   }
 
   saveProviderId(item: ISelectItem): void {
@@ -500,16 +506,16 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.providerControl.valid
       ) {
         return this.customToastS.showError(
-          "Formulario InvÃ³lido",
-          "Por favor, complete todos los campos de InformaciÃ³n General.",
+          "Formulario Invólido",
+          "Por favor, complete todos los campos de Información General.",
         );
       }
     }
     if (this.activeIndex === 1) {
       if (this.itemsSignal().length === 0) {
         return this.customToastS.showError(
-          "Formulario InvÃ³lido",
-          "Debe AÃ±adir al menos un producto.",
+          "Formulario Invólido",
+          "Debe Añadir al menos un producto.",
         );
       }
     }
@@ -519,8 +525,8 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.apiResponseS.validateForm(this.step3Form)
       ) {
         return this.customToastS.showError(
-          "Formulario InvÃ³lido",
-          "Debe AÃ±adir al menos una cuenta de presupuesto.",
+          "Formulario Invólido",
+          "Debe Añadir al menos una cuenta de presupuesto.",
         );
       }
     }
@@ -544,15 +550,15 @@ export class CreateOrdenCompraWizard implements OnInit {
     ) {
       this.activeIndex = 0;
       return this.customToastS.showError(
-        "Formulario InvÃ³lido",
-        "La informaciÃ³n general estÃ³ incompleta.",
+        "Formulario Invólido",
+        "La información general estó incompleta.",
       );
     }
     if (this.itemsSignal().length === 0) {
       this.activeIndex = 1;
       return this.customToastS.showError(
-        "Formulario InvÃ³lido",
-        "Debe AÃ±adir al menos un producto.",
+        "Formulario Invólido",
+        "Debe Añadir al menos un producto.",
       );
     }
     if (
@@ -561,8 +567,8 @@ export class CreateOrdenCompraWizard implements OnInit {
     ) {
       this.activeIndex = 2;
       return this.customToastS.showError(
-        "Formulario InvÃ³lido",
-        "La informaciÃ³n de presupuesto estÃ³ incompleta.",
+        "Formulario Invólido",
+        "La información de presupuesto estó incompleta.",
       );
     }
 

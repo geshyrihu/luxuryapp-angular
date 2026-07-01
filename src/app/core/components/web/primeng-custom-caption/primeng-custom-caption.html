@@ -12,7 +12,7 @@
     </div>
     } @if (showAdd() && rolAuth()) {
     <div class="flex-shrink-0">
-      <custom-button-add (clicked)="onAdd($event)" />
+      <il-button-add (clicked)="onAdd($event)" />
     </div>
     }
   </div>
@@ -32,7 +32,7 @@
     <!-- Botón de agregar -->
     @if (showAdd() && rolAuth()) {
     <div class="flex-shrink-0">
-      <custom-button-add (clicked)="onAdd($event)" />
+      <il-button-add (clicked)="onAdd($event)" />
     </div>
     }
   </div>

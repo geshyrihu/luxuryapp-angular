@@ -1,4 +1,4 @@
-﻿import { CobranzaGroup } from "../../models/cobranza-nativa.model";
+import { CobranzaGroup } from "../../models/cobranza-nativa.model";
 
 export const COBRANZA_GROUPS: CobranzaGroup[] = [
   {
@@ -354,14 +354,14 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           "CierrePeriodo",
         ],
         notes:
-          "Principio de diseño: ninguna entrada puede ser modificada o eliminada. Los errores se corrigen con entradas de reverso.",
+          "Principio de diseóo: ninguna entrada puede ser modificada o eliminada. Los errores se corrigen con entradas de reverso.",
       },
       {
         title: "Aprobaciones Financieras",
         description:
           "Bandeja de solicitudes que requieren autorizacion de un segundo revisor (maker-checker). Previene que quien solicita una operacion sensible la apruebe el mismo.",
         route: "/cobranza-nativa/approvals",
-        icon: "mdi:check-square",
+        icon: "mdi:checkbox-marked",
         bgColor: "#f3e8ff",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -502,7 +502,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           "Los casos se crean automaticamente cuando el job de escalada detecta deuda mayor a 90 dias. Tambien se pueden crear manualmente.",
       },
       {
-        title: "Artóculos del Reglamento",
+        title: "Artúculos del Reglamento",
         description:
           "Catalogo de articulos del reglamento interno del condominio. Define los tipos de infraccion con su numero, texto oficial y monto de multa predeterminado.",
         route: "/cobranza-nativa/regulation-articles",
@@ -836,7 +836,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         roles: ["Administrador"],
         actions: [
           { label: "Disparo automatico el 1ro de cada mes (06:00 AM)" },
-          { label: "Disparo manual con seleccion de mes y año" },
+          { label: "Disparo manual con seleccion de mes y aóo" },
         ],
         endpoints: [
           {

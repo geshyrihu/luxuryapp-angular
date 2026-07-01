@@ -1,4 +1,4 @@
-<div class="hidden md:block card">
+﻿<div class="hidden md:block card">
   <p-table
     [globalFilterFields]="globalFilterFieldsOption()"
     [showCurrentPageReport]="true"
@@ -39,7 +39,7 @@
         <td>
           {{ item.folio }}
           <app-icon
-            [icon]="'mdi:hand-point-right'"
+            [icon]="'mdi:hand-pointing-up'"
             ngbTooltip="Ver"
             placement="top"
             class="icon icon- pointer"
@@ -67,7 +67,7 @@
   </p-table>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="flex md:hidden flex-column h-screen">
   <app-data-view-mobile
     [data]="dataSignal()"

@@ -91,7 +91,7 @@ export class ManualsAndProcessesList implements OnInit {
     Limpieza: { icon: "mdi:star", color: "#065f46", bgColor: "#d1fae5" },
     Operaciones: { icon: "mdi:cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
     Jardineria: {
-      icon: "mdi:sun-bright",
+      icon: "mdi:weather-sunny",
       color: "#15803d",
       bgColor: "#dcfce7",
     },

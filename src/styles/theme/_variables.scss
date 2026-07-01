@@ -115,14 +115,14 @@
   // ===================================================================
   // 3. MAPEO AUTOMÁTICO PARA IONIC
   // ===================================================================
-  /** Primary **/
-  --ion-color-primary: #{c.$primary-500};
+  /** Primary — alineado con --ds-primary **/
+  --ion-color-primary: #{c.$primary-700};
   --ion-color-primary-rgb:
-    #{red(c.$primary-500)}, #{green(c.$primary-500)}, #{blue(c.$primary-500)};
+    #{red(c.$primary-700)}, #{green(c.$primary-700)}, #{blue(c.$primary-700)};
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #{c.$primary-600};
-  --ion-color-primary-tint: #{c.$primary-400};
+  --ion-color-primary-shade: #{c.$primary-800};
+  --ion-color-primary-tint: #{c.$primary-600};
 
   /** Success **/
   --ion-color-success: #{c.$color-success-brand};
@@ -176,6 +176,42 @@
   --ion-color-dark-contrast-rgb:
     #{red(c.$primary-50)}, #{green(c.$primary-50)}, #{blue(c.$primary-50)};
 
+  /** Secondary — neutro/gris, alineado con btn-secondary **/
+  --ion-color-secondary: #{c.$secondary-400};
+  --ion-color-secondary-rgb:
+    #{red(c.$secondary-400)}, #{green(c.$secondary-400)}, #{blue(c.$secondary-400)};
+  --ion-color-secondary-contrast: #{c.$secondary-900};
+  --ion-color-secondary-contrast-rgb:
+    #{red(c.$secondary-900)}, #{green(c.$secondary-900)}, #{blue(c.$secondary-900)};
+  --ion-color-secondary-shade: #{c.$secondary-500};
+  --ion-color-secondary-tint: #{c.$secondary-300};
+
+  /** Info (Cyan) **/
+  --ion-color-info: #{c.$info-600};
+  --ion-color-info-rgb:
+    #{red(c.$info-600)}, #{green(c.$info-600)}, #{blue(c.$info-600)};
+  --ion-color-info-contrast: #ffffff;
+  --ion-color-info-contrast-rgb: 255, 255, 255;
+  --ion-color-info-shade: #{c.$info-700};
+  --ion-color-info-tint: #{c.$info-500};
+
+  /** Help (alias Info en este DS) **/
+  --ion-color-help: #{c.$help-600};
+  --ion-color-help-rgb:
+    #{red(c.$help-600)}, #{green(c.$help-600)}, #{blue(c.$help-600)};
+  --ion-color-help-contrast: #ffffff;
+  --ion-color-help-contrast-rgb: 255, 255, 255;
+  --ion-color-help-shade: #{c.$help-700};
+  --ion-color-help-tint: #{c.$help-500};
+
+  /** Contrast (Navy oscuro) **/
+  --ion-color-contrast: #{c.$contrast-500};
+  --ion-color-contrast-rgb:
+    #{red(c.$contrast-500)}, #{green(c.$contrast-500)}, #{blue(c.$contrast-500)};
+  --ion-color-contrast-contrast: #ffffff;
+  --ion-color-contrast-contrast-rgb: 255, 255, 255;
+  --ion-color-contrast-shade: #{c.$contrast-900};
+  --ion-color-contrast-tint: #{c.$neutral-700};
 
   // ===================================================================
   // 4. SISTEMA CENTRALIZADO DE Z-INDEX
@@ -310,6 +346,8 @@
   --ds-bg-elevated: var(--ds-surface-container-low);
   --ds-bg-sunken: var(--ds-surface-container);
   --ds-bg-overlay: rgba(0, 0, 0, 0.5);
+  --ds-bg-auth-panel: #{c.$color-auth-panel-bg};
+  --ds-bg-auth-panel-rgb: #{red(c.$color-auth-panel-bg)}, #{green(c.$color-auth-panel-bg)}, #{blue(c.$color-auth-panel-bg)};
 
   // Texto — DESIGN.md on-surface roles
   --ds-text-primary: var(--ds-on-surface);
@@ -372,15 +410,15 @@ body.theme-dark {
   --ion-background-color-step-250: #{c.$primary-600};
   --ion-background-color-step-300: #{c.$primary-500};
 
-  /** Primary **/
-  --ion-color-primary: #{c.$primary-400};
+  /** Primary dark — alineado con --ds-primary dark (#primary-200) **/
+  --ion-color-primary: #{c.$primary-200};
   --ion-color-primary-rgb:
-    #{red(c.$primary-400)}, #{green(c.$primary-400)}, #{blue(c.$primary-400)};
+    #{red(c.$primary-200)}, #{green(c.$primary-200)}, #{blue(c.$primary-200)};
   --ion-color-primary-contrast: #{c.$primary-950};
   --ion-color-primary-contrast-rgb:
     #{red(c.$primary-950)}, #{green(c.$primary-950)}, #{blue(c.$primary-950)};
-  --ion-color-primary-shade: #{c.$primary-500};
-  --ion-color-primary-tint: #{c.$primary-300};
+  --ion-color-primary-shade: #{c.$primary-300};
+  --ion-color-primary-tint: #{c.$primary-100};
 
   /** Light (invertido) **/
   --ion-color-light: #{c.$primary-800};
@@ -534,4 +572,46 @@ body.theme-dark {
   --p-primary-contrast-color: var(--ds-primary-text);
   --p-content-background: var(--ds-bg-surface);
   --p-content-border-color: var(--ds-border);
+}
+
+// ===================================================================
+// 6. IONIC CUSTOM COLOR CLASSES
+// Ionic requiere una clase .ion-color-{name} para activar colores
+// personalizados en ion-button, ion-badge, etc.
+// ===================================================================
+
+.ion-color-secondary {
+  --ion-color-base: var(--ion-color-secondary);
+  --ion-color-base-rgb: var(--ion-color-secondary-rgb);
+  --ion-color-contrast: var(--ion-color-secondary-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-secondary-contrast-rgb);
+  --ion-color-shade: var(--ion-color-secondary-shade);
+  --ion-color-tint: var(--ion-color-secondary-tint);
+}
+
+.ion-color-info {
+  --ion-color-base: var(--ion-color-info);
+  --ion-color-base-rgb: var(--ion-color-info-rgb);
+  --ion-color-contrast: var(--ion-color-info-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-info-contrast-rgb);
+  --ion-color-shade: var(--ion-color-info-shade);
+  --ion-color-tint: var(--ion-color-info-tint);
+}
+
+.ion-color-help {
+  --ion-color-base: var(--ion-color-help);
+  --ion-color-base-rgb: var(--ion-color-help-rgb);
+  --ion-color-contrast: var(--ion-color-help-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-help-contrast-rgb);
+  --ion-color-shade: var(--ion-color-help-shade);
+  --ion-color-tint: var(--ion-color-help-tint);
+}
+
+.ion-color-contrast {
+  --ion-color-base: var(--ion-color-contrast);
+  --ion-color-base-rgb: var(--ion-color-contrast-rgb);
+  --ion-color-contrast: var(--ion-color-contrast-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-contrast-contrast-rgb);
+  --ion-color-shade: var(--ion-color-contrast-shade);
+  --ion-color-tint: var(--ion-color-contrast-tint);
 }

@@ -8,13 +8,13 @@
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
+import { IlButtonAdd } from "src/app/core/components/buttons-icon-label/il-button-add";
 import { GlobalTableFilterService } from "src/app/core/services/global-table-filter.service";
 
 @Component({
   selector: "primeng-custom-caption",
   templateUrl: "./primeng-custom-caption.html",
-  imports: [RouterModule, CustomButtonAdd, CustomSearchInput],
+  imports: [RouterModule, IlButtonAdd, CustomSearchInput],
   styles: [
     `
       :host {

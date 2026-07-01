@@ -1,5 +1,5 @@
-ï»¿@if (filteredDataSignal()) {
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (filteredDataSignal()) {
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -19,7 +19,7 @@
         <div
           class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3"
         >
-          <!-- Parte Izquierda: TÃ­tulo y bÃºsqueda -->
+          <!-- Parte Izquierda: Título y búsqueda -->
           <div class="flex-grow-1">
             <primeng-custom-caption
               (add)="onModalForm('', 'Crear Cuenta')"
@@ -83,7 +83,7 @@
             CORREO
             <p-sortIcon field="email" />
           </th>
-          <th class="table-col-15">TÃ‰LEFONO</th>
+          <th class="table-col-15">TÉLEFONO</th>
           <th class="table-col-5"></th>
         </tr>
       </ng-template>
@@ -155,7 +155,7 @@
   </div>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="filteredDataSignal()"
   (add)="onModalForm('', 'Crear Cuenta')"
@@ -227,7 +227,7 @@
           <span style="color: var(--ds-primary)" class="font-medium"
             >{{ item.userName }}</span
           >
-          <span class="mx-1 text-color-secondary">Â·</span>
+          <span class="mx-1 text-color-secondary">·</span>
           <span class="text-color-secondary uppercase">{{ item.role }}</span>
         </p>
         <p class="text-xs m-0 text-color-secondary">

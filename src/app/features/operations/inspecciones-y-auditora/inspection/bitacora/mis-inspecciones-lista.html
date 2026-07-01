@@ -1,4 +1,4 @@
-﻿<div class="card">
+<div class="card">
   <div class="container-fluid py-3 p-2">
     <!-- Encabezado -->
     <div class="flex justify-content-between align-items-center mb-3">
@@ -24,13 +24,13 @@
   @if (dataSignal()) {
   <h5 class="text-color-secondary px-3">{{ area }}</h5>
 
-  <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+  <!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="hidden md:block">
     <p-table [value]="dataSignal()" styleClass="custom-table">
       <ng-template #header>
         <tr>
           <th>Estado</th>
-          <th>Inspección</th>
+          <th>Inspecci�n</th>
           <th>Departamento</th>
           <th>Frecuencia</th>
           <th class="table-col-10"></th>
@@ -88,7 +88,7 @@
     </p-table>
   </div>
 
-  <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+  <!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [showAdd]="false"

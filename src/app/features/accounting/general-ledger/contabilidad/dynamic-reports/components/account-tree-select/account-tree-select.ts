@@ -41,7 +41,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
         <div
           class="flex flex-column align-items-center justify-content-center p-4 gap-2"
         >
-          <app-icon [icon]="'mdi:spin'" class="text-2xl text-primary-500"></app-icon>
+          <app-icon [icon]="'mdi:loading'" class="text-2xl text-primary-500"></app-icon>
           <span class="text-xs text-500 uppercase font-bold tracking-wider"
             >Cargando...</span
           >

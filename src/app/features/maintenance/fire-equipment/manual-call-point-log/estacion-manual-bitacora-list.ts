@@ -70,7 +70,7 @@ export class EstacionManualBitacoraList implements OnInit {
     const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF Ã¢â‚¬â€ BitÃƒ¡cora Estaciones Manuales",
+      "Reporte PDF ââ‚¬â€ Bitácora Estaciones Manuales",
       this.dialogHandlerS.sizeSm,
     );
     if (result) await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);

@@ -208,6 +208,14 @@ export class AuthService {
     this.signalRService.stop();
     this.currentUserSession.next(null);
     this.customerIdS.clearCustomerData();
+
+    // Limpiar máscaras y clases de PrimeNG (p-drawer, p-dialog) para evitar UI bloqueada
+    document.body.classList.remove("p-overflow-hidden");
+    const overlays = document.querySelectorAll(
+      ".p-component-overlay, .p-dialog-mask, .p-drawer-mask, .p-sidebar-mask"
+    );
+    overlays.forEach((overlay) => overlay.remove());
+
     this.zone.run(() => {
       this.router.navigateByUrl("/auth/login");
     });

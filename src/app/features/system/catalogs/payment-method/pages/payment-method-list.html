@@ -1,4 +1,4 @@
-ï»¿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -23,11 +23,11 @@
   <ng-template #header>
     <tr>
       <th class="text-small" pSortableColumn="codigo">
-        CÃ³digo
+        Código
         <p-sortIcon field="codigo" />
       </th>
       <th class="text-small" pSortableColumn="descripcion">
-        DescripciÃ³n
+        Descripción
         <p-sortIcon field="descripcion" />
       </th>
 
@@ -58,8 +58,8 @@
       <td colspan="3">
         <app-empty-state
           icon="mdi:credit-card-outline"
-          title="Sin mÃ©todos"
-          message="No hay mÃ©todos de pago registrados."
+          title="Sin métodos"
+          message="No hay métodos de pago registrados."
         />
       </td>
     </tr>
@@ -70,7 +70,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

@@ -198,7 +198,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.form.controls.dateRange.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        console.log("Ã°Å¸â€Â [ValueChanges] dateRange:", value);
+        console.log("ðŸâ€Â [ValueChanges] dateRange:", value);
         this.dateRangeSignal.set(value);
         this.form.updateValueAndValidity();
       });
@@ -211,7 +211,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.dateRangeSignal.set(value);
     this.form.updateValueAndValidity();
     console.log(
-      "Ã°Å¸â€Â Estado Form tras selección:",
+      "ðŸâ€Â Estado Form tras selección:",
       this.form.status,
       "Errores:",
       this.form.errors,
@@ -242,7 +242,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.apiResponseS
       .onGetItem(`vacation-request-approvals/${employeeId}/balance`)
       .then((response: VacationBalanceDTO) => {
-        console.log("Ã°Å¸â€Â Balance Cargado:", response);
+        console.log("ðŸâ€Â Balance Cargado:", response);
         this.balance.set(response);
         if (response) {
           const hireDate = new Date(response.employeeAdmissionDate);
@@ -257,7 +257,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           }
 
           if (monthsOfService < 6) {
-            console.warn("Ã¢Å¡Â Ã¯Â¸Â Empleado con menos de 6 meses");
+            console.warn("âš ï¸Â Empleado con menos de 6 meses");
             this.eligibilityStatus.set("not-yet-6-months");
             this.form.controls.dateRange.disable();
           } else if (response.seniorityYears < 1 && response.isAdvancePeriod) {
@@ -271,7 +271,7 @@ export class VacacionesPasadasRegistro implements OnInit {
             this.availableAdvanceDaysDisplay.set(null);
             this.form.controls.dateRange.enable();
           } else {
-            console.warn("Ã¢Å¡Â Ã¯Â¸Â No elegible este Año");
+            console.warn("âš ï¸Â No elegible este Año");
             this.eligibilityStatus.set("not-eligible-this-year");
             this.form.controls.dateRange.disable();
           }
@@ -341,7 +341,7 @@ export class VacacionesPasadasRegistro implements OnInit {
       : balance.availableDays;
 
     console.log(
-      `Ã°Å¸â€Â Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
+      `ðŸâ€Â Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
     );
 
     if (requestedDays > available) {
@@ -399,7 +399,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           // Refrescamos los datos para que el usuario vea el cambio reflejado
           if (currentEmployeeId) {
             console.log(
-              "Ã°Å¸â€Â Refrescando datos para el empleado:",
+              "ðŸâ€Â Refrescando datos para el empleado:",
               currentEmployeeId,
             );
             this.refreshBalance();

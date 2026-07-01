@@ -51,7 +51,7 @@ export class EntregaRecepcionClienteLista {
   public AspRole = EApplicationRole;
   data = signal<any[]>([]);
   loading = signal(true);
-  // Ã‚¡MEJORA! El departamento ahora es un signal.
+  // ¡MEJORA! El departamento ahora es un signal.
   departamento = signal<string>("");
 
   // --- PROPIEDADES ESTóTICAS (sin cambios) ---
@@ -75,14 +75,14 @@ export class EntregaRecepcionClienteLista {
       const customerId: string = this.customerIdS.customerId();
       const depto = this.departamento();
 
-      // El effect se ejecutarÃƒ¡ si cambia el cliente O el departamento.
+      // El effect se ejecutará si cambia el cliente O el departamento.
       if (customerId && depto) {
         this.onLoadData();
       }
     });
   }
 
-  // Ã‚¡MEJORA! Este método ahora solo establece el estado inicial del signal.
+  // ¡MEJORA! Este método ahora solo establece el estado inicial del signal.
   private onValidarCargo(): void {
     let initialDept = this.cb_departamento[0].value; // Valor por defecto
     if (this.aspRoleS.hasRole(EApplicationRole.Contador))
@@ -94,8 +94,8 @@ export class EntregaRecepcionClienteLista {
     this.departamento.set(initialDept);
   }
 
-  // Ã‚¡MEJORA! Este método ahora es súper simple. Solo actualiza el signal.
-  // El effect se encargarÃƒ¡ de llamar a onLoadData.
+  // ¡MEJORA! Este método ahora es súper simple. Solo actualiza el signal.
+  // El effect se encargará de llamar a onLoadData.
   onChangeDepartamento(departamento: string): void {
     this.departamento.set(departamento);
   }
@@ -104,7 +104,7 @@ export class EntregaRecepcionClienteLista {
     // * Peticion para generar los items de entrega recepcion (sin cambios)
     this.apiResponseS.onGetItem(Endpoints.EntregaRecepcionCliente.generateData);
 
-    // Ã‚¡CORRECCIÑN! Leemos los valores de los signals con ()
+    // ¡CORRECCIÑN! Leemos los valores de los signals con ()
     const urlApi = Endpoints.EntregaRecepcionCliente.getByCustomerAndDepartment(
       this.customerIdS.customerId(),
       this.departamento(),
@@ -118,7 +118,7 @@ export class EntregaRecepcionClienteLista {
       .finally(() => {});
   }
 
-  // ... El resto de tus métodos (onModalForm, onValidarDocument, etc.) estÃƒ¡n bien.
+  // ... El resto de tus métodos (onModalForm, onValidarDocument, etc.) están bien.
   // Siguen llamando a onLoadData() para recargar la lista después de una acción, lo cual es correcto.
   onModalForm(data: any) {
     this.dialogHandlerS

@@ -1,9 +1,9 @@
-<section class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report">
+﻿<section class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report">
 
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
   <div class="print-preparing-overlay">
-    <app-icon [icon]="'mdi:spin'" style="font-size: 2.5rem; color: var(--ds-primary-hover);"></app-icon>
+    <app-icon [icon]="'mdi:loading'" style="font-size: 2.5rem; color: var(--ds-primary-hover);"></app-icon>
     <p style="margin: 0; font-size: 1.1rem; color: var(--ds-primary-hover); font-weight: 700; letter-spacing: 0.04em;">
       Cargando todos los reportes...
     </p>
@@ -126,7 +126,7 @@
                 (clicked)="refreshReports()"
               />
               <custom-button
-                [iconClass]="isPreparing() ? 'mdi:spin pi-spinner' : 'mdi:printer'"
+                [iconClass]="isPreparing() ? 'mdi:loading pi-spinner' : 'mdi:printer'"
                 [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
                 variant="outlined"
                 severity="secondary"

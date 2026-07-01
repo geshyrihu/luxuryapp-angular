@@ -1,5 +1,5 @@
-﻿@if (dataSignal()) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal()) {
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -100,7 +100,7 @@
   </div>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -149,7 +149,7 @@
               <strong>Falla:</strong> {{ item.failure }}
             </p>
             <small class="text-xs text-500 block mt-1"
-              >Supervisó: {{ item.supervised }}</small
+              >Supervis�: {{ item.supervised }}</small
             >
           </ion-label>
 

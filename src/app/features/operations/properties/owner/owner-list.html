@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -47,14 +47,14 @@
       </th>
 
       <th class="table-col-10" pSortableColumn="fixedPhone">
-        TÃ©lefono fijo
+        Télefono fijo
         <p-sortIcon field="fixedPhone" />
       </th>
       <th class="table-col-10" pSortableColumn="extencion">
-        ExtensiÃ³n
+        Extensión
         <p-sortIcon field="extencion" />
       </th>
-      <th class="table-col-10">TÃ©lefono</th>
+      <th class="table-col-10">Télefono</th>
       <th class="table-col-10" pSortableColumn="email">
         Email
         <p-sortIcon field="email" />
@@ -155,7 +155,7 @@
       </div>
       <ion-label>
         <h3>{{ item.habitant }}</h3>
-        <p>{{ item.property }} Ã³ {{ item.phoneNumber }}</p>
+        <p>{{ item.property }} ó {{ item.phoneNumber }}</p>
         <p>{{ item.email }}</p>
       </ion-label>
       <app-action-menu slot="end">

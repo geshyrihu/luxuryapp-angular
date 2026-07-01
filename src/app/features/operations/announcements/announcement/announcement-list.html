@@ -1,4 +1,4 @@
-<!-- 1. Contenedor Principal y Estado de Carga -->
+﻿<!-- 1. Contenedor Principal y Estado de Carga -->
 <div class="p-4 hidden md:block">
   <p-card>
     <ng-template pTemplate="title">
@@ -66,11 +66,11 @@
   </p-card>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden pb-5">
   @if (!loading() && announcements().length === 0) {
   <div class="ion-text-center ion-padding mt-5">
-    <app-icon icon="mdi:tray-outline" style="font-size: 4rem; color: var(--ion-color-medium)"></app-icon>
+    <app-icon icon="mdi:tray" style="font-size: 4rem; color: var(--ion-color-medium)"></app-icon>
     <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
   </div>
   } @if (!loading() && announcements().length > 0) {

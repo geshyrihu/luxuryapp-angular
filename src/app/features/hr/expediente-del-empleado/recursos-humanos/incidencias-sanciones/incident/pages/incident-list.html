@@ -1,4 +1,4 @@
-ï»¿<div class="card">
+<div class="card">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -25,12 +25,12 @@
         @if (!employeeId()) {
         <th class="table-col-lg">Empleado</th>
         }
-        <th class="table-col-lg">Tipo / CategorÃ­a</th>
-        <th class="table-col-xl">DescripciÃ³n</th>
+        <th class="table-col-lg">Tipo / Categoría</th>
+        <th class="table-col-xl">Descripción</th>
         <th class="table-col-md text-center">Severidad</th>
         <th class="table-col-md text-center">Estatus</th>
         <th class="table-col-sm">Fecha</th>
-        <th class="table-col-sm text-center">SanciÃ³n</th>
+        <th class="table-col-sm text-center">Sanción</th>
         <th class="table-col-sm text-center">Acta</th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -80,14 +80,14 @@
         </td>
         <td class="text-center">
           @if (item.sanctionApplied) {
-          <span class="badge badge-danger">SÃ­</span>
+          <span class="badge badge-danger">Sí</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
         </td>
         <td class="text-center">
           @if (item.isActGenerated) {
-          <span class="badge badge-success">âœ“ Firmada</span>
+          <span class="badge badge-success">? Firmada</span>
           } @else {
           <span class="badge badge-neutral">Pendiente</span>
           }
@@ -109,7 +109,7 @@
             />
             }
 
-            <!-- Generar y descargar acta para firma fÃ­sica -->
+            <!-- Generar y descargar acta para firma física -->
             <custom-button-download
               iconClass="mdi:file-edit"
               size="small"
@@ -123,7 +123,7 @@
               (click)="onUploadSignedAct(item)"
             />
 
-            <!-- Ver acta firmada en visor â€” solo si ya fue subida -->
+            <!-- Ver acta firmada en visor — solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
             <custom-button-view-pdf
               iconClass="mdi:file-pdf-box"
@@ -187,7 +187,7 @@
             >
           </div>
           <p class="text-xs text-500 uppercase mb-1">
-            {{ item.category }} Â· {{ item.employeeName }}
+            {{ item.category }} · {{ item.employeeName }}
           </p>
           <p
             class="text-sm text-700 mb-2 overflow-hidden text-overflow-ellipsis white-space-normal"

@@ -1,4 +1,4 @@
-锘縤mport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
@@ -64,11 +64,11 @@ export class CatalogAuditItem {
   }
 
   readonly bloques = [
-    { titulo: "Advertencia", icono: "mdi:alert", descripcion: "Riesgo f贸sico, legal o econ贸mico." },
-    { titulo: "Nota", icono: "mdi:information", descripcion: "Informaci贸n complementaria." },
+    { titulo: "Advertencia", icono: "mdi:alert", descripcion: "Riesgo f髎ico, legal o econ髆ico." },
+    { titulo: "Nota", icono: "mdi:information", descripcion: "Informaci髇 complementaria." },
   ];
 
-  checklist = signal([{ numero: 1, descripcion: "C贸digo sigue nomenclatura.", aprobado: true }, { numero: 2, descripcion: "Portada completa.", aprobado: false }]);
+  checklist = signal([{ numero: 1, descripcion: "C骴igo sigue nomenclatura.", aprobado: true }, { numero: 2, descripcion: "Portada completa.", aprobado: false }]);
 
   toggleChecklistItem(numero: number): void {
     this.checklist.update(items => items.map(i => i.numero === numero ? { ...i, aprobado: !i.aprobado } : i));

@@ -1,4 +1,4 @@
-ï»¿<div class="card p-0 md:p-4 border-none shadow-none">
+<div class="card p-0 md:p-4 border-none shadow-none">
   <p-table
     #dt
     [value]="diagrams()"
@@ -15,10 +15,10 @@
   >
     <ng-template #caption>
       <div class="flex align-items-center justify-content-between p-2">
-        <h5 class="m-0 text-xl font-bold text-700">GestiÃ³n de Diagramas</h5>
+        <h5 class="m-0 text-xl font-bold text-700">Gestión de Diagramas</h5>
         <div class="flex gap-2">
           <custom-button
-            label="GalerÃ­a"
+            label="Galería"
             iconClass="mdi:image-multiple"
             severity="secondary"
             variant="ghost-text"
@@ -35,7 +35,7 @@
           Nombre <p-sortIcon field="name"></p-sortIcon>
         </th>
         <th pSortableColumn="updateAt" class="table-col-15rem">
-          Ãšltima ActualizaciÃ³n <p-sortIcon field="updateAt"></p-sortIcon>
+          Última Actualización <p-sortIcon field="updateAt"></p-sortIcon>
         </th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -60,7 +60,7 @@
             <custom-button
               iconClass="mdi:palette"
               (clicked)="onOpenEditor(diagram.id)"
-              ngbTooltip="Abrir Editor GrÃ¡fico"
+              ngbTooltip="Abrir Editor Gráfico"
               variant="text"
               severity="info"
               label="Editor"

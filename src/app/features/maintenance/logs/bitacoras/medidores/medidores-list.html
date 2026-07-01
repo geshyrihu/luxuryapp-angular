@@ -28,11 +28,11 @@
               <h5 class="mb-2">
                 {{ item.medidorCategoria.nombreMedidorCategoria }}
               </h5>
-              <!-- Iconos Corregidos: Usando "icon" y "mdi:NAME" -->
+              <!-- Iconos Corregidos: Usando "icon" y "mdi:account-details" -->
               @if (item.medidorCategoriaId ===
               '019c6c01-bbcf-76a2-a863-43569af55a55') {
               <!-- Gas -> Sol (Calor) -->
-              <app-icon [icon]="'mdi:sun-bright'" class="text-yellow-500 text-6xl" />
+              <app-icon [icon]="'mdi:weather-sunny'" class="text-yellow-500 text-6xl" />
               } @if (item.medidorCategoriaId ===
               '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
               <!-- Agua -> Filtro (Liquido) -->

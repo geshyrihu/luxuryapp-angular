@@ -1,5 +1,5 @@
-﻿@if (dataSignal()) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+@if (dataSignal()) {
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="card">
   <p-table
     [value]="dataSignal()"
@@ -43,7 +43,7 @@
             }
           </div>
 
-          <!-- Botón de Reporte (funcionalidad futura) -->
+          <!-- Bot�n de Reporte (funcionalidad futura) -->
           <custom-button-download
             label="Generar Reporte"
             iconClass="mdi:file-excel"
@@ -125,7 +125,7 @@
             }
             <custom-button-item
               (clicked)="onReturnProduct(item)"
-              emogi="↩️"
+              emogi="??"
               label="Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
@@ -152,7 +152,7 @@
   </p-table>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -207,7 +207,7 @@
             }
             <custom-button-item
               (clicked)="onReturnProduct(item)"
-              label="↩️ Devolver"
+              label="?? Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
               [showLabelOnDesktop]="true"
             />

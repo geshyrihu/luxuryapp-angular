@@ -31,7 +31,7 @@
       <p-accordionTab>
         <ng-template pTemplate="header">
           <div class="flex align-items-center w-full">
-            <i [class]="module.icon + ' mr-2'"></i>
+            <app-icon [icon]="module.icon" class="mr-2"></app-icon>
             <span class="font-bold">{{ module.name }}</span>
             <!-- Placeholder para semáforo por módulo -->
             <p-tag

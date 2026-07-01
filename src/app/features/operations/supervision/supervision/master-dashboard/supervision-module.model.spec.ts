@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+﻿import { vi } from 'vitest';
 import { SupervisionModuleCard, SupervisionModuleGroup } from './supervision-module.model';
 
 describe('SupervisionModuleCard / SupervisionModuleGroup', () => {
@@ -7,7 +7,7 @@ describe('SupervisionModuleCard / SupervisionModuleGroup', () => {
       title: 'Test',
       description: 'Desc',
       route: '/test',
-      icon: 'mdi:test',
+      icon: 'mdi:flask',
       color: '#000',
       bgColor: '#fff',
     };

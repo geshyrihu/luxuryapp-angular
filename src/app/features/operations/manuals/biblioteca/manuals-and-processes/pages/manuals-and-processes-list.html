@@ -1,4 +1,4 @@
-Ôªø<!-- DESKTOP: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- DESKTOP: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <!-- Encabezado -->
   <div class="mb-6">
@@ -13,7 +13,7 @@
         <div>
           <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
           <p class="text-base text-500 m-0">
-            √çndice general de procedimientos y documentaci√≥n operativa de la organizaci√≥n
+            Õndice general de procedimientos y documentaciÛn operativa de la organizaciÛn
           </p>
         </div>
       </div>
@@ -52,12 +52,12 @@
   </div>
   }
 
-  <!-- √çndice de Contenidos -->
+  <!-- Õndice de Contenidos -->
   @else {
   <div class="flex flex-column gap-5">
     @for (group of groupedData(); track group.dept) {
     <div class="surface-card border-round-xl border-1 surface-border shadow-2 overflow-hidden">
-      <!-- Encabezado de Secci√≥n (Departamento) -->
+      <!-- Encabezado de SecciÛn (Departamento) -->
       <div 
         class="p-4 flex align-items-center justify-content-between gap-3 border-bottom-1 surface-border"
         [style.border-top]="'4px solid ' + group.config.color"
@@ -79,7 +79,7 @@
               {{ group.dept }}
             </h2>
             <p class="text-xs text-500 m-0 mt-1">
-              Manuales y directrices del √°rea
+              Manuales y directrices del ·rea
             </p>
           </div>
         </div>
@@ -92,16 +92,16 @@
         </span>
       </div>
 
-      <!-- Lista de Contenidos (Tipo √çndice) -->
+      <!-- Lista de Contenidos (Tipo Õndice) -->
       <div class="p-2 md:p-3 flex flex-column gap-1">
         @for (manual of group.manuals; track manual.id; let index = $index) {
         <div
           class="flex align-items-center justify-content-between p-3 border-round-lg hover:surface-100 cursor-pointer transition-all transition-duration-150"
           (click)="onViewTemplate(manual.id)"
         >
-          <!-- Izquierda: N√∫mero, Folio e √çndice -->
+          <!-- Izquierda: N˙mero, Folio e Õndice -->
           <div class="flex align-items-center flex-grow-1 min-w-0 mr-4">
-            <!-- N√∫mero de √≠ndice de manual -->
+            <!-- N˙mero de Ìndice de manual -->
             <span class="font-mono text-sm text-400 font-bold w-2rem flex-shrink-0 hidden sm:inline-block">
               {{ (index + 1) | number: '2.0-0' }}
             </span>
@@ -116,18 +116,18 @@
               {{ manual.folio }}
             </span>
 
-            <!-- Descripci√≥n/T√≠tulo del Manual -->
+            <!-- DescripciÛn/TÌtulo del Manual -->
             <span class="text-base text-700 font-semibold truncate">
-              {{ manual.description || '‚Äî' }}
+              {{ manual.description || 'ó' }}
             </span>
 
-            <!-- L√≠nea punteada de √≠ndice (TOC Leader Line) -->
+            <!-- LÌnea punteada de Ìndice (TOC Leader Line) -->
             <div class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 hidden md:block" style="opacity: 0.6;"></div>
           </div>
 
           <!-- Derecha: Metadatos y Acciones -->
           <div class="flex align-items-center gap-3 flex-shrink-0" (click)="$event.stopPropagation()">
-            <!-- Versi√≥n -->
+            <!-- VersiÛn -->
             <span class="text-xs font-mono text-500 bg-100 border-round px-2 py-1">
               v{{ manual.currentVersion }}
             </span>
@@ -142,7 +142,7 @@
             <!-- Divisor -->
             <div class="hidden sm:block surface-border border-left-1 h-1.5rem mx-1"></div>
 
-            <!-- Botones de Acci√≥n -->
+            <!-- Botones de AcciÛn -->
             <div class="flex align-items-center gap-1">
               @if (isAdmin()) {
               <custom-button-edit
@@ -177,7 +177,7 @@
   }
 </div>
 
-<!-- MOBILE: Componente adaptado para versi√≥n m√≥vil (oculto en md en adelante) -->
+<!-- MOBILE: Componente adaptado para versiÛn mÛvil (oculto en md en adelante) -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"

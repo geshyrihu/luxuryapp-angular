@@ -1,12 +1,12 @@
-ï»¿<!-- ðŸ–¥ï¸ DESKTOP: visible solo md+ -->
+<!-- ??? DESKTOP: visible solo md+ -->
 <div class="hidden md:block">
-  <h3 class="text-center p-2 text-2xl font-bold text-900">PÃ³liza de Seguro del Edificio</h3>
+  <h3 class="text-center p-2 text-2xl font-bold text-900">Póliza de Seguro del Edificio</h3>
   <div class="card-body">
     @if (data(); as policy) {
     <div class="grid">
       <div class="col-12 md:col-6">
         <p class="m-0 mb-2"><strong class="text-900">Proveedor:</strong> <span class="text-700">{{ policy.providerName }}</span></p>
-        <p class="m-0 mb-2"><strong class="text-900">DescripciÃ³n:</strong> <span class="text-700">{{ policy.description }}</span></p>
+        <p class="m-0 mb-2"><strong class="text-900">Descripción:</strong> <span class="text-700">{{ policy.description }}</span></p>
       </div>
       <div class="col-12 md:col-6">
         <p class="m-0 mb-2"><strong class="text-900">Fecha de Inicio:</strong> <span class="text-700">{{ policy.startDate | date: 'dd/MM/yyyy' }}</span></p>
@@ -19,7 +19,7 @@
         <custom-button-view-pdf
           [showLabelOnDesktop]="true"
           [url]="policy.pathDocument"
-          fileName="PÃ³liza | Contrato"
+          fileName="Póliza | Contrato"
         />
       </div>
     </div>
@@ -35,11 +35,11 @@
   </div>
 </div>
 
-<!-- ðŸ“± MOBILE: visible solo sm -->
+<!-- ?? MOBILE: visible solo sm -->
 <div class="block md:hidden">
   @if (data(); as policy) {
   <ion-list-header>
-    <ion-label class="font-bold text-900">PÃ³liza de Seguro del Edificio</ion-label>
+    <ion-label class="font-bold text-900">Póliza de Seguro del Edificio</ion-label>
   </ion-list-header>
 
   <ion-list [inset]="true" class="m-0">
@@ -58,7 +58,7 @@
         <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-purple-700" />
       </div>
       <ion-label class="ml-2">
-        <h3 class="font-bold text-900">DescripciÃ³n</h3>
+        <h3 class="font-bold text-900">Descripción</h3>
         <p class="text-wrap text-sm text-500">{{ policy.description }}</p>
       </ion-label>
     </ion-item>
@@ -86,7 +86,7 @@
 
   @if (policy.pathDocument) {
   <div class="p-3">
-    <custom-button-view-pdf [url]="policy.pathDocument" fileName="PÃ³liza | Contrato" />
+    <custom-button-view-pdf [url]="policy.pathDocument" fileName="Póliza | Contrato" />
   </div>
   }
 

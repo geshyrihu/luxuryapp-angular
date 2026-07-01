@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
@@ -28,12 +28,12 @@ interface EmptyState {
   template: `
     <div class="grid">
 
-      <!-- Estados vacÃ­os principales -->
+      <!-- Estados vacíos principales -->
       <div class="col-12">
-        <p-card header="Empty States Ã© Todos los escenarios">
+        <p-card header="Empty States é Todos los escenarios">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Cada estado vacÃ­o debe explicar <strong>quÃ© falta</strong> y ofrecer
-            <strong>una acciÃ³n concreta</strong> para continuar.
+            Cada estado vacío debe explicar <strong>qué falta</strong> y ofrecer
+            <strong>una acción concreta</strong> para continuar.
             Nunca dejes una pantalla en blanco sin contexto.
           </p>
 
@@ -64,11 +64,11 @@ interface EmptyState {
         </p-card>
       </div>
 
-      <!-- Skeleton Ã© Loading states -->
+      <!-- Skeleton é Loading states -->
       <div class="col-12 lg:col-6">
-        <p-card header="Skeleton Ã© Estados de Carga">
+        <p-card header="Skeleton é Estados de Carga">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Muestra skeleton cuando el contenido tarda mÃ³s de 300 ms.
+            Muestra skeleton cuando el contenido tarda mós de 300 ms.
             Anticipa el layout real para reducir el salto visual (CLS).
           </p>
           <div class="flex flex-column gap-4">
@@ -131,10 +131,10 @@ interface EmptyState {
 
       <!-- Estados de error de sistema -->
       <div class="col-12 lg:col-6">
-        <p-card header="Error Pages Ã© Referencia visual">
+        <p-card header="Error Pages é Referencia visual">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            PÃ¡ginas de error como referencia de diseÃ±o. Cada una incluye cÃ³digo HTTP,
-            descripciÃ³n humana y acciÃ³n para recuperarse.
+            Páginas de error como referencia de diseño. Cada una incluye código HTTP,
+            descripción humana y acción para recuperarse.
           </p>
           <div class="flex flex-column gap-3">
             @for (e of errorPages; track e.code) {
@@ -155,7 +155,7 @@ interface EmptyState {
 
       <!-- Reglas de uso -->
       <div class="col-12">
-        <p-card header="Reglas de Estados VacÃ­os">
+        <p-card header="Reglas de Estados Vacíos">
           <div class="grid">
             @for (r of rules; track r.titulo) {
               <div class="col-12 md:col-6 xl:col-3">
@@ -181,7 +181,7 @@ export class WebEmptyStates {
     {
       id: "no-data",
       titulo: "Sin registros",
-      descripcion: "No hay datos disponibles para mostrar en este mÃ³dulo todavÃ­a.",
+      descripcion: "No hay datos disponibles para mostrar en este módulo todavía.",
       icon: "mdi:database-off-outline",
       color: "var(--ds-text-muted)",
       actionLabel: "Agregar primero",
@@ -191,7 +191,7 @@ export class WebEmptyStates {
     {
       id: "no-search",
       titulo: "Sin resultados",
-      descripcion: "Tu bÃ³squeda no coincide con ningÃ³n registro. Intenta con otros tÃ³rminos.",
+      descripcion: "Tu bósqueda no coincide con ningón registro. Intenta con otros tórminos.",
       icon: "mdi:magnify-remove-outline",
       color: "var(--ds-text-muted)",
       actionLabel: "Limpiar filtros",
@@ -201,7 +201,7 @@ export class WebEmptyStates {
     {
       id: "no-permission",
       titulo: "Sin permisos",
-      descripcion: "No tienes acceso para ver este mÃ³dulo. Contacta al administrador.",
+      descripcion: "No tienes acceso para ver este módulo. Contacta al administrador.",
       icon: "mdi:lock-outline",
       color: "var(--ds-warning)",
       actionLabel: "Solicitar acceso",
@@ -212,8 +212,8 @@ export class WebEmptyStates {
     },
     {
       id: "error",
-      titulo: "Algo saliÃ© mal",
-      descripcion: "Error de conexiÃ³n o del servidor. El equipo tÃ³cnico fue notificado.",
+      titulo: "Algo salié mal",
+      descripcion: "Error de conexión o del servidor. El equipo tócnico fue notificado.",
       icon: "mdi:alert-circle-outline",
       color: "var(--ds-danger)",
       actionLabel: "Reintentar",
@@ -225,39 +225,39 @@ export class WebEmptyStates {
     {
       id: "coming-soon",
       titulo: "En desarrollo",
-      descripcion: "Este mÃ©dulo estarÃ© disponible en la prÃ³xima actualizaciÃ³n del sistema.",
+      descripcion: "Este médulo estaré disponible en la próxima actualización del sistema.",
       icon: "mdi:rocket-launch-outline",
       color: "var(--ds-primary)",
       actionLabel: "Notificarme",
       actionSeverity: "secondary",
       actionIcon: "mdi:bell-outline",
-      tag: "PrÃ³ximamente",
+      tag: "Próximamente",
       tagSeverity: "info",
     },
     {
       id: "offline",
-      titulo: "Sin conexiÃ³n",
-      descripcion: "Revisa tu red. Los cambios se guardarÃ³n cuando vuelva la conexiÃ³n.",
+      titulo: "Sin conexión",
+      descripcion: "Revisa tu red. Los cambios se guardarón cuando vuelva la conexión.",
       icon: "mdi:wifi-off",
       color: "var(--ds-text-muted)",
-      actionLabel: "Verificar conexiÃ³n",
+      actionLabel: "Verificar conexión",
       actionSeverity: "secondary",
       actionIcon: "mdi:wifi-refresh",
     },
   ];
 
   readonly errorPages = [
-    { code: "404", titulo: "PÃ¡gina no encontrada",     descripcion: "La ruta solicitada no existe en el sistema.",           color: "var(--ds-warning)", label: "Not Found",  severity: "warn"    as const },
+    { code: "404", titulo: "Página no encontrada",     descripcion: "La ruta solicitada no existe en el sistema.",           color: "var(--ds-warning)", label: "Not Found",  severity: "warn"    as const },
     { code: "403", titulo: "Acceso denegado",          descripcion: "No tienes permisos para acceder a este recurso.",       color: "var(--ds-warning)", label: "Forbidden",  severity: "warn"    as const },
-    { code: "500", titulo: "Error del servidor",       descripcion: "Error interno. El equipo tÃ³cnico fue notificado.",      color: "var(--ds-danger)",  label: "Server Error",severity: "danger"  as const },
-    { code: "503", titulo: "Servicio no disponible",   descripcion: "El servidor estÃ© en mantenimiento. Vuelve pronto.",     color: "var(--ds-danger)",  label: "Unavailable",severity: "danger"  as const },
-    { code: "401", titulo: "No autenticado",           descripcion: "Debes iniciar sesiÃ³n para continuar.",                 color: "var(--ds-info)",    label: "Unauthorized",severity: "info"   as const },
+    { code: "500", titulo: "Error del servidor",       descripcion: "Error interno. El equipo tócnico fue notificado.",      color: "var(--ds-danger)",  label: "Server Error",severity: "danger"  as const },
+    { code: "503", titulo: "Servicio no disponible",   descripcion: "El servidor esté en mantenimiento. Vuelve pronto.",     color: "var(--ds-danger)",  label: "Unavailable",severity: "danger"  as const },
+    { code: "401", titulo: "No autenticado",           descripcion: "Debes iniciar sesión para continuar.",                 color: "var(--ds-info)",    label: "Unauthorized",severity: "info"   as const },
   ];
 
   readonly rules = [
-    { titulo: "Explica quÃ© falta",     icon: "mdi:information",     color: "var(--ds-info)",    descripcion: "El mensaje debe decir exactamente por quÃ© la pantalla estÃ© vacÃ©a." },
-    { titulo: "Una acciÃ³n concreta",   icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Siempre incluye un CTA que ayude al usuario a resolver el estado." },
+    { titulo: "Explica qué falta",     icon: "mdi:information",     color: "var(--ds-info)",    descripcion: "El mensaje debe decir exactamente por qué la pantalla esté vacéa." },
+    { titulo: "Una acción concreta",   icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Siempre incluye un CTA que ayude al usuario a resolver el estado." },
     { titulo: "Skeleton antes que spinner", icon: "mdi:layers",     color: "var(--ds-success)", descripcion: "Usa skeleton en carga estructural (cards, tablas). Spinner solo en acciones cortas." },
-    { titulo: "Nunca pantalla vacÃ­a",  icon: "mdi:close-circle",   color: "var(--ds-danger)",  descripcion: "Una pantalla en blanco sin contexto genera confusiÃ³n y pÃ³rdida de confianza." },
+    { titulo: "Nunca pantalla vacía",  icon: "mdi:close-circle",   color: "var(--ds-danger)",  descripcion: "Una pantalla en blanco sin contexto genera confusión y pórdida de confianza." },
   ];
 }

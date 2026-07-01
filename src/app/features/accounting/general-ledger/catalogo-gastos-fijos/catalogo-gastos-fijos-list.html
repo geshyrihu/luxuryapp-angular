@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
@@ -16,7 +16,7 @@
           [data]="cb_fundingYear"
           [ngModel]="fundingYear()"
           (ngModelChange)="fundingYear.set($event)"
-          placeholder="Selecciona el Año"
+          placeholder="Selecciona el Aóo"
           optionLabel="label"
           optionValue="value"
           [showClear]="true"
@@ -68,7 +68,7 @@
         />
       </div>
 
-      <!-- Botón Agregar -->
+      <!-- Botún Agregar -->
       <primeng-custom-caption
         (add)="onModal( {id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -99,39 +99,39 @@
     @if (selectedMonthName() && selectedFundingStatus()) { @if
     (selectedFundingStatus()!.firstQNA?.isVerified) {
     <p-message severity="warn" styleClass="mb-1">
-      1ra Quincena de {{ selectedMonthName() }} ya fue verificada — no se pueden
+      1ra Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
       generar órdenes de compra.
     </p-message>
     } @else if (selectedFundingStatus()!.firstQNA?.isConfirmed) {
     <p-message severity="success" styleClass="mb-1">
-      1ra Quincena de {{ selectedMonthName() }} está confirmada.
+      1ra Quincena de {{ selectedMonthName() }} esté confirmada.
     </p-message>
     } @else if (selectedFundingStatus()!.firstQNA?.isAuthorized) {
     <p-message severity="info" styleClass="mb-1">
-      1ra Quincena de {{ selectedMonthName() }} está autorizada.
+      1ra Quincena de {{ selectedMonthName() }} esté autorizada.
     </p-message>
     } @if (selectedFundingStatus()!.secondQNA?.isVerified) {
     <p-message severity="warn" styleClass="mb-1">
-      2da Quincena de {{ selectedMonthName() }} ya fue verificada — no se pueden
+      2da Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
       generar órdenes de compra.
     </p-message>
     } @else if (selectedFundingStatus()!.secondQNA?.isConfirmed) {
     <p-message severity="success" styleClass="mb-1">
-      2da Quincena de {{ selectedMonthName() }} está confirmada.
+      2da Quincena de {{ selectedMonthName() }} esté confirmada.
     </p-message>
     } @else if (selectedFundingStatus()!.secondQNA?.isAuthorized) {
     <p-message severity="info" styleClass="mb-1">
-      2da Quincena de {{ selectedMonthName() }} está autorizada.
+      2da Quincena de {{ selectedMonthName() }} esté autorizada.
     </p-message>
     } }
 
-    <!-- Guía de generación -->
+    <!-- Guóa de generación -->
     <div
       class="flex align-items-center flex-wrap px-3 py-2 mt-1 border-round surface-100 border-left-3 border-orange-500 mb-2 shadow-1"
     >
       <div class="flex align-items-center text-700">
         <app-icon [icon]="'mdi:information'" class="text-orange-500 font-bold"></app-icon>
-        <span class="font-bold text-sm uppercase">Guía de Generación:</span>
+        <span class="font-bold text-sm uppercase">Guóa de Generación:</span>
       </div>
 
       <div class="flex align-items-center">
@@ -149,7 +149,7 @@
           class="bg-orange-500 text-white border-circle w-1rem h-1rem flex align-items-center justify-content-center font-bold text-xs"
           >2</span
         >
-        <span class="text-sm font-medium">Seleccionar Año y Mes de Fondeo</span>
+        <span class="text-sm font-medium">Seleccionar Aóo y Mes de Fondeo</span>
       </div>
 
       <app-icon [icon]="'mdi:chevron-right'" class="text-400 text-xs hidden md:block"></app-icon>
@@ -160,7 +160,7 @@
           >3</span
         >
         <span class="text-sm font-medium font-bold"
-          >Presionar botón Generar</span
+          >Presionar botún Generar</span
         >
       </div>
     </div>
@@ -263,7 +263,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <div class="flex md:hidden flex-column h-screen overflow-hidden">
   <div class="px-2 pt-2 flex-none">
     <ion-accordion-group class="mb-2">
@@ -274,7 +274,7 @@
         <div class="ion-padding" slot="content">
           <!-- Year and Month -->
           <ion-item lines="full" class="mb-2">
-            <ion-label>Año</ion-label>
+            <ion-label>Aóo</ion-label>
             <ion-select
               [ngModel]="fundingYear()"
               (ionChange)="fundingYear.set($event.detail.value)"

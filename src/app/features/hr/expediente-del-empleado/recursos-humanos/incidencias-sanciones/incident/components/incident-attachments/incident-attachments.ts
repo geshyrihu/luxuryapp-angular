@@ -79,7 +79,7 @@ export class IncidentAttachmentsComponent {
       this.swalS.fire({
         icon: "warning",
         title: "Límite de archivos",
-        text: `Solo puedes agregar ${remaining} archivo(s) mÃƒ¡s.`,
+        text: `Solo puedes agregar ${remaining} archivo(s) más.`,
       });
       return;
     }
@@ -149,10 +149,16 @@ export class IncidentAttachmentsComponent {
     return (sizeKB / 1024).toFixed(1) + " MB";
   }
 
+  getFileIcon(mimeType: string): string {
+    if (mimeType.startsWith("image/")) return "mdi:image";
+    if (mimeType === "application/pdf") return "mdi:file-pdf-box";
+    return "mdi:file-document-outline";
+  }
+
   getFileIconClass(mimeType: string): string {
-    if (mimeType.startsWith("image/")) return "mdi:image text-blue-600";
-    if (mimeType === "application/pdf") return "mdi:file-pdf-box text-red-500";
-    return "mdi:file-document-outline text-primary";
+    if (mimeType.startsWith("image/")) return "text-blue-600";
+    if (mimeType === "application/pdf") return "text-red-500";
+    return "text-primary";
   }
 }
 

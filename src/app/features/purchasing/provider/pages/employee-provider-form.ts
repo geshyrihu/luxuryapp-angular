@@ -61,7 +61,7 @@ export class EmployeeProviderForm implements OnInit {
   readonly preselectedPositionRequestId: string | null =
     this.config.data?.positionRequestId ?? null;
 
-  /** Rol del puesto vacante â€” pre-llena applicationRoleId en fase 1. */
+  /** Rol del puesto vacante — pre-llena applicationRoleId en fase 1. */
   readonly preselectedApplicationRoleId: string | null =
     this.config.data?.applicationRoleId ?? null;
 

@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataEmergencyContact()"
   #dt
@@ -23,7 +23,7 @@
     <tr>
       <th>Nombre</th>
       <th>Parentesco</th>
-      <th>TÃ©lefono</th>
+      <th>Télefono</th>
       <th class="table-col-5 no-print"></th>
     </tr>
   </ng-template>
@@ -102,7 +102,7 @@
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
-        <p>{{ item.relation }} Ã³ {{ item.phoneNumber }}</p>
+        <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
@@ -149,7 +149,7 @@
     <tr>
       <th>Nombre</th>
       <th>Parentesco</th>
-      <th>TÃ©lefono</th>
+      <th>Télefono</th>
       <th class="table-col-5 no-print"></th>
     </tr>
   </ng-template>
@@ -222,7 +222,7 @@
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
-        <p>{{ item.relation }} Ã³ {{ item.phoneNumber }}</p>
+        <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

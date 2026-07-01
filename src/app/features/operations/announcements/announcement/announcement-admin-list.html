@@ -1,4 +1,4 @@
-ï»¿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -78,11 +78,11 @@
         <p-sortIcon field="customerName" />
       </th>
       <th pSortableColumn="publishedAt">
-        PublicaciÃ³n
+        Publicación
         <p-sortIcon field="publishedAt" />
       </th>
       <th pSortableColumn="expirationDate">
-        ExpiraciÃ³n
+        Expiración
         <p-sortIcon field="expirationDate" />
       </th>
       <th class="no-print"></th>
@@ -141,7 +141,7 @@
           <custom-button-item
             [routerLink]="['/announcements/analytics', item.id]"
             iconClass="mdi:chart-bar"
-            label="AnalÃ³ticas"
+            label="Analóticas"
           />
         </div>
       </td>
@@ -160,7 +160,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -259,7 +259,7 @@
             <custom-button-item
               [routerLink]="['/announcements/analytics', item.id]"
               iconName="bar-chart-outline"
-              label="AnalÃ³ticas"
+              label="Analóticas"
              [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>

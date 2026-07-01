@@ -133,7 +133,7 @@ interface IResetPasswordForm {
                   [fluid]="true"
                   [showLabelOnDesktop]="true"
                   severity="warning"
-                  customClass="w-full shadow-4"
+                  customClass="shadow-4"
                 ></custom-button>
               </div>
 
@@ -215,32 +215,6 @@ interface IResetPasswordForm {
         display: block;
         height: 100vh;
         width: 100vw;
-      }
-      .auth-dark-panel {
-        background: rgba(11, 49, 100, 0.4);
-        color: rgba(255, 255, 255, 0.95);
-      }
-      .auth-dark-panel ::ng-deep label,
-      .auth-dark-panel ::ng-deep h2,
-      .auth-dark-panel ::ng-deep p,
-      .auth-dark-panel ::ng-deep .text-900,
-      .auth-dark-panel ::ng-deep .text-700,
-      .auth-dark-panel ::ng-deep .text-600 {
-        color: rgba(255, 255, 255, 0.9) !important;
-      }
-      .auth-dark-panel ::ng-deep input {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        color: white !important;
-      }
-      .auth-dark-panel ::ng-deep input::placeholder {
-        color: rgba(255, 255, 255, 0.5) !important;
-      }
-      .auth-dark-panel ::ng-deep .p-password i {
-        color: rgba(255, 255, 255, 0.7) !important;
-      }
-      .auth-dark-panel ::ng-deep .p-password-meter {
-        background: rgba(255, 255, 255, 0.2) !important;
       }
     `,
   ],

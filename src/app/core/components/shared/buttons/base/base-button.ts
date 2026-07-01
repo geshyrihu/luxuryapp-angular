@@ -31,6 +31,7 @@ export abstract class BaseButton {
   text = input<boolean>(false);
   plain = input<boolean>(false);
   block = input<boolean>(false);
+  fluid = input<boolean>(false);
   type = input<"button" | "submit" | "reset">("button");
 
   clicked = output<Event>();
@@ -50,8 +51,10 @@ export abstract class BaseButton {
 
     if (variant === "outline") {
       classes.push(`btn-outline-${severity}`);
-    } else if (variant === "ghost" || variant === "text") {
+    } else if (variant === "ghost") {
       classes.push(`btn-ghost-${severity}`);
+    } else if (variant === "text") {
+      classes.push(`btn-text-${severity}`);
     } else if (variant === "link") {
       classes.push("btn-link");
     } else {
@@ -63,6 +66,7 @@ export abstract class BaseButton {
     if (size === "large" || size === "lg") classes.push("btn-lg");
     if (this.rounded()) classes.push("btn--pill");
     if (this.block()) classes.push("btn-block");
+    if (this.fluid()) classes.push("btn-fluid");
     if (this.customClass()) classes.push(this.customClass());
     return classes.join(" ");
   });

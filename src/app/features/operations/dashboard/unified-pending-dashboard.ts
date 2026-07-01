@@ -489,7 +489,7 @@ export class UnifiedPendingDashboard {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "Ã°Å¸â€œâ€ž Informe Ejecutivo Diario",
+        title: "📄 Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%",
@@ -502,8 +502,8 @@ export class UnifiedPendingDashboard {
     } catch (error) {
       console.error(error);
       this.swalService.error(
-        "Error de AnÃƒ¡lisis",
-        "No se pudo generar el informe. Por favor intenta mÃƒ¡s tarde.",
+        "Error de Análisis",
+        "No se pudo generar el informe. Por favor intenta más tarde.",
       );
     }
   }
@@ -538,7 +538,7 @@ export class UnifiedPendingDashboard {
   onVisionResult(analysis: string) {
     // En el dashboard solo mostramos el resultado
     Swal.fire({
-      title: "ÃƒÂ°Ã…Â¸Ã¢â‚¬ËœÃ‚ÂÃƒÂ¯Ã‚Â¸Ã‚Â Diagnóstico Visual",
+      title: "ðŸââ‚¬ËœÃ‚Âï¸Ã‚Â Diagnóstico Visual",
       text: analysis,
       icon: "info",
       width: "600px",

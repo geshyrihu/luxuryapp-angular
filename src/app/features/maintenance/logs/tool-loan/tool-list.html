@@ -1,4 +1,4 @@
-﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -81,8 +81,8 @@
       <td colspan="4">
         <app-empty-state
           icon="mdi:tools"
-          title="Sin préstamos"
-          message="No hay préstamos de herramientas registrados."
+          title="Sin pr�stamos"
+          message="No hay pr�stamos de herramientas registrados."
         />
       </td>
     </tr>
@@ -92,7 +92,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

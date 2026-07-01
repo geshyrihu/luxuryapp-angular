@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, input, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
 
@@ -12,7 +11,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
 @Component({
   selector: "app-realtime-indicator",
   standalone: true,
-  imports: [CommonModule, AppIcon],
+  imports: [CommonModule],
   template: `
     <div class="rt-root" [attr.aria-label]="statusLabel()">
       <!-- Pulsing dot -->

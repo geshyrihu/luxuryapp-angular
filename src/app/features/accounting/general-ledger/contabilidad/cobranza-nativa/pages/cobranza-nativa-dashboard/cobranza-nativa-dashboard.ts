@@ -1,4 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
@@ -67,7 +67,7 @@ export default class CobranzaNativaDashboard {
     return this.expandedCard() === cardTitle;
   }
 
-  /** Deriva el color de acento (borde/icono) desde el bgColor pastel si no está definido en los datos */
+  /** Deriva el color de acento (borde/icono) desde el bgColor pastel si no esté definido en los datos */
   getCardColor(card: { bgColor: string; color?: string }): string {
     if (card.color) return card.color;
     const map: Record<string, string> = {

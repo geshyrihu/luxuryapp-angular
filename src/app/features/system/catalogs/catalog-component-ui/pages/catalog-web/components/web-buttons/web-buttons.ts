@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { BadgeModule } from "primeng/badge";
 import { ButtonModule } from "primeng/button";
@@ -49,10 +49,10 @@ import {
       <!-- Botones Custom de la App -->
       <p-card header="Action Buttons (Web Custom)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Botones con lógica integrada: confirmaciones SweetAlert2, estados reactivos, descarga y trazabilidad.
+          Botones con l�gica integrada: confirmaciones SweetAlert2, estados reactivos, descarga y trazabilidad.
         </p>
         <div class="flex flex-wrap gap-2 mb-3">
-          <custom-button label="Botón Genérico" />
+          <custom-button label="Bot�n Gen�rico" />
           <custom-button-add label="Crear Solicitud" />
           <custom-button-edit label="Editar" />
           <custom-button-save label="Guardar" />
@@ -62,7 +62,7 @@ import {
           <custom-button-view-pdf />
           <custom-button-send-email />
           <custom-button-tracking />
-          <custom-button-item icon="pi pi-star" label="Item Especial" />
+          <custom-button-item [iconClass]="'mdi:star'" label="Item Especial" />
         </div>
         <p-divider />
         <p class="text-xs font-semibold text-color-secondary mb-2">Estados Activo / Inactivo</p>
@@ -73,9 +73,9 @@ import {
       </p-card>
 
       <!-- Severidades Filled -->
-      <p-card header="PrimeNG â€” Severidades (Filled)">
+      <p-card header="PrimeNG — Severidades (Filled)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Usa la severidad que coincida con el nivel semántico de la acción.
+          Usa la severidad que coincida con el nivel sem�ntico de la acci�n.
         </p>
         <div class="flex flex-wrap gap-2">
           <p-button label="Primary" />
@@ -89,10 +89,10 @@ import {
         </div>
       </p-card>
 
-      <!-- Botones con Ãconos -->
-      <p-card header="Botones con Ãconos">
+      <!-- Botones con Íconos -->
+      <p-card header="Botones con Íconos">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Ãcono izquierda (default), derecha con <code>iconPos="right"</code>, o solo ícono circular.
+          Ícono izquierda (default), derecha con <code>iconPos="right"</code>, o solo �cono circular.
         </p>
         <div class="flex flex-wrap gap-2 mb-4">
           <p-button label="Guardar"    icon="pi pi-save" />
@@ -102,7 +102,7 @@ import {
           <p-button label="Siguiente"  icon="pi pi-arrow-right" iconPos="right" severity="secondary" />
           <p-button label="Buscar"     icon="pi pi-search"    [outlined]="true" />
         </div>
-        <p class="text-xs font-semibold text-color-secondary mb-2">Solo ícono (rounded)</p>
+        <p class="text-xs font-semibold text-color-secondary mb-2">Solo �cono (rounded)</p>
         <div class="flex flex-wrap gap-2">
           <p-button icon="pi pi-plus"     [rounded]="true" pTooltip="Agregar" tooltipPosition="top" />
           <p-button icon="pi pi-pencil"   [rounded]="true" severity="secondary" pTooltip="Editar" tooltipPosition="top" />
@@ -115,11 +115,11 @@ import {
         </div>
       </p-card>
 
-      <!-- Tamaños y Estados -->
-      <p-card header="Tamaños y Estados">
+      <!-- Tama�os y Estados -->
+      <p-card header="Tama�os y Estados">
         <div class="flex flex-column gap-4">
           <div>
-            <p class="text-xs font-semibold text-color-secondary mb-2">Tamaños</p>
+            <p class="text-xs font-semibold text-color-secondary mb-2">Tama�os</p>
             <div class="flex flex-wrap align-items-center gap-2">
               <p-button label="Small"  size="small" />
               <p-button label="Normal" />
@@ -138,7 +138,7 @@ import {
           </div>
           <div>
             <p class="text-xs font-semibold text-color-secondary mb-2">Ancho completo</p>
-            <p-button label="Botón de ancho completo" class="w-full" styleClass="w-full" />
+            <p-button label="Bot�n de ancho completo" class="w-full" styleClass="w-full" />
           </div>
         </div>
       </p-card>
@@ -146,7 +146,7 @@ import {
       <!-- Badge -->
       <p-card header="Con Badge">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Indicadores de cantidad sobre el botón.
+          Indicadores de cantidad sobre el bot�n.
         </p>
         <div class="flex flex-wrap gap-3">
           <p-button label="Mensajes"  icon="pi pi-envelope" [outlined]="true"

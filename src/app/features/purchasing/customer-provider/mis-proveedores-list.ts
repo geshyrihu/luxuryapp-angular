@@ -50,7 +50,7 @@ export class MisProveedores {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   // logica para el cambio de cliente
   customerId: string;
@@ -71,7 +71,7 @@ export class MisProveedores {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar información sobre un CustomerProvider
+  // Función para abrir un cuadro de diálogo modal para agregar o editar información sobre un CustomerProvider
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

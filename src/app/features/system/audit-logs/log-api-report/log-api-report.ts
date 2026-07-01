@@ -12,7 +12,6 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -51,7 +50,6 @@ interface LogEntry {
     TagModule,
     TooltipModule,
     CustomButton,
-    CustomButtonDelete,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomButton,
@@ -109,7 +107,7 @@ export class LogApiReport implements OnInit {
 
   /**
    * Carga el listado de logs con filtros y paginación
-   * @param isNewSearch - Si es una nueva búsqueda, reinicia a la pÃƒ¡gina 1
+   * @param isNewSearch - Si es una nueva búsqueda, reinicia a la página 1
    */
   onLoadData(isNewSearch: boolean = false): void {
     if (isNewSearch) {
@@ -119,7 +117,7 @@ export class LogApiReport implements OnInit {
     this.loading.set(true);
     const urlApi = Endpoints.Logs.getAll;
 
-    // Los parÃƒ¡metros deben ir prefixeados con "pagination." para que el backend los bindé correctamente
+    // Los parámetros deben ir prefixeados con "pagination." para que el backend los bindé correctamente
     const params: any = {
       "pagination.Page": this.currentPage(),
       "pagination.RecordsNumber": this.rows(),
@@ -159,7 +157,7 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Maneja el cambio de pÃƒ¡gina en la tabla de escritorio
+   * Maneja el cambio de página en la tabla de escritorio
    */
   onPageChange(event: any): void {
     this.rows.set(event.rows);
@@ -183,7 +181,7 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Carga mÃƒ¡s registros en la vista móvil
+   * Carga más registros en la vista móvil
    */
   loadMore(): void {
     this.currentPage.update((p) => p + 1);

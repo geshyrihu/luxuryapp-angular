@@ -136,7 +136,7 @@ export class ListaEvaluacionRealizada {
         return;
       }
 
-      // 1. Preparar datos para el grÃƒ¡fico
+      // 1. Preparar datos para el gráfico
       const labels = evaluationResult.categories.map((c: any) => c.name);
       const data = evaluationResult.categories.map((c: any) =>
         c.answers?.length > 0
@@ -164,7 +164,7 @@ export class ListaEvaluacionRealizada {
         },
       };
 
-      // 2. Generar imagen del grÃƒ¡fico de forma headless
+      // 2. Generar imagen del gráfico de forma headless
       const chartImage = await this.chartGeneratorS.generateRadarChartBase64(
         radarChartData,
         radarChartOptions,

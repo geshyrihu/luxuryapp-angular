@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";

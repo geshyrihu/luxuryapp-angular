@@ -1,4 +1,4 @@
-﻿<div class="card p-3 md:p-4">
+<div class="card p-3 md:p-4">
   <!-- Tabla escritorio agrupada por propiedad -->
   <p-table
     [value]="dataSignal()"
@@ -111,7 +111,7 @@
             <custom-button-delete
               title="Dar de baja"
               confirmHeader="Dar de baja"
-              confirmMessage="¿Confirma dar de baja a este miembro?"
+              confirmMessage="óConfirma dar de baja a este miembro?"
               confirmAcceptLabel="Sí, dar de baja"
               (confirmed)="onEndMembership(item)"
             />
@@ -120,7 +120,7 @@
               iconClass="mdi:account-minus"
               title="Eliminar usuario del sistema"
               confirmHeader="Eliminar usuario"
-              confirmMessage="¿Eliminar permanentemente a {{ item.userName }} del sistema? Esta acción no se puede deshacer."
+              confirmMessage="óEliminar permanentemente a {{ item.userName }} del sistema? Esta acción no se puede deshacer."
               confirmAcceptLabel="Sí, eliminar usuario"
               (confirmed)="onDeleteUser(item)"
             />
@@ -143,7 +143,7 @@
   </p-table>
 </div>
 
-<!-- Vista móvil agrupada por propiedad -->
+<!-- Vista mívil agrupada por propiedad -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="['userName', 'email', 'propertyName']"

@@ -1,4 +1,4 @@
-ï»¿<div class="card">
+<div class="card">
   <!-- Filtro de estatus -->
   <div class="mb-3 w-full sm:w-16rem">
     <custom-input-select-signal
@@ -60,9 +60,9 @@
           }
         </td>
         <td class="font-medium">{{ item.fullName }}</td>
-        <td>{{ item.numberEmployee ?? 'â€”' }}</td>
-        <td>{{ item.puesto || 'â€”' }}</td>
-        <td>{{ item.departamento || 'â€”' }}</td>
+        <td>{{ item.numberEmployee ?? '—' }}</td>
+        <td>{{ item.puesto || '—' }}</td>
+        <td>{{ item.departamento || '—' }}</td>
         <td class="text-center">
           <span
             [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
@@ -115,9 +115,9 @@
         </div>
         <ion-label>
           <h2 class="font-bold">{{ item.fullName }}</h2>
-          <p class="text-sm text-500">No. {{ item.numberEmployee ?? 'â€”' }}</p>
-          <p class="text-sm text-500">{{ item.puesto || 'â€”' }}</p>
-          <p class="text-sm text-500">{{ item.departamento || 'â€”' }}</p>
+          <p class="text-sm text-500">No. {{ item.numberEmployee ?? '—' }}</p>
+          <p class="text-sm text-500">{{ item.puesto || '—' }}</p>
+          <p class="text-sm text-500">{{ item.departamento || '—' }}</p>
           <p class="text-sm">
             <span
               [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"

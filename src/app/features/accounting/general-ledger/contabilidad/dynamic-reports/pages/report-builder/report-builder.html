@@ -1,4 +1,4 @@
-<div class="h-full flex flex-column overflow-hidden">
+﻿<div class="h-full flex flex-column overflow-hidden">
   <!-- Header Premium -->
   <div class="surface-0 p-3 shadow-2 flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5">
     <div class="flex align-items-center gap-3">
@@ -115,9 +115,9 @@
           <div class="hidden md:flex align-items-center gap-2 bg-surface-50 border-1 border-surface-200 border-round-lg px-3 py-2">
             <span class="text-xs font-bold text-500">CONTEXTO:</span>
             <span class="text-xs font-medium text-primary-900">{{ customerIdS.customerName() || customerIdS.nombreCorto() || 'Cliente activo' }}</span>
-            <span class="text-xs text-400">•</span>
+            <span class="text-xs text-400">â€¢</span>
             <span class="text-xs text-700">{{ empresaAspel() }}</span>
-            <span class="text-xs text-400">•</span>
+            <span class="text-xs text-400">â€¢</span>
             <span class="text-xs text-700">{{ previewYear() }}</span>
           </div>
           <div class="flex align-items-center gap-2 px-3 border-right-1 border-surface-200">
@@ -232,7 +232,7 @@
                     />
                   </div>
 
-                  <!-- Área de Drop para Cuentas -->
+                  <!-- Ãrea de Drop para Cuentas -->
                   @if (row.rowType === 'account') {
                     <div
                       cdkDropList
@@ -369,7 +369,7 @@
           Vista Previa Real
         </h4>
         @if (livePreviewS.computing()) {
-          <app-icon [icon]="'mdi:spin'"></app-icon>
+          <app-icon [icon]="'mdi:loading'"></app-icon>
         }
       </div>
 
@@ -478,7 +478,7 @@
               <span class="text-xs font-bold text-orange-900 block mb-2"><app-icon [icon]="'mdi:alert'"></app-icon> ADVERTENCIAS:</span>
               <ul class="m-0 p-0 pl-3 list-none flex flex-column gap-1">
                 @for (warn of livePreviewS.warnings(); track $index) {
-                  <li class="text-xs text-orange-700 line-height-2">• {{ warn }}</li>
+                  <li class="text-xs text-orange-700 line-height-2">â€¢ {{ warn }}</li>
                 }
               </ul>
             </div>

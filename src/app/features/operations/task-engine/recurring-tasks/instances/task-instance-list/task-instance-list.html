@@ -1,4 +1,4 @@
-ï»¿<div class="card">
+<div class="card">
   <p-toolbar styleClass="mb-4 ">
     <ng-template pTemplate="left">
       <h3 class="m-0">Mis Tareas Diarias</h3>
@@ -33,7 +33,7 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th>TÃ­tulo</th>
+        <th>Título</th>
         <th>Prioridad</th>
         <th>Estado</th>
         <th>Programada para</th>
@@ -62,7 +62,7 @@
             (confirmed)="onReopenTask(task.id)"
             icon="mdi:undo"
             [disabled]="task.status !== 1"
-            confirmMessage="Â¿EstÃ¡s seguro de reabrir esta tarea?"
+            confirmMessage="¿Estás seguro de reabrir esta tarea?"
             tooltip="Reabrir Tarea"
           />
         </td>
@@ -137,7 +137,7 @@
               label="Reabrir"
               (confirmed)="onReopenTask(task.id)"
               [disabled]="task.status !== 1"
-              confirmMessage="Â¿EstÃ¡s seguro de reabrir esta tarea?"
+              confirmMessage="¿Estás seguro de reabrir esta tarea?"
               [showLabelOnDesktop]="true"
             />
           </ng-container>

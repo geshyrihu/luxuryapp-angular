@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -100,8 +100,8 @@
       </div>
       <ion-label>
         <h3>{{ item.nameEmployee }}</h3>
-        <p>{{ item.nameCustomer }} Â· {{ item.applicationRole }}</p>
-        <p>{{ item.executionDate }} Â· {{ item.status }}</p>
+        <p>{{ item.nameCustomer }} · {{ item.applicationRole }}</p>
+        <p>{{ item.executionDate }} · {{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>

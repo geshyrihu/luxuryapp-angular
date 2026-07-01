@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -11,8 +11,8 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      [title]="'Periodos de InspecciÃ³n â€” ' + typeLabel()"
-      (add)="onModalForm({ id: '', title: 'Nuevo Periodo de InspecciÃ³n' })"
+      [title]="'Periodos de Inspección — ' + typeLabel()"
+      (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspección' })"
       [dt]="dt"
     />
   </ng-template>
@@ -56,7 +56,7 @@
         <app-empty-state
           icon="mdi:calendar-range"
           title="Sin periodos"
-          message="No hay periodos de inspecciÃ³n registrados."
+          message="No hay periodos de inspección registrados."
         />
       </td>
     </tr>
@@ -69,7 +69,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Periodo de InspecciÃ³n' })"
+  (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item

@@ -1,4 +1,4 @@
-ï»¿<div class="card shadow-3 p-3 border-round">
+<div class="card shadow-3 p-3 border-round">
   <!-- Vista de escritorio -->
   <div class="hidden md:block">
     <p-table
@@ -34,7 +34,7 @@
         <tr [pReorderableRow]="index">
           <td>
             <div>
-              <span class="icon icon-mdi:menu" pReorderableRowHandle></span>
+              <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle></app-icon>
             </div>
           </td>
           <td class="text-center">{{ item.folio }}</td>
@@ -67,8 +67,8 @@
   </div>
 </div>
 
-<!-- Vista para mÃ³viles -->
-<!-- Vista para mÃ³viles -->
+<!-- Vista para móviles -->
+<!-- Vista para móviles -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"

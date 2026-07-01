@@ -1,4 +1,4 @@
-<div class="my-5">
+﻿<div class="my-5">
   <p-card>
     <ng-template #header>
       <div class="p-4 flex align-items-center">
@@ -32,7 +32,7 @@
           />
           @if (loadingEmployees()) {
           <small class="text-500 mt-1">
-            <app-icon [icon]="'mdi:spin'" class="mr-1"></app-icon>Cargando empleados...
+            <app-icon [icon]="'mdi:loading'" class="mr-1"></app-icon>Cargando empleados...
           </small>
           }
         </div>
@@ -249,7 +249,7 @@
         @if ((balance()?.availableDays ?? 0) < 0) {
         <p-message
           severity="error"
-          text="⚠️ Saldo negativo detectado: el empleado tiene más días usados/pendientes que los permitidos o asignados para este periodo."
+          text="âš ï¸ Saldo negativo detectado: el empleado tiene más días usados/pendientes que los permitidos o asignados para este periodo."
           styleClass="mb-4"
         />
         }

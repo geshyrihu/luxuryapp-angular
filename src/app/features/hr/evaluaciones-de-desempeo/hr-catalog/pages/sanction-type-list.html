@@ -1,4 +1,4 @@
-ï»¿<div class="card">
+<div class="card">
   <p-table
     #dt
     [value]="items()"
@@ -15,7 +15,7 @@
   >
     <ng-template #caption>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de SanciÃ³n' })"
+        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
         [dt]="dt"
       />
     </ng-template>
@@ -26,7 +26,7 @@
           Severidad <p-sortIcon field="severityLevel" />
         </th>
         <th pSortableColumn="isTermination" class="text-center">
-          Es TerminaciÃ³n <p-sortIcon field="isTermination" />
+          Es Terminación <p-sortIcon field="isTermination" />
         </th>
         <th pSortableColumn="requiresHRApproval" class="text-center">
           Requiere RH <p-sortIcon field="requiresHRApproval" />
@@ -43,14 +43,14 @@
         <td>{{ item.severityLevel }}</td>
         <td class="text-center">
           @if (item.isTermination) {
-          <span class="badge badge-danger">SÃ­</span>
+          <span class="badge badge-danger">Sí</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
         </td>
         <td class="text-center">
           @if (item.requiresHRApproval) {
-          <span class="badge badge-warning">SÃ­</span>
+          <span class="badge badge-warning">Sí</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
@@ -65,7 +65,7 @@
         <td class="no-print">
           <div class="flex">
             <custom-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de SanciÃ³n' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Sanción' })"
             />
             <custom-button-delete (confirmed)="onDelete(item.id)" />
           </div>
@@ -88,10 +88,10 @@
     </ng-template>
   </p-table>
 
-  <!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+  <!-- ?? INICIO: Componente adaptado para versión móvil -->
   <app-data-view-mobile
     [data]="items()"
-    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de SanciÃ³n' })"
+    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
     [globalFilterFields]="globalFilterFields"
     [dt]="dt"
   >
@@ -115,10 +115,10 @@
           <h2 class="text-base font-semibold">{{ item.name }}</h2>
           <p class="text-sm text-wrap">
             <strong>Severidad:</strong> {{ item.severityLevel }} |
-            <strong>TerminaciÃ³n:</strong> {{ item.isTermination ? 'SÃ­' : 'No' }}
+            <strong>Terminación:</strong> {{ item.isTermination ? 'Sí' : 'No' }}
           </p>
           <p class="text-sm">
-            <strong>Requiere RH:</strong> {{ item.requiresHRApproval ? 'SÃ­' :
+            <strong>Requiere RH:</strong> {{ item.requiresHRApproval ? 'Sí' :
             'No' }} |
             <strong>Estado:</strong>
             @if (item.isActive) {
@@ -147,5 +147,5 @@
       </ion-item>
     </ng-template>
   </app-data-view-mobile>
-  <!-- ðŸ“± FIN: Componente adaptado para versiÃ³n mÃ³vil -->
+  <!-- ?? FIN: Componente adaptado para versión móvil -->
 </div>

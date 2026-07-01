@@ -1,4 +1,4 @@
-@if (item !== undefined && dataCustomer !== undefined) {
+﻿@if (item !== undefined && dataCustomer !== undefined) {
 <table class="table table-sm">
   <tr>
     <td colspan="3" class="text-center">
@@ -19,11 +19,11 @@
         <p class="font-size-11 m-0">{{ dataCustomer.adreess }}</p>
         <div class="flex flex-wrap align-items-start gap-3 font-size-11 m-0">
           <div class="m-0">
-            <i class="mdi mdi-circle-medium mr-1 text-success align-middle"></i>
+            <app-icon icon="mdi:circle-medium" class="mr-1 text-success align-middle"></app-icon>
             {{ dataCustomer.phoneOne }}
           </div>
           <div class="m-0">
-            <i class="mdi mdi-circle-medium mr-1 text-success align-middle"></i>
+            <app-icon icon="mdi:circle-medium" class="mr-1 text-success align-middle"></app-icon>
             {{ dataCustomer.phoneTwo }}
           </div>
         </div>
@@ -39,7 +39,7 @@
         </p>
         <p class="m-0 font-size-11">
           Tipo de servicio:
-          <app-icon [icon]="'mdi:thumbtack'" class="icon icon-"
+          <app-icon [icon]="'mdi:pin'" class="icon icon-"
             [class.text-success]="item.tipoServicio == 'Preventivo'"
             [class.text-danger]="item.tipoServicio == 'Correctivo'"
             [class.txt-primary]="item.tipoServicio == 'Predictivo'"

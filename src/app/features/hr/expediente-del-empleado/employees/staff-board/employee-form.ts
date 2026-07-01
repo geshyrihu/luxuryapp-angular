@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -55,10 +55,10 @@ export class EmployeeForm implements OnInit {
   nameEmployee = signal("");
   tienePermiso: boolean = true;
 
-  // ðŸŽ¯ SecciÃ³n activa
+  // ?? Sección activa
   activeSection: string = "principal";
 
-  // ðŸ“‹ Items del menÃ©
+  // ?? Items del mené
   menuItems: MenuItem[] = [];
 
   paramsSignal = toSignal(this.route.paramMap);
@@ -83,7 +83,7 @@ export class EmployeeForm implements OnInit {
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
-        // Inicializar menÃ© despuÃ©s de tener los datos
+        // Inicializar mené después de tener los datos
         this.initializeMenu();
       }
     });
@@ -102,7 +102,7 @@ export class EmployeeForm implements OnInit {
     };
 
     const all: MenuDef[] = [
-      // Sin restricciÃ³n de rol â€” visible para cualquier usuario autorizado
+      // Sin restricción de rol — visible para cualquier usuario autorizado
       {
         label: "Datos principales",
         icon: "mdi:account",
@@ -137,7 +137,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
       {
-        label: "DirecciÃ³n",
+        label: "Dirección",
         icon: "mdi:map-marker",
         section: "address",
         roles: [
@@ -181,7 +181,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo gestiÃ³n interna RR.HH.
+      // Solo gestión interna RR.HH.
       {
         label: "Datos laborales",
         icon: "mdi:briefcase",
@@ -220,7 +220,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo acceso tÃ³cnico / sistemas
+      // Solo acceso tócnico / sistemas
       {
         label: "Usuario app",
         icon: "mdi:key",

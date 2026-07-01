@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
   [value]="dataSignal()"
   #dt
@@ -31,7 +31,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">NÂ°</th>
+      <th class="table-col-5">N°</th>
       <th colspan="2" class="table-col-30" pSortableColumn="fullName">
         COLABORADOR
         <p-sortIcon field="fullName" />
@@ -46,7 +46,7 @@
       </th>
 
       <th class="table-col-30 no-print">
-        TÃ‰LEFONO
+        TÉLEFONO
         <p-sortIcon field="personalCellPhone" />
       </th>
       <th class="table-col-30" pSortableColumn="personalEmail">
@@ -105,7 +105,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ?? INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

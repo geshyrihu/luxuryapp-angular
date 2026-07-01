@@ -84,7 +84,7 @@ export class ExtintorBitacoraList implements OnInit {
     const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF Ã¢â‚¬â€ BitÃƒ¡cora Extintores",
+      "Reporte PDF ââ‚¬â€ Bitácora Extintores",
       this.dialogHandlerS.sizeSm,
     );
     if (result) await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);

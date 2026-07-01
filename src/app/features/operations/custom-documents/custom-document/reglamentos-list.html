@@ -1,4 +1,4 @@
-ï»¿<!-- Vista de escritorio -->
+<!-- Vista de escritorio -->
 <p-table
   (onRowReorder)="onRowReorder($event)"
   [globalFilterFields]="globalFilterFields"
@@ -29,7 +29,7 @@
     <tr [pReorderableRow]="index">
       <td>
         <div>
-          <span class="icon icon-mdi:menu" pReorderableRowHandle></span>
+          <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle></app-icon>
         </div>
       </td>
       <td class="text-center">{{ item.folio }}</td>
@@ -69,8 +69,8 @@
   </ng-template>
 </p-table>
 
-<!-- Vista para mÃ³viles -->
-<!-- Vista para mÃ³viles -->
+<!-- Vista para móviles -->
+<!-- Vista para móviles -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"
@@ -135,7 +135,7 @@
       <div class="p-message-wrapper p-3">
         <span class="p-message-icon mdi:information text-xl"></span>
         <span class="p-message-text ml-2"
-          >Haz una pregunta especÃ­fica sobre este reglamento y la IA analizarÃ³
+          >Haz una pregunta específica sobre este reglamento y la IA analizaró
           el documento para responderte.</span
         >
       </div>
@@ -147,7 +147,7 @@
         id="query"
         rows="4"
         pTextarea
-        placeholder="Ej. Ã³CuÃ³les son las sanciones por ruido excesivo? Ã³CuÃ³l es el horario de la alberca?"
+        placeholder="Ej. óCuóles son las sanciones por ruido excesivo? óCuól es el horario de la alberca?"
         [formControl]="consultationQueryControl"
         class="w-full"
         [disabled]="consultingDoc()"

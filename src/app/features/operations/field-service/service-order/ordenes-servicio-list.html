@@ -1,4 +1,4 @@
-ï»¿<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
@@ -15,7 +15,7 @@
         type="month"
         customClass="w-15rem"
         (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-        pTooltip="Seleccionar Mes y AÃ±o"
+        pTooltip="Seleccionar Mes y Año"
         tooltipPosition="top"
         [horizontal]="false"
         [noMargin]="true"
@@ -33,7 +33,7 @@
       </div>
       <custom-button
         iconClass="mdi:file-document-outline"
-        label="Reporte de Ã³rdenes"
+        label="Reporte de órdenes"
         (click)="onNavigateToReport()"
         variant="outlined"
       />
@@ -102,14 +102,14 @@
   <ng-template #groupheader let-item>
     <tr>
       <td colspan="8" class="font-bold text-sm surface-100 px-3 py-2">
-        {{ item.equipoClasificacion || 'Sin CategorÃ­a' }}
+        {{ item.equipoClasificacion || 'Sin Categoría' }}
       </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
       <td>
-        <!-- Esto mostrarÃ¡ los Ãºltimos 5 dÃ­gitos -->
+        <!-- Esto mostrará los últimos 5 dígitos -->
         {{ item.maintenanceCalendarId | slice:-5 }}
       </td>
       <!-- {{ item.machineryId }} | -->
@@ -197,7 +197,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Contenido visible solo en pantallas pequeÃ³as (hasta md) -->
+<!-- ?? INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="
@@ -212,9 +212,9 @@
   [dt]="dt"
 >
   <ng-container customFilters>
-    <!-- tu bloque aquÃ³ -->
+    <!-- tu bloque aquó -->
     <div class="card-body p-0">
-      <!-- SecciÃ³n TÃ­tulo y Fecha -->
+      <!-- Sección Título y Fecha -->
       <div class="flex flex-column mb-3">
         <ion-item lines="none" class="ion-no-padding transparent-item">
           <ion-label
@@ -230,7 +230,7 @@
             type="month"
             customClass="w-full"
             (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-            pTooltip="Seleccionar Mes y AÃ±o"
+            pTooltip="Seleccionar Mes y Año"
             tooltipPosition="top"
             [horizontal]="false"
           />
@@ -252,11 +252,11 @@
         }
       </ion-segment>
 
-      <!-- BotÃ³n Reporte -->
+      <!-- Botón Reporte -->
       <div class="mb-2">
         <custom-button-item
           iconName="document-text-outline"
-          label="Reporte de Ã³rdenes"
+          label="Reporte de órdenes"
           (click)="onNavigateToReport()"
           variant="outlined"
           fullWidth="true"
@@ -282,7 +282,7 @@
     </div>
   </ng-container>
 
-  <!-- Lista de Ã³rdenes de servicio en formato de tarjeta -->
+  <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
       <div
@@ -403,19 +403,19 @@
       display: none !important;
     }
 
-    /* 2. Forzar visualizaciÃ³n de la Tabla */
+    /* 2. Forzar visualización de la Tabla */
     .custom-table {
       display: block !important;
       visibility: visible !important;
       width: 100% !important;
     }
 
-    /* Resetear las clases de ocultamiento para impresiÃ³n */
+    /* Resetear las clases de ocultamiento para impresión */
     .hidden.md\:block {
       display: block !important;
     }
 
-    /* 3. Ocultar Vista MÃ³vil */
+    /* 3. Ocultar Vista Móvil */
     app-data-view-mobile {
       display: none !important;
     }
@@ -424,9 +424,9 @@
     .p-datatable-header,
     /* El Caption con filtros */
     .p-paginator-bottom,
-    /* PaginaciÃ³n */
+    /* Paginación */
     .no-print {
-      /* Clase utilitaria para columnas especÃ­ficas */
+      /* Clase utilitaria para columnas específicas */
       display: none !important;
     }
 
@@ -451,7 +451,7 @@
       font-weight: bold;
     }
 
-    /* ConfiguraciÃ³n de PÃ³gina */
+    /* Configuración de Pógina */
     @page {
       size: landscape;
       /* Sugerir horizontal para tablas anchas */

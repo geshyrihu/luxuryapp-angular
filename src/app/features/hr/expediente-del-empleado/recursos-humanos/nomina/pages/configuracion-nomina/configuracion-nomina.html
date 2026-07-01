@@ -1,6 +1,6 @@
-@if (loading()) {
+﻿@if (loading()) {
 <div class="flex justify-content-center align-items-center" style="min-height: 200px">
-  <app-icon [icon]="'mdi:spin'" class="text-4xl text-primary"></app-icon>
+  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary"></app-icon>
 </div>
 } @else {
 <form [formGroup]="form" (ngSubmit)="onSubmit()">

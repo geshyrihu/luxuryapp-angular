@@ -65,7 +65,7 @@ export class CustomerDataCompanyList implements OnInit {
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   groupingOptions = [
     { label: "Agrupar por Cliente", value: "numeroCliente" },
@@ -134,7 +134,7 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

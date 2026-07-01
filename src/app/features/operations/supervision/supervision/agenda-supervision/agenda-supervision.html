@@ -1,4 +1,4 @@
-ï»¿<div class="h6">DEPTO : {{ depto }}</div>
+<div class="h6">DEPTO : {{ depto }}</div>
 <div class="h6">NOMBRE : {{ nombre }}</div>
 <div class="h6">SEMANA : {{ semana }}</div>
 <p-table
@@ -22,7 +22,7 @@
       <div class="flex-grow-1">
         <primeng-custom-caption
           class="ocultar"
-          [title]="'Bitacora SupervisiÃ³n'"
+          [title]="'Bitacora Supervisión'"
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
           [noPadding]="true"
@@ -35,7 +35,7 @@
         </div>
         <div class="flex-shrink-0">
           <custom-button
-            ngbTooltip="Actualizar InformaciÃ³n"
+            ngbTooltip="Actualizar Información"
             icon="mdi:sync"
             (clicked)="onLoadData()"
             [rounded]="true"
@@ -205,7 +205,7 @@
         <app-empty-state
           icon="mdi:calendar-clock-outline"
           title="Sin agenda"
-          message="No hay eventos en la agenda de supervisiÃ³n."
+          message="No hay eventos en la agenda de supervisión."
         />
       </td>
     </tr>

@@ -131,7 +131,7 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
       if (ctrl) {
         if (isDisabled) {
           ctrl.disable({ emitEvent: false });
-        } else {
+        } else if (ctrl.disabled) {
           ctrl.enable({ emitEvent: false });
         }
       }

@@ -1,4 +1,4 @@
-﻿<div class="card">
+<div class="card">
   <p-table
     #dt
     [value]="dataSignal()"
@@ -26,7 +26,7 @@
         <th>No. Cuenta</th>
         <th>CLABE</th>
         <th>Titular</th>
-        <th>Teléfono</th>
+        <th>Tel�fono</th>
         <th>Parentesco</th>
         <th style="width: 8rem"></th>
       </tr>
@@ -36,7 +36,7 @@
       <tr pRowGroupHeader>
         <td colspan="7">
           <span class="font-bold ml-2">
-            👤 {{ item.employeeName }} ({{ item.numberEmployee }})
+            ?? {{ item.employeeName }} ({{ item.numberEmployee }})
           </span>
         </td>
       </tr>
@@ -102,10 +102,10 @@
         <ion-label>
           <h2 class="font-bold">{{ item.employeeName }}</h2>
           <p class="text-sm text-500">
-            🏦 {{ item.bankName }} | {{ item.bankAccount }}
+            ?? {{ item.bankName }} | {{ item.bankAccount }}
           </p>
           <p class="text-sm text-500">
-            🔗 {{ item.relacionName }}: {{ item.nameContact }}
+            ?? {{ item.relacionName }}: {{ item.nameContact }}
           </p>
         </ion-label>
         <app-action-menu slot="end">

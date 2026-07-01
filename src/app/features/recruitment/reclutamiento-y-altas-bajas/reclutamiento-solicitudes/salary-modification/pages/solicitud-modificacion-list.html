@@ -1,4 +1,4 @@
-﻿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -79,7 +79,7 @@
         <app-empty-state
           icon="mdi:currency-usd"
           title="Sin solicitudes"
-          message="No hay solicitudes de modificación salarial."
+          message="No hay solicitudes de modificaci�n salarial."
         />
       </td>
     </tr>
@@ -107,9 +107,9 @@
       </div>
       <ion-label>
         <h3>{{ item.employee }}</h3>
-        <p>{{ item.applicationRoleCurrent }} → {{ item.applicationRoleNew }}</p>
+        <p>{{ item.applicationRoleCurrent }} ? {{ item.applicationRoleNew }}</p>
         <p>
-          {{ item.currentSalary }} → {{ item.finalSalary }} · {{ item.status }}
+          {{ item.currentSalary }} ? {{ item.finalSalary }} � {{ item.status }}
         </p>
       </ion-label>
       <app-action-menu slot="end">

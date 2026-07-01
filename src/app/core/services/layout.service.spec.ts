@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+﻿import { TestBed } from '@angular/core/testing';
 import { LayoutService } from './layout.service';
 
 describe('LayoutService', () => {
@@ -25,7 +25,7 @@ describe('LayoutService', () => {
     expect(service.config.settings.layout_type).toBe('ltr');
     expect(service.config.settings.layout_version).toBe('dark-sidebar');
     expect(service.config.settings.sidebar_type).toBe('compact-wrapper');
-    expect(service.config.settings.icon).toBe('mdi:stroke-svg');
+    expect(service.config.settings.icon).toBe('mdi:draw-pen');
   });
 
   it('should have default color config', () => {

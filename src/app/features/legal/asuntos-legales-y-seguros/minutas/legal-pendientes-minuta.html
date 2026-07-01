@@ -1,4 +1,4 @@
-﻿<div class="flex justify-content-start gap-1 flex-wrap">
+<div class="flex justify-content-start gap-1 flex-wrap">
   <custom-button
     label="Pendientes"
     [severity]="statusFiltro == 0 ? 'primary' : 'secondary'"
@@ -28,7 +28,7 @@
     (clicked)="onFiltrarData(4)"
   />
 </div>
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -168,7 +168,7 @@
   </ng-template>
 </p-table>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versi�n m�vil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"

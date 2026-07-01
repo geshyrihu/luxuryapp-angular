@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Devuelve el ícono y el color de FontAwesome según la extensión del archivo.
  * @param extension La extensión del archivo (ej. 'pdf', 'xlsx').
  * @returns Un objeto con las clases de CSS para el ícono y el color.
@@ -30,7 +30,7 @@ export function getIconForFileHelper(extension: string): {
     // Archivos comprimidos
     case "zip":
     case "rar":
-      return { icon: "mdi:file-archive", color: "font-secondary" };
+      return { icon: "mdi:archive", color: "font-secondary" };
 
     // Imágenes
     case "png":
@@ -42,7 +42,7 @@ export function getIconForFileHelper(extension: string): {
     // Audio
     case "mp3":
     case "wav":
-      return { icon: "mdi:file-audio", color: "font-warning" };
+      return { icon: "mdi:file-music", color: "font-warning" };
 
     // Video
     case "mp4":

@@ -1,4 +1,4 @@
-ï»¿<div class="hidden md:block"></div>
+<div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -74,7 +74,7 @@
         <p-sortIcon field="unitNumber" />
       </th>
       <th class="w-7rem text-small" pSortableColumn="areaM2">
-        Ãrea mÂ²
+        Área m²
         <p-sortIcon field="areaM2" />
       </th>
       <th class="w-8rem text-small" pSortableColumn="indivisoPercentage">
@@ -185,7 +185,7 @@
           item.unitNumber }} }
         </p>
         <p>
-          @if (item.areaM2) { Ãrea: {{ item.areaM2 | number:'1.2-2' }} mÂ² } @if
+          @if (item.areaM2) { Área: {{ item.areaM2 | number:'1.2-2' }} m² } @if
           (item.indivisoPercentage) { &middot; Indiviso: {{
           item.indivisoPercentage | percent:'1.2-5' }} }
         </p>

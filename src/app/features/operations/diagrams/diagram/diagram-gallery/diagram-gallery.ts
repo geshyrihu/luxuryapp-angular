@@ -1,4 +1,4 @@
-ï»¿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -23,9 +23,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">
         <div class="flex align-items-center ">
-          <h2 class="m-0">GalerÃ­a de Diagramas</h2>
+          <h2 class="m-0">Galería de Diagramas</h2>
           <p-button
-            label="GestiÃ³n"
+            label="Gestión"
             icon="mdi:format-list-bulleted"
             (click)="onOpenList()"
             severity="secondary"

@@ -8,7 +8,7 @@
         <!-- Botón para abrir/cerrar el sidebar -->
         <button
           type="button"
-          class="sidebar-toggle-btn"
+          class="toolbar-icon-btn"
           (click)="sidebarToggle()"
           pTooltip="Menú"
           tooltipPosition="bottom"
@@ -16,53 +16,51 @@
           <app-icon icon="mdi:menu" class="text-xl" />
         </button>
 
-        <!-- Selector de Condominio (Select de PrimeNG) -->
+        <!-- Selector de Condominio -->
         @if (cb_customer().length > 1) {
-        <div class="p-2" style="min-width: 250px">
-          <p-select
-            [options]="cb_customer()"
-            [ngModel]="customerId()"
-            (ngModelChange)="selectCustomer($event)"
-            optionValue="value"
-            optionLabel="label"
-            dataKey="value"
-            [filter]="cb_customer().length > 10"
-            fluid
-            size="small"
-          >
-            <ng-template #selectedItem let-selectedOption>
-              @if (selectedOption) {
-              <div class="flex align-items-center gap-2">
-                <img
-                  [src]="selectedOption.image"
-                  style="width: 20px; height: 20px; object-fit: contain"
-                />
-                <div class="font-medium">{{ selectedOption.label }}</div>
-              </div>
-              }
-            </ng-template>
-            <ng-template let-customer #item>
-              <div class="flex align-items-center gap-2">
-                <img
-                  [src]="customer.image"
-                  style="width: 24px; height: 24px; object-fit: contain"
-                />
-                <div>{{ customer.label }}</div>
-              </div>
-            </ng-template>
-          </p-select>
-        </div>
+        <button
+          type="button"
+          class="customer-selector-btn"
+          (click)="customerMenu.toggle($event)"
+        >
+          <img
+            [src]="customerPhotoPath()"
+            style="width: 24px; height: 24px; object-fit: contain"
+          />
+          <span>{{ customerName() }}</span>
+          <app-icon icon="mdi:chevron-down" class="text-sm" />
+        </button>
+        <p-menu
+          #customerMenu
+          [model]="customerMenuItems()"
+          [popup]="true"
+          appendTo="body"
+        >
+          <ng-template pTemplate="item" let-item>
+            <div class="flex align-items-center gap-2 px-3 py-2 cursor-pointer">
+              <img
+                [src]="item.data.image"
+                style="width: 22px; height: 22px; object-fit: contain"
+              />
+              <span [class.font-bold]="item.styleClass === 'font-bold'"
+                >{{ item.label }}</span
+              >
+            </div>
+          </ng-template>
+        </p-menu>
         } @else {
         <div class="flex align-items-center gap-3">
           <img
             [src]="customerPhotoPath()"
             style="width: 38px; height: 38px; object-fit: contain"
           />
-          <span class="font-bold text-xl">{{ customerName() }}</span>
+          <span class="font-bold text-xl customer-name"
+            >{{ customerName() }}</span
+          >
         </div>
         }
 
-        <div class="flex-none breadcrumb-container">
+        <div class="flex-none" style="min-width: 300px">
           <p-breadcrumb [model]="breadcrumbItems"></p-breadcrumb>
         </div>
       </div>
@@ -72,40 +70,38 @@
     </ng-template> -->
 
     <ng-template #end>
-      <div class="user-actions-container">
+      <div class="flex align-items-center gap-1">
         <!-- Búsqueda Global -->
         <!-- <app-search /> -->
 
         <!-- Iconos de Navegación -->
         @for (navIcon of displayNavIcons; track navIcon.id) { @if
         (!navIcon.requiresRole || aspRoleS.hasAny(navIcon.requiresRole)) {
-        <p-button
+        <button
           type="button"
+          class="toolbar-icon-btn"
           (click)="navIcon.action()"
-          styleClass="p-button-text p-button-secondary monitor-toolbar-button m-0"
           [pTooltip]="navIcon.ngbTooltip"
           tooltipPosition="bottom"
-          size="small"
         >
           <app-icon
             [icon]="navIcon.iconClass"
             class="text-xl"
             [ngClass]="navIcon.iconExtraClass"
           />
-        </p-button>
+        </button>
         } }
 
         <!-- Theme Toggle Button -->
-        <p-button
+        <button
           type="button"
+          class="toolbar-icon-btn"
           (click)="toggleTheme()"
-          styleClass="p-button-text p-button-secondary monitor-toolbar-button"
           pTooltip="Cambiar Tema"
           tooltipPosition="bottom"
-          size="small"
         >
           <app-icon [icon]="getThemeIcon()" class="text-xl" />
-        </p-button>
+        </button>
 
         <!-- Componentes de la derecha -->
         @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
@@ -121,7 +117,8 @@
 <!-- Modal para Comunicados de IA -->
 <p-dialog
   header="Generador de Comunicados IA"
-  [visible]="displayAiModal()" (visibleChange)="displayAiModal.set($event)"
+  [visible]="displayAiModal()"
+  (visibleChange)="displayAiModal.set($event)"
   [modal]="true"
   [style]="{ width: '800px', 'max-width': '95vw' }"
   [contentStyle]="{ 'max-height': '80vh', 'overflow-y': 'auto' }"
@@ -239,10 +236,10 @@
                 [style.background-color]="'var(' + documentColor() + ')'"
                 [style.color]="'white'"
               >
-                <i
-                  class="pi text-xl"
-                  [ngClass]="['pi-info-circle', 'pi-shield', 'pi-users', 'pi-check-circle'][i % 4]"
-                ></i>
+                <app-icon
+                  [icon]="['mdi:information', 'mdi:shield-outline', 'mdi:account-group', 'mdi:check-circle'][i % 4]"
+                  class="text-xl"
+                ></app-icon>
               </div>
               <div class="flex-1">
                 <p

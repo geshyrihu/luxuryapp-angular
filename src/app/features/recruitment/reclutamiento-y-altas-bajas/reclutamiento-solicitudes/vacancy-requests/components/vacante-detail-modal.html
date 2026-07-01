@@ -1,4 +1,4 @@
-@let wp = workPosition();
+﻿@let wp = workPosition();
 @let jd = jobDescription();
 
 <p-tabs value="horarios">
@@ -52,7 +52,7 @@
         </div>
       } @else {
         <div class="flex align-items-center justify-content-center p-6 text-400">
-          <app-icon [icon]="'mdi:spin'" class="text-2xl mr-2"></app-icon> Cargando...
+          <app-icon [icon]="'mdi:loading'" class="text-2xl mr-2"></app-icon> Cargando...
         </div>
       }
     </p-tabpanel>
@@ -144,7 +144,7 @@
         </div>
       } @else {
         <div class="flex align-items-center justify-content-center p-6 text-400">
-          <app-icon [icon]="'mdi:spin'" class="text-2xl mr-2"></app-icon> Cargando...
+          <app-icon [icon]="'mdi:loading'" class="text-2xl mr-2"></app-icon> Cargando...
         </div>
       }
     </p-tabpanel>

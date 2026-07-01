@@ -1,4 +1,4 @@
-ï»¿<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <p-table
     [globalFilterFields]="globalFilterFields"
@@ -34,7 +34,7 @@
     <ng-template #header>
       <tr>
         <th class="w-8rem" pSortableColumn="folio">
-          CÃ“DIGO <p-sortIcon field="folio" />
+          CÓDIGO <p-sortIcon field="folio" />
         </th>
         <th class="w-auto" pSortableColumn="applicationRoleName">
           PUESTO <p-sortIcon field="applicationRoleName" />
@@ -107,8 +107,8 @@
             <custom-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconClass="mdi:book"
-              label="DescripciÃ³n"
-              [pTooltip]="'DescripciÃ³n de puesto'"
+              label="Descripción"
+              [pTooltip]="'Descripción de puesto'"
             />
             <custom-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
@@ -222,7 +222,7 @@
             <custom-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconName="book-outline"
-              label="DescripciÃ³n"
+              label="Descripción"
               [showLabelOnDesktop]="true"
             />
             <custom-button-item

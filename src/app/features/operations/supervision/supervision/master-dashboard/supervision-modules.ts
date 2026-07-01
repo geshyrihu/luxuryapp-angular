@@ -1,4 +1,4 @@
-﻿import { SupervisionModuleGroup } from "./supervision-module.model";
+import { SupervisionModuleGroup } from "./supervision-module.model";
 
 export const SUPERVISION_MODULES: SupervisionModuleGroup[] = [
   // -------------------------------------------------------------

@@ -1,4 +1,4 @@
-﻿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -111,7 +111,7 @@
       </div>
       <ion-label>
         <h3>{{ item.applicationRoleName }}</h3>
-        <p>{{ item.customer }} · {{ item.requestDate }}</p>
+        <p>{{ item.customer }} � {{ item.requestDate }}</p>
         <p>{{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">

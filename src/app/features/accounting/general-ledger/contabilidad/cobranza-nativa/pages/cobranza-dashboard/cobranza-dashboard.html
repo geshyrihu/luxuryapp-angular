@@ -1,4 +1,4 @@
-<div class="p-4 md:p-6 flex flex-column gap-6">
+﻿<div class="p-4 md:p-6 flex flex-column gap-6">
   <!-- Encabezado + Filtro de Meses -->
   <div class="flex align-items-center justify-content-between flex-wrap gap-3">
     <div>
@@ -24,7 +24,7 @@
 
   @if (!metricas()) {
   <div class="flex align-items-center justify-content-center h-12rem text-400">
-    <app-icon [icon]="'mdi:spin'" class="text-3xl mr-3"></app-icon> Cargando metricas...
+    <app-icon [icon]="'mdi:loading'" class="text-3xl mr-3"></app-icon> Cargando metricas...
   </div>
   } @else {
 

@@ -1,4 +1,4 @@
-﻿import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
+import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
 import {
   Component,
   computed,
@@ -12,9 +12,7 @@ import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -28,8 +26,11 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AspelSyncService } from "src/app/features/accounting/ar/aspel-sync/aspel-sync.service";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
+import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";
+import { AspelCobranzaHausSourceToolbar } from "./aspel-cobranza-haus-source-toolbar";
 import {
   AspelAccount,
   AspelAccountsByCustomerResponse,
@@ -37,9 +38,11 @@ import {
   AspelCobranzaDetalleResponse,
   AspelContrapartidaGrupo,
   AspelContrapartidaResponse,
+  AspelDataSource,
   AspelDeudaActualItem,
   AspelDeudasActualesResponse,
   AspelEstadoCuentaResponse,
+  AspelLocalStatusResponse,
   AspelMovimiento,
   AspelPendienteConceptoItem,
   AspelPendientesConceptoResponse,
@@ -58,12 +61,12 @@ import {
     CardModule,
     MessageModule,
     TagModule,
-    CustomButton,
+    AppIcon,
     CustomButtonDownload,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
+    AspelCobranzaHausSourceToolbar,
+    AspelCobranzaHausQueryPanel,
     CurrencyPipe,
     NgClass,
   ],
@@ -74,6 +77,7 @@ export class AspelCobranzaHaus {
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly cobranzaPdfS = inject(AspelCobranzaHausPdfService);
   private readonly tableScrollHeightS = inject(TableScrollHeightService);
+  private readonly aspelSyncS = inject(AspelSyncService);
 
   readonly endpointOptions: SelectItem<AspelQueryMode>[] = [
     {
@@ -94,20 +98,36 @@ export class AspelCobranzaHaus {
     },
   ];
 
+  readonly dataSourceOptions: SelectItem<AspelDataSource>[] = [
+    {
+      label: "Live",
+      value: "live",
+    },
+    {
+      label: "Local",
+      value: "local",
+    },
+  ];
+
   customerId = signal<string>("");
   accountOptions = signal<SelectItem<string>[]>([]);
   accountsLoading = signal(false);
   loading = signal(false);
+  syncLoading = signal(false);
+  localStatusLoading = signal(false);
   searched = signal(false);
   mode = signal<AspelQueryMode>("deudas-actuales");
+  dataSource = signal<AspelDataSource>("live");
   rawCatalog = signal<AspelAccount[]>([]);
   estadoCuenta = signal<AspelEstadoCuentaResponse | null>(null);
   detalleCobranza = signal<AspelCobranzaDetalleResponse | null>(null);
   contrapartidas = signal<AspelContrapartidaResponse | null>(null);
   pendientes = signal<AspelPendientesConceptoResponse | null>(null);
   deudasActuales = signal<AspelDeudasActualesResponse | null>(null);
+  localStatus = signal<AspelLocalStatusResponse | null>(null);
   private loadedAccountsYear = signal<number | null>(null);
   private loadedAccountsCustomerId = signal<string>("");
+  private loadedAccountsSource = signal<AspelDataSource | null>(null);
 
   request: AspelQueryRequest = this.buildDefaultRequest();
 
@@ -116,6 +136,10 @@ export class AspelCobranzaHaus {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   hasCustomerContext = computed(() => !!this.customerId());
+  sourceLabel = computed(() =>
+    this.dataSource() === "local" ? "snapshot local" : "Aspel live",
+  );
+  syncYear = computed(() => this.getSyncYear());
   yearLabel = computed(() => this.getContextYear()?.toString() ?? "-");
   accountRows = computed(() => this.rawCatalog());
   estadoMovimientos = computed(() => this.estadoCuenta()?.movimientos ?? []);
@@ -177,11 +201,21 @@ export class AspelCobranzaHaus {
         this.customerId.set(nextCustomerId);
       }
 
+      untracked(() => {
+        const shouldRefreshLocalStatus =
+          this.localStatus()?.customerId !== nextCustomerId;
+
+        if (shouldRefreshLocalStatus) {
+          void this.refreshLocalStatus();
+        }
+      });
+
       const year = this.getContextYear();
       if (year) {
         untracked(() => {
           const shouldForceReload =
-            this.loadedAccountsCustomerId() !== nextCustomerId;
+            this.loadedAccountsCustomerId() !== nextCustomerId ||
+            this.loadedAccountsSource() !== this.dataSource();
           void this.loadAccountOptions(nextCustomerId, year, shouldForceReload);
         });
       }
@@ -220,9 +254,34 @@ export class AspelCobranzaHaus {
     }
   }
 
-  onModeChange(): void {
+  onModeChange(nextMode?: AspelQueryMode): void {
+    if (nextMode) {
+      this.mode.set(nextMode);
+    }
+
     this.clearResults();
     this.searched.set(false);
+  }
+
+  onDataSourceChange(nextSource: AspelDataSource): void {
+    if (this.dataSource() === nextSource) return;
+
+    this.dataSource.set(nextSource);
+    this.clearResults();
+    this.searched.set(false);
+    this.accountOptions.set([]);
+    this.loadedAccountsYear.set(null);
+    this.loadedAccountsCustomerId.set("");
+    this.loadedAccountsSource.set(null);
+
+    const year = this.getContextYear();
+    if (year && this.customerId()) {
+      void this.loadAccountOptions(this.customerId(), year, true);
+    }
+
+    if (this.customerId()) {
+      void this.refreshLocalStatus();
+    }
   }
 
   canSearch(): boolean {
@@ -246,32 +305,35 @@ export class AspelCobranzaHaus {
   }
 
   getModeTitle(): string {
+    const sourceSuffix =
+      this.dataSource() === "local" ? "Local" : "Live";
+
     switch (this.mode()) {
       case "accounts":
-        return "Catalogo de Cuentas Aspel";
+        return `Catalogo de Cuentas ${sourceSuffix}`;
       case "estado-cuenta-rango":
-        return "Estado de Cuenta Aspel";
+        return `Estado de Cuenta ${sourceSuffix}`;
       case "detalle-cobranza-rango":
-        return "Detalle de Cobranza Aspel";
+        return `Detalle de Cobranza ${sourceSuffix}`;
       case "deudas-actuales":
-        return "Deudas Actuales Aspel";
+        return `Deudas Actuales ${sourceSuffix}`;
       default:
-        return "Pendientes por Concepto Aspel";
+        return `Pendientes por Concepto ${sourceSuffix}`;
     }
   }
 
   getModeDescription(): string {
     switch (this.mode()) {
       case "accounts":
-        return "Consulta el catalogo de cuentas disponible para el customer y ejercicio seleccionados.";
+        return `Consulta el catalogo de cuentas disponible para el customer y ejercicio seleccionados desde ${this.sourceLabel()}.`;
       case "estado-cuenta-rango":
-        return "Consulta movimientos y saldo progresivo de una cuenta en un rango libre.";
+        return `Consulta movimientos y saldo progresivo de una cuenta en un rango libre usando ${this.sourceLabel()}.`;
       case "detalle-cobranza-rango":
-        return "Consulta la deuda aplicada por concepto y agrupa abonos por recibo para lectura de cobranza.";
+        return `Consulta la deuda aplicada por concepto y agrupa abonos por recibo para lectura de cobranza usando ${this.sourceLabel()}.`;
       case "deudas-actuales":
-        return "Lista las propiedades del customer con deuda vigente y permite abrir el detalle pendiente en modal.";
+        return `Lista las propiedades del customer con deuda vigente y permite abrir el detalle pendiente en modal usando ${this.sourceLabel()}.`;
       default:
-        return "Consulta saldos pendientes por concepto desde cuentas directas o subcuentas nivel 4.";
+        return `Consulta saldos pendientes por concepto desde cuentas directas o subcuentas nivel 4 usando ${this.sourceLabel()}.`;
     }
   }
 
@@ -310,7 +372,7 @@ export class AspelCobranzaHaus {
       if (!year) return;
       const result =
         await this.apiResponseS.onGetItem<AspelAccountsByCustomerResponse>(
-          Endpoints.AspelCobranza.accounts(customerId, year),
+          this.getAccountsEndpoint(customerId, year),
         );
       const normalized = result ? this.normalizeAccountsResponse(result) : null;
       this.rawCatalog.set(normalized?.cuentas ?? []);
@@ -321,12 +383,7 @@ export class AspelCobranzaHaus {
       if (!fechaInicio || !fechaFin || !numCta) return;
       const result =
         await this.apiResponseS.onGetItem<AspelEstadoCuentaResponse>(
-          Endpoints.AspelCobranza.estadoCuentaRango(
-            customerId,
-            numCta,
-            fechaInicio,
-            fechaFin,
-          ),
+          this.getEstadoCuentaEndpoint(customerId, numCta, fechaInicio, fechaFin),
         );
       this.estadoCuenta.set(
         result ? this.normalizeEstadoCuentaResponse(result) : null,
@@ -338,7 +395,7 @@ export class AspelCobranzaHaus {
       if (!numCta) return;
       const result =
         await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
-          Endpoints.AspelCobranza.detalleCobranzaRango(customerId, numCta),
+          this.getDetalleCobranzaEndpoint(customerId, numCta),
         );
       this.detalleCobranza.set(
         result ? this.normalizeDetalleCobranzaResponse(result) : null,
@@ -349,26 +406,12 @@ export class AspelCobranzaHaus {
     if (mode === "deudas-actuales") {
       const result =
         await this.apiResponseS.onGetItem<AspelDeudasActualesResponse>(
-          Endpoints.AspelCobranza.deudasActuales(customerId),
+          this.getDeudasActualesEndpoint(customerId),
         );
       this.deudasActuales.set(
         result ? this.normalizeDeudasActualesResponse(result) : null,
       );
-      return;
     }
-
-    // const result =
-    //   await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
-    //     Endpoints.AspelCobranza.pendientesConceptoRango(
-    //       customerId,
-    //       numCta,
-    //       fechaInicio!,
-    //       fechaFin!,
-    //     ),
-    //   );
-    // this.pendientes.set(
-    //   result ? this.normalizePendientesResponse(result) : null,
-    // );
   }
 
   private clearResults(): void {
@@ -448,6 +491,53 @@ export class AspelCobranzaHaus {
     }
   }
 
+  async syncCobranzaSnapshot(): Promise<void> {
+    await this.runSyncAction(() =>
+      this.aspelSyncS.syncCobranza(this.customerId(), this.getSyncYear()),
+    );
+  }
+
+  async syncCompleteSnapshot(): Promise<void> {
+    await this.runSyncAction(() =>
+      this.aspelSyncS.syncCompleto(this.customerId(), this.getSyncYear()),
+    );
+  }
+
+  async refreshLocalStatus(): Promise<void> {
+    const customerId = this.customerId();
+    if (!customerId) return;
+
+    this.localStatusLoading.set(true);
+    try {
+      const status = await this.apiResponseS.onGetItem<AspelLocalStatusResponse>(
+        Endpoints.AspelCobranzaLocal.status(customerId, this.getSyncYear()),
+      );
+      this.localStatus.set(status);
+    } finally {
+      this.localStatusLoading.set(false);
+    }
+  }
+
+  private async runSyncAction(runner: () => Promise<any>): Promise<void> {
+    const customerId = this.customerId();
+    if (!customerId) return;
+
+    this.syncLoading.set(true);
+    try {
+      const result = await runner();
+      if (result !== false) {
+        await this.refreshLocalStatus();
+
+        const year = this.getContextYear();
+        if (year) {
+          await this.loadAccountOptions(customerId, year, true);
+        }
+      }
+    } finally {
+      this.syncLoading.set(false);
+    }
+  }
+
   private async loadAccountOptions(
     customerId: string,
     year: number,
@@ -457,6 +547,7 @@ export class AspelCobranzaHaus {
       !forceReload &&
       this.loadedAccountsYear() === year &&
       this.loadedAccountsCustomerId() === customerId &&
+      this.loadedAccountsSource() === this.dataSource() &&
       this.accountOptions().length
     ) {
       return;
@@ -466,7 +557,7 @@ export class AspelCobranzaHaus {
     try {
       const response =
         await this.apiResponseS.onGetItem<AspelAccountsByCustomerResponse>(
-          Endpoints.AspelCobranza.accounts(customerId, year),
+          this.getAccountsEndpoint(customerId, year),
         );
       const normalizedResponse = response
         ? this.normalizeAccountsResponse(response)
@@ -484,6 +575,7 @@ export class AspelCobranzaHaus {
       this.accountOptions.set(normalizedOptions);
       this.loadedAccountsYear.set(year);
       this.loadedAccountsCustomerId.set(customerId);
+      this.loadedAccountsSource.set(this.dataSource());
 
       const hasCurrentValue = normalizedOptions.some(
         (item) => item.value === this.request.numCta,
@@ -503,6 +595,10 @@ export class AspelCobranzaHaus {
     }
 
     return this.request.fechaInicio?.getFullYear() ?? null;
+  }
+
+  private getSyncYear(): number {
+    return this.getContextYear() ?? new Date().getFullYear();
   }
 
   private buildDefaultRequest(): AspelQueryRequest {
@@ -537,19 +633,32 @@ export class AspelCobranzaHaus {
     return {
       numCta: response.numCta ?? response.num_cta ?? "",
       departamento: response.departamento ?? "",
-      fechaInicio: response.fechaInicio ?? response.fecha_Inicio ?? "",
-      fechaFin: response.fechaFin ?? response.fecha_Fin ?? "",
-      saldoInicial: response.saldoInicial ?? response.saldo_Inicial ?? 0,
-      saldoFinal: response.saldoFinal ?? response.saldo_Final ?? 0,
+      fechaInicio:
+        response.fechaInicio ??
+        response.fecha_inicio ??
+        response.fecha_Inicio ??
+        "",
+      fechaFin:
+        response.fechaFin ?? response.fecha_fin ?? response.fecha_Fin ?? "",
+      saldoInicial:
+        response.saldoInicial ??
+        response.saldo_inicial ??
+        response.saldo_Inicial ??
+        0,
+      saldoFinal:
+        response.saldoFinal ??
+        response.saldo_final ??
+        response.saldo_Final ??
+        0,
       movimientos: (response.movimientos ?? []).map((item) => ({
         id: item.id ?? "",
-        numCta: item.numCta ?? "",
+        numCta: item.numCta ?? item.num_cta ?? "",
         fecha: item.fecha ?? "",
         tipo: item.tipo ?? "",
         concepto: item.concepto ?? "",
         monto: item.monto ?? 0,
-        saldoAnterior: item.saldoAnterior ?? 0,
-        saldoPosterior: item.saldoPosterior ?? 0,
+        saldoAnterior: item.saldoAnterior ?? item.saldo_anterior ?? 0,
+        saldoPosterior: item.saldoPosterior ?? item.saldo_posterior ?? 0,
       })),
     };
   }
@@ -693,7 +802,7 @@ export class AspelCobranzaHaus {
 
     const result =
       await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
-        Endpoints.AspelCobranza.detalleCobranzaRango(customerId, numCta),
+        this.getDetalleCobranzaEndpoint(customerId, numCta),
       );
 
     const normalized = result
@@ -714,16 +823,11 @@ export class AspelCobranzaHaus {
     if (!numCta || !this.request.fechaInicio || !this.request.fechaFin)
       return null;
 
-    const fechaInicio = this.formatDate(this.request.fechaInicio!);
-    const fechaFin = this.formatDate(this.request.fechaFin!);
+    const fechaInicio = this.formatDate(this.request.fechaInicio);
+    const fechaFin = this.formatDate(this.request.fechaFin);
 
     const result = await this.apiResponseS.onGetItem<AspelEstadoCuentaResponse>(
-      Endpoints.AspelCobranza.estadoCuentaRango(
-        customerId,
-        numCta,
-        fechaInicio,
-        fechaFin,
-      ),
+      this.getEstadoCuentaEndpoint(customerId, numCta, fechaInicio, fechaFin),
     );
 
     const normalized = result
@@ -747,5 +851,47 @@ export class AspelCobranzaHaus {
 
   private getNormalizedNumCta(): string {
     return (this.request.numCta ?? "").trim();
+  }
+
+  private getAccountsEndpoint(customerId: string, year: number): string {
+    return this.dataSource() === "local"
+      ? Endpoints.AspelCobranzaLocal.accounts(customerId, year)
+      : Endpoints.AspelCobranza.accounts(customerId, year);
+  }
+
+  private getEstadoCuentaEndpoint(
+    customerId: string,
+    numCta: string,
+    fechaInicio: string,
+    fechaFin: string,
+  ): string {
+    return this.dataSource() === "local"
+      ? Endpoints.AspelCobranzaLocal.estadoCuentaRango(
+          customerId,
+          numCta,
+          fechaInicio,
+          fechaFin,
+        )
+      : Endpoints.AspelCobranza.estadoCuentaRango(
+          customerId,
+          numCta,
+          fechaInicio,
+          fechaFin,
+        );
+  }
+
+  private getDetalleCobranzaEndpoint(
+    customerId: string,
+    numCta: string,
+  ): string {
+    return this.dataSource() === "local"
+      ? Endpoints.AspelCobranzaLocal.detalleCobranzaRango(customerId, numCta)
+      : Endpoints.AspelCobranza.detalleCobranzaRango(customerId, numCta);
+  }
+
+  private getDeudasActualesEndpoint(customerId: string): string {
+    return this.dataSource() === "local"
+      ? Endpoints.AspelCobranzaLocal.deudasActuales(customerId)
+      : Endpoints.AspelCobranza.deudasActuales(customerId);
   }
 }

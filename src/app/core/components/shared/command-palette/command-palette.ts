@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -64,7 +64,7 @@ export interface PaletteCommand {
         <div class="palette-results">
           @if (filtered().length === 0) {
             <div class="palette-empty">
-              <app-icon icon="mdi:search-off" class="text-2xl" />
+              <app-icon icon="mdi:magnify-minus" class="text-2xl" />
               <span>Sin resultados</span>
             </div>
           }
@@ -99,7 +99,7 @@ export interface PaletteCommand {
 
         <div class="palette-footer">
           <span><kbd>↑↓</kbd> Navegar</span>
-          <span><kbd>↵</kbd> Seleccionar</span>
+          <span><kbd>â†µ</kbd> Seleccionar</span>
           <span><kbd>Esc</kbd> Cerrar</span>
         </div>
       </div>

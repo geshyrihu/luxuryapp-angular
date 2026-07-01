@@ -9,8 +9,9 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     `
       :host {
         display: block;
-        height: 100%;
+        height: 100vh;
         overflow-y: auto;
+        overflow-x: hidden;
       }
     `,
   ],

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import {
   FormBuilder,
@@ -46,12 +46,12 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
   ],
   template: `
     <div class="grid">
-      <!-- Formulario de solicitud ERP (patrón estándar) -->
+      <!-- Formulario de solicitud ERP (patr�n est�ndar) -->
       <div class="col-12">
-        <p-card header="Formulario ERP â€” Solicitud Operativa">
+        <p-card header="Formulario ERP — Solicitud Operativa">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Patrón estándar: labels persistentes (<code>custom-input-*</code>),
-            grid PrimeFlex, validación visible y acciones Cancelar → Guardar al
+            Patr�n est�ndar: labels persistentes (<code>custom-input-*</code>),
+            grid PrimeFlex, validaci�n visible y acciones Cancelar ? Guardar al
             final.
           </p>
 
@@ -60,16 +60,16 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
               <custom-input-text-signal
                 [control]="form.controls['nombre']"
                 label="Nombre de la solicitud *"
-                placeholder="Descripción breve y auditable"
+                placeholder="Descripci�n breve y auditable"
               />
             </div>
 
             <div class="field col-12 md:col-6 xl:col-4">
               <custom-input-select-signal
                 [control]="form.controls['area']"
-                label="Ãrea responsable *"
+                label="Área responsable *"
                 [data]="areas"
-                placeholder="Selecciona área"
+                placeholder="Selecciona �rea"
               />
             </div>
 
@@ -115,9 +115,9 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
             <div class="field col-12 md:col-8">
               <custom-input-multiselect-signal
                 [control]="form.controls['modulos']"
-                label="Módulos relacionados"
+                label="M�dulos relacionados"
                 [options]="modulos"
-                placeholder="Selecciona módulos"
+                placeholder="Selecciona m�dulos"
               />
             </div>
 
@@ -135,8 +135,8 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
             <div class="field col-12">
               <custom-input-textarea-signal
                 [control]="form.controls['descripcion']"
-                label="Descripción ejecutiva"
-                placeholder="Descripción breve, accionable y sin lenguaje ambiguo para el usuario operativo."
+                label="Descripci�n ejecutiva"
+                placeholder="Descripci�n breve, accionable y sin lenguaje ambiguo para el usuario operativo."
                 [rows]="3"
               />
             </div>
@@ -188,18 +188,18 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
       <div class="col-12 lg:col-6">
         <p-card header="Formulario de Acceso">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Patrón login: email + contraseña con indicador de fortaleza.
+            Patr�n login: email + contrase�a con indicador de fortaleza.
           </p>
           <form [formGroup]="loginForm" class="flex flex-column gap-3">
             <custom-input-text-signal
               [control]="loginForm.controls['email']"
-              label="Correo electrónico"
+              label="Correo electr�nico"
               placeholder="admin@luxuryapp.com"
             />
             <custom-input-password-signal
               [control]="loginForm.controls['password']"
-              label="Contraseña"
-              placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+              label="Contrase�a"
+              placeholder="••••••••"
               [showStrengthIndicator]="true"
             />
             @if (
@@ -208,11 +208,11 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
             ) {
               <p-message
                 severity="error"
-                text="Ingresa un correo electrónico válido."
+                text="Ingresa un correo electr�nico v�lido."
               />
             }
             <p-button
-              label="Iniciar sesión"
+              label="Iniciar sesi�n"
               icon="mdi:login"
               styleClass="w-full"
               (onClick)="loginForm.markAllAsTouched()"
@@ -221,27 +221,27 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
         </p-card>
       </div>
 
-      <!-- Validación explícita de estados -->
+      <!-- Validaci�n expl�cita de estados -->
       <div class="col-12 lg:col-6">
-        <p-card header="Estados de Validación Explícitos">
+        <p-card header="Estados de Validaci�n Expl�citos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Haz clic en Â«Mostrar erroresÂ» para ver todos los estados de
-            validación activos.
+            Haz clic en «Mostrar errores» para ver todos los estados de
+            validaci�n activos.
           </p>
           <form [formGroup]="validationShowcase" class="flex flex-column gap-3">
             <custom-input-text-signal
               [control]="validationShowcase.controls['requerido']"
-              label="Campo requerido (vacío)"
+              label="Campo requerido (vac�o)"
               placeholder="No ingresaste nada"
             />
             <custom-input-text-signal
               [control]="validationShowcase.controls['minLength']"
-              label="Mínimo 5 caracteres"
+              label="M�nimo 5 caracteres"
               placeholder="abc"
             />
             <custom-input-number-signal
               [control]="validationShowcase.controls['rango']"
-              label="Número entre 10 y 100"
+              label="N�mero entre 10 y 100"
               [min]="10"
               [max]="100"
             />
@@ -278,7 +278,7 @@ export class WebForms {
     modulos: [[1, 3]],
     activo: [true],
     urgente: [false],
-    descripcion: ["Descripción breve, accionable y sin lenguaje ambiguo."],
+    descripcion: ["Descripci�n breve, accionable y sin lenguaje ambiguo."],
     archivo: [null],
   });
 
@@ -294,7 +294,7 @@ export class WebForms {
   });
 
   readonly areas = [
-    { label: "Administración", value: 1 },
+    { label: "Administraci�n", value: 1 },
     { label: "Operaciones", value: 2 },
     { label: "Finanzas", value: 3 },
     { label: "Recursos Humanos", value: 4 },

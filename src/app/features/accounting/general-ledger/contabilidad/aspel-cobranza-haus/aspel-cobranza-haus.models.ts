@@ -6,6 +6,8 @@ export type AspelQueryMode =
   | "pendientes-concepto-rango"
   | "deudas-actuales";
 
+export type AspelDataSource = "live" | "local";
+
 export interface SelectItem<T = string> {
   label: string;
   value: T;
@@ -39,6 +41,9 @@ export interface AspelMovimiento {
   monto: number;
   saldoAnterior: number;
   saldoPosterior: number;
+  num_cta?: string;
+  saldo_anterior?: number;
+  saldo_posterior?: number;
 }
 
 export interface AspelEstadoCuentaResponse {
@@ -54,6 +59,10 @@ export interface AspelEstadoCuentaResponse {
   fecha_Fin?: string;
   saldo_Inicial?: number;
   saldo_Final?: number;
+  fecha_inicio?: string;
+  fecha_fin?: string;
+  saldo_inicial?: number;
+  saldo_final?: number;
 }
 
 export interface AspelContrapartidaMovimiento {
@@ -200,4 +209,20 @@ export interface AspelQueryRequest {
   numCta: string | null;
   fechaInicio: Date | null;
   fechaFin: Date | null;
+}
+
+export interface AspelLocalStatusResponse {
+  customerId: string;
+  customerName: string;
+  hasCobranzaMapping: boolean;
+  totalAccounts: number;
+  totalBalances: number;
+  totalPolicies: number;
+  totalMovements: number;
+  lastAccountSyncAt: string | null;
+  lastBalanceSyncAt: string | null;
+  lastPolicySyncAt: string | null;
+  lastMovementSyncAt: string | null;
+  snapshotReady: boolean;
+  notes: string;
 }

@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -16,8 +16,8 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
 interface IMenuTone {
   card: string;
-  accent: string;      // hex Ã© border-top y color de icono (alineado con master-dashboard)
-  bgColor: string;     // hex Ã© fondo del contenedor de icono
+  accent: string;      // hex é border-top y color de icono (alineado con master-dashboard)
+  bgColor: string;     // hex é fondo del contenedor de icono
   desktopShell: string;
   mobileShell: string;
   glyph: string;

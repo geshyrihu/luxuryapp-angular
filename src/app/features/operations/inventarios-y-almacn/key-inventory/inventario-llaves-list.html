@@ -1,4 +1,4 @@
-ï»¿<p-table
+<p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -22,17 +22,17 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="descripcion">
-        DescripciÃ³n <p-sortIcon field="descripcion" />
+        Descripción <p-sortIcon field="descripcion" />
       </th>
       <th pSortableColumn="marca">Marca <p-sortIcon field="marca" /></th>
       <th pSortableColumn="numeroLlave">
-        NÃºmero <p-sortIcon field="numeroLlave" />
+        Número <p-sortIcon field="numeroLlave" />
       </th>
       <th pSortableColumn="cantidad">
         Cantidad <p-sortIcon field="cantidad" />
       </th>
       <th pSortableColumn="equipoClasificacion">
-        ClasificaciÃ³n <p-sortIcon field="equipoClasificacion" />
+        Clasificación <p-sortIcon field="equipoClasificacion" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -102,7 +102,7 @@
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
         <p>
-          {{ item.marca }} | NÂº {{ item.numeroLlave }} | Cant: {{ item.cantidad
+          {{ item.marca }} | Nº {{ item.numeroLlave }} | Cant: {{ item.cantidad
           }}
         </p>
         <p>{{ item.equipoClasificacion }}</p>
