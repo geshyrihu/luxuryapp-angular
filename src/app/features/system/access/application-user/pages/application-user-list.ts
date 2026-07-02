@@ -8,7 +8,7 @@ import { firstValueFrom } from "rxjs";
 import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web/icon/button-active-desactive";
 import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
 import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
-import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
+
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
@@ -46,7 +46,6 @@ import { MdEditAccount } from "./md-edit-account";
     WebButtonIconDelete,
     WebButtonLabelItem,
     WebButtonIconActiveDesactive,
-    WebButtonLabelActiveDesactive,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
     PrimeNgCustomCaption,

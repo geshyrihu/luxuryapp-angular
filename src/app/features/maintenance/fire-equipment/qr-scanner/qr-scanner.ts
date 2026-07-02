@@ -1,6 +1,6 @@
 ﻿import { Component, inject, OnDestroy, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 declare class BarcodeDetector {
@@ -12,7 +12,7 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-qr-scanner",
   templateUrl: "./qr-scanner.html",
-  imports: [ButtonModule],
+  imports: [WebButtonLabel],
 })
 export class QrScanner implements OnDestroy {
   apiResponseS = inject(ApiResponseService);

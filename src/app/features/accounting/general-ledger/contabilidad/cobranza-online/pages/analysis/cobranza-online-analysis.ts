@@ -6,7 +6,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
@@ -41,7 +41,6 @@ function buildTodayInputValue() {
     IonItem,
     IonLabel,
     WebButtonLabel,
-    WebButtonIcon,
   ],
   templateUrl: "./cobranza-online-analysis.html",
 })

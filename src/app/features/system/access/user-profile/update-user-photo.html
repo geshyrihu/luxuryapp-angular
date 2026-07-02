@@ -25,11 +25,13 @@
           (change)="onCameraCapture($event)"
         />
 
-        <p-button
+        <il-button
           label="Tomar foto"
-          icon="mdi:camera"
-          styleClass="p-button-outlined p-button-secondary w-full sm:w-auto"
-          (onClick)="triggerCamera()"
+          iconClass="mdi:camera"
+          severity="secondary"
+          [outlined]="true"
+          styleClass="w-full sm:w-auto"
+          (clicked)="triggerCamera()"
         />
       </div>
     </div>

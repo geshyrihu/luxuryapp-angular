@@ -1,8 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 import { CheckboxModule } from "primeng/checkbox";
 import { DatePickerModule } from "primeng/datepicker";
 import { DialogModule } from "primeng/dialog";
@@ -31,8 +32,9 @@ type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contr
   imports: [
     CommonModule,
     FormsModule,
-    ButtonModule,
     CardModule,
+    WebButtonLabel,
+    WebButtonIcon,
     CheckboxModule,
     DatePickerModule,
     DialogModule,
@@ -124,8 +126,8 @@ export class CatalogGuia {
   ];
 
   readonly componentCatalog = [
-    { family: "Botones unificados", selector: "custom-button-*", source: "core/components/web/buttons", useCase: "Acciones estandarizadas. Auto-detectan plataforma.", preferredFor: "CRUD, acciones por fila, guardar, editar, eliminar.", avoidWhen: "Nunca — reemplazaron ios-button-* eliminados.", status: "Usar" as const },
-    { family: "Inputs unificados", selector: "custom-input-*-signal", source: "core/components/web/inputs", useCase: "CVA completo. Auto-detectan plataforma.", preferredFor: "Todos los formularios — web y mobile.", avoidWhen: "Nunca — reemplazaron ion-input-* eliminados.", status: "Usar" as const },
+    { family: "Botones unificados", selector: "custom-button-*", source: "core/components/web/buttons", useCase: "Acciones estandarizadas. Auto-detectan plataforma.", preferredFor: "CRUD, acciones por fila, guardar, editar, eliminar.", avoidWhen: "Nunca ï¿½ reemplazaron ios-button-* eliminados.", status: "Usar" as const },
+    { family: "Inputs unificados", selector: "custom-input-*-signal", source: "core/components/web/inputs", useCase: "CVA completo. Auto-detectan plataforma.", preferredFor: "Todos los formularios ï¿½ web y mobile.", avoidWhen: "Nunca ï¿½ reemplazaron ion-input-* eliminados.", status: "Usar" as const },
     { family: "Mobile data", selector: "app-data-view-mobile", source: "core/components/data-view-mobile", useCase: "Listado mobile agrupado con template proyectado.", preferredFor: "Reemplazar tablas densas en pantallas pequenas.", avoidWhen: "Comparacion tabular de muchas columnas en desktop.", status: "Mobile" as const },
     { family: "Acciones contextuales", selector: "app-action-menu", source: "core/components/action-menu", useCase: "Menu de acciones por fila con PrimeNG Popover.", preferredFor: "Mas de dos acciones secundarias.", avoidWhen: "Accion primaria visible.", status: "Usar" as const },
     { family: "Tabla PrimeNG", selector: "primeng-custom-caption / footer", source: "core/components/primeng-custom-*", useCase: "Piezas auxiliares para tablas ERP.", preferredFor: "Listados con busqueda, caption y pie.", avoidWhen: "Listados mobile donde convenga DataViewMobile.", status: "Usar" as const },

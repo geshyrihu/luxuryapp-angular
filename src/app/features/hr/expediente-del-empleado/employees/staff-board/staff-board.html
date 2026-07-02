@@ -454,32 +454,22 @@
 >
   <!-- Tabs de selecci�n -->
   <div class="flex mb-4">
-    <button
-      type="button"
-      class="btn btn-sm"
-      [class.btn-primary]="inactivosTab() === 'positions'"
-      [class.btn-ghost-secondary]="inactivosTab() !== 'positions'"
-      (click)="inactivosTab.set('positions')"
-    >
-      <app-icon [icon]="'mdi:office-building'" class="mr-1"></app-icon>
-      Puestos
-      <span class="badge badge-neutral ml-1"
-        >{{ inactivePositions().length }}</span
-      >
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm"
-      [class.btn-primary]="inactivosTab() === 'employees'"
-      [class.btn-ghost-secondary]="inactivosTab() !== 'employees'"
-      (click)="inactivosTab.set('employees')"
-    >
-      <app-icon [icon]="'mdi:account'" class="mr-1"></app-icon>
-      Colaboradores
-      <span class="badge badge-neutral ml-1"
-        >{{ inactiveEmployees().length }}</span
-      >
-    </button>
+    <il-button
+      iconClass="mdi:office-building"
+      [label]="'Puestos (' + inactivePositions().length + ')'"
+      [severity]="inactivosTab() === 'positions' ? 'primary' : 'secondary'"
+      [variant]="inactivosTab() === 'positions' ? 'solid' : 'ghost'"
+      size="small"
+      (clicked)="inactivosTab.set('positions')"
+    />
+    <il-button
+      iconClass="mdi:account"
+      [label]="'Colaboradores (' + inactiveEmployees().length + ')'"
+      [severity]="inactivosTab() === 'employees' ? 'primary' : 'secondary'"
+      [variant]="inactivosTab() === 'employees' ? 'solid' : 'ghost'"
+      size="small"
+      (clicked)="inactivosTab.set('employees')"
+    />
   </div>
 
   @if (inactivosLoading()) {

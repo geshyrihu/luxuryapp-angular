@@ -18,7 +18,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ERecurrence } from "src/app/core/enums/e-recurrence.enum";
@@ -147,7 +147,6 @@ interface IGoogleCalendarEventForm {
     CustomInputSwitch,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    AppIcon,
   ],
 })
 export class GoogleCalendarForm implements OnInit {

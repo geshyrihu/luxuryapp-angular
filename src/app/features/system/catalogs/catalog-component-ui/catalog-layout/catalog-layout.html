@@ -20,20 +20,20 @@
     </div>
 
     <div class="catalog-header__end">
-      <p-button
+      <iw-button
         [icon]="isDarkMode() ? 'mdi:weather-sunny' : 'mdi:weather-night'"
         [severity]="isDarkMode() ? 'warn' : 'secondary'"
-        (onClick)="toggleTheme()"
+        (clicked)="toggleTheme()"
         [rounded]="true"
-        [text]="true"
+        variant="text"
         pTooltip="Alternar tema"
       />
-      <p-button
+      <iw-button
         icon="mdi:cellphone"
         [severity]="mobilePreview() ? 'primary' : 'secondary'"
-        (onClick)="mobilePreview.set(!mobilePreview())"
+        (clicked)="mobilePreview.set(!mobilePreview())"
         [rounded]="true"
-        [text]="true"
+        variant="text"
         pTooltip="Simular vista móvil"
       />
     </div>

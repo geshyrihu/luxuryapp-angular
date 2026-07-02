@@ -113,25 +113,21 @@
             </div>
 
             <div class="flex align-items-center gap-2">
-              <button
-                class="btn-luxury-excel"
-                (click)="exportExcel()"
-                pTooltip="Exportar a Excel"
-                tooltipPosition="bottom"
-              >
-                <app-icon [icon]="'mdi:file-excel'" />
-                <span>Exportar Excel</span>
-              </button>
+              <il-button
+                label="Exportar Excel"
+                iconClass="mdi:file-excel"
+                styleClass="btn-luxury-excel"
+                title="Exportar a Excel"
+                (clicked)="exportExcel()"
+              />
 
-              <button
-                class="btn-luxury-pdf"
-                (click)="exportPdf()"
-                pTooltip="Exportar a PDF"
-                tooltipPosition="bottom"
-              >
-                <app-icon [icon]="'mdi:file-pdf-box'" />
-                <span>Exportar PDF</span>
-              </button>
+              <il-button
+                label="Exportar PDF"
+                iconClass="mdi:file-pdf-box"
+                styleClass="btn-luxury-pdf"
+                title="Exportar a PDF"
+                (clicked)="exportPdf()"
+              />
 
               <div class="flex gap-1 ml-2">
                 @for (filtro of filtroEquipos; track trackByFiltro($index,
@@ -210,20 +206,18 @@
     <!-- 📱 INICIO: Componente adaptado para versión móvil -->
     <div class="block md:hidden">
       <div class="px-2 mb-3 flex flex-column gap-2">
-        <button
-          class="btn-luxury-excel w-full justify-content-center py-3"
-          (click)="exportExcel()"
-        >
-          <app-icon [icon]="'mdi:file-excel'" />
-          <span>Exportar a Excel</span>
-        </button>
-        <button
-          class="btn-luxury-pdf w-full justify-content-center py-3"
-          (click)="exportPdf()"
-        >
-          <app-icon [icon]="'mdi:file-pdf-box'" />
-          <span>Exportar a PDF</span>
-        </button>
+        <il-button
+          label="Exportar a Excel"
+          iconClass="mdi:file-excel"
+          styleClass="btn-luxury-excel w-full justify-content-center py-3"
+          (clicked)="exportExcel()"
+        />
+        <il-button
+          label="Exportar a PDF"
+          iconClass="mdi:file-pdf-box"
+          styleClass="btn-luxury-pdf w-full justify-content-center py-3"
+          (clicked)="exportPdf()"
+        />
       </div>
 
       <!-- Category Filters (Chips) -->

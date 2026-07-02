@@ -5,8 +5,8 @@
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -16,7 +16,7 @@ import { ProfielService } from "src/app/core/services/profiel-service";
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
-  imports: [CardModule, CustomInputImg, ButtonModule],
+  imports: [CardModule, CustomInputImg, WebButtonLabel],
 })
 export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);

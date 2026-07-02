@@ -13,8 +13,6 @@ import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-
 /**
  * AppBarcodeInput — Input de texto con botón de escaneo de barcode/QR.
  * En mobile activa BarcodeDetector API (si disponible) o fallback a cámara.
@@ -29,7 +27,6 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
     ButtonModule,
     InputTextModule,
     TooltipModule,
-    AppIcon,
   ],
   template: `
     <div class="bi-root">

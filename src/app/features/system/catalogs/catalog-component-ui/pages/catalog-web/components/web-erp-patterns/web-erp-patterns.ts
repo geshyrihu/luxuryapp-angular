@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { DrawerModule } from "primeng/drawer";
 import { StepperModule } from "primeng/stepper";
 import { DividerModule } from "primeng/divider";
@@ -16,8 +16,8 @@ import { DatePickerModule } from "primeng/datepicker";
   standalone: true,
   imports: [
     CommonModule,
-    ButtonModule,
     CardModule,
+    WebButtonLabel,
     DrawerModule,
     StepperModule,
     DividerModule,

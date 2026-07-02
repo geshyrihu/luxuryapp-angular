@@ -148,13 +148,15 @@
 
             <!-- Detalle expandible técnico (solo SuperAdmin) — oculto por defecto -->
             <div (click)="$event.stopPropagation()">
-              <button
-                class="p-link text-xs text-color-secondary flex align-items-center gap-1 mt-2 hover:text-color"
-                (click)="toggleExpand(card.title)"
-              >
-                <app-icon [icon]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'" style="font-size:0.85rem;"></app-icon>
-                <span>{{ isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle técnico' }}</span>
-              </button>
+              <il-button
+                [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'"
+                [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle técnico'"
+                variant="link"
+                severity="secondary"
+                size="small"
+                styleClass="text-xs mt-2"
+                (clicked)="toggleExpand(card.title)"
+              />
             </div>
 
             <!-- Detalle expandible (Técnico) -->

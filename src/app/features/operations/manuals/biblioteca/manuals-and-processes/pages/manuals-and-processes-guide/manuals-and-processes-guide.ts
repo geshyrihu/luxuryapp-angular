@@ -1,8 +1,9 @@
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { Router, RouterLink } from "@angular/router";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
@@ -16,7 +17,9 @@ import { TagModule } from "primeng/tag";
 
   imports: [
     CommonModule,
-    ButtonModule,
+    WebButtonLabel,
+    WebButtonIcon,
+    RouterLink,
     CardModule,
     PanelModule,
     DividerModule,

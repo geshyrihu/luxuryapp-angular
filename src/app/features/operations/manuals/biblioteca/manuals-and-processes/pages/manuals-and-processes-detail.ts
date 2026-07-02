@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
@@ -22,7 +21,6 @@ import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 
   imports: [
     CommonModule,
-    ButtonModule,
     ImageModule,
     TagModule,
     DiagramPreviewComponent,
@@ -64,13 +62,13 @@ export class ManualsAndProcessesDetail implements OnInit {
 
     let base = manual.periodicityName || "A Demanda";
     if (manual.periodicity === 0) return "A Demanda";
-    if (manual.periodicity === 1) return "Única Vez";
+    if (manual.periodicity === 1) return "ï¿½nica Vez";
     if (manual.periodicity === 2) return "Diario";
 
     // Semanal
     if (manual.periodicity === 3) {
       if (manual.executionDaysOfWeek?.length) {
-        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+        const days = ["Dom", "Lun", "Mar", "Miï¿½", "Jue", "Vie", "Sï¿½b"];
         const selected = manual.executionDaysOfWeek
           .map((d) => days[d])
           .join(", ");
@@ -82,18 +80,18 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Mensual
     if (manual.periodicity === 4) {
       if (manual.executionDayOfMonth) {
-        return `Mensual (Día ${manual.executionDayOfMonth})`;
+        return `Mensual (Dï¿½a ${manual.executionDayOfMonth})`;
       }
       if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
-        const weeks = ["1ra", "2da", "3ra", "4ta", "Última"];
+        const weeks = ["1ra", "2da", "3ra", "4ta", "ï¿½ltima"];
         const days = [
           "Domingo",
           "Lunes",
           "Martes",
-          "Miércoles",
+          "Miï¿½rcoles",
           "Jueves",
           "Viernes",
-          "Sábado",
+          "Sï¿½bado",
         ];
         const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
         const d = days[manual.executionDaysOfWeek[0]];

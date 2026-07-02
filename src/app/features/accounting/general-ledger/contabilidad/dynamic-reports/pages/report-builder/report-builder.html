@@ -41,25 +41,25 @@
         />
       </div>
 
-      <p-button
+      <il-button
         label="Ejemplos"
-        icon="mdi:lightbulb"
+        iconClass="mdi:lightbulb"
         severity="help"
-        [text]="true"
-        (click)="showExamples.set(true)"
+        variant="text"
+        (clicked)="showExamples.set(true)"
       />
-      <p-button
+      <il-button
         label="Cancelar"
-        icon="mdi:close"
+        iconClass="mdi:close"
         severity="secondary"
-        [text]="true"
-        (click)="cancelar()"
+        variant="text"
+        (clicked)="cancelar()"
       />
-      <p-button
+      <il-button
         label="Guardar Reporte"
-        icon="mdi:content-save"
+        iconClass="mdi:content-save"
         [loading]="guardando()"
-        (click)="guardar()"
+        (clicked)="guardar()"
         styleClass="shadow-4"
       />
     </div>
@@ -100,12 +100,12 @@
       <!-- Toolbar del Canvas -->
       <div class="p-3 flex align-items-center justify-content-between surface-0 border-bottom-1 border-surface-100 shadow-sm">
         <div class="flex gap-2">
-          <p-button
+          <il-button
             label="Añadir Sección"
-            icon="mdi:plus-circle"
-            [text]="true"
+            iconClass="mdi:plus-circle"
+            variant="text"
             size="small"
-            (click)="agregarSeccion()"
+            (clicked)="agregarSeccion()"
           />
           <span class="text-xs text-500 align-self-center">
             Crea una sección vacía y luego arrastra cuentas o agrega filas.
@@ -130,12 +130,12 @@
               class="p-select-sm"
             />
           </div>
-          <p-button
-            icon="mdi:cog"
-            [text]="true"
+          <iw-button
+            iconClass="mdi:cog"
+            variant="text"
             severity="secondary"
             pTooltip="Configuración avanzada"
-            (click)="opConfig.toggle($event)"
+            (clicked)="opConfig.toggle($event)"
           />
         </div>
       </div>
@@ -159,7 +159,7 @@
             <app-icon [icon]="'mdi:content-copy'" class="text-6xl mb-3"></app-icon>
             <h3>El canvas está vacío</h3>
             <p>Añade una sección para comenzar a diseñar tu reporte</p>
-            <p-button label="Crear primera sección" icon="mdi:plus" (click)="agregarSeccion()" />
+            <il-button label="Crear primera sección" iconClass="mdi:plus" (clicked)="agregarSeccion()" />
           </div>
         }
 
@@ -180,7 +180,7 @@
                 />
               </div>
               <div class="flex gap-2">
-                <p-button icon="mdi:delete" [text]="true" severity="danger" size="small" (click)="eliminarSeccion(sec.sectionId)" />
+                <iw-button iconClass="mdi:delete" [text]="true" severity="danger" size="small" (clicked)="eliminarSeccion(sec.sectionId)" />
               </div>
             </div>
 
@@ -204,12 +204,12 @@
                 <div class="surface-0 border-round-lg border-1 border-surface-100 p-2 flex align-items-center gap-3 shadow-1 hover:shadow-2 transition-all hover:border-primary-200" [class.bg-blue-50]="row.rowType === 'account'" [class.bg-purple-50]="row.rowType === 'formula'">
                   <!-- Botones Subir/Bajar -->
                   <div class="flex flex-column gap-0">
-                    <p-button icon="mdi:chevron-up" [text]="true" size="small" severity="secondary"
+                    <iw-button iconClass="mdi:chevron-up" [text]="true" size="small" severity="secondary"
                       [disabled]="rowIdx === 0"
-                      (click)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx - 1)" />
-                    <p-button icon="mdi:chevron-down" [text]="true" size="small" severity="secondary"
+                      (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx - 1)" />
+                    <iw-button iconClass="mdi:chevron-down" [text]="true" size="small" severity="secondary"
                       [disabled]="rowIdx === sec.rows.length - 1"
-                      (click)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx + 1)" />
+                      (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx + 1)" />
                   </div>
 
                   <!-- Badge de Tipo -->
@@ -245,13 +245,13 @@
                           <span>Suelta cuentas aquí...</span>
                         </div>
                         @if (selectedCatalogCodes().length > 0) {
-                          <p-button
+                          <il-button
                             label="Añadir seleccionadas"
-                            icon="mdi:plus"
+                            iconClass="mdi:plus"
                             size="small"
                             severity="primary"
                             [text]="true"
-                            (click)="addSelectedAccountsToRow(sec.sectionId, row.rowId)"
+                            (clicked)="addSelectedAccountsToRow(sec.sectionId, row.rowId)"
                           />
                         }
                       } @else {
@@ -271,14 +271,14 @@
                       <!-- Botón para añadir seleccionados (Fallback si el drag falla) -->
                       @if (selectedCatalogCodes().length > 0) {
                         <div class="ml-auto pl-2">
-                          <p-button
-                            icon="mdi:plus"
+                          <iw-button
+                            iconClass="mdi:plus"
                             [rounded]="true"
                             [text]="true"
                             severity="primary"
                             size="small"
-                            pTooltip="Añadir cuentas seleccionadas en el catálogo"
-                            (click)="addSelectedAccountsToRow(sec.sectionId, row.rowId)" />
+                            title="Añadir cuentas seleccionadas en el catálogo"
+                            (clicked)="addSelectedAccountsToRow(sec.sectionId, row.rowId)" />
                         </div>
                       }
                     </div>
@@ -302,14 +302,14 @@
 
                   <!-- Signo/Multiplicador -->
                   <div class="flex align-items-center gap-2 border-left-1 surface-border px-3">
-                    <p-button
-                      [icon]="row.multiplier === 1 ? 'mdi:plus' : 'mdi:minus'"
+                    <iw-button
+                      [iconClass]="row.multiplier === 1 ? 'mdi:plus' : 'mdi:minus'"
                       [severity]="row.multiplier === 1 ? 'success' : 'danger'"
                       [text]="true"
                       [rounded]="true"
                       size="small"
-                      pTooltip="Cambiar signo"
-                      (click)="livePreviewS.toggleMultiplier(sec.sectionId, row.rowId)"
+                      title="Cambiar signo"
+                      (clicked)="livePreviewS.toggleMultiplier(sec.sectionId, row.rowId)"
                     />
                   </div>
 
@@ -337,12 +337,12 @@
                     styleClass="text-xs opacity-60 font-mono flex-shrink-0"
                   />
 
-                  <p-button
-                    icon="mdi:delete"
+                  <iw-button
+                    iconClass="mdi:delete"
                     [text]="true"
                     severity="danger"
                     size="small"
-                    (click)="eliminarRenglon(sec.sectionId, row.rowId)"
+                    (clicked)="eliminarRenglon(sec.sectionId, row.rowId)"
                   />
 
                 </div>
@@ -351,8 +351,8 @@
 
             <!-- Footer de Sección -->
             <div class="p-2 bg-surface-50 flex gap-2 justify-content-center border-top-1 border-surface-100 mt-auto">
-              <p-button label="Añadir Cuenta" icon="mdi:plus" [text]="true" size="small" (click)="agregarRenglon(sec.sectionId, 'account')" />
-              <p-button label="Añadir Fórmula" icon="mdi:percent" [text]="true" severity="help" size="small" (click)="agregarRenglon(sec.sectionId, 'formula')" />
+              <il-button label="Añadir Cuenta" iconClass="mdi:plus" [text]="true" size="small" (clicked)="agregarRenglon(sec.sectionId, 'account')" />
+              <il-button label="Añadir Fórmula" iconClass="mdi:percent" [text]="true" severity="help" size="small" (clicked)="agregarRenglon(sec.sectionId, 'formula')" />
             </div>
           </div>
         </div>

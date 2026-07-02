@@ -59,13 +59,14 @@
               required
             />
             <div class="flex justify-content-end mt-[-10px]">
-              <button
-                type="button"
-                class="text-xs text-primary font-medium hover:underline p-1"
-                (click)="autoAllocate()"
-              >
-                <app-icon [icon]="'mdi:lightning-bolt'" class="text-xs mr-1"></app-icon>Distribuir/Auto-asignar
-              </button>
+              <il-button
+                label="Distribuir/Auto-asignar"
+                iconClass="mdi:lightning-bolt"
+                variant="link"
+                size="small"
+                styleClass="text-xs"
+                (clicked)="autoAllocate()"
+              />
             </div>
 
             <custom-input-date-signal

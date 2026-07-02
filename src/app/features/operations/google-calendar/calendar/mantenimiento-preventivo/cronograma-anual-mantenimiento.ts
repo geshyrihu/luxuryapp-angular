@@ -24,6 +24,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
@@ -51,6 +52,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     TableModule,
     FormsModule,
     WebButtonLabelItem,
+    WebButtonLabel,
     CommonModule,
     TooltipModule,
     PrimeNgCustomCaption,

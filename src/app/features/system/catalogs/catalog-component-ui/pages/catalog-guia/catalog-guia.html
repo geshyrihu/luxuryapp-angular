@@ -173,8 +173,8 @@
       </div>
     </div>
     <div class="flex justify-content-end gap-2 mt-4">
-      <p-button label="Cancelar" severity="secondary" [outlined]="true" />
-      <p-button label="Guardar cambios" icon="mdi:content-save" />
+      <il-button label="Cancelar" severity="secondary" variant="outline" />
+      <il-button label="Guardar cambios" icon="mdi:content-save" severity="success" variant="outline" />
     </div>
   </p-card>
   <p-message severity="warn" text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar." class="mb-5 block" />
@@ -185,7 +185,7 @@
       <ng-template #caption>
         <div class="flex flex-wrap justify-content-between align-items-center gap-3">
           <div><strong>Solicitudes operativas</strong><span class="block text-sm text-color-secondary">Acciones visibles maximas: 2 + menu contextual.</span></div>
-          <p-button label="Nuevo registro" icon="mdi:plus" size="small" />
+          <il-button label="Nuevo registro" icon="mdi:plus" size="sm" />
         </div>
       </ng-template>
       <ng-template #header><tr><th>Folio</th><th>Area</th><th>Responsable</th><th>Fecha</th><th class="text-right">Importe</th><th>Estado</th><th class="text-center">Acciones</th></tr></ng-template>
@@ -197,7 +197,7 @@
           <td>{{ row.dueDate }}</td>
           <td class="text-right">{{ row.amount | currency:'MXN':'symbol':'1.0-0' }}</td>
           <td><p-tag [value]="row.status" [severity]="getStatusSeverity(row.status)" /></td>
-          <td><div class="flex justify-content-center gap-2"><p-button icon="mdi:eye" [rounded]="true" [text]="true" /><p-button icon="mdi:pencil" [rounded]="true" [text]="true" severity="secondary" /></div></td>
+          <td><div class="flex justify-content-center gap-2"><iw-button icon="mdi:eye" variant="text" /><iw-button icon="mdi:pencil" variant="text" severity="secondary" /></div></td>
         </tr>
       </ng-template>
     </p-table>
@@ -206,7 +206,7 @@
     <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round text-center"><p-progressSpinner strokeWidth="4" /><strong class="block mt-2">Loading</strong><span class="text-xs text-color-secondary">Spinner en acciones cortas, skeleton en carga estructural.</span></div></div>
     <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round flex flex-column gap-2"><p-skeleton width="100%" height="1.25rem" /><p-skeleton width="70%" height="1.25rem" /><strong>Skeleton</strong><span class="text-xs text-color-secondary">Anticipa layout en cards, listas o tablas.</span></div></div>
     <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="success" text="Registro guardado correctamente." /><p-message severity="warn" text="Faltan documentos por validar." /></div></div>
-    <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="error" text="Sin permisos para aprobar este proceso." /><p-button label="Abrir confirmacion" icon="mdi:external-link" (onClick)="openDialog()" styleClass="mt-2 w-full" /></div></div>
+    <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="error" text="Sin permisos para aprobar este proceso." /><il-button label="Abrir confirmacion" icon="mdi:external-link" (clicked)="openDialog()" customClass="mt-2 w-full" /></div></div>
   </div>
 
   <h3 class="text-xl font-bold mb-3">Toolbar ERP</h3>
@@ -214,9 +214,9 @@
     <ng-template #start><div><strong>Solicitudes operativas</strong><span class="block text-sm text-color-secondary">Filtros, acciones y estado de pantalla.</span></div></ng-template>
     <ng-template #end>
       <div class="flex gap-2 flex-wrap justify-content-end">
-        <p-button label="Limpiar" severity="secondary" [outlined]="true" icon="mdi:filter-off" />
-        <p-button label="Exportar" severity="secondary" icon="mdi:download" />
-        <p-button label="Nuevo" icon="mdi:plus" />
+        <il-button label="Limpiar" severity="secondary" variant="outline" icon="mdi:filter-off" />
+        <il-button label="Exportar" severity="secondary" icon="mdi:download" />
+        <il-button label="Nuevo" icon="mdi:plus" />
       </div>
     </ng-template>
   </p-toolbar>
@@ -252,8 +252,8 @@
   <p-dialog header="Confirmacion institucional" [(visible)]="dialogVisible" [modal]="true" [style]="{ width: 'min(92vw, 34rem)' }" [draggable]="false">
     <p>Los dialogs deben resolver decisiones breves. Si el usuario necesita capturar informacion extensa, navega a una pantalla dedicada.</p>
     <ng-template #footer>
-      <p-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="dialogVisible = false" />
-      <p-button label="Confirmar" icon="mdi:check" (onClick)="dialogVisible = false" />
+      <il-button label="Cancelar" severity="secondary" variant="outline" (clicked)="dialogVisible = false" />
+      <il-button label="Confirmar" icon="mdi:check" (clicked)="dialogVisible = false" />
     </ng-template>
   </p-dialog>
 </section>

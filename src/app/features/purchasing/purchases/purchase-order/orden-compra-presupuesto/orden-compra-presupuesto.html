@@ -121,13 +121,6 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
       </td>
       <td class="text-center">
         @if (!submitting() && ordenCompraService.totalPorCubrir() > 0) {
-        <!-- <p-button
-          (onClick)="onSubmit(item)"
-          styleClass="p-button-outlined p-button-primary"
-          [disabled]="isSaveDisabled(item)"
-          icon="mdi:content-save"
-          label="Guardar"
-        ></p-button> -->
         <il-button-item
           (clicked)="onSubmit(item)"
           iconClass="mdi:content-save"

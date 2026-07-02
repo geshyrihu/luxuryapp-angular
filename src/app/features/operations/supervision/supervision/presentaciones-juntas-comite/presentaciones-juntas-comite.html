@@ -101,14 +101,6 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCarga }}</p>
           </div>
           <div class="mt-1">
-            <!-- <p-button
-              pTooltip="Visualizar Pdf"
-              tooltipPosition="top"
-              (onClick)="navigateToPdf(item.archivoJunta)"
-              label="Pdf"
-              icon="mdi:download"
-              styleClass="p-button-danger p-button-sm p-button-outlined w-xs mr-1 no-print"
-            ></p-button> -->
             <il-button-view-pdf
               [url]="item.archivoJunta"
               pdf="Portada"

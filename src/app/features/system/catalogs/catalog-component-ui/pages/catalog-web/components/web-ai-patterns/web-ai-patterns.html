@@ -18,12 +18,12 @@
       <p class="text-sm mb-3" style="color: var(--ds-text-secondary)">Modal de análisis de imágenes con inteligencia artificial para OCR o inspección visual.</p>
       
       <div class="p-3 border-round border-1 text-center" style="border-color: var(--ds-border); background: var(--ds-surface-variant)">
-        <p-button 
+        <il-button 
             label="Simular Image Analysis Dialog" 
-            icon="pi pi-image" 
-            styleClass="p-button-outlined"
-            (onClick)="openImageAnalysis()">
-        </p-button>
+            icon="mdi:image" 
+            variant="outline"
+            (clicked)="openImageAnalysis()">
+        </il-button>
         
         <!-- Componente oculto -->
         <app-image-analysis-dialog #aiDialog></app-image-analysis-dialog>

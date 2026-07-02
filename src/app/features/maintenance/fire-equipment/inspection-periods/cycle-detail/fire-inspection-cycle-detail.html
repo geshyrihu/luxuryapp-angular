@@ -18,17 +18,20 @@
       <div class="flex gap-2 align-items-center flex-wrap">
         <span class="font-semibold">Escanear equipo:</span>
         @if (!scanning()) {
-          <button
-            type="button"
-            class="p-button p-button-sm p-button-outlined"
-            (click)="startScan(video)"
-          >
-            Iniciar cámara
-          </button>
+          <il-button
+            label="Iniciar cámara"
+            size="small"
+            [outlined]="true"
+            (clicked)="startScan(video)"
+          />
         } @else {
-          <button type="button" class="p-button p-button-sm p-button-danger p-button-outlined" (click)="stopScan()">
-            Detener
-          </button>
+          <il-button
+            label="Detener"
+            severity="danger"
+            size="small"
+            [outlined]="true"
+            (clicked)="stopScan()"
+          />
         }
       </div>
       @if (scanStatus()) {
@@ -66,13 +69,12 @@
               <small>{{ item.inspectedAt | date:'dd-MMM-yy HH:mm' }}</small>
             </td>
             <td class="p-2">
-              <button
-                type="button"
-                class="p-button p-button-sm p-button-text"
-                (click)="openChecklist(item)"
-              >
-                Inspeccionar
-              </button>
+              <il-button
+                label="Inspeccionar"
+                size="small"
+                [text]="true"
+                (clicked)="openChecklist(item)"
+              />
             </td>
           </tr>
         }

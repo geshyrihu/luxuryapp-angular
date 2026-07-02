@@ -14,15 +14,12 @@
           [value]="manualId()"
           (input)="manualId.set($any($event.target).value)"
         />
-        <button
-          pButton
-          type="button"
+        <il-button
           label="Buscar equipo"
-          icon="pi pi-search"
-          class="p-button-primary"
-          (click)="resolveManual()"
+          iconClass="pi pi-search"
+          (clicked)="resolveManual()"
           [disabled]="!manualId().trim()"
-        ></button>
+        />
         @if (errorMsg()) {
           <p class="text-red-600 text-center m-0">{{ errorMsg() }}</p>
         }
@@ -58,23 +55,18 @@
       }
 
       @if (!scanning()) {
-        <button
-          pButton
-          type="button"
+        <il-button
           label="Iniciar escaneo"
-          icon="pi pi-camera"
-          class="p-button-primary"
-          (click)="startScan(videoEl)"
-        ></button>
+          iconClass="pi pi-camera"
+          (clicked)="startScan(videoEl)"
+        />
       } @else {
-        <button
-          pButton
-          type="button"
+        <il-button
           label="Detener"
-          icon="pi pi-stop"
-          class="p-button-secondary"
-          (click)="stopScan()"
-        ></button>
+          iconClass="pi pi-stop"
+          severity="secondary"
+          (clicked)="stopScan()"
+        />
       }
     }
   </div>

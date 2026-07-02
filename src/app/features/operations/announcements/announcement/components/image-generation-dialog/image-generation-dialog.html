@@ -86,18 +86,12 @@
         ></textarea>
 
         <div class="flex justify-content-center mt-3">
-          <button
-            class="mic-button shadow-2 border-none cursor-pointer"
-            [class.listening]="isListening()"
-            (click)="toggleListing()"
-            pTooltip="Presiona para dictar"
-            tooltipPosition="bottom"
-          >
-            <app-icon
-              [icon]="isListening() ? 'mdi:stop' : 'mdi:microphone'"
-              class="text-xl"
-            />
-          </button>
+          <iw-button
+            [iconClass]="isListening() ? 'mdi:stop' : 'mdi:microphone'"
+            [styleClass]="isListening() ? 'mic-button shadow-2 listening' : 'mic-button shadow-2'"
+            title="Presiona para dictar"
+            (clicked)="toggleListing()"
+          />
         </div>
 
         @if(isListening()) {

@@ -171,14 +171,14 @@
         <p-popover #op styleClass="p-0">
           <div class="flex flex-wrap gap-1 p-2" style="max-width: 200px">
             @for (s of statusOrden; track s) {
-            <button
-              type="button"
-              class="hoja-badge-btn"
+            <il-button
+              [label]="s"
+              variant="text"
+              size="small"
+              styleClass="hoja-badge-btn"
               [style.background]="statusConfig[s].color"
-              (click)="setStatus(emp.employeeId, celda.fecha, s); op.hide()"
-            >
-              {{ s }}
-            </button>
+              (clicked)="setStatus(emp.employeeId, celda.fecha, s); op.hide()"
+            />
             }
           </div>
         </p-popover>

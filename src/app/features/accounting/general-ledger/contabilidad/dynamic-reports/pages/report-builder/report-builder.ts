@@ -21,7 +21,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AccordionModule } from "primeng/accordion";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { BadgeModule } from "primeng/badge";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { ChipModule } from "primeng/chip";
 import { DialogModule } from "primeng/dialog";
@@ -76,7 +77,8 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     ProgressSpinnerModule,
     BadgeModule,
     PopoverModule,
-    ButtonModule,
+    WebButtonLabel,
+    WebButtonIcon,
     ChipModule,
     InputGroupModule,
     InputGroupAddonModule,

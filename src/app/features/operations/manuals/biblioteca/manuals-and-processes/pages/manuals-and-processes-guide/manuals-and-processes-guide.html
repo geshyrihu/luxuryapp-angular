@@ -2,13 +2,14 @@
   <div class="w-full xl:w-10 mx-auto">
     <!-- Header -->
     <div class="flex align-items-center mb-5">
-      <p-button
-        icon="mdi:arrow-left"
+      <iw-button
+        iconClass="mdi:arrow-left"
         [text]="true"
         severity="secondary"
-        (onClick)="onBack()"
-        pTooltip="Volver al listado"
-        styleClass="mr-3 border-round-lg p-button-text p-button-lg"
+        size="large"
+        (clicked)="onBack()"
+        title="Volver al listado"
+        styleClass="mr-3 border-round-lg"
       />
       <div>
         <h1 class="text-4xl font-bold text-primary m-0">
@@ -284,9 +285,9 @@
         </div>
       </div>
       <div class="mt-4 flex justify-content-end">
-        <p-button
+        <il-button
           label="Ver Estándar Documental Completo"
-          icon="mdi:external-link"
+          iconClass="mdi:external-link"
           severity="help"
           [text]="true"
           routerLink="/settings/ui-catalog"

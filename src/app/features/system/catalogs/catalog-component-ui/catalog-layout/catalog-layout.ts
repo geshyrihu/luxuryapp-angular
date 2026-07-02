@@ -1,20 +1,20 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 
 @Component({
   selector: "app-catalog-layout",
   imports: [
     CommonModule,
     RouterModule,
-    ButtonModule,
     TagModule,
     TooltipModule,
     AppIcon,
+    WebButtonIcon,
   ],
   templateUrl: "./catalog-layout.html",
   styleUrls: ["./catalog-layout.scss"],

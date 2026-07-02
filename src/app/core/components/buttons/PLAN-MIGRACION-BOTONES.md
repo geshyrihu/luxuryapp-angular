@@ -328,30 +328,55 @@ Para cada feature, el reemplazo es mecánico:
 
 ---
 
-### Fase 2c–2j (pendiente de deglozar)
+### Fase 2c–2j ✅ (Completada)
 
-- [ ] `system/gestin-de-cliente/`
-- [ ] `system/infrastructure/`
-- [ ] `system/vault/`
-- [ ] `system/test/`
-- [ ] `legal/`
-- [ ] `hr/`
-- [ ] `recruitment/`
-- [ ] `maintenance/`
-- [ ] `purchasing/`
-- [ ] `operations/`
-- [ ] `accounting/`
+Todos los `features/` migrados: **0** selectores `custom-button-*` en templates y **0**
+imports `CustomButton*`/`CustomBtn*` fuera de `catalog-component-ui/` (showcase, Fase 4).
+
+- [x] `system/gestin-de-cliente/`
+- [x] `system/infrastructure/`
+- [x] `system/vault/`
+- [x] `system/test/`
+- [x] `legal/`
+- [x] `hr/` — incluye fix de `employees/pages/employee-list.ts` (import roto
+      `CustomBtnActiveDesactive` → `WebButtonLabelActiveDesactive`; también se
+      restauraron acentos corruptos con bytes NUL)
+- [x] `recruitment/`
+- [x] `maintenance/`
+- [x] `purchasing/`
+- [x] `operations/`
+- [x] `accounting/` (incluye contabilidad/cobranza-nativa)
+
+> **Pendiente único fuera de Fase 4:** ninguno. El resto de referencias legacy vive
+> exclusivamente en `catalog-component-ui/` (showcase), que se migra en Fase 4.
 
 ---
 
-### Fase 3 — Limpieza
+### Fase 3 — Limpieza (⛔ bloqueada por Fase 4)
+
+> Los únicos importadores restantes de `legacy/`, `buttons-icon-*` y `buttons-mobiil/`
+> son los 10 archivos de `catalog-component-ui/`. No se puede borrar nada hasta que
+> Fase 4 los desconecte.
 
 - [ ] Eliminar `legacy/`
 - [ ] Eliminar `buttons-icon-*` (shim barrels)
 - [ ] Eliminar `revisar-si.sirve/` (shim re-exports)
 - [ ] Eliminar `buttons-mobiil/`
 
-### Fase 4 — Catalog UI Showcase
+### Fase 4 — Catalog UI Showcase (⏳ pendiente — único trabajo restante)
+
+Archivos que aún importan sistemas legacy (showcase side-by-side):
+
+- [ ] `pages/catalog-core/catalog-core.ts`
+- [ ] `pages/catalog-core-item/catalog-core-item.ts`
+- [ ] `pages/catalog-patterns/catalog-patterns.ts`
+- [ ] `pages/catalog-web/components/web-badges/web-badges.ts`
+- [ ] `pages/catalog-web/components/web-buttons/web-buttons.ts`
+- [ ] `pages/catalog-web/components/web-overlays/web-overlays.ts`
+- [ ] `pages/catalog-web/components/web-tables/web-tables.ts`
+- [ ] `pages/catalog-web-item/catalog-web-item.ts`
+- [ ] `shared/patterns-kpi/patterns-kpi.ts`
+- [ ] `shared/web-core-coverage.ts`
 
 - [ ] Actualizar `catalog-component-ui/` para solo mostrar `web/` y `mobile/`
 

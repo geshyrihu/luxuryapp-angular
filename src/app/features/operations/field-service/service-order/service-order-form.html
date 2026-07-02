@@ -52,12 +52,13 @@
           <label class="form-btn-group-label">Estatus</label>
           <div class="flex flex-wrap gap-2 mt-1">
             @for (opt of cb_Status(); track opt.value) {
-            <button
-              type="button"
-              class="btn-opt"
-              [class.btn-opt--active]="form.controls.status.value === opt.value"
-              (click)="form.controls.status.setValue(opt.value)"
-            >{{ opt.label }}</button>
+            <il-button
+              [label]="opt.label"
+              [severity]="form.controls.status.value === opt.value ? 'primary' : 'secondary'"
+              [variant]="form.controls.status.value === opt.value ? 'solid' : 'ghost'"
+              size="small"
+              (clicked)="form.controls.status.setValue(opt.value)"
+            />
             }
           </div>
           @if (form.controls.status.invalid && form.controls.status.touched) {
@@ -77,12 +78,13 @@
           <label class="form-btn-group-label">Tipo de mantenimiento</label>
           <div class="flex flex-wrap gap-2 mt-1">
             @for (opt of cb_TypeMaintance(); track opt.value) {
-            <button
-              type="button"
-              class="btn-opt"
-              [class.btn-opt--active]="form.controls.typeMaintance.value === opt.value"
-              (click)="form.controls.typeMaintance.setValue(opt.value)"
-            >{{ opt.label }}</button>
+            <il-button
+              [label]="opt.label"
+              [severity]="form.controls.typeMaintance.value === opt.value ? 'primary' : 'secondary'"
+              [variant]="form.controls.typeMaintance.value === opt.value ? 'solid' : 'ghost'"
+              size="small"
+              (clicked)="form.controls.typeMaintance.setValue(opt.value)"
+            />
             }
           </div>
           @if (form.controls.typeMaintance.invalid && form.controls.typeMaintance.touched) {

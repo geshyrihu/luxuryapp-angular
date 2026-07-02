@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import type {
   CobranzaOnlineInspectionHistoryResponse,
   CobranzaOnlineInspectionRelated401Summary,
@@ -14,7 +14,7 @@ import type {
 @Component({
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
-  imports: [CommonModule, TableModule, ButtonModule, PrimeNgCustomCaption],
+  imports: [CommonModule, TableModule, WebButtonLabel, PrimeNgCustomCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

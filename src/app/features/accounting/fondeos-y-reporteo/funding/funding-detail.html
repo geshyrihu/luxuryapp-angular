@@ -120,25 +120,7 @@
               ><app-icon [icon]="'mdi:format-list-bulleted'" /></a>
             }
 
-            @if(isRolSuperUsuario) {
-            <!-- <p-button
-              icon="mdi:magnify"
-              pTooltip="Conciliar SAT"
-              tooltipPosition="bottom"
-              [text]="true"
-              severity="info"
-              size="small"
-              (onClick)="onConciliate()"
-            ></p-button> -->
-            <!-- <il-button
-              iconClass="mdi:code-tags"
-              ngbTooltip="XMLs"
-              severity="help"
-              size="sm"
-              variant="ghost-text"
-              (clicked)="onDownloadXml()"
-            /> -->
-            } @if (dataSignal().length > 0) {
+            @if (dataSignal().length > 0) {
             <il-button
               iconClass="mdi:printer"
               ngbTooltip="Solicitudes"
