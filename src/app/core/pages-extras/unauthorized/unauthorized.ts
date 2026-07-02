@@ -1,13 +1,21 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { Component, inject } from "@angular/core";
+import { Router } from "@angular/router";
 import { DividerModule } from "primeng/divider";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
 @Component({
   selector: "app-unauthorized",
-  imports: [RouterModule, ButtonModule, DividerModule, AppIcon],
+  imports: [DividerModule, AppIcon, IlButton],
   templateUrl: "./unauthorized.html",
 })
 export class Unauthorized {
-  // You can add logic here if needed, e.g., to redirect after a delay
+  private router = inject(Router);
+
+  goHome(): void {
+    this.router.navigate(["/"]);
+  }
+
+  goLogin(): void {
+    this.router.navigate(["/auth/login"]);
+  }
 }

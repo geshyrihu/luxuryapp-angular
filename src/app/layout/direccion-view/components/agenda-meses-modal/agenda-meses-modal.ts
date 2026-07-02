@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -15,7 +15,7 @@ interface MesGroup {
 @Component({
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
-  imports: [CommonModule, ButtonModule, TagModule, TooltipModule],
+  imports: [CommonModule, TagModule, TooltipModule, WebButtonLabel],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -45,37 +45,41 @@
 
   <ng-template #end>
     <div class="flex align-items-center gap-1 px-3">
-      <p-button
-        (click)="onBack()"
-        icon="pi pi-chevron-left"
-        styleClass="p-button-text p-button-secondary"
+      <iw-button
+        (clicked)="onBack()"
+        icon="mdi:chevron-left"
+        variant="text"
+        severity="secondary"
         pTooltip="Atras"
         tooltipPosition="bottom"
-        size="small"
+        size="sm"
       />
-      <p-button
-        (click)="onForward()"
-        icon="pi pi-chevron-right"
-        styleClass="p-button-text p-button-secondary"
+      <iw-button
+        (clicked)="onForward()"
+        icon="mdi:chevron-right"
+        variant="text"
+        severity="secondary"
         pTooltip="Adelante"
         tooltipPosition="bottom"
-        size="small"
+        size="sm"
       />
-      <p-button
-        (click)="onHome()"
-        icon="pi pi-home"
-        styleClass="p-button-text p-button-secondary"
+      <iw-button
+        (clicked)="onHome()"
+        icon="mdi:home"
+        variant="text"
+        severity="secondary"
         pTooltip="Inicio"
         tooltipPosition="bottom"
-        size="small"
+        size="sm"
       />
-      <p-button
-        (click)="toggleTheme()"
+      <iw-button
+        (clicked)="toggleTheme()"
         [icon]="getThemeIcon()"
-        styleClass="p-button-text p-button-secondary"
+        variant="text"
+        severity="secondary"
         pTooltip="Cambiar Tema"
         tooltipPosition="bottom"
-        size="small"
+        size="sm"
       />
       <app-profile-monitor />
     </div>

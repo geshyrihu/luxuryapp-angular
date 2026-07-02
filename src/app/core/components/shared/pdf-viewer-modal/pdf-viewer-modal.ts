@@ -1,11 +1,10 @@
 import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { PdfViewerModule } from "ng2-pdf-viewer";
-import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { environment } from "src/environments/environment";
-import { AppIcon } from "../app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
 
 /**
  * 📄 PDF VIEWER MODAL
@@ -14,7 +13,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
  */
 @Component({
   selector: "app-pdf-viewer-modal",
-  imports: [PdfViewerModule, ButtonModule, ProgressSpinnerModule, AppIcon],
+  imports: [PdfViewerModule, ProgressSpinnerModule, IlButton],
   templateUrl: "./pdf-viewer-modal.html",
 })
 export class PdfViewerModal implements OnInit, OnDestroy {

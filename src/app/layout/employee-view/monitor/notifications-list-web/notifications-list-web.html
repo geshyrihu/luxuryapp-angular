@@ -3,16 +3,14 @@
     <ng-template #header>
       <div class="flex align-items-center justify-content-between px-4 pt-4">
         <span class="text-xl font-bold">Notificaciones</span>
-        <p-button
-          styleClass="p-button-text p-button-secondary"
+        <iw-button
+          icon="mdi:refresh"
+          variant="text"
+          severity="secondary"
           pTooltip="Recargar"
-          (click)="onLoadNotification()"
+          (clicked)="onLoadNotification()"
           [loading]="loading()"
-        >
-          <ng-template #icon>
-            <app-icon icon="mdi:refresh"></app-icon>
-          </ng-template>
-        </p-button>
+        />
       </div>
     </ng-template>
 

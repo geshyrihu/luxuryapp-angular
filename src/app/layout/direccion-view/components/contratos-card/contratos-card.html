@@ -18,15 +18,13 @@
         <span class="text-sm text-color-secondary">Sin contratos proximos a vencer</span>
       }
     </div>
-    <p-button
+    <il-button
       label="Ver vigentes"
-      styleClass="p-button-sm p-button-outlined"
-      (onClick)="abrirVigentes()"
-    >
-      <ng-template #icon>
-        <app-icon icon="mdi:file-document-edit" class="mr-2"></app-icon>
-      </ng-template>
-    </p-button>
+      icon="mdi:file-document-edit"
+      size="sm"
+      variant="outline"
+      (clicked)="abrirVigentes()"
+    />
   </div>
 
   <!-- Lista por cliente -->

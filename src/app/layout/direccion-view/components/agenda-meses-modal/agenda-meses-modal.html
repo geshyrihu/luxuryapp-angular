@@ -3,12 +3,12 @@
   <div class="flex align-items-center gap-2">
     <span class="text-sm text-500">Mostrar:</span>
     @for (opcion of [3, 6, 9, 12]; track opcion) {
-      <p-button
+      <il-button
         [label]="opcion + ' meses'"
-        [styleClass]="mesesSeleccionados() === opcion
-          ? 'p-button-sm'
-          : 'p-button-outlined p-button-secondary p-button-sm'"
-        (onClick)="cambiarMeses(opcion)"
+        size="sm"
+        [severity]="mesesSeleccionados() === opcion ? 'primary' : 'secondary'"
+        [variant]="mesesSeleccionados() === opcion ? 'solid' : 'outline'"
+        (clicked)="cambiarMeses(opcion)"
       />
     }
   </div>

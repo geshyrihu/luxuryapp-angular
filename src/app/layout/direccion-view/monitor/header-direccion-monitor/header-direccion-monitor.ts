@@ -11,8 +11,8 @@ import {
 } from "@angular/router";
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
-import { ButtonModule } from "primeng/button";
 import { SelectModule } from "primeng/select";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
@@ -24,7 +24,6 @@ import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/p
 @Component({
   selector: "app-header-direccion-monitor",
   imports: [
-    ButtonModule,
     BreadcrumbModule,
     CommonModule,
     FormsModule,
@@ -33,6 +32,7 @@ import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/p
     SelectModule,
     ToolbarModule,
     TooltipModule,
+    WebButtonIcon,
   ],
   templateUrl: "./header-direccion-monitor.html",
   styleUrl: "./header-direccion-monitor.scss",

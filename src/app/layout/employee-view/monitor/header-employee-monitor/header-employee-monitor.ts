@@ -20,8 +20,9 @@ import {
 } from "@angular/router";
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
-import { ButtonModule } from "primeng/button";
 import { MenuModule } from "primeng/menu";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
@@ -53,8 +54,9 @@ import { AiService } from "src/app/core/services/ai.service";
     // ActionIconsGroupComponent,
     AppIcon,
     BreadcrumbModule,
-    ButtonModule,
     CommonModule,
+    WebButtonLabel,
+    WebButtonIcon,
     DialogModule,
     TextareaModule,
     FormsModule,

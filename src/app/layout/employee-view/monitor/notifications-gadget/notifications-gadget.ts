@@ -9,6 +9,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 @Component({
   selector: "app-notifications-gadget",
   imports: [
@@ -18,6 +19,7 @@ import { SignalRService } from "src/app/core/services/signalr.service";
     DrawerModule,
     TooltipModule,
     ScrollPanelModule,
+    WebButtonLabel,
   ],
   templateUrl: "./notifications-gadget.html",
   styleUrl: "./notifications-gadget.scss",
@@ -73,5 +75,10 @@ export class NotificationsGadget implements OnInit {
       this.onLoadNotification();
       this.router.navigate([url]);
     });
+  }
+
+  irATodasLasNotificaciones(): void {
+    this.drawerVisible.set(false);
+    this.router.navigate(['/notifications']);
   }
 }

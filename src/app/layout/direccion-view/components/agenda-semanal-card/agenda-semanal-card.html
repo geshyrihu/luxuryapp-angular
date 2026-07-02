@@ -11,15 +11,13 @@
       <span class="text-3xl font-bold text-900">{{ totalEventos() }}</span>
       <span class="text-sm text-500">evento{{ totalEventos() === 1 ? '' : 's' }} en las proximas dos semanas</span>
     </div>
-    <p-button
+    <il-button
       label="Ver agenda"
-      styleClass="p-button-sm p-button-outlined"
-      (onClick)="abrirAgenda()"
-    >
-      <ng-template #icon>
-        <app-icon icon="mdi:calendar" class="mr-2"></app-icon>
-      </ng-template>
-    </p-button>
+      icon="mdi:calendar"
+      size="sm"
+      variant="outline"
+      (clicked)="abrirAgenda()"
+    />
   </div>
 
   <!-- Proximos eventos -->

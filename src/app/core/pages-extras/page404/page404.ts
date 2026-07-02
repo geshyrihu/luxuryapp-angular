@@ -1,19 +1,21 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Component, OnInit } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { Component, OnInit, inject } from "@angular/core";
+import { Router } from "@angular/router";
 import { DividerModule } from "primeng/divider";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
 @Component({
   selector: "app-page404",
   templateUrl: "./page404.html",
-  imports: [ButtonModule, RouterModule, DividerModule, AppIcon],
+  imports: [DividerModule, AppIcon, IlButton],
 })
-
-/**
- * Page404 component
- */
 export class Page404 implements OnInit {
+  private router = inject(Router);
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  goHome(): void {
+    this.router.navigate(["/"]);
+  }
 }

@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 import { TooltipModule } from "primeng/tooltip";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -16,7 +17,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 @Component({
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
-  imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
+  imports: [CommonModule, TagModule, TooltipModule, AppIcon, WebButtonLabel, WebButtonIcon],
   styles: [`
     .agenda-hoy-badge {
       background: rgba(255, 255, 255, 0.2);

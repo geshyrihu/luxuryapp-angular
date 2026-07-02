@@ -26,13 +26,13 @@
     <p class="subtext">
       Parece que has perdido tu conexión. Por favor, revísala y vuelve a intentarlo.
     </p>
-    <p-button
-      (onClick)="retry()"
+    <il-button
+      (clicked)="retry()"
       [label]="!isRetrying ? 'Reintentar' : 'Verificando...'"
       size="large"
       [class.shake]="isRetrying"
       [disabled]="isRetrying"
-    ></p-button>
+    ></il-button>
   </div>
 </div>
 

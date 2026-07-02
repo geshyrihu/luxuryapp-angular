@@ -69,11 +69,10 @@
   <!-- Pie del Drawer -->
   <ng-template #footer>
     <div class="text-center w-full">
-      <p-button
+      <il-button
         label="Ver todas las notificaciones"
-        styleClass="p-button-link"
-        [routerLink]="['/notifications']"
-        (click)="drawerVisible.set(false)"
+        variant="link"
+        (clicked)="irATodasLasNotificaciones()"
       />
     </div>
   </ng-template>

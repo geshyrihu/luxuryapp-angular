@@ -1,15 +1,15 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { Subscription } from "rxjs";
 import { debounceTime, filter } from "rxjs/operators";
 import { ConnectivityService } from "../../services/connectivity.service";
 import { RedirectService } from "../../services/redirect.service";
+import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
 @Component({
   selector: "app-offline",
   templateUrl: "./offline.html",
   styleUrls: ["./offline.scss"],
-  imports: [ButtonModule],
+  imports: [IlButton],
 })
 export class Offline implements OnInit, OnDestroy {
   private router = inject(Router);

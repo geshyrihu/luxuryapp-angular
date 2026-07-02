@@ -2,8 +2,8 @@ import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { BadgeModule } from "primeng/badge";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 @Component({
   selector: "app-notifications-list-web",
   templateUrl: "./notifications-list-web.html",
-  imports: [BadgeModule, ButtonModule, CardModule, ScrollPanelModule, AppIcon],
+  imports: [BadgeModule, CardModule, ScrollPanelModule, AppIcon, WebButtonIcon],
 })
 export class NotificationsListWeb implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -24,27 +24,21 @@
       <div
         class="flex align-items-center justify-content-center gap-3 flex-wrap"
       >
-        <p-button
+        <il-button
           label="Volver al Inicio"
-          routerLink="/"
-          [rounded]="true"
-          styleClass="px-5"
-        >
-          <ng-template #icon>
-            <app-icon icon="mdi:home" class="mr-2"></app-icon>
-          </ng-template>
-        </p-button>
+          iconClass="mdi:home"
+          rounded
+          customClass="px-5"
+          (clicked)="goHome()"
+        ></il-button>
 
-        <p-button
+        <il-button
           label="Contactar Soporte"
-          [variant]="'outlined'"
-          [rounded]="true"
-          styleClass="px-5"
-        >
-          <ng-template #icon>
-            <app-icon icon="mdi:envelope" class="mr-2"></app-icon>
-          </ng-template>
-        </p-button>
+          iconClass="mdi:envelope"
+          variant="outline"
+          rounded
+          customClass="px-5"
+        ></il-button>
       </div>
     </div>
 

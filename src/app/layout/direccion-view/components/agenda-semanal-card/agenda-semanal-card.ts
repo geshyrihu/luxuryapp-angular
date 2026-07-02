@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { DialogSize } from "src/app/core/enums/dialog-size";
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AgendaSemanal } from "../agenda-semanal/agenda-semanal";
@@ -11,7 +11,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 @Component({
   selector: "app-agenda-semanal-card",
   templateUrl: "./agenda-semanal-card.html",
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [CommonModule, AppIcon, WebButtonLabel],
 })
 export class AgendaSemanalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

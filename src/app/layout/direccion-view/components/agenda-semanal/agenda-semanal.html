@@ -13,44 +13,43 @@
   </div>
 
   <div class="flex align-items-center gap-1 flex-wrap">
-    <p-button
-      styleClass="p-button-text p-button-secondary p-button-sm"
+    <iw-button
+      icon="mdi:chevron-left"
+      variant="text"
+      severity="secondary"
+      size="sm"
       pTooltip="Dos semanas anteriores"
-      (onClick)="periodoAnterior()"
-    >
-      <ng-template #icon>
-        <app-icon icon="mdi:chevron-left"></app-icon>
-      </ng-template>
-    </p-button>
+      (clicked)="periodoAnterior()"
+    />
     <span class="text-sm font-semibold text-700 px-2 white-space-nowrap">
       {{ rangoLabel() }}
     </span>
-    <p-button
-      styleClass="p-button-text p-button-secondary p-button-sm"
+    <iw-button
+      icon="mdi:chevron-right"
+      variant="text"
+      severity="secondary"
+      size="sm"
       pTooltip="Dos semanas siguientes"
-      (onClick)="periodoSiguiente()"
-    >
-      <ng-template #icon>
-        <app-icon icon="mdi:chevron-right"></app-icon>
-      </ng-template>
-    </p-button>
+      (clicked)="periodoSiguiente()"
+    />
     @if (!esPeriodoActual()) {
-    <p-button
+    <il-button
       label="Hoy"
-      styleClass="p-button-outlined p-button-sm ml-1"
-      (onClick)="volverHoy()"
+      variant="outline"
+      size="sm"
+      customClass="ml-1"
+      (clicked)="volverHoy()"
     />
     }
-    <p-button
+    <il-button
       label="Ver meses"
-      styleClass="p-button-text p-button-sm ml-2"
+      icon="mdi:calendar-plus"
+      variant="text"
+      size="sm"
+      customClass="ml-2"
       pTooltip="Ver todos los meses con eventos"
-      (onClick)="abrirVistasMeses()"
-    >
-      <ng-template #icon>
-        <app-icon icon="mdi:calendar-plus" class="mr-2"></app-icon>
-      </ng-template>
-    </p-button>
+      (clicked)="abrirVistasMeses()"
+    />
   </div>
 </div>
 
