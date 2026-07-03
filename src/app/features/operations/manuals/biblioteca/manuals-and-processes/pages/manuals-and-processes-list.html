@@ -13,7 +13,7 @@
         <div>
           <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
           <p class="text-base text-500 m-0">
-            Índice general de procedimientos y documentación operativa de la organización
+            Ã³ndice general de procedimientos y documentaciÃ³n operativa de la organizaciÃ³n
           </p>
         </div>
       </div>
@@ -52,12 +52,12 @@
   </div>
   }
 
-  <!-- Índice de Contenidos -->
+  <!-- Ã³ndice de Contenidos -->
   @else {
   <div class="flex flex-column gap-5">
     @for (group of groupedData(); track group.dept) {
     <div class="surface-card border-round-xl border-1 surface-border shadow-2 overflow-hidden">
-      <!-- Encabezado de Sección (Departamento) -->
+      <!-- Encabezado de SecciÃ³n (Departamento) -->
       <div 
         class="p-4 flex align-items-center justify-content-between gap-3 border-bottom-1 surface-border"
         [style.border-top]="'4px solid ' + group.config.color"
@@ -79,7 +79,7 @@
               {{ group.dept }}
             </h2>
             <p class="text-xs text-500 m-0 mt-1">
-              Manuales y directrices del área
+              Manuales y directrices del Ã³rea
             </p>
           </div>
         </div>
@@ -92,16 +92,16 @@
         </span>
       </div>
 
-      <!-- Lista de Contenidos (Tipo Índice) -->
+      <!-- Lista de Contenidos (Tipo Ã³ndice) -->
       <div class="p-2 md:p-3 flex flex-column gap-1">
         @for (manual of group.manuals; track manual.id; let index = $index) {
         <div
           class="flex align-items-center justify-content-between p-3 border-round-lg hover:surface-100 cursor-pointer transition-all transition-duration-150"
           (click)="onViewTemplate(manual.id)"
         >
-          <!-- Izquierda: Número, Folio e Índice -->
+          <!-- Izquierda: NÃºmero, Folio e Ã³ndice -->
           <div class="flex align-items-center flex-grow-1 min-w-0 mr-4">
-            <!-- Número de índice de manual -->
+            <!-- NÃºmero de Ã³ndice de manual -->
             <span class="font-mono text-sm text-400 font-bold w-2rem flex-shrink-0 hidden sm:inline-block">
               {{ (index + 1) | number: '2.0-0' }}
             </span>
@@ -116,18 +116,18 @@
               {{ manual.folio }}
             </span>
 
-            <!-- Descripción/Título del Manual -->
+            <!-- DescripciÃ³n/TÃºtulo del Manual -->
             <span class="text-base text-700 font-semibold truncate">
-              {{ manual.description || '—' }}
+              {{ manual.description || 'Ã©' }}
             </span>
 
-            <!-- Línea punteada de índice (TOC Leader Line) -->
+            <!-- LÃ³nea punteada de Ã³ndice (TOC Leader Line) -->
             <div class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 hidden md:block" style="opacity: 0.6;"></div>
           </div>
 
           <!-- Derecha: Metadatos y Acciones -->
           <div class="flex align-items-center gap-3 flex-shrink-0" (click)="$event.stopPropagation()">
-            <!-- Versión -->
+            <!-- VersiÃ³n -->
             <span class="text-xs font-mono text-500 bg-100 border-round px-2 py-1">
               v{{ manual.currentVersion }}
             </span>
@@ -142,7 +142,7 @@
             <!-- Divisor -->
             <div class="hidden sm:block surface-border border-left-1 h-1.5rem mx-1"></div>
 
-            <!-- Botones de Acción -->
+            <!-- Botones de AcciÃ³n -->
             <div class="flex align-items-center gap-1">
               @if (isAdmin()) {
               <il-button-edit
@@ -175,7 +175,7 @@
   }
 </div>
 
-<!-- MOBILE: Componente adaptado para versión móvil (oculto en md en adelante) -->
+<!-- MOBILE: Componente adaptado para versiÃ³n mÃ­vil (oculto en md en adelante) -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"

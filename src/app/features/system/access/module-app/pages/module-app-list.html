@@ -27,7 +27,7 @@
       <tr pRowGroupHeader>
         <td colspan="7" class="p-3">
           <span class="font-bold"
-            >{{ item.pathParent ? item.pathParent : "M�dulos Principales"
+            >{{ item.pathParent ? item.pathParent : "Módulos Principales"
             }}</span
           >
         </td>
@@ -73,7 +73,7 @@
         <td>{{ item.routerLink }}</td>
         <td class="text-center">
           <p-tag
-            [value]="item.viewMobil ? 'S�' : 'No'"
+            [value]="item.viewMobil ? 'Sí' : 'No'"
             [severity]="item.viewMobil ? 'success' : 'danger'"
             class="p-2"
           />
@@ -101,7 +101,7 @@
   </p-table>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

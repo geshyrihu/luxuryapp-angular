@@ -11,22 +11,22 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <!-- CAMBIO: El t�tulo y el ID inicial se ajustan para Almac�n -->
+    <!-- CAMBIO: El tútulo y el ID inicial se ajustan para Almacón -->
     <primeng-custom-caption
       [showAdd]="isAdmin"
-      (add)="onModalForm({ id: '', title: 'Nuevo Almac�n' })"
+      (add)="onModalForm({ id: '', title: 'Nuevo Almacón' })"
       [dt]="dt"
     />
   </ng-template>
   <ng-template #header>
     <tr>
-      <!-- CAMBIO: Columnas y campos de ordenamiento para Almac�n -->
+      <!-- CAMBIO: Columnas y campos de ordenamiento para Almacón -->
       <th pSortableColumn="nombre">
         Nombre
         <p-sortIcon field="nombre" />
       </th>
       <th pSortableColumn="ubicacion">
-        Ubicaci�n
+        Ubicación
         <p-sortIcon field="ubicacion" />
       </th>
       <th pSortableColumn="activo">
@@ -38,7 +38,7 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <!-- CAMBIO: Propiedades del objeto 'item' para Almac�n -->
+      <!-- CAMBIO: Propiedades del objeto 'item' para Almacón -->
       <td>{{ item.nombre }}</td>
       <td>{{ item.ubicacion }}</td>
       <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
@@ -70,11 +70,11 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [showAdd]="isAdmin"
-  (add)="onModalForm({ id: '', title: 'Nuevo Almac�n' })"
+  (add)="onModalForm({ id: '', title: 'Nuevo Almacón' })"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
 >

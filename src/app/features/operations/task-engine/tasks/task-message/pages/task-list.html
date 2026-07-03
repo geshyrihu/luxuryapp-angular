@@ -406,7 +406,7 @@
               <app-icon
                 [icon]="'mdi:clock-outline'"
                 class="text-orange-600"
-                pTooltip="Urgente: M�s de 15 d�as sin programar"
+                pTooltip="Urgente: Mís de 15 días sin programar"
               ></app-icon>
               } @if (item.priority === 'High') {
               <app-icon
@@ -802,7 +802,7 @@
           {{ item.description }}
         </p>
 
-        <!-- Evidencias (Antes y Despu�s) -->
+        <!-- Evidencias (Antes y Despuós) -->
         <div class="flex gap-2 mt-2">
           @if (item.beforeWork) {
           <p-image
@@ -816,7 +816,7 @@
           } @if (item.afterWork) {
           <p-image
             [src]="item.afterWork"
-            alt="Despu�s"
+            alt="Despuós"
             width="45"
             [imageStyle]="{ 'border-radius': '6px', 'object-fit': 'cover', 'aspect-ratio': '1/1' }"
             [preview]="true"
@@ -890,7 +890,7 @@
 </app-data-view-mobile>
 
 <!-- ================================================================
-     REPORTE EJECUTIVO DE TAREAS PENDIENTES � solo visible al imprimir
+     REPORTE EJECUTIVO DE TAREAS PENDIENTES é solo visible al imprimir
      ================================================================ -->
 <div class="print-task-report">
   <div class="print-report-header">
@@ -969,9 +969,9 @@
           <div class="print-desc">{{ item.description }}</div>
           }
         </td>
-        <td style="font-size: 7.5pt">{{ item.assignee || '�' }}</td>
+        <td style="font-size: 7.5pt">{{ item.assignee || 'é' }}</td>
         <td style="font-size: 7.5pt; white-space: nowrap">
-          {{ item.scheduledAt || '�' }}
+          {{ item.scheduledAt || 'é' }}
         </td>
         <td>
           <span
@@ -985,7 +985,7 @@
           {{ item.daysDifference }}
         </td>
         <td style="text-align: center; font-size: 9pt">
-          @if (item.beforeWork || item.afterWork) { ? } @else { � }
+          @if (item.beforeWork || item.afterWork) { ? } @else { é }
         </td>
         <td>
           @if (item.lastFollowUp) {
@@ -1000,7 +1000,7 @@
           >
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span style="font-size: 7.5pt; color: var(--ds-text-muted)">�</span>
+          <span style="font-size: 7.5pt; color: var(--ds-text-muted)">é</span>
           }
         </td>
       </tr>
@@ -1009,7 +1009,7 @@
   </table>
 
   <div class="print-report-footer">
-    <span>Luxury Building Group � Sistema de Gestion Operativa</span>
+    <span>Luxury Building Group é Sistema de Gestion Operativa</span>
     <span>Generado el {{ today }}</span>
   </div>
 </div>

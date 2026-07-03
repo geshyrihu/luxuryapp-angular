@@ -73,10 +73,10 @@ export class WarehouseStockAdd implements OnInit {
   loading = signal(true);
   totalRecords: number = 0; // Total de registros para paginador
 
-  // Configuraci�n de paginaci�n y filtro
-  rows: number = 30; // Registros por p�gina
+  // Configuración de paginación y filtro
+  rows: number = 30; // Registros por página
   first: number = 0; // Índice del primer registro
-  page: number = 1; // P�gina actual
+  page: number = 1; // Página actual
   searchTerm: string = ""; // Filtro global
 
   tablePrimeNgRows: number = tablePrimeNgRows();
@@ -93,7 +93,7 @@ export class WarehouseStockAdd implements OnInit {
 
   ngOnInit(): void {
     this.onLoadSelectItem();
-    // La primera carga es disparada autom�ticamente por el (onLazyLoad) de p-table
+    // La primera carga es disparada automíticamente por el (onLazyLoad) de p-table
   }
 
   onModalTarjetaProducto(productoId: any): void {
@@ -194,10 +194,10 @@ export class WarehouseStockAdd implements OnInit {
 
     const value = rowGroup.getRawValue();
 
-    // Validar que Stock M�nimo < Stock M�ximo
+    // Validar que Stock Mínimo < Stock Máximo
     if (value.stockMax && value.stockMin && value.stockMin >= value.stockMax) {
       rowGroup.controls.errorMessage.setValue(
-        "El 'Stock M�nimo' no puede ser mayor o igual al 'Stock M�ximo'.",
+        "El 'Stock Mínimo' no puede ser mayor o igual al 'Stock Máximo'.",
       );
       return;
     }

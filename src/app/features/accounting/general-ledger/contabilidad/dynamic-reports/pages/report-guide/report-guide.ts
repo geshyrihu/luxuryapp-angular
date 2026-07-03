@@ -43,7 +43,7 @@ export class ReportGuide {
       path: "/contabilidad/reportes",
       component: "ReportCatalog",
       description:
-        'Cat醠ogo de reportes del cliente. Lista "Mis Reportes" y "Plantillas". Permite crear, editar, ver y eliminar reportes.',
+        'Cat谩logo de reportes del cliente. Lista "Mis Reportes" y "Plantillas". Permite crear, editar, ver y eliminar reportes.',
     },
     {
       path: "/contabilidad/reportes/nuevo",
@@ -55,18 +55,18 @@ export class ReportGuide {
       path: "/contabilidad/reportes/editar/:id",
       component: "ReportBuilder",
       description:
-        "Edici髇 de reporte existente. Carga la definici髇 del reporte por ID y permite modificarla.",
+        "Edici贸n de reporte existente. Carga la definici贸n del reporte por ID y permite modificarla.",
     },
     {
       path: "/contabilidad/reportes/ver/:id",
       component: "ReportViewer",
       description:
-        "Ejecuci髇 y visualizaci髇 del reporte. Permite filtrar por a駉/mes, exportar a Excel o PDF, compartir enlace y consultar el Auditor IA.",
+        "Ejecuci贸n y visualizaci贸n del reporte. Permite filtrar por a贸o/mes, exportar a Excel o PDF, compartir enlace y consultar el Auditor IA.",
     },
     {
       path: "/contabilidad/reportes/guia",
       component: "ReportGuide",
-      description: "Esta gu韆 pr醕tica del m骴ulo.",
+      description: "Esta gu贸a pr谩ctica del m贸dulo.",
     },
   ];
 
@@ -88,7 +88,7 @@ export class ReportGuide {
     {
       method: "GET",
       path: "/api/dynamic-reports/{id}",
-      description: "Obtiene la definici髇 completa de un reporte por ID.",
+      description: "Obtiene la definici贸n completa de un reporte por ID.",
       params: "id: Guid del reporte",
       response:
         "ReportDefinitionDTO (incluye Body con sections/columns y changeHistory)",
@@ -104,7 +104,7 @@ export class ReportGuide {
       method: "PUT",
       path: "/api/dynamic-reports/{id}",
       description:
-        "Actualiza un reporte existente. Agrega autom醫icamente una entrada al historial de cambios.",
+        "Actualiza un reporte existente. Agrega autom铆ticamente una entrada al historial de cambios.",
       params: "id: Guid del reporte",
       body: "ReportDefinitionDTO",
       response: "ReportDefinitionDTO actualizado con changeHistory",
@@ -144,7 +144,7 @@ export class ReportGuide {
       method: "GET",
       path: "/api/dynamic-reports/accounts/{customerId}/{year}",
       description:
-        "Cat醠ogo de cuentas contables del cliente para el a駉 indicado. Usado por el autocomplete en el Builder.",
+        "Cat谩logo de cuentas contables del cliente para el a贸o indicado. Usado por el autocomplete en el Builder.",
       params: "customerId: Guid, year: int",
       response: "AccountCatalogItemDTO[] { code, name, level }",
     },
@@ -160,30 +160,30 @@ export class ReportGuide {
     {
       tipo: "subtotal",
       descripcion:
-        "Suma los renglones referenciados en sourceRowIds dentro de la misma secci髇. Puede usarse bold + indent para estilo.",
+        "Suma los renglones referenciados en sourceRowIds dentro de la misma secci贸n. Puede usarse bold + indent para estilo.",
       ejemplo: "Total Ingresos = suma de account rows de ingresos",
     },
     {
       tipo: "grandTotal",
       descripcion:
-        "Suma de m鷏tiples renglones (sourceRowIds) que pueden estar en distintas secciones. Aparece en las tarjetas KPI (summary-cards).",
+        "Suma de m铆ltiples renglones (sourceRowIds) que pueden estar en distintas secciones. Aparece en las tarjetas KPI (summary-cards).",
       ejemplo: "Resultado Neto = Total Ingresos - Total Gastos",
     },
     {
       tipo: "formula",
       descripcion:
-        "Expresi髇 aritm閠ica libre usando [rowId] como variable. Evaluada con DataTable.Compute(). Permite c醠culos de razones financieras.",
+        "Expresi贸n aritm铆tica libre usando [rowId] como variable. Evaluada con DataTable.Compute(). Permite c贸lculos de razones financieras.",
       ejemplo: "Margen% = [row-ingresos] / [row-egresos] * 100",
     },
     {
       tipo: "header",
       descripcion:
-        "Encabezado visual (sin valor). 趖il para separar grupos de renglones con un t韙ulo.",
+        "Encabezado visual (sin valor). 贸til para separar grupos de renglones con un t煤tulo.",
       ejemplo: "-- INGRESOS OPERATIVOS --",
     },
     {
       tipo: "spacer",
-      descripcion: "Fila vac韆 para separaci髇 visual.",
+      descripcion: "Fila vac贸a para separaci贸n visual.",
       ejemplo: "",
     },
   ];
@@ -209,7 +209,7 @@ export class ReportGuide {
       tipo: "annual",
       campo: "(ignorado)",
       descripcion:
-        "Suma de los 12 meses del a駉. Para presupuesto suma los 12 montos de presupuesto.",
+        "Suma de los 12 meses del a贸o. Para presupuesto suma los 12 montos de presupuesto.",
     },
   ];
 
@@ -217,7 +217,7 @@ export class ReportGuide {
     {
       tipo: "table-simple",
       descripcion:
-        "Tabla est醤dar. Una fila por renglon, una columna por periodo. Formato num閞ico con indentaci髇 seg鷑 indent.",
+        "Tabla est茅ndar. Una fila por renglon, una columna por periodo. Formato num铆rico con indentaci贸n seg贸n indent.",
     },
     {
       tipo: "table-twoColumn",
@@ -232,7 +232,7 @@ export class ReportGuide {
     {
       tipo: "table-budgetVsActual",
       descripcion:
-        "Tabla de 5 columnas: Real | Presupuesto | Variaci髇 | % Variaci髇. Colorea en verde/rojo la variaci髇.",
+        "Tabla de 5 columnas: Real | Presupuesto | Variaci贸n | % Variaci贸n. Colorea en verde/rojo la variaci贸n.",
     },
     {
       tipo: "summary-cards",

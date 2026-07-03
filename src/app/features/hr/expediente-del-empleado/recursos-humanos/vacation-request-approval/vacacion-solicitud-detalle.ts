@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
@@ -45,7 +46,7 @@ export class VacacionSolicitudDetalle implements OnInit {
     if (this.requestId) {
       this.loadRequestDetail(this.requestId);
     } else {
-      this.router.navigate(["/recursos-humanos/my-vacations"]);
+        this.router.navigate(ROUTES.RECURSOS_HUMANOS.MIS_VACACIONES);
     }
   }
 
@@ -62,7 +63,7 @@ export class VacacionSolicitudDetalle implements OnInit {
       .catch((error) => {
         console.error("Error loading vacation request detail:", error);
         this.loading.set(false);
-        this.router.navigate(["/recursos-humanos/my-vacations"]);
+      this.router.navigate(ROUTES.RECURSOS_HUMANOS.MIS_VACACIONES);
       });
   }
 
@@ -73,7 +74,7 @@ export class VacacionSolicitudDetalle implements OnInit {
       .onPut(Endpoints.HR.VacationRequestApproval.approve(this.requestId!), dto)
       .then(() => {
         this.submitting.set(false);
-        this.router.navigate(["/recursos-humanos/approval"]);
+        this.router.navigate(ROUTES.RECURSOS_HUMANOS.APROBACIONES);
       })
       .catch((error) => {
         this.submitting.set(false);
@@ -88,7 +89,7 @@ export class VacacionSolicitudDetalle implements OnInit {
       .onPut(Endpoints.HR.VacationRequestApproval.reject(this.requestId!), dto)
       .then(() => {
         this.submitting.set(false);
-        this.router.navigate(["/recursos-humanos/approval"]);
+        this.router.navigate(ROUTES.RECURSOS_HUMANOS.APROBACIONES);
       })
       .catch((error) => {
         this.submitting.set(false);

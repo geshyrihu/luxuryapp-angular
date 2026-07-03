@@ -89,7 +89,7 @@ export class HidranteBitacoraList implements OnInit {
     }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF �€” Bit�cora Hidrantes",
+      "Reporte PDF é€” Bitúcora Hidrantes",
       this.dialogHandlerS.sizeSm,
     );
     if (result)

@@ -16,7 +16,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importaci�n
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importación
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit"; // Added
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
@@ -61,7 +61,7 @@ export class OrdenCompraFacturaForm implements OnInit {
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
-    { label: "Ingreso (Nota de Cr�dito)", value: "E" },
+    { label: "Ingreso (Nota de Cródito)", value: "E" },
   ];
 
   form: FormGroup<IOrdenCompraFacturaForm> =

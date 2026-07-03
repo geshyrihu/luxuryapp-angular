@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -36,6 +37,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   templateUrl: "./mis-inspecciones-lista.html",
 })
 export class MisInspeccionesLista {
+  readonly ROUTES = ROUTES;
+  private router = inject(Router);
   authService = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -50,6 +53,14 @@ export class MisInspeccionesLista {
   }
 
   dateSelectControl = new FormControl<Date | string>(new Date());
+
+  navigateToResultado(id: string) {
+    this.router.navigate(ROUTES.INSPECCIONES.RESULTADO(id));
+  }
+
+  navigateToMiInspeccion(id: string) {
+    this.router.navigate(ROUTES.BITACORAS.MI_INSPECCION(id));
+  }
 
   onLoadData() {
     const dateVal = this.dateSelectControl.value;

@@ -69,7 +69,7 @@ export class ManualsAndProcessesForm implements OnInit {
   // Periodicity options
   periodicityOptions = [
     { label: "A Demanda", value: 0 },
-    { label: "Única Vez", value: 1 },
+    { label: "Ã³nica Vez", value: 1 },
     { label: "Diario", value: 2 },
     { label: "Semanal", value: 3 },
     { label: "Mensual", value: 4 },
@@ -80,10 +80,10 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "Domingo", value: 0 },
     { label: "Lunes", value: 1 },
     { label: "Martes", value: 2 },
-    { label: "Miércoles", value: 3 },
+    { label: "MiÃ³rcoles", value: 3 },
     { label: "Jueves", value: 4 },
     { label: "Viernes", value: 5 },
-    { label: "Sábado", value: 6 },
+    { label: "SÃ­bado", value: 6 },
   ];
 
   weeksOfMonthOptions = [
@@ -91,7 +91,7 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "2da Semana", value: 2 },
     { label: "3ra Semana", value: 3 },
     { label: "4ta Semana", value: 4 },
-    { label: "Última Semana", value: 5 },
+    { label: "Ã³ltima Semana", value: 5 },
   ];
 
   daysOfMonthOptions = Array.from({ length: 31 }, (_, i) => ({

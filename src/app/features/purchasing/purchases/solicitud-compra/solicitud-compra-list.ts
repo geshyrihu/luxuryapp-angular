@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
@@ -127,7 +128,7 @@ export class SolicitudCompraList {
   }
 
   onSolicitudCompra(id: any) {
-    this.router.navigateByUrl(`/purchases/solicitud-compra/${id}`);
+    this.router.navigate(ROUTES.COMPRAS.SOLICITUD(id));
   }
 
   onSelectStatus(status: any) {
@@ -211,7 +212,7 @@ export class SolicitudCompraList {
   onPresentationMode() {
     if (this.selectedSolicitudIds().length === 0) return;
 
-    this.router.navigate(["/purchases/solicitud-compra-presentacion"]);
+    this.router.navigate(ROUTES.COMPRAS.PRESENTACION_SOLICITUDES);
   }
 
   async onRowReorder(event: any) {
@@ -245,7 +246,7 @@ export class SolicitudCompraList {
     );
   }
   onCuadroComparativo(id: string) {
-    this.router.navigateByUrl(`/purchases/cuadro-comparativo/${id}`);
+    this.router.navigate(ROUTES.COMPRAS.CUADRO_COMPARATIVO(id));
   }
 
   onManageLinks() {
@@ -262,11 +263,11 @@ export class SolicitudCompraList {
   }
 
   onCreateOrder(id: any) {
-    this.router.navigateByUrl(`/purchases/orden-compra/${0}/${id}`);
+    this.router.navigate([...ROUTES.COMPRAS.ORDEN_COMPRA('0'), id]);
   }
 
   onViewPurchaseOrder(id: string) {
-    this.router.navigateByUrl(`/purchases/orden-compra/${id}`);
+    this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(id));
     this.ordenCompraService.setOrdenCompraId(id);
 
     this.dialogHandlerS

@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -62,6 +63,6 @@ export class SatFundingListComponent implements OnInit {
   }
 
   goToDetail(id: string) {
-    this.router.navigate(["/sat-funding", id]);
+    this.router.navigate(ROUTES.SAT_FONDEOS.DETALLE(id));
   }
 }

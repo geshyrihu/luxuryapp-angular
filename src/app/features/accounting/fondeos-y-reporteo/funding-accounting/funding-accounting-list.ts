@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
@@ -73,7 +74,7 @@ export class FundingAccountingList {
   }
 
   onDetails(id: string) {
-    this.router.navigateByUrl(`/contabilidad/funding-details/${id}`);
+    this.router.navigate(ROUTES.CONTABILIDAD.DETALLE_FONDEO(id));
   }
 
   onFaqsFondeo(): void {

@@ -31,7 +31,7 @@ interface ILegalTaskClienteForm {
   applicationUserId: FormControl<string>;
   title: FormControl<string>;
   description: FormControl<string>;
-  // TODO: Eliminar en Fase 6. Se derivar· del TypePerson del creador: Employee ? interno, Provider ? externo.
+  // TODO: Eliminar en Fase 6. Se derivar√© del TypePerson del creador: Employee ? interno, Provider ? externo.
   isInternal: FormControl<boolean | null>;
   documentCloud: FormControl<boolean>;
   documentEmail: FormControl<boolean>;

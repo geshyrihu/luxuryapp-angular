@@ -29,7 +29,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">N�</th>
+      <th class="table-col-5">Né</th>
       <th colspan="2" class="table-col-30" pSortableColumn="fullName">
         COLABORADOR
         <p-sortIcon field="fullName" />
@@ -48,7 +48,7 @@
         pSortableColumn="celularPersonal"
         class="no-print"
       >
-        T�lefono
+        Túlefono
         <p-sortIcon field="celularPersonal" />
       </th>
       <th class="table-col-30" pSortableColumn="email">
@@ -119,7 +119,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   (add)="showModalAddEmployee()"
   [data]="dataSignal()"
@@ -146,7 +146,7 @@
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.workPositionName }}{{ item.celularPersonal ? ' � ' +
+          {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
           item.celularPersonal : '' }}
         </p>
         <p class="text-xs m-0 text-color-secondary">

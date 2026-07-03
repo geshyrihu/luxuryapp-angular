@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
@@ -83,7 +84,7 @@ export class FundingList {
   }
 
   onDetails(id: string) {
-    this.router.navigateByUrl(`/funding/details/${id}`);
+    this.router.navigate(ROUTES.FONDEOS.DETALLE(id));
   }
 
   onModalCreate(): void {

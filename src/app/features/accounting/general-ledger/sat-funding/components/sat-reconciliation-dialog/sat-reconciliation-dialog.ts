@@ -73,7 +73,7 @@ export class SatReconciliationDialog implements OnInit {
       this.legacyFundingId = this.config.data.legacyFundingId;
     } else {
       this.step.set("error");
-      this.errorMessage.set("No se proporcionó ID de fondeo.");
+      this.errorMessage.set("No se proporcionÃ© ID de fondeo.");
     }
   }
 
@@ -193,7 +193,7 @@ export class SatReconciliationDialog implements OnInit {
       }
     } catch (error: any) {
       this.step.set("error");
-      this.errorMessage.set(error.message || "Ocurrió un error desconocido.");
+      this.errorMessage.set(error.message || "OcurriÃ³ un error desconocido.");
       this.loading.set(false);
     }
   }

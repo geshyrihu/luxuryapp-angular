@@ -23,7 +23,7 @@
       <tr>
         <th pSortableColumn="name">Nombre <p-sortIcon field="name" /></th>
         <th pSortableColumn="category">
-          Categor�a <p-sortIcon field="category" />
+          Categoróa <p-sortIcon field="category" />
         </th>
         <th pSortableColumn="defaultSeverity">
           Severidad por Defecto <p-sortIcon field="defaultSeverity" />
@@ -64,7 +64,7 @@
     </ng-template>
   </p-table>
 
-  <!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+  <!-- ?? INICIO: Componente adaptado para versión mívil -->
   <app-data-view-mobile
     [data]="items()"
     (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Incidencia' })"
@@ -90,7 +90,7 @@
         <ion-label>
           <h2 class="text-base font-semibold">{{ item.name }}</h2>
           <p class="text-sm text-wrap">
-            <strong>Categor�a:</strong> {{ item.category }} |
+            <strong>Categoróa:</strong> {{ item.category }} |
             <strong>Severidad:</strong> {{ item.defaultSeverity }}
           </p>
           <p class="text-sm">
@@ -119,5 +119,5 @@
       </ion-item>
     </ng-template>
   </app-data-view-mobile>
-  <!-- ?? FIN: Componente adaptado para versi�n m�vil -->
+  <!-- ?? FIN: Componente adaptado para versión mívil -->
 </div>

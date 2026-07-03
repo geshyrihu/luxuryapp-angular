@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
@@ -63,12 +64,12 @@ export class PurchaseRequest implements OnInit {
     this.productToEdit = productData;
   }
 
-  // método para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
+  // mÃ©todo para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
   clearProductToEdit() {
     this.productToEdit = null;
   }
 
-  // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
   onModalAddProduct(data: any) {
     this.dialogHandlerS
       .openDialog(

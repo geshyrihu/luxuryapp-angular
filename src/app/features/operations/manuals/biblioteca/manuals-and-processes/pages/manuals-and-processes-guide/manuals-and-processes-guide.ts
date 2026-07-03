@@ -4,6 +4,7 @@ import { Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
 import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
+import { ROUTES } from "src/app/routing/route-paths";
 
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
@@ -31,6 +32,6 @@ export class ManualsAndProcessesGuide {
   private router = inject(Router);
 
   onBack(): void {
-    this.router.navigate(["/library/manuals-and-processes/list"]);
+    this.router.navigate([...ROUTES.BIBLIOTECA.MANUALES_Y_PROCESOS, 'list']);
   }
 }

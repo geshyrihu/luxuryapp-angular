@@ -67,7 +67,7 @@ export class InspeccionesForm implements OnInit {
 
   id: string = "";
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form: FormGroup<IInspeccionsForm> = new FormGroup<IInspeccionsForm>(
     {
       id: new FormControl<string | null>({ value: "", disabled: true }),
@@ -98,10 +98,10 @@ export class InspeccionesForm implements OnInit {
   weekDays = [
     { label: "Lunes", value: 1, key: "day_1" },
     { label: "Martes", value: 2, key: "day_2" },
-    { label: "Miórcoles", value: 3, key: "day_3" },
+    { label: "MiÃ³rcoles", value: 3, key: "day_3" },
     { label: "Jueves", value: 4, key: "day_4" },
     { label: "Viernes", value: 5, key: "day_5" },
-    { label: "Sábado", value: 6, key: "day_6" },
+    { label: "SÃ­bado", value: 6, key: "day_6" },
     { label: "Domingo", value: 0, key: "day_0" },
   ];
 

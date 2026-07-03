@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -148,7 +149,6 @@ export class EmployeeList {
   }
 
   onShowEditEmpleado(employeeId: any, applicationUserId: string) {
-    const urlApi = `directory/empleado/${employeeId}/${applicationUserId}`;
-    this.router.navigateByUrl(urlApi);
+    this.router.navigate(ROUTES.DIRECTORIO.EMPLEADO(employeeId, applicationUserId));
   }
 }

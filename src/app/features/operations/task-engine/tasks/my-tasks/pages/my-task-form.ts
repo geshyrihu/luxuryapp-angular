@@ -56,8 +56,8 @@ export class MyTaskForm implements OnInit {
   form = this.formB.nonNullable.group({
     id: [{ value: "", disabled: true }],
     ticketGroupId: [this.config.data.ticketGroupId, Validators.required], // ticketGroupId
-    title: ["", [Validators.required, Validators.maxLength(100)]], // Título
-    description: ["", [Validators.required, Validators.maxLength(150)]], // Descripción
+    title: ["", [Validators.required, Validators.maxLength(100)]], // TÃºtulo
+    description: ["", [Validators.required, Validators.maxLength(150)]], // DescripciÃ³n
     priority: [1, Validators.required], // Prioridad (enum)
     creatorId: [this.authS.applicationUserId], // Id del creador
     customerId: [this.customerIdS.customerId()], // Id del cliente
@@ -91,7 +91,7 @@ export class MyTaskForm implements OnInit {
     this.cb_ticket_group.set(ticketGroups ?? []);
   }
 
-  // Para manejar las imógenes 'BeforeWork' y 'AfterWork'
+  // Para manejar las imÃ­genes 'BeforeWork' y 'AfterWork'
   onFileChange(event: any, fieldName: "beforeWork" | "afterWork") {
     const file = event.target.files[0];
     if (file) {
@@ -116,7 +116,7 @@ export class MyTaskForm implements OnInit {
       .onGetItem(Endpoints.Tasks.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
-        // Si las imógenes existen, carga las vistas previas
+        // Si las imÃ­genes existen, carga las vistas previas
         if (result.beforeWorkPreview) {
           this.form.controls.beforeWorkPreview.setValue(
             result.beforeWorkPreview,
@@ -140,8 +140,8 @@ export class MyTaskForm implements OnInit {
   onVisionResult(analysis: string) {
     const currentDesc = this.form.controls.description.value || "";
     const newDesc = currentDesc
-      ? `${currentDesc}\n\n--- Anólisis IA ---\n${analysis}`
-      : `--- Anólisis IA ---\n${analysis}`;
+      ? `${currentDesc}\n\n--- AnÃ¡lisis IA ---\n${analysis}`
+      : `--- AnÃ¡lisis IA ---\n${analysis}`;
 
     this.form.controls.description.setValue(newDesc);
   }
@@ -162,7 +162,7 @@ export class MyTaskForm implements OnInit {
           // Should be FormArray check if used? Re-add if missing from logic but it wasn't in form definition before? Wait, line 140 checks key === "images" but it wasn't in form group. I will keep it logic wise if added dynamically or keep strict based on form.
           // Original form didn't have 'images' in group definition, so keys(controls) wouldn't iterate it unless added dynamically. Assuming static structure first.
         } else if (key === "beforeWork" || key === "afterWork") {
-          // Manejar las imógenes de beforeWork y afterWork
+          // Manejar las imÃ­genes de beforeWork y afterWork
           const file = value as File;
           if (file) {
             formData.append(key, file, file.name);
@@ -173,7 +173,7 @@ export class MyTaskForm implements OnInit {
             const formattedDate = new Date(value).toISOString().split("T")[0]; // Formato 'YYYY-MM-DD'
             formData.append(key, formattedDate);
           } else {
-            formData.append(key, ""); // Si no hay valor, se envía como vacío
+            formData.append(key, ""); // Si no hay valor, se envÃ­a como vacÃ³o
           }
         } else {
           // Verifica si el valor es null antes de agregarlo a FormData
@@ -182,7 +182,7 @@ export class MyTaskForm implements OnInit {
         }
       });
 
-      // Verifica si es creación o actualización
+      // Verifica si es creaciÃ³n o actualizaciÃ³n
       if (this.id === "") {
         this.apiResponseS
           .onPost(Endpoints.Tasks.create, formData)

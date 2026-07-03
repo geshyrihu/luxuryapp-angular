@@ -8,8 +8,8 @@
         PrimeNG 21, PrimeFlex, Ionic mobile y Design System propio.
       </p>
       <div class="flex flex-wrap gap-2">
-        <il-button label="Accion primaria" icon="mdi:check" />
-        <il-button label="Ver reglas" icon="mdi:book" severity="secondary" variant="outline" />
+        <il-button label="Accion primaria" iconClass="mdi:check" />
+        <il-button label="Ver reglas" iconClass="mdi:book" severity="secondary" variant="outline" />
       </div>
     </div>
 
@@ -106,12 +106,12 @@
                   <td><p-inputnumber [(ngModel)]="line.quantity" class="p-inputtext-sm" [fluid]="true" /></td>
                   <td><p-inputnumber [(ngModel)]="line.price" mode="currency" currency="MXN" class="p-inputtext-sm" [fluid]="true" /></td>
                   <td class="font-bold">{{ line.price * line.quantity | currency:'MXN' }}</td>
-                  <td><iw-button icon="mdi:delete" severity="danger" variant="text" size="sm" /></td>
+                  <td><iw-button iconClass="mdi:delete" severity="danger" variant="text" size="sm" /></td>
                 </tr>
               </ng-template>
               <ng-template #footer>
                 <div class="flex justify-content-between align-items-center p-2">
-                  <il-button label="Añadir Concepto" icon="mdi:plus" variant="outline" size="sm" />
+                  <il-button label="Añadir Concepto" iconClass="mdi:plus" variant="outline" size="sm" />
                   <div class="text-right">
                     <span class="text-color-secondary mr-3">Subtotal:</span>
                     <span class="text-xl font-bold">$21,000.00</span>
@@ -122,7 +122,7 @@
 
             <div class="flex justify-content-end gap-2">
               <il-button label="Cancelar" severity="secondary" variant="outline" />
-              <il-button label="Guardar Factura" icon="mdi:content-save" severity="success" variant="outline" />
+              <il-button label="Guardar Factura" iconClass="mdi:content-save" severity="success" variant="outline" />
             </div>
           </p-card>
 
@@ -316,7 +316,7 @@
                     <strong>Autorizaciones pendientes</strong>
                     <p>Decisiones visibles, datos auditables y una accion principal por bloque.</p>
                     <div class="flex gap-2 flex-wrap">
-                      <il-button label="Aprobar seleccion" icon="mdi:check" size="sm" />
+                      <il-button label="Aprobar seleccion" iconClass="mdi:check" size="sm" />
                       <il-button label="Revisar" severity="secondary" variant="outline" size="sm" />
                     </div>
                   </div>
@@ -414,14 +414,14 @@
           <p-card>
             <ng-template #title>Botones</ng-template>
             <div class="demo-button-board">
-              <il-button label="Primary" icon="mdi:check" />
-              <il-button label="Secondary" severity="secondary" icon="mdi:arrow-left" />
-              <il-button label="Success" severity="success" icon="mdi:content-save" />
-              <il-button label="Warning" severity="warn" icon="mdi:alert" />
-              <il-button label="Danger" severity="danger" icon="mdi:delete" />
-              <il-button label="Outline" variant="outline" icon="mdi:filter" />
-              <il-button label="Text" variant="text" icon="mdi:dots-horizontal" />
-              <iw-button icon="mdi:pencil" [rounded]="true" />
+              <il-button label="Primary" iconClass="mdi:check" />
+              <il-button label="Secondary" severity="secondary" iconClass="mdi:arrow-left" />
+              <il-button label="Success" severity="success" iconClass="mdi:content-save" />
+              <il-button label="Warning" severity="warn" iconClass="mdi:alert" />
+              <il-button label="Danger" severity="danger" iconClass="mdi:delete" />
+              <il-button label="Outline" variant="outline" iconClass="mdi:filter" />
+              <il-button label="Text" variant="text" iconClass="mdi:dots-horizontal" />
+              <iw-button iconClass="mdi:pencil" [rounded]="true" />
               <il-button label="Small" size="sm" />
               <il-button label="Large" size="lg" />
               <il-button label="Disabled" [disabled]="true" />
@@ -479,9 +479,9 @@
             </ng-template>
             <ng-template #end>
               <div class="flex gap-2 flex-wrap justify-content-end">
-                <il-button label="Limpiar" severity="secondary" variant="outline" icon="mdi:filter-off" />
-                <il-button label="Exportar" severity="secondary" icon="mdi:download" />
-                <il-button label="Nuevo" icon="mdi:plus" />
+                <il-button label="Limpiar" severity="secondary" variant="outline" iconClass="mdi:filter-off" />
+                <il-button label="Exportar" severity="secondary" iconClass="mdi:download" />
+                <il-button label="Nuevo" iconClass="mdi:plus" />
               </div>
             </ng-template>
           </p-toolbar>
@@ -688,7 +688,7 @@
 
             <div class="demo-form-actions">
               <il-button label="Cancelar" severity="secondary" variant="outline" />
-              <il-button label="Guardar cambios" icon="mdi:content-save" severity="success" variant="outline" />
+              <il-button label="Guardar cambios" iconClass="mdi:content-save" severity="success" variant="outline" />
             </div>
           </p-card>
 
@@ -724,7 +724,7 @@
                     <strong>Solicitudes operativas</strong>
                     <span class="block text-sm text-color-secondary">Acciones visibles maximas: 2 + menu contextual.</span>
                   </div>
-                  <il-button label="Nuevo registro" icon="mdi:plus" size="sm" />
+                  <il-button label="Nuevo registro" iconClass="mdi:plus" size="sm" />
                 </div>
               </ng-template>
               <ng-template #header>
@@ -750,8 +750,8 @@
                   </td>
                   <td>
                     <div class="flex justify-content-center gap-2">
-                      <iw-button icon="mdi:eye" variant="text" />
-                      <iw-button icon="mdi:pencil" variant="text" severity="secondary" />
+                      <iw-button iconClass="mdi:eye" variant="text" />
+                      <iw-button iconClass="mdi:pencil" variant="text" severity="secondary" />
                     </div>
                   </td>
                 </tr>
@@ -792,7 +792,7 @@
             </div>
             <div class="col-12 md:col-6 xl:col-3">
               <p-message severity="error" text="No tienes permisos para aprobar este proceso."></p-message>
-              <il-button label="Abrir confirmacion" icon="mdi:external-link" (clicked)="openDialog()" customClass="mt-3 w-full" />
+              <il-button label="Abrir confirmacion" iconClass="mdi:external-link" (clicked)="openDialog()" customClass="mt-3 w-full" />
             </div>
           </div>
         </div>
@@ -852,7 +852,7 @@
                       <dd>$48,000</dd>
                     </div>
                   </dl>
-                  <il-button label="Revisar solicitud" icon="mdi:eye" customClass="w-full" />
+                  <il-button label="Revisar solicitud" iconClass="mdi:eye" customClass="w-full" />
                 </article>
               </div>
             </div>
@@ -928,7 +928,7 @@
     </p>
     <ng-template #footer>
       <il-button label="Cancelar" severity="secondary" variant="outline" (clicked)="dialogVisible = false" />
-      <il-button label="Confirmar" icon="mdi:check" (clicked)="dialogVisible = false" />
+      <il-button label="Confirmar" iconClass="mdi:check" (clicked)="dialogVisible = false" />
     </ng-template>
   </p-dialog>
 </section>

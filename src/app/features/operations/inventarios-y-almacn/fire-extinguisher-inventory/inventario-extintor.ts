@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -100,15 +101,15 @@ export class InventarioExtintor {
   }
 
   onViewHistory(item: IInventarioExtintor) {
-    this.router.navigate(["/logbook/fire-extinguisher-log", item.id]);
+    this.router.navigate(ROUTES.BITACORAS.EXTINTOR_BITACORA(item.id));
   }
 
   onOpenScanner() {
-    this.router.navigate(["/logbook/fire-equipment-scanner"]);
+    this.router.navigate(ROUTES.BITACORAS.SCANNER_EQUIPOS);
   }
 
   onViewPeriodos() {
-    this.router.navigate(["/logbook/fire-inspection-periods"], {
+    this.router.navigate(ROUTES.BITACORAS.PERIODOS_INSPECCION, {
       queryParams: { type: "extintor" },
     });
   }

@@ -59,7 +59,7 @@ export class WarehouseStockList {
   route = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // Se�ales
+  // Seóales
   dataSignal = signal<any[]>([]);
   almacenIdFromRoute: string | null = null;
 

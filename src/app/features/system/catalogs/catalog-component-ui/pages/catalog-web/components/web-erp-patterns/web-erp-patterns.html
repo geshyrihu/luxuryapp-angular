@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="flex justify-content-end">
-                            <il-button label="Siguiente" icon="mdi:arrow-right" (clicked)="activateCallback(2)" />
+                            <il-button label="Siguiente" iconClass="mdi:arrow-right" (clicked)="activateCallback(2)" />
                         </div>
                     </div>
                 </ng-template>
@@ -44,8 +44,8 @@
                         </div>
 
                         <div class="flex gap-2 justify-content-between">
-                            <il-button label="Regresar" severity="secondary" icon="mdi:arrow-left" (clicked)="activateCallback(1)" />
-                            <il-button label="Siguiente" icon="mdi:arrow-right" (clicked)="activateCallback(3)" />
+                            <il-button label="Regresar" severity="secondary" iconClass="mdi:arrow-left" (clicked)="activateCallback(1)" />
+                            <il-button label="Siguiente" iconClass="mdi:arrow-right" (clicked)="activateCallback(3)" />
                         </div>
                     </div>
                 </ng-template>
@@ -59,8 +59,8 @@
                         <p class="text-sm text-secondary m-0 mb-4">La información ingresada es válida y el módulo puede ser activado en el ERP.</p>
                         
                         <div class="flex gap-2">
-                            <il-button label="Regresar" severity="secondary" icon="mdi:arrow-left" (clicked)="activateCallback(2)" />
-                            <il-button label="Confirmar y Guardar" severity="success" icon="mdi:content-save" />
+                            <il-button label="Regresar" severity="secondary" iconClass="mdi:arrow-left" (clicked)="activateCallback(2)" />
+                            <il-button label="Confirmar y Guardar" severity="success" iconClass="mdi:content-save" />
                         </div>
                     </div>
                 </ng-template>
@@ -76,7 +76,7 @@
       <div class="flex flex-column align-items-center justify-content-center h-full p-4 surface-50 border-round">
         <app-icon [icon]="'filter'" class="text-4xl text-primary mb-3" />
         <p class="text-center text-sm text-secondary mb-4">El patrón de Drawer permite liberar espacio de la tabla escondiendo los filtros complejos en un panel lateral deslizante.</p>
-        <il-button label="Abrir Filtros" icon="mdi:filter" (clicked)="filterDrawerVisible = true" />
+        <il-button label="Abrir Filtros" iconClass="mdi:filter" (clicked)="filterDrawerVisible = true" />
       </div>
 
       <p-drawer [(visible)]="filterDrawerVisible" position="right" styleClass="w-full md:w-25rem">

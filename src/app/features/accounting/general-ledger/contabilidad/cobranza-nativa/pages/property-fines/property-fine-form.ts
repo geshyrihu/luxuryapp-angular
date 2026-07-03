@@ -101,7 +101,7 @@ export class PropertyFineForm implements OnInit {
         arts
           .filter((a) => a.isActive)
           .map((a) => ({
-            label: `${a.articleNumber} — ${a.title}`,
+            label: `${a.articleNumber} Ã© ${a.title}`,
             value: a.id,
           })),
       );

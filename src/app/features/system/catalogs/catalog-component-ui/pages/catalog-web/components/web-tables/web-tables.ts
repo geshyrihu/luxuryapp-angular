@@ -62,12 +62,12 @@ interface ErpRow {
     <div class="grid">
       <div class="col-12">
         <p-card
-          header="Tabla ERP - Caption, Filtro, Sort, Paginaci�n y Responsiva"
+          header="Tabla ERP - Caption, Filtro, Sort, Paginación y Responsiva"
         >
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Patr�n est�ndar ERP:
+            Patrón esténdar ERP:
             <code>primeng-custom-caption</code> + <code>p-table</code> en
-            desktop y <code>app-data-view-mobile</code> en m�vil
+            desktop y <code>app-data-view-mobile</code> en mívil
             (<code>md:hidden</code>).
           </p>
 
@@ -197,7 +197,7 @@ interface ErpRow {
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="Tabla con Selecci�n (checkbox)">
+        <p-card header="Tabla con Selección (checkbox)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Muestra el conteo de seleccionados y activa las acciones masivas en
             el toolbar.
@@ -257,7 +257,7 @@ interface ErpRow {
         <p-card header="Tabla con Row Expansion (detalle)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Expande una fila para mostrar detalle sin navegar a otra vista.
-            �salo solo cuando el detalle es breve y consultivo.
+            ósalo solo cuando el detalle es breve y consultivo.
           </p>
           <p-table [value]="rows" dataKey="id" styleClass="p-datatable-sm">
             <ng-template #header>
@@ -334,7 +334,7 @@ export class WebTables {
       fecha: "2026-06-01",
       importe: 45000,
       status: EStatus.Pendiente,
-      detail: "Requiere aprobaci�n de Direcci�n.",
+      detail: "Requiere aprobación de Dirección.",
     },
     {
       id: 2,
@@ -349,27 +349,27 @@ export class WebTables {
     {
       id: 3,
       folio: "ERP-003",
-      nombre: "Adquisici�n mobiliario administrativo",
-      depto: "Administraci�n",
+      nombre: "Adquisición mobiliario administrativo",
+      depto: "Administración",
       fecha: "2026-06-10",
       importe: 89500,
       status: EStatus.Concluido,
-      detail: "Entregado y firmado en almac�n.",
+      detail: "Entregado y firmado en almacón.",
     },
     {
       id: 4,
       folio: "ERP-004",
-      nombre: "Servicio de limpieza �reas comunes",
+      nombre: "Servicio de limpieza óreas comunes",
       depto: "Servicios",
       fecha: "2026-06-12",
       importe: 8500,
       status: EStatus.noAutorizado,
-      detail: "Solicitud rechazada por pol�tica de techo.",
+      detail: "Solicitud rechazada por política de techo.",
     },
     {
       id: 5,
       folio: "ERP-005",
-      nombre: "Capacitaci�n personal t�cnico",
+      nombre: "Capacitación personal túcnico",
       depto: "Recursos Humanos",
       fecha: "2026-06-15",
       importe: 15000,
@@ -379,12 +379,12 @@ export class WebTables {
     {
       id: 6,
       folio: "ERP-006",
-      nombre: "Renovaci�n de licencias de software",
+      nombre: "Renovación de licencias de software",
       depto: "Sistemas",
       fecha: "2026-06-18",
       importe: 32000,
       status: EStatus.Pendiente,
-      detail: "Pendiente de cotizaci�n comparativa.",
+      detail: "Pendiente de cotización comparativa.",
     },
   ];
 

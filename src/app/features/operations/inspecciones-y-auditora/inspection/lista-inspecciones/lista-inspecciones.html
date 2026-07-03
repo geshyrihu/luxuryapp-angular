@@ -5,7 +5,7 @@
     <il-button
       iconClass="mdi:plus"
       pTooltip="Nuevo Registro"
-      (clicked)="onModalForm({ title: 'Agregar Inspecci髇', id: '' })"
+      (clicked)="onModalForm({ title: 'Agregar Inspecci贸n', id: '' })"
     />
   </div>
 
@@ -15,7 +15,7 @@
       [ngModel]="selectedAreaSignal()"
       (ngModelChange)="selectedAreaSignal.set($event)"
       [data]="areasResponsablesSignal()"
-      placeholder="Todas las 醨eas"
+      placeholder="Todas las 贸reas"
       [horizontal]="false"
       [filter]="true"
     />
@@ -37,8 +37,8 @@
     <il-button-item
       iconClass="mdi:book"
       label="Reportes"
-      tooltip="Ver reportes de inspecci髇"
-      [routerLink]="['/inspections/inspection-report-list']"
+      tooltip="Ver reportes de inspecci贸n"
+      (clicked)="navigateToReportes()"
 />
   </div>
 
@@ -70,7 +70,7 @@
               <il-button-item
                 iconClass="mdi:magnify"
                 label="Detalles"
-                [routerLink]="['/inspections/details/', item.id]"/>
+                (clicked)="navigateToDetalles(item.id)"/>
               <il-button-delete (confirmed)="onDelete(item.id)"
  label="Eliminar"/>
             </ng-container>
@@ -86,12 +86,12 @@
   }
 </div>
 
-<!-- 馃摫 INICIO: Componente adaptado para versi髇 m髒il -->
+<!-- 馃摫 INICIO: Componente adaptado para versi贸n m铆vil -->
 <app-data-view-mobile
   class="md:hidden"
   [isGrouped]="true"
   [groupedData]="groupedData()"
-  (add)="onModalForm({ title: 'Agregar Inspecci髇', id: '' })"
+  (add)="onModalForm({ title: 'Agregar Inspecci贸n', id: '' })"
 >
   <div customFilters class="px-2 pb-2">
     <div class="flex mb-2">
@@ -100,7 +100,7 @@
         [ngModel]="selectedAreaSignal()"
         (ngModelChange)="selectedAreaSignal.set($event)"
         [data]="areasResponsablesSignal()"
-        placeholder="Todas las 醨eas"
+        placeholder="Todas las 贸reas"
         [filter]="true"
       />
       <custom-input-select-signal
@@ -120,7 +120,7 @@
       class="w-full"
       iconClass="mdi:book"
       label="Ver Reportes"
-      [routerLink]="['/inspections/inspection-report-list']"
+      (clicked)="navigateToReportes()"
 />
   </div>
 
@@ -143,9 +143,9 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
  label="Editar"/>
           <il-button-item
-            (clicked)="false"
             icon="search"
-            [routerLink]="['/inspections/details/', item.id]"
+            label="Detalles"
+            (clicked)="navigateToDetalles(item.id)"
           />
           <il-button-delete (confirmed)="onDelete(item.id)"
  label="Eliminar"/>

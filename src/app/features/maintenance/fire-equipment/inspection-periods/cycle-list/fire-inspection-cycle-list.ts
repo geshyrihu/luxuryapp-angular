@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
@@ -59,7 +60,7 @@ export class FireInspectionCycleList implements OnInit {
   }
 
   onViewDetail(id: string) {
-    this.router.navigate(["/logbook/fire-inspection-cycle", id]);
+    this.router.navigate(ROUTES.BITACORAS.CICLO_INSPECCION(id));
   }
 
   statusClass(status: string): string {

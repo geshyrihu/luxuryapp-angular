@@ -39,7 +39,7 @@ export class EmployeeEmergencyContactForm implements OnInit {
   submitting = signal(false);
   cb_relacion = signal<ISelectItem[]>([]);
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     employeeId: new FormControl<string>(this.config.data.employeeId),

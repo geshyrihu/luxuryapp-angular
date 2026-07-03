@@ -26,7 +26,7 @@
     </div>
   </ng-template>
 
-  <!-- Encabezado de las columnas (define qu� columnas se mostrar�n para cada item) -->
+  <!-- Encabezado de las columnas (define qué columnas se mostrarón para cada item) -->
   <ng-template #header>
     <tr>
       <!-- Ajusta los pSortableColumn field a las propiedades DENTRO de los objetos 'Contracts' -->
@@ -46,7 +46,7 @@
         <p-sortIcon field="startDateFilter" />
       </th>
       <th pSortableColumn="endDateFilter">
-        T�rmino
+        Túrmino
         <p-sortIcon field="endDateFilter" />
       </th>
       <th pSortableColumn="tagLabel">
@@ -61,7 +61,7 @@
       </th>
       <th>Documento</th>
       <th></th>
-      <!-- A�adido encabezado para columna de opciones -->
+      <!-- Aóadido encabezado para columna de opciones -->
     </tr>
   </ng-template>
 
@@ -70,7 +70,7 @@
     <tr pRowGroupHeader>
       <!-- La celda abarca todas las columnas definidas en el header -->
       <td [attr.colspan]="9">
-        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, T�rmino, Estado, Vigencia, Documento, Opciones -->
+        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, Túrmino, Estado, Vigencia, Documento, Opciones -->
         <!-- Muestra el nombre del grupo -->
         <strong class="font-bold ml-2 p-0 font-size-24">
           {{ group.typeOfContract }}
@@ -106,7 +106,7 @@
       </td>
       <td>{{ item.validity }}</td>
       <td class="text-center">
-        <!-- Alineaci�n opcional -->
+        <!-- Alineación opcional -->
         @if (item.document) {
         <il-button-view-pdf
           iconClass="mdi:file-pdf-box"

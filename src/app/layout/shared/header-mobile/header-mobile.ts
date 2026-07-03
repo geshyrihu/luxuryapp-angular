@@ -1,6 +1,7 @@
 import { Location } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonButton, IonButtons, IonToolbar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
@@ -34,7 +35,7 @@ export class HeaderCommitteeMobile {
     if (canGoBack) {
       this.location.back();
     } else {
-      this.router.navigateByUrl("/committee");
+      this.router.navigate(ROUTES.COMITE.HOME);
     }
   }
 }

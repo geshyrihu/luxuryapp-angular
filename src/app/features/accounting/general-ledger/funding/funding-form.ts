@@ -33,7 +33,7 @@ export class FundingForm implements OnInit {
   public submitting = signal(false);
   public cb_fondeos = signal<ISelectItem[]>([]);
 
-  // Definición Estricta del Formulario
+  // DefiniciÃ³n Estricta del Formulario
   public form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     period: new FormControl<string | null>(null),

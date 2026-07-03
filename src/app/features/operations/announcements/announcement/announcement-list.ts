@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   IonCard,
   IonCardContent,
@@ -67,6 +68,6 @@ export class AnnouncementList implements OnInit {
   }
 
   navigateToDetail(id: string): void {
-    this.router.navigate(["../detail", id], { relativeTo: this.route });
+    this.router.navigate(ROUTES.ANUNCIOS.DETALLE(id));
   }
 }

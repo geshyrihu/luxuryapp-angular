@@ -61,7 +61,7 @@ export class EmployeeProviderForm implements OnInit {
   readonly preselectedPositionRequestId: string | null =
     this.config.data?.positionRequestId ?? null;
 
-  /** Rol del puesto vacante — pre-llena applicationRoleId en fase 1. */
+  /** Rol del puesto vacante Ã© pre-llena applicationRoleId en fase 1. */
   readonly preselectedApplicationRoleId: string | null =
     this.config.data?.applicationRoleId ?? null;
 
@@ -151,7 +151,7 @@ export class EmployeeProviderForm implements OnInit {
     this.altaForm.controls.typeContractRegister.setValue(1);
     this.vacanteForm.controls.typeContractRegister.setValue(1);
 
-    // Pre-seleccionar vacante si se abrió desde un puesto vacante específico
+    // Pre-seleccionar vacante si se abriÃ© desde un puesto vacante especÃ­fico
     if (this.preselectedPositionRequestId) {
       this.altaForm.controls.positionRequestId.setValue(
         this.preselectedPositionRequestId,

@@ -16,6 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { BadgeModule } from "primeng/badge";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -133,10 +134,10 @@ export class SolicitudCompra implements OnInit {
     );
   }
 
-  // Manejar productos a馻didos localmente antes de guardar cabecera
+  // Manejar productos a贸adidos localmente antes de guardar cabecera
   onAddedLocal(product: any) {
     this.tempProducts.update((prev) => [...prev, product]);
-    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deber韆 ser nada)
+    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deber铆a ser nada)
     this.SolicitudCompraDetalle = [...this.SolicitudCompraDetalle, product];
     this.cdr.detectChanges();
   }
@@ -235,7 +236,7 @@ export class SolicitudCompra implements OnInit {
 
         this.tempProducts.set([]);
         this.customToastS.showSuccess(
-          "髕ito",
+          "贸xito",
           "Solicitud y productos guardados correctamente",
         );
       } else {
@@ -289,13 +290,13 @@ export class SolicitudCompra implements OnInit {
       )
       .then((ordenCompraId: any) => {
         if (ordenCompraId) {
-          this.router.navigateByUrl(`/purchases/orden-compra/${ordenCompraId}`);
+          this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(ordenCompraId));
         }
       });
   }
 
   onAddOrEdit(id: string) {
-    this.router.navigateByUrl(`/purchases/orden-compra/${id}`);
+    this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(id));
   }
 
   onSendWhatsApp() {
@@ -307,18 +308,18 @@ export class SolicitudCompra implements OnInit {
 
   onSendEmail() {
     if (!this.solicitudCompra) return;
-    const subject = `Solicitud de Cotizaci髇 - Folio: ${this.solicitudCompra.folio}`;
+    const subject = `Solicitud de Cotizaci贸n - Folio: ${this.solicitudCompra.folio}`;
     const body = this.getFormattedMessage();
     const mailUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailUrl;
   }
 
   getFormattedMessage(): string {
-    let message = `*Solicitud de Cotizaci髇*\n`;
+    let message = `*Solicitud de Cotizaci贸n*\n`;
     message += `Folio: ${this.solicitudCompra.folio}\n`;
     message += `Solicita: ${this.solicitudCompra.solicita}\n`;
     if (this.solicitudCompra.equipoOInstalacion)
-      message += `醨ea/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
+      message += `贸rea/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
     message += `\n*Detalle de Requerimiento:*\n`;
 
     this.SolicitudCompraDetalle.forEach((item, index) => {
@@ -334,7 +335,7 @@ export class SolicitudCompra implements OnInit {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gesti髇 de V髇culos",
+        "Gesti贸n de V贸nculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

@@ -114,7 +114,7 @@ export class InventarioLlavesList {
       const groups = sortedData.reduce(
         (acc, item) => {
           const classification =
-            item.equipoClasificacion || "SIN CLASIFICACI�N";
+            item.equipoClasificacion || "SIN CLASIFICACIóN";
           if (!acc[classification]) acc[classification] = [];
           acc[classification].push(item);
           return acc;
@@ -170,9 +170,9 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th>Descripci�n</th>
+          <th>Descripción</th>
           <th>Marca</th>
-          <th style="width: 80px;">N�mero</th>
+          <th style="width: 80px;">Número</th>
           <th style="width: 80px;">Cant.</th>
         </tr>
       </thead>

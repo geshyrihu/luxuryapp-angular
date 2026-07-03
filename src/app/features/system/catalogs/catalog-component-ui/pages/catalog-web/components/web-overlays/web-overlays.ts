@@ -56,7 +56,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         <p-card header="Dialogs — p-dialog">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Reserva los dialogs para decisiones breves (confirmar, editar un
-            campo, ver un detalle). Si el usuario necesita capturar informaci�n
+            campo, ver un detalle). Si el usuario necesita capturar información
             extensa, navega a una pantalla dedicada.
           </p>
 
@@ -99,7 +99,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <div>
                   <strong class="block">Con formulario</strong>
                   <p class="m-0 text-sm text-color-secondary mt-1">
-                    Edici�n r�pida de un campo o un grupo peque�o.
+                    Edición rápida de un campo o un grupo pequeóo.
                   </p>
                 </div>
                 <p-button
@@ -110,7 +110,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               </div>
             </div>
 
-            <!-- Confirmaci�n destructiva -->
+            <!-- Confirmación destructiva -->
             <div class="col-12 md:col-6 xl:col-3">
               <div
                 class="surface-ground border-round p-4 flex flex-column align-items-center gap-3 text-center"
@@ -121,7 +121,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   style="color:var(--ds-danger)"
                 />
                 <div>
-                  <strong class="block">Confirmaci�n destructiva</strong>
+                  <strong class="block">Confirmación destructiva</strong>
                   <p class="m-0 text-sm text-color-secondary mt-1">
                     Siempre confirma acciones irreversibles.
                   </p>
@@ -242,7 +242,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   [(ngModel)]="editObs"
                   rows="3"
                   class="w-full"
-                  placeholder="Descripci�n breve sin lenguaje ambiguo."
+                  placeholder="Descripción breve sin lenguaje ambiguo."
                 ></textarea>
               </div>
             </div>
@@ -263,7 +263,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
           <!-- Dialog: Destructivo -->
           <p-dialog
-            header="Confirmar Eliminaci�n"
+            header="Confirmar Eliminación"
             [(visible)]="dialogs.danger"
             [modal]="true"
             [style]="{ width: 'min(92vw, 26rem)' }"
@@ -282,10 +282,10 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               </div>
               <div>
                 <strong class="block text-color"
-                  >�Eliminar ERP-2026-042?</strong
+                  >óEliminar ERP-2026-042?</strong
                 >
                 <p class="m-0 mt-1 text-sm text-color-secondary line-height-3">
-                  Esta acci�n es irreversible. Se eliminar� el registro y todos
+                  Esta acción es irreversible. Se eliminaré el registro y todos
                   sus documentos asociados.
                 </p>
               </div>
@@ -298,7 +298,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 (onClick)="dialogs.danger.set(false)"
               />
               <p-button
-                label="S�, eliminar"
+                label="Sí, eliminar"
                 severity="danger"
                 icon="mdi:trash-can"
                 (onClick)="deleteRecord()"
@@ -318,7 +318,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
             <div class="flex flex-column gap-3">
               <p-message
                 severity="info"
-                text="Este dialog es ideal para reportes de solo consulta. Para edici�n extensa, usa una vista dedicada."
+                text="Este dialog es ideal para reportes de solo consulta. Para edición extensa, usa una vista dedicada."
               />
               <div
                 class="surface-ground border-round p-4 text-center text-color-secondary"
@@ -328,7 +328,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   class="text-5xl mb-3 block mx-auto"
                 />
                 <span class="text-sm"
-                  >Tabla completa ERP ir�a aqu� — con paginaci�n, filtros y
+                  >Tabla completa ERP iróa aqué — con paginación, filtros y
                   export PDF.</span
                 >
               </div>
@@ -349,7 +349,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
       <div class="col-12 lg:col-6">
         <p-card header="Drawer — Panel lateral / inferior">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            �salo para filtros avanzados, detalles contextuales o navegaci�n
+            ósalo para filtros avanzados, detalles contextuales o navegación
             secundaria sin abandonar la vista actual.
           </p>
           <div class="flex flex-wrap gap-2">
@@ -416,7 +416,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
           </p-drawer>
 
           <p-drawer
-            header="Navegaci�n"
+            header="Navegación"
             [(visible)]="drawers.left"
             position="left"
             [style]="{ width: 'min(92vw, 20rem)' }"
@@ -437,7 +437,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
           </p-drawer>
 
           <p-drawer
-            header="Detalle r�pido"
+            header="Detalle rápido"
             [(visible)]="drawers.bottom"
             position="bottom"
             [style]="{ height: '280px' }"
@@ -479,7 +479,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         <p-card header="Popover & ConfirmPopup">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             El popover muestra contenido contextual anclado al elemento que lo
-            dispara. El ConfirmPopup es la versi�n inline de la confirmaci�n
+            dispara. El ConfirmPopup es la versión inline de la confirmación
             destructiva.
           </p>
 
@@ -502,9 +502,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <div class="flex flex-column gap-2" style="max-width:260px">
                   <strong class="text-sm">Regla de presupuesto</strong>
                   <p class="m-0 text-sm text-color-secondary line-height-3">
-                    El importe m�ximo para aprobaci�n directa por Supervisor es
+                    El importe máximo para aprobación directa por Supervisor es
                     $50,000 MXN. Solicitudes mayores requieren firma de
-                    Direcci�n.
+                    Dirección.
                   </p>
                   <p-tag
                     value="Nivel 2 · Operaciones"
@@ -557,7 +557,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               <div class="flex gap-2">
                 <custom-button-edit
                   label="Editar"
-                  (clicked)="showToast('Edici�n abierta')"
+                  (clicked)="showToast('Edición abierta')"
                 />
                 <custom-button-delete
                   label="Eliminar"
@@ -573,9 +573,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
       <div class="col-12">
         <p-card header="Tooltips — pTooltip">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Los tooltips complementan icons y controles ic�nicos.
-            <strong>Nunca sustituyen labels en acciones cr�ticas</strong> — un
-            bot�n importante debe tener label visible, no solo tooltip.
+            Los tooltips complementan icons y controles icónicos.
+            <strong>Nunca sustituyen labels en acciones cróticas</strong> — un
+            botún importante debe tener label visible, no solo tooltip.
           </p>
 
           <div class="grid">
@@ -644,7 +644,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   severity="secondary"
                   [outlined]="true"
                   size="small"
-                  pTooltip="Aparece despu�s de 800 ms"
+                  pTooltip="Aparece despuós de 800 ms"
                   tooltipPosition="top"
                   [tooltipOptions]="{ showDelay: 800 }"
                 />
@@ -707,7 +707,7 @@ export class WebOverlays {
     { label: "Área", value: "Sistemas" },
     { label: "Importe", value: "$45,000" },
     { label: "Fecha", value: "01/06/2026" },
-    { label: "Solicit�", value: "Carlos M." },
+    { label: "Solicitú", value: "Carlos M." },
     { label: "Prioridad", value: "Alta" },
     { label: "Vence", value: "30/06/2026" },
   ];
@@ -724,7 +724,7 @@ export class WebOverlays {
     { label: "Solicitudes", icon: "mdi:file-document" },
     { label: "Aprobaciones", icon: "mdi:check-circle" },
     { label: "Reportes", icon: "mdi:chart-bar" },
-    { label: "Configuraci�n", icon: "mdi:cog" },
+    { label: "Configuración", icon: "mdi:cog" },
   ];
 
   readonly popoverActions = [
@@ -741,19 +741,19 @@ export class WebOverlays {
       titulo: "Complementa, no sustituye",
       icon: "mdi:check-circle",
       color: "var(--ds-success)",
-      desc: "�salo en botones ic�nicos donde el label no cabe. Acciones cr�ticas siempre necesitan label visible.",
+      desc: "ósalo en botones icónicos donde el label no cabe. Acciones cróticas siempre necesitan label visible.",
     },
     {
       titulo: "Texto conciso",
       icon: "mdi:check-circle",
       color: "var(--ds-success)",
-      desc: "M�ximo una oraci�n. Si necesitas m�s de una l�nea, usa un Popover informativo.",
+      desc: "Máximo una oración. Si necesitas mís de una lónea, usa un Popover informativo.",
     },
     {
       titulo: "Sin tooltips en mobile",
       icon: "mdi:close-circle",
       color: "var(--ds-danger)",
-      desc: "Hover no existe en pantallas t�ctiles. Los labels deben ser suficientes en mobile.",
+      desc: "Hover no existe en pantallas túctiles. Los labels deben ser suficientes en mobile.",
     },
   ];
 
@@ -780,7 +780,7 @@ export class WebOverlays {
   confirmDelete(event: Event) {
     this.confirmSvc.confirm({
       target: event.target as EventTarget,
-      message: "�Eliminar este registro?",
+      message: "óEliminar este registro?",
       icon: "mdi:trash-can",
       rejectLabel: "Cancelar",
       acceptLabel: "Eliminar",

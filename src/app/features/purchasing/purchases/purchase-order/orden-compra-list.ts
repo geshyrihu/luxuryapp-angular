@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -37,9 +38,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE D�BITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "N�MINA",
+  [ETipoGasto.Nomina]: "NóMINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -175,7 +176,7 @@ export class OrdenCompraList {
   tipoGasto = signal<number>(ETipoGasto.Fijo);
 
   customTitle = computed(() => {
-    return tipoGastoTitles[this.tipoGasto()] ?? "�RDENES DE COMPRA";
+    return tipoGastoTitles[this.tipoGasto()] ?? "óRDENES DE COMPRA";
   });
 
   tiposDeGasto = Object.keys(ETipoGasto)
@@ -260,7 +261,7 @@ export class OrdenCompraList {
   }
 
   onAddOrEdit(id: any) {
-    this.router.navigateByUrl(`/purchases/orden-compra/${id}`);
+    this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(id));
   }
 
   onManageLinks() {
@@ -268,7 +269,7 @@ export class OrdenCompraList {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gesti�n de V�nculos",
+        "Gestión de Vónculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

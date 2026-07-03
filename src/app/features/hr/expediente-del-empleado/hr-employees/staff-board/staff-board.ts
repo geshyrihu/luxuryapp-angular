@@ -7,6 +7,7 @@ import {
 } from "@angular/cdk/drag-drop";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { AvatarModule } from "primeng/avatar";
 import { Dialog } from "primeng/dialog";
 import { Drawer } from "primeng/drawer";
@@ -80,22 +81,22 @@ export class StaffBoard {
   readonly tablePrimeNgRows = getTablePrimeNgRows();
 
   readonly departamentLabels: Record<number, string> = {
-    [EDepartament.Administracion]: "Administraci�n",
+    [EDepartament.Administracion]: "Administración",
     [EDepartament.Legal]: "Legal",
     [EDepartament.Contabilidad]: "Contabilidad",
     [EDepartament.Mantenimiento]: "Mantenimiento",
     [EDepartament.Limpieza]: "Limpieza",
     [EDepartament.Operaciones]: "Operaciones",
-    [EDepartament.Jardineria]: "Jardiner�a",
+    [EDepartament.Jardineria]: "Jardineróa",
     [EDepartament.Sistemas]: "Sistemas",
     [EDepartament.Seguridad]: "Seguridad",
     [EDepartament.Constructora]: "Constructora",
-    [EDepartament.Supervision]: "Supervisi�n",
-    [EDepartament.Direcciones]: "Direcci�n",
+    [EDepartament.Supervision]: "Supervisión",
+    [EDepartament.Direcciones]: "Dirección",
     [EDepartament.RecusrosHumanos]: "Recursos Humanos",
     [EDepartament.Reclutamiento]: "Reclutamiento",
-    [EDepartament.Recepcion]: "Recepci�n",
-    [EDepartament.Mensajeria]: "Mensajer�a",
+    [EDepartament.Recepcion]: "Recepción",
+    [EDepartament.Mensajeria]: "Mensajeróa",
     [EDepartament.Ludoteca]: "Ludoteca",
     [EDepartament.NA]: "Sin Departamento",
   };
@@ -202,7 +203,7 @@ export class StaffBoard {
   }
 
   onOrgChart(): void {
-    this.router.navigateByUrl("/directory/work-position-org-chart");
+    this.router.navigate(ROUTES.DIRECTORIO.ORGANIGRAMA);
   }
 
   async onActivatePosition(id: string): Promise<void> {
@@ -308,23 +309,21 @@ export class StaffBoard {
 
   onShowEditEmpleado(item: IWorkPosition): void {
     if (!item.employeeId || !item.applicationUserId) return;
-    this.router.navigateByUrl(
-      `directory/empleado/${item.employeeId}/${item.applicationUserId}`,
+    this.router.navigate(
+      ROUTES.DIRECTORIO.EMPLEADO(item.employeeId, item.applicationUserId),
     );
   }
 
   onGoToProfile(emp: IEmployee): void {
     if (!emp.employeeId || !emp.applicationUserId) return;
-    this.router.navigateByUrl(
-      `directory/empleado/${emp.employeeId}/${emp.applicationUserId}`,
+    this.router.navigate(
+      ROUTES.DIRECTORIO.EMPLEADO(emp.employeeId, emp.applicationUserId),
     );
   }
 
   onGoToEmployeeFile(item: IWorkPosition): void {
     if (!item.employeeId) return;
-    this.router.navigateByUrl(
-      `/recursos-humanos/employee-files/${item.employeeId}`,
-    );
+    this.router.navigate(ROUTES.RECURSOS_HUMANOS.EXPEDIENTE(item.employeeId));
   }
 
   async onModalForm(data: { id: string; title: string }): Promise<void> {
@@ -354,7 +353,7 @@ export class StaffBoard {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DESCRIPCI�N de puesto: " + applicationRoleName,
+      "DESCRIPCIóN de puesto: " + applicationRoleName,
       DialogSize.lg,
     );
   }
@@ -388,7 +387,7 @@ export class StaffBoard {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el bot�n si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
+  /** Muestra el botún si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: IWorkPosition): boolean {
     return !item.positionRequest;
   }

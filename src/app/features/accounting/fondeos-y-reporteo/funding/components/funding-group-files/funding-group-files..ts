@@ -117,7 +117,7 @@ export class FundingGroupFiles implements OnInit {
   downloadSelectedFiles() {
     if (this.selectedFiles().length === 0) return;
 
-    // Descarga secuencial b�sica
+    // Descarga secuencial bósica
     this.selectedFiles().forEach((file) => {
       this.descargarArchivo(file.url);
     });

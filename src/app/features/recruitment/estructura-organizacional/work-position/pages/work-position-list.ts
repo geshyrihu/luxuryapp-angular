@@ -71,7 +71,7 @@ import { WorkPositionHours } from "./work-position-hours";
   ],
 })
 export class WorkPositionList {
-  // --- INYECCI�N DE DEPENDENCIAS ---
+  // --- INYECCIóN DE DEPENDENCIAS ---
   public authS = inject(AuthService);
   readonly apiS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -173,7 +173,7 @@ export class WorkPositionList {
     await this.dialogHandlerS.openDialog(
       JobDescriptionForm,
       { id, jobDescriptionId },
-      "Descripci�n de puesto: " + roleName,
+      "Descripción de puesto: " + roleName,
       DialogSize.md,
     );
   }
@@ -187,7 +187,7 @@ export class WorkPositionList {
     );
   }
 
-  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualizaci�n). */
+  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualización). */
   necesitaActualizacion(item: IWorkPosition): boolean {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
@@ -200,12 +200,12 @@ export class WorkPositionList {
     ) {
       return true;
     }
-    // L�gica adicional de validaci�n si es necesaria
+    // Lígica adicional de validación si es necesaria
     return true;
   }
 
   onValidateShowTIcket(applicationRoleId: string): boolean {
-    // L�gica para mostrar ticket vigente
+    // Lígica para mostrar ticket vigente
     return true;
   }
 

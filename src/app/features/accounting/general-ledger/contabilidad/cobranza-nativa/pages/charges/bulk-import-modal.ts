@@ -70,7 +70,7 @@ export default class BulkImportModal implements OnInit {
 
   downloadTemplate() {
     const csvContent =
-      "PropertyId,Monto,FechaVencimiento,Concepto\n[GUID_AQUI],1500.50,2026-04-01,Saldo Inicial Deuda Histórica\n[GUID_AQUI],400.00,2026-04-01,Saldo Inicial Abril";
+      "PropertyId,Monto,FechaVencimiento,Concepto\n[GUID_AQUI],1500.50,2026-04-01,Saldo Inicial Deuda HistÃºrica\n[GUID_AQUI],400.00,2026-04-01,Saldo Inicial Abril";
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");

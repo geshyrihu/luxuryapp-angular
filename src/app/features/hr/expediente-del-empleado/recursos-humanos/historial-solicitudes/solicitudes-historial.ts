@@ -160,16 +160,16 @@ export class SolicitudesHistorial implements OnInit {
     const { value: reason } = await Swal.fire({
       title: "Cancelar Solicitud",
       input: "textarea",
-      inputLabel: `Motivo de cancelaci�n para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
-      inputPlaceholder: "Ingresa el motivo de la cancelaci�n aqu�...",
+      inputLabel: `Motivo de cancelación para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
+      inputPlaceholder: "Ingresa el motivo de la cancelación aquó...",
       inputValidator: (value) => {
         if (!value) {
-          return "El motivo de la cancelaci�n es obligatorio.";
+          return "El motivo de la cancelación es obligatorio.";
         }
         return null;
       },
       showCancelButton: true,
-      confirmButtonText: "Confirmar Cancelaci�n",
+      confirmButtonText: "Confirmar Cancelación",
       cancelButtonText: "No Cancelar",
       icon: "warning",
     });
@@ -280,7 +280,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "leave",
-            daysRequested: `${diffDays} d�a(s)`,
+            daysRequested: `${diffDays} día(s)`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };
@@ -300,7 +300,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "vacation",
-            daysRequested: `${item.requestedDays} d�a(s) (${item.seniorityYearDescription})`,
+            daysRequested: `${item.requestedDays} día(s) (${item.seniorityYearDescription})`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };

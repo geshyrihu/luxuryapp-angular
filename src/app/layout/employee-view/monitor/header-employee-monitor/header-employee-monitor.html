@@ -7,9 +7,9 @@
       <div class="flex align-items-center gap-2 px-3" style="min-width: 650px">
         <!-- Botón para abrir/cerrar el sidebar -->
         <iw-button
-          icon="mdi:menu"
+          iconClass="mdi:menu"
           variant="ghost"
-          severity="secondary"
+          severity="contrast"
           (clicked)="sidebarToggle()"
           pTooltip="Menú"
           tooltipPosition="bottom"
@@ -60,13 +60,15 @@
         }
 
         <div class="flex-none" style="min-width: 300px">
-          <p-breadcrumb [model]="breadcrumbItems" styleClass="header-breadcrumb"></p-breadcrumb>
+          <p-breadcrumb
+            [model]="breadcrumbItems"
+            styleClass="header-breadcrumb"
+          ></p-breadcrumb>
         </div>
       </div>
     </ng-template>
 
-    <!-- <ng-template #center>
-    </ng-template> -->
+    <!-- <ng-template #center> </ng-template> -->
 
     <ng-template #end>
       <div class="flex align-items-center gap-1">
@@ -77,9 +79,9 @@
         @for (navIcon of displayNavIcons; track navIcon.id) { @if
         (!navIcon.requiresRole || aspRoleS.hasAny(navIcon.requiresRole)) {
         <iw-button
-          [icon]="navIcon.iconClass"
-          variant="ghost"
-          severity="secondary"
+          [iconClass]="navIcon.iconClass"
+          variant="outline"
+          severity="contrast"
           (clicked)="navIcon.action()"
           [pTooltip]="navIcon.ngbTooltip"
           tooltipPosition="bottom"
@@ -89,9 +91,9 @@
 
         <!-- Theme Toggle Button -->
         <iw-button
-          [icon]="getThemeIcon()"
+          [iconClass]="getThemeIcon()"
           variant="ghost"
-          severity="secondary"
+          severity="contrast"
           (clicked)="toggleTheme()"
           pTooltip="Cambiar Tema"
           tooltipPosition="bottom"
@@ -400,14 +402,14 @@
           <il-button
             icon="mdi:content-copy"
             [label]="currentMode() === 'poster' ? 'Copiar Póster' : 'Copiar como Imagen'"
-            severity="secondary"
+            severity="contrast"
             size="sm"
             (clicked)="copyAsImage()"
           />
           <il-button
             icon="mdi:file-pdf"
             [label]="currentMode() === 'poster' ? 'Descargar PDF' : 'Exportar a PDF'"
-            severity="secondary"
+            severity="contrast"
             size="sm"
             (clicked)="printAnnouncement()"
           />
@@ -425,7 +427,7 @@
       <il-button
         label="Nueva Idea"
         icon="mdi:refresh"
-        severity="secondary"
+        severity="contrast"
         variant="text"
         (clicked)="userIdeaControl.reset(''); aiAnnouncementResult.set(null); aiAnnouncementImageResult.set(null)"
       />
@@ -438,14 +440,14 @@
       <il-button
         label="Cancelar"
         icon="mdi:close"
-        severity="secondary"
+        severity="contrast"
         variant="text"
         (clicked)="displayAiModal.set(false)"
       />
       <il-button
         label="Comunicado (Texto + Emojis)"
         icon="mdi:face-smile"
-        severity="secondary"
+        severity="contrast"
         (clicked)="generateOfficialAnnouncement('text')"
         [disabled]="!(userIdeaControl.value || '').trim() || isGeneratingAnnouncement()"
       />

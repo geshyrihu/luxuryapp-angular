@@ -43,9 +43,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE D�BITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "N�MINA",
+  [ETipoGasto.Nomina]: "NóMINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -153,8 +153,8 @@ export class CreateOrdenCompraWizard implements OnInit {
 
   constructor() {
     this.items = [
-      { label: "Informaci�n General" },
-      { label: "A�adir Productos" },
+      { label: "Información General" },
+      { label: "Aóadir Productos" },
       { label: "Asignar Presupuesto" },
       { label: "Facturas" },
       { label: "Resumen" },
@@ -310,7 +310,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       .openDialog(
         OrdenCompraDetalleForm,
         data,
-        productData.productoId ? "Editar Art�culo" : "A�adir Art�culo",
+        productData.productoId ? "Editar Artúculo" : "Aóadir Artúculo",
         this.dialogHandlerS.sizeMd,
       )
       .then((result: any) => {
@@ -506,16 +506,16 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.providerControl.valid
       ) {
         return this.customToastS.showError(
-          "Formulario Inv�lido",
-          "Por favor, complete todos los campos de Informaci�n General.",
+          "Formulario Invólido",
+          "Por favor, complete todos los campos de Información General.",
         );
       }
     }
     if (this.activeIndex === 1) {
       if (this.itemsSignal().length === 0) {
         return this.customToastS.showError(
-          "Formulario Inv�lido",
-          "Debe A�adir al menos un producto.",
+          "Formulario Invólido",
+          "Debe Aóadir al menos un producto.",
         );
       }
     }
@@ -525,8 +525,8 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.apiResponseS.validateForm(this.step3Form)
       ) {
         return this.customToastS.showError(
-          "Formulario Inv�lido",
-          "Debe A�adir al menos una cuenta de presupuesto.",
+          "Formulario Invólido",
+          "Debe Aóadir al menos una cuenta de presupuesto.",
         );
       }
     }
@@ -550,15 +550,15 @@ export class CreateOrdenCompraWizard implements OnInit {
     ) {
       this.activeIndex = 0;
       return this.customToastS.showError(
-        "Formulario Inv�lido",
-        "La informaci�n general est� incompleta.",
+        "Formulario Invólido",
+        "La información general esté incompleta.",
       );
     }
     if (this.itemsSignal().length === 0) {
       this.activeIndex = 1;
       return this.customToastS.showError(
-        "Formulario Inv�lido",
-        "Debe A�adir al menos un producto.",
+        "Formulario Invólido",
+        "Debe Aóadir al menos un producto.",
       );
     }
     if (
@@ -567,8 +567,8 @@ export class CreateOrdenCompraWizard implements OnInit {
     ) {
       this.activeIndex = 2;
       return this.customToastS.showError(
-        "Formulario Inv�lido",
-        "La informaci�n de presupuesto est� incompleta.",
+        "Formulario Invólido",
+        "La información de presupuesto esté incompleta.",
       );
     }
 

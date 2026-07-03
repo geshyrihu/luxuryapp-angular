@@ -104,7 +104,7 @@ export class DiagramView implements OnInit, AfterViewInit {
   }
 
   loadViewerScript() {
-    // Si el script ya est� cargado, lo reinicializamos
+    // Si el script ya esté cargado, lo reinicializamos
     if ((window as any).GraphViewer) {
       this.renderDiagram();
       return;
@@ -126,7 +126,7 @@ export class DiagramView implements OnInit, AfterViewInit {
     }
 
     // El script de draw.io busca elementos con clase 'mxgraph' al cargar
-    // Si lo cargamos din�micamente, podemos forzar el procesamiento
+    // Si lo cargamos dinámicamente, podemos forzar el procesamiento
     if (
       (window as any).GraphViewer &&
       (window as any).GraphViewer.processElements

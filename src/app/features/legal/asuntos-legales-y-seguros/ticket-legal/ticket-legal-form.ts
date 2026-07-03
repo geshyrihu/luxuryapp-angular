@@ -21,7 +21,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
 
-// ID del WorkGroup Legal global ó constante de dominio
+// ID del WorkGroup Legal global √© constante de dominio
 const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";
 
 interface ILegalTaskForm {
@@ -34,7 +34,7 @@ interface ILegalTaskForm {
   assignee: FormControl<string>;
   title: FormControl<string>;
   description: FormControl<string>;
-  // TODO: Eliminar en Fase 6. Se derivar· del TypePerson del creador: Employee ? interno, Provider ? externo.
+  // TODO: Eliminar en Fase 6. Se derivar√© del TypePerson del creador: Employee ? interno, Provider ? externo.
   isInternal: FormControl<boolean | null>;
   documentCloud: FormControl<boolean>;
   documentEmail: FormControl<boolean>;

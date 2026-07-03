@@ -19,7 +19,7 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="ePosicionComite">
-        <p class="card-title">Posici�n</p>
+        <p class="card-title">Posición</p>
         <p-sortIcon field="ePosicionComite" />
       </th>
       <th pSortableColumn="nameProperty">
@@ -70,7 +70,7 @@
           <il-button-delete (confirmed)="onDelete(item.id)" />
 
           <il-button-send-email
-            confirmMessage="Enviar usuario y contrase�a de acceso."
+            confirmMessage="Enviar usuario y contraseóa de acceso."
             (confirmed)="onSendCredential(item.id)"
           />
         </div>
@@ -86,7 +86,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -130,7 +130,7 @@
             label="Eliminar"
           />
           <il-button-send-email
-            confirmMessage="Enviar usuario y contrase�a de acceso."
+            confirmMessage="Enviar usuario y contraseóa de acceso."
             (confirmed)="onSendCredential(item.id)"
             label="Enviar"
           />

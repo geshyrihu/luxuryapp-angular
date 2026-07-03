@@ -51,7 +51,7 @@ export class MedidorLecturaForm implements OnInit {
   dateString: string = "";
   dateStringUltimoRegistro: string = "";
   seRegistroEsteDia: boolean = false;
-  seRegistroEsteDiaMensaje: string = "Ya se cargo el registro de este día";
+  seRegistroEsteDiaMensaje: string = "Ya se cargo el registro de este dÃ­a";
   id: string = "";
   ultimaLectura: number = 0;
   medidorId: string = "";
@@ -110,7 +110,7 @@ export class MedidorLecturaForm implements OnInit {
           this.form.controls.lectura.setErrors({ lecturaMenor: true });
           this.laLecturaEsMenor = true;
         } else {
-          // Si tenía error lecturaMenor, quitarlo.
+          // Si tenÃ³a error lecturaMenor, quitarlo.
           // Nota: setErrors(null) quita todos. Si hay required, se valida solo.
           const errors = this.form.controls.lectura.errors;
           if (errors && errors["lecturaMenor"]) {

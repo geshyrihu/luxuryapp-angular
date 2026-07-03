@@ -35,7 +35,7 @@ export class TicketLegalReportesExternos implements OnInit {
   datePipe = inject(DatePipe);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // Declaración e inicialización de variables con signals
+  // DeclaraciÃ³n e inicializaciÃ³n de variables con signals
   reportData = signal<any>(null);
   requestsAttended = signal<any[]>([]);
   requestsPending = signal<any[]>([]);

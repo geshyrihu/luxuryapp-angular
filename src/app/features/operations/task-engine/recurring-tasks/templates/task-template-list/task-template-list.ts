@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import {
   WebButtonLabelActiveDesactive,
@@ -72,7 +73,7 @@ export class TaskTemplateList implements OnInit {
   }
 
   onManageItems(templateId: string) {
-    this.router.navigate(["/recurring-tasks", templateId, "items"]);
+    this.router.navigate(ROUTES.TAREAS_RECURRENTES.ITEMS(templateId));
   }
 
   onDelete(id: string) {

@@ -48,7 +48,7 @@ export class PropertyOccupantManager implements OnInit {
   propertyId: any = this.config.data.propertyId;
   propertyName: string = this.config.data.propertyName;
 
-  // Definici髇 estricta del formulario
+  // Definici贸n estricta del formulario
   occupantForm = new FormGroup({
     id: new FormControl<string | null>(null),
     fullName: new FormControl<string>("", {
@@ -135,7 +135,7 @@ export class PropertyOccupantManager implements OnInit {
         })
         .finally(() => this.loading.set(false));
     } else {
-      // A馻dir
+      // A贸adir
       this.apiResponseS
         .onPost<IPropertyOccupant>("PropertyOccupant", occupantData)
         .then((response) => {
@@ -143,12 +143,12 @@ export class PropertyOccupantManager implements OnInit {
             this.occupants.update((current) => [...current, response]);
             this.resetForm();
           } else {
-            this.errorMensaje = "Error al A馻dir el ocupante.";
+            this.errorMensaje = "Error al A贸adir el ocupante.";
           }
         })
         .catch((error) => {
           this.errorMensaje =
-            error.error?.message || "Error al A馻dir el ocupante.";
+            error.error?.message || "Error al A贸adir el ocupante.";
           console.error("Error adding occupant:", error);
         })
         .finally(() => this.loading.set(false));

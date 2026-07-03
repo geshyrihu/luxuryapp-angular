@@ -73,7 +73,7 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
 })
 export class OrdenCompra implements OnInit {
   //----------------------------------------------------------------
-  // 1. INYECCI�N DE DEPENDENCIAS
+  // 1. INYECCIóN DE DEPENDENCIAS
   //----------------------------------------------------------------
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
@@ -82,10 +82,10 @@ export class OrdenCompra implements OnInit {
   routeActive = inject(ActivatedRoute);
   router = inject(Router);
   confirmationService = inject(ConfirmationService);
-  public ordenCompraService = inject(OrdenCompraService); // P�blico para usar sus signals en el template
+  public ordenCompraService = inject(OrdenCompraService); // Póblico para usar sus signals en el template
   public pdfGenerationService = inject(PdfGenerationService);
   //----------------------------------------------------------------
-  // 2. SE�ALES DE ESTADO (STATE SIGNALS)
+  // 2. SEóALES DE ESTADO (STATE SIGNALS)
   //----------------------------------------------------------------
   // REFACTOR: El estado del componente ahora se gestiona con WritableSignal.
   ordenCompraId: WritableSignal<string> = signal("");
@@ -99,19 +99,19 @@ export class OrdenCompra implements OnInit {
   isValidating = signal(false);
   validationResult = signal<any | null>(null);
 
-  // REFACTOR: Propiedades que no se usan o se pueden derivar. Se comentan para posible eliminaci�n.
+  // REFACTOR: Propiedades que no se usan o se pueden derivar. Se comentan para posible eliminación.
   // esNumeroNegativo: boolean = false; // Derivado de `ordenCompraService.totalPorCubrir() < 0`, no usado en template.
   // totalRelacionadoConOtras Ordenes: number = 0; // No se usa en el template.
   // esGastoFijo: boolean = false; // No se usa en el template.
   // icon: string = ""; // No se usa en el template.
 
   //----------------------------------------------------------------
-  // 3. SE�ALES COMPUTADAS (COMPUTED SIGNALS) PARA L�GICA DE UI
+  // 3. SEóALES COMPUTADAS (COMPUTED SIGNALS) PARA LíGICA DE UI
   //----------------------------------------------------------------
-  // REFACTOR: Centralizamos la l�gica condicional en `computed` signals.
-  // Esto limpia el template y hace que la l�gica sea m�s f�cil de mantener.
+  // REFACTOR: Centralizamos la lígica condicional en `computed` signals.
+  // Esto limpia el template y hace que la lígica sea mís fócil de mantener.
 
-  /** Indica si la OC est� autorizada. */
+  /** Indica si la OC esté autorizada. */
   isAuthorized: Signal<boolean> = computed(
     () =>
       this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra === "Autorizado",
@@ -124,7 +124,7 @@ export class OrdenCompra implements OnInit {
       0,
   );
 
-  /** Indica si la OC est� bloqueada para modificaci�n. */
+  /** Indica si la OC esté bloqueada para modificación. */
   isLocked: Signal<boolean> = computed(
     () => this.ordenCompra()?.isLockedForModification ?? false,
   );
@@ -137,7 +137,7 @@ export class OrdenCompra implements OnInit {
   /** Determina si se pueden agregar nuevos productos. */
   canAddProducts: Signal<boolean> = computed(() => !this.isLocked());
 
-  /** L�gica para mostrar el encabezado de la tabla de presupuesto. */
+  /** Lígica para mostrar el encabezado de la tabla de presupuesto. */
   canShowBudgetHeader: Signal<boolean> = computed(() => {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     return (
@@ -145,12 +145,12 @@ export class OrdenCompra implements OnInit {
     );
   });
 
-  /** L�gica para deshabilitar los botones de edici�n de los paneles principales. */
+  /** Lígica para deshabilitar los botones de edición de los paneles principales. */
   isPanelEditingDisabled: Signal<boolean> = computed(
     () => this.isLocked() || this.isAuthorized() || this.isReviewedByResident(),
   );
 
-  /** Calcula todos los totales de la OC en una sola se�al computada. */
+  /** Calcula todos los totales de la OC en una sola seóal computada. */
   totals: Signal<{
     subtotal: number;
     iva: number;
@@ -213,7 +213,7 @@ export class OrdenCompra implements OnInit {
       this.ordenCompraDetalle.set(result.ordenCompraDetalle ?? []);
       this.purchaseOrderBudget.set(result.purchaseOrderBudget ?? []);
 
-      // Actualizamos los totales en el servicio, lo que propagar� los cambios a todos los signals dependientes.
+      // Actualizamos los totales en el servicio, lo que propagaré los cambios a todos los signals dependientes.
       this.ordenCompraService.actualizarTotalOrdenCompra(ocId);
 
       if (result.folioSolicitudCompra) {
@@ -229,8 +229,8 @@ export class OrdenCompra implements OnInit {
     this.loading.set(false);
   }
 
-  // ... M�todos para abrir modales y realizar acciones ...
-  // La l�gica interna de estos m�todos no cambia, solo que al final llaman a onLoadData()
+  // ... Métodos para abrir modales y realizar acciones ...
+  // La lígica interna de estos métodos no cambia, solo que al final llaman a onLoadData()
   // para refrescar el estado de todas las signals.
 
   autorizarCompra(): void {
@@ -284,7 +284,7 @@ export class OrdenCompra implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  // ... (Resto de m�todos onModal..., onDelete..., etc. se mantienen similares, siempre llamando a onLoadData() al final)
+  // ... (Resto de métodos onModal..., onDelete..., etc. se mantienen similares, siempre llamando a onLoadData() al final)
   onModalEditarPresupuestoUtilizado(id: any) {
     this.dialogHandlerS
       .openDialog(
@@ -310,7 +310,7 @@ export class OrdenCompra implements OnInit {
       .openDialog(
         ModalOrdenCompra,
         { ordenCompra: this.ordenCompra() },
-        "Actualizar informaci�n",
+        "Actualizar información",
         this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
@@ -353,7 +353,7 @@ export class OrdenCompra implements OnInit {
       .onDelete(Endpoints.PurchaseOrderBudgets.delete(id))
       .then(() => this.onLoadData());
   }
-  /** N�mero de columnas del cuerpo de la tabla (10 o 11 seg�n permisos). */
+  /** Número de columnas del cuerpo de la tabla (10 o 11 segón permisos). */
   tableColumnCount: Signal<number> = computed(() => {
     return this.canEditBudget() ? 11 : 10;
   });
@@ -371,7 +371,7 @@ export class OrdenCompra implements OnInit {
     this.pdfGenerationService.generateSolicitudPagoPdf(this.ordenCompraId());
   }
 
-  // --- M�TODOS DE ARCHIVOS Y VALIDACI�N (Tra�dos de OrdenCompraStatusParcial) ---
+  // --- MéTODOS DE ARCHIVOS Y VALIDACIóN (Traódos de OrdenCompraStatusParcial) ---
 
   descargarArchivo(url: string): void {
     const link = document.createElement("a");
@@ -404,18 +404,18 @@ export class OrdenCompra implements OnInit {
         this.validationResult.set(result);
         if (result.isValid) {
           this.customToastService.showSuccess(
-            "Validaci�n Exitosa",
+            "Validación Exitosa",
             result.message,
           );
         } else {
           this.customToastService.showError(
-            "Validaci�n Fallida",
+            "Validación Fallida",
             result.message,
           );
         }
       })
       .catch((error) => {
-        console.error("Error en la validaci�n:", error);
+        console.error("Error en la validación:", error);
         this.customToastService.showError(
           "Error",
           "Error al validar facturas.",
@@ -447,7 +447,7 @@ export class OrdenCompra implements OnInit {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gesti�n de V�nculos",
+        "Gestión de Vónculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

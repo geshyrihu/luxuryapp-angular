@@ -5,6 +5,7 @@ import {
 } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   FormBuilder,
   FormControl,
@@ -606,7 +607,7 @@ export class ManualsAndProcessesEditor implements OnInit {
   }
 
   onGoBack(): void {
-    this.router.navigate(["/library/manuals-and-processes"]);
+    this.router.navigate(ROUTES.BIBLIOTECA.MANUALES_Y_PROCESOS);
   }
 
   safeUrl(url: string | null): SafeResourceUrl | null {

@@ -1,5 +1,6 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { EApplicationRole } from "../enums/asp-net-roles.enum";
 import { AspRoleService } from "../services/asp-role.service";
 
@@ -34,6 +35,6 @@ export const superUserGuard: CanActivateFn = (route, state) => {
   console.warn(
     `[Access Denied] Intento de acceso a ruta protegida: ${state.url}`,
   );
-  router.navigate(["/unauthorized"]);
+  router.navigate(ROUTES.UNAUTHORIZED);
   return false;
 };

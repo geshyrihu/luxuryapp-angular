@@ -10,6 +10,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-notifications-gadget",
   imports: [
@@ -79,6 +80,6 @@ export class NotificationsGadget implements OnInit {
 
   irATodasLasNotificaciones(): void {
     this.drawerVisible.set(false);
-    this.router.navigate(['/notifications']);
+    this.router.navigate(ROUTES.NOTIFICATIONS);
   }
 }

@@ -92,7 +92,7 @@ export class ContractAddendumList implements OnInit {
   }
 
   onSign(item: ContractAddendumListDTO): void {
-    // TODO: Implementar di�logo de firmar adenda
+    // TODO: Implementar diólogo de firmar adenda
     console.log("Firmar adenda:", item.id);
   }
 

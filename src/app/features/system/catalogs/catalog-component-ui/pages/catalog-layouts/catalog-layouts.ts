@@ -13,13 +13,13 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   template: `
     <div class="grid">
 
-      <!-- -- Layouts de P·gina --------------------------------------- -->
+      <!-- -- Layouts de P√°gina --------------------------------------- -->
       <div class="col-12">
-        <p-card header="Layouts de P·gina · Patrones ERP">
+        <p-card header="Layouts de P√°gina √© Patrones ERP">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Los 5 layouts base del ERP. Cada uno resuelve una clase distinta de tarea operativa.
-            Selecciona el layout segÛn la <strong>densidad de informaciÛn</strong> y el
-            <strong>flujo de trabajo</strong> del mÛdulo.
+            Selecciona el layout seg√≥n la <strong>densidad de informaci√≥n</strong> y el
+            <strong>flujo de trabajo</strong> del m√≥dulo.
           </p>
 
           <div class="grid">
@@ -66,9 +66,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Form Layouts --------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Form Layouts Û OrganizaciÛn de Campos">
+        <p-card header="Form Layouts √© Organizaci√≥n de Campos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Elige la densidad del formulario segÛn el contexto: mÛs columnas = mÛs densidad
+            Elige la densidad del formulario seg√≥n el contexto: m√≠s columnas = m√≠s densidad
             pero mayor riesgo de errores de captura. En mobile siempre usa una columna.
           </p>
 
@@ -87,7 +87,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   }
                 </div>
                 <p class="m-0 text-xs text-color-secondary mt-auto">
-                  Formularios simples, wizards, login, confirmar acciÛn.
+                  Formularios simples, wizards, login, confirmar acci√≥n.
                 </p>
               </div>
             </div>
@@ -108,7 +108,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   }
                 </div>
                 <p class="m-0 text-xs text-color-secondary mt-auto">
-                  EdiciÛn de entidad, alta de usuarios, ajustes de perfil.
+                  Edici√≥n de entidad, alta de usuarios, ajustes de perfil.
                 </p>
               </div>
             </div>
@@ -152,7 +152,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   }
                 </div>
                 <p class="m-0 text-xs text-color-secondary mt-auto">
-                  ConfiguraciÛn, preferencias, formularios de bÛsqueda en lÛnea.
+                  Configuraci√≥n, preferencias, formularios de b√≥squeda en l√≥nea.
                 </p>
               </div>
             </div>
@@ -163,9 +163,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Dashboard Grid ------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Dashboard Grid Û ComposiciÛn estÛndar ERP">
+        <p-card header="Dashboard Grid √© Composici√≥n est√©ndar ERP">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            PatrÛn de dashboard para mÛdulos analÛticos. Combina KPIs, grÛficas y listados
+            Patr√≥n de dashboard para m√≥dulos anal√≥ticos. Combina KPIs, gr√≥ficas y listados
             en una sola vista de alto nivel.
           </p>
 
@@ -176,7 +176,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
             <div class="flex align-items-center justify-content-between px-4 py-3 border-bottom-1 surface-border">
               <div>
                 <strong class="text-sm block">Dashboard Operativo</strong>
-                <span class="text-xs text-color-secondary">Junio 2026 È Actualizado hace 5 min</span>
+                <span class="text-xs text-color-secondary">Junio 2026 √© Actualizado hace 5 min</span>
               </div>
               <div class="flex gap-2">
                 <div class="border-round px-3 py-1 text-xs surface-card border-1 border-round">Exportar</div>
@@ -224,7 +224,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 </div>
                 <div class="col-12 md:col-4">
                   <div class="surface-card border-1 border-round p-3 h-full">
-                    <strong class="text-xs text-color-secondary block mb-2">DISTRIBUCIÛN</strong>
+                    <strong class="text-xs text-color-secondary block mb-2">DISTRIBUCI√≥N</strong>
                     <!-- Fake pie -->
                     <div class="flex flex-column gap-2 mt-2">
                       @for (s of pieSlices; track s.label) {
@@ -245,7 +245,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               <!-- Mini table -->
               <div class="surface-card border-1 border-round mt-3 overflow-hidden">
                 <div class="flex align-items-center justify-content-between px-3 py-2 surface-section border-bottom-1 surface-border">
-                  <strong class="text-xs">ÛLTIMAS SOLICITUDES</strong>
+                  <strong class="text-xs">√≥LTIMAS SOLICITUDES</strong>
                   <span class="text-xs text-primary cursor-pointer">Ver todas ?</span>
                 </div>
                 @for (row of miniTableRows; track row.folio) {
@@ -296,27 +296,27 @@ export class CatalogLayouts {
       tag: "Simple",
       tagSeverity: "secondary" as const,
       descripcion: "Todo el ancho disponible. Sin sidebar de contenido. Para vistas de listado, tablas y dashboards de alto nivel.",
-      uso: "Listados maestros, reportes, cat·logos con tabla.",
+      uso: "Listados maestros, reportes, cat√°logos con tabla.",
       template: null,
       mockupColors: { header: "var(--ds-primary)", content: "#e2e8f0" },
     },
     {
       id: "sidebar-content",
       titulo: "Sidebar + Contenido",
-      tag: "EstÈndar",
+      tag: "Est√©ndar",
       tagSeverity: "info" as const,
-      descripcion: "NavegaciÛn lateral fija + Ûrea de contenido principal. Layout base del ERP para la mayorÌa de mÛdulos.",
-      uso: "Dashboard principal, navegaciÛn entre sub-mÛdulos.",
+      descripcion: "Navegaci√≥n lateral fija + √≥rea de contenido principal. Layout base del ERP para la mayor√≥a de m√≥dulos.",
+      uso: "Dashboard principal, navegaci√≥n entre sub-m√≥dulos.",
       template: null,
       mockupColors: { sidebar: "var(--ds-primary)", content: "#f1f5f9" },
     },
     {
       id: "master-detail",
-      titulo: "MasterÛDetail",
+      titulo: "Master√≥Detail",
       tag: "ERP Core",
       tagSeverity: "success" as const,
-      descripcion: "Lista a la izquierda + detalle/formulario a la derecha. La selecciÛn en la lista actualiza el panel de detalle.",
-      uso: "Contactos, proveedores, Ûrdenes de trabajo, facturas.",
+      descripcion: "Lista a la izquierda + detalle/formulario a la derecha. La selecci√≥n en la lista actualiza el panel de detalle.",
+      uso: "Contactos, proveedores, √≥rdenes de trabajo, facturas.",
       template: null,
       mockupColors: { master: "#bfcfe4", detail: "#f8fafc" },
     },
@@ -325,8 +325,8 @@ export class CatalogLayouts {
       titulo: "Wizard (Stepper)",
       tag: "Flujo",
       tagSeverity: "warn" as const,
-      descripcion: "Flujo lineal de N pasos con barra de progreso. Cada paso es una secciÛn del formulario completo.",
-      uso: "Alta de usuario, onboarding, flujo de aprobaciÛn, solicitud compleja.",
+      descripcion: "Flujo lineal de N pasos con barra de progreso. Cada paso es una secci√≥n del formulario completo.",
+      uso: "Alta de usuario, onboarding, flujo de aprobaci√≥n, solicitud compleja.",
       template: null,
       mockupColors: { steps: "var(--ds-primary)", content: "#f8fafc" },
     },
@@ -335,8 +335,8 @@ export class CatalogLayouts {
       titulo: "Split Panels",
       tag: "Avanzado",
       tagSeverity: "danger" as const,
-      descripcion: "Dos paneles redimensionables lado a lado. Para comparaciÛn o ediciÛn con vista previa en tiempo real.",
-      uso: "Editor de documentos, comparaciÛn de versiones, preview de reportes.",
+      descripcion: "Dos paneles redimensionables lado a lado. Para comparaci√≥n o edici√≥n con vista previa en tiempo real.",
+      uso: "Editor de documentos, comparaci√≥n de versiones, preview de reportes.",
       template: null,
       mockupColors: { left: "#dce7f3", right: "#f8fafc" },
     },
@@ -368,10 +368,10 @@ export class CatalogLayouts {
 
   readonly layoutRules = [
     { titulo: "Grid de 12 columnas",   icon: "mdi:grid",           color: "var(--ds-primary)", descripcion: "Usa siempre PrimeFlex con col-12, md:col-6, lg:col-4. Nunca anchos en px para elementos del grid." },
-    { titulo: "Max-width de contenido",icon: "mdi:arrow-collapse-horizontal", color: "var(--ds-info)", descripcion: "En full-width, el contenido tiene max-width implÛcito del contenedor. En sidebar+content, el content ocupa el espacio restante." },
+    { titulo: "Max-width de contenido",icon: "mdi:arrow-collapse-horizontal", color: "var(--ds-info)", descripcion: "En full-width, el contenido tiene max-width impl√≥cito del contenedor. En sidebar+content, el content ocupa el espacio restante." },
     { titulo: "Espaciado consistente", icon: "mdi:arrow-expand-vertical", color: "var(--ds-success)", descripcion: "gap-4 entre bloques principales, gap-3 entre campos relacionados, gap-2 entre elementos inline." },
-    { titulo: "Mobile primero",        icon: "mdi:cellphone",       color: "var(--ds-warning)", descripcion: "DiseÌa para col-12 primero. Expande con md:col-6 y lg:col-4. Los formularios siempre apilan en mobile." },
-    { titulo: "Header fijo, no pegajoso", icon: "mdi:page-layout-header", color: "var(--ds-danger)", descripcion: "El header de la app es sticky. El contenido de la p·gina hace scroll debajo. Nunca pongas sticky en elementos de contenido." },
-    { titulo: "JerarquÌa de acciones", icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Una acciÛn primaria por vista. Las secundarias van a la derecha o en menÈ contextual. Danger siempre separado y confirmado." },
+    { titulo: "Mobile primero",        icon: "mdi:cellphone",       color: "var(--ds-warning)", descripcion: "Dise√≥a para col-12 primero. Expande con md:col-6 y lg:col-4. Los formularios siempre apilan en mobile." },
+    { titulo: "Header fijo, no pegajoso", icon: "mdi:page-layout-header", color: "var(--ds-danger)", descripcion: "El header de la app es sticky. El contenido de la p√°gina hace scroll debajo. Nunca pongas sticky en elementos de contenido." },
+    { titulo: "Jerarqu√≥a de acciones", icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Una acci√≥n primaria por vista. Las secundarias van a la derecha o en men√≠ contextual. Danger siempre separado y confirmado." },
   ];
 }

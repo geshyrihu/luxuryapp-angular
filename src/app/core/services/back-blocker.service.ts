@@ -1,6 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { filter, map } from "rxjs";
 
 /**
@@ -57,7 +58,7 @@ export class BackBlockerService {
       // Como no podemos cancelar, forzamos una nueva navegación.
       // 1. Llevamos al usuario a una ruta segura (el dashboard).
       //    `replaceUrl: true` evita que esta "corrección" se añada al historial.
-      this.router.navigate(["/dashboard"], { replaceUrl: true });
+      this.router.navigate(ROUTES.DASHBOARD, { replaceUrl: true });
 
       // 2. Empujamos un estado manualmente en el historial. Esto ayuda a estabilizar
       //    el historial del navegador después de nuestra redirección forzada,

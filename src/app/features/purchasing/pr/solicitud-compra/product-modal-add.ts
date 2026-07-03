@@ -66,40 +66,40 @@ interface IAddProductRow {
   providers: [PaginationService], // Proveer una instancia fresca de PaginationService para este componente
 })
 export class ProductModalAdd implements OnInit, OnDestroy {
-  // --- InyecciÛn de Dependencias ---
+  // --- Inyecci√≥n de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private config = inject(DynamicDialogConfig); // ConfiguraciÛn pasada al abrir el di·logo
-  public ref = inject(DynamicDialogRef); // Referencia al di·logo dinÛmico para cerrarlo
+  private config = inject(DynamicDialogConfig); // Configuraci√≥n pasada al abrir el di√≥logo
+  public ref = inject(DynamicDialogRef); // Referencia al di√≥logo din√°mico para cerrarlo
   private authS = inject(AuthService);
   formB = inject(FormBuilder);
   public paginationService =
-    inject<PaginationService<IProductData>>(PaginationService); // Inyectar el servicio de paginaciÛn genÛrico
+    inject<PaginationService<IProductData>>(PaginationService); // Inyectar el servicio de paginaci√≥n gen√≥rico
 
   // --- Estado del Componente ---
-  /** Identificador de la solicitud de compra a la que se agregarÛn productos. */
+  /** Identificador de la solicitud de compra a la que se agregar√≥n productos. */
   public solicitudCompraId: string = "";
   /** Lista de unidades de medida para el dropdown. */
   public cb_unidadMedida: ISelectItem[] = [];
-  /** Indica si se debe mostrar un mensaje de error de validaciÛn. */
+  /** Indica si se debe mostrar un mensaje de error de validaci√≥n. */
   public mensajeError: boolean = false;
-  /** Control para la bÛsqueda para reemplazar ngModel */
+  /** Control para la b√≥squeda para reemplazar ngModel */
   public searchControl = new FormControl<string>("");
 
   formArray = new FormArray<FormGroup<IAddProductRow>>([]);
 
-  // --- ConfiguraciÛn de la Tabla PrimeNG ---
-  /** Opciones para el nÛmero de filas por pÛgina. */
+  // --- Configuraci√≥n de la Tabla PrimeNG ---
+  /** Opciones para el n√∫mero de filas por p√°gina. */
   public rowsPerPageOptions: number[] = rowsPerPageOptions();
-  /** NÛmero de filas por defecto para la tabla PrimeNG. */
+  /** N√∫mero de filas por defecto para la tabla PrimeNG. */
   public tablePrimeNgRows: number = tablePrimeNgRows();
-  /** PosiciÛn inicial de la paginaciÛn (Ûndice del primer registro). */
-  public first: number = 0; // Se actualiza basado en el estado del servicio de paginaciÛn
+  /** Posici√≥n inicial de la paginaci√≥n (√≥ndice del primer registro). */
+  public first: number = 0; // Se actualiza basado en el estado del servicio de paginaci√≥n
 
   // --- Datos para la Tabla (manejados por PaginationService) ---
   /** Datos actuales mostrados en la tabla. */
   dataSignal = toSignal(this.paginationService.data$, { initialValue: [] });
-  /** NÛmero total de registros disponibles para la paginaciÛn. */
+  /** N√∫mero total de registros disponibles para la paginaci√≥n. */
   totalRecordsSignal = toSignal(this.paginationService.totalRecords$, {
     initialValue: 0,
   });
@@ -140,13 +140,13 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   /**
    * Ciclo de vida OnInit.
    * Se ejecuta una vez que el componente ha sido inicializado.
-   * AquÛ se configuran los datos iniciales y se inicializa el servicio de paginaciÛn.
+   * Aqu√© se configuran los datos iniciales y se inicializa el servicio de paginaci√≥n.
    */
   ngOnInit(): void {
     // Obtener datos pasados al modal
     this.solicitudCompraId = this.config.data.solicitudCompraId;
 
-    // Inicializar el servicio de paginaciÛn
+    // Inicializar el servicio de paginaci√≥n
     const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(
       this.solicitudCompraId,
     );
@@ -167,24 +167,24 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.error("Error loading measurement units:", error);
-        this.cb_unidadMedida = []; // Asegurar que sea un array vacÌo en caso de error
+        this.cb_unidadMedida = []; // Asegurar que sea un array vac√≥o en caso de error
       });
   }
 
   /**
-   * Maneja el evento de carga perezosa (paginaciÛn, ordenamiento) de la tabla PrimeNG.
-   * Delega la lÛgica al servicio de paginaciÛn.
+   * Maneja el evento de carga perezosa (paginaci√≥n, ordenamiento) de la tabla PrimeNG.
+   * Delega la l√≠gica al servicio de paginaci√≥n.
    * @param event El evento de carga perezosa emitido por p-table.
    */
   public loadDataLazy(event: any): void {
-    this.first = event.first; // Actualizar 'first' para la sincronizaciÛn de la vista de PrimeNG
+    this.first = event.first; // Actualizar 'first' para la sincronizaci√≥n de la vista de PrimeNG
     this.paginationService.handleLazyLoad(event);
   }
 
   /**
-   * Aplica el filtro de bÛsqueda ingresado por el usuario.
-   * Delega la lÛgica al servicio de paginaciÛn.
-   * El servicio resetearÛ la paginaciÛn a la primera pÛgina.
+   * Aplica el filtro de b√≥squeda ingresado por el usuario.
+   * Delega la l√≠gica al servicio de paginaci√≥n.
+   * El servicio resetear√© la paginaci√≥n a la primera p√°gina.
    */
   public applyFilter(): void {
     this.first = 0; // Resetear 'first' visualmente al aplicar filtro
@@ -192,13 +192,13 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   }
 
   /**
-   * Maneja el envÌo (agregar) de un producto a la solicitud de compra.
+   * Maneja el env√≠o (agregar) de un producto a la solicitud de compra.
    * @param row El FormGroup correspondiente al rowItem de la tabla.
    */
   public onSubmit(row: FormGroup<IAddProductRow>): void {
     const value = row.getRawValue();
 
-    // ValidaciÛn simple
+    // Validaci√≥n simple
     if (
       !value.unidadMedidaId ||
       (value.productoId || 0) === 0 ||
@@ -229,7 +229,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   }
 
   /**
-   * Abre un modal para mostrar la tarjeta de informaciÛn detallada de un producto.
+   * Abre un modal para mostrar la tarjeta de informaci√≥n detallada de un producto.
    * @param productoId El ID del producto para el cual mostrar la tarjeta.
    */
   public onModalTarjetaProducto(productoId: any): void {
@@ -239,7 +239,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       TarjetaProducto,
       { productoId: productoId }, // Datos a pasar al modal TarjetaProductoComponent
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg, // TamAÒo del di·logo
+      this.dialogHandlerS.sizeLg, // TamA√≥o del di√≥logo
     );
   }
 

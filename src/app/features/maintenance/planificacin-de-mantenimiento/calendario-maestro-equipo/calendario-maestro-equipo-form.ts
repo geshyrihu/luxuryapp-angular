@@ -35,7 +35,7 @@ export class CalendarioMaestroEquipoForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     nombreEquipo: new FormControl<string>("", {

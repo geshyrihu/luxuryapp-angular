@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
@@ -134,7 +135,7 @@ export class WarehouseList implements OnInit {
       });
   }
   onViewProducts(almacenId: string) {
-    this.router.navigate(["/warehouse/products", almacenId]);
+    this.router.navigate(ROUTES.ALMACEN.PRODUCTOS(almacenId));
     // Asegórate de que '/ruta-a-tu-inventario/stock' coincida con tu configuración de rutas
   }
 

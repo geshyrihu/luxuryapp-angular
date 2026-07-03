@@ -62,13 +62,13 @@ export class PaymentForm implements OnInit {
 
   methodOptions = [
     {
-      label: "Transferencia electrónica",
+      label: "Transferencia electrÃ³nica",
       value: EPaymentMethod.ElectronicTransfer,
     },
     { label: "Efectivo", value: EPaymentMethod.Cash },
     { label: "Cheque nominativo", value: EPaymentMethod.NominativeCheck },
-    { label: "Tarjeta de crédito", value: EPaymentMethod.CreditCard },
-    { label: "Tarjeta de débito", value: EPaymentMethod.DebitCard },
+    { label: "Tarjeta de crÃ³dito", value: EPaymentMethod.CreditCard },
+    { label: "Tarjeta de dÃ³bito", value: EPaymentMethod.DebitCard },
     { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined },
   ];
 

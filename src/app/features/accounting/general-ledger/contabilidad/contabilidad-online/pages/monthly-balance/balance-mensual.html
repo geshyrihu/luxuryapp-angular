@@ -40,7 +40,7 @@
   <!-- Sin datos -->
   @if (!loading() && !rows().length) {
   <div class="rf-card rf-empty">
-    No hay datos. Verifique el cliente y el a駉, luego pulse
+    No hay datos. Verifique el cliente y el a贸o, luego pulse
     <strong>Cargar</strong>.
   </div>
   }
@@ -56,7 +56,7 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 140px; min-width: 140px">Cuenta</th>
-          <th style="min-width: 220px">Descripci髇</th>
+          <th style="min-width: 220px">Descripci贸n</th>
           @for (mes of MONTHS; track mes) {
           <th class="text-right" style="width: 90px; min-width: 80px">
             {{ mes }}
@@ -66,7 +66,7 @@
       </ng-template>
 
       <ng-template pTemplate="body" let-row>
-        <!-- Fila: encabezado de clasificaci髇 -->
+        <!-- Fila: encabezado de clasificaci贸n -->
         @if (row.tipo === "header") {
         <tr
           class="rf-row-section"
@@ -93,7 +93,7 @@
         </tr>
         }
 
-        <!-- Fila: subtotal de clasificaci髇 -->
+        <!-- Fila: subtotal de clasificaci贸n -->
         @if (row.tipo === "subtotal") {
         <tr class="rf-row-total">
           <td></td>

@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ROUTES } from "src/app/routing/route-paths";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web";
@@ -132,7 +133,7 @@ export class HidranteChecklist implements OnInit {
     });
 
     if (result !== false && !this.ref) {
-      this.router.navigate(["/logbook/hydrant-log", this.hydrantId]);
+      this.router.navigate(ROUTES.BITACORAS.HIDRANTE_BITACORA(this.hydrantId));
     }
   }
 }

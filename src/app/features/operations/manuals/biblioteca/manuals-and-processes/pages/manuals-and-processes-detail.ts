@@ -13,6 +13,7 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { PrintService } from "src/app/core/services/print.service";
 import { DiagramPreviewComponent } from "../components/diagram-preview";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-manuals-and-processes-detail",
@@ -62,13 +63,13 @@ export class ManualsAndProcessesDetail implements OnInit {
 
     let base = manual.periodicityName || "A Demanda";
     if (manual.periodicity === 0) return "A Demanda";
-    if (manual.periodicity === 1) return "�nica Vez";
+    if (manual.periodicity === 1) return "ónica Vez";
     if (manual.periodicity === 2) return "Diario";
 
     // Semanal
     if (manual.periodicity === 3) {
       if (manual.executionDaysOfWeek?.length) {
-        const days = ["Dom", "Lun", "Mar", "Mi�", "Jue", "Vie", "S�b"];
+        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Síb"];
         const selected = manual.executionDaysOfWeek
           .map((d) => days[d])
           .join(", ");
@@ -80,18 +81,18 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Mensual
     if (manual.periodicity === 4) {
       if (manual.executionDayOfMonth) {
-        return `Mensual (D�a ${manual.executionDayOfMonth})`;
+        return `Mensual (Día ${manual.executionDayOfMonth})`;
       }
       if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
-        const weeks = ["1ra", "2da", "3ra", "4ta", "�ltima"];
+        const weeks = ["1ra", "2da", "3ra", "4ta", "óltima"];
         const days = [
           "Domingo",
           "Lunes",
           "Martes",
-          "Mi�rcoles",
+          "Miórcoles",
           "Jueves",
           "Viernes",
-          "S�bado",
+          "Síbado",
         ];
         const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
         const d = days[manual.executionDaysOfWeek[0]];
@@ -140,11 +141,11 @@ export class ManualsAndProcessesDetail implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(["/library/manuals-and-processes"]);
+    this.router.navigate(ROUTES.BIBLIOTECA.MANUALES_Y_PROCESOS);
   }
 
   onOpenEditor(id: string) {
-    this.router.navigate(["/library/manuals-and-processes/editor", id]);
+    this.router.navigate(ROUTES.BIBLIOTECA.MANUAL_EDITOR(id));
   }
 
   async descargarPDF() {

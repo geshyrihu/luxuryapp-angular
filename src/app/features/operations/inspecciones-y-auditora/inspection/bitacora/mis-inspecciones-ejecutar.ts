@@ -156,7 +156,7 @@ export class MisInspeccionesEjecutar implements OnInit {
         console.log("Datos guardados exitosamente", result);
       })
       .catch((error) => {
-        console.error("Error al guardar revisión:", error);
+        console.error("Error al guardar revisiÃ³n:", error);
       });
   }
 
@@ -194,7 +194,7 @@ export class MisInspeccionesEjecutar implements OnInit {
       .openDialog(
         MisInspeccionesAgregarImagenes,
         { inspectionResultId },
-        "Agregar imágenes",
+        "Agregar imÃ­genes",
         this.dialogHandlerS.sizeLg,
       )
       .then(() => {

@@ -15,6 +15,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { FieldsetModule } from "primeng/fieldset";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
@@ -67,7 +68,7 @@ interface ICategoryForm {
   ],
 })
 export class FormularioPlantillaEvaluacion implements OnInit {
-  // Inyecci髇 de dependencias
+  // Inyecci贸n de dependencias
   apiResponseS = inject(ApiResponseService);
   customerSelectS = inject(CustomerIdService);
   activatedRoute = inject(ActivatedRoute);
@@ -78,7 +79,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   submitting = signal(false);
   isEditMode = false;
 
-  // Definici髇 estricta del formulario
+  // Definici贸n estricta del formulario
   form = new FormGroup({
     name: new FormControl<string>("", {
       nonNullable: true,
@@ -132,7 +133,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     });
   }
 
-  // --- M髏odos para manejar el FormArray de Categor韆s ---
+  // --- M茅todos para manejar el FormArray de Categor贸as ---
   get categories(): FormArray<FormGroup<ICategoryForm>> {
     return this.form.controls.categories;
   }
@@ -166,7 +167,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     this.categories.removeAt(index);
   }
 
-  // --- M髏odos para manejar el FormArray anidado de Preguntas ---
+  // --- M茅todos para manejar el FormArray anidado de Preguntas ---
   questions(categoryIndex: number): FormArray<FormGroup<IQuestionForm>> {
     return this.categories.at(categoryIndex).controls.questions;
   }
@@ -212,10 +213,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
           if (result) {
             console.log("Template creado exitosamente");
             this.submitting.set(false);
-            this.route.navigate([
-              "/employee-evaluation/templates/edit",
-              result.id,
-            ]);
+            this.route.navigate(ROUTES.EVALUACION_EMPLEADOS.PLANTILLA_EDITAR(result.id));
           } else {
             this.submitting.set(false);
           }
@@ -278,7 +276,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
 
     if (hasDuplicates || hasOutOfRange) {
       console.warn(
-        `?? Problemas con los 髍denes en categor韆 ${categoryIndex + 1}`,
+        `?? Problemas con los 贸rdenes en categor贸a ${categoryIndex + 1}`,
       );
     }
   }

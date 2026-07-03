@@ -48,11 +48,11 @@ import {
       <!-- Botones Custom de la App -->
       <p-card header="Action Buttons (Web Custom)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Botones con l�gica integrada: confirmaciones SweetAlert2, estados
+          Botones con lígica integrada: confirmaciones SweetAlert2, estados
           reactivos, descarga y trazabilidad.
         </p>
         <div class="flex flex-wrap gap-2 mb-3">
-          <custom-button label="Bot�n Gen�rico" />
+          <custom-button label="Botún Genórico" />
           <custom-button-add label="Crear Solicitud" />
           <custom-button-edit label="Editar" />
           <custom-button-save label="Guardar" />
@@ -77,7 +77,7 @@ import {
       <!-- Severidades Filled -->
       <p-card header="PrimeNG — Severidades (Filled)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Usa la severidad que coincida con el nivel sem�ntico de la acci�n.
+          Usa la severidad que coincida con el nivel semíntico de la acción.
         </p>
         <div class="flex flex-wrap gap-2">
           <p-button label="Primary" />
@@ -95,7 +95,7 @@ import {
       <p-card header="Botones con Íconos">
         <p class="m-0 mb-3 text-sm text-color-secondary">
           Ícono izquierda (default), derecha con <code>iconPos="right"</code>, o
-          solo �cono circular.
+          solo ócono circular.
         </p>
         <div class="flex flex-wrap gap-2 mb-4">
           <p-button label="Guardar" icon="pi pi-save" />
@@ -111,7 +111,7 @@ import {
           <p-button label="Buscar" icon="pi pi-search" [outlined]="true" />
         </div>
         <p class="text-xs font-semibold text-color-secondary mb-2">
-          Solo �cono (rounded)
+          Solo ócono (rounded)
         </p>
         <div class="flex flex-wrap gap-2">
           <p-button
@@ -174,12 +174,12 @@ import {
         </div>
       </p-card>
 
-      <!-- Tama�os y Estados -->
-      <p-card header="Tama�os y Estados">
+      <!-- Tamaóos y Estados -->
+      <p-card header="Tamaóos y Estados">
         <div class="flex flex-column gap-4">
           <div>
             <p class="text-xs font-semibold text-color-secondary mb-2">
-              Tama�os
+              Tamaóos
             </p>
             <div class="flex flex-wrap align-items-center gap-2">
               <p-button label="Small" size="small" />
@@ -208,7 +208,7 @@ import {
               Ancho completo
             </p>
             <p-button
-              label="Bot�n de ancho completo"
+              label="Botún de ancho completo"
               class="w-full"
               styleClass="w-full"
             />
@@ -219,7 +219,7 @@ import {
       <!-- Badge -->
       <p-card header="Con Badge">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Indicadores de cantidad sobre el bot�n.
+          Indicadores de cantidad sobre el botún.
         </p>
         <div class="flex flex-wrap gap-3">
           <p-button

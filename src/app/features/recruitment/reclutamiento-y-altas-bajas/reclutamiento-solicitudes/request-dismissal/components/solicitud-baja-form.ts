@@ -9,6 +9,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
@@ -60,7 +61,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
         }
 
         /*
-          La librerÌa posiciona el label como inline-block centrado (left:50% + translate).
+          La librer√≥a posiciona el label como inline-block centrado (left:50% + translate).
           Lo convertimos en un bloque que rellena todo el area y usa flex para centrar.
         */
         file-upload label.upload-input {
@@ -216,7 +217,7 @@ export class SolicitudBajaForm implements OnInit {
         this.mensajeRenuncia = "Adjunta la renuncia firmada (PDF/DOCX/IMG).";
       else if (newValue == 2)
         this.mensajeRenuncia =
-          "Adjunta la evidencia o justificaciÛn de despido (PDF/DOCX/IMG).";
+          "Adjunta la evidencia o justificaci√≥n de despido (PDF/DOCX/IMG).";
       else if (newValue == 4)
         this.mensajeRenuncia =
           "Adjunta el acta administrativa firmada (PDF/DOCX/IMG).";
@@ -235,7 +236,7 @@ export class SolicitudBajaForm implements OnInit {
 
       if (newValue == 3) {
         this.mensajeRenuncia =
-          "Las evaluaciones est·n registradas en el sistema. No se requiere adjuntar documento manual.";
+          "Las evaluaciones est√©n registradas en el sistema. No se requiere adjuntar documento manual.";
         if (this.hasEvaluations === null) {
           this.checkEvaluations();
         }
@@ -258,7 +259,7 @@ export class SolicitudBajaForm implements OnInit {
 
   goToCreateEvaluation() {
     this.ref.close();
-    this.router.navigateByUrl("/employee-evaluation/conduct/list");
+    this.router.navigate(ROUTES.EVALUACION_EMPLEADOS.CONDUCTA_LISTA);
   }
 
   onSubmit() {

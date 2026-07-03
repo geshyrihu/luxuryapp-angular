@@ -67,7 +67,7 @@ export class OwnerForm implements OnInit {
 
   cb_enviarMails: ISelectItem[] = [
     {
-      label: "Só",
+      label: "SÃ­",
       value: true,
     },
     {

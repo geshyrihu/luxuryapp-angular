@@ -63,7 +63,7 @@ export class ProductReturn implements OnInit {
 
     this.form.patchValue({ salidaProductoId: data.id });
 
-    // Añadir validador dinómico para la cantidad móxima
+    // AÃ³adir validador dinÃ¡mico para la cantidad mÃ¡xima
     this.form.controls.cantidadADevolver.setValidators([
       Validators.required,
       Validators.min(1),

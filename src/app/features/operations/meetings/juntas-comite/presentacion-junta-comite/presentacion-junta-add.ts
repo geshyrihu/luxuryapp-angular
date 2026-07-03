@@ -38,7 +38,7 @@ export class PresentacionJuntaAdd implements OnInit {
   filePath: string = "";
   errorMessage: string = "";
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     customerId: new FormControl<string>(this.customerIdS.customerId()),

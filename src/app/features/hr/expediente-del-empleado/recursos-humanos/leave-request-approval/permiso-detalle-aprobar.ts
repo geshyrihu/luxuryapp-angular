@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
@@ -43,7 +44,7 @@ export class PermisoDetalleAprobar implements OnInit {
     if (this.requestId) {
       this.loadRequestDetail(this.requestId);
     } else {
-      this.router.navigate(["/recursos-humanos/my-requests"]);
+      this.router.navigate(ROUTES.RECURSOS_HUMANOS.MIS_PERMISOS);
     }
   }
 
@@ -60,7 +61,7 @@ export class PermisoDetalleAprobar implements OnInit {
       .catch((error) => {
         console.error("Error al cargar detalle de la solicitud:", error);
         this.loading.set(false);
-        this.router.navigate(["/recursos-humanos/my-requests"]);
+        this.router.navigate(ROUTES.RECURSOS_HUMANOS.MIS_PERMISOS);
       });
   }
 
@@ -75,7 +76,7 @@ export class PermisoDetalleAprobar implements OnInit {
       .then(() => {
         this.loadRequestDetail(this.requestId!);
         this.submitting.set(false);
-        this.router.navigate(["/recursos-humanos/approval"]);
+        this.router.navigate(ROUTES.RECURSOS_HUMANOS.APROBACIONES);
       })
       .catch((error) => {
         this.submitting.set(false);
@@ -94,7 +95,7 @@ export class PermisoDetalleAprobar implements OnInit {
       .then(() => {
         this.loadRequestDetail(this.requestId!);
         this.submitting.set(false);
-        this.router.navigate(["/recursos-humanos/approval"]);
+        this.router.navigate(ROUTES.RECURSOS_HUMANOS.APROBACIONES);
       })
       .catch((error) => {
         this.submitting.set(false);

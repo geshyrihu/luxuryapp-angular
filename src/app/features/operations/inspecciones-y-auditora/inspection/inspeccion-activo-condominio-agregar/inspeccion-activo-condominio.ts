@@ -167,7 +167,7 @@ export class InspeccionActivoCondominio implements OnInit {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
     if (this.reviewsControl.length === 0) {
-      console.error("Debe agregar al menos una revisión");
+      console.error("Debe agregar al menos una revisiÃ³n");
       return;
     }
 

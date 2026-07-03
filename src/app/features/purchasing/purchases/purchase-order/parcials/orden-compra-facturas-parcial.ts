@@ -5,7 +5,7 @@ import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importaci髇
+import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importaci贸n
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -62,18 +62,18 @@ export class OrdenCompraFacturasParcial {
         this.validationResult.set(result);
         if (result.isValid) {
           this.customToastService.showSuccess(
-            "Validaci髇 Exitosa",
+            "Validaci贸n Exitosa",
             result.message,
           );
         } else {
           this.customToastService.showError(
-            "Validaci髇 Fallida",
+            "Validaci贸n Fallida",
             result.message,
           );
         }
       })
       .catch((error) => {
-        console.error("Error en la validaci髇:", error);
+        console.error("Error en la validaci贸n:", error);
         this.customToastService.showError(
           "Error",
           "Error al validar facturas.",

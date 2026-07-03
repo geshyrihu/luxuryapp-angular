@@ -28,10 +28,10 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- ProgressBar -------------------------------------------- -->
       <div class="col-12">
-        <p-card header="ProgressBar È p-progressBar">
+        <p-card header="ProgressBar √© p-progressBar">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Usa la barra determinada cuando conoces el progreso exacto.
-            La indeterminada solo para procesos de duraciÛn desconocida y breve.
+            La indeterminada solo para procesos de duraci√≥n desconocida y breve.
           </p>
 
           <div class="grid">
@@ -56,9 +56,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               </div>
             </div>
 
-            <!-- SimulaciÛn interactiva -->
+            <!-- Simulaci√≥n interactiva -->
             <div class="col-12 lg:col-6">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">SimulaciÛn interactiva</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Simulaci√≥n interactiva</span>
               <div class="flex flex-column gap-3">
                 <div class="flex justify-content-between align-items-center">
                   <span class="text-sm font-medium">Cargando reporte...</span>
@@ -79,7 +79,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Indeterminadas</span>
               <div class="flex flex-column gap-3">
                 <div>
-                  <span class="text-xs text-color-secondary mb-1 block">EstÈndar</span>
+                  <span class="text-xs text-color-secondary mb-1 block">Est√©ndar</span>
                   <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" />
                 </div>
                 <div>
@@ -99,16 +99,16 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- ProgressSpinner ---------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="ProgressSpinner È p-progressSpinner">
+        <p-card header="ProgressSpinner √© p-progressSpinner">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Para acciones cortas (&lt;2 s). Si la carga puede superar los 2 s, usa skeleton en su lugar.
           </p>
 
           <div class="grid text-center">
 
-            <!-- TamaÒos -->
+            <!-- Tama√≥os -->
             <div class="col-12">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">TamaÒos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Tama√≥os</span>
               <div class="flex align-items-center justify-content-around flex-wrap gap-4">
                 @for (s of spinnerSizes; track s.label) {
                   <div class="flex flex-column align-items-center gap-2">
@@ -126,7 +126,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
             <!-- Colores -->
             <div class="col-12">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Colores semÛnticos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Colores sem√≠nticos</span>
               <div class="flex align-items-center justify-content-around flex-wrap gap-4">
                 @for (sc of spinnerColors; track sc.label) {
                   <div class="flex flex-column align-items-center gap-2">
@@ -145,7 +145,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
             <!-- Overlay sobre contenido -->
             <div class="col-12">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Overlay sobre contenido (patrÛn loading)</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Overlay sobre contenido (patr√≥n loading)</span>
               <div class="relative surface-ground border-round p-4" style="min-height:120px">
                 <div class="grid text-sm">
                   <div class="col-6 surface-card border-1 border-round p-3"><p-skeleton width="80%" /></div>
@@ -169,10 +169,10 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Skeleton ----------------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Skeleton È p-skeleton">
+        <p-card header="Skeleton √© p-skeleton">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             El skeleton anticipa el layout real y reduce el efecto de "flash" al cargar.
-            Ûsalo en carga estructural: listas, tablas, cards y dashboards.
+            √≥salo en carga estructural: listas, tablas, cards y dashboards.
           </p>
 
           <div class="flex flex-column gap-5">
@@ -242,7 +242,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- Reglas de uso -->
       <div class="col-12">
-        <p-card header="ÛCuÛndo usar cada patrÛn?">
+        <p-card header="√≥Cu√≥ndo usar cada patr√≥n?">
           <div class="grid">
             @for (r of loadingRules; track r.titulo) {
               <div class="col-12 md:col-6 xl:col-3">
@@ -304,15 +304,15 @@ export class WebProgress implements OnInit, OnDestroy {
   readonly progressBars = [
     { label: "Presupuesto ejecutado",      value: 78, tag: "En tiempo",  severity: "success" as const, color: "var(--ds-success)" },
     { label: "Solicitudes procesadas",      value: 55, tag: "En proceso", severity: "info"    as const, color: "var(--ds-info)"    },
-    { label: "Capacidad de almacenamiento", value: 91, tag: "CrÛtico",   severity: "danger"  as const, color: "var(--ds-danger)"  },
-    { label: "Tareas vencidas / total",     value: 34, tag: "AtenciÛn",  severity: "warn"    as const, color: "var(--ds-warning)" },
+    { label: "Capacidad de almacenamiento", value: 91, tag: "Cr√≥tico",   severity: "danger"  as const, color: "var(--ds-danger)"  },
+    { label: "Tareas vencidas / total",     value: 34, tag: "Atenci√≥n",  severity: "warn"    as const, color: "var(--ds-warning)" },
   ];
 
   readonly spinnerSizes = [
     { size: "24px", label: "XS (inline)" },
-    { size: "40px", label: "SM (botÛn)" },
+    { size: "40px", label: "SM (bot√∫n)" },
     { size: "56px", label: "MD (card)" },
-    { size: "80px", label: "LG (p·gina)" },
+    { size: "80px", label: "LG (p√°gina)" },
   ];
 
   readonly spinnerColors = [
@@ -328,29 +328,29 @@ export class WebProgress implements OnInit, OnDestroy {
       titulo: "ProgressBar",
       icon: "mdi:progress-check",
       color: "var(--ds-primary)",
-      cuando: "Procesos con progreso medible: subida de archivo, importaciÛn masiva, generaciÛn de reporte.",
-      evitar: "No usar para cargas de p·gina normales donde Skeleton es mejor opciÛn.",
+      cuando: "Procesos con progreso medible: subida de archivo, importaci√≥n masiva, generaci√≥n de reporte.",
+      evitar: "No usar para cargas de p√°gina normales donde Skeleton es mejor opci√≥n.",
     },
     {
       titulo: "Spinner",
       icon: "mdi:loading",
       color: "var(--ds-info)",
-      cuando: "Acciones cortas (&lt;2 s): guardar, buscar, autenticar. Ûtil en botones y modales.",
-      evitar: "No para carga de listados o pantallas completas È usa Skeleton.",
+      cuando: "Acciones cortas (&lt;2 s): guardar, buscar, autenticar. √≥til en botones y modales.",
+      evitar: "No para carga de listados o pantallas completas √© usa Skeleton.",
     },
     {
       titulo: "Skeleton",
       icon: "mdi:layers-outline",
       color: "var(--ds-success)",
       cuando: "Carga estructural de vistas, listas, tablas y dashboards. Anticipa el layout real.",
-      evitar: "No para acciones de usuario individuales È usa Spinner.",
+      evitar: "No para acciones de usuario individuales √© usa Spinner.",
     },
     {
       titulo: "Overlay Spinner",
       icon: "mdi:layers-plus",
       color: "var(--ds-warning)",
-      cuando: "Bloqueo de formulario durante submit o procesamiento que impide interacciÛn.",
-      evitar: "No bloquear pantallas completas mÛs de 3 s sin feedback adicional.",
+      cuando: "Bloqueo de formulario durante submit o procesamiento que impide interacci√≥n.",
+      evitar: "No bloquear pantallas completas m√≠s de 3 s sin feedback adicional.",
     },
   ];
 }

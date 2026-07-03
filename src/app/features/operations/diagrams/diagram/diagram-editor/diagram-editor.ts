@@ -7,6 +7,7 @@ import { ToastModule } from "primeng/toast";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-diagram-editor",
@@ -90,7 +91,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
 
       case "exit":
         // El usuario cerré el editor
-        this.router.navigate(["/diagram"]);
+        this.router.navigate(ROUTES.DIAGRAMAS.LISTA);
         break;
     }
   }

@@ -47,6 +47,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TextareaModule } from "primeng/textarea";
 import { AiService } from "src/app/core/services/ai.service";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-header-employee-monitor",
@@ -330,23 +331,23 @@ export class HeaderEmployeeMonitor implements OnInit {
   };
 
   onHome = () => {
-    this.router.navigateByUrl("/dashboard");
+    this.router.navigate(ROUTES.DASHBOARD);
   };
 
   onSetting = () => {
-    this.router.navigateByUrl("/settings/home");
+    this.router.navigate(ROUTES.CONFIGURACION.HOME);
   };
 
   onannouncement = () => {
-    this.router.navigateByUrl("/announcements/list");
+    this.router.navigate(ROUTES.ANUNCIOS.LISTA);
   };
 
   onBuilding = () => {
-    this.router.navigateByUrl("/operations/my-building");
+    this.router.navigate(ROUTES.OPERACIONES.MI_EDIFICIO);
   };
 
   onEmergencyPhones = () => {
-    this.router.navigateByUrl("/directory/emergency-phones");
+    this.router.navigate(ROUTES.DIRECTORIO.TELEFONOS_EMERGENCIA);
   };
 
   onUpdatePWA(): void {

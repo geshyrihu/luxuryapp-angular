@@ -230,15 +230,15 @@ export class ProveedorForm implements OnInit {
   onCreateFormData(DTO: any): FormData {
     const formData = new FormData();
 
-    // Convertimos el objeto DTO a FormData dinómicamente
+    // Convertimos el objeto DTO a FormData dinÃ¡micamente
     Object.keys(DTO).forEach((key) => {
       const value = DTO[key];
       if (value === null || value === undefined) {
-        return; // No Añadir valores nulos
+        return; // No AÃ³adir valores nulos
       }
 
       if (key === "categorias" && Array.isArray(value)) {
-        // Caso especial para el array de categorías
+        // Caso especial para el array de categorÃ³as
         value.forEach((category: any) => {
           formData.append("categorias", category.value);
         });
@@ -246,12 +246,12 @@ export class ProveedorForm implements OnInit {
         // Caso especial para booleanos
         formData.append(key, String(value));
       } else {
-        // Para todos los demós tipos (string, number, File)
+        // Para todos los demÃ­s tipos (string, number, File)
         formData.append(key, value);
       }
     });
 
-    // Aseguramos que el applicationUserId siempre estó presente
+    // Aseguramos que el applicationUserId siempre estÃ© presente
     formData.append("applicationUserId", String(this.authS.applicationUserId));
     formData.set("customerId", String(this.customerIdS.customerId()));
 

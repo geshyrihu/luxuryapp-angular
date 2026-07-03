@@ -63,10 +63,10 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
   ],
   template: `
     <div class="grid">
-      <!-- 1. Tarjetas KPI (M�tricas ERP) -->
+      <!-- 1. Tarjetas KPI (Mítricas ERP) -->
       <div class="col-12">
         <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
-          Tarjetas de M�tricas (KPI Cards)
+          Tarjetas de Mítricas (KPI Cards)
         </h3>
         <div class="grid mb-4">
           <div class="col-12 md:col-4">
@@ -110,7 +110,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
                   class="text-xs text-yellow-600 mt-2 font-bold flex align-items-center gap-1"
                 >
                   <app-icon [icon]="'mdi:alert'" />
-                  <span>Requiere atenci�n inmediata</span>
+                  <span>Requiere atención inmediata</span>
                 </div>
               </div>
               <div
@@ -155,7 +155,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
       <!-- 2. Barra de Filtros Avanzados -->
       <div class="col-12 mb-4">
         <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
-          Estructura de B�squeda y Grillas
+          Estructura de Bósqueda y Grillas
         </h3>
         <p-card header="Barra de Filtros Avanzados (Responsive)">
           <form
@@ -183,7 +183,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
             </div>
             <div class="col-12 md:col-3">
               <label class="block text-xs font-bold text-secondary mb-1"
-                >Estado Transacci�n</label
+                >Estado Transacción</label
               >
               <custom-input-select-signal
                 [control]="filterForm()?.controls?.['estado']"
@@ -212,9 +212,9 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
         </p-card>
       </div>
 
-      <!-- 3. Tabla H�brida + Maestro-Detalle -->
+      <!-- 3. Tabla Hóbrida + Maestro-Detalle -->
       <div class="col-12 lg:col-6 mb-4">
-        <p-card header="Tabla H�brida con Toolbar Alineado y Columnas Fijas">
+        <p-card header="Tabla Hóbrida con Toolbar Alineado y Columnas Fijas">
           <div
             class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round mb-3"
           >
@@ -258,7 +258,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
             <ng-template pTemplate="header">
               <tr>
                 <th>Acciones</th>
-                <th>Elemento (Ajuste autom�tico de texto)</th>
+                <th>Elemento (Ajuste automítico de texto)</th>
                 <th>Status</th>
               </tr>
             </ng-template>
@@ -273,8 +273,8 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
                 <td>
                   <strong>{{ item.name }}</strong>
                   <span class="block text-xs text-secondary mt-1 line-height-2"
-                    >Este texto largo simula una descripci�n del insumo que debe
-                    hacer salto de l�nea autom�tico de forma fluida y sin
+                    >Este texto largo simula una descripción del insumo que debe
+                    hacer salto de lónea automítico de forma fluida y sin
                     desbordar la tabla.</span
                   >
                 </td>
@@ -315,7 +315,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
 
       <!-- 4. Maestro-Detalle -->
       <div class="col-12 lg:col-6 mb-4">
-        <p-card header="Patr�n Maestro-Detalle (Expansi�n de Fila)">
+        <p-card header="Patrón Maestro-Detalle (Expansión de Fila)">
           <p-table
             #dtMaster
             [value]="masterDetailData()"
@@ -442,7 +442,7 @@ import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom
 
       <!-- 5. Tarjetas Complejas -->
       <div class="col-12">
-        <p-card header="Tarjetas Complejas e Indicadores R�pidos">
+        <p-card header="Tarjetas Complejas e Indicadores Rápidos">
           <div class="grid">
             @for (item of complexDataExample; track item.id) {
               <div class="col-12 md:col-6">
@@ -535,7 +535,7 @@ export class PatternsKpi {
   readonly complexDataExample = [
     {
       id: 1,
-      name: "Medidor El�ctrico A1",
+      name: "Medidor Elóctrico A1",
       folio: "E-1002",
       consumption: "120 kWh",
       status: EStatus.Concluido,

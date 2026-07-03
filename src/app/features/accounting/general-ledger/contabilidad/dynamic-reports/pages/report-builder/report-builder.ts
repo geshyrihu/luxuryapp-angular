@@ -1,6 +1,7 @@
 ﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule, CurrencyPipe } from "@angular/common";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   Component,
   computed,
@@ -454,11 +455,11 @@ export class ReportBuilder implements OnInit, OnDestroy {
         );
 
     this.guardando.set(false);
-    if (result) this.router.navigate(["/contabilidad/reportes"]);
+    if (result) this.router.navigate(ROUTES.CONTABILIDAD.REPORTES);
   }
 
   cancelar() {
-    this.router.navigate(["/contabilidad/reportes"]);
+    this.router.navigate(ROUTES.CONTABILIDAD.REPORTES);
   }
 
   aplicarEjemplo(tipo: "egp" | "balance") {

@@ -53,6 +53,7 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ROUTES } from "src/app/routing/route-paths";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -489,7 +490,7 @@ export class TaskList implements OnInit {
   }
 
   onNavigateEdit(ticketMessageId: string, ticketGroupId: string) {
-    this.router.navigate(["/tickets/message/", ticketMessageId, ticketGroupId]);
+    this.router.navigate(ROUTES.TICKETS.MENSAJE(ticketMessageId, ticketGroupId));
   }
 
   onClosed(id: string) {
@@ -612,7 +613,7 @@ export class TaskList implements OnInit {
   }
 
   onPreviewWeeklyReport(): void {
-    this.router.navigate(["/tickets/weekly-report-preview"]);
+    this.router.navigate(ROUTES.TICKETS.REPORTE_SEMANAL_VISTA);
   }
 
   onSendWeeklyReport(): void {
@@ -662,11 +663,11 @@ export class TaskList implements OnInit {
   }
 
   onPreviewClickedWorkPlan(): void {
-    this.router.navigate(["/tickets/work-plan-preview"]);
+    this.router.navigate(ROUTES.TICKETS.PLAN_TRABAJO_VISTA);
   }
 
   onPendingBoard(): void {
-    this.router.navigate(["/tickets/pending-board", this.ticketGroupId]);
+    this.router.navigate(ROUTES.TICKETS.PENDIENTES(this.ticketGroupId));
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }): void {

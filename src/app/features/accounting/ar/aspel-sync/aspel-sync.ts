@@ -96,7 +96,7 @@ export class AspelSyncComponent {
     if (!this.currentCustomerId()) {
       this.customToastS.showError(
         "Cliente no disponible",
-        "No se encontró un cliente activo para sincronizar.",
+        "No se encontrÃ© un cliente activo para sincronizar.",
       );
       return;
     }
@@ -104,8 +104,8 @@ export class AspelSyncComponent {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.customToastS.showError(
-        "Año inválido",
-        "Revisa el año antes de ejecutar la sincronización.",
+        "AÃ³o invÃ³lido",
+        "Revisa el aÃ³o antes de ejecutar la sincronizaciÃ³n.",
       );
       return;
     }
@@ -114,7 +114,7 @@ export class AspelSyncComponent {
     this.lastResult.set(null);
     this.lastAction.set(action);
     this.customToastS.showInfo(
-      "Sincronización iniciada",
+      "SincronizaciÃ³n iniciada",
       "Este proceso puede tardar varios minutos.",
     );
 
@@ -122,15 +122,15 @@ export class AspelSyncComponent {
       .then((result) => {
         this.lastResult.set(result);
         this.customToastS.showSuccess(
-          "Sincronización completada",
-          `La sincronización ${action} terminó correctamente.`,
+          "SincronizaciÃ³n completada",
+          `La sincronizaciÃ³n ${action} terminÃ© correctamente.`,
         );
       })
       .catch((error) => {
         this.lastResult.set(error?.error ?? error);
         this.customToastS.showError(
-          "Sincronización fallida",
-          `No se pudo completar la sincronización ${action}.`,
+          "SincronizaciÃ³n fallida",
+          `No se pudo completar la sincronizaciÃ³n ${action}.`,
         );
       })
       .finally(() => {

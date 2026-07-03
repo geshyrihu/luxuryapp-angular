@@ -17,6 +17,7 @@ import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IManualTemplateSimpleDTO } from "../models/manuals-and-processes.dto";
 import { ManualsAndProcessesForm } from "./manuals-and-processes-form";
 
@@ -175,11 +176,11 @@ export class ManualsAndProcessesList implements OnInit {
   }
 
   onViewTemplate(id: string) {
-    this.router.navigate(["/library/manuals-and-processes/detail", id]);
+    this.router.navigate(ROUTES.BIBLIOTECA.MANUAL_DETALLE(id));
   }
 
   onOpenEditor(id: string) {
-    this.router.navigate(["/library/manuals-and-processes/editor", id]);
+    this.router.navigate(ROUTES.BIBLIOTECA.MANUAL_EDITOR(id));
   }
 
   onModalForm(data: any) {

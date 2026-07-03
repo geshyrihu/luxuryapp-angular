@@ -21,7 +21,7 @@
             Nombre
             <p-sortIcon field="name" />
           </th>
-          <th>Ubicaci�n</th>
+          <th>Ubicación</th>
           <th>Volumen</th>
           <th colspan="2">Tipo</th>
         </tr>
@@ -62,7 +62,7 @@
               <il-button-delete (confirmed)="onDelete(item.id)" />
               <il-button-item
                 iconClass="mdi:book"
-                label="Bit�cora"
+                label="Bitúcora"
                 [routerLink]="['/logbook/piscina-bitacora/', item.id]"
               />
             </div>
@@ -78,7 +78,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -129,7 +129,7 @@
                 />
                 <il-button-item
                   iconName="book-outline"
-                  label="Bit�cora"
+                  label="Bitúcora"
                   [routerLink]="['/logbook/piscina-bitacora/', item.id]"
                 />
               </ng-container>

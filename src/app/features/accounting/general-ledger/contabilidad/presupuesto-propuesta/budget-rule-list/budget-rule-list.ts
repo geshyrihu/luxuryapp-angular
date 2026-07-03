@@ -2,13 +2,13 @@
  * ============================================================================
  * 鈿狅笍 ADVERTENCIA CR脥TICA / CRITICAL WARNING 鈿狅笍
  * ============================================================================
- * Este m骴ulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este m贸dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su l骻ica, estructura o flujos de IA
- * sin antes consultar y obtener autorizaci髇 expl韈ita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l铆gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci贸n expl贸cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el c骴igo.
+ * Por favor, NO rompan el c贸digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -106,7 +106,7 @@ export class BudgetRuleList implements OnInit {
   }
 
   getRuleTypeLabel(type: number): string {
-    return type === 0 ? "Cuenta Extra" : "Exclusi髇";
+    return type === 0 ? "Cuenta Extra" : "Exclusi贸n";
   }
 
   getScopeLabel(rowCustomerId: string): string {

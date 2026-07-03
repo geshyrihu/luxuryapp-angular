@@ -181,7 +181,7 @@ export class RadioComunicacionList {
               <td style="background-color: ${bg}; padding: 10px; vertical-align: middle;">
                 <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Modelo: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.modelo || "N/A")}</span></div>
                 <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Serie: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.serie || "N/A")}</span></div>
-                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Bater�a: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.bateria || "N/A")}</span></div>
+                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Bateróa: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.bateria || "N/A")}</span></div>
                 <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Responsable: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.applicationUser || "N/A")} / ${this.htmlPrintS.esc(item.departament || "N/A")}</span></div>
               </td>
             </tr>
@@ -205,7 +205,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Radio Comunicaci�n", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Radio Comunicación", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <table class="data-table">

@@ -14,10 +14,10 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 
 /**
- * ✨ COMPONENTE GEN�RICO PARA PANELES DE APROBACI�N ✨
+ * ✨ COMPONENTE GENóRICO PARA PANELES DE APROBACIóN ✨
  *
- * Basado en el est�ndar de tablas del proyecto (Referencia: BankList).
- * Utiliza Signal Inputs para una reactividad �ptima.
+ * Basado en el esténdar de tablas del proyecto (Referencia: BankList).
+ * Utiliza Signal Inputs para una reactividad óptima.
  */
 @Component({
   selector: "app-generic-approval-panel",
@@ -120,7 +120,7 @@ export class GenericApprovalPanel {
   columns = input<{ field: string; header: string; isDate?: boolean }[]>([]);
   loading = input<boolean>(false);
 
-  // --- CONFIGURACI�N ---
+  // --- CONFIGURACIóN ---
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
@@ -130,8 +130,8 @@ export class GenericApprovalPanel {
   reject = output<ApprovalPanelRequest>();
   viewDetail = output<ApprovalPanelRequest>();
 
-  // --- L�GICA ---
-  // Se recalcula autom�ticamente cuando 'requests' cambia.
+  // --- LíGICA ---
+  // Se recalcula automíticamente cuando 'requests' cambia.
   globalFilterFields = computed(() => {
     const data = this.requests();
     if (!data || data.length === 0) return [];

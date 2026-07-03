@@ -63,7 +63,7 @@ import { ProductReturn } from "./product-return";
   providers: [PaginationService],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
-  // Inyecci�n de Dependencias
+  // Inyección de Dependencias
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -94,7 +94,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
   selectedDateControl = new FormControl<Date | null>(null);
   filterControl = new FormControl<string>("");
 
-  // Configuraci�n de la tabla
+  // Configuración de la tabla
   // loading = signal(true); // Replaced by toSignal
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

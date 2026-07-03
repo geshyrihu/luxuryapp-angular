@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { ConfirmationService } from "primeng/api";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { Table, TableModule } from "primeng/table";
@@ -82,15 +83,15 @@ export class ReportCatalog implements OnInit {
   }
 
   crear() {
-    this.router.navigate(["/contabilidad/reportes/nuevo"]);
+    this.router.navigate(ROUTES.CONTABILIDAD.REPORTE_NUEVO);
   }
 
   editar(id: string) {
-    this.router.navigate(["/contabilidad/reportes/editar", id]);
+    this.router.navigate(ROUTES.CONTABILIDAD.REPORTE_EDITAR(id));
   }
 
   ver(id: string) {
-    this.router.navigate(["/contabilidad/reportes/ver", id]);
+    this.router.navigate(ROUTES.CONTABILIDAD.REPORTE_VER(id));
   }
 
   confirmarEliminar(id: string, nombre: string) {

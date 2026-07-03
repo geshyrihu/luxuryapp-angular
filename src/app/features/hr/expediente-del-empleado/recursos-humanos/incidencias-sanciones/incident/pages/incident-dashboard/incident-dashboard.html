@@ -64,7 +64,7 @@
     </div>
     <div class="col-12 md:col-6 lg:col">
       <div class="card p-4 flex flex-column">
-        <span class="text-500 text-sm">Con Sanci髇</span>
+        <span class="text-500 text-sm">Con Sanci贸n</span>
         <span class="text-3xl font-bold text-red-600">
           {{ dashboard()!.sanctionedIncidents }}
         </span>
@@ -72,7 +72,7 @@
     </div>
     <div class="col-12 md:col-6 lg:col">
       <div class="card p-4 flex flex-column">
-        <span class="text-500 text-sm">D韆s Prom. Resoluci髇</span>
+        <span class="text-500 text-sm">D铆as Prom. Resoluci贸n</span>
         <span class="text-3xl font-bold text-blue-600">
           {{ dashboard()!.averageResolutionDays }}
         </span>
@@ -80,7 +80,7 @@
     </div>
   </div>
 
-  <!-- Gr醘icos -->
+  <!-- Gr贸ficos -->
   <div class="grid">
     <!-- Incidencias por Mes -->
     <div class="col-12 lg:col-6">
@@ -99,10 +99,10 @@
       </div>
     </div>
 
-    <!-- Distribuci髇 por Tipo -->
+    <!-- Distribuci贸n por Tipo -->
     <div class="col-12 lg:col-6">
       <div class="card p-4">
-        <h3 class="text-lg font-semibold mb-4">Distribuci髇 por Tipo</h3>
+        <h3 class="text-lg font-semibold mb-4">Distribuci贸n por Tipo</h3>
         @if (pieChartData()) {
         <p-chart
           type="pie"
@@ -120,7 +120,7 @@
   <!-- Tabla: Top Empleados -->
   <div class="card p-4">
     <h3 class="text-lg font-semibold mb-4">
-      Top Empleados con M醩 Incidencias
+      Top Empleados con M铆s Incidencias
     </h3>
     <p-table
       [value]="dashboard()!.topEmployees"
@@ -152,10 +152,10 @@
     </p-table>
   </div>
 
-  <!-- Distribuci髇 por Severidad -->
+  <!-- Distribuci贸n por Severidad -->
   @if (dashboard()!.bySeverity.length > 0) {
   <div class="card p-4">
-    <h3 class="text-lg font-semibold mb-4">Distribuci髇 por Severidad</h3>
+    <h3 class="text-lg font-semibold mb-4">Distribuci贸n por Severidad</h3>
     <div class="flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
       <div

@@ -26,7 +26,7 @@ import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
 @Component({
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
-  // A�adido para Angular 20
+  // Aóadido para Angular 20
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,

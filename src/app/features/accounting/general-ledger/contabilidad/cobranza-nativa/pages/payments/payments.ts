@@ -133,12 +133,12 @@ export class Payments implements OnInit {
 
   paymentMethods = [
     {
-      label: "Transferencia Electrónica",
+      label: "Transferencia ElectrÃ³nica",
       value: EPaymentMethod.ElectronicTransfer,
     },
-    { label: "Depósito / Efectivo", value: EPaymentMethod.Cash },
-    { label: "Tarjeta de Crédito", value: EPaymentMethod.CreditCard },
-    { label: "Tarjeta de Débito", value: EPaymentMethod.DebitCard },
+    { label: "DepÃ³sito / Efectivo", value: EPaymentMethod.Cash },
+    { label: "Tarjeta de CrÃ³dito", value: EPaymentMethod.CreditCard },
+    { label: "Tarjeta de DÃ³bito", value: EPaymentMethod.DebitCard },
     { label: "Cheque Nominativo", value: EPaymentMethod.NominativeCheck },
   ];
 
@@ -281,7 +281,7 @@ export class Payments implements OnInit {
     if (selectedCharges.length === 0) {
       if (
         !confirm(
-          "No has seleccionado ningún cargo para aplicar el pago. El pago quedará registrado como saldo a favor sin aplicar. ¿Continuar?",
+          "No has seleccionado ningÃ³n cargo para aplicar el pago. El pago quedarÃ© registrado como saldo a favor sin aplicar. Ã³Continuar?",
         )
       )
         return;
@@ -343,7 +343,7 @@ export class Payments implements OnInit {
       } else if (paymentRes && selectedCharges.length === 0) {
         this.toastService.showSuccess(
           "Pago Registrado",
-          "El pago fue registrado como saldo a favor, sin aplicarse a cargos específicos.",
+          "El pago fue registrado como saldo a favor, sin aplicarse a cargos especÃ­ficos.",
         );
         this.form.controls.propertyId.setValue("");
       }

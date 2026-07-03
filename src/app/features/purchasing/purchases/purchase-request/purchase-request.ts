@@ -63,12 +63,12 @@ export class PurchaseRequest implements OnInit {
     this.productToEdit = productData;
   }
 
-  // método para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
+  // mÃ©todo para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
   clearProductToEdit() {
     this.productToEdit = null;
   }
 
-  // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
   onModalAddProduct(data: any) {
     this.dialogHandlerS
       .openDialog(

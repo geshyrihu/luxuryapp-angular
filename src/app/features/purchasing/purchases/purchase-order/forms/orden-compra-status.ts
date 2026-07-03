@@ -58,11 +58,11 @@ export class OrdenCompraStatus implements OnInit {
       sePago: new FormControl(false),
       seRecibio: new FormControl(false),
       recibidoPor: new FormControl(""),
-      // Campos que se llenarón automóticamente desde el XML
+      // Campos que se llenarÃ³n automÃ­ticamente desde el XML
       factura: new FormControl({ value: "", disabled: true }),
       folioFiscal: new FormControl({ value: "", disabled: true }),
       fechaFactura: new FormControl({ value: "", disabled: true }),
-      // Controles para los archivos que se subirón
+      // Controles para los archivos que se subirÃ³n
       pdfFile: new FormControl(null),
       xmlFile: new FormControl(null),
     });
@@ -171,7 +171,7 @@ export class OrdenCompraStatus implements OnInit {
 
   private createFormData(DTO: any): FormData {
     const formData = new FormData();
-    // Añadimos solo los campos que el backend espera para el [FromForm]
+    // AÃ³adimos solo los campos que el backend espera para el [FromForm]
     formData.append("sePago", DTO.sePago);
     formData.append("seRecibio", DTO.seRecibio);
     formData.append("recibidoPor", DTO.recibidoPor);

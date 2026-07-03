@@ -46,12 +46,12 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
   ],
   template: `
     <div class="grid">
-      <!-- Formulario de solicitud ERP (patrón estándar) -->
+      <!-- Formulario de solicitud ERP (patrÃ³n estÃ©ndar) -->
       <div class="col-12">
         <p-card header="Formulario ERP â€” Solicitud Operativa">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Patrón estándar: labels persistentes (<code>custom-input-*</code>),
-            grid PrimeFlex, validación visible y acciones Cancelar ? Guardar al
+            PatrÃ³n estÃ©ndar: labels persistentes (<code>custom-input-*</code>),
+            grid PrimeFlex, validaciÃ³n visible y acciones Cancelar ? Guardar al
             final.
           </p>
 
@@ -60,7 +60,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
               <custom-input-text-signal
                 [control]="form.controls['nombre']"
                 label="Nombre de la solicitud *"
-                placeholder="Descripción breve y auditable"
+                placeholder="DescripciÃ³n breve y auditable"
               />
             </div>
 
@@ -69,7 +69,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
                 [control]="form.controls['area']"
                 label="Ãrea responsable *"
                 [data]="areas"
-                placeholder="Selecciona área"
+                placeholder="Selecciona Ã³rea"
               />
             </div>
 
@@ -115,9 +115,9 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
             <div class="field col-12 md:col-8">
               <custom-input-multiselect-signal
                 [control]="form.controls['modulos']"
-                label="Módulos relacionados"
+                label="MÃ³dulos relacionados"
                 [options]="modulos"
-                placeholder="Selecciona módulos"
+                placeholder="Selecciona mÃ³dulos"
               />
             </div>
 
@@ -135,8 +135,8 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
             <div class="field col-12">
               <custom-input-textarea-signal
                 [control]="form.controls['descripcion']"
-                label="Descripción ejecutiva"
-                placeholder="Descripción breve, accionable y sin lenguaje ambiguo para el usuario operativo."
+                label="DescripciÃ³n ejecutiva"
+                placeholder="DescripciÃ³n breve, accionable y sin lenguaje ambiguo para el usuario operativo."
                 [rows]="3"
               />
             </div>
@@ -188,17 +188,17 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
       <div class="col-12 lg:col-6">
         <p-card header="Formulario de Acceso">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Patrón login: email + contraseña con indicador de fortaleza.
+            PatrÃ³n login: email + contraseÃ³a con indicador de fortaleza.
           </p>
           <form [formGroup]="loginForm" class="flex flex-column gap-3">
             <custom-input-text-signal
               [control]="loginForm.controls['email']"
-              label="Correo electrónico"
+              label="Correo electrÃ³nico"
               placeholder="admin@luxuryapp.com"
             />
             <custom-input-password-signal
               [control]="loginForm.controls['password']"
-              label="Contraseña"
+              label="ContraseÃ³a"
               placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
               [showStrengthIndicator]="true"
             />
@@ -208,11 +208,11 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
             ) {
               <p-message
                 severity="error"
-                text="Ingresa un correo electrónico válido."
+                text="Ingresa un correo electrÃ³nico vÃ³lido."
               />
             }
             <p-button
-              label="Iniciar sesión"
+              label="Iniciar sesiÃ³n"
               icon="mdi:login"
               styleClass="w-full"
               (onClick)="loginForm.markAllAsTouched()"
@@ -221,27 +221,27 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
         </p-card>
       </div>
 
-      <!-- Validación explícita de estados -->
+      <!-- ValidaciÃ³n explÃ³cita de estados -->
       <div class="col-12 lg:col-6">
-        <p-card header="Estados de Validación Explícitos">
+        <p-card header="Estados de ValidaciÃ³n ExplÃ³citos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Haz clic en Â«Mostrar erroresÂ» para ver todos los estados de
-            validación activos.
+            validaciÃ³n activos.
           </p>
           <form [formGroup]="validationShowcase" class="flex flex-column gap-3">
             <custom-input-text-signal
               [control]="validationShowcase.controls['requerido']"
-              label="Campo requerido (vacío)"
+              label="Campo requerido (vacÃ³o)"
               placeholder="No ingresaste nada"
             />
             <custom-input-text-signal
               [control]="validationShowcase.controls['minLength']"
-              label="Mínimo 5 caracteres"
+              label="MÃ­nimo 5 caracteres"
               placeholder="abc"
             />
             <custom-input-number-signal
               [control]="validationShowcase.controls['rango']"
-              label="Número entre 10 y 100"
+              label="NÃºmero entre 10 y 100"
               [min]="10"
               [max]="100"
             />
@@ -278,7 +278,7 @@ export class WebForms {
     modulos: [[1, 3]],
     activo: [true],
     urgente: [false],
-    descripcion: ["Descripción breve, accionable y sin lenguaje ambiguo."],
+    descripcion: ["DescripciÃ³n breve, accionable y sin lenguaje ambiguo."],
     archivo: [null],
   });
 
@@ -294,7 +294,7 @@ export class WebForms {
   });
 
   readonly areas = [
-    { label: "Administración", value: 1 },
+    { label: "AdministraciÃ³n", value: 1 },
     { label: "Operaciones", value: 2 },
     { label: "Finanzas", value: 3 },
     { label: "Recursos Humanos", value: 4 },

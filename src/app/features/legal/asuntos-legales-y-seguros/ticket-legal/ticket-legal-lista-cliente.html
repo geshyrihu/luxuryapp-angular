@@ -27,10 +27,10 @@
           <th class="table-col-10 font-size-12">FECHA SOLICITUD</th>
           <th class="table-col-10 font-size-12">SOLICITA</th>
           <th class="table-col-10 font-size-12">ASUNTO</th>
-          <th class="table-col-10 font-size-12">DESCRIPCI�N</th>
+          <th class="table-col-10 font-size-12">DESCRIPCIóN</th>
           <th class="table-col-10 font-size-12">ESTATUS</th>
-          <th class="table-col-10 font-size-12">FECHA DE CONCLUSI�N</th>
-          <th class="table-col-10 font-size-12">D�AS</th>
+          <th class="table-col-10 font-size-12">FECHA DE CONCLUSIóN</th>
+          <th class="table-col-10 font-size-12">DíAS</th>
           <th class="table-col-10 font-size-12">SEGUIMIENTO</th>
         </tr>
       </ng-template>
@@ -90,7 +90,7 @@
   </div>
 </div>
 
-<!-- ?? Versi�n m�vil -->
+<!-- ?? Versión mívil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -145,9 +145,9 @@
               />
               <div class="text-right">
                 <p class="m-0">
-                  Conclusi�n: {{ item.completionDate ?? "Pendiente" }}
+                  Conclusión: {{ item.completionDate ?? "Pendiente" }}
                 </p>
-                <p class="m-0 font-bold">D�as: {{ item.diferenciaDias }}</p>
+                <p class="m-0 font-bold">Días: {{ item.diferenciaDias }}</p>
               </div>
             </div>
           </ion-label>

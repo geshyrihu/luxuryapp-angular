@@ -95,7 +95,7 @@ export class DocumentoPersonalizadoForm implements OnInit {
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
-    // Validación para creación: archivo es obligatorio
+    // ValidaciÃ³n para creaciÃ³n: archivo es obligatorio
     if (this.id === "" && !this.file) {
       this.fileError = true;
       return;

@@ -17,6 +17,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, of, startWith, switchMap } from "rxjs";
 import { CustomButton } from "src/app/core/components/buttons/legacy/buttons/custom-button";
@@ -62,6 +63,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   ],
 })
 export class LoginComponent implements OnInit {
+  readonly ROUTES = ROUTES;
   private activateRoute = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   private formBuilder = inject(FormBuilder);

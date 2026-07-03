@@ -39,7 +39,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
   ],
 })
 export class WorkPositionForm implements OnInit {
-  // --- INYECCIÓN DE DEPENDENCIAS ---
+  // --- INYECCIÃ³N DE DEPENDENCIAS ---
   readonly apiS = inject(ApiResponseService);
   private fb = inject(FormBuilder);
   public authS = inject(AuthService);
@@ -61,7 +61,7 @@ export class WorkPositionForm implements OnInit {
   readonly AspRole = EApplicationRole;
 
   // --- FORMULARIO REACTIVO ---
-  // Se define sin el genérico explicito en .group para que FormBuilder
+  // Se define sin el genÃ³rico explicito en .group para que FormBuilder
   // maneje correctamente el array [value, validators] en modo strict.
   form = this.fb.nonNullable.group({
     id: [""],

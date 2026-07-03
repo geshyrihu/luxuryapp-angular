@@ -50,7 +50,7 @@ export class ProductEntryList {
   customerIdS = inject(CustomerIdService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // Se�ales
+  // Seóales
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {

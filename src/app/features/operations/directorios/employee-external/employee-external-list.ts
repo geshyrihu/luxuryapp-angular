@@ -61,13 +61,13 @@ export class EmployeeExternalList {
   getAllEmployeeActive: any = [];
   ref: DynamicDialogRef;
 
-  // �CAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
+  // óCAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
         // El effect se encarga de la carga inicial de datos
-        // tan pronto como el customerId est� disponible.
+        // tan pronto como el customerId esté disponible.
         this.onLoadData();
       }
     });
@@ -111,7 +111,7 @@ export class EmployeeExternalList {
       .openDialog(
         EmployeeExternalAppUser,
         { applicationUserId },
-        "Usuario de Aplicaci�n",
+        "Usuario de Aplicación",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

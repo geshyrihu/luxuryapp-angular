@@ -328,7 +328,7 @@ export class EspejoAspelFull {
         ...prev,
         [codigo]: nivel,
       }));
-      // Damos un pequeÒo respiro para que Angular procese los miles de filas antes de quitar el spinner
+      // Damos un peque√≥o respiro para que Angular procese los miles de filas antes de quitar el spinner
       setTimeout(() => {
         this.loading.set(false);
       }, 50);
@@ -343,7 +343,7 @@ export class EspejoAspelFull {
     let hasN3 = filas.some((f) => f.nivel === 3);
     let hasN4 = filas.some((f) => f.nivel === 4);
 
-    // Si la empresa usa m·scara de 4 niveles (ej: 401-000-000-000),
+    // Si la empresa usa m√≠scara de 4 niveles (ej: 401-000-000-000),
     // habilitamos los 4 botones por coherencia con la estructura de Aspel.
     if (
       !hasN4 &&

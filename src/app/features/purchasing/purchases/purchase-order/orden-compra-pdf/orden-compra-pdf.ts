@@ -1,5 +1,6 @@
 ﻿import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -38,7 +39,7 @@ export class OrdenCompraPdf implements OnInit {
             "Error",
             "No se encontraron datos para generar el PDF.",
           );
-          this.router.navigate(["/purchases/purchase-orders"]);
+          this.router.navigate(ROUTES.COMPRAS.ORDENES_COMPRA);
         }
       });
   }
@@ -50,7 +51,7 @@ export class OrdenCompraPdf implements OnInit {
     this.htmlPrintS.printHtml(html, `OC-${data.folio}`);
 
     // The printHtml method operates with an iframe, the user can save to PDF
-    this.router.navigate(["/purchases/orden-compra", data.id], {
+    this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(data.id), {
       replaceUrl: true,
     });
   }

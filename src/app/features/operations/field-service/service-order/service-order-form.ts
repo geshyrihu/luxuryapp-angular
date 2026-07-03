@@ -72,7 +72,7 @@ export class ServiceOrderForm implements OnInit {
   submitting = signal(false);
   id = signal<number>(0);
 
-  // Signals para los cat�logos
+  // Signals para los catálogos
   cb_machinery = signal<ISelectItem[]>([]);
   cb_providers = signal<ISelectItem[]>([]);
   cb_Status = signal<ISelectItem[]>([]);

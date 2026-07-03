@@ -19,7 +19,7 @@
         />
       </div>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nueva Inspecci�n' })"
+        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
         [dt]="dt"
       />
     </div>
@@ -30,7 +30,7 @@
       <th class="table-col-10">Hora</th>
       <th class="table-col-10">Sin Obstr.</th>
       <th class="table-col-10">Sin Contam.</th>
-      <th class="table-col-10">Sin Da�os</th>
+      <th class="table-col-10">Sin Daóos</th>
       <th class="table-col-10">LED Ok</th>
       <th class="table-col-10">Montaje</th>
       <th>Observaciones</th>
@@ -85,7 +85,7 @@
       <td class="no-print">
         <div class="flex justify-content-center">
           <il-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspecci�n' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
           />
           <il-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -103,7 +103,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva Inspecci�n' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
@@ -137,7 +137,7 @@
           >
           <small
             [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
-            >Sin Da�os</small
+            >Sin Daóos</small
           >
           <small [class]="item.ledStatusOk ? 'text-green-600' : 'text-red-600'"
             >LED Ok</small
@@ -152,7 +152,7 @@
         <app-action-menu>
           <ng-container actions>
             <il-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspecci�n' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
               label="Editar"
             />
             <il-button-delete

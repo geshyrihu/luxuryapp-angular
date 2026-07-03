@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
 import { SplitButtonModule } from "primeng/splitbutton";
@@ -105,8 +106,8 @@ export class TaskReportWorkPlan implements OnInit {
   }
 
   onPreviewClicked(): void {
-    // Lógica para la vista previa
-    this.router.navigate(["/tickets/work-plan-preview"]);
+    // LÃ­gica para la vista previa
+    this.router.navigate(ROUTES.TICKETS.PLAN_TRABAJO_VISTA);
   }
   onModalForm(data: any) {
     this.dialogHandlerS

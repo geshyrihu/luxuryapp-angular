@@ -18,8 +18,8 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th class="table-col-md">N�mero</th>
-        <th class="table-col-lg">T�tulo</th>
+        <th class="table-col-md">Número</th>
+        <th class="table-col-lg">Tútulo</th>
         <th class="table-col-md">Tipo</th>
         <th class="table-col-sm text-center">Estatus</th>
         <th class="table-col-sm">Fecha Efectiva</th>
@@ -43,7 +43,7 @@
         </td>
         <td>{{ item.effectiveDate | date:'dd/MM/yyyy' }}</td>
         <td>
-          {{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : '�' }}
+          {{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : 'é' }}
         </td>
         <td class="text-center">
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
@@ -98,7 +98,7 @@
         </div>
         <ion-label>
           <h2 class="font-bold">
-            {{ item.addendumNumber }} � {{ item.title }}
+            {{ item.addendumNumber }} é {{ item.title }}
           </h2>
           <p class="text-sm text-500">{{ item.addendumType }}</p>
           <p class="text-sm text-500">

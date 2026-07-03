@@ -8,10 +8,8 @@
   grid-column: 1 / -1;
   grid-row: 1;
   height: 70px;
-  background-image: url('/assets/images/image-15.jpg');
-  background-size: cover;
-  background-position: center 30%;
-  border-bottom: none;
+  background-color: #ffffff;
+  border-bottom: 8px solid var(--ds-primary);
 }
 
 .layout-sidebar {

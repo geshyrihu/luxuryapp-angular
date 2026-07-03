@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
@@ -40,6 +41,8 @@ import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-fo
   templateUrl: "./lista-inspecciones.html",
 })
 export class ListaInspecciones {
+  readonly ROUTES = ROUTES;
+  private router = inject(Router);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
@@ -84,6 +87,14 @@ export class ListaInspecciones {
     });
   }
 
+  navigateToReportes() {
+    this.router.navigate(ROUTES.INSPECCIONES.LISTA_INFORMES);
+  }
+
+  navigateToDetalles(id: string) {
+    this.router.navigate(ROUTES.INSPECCIONES.DETALLE(id));
+  }
+
   onLoadData() {
     this.apiResponseS
       .onGetList(
@@ -93,7 +104,7 @@ export class ListaInspecciones {
         this.inspeccionesOriginalesSignal.set(result);
 
         const data: any[] = result;
-        // Extraer óreas responsables del arreglo y eliminar duplicados
+        // Extraer Ã³reas responsables del arreglo y eliminar duplicados
         const areas = [...new Set(data.map((item) => item.areaResponsable))];
         this.areasResponsablesSignal.set(
           areas.map((area: string) => ({
@@ -112,7 +123,7 @@ export class ListaInspecciones {
       });
   }
 
-  // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

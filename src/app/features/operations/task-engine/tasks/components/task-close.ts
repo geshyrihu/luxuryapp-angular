@@ -88,7 +88,7 @@ export class TaskClose implements OnInit {
         this.form.controls.closedById.setValue(this.authS.applicationUserId);
         this.form.controls.customerId.setValue(this.customerIdS.customerId());
 
-        // Si las imógenes existen, carga las vistas previas
+        // Si las imÃ­genes existen, carga las vistas previas
         if (result.beforeWorkPreview) {
           this.form.controls.beforeWorkPreview.setValue(
             result.beforeWorkPreview,
@@ -101,7 +101,7 @@ export class TaskClose implements OnInit {
       });
   }
 
-  // Para manejar las imógenes 'BeforeWork' y 'AfterWork'
+  // Para manejar las imÃ­genes 'BeforeWork' y 'AfterWork'
   onFileChange(event: any, fieldName: "beforeWork" | "afterWork") {
     const file = event.target.files[0];
     if (file) {

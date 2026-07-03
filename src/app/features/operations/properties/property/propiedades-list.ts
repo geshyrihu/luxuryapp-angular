@@ -135,11 +135,11 @@ export class PropiedadesList {
     }
 
     Swal.fire({
-      title: "Confirmar Importaci�n",
-      text: "Aseg�rate de que el archivo utiliza el formato de la plantilla descargada. �Deseas continuar?",
+      title: "Confirmar Importación",
+      text: "Asegórate de que el archivo utiliza el formato de la plantilla descargada. óDeseas continuar?",
       icon: "info",
       showCancelButton: true,
-      confirmButtonText: "S�, importar",
+      confirmButtonText: "Sí, importar",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {

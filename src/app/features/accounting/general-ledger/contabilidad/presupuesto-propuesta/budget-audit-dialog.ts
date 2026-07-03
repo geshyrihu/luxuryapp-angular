@@ -2,13 +2,13 @@
  * ============================================================================
  * ‚ö†Ô∏è ADVERTENCIA CR√çTICA / CRITICAL WARNING ‚ö†Ô∏è
  * ============================================================================
- * Este mÛdulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este m√≥dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lÛgica, estructura o flujos de IA
- * sin antes consultar y obtener autorizaciÛn explÌcita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l√≠gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci√≥n expl√≥cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el cÛdigo.
+ * Por favor, NO rompan el c√≥digo.
  * ============================================================================
  */
 import { Component, inject, OnInit, signal } from "@angular/core";
@@ -65,11 +65,11 @@ export class BudgetAuditDialog implements OnInit {
     } catch (error) {
       console.error(error);
       this.auditReportHtml.set(
-        "<p class='text-red-500'>OcurriÛ un error al generar la auditorÌa. Por favor intente nuevamente.</p>",
+        "<p class='text-red-500'>Ocurri√≥ un error al generar la auditor√≥a. Por favor intente nuevamente.</p>",
       );
       this.customToastService.showError(
         "Error",
-        "No se pudo completar el an·lisis IA.",
+        "No se pudo completar el an√°lisis IA.",
       );
     } finally {
       this.loading.set(false);

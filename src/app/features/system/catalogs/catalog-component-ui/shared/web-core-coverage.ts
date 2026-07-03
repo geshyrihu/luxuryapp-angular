@@ -499,9 +499,9 @@ import {
           Pantallas objetivo antes que inventario plano
         </h3>
         <p class="web-hero__copy">
-          La cobertura web debe demostrar c�mo viven juntos los componentes
-          dentro de m�dulos reales: filtros, tablas, m�tricas, acciones
-          contextuales y navegaci�n de detalle.
+          La cobertura web debe demostrar cómo viven juntos los componentes
+          dentro de módulos reales: filtros, tablas, mítricas, acciones
+          contextuales y navegación de detalle.
         </p>
       </section>
 
@@ -511,8 +511,8 @@ import {
           Showroom de vistas objetivo para escritorio
         </h4>
         <p class="web-panel__copy">
-          Igual que en mobile, el cat�logo web debe ense�ar pantallas armadas y
-          no s�lo una parrilla de controles sueltos.
+          Igual que en mobile, el catálogo web debe enseóar pantallas armadas y
+          no sílo una parrilla de controles sueltos.
         </p>
 
         <div class="web-gallery">
@@ -525,7 +525,7 @@ import {
               <span class="web-screen__badge">Ready</span>
             </div>
             <div class="web-screen__hero">
-              <strong>Autorizaci�n de presupuesto</strong>
+              <strong>Autorización de presupuesto</strong>
               <span
                 >Formulario con CTA primario, guardado parcial y datos clave en
                 contexto.</span
@@ -536,7 +536,7 @@ import {
                 class="web-screen__cta web-screen__cta--primary"
                 type="button"
               >
-                Enviar aprobaci�n
+                Enviar aprobación
               </button>
               <button
                 class="web-screen__cta web-screen__cta--secondary"
@@ -573,7 +573,7 @@ import {
               <div class="web-screen__table-row">
                 <strong>Finanzas</strong>
                 <span class="web-screen__status web-screen__status--review"
-                  >Revisi�n</span
+                  >Revisión</span
                 >
                 <strong>$125k</strong>
               </div>
@@ -594,7 +594,7 @@ import {
                 <strong>12</strong>
               </div>
               <div class="web-screen__stat">
-                <span class="web-screen__muted">En revisi�n</span>
+                <span class="web-screen__muted">En revisión</span>
                 <strong>04</strong>
               </div>
               <div class="web-screen__stat">
@@ -607,7 +607,7 @@ import {
                 <div class="web-screen__list-item-main">
                   <strong>QA infraestructura</strong>
                   <span class="web-screen__muted"
-                    >Validaci�n de wrappers y patrones base</span
+                    >Validación de wrappers y patrones base</span
                   >
                 </div>
                 <span class="web-screen__pill">Alta</span>
@@ -698,7 +698,7 @@ import {
                 <div class="web-screen__list-item-main">
                   <strong>Actividad reciente</strong>
                   <span class="web-screen__muted"
-                    >14 movimientos en las �ltimas 4 horas</span
+                    >14 movimientos en las óltimas 4 horas</span
                   >
                 </div>
                 <strong>14 items</strong>

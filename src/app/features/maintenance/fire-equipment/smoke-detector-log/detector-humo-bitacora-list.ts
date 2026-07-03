@@ -89,7 +89,7 @@ export class DetectorHumoBitacoraList implements OnInit {
     }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF �€” Bit�cora Detectores de Humo",
+      "Reporte PDF é€” Bitúcora Detectores de Humo",
       this.dialogHandlerS.sizeSm,
     );
     if (result)

@@ -38,9 +38,9 @@ export class AccountingCatalog {
   confirmationService = inject(ConfirmationService);
   // excelService = inject(AccountingCatalogExcelService); // Inject the service
 
-  // SeÒales
+  // Se√≥ales
   groupedDataSignal = signal<GroupedAccountingCatalogDTO[]>([]);
-  // ? flattenedData con descripciÛn del padre ó listo para agrupar en p-table
+  // ? flattenedData con descripci√≥n del padre √© listo para agrupar en p-table
   flattenedDataSignal = computed<AccountingCatalogWithParent[]>(() => {
     return this.groupedDataSignal()
       .flatMap((group) =>
@@ -48,18 +48,18 @@ export class AccountingCatalog {
           ...child,
           cuentaPadre: group.cuentaPadre, // ej: "601-001-000"
           // cuentaPadreDescripcion:
-          //   group.descripcionCuentaPadre || "[Sin descripciÛn]",
+          //   group.descripcionCuentaPadre || "[Sin descripci√≥n]",
         })),
       )
       .sort((a, b) => (a.cuentaPadre || "").localeCompare(b.cuentaPadre || ""));
   });
 
-  // ? Datos agrupados para mobile (clave = "cÛdigo ó descripciÛn")
+  // ? Datos agrupados para mobile (clave = "c√≥digo √© descripci√≥n")
   mobileGroupedData = computed<{ [key: string]: AccountingCatalogDTO[] }>(
     () => {
       const result: { [key: string]: AccountingCatalogDTO[] } = {};
       for (const group of this.groupedDataSignal()) {
-        const key = `${group.cuentaPadre}  || "[Sin descripciÛn]"}`;
+        const key = `${group.cuentaPadre}  || "[Sin descripci√≥n]"}`;
         result[key] = group.childAccounts;
       }
       return result;
@@ -106,7 +106,7 @@ export class AccountingCatalog {
         this.groupedDataSignal.set(response || []);
       })
       .catch((err) => {
-        console.error("Error al cargar cat·logo contable:", err);
+        console.error("Error al cargar cat√°logo contable:", err);
         this.groupedDataSignal.set([]);
       })
       .finally(() => {
@@ -119,13 +119,13 @@ export class AccountingCatalog {
     const dataToExport = this.flattenedDataSignal();
     const columns = [
       { header: "Cuenta Padre", key: "cuentaPadre", width: 25 },
-      { header: "CÛdigo", key: "codigoCuenta", width: 25 },
-      { header: "DescripciÛn", key: "descripcionCuenta", width: 50 },
+      { header: "C√≥digo", key: "codigoCuenta", width: 25 },
+      { header: "Descripci√≥n", key: "descripcionCuenta", width: 50 },
     ];
     this.excelService.exportToExcel(
       dataToExport,
       columns,
-      "Cat·logo Contable",
+      "Cat√°logo Contable",
       `${this.customerIdService.nombreCorto()}-${this.currentYear()}`
     );
     */

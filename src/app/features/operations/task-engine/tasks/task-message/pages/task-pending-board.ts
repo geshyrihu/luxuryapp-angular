@@ -2,6 +2,7 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
@@ -64,7 +65,7 @@ export class TaskPendingBoard implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(["/tickets/messages", this.ticketGroupId]);
+    this.router.navigate(ROUTES.TICKETS.MENSAJES(this.ticketGroupId));
   }
 
   statusLabel(status: string): string {

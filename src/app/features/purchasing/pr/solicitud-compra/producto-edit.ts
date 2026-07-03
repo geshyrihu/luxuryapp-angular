@@ -41,7 +41,7 @@ export class ProductoEdit implements OnInit {
   cb_unidadMedida = signal<ISelectItem[]>([]);
   nombreProducto = "";
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>(""),
     solicitudCompraId: new FormControl<string>("", {

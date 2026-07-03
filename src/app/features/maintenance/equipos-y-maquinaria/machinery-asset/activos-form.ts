@@ -80,7 +80,7 @@ export class ActivosForm implements OnInit {
     this.onLoadEquipoClasificacion();
     this.onLoadEnum();
 
-    // Inicialización sóncrona para evitar NG0100
+    // InicializaciÃ³n sÃ­ncrona para evitar NG0100
     this.category = this.config.data.paramId;
     this.id = this.config.data.id !== 0 ? this.config.data.id : "";
 

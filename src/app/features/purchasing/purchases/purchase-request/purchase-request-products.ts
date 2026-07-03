@@ -37,7 +37,7 @@ export class PurchaseRequestProducts {
 
   onModalForm(item: any) {
     // Emitimos el objeto 'item' completo.
-    // El componente padre (PurchaseRequestDetailComponent) lo recibir�.
+    // El componente padre (PurchaseRequestDetailComponent) lo recibiré.
     this.editProductRequest.emit(item);
   }
   onUpdateData() {

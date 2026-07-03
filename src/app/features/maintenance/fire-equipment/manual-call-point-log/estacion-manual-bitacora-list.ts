@@ -89,7 +89,7 @@ export class EstacionManualBitacoraList implements OnInit {
     }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF �€” Bit�cora Estaciones Manuales",
+      "Reporte PDF é€” Bitúcora Estaciones Manuales",
       this.dialogHandlerS.sizeSm,
     );
     if (result)

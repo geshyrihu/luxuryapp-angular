@@ -27,7 +27,7 @@
         <il-button-item
           (clicked)="onViewPeriodos()"
           label="Periodos"
-          tooltip="Configurar periodos de inspecci�n"
+          tooltip="Configurar periodos de inspección"
         />
         <il-button-download
           (clicked)="downloadTemplate()"
@@ -49,7 +49,7 @@
       </div>
       <primeng-custom-caption
         [title]="'Inventario de Estaciones Manuales'"
-        (add)="onModalForm({ id: '', title: 'Nueva Estaci�n Manual' })"
+        (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
         [dt]="dt"
       />
     </div>
@@ -58,13 +58,13 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" pSortableColumn="localCode">
-        C�digo <p-sortIcon field="localCode" />
+        Código <p-sortIcon field="localCode" />
       </th>
       <th class="table-col-30" pSortableColumn="stationType">
         Tipo <p-sortIcon field="stationType" />
       </th>
       <th class="table-col-35" pSortableColumn="location">
-        Ubicaci�n <p-sortIcon field="location" />
+        Ubicación <p-sortIcon field="location" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -113,7 +113,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva Estaci�n Manual' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
 >
   <div customFilters class="px-3 pb-2 flex flex-column gap-2">
     <ion-button
@@ -132,7 +132,7 @@
       (click)="onViewPeriodos()"
     >
       <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
-      Periodos de Inspecci�n
+      Periodos de Inspección
     </ion-button>
   </div>
   <ng-template #listItemTemplate let-item>
@@ -158,7 +158,7 @@
       </div>
       <ion-label>
         <h3>
-          {{ item.localCode ? item.localCode + ' � ' : '' }}{{ item.stationType
+          {{ item.localCode ? item.localCode + ' é ' : '' }}{{ item.stationType
           }}
         </h3>
         <p>{{ item.location }}</p>

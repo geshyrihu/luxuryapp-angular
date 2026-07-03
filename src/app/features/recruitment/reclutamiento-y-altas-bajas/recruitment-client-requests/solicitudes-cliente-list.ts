@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -51,7 +52,7 @@ export class SolicitudesClienteList {
   router = inject(Router);
   authS = inject(AuthService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // Declaraci�n e inicializaci�n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -62,7 +63,7 @@ export class SolicitudesClienteList {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de di�logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
@@ -91,7 +92,7 @@ export class SolicitudesClienteList {
 
   onRouteEstatusSolicitud(id) {
     this.statusSolicitudVacanteService.setPositionRequestId(id);
-    this.router.navigate(["/reclutamiento/status-solicitud-vacante"]);
+    this.router.navigate(ROUTES.RECLUTAMIENTO.STATUS_SOLICITUD_VACANTE);
   }
   onModalEditVacante(data: any) {
     this.dialogHandlerS

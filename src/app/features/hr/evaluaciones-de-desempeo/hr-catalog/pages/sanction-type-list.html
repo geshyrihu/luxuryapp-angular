@@ -15,7 +15,7 @@
   >
     <ng-template #caption>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanci�n' })"
+        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
         [dt]="dt"
       />
     </ng-template>
@@ -26,7 +26,7 @@
           Severidad <p-sortIcon field="severityLevel" />
         </th>
         <th pSortableColumn="isTermination" class="text-center">
-          Es Terminaci�n <p-sortIcon field="isTermination" />
+          Es Terminación <p-sortIcon field="isTermination" />
         </th>
         <th pSortableColumn="requiresHRApproval" class="text-center">
           Requiere RH <p-sortIcon field="requiresHRApproval" />
@@ -43,14 +43,14 @@
         <td>{{ item.severityLevel }}</td>
         <td class="text-center">
           @if (item.isTermination) {
-          <span class="badge badge-danger">S�</span>
+          <span class="badge badge-danger">Sí</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
         </td>
         <td class="text-center">
           @if (item.requiresHRApproval) {
-          <span class="badge badge-warning">S�</span>
+          <span class="badge badge-warning">Sí</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
@@ -65,7 +65,7 @@
         <td class="no-print">
           <div class="flex">
             <il-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Sanci�n' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Sanción' })"
             />
             <il-button-delete (confirmed)="onDelete(item.id)" />
           </div>
@@ -80,10 +80,10 @@
     </ng-template>
   </p-table>
 
-  <!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+  <!-- ?? INICIO: Componente adaptado para versión mívil -->
   <app-data-view-mobile
     [data]="items()"
-    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanci�n' })"
+    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
     [globalFilterFields]="globalFilterFields"
     [dt]="dt"
   >
@@ -107,10 +107,10 @@
           <h2 class="text-base font-semibold">{{ item.name }}</h2>
           <p class="text-sm text-wrap">
             <strong>Severidad:</strong> {{ item.severityLevel }} |
-            <strong>Terminaci�n:</strong> {{ item.isTermination ? 'S�' : 'No' }}
+            <strong>Terminación:</strong> {{ item.isTermination ? 'Sí' : 'No' }}
           </p>
           <p class="text-sm">
-            <strong>Requiere RH:</strong> {{ item.requiresHRApproval ? 'S�' :
+            <strong>Requiere RH:</strong> {{ item.requiresHRApproval ? 'Sí' :
             'No' }} |
             <strong>Estado:</strong>
             @if (item.isActive) {
@@ -137,5 +137,5 @@
       </ion-item>
     </ng-template>
   </app-data-view-mobile>
-  <!-- ?? FIN: Componente adaptado para versi�n m�vil -->
+  <!-- ?? FIN: Componente adaptado para versión mívil -->
 </div>

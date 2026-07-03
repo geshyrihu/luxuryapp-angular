@@ -39,8 +39,8 @@ export class TaskReportWorkPlanPreview {
   loading = signal(true);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  year: number = 0; // Almacena el Año seleccionado
-  numeroSemana: number = 0; // Almacena el nómero de semana seleccionado
+  year: number = 0; // Almacena el AÃ³o seleccionado
+  numeroSemana: number = 0; // Almacena el nÃºmero de semana seleccionado
   weekInputValueControl = new FormControl<string>("");
 
   ngOnInit(): void {
@@ -59,7 +59,7 @@ export class TaskReportWorkPlanPreview {
     );
   }
   onLoadData() {
-    // No sobreescribimos el Año y la semana seleccionados con los valores actuales
+    // No sobreescribimos el AÃ³o y la semana seleccionados con los valores actuales
     this.apiResponseS
       .onGetList(
         Endpoints.TaskWorkPlans.preview(

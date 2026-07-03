@@ -45,7 +45,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-3">N�</th>
+      <th class="table-col-3">Né</th>
       <th class="table-col-6" pSortableColumn="fechaSolicitud">
         Fecha
         <p-sortIcon field="fechaSolicitud" />
@@ -63,7 +63,7 @@
         <p-sortIcon field="proveedor" />
       </th>
       <th class="table-col-25" pSortableColumn="justificacionGasto">
-        Justificaci�n
+        Justificación
         <p-sortIcon field="justificacionGasto" />
       </th>
       <th class="table-col-10" pSortableColumn="total">
@@ -125,9 +125,9 @@
       </div>
       <ion-label>
         <h3>{{ item.proveedor }}</h3>
-        <p>Folio: {{ item.folio }} � Factura: {{ item.factura }}</p>
+        <p>Folio: {{ item.folio }} é Factura: {{ item.factura }}</p>
         <p>
-          Total: {{ item.total | number:'1.2-2' }} � {{ item.fechaSolicitud |
+          Total: {{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
           date:'dd/MM/yyyy':'UTC' }}
         </p>
       </ion-label>

@@ -47,7 +47,7 @@ export class ImageGenerationDialog {
       icon: "mdi:camera",
     },
     {
-      label: "Ilustraci�n",
+      label: "Ilustración",
       value: "digital illustration, vector art, vibrant",
       icon: "mdi:pencil",
     },

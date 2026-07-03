@@ -328,7 +328,7 @@ body.theme-dark .p-panelmenu {
   height: 70px;
   border: none !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background: rgba(var(--ds-bg-auth-panel-rgb), 0.55) !important;
+  background: #ffffff;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
@@ -405,21 +405,20 @@ app-header-employee-monitor .customer-name {
   color: rgba(255, 255, 255, 0.95);
 }
 
-/* Breadcrumb blanco en header oscuro
-   styleClass="header-breadcrumb" se aplica al <nav class="p-breadcrumb header-breadcrumb"> */
+/* Breadcrumb oscuro en header blanco */
 nav.header-breadcrumb,
 nav.header-breadcrumb * {
-  color: rgba(255, 255, 255, 0.85) !important;
-  background: transparent !important;
+  color: var(--ds-text-primary);
+  background: transparent;
 }
 
 nav.header-breadcrumb {
-  border: none !important;
+  border: none;
 }
 
 nav.header-breadcrumb .p-breadcrumb-separator,
 nav.header-breadcrumb .p-breadcrumb-separator * {
-  color: rgba(255, 255, 255, 0.45) !important;
+  color: var(--ds-text-secondary);
 }
 
 /* Customer selector button */
@@ -428,17 +427,17 @@ app-header-employee-monitor .customer-selector-btn {
   align-items: center;
   gap: 0.5rem;
   padding: 0.375rem 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--ds-bg-sunken);
+  border: 1px solid var(--ds-border-base);
   border-radius: 6px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--ds-text-primary);
   font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
   transition: background-color 150ms ease;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.18);
+    background-color: var(--ds-bg-base);
   }
 
   &:active {

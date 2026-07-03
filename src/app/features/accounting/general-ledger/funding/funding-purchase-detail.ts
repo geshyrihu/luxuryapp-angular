@@ -11,7 +11,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 export class FundingPurchaseDetail {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
-  // El tipo 'any' es por simplicidad, idealmente aquí iría la interfaz del DTO
+  // El tipo 'any' es por simplicidad, idealmente aquÃ© irÃ³a la interfaz del DTO
   data = signal<any>(null);
   ordenCompraId: string = "";
   submitting = signal(false);

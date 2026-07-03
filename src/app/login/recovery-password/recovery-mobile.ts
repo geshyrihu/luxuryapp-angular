@@ -8,6 +8,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   IonApp,
   IonButton,
@@ -295,7 +296,7 @@ export class RecoveryMobile implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(["/auth/login"]);
+    this.router.navigate(ROUTES.AUTH.LOGIN);
   }
 
   onSubmit() {

@@ -1,6 +1,7 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
@@ -43,7 +44,7 @@ export class EmployeeFileDetail implements OnInit {
   // Cabecera
   header = signal<EmployeeFileHeaderDTO | null>(null);
 
-  // Tabs — carga lazy por demanda
+  // Tabs Ã© carga lazy por demanda
   personalData = signal<EmployeeFilePersonalDataDTO | null>(null);
   emergencyContacts = signal<EmployeeFileEmergencyContactDTO[]>([]);
   clinicalData = signal<EmployeeFileClinicalDataDTO[]>([]);
@@ -179,7 +180,7 @@ export class EmployeeFileDetail implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(["/recursos-humanos/employee-files"]);
+    this.router.navigate(ROUTES.RECURSOS_HUMANOS.EXPEDIENTES);
   }
 
   getSeverityBadge(severity: string): string {

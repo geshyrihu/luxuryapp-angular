@@ -15,7 +15,7 @@
         type="month"
         customClass="w-15rem"
         (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-        pTooltip="Seleccionar Mes y A�o"
+        pTooltip="Seleccionar Mes y Aóo"
         tooltipPosition="top"
         [horizontal]="false"
         [noMargin]="true"
@@ -33,7 +33,7 @@
       </div>
       <il-button
         iconClass="mdi:file-document-outline"
-        label="Reporte de �rdenes"
+        label="Reporte de órdenes"
         (click)="onNavigateToReport()"
         variant="outlined"
       />
@@ -102,14 +102,14 @@
   <ng-template #groupheader let-item>
     <tr>
       <td colspan="8" class="font-bold text-sm surface-100 px-3 py-2">
-        {{ item.equipoClasificacion || 'Sin Categor�a' }}
+        {{ item.equipoClasificacion || 'Sin Categoróa' }}
       </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
       <td>
-        <!-- Esto mostrar� los �ltimos 5 d�gitos -->
+        <!-- Esto mostraré los óltimos 5 dógitos -->
         {{ item.maintenanceCalendarId | slice:-5 }}
       </td>
       <!-- {{ item.machineryId }} | -->
@@ -189,7 +189,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Contenido visible solo en pantallas peque�as (hasta md) -->
+<!-- ?? INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="
@@ -204,9 +204,9 @@
   [dt]="dt"
 >
   <ng-container customFilters>
-    <!-- tu bloque aqu� -->
+    <!-- tu bloque aqué -->
     <div class="card-body p-0">
-      <!-- Secci�n T�tulo y Fecha -->
+      <!-- Sección Tútulo y Fecha -->
       <div class="flex flex-column mb-3">
         <ion-item lines="none" class="ion-no-padding transparent-item">
           <ion-label
@@ -222,7 +222,7 @@
             type="month"
             customClass="w-full"
             (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-            pTooltip="Seleccionar Mes y A�o"
+            pTooltip="Seleccionar Mes y Aóo"
             tooltipPosition="top"
             [horizontal]="false"
           />
@@ -244,11 +244,11 @@
         }
       </ion-segment>
 
-      <!-- Bot�n Reporte -->
+      <!-- Botún Reporte -->
       <div class="mb-2">
         <il-button-item
           iconName="document-text-outline"
-          label="Reporte de �rdenes"
+          label="Reporte de órdenes"
           (click)="onNavigateToReport()"
           variant="outlined"
           fullWidth="true"
@@ -274,7 +274,7 @@
     </div>
   </ng-container>
 
-  <!-- Lista de �rdenes de servicio en formato de tarjeta -->
+  <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
       <div
@@ -390,19 +390,19 @@
       display: none !important;
     }
 
-    /* 2. Forzar visualizaci�n de la Tabla */
+    /* 2. Forzar visualización de la Tabla */
     .custom-table {
       display: block !important;
       visibility: visible !important;
       width: 100% !important;
     }
 
-    /* Resetear las clases de ocultamiento para impresi�n */
+    /* Resetear las clases de ocultamiento para impresión */
     .hidden.md\:block {
       display: block !important;
     }
 
-    /* 3. Ocultar Vista M�vil */
+    /* 3. Ocultar Vista Mívil */
     app-data-view-mobile {
       display: none !important;
     }
@@ -411,9 +411,9 @@
     .p-datatable-header,
     /* El Caption con filtros */
     .p-paginator-bottom,
-    /* Paginaci�n */
+    /* Paginación */
     .no-print {
-      /* Clase utilitaria para columnas espec�ficas */
+      /* Clase utilitaria para columnas específicas */
       display: none !important;
     }
 
@@ -438,7 +438,7 @@
       font-weight: bold;
     }
 
-    /* Configuraci�n de P�gina */
+    /* Configuración de Página */
     @page {
       size: landscape;
       /* Sugerir horizontal para tablas anchas */

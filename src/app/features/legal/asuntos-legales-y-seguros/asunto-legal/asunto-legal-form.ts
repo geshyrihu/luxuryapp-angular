@@ -28,7 +28,7 @@ export class AsuntoLegalForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  // Signal para categorías
+  // Signal para categorÃ³as
   cb_categories = signal<ISelectItem[]>([]);
 
   cb_resposanbles: ISelectItem[] = [
@@ -85,7 +85,7 @@ export class AsuntoLegalForm implements OnInit {
           : result.legalMatterCategoryId;
     }
 
-    // Buscar la categoría completa
+    // Buscar la categorÃ³a completa
     const selectedCategory = legalMatterCategoryId
       ? this.cb_categories().find(
           (item) => item.value === legalMatterCategoryId,
@@ -100,7 +100,7 @@ export class AsuntoLegalForm implements OnInit {
   }
 
   saveCategorie = (item: ISelectItem) => {
-    // Si item es null, significa que es una categoría nueva (texto libre)
+    // Si item es null, significa que es una categorÃ³a nueva (texto libre)
     if (item === null) {
       this.form.patchValue({
         legalMatterCategoryId: null,

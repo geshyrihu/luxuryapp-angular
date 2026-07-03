@@ -26,7 +26,7 @@ import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
 
 const REPORT_META = [
   {
-    title: "Estado de Posici髇 Financiera",
+    title: "Estado de Posici贸n Financiera",
     description:
       "Lectura de activo, pasivo y capital al corte del periodo seleccionado.",
   },
@@ -41,7 +41,7 @@ const REPORT_META = [
       "Variante ajustada para clasificaciones irregulares y lectura reforzada de ingresos y gastos.",
   },
   {
-    title: "C閐ula Extraordinaria",
+    title: "C贸dula Extraordinaria",
     description:
       "Seguimiento de recaudado, mejoras, eventos y gastos extraordinarios del periodo.",
   },
@@ -63,7 +63,7 @@ const REPORT_META = [
   {
     title: "Dashboard de Cobranza",
     description:
-      "Vista ejecutiva de cobranza con corte, KPIs, top deudores y detalle operativo por cond髆ino.",
+      "Vista ejecutiva de cobranza con corte, KPIs, top deudores y detalle operativo por cond贸mino.",
   },
   {
     title: "Presupuesto Contabilidad",
@@ -77,7 +77,7 @@ const REPORT_META = [
   {
     title: "Proyectos Aprobados",
     description:
-      "Seguimiento de presupuesto y ejecuci髇 de proyectos aprobados.",
+      "Seguimiento de presupuesto y ejecuci贸n de proyectos aprobados.",
   },
 ] as const;
 
@@ -131,7 +131,7 @@ export default class FinancialReportsWrapper {
   readonly activeReportDescription = computed(
     () =>
       REPORT_META[this.reportIndex()]?.description ??
-      "Consulta operativa del m骴ulo de contabilidad online.",
+      "Consulta operativa del m贸dulo de contabilidad online.",
   );
 
   readonly periodLabel = computed(() => {

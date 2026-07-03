@@ -8,6 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   FormBuilder,
   FormGroup,
@@ -388,7 +389,7 @@ export class LoginMobile implements OnInit {
   }
 
   goToRecovery(): void {
-    this.router.navigate(["/auth/recovery-password"]);
+    this.router.navigate(ROUTES.AUTH.RECOVERY_PASSWORD);
   }
 
   private buildError(error: unknown): string {

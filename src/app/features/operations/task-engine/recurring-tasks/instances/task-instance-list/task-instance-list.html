@@ -33,7 +33,7 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th>T�tulo</th>
+        <th>Tútulo</th>
         <th>Prioridad</th>
         <th>Estado</th>
         <th>Programada para</th>
@@ -61,7 +61,7 @@
             (confirmed)="onReopenTask(task.id)"
             iconClass="mdi:undo"
             [disabled]="task.status !== 1"
-            confirmMessage="�Est�s seguro de reabrir esta tarea?"
+            confirmMessage="óEstés seguro de reabrir esta tarea?"
           />
         </td>
       </tr>
@@ -126,7 +126,7 @@
               label="Reabrir"
               (confirmed)="onReopenTask(task.id)"
               [disabled]="task.status !== 1"
-              confirmMessage="�Est�s seguro de reabrir esta tarea?"
+              confirmMessage="óEstés seguro de reabrir esta tarea?"
             />
           </ng-container>
         </app-action-menu>

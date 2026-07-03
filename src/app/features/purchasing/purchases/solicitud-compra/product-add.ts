@@ -82,7 +82,7 @@ export class ProductAdd implements OnInit {
     null,
   );
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     productoId: new FormControl<string | null>(null, {

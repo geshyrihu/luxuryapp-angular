@@ -16,6 +16,7 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DiagramForm } from "../diagram-form/diagram-form";
@@ -99,15 +100,15 @@ export class DiagramList implements OnInit {
   }
 
   onOpenEditor(id: string) {
-    this.router.navigate(["/diagram/editor", id]);
+    this.router.navigate(ROUTES.DIAGRAMAS.EDITOR(id));
   }
 
   onViewDiagram(id: string) {
-    this.router.navigate(["/diagram/view", id]);
+    this.router.navigate(ROUTES.DIAGRAMAS.VER(id));
   }
 
   onOpenGallery() {
-    this.router.navigate(["/diagram/gallery"]);
+    this.router.navigate(ROUTES.DIAGRAMAS.GALERIA);
   }
 
   onDeleteDiagram(id: string) {

@@ -10,14 +10,14 @@
         </div>
         <div>
           <h5 class="m-0 font-bold text-900">Presentaciones de Junta</h5>
-          <span class="text-600 text-sm">Gestión centralizada de documentos y validaciones</span>
+          <span class="text-600 text-sm">GestiÃ³n centralizada de documentos y validaciones</span>
         </div>
       </div>
       <div class="flex gap-2">
         <il-button
           variant="outlined"
           iconClass="mdi:plus"
-          label="NUEVA PRESENTACIÓN"
+          label="NUEVA PRESENTACIÃ³N"
           size="sm"
           (clicked)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
         />
@@ -45,9 +45,9 @@
               </div>
             </div>
             <div class="flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider">Enviado Comité</span>
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Enviado ComitÃ©</span>
               <div class="flex align-items-center gap-2">
-                <p-tag [value]="item.enviadoComite ? 'SÍ' : 'NO'" 
+                <p-tag [value]="item.enviadoComite ? 'SÃ­' : 'NO'" 
                        [severity]="item.enviadoComite ? 'success' : 'warning'"
                        styleClass="text-xs"></p-tag>
                 @if (item.enviadoComite) {
@@ -61,7 +61,7 @@
             @if (item.archivoFinal) {
               <div class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border-round-lg font-bold border-1 border-green-100">
                 <app-icon icon="mdi:lock"></app-icon>
-                <span>VERSIÓN FINAL</span>
+                <span>VERSIÃ³N FINAL</span>
               </div>
             }
             @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
@@ -167,7 +167,7 @@
                   <il-button-view-pdf [url]="item.archivoFinal" fileName="Presentacion_Final" label="DESCARGAR FINAL" severity="success" [fluid]="true" iconClass="mdi:file-certificate" customClass="justify-content-start px-3" />
                   <div class="flex align-items-center justify-content-between mt-1">
                     <div class="flex flex-column">
-                      <small class="text-600 font-medium">Validó: {{ item.applicationUserSupervisor }}</small>
+                      <small class="text-600 font-medium">ValidÃ©: {{ item.applicationUserSupervisor }}</small>
                       <small class="text-500">{{ item.fechaCargaSupervisor }}</small>
                     </div>
                     @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
@@ -180,11 +180,11 @@
                 <div class="flex flex-column gap-2">
                   <il-button-confirm
                     iconClass="mdi:email-send"
-                    label="ENVIAR COMITÉ"
+                    label="ENVIAR COMITÃ©"
                     [fluid]="true"
-                    swalTitle="¿Enviar presentación?"
-                    swalText="Se notificará a todos los miembros."
-                    swalConfirmButtonText="Sí, enviar"
+                    swalTitle="Ã³Enviar presentaciÃ³n?"
+                    swalText="Se notificarÃ© a todos los miembros."
+                    swalConfirmButtonText="SÃ­, enviar"
                     customClass="justify-content-start px-3"
                     (confirmed)="onValidarPresentacion(item.id)"
                   />
@@ -193,8 +193,8 @@
                     label="VALIDAR"
                     [fluid]="true"
                     severity="secondary"
-                    swalTitle="¿Validar sin enviar?"
-                    swalText="Se generará la versión final sin enviar correos."
+                    swalTitle="Ã³Validar sin enviar?"
+                    swalText="Se generarÃ© la versiÃ³n final sin enviar correos."
                     customClass="justify-content-start px-3"
                     (confirmed)="onOnlyValidate(item.id)"
                   />
@@ -260,7 +260,7 @@
             }
           </div>
           <p-tag
-            [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
+            [value]="item.enviadoComite ? 'Enviado a ComitÃ©' : 'No enviado a ComitÃ©'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             styleClass="text-xs"
           ></p-tag>
@@ -414,9 +414,9 @@
                 <il-button-confirm
                   icon="mdi:send"
                   label="Validar y enviar a comite"
-                  swalTitle="óEnviar presentación?"
-                  swalText="La presentación seró enviada al Comité."
-                  swalConfirmButtonText="Sí, enviar"
+                  swalTitle="Ã³Enviar presentaciÃ³n?"
+                  swalText="La presentaciÃ³n serÃ© enviada al ComitÃ©."
+                  swalConfirmButtonText="SÃ­, enviar"
                   swalIcon="warning"
                   (confirmed)="onValidarPresentacion(item.id)"
                   customClass="w-full"
@@ -424,9 +424,9 @@
                 <il-button-confirm
                   icon="mdi:check-circle"
                   label="Solo validar"
-                  swalTitle="óValidar presentación?"
-                  swalText="Confirmo que la presentación es correcta y se crearó versión final."
-                  swalConfirmButtonText="Sí, estó correcta, validar"
+                  swalTitle="Ã³Validar presentaciÃ³n?"
+                  swalText="Confirmo que la presentaciÃ³n es correcta y se crearÃ© versiÃ³n final."
+                  swalConfirmButtonText="SÃ­, estÃ© correcta, validar"
                   swalIcon="info"
                   (confirmed)="onOnlyValidate(item.id)"
                   customClass="w-full p-button-secondary"

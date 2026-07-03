@@ -29,7 +29,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
   ],
 })
 export class ResultadoEvaluacion {
-  // InyecciÛn de servicios
+  // Inyecci√≥n de servicios
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly htmlPrintS = inject(HtmlPrintService);
@@ -106,7 +106,7 @@ export class ResultadoEvaluacion {
       datasets: [
         {
           data: data,
-          label: "Promedio por CategorÌa",
+          label: "Promedio por Categor√≥a",
           backgroundColor: "rgba(54, 162, 235, 0.2)",
           borderColor: "rgb(54, 162, 235)",
           pointBackgroundColor: "rgb(54, 162, 235)",
@@ -133,7 +133,7 @@ export class ResultadoEvaluacion {
       if (!chartImage) {
         this.customToastS.showError(
           "Error",
-          "No se pudo generar la imagen del gr·fico.",
+          "No se pudo generar la imagen del gr√≥fico.",
         );
         return;
       }
@@ -153,7 +153,7 @@ export class ResultadoEvaluacion {
       console.error("Error al exportar a PDF:", error);
       this.customToastS.showError(
         "Error",
-        "OcurriÛ un problema al generar el PDF.",
+        "Ocurri√≥ un problema al generar el PDF.",
       );
     }
   }
@@ -242,12 +242,12 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `EvaluaciÛn: ${result.evaluationTemplateName}`, `Empleado: ${result.employeeName}`, generatedAt, "RECURSOS HUMANOS")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `Evaluaci√≥n: ${result.evaluationTemplateName}`, `Empleado: ${result.employeeName}`, generatedAt, "RECURSOS HUMANOS")}
 
   <div class="body-doc page-break">
     <table style="width: 100%; margin-bottom: 20px;">
       <tr>
-        <td style="width: 33%;"><div class="info-title">Fecha de EvaluaciÛn:</div><div class="info-text">${this.formatEvaluationDate(result.evaluationDate)}</div></td>
+        <td style="width: 33%;"><div class="info-title">Fecha de Evaluaci√≥n:</div><div class="info-text">${this.formatEvaluationDate(result.evaluationDate)}</div></td>
         <td style="width: 33%;">
           <div class="info-title">Empleado Evaluado:</div>
           <div class="info-text">${this.htmlPrintS.esc(result.employeeName)}</div>
@@ -264,19 +264,19 @@ ${this.htmlPrintS.getStandardCss()}
     ${chartImage ? `<div style="text-align: center; margin: 10px 0;"><img src="${chartImage}" style="max-width: 500px; max-height: 250px;" /></div>` : ""}
 
     <div style="text-align: center; margin: 20px 0;">
-      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">PuntuaciÛn Final</div>
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Puntuaci√≥n Final</div>
       <div class="score-tag" style="background-color: ${getScoreTagColor()}">${this.htmlPrintS.esc(result.finalScoreFormatted)}</div>
       <div style="font-size: 12px; color: #6c757d;">Promedio: ${result.finalScore.toFixed(2)} / 5.00</div>
     </div>
 
-    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de DesempeÒo por CategorÌa</div>
+    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de Desempe√≥o por Categor√≥a</div>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
       ${summaryTableHtml}
     </table>
   </div>
 
   <div class="body-doc">
-    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por CategorÌas</div>
+    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por Categor√≥as</div>
     ${categoriesHtml}
   </div>
 

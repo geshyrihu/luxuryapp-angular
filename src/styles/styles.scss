@@ -59,7 +59,7 @@
 // DM Sans se carga desde index.html para evitar FOUT y optimizar CSP.
 
 body {
-  font-family: var(--ds-font-family-base), sans-serif !important;
+  font-family: var(--ds-font-family-base), "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

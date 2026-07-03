@@ -47,7 +47,7 @@ import { UploadImgForm } from "./upload-img-form";
     CommonModule,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
-    WebButtonLabel, // A�adir WebButtonLabel a imports
+    WebButtonLabel, // Aóadir WebButtonLabel a imports
     WebButtonLabelItem,
     DataViewMobile,
     ActionMenu,
@@ -75,7 +75,7 @@ export class OrdenesServicio {
   reporteOrdenesServicioService = inject(ReporteOrdenesServicioService);
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
-  periodMonthService = inject(PeriodMonthService); // Asegurarse de que est� inyectado
+  periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
   pdfService = inject(OrdenesServicioListPdfService);
 
   mm: number;
@@ -118,7 +118,7 @@ export class OrdenesServicio {
   onReloadOrdenes(id: any, filtroEquiposValue: any) {
     this.filtroEquiposValue = filtroEquiposValue;
     this.filtroId = id;
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el m�todo correcto
+    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el método correcto
 
     if (this.filtroId === 10) {
       this.onLoadPintura();
@@ -137,7 +137,7 @@ export class OrdenesServicio {
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);
-    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el m�todo correcto
+    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el método correcto
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {

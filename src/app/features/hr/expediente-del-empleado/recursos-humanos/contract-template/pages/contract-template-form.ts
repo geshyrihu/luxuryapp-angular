@@ -50,7 +50,7 @@ export class ContractTemplateFormComponent implements OnInit {
   isEdit = signal(false);
   submitting = signal(false);
   placeholderText =
-    "Usa {{EMPLEADO_NOMBRE}}, {{SALARIO}}, {{FECHA_INICIO}} como variables din·micas";
+    "Usa {{EMPLEADO_NOMBRE}}, {{SALARIO}}, {{FECHA_INICIO}} como variables din√°micas";
 
   form: FormGroup<IContractTemplateForm> = this.fb.group<IContractTemplateForm>(
     {
@@ -68,7 +68,7 @@ export class ContractTemplateFormComponent implements OnInit {
     { value: "Determinado", label: "Determinado" },
     { value: "Temporal", label: "Temporal / Estacional" },
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
-    { value: "Practicas", label: "Pr·cticas Profesionales" },
+    { value: "Practicas", label: "Pr√°cticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
     { value: "Honorarios", label: "Honorarios" },
   ];

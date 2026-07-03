@@ -618,8 +618,8 @@ export class DemoApp {
       selector: "custom-input-*-signal",
       source: "core/components/web/inputs",
       useCase: "Un solo componente detecta plataforma: PrimeNG en desktop, Ionic en mobile (<768px).",
-      preferredFor: "Todos los formularios � web y mobile. No importar Ionic raw en features.",
-      avoidWhen: "Nunca � estos reemplazan los antiguos ion-input-* eliminados.",
+      preferredFor: "Todos los formularios é web y mobile. No importar Ionic raw en features.",
+      avoidWhen: "Nunca é estos reemplazan los antiguos ion-input-* eliminados.",
       status: "Usar",
     },
     {

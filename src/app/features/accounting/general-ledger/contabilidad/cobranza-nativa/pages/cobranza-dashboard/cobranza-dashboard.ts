@@ -1,6 +1,7 @@
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -49,7 +50,7 @@ export default class CobranzaDashboard {
   metricas = signal<CobranzaMetricasResponseDTO | null>(null);
   meses = signal<number>(6);
 
-  // Computed: barra de tendencia como % del máximo para visualización
+  // Computed: barra de tendencia como % del mÃ¡ximo para visualizaciÃ³n
   maxFacturado = computed(() => {
     const t = this.metricas()?.tendenciaMensual ?? [];
     return Math.max(
@@ -84,7 +85,7 @@ export default class CobranzaDashboard {
   }
 
   navigateToPayments() {
-    this.router.navigate(["/cobranza-nativa/payments"]);
+    this.router.navigate(ROUTES.COBRANZA_NATIVA.PAGOS);
   }
 
   barWidth(value: number): string {

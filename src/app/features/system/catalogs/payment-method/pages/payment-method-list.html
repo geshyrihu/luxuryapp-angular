@@ -23,11 +23,11 @@
   <ng-template #header>
     <tr>
       <th class="text-small" pSortableColumn="codigo">
-        C�digo
+        Código
         <p-sortIcon field="codigo" />
       </th>
       <th class="text-small" pSortableColumn="descripcion">
-        Descripci�n
+        Descripción
         <p-sortIcon field="descripcion" />
       </th>
 
@@ -62,7 +62,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

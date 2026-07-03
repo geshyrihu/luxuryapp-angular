@@ -47,7 +47,7 @@ export class CatalogoDescripcionForm implements OnInit {
     { value: 0, label: "Inactivo" },
   ]);
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     folioId: new FormControl<string>("", {

@@ -58,7 +58,7 @@ export class CalendarioMaestroForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form: FormGroup<ICalendarioMaestroForm> =
     new FormGroup<ICalendarioMaestroForm>({
       id: new FormControl<string>("", { nonNullable: true }),
@@ -79,7 +79,7 @@ export class CalendarioMaestroForm implements OnInit {
   async ngOnInit() {
     this.id = this.config.data.id || 0;
 
-    // Cargar católogos
+    // Cargar catÃ¡logos
     const meses = await firstValueFrom(this.enumSelectS.month(false));
     this.cb_meses.set(meses);
     this.onLoadSelectItem();

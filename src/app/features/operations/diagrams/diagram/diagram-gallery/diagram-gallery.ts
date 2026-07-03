@@ -7,6 +7,7 @@ import { DataViewModule } from "primeng/dataview";
 import { InputTextModule } from "primeng/inputtext";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
@@ -23,9 +24,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">
         <div class="flex align-items-center ">
-          <h2 class="m-0">Galer�a de Diagramas</h2>
+          <h2 class="m-0">Galeróa de Diagramas</h2>
           <il-button
-            label="Gesti�n"
+            label="Gestión"
             iconClass="mdi:format-list-bulleted"
             (clicked)="onOpenList()"
             severity="secondary"
@@ -119,11 +120,11 @@ export class DiagramGallery implements OnInit {
   }
 
   onView(id: string) {
-    this.router.navigate(["/diagram/view", id]);
+    this.router.navigate(ROUTES.DIAGRAMAS.VER(id));
   }
 
   onOpenList() {
-    this.router.navigate(["/diagram"]);
+    this.router.navigate(ROUTES.DIAGRAMAS.LISTA);
   }
 
   onFilter(event: Event) {

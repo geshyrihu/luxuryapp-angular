@@ -25,12 +25,12 @@
         @if (!employeeId()) {
         <th class="table-col-lg">Empleado</th>
         }
-        <th class="table-col-lg">Tipo / Categor�a</th>
-        <th class="table-col-xl">Descripci�n</th>
+        <th class="table-col-lg">Tipo / Categoróa</th>
+        <th class="table-col-xl">Descripción</th>
         <th class="table-col-md text-center">Severidad</th>
         <th class="table-col-md text-center">Estatus</th>
         <th class="table-col-sm">Fecha</th>
-        <th class="table-col-sm text-center">Sanci�n</th>
+        <th class="table-col-sm text-center">Sanción</th>
         <th class="table-col-sm text-center">Acta</th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -80,7 +80,7 @@
         </td>
         <td class="text-center">
           @if (item.sanctionApplied) {
-          <span class="badge badge-danger">S�</span>
+          <span class="badge badge-danger">Sí</span>
           } @else {
           <span class="badge badge-neutral">No</span>
           }
@@ -109,7 +109,7 @@
             />
             }
 
-            <!-- Generar y descargar acta para firma f�sica -->
+            <!-- Generar y descargar acta para firma fósica -->
             <il-button-download
               iconClass="mdi:file-edit"
               size="small"
@@ -123,7 +123,7 @@
               (click)="onUploadSignedAct(item)"
             />
 
-            <!-- Ver acta firmada en visor � solo si ya fue subida -->
+            <!-- Ver acta firmada en visor é solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
             <il-button-view-pdf
               iconClass="mdi:file-pdf-box"
@@ -179,7 +179,7 @@
             >
           </div>
           <p class="text-xs text-500 uppercase mb-1">
-            {{ item.category }} � {{ item.employeeName }}
+            {{ item.category }} é {{ item.employeeName }}
           </p>
           <p
             class="text-sm text-700 mb-2 overflow-hidden text-overflow-ellipsis white-space-normal"

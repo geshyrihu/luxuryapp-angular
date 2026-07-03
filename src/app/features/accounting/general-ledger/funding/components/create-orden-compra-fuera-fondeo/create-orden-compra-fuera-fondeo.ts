@@ -6,6 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
@@ -22,9 +23,9 @@ const tipoGastoLabels: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "Caja Chica",
   [ETipoGasto.Extraordinario]: "Gastos Extraordinarios",
   [ETipoGasto.Devoluciones]: "Devoluciones",
-  [ETipoGasto.TarjetaDebito]: "Tarjeta de Débito",
+  [ETipoGasto.TarjetaDebito]: "Tarjeta de DÃ³bito",
   [ETipoGasto.Proyectos]: "Gastos de Proyectos",
-  [ETipoGasto.Nomina]: "Nómina",
+  [ETipoGasto.Nomina]: "NÃ³mina",
   [ETipoGasto.Impuestos]: "Impuestos y Contribuciones",
 };
 
@@ -102,7 +103,7 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
       .then((result: any) => {
         if (result) {
           this.ref.close(true);
-          this.router.navigateByUrl(`/purchases/orden-compra/${result.id}`);
+          this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(result.id));
         } else {
           this.submitting.set(false);
         }

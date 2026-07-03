@@ -50,7 +50,7 @@ import {
                 class="text-xs font-bold text-color-secondary uppercase mb-2 block"
                 style="letter-spacing: 0.06em"
               >
-                Severities est�ndar
+                Severities esténdar
               </span>
               <div class="flex flex-wrap gap-2">
                 <p-tag value="Success" severity="success" />
@@ -139,7 +139,7 @@ import {
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="Badges num�ricos - p-badge">
+        <p-card header="Badges numíricos - p-badge">
           <div class="flex flex-column gap-4">
             <div>
               <span
@@ -221,7 +221,7 @@ import {
                 class="text-xs font-bold text-color-secondary uppercase mb-2 block"
                 style="letter-spacing: 0.06em"
               >
-                B�sicos
+                Bósicos
               </span>
               <div class="flex flex-wrap gap-2">
                 <p-chip label="Angular" />
@@ -316,7 +316,7 @@ import {
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Usa <strong>ActionIconsGroup</strong> cuando hay 1-2 acciones
             visibles. Usa <strong>ActionMenu</strong> (popover) cuando hay 3 o
-            m�s o son poco frecuentes.
+            mís o son poco frecuentes.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -375,7 +375,7 @@ import {
                 class="text-xs font-bold text-color-secondary uppercase mb-2 block"
                 style="letter-spacing: 0.06em"
               >
-                Regla de decisi�n
+                Regla de decisión
               </span>
               <div class="flex flex-column gap-2 text-sm">
                 <div class="flex gap-2">
@@ -433,7 +433,7 @@ export class WebBadges {
 
   readonly erpStates = [
     { label: "Aprobado", severity: "success" as const },
-    { label: "Revisi�n", severity: "warn" as const },
+    { label: "Revisión", severity: "warn" as const },
     { label: "Rechazado", severity: "danger" as const },
     { label: "Borrador", severity: "secondary" as const },
     { label: "En proceso", severity: "info" as const },

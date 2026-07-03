@@ -6,6 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
@@ -140,7 +141,7 @@ export class CreateOrdenCompra implements OnInit {
     if (result) {
       this.ref.close(result.id);
       if (isNew) {
-        this.router.navigateByUrl(`/purchases/orden-compra/${result.id}`);
+        this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(result.id));
       }
     }
   }

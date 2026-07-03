@@ -12,7 +12,7 @@
   styleClass="custom-table card hidden md:block orden-compra-table"
 >
   <ng-template #caption>
-    <!-- ??? Fila 1: Filtros de Categorizaci�n (Tipos de Gasto) -->
+    <!-- ??? Fila 1: Filtros de Categorización (Tipos de Gasto) -->
     <div class="grid p-0 mb-3 align-items-stretch">
       @for (tipo of tiposDeGasto; track tipo.id) {
       <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
@@ -42,11 +42,11 @@
       }
     </div>
 
-    <!-- ??? Contenedor Maestro: Alineaci�n Perfecta (T�tulo + Buscador + Acciones) -->
+    <!-- ??? Contenedor Maestro: Alineación Perfecta (Tútulo + Buscador + Acciones) -->
     <div
       class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round shadow-1"
     >
-      <!-- IZQUIERDA: T�tulo y Buscador (Toma el espacio libre) -->
+      <!-- IZQUIERDA: Tútulo y Buscador (Toma el espacio libre) -->
       <div
         class="flex flex-column sm:flex-row align-items-center gap-3 flex-grow-1"
       >
@@ -132,7 +132,7 @@
         <p-sortIcon field="fechaSolicitud" />
       </th>
       <th pSortableColumn="equipoOInstalacion">
-        DESCRIPCI�N
+        DESCRIPCIóN
         <p-sortIcon field="equipoOInstalacion" />
       </th>
       <th pSortableColumn="justificacionGasto">
@@ -355,9 +355,9 @@
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
-        <p>{{ item.proveedor }} � Folio: {{ item.folio }}</p>
+        <p>{{ item.proveedor }} é Folio: {{ item.folio }}</p>
         <p>
-          Total: ${{ item.total | number:'1.2-2' }} � {{ item.fechaSolicitud |
+          Total: ${{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
           date:'d MMM yyyy':'UTC' }}
         </p>
       </ion-label>

@@ -1,5 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
@@ -94,9 +95,9 @@ export class MisVacacionesListado implements OnInit {
       });
   }
   onNavSaldo() {
-    this.router.navigate(["/recursos-humanos/saldo-vacaciones"]);
+    this.router.navigate(ROUTES.RECURSOS_HUMANOS.SALDO_VACACIONES);
   }
   onDetail(id: string) {
-    this.router.navigate(["/recursos-humanos/vacaciones", id, "detalle"]);
+    this.router.navigate(ROUTES.RECURSOS_HUMANOS.VACACIONES_DETALLE(id));
   }
 }

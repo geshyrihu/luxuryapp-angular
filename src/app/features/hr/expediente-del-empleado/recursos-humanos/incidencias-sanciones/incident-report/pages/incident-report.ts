@@ -50,12 +50,12 @@ export class IncidentReport {
   form!: FormGroup<IReportFilterForm>;
 
   cb_category: ISelectItem[] = [
-    { value: "", label: "Todas las categorías" },
+    { value: "", label: "Todas las categorÃ³as" },
     { value: "Conducta", label: "Conducta" },
-    { value: "Desempeno", label: "Desempeño" },
+    { value: "Desempeno", label: "DesempeÃ³o" },
     { value: "Seguridad", label: "Seguridad" },
     { value: "Asistencia", label: "Asistencia" },
-    { value: "Etica", label: "Ética" },
+    { value: "Etica", label: "Ã³tica" },
   ];
 
   cb_severity: ISelectItem[] = [

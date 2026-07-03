@@ -9,6 +9,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
@@ -50,7 +51,7 @@ export class RealizarEvaluacion implements OnInit {
   // --- Listas para los Dropdowns ---
   employees: any[] = [];
   templates: any[] = [];
-  // Nueva propiedad para guardar el ID de la evaluación una vez creada
+  // Nueva propiedad para guardar el ID de la evaluaciÃ³n una vez creada
   currentPerformanceEvaluationId: string | null = null;
   submitting = signal(false);
   isEditMode = false;
@@ -88,10 +89,10 @@ export class RealizarEvaluacion implements OnInit {
     // Subscription moved to effect
   }
 
-  // Reemplaza el mótodo loadEvaluationData completo con este:
+  // Reemplaza el mÃ©todo loadEvaluationData completo con este:
   async loadEvaluationData(id: string): Promise<void> {
     try {
-      // 1. Obtener los datos de la evaluación y ESPERAR la respuesta
+      // 1. Obtener los datos de la evaluaciÃ³n y ESPERAR la respuesta
       const data: any = await this.apiResponseS.onGetItem(
         `PerformanceEvaluations/${id}/result`,
       );
@@ -100,7 +101,7 @@ export class RealizarEvaluacion implements OnInit {
       // 2. Rellenar los campos principales del formulario
       this.form.patchValue({
         evaluatorId: data.evaluatorId,
-        evaluatedId: data.employeeId, // Usamos el ID numérico del empleado
+        evaluatedId: data.employeeId, // Usamos el ID numÃ­rico del empleado
         evaluationTemplateId: data.evaluationTemplateId,
         evaluationDate: data.evaluationDate,
       });
@@ -108,7 +109,7 @@ export class RealizarEvaluacion implements OnInit {
       // 3. Cargar la plantilla y ESPERAR a que el FormArray de respuestas se construya
       await this.onTemplateSelect(data.evaluationTemplateId);
 
-      // 4. Ahora que el FormArray estó listo, rellenar las respuestas
+      // 4. Ahora que el FormArray estÃ© listo, rellenar las respuestas
       const answersArray = this.form.get("answers") as FormArray;
       const allAnswers: any[] =
         data.categories?.flatMap((cat: any) => cat.answers || []) || [];
@@ -128,8 +129,8 @@ export class RealizarEvaluacion implements OnInit {
 
       // 6. Verificar el estado final del formulario (usa getRawValue para ver los deshabilitados)
     } catch (error) {
-      console.error("Falló la carga de la evaluación:", error);
-      // Aquó podrías mostrar una notificación al usuario
+      console.error("FallÃ© la carga de la evaluaciÃ³n:", error);
+      // AquÃ© podrÃ­as mostrar una notificaciÃ³n al usuario
     }
   }
 
@@ -163,7 +164,7 @@ export class RealizarEvaluacion implements OnInit {
       .then((response: any) => (this.templates = response));
   }
 
-  // Reemplaza el mótodo onTemplateSelect completo con este:
+  // Reemplaza el mÃ©todo onTemplateSelect completo con este:
   onTemplateSelect(templateId: string): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!templateId) {
@@ -177,7 +178,7 @@ export class RealizarEvaluacion implements OnInit {
         .then((response: any) => {
           this.selectedTemplate = response;
           this.buildAnswersFormArray(); // Construye el FormArray
-          resolve(); // Avisa que ya terminó
+          resolve(); // Avisa que ya terminÃ©
         })
         .catch((error) => {
           console.error("Error loading template:", error);
@@ -243,7 +244,7 @@ export class RealizarEvaluacion implements OnInit {
     return currentIndex + questionIndex;
   }
 
-  // Mótodo para manejar cambios directos en el input
+  // MÃ©todo para manejar cambios directos en el input
   onInputChange(categoryIndex: number, questionIndex: number, event: any) {
     const index = this.getQuestionControlIndex(categoryIndex, questionIndex);
 
@@ -251,13 +252,13 @@ export class RealizarEvaluacion implements OnInit {
       const answerGroup = this.answers.at(index);
       let value = parseInt(event.target.value) || 1;
 
-      // Validar lómites (min: 1, max: 5)
+      // Validar lÃ³mites (min: 1, max: 5)
       if (value < 1) value = 1; // Cambiado de 0 a 1
       if (value > 5) value = 5;
 
       answerGroup.get("score")?.setValue(value);
     } else {
-      console.error("óndice invólido:", index);
+      console.error("Ã³ndice invÃ³lido:", index);
     }
   }
 
@@ -280,10 +281,7 @@ export class RealizarEvaluacion implements OnInit {
         .onPost("PerformanceEvaluations/Create", DTO)
         .then((result: any) => {
           if (result) {
-            this.route.navigate([
-              "/employee-evaluation/conduct/edit",
-              result.id,
-            ]);
+            this.route.navigate(ROUTES.EVALUACION_EMPLEADOS.CONDUCTA_EDITAR(result.id));
             this.submitting.set(false);
           }
         });

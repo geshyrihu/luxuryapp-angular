@@ -54,18 +54,18 @@ export class AddendumTemplateFormComponent {
   form!: FormGroup<IAddendumTemplateForm>;
 
   cb_addendumType: ISelectItem[] = [
-    { value: "ModificacionSalario", label: "Modificaci髇 de Salario" },
+    { value: "ModificacionSalario", label: "Modificaci贸n de Salario" },
     { value: "CambioPuesto", label: "Cambio de Puesto" },
     { value: "CambioDepartamento", label: "Cambio de Departamento" },
-    { value: "CambioUbicacion", label: "Cambio de Ubicaci髇" },
-    { value: "ExtensionContrato", label: "Extensi髇 de Contrato" },
-    { value: "ModificacionJornada", label: "Modificaci髇 de Jornada" },
-    { value: "ClausulaAdicional", label: "Cl醬sula Adicional" },
-    { value: "OtrasCondiciones", label: "Otra Condici髇" },
+    { value: "CambioUbicacion", label: "Cambio de Ubicaci贸n" },
+    { value: "ExtensionContrato", label: "Extensi贸n de Contrato" },
+    { value: "ModificacionJornada", label: "Modificaci贸n de Jornada" },
+    { value: "ClausulaAdicional", label: "Cl贸usula Adicional" },
+    { value: "OtrasCondiciones", label: "Otra Condici贸n" },
   ];
 
   placeholderText =
-    "Usa {{ADENDA_NUMERO}}, {{VALOR_ANTERIOR}}, {{VALOR_NUEVO}}, {{FECHA_EFECTIVA}} como variables din醡icas";
+    "Usa {{ADENDA_NUMERO}}, {{VALOR_ANTERIOR}}, {{VALOR_NUEVO}}, {{FECHA_EFECTIVA}} como variables din谩micas";
 
   ngOnInit(): void {
     const data = this.config.data?.item as AddendumTemplateListDTO | null;

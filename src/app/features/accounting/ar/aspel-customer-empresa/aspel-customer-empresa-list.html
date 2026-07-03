@@ -16,7 +16,7 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nueva Configuraci�n' })"
+      (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
       [dt]="dt"
     />
   </ng-template>
@@ -61,10 +61,10 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nueva Configuraci�n' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
   [globalFilterFields]="['customerName', 'empresa', 'customerIdAspelId']"
   [dt]="dt"
 >

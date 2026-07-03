@@ -11,6 +11,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { CustomButton } from "src/app/core/components/buttons/legacy/buttons/custom-button";
@@ -332,7 +333,7 @@ export class ResetPassword implements OnInit, OnDestroy {
             text: "Tu contraseña ha sido actualizada. Ahora puedes iniciar sesión.",
             confirmButtonText: "Ir a Login",
           }).then(() => {
-            this.router.navigate(["/auth/login"]);
+            this.router.navigate(ROUTES.AUTH.LOGIN);
           });
         },
       });

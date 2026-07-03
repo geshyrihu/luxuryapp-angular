@@ -54,15 +54,15 @@ import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/prim
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
-  // 1. INYECCI�N DE DEPENDENCIAS
+  // 1. INYECCIóN DE DEPENDENCIAS
   //----------------------------------------------------------------
-  // Aqu� puro `inject`, nada de constructores kilom�tricos ?
+  // Aqué puro `inject`, nada de constructores kilomítricos ?
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
-  // Hacemos p�blico el servicio para usar sus signals directo en el template ??
+  // Hacemos póblico el servicio para usar sus signals directo en el template ??
   public ordenCompraService = inject(OrdenCompraService);
   ref = inject(DynamicDialogRef);
   messageService = inject(MessageService);
@@ -71,7 +71,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // Datos que vienen de la API (partidas presupuestales)
   dataSignal = signal<any[]>([]);
-  // A�o en curso (lo vamos a usar para filtrar info del presupuesto)
+  // Aóo en curso (lo vamos a usar para filtrar info del presupuesto)
   intYearControl = new FormControl<number>(new Date().getFullYear());
   availableYears = [
     { label: "2024", value: 2024 },
@@ -101,7 +101,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   //----------------------------------------------------------------
-  // 4. M�TODOS PRINCIPALES
+  // 4. MéTODOS PRINCIPALES
   //----------------------------------------------------------------
   // Cargar data desde la API (las cuentas presupuestales)
   async onLoadData() {
@@ -135,7 +135,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     // Validaciones express ??
     const dineroUsado = item.dineroUsadoControl.value;
     if (!dineroUsado || dineroUsado <= 0) {
-      this.showMessage("Debe ingresar un monto v�lido", "error");
+      this.showMessage("Debe ingresar un monto vólido", "error");
       return;
     }
     if (dineroUsado > totalPorCubrir) {
@@ -156,7 +156,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
       amount: dineroUsado,
     };
 
-    // Post a la API y actualizaci�n autom�tica del total ??
+    // Post a la API y actualización automítica del total ??
     this.apiResponseS
       .onPost(Endpoints.PurchaseOrderBudgets.create, purchaseOrderBudget)
       .then(async () => {
@@ -182,7 +182,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     });
   }
 
-  // Determinar si un input de monto est� habilitado ??
+  // Determinar si un input de monto esté habilitado ??
   isInputDisabled(item: any): boolean {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     const superUser = this.aspRoleS.hasAny([
@@ -203,7 +203,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     return item.availableBudget <= 0 || totalPorCubrir <= 0;
   }
 
-  // Determinar si el bot�n de guardar est� habilitado ??
+  // Determinar si el botún de guardar esté habilitado ??
   isSaveDisabled(item: any): boolean {
     const superUser = this.aspRoleS.hasAny([
       EApplicationRole.SuperUsuario,
@@ -231,7 +231,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 6. LIMPIEZA
   //----------------------------------------------------------------
-  // Al destruir el componente cerramos el di�logo ??
+  // Al destruir el componente cerramos el diólogo ??
   ngOnDestroy(): void {
     this.ref.close(true);
   }

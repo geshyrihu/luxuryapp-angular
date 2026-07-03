@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
-import { ActivatedRoute, RouterModule } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   IonButton,
   IonCard,
@@ -41,8 +42,15 @@ import { IAnnouncement } from "./announcement.model";
 })
 export class announcementDetail implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   apiResponseS = inject(ApiResponseService);
   announcement: IAnnouncement | null = null;
+
+  readonly ROUTES = ROUTES;
+
+  navigateBack() {
+    this.router.navigate(ROUTES.ANUNCIOS.LISTA);
+  }
 
   ngOnInit(): void {
     this.loadData();

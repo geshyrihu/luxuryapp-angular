@@ -5,6 +5,7 @@ import { debounceTime, filter } from "rxjs/operators";
 import { ConnectivityService } from "../../services/connectivity.service";
 import { RedirectService } from "../../services/redirect.service";
 import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
+import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-offline",
   templateUrl: "./offline.html",
@@ -70,7 +71,7 @@ export class Offline implements OnInit, OnDestroy {
         err,
       );
       // Como último recurso, ir a la página principal.
-      this.router.navigate(["/"]);
+      this.router.navigate(ROUTES.HOME);
     });
   }
 }

@@ -13,7 +13,7 @@ export class InspeccionAgregarRevision {
 
   readonly revisionOptions = [
     { label: "Iluminacion", value: "Iluminacion" },
-    { label: "Píntura", value: "Píntura" },
+    { label: "PÃ³ntura", value: "PÃ³ntura" },
     { label: "Funcionamiento de chapas", value: "Funcionamiento de chapas" },
     { label: "Estado de carpinteria", value: "Estado de carpinteria" },
     { label: "Funcionamiento w.c.", value: "Funcionamiento w.c." },

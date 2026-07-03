@@ -69,7 +69,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
 export class CronogramaAnualMantenimiento {
   TooltipPlacement = TooltipPlacement;
   readonly resolvePrimeIcon = resolvePrimeIcon;
-  // --- Inyecci�n de Dependencias ---
+  // --- Inyección de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
@@ -84,7 +84,7 @@ export class CronogramaAnualMantenimiento {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // ? MEJORA: Filtros globales calculados din�micamente
+  // ? MEJORA: Filtros globales calculados dinámicamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -171,7 +171,7 @@ export class CronogramaAnualMantenimiento {
     this.selectedMobileMonth.set(event.detail.value);
   }
 
-  // --- L�gica de Carga y Filtro de Datos ---
+  // --- Lígica de Carga y Filtro de Datos ---
   onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
     let endpoint = `MaintenanceCalendars/CronogramaAnual/${customerId}`;
@@ -236,7 +236,7 @@ export class CronogramaAnualMantenimiento {
   // --- Acciones de la Interfaz ---
 
   onModalForm(data: any): void {
-    // Si data es solo un ID (n�mero), lo adaptamos, o si es objeto lo usamos
+    // Si data es solo un ID (número), lo adaptamos, o si es objeto lo usamos
     const id = typeof data === "number" ? data : data.id;
 
     this.dialogHandlerS
@@ -354,7 +354,7 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th style="width: 25%;">DESCRIPCI�N</th>
+          <th style="width: 25%;">DESCRIPCIóN</th>
           ${monthsHeaders}
         </tr>
       </thead>

@@ -18,7 +18,7 @@
     >
       <ng-template #caption>
         <primeng-custom-caption
-          (add)="onModal({ id: '', title: 'Nueva Ejecuci�n Presupuestaria' })"
+          (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
           [dt]="dt"
         />
       </ng-template>
@@ -34,7 +34,7 @@
             Concepto <p-sortIcon field="concept" />
           </th>
           <th pSortableColumn="description">
-            Descripci�n <p-sortIcon field="description" />
+            Descripción <p-sortIcon field="description" />
           </th>
           <th pSortableColumn="budgetedAmount">
             Monto Presupuestado <p-sortIcon field="budgetedAmount" />
@@ -59,7 +59,7 @@
 
               <il-button-edit
                 (clicked)="
-                onModal({ id: item.id, title: 'Editar Ejecuci�n' })
+                onModal({ id: item.id, title: 'Editar Ejecución' })
                 "
               />
               <il-button-delete (confirmed)="onDelete(item.id)" />
@@ -76,11 +76,11 @@
 </div>
 }
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 @if (dataSignal()) {
 <app-data-view-mobile
   [data]="dataSignal()"
-  (add)="onModal({ id: '', title: 'Nueva Ejecuci�n Presupuestaria' })"
+  (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
@@ -112,7 +112,7 @@
       <app-action-menu slot="end">
         <ng-container actions>
           <il-button-edit
-            (clicked)="onModal({ id: item.id, title: 'Editar Ejecuci�n' })"
+            (clicked)="onModal({ id: item.id, title: 'Editar Ejecución' })"
             label="Editar"
           />
           <il-button-delete

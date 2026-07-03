@@ -83,9 +83,9 @@ export default class CreditNoteModalComponent implements OnInit {
   reasonOptions = [
     { label: "Acuerdo de Asamblea", value: "Acuerdo de Asamblea" },
     { label: "Error en cobro duplicado", value: "Error en cobro duplicado" },
-    { label: "Período de cortesía", value: "Período de cortesía" },
+    { label: "PerÃ­odo de cortesÃ­a", value: "PerÃ­odo de cortesÃ­a" },
     { label: "Acuerdo de pago (quita)", value: "Acuerdo de pago (quita)" },
-    { label: "Condonación por siniestro", value: "Condonación por siniestro" },
+    { label: "CondonaciÃ³n por siniestro", value: "CondonaciÃ³n por siniestro" },
     { label: "Otro motivo", value: "Otro motivo" },
   ];
 

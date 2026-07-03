@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import { addIcons } from "ionicons";
 import {
   cloudOutline,
@@ -91,7 +92,7 @@ export class InventarioDetectorHumo {
   }
 
   onOpenScanner() {
-    this.router.navigate(["/logbook/fire-equipment-scanner"]);
+    this.router.navigate(ROUTES.BITACORAS.SCANNER_EQUIPOS);
   }
 
   async onDownloadQr(item: IInventarioDetectorHumo) {
@@ -103,11 +104,11 @@ export class InventarioDetectorHumo {
   }
 
   onViewHistory(item: IInventarioDetectorHumo) {
-    this.router.navigate(["/logbook/smoke-detector-log", item.id]);
+    this.router.navigate(ROUTES.BITACORAS.DETECTOR_HUMO_BITACORA(item.id));
   }
 
   onViewPeriodos() {
-    this.router.navigate(["/logbook/fire-inspection-periods"], {
+    this.router.navigate(ROUTES.BITACORAS.PERIODOS_INSPECCION, {
       queryParams: { type: "detector" },
     });
   }

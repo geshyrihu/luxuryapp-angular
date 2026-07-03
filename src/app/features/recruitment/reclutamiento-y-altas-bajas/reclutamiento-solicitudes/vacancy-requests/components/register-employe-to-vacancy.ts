@@ -33,7 +33,7 @@ export class RegisterEmployeToVacancy {
     birth: [null as Date | null],
     nss: [""],
 
-    // Campos añadidos basados en HTML
+    // Campos aÃ³adidos basados en HTML
     infonavitCredit: [""],
     infonavitCreditNumber: [""],
     discount: [""],

@@ -80,7 +80,7 @@ export class ListadoAnualMantenimiento {
   groupedData = computed(() => {
     const data = this.dataSignal();
     return data.reduce((acc: any, item: any) => {
-      const key = item.inventoryCategory || "Sin Categor�a";
+      const key = item.inventoryCategory || "Sin Categoróa";
       if (!acc[key]) {
         acc[key] = [];
       }

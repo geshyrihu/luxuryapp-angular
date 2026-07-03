@@ -19,6 +19,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import Swal from "sweetalert2";
 import { AppIcon } from "../../core/components/shared/app-icon/app-icon.component";
+import { ROUTES } from "src/app/routing/route-paths";
 
 interface IRecoverPasswordForm {
   email: FormControl<string>;
@@ -49,6 +50,7 @@ interface IRecoverPasswordForm {
   ],
 })
 export class RecoverPassword implements OnInit, OnDestroy {
+  readonly ROUTES = ROUTES;
   apiResponseS = inject(ApiResponseService);
   dataConnectorS = inject(DataConnectorService);
   formB = inject(FormBuilder);

@@ -63,8 +63,8 @@ export default class ProjectedExpensesList {
   */
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  // �Esta es la magia!
-  // Se recalcular� autom�ticamente SOLO si dataSignal cambia.
+  // óEsta es la magia!
+  // Se recalcularé automíticamente SOLO si dataSignal cambia.
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];

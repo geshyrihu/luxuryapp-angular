@@ -30,7 +30,7 @@
       <ng-template #header>
         <tr>
           <th>Estado</th>
-          <th>Inspecci�n</th>
+          <th>Inspección</th>
           <th>Departamento</th>
           <th>Frecuencia</th>
           <th class="table-col-10"></th>
@@ -58,14 +58,14 @@
             <div class="flex">
               @if (item.isRealized) {
               <a
-                [routerLink]="['/inspections/result', item.id]"
+                [routerLink]="ROUTES.INSPECCIONES.RESULTADO(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Ver resultado"
                 ><app-icon [icon]="'mdi:book'"></app-icon
               ></a>
               }
               <a
-                [routerLink]="['/logbook/my-inspection', item.id]"
+                [routerLink]="ROUTES.BITACORAS.MI_INSPECCION(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Inspeccionar"
                 ><app-icon [icon]="'mdi:chevron-right'"></app-icon
@@ -80,7 +80,7 @@
     </p-table>
   </div>
 
-  <!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+  <!-- ?? INICIO: Componente adaptado para versión mívil -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [showAdd]="false"
@@ -128,13 +128,13 @@
             <il-button-item
               label="Ver resultado"
               iconName="book-outline"
-              [routerLink]="['/inspections/result', item.id]"
+              (clicked)="navigateToResultado(item.id)"
             />
             }
             <il-button-item
               label="Inspeccionar"
               iconName="chevron-forward-outline"
-              [routerLink]="['/logbook/my-inspection', item.id]"
+              (clicked)="navigateToMiInspeccion(item.id)"
             />
           </ng-container>
         </app-action-menu>

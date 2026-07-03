@@ -40,7 +40,7 @@ interface BloqueVisual {
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
-        <h2 class="text-3xl font-bold m-0">Auditor韆 y Bloques Documentales</h2>
+        <h2 class="text-3xl font-bold m-0">Auditor贸a y Bloques Documentales</h2>
         <p class="text-secondary">
           Herramientas para validar la calidad documental y bloques visuales de soporte.
         </p>
@@ -71,16 +71,16 @@ interface BloqueVisual {
         </div>
 
         <div class="col-12 mt-5">
-          <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Checklist de Auditor醓 R醦ida</h3>
+          <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Checklist de Auditor贸a R谩pida</h3>
           <p-card [styleClass]="puntajeAprobatorio() ? 'border-left-3 border-green-500 mb-4' : 'border-left-3 border-red-500 mb-4'">
             <div class="flex align-items-center gap-3">
               <div class="w-4rem h-4rem border-round-lg bg-primary text-white flex align-items-center justify-content-center text-2xl font-bold">
                 {{ puntajeChecklist() }}
               </div>
               <div>
-                <strong class="text-lg">{{ puntajeChecklist() }} / 15 髏ems aprobados</strong>
+                <strong class="text-lg">{{ puntajeChecklist() }} / 15 贸tems aprobados</strong>
                 <p class="m-0 text-secondary text-sm">
-                  {{ puntajeAprobatorio() ? "Documento listo para publicaci髇 oficial." : "Requiere correcciones obligatorias antes de publicar." }}
+                  {{ puntajeAprobatorio() ? "Documento listo para publicaci贸n oficial." : "Requiere correcciones obligatorias antes de publicar." }}
                 </p>
               </div>
             </div>

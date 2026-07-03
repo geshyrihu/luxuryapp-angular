@@ -22,6 +22,7 @@ import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/prim
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -63,6 +64,7 @@ import { IAnnouncementAdminList } from "./announcement.model";
   templateUrl: "./announcement-admin-list.html",
 })
 export class AnnouncementAdminList implements OnInit {
+  readonly ROUTES = ROUTES;
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   private router = inject(Router); // Inyectar Router
@@ -129,7 +131,11 @@ export class AnnouncementAdminList implements OnInit {
   }
 
   onViewPreview(id: string): void {
-    this.router.navigate(["/announcements/detail", id]);
+    this.router.navigate(ROUTES.ANUNCIOS.DETALLE(id));
+  }
+
+  onViewAnalytics(id: string): void {
+    this.router.navigate(ROUTES.ANUNCIOS.ANALITICA(id));
   }
 
   async onModalForm(data: any) {

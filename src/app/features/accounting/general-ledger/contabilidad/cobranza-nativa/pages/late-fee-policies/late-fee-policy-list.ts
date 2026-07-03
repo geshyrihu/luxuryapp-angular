@@ -87,7 +87,7 @@ export default class LateFeePolicyList {
   onModalForm(id: string = "") {
     const data = {
       id,
-      title: id === "" ? "Nueva Política de Mora" : "Editar Política",
+      title: id === "" ? "Nueva PolÃ­tica de Mora" : "Editar PolÃ­tica",
       customerId: this.customerIdS.customerId(),
     };
     this.dialogHandlerS

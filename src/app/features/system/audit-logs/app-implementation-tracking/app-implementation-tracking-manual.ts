@@ -12,17 +12,17 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   template: `
     <div class="card p-4">
       <h2 class="text-2xl font-bold mb-4">
-        Verificaci�n Manual: Reporte de Empleados
+        Verificación Manual: Reporte de Empleados
       </h2>
       <p class="mb-4 text-color-secondary">
-        Al presionar el bot�n a continuaci�n, se encolar� un trabajo en segundo
+        Al presionar el botún a continuación, se encolaré un trabajo en segundo
         plano para revisar los datos faltantes de los empleados activos y se
-        enviar� un reporte al administrador correspondiente (configurado
+        enviaré un reporte al administrador correspondiente (configurado
         internamente).
       </p>
 
       <il-button
-        label="Ejecutar Validaci�n de Empleados"
+        label="Ejecutar Validación de Empleados"
         iconClass="mdi:send"
         severity="primary"
         [loading]="loading()"

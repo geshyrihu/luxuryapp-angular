@@ -87,8 +87,8 @@ export class AdminVacacionesBalance {
 
     this.confirmationService.confirm({
       message:
-        "�Est�s seguro de recalcular todos los balances de vacaciones para este cliente? Esta acci�n corregir� los d�as totales de cada empleado seg�n su antig�edad actual. Esta acci�n no se puede deshacer.",
-      header: "Confirmaci�n",
+        "óEstés seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregiré los días totales de cada empleado segón su antigóedad actual. Esta acción no se puede deshacer.",
+      header: "Confirmación",
       icon: "mdi:alert",
       accept: () => {
         this.loading.set(true);
@@ -100,10 +100,10 @@ export class AdminVacacionesBalance {
           .then((result) => {
             this.messageService.add({
               severity: result ? "success" : "warn",
-              summary: result ? "Completado" : "Atenci�n",
+              summary: result ? "Completado" : "Atención",
               detail: result
                 ? "Los balances de vacaciones se recalcularon correctamente."
-                : "No se pudo completar el rec�lculo de balances.",
+                : "No se pudo completar el recólculo de balances.",
             });
             this.onLoadData(customerId);
           })

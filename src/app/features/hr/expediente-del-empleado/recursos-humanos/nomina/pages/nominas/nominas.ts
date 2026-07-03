@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
@@ -84,7 +85,7 @@ export default class Nominas {
   }
 
   verDetalle(item: NominaEncabezadoDTO): void {
-    this.router.navigateByUrl(`/rh/nomina/nominas/${item.id}/detalle`);
+    this.router.navigate(ROUTES.RECURSOS_HUMANOS.NOMINA.NOMINA_DETALLE(item.id));
   }
 
   async cambiarEstado(

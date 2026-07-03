@@ -20,6 +20,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { ThemeService } from "src/app/core/services/theme.service";
 import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/profile-monitor";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-header-direccion-monitor",
@@ -83,7 +84,7 @@ export class HeaderDireccionMonitor implements OnInit {
 
   onBack = () => this.location.back();
   onForward = () => this.location.forward();
-  onHome = () => this.router.navigateByUrl("/direccion");
+  onHome = () => this.router.navigate(ROUTES.DIRECCION.HOME);
   toggleTheme = () => this.themeService.toggleTheme();
   getThemeIcon = () =>
     this.themeService.getCurrentTheme() === "light"

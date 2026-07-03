@@ -39,7 +39,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   ],
 })
 export class JobDescriptionForm implements OnInit {
-  // --- INYECCIÓN DE DEPENDENCIAS ---
+  // --- INYECCIÃ³N DE DEPENDENCIAS ---
   private fb = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);

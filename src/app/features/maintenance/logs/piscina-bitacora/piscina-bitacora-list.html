@@ -94,7 +94,7 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -131,21 +131,21 @@
         <!-- Mediciones en Grid Compacto -->
         <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Cl:</strong> {{ item.cl || "�" }}
+            <strong class="text-primary">Cl:</strong> {{ item.cl || "é" }}
           </div>
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Ph:</strong> {{ item.ph || "�" }}
+            <strong class="text-primary">Ph:</strong> {{ item.ph || "é" }}
           </div>
           <div class="col-4 p-0 pb-1">
             <strong class="text-primary">Alk:</strong> {{ item.alkalinidad ||
-            "�" }}
+            "é" }}
           </div>
           <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Dur:</strong> {{ item.dureza || "�" }}
+            <strong class="text-primary">Dur:</strong> {{ item.dureza || "é" }}
           </div>
           <div class="col-4 p-0 pb-1">
             <strong class="text-primary">Tem:</strong> {{ item.temperatura ||
-            "�" }}
+            "é" }}
           </div>
         </div>
 

@@ -11,8 +11,8 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      [title]="'Periodos de Inspecci�n � ' + typeLabel()"
-      (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspecci�n' })"
+      [title]="'Periodos de Inspección é ' + typeLabel()"
+      (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspección' })"
       [dt]="dt"
     />
   </ng-template>
@@ -61,7 +61,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspecci�n' })"
+  (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item

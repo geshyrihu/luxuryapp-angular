@@ -94,7 +94,7 @@ export class SpecialDocumentList {
     this.apiResponseS
       .onPut(Endpoints.SpecialDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificaci�n de �xito
+        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario

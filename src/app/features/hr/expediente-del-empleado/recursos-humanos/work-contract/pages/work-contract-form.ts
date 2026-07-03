@@ -62,7 +62,7 @@ export class WorkContractFormComponent implements OnInit {
     { value: "Determinado", label: "Determinado" },
     { value: "Temporal", label: "Temporal / Estacional" },
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
-    { value: "Practicas", label: "Pr·cticas Profesionales" },
+    { value: "Practicas", label: "Pr√°cticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
     { value: "Honorarios", label: "Honorarios" },
   ];

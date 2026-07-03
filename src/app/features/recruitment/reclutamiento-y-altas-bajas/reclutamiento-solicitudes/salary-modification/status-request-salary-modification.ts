@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -38,7 +39,7 @@ export class StatusRequestSalaryModification implements OnInit {
 
   ngOnInit() {
     if (this.workPositionId === null || this.employeeId === null) {
-      this.router.navigateByUrl("/reclutamiento/plantilla-interna");
+      this.router.navigate(ROUTES.RECLUTAMIENTO.PLANTILLA_INTERNA);
     }
     this.onLoadData();
   }

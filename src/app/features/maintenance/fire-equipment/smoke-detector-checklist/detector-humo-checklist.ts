@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
@@ -114,7 +115,7 @@ export class DetectorHumoChecklist implements OnInit {
     });
 
     if (result !== false && !this.ref) {
-      this.router.navigate(["/logbook/smoke-detector-log", this.detectorId]);
+      this.router.navigate(ROUTES.BITACORAS.DETECTOR_HUMO_BITACORA(this.detectorId));
     }
   }
 }

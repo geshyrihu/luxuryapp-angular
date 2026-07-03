@@ -68,7 +68,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           <div class="mb-4">
             <div class="flex items-center mb-2">
               <app-icon [icon]="'mdi:history'" class="text-xl"></app-icon>
-              <h5 class="mb-0 font-semibold">Historial (�ltimos 3 meses)</h5>
+              <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
             </div>
             <p class="text-600">
               El empleado ha solicitado
@@ -88,7 +88,7 @@ import { ApprovalInfoService } from "./approval-info.service";
               <h5 class="mb-0 font-semibold">Saldo de Vacaciones</h5>
             </div>
             <p class="text-600">
-              D�as disponibles:
+              Días disponibles:
               <p-tag
                 [value]="vacationBalance?.availableDays ?? 0"
                 severity="success"

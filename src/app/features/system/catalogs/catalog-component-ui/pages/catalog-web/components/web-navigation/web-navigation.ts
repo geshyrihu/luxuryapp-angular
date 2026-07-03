@@ -37,28 +37,28 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Tabs ---------------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Tabs È p-tabs">
+        <p-card header="Tabs √© p-tabs">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Usa tabs para organizar contenido relacionado en la misma vista.
-            No uses mÛs de 6 tabs visibles; si hay mÈs, usa un menÈ desplegable o secciÛn aparte.
+            No uses m√≠s de 6 tabs visibles; si hay m√≠s, usa un men√≠ desplegable o secci√≥n aparte.
           </p>
 
           <div class="grid">
 
-            <!-- BÛsicos -->
+            <!-- B√≥sicos -->
             <div class="col-12 lg:col-6">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">BÛsicos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">B√≥sicos</span>
               <p-tabs value="0">
                 <p-tablist>
                   <p-tab value="0">General</p-tab>
                   <p-tab value="1">Financiero</p-tab>
                   <p-tab value="2">Documentos</p-tab>
-                  <p-tab value="3" [disabled]="true">AuditorÌa</p-tab>
+                  <p-tab value="3" [disabled]="true">Auditor√≥a</p-tab>
                 </p-tablist>
                 <p-tabpanels>
                   <p-tabpanel value="0">
                     <div class="p-3 surface-ground border-round text-sm text-color-secondary">
-                      InformaciÛn general del registro: nombre, Ûrea, responsable, fechas y prioridad.
+                      Informaci√≥n general del registro: nombre, √≥rea, responsable, fechas y prioridad.
                     </div>
                   </p-tabpanel>
                   <p-tabpanel value="1">
@@ -82,7 +82,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
             <!-- Con iconos y badges -->
             <div class="col-12 lg:col-6">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Con iconos y badges de notificaciÛn</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Con iconos y badges de notificaci√≥n</span>
               <p-tabs value="inbox">
                 <p-tablist>
                   @for (t of iconTabs; track t.value) {
@@ -122,7 +122,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <p-tabpanels>
                   @for (t of scrollableTabs; track t.value) {
                     <p-tabpanel [value]="t.value">
-                      <p class="m-0 p-2 text-sm text-color-secondary">MÛdulo: <strong>{{ t.label }}</strong></p>
+                      <p class="m-0 p-2 text-sm text-color-secondary">M√≥dulo: <strong>{{ t.label }}</strong></p>
                     </p-tabpanel>
                   }
                 </p-tabpanels>
@@ -135,9 +135,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Accordion ----------------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Accordion È p-accordion">
+        <p-card header="Accordion √© p-accordion">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Ideal para FAQs, secciones colapsables de formulario y agrupaciÛn de contenido secundario.
+            Ideal para FAQs, secciones colapsables de formulario y agrupaci√≥n de contenido secundario.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -165,7 +165,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">MÛltiples paneles activos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">M√≠ltiples paneles activos</span>
               <p-accordion [multiple]="true" [value]="['0']">
                 @for (panel of accordionPanels.slice(0, 3); track panel.value) {
                   <p-accordion-panel [value]="panel.value">
@@ -184,10 +184,10 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Breadcrumb -------------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Breadcrumb È p-breadcrumb">
+        <p-card header="Breadcrumb √© p-breadcrumb">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Orienta al usuario sobre su ubicaciÛn en la jerarquÌa de la aplicaciÛn.
-            El ·ltimo ·tem (p·gina actual) va sin enlace ni cursor pointer.
+            Orienta al usuario sobre su ubicaci√≥n en la jerarqu√≥a de la aplicaci√≥n.
+            El √≥ltimo √≥tem (p√°gina actual) va sin enlace ni cursor pointer.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -205,9 +205,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- -- Stepper (Wizard) -------------------------------------- -->
       <div class="col-12">
-        <p-card header="Stepper È Wizard de pasos">
+        <p-card header="Stepper √© Wizard de pasos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Usa el stepper para flujos secuenciales obligatorios (alta de usuario, onboarding, flujo de aprobaciÛn).
+            Usa el stepper para flujos secuenciales obligatorios (alta de usuario, onboarding, flujo de aprobaci√≥n).
             Cada paso debe ser completable de forma independiente.
           </p>
 
@@ -288,9 +288,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <ng-template #content let-activateCallback="activateCallback">
                   <div class="p-4 surface-ground border-round flex flex-column align-items-center gap-3 text-center">
                     <app-icon icon="mdi:check-circle" class="text-5xl" style="color:var(--ds-success)" />
-                    <strong class="text-lg">ÛSolicitud enviada correctamente!</strong>
+                    <strong class="text-lg">√≥Solicitud enviada correctamente!</strong>
                     <p class="m-0 text-sm text-color-secondary">
-                      El folio <strong>ERP-2026-042</strong> fue creado y notificado al Ûrea de DirecciÛn para su aprobaciÛn.
+                      El folio <strong>ERP-2026-042</strong> fue creado y notificado al √≥rea de Direcci√≥n para su aprobaci√≥n.
                     </p>
                     <p-button label="Nueva solicitud" icon="mdi:plus"
                               (onClick)="activeStep.set(1)" />
@@ -321,31 +321,31 @@ export class WebNavigation {
 
   readonly scrollableTabs = [
     "Dashboard", "Solicitudes", "Aprobaciones", "Finanzas", "Mantenimiento",
-    "Compras", "RRHH", "Reportes", "Biblioteca", "ConfiguraciÛn",
+    "Compras", "RRHH", "Reportes", "Biblioteca", "Configuraci√≥n",
   ].map((label, i) => ({ label, value: `t${i + 1}` }));
 
   readonly accordionPanels = [
-    { value: "0", header: "Datos Generales",   icon: "mdi:account",        tag: "Requerido",  tagSeverity: "danger"    as const, content: "Nombre, Ûrea responsable, prioridad y fechas. Estos campos son obligatorios para crear el registro." },
-    { value: "1", header: "InformaciÛn Financiera", icon: "mdi:currency-usd", tag: undefined, tagSeverity: undefined,             content: "Importe autorizado, partida presupuestal y moneda. Solo accesible para usuarios con rol Finanzas o superior." },
-    { value: "2", header: "Documentos Adjuntos", icon: "mdi:paperclip",     tag: "3 archivos", tagSeverity: "info"     as const, content: "Contratos, cotizaciones y documentos de soporte. Formatos aceptados: PDF, DOCX, XLSX (mÛx. 10 MB por archivo)." },
-    { value: "3", header: "Historial y AuditorÌa", icon: "mdi:history",    tag: undefined,    tagSeverity: undefined,             content: "Registro inmutable de todos los cambios, aprobaciones y rechazos del ciclo de vida de este documento." },
+    { value: "0", header: "Datos Generales",   icon: "mdi:account",        tag: "Requerido",  tagSeverity: "danger"    as const, content: "Nombre, √≥rea responsable, prioridad y fechas. Estos campos son obligatorios para crear el registro." },
+    { value: "1", header: "Informaci√≥n Financiera", icon: "mdi:currency-usd", tag: undefined, tagSeverity: undefined,             content: "Importe autorizado, partida presupuestal y moneda. Solo accesible para usuarios con rol Finanzas o superior." },
+    { value: "2", header: "Documentos Adjuntos", icon: "mdi:paperclip",     tag: "3 archivos", tagSeverity: "info"     as const, content: "Contratos, cotizaciones y documentos de soporte. Formatos aceptados: PDF, DOCX, XLSX (m√≠x. 10 MB por archivo)." },
+    { value: "3", header: "Historial y Auditor√≥a", icon: "mdi:history",    tag: undefined,    tagSeverity: undefined,             content: "Registro inmutable de todos los cambios, aprobaciones y rechazos del ciclo de vida de este documento." },
   ];
 
   readonly breadcrumbs = [
     {
-      label: "MÛdulo simple",
+      label: "M√≥dulo simple",
       items: [
         { label: "Sistema", command: () => {} },
-        { label: "Cat·logos", command: () => {} },
+        { label: "Cat√°logos", command: () => {} },
         { label: "Proveedores" },
       ] as MenuItem[],
     },
     {
-      label: "MÛdulo con subvista",
+      label: "M√≥dulo con subvista",
       items: [
         { label: "Operaciones", command: () => {} },
         { label: "Mantenimiento", command: () => {} },
-        { label: "Ûrdenes de trabajo", command: () => {} },
+        { label: "√≥rdenes de trabajo", command: () => {} },
         { label: "OT-2026-0089" },
       ] as MenuItem[],
     },
@@ -365,14 +365,14 @@ export class WebNavigation {
     { value: 1, label: "Datos generales" },
     { value: 2, label: "Financiero" },
     { value: 3, label: "Documentos" },
-    { value: 4, label: "ConfirmaciÛn" },
+    { value: 4, label: "Confirmaci√≥n" },
   ];
 
   readonly step1Fields = [
     { label: "Nombre",      value: "Solicitud de compra equipo TI" },
-    { label: "Ûrea",        value: "Sistemas" },
+    { label: "√≥rea",        value: "Sistemas" },
     { label: "Prioridad",   value: "Alta" },
-    { label: "Responsable", value: "Carlos MartÛnez" },
+    { label: "Responsable", value: "Carlos Mart√∫nez" },
   ];
 
   readonly step2Fields = [
@@ -383,8 +383,8 @@ export class WebNavigation {
   ];
 
   readonly step3Docs = [
-    { name: "CotizaciÛn-Proveedor-A.pdf",  icon: "mdi:file-pdf-box", color: "var(--ds-danger)",  status: "Adjuntado", severity: "success"   as const },
-    { name: "CotizaciÛn-Proveedor-B.pdf",  icon: "mdi:file-pdf-box", color: "var(--ds-danger)",  status: "Adjuntado", severity: "success"   as const },
-    { name: "JustificaciÛn-tÛcnica.docx",  icon: "mdi:file-word-box",color: "var(--ds-info)",    status: "Pendiente", severity: "warn"      as const },
+    { name: "Cotizaci√≥n-Proveedor-A.pdf",  icon: "mdi:file-pdf-box", color: "var(--ds-danger)",  status: "Adjuntado", severity: "success"   as const },
+    { name: "Cotizaci√≥n-Proveedor-B.pdf",  icon: "mdi:file-pdf-box", color: "var(--ds-danger)",  status: "Adjuntado", severity: "success"   as const },
+    { name: "Justificaci√≥n-t√∫cnica.docx",  icon: "mdi:file-word-box",color: "var(--ds-info)",    status: "Pendiente", severity: "warn"      as const },
   ];
 }

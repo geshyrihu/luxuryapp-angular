@@ -63,7 +63,7 @@ export default class InvoiceList {
     if (res) {
       this.charges.set(
         res.map((c) => ({
-          label: `${c.description ?? "Cargo"} — ${c.amount}`,
+          label: `${c.description ?? "Cargo"} Ã© ${c.amount}`,
           value: c.id,
         })),
       );

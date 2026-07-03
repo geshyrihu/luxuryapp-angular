@@ -209,7 +209,7 @@ export class RadioComunicacionForm implements OnInit {
       formData.append("applicationUserId", String(DTO.applicationUserId));
     }
 
-    // Fotografía (opcional)
+    // FotografÃ³a (opcional)
     if (DTO.fotografia) {
       formData.append("fotografia", DTO.fotografia);
     }

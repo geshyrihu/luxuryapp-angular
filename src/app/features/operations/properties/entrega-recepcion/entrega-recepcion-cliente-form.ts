@@ -45,7 +45,7 @@ export class EntregaRecepcionClienteForm implements OnInit {
   cb_estatus = signal<ISelectItem[]>([]);
   submitting = signal(false);
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     observaciones: new FormControl<string>(""),

@@ -13,7 +13,7 @@
     </div>
     <div class="mb-0">
       <il-button
-        label="Cargar Catálogo"
+        label="Cargar CatÃ¡logo"
         iconClass="mdi:refresh"
         size="sm"
         [loading]="loading()"
@@ -52,12 +52,12 @@
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4 gap-2">
     <app-icon [icon]="'mdi:loading'"></app-icon>
-    <span>Consultando catálogo en Aspel...</span>
+    <span>Consultando catÃ¡logo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
   <p class="text-color-secondary">
-    No hay datos. Verifique el cliente y el año, luego pulse
-    <strong>Cargar Catálogo</strong>.
+    No hay datos. Verifique el cliente y el aÃ³o, luego pulse
+    <strong>Cargar CatÃ¡logo</strong>.
   </p>
   } @if (data(); as catalog) {
   <!-- Panel de cuentas faltantes -->
@@ -74,9 +74,9 @@
     </div>
     <p class="m-0 text-xs text-700 mb-3">
       Las siguientes cuentas del
-      <strong>Catálogo General LuxuryF</strong> (base para reportes)
+      <strong>CatÃ¡logo General LuxuryF</strong> (base para reportes)
       <strong>no fueron devueltas</strong> por la API de Aspel para este cliente
-      y año. Si deben existir, el contador debe darlas de alta en Aspel COI.
+      y aÃ³o. Si deben existir, el contador debe darlas de alta en Aspel COI.
     </p>
     <div class="flex flex-wrap gap-2">
       @for (faltante of cuentasFaltantes(); track faltante.numeroCuenta) {
@@ -103,14 +103,14 @@
     <div class="flex align-items-center gap-2">
       <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
       <span class="text-green-700 font-medium text-xs">
-        Todas las cuentas Nivel 1 del Catálogo General LuxuryF están presentes
+        Todas las cuentas Nivel 1 del CatÃ¡logo General LuxuryF estÃ©n presentes
         en Aspel.
       </span>
     </div>
   </div>
   }
 
-  <!-- Tabla jerárquica -->
+  <!-- Tabla jerÃ³rquica -->
   <p-table
     [value]="flatData()"
     [tableStyle]="{ 'min-width': '50rem' }"
@@ -119,7 +119,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 180px">No. de cuenta</th>
-        <th style="width: 300px">Descripción</th>
+        <th style="width: 300px">DescripciÃ³n</th>
         <th class="table-col-160px">Origen de datos</th>
         <th class="text-center table-col-60px">Cta.M</th>
         <th class="table-col-90px">Debe</th>
@@ -184,7 +184,7 @@
     <ng-template #emptymessage>
       <tr>
         <td colspan="11" class="text-center py-4 text-color-secondary">
-          No hay cuentas en el resultado de Aspel para este período.
+          No hay cuentas en el resultado de Aspel para este perÃ­odo.
         </td>
       </tr>
     </ng-template>

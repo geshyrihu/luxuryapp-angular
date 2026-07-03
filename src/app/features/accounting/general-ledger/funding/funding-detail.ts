@@ -54,9 +54,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE DÃ³BITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "NóMINA",
+  [ETipoGasto.Nomina]: "NÃ³MINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -156,7 +156,7 @@ export class FundingDetail {
         };
       });
 
-    // Efecto reactivo consolidado: se ejecuta cuando cambia el cliente O los parámetros de la ruta
+    // Efecto reactivo consolidado: se ejecuta cuando cambia el cliente O los parÃ³metros de la ruta
     effect(() => {
       const customerId = this.customerIdS.customerId();
       const isLoaded = this.customerIdS.customerDataReady();
@@ -167,7 +167,7 @@ export class FundingDetail {
         this.id = params["id"];
       }
 
-      // 2. Si tenemos ambos parámetros y el cliente está listo, cargamos
+      // 2. Si tenemos ambos parÃ³metros y el cliente estÃ© listo, cargamos
       if (this.id && customerId && isLoaded) {
         this.onLoadData(customerId);
       }
@@ -338,8 +338,8 @@ export class FundingDetail {
 
   /**
    * Se dispara cuando el usuario cambia el estado de pago de una orden.
-   * Llama a la API usando el nuevo método onPatch para persistir el cambio.
-   * @param orden El objeto completo de la fila que se está modificando.
+   * Llama a la API usando el nuevo mÃ©todo onPatch para persistir el cambio.
+   * @param orden El objeto completo de la fila que se estÃ© modificando.
    */
   onPaymentStatusChange(orden: any): void {
     const nuevoEstado = orden.ordenCompraPagadaControl.value;
@@ -349,19 +349,19 @@ export class FundingDetail {
       `?? Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
     );
 
-    // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
+    // 1. Preparamos la URL y el cuerpo (body) para la peticiÃ³n PATCH.
     const urlApi = `funding/update-purchase-paid-status/${ordenId}`;
     const body = { isPaid: nuevoEstado };
 
-    // 2. Llamamos a nuestro nuevo y flamante método onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y éxito/error.
+    // 2. Llamamos a nuestro nuevo y flamante mÃ©todo onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y Ã³xito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
-      // 3. Manejamos el caso de error. Si la API falla, 'success' será false.
+      // 3. Manejamos el caso de error. Si la API falla, 'success' serÃ© false.
       if (!success) {
-        // CRÃTICO! Si la actualización falló en el backend,
+        // CRÃTICO! Si la actualizaciÃ³n fallÃ© en el backend,
         // revertimos el cambio en la UI para que no mienta al usuario.
         console.error(
-          `Falló la actualización para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
+          `FallÃ© la actualizaciÃ³n para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
         );
         orden.ordenCompraPagadaControl.setValue(!nuevoEstado, {
           emitEvent: false,
@@ -389,21 +389,21 @@ export class FundingDetail {
       .then(() => this.onLoadData(this.customerIdS.customerId()));
   }
   onModalAdd() {
-    // 1. Obtenemos el valor de la signal (que es el objeto de parámetros)
+    // 1. Obtenemos el valor de la signal (que es el objeto de parÃ³metros)
 
-    // 2. Extraemos el 'tipo' y lo convertimos a número
+    // 2. Extraemos el 'tipo' y lo convertimos a nÃºmero
     const tipoGastoValue = 0;
 
-    // 3. Verificamos que sea un número válido antes de continuar
+    // 3. Verificamos que sea un nÃºmero vÃ³lido antes de continuar
     if (isNaN(tipoGastoValue)) {
-      console.error("El tipo de gasto en la URL no es un número válido");
+      console.error("El tipo de gasto en la URL no es un nÃºmero vÃ³lido");
       // Opcional: Mostrar un mensaje de error al usuario
       return;
     }
     this.dialogHandlerS
       .openDialog(
         CreateOrdenCompra,
-        { tipoGasto: tipoGastoValue }, // ? ¡Aquí está la magia!
+        { tipoGasto: tipoGastoValue }, // ? Ã³AquÃ© estÃ© la magia!
         "Nueva Orden de compra",
         this.dialogHandlerS.sizeFull,
       )
@@ -438,13 +438,13 @@ export class FundingDetail {
       "?? ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
       tipoGasto,
     );
-    // Si no se proporciona tipoGasto, no abras el diálogo aún
-    // o muestra un mensaje para que seleccionen del menú
+    // Si no se proporciona tipoGasto, no abras el diÃ³logo aÃ³n
+    // o muestra un mensaje para que seleccionen del menÃ­
     if (tipoGasto === undefined) {
-      // Opción 2: Mostrar un mensaje
+      // OpciÃ³n 2: Mostrar un mensaje
       this.customToastService.showInfo(
         "Selecciona tipo de gasto",
-        "Por favor selecciona un tipo de gasto del menú",
+        "Por favor selecciona un tipo de gasto del menÃ­",
       );
       return;
     }
@@ -520,8 +520,8 @@ export class FundingDetail {
 
     if (total === 0) {
       this.customToastS.showWarn(
-        "Sin órdenes",
-        "No hay órdenes para descargar.",
+        "Sin Ã³rdenes",
+        "No hay Ã³rdenes para descargar.",
       );
       return;
     }
@@ -597,7 +597,7 @@ export class FundingDetail {
   //       legacyFundingId: this.id,
   //       mode: "reconciliation",
   //     },
-  //     "Conciliación SAT",
+  //     "ConciliaciÃ³n SAT",
   //     this.dialogHandlerS.sizeLg,
   //   );
   // }
@@ -685,7 +685,7 @@ export class FundingDetail {
       .openDialog(
         FundingUploadInvoicesModal,
         { fundingId: this.id },
-        "Crear órdenes de Compra desde Facturas",
+        "Crear Ã³rdenes de Compra desde Facturas",
         this.dialogHandlerS.sizeLg,
         true,
       )

@@ -76,7 +76,7 @@ export class PurchaseRequestAddProduct implements OnInit {
     );
   }
 
-  // Definición estricta del formulario con new FormGroup
+  // DefiniciÃ³n estricta del formulario con new FormGroup
   form: FormGroup<IPurchaseRequestAddProductForm> =
     new FormGroup<IPurchaseRequestAddProductForm>({
       id: new FormControl<string | null>(null),

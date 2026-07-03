@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -214,7 +215,7 @@ export class JuntasMensualesSession {
   }
 
   onOpenAgenda() {
-    this.router.navigateByUrl("/calendars/google-calendar");
+    this.router.navigate(ROUTES.CALENDARIOS.GOOGLE_CALENDAR);
   }
 
   onOpenPresentations() {
@@ -228,9 +229,9 @@ export class JuntasMensualesSession {
         EApplicationRole.Asistente,
       ])
     ) {
-      this.router.navigateByUrl("/committee-meetings/presentations-contador");
+      this.router.navigate(ROUTES.JUNTAS_COMITE.PRESENTACIONES_CONTADOR);
     } else {
-      this.router.navigateByUrl("/committee-meetings/presentations");
+      this.router.navigate(ROUTES.JUNTAS_COMITE.PRESENTACIONES);
     }
   }
 
@@ -244,7 +245,7 @@ export class JuntasMensualesSession {
       return;
     }
 
-    this.router.navigateByUrl("/committee-meetings/minutes");
+    this.router.navigate(ROUTES.JUNTAS_COMITE.MINUTAS);
   }
 
   onCreateMeeting() {

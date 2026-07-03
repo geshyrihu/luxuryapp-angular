@@ -198,20 +198,20 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.form.controls.dateRange.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        console.log("�” [ValueChanges] dateRange:", value);
+        console.log("é” [ValueChanges] dateRange:", value);
         this.dateRangeSignal.set(value);
         this.form.updateValueAndValidity();
       });
   }
 
-  // Nuevo m�todo para capturar la selecci�n manual
+  // Nuevo método para capturar la selección manual
   onDateSelect(value: Date[] | null) {
     console.log("click ?? [onSelect] Calendario:", value);
-    // Forzamos la actualizaci�n por si el ValueChanges falla
+    // Forzamos la actualización por si el ValueChanges falla
     this.dateRangeSignal.set(value);
     this.form.updateValueAndValidity();
     console.log(
-      "�” Estado Form tras selecci�n:",
+      "é” Estado Form tras selección:",
       this.form.status,
       "Errores:",
       this.form.errors,
@@ -242,7 +242,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.apiResponseS
       .onGetItem(`vacation-request-approvals/${employeeId}/balance`)
       .then((response: VacationBalanceDTO) => {
-        console.log("�” Balance Cargado:", response);
+        console.log("é” Balance Cargado:", response);
         this.balance.set(response);
         if (response) {
           const hireDate = new Date(response.employeeAdmissionDate);
@@ -257,7 +257,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           }
 
           if (monthsOfService < 6) {
-            console.warn("⚠� Empleado con menos de 6 meses");
+            console.warn("⚠é Empleado con menos de 6 meses");
             this.eligibilityStatus.set("not-yet-6-months");
             this.form.controls.dateRange.disable();
           } else if (response.seniorityYears < 1 && response.isAdvancePeriod) {
@@ -271,7 +271,7 @@ export class VacacionesPasadasRegistro implements OnInit {
             this.availableAdvanceDaysDisplay.set(null);
             this.form.controls.dateRange.enable();
           } else {
-            console.warn("⚠� No elegible este A�o");
+            console.warn("⚠é No elegible este Aóo");
             this.eligibilityStatus.set("not-eligible-this-year");
             this.form.controls.dateRange.disable();
           }
@@ -341,11 +341,11 @@ export class VacacionesPasadasRegistro implements OnInit {
       : balance.availableDays;
 
     console.log(
-      `�” Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
+      `é” Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
     );
 
     if (requestedDays > available) {
-      console.error("? Error: D�as insuficientes");
+      console.error("? Error: Días insuficientes");
       return {
         notEnoughDays: {
           requested: requestedDays,
@@ -354,7 +354,7 @@ export class VacacionesPasadasRegistro implements OnInit {
       };
     }
 
-    console.log("? Validaci�n exitosa");
+    console.log("? Validación exitosa");
     return null;
   }
 
@@ -399,7 +399,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           // Refrescamos los datos para que el usuario vea el cambio reflejado
           if (currentEmployeeId) {
             console.log(
-              "�” Refrescando datos para el empleado:",
+              "é” Refrescando datos para el empleado:",
               currentEmployeeId,
             );
             this.refreshBalance();
@@ -408,7 +408,7 @@ export class VacacionesPasadasRegistro implements OnInit {
         } else {
           const error = this.globalErrorS.errorSubject.getValue();
           this.serverError.set(
-            error?.message || "Ocurri� un error inesperado.",
+            error?.message || "Ocurrió un error inesperado.",
           );
         }
       })

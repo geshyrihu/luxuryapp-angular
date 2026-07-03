@@ -19,7 +19,7 @@
   </div>
   @if (canEdit && !isFinal) {
   <div class="flexlign-align-items-start">
-    <il-button icon="edit" (clicked)="onEdit.emit()" />
+    <il-button iconClass="edit" (clicked)="onEdit.emit()" />
     <il-button-confirm
       icon="trash"
       ngbTooltip="Eliminar"

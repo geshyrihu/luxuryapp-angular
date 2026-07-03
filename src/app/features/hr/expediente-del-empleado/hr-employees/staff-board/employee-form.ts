@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { MenuItem } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
@@ -55,10 +56,10 @@ export class EmployeeForm implements OnInit {
   nameEmployee = signal("");
   tienePermiso: boolean = true;
 
-  // ?? Sección activa
+  // ?? SecciÃ³n activa
   activeSection: string = "principal";
 
-  // ?? Items del mené
+  // ?? Items del menÃ­
   menuItems: MenuItem[] = [];
 
   paramsSignal = toSignal(this.route.paramMap);
@@ -74,7 +75,7 @@ export class EmployeeForm implements OnInit {
         if (appUserId) this.applicationUserId = appUserId;
 
         if (!this.applicationUserId) {
-          this.router.navigate(["/directory/empleados/interno"]);
+          this.router.navigate(ROUTES.DIRECTORIO.PERSONAL_INTERNO);
           return;
         }
 
@@ -83,7 +84,7 @@ export class EmployeeForm implements OnInit {
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
-        // Inicializar mené después de tener los datos
+        // Inicializar menÃ­ despuÃ³s de tener los datos
         this.initializeMenu();
       }
     });
@@ -102,7 +103,7 @@ export class EmployeeForm implements OnInit {
     };
 
     const all: MenuDef[] = [
-      // Sin restricción de rol - visible para cualquier usuario autorizado
+      // Sin restricciÃ³n de rol - visible para cualquier usuario autorizado
       {
         label: "Datos principales",
         icon: "mdi:account",
@@ -137,7 +138,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
       {
-        label: "Dirección",
+        label: "DirecciÃ³n",
         icon: "mdi:map-marker",
         section: "address",
         roles: [
@@ -181,7 +182,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo gestión interna RR.HH.
+      // Solo gestiÃ³n interna RR.HH.
       {
         label: "Datos laborales",
         icon: "mdi:briefcase",
@@ -220,7 +221,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo acceso tócnico / sistemas
+      // Solo acceso tÃºcnico / sistemas
       {
         label: "Usuario app",
         icon: "mdi:key",

@@ -28,6 +28,7 @@ import { StatusBadge } from "src/app/core/components/shared/status-badge/status-
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ROUTES } from "src/app/routing/route-paths";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -167,7 +168,8 @@ export class TaskGroupList {
   ) {
     this.TaskGroupService.taskGroupMessageStatus = taskGroupMessageStatus;
     this.TaskGroupService.setStatus(taskGroupMessageStatus);
-    this.router.navigate(["/tickets/messages/" + ticketGroupId]);
+    const ticketGroupIdStr = ticketGroupId;
+    this.router.navigate(ROUTES.TICKETS.MENSAJES(ticketGroupIdStr));
   }
 
   onDelete(id: string) {

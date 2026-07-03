@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   IonAvatar,
   IonBadge,
@@ -106,7 +107,7 @@ export class TaskView implements OnInit {
       this.ticketGroupId = this.config.data.ticketGroupId;
       this.onLoadData();
     } else {
-      // Obtener el ticketId de los parámetros de la ruta
+      // Obtener el ticketId de los parÃ³metros de la ruta
       this.route.params.subscribe((params) => {
         this.id = params["ticketMessageId"];
         this.ticketGroupId = params["ticketGroupId"];
@@ -119,7 +120,7 @@ export class TaskView implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.Tasks.view(this.id))
       .then((response: any) => {
-        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md §3.12
+        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md Ã³3.12
         setTimeout(() => {
           this.ticket.set(response);
           if (response === null) {
@@ -199,12 +200,12 @@ export class TaskView implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocará el ticket en proceso",
+      text: "Se colocarÃ© el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#0d3b66",
       cancelButtonColor: "#9B1B30",
-      confirmButtonText: "Sí, en proceso!",
+      confirmButtonText: "SÃ­, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {
@@ -220,6 +221,6 @@ export class TaskView implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(["/Tasks/messages", this.ticketGroupId]);
+    this.router.navigate(ROUTES.TICKETS.MENSAJES(this.ticketGroupId));
   }
 }

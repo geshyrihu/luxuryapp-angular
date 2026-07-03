@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
+import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en dÃ­as
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";

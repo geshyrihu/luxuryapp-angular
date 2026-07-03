@@ -98,14 +98,14 @@ export class TaskForm implements OnInit {
   cb_legal_matter = signal<ISelectItem[]>([]);
   cb_predecessors = signal<ISelectItem[]>([]);
 
-  // Signals para previews de im�genes
+  // Signals para previews de imígenes
   beforeWorkPreview = signal<string | null>(null);
   afterWorkPreview = signal<string | null>(null);
 
   isLegalWorkGroup = signal(false);
   private workGroupLegalMap = new Map<string, boolean>();
 
-  // Definici�n estricta del formulario
+  // Definición estricta del formulario
   form: FormGroup<ITaskMessageForm> = this.formB.group({
     id: new FormControl<string>(
       { value: "", disabled: true },
@@ -159,7 +159,7 @@ export class TaskForm implements OnInit {
     if (this.config.data?.ticketGroupId) {
       setTimeout(async () => {
         let ticketGroupId = String(this.config.data.ticketGroupId);
-        // Garantizar que la capitalizaci�n (casing) coincida exactamente con la opci�n cargada
+        // Garantizar que la capitalización (casing) coincida exactamente con la opción cargada
         const exactMatch = this.cb_ticket_group().find(
           (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase(),
         );
@@ -253,7 +253,7 @@ export class TaskForm implements OnInit {
       dependsOnTaskId: result.dependsOnTaskId ?? null,
     });
 
-    // Vistas previas de im�genes
+    // Vistas previas de imígenes
     if (result.beforeWorkPreview) {
       this.beforeWorkPreview.set(result.beforeWorkPreview);
     }
@@ -301,7 +301,7 @@ export class TaskForm implements OnInit {
 
       if (isHeic) {
         try {
-          // Convertir expl�citamente a Blob puro a trav�s de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
+          // Convertir explócitamente a Blob puro a travós de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
           const buffer = await file.arrayBuffer();
           const heicBlob = new Blob([buffer], {
             type: file.type || "image/heic",
@@ -321,7 +321,7 @@ export class TaskForm implements OnInit {
           });
         } catch (heicError) {
           console.warn(
-            "heic2any fall� al analizar el archivo, intentando como fallback nativo...",
+            "heic2any fallé al analizar el archivo, intentando como fallback nativo...",
             heicError,
           );
           // Si falla, fileToProcess sigue siendo el archivo original.

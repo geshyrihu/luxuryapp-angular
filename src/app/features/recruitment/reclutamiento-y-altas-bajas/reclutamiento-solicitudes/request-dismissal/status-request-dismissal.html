@@ -65,7 +65,7 @@
         </p>
         @if(!dataSignal().isAuthorizedByLegal && aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Legal])) {
            <div class="mt-2">
-             <il-button-confirm ngbTooltip="Autorizar Legal" icon="check" (confirmed)="onAuthorize('Legal')" />
+             <il-button-confirm ngbTooltip="Autorizar Legal" iconClass="check" (confirmed)="onAuthorize('Legal')" />
            </div>
         }
       </div>
@@ -82,7 +82,7 @@
         </p>
         @if(!dataSignal().isAuthorizedByPayroll && aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.RecursosHumanos])) {
            <div class="mt-2">
-             <il-button-confirm ngbTooltip="Autorizar Nóminas" icon="check" (confirmed)="onAuthorize('Nominas')" />
+             <il-button-confirm ngbTooltip="Autorizar Nóminas" iconClass="check" (confirmed)="onAuthorize('Nominas')" />
            </div>
         }
       </div>

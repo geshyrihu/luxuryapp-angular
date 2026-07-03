@@ -192,7 +192,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Recepci�n de Pipas de Agua � Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua é Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
@@ -204,7 +204,7 @@ ${this.htmlPrintS.getStandardCss()}
           <div class="kmdi:percent">${this.totalRecepciones()}</div>
         </div>
         <div class="kmdi:card">
-          <div class="kmdi:format-title">Total m� descargados</div>
+          <div class="kmdi:format-title">Total mí descargados</div>
           <div class="kmdi:percent blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
@@ -215,7 +215,7 @@ ${this.htmlPrintS.getStandardCss()}
           </thead>
           <tbody>
             <tr>
-              <td>Importe total (precio con IVA � m�)</td>
+              <td>Importe total (precio con IVA é mí)</td>
               <td style="text-align: right; font-weight: bold;">${fmtMoney(this.totalConIVA())}</td>
             </tr>
             <tr>
@@ -227,7 +227,7 @@ ${this.htmlPrintS.getStandardCss()}
               <td style="color: #6b7280; text-align: right;">${fmtMoney(this.ivaDesglosado())}</td>
             </tr>
             <tr>
-              <td style="color: #dc2626; font-weight: bold;">Retenci�n 4%</td>
+              <td style="color: #dc2626; font-weight: bold;">Retención 4%</td>
               <td style="color: #dc2626; text-align: right; font-weight: bold;">(${fmtMoney(this.retencion())})</td>
             </tr>
             <tr style="background-color: #003A62; color: white;">
@@ -245,10 +245,10 @@ ${this.htmlPrintS.getStandardCss()}
         <tr>
           <th>Empresa</th>
           <th>Placas / Cap.</th>
-          <th>Llegada / T�rmino</th>
+          <th>Llegada / Túrmino</th>
           <th style="text-align: center;">Cisterna ant ? des</th>
           <th style="text-align: center;">Medidor ini ? fin</th>
-          <th style="text-align: right;">m�</th>
+          <th style="text-align: right;">mí</th>
           <th style="text-align: right;">Costo / Importe</th>
           <th>Personal</th>
         </tr>
@@ -288,8 +288,8 @@ ${this.htmlPrintS.getStandardCss()}
             (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
           "Medidor inicial": item.lecturaMedidorInicial,
           "Medidor final": item.lecturaMedidorFinal,
-          "m� ingresados": m3,
-          "Costo m�": item.costoMetroCubico,
+          "mí ingresados": m3,
+          "Costo mí": item.costoMetroCubico,
           "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
           "Colaborador mtto": item.colaboradorMtto ?? "",
           "Guardia testigo": item.guardiaSeguridad ?? "",

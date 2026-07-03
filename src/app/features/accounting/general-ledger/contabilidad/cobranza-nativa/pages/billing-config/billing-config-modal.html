@@ -8,7 +8,7 @@
     <div class="p-3 border-round surface-100 mb-2">
       <custom-input-select-signal
         [control]="form.controls['billingMode']"
-        label="Modo de Operación AR"
+        label="Modo de OperaciÃ³n AR"
         [data]="billingModeOptions()"
         hint="Define si LuxuryApp genera cargos, o si los extrae de Aspel COI."
         [filter]="true"
@@ -19,15 +19,15 @@
       <div class="col-12 md:col-6">
         <custom-input-number-signal
           [control]="form.controls['defaultDueDays']"
-          label="Días para vencer (Predeterminado)"
-          hint="Días tras la creación del cargo para fijar la fecha límite."
+          label="DÃ­as para vencer (Predeterminado)"
+          hint="DÃ­as tras la creaciÃ³n del cargo para fijar la fecha lÃ³mite."
         />
       </div>
       <div class="col-12 md:col-6">
         <custom-input-number-signal
           [control]="form.controls['graceDays']"
-          label="Días de Gracia"
-          hint="Días que se perdonan tras el vencimiento antes del recargo."
+          label="DÃ­as de Gracia"
+          hint="DÃ­as que se perdonan tras el vencimiento antes del recargo."
         />
       </div>
     </div>
@@ -36,7 +36,7 @@
       <custom-input-number-signal
         [control]="form.controls['globalLateFeePercentage']"
         label="Tasa de Mora Global (%)"
-        hint="Opcional: Porcentaje mensual. Si está en blanco, dependerá de la política individual de cada cargo."
+        hint="Opcional: Porcentaje mensual. Si estÃ© en blanco, dependerÃ© de la polÃ­tica individual de cada cargo."
       />
     </div>
 

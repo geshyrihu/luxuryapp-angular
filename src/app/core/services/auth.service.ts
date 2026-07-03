@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, Injector, NgZone, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   BehaviorSubject,
   Observable,
@@ -217,7 +218,7 @@ export class AuthService {
     overlays.forEach((overlay) => overlay.remove());
 
     this.zone.run(() => {
-      this.router.navigateByUrl("/auth/login");
+      this.router.navigate(ROUTES.AUTH.LOGIN);
     });
   }
 

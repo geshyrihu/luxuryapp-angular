@@ -1,6 +1,7 @@
 ﻿import { Component, inject, OnInit } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -48,7 +49,7 @@ export class SolicitudPagoPdfComponent implements OnInit {
             "Error",
             "No se encontraron datos para generar el PDF.",
           );
-          this.router.navigate(["/purchases/purchase-orders"]);
+          this.router.navigate(ROUTES.COMPRAS.ORDENES_COMPRA);
         }
       })
       .catch((error) => {
@@ -57,7 +58,7 @@ export class SolicitudPagoPdfComponent implements OnInit {
           "Error",
           "No se pudieron obtener todos los datos necesarios.",
         );
-        this.router.navigate(["/purchases/purchase-orders"]);
+        this.router.navigate(ROUTES.COMPRAS.ORDENES_COMPRA);
       });
   }
 
@@ -66,7 +67,7 @@ export class SolicitudPagoPdfComponent implements OnInit {
 
     this.htmlPrintS.printHtml(html, `SolicitudPago-${orderData.folio}`);
 
-    this.router.navigate(["/purchases/orden-compra", orderData.id], {
+    this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(orderData.id), {
       replaceUrl: true,
     });
   }

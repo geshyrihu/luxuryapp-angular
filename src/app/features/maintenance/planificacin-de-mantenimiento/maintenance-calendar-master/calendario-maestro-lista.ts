@@ -110,7 +110,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "Informaci�n de servicio",
+      "Información de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }

@@ -133,7 +133,7 @@ const GUIA_LABELS: Record<string, string> = {
 
         @case ('colorvalidation') {
           <p-message severity="info" class="mb-4 block"
-            text="Tipograf�a y paleta de color est�n centralizados en la secci�n 'Tokens &amp; Identidad Visual'. Ve all� para la referencia completa con tokens CSS copiables." />
+            text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables." />
           <p-card>
             <p-table [value]="colorAssessment" responsiveLayout="scroll" styleClass="p-datatable-sm">
               <ng-template #header><tr><th>Rol</th><th>Actual</th><th>Veredicto</th><th>Sugerencia</th></tr></ng-template>
@@ -154,7 +154,7 @@ const GUIA_LABELS: Record<string, string> = {
           <p-card>
             <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="p-datatable-sm">
               <ng-template #header>
-                <tr><th>Familia</th><th>Selector</th><th>Ubicaci�n</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
+                <tr><th>Familia</th><th>Selector</th><th>Ubicación</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
               </ng-template>
               <ng-template #body let-item>
                 <tr>

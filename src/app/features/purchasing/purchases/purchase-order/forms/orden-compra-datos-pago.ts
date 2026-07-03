@@ -88,7 +88,7 @@ export class OrdenCompraDatosPago implements OnInit {
       tipoGasto: new FormControl(null),
       provider: new FormControl("", Validators.required),
       fundingPeriod: new FormControl(null),
-      fundingYear: new FormControl(null), // Nuevo control para el Año de fondeo
+      fundingYear: new FormControl(null), // Nuevo control para el AÃ³o de fondeo
       reference: new FormControl(""),
       cuentaClave: new FormControl(""),
     });
@@ -174,7 +174,7 @@ export class OrdenCompraDatosPago implements OnInit {
     this.form.patchValue(result);
   }
 
-  // Nuevo mótodo para generar opciones de Año
+  // Nuevo mÃ©todo para generar opciones de AÃ³o
   private generateYearOptions(): ISelectItem[] {
     const currentYear = new Date().getFullYear();
     return [
@@ -211,7 +211,7 @@ export class OrdenCompraDatosPago implements OnInit {
   }
 
   onSubmit() {
-    // Aquó podrías Añadir Validators.required al fundingPeriod y fundingYear
+    // AquÃ© podrÃ­as AÃ³adir Validators.required al fundingPeriod y fundingYear
     // si ambos deben ser seleccionados al mismo tiempo.
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach((control) => {

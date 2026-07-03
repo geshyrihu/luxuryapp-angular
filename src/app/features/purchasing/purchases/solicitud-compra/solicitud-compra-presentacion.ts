@@ -350,7 +350,7 @@ export class SolicitudCompraPresentacion {
       },
       inputValidator: (value: string) => {
         if (!value) {
-          return "Selecciona una opción.";
+          return "Selecciona una opciÃ³n.";
         }
         return null;
       },

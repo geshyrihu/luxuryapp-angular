@@ -24,20 +24,20 @@
       <!-- Cabecera de la tabla principal -->
       <ng-template #caption>
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
-          <!-- Botones de acci�n -->
+          <!-- Botones de acción -->
           <il-button
             iconClass="mdi:printer"
             label="PENDIENTES"
             severity="danger"
             size="sm"
-            [routerLink]="['/committee-meetings/minuta-pendientes']"
+            (clicked)="navigateToPendientes()"
           />
           <il-button
             iconClass="mdi:send"
             label="SEGUIMIENTO"
             severity="secondary"
             size="sm"
-            [routerLink]="['/committee-meetings/seguimiento-minutas/operaciones']"
+            (clicked)="navigateToSeguimiento()"
           />
 
           <!-- Filtros de tipo de junta -->
@@ -51,14 +51,14 @@
             />
             <il-button
               iconClass="mdi:account-group"
-              label="COMIT�"
+              label="COMITé"
               size="sm"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
               (clicked)="onLoadData(0)"
             />
             <il-button
               iconClass="mdi:cog"
-              label="OPERACI�N"
+              label="OPERACIóN"
               size="sm"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
               (clicked)="onLoadData(2)"
@@ -210,7 +210,7 @@
               label="GESTIONAR"
               severity="secondary"
               size="sm"
-              [routerLink]="['/committee-meetings/gestion-minuta', item.id]"
+              (clicked)="navigateToGestionMinuta(item.id)"
             />
           </td>
 
@@ -226,10 +226,10 @@
                 />
                 <il-button-confirm
                   iconClass="mdi:email-outline"
-                  label="Enviar a Comit�"
-                  swalTitle="Confirmar env�o"
+                  label="Enviar a Comité"
+                  swalTitle="Confirmar envío"
                   swalText="Esta seguro de que desea enviar la minuta?"
-                  swalConfirmButtonText="S�, enviar"
+                  swalConfirmButtonText="Sí, enviar"
                   (confirmed)="onSendEmailMeeting(item.id)"
                 />
                 <il-button-item
@@ -268,7 +268,7 @@
   </div>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versi�n m�vil -->
+<!-- 📱 INICIO: Componente adaptado para versión mívil -->
 <div class="block md:hidden">
   <div class="card border-none shadow-none">
     <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
@@ -293,14 +293,14 @@
             label="IMPRIMIR PENDIENTES"
             severity="danger"
             [fluid]="true"
-            [routerLink]="['/committee-meetings/minuta-pendientes']"
+            (clicked)="navigateToPendientes()"
           />
           <il-button
             iconClass="mdi:send"
             label="SEGUIMIENTO PENDIENTES"
             severity="secondary"
             [fluid]="true"
-            [routerLink]="['/committee-meetings/seguimiento-minutas/operaciones']"
+            (clicked)="navigateToSeguimiento()"
           />
           <div class="flex gap-1 mt-1">
             <il-button
@@ -313,7 +313,7 @@
             />
             <il-button
               iconClass="mdi:account-group"
-              label="COMIT�"
+              label="COMITé"
               size="sm"
               [fluid]="true"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
@@ -321,7 +321,7 @@
             />
             <il-button
               iconClass="mdi:cog"
-              label="OPERACI�N"
+              label="OPERACIóN"
               size="sm"
               [fluid]="true"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
@@ -373,10 +373,10 @@
                     (clicked)="exportToExcel(item.id)"
                   />
                   <il-button-confirm
-                    label="Enviar a Comit�"
-                    swalTitle="Confirmar env�o"
-                    swalText="�Est� seguro de que desea enviar la minuta?"
-                    swalConfirmButtonText="S�, enviar"
+                    label="Enviar a Comité"
+                    swalTitle="Confirmar envío"
+                    swalText="óEsté seguro de que desea enviar la minuta?"
+                    swalConfirmButtonText="Sí, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
                   />
                   <il-button-item

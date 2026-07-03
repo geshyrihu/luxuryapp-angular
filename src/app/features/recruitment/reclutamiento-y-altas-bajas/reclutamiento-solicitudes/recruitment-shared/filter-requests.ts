@@ -41,7 +41,7 @@ export class FilterRequests {
     { label: "?? Vacantes", path: "vacancies" },
     { label: "? Altas", path: "hirings" },
     { label: "ðŸšª Bajas", path: "dismissals" },
-    { label: "ðŸ’° Modificación de salario", path: "salary-increase" },
+    { label: "ðŸ’° ModificaciÃ³n de salario", path: "salary-increase" },
   ];
 
   fechaInicial = new Date(new Date().getFullYear(), 0, 1);
@@ -86,7 +86,7 @@ export class FilterRequests {
           console.error("Error in exportToExcel:", error);
           this.customToastService.showError(
             "Error al crear",
-            "No se pudo completar la operación.",
+            "No se pudo completar la operaciÃ³n.",
           );
         },
       });
@@ -111,10 +111,10 @@ export class FilterRequests {
     );
   }
 
-  // ? Mótodo helper para convertir Date a string "yyyy-MM"
+  // ? MÃ©todo helper para convertir Date a string "yyyy-MM"
   private formatDateToYearMonth(date: Date): string {
     if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-      // Si la fecha no es válida, usa la fecha actual
+      // Si la fecha no es vÃ³lida, usa la fecha actual
       date = new Date();
     }
 

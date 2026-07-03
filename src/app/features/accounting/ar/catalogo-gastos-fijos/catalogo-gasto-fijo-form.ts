@@ -68,7 +68,7 @@ interface ICatalogoGastoFijoForm {
   ],
 })
 export class CatalogoGastoFijoForm implements OnInit {
-  // Inyecci髇 de dependencias
+  // Inyecci贸n de dependencias
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -178,7 +178,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       formaDePagoId: result.formaDePagoId ? String(result.formaDePagoId) : null,
     });
 
-    // Mapear colecciones seg髇 el DTO: CatalogoGastosFijosDTO
+    // Mapear colecciones seg贸n el DTO: CatalogoGastosFijosDTO
     this.detalles.set(result.detalles || []);
     this.budgets.set(result.presupuesto || []);
   }
@@ -233,7 +233,7 @@ export class CatalogoGastoFijoForm implements OnInit {
     }
   }
 
-  // Gesti髇 de la lista de Presupuesto
+  // Gesti贸n de la lista de Presupuesto
   onAddOrEditBudget() {
     this.dialogHandlerS
       .openDialog(
@@ -249,7 +249,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       });
   }
 
-  // Gesti髇 de la lista de Detalles/Productos
+  // Gesti贸n de la lista de Detalles/Productos
   onAddOrEditDetail() {
     this.dialogHandlerS
       .openDialog(
@@ -311,6 +311,6 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   cantidad: number;
   unidadMedidaid: any;
   precio: number;
-  // Campos adicionales para visualizaci髇
+  // Campos adicionales para visualizaci贸n
   productoDescription?: string;
 }

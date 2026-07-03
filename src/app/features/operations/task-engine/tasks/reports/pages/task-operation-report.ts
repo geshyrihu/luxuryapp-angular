@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { ImageModule } from "primeng/image";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
@@ -117,7 +118,7 @@ export class TaskMessageOperationReport {
     this.startDate = startDateFormatted;
     this.endDate = endDateFormatted;
 
-    // Aquó puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // AquÃ© puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData();
   }
 
@@ -188,11 +189,11 @@ export class TaskMessageOperationReport {
   }
 
   onPreviewClicked(): void {
-    // Lógica para la vista previa
-    this.router.navigate(["/tickets/weekly-report-preview"]);
+    // LÃ­gica para la vista previa
+    this.router.navigate(ROUTES.TICKETS.REPORTE_SEMANAL_VISTA);
   }
   onSendReportClicked(): void {
-    // Lógica para enviar el reporte
+    // LÃ­gica para enviar el reporte
     this.dialogHandlerS
       .openDialog(
         SendOperationReport,

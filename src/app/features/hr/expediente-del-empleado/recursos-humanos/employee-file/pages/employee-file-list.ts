@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
@@ -84,7 +85,7 @@ export class EmployeeFileList {
   }
 
   onViewFile(item: EmployeeFileSummaryDTO): void {
-    this.router.navigate(["/recursos-humanos/employee-files", item.id]);
+    this.router.navigate(ROUTES.RECURSOS_HUMANOS.EXPEDIENTE(item.id));
   }
 
   getStatusBadge(isActive: boolean): string {

@@ -61,7 +61,7 @@ export class ProductosForm implements OnInit {
   readonly cb_category = signal<ISelectItem[]>([]);
   readonly cb_clasificacion = signal<ISelectItem[]>([]);
 
-  // URL base para imagen (podrÌa ser signal si cambia reactivamente)
+  // URL base para imagen (podr√≠a ser signal si cambia reactivamente)
   urlBaseImg = "";
   selectedFile: File | null = null;
 
@@ -95,13 +95,13 @@ export class ProductosForm implements OnInit {
   async ngOnInit(): Promise<void> {
     this.id.set(this.config.data?.id || "");
 
-    // Carga de cat·logos en paralelo
+    // Carga de cat√°logos en paralelo
     const [categories, clasificacion] = await Promise.all([
       this.apiResponseS.onGetSelectItem<ISelectItem[]>("Categories"),
       firstValueFrom(this.enumSelectS.productClasificacion()),
     ]);
 
-    // ActualizaciÛn de signals (evita NG0100 al ser asÌncrono tras await)
+    // Actualizaci√≥n de signals (evita NG0100 al ser as√≠ncrono tras await)
     this.cb_category.set(categories as ISelectItem[]);
     this.cb_clasificacion.set(clasificacion);
 
@@ -125,7 +125,7 @@ export class ProductosForm implements OnInit {
         ? result.categoryId.value
         : result.categoryId;
 
-    // Buscar la categorÌa completa usando el signal actual
+    // Buscar la categor√≥a completa usando el signal actual
     const selectedCategory = this.cb_category().find(
       (item) => item.value === categoryId,
     );

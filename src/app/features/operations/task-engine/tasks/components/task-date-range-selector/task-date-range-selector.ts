@@ -11,7 +11,7 @@ import { DateRangeStorageService } from "../../services/date-range-storage.servi
 export class TaskDateRangeSelector implements OnInit {
   constructor(private dateRangeStorageService: DateRangeStorageService) {}
 
-  // Modificamos la declaración de dateRange para que use un objeto con from y to
+  // Modificamos la declaraciÃ³n de dateRange para que use un objeto con from y to
   dateRangeControl = new FormControl<{ from: Date | null; to: Date | null }>({
     from: null,
     to: null,

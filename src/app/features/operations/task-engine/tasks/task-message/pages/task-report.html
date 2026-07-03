@@ -1,7 +1,7 @@
 <div class="grid">
   <!-- Reporte semanal -->
   <div class="col-12 lg:col-3">
-    <a [routerLink]="['/tickets/weekly-report']" class="no-underline">
+    <a [routerLink]="ROUTES.TICKETS.REPORTE_SEMANAL" class="no-underline">
       <!-- Enlace a otra página -->
       <div class="card text-center shadow-1 border-none cursor-pointer">
         <div class="card-body">
@@ -14,7 +14,7 @@
 
   <!-- Plan de trabajo -->
   <div class="col-12 lg:col-3">
-    <a [routerLink]="['/tickets/work-plan']" class="no-underline">
+    <a [routerLink]="ROUTES.TICKETS.PLAN_TRABAJO" class="no-underline">
       <div class="surface-card text-center shadow-2 border-round p-3 cursor-pointer">
         <div>
           <app-icon [icon]="'mdi:format-list-checks'" class="icon icon- icon-xl mb-3 text-green-600"></app-icon>
@@ -26,7 +26,7 @@
 
   <!-- Resumen -->
   <div class="col-12 lg:col-3">
-    <a [routerLink]="['/tickets/resumen']" class="no-underline">
+    <a [routerLink]="ROUTES.TICKETS.RESUMEN" class="no-underline">
       <div class="surface-card text-center shadow-2 border-round p-3 cursor-pointer">
         <div>
           <app-icon [icon]="'mdi:chart-pie'" class="icon icon- icon-xl mb-3 text-yellow-600"></app-icon>

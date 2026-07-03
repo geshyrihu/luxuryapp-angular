@@ -106,7 +106,7 @@ export class AnnouncementAdminForm implements OnInit {
   ngOnInit() {
     this.id.set(this.config.data?.id);
 
-    // Cargar católogos siempre, luego datos si es edición
+    // Cargar catÃ¡logos siempre, luego datos si es ediciÃ³n
     this.loadInitialData().then(() => {
       if (this.id()) {
         this.loadDataForEdit();
@@ -151,7 +151,7 @@ export class AnnouncementAdminForm implements OnInit {
     if (announcementData) {
       this.data.set(announcementData);
 
-      // Preparar objeto para patchValue (excluyendo archivos y lógica especial)
+      // Preparar objeto para patchValue (excluyendo archivos y lÃ­gica especial)
       const { status, announcementType, ...dataToPatch } = announcementData;
 
       this.form.patchValue({
@@ -160,7 +160,7 @@ export class AnnouncementAdminForm implements OnInit {
         expirationDate: this.dateS.parseDate(announcementData.expirationDate),
       });
 
-      // Mapear Status y Type de string a numérico (si vienen como texto)
+      // Mapear Status y Type de string a numÃ­rico (si vienen como texto)
       const statusMap: Record<string, number> = {
         Borrador: 0,
         Publicado: 1,
@@ -172,7 +172,7 @@ export class AnnouncementAdminForm implements OnInit {
         Informativo: 2,
       };
 
-      // Si el backend devuelve strings, los convertimos. Si devuelve nómeros, usamos directo.
+      // Si el backend devuelve strings, los convertimos. Si devuelve nÃºmeros, usamos directo.
       const statusVal =
         typeof status === "string" ? (statusMap[status] ?? 0) : status;
       const typeVal =
@@ -183,7 +183,7 @@ export class AnnouncementAdminForm implements OnInit {
       this.form.controls.status.setValue(statusVal);
       this.form.controls.announcementType.setValue(typeVal);
 
-      // Mapear listas de selección
+      // Mapear listas de selecciÃ³n
       if (announcementData.selectableRoles) {
         this.form.controls.recipientRoleIds.setValue(
           announcementData.selectableRoles
@@ -204,7 +204,7 @@ export class AnnouncementAdminForm implements OnInit {
     this.loadingData.set(false);
   }
 
-  // --- Gestión de Archivos Existentes ---
+  // --- GestiÃ³n de Archivos Existentes ---
 
   requestDeleteMainImage(): void {
     const currentData = this.data();
@@ -218,7 +218,7 @@ export class AnnouncementAdminForm implements OnInit {
     const currentData = this.data();
     if (!currentData?.attachments) return;
 
-    // Añadir a lista de borrado
+    // AÃ³adir a lista de borrado
     this.attachmentsToDelete.update((ids) => [...ids, attachmentToRemove.id]);
 
     // Remover de la vista local (signal)
@@ -228,19 +228,19 @@ export class AnnouncementAdminForm implements OnInit {
     this.data.set({ ...currentData, attachments: updatedAttachments });
   }
 
-  // --- Generación IA ---
+  // --- GeneraciÃ³n IA ---
 
   async generateDraft() {
     const { value: prompt } = await this.swalService.fire({
-      title: "? Asistente de Redacción IA",
+      title: "? Asistente de RedacciÃ³n IA",
       input: "textarea",
-      inputLabel: "óQuó quieres comunicar?",
+      inputLabel: "Ã³QuÃ© quieres comunicar?",
       inputPlaceholder: "Ej: Mantenimiento de elevadores el lunes...",
       showCancelButton: true,
       confirmButtonText: "Generar",
       showLoaderOnConfirm: true,
       preConfirm: (input) => {
-        if (!input) return this.swalService.error("Escribe una instrucción.");
+        if (!input) return this.swalService.error("Escribe una instrucciÃ³n.");
         return this.aiService
           .generateAnnouncementDraft(input, "Formal")
           .catch((err) => {
@@ -263,7 +263,7 @@ export class AnnouncementAdminForm implements OnInit {
       .openDialog(
         ImageGenerationDialog,
         null,
-        "Generador de Imógenes IA",
+        "Generador de ImÃ­genes IA",
         this.dialogHandlerS.sizeMd,
       )
       .then((blob: any) => {
@@ -346,7 +346,7 @@ export class AnnouncementAdminForm implements OnInit {
           }
         };
 
-        // Campos bósicos
+        // Campos bÃ³sicos
         append("title", rawValue.title);
         append("content", rawValue.content);
         append("announcementType", rawValue.announcementType);

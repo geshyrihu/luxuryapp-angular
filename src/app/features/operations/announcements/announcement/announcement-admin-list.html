@@ -78,11 +78,11 @@
         <p-sortIcon field="customerName" />
       </th>
       <th pSortableColumn="publishedAt">
-        Publicaci�n
+        Publicación
         <p-sortIcon field="publishedAt" />
       </th>
       <th pSortableColumn="expirationDate">
-        Expiraci�n
+        Expiración
         <p-sortIcon field="expirationDate" />
       </th>
       <th class="no-print"></th>
@@ -139,9 +139,9 @@
             label="Vista previa"
           />
           <il-button-item
-            [routerLink]="['/announcements/analytics', item.id]"
+            (clicked)="onViewAnalytics(item.id)"
             iconClass="mdi:chart-bar"
-            label="Anal�ticas"
+            label="Analíticas"
           />
         </div>
       </td>
@@ -156,7 +156,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -251,9 +251,9 @@
               label="Vista previa"/>
 
             <il-button-item
-              [routerLink]="['/announcements/analytics', item.id]"
+              (clicked)="onViewAnalytics(item.id)"
               iconName="bar-chart-outline"
-              label="Anal�ticas"/>
+              label="Analóticas"/>
           </ng-container>
         </app-action-menu>
       </div>

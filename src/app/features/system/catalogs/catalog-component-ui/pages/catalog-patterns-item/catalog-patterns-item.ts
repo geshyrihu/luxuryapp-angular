@@ -20,7 +20,7 @@ const PATTERNS_LABELS: Record<string, string> = {
   datatablehybrid: "Data Table Hybrid",
   loginreference: "Login Reference",
   navigationreference: "Navigation Reference",
-  navhub: "Navigation Hub Page (Esténdar)",
+  navhub: "Navigation Hub Page (EstÃ©ndar)",
 };
 
 @Component({
@@ -49,7 +49,7 @@ const PATTERNS_LABELS: Record<string, string> = {
             <div
               class="surface-card shadow-1 border-round-lg border-left-3 border-primary p-3"
             >
-              <h3 class="m-0">Medidor Elóctrico A1</h3>
+              <h3 class="m-0">Medidor ElÃ³ctrico A1</h3>
               <div class="flex align-items-center gap-2 mb-3 mt-2">
                 <app-icon
                   icon="mdi:flash-outline"
@@ -95,11 +95,11 @@ const PATTERNS_LABELS: Record<string, string> = {
                 pInputText
                 type="password"
                 [(ngModel)]="password"
-                placeholder="Contraseña"
+                placeholder="ContraseÃ³a"
                 class="w-full mb-2"
               />
               <p-button
-                label="Iniciar Sesión"
+                label="Iniciar SesiÃ³n"
                 class="w-full"
                 styleClass="w-full"
               />
@@ -107,7 +107,7 @@ const PATTERNS_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("navigationreference") {
-          <p-card header="Navegación de Referencia">
+          <p-card header="NavegaciÃ³n de Referencia">
             <p-tabs value="0">
               <p-tablist>
                 <p-tab value="0">Dashboard</p-tab>
@@ -123,21 +123,21 @@ const PATTERNS_LABELS: Record<string, string> = {
 
         @case ("navhub") {
           <!-- ------------------------------------------------------------ -->
-          <!-- ESTéNDAR: Navigation Hub Page                               -->
+          <!-- ESTÃ©NDAR: Navigation Hub Page                               -->
           <!-- Aplica a: settings-home, master-dashboard, cobranza-nativa  -->
           <!-- ------------------------------------------------------------ -->
 
-          <p-card header="Navigation Hub Page é Esténdar DS">
+          <p-card header="Navigation Hub Page Ã© EstÃ©ndar DS">
             <p class="text-sm text-secondary m-0 mb-4">
-              Patrón para póginas de entrada a módulos del ERP. Consolida grupos
-              de navegación en cards visuales uniformes para web y lista
+              PatrÃ³n para pÃ¡ginas de entrada a mÃ³dulos del ERP. Consolida grupos
+              de navegaciÃ³n en cards visuales uniformes para web y lista
               agrupada para mobile.
             </p>
             <p-divider />
 
             <!-- 1. Modelo de datos requerido -->
             <h3 class="text-base font-bold mb-2">
-              1. Modelo de datos é <code>DashboardCard</code>
+              1. Modelo de datos Ã© <code>DashboardCard</code>
             </h3>
             <div
               class="surface-ground border-round p-3 mb-4 font-mono text-xs line-height-3"
@@ -149,7 +149,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 
             <!-- 2. Demo visual: card web -->
             <h3 class="text-base font-bold mb-2">
-              2. Card web ó patrón visual
+              2. Card web Ã© patrÃ³n visual
             </h3>
             <div class="grid mb-4">
               @for (card of navHubDemo; track card.title) {
@@ -192,7 +192,7 @@ const PATTERNS_LABELS: Record<string, string> = {
             </div>
 
             <!-- 3. Reglas -->
-            <h3 class="text-base font-bold mb-2">3. Reglas del esténdar</h3>
+            <h3 class="text-base font-bold mb-2">3. Reglas del estÃ©ndar</h3>
             <div class="grid text-sm">
               <div class="col-12 md:col-6">
                 <p-card styleClass="border-round-lg p-2" header="? Web (= md)">
@@ -202,7 +202,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       grupo)
                     </li>
                     <li>
-                      ócono 44ó44px con <code>card.bgColor</code> de fondo
+                      Ã³cono 44Ã³44px con <code>card.bgColor</code> de fondo
                     </li>
                     <li>
                       <code>app-icon</code> con
@@ -216,9 +216,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </li>
                     <li>
                       Grid:
-                      <code>col-2 xl é col-3 lg é col-4 md é col-6 sm</code>
+                      <code>col-2 xl Ã© col-3 lg Ã© col-4 md Ã© col-6 sm</code>
                     </li>
-                    <li>Header de grupo: barra vertical + uppercase + lónea</li>
+                    <li>Header de grupo: barra vertical + uppercase + lÃ³nea</li>
                   </ul>
                 </p-card>
               </div>
@@ -233,12 +233,12 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <code>ion-item-divider</code> por grupo
                     </li>
                     <li>
-                      <code>div slot="start"</code> é NUNCA <code>span</code> ni
+                      <code>div slot="start"</code> Ã© NUNCA <code>span</code> ni
                       <code>ion-avatar</code>
                     </li>
-                    <li>ócono 36-38px con <code>ml-3 mr-2</code></li>
+                    <li>Ã³cono 36-38px con <code>ml-3 mr-2</code></li>
                     <li>
-                      <code>[ngClass]</code> para color (aditivo) é no
+                      <code>[ngClass]</code> para color (aditivo) Ã© no
                       <code>[class]</code>
                     </li>
                     <li>
@@ -251,9 +251,9 @@ const PATTERNS_LABELS: Record<string, string> = {
               </div>
             </div>
 
-            <!-- 4. Páginas que usan este patrón -->
+            <!-- 4. PÃ¡ginas que usan este patrÃ³n -->
             <h3 class="text-base font-bold mt-4 mb-2">
-              4. Implementaciones en producción
+              4. Implementaciones en producciÃ³n
             </h3>
             <div class="flex flex-wrap gap-2">
               @for (impl of navHubImplementations; track impl.route) {
@@ -309,7 +309,7 @@ interface DashboardGroup {
       icon: "mdi:domain",
       bgColor: "#dbeafe",
       color: "#1d4ed8",
-      description: "Gestión de clientes.",
+      description: "GestiÃ³n de clientes.",
     },
     {
       title: "Roles",
@@ -323,7 +323,7 @@ interface DashboardGroup {
       icon: "mdi:cash-remove",
       bgColor: "#ffdad6",
       color: "#b91c1c",
-      description: "Emisión de cargos.",
+      description: "EmisiÃ³n de cargos.",
     },
     {
       title: "Pagos",
@@ -340,7 +340,7 @@ interface DashboardGroup {
       description: "Reportes contables.",
     },
     {
-      title: "Configuración",
+      title: "ConfiguraciÃ³n",
       icon: "mdi:cog-outline",
       bgColor: "#f3e8ff",
       color: "#7c3aed",
@@ -350,7 +350,7 @@ interface DashboardGroup {
 
   readonly navHubImplementations = [
     {
-      label: "Configuración del Sistema",
+      label: "ConfiguraciÃ³n del Sistema",
       icon: "mdi:cog",
       route: "/settings/home",
     },

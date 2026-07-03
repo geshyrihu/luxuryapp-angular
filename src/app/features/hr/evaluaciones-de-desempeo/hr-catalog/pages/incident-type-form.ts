@@ -63,7 +63,7 @@ export class IncidentTypeForm implements OnInit {
     // El data.id viene directamente del listado: { id: 'xxx', title: 'Editar' }
     this.id = this.config.data?.id || "";
 
-    // Inicializar formulario para modo creación
+    // Inicializar formulario para modo creaciÃ³n
     this.form = this.fb.group<IIncidentTypeForm>({
       name: this.fb.control(""),
       description: this.fb.control(""),
@@ -76,14 +76,14 @@ export class IncidentTypeForm implements OnInit {
   }
 
   onLoadData(): void {
-    // El backend retorna IncidentTypeDetailDTO con Category y DefaultSeverity como int (valor numérico del enum)
+    // El backend retorna IncidentTypeDetailDTO con Category y DefaultSeverity como int (valor numÃ­rico del enum)
     this.apiS
       .onGetItem<IncidentTypeDetailDTO>(
         Endpoints.Settings.incidentTypeById(this.id),
       )
       .then((result) => {
         if (result) {
-          // ? No se necesita conversión - el backend ya retorna el valor numérico correcto
+          // ? No se necesita conversiÃ³n - el backend ya retorna el valor numÃ­rico correcto
           this.form.patchValue(result);
         }
       });

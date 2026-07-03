@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton } from "@ionic/angular/standalone";
+import { ROUTES } from "src/app/routing/route-paths";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import {
@@ -134,12 +135,12 @@ export class MedidoresList {
   exportExcel(id: any) {
     const urlApi = Endpoints.MeterReadings.exportExcel(id);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      console.log("Datos recibidos de la API para Excel:", result); // Log para depuración
+      console.log("Datos recibidos de la API para Excel:", result); // Log para depuraciÃ³n
       this.datosExcel = result;
       if (result && result.length > 0) {
         this.generate();
       } else {
-        console.log("No se generé el Excel porque no hay datos");
+        console.log("No se generÃ³ el Excel porque no hay datos");
       }
     });
   }
@@ -170,10 +171,10 @@ export class MedidoresList {
   }
 
   onGoToLecturas(id: any): void {
-    this.router.navigate(["/logbook/lista-medidor-lectura", id]);
+    this.router.navigate(ROUTES.BITACORAS.MEDIDOR_LECTURA(id));
   }
 
   onGoToGrafico(id: any): void {
-    this.router.navigate(["/logbook/grafico", id]);
+    this.router.navigate(ROUTES.BITACORAS.MEDIDOR_GRAFICO(id));
   }
 }

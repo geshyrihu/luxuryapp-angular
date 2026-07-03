@@ -2,13 +2,13 @@
  * ============================================================================
  * 鈿狅笍 ADVERTENCIA CR脥TICA / CRITICAL WARNING 鈿狅笍
  * ============================================================================
- * Este m骴ulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este m贸dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su l骻ica, estructura o flujos de IA
- * sin antes consultar y obtener autorizaci髇 expl韈ita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su l铆gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaci贸n expl贸cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el c骴igo.
+ * Por favor, NO rompan el c贸digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -61,8 +61,8 @@ export class BudgetRuleForm implements OnInit {
 
   // Opciones para el selector de tipo
   ruleTypes = [
-    { label: "Cuenta Extra (Inclusi髇)", value: 0 },
-    { label: "Exclusi髇 (Ocultar)", value: 1 },
+    { label: "Cuenta Extra (Inclusi贸n)", value: 0 },
+    { label: "Exclusi贸n (Ocultar)", value: 1 },
   ];
 
   initialData: any;
@@ -72,13 +72,13 @@ export class BudgetRuleForm implements OnInit {
 
     this.id = this.initialData.id || "";
 
-    // Configurar customerId desde el contexto si es creaci髇
+    // Configurar customerId desde el contexto si es creaci贸n
     if (!this.id && this.initialData.customerId) {
       this.form.patchValue({ customerId: this.initialData.customerId });
     }
 
     if (this.id) {
-      // Si tuvi髍amos endpoint GET by ID:
+      // Si tuvi贸ramos endpoint GET by ID:
       // this.onLoadData();
       // Como no, asumimos que viene en data o lo pasamos completo
       this.form.patchValue(this.initialData);

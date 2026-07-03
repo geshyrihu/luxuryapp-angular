@@ -1,6 +1,7 @@
 import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ChartConfiguration, ChartData } from "chart.js";
 import { TableModule } from "primeng/table";
@@ -92,13 +93,13 @@ export class ListaEvaluacionRealizada {
   }
 
   onCreate() {
-    this.route.navigate(["/employee-evaluation/conduct/create"]);
+    this.route.navigate(ROUTES.EVALUACION_EMPLEADOS.CONDUCTA_CREAR);
   }
   onEdit(id: string) {
-    this.route.navigate(["/employee-evaluation/conduct/edit", id]);
+    this.route.navigate(ROUTES.EVALUACION_EMPLEADOS.CONDUCTA_EDITAR(id));
   }
   onDetail(id: string) {
-    this.route.navigate(["/employee-evaluation/result", id]);
+    this.route.navigate(ROUTES.EVALUACION_EMPLEADOS.RESULTADO(id));
   }
 
   async onDownloadAll(): Promise<void> {

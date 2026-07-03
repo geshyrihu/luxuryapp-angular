@@ -31,7 +31,7 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">N�</th>
+      <th class="table-col-5">Né</th>
       <th colspan="2" class="table-col-30" pSortableColumn="fullName">
         COLABORADOR
         <p-sortIcon field="fullName" />
@@ -46,7 +46,7 @@
       </th>
 
       <th class="table-col-30 no-print">
-        T�LEFONO
+        TúLEFONO
         <p-sortIcon field="personalCellPhone" />
       </th>
       <th class="table-col-30" pSortableColumn="personalEmail">
@@ -97,7 +97,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versi�n m�vil -->
+<!-- ?? INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

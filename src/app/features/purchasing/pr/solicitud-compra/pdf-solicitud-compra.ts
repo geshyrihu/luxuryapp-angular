@@ -1,6 +1,7 @@
 ﻿import { Component, inject, OnInit } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -66,7 +67,7 @@ export class PdfSolicitudCompra implements OnInit {
 
     this.htmlPrintS.printHtml(html, `SolicitudCompra-${requestData.folio}`);
 
-    this.router.navigate(["/purchases/solicitud-compra", requestData.id], {
+    this.router.navigate(ROUTES.COMPRAS.SOLICITUD(requestData.id), {
       replaceUrl: true,
     });
   }

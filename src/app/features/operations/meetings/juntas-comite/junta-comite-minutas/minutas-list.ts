@@ -1,5 +1,6 @@
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -82,6 +83,7 @@ export class MinutasList {
   minutaPdfS = inject(MinutaPdfService);
   customToastS = inject(CustomToastService);
   route = inject(Router);
+  readonly ROUTES = ROUTES;
   // --- Propiedades del Componente ---
   dataSignal = signal<IMeetingIndex[]>([]);
   ref: DynamicDialogRef;
@@ -136,6 +138,18 @@ export class MinutasList {
       .then((result: IMeetingIndex[]) => {
         this.dataSignal.set(result);
       });
+  }
+
+  navigateToPendientes() {
+    this.route.navigate(ROUTES.JUNTAS_COMITE.MINUTAS_PENDIENTES);
+  }
+
+  navigateToSeguimiento() {
+    this.route.navigate(ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS('operaciones'));
+  }
+
+  navigateToGestionMinuta(id: string) {
+    this.route.navigate(ROUTES.JUNTAS_COMITE.GESTION_MINUTA(id));
   }
 
   /**

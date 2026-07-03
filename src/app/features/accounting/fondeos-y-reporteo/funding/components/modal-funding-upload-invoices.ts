@@ -25,7 +25,7 @@ import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
-// Definición de un ótem de factura analizada extendido para el frontend
+// DefiniciÃ³n de un Ã³tem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {
   tempId: string;
   xmlFileName: string;
@@ -99,7 +99,7 @@ export class FundingUploadInvoicesModal {
       (item) => item.selected() && (item.status === 0 || item.status === 5),
     ).length;
   });
-  createButtonLabel = computed(() => `Crear ${this.selectedCount()} órdenes`);
+  createButtonLabel = computed(() => `Crear ${this.selectedCount()} Ã³rdenes`);
 
   constructor() {
     this.fundingId = this.config.data.fundingId;

@@ -1,4 +1,4 @@
-<!-- La tabla ahora es gen�rica y se alimenta de los inputs -->
+<!-- La tabla ahora es genórica y se alimenta de los inputs -->
 <p-table [value]="details()" dataKey="id" styleClass="p-datatable-sm">
   <ng-template #header>
     <!-- Cabecera con acciones para agregar y enviar email -->
@@ -18,7 +18,7 @@
             [label]="'Enviar Email a ' + title()"
             [ngbTooltip]="'Enviar Email a ' + title()"
             classButton="btn btn-sm btn-light"
-            swalConfirmButtonText="S�, enviar"
+            swalConfirmButtonText="Sí, enviar"
             (confirmed)="onSendAreaEmail()"
           />
           }

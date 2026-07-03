@@ -209,10 +209,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-primary);
-  border-color: var(--ds-primary);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-primary) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-primary-light);
+    border-color: var(--ds-primary);
   }
 }
 
@@ -220,10 +222,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-help);
-  border-color: var(--ds-help);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-help) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-help-light);
+    border-color: var(--ds-help);
   }
 }
 
@@ -231,10 +235,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-contrast);
-  border-color: var(--ds-contrast);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-contrast) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-contrast-light);
+    border-color: var(--ds-contrast);
   }
 }
 
@@ -242,10 +248,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-danger);
-  border-color: var(--ds-danger);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-danger) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-danger-light);
+    border-color: var(--ds-danger);
   }
 }
 
@@ -253,10 +261,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-success);
-  border-color: var(--ds-success);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-success) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-success-light);
+    border-color: var(--ds-success);
   }
 }
 
@@ -264,7 +274,8 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-text-secondary);
-  border-color: var(--ds-border);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-border) 50%, transparent);
 
   &:hover:not(:disabled):not(:disabled):not(.is-loading) {
     background-color: var(--ds-bg-sunken);
@@ -471,10 +482,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-info);
-  border-color: var(--ds-info);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-info) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-info-light);
+    border-color: var(--ds-info);
   }
 }
 
@@ -482,10 +495,12 @@
   @extend .btn;
   background-color: transparent;
   color: var(--ds-warning);
-  border-color: var(--ds-warning);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-warning) 50%, transparent);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-warning-light);
+    border-color: var(--ds-warning);
   }
 }
 

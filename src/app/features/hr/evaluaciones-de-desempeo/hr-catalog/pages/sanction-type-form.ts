@@ -60,7 +60,7 @@ export class SanctionTypeForm implements OnInit {
     // El data.id viene directamente del listado: { id: 'xxx', title: 'Editar' }
     this.id = this.config.data?.id || "";
 
-    // Inicializar formulario para modo creación
+    // Inicializar formulario para modo creaciÃ³n
     this.form = this.fb.group<ISanctionTypeForm>({
       name: this.fb.control(""),
       description: this.fb.control(""),
@@ -74,14 +74,14 @@ export class SanctionTypeForm implements OnInit {
   }
 
   onLoadData(): void {
-    // El backend retorna SanctionTypeDetailDTO con SeverityLevel como int (valor numérico del enum)
+    // El backend retorna SanctionTypeDetailDTO con SeverityLevel como int (valor numÃ­rico del enum)
     this.apiS
       .onGetItem<SanctionTypeDetailDTO>(
         Endpoints.Settings.sanctionTypeById(this.id),
       )
       .then((result) => {
         if (result) {
-          // ? No se necesita conversión - el backend ya retorna el valor numérico correcto
+          // ? No se necesita conversiÃ³n - el backend ya retorna el valor numÃ­rico correcto
           this.form.patchValue(result);
         }
       });
