@@ -21,11 +21,11 @@ import {
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { MenuModule } from "primeng/menu";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -117,9 +117,9 @@ export class HeaderEmployeeMonitor implements OnInit {
     this.cb_customer().map((c: any) => ({
       label: c.label,
       data: { image: c.image, value: c.value },
-      styleClass: c.value === this.customerId() ? 'font-bold' : '',
+      styleClass: c.value === this.customerId() ? "font-bold" : "",
       command: () => this.selectCustomer(c.value),
-    }))
+    })),
   );
 
   // AI Modal Signals
@@ -224,11 +224,14 @@ export class HeaderEmployeeMonitor implements OnInit {
 
   ngOnInit(): void {
     // La lógica de suscripción del título se movió al constructor con effect.
+    // NOTA: iconos del header usan el set "Fluent UI System Color" cuando existe
+    // el equivalente (fluent-color:*). Los que no existen en color se dejan con
+    // el nombre genérico icon.* (Material Symbols). Esto aplica SOLO al header.
     this.displayNavIcons = [
       {
         id: "home",
         ngbTooltip: "Inicio",
-        iconClass: "mdi:home",
+        iconClass: "fluent-color:home-24",
         action: () => this.onHome(),
       },
       {
@@ -246,45 +249,45 @@ export class HeaderEmployeeMonitor implements OnInit {
       {
         id: "refresh",
         ngbTooltip: "Actualizar",
-        iconClass: "mdi:refresh",
+        iconClass: "fluent-color:arrow-sync-24",
         action: () => this.onRefresh(),
       },
       {
         id: "building",
         ngbTooltip: "Mi edificio",
-        iconClass: "mdi:office-building",
+        iconClass: "fluent-color:building-24",
         action: () => this.onBuilding(),
       },
       {
         id: "announcement",
         ngbTooltip: "Anuncios",
-        iconClass: "mdi:bullhorn",
+        iconClass: "fluent-color:megaphone-loud-24",
         action: () => this.onannouncement(),
       },
       {
         id: "ai-announcement",
         ngbTooltip: "Comunicado IA",
-        iconClass: "mdi:robot-outline",
+        iconClass: "fluent-color:bot-24",
         iconExtraClass: "text-purple-500",
         action: () => this.onAiAnnouncement(),
       },
       {
         id: "emergency-phones",
         ngbTooltip: "Telefonos de Emergencia",
-        iconClass: "mdi:phone-alert",
+        iconClass: "fluent-color:phone-24",
         action: () => this.onEmergencyPhones(),
       },
       {
         id: "settings",
         ngbTooltip: "Configuración",
-        iconClass: "mdi:cog",
+        iconClass: "fluent-color:settings-24",
         action: () => this.onSetting(),
         requiresRole: [EApplicationRole.SuperUsuario],
       },
       {
         id: "whats-new",
         ngbTooltip: "Novedades",
-        iconClass: "mdi:star-four-points",
+        iconClass: "fluent-color:star-24",
         iconExtraClass: "text-yellow-500",
         action: () => this.onWhatsNew(),
       },

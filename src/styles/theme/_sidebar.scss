@@ -386,7 +386,9 @@ app-header-employee-monitor .toolbar-icon-btn {
   background: transparent;
   border: none;
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.85);
+  /* El header (.mobile-header-toolbar) es blanco fijo, por eso el icono va
+     oscuro. Los iconos fluent-color multicolor ignoran este color. */
+  color: #334155;
   cursor: pointer;
   transition:
     background-color 150ms ease,
@@ -394,14 +396,21 @@ app-header-employee-monitor .toolbar-icon-btn {
   flex-shrink: 0;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--primary-color, #0b3164);
   }
 
   &:active {
     transform: scale(0.92);
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.1);
   }
+}
+
+/* Tamaño unificado de los iconos del header (sidebar toggle, nav y tema).
+   app-icon dimensiona su glifo con 1em, así que basta con el font-size. */
+app-header-employee-monitor .toolbar-icon-btn app-icon,
+app-header-employee-monitor iw-button app-icon {
+  font-size: 1.4rem;
 }
 
 /* Customer name in header */

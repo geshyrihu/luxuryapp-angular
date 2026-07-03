@@ -44,11 +44,17 @@
       <td>{{ item.largeName }}</td>
       <!-- Opciones -->
       <td class="no-print">
-        <div class="flex">
+        <div class="flex gap-1">
           <iw-button-edit
+            size="sm"
+            styleClass="btn--circle"
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete
+            size="sm"
+            styleClass="btn--circle"
+            (confirmed)="onDelete(item.id)"
+          />
         </div>
       </td>
       <!-- Opciones -->

@@ -82,6 +82,7 @@ import {
   type Territory,
 } from "src/app/core/components/shared/territory-map/territory-map";
 import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switch/tristate-switch";
+import { CATALOG_DEMO_EMAIL_HTML } from "./catalog-demo-data";
 
 @Component({
   selector: "app-common-core-coverage",
@@ -632,7 +633,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
             to="ana.garcia@cliente.mx"
             subject="Propuesta comercial - Penthouse Santa Fe"
             [tags]="['VIP', 'Seguimiento', 'Q2-2026']"
-            [htmlContent]="demoEmailHtml"
+            [htmlContent]="CATALOG_DEMO_EMAIL_HTML"
           />
         </p-card>
       </div>
@@ -1040,31 +1041,6 @@ export class CommonCoreCoverage {
     },
   ];
 
-  readonly demoEmailHtml = `
-    <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;">
-      <div style="background:#00050e;padding:24px;border-radius:8px 8px 0 0;">
-        <h1 style="color:#fff;margin:0;font-size:20px;">LuxuryApp CRM</h1>
-      </div>
-      <div style="padding:24px;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 8px 8px;">
-        <p style="color:#1b1c1d;">Estimada <strong>Ana</strong>,</p>
-        <p style="color:#44474c;line-height:1.6;">
-          Adjunto encontrara nuestra propuesta comercial actualizada para el
-          <strong>Penthouse Santa Fe</strong>. Incluye las modificaciones de
-          acabados que solicito en nuestra ultima reunion.
-        </p>
-        <div style="background:#fbf9fb;border-radius:8px;padding:16px;margin:16px 0;">
-          <p style="margin:0;font-size:13px;color:#74777d;">Valor de operacion</p>
-          <p style="margin:4px 0 0;font-size:24px;font-weight:700;color:#00050e;">$1,200,000 MXN</p>
-        </div>
-        <a href="#" style="background:#00050e;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;display:inline-block;">
-          Ver propuesta completa
-        </a>
-        <p style="color:#74777d;font-size:12px;margin-top:24px;">
-          LuxuryApp CRM - Torre Corporativa, CDMX - crm@luxuryapp.mx
-        </p>
-      </div>
-    </div>
-  `;
 
   onCommentSubmit(text: string): void {
     this.messageService.add({

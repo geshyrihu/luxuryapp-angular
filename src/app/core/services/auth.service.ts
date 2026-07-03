@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, Injector, NgZone, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import {
   BehaviorSubject,
   Observable,
@@ -15,6 +14,7 @@ import {
   throwError,
 } from "rxjs";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { environment } from "src/environments/environment";
 import {
   InfoAccountAuthDTO,
@@ -118,7 +118,10 @@ export class AuthService {
   }
 
   // === MÉTODOS DE AUTENTICACIÓN ===
-  login(credentials: { userName: string; password: string }): Observable<UserTokenDTO> {
+  login(credentials: {
+    userName: string;
+    password: string;
+  }): Observable<UserTokenDTO> {
     return this.http
       .post<ApiResponseDTO<UserTokenDTO>>(
         `${environment.API_BASE_URL}Auth/Login`,
@@ -129,6 +132,7 @@ export class AuthService {
       )
       .pipe(
         map((response) => {
+          console.log("🚀 ~ AuthService ~ login ~ response:", response);
           if (response.success) return response.data;
           throw new Error(response.message);
         }),
@@ -213,7 +217,7 @@ export class AuthService {
     // Limpiar máscaras y clases de PrimeNG (p-drawer, p-dialog) para evitar UI bloqueada
     document.body.classList.remove("p-overflow-hidden");
     const overlays = document.querySelectorAll(
-      ".p-component-overlay, .p-dialog-mask, .p-drawer-mask, .p-sidebar-mask"
+      ".p-component-overlay, .p-dialog-mask, .p-drawer-mask, .p-sidebar-mask",
     );
     overlays.forEach((overlay) => overlay.remove());
 

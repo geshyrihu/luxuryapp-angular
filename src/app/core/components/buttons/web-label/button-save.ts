@@ -10,7 +10,7 @@ import { BaseButton } from "../base/base-button";
   template: `
     <button
       [type]="type()"
-      [class]="buttonClasses()"
+      [class]="buttonClasses() + ' gap-2'"
       [disabled]="disabled() || submitting()"
       (click)="emitClick($event)"
     >
@@ -29,9 +29,9 @@ export class WebButtonLabelSave extends BaseButton {
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 
-  override severity = input<any>("success");
+  override severity = input<any>("primary");
   override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "outline",
+    "solid",
   );
   override type = input<"button" | "submit" | "reset">("submit");
 
@@ -40,4 +40,3 @@ export class WebButtonLabelSave extends BaseButton {
     return this.propertyId() ? "Actualizar" : "Guardar";
   });
 }
-

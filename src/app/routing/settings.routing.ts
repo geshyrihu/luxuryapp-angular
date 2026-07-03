@@ -507,70 +507,70 @@ export const settingsRoutes: Routes = [
       {
         path: "tokens/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-tokens-item/catalog-tokens-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/foundations/catalog-tokens-item/catalog-tokens-item").then(
             (m) => m.CatalogTokensItem,
           ),
       },
       {
         path: "web/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-web-item/catalog-web-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/components/catalog-web-item/catalog-web-item").then(
             (m) => m.CatalogWebItem,
           ),
       },
       {
         path: "mobile/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile-item/catalog-mobile-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/components/catalog-mobile-item/catalog-mobile-item").then(
             (m) => m.CatalogMobileItem,
           ),
       },
       {
         path: "core/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-core-item/catalog-core-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/components/catalog-core-item/catalog-core-item").then(
             (m) => m.CatalogCoreItem,
           ),
       },
       {
         path: "charts/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-charts-item/catalog-charts-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/charts/catalog-charts-item/catalog-charts-item").then(
             (m) => m.CatalogChartsItem,
           ),
       },
       {
         path: "patterns/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-patterns-item/catalog-patterns-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/patterns-layouts/catalog-patterns-item/catalog-patterns-item").then(
             (m) => m.CatalogPatternsItem,
           ),
       },
       {
         path: "layouts/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-layouts-item/catalog-layouts-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/patterns-layouts/catalog-layouts-item/catalog-layouts-item").then(
             (m) => m.CatalogLayoutsItem,
           ),
       },
       {
         path: "docs/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-docs-item/catalog-docs-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/foundations/catalog-docs-item/catalog-docs-item").then(
             (m) => m.CatalogDocsItem,
           ),
       },
       {
         path: "audit/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-audit-item/catalog-audit-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/foundations/catalog-audit-item/catalog-audit-item").then(
             (m) => m.CatalogAuditItem,
           ),
       },
       {
         path: "guia/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/catalog-guia-item").then(
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/foundations/catalog-guia-item/catalog-guia-item").then(
             (m) => m.CatalogGuiaItem,
           ),
       },

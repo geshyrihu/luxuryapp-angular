@@ -5,15 +5,16 @@
   >
     <ng-template #start>
       <div class="flex align-items-center gap-2 px-3" style="min-width: 650px">
-        <!-- Botón para abrir/cerrar el sidebar -->
-        <iw-button
-          iconClass="mdi:menu"
-          variant="ghost"
-          severity="contrast"
-          (clicked)="sidebarToggle()"
+        <!-- Botón para abrir/cerrar el sidebar (mismo patrón que notificaciones) -->
+        <button
+          type="button"
+          class="toolbar-icon-btn"
+          (click)="sidebarToggle()"
           pTooltip="Menú"
           tooltipPosition="bottom"
-        />
+        >
+          <app-icon icon="fluent-color:text-bullet-list-square-24"></app-icon>
+        </button>
 
         <!-- Selector de Condominio -->
         @if (cb_customer().length > 1) {
@@ -68,7 +69,12 @@
       </div>
     </ng-template>
 
-    <!-- <ng-template #center> </ng-template> -->
+    <ng-template #center>
+      <!-- <span class="flex align-items-center gap-2">
+        <app-icon icon="flag:mx-4x3" style="font-size: 1.25rem"></app-icon>
+        ¿Pero, y si si? 🤩🥳
+      </span> -->
+    </ng-template>
 
     <ng-template #end>
       <div class="flex align-items-center gap-1">
@@ -78,26 +84,30 @@
         <!-- Iconos de Navegación -->
         @for (navIcon of displayNavIcons; track navIcon.id) { @if
         (!navIcon.requiresRole || aspRoleS.hasAny(navIcon.requiresRole)) {
-        <iw-button
-          [iconClass]="navIcon.iconClass"
-          variant="outline"
-          severity="contrast"
-          (clicked)="navIcon.action()"
+        <button
+          type="button"
+          class="toolbar-icon-btn"
+          (click)="navIcon.action()"
           [pTooltip]="navIcon.ngbTooltip"
           tooltipPosition="bottom"
-          [class.pi-spin]="navIcon.iconExtraClass?.includes('pi-spin')"
-        />
+        >
+          <app-icon
+            [icon]="navIcon.iconClass"
+            [class.pi-spin]="navIcon.iconExtraClass?.includes('pi-spin')"
+          ></app-icon>
+        </button>
         } }
 
         <!-- Theme Toggle Button -->
-        <iw-button
-          [iconClass]="getThemeIcon()"
-          variant="ghost"
-          severity="contrast"
-          (clicked)="toggleTheme()"
+        <button
+          type="button"
+          class="toolbar-icon-btn"
+          (click)="toggleTheme()"
           pTooltip="Cambiar Tema"
           tooltipPosition="bottom"
-        />
+        >
+          <app-icon [icon]="getThemeIcon()"></app-icon>
+        </button>
 
         <!-- Componentes de la derecha -->
         @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
@@ -454,8 +464,6 @@
       <!-- <p-button
         label="Póster Visual"
         icon="pi pi-image"
-        (click)="generateOfficialAnnouncement('poster')"
-        [disabled]="!(userIdeaControl.value || '').trim() || isGeneratingAnnouncement()"
       /> -->
       }
     </div>
