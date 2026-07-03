@@ -11,9 +11,9 @@ import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web/label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+} from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";

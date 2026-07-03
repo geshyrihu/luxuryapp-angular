@@ -12,10 +12,10 @@ import {
 } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";

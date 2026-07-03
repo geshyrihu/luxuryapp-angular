@@ -1,7 +1,7 @@
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 export type NominaRole =

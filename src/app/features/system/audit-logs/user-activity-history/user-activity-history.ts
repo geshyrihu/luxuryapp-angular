@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
@@ -7,7 +7,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
@@ -60,7 +60,7 @@ export class UserActivityHistory implements OnInit {
   data = signal<any[]>([]);
   loading = signal(true);
 
-  // Signals para paginaciÃ³n y bÃºsqueda
+  // Signals para paginación y búsqueda
   totalRecords = signal(0);
   rows = signal(tablePrimeNgRows());
   searchTerm = signal<string>("");
@@ -175,7 +175,7 @@ export class UserActivityHistory implements OnInit {
   onPageChange(event: any): void {
     this.rows.set(event.rows);
     this.currentPage.set(event.first / event.rows + 1);
-    this.onLoadData(true); // En la tabla de escritorio, cada cambio de pÃ¡gina es una nueva bÃºsqueda
+    this.onLoadData(true); // En la tabla de escritorio, cada cambio de página es una nueva búsqueda
   }
 
   onSearch(term: string): void {

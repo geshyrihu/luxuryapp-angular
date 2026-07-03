@@ -1,7 +1,7 @@
-﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { UpdatePasswordDTO } from "src/app/core/interfaces/user-info.interface";

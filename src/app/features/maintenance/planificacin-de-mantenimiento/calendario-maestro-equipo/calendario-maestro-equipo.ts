@@ -1,8 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";

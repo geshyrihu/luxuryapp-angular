@@ -1,8 +1,8 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
@@ -30,7 +30,7 @@ export default class IaTestComponent {
   form = this.fb.group({
     profile: ["Local", Validators.required],
     prompt: [
-      "Hola, Â¿quÃ© modelo eres? Responde brevemente.",
+      "Hola, ¿qué modelo eres? Responde brevemente.",
       Validators.required,
     ],
   });

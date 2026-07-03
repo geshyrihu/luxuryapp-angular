@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -39,7 +39,7 @@ export class ApplicationUserForm implements OnInit {
   cb_customer = signal<ISelectItem[]>([]);
   cb_typePerson = toSignal(this.enumSelectS.typePerson(), { initialValue: [] });
 
-  // Definición estricta del formulario
+  // Definici�n estricta del formulario
   form = new FormGroup({
     email: new FormControl<string>(""),
     phoneNumber: new FormControl<string>(""),

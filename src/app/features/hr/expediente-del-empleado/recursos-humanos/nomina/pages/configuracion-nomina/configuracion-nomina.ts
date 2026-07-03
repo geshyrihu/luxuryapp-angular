@@ -2,7 +2,7 @@ import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";

@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";

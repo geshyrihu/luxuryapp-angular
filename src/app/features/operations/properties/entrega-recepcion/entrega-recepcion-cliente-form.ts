@@ -8,7 +8,7 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";

@@ -25,7 +25,7 @@ import { TagModule } from "primeng/tag"; // Added
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";

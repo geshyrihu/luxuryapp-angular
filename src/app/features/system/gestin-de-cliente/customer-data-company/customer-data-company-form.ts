@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputPhonePrefix } from "src/app/core/components/inputs/web/custom-input-phone-prefix";
@@ -43,7 +43,7 @@ export class CustomerDataCompanyForm implements OnInit {
   cb_customer = signal<ISelectItem[]>([]);
   cb_applicationRole = signal<ISelectItem[]>([]);
 
-  // Definición estricta del formulario
+  // Definici�n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     customerId: new FormControl<string | null>("", {

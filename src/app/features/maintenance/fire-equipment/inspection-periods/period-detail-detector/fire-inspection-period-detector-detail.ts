@@ -1,9 +1,9 @@
-锘縤mport { CommonModule, Location } from "@angular/common";
+import { CommonModule, Location } from "@angular/common";
 import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 import { TagModule } from "primeng/tag";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -101,16 +101,16 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
 
   async openChecklist(item: any) {
     if (!this.activeCycle()) {
-      window.alert("No hay un ciclo de inspecci贸n activo para este periodo.");
+      window.alert("No hay un ciclo de inspecci髇 activo para este periodo.");
       return;
     }
     if (item.cycleStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. 贸Deseas actualizar los datos?")) return;
+      if (!window.confirm("Este equipo ya fue inspeccionado. 驞eseas actualizar los datos?")) return;
     }
     await this.dialogHandlerS.openDialog(
       FireCycleInspectionDetectorForm,
       { cycleId: this.activeCycle().id, equipmentId: item.detectorId },
-      "Inspecci贸n de Detector de Humo",
+      "Inspecci髇 de Detector de Humo",
       this.dialogHandlerS.sizeMd,
     );
     this.onLoadData();
@@ -128,18 +128,18 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
 
   async startScan() {
     this.scanError.set("");
-    this.scanStatus.set("Iniciando c贸mara...");
+    this.scanStatus.set("Iniciando c髆ara...");
     this.scanning.set(true);
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
       const video = this.videoEl.nativeElement;
       video.srcObject = this.stream;
       await video.play();
-      this.scanStatus.set("Apunta la c贸mara al c贸digo QR del equipo.");
+      this.scanStatus.set("Apunta la c髆ara al c骴igo QR del equipo.");
       this.scanLoop(video);
     } catch {
       this.scanning.set(false);
-      this.scanError.set("No se pudo acceder a la c贸mara. Verifica los permisos.");
+      this.scanError.set("No se pudo acceder a la c髆ara. Verifica los permisos.");
       this.scanStatus.set("");
     }
   }
@@ -168,7 +168,7 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
     const equipmentId = segments.length >= 2 ? segments[1] : segments[0];
     const match = this.periodItems().find((p) => p.detectorId === equipmentId);
     if (!match) {
-      this.scanError.set("Este equipo no pertenece al periodo de inspecci贸n actual.");
+      this.scanError.set("Este equipo no pertenece al periodo de inspecci髇 actual.");
       return;
     }
     const cycleItems: any[] = this.activeCycle()?.items ?? [];

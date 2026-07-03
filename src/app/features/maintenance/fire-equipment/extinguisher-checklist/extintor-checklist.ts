@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ROUTES } from "src/app/routing/route-paths";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";

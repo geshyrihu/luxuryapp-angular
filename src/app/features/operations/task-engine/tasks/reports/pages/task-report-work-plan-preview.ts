@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";

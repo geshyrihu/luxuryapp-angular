@@ -6,8 +6,8 @@ import {
   WebButtonLabelActiveDesactive,
   WebButtonLabelDelete,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web/label";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+} from "src/app/core/components/buttons/web-label";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";

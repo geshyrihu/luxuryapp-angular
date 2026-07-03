@@ -10,9 +10,9 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";

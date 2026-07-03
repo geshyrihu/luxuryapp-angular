@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MenuItem, TreeNode } from "primeng/api";
@@ -8,9 +8,9 @@ import { CheckboxModule } from "primeng/checkbox";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 import {
-  CustomButtonDelete,
-  CustomButtonEdit,
-} from "src/app/core/components/buttons/legacy/buttons";
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "src/app/core/components/buttons/web-label";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
@@ -212,8 +212,8 @@ const CORE_LABELS: Record<string, string> = {
     Loader,
     StatusBadge,
     PrimeNgCustomCaption,
-    CustomButtonDelete,
-    CustomButtonEdit,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
     EmptyState,
     DateRange,
     NotificationCenter,
@@ -281,20 +281,18 @@ const CORE_LABELS: Record<string, string> = {
               Dentro de <code>app-action-menu</code> los botones muestran
               <strong>icono + label alineados</strong>. Siempre agrega
               <code>[showLabelOnDesktop]="true"</code> y un
-              <code>label</code> explícito.
+              <code>label</code> expl�cito.
             </p>
             <div class="flex gap-4">
               <div>
                 <p class="text-xs font-bold text-secondary mb-2">Correcto</p>
                 <app-action-menu>
                   <ng-container actions>
-                    <custom-button-edit
+                    <il-button-edit
                       label="Editar"
-                      [showLabelOnDesktop]="true"
                     />
-                    <custom-button-delete
+                    <il-button-delete
                       label="Eliminar"
-                      [showLabelOnDesktop]="true"
                     />
                   </ng-container>
                 </app-action-menu>
@@ -305,8 +303,8 @@ const CORE_LABELS: Record<string, string> = {
                 </p>
                 <app-action-menu>
                   <ng-container actions>
-                    <custom-button-edit />
-                    <custom-button-delete />
+                    <il-button-edit />
+                    <il-button-delete />
                   </ng-container>
                 </app-action-menu>
               </div>
@@ -314,11 +312,9 @@ const CORE_LABELS: Record<string, string> = {
             <p-divider />
             <p class="text-xs text-secondary m-0">
               <strong>Regla DS:</strong> Todos los
-              <code>custom-button-*</code> dentro de
+              <code>il-button-*</code> dentro de
               <code>&lt;app-action-menu&gt;</code> deben tener
-              <code>[showLabelOnDesktop]="true"</code> +
-              <code>label="..."</code> para mostrar texto en web. En mobile el
-              label ya aparece por defecto (Ionic list item).
+              <code>label="..."</code> para mostrar texto.
             </p>
           </p-card>
         }
@@ -402,14 +398,14 @@ const CORE_LABELS: Record<string, string> = {
         @case ("confirmdialog") {
           <p-card header="Confirm Dialog">
             <p-button
-              label="Abrir confirmación"
+              label="Abrir confirmaci�n"
               severity="danger"
               (onClick)="confirmVisible.set(true)"
             />
             <app-confirm-dialog
               [(visible)]="confirmVisible"
               title="Eliminar registro"
-              message="¿Estás seguro?"
+              message="�Est�s seguro?"
               type="danger"
               confirmLabel="Eliminar"
             />
@@ -463,7 +459,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
             <div class="col-12 md:col-6 lg:col-3">
               <app-kpi-card
-                label="Conversión"
+                label="Conversi�n"
                 [value]="68"
                 format="percent"
                 suffix="%"
@@ -486,11 +482,11 @@ const CORE_LABELS: Record<string, string> = {
           <p-card header="Avatar Group - Stacked con overflow">
             <div class="flex flex-column gap-4">
               <div>
-                <p class="text-sm font-bold mb-2">Máx. 4 visibles:</p>
+                <p class="text-sm font-bold mb-2">M�x. 4 visibles:</p>
                 <app-avatar-group [avatars]="avatarList" [maxVisible]="4" />
               </div>
               <div>
-                <p class="text-sm font-bold mb-2">Máx. 3 visibles:</p>
+                <p class="text-sm font-bold mb-2">M�x. 3 visibles:</p>
                 <app-avatar-group [avatars]="avatarList" [maxVisible]="3" />
               </div>
             </div>
@@ -652,7 +648,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("treetable") {
-          <p-card header="Tree Table - Tabla jerárquica">
+          <p-card header="Tree Table - Tabla jer�rquica">
             <app-tree-table [nodes]="treeNodes" [columns]="treeColumns" />
           </p-card>
         }
@@ -667,9 +663,9 @@ const CORE_LABELS: Record<string, string> = {
                   class="border-round-lg p-4 text-center cursor-pointer"
                   style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
                 >
-                  <p class="m-0 font-bold">Ãrea de contexto</p>
+                  <p class="m-0 font-bold">Área de contexto</p>
                   <p class="m-0 text-xs text-secondary mt-1">
-                    Clic derecho aquí
+                    Clic derecho aqu�
                   </p>
                 </div>
               </app-context-menu>
@@ -703,7 +699,7 @@ const CORE_LABELS: Record<string, string> = {
               >
                 <p class="font-bold text-sm m-0">Panel derecho (detalle)</p>
                 <p class="text-sm text-secondary mt-2">
-                  Selecciona un elemento para ver su detalle aquí.
+                  Selecciona un elemento para ver su detalle aqu�.
                 </p>
               </div>
             </app-split-pane>
@@ -713,7 +709,7 @@ const CORE_LABELS: Record<string, string> = {
           <p-card header="Command Palette - Ctrl+K">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
-                El Command Palette es un diálogo global. Haz clic para abrirlo:
+                El Command Palette es un di�logo global. Haz clic para abrirlo:
               </p>
               <p-button
                 label="Abrir Command Palette (Ctrl+K)"
@@ -721,8 +717,8 @@ const CORE_LABELS: Record<string, string> = {
                 (onClick)="cmdPaletteVisible.set(true)"
               />
               <p class="text-xs text-secondary m-0">
-                También puedes presionar <kbd>Ctrl+K</kbd> cuando el diálogo
-                esté registrado.
+                Tambi�n puedes presionar <kbd>Ctrl+K</kbd> cuando el di�logo
+                est� registrado.
               </p>
             </div>
             <app-command-palette
@@ -735,7 +731,7 @@ const CORE_LABELS: Record<string, string> = {
           <p-card header="Tour / Onboarding - Paso a paso">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
-                Inicia el tour para ver el componente de onboarding en acción:
+                Inicia el tour para ver el componente de onboarding en acci�n:
               </p>
               <p-button
                 label="Iniciar Tour"
@@ -756,7 +752,7 @@ const CORE_LABELS: Record<string, string> = {
               </p-card>
             </div>
             <div class="col-12 md:col-4">
-              <p-card header="Ocupación - 45%">
+              <p-card header="Ocupaci�n - 45%">
                 <div class="flex justify-content-center">
                   <app-gauge [value]="45" [min]="0" [max]="100" [size]="140" />
                 </div>
@@ -779,7 +775,7 @@ const CORE_LABELS: Record<string, string> = {
                 'Leads',
                 'Contactados',
                 'Propuesta',
-                'Negociación',
+                'Negociaci�n',
                 'Cerrados',
               ]"
               [values]="[1200, 820, 430, 210, 95]"
@@ -789,11 +785,11 @@ const CORE_LABELS: Record<string, string> = {
 
         <!-- 13.3.3 -->
         @case ("otpinput") {
-          <p-card header="OTP Input - 2FA / Verificación">
+          <p-card header="OTP Input - 2FA / Verificaci�n">
             <div class="flex flex-column gap-4">
               <div>
                 <p class="text-sm font-bold mb-2">
-                  6 dígitos (predeterminado):
+                  6 d�gitos (predeterminado):
                 </p>
                 <app-otp-input [(value)]="otpValue" />
                 <p class="text-xs text-secondary mt-1">
@@ -808,7 +804,7 @@ const CORE_LABELS: Record<string, string> = {
           <div class="grid">
             <div class="col-12 md:col-6">
               <app-profile-card
-                name="Ana Martínez"
+                name="Ana Mart�nez"
                 role="Gerente de Ventas"
                 email="a.martinez@luxuryapp.mx"
                 phone="+52 55 1234 5678"
@@ -818,7 +814,7 @@ const CORE_LABELS: Record<string, string> = {
             <div class="col-12 md:col-6">
               <app-profile-card
                 name="Carlos Ruiz"
-                role="Director Técnico"
+                role="Director T�cnico"
                 email="c.ruiz@luxuryapp.mx"
                 company="LuxuryApp Tech"
               />
@@ -863,11 +859,11 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("tristateswitch") {
-          <p-card header="Tristate Switch - Sí / No / Indeterminado">
+          <p-card header="Tristate Switch - S� / No / Indeterminado">
             <div class="flex flex-column gap-3">
               <app-tristate-switch
                 [(value)]="tristateValue"
-                label="Autorización del cliente"
+                label="Autorizaci�n del cliente"
               />
               <p class="text-xs text-secondary">
                 Estado:
@@ -875,13 +871,13 @@ const CORE_LABELS: Record<string, string> = {
                   tristateValue() === null
                     ? "Indeterminado"
                     : tristateValue()
-                      ? "Sí"
+                      ? "S�"
                       : "No"
                 }}</strong>
               </p>
               <app-tristate-switch
                 [(value)]="tristateValue2"
-                label="Revisión completada"
+                label="Revisi�n completada"
                 hint="Null = pendiente"
               />
             </div>
@@ -892,7 +888,7 @@ const CORE_LABELS: Record<string, string> = {
             <app-signature-pad
               label="Firma del cliente"
               hint="Dibuja tu firma con el mouse o dedo"
-              placeholder="Firma aquí"
+              placeholder="Firma aqu�"
             />
           </p-card>
         }
@@ -930,7 +926,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("realtimeindicator") {
-          <p-card header="Realtime Indicator - Estado de conexión live">
+          <p-card header="Realtime Indicator - Estado de conexi�n live">
             <div class="flex flex-column gap-3">
               <app-realtime-indicator
                 status="live"
@@ -974,12 +970,12 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("leadscoring") {
-          <p-card header="Lead Scoring - Puntuación visual de lead CRM">
+          <p-card header="Lead Scoring - Puntuaci�n visual de lead CRM">
             <app-lead-scoring [categories]="leadCategories" />
           </p-card>
         }
         @case ("approvalworkflow") {
-          <p-card header="Approval Workflow - Flujo de aprobación">
+          <p-card header="Approval Workflow - Flujo de aprobaci�n">
             <app-approval-workflow [nodes]="approvalNodes" />
           </p-card>
         }
@@ -1025,13 +1021,13 @@ const CORE_LABELS: Record<string, string> = {
             <app-email-preview
               from="sistema@luxuryapp.mx"
               to="cliente@empresa.com"
-              subject="Confirmación de orden OC-2026-0892"
+              subject="Confirmaci�n de orden OC-2026-0892"
               [htmlContent]="emailHtml"
             />
           </p-card>
         }
         @case ("formbuilder") {
-          <p-card header="Form Builder - JSON Schema dinámico">
+          <p-card header="Form Builder - JSON Schema din�mico">
             <app-form-builder
               title="Formulario generado desde schema"
               [schema]="formSchema"
@@ -1039,18 +1035,18 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("printview") {
-          <p-card header="Print View - Vista de impresión">
+          <p-card header="Print View - Vista de impresi�n">
             <app-print-view
               title="Reporte de Gastos - Junio 2026"
               subtitle="Departamento de Operaciones"
             >
               <p>
-                Contenido del reporte que se optimiza para impresión con CSS
+                Contenido del reporte que se optimiza para impresi�n con CSS
                 @media print.
               </p>
               <p>
-                Las áreas de navegación y el sidebar quedan ocultos
-                automáticamente.
+                Las �reas de navegaci�n y el sidebar quedan ocultos
+                autom�ticamente.
               </p>
             </app-print-view>
           </p-card>
@@ -1070,7 +1066,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("heatmap") {
-          <p-card header="Heatmap - Actividad por hora/día">
+          <p-card header="Heatmap - Actividad por hora/d�a">
             <app-heatmap
               title="Actividad semanal"
               [data]="heatmapData"
@@ -1084,9 +1080,9 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("pivottable") {
-          <p-card header="Pivot Table - Análisis multidimensional">
+          <p-card header="Pivot Table - An�lisis multidimensional">
             <app-pivot-table
-              title="Ventas por área y mes"
+              title="Ventas por �rea y mes"
               [data]="pivotData"
               [rows]="pivotRows"
               [columns]="pivotColumns"
@@ -1121,8 +1117,8 @@ export class CatalogCoreItem {
   wizardActiveStep = signal(1);
 
   readonly groupedData = [
-    { section: "Hoy", title: "Revisión", status: "Pendiente" },
-    { section: "Mañana", title: "Junta", status: "Urgente" },
+    { section: "Hoy", title: "Revisi�n", status: "Pendiente" },
+    { section: "Ma�ana", title: "Junta", status: "Urgente" },
   ];
 
   readonly sampleNotifications: NotificationItem[] = [
@@ -1139,7 +1135,7 @@ export class CatalogCoreItem {
 
   readonly wizardSteps: WizardStep[] = [
     { value: 1, label: "Datos", icon: "mdi:file-document-outline" },
-    { value: 2, label: "Revisión", icon: "mdi:eye-outline" },
+    { value: 2, label: "Revisi�n", icon: "mdi:eye-outline" },
     { value: 3, label: "Confirmar", icon: "mdi:check-circle-outline" },
   ];
 
@@ -1156,7 +1152,7 @@ export class CatalogCoreItem {
     },
     {
       field: "area",
-      header: "Ãrea",
+      header: "Área",
       type: "select",
       editable: true,
       sortable: true,
@@ -1179,14 +1175,14 @@ export class CatalogCoreItem {
   readonly gridData = [
     {
       id: 1,
-      nombre: "Juan García",
+      nombre: "Juan Garc�a",
       area: "Contabilidad",
       monto: 45000,
       activo: true,
     },
     {
       id: 2,
-      nombre: "María López",
+      nombre: "Mar�a L�pez",
       area: "Operaciones",
       monto: 38500,
       activo: true,
@@ -1194,7 +1190,7 @@ export class CatalogCoreItem {
     { id: 3, nombre: "Carlos Ruiz", area: "RH", monto: 52000, activo: false },
     {
       id: 4,
-      nombre: "Ana Martínez",
+      nombre: "Ana Mart�nez",
       area: "Contabilidad",
       monto: 61000,
       activo: true,
@@ -1208,7 +1204,7 @@ export class CatalogCoreItem {
     },
     {
       id: 6,
-      nombre: "Laura Sánchez",
+      nombre: "Laura S�nchez",
       area: "RH",
       monto: 47500,
       activo: false,
@@ -1216,47 +1212,47 @@ export class CatalogCoreItem {
   ];
 
   readonly avatarList: AvatarItem[] = [
-    { label: "JG", color: this.dsPrimary, tooltip: "Juan García" },
+    { label: "JG", color: this.dsPrimary, tooltip: "Juan Garc�a" },
     {
       label: "ML",
       color: this.dsSuccess,
-      tooltip: "María López",
+      tooltip: "Mar�a L�pez",
     },
     { label: "CR", color: this.dsWarning, tooltip: "Carlos Ruiz" },
-    { label: "AM", color: this.dsHelp, tooltip: "Ana Martínez" },
+    { label: "AM", color: this.dsHelp, tooltip: "Ana Mart�nez" },
     { label: "LT", color: this.dsDanger, tooltip: "Luis Torres" },
-    { label: "LS", color: this.dsInfo, tooltip: "Laura Sánchez" },
+    { label: "LS", color: this.dsInfo, tooltip: "Laura S�nchez" },
   ];
 
   readonly avatarListTokenized: AvatarItem[] = [
     {
       label: "JG",
       color: this.dsPrimary,
-      tooltip: "Juan García",
+      tooltip: "Juan Garc�a",
     },
     {
       label: "ML",
       color: this.dsSuccess,
-      tooltip: "María López",
+      tooltip: "Mar�a L�pez",
     },
     { label: "CR", color: this.dsWarning, tooltip: "Carlos Ruiz" },
     {
       label: "AM",
       color: this.dsHelp,
-      tooltip: "Ana Martínez",
+      tooltip: "Ana Mart�nez",
     },
     { label: "LT", color: this.dsDanger, tooltip: "Luis Torres" },
     {
       label: "LS",
       color: this.dsInfo,
-      tooltip: "Laura Sánchez",
+      tooltip: "Laura S�nchez",
     },
   ];
 
   readonly timelineEvents: TimelineEvent[] = [
     {
       title: "Solicitud recibida",
-      description: "El cliente envió la solicitud de compra.",
+      description: "El cliente envi� la solicitud de compra.",
       date: "10 Jun 2026",
       icon: "mdi:inbox-arrow-down",
       color: "var(--ds-primary)",
@@ -1264,8 +1260,8 @@ export class CatalogCoreItem {
       badgeColor: "primary",
     },
     {
-      title: "Revisión de crédito",
-      description: "Validación aprobada por el área financiera.",
+      title: "Revisi�n de cr�dito",
+      description: "Validaci�n aprobada por el �rea financiera.",
       date: "12 Jun 2026",
       icon: "mdi:shield-check",
       color: "var(--ds-success)",
@@ -1338,7 +1334,7 @@ export class CatalogCoreItem {
     },
     {
       id: "negotiation",
-      name: "Negociación",
+      name: "Negociaci�n",
       color: "var(--ds-primary)",
       deals: [
         {
@@ -1416,23 +1412,23 @@ export class CatalogCoreItem {
       id: "1",
       label: "Solicitante",
       status: "approved",
-      assignee: "Juan García",
+      assignee: "Juan Garc�a",
       date: "10 Jun 2026",
       comment: "Solicitud generada.",
     },
     {
       id: "2",
-      label: "Jefe de Ãrea",
+      label: "Jefe de Área",
       status: "approved",
-      assignee: "María López",
+      assignee: "Mar�a L�pez",
       date: "11 Jun 2026",
     },
     { id: "3", label: "Finanzas", status: "pending", assignee: "Carlos Ruiz" },
     {
       id: "4",
-      label: "Dirección",
+      label: "Direcci�n",
       status: "pending",
-      assignee: "Ana Martínez",
+      assignee: "Ana Mart�nez",
     },
   ];
 
@@ -1452,7 +1448,7 @@ export class CatalogCoreItem {
       icon: "mdi:check-circle",
     },
     {
-      label: "En tránsito",
+      label: "En tr�nsito",
       date: "13 Jun 2026",
       completed: false,
       active: true,
@@ -1468,26 +1464,26 @@ export class CatalogCoreItem {
 
   readonly dashWidgets: DashboardWidget[] = [
     { id: "w1", title: "KPIs Generales", cols: 2, rows: 1 },
-    { id: "w2", title: "Gráfica de Ventas", cols: 1, rows: 1 },
+    { id: "w2", title: "Gr�fica de Ventas", cols: 1, rows: 1 },
     { id: "w3", title: "Pipeline CRM", cols: 3, rows: 1 },
     { id: "w4", title: "Actividad Reciente", cols: 1, rows: 1 },
-    { id: "w5", title: "Inventario Crítico", cols: 2, rows: 1 },
+    { id: "w5", title: "Inventario Cr�tico", cols: 2, rows: 1 },
   ];
 
   readonly sampleComments = [
     {
       id: "1",
-      author: "Juan García",
+      author: "Juan Garc�a",
       authorInitials: "JG",
-      content: "El cliente solicitó extensión de plazo de pago a 45 días.",
+      content: "El cliente solicit� extensi�n de plazo de pago a 45 d�as.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
     {
       id: "2",
-      author: "María López",
+      author: "Mar�a L�pez",
       authorInitials: "ML",
-      content: "Confirmado con finanzas. Se aplicará a partir de julio.",
+      content: "Confirmado con finanzas. Se aplicar� a partir de julio.",
       timestamp: new Date("2026-06-24T10:30:00"),
       read: false,
     },
@@ -1495,16 +1491,16 @@ export class CatalogCoreItem {
 
   readonly emailHtml = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
+      <h2 style="color:var(--ds-primary);">Confirmaci�n de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y está en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y est� en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material eléctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material el�ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP · sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP � sistema@luxuryapp.mx</p>
     </div>`;
 
   private resolvePrimaryColor(): string {
@@ -1522,16 +1518,16 @@ export class CatalogCoreItem {
 
   readonly emailHtmlTokenized = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
+      <h2 style="color:var(--ds-primary);">Confirmaci�n de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y está en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y est� en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material eléctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material el�ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP · sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP � sistema@luxuryapp.mx</p>
     </div>`;
 
   readonly formSchema: FormField[] = [
@@ -1540,18 +1536,18 @@ export class CatalogCoreItem {
       type: "text",
       label: "Nombre completo",
       required: true,
-      placeholder: "Juan García",
+      placeholder: "Juan Garc�a",
     },
     {
       key: "email",
       type: "email",
-      label: "Correo electrónico",
+      label: "Correo electr�nico",
       required: true,
     },
     {
       key: "area",
       type: "select",
-      label: "Ãrea",
+      label: "Área",
       required: true,
       options: [
         { label: "Contabilidad", value: "cont" },
@@ -1582,7 +1578,7 @@ export class CatalogCoreItem {
     company: "GHR SA de CV",
     email: "contacto@ghr.mx",
     phone: "+52 55 9876 5432",
-    tags: ["Premium", "Hotelería", "CDMX"],
+    tags: ["Premium", "Hoteler�a", "CDMX"],
     totalRevenue: 2450000,
     openDeals: 3,
     lastContact: "24 Jun 2026",
@@ -1591,27 +1587,27 @@ export class CatalogCoreItem {
       {
         icon: "mdi:phone",
         text: "Llamada de seguimiento Q3",
-        time: "Hace 2 días",
+        time: "Hace 2 d�as",
       },
       {
         icon: "mdi:email",
         text: "Propuesta enviada por email",
-        time: "Hace 5 días",
+        time: "Hace 5 d�as",
       },
       {
         icon: "mdi:calendar",
-        text: "Reunión de revisión anual",
+        text: "Reuni�n de revisi�n anual",
         time: "Hace 2 sem.",
       },
     ],
     deals: [
       {
-        title: "Remodelación Lobby",
-        stage: "Negociación",
+        title: "Remodelaci�n Lobby",
+        stage: "Negociaci�n",
         value: 850000,
       },
       { title: "Mantenimiento anual", stage: "Propuesta", value: 420000 },
-      { title: "Instalación AC", stage: "Prospecto" },
+      { title: "Instalaci�n AC", stage: "Prospecto" },
     ],
   };
 
@@ -1624,7 +1620,7 @@ export class CatalogCoreItem {
   ];
 
   readonly heatmapData: HeatmapCell[] = [
-    ...[["Lun", "Mar", "Mié", "Jue", "Vie"]].flatMap((cols) =>
+    ...[["Lun", "Mar", "Mi�", "Jue", "Vie"]].flatMap((cols) =>
       [
         "08:00",
         "09:00",
@@ -1651,8 +1647,8 @@ export class CatalogCoreItem {
   readonly ganttTasks: GanttTask[] = [
     {
       id: "g1",
-      name: "Diseño de arquitectura",
-      group: "Planificación",
+      name: "Dise�o de arquitectura",
+      group: "Planificaci�n",
       startDate: new Date("2026-07-01"),
       endDate: new Date("2026-07-07"),
       progress: 100,
@@ -1692,7 +1688,7 @@ export class CatalogCoreItem {
     },
     {
       id: "g5",
-      name: "Despliegue producción",
+      name: "Despliegue producci�n",
       group: "Deploy",
       startDate: new Date("2026-08-06"),
       endDate: new Date("2026-08-08"),
@@ -1713,7 +1709,7 @@ export class CatalogCoreItem {
   ];
 
   readonly pivotRows: PivotDimension[] = [
-    { field: "area", label: "Ãrea", sort: "asc" },
+    { field: "area", label: "Área", sort: "asc" },
   ];
   readonly pivotColumns: PivotDimension = { field: "mes", label: "Mes" };
   readonly pivotValues: PivotValue[] = [
@@ -1752,8 +1748,8 @@ export class CatalogCoreItem {
       id: "1",
       type: "call",
       title: "Llamada con el cliente",
-      description: "Se discutió el presupuesto para Q3.",
-      user: "Juan García",
+      description: "Se discuti� el presupuesto para Q3.",
+      user: "Juan Garc�a",
       timestamp: new Date("2026-06-24T10:00:00"),
     },
     {
@@ -1761,14 +1757,14 @@ export class CatalogCoreItem {
       type: "email",
       title: "Propuesta enviada",
       description: "Propuesta comercial por $120,000 MXN.",
-      user: "María López",
+      user: "Mar�a L�pez",
       timestamp: new Date("2026-06-23T15:30:00"),
     },
     {
       id: "3",
       type: "meeting",
-      title: "Reunión de seguimiento",
-      description: "Revisión de avances del proyecto.",
+      title: "Reuni�n de seguimiento",
+      description: "Revisi�n de avances del proyecto.",
       user: "Carlos Ruiz",
       timestamp: new Date("2026-06-22T09:00:00"),
     },
@@ -1777,14 +1773,14 @@ export class CatalogCoreItem {
       type: "note",
       title: "Nota interna",
       description: "El cliente solicita entrega antes del 30 de junio.",
-      user: "Ana Martínez",
+      user: "Ana Mart�nez",
       timestamp: new Date("2026-06-21T17:00:00"),
     },
     {
       id: "5",
       type: "approval",
-      title: "Aprobación de crédito",
-      description: "Aprobado por el área financiera.",
+      title: "Aprobaci�n de cr�dito",
+      description: "Aprobado por el �rea financiera.",
       user: "Sistema",
       timestamp: new Date("2026-06-20T12:00:00"),
     },
@@ -1798,7 +1794,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k1",
-          title: "Actualizar documentación",
+          title: "Actualizar documentaci�n",
           stage: "todo",
           priority: "low",
           tags: ["docs"],
@@ -1819,7 +1815,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k3",
-          title: "Integración con SAT",
+          title: "Integraci�n con SAT",
           stage: "in-progress",
           priority: "high",
           assignee: "JG",
@@ -1829,7 +1825,7 @@ export class CatalogCoreItem {
     },
     {
       id: "review",
-      title: "Revisión",
+      title: "Revisi�n",
       color: "var(--ds-info)",
       cards: [
         {
@@ -1848,7 +1844,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k5",
-          title: "Migración de base de datos",
+          title: "Migraci�n de base de datos",
           stage: "done",
           priority: "critical",
           assignee: "CR",
@@ -1960,7 +1956,7 @@ export class CatalogCoreItem {
     },
     {
       id: "settings",
-      label: "Configuración",
+      label: "Configuraci�n",
       description: "Abrir preferencias del sistema",
       icon: "mdi:cog",
       category: "Sistema",
@@ -1972,30 +1968,30 @@ export class CatalogCoreItem {
   tourVisible = signal(false);
   readonly tourSteps: TourStep[] = [
     {
-      title: "¡Bienvenido al sistema!",
+      title: "�Bienvenido al sistema!",
       description:
-        "Este tour te guiará por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
+        "Este tour te guiar� por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
       icon: "mdi:hand-wave",
       position: "center",
     },
     {
-      title: "Menú lateral",
+      title: "Men� lateral",
       description:
-        "Aquí encontrarás todos los módulos del ERP organizados por área.",
+        "Aqu� encontrar�s todos los m�dulos del ERP organizados por �rea.",
       icon: "mdi:menu",
       position: "center",
     },
     {
       title: "Design System",
       description:
-        "El catálogo de componentes está disponible para SuperUsuarios en el menú lateral.",
+        "El cat�logo de componentes est� disponible para SuperUsuarios en el men� lateral.",
       icon: "mdi:palette",
       position: "center",
     },
     {
-      title: "¡Listo!",
+      title: "�Listo!",
       description:
-        "Ya conoces lo básico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
+        "Ya conoces lo b�sico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
       icon: "mdi:check-circle",
       position: "center",
     },

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -9,7 +9,7 @@ import {
 import { CardModule } from "primeng/card";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { PasswordModule } from "primeng/password";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { IChangePassword } from "src/app/core/interfaces/change-password.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

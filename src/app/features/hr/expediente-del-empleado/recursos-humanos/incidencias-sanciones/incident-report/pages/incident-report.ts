@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import saveAs from "file-saver";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";

@@ -12,7 +12,7 @@ import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";

@@ -5,7 +5,7 @@ import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import type {
   CobranzaOnlineInspectionHistoryResponse,
   CobranzaOnlineInspectionRelated401Summary,

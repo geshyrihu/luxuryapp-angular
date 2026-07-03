@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

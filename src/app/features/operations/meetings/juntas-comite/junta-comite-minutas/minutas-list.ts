@@ -16,8 +16,8 @@ import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web/label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+} from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";

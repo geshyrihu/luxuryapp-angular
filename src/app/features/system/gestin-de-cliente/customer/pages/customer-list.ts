@@ -1,4 +1,4 @@
-ï»¿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { addIcons } from "ionicons";
 import {
@@ -10,13 +10,13 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web/icon/button-active-desactive";
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
-import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web-label/button-active-desactive";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
@@ -63,7 +63,7 @@ export class CustomerList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables con Signals
+  // Declaración e inicialización de variables con Signals
   dataSignal = signal<ICustomerDTO[]>([]);
   loading = signal(true);
 

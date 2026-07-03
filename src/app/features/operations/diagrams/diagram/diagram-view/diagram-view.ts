@@ -9,7 +9,7 @@ import {
   viewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";

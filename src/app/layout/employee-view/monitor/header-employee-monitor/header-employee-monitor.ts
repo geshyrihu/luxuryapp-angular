@@ -21,8 +21,8 @@ import {
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { MenuModule } from "primeng/menu";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";

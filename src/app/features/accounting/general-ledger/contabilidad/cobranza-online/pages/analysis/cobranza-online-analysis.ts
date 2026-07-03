@@ -5,7 +5,7 @@ import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";

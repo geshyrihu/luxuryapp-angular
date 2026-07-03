@@ -6,7 +6,7 @@ import { ImageModule } from "primeng/image";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelTracking } from "src/app/core/components/buttons/web/label/button-tracking";
+import { WebButtonLabelTracking } from "src/app/core/components/buttons/web-label/button-tracking";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";

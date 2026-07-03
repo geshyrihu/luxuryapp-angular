@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {

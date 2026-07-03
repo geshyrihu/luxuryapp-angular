@@ -2,8 +2,8 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { CardModule } from "primeng/card";

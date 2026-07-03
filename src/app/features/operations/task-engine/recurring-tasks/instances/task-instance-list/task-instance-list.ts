@@ -6,8 +6,8 @@ import { ToolbarModule } from "primeng/toolbar";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web/label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+} from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";

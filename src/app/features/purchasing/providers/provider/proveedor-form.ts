@@ -11,7 +11,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";

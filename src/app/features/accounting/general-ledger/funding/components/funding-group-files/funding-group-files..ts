@@ -5,8 +5,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Added
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Added
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

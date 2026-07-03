@@ -43,16 +43,18 @@ import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import {
-  CustomButton,
-  CustomButtonAdd,
-  CustomButtonConfirm,
-  CustomButtonDelete,
-  CustomButtonDownload,
-  CustomButtonEdit,
-  CustomButtonSave,
-  CustomButtonSendEmail,
-  CustomButtonViewPdf,
-} from "src/app/core/components/buttons/legacy/buttons";
+  WebButtonLabel,
+  WebButtonLabelAdd,
+  WebButtonLabelConfirm,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelSave,
+} from "src/app/core/components/buttons/web-label";
+import {
+  WebButtonIconDownload,
+  WebButtonIconSendEmail,
+  WebButtonIconViewPdf,
+} from "src/app/core/components/buttons/web-icon";
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
@@ -143,15 +145,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     TooltipModule,
     FullCalendarModule,
     AppIcon,
-    CustomButton,
-    CustomButtonAdd,
-    CustomButtonConfirm,
-    CustomButtonDelete,
-    CustomButtonDownload,
-    CustomButtonEdit,
-    CustomButtonSave,
-    CustomButtonSendEmail,
-    CustomButtonViewPdf,
+    WebButtonLabel,
+    WebButtonLabelAdd,
+    WebButtonLabelConfirm,
+    WebButtonLabelDelete,
+    WebButtonLabelEdit,
+    WebButtonLabelSave,
+    WebButtonIconDownload,
+    WebButtonIconSendEmail,
+    WebButtonIconViewPdf,
   ],
   template: `
     <section class="fadein">
@@ -240,21 +242,20 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             </div>
           </p-card>
           <div class="mt-3">
-            <p-card header="Action Buttons (Custom) - custom-button-*">
-              <p class="text-sm text-secondary m-0 mb-3">
-                Usalos para acciones ERP: guardar, editar, eliminar, descargar,
-                etc. Funcionan en web y mobile automíticamente.
-              </p>
+              <p-card header="Action Buttons - il-button-* / iw-button-*">
+                <p class="text-sm text-secondary m-0 mb-3">
+                  Botones ERP: <code>il-*</code> con label, <code>iw-*</code> solo icono.
+                </p>
               <div class="flex flex-wrap gap-2">
-                <custom-button label="Genórico" />
-                <custom-button-add label="Crear" />
-                <custom-button-edit label="Editar" />
-                <custom-button-save label="Guardar" />
-                <custom-button-delete label="Eliminar" />
-                <custom-button-confirm label="Aprobar" />
-                <custom-button-download />
-                <custom-button-view-pdf />
-                <custom-button-send-email />
+                <il-button label="Genórico" />
+                <il-button-add label="Crear" />
+                <il-button-edit label="Editar" />
+                <il-button-save label="Guardar" />
+                <il-button-delete label="Eliminar" />
+                <il-button-confirm label="Aprobar" />
+                <iw-button-download />
+                <iw-button-view-pdf />
+                <iw-button-send-email />
               </div>
             </p-card>
           </div>
@@ -333,13 +334,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="col-12 md:col-4">
                   <div class="p-3 border-round surface-ground">
                     <p class="text-xs font-bold text-purple-600 m-0 mb-1">
-                      OK USA &lt;custom-button-*&gt; cuando:
+                      OK USA &lt;il-button-*&gt; / &lt;iw-button-*&gt; cuando:
                     </p>
                     <ul class="text-xs m-0 pl-3">
                       <li>
                         Accion ERP (guardar, editar, eliminar, descargar...)
                       </li>
-                      <li>Debe funcionar en web Y mobile automaticamente</li>
+                      <li>Usa <code>il-*</code> si tiene label, <code>iw-*</code> si es solo icono</li>
                       <li>Es accion dentro de una tabla o formulario</li>
                     </ul>
                   </div>

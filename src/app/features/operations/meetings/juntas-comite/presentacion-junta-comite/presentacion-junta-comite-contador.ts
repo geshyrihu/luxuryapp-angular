@@ -9,10 +9,10 @@ import { TagModule } from "primeng/tag";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelViewPdf,
-} from "src/app/core/components/buttons/web/label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+} from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";

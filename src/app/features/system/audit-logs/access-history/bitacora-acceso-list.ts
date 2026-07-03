@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -42,7 +42,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
     IonAccordionGroup,
   ],
 })
-// √≥CAMBIO! Ya no implementamos OnInit
+// ÛCAMBIO! Ya no implementamos OnInit
 export class BitacoraAcceso {
   public ButtonType = ButtonType;
   // --- INYECCIONES (sin cambios) ---
@@ -50,11 +50,11 @@ export class BitacoraAcceso {
   private customerIdS = inject(CustomerIdService);
   private filtroCalendarService = inject(FiltroCalendarService);
   apiResponseS = inject(ApiResponseService);
-  data = signal<any[]>([]); // √≥MEJORA! Convertimos los datos a un signal.
+  data = signal<any[]>([]); // ÛMEJORA! Convertimos los datos a un signal.
   loading = signal(true);
 
-  // √≥MAGIA! Convertimos el Observable de fechas en un signal.
-  // Se actualizar√≥ autom√≥ticamente cada vez que el observable emita un nuevo valor.
+  // ÛMAGIA! Convertimos el Observable de fechas en un signal.
+  // Se actualizarÛ automÛticamente cada vez que el observable emita un nuevo valor.
   private dates = toSignal(this.filtroCalendarService.getDates$());
 
   // --- PROPIEDADES DE TABLA (sin cambios) ---
@@ -63,7 +63,7 @@ export class BitacoraAcceso {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   constructor() {
-    // √≥EL √≥NICO CHEF! Este effect ahora gobierna toda la carga de datos.
+    // ÛEL ÛNICO CHEF! Este effect ahora gobierna toda la carga de datos.
     effect(() => {
       // 1. Leemos TODAS las dependencias para que el effect se suscriba a ellas.
       const customerId: string = this.customerIdS.customerId();
@@ -79,11 +79,11 @@ export class BitacoraAcceso {
     });
   }
 
-  // √≥OBSOLETO! ngOnInit ya no es necesario. El effect se encarga de todo.
+  // ÛOBSOLETO! ngOnInit ya no es necesario. El effect se encarga de todo.
   // ngOnInit(): void { ... }
 
   private onLoadData(fechaInicial: string, fechaFinal: string): void {
-    // √≥CORRECCI√≥N! Leemos el valor del customerId con par√≥ntesis.
+    // ÛCORRECCIÛN! Leemos el valor del customerId con parÛntesis.
     const urlApi = Endpoints.AccessHistory.byCustomerAndRange(
       this.customerIdS.customerId(),
       fechaInicial,

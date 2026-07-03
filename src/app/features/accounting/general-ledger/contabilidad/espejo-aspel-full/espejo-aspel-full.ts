@@ -5,7 +5,7 @@ import { SharedModule } from "primeng/api";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";

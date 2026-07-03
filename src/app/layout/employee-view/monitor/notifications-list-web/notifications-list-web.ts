@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { BadgeModule } from "primeng/badge";
 import { CardModule } from "primeng/card";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

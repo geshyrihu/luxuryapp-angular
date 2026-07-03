@@ -20,7 +20,7 @@ import { ListboxModule } from "primeng/listbox";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
 import { TextareaModule } from "primeng/textarea";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";

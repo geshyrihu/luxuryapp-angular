@@ -1,17 +1,17 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
-import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web/icon/button-active-desactive";
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web/icon/button-delete";
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web/icon/button-edit";
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
 
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
@@ -66,7 +66,7 @@ export class ApplicationUserList implements OnInit {
   dataSignal = signal<IApplicationUserDTO[]>([]);
   filteredDataSignal = signal<IApplicationUserDTO[]>([]);
 
-  searchText: string = ""; // Para almacenar el texto de búsqueda
+  searchText: string = ""; // Para almacenar el texto de b�squeda
   selectCustomerSignal = signal<ISelectItem[]>([]);
   cbTypePersonSignal = signal<ISelectItem[]>([]);
 
@@ -122,14 +122,14 @@ export class ApplicationUserList implements OnInit {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
 
-          // Agrupar customers únicos para el select
+          // Agrupar customers �nicos para el select
           const uniqueCustomers = [
             ...new Set(result.map((item: any) => item.customer)),
           ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
-            { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
+            { label: "Mostrar todos", value: "all" }, // Opci�n para mostrar todos
             ...uniqueCustomers.map(
               (customer): ISelectItem => ({
                 label: customer ? String(customer) : "Sin Cliente",
@@ -141,7 +141,7 @@ export class ApplicationUserList implements OnInit {
       });
   }
 
-  // Método para filtrar por cliente
+  // M�todo para filtrar por cliente
   onSelectForCustomer(selectedValue: string) {
     if (selectedValue === "all") {
       // Si selecciona "Mostrar todos", mostrar todos los datos
@@ -197,7 +197,7 @@ export class ApplicationUserList implements OnInit {
         applicationUserId,
         email,
       },
-      "ðŸ” Cuenta de acceso",
+      "🔐 Cuenta de acceso",
       this.dialogHandlerS.sizeFull,
     );
   }

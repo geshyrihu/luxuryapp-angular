@@ -9,9 +9,9 @@ import { TooltipModule } from "primeng/tooltip";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web/label";
-import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+} from "src/app/core/components/buttons/web-label";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web-label/button-add";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";

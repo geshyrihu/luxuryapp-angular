@@ -14,7 +14,7 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";

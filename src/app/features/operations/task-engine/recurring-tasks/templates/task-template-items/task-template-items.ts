@@ -5,7 +5,7 @@ import { TableModule } from "primeng/table";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web/label";
+} from "src/app/core/components/buttons/web-label";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";

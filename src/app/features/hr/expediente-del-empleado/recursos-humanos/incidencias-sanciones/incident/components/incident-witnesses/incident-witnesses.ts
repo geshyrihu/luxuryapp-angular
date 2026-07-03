@@ -1,8 +1,8 @@
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";

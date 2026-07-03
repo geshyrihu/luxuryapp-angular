@@ -1,8 +1,8 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
 import { IconFieldModule } from "primeng/iconfield";
@@ -704,7 +704,7 @@ export class CobranzaOnlineDashboard {
 
     return {
       title: movement.concept || movement.policyConcept || "Movimiento",
-      subtitle: `${movement.policyType} ${movement.policyNumber} é ${this.formatDate(movement.policyDate)}`,
+      subtitle: `${movement.policyType} ${movement.policyNumber} � ${this.formatDate(movement.policyDate)}`,
       amountLabel: this.formatCurrency(movement.amount),
     };
   });

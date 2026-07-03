@@ -13,10 +13,10 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Importar WebButtonLabel
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Importar WebButtonLabel
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";

@@ -6,8 +6,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { ImageModule } from "primeng/image";
 import { InputTextModule } from "primeng/inputtext";

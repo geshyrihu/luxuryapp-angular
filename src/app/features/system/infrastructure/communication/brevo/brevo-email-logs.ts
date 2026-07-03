@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -6,12 +6,12 @@ import { InputTextModule } from "primeng/inputtext";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
-// ─── Modelos ─────────────────────────────────────────────────────────────────
+// --- Modelos -----------------------------------------------------------------
 
 /** Representa un registro de email transaccional de Brevo */
 interface BrevoEmailLogDTO {
@@ -55,17 +55,17 @@ interface BrevoPagedResultDTO {
 export class BrevoEmailLogs implements OnInit {
   private readonly apiS = inject(ApiResponseService);
 
-  // ─── Estado del componente ────────────────────────────────────────────────
+  // --- Estado del componente ------------------------------------------------
   registros = signal<BrevoEmailLogDTO[]>([]);
   totalRecords = signal<number>(0);
   cargando = signal<boolean>(false);
 
-  // ─── Filtros de búsqueda ──────────────────────────────────────────────────
+  // --- Filtros de b�squeda --------------------------------------------------
   filtroEmail = "";
   filtroFechaInicioCtrl = new FormControl<string | null>(null);
   filtroFechaFinCtrl = new FormControl<string | null>(null);
 
-  // ─── Paginación ───────────────────────────────────────────────────────────
+  // --- Paginaci�n -----------------------------------------------------------
   readonly tamanioPagina = 50;
   offset = 0;
 
@@ -105,7 +105,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Aplica los filtros y reinicia la paginación desde el inicio.
+   * Aplica los filtros y reinicia la paginaci�n desde el inicio.
    */
   aplicarFiltros(): void {
     this.offset = 0;
@@ -124,7 +124,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Maneja el cambio de página del p-table lazy.
+   * Maneja el cambio de p�gina del p-table lazy.
    */
   alCambiarPagina(evento: { first: number; rows: number }): void {
     this.offset = evento.first;
@@ -132,7 +132,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Devuelve la severidad del Tag de PrimeNG según el evento de Brevo.
+   * Devuelve la severidad del Tag de PrimeNG seg�n el evento de Brevo.
    */
   severidadEvento(
     evento: string,
@@ -160,7 +160,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Etiqueta legible en español para cada tipo de evento de Brevo.
+   * Etiqueta legible en espa�ol para cada tipo de evento de Brevo.
    */
   etiquetaEvento(evento: string): string {
     const mapa: Record<string, string> = {
@@ -172,7 +172,7 @@ export class BrevoEmailLogs implements OnInit {
       softBounce: "Rebote suave",
       hardBounce: "Rebote duro",
       blocked: "Bloqueado",
-      invalid_email: "Email inválido",
+      invalid_email: "Email inv�lido",
       deferred: "Diferido",
       complaint: "Queja",
       unsubscribed: "Desuscrito",
@@ -182,7 +182,7 @@ export class BrevoEmailLogs implements OnInit {
     return mapa[evento] ?? evento;
   }
 
-  // ─── Utilitarios privados ─────────────────────────────────────────────────
+  // --- Utilitarios privados -------------------------------------------------
 
   /** Formatea una fecha al formato YYYY-MM-DD que acepta la API de Brevo. */
 }

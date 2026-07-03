@@ -4,7 +4,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { environment } from "src/environments/environment";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 
 /**
  * 📄 PDF VIEWER MODAL
@@ -13,7 +13,7 @@ import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
  */
 @Component({
   selector: "app-pdf-viewer-modal",
-  imports: [PdfViewerModule, ProgressSpinnerModule, IlButton],
+  imports: [PdfViewerModule, ProgressSpinnerModule, WebButtonLabel],
   templateUrl: "./pdf-viewer-modal.html",
 })
 export class PdfViewerModal implements OnInit, OnDestroy {

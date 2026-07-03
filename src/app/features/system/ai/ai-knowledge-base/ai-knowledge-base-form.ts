@@ -1,4 +1,4 @@
-ï»¿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -69,11 +69,11 @@ export class AiKnowledgeBaseForm implements OnInit {
     isActive: new FormControl(true, {
       nonNullable: true,
     }),
-    moduleAppId: new FormControl<string | null>(null), // Control para el mÃ³dulo
+    moduleAppId: new FormControl<string | null>(null), // Control para el módulo
   });
 
   ngOnInit(): void {
-    this.onLoadModules(); // Cargar mÃ³dulos al inicio
+    this.onLoadModules(); // Cargar módulos al inicio
 
     // DynamicDialogConfig pasa 'id' en 'data' if editing
     if (this.config.data && this.config.data.id) {

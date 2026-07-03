@@ -31,7 +31,9 @@
     .p-panelmenu-header-action {
       color: var(--ds-primary) !important;
       font-weight: 600 !important;
-      .p-menuitem-icon { color: var(--ds-primary) !important; }
+      .p-menuitem-icon {
+        color: var(--ds-primary) !important;
+      }
     }
   }
 
@@ -386,7 +388,9 @@ app-header-employee-monitor .toolbar-icon-btn {
   border-radius: 999px;
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
   flex-shrink: 0;
 
   &:hover {

@@ -4,13 +4,13 @@ import { Subscription } from "rxjs";
 import { debounceTime, filter } from "rxjs/operators";
 import { ConnectivityService } from "../../services/connectivity.service";
 import { RedirectService } from "../../services/redirect.service";
-import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-offline",
   templateUrl: "./offline.html",
   styleUrls: ["./offline.scss"],
-  imports: [IlButton],
+  imports: [WebButtonLabel],
 })
 export class Offline implements OnInit, OnDestroy {
   private router = inject(Router);

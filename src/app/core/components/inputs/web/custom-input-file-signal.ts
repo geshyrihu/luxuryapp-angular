@@ -2,7 +2,7 @@ import { Component, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
-import { WebButtonIconDelete } from "../../buttons/web/icon/button-delete";
+import { WebButtonIconDelete } from "../../buttons/web-icon/button-delete";
 import { BaseInputSignal } from "../base/base-input-signal";
 // 📁 COMPONENTE DE INPUT DE ARCHIVO
 // Un componente para seleccionar archivos usando PrimeNG FileUpload.

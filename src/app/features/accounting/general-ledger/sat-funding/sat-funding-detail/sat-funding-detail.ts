@@ -15,9 +15,9 @@ import { DialogModule } from "primeng/dialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web/label/button-edit";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
+import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import {

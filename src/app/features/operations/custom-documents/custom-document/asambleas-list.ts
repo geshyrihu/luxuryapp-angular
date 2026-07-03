@@ -1,7 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";

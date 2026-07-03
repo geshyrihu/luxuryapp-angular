@@ -2,7 +2,7 @@ import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { FieldsetModule } from "primeng/fieldset";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";

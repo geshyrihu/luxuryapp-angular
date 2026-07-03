@@ -9,7 +9,7 @@ import {
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   HeroMetric,

@@ -1,4 +1,4 @@
-锘縤mport { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
@@ -6,8 +6,8 @@ import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web/icon/button-active-desactive";
-import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web/label/button-active-desactive";
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
+import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web-label/button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -51,7 +51,7 @@ export class CustomerModulList implements OnInit {
     addIcons({ chevronForwardOutline });
   }
 
-  // Declaraci贸n e inicializaci贸n de variables
+  // Declaraci髇 e inicializaci髇 de variables
   dataSignal = signal<any[]>([]);
 
   readonly globalFilterFields = computed(() => {
@@ -90,17 +90,17 @@ export class CustomerModulList implements OnInit {
       });
   }
 
-  // M茅todo para filtrar por estado
+  // M閠odo para filtrar por estado
   onSelectActive(selectedValue: boolean) {
     this.state = selectedValue;
     this.onLoadData(selectedValue);
   }
-  // Funci贸n para abrir un cuadro de di贸logo modal para agregar o editar o crear
+  // Funci髇 para abrir un cuadro de di髄ogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS.openDialog(
       CustomerModulEdit,
       data,
-      "Asignar M贸dulos",
+      "Asignar M骴ulos",
       this.dialogHandlerS.sizeFull,
     );
   }

@@ -1,10 +1,10 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -130,7 +130,7 @@ export class CobranzaOnlineInspection {
         month: this.currentMonth(),
         row,
       },
-      `Histórico de ${row.departmentCode || row.accountNumber}`,
+      `Hist�rico de ${row.departmentCode || row.accountNumber}`,
       this.dialogHandlerS.sizeFull,
       true,
     );

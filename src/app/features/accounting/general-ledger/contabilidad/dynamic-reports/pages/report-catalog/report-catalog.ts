@@ -12,7 +12,7 @@ import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web/label";
+} from "src/app/core/components/buttons/web-label";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {

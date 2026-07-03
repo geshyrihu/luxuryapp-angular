@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web/label/button-item";
+import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";

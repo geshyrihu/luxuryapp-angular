@@ -23,7 +23,7 @@ import {
 } from "../../models/enums";
 
 // Custom Inputs
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web/label/button-save";
+import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";

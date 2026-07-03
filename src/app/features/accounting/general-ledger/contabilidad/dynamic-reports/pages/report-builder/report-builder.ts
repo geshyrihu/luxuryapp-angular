@@ -1,4 +1,4 @@
-Ôªøimport { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -22,8 +22,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AccordionModule } from "primeng/accordion";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { BadgeModule } from "primeng/badge";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { ChipModule } from "primeng/chip";
 import { DialogModule } from "primeng/dialog";
@@ -394,7 +394,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       this.toast.showError(
-        "Error de validaci√≥n",
+        "Error de validaciÛn",
         "El nombre del reporte es obligatorio.",
       );
       return;
@@ -465,8 +465,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
   aplicarEjemplo(tipo: "egp" | "balance") {
     if (tipo === "egp") {
       this.form.patchValue({
-        name: "Estado de Ganancias y P√≥rdidas (Ejemplo)",
-        description: "Reporte din√°mico de Ingresos vs Gastos operativos",
+        name: "Estado de Ganancias y PÛrdidas (Ejemplo)",
+        description: "Reporte din·mico de Ingresos vs Gastos operativos",
         visualizationType: "table-simple",
       });
 

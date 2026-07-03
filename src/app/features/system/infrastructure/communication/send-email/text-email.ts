@@ -1,6 +1,6 @@
-﻿import { Component, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web/label/button-send-email";
+import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web-label/button-send-email";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
@@ -15,7 +15,7 @@ export class TextEmail {
 
   onSendEmail() {
     if (!this.emailControl.value) {
-      alert("Por favor, ingresa un correo vólido");
+      alert("Por favor, ingresa un correo v�lido");
       return;
     }
 

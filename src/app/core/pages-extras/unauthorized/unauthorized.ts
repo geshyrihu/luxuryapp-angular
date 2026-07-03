@@ -2,11 +2,11 @@ import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { DividerModule } from "primeng/divider";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { IlButton } from "src/app/core/components/buttons/buttons-icon-label";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-unauthorized",
-  imports: [DividerModule, AppIcon, IlButton],
+  imports: [DividerModule, AppIcon, WebButtonLabel],
   templateUrl: "./unauthorized.html",
 })
 export class Unauthorized {

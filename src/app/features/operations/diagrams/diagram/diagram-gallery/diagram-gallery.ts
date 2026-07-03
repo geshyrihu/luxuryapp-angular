@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
 import { InputTextModule } from "primeng/inputtext";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-funding-purchase-detail",

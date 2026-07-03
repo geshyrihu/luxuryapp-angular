@@ -19,8 +19,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";

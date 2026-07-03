@@ -12,7 +12,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web/label/button-view-pdf";
+import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";

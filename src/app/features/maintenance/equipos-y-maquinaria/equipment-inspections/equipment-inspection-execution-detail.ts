@@ -4,7 +4,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
 import { EquipmentInspectionExecutionDetailDTO } from "./equipment-inspection.models";

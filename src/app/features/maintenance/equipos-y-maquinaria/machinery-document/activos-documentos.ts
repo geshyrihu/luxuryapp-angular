@@ -1,8 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label/button"; // Nueva importación
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web/label/button-confirm";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Nueva importación
+import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
 import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
 import {
   globalFilterFields,

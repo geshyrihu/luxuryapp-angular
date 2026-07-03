@@ -1,35 +1,37 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import {
-  IonButtonActiveDesactive,
-  IonButtonAdd,
-  IonButtonConfirm,
-  IonButtonDelete,
-  IonButtonDownload,
-  IonButtonEdit,
-  IonButtonItem,
-  IonButtonSave,
-  IonButtonSendEmail,
-  IonButtonTracking,
-  IonButtonViewPdf,
-} from "src/app/core/components/buttons/legacy/buttons-mobiil";
+  MobileButtonIconDownload,
+  MobileButtonIconTracking,
+} from "src/app/core/components/buttons/mobile-icon";
+import {
+  MobileButtonLabelActiveDesactive,
+  MobileButtonLabelAdd,
+  MobileButtonLabelConfirm,
+  MobileButtonLabelDelete,
+  MobileButtonLabelEdit,
+  MobileButtonLabelItem,
+  MobileButtonLabelSave,
+  MobileButtonLabelSendEmail,
+  MobileButtonLabelViewPdf,
+} from "src/app/core/components/buttons/mobile-label";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
 
 @Component({
   selector: "app-mobile-buttons",
   imports: [
     CommonModule,
-    IonButtonAdd,
-    IonButtonEdit,
-    IonButtonSave,
-    IonButtonDelete,
-    IonButtonConfirm,
-    IonButtonDownload,
-    IonButtonSendEmail,
-    IonButtonTracking,
-    IonButtonViewPdf,
-    IonButtonActiveDesactive,
-    IonButtonItem,
+    MobileButtonLabelAdd,
+    MobileButtonLabelEdit,
+    MobileButtonLabelSave,
+    MobileButtonLabelDelete,
+    MobileButtonLabelConfirm,
+    MobileButtonIconDownload,
+    MobileButtonLabelSendEmail,
+    MobileButtonIconTracking,
+    MobileButtonLabelViewPdf,
+    MobileButtonLabelActiveDesactive,
+    MobileButtonLabelItem,
   ],
   template: `
     <div class="mobile-card">
@@ -99,18 +101,17 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
             Uso recomendado dentro de listas, drawers y acciones de detalle.
           </p>
           <div class="flex flex-column gap-0">
-            <ion-button-add label="Agregar registro" />
-            <ion-button-edit label="Editar perfil" />
-            <ion-button-confirm label="Confirmar accion" />
-            <ion-button-send-email label="Enviar correo" />
-            <ion-button-view-pdf
+            <ili-button-add label="Agregar registro" />
+            <ili-button-edit label="Editar perfil" />
+            <ili-button-confirm label="Confirmar accion" />
+            <ili-button-send-email label="Enviar correo" />
+            <ili-button-view-pdf
               url=""
               fileName="documento.pdf"
               label="Ver archivo PDF"
             />
-            <ion-button-delete label="Eliminar registro" />
-            <ion-button-item
-              [ionicIcon]="'star-outline'"
+            <ili-button-delete label="Eliminar registro" />
+            <ili-button-item
               label="Accion personalizada"
             />
           </div>
@@ -122,8 +123,8 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
             Pensado para footers de formularios y acciones primarias.
           </p>
           <div class="flex flex-column gap-2">
-            <ion-button-save label="Guardar" />
-            <ion-button-save label="Actualizando..." [submitting]="true" />
+            <ili-button-save label="Guardar" />
+            <ili-button-save label="Actualizando..." [submitting]="true" />
           </div>
         </div>
 
@@ -131,12 +132,12 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           <div class="section-label">Toggle de estado</div>
           <p class="section-desc">Alterna entre estados activos e inactivos.</p>
           <div class="flex flex-column gap-2">
-            <ion-button-active-desactive
+            <ili-button-active-desactive
               [state]="true"
               activasLabel="Activos"
               inactivasLabel="Inactivos"
             />
-            <ion-button-active-desactive
+            <ili-button-active-desactive
               [state]="false"
               activasLabel="Activos"
               inactivasLabel="Inactivos"
@@ -151,11 +152,11 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </p>
           <div class="compact-toolbar">
             <div class="compact-item">
-              <ion-button-download />
+              <ii-button-download />
               <span class="compact-label">Descargar</span>
             </div>
             <div class="compact-item">
-              <ion-button-tracking [badgeCount]="3" [ticketId]="228" />
+              <ii-button-tracking [badgeCount]="3" [ticketId]="228" />
               <span class="compact-label">Seguimiento</span>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
 import { TooltipModule } from "primeng/tooltip";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

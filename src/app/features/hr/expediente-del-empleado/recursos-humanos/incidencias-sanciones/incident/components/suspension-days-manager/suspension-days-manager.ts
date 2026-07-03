@@ -9,8 +9,8 @@ import {
 } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelAdd } from "src/app/core/components/buttons/web/label/button-add";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web/label/button-delete";
+import { WebButtonLabelAdd } from "src/app/core/components/buttons/web-label/button-add";
+import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";

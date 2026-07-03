@@ -4,8 +4,8 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import { FormsModule } from "@angular/forms";
 import { BadgeModule } from "primeng/badge";
 import { CardModule } from "primeng/card";
-import { WebButtonLabel } from "src/app/core/components/buttons/web/label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web/icon";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
 import { CheckboxModule } from "primeng/checkbox";
 import { DatePickerModule } from "primeng/datepicker";
 import { DialogModule } from "primeng/dialog";

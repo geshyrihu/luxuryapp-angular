@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { CustomButton } from "src/app/core/components/buttons/legacy/buttons/custom-button";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
@@ -32,7 +32,7 @@ interface IResetPasswordForm {
     ReactiveFormsModule,
     MessageModule,
     CustomInputPassword,
-    CustomButton,
+    WebButtonLabel,
     RouterModule,
     AppIcon,
   ],
@@ -125,17 +125,16 @@ interface IResetPasswordForm {
               </div>
 
               <div class="mt-4">
-                <custom-button
+                <il-button
                   type="submit"
                   label="CAMBIAR CONTRASEÑA"
                   [loading]="submitting()"
                   [disabled]="form.invalid || submitting()"
                   icon="mdi:lock-reset"
                   [fluid]="true"
-                  [showLabelOnDesktop]="true"
                   severity="warning"
                   customClass="shadow-4"
-                ></custom-button>
+                ></il-button>
               </div>
 
               <!-- Mensaje Error -->

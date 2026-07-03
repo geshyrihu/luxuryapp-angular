@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
 import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {

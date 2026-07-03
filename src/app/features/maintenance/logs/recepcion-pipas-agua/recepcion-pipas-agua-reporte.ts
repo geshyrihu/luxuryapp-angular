@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import FileSaver from "file-saver";
 import { DatePickerModule } from "primeng/datepicker";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web/label/button-download";
+import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
