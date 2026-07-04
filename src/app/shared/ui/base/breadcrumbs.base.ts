@@ -1,5 +1,7 @@
 import { Directive, input } from "@angular/core";
-import { MenuItem } from "primeng/api";
+// Type-only: `MenuItem` es el modelo de menú estándar del proyecto; al ser
+// import type se borra en compilación → cero acoplamiento de runtime con PrimeNG.
+import type { MenuItem } from "primeng/api";
 
 /**
  * Base compartida de Breadcrumbs.

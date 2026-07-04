@@ -91,10 +91,13 @@ flowchart TD
     Base -.->|❌ nunca UI| Ionic
 ```
 
-**Se hará cumplir** con lint de fronteras (pendiente: el repo aún no tiene ESLint):
-- `**/ui/mobile/**` → prohibido `primeng*` y `**/ui/web/**`.
-- `**/ui/web/**` → prohibido `@ionic*` y `**/ui/mobile/**`.
-- `**/ui/base/**` → prohibido `primeng*` **y** `@ionic*`.
+**Se hace cumplir** con `npm run audit:ui` (`scripts/audit-ui-boundaries.mjs`,
+incluido en `npm run lint`). Falla el build/lint si:
+- `ui/mobile/**` importa `primeng` o `ui/web` (`@ui/web`).
+- `ui/web/**` importa `@ionic` o `ui/mobile` (`@ui/mobile`).
+- `ui/base/**` importa `primeng` **o** `@ionic`.
+Los `import type` se permiten (se borran en compilación → sin runtime).
+`ui/adaptive/**` es la excepción (puede cruzar).
 
 ### ⚠️ Excepción: `adaptive/` (`lx-*`)
 > [!WARNING]
