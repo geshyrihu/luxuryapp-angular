@@ -1,89 +1,98 @@
 <div class="web-page">
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <span class="hero-badge">Administración Profesional</span>
-      <h1 class="hero-title">
-        Transformamos la gestión<br />
-        de tu <span class="hero-highlight">residencial</span>
+  <!-- ══════ HERO ══════ -->
+  <section class="hero-dramatic" style="background: linear-gradient(135deg, #0c1a32 0%, #1b365d 50%, #2a4d7c 100%);">
+    <div class="hero-dramatic-bg"></div>
+    <div class="particles">
+      <span style="top:12%;left:8%;animation-delay:0s;width:8px;height:8px"></span>
+      <span style="top:65%;left:88%;animation-delay:2s;width:5px;height:5px"></span>
+      <span style="top:78%;left:15%;animation-delay:4s;width:10px;height:10px"></span>
+      <span style="top:20%;left:72%;animation-delay:6s;width:4px;height:4px"></span>
+      <span style="top:45%;left:92%;animation-delay:3s;width:6px;height:6px"></span>
+      <span style="top:85%;left:45%;animation-delay:5s;width:7px;height:7px"></span>
+    </div>
+    <span class="shadow-title">ADMINISTRACIÓN<br>PROFESIONAL</span>
+    <div class="hero-dramatic-content">
+      <span class="hero-badge">Excelencia en gestión condominal</span>
+      <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.5rem)">
+        Transformamos la gestión<br>
+        de tu <span style="color:#60a5fa">residencial</span>
       </h1>
-      <p class="hero-subtitle">
-        Somos una administradora con experiencia en la gestión integral de
-        condominios y residenciales. Nos encargamos de todo para que tú solo
-        disfrutes de tu hogar.
+      <p class="hero-subtitle" style="font-size:var(--ds-font-size-body);max-width:560px;margin:0 auto 2rem">
+        Administramos tu condominio con inteligencia, transparencia y
+        anticipación. Más de 120 residenciales confían en nosotros.
       </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#areas"> Nuestras Áreas </a>
-        <a class="btn-secondary" routerLink="/web/legal"> Conoce más </a>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+        <a href="#areas" class="btn-luxury btn-luxury-primary">Nuestras Áreas</a>
+        <a routerLink="/web/legal" class="btn-luxury btn-luxury-outline">Conoce más</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-value">+120</span><span class="hero-stat-label">Residenciales</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-value">15+</span><span class="hero-stat-label">Años</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-value">98%</span><span class="hero-stat-label">Satisfacción</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-value">50+</span><span class="hero-stat-label">Profesionales</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="stats">
-    <div class="stat-item">
-      <span class="stat-number">15+</span>
-      <span class="stat-label">Años de experiencia</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">120+</span>
-      <span class="stat-label">Residenciales administrados</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">98%</span>
-      <span class="stat-label">Satisfacción de clientes</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">50+</span>
-      <span class="stat-label">Profesionales en equipo</span>
+  <!-- ══════ INTRO ══════ -->
+  <section class="section-dark animate-on-scroll">
+    <div class="section-dark-inner" style="text-align:center;max-width:720px">
+      <span class="section-tagline" style="color:var(--ds-text-secondary)">¿Por qué elegirnos?</span>
+      <h2 class="section-heading">La tranquilidad es un lujo invisible</h2>
+      <p style="font-size:var(--ds-font-size-body);color:var(--ds-text-secondary);line-height:1.7;margin:0">
+        En Luxury Building Group transformamos la administración de residenciales
+        en una experiencia de confianza. Nos encargamos de cada detalle legal,
+        financiero, operativo y humano para que los condóminos solo se preocupen
+        por disfrutar su hogar.
+      </p>
     </div>
   </section>
 
-  <!-- Areas Section -->
-  <section id="areas" class="areas">
-    <div class="section-header">
-      <span class="section-tag">Nuestras Áreas</span>
-      <h2 class="section-title">Gestión integral para tu residencial</h2>
-      <p class="section-desc">
-        Cubrimos cada aspecto de la administración con equipos especializados
-        en cada área.
+  <!-- ══════ AREAS ══════ -->
+  <section id="areas" class="animate-on-scroll" style="max-width:1100px;margin:0 auto;padding:5rem 1.5rem">
+    <div style="text-align:center;margin-bottom:3rem">
+      <span class="section-tagline" style="color:var(--ds-primary)">Nuestras Áreas</span>
+      <h2 class="section-heading">Gestión integral para tu residencial</h2>
+      <p class="section-desc" style="margin:0 auto">
+        Cubrimos cada aspecto de la administración con equipos especializados.
       </p>
     </div>
-
     <div class="areas-grid">
       @for (area of areas; track area.route) {
-      <a
-        class="area-card"
-        [routerLink]="area.route"
-        [style]="{ '--card-accent': area.accent }"
-      >
-        <div class="card-icon" [style.background]="area.gradient">
-          <span class="card-icon-symbol">{{ area.icon.charAt(area.icon.length - 1) === 'e' ? '⚖' : area.icon.includes('cogs') ? '⚙' : area.icon.includes('tools') ? '🔧' : area.icon.includes('finance') ? '📊' : '👥' }}</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">{{ area.title }}</h3>
-          <p class="card-desc">{{ area.description }}</p>
-        </div>
-        <div class="card-arrow">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </div>
-      </a>
+        <a class="area-card" [routerLink]="area.route" [style]="{ '--card-accent': area.accent, '--card-gradient': area.gradient }">
+          <div class="area-card-top">
+            <div class="area-card-icon" [style.background]="area.gradient">
+              <span>{{ area.icon }}</span>
+            </div>
+            <span class="area-card-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+          <h3 class="area-card-title">{{ area.title }}</h3>
+          <p class="area-card-desc">{{ area.description }}</p>
+          <div class="area-card-footer">
+            <span>Explorar área</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
       }
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="cta-content">
-      <h2 class="cta-title">¿Listo para una administración sin preocupaciones?</h2>
-      <p class="cta-desc">
-        Contáctanos y descubre cómo podemos ayudarte a gestionar tu
-        residencial de manera eficiente y profesional.
+  <!-- ══════ CTA ══════ -->
+  <section class="animate-on-scroll" style="background:linear-gradient(135deg, #0c1a32 0%, #1b365d 50%, #2a4d7c 100%);padding:4rem 1.5rem;text-align:center">
+    <div style="max-width:560px;margin:0 auto">
+      <h2 style="font-family:var(--ds-font-family-document);font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:800;color:#fff;margin:0 0 0.75rem;letter-spacing:-0.02em">
+        ¿Listo para una administración sin preocupaciones?
+      </h2>
+      <p style="font-size:var(--ds-font-size-body);color:rgba(255,255,255,0.7);line-height:1.6;margin:0 0 2rem">
+        Contáctanos y descubre cómo podemos ayudarte a gestionar tu residencial
+        con excelencia y transparencia.
       </p>
-      <a class="btn-primary cta-btn" routerLink="/web/legal"> Solicitar información </a>
+      <a routerLink="/web/legal" class="btn-luxury btn-luxury-primary">Solicitar información</a>
     </div>
   </section>
 </div>

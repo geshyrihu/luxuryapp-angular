@@ -1,134 +1,92 @@
 <div class="area-page">
-  <section class="area-hero" style="--area-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);">
-    <div class="area-hero-bg"></div>
-    <div class="area-hero-content">
+  <!-- ══════ HERO (compacto) ══════ -->
+  <section class="hero-compact" style="background:linear-gradient(135deg, #c2410c 0%, #ea580c 100%)">
+    <div class="hero-compact-bg"></div>
+    <span class="shadow-title">MANTENIMIENTO</span>
+    <div class="hero-compact-content">
       <a routerLink="/web" class="back-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Volver
       </a>
-      <span class="area-badge">Área de Mantenimiento</span>
-      <h1 class="area-title">Procedimientos de Mantenimiento</h1>
-      <p class="area-subtitle">
-        Procedimientos estandarizados que garantizan la calidad, seguridad y
-        eficiencia en cada intervención de mantenimiento.
-      </p>
+      <span class="hero-badge">Área de Mantenimiento</span>
+      <h1 class="hero-title">Procedimientos de Mantenimiento</h1>
+      <p class="hero-subtitle">Procedimientos estandarizados que garantizan la calidad, seguridad y eficiencia en cada intervención de mantenimiento.</p>
     </div>
   </section>
 
-  <div class="area-container">
-    <section class="procedures">
-      <div class="section-header">
-        <span class="section-tag">Procedimientos</span>
-        <h2 class="section-title">Nuestros procedimientos</h2>
-        <p class="section-desc">
-          Cada procedimiento está diseñado para asegurar resultados
-          consistentes y trazables en todas las intervenciones.
-        </p>
+  <!-- ══════ PROCEDURES ══════ -->
+  <div class="page-container">
+    <section class="animate-on-scroll">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <span class="section-tagline" style="color:#c2410c">Procedimientos</span>
+        <h2 class="section-heading">Nuestros procedimientos</h2>
+        <p class="section-desc" style="margin:0 auto">Cada procedimiento está diseñado para asegurar resultados consistentes y trazables.</p>
       </div>
-
       <div class="procedures-grid">
         @for (proc of procedures; track proc.id) {
-        <a
-          class="procedure-card"
-          [routerLink]="['/web/maintenance', proc.id]"
-          [style]="{ '--card-accent': proc.gradient }"
-        >
-          <div class="proc-header">
-            <div class="proc-icon" [style.background]="proc.gradient">
-              <span class="proc-icon-symbol">{{
-                proc.icon === "mdi:broom" ? "🧹"
-                  : proc.icon === "mdi:shield-check" ? "🛡"
-                  : proc.icon === "mdi:alert-circle" ? "⚡"
-                  : proc.icon === "mdi:cog" ? "⚙"
-                  : proc.icon === "mdi:file-document" ? "📋"
-                  : proc.icon === "mdi:account-check" ? "👤"
-                  : proc.icon === "mdi:package-variant" ? "📦"
-                  : proc.icon === "mdi:toolbox" ? "🧰"
-                  : proc.icon === "mdi:domain" ? "🏢"
-                   : proc.icon === "mdi:file-sign" ? "📋"
-                   : proc.icon === "mdi:clipboard-check" ? "📝"
-                  : "🌿"
-              }}</span>
+          <a class="proc-card" [routerLink]="['/web/maintenance', proc.id]" [style]="{ '--card-accent': proc.gradient }">
+            <div class="proc-card-top">
+              <span class="proc-card-icon" [style.background]="proc.gradient">{{ proc.emoji }}</span>
+              <span class="proc-card-steps">{{ proc.steps }} pasos</span>
             </div>
-            <div class="proc-badge">{{ proc.steps }} pasos</div>
-          </div>
-          <h3 class="proc-title">{{ proc.title }}</h3>
-          <p class="proc-objective">{{ proc.objective }}</p>
-          <div class="proc-footer">
-            <span class="proc-cta">Ver procedimiento</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </a>
+            <h3 class="proc-card-title">{{ proc.title }}</h3>
+            <p class="proc-card-desc">{{ proc.objective }}</p>
+            <div class="proc-card-footer">
+              <span>Ver procedimiento</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
         }
       </div>
     </section>
-
-    <section class="objectives">
-      <div class="section-header">
-        <span class="section-tag">Objetivos</span>
-        <h2 class="section-title">¿Qué buscamos con estos procedimientos?</h2>
-      </div>
-      <div class="objectives-list">
-        <div class="objective-item">
-          <div class="obj-icon" style="--obj-color: #c2410c; --obj-bg: #ffedd5">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="obj-title">Calidad garantizada</h3>
-            <p class="obj-desc">Resultados consistentes mediante pasos estandarizados y verificables.</p>
-          </div>
-        </div>
-        <div class="objective-item">
-          <div class="obj-icon" style="--obj-color: #ea580c; --obj-bg: #ffedd5">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="obj-title">Seguridad primero</h3>
-            <p class="obj-desc">Protocolos que protegen a los ejecutores, condóminos y las instalaciones.</p>
-          </div>
-        </div>
-        <div class="objective-item">
-          <div class="obj-icon" style="--obj-color: #d97706; --obj-bg: #fef3c7">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><path d="M6 6h.01M6 18h.01"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="obj-title">Trazabilidad total</h3>
-            <p class="obj-desc">Cada intervención queda registrada para su revisión y auditoría.</p>
-          </div>
-        </div>
-        <div class="objective-item">
-          <div class="obj-icon" style="--obj-color: #15803d; --obj-bg: #dcfce7">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="obj-title">Eficiencia operativa</h3>
-            <p class="obj-desc">Optimización de recursos, tiempos y costos en cada tarea.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <div class="cta-card" style="--cta-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%)">
-        <h2 class="cta-title">¿Necesitas un plan de mantenimiento?</h2>
-        <p class="cta-desc">
-          Adopta nuestros procedimientos estandarizados para garantizar la
-          calidad en el mantenimiento de tu residencial.
-        </p>
-        <a class="btn-primary" routerLink="/web"> Solicitar información </a>
-      </div>
-    </section>
   </div>
+
+  <!-- ══════ OBJECTIVES ══════ -->
+  <section class="section-dark animate-on-scroll">
+    <div class="section-dark-inner">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <span class="section-tagline" style="color:var(--ds-text-secondary)">Objetivos</span>
+        <h2 class="section-heading">¿Qué buscamos con estos procedimientos?</h2>
+      </div>
+      <div class="objectives-grid">
+        <div class="obj-card">
+          <div class="obj-card-icon" style="--obj-bg:#ffedd5;--obj-color:#c2410c">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="obj-card-title">Calidad garantizada</h3>
+          <p class="obj-card-desc">Resultados consistentes mediante pasos estandarizados y verificables.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-card-icon" style="--obj-bg:#ffedd5;--obj-color:#ea580c">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="obj-card-title">Seguridad primero</h3>
+          <p class="obj-card-desc">Protocolos que protegen ejecutores, condóminos e instalaciones.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-card-icon" style="--obj-bg:#fef3c7;--obj-color:#d97706">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>
+          </div>
+          <h3 class="obj-card-title">Trazabilidad total</h3>
+          <p class="obj-card-desc">Cada intervención queda registrada para su revisión y auditoría.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-card-icon" style="--obj-bg:#dcfce7;--obj-color:#15803d">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 class="obj-card-title">Eficiencia operativa</h3>
+          <p class="obj-card-desc">Optimización de recursos, tiempos y costos en cada tarea.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ CTA ══════ -->
+  <section class="animate-on-scroll" style="background:linear-gradient(135deg, #c2410c 0%, #ea580c 100%);padding:3.5rem 1.5rem;text-align:center">
+    <div style="max-width:520px;margin:0 auto">
+      <h2 style="font-family:var(--ds-font-family-document);font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:#fff;margin:0 0 0.75rem">¿Necesitas un plan de mantenimiento?</h2>
+      <p style="font-size:var(--ds-font-size-body);color:rgba(255,255,255,0.75);margin:0 0 1.5rem">Adopta nuestros procedimientos estandarizados para tu residencial.</p>
+      <a routerLink="/web" class="btn-luxury btn-luxury-primary">Solicitar información</a>
+    </div>
+  </section>
 </div>

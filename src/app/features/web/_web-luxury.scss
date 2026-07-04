@@ -1,0 +1,187 @@
+/* ═══════════════════════════════════════════
+   Web Luxury — Design System Partial
+   ═══════════════════════════════════════════ */
+
+/* ─── Scroll Animation ─── */
+.animate-on-scroll {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  &.visible { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Section Headings ─── */
+.section-tagline {
+  display: block;
+  font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 0.5rem;
+}
+.section-heading {
+  font-family: var(--ds-font-family-document);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--ds-text-primary); margin: 0 0 0.75rem;
+}
+.section-desc {
+  font-size: var(--ds-font-size-body);
+  color: var(--ds-text-secondary); line-height: 1.6;
+  max-width: 560px;
+}
+
+/* ─── Hero — compact (envuelve al contenido) ─── */
+.hero-compact {
+  position: relative; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-compact-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
+}
+.hero-compact-content {
+  position: relative; z-index: 2; max-width: 680px;
+  text-align: center; padding: 1.25rem 1.5rem;
+}
+.hero-compact .shadow-title {
+  position: absolute; z-index: 1; pointer-events: none;
+  font-size: clamp(2rem, 6vw, 4rem); font-weight: 900;
+  color: rgba(255,255,255,0.03); text-align: center;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  letter-spacing: 0.06em; user-select: none; line-height: 0.9;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  color: rgba(255,255,255,0.5); text-decoration: none;
+  font-size: var(--ds-font-size-xs); font-weight: 500;
+  margin-bottom: 0.75rem; transition: all 0.3s;
+  &:hover { color: #fff; gap: 0.375rem; }
+}
+.hero-badge {
+  display: inline-block; padding: 0.2rem 0.75rem; border-radius: 999px;
+  font-size: 0.5rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.07em; background: rgba(255,255,255,0.1);
+  color: #fff; margin-bottom: 0.5rem; backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.hero-title {
+  font-family: var(--ds-font-family-document);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 800;
+  color: #fff; margin: 0 0 0.375rem; letter-spacing: -0.02em; line-height: 1.15;
+}
+.hero-subtitle {
+  font-size: var(--ds-font-size-xs); line-height: 1.5;
+  color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto;
+}
+
+/* ─── Hero — dramatic (full) ─── */
+.hero-dramatic {
+  position: relative; min-height: 85vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-dramatic-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255,255,255,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(255,255,255,0.06) 0%, transparent 50%);
+}
+.hero-dramatic .shadow-title {
+  position: absolute; z-index: 1; pointer-events: none;
+  font-size: clamp(4rem, 14vw, 11rem); font-weight: 900; line-height: 0.85;
+  color: rgba(255,255,255,0.03); text-align: center;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  letter-spacing: 0.06em; user-select: none;
+}
+.hero-dramatic-content {
+  position: relative; z-index: 2; max-width: 800px;
+  text-align: center; padding: 4rem 1.5rem;
+}
+
+/* ─── Hero Stats ─── */
+.hero-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-top: 1.5rem; flex-wrap: wrap;
+}
+.hero-stat { display: flex; flex-direction: column; align-items: center; padding: 0 1.25rem; }
+.hero-stat-value {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 800;
+  color: #fff; line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.625rem; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.07em; color: rgba(255,255,255,0.45); margin-top: 0.25rem;
+}
+.hero-stat-divider {
+  width: 1px; height: 2rem; background: rgba(255,255,255,0.12);
+}
+
+/* ─── Container ─── */
+.page-container { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+/* ─── Section Spacing ─── */
+.section-block { margin-bottom: 3.5rem; }
+
+/* ─── Dark Section ─── */
+.section-dark {
+  background: var(--ds-bg-elevated);
+  padding: 3.5rem 1.5rem;
+}
+.section-dark-inner { max-width: 1100px; margin: 0 auto; }
+
+/* ─── Cards ─── */
+.card-luxury {
+  border-radius: var(--ds-radius-card);
+  border: 1px solid var(--ds-border);
+  background: var(--ds-bg-surface);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+    border-color: color-mix(in srgb, var(--ds-primary) 30%, transparent);
+  }
+}
+
+/* ─── Button Luxury ─── */
+.btn-luxury {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem; border-radius: 999px; text-decoration: none;
+  font-size: var(--ds-font-size-sm); font-weight: 700;
+  transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn-luxury-primary {
+  background: #fff; color: var(--ds-primary);
+  &:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+}
+.btn-luxury-outline {
+  background: transparent; color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  &:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+}
+
+/* ─── Particles ─── */
+.particles {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  span {
+    position: absolute; width: 6px; height: 6px;
+    background: rgba(255,255,255,0.10); border-radius: 50%;
+    animation: float-particle 8s infinite ease-in-out;
+  }
+}
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.2; }
+  50% { transform: translateY(-25px) scale(1.3); opacity: 0.6; }
+}
+
+/* ─── Grids ─── */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; }
+
+@media (max-width: 640px) {
+  .hero-compact { min-height: 35vh; }
+  .hero-dramatic { min-height: 70vh; }
+  .hero-compact-content { padding: 2rem 1.25rem; }
+  .page-container { padding: 2rem 1.25rem 3rem; }
+  .section-dark { padding: 2.5rem 1.25rem; }
+  .hero-stats { gap: 0.5rem; }
+  .hero-stat { padding: 0 0.75rem; }
+}
