@@ -92,6 +92,15 @@ export class MaintenancePage {
       steps: 8,
     },
     {
+      id: "common-areas-inventory",
+      title: "Inventario de Áreas Comunes",
+      objective:
+        "Registrar y diagnosticar todos los bienes muebles e instalaciones en áreas comunes para su correcta administración y mantenimiento.",
+      icon: "mdi:domain",
+      gradient: "linear-gradient(135deg, #0369a1 0%, #06b6d4 100%)",
+      steps: 8,
+    },
+    {
       id: "green-areas",
       title: "Mantenimiento de Áreas Verdes",
       objective:

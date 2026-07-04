@@ -75,4 +75,15 @@ export const maintenanceRoutes: Routes = [
       breadcrumb: "Inventario de Herramientas",
     },
   },
+  {
+    path: "common-areas-inventory",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/common-areas-inventory/common-areas-inventory"
+      ).then((m) => m.CommonAreasInventory),
+    data: {
+      title: "Inventario de Áreas Comunes",
+      breadcrumb: "Inventario de Áreas Comunes",
+    },
+  },
 ];
