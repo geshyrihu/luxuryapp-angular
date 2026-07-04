@@ -27,9 +27,9 @@
 /* PrimeFlex se carga desde angular.json para utilidades de layout. */
 
 /* 4. TEMA CORE */
-@import "theme/global";
-@import "theme/toast";
-@import "theme/header-mobile";
+@import "base/global";
+@import "shared/toast";
+@import "mobile/header-mobile";
 
 /* 📱 CORE IONIC CSS */
 @import "@ionic/angular/css/core.css";
@@ -49,11 +49,11 @@ body {
   height: auto;
 }
 
-@import "theme/ionic-rn-theme";
-@import "theme/ili-buttons";
-@import "theme/cdk-overrides";
-@import "theme/auth";
-@import "theme/dark-mode"; /* último: unlayered, máxima prioridad en cascade */
+@import "mobile/ionic-rn-theme";
+@import "mobile/ili-buttons";
+@import "shared/cdk-overrides";
+@import "shared/auth";
+@import "base/dark-mode"; /* último: unlayered, máxima prioridad en cascade */
 
 /* 5. COMPONENTES CUSTOM */
 @import "custom/avatars";
@@ -63,7 +63,7 @@ body {
 @import "custom/print";
 
 /* 6. SIDEBAR */
-@import "theme/sidebar";
+@import "shared/sidebar";
 
 /* 7. FONTS */
 // DM Sans se carga desde index.html para evitar FOUT y optimizar CSP.

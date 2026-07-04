@@ -21,23 +21,23 @@
 @use "core/mixins";
 
 // 2. PrimeNG overrides.
-@use "prime-overrides/prime-tokens";
-@use "prime-overrides/prime-input";
-@use "prime-overrides/prime-button";
-@use "prime-overrides/prime-card";
-@use "prime-overrides/prime-message";
-@use "prime-overrides/prime-dialog";
-@use "prime-overrides/prime-tag";
-@use "prime-overrides/prime-table";
-@use "prime-overrides/prime-dropdown";
+@use "web/prime-tokens";
+@use "web/prime-input";
+@use "web/prime-button";
+@use "web/prime-card";
+@use "web/prime-message";
+@use "web/prime-dialog";
+@use "web/prime-tag";
+@use "web/prime-table";
+@use "web/prime-dropdown";
 
 // 3. Design System components.
-@use "components/buttons";
-@use "components/inputs";
-@use "components/forms";
-@use "components/cards";
-@use "components/tables";
-@use "components/alerts";
-@use "components/dropdowns";
+@use "web/buttons";
+@use "web/inputs";
+@use "web/forms";
+@use "web/cards";
+@use "web/tables";
+@use "web/alerts";
+@use "web/dropdowns";
 
 // 4. PrimeFlex utilities are loaded directly from angular.json.

@@ -28,15 +28,16 @@ flowchart TD
     A --> C["primeng-overrides.css<br/>(Capa @layer primeng-brand)"]
     A --> D["styles.scss<br/>(Global legacy - @import)"]
 
-    B --> E["core/<br/>(Tokens: colors, spacing, etc.)"]
-    B --> F["prime-overrides/<br/>(Component overrides PrimeNG)"]
-    B --> G["components/<br/>(DS Components: .btn, .card, etc.)"]
+    B --> E["core/<br/>(Tokens compartidos: colors, spacing, etc.)"]
+    B --> F["web/<br/>(🖥️ PrimeNG overrides + clases DS: .btn, .card, prime-*)"]
 
-    D --> H["theme/<br/>(Tema: global, dark, sidebar, auth, etc.)"]
-    D --> I["custom/<br/>(Legacy: tables, print, avatars, etc.)"]
+    D --> Hm["mobile/<br/>(📱 Ionic: ionic-rn-theme, ili-buttons, header-mobile)"]
+    D --> Hb["base/<br/>(global, dark-mode)"]
+    D --> Hs["shared/<br/>(cross-cutting: cdk-overrides, toast, auth, sidebar)"]
+    D --> I["custom/<br/>(app-specific: tables, print, avatars, etc.)"]
 
     E --> J["core/_colors.scss<br/>⚠️ ÚNICA fuente de hex/rgba"]
-    J --> K["theme/_variables.scss<br/>Expone --primary-*, --secondary-*, --ds-*, --surface-dark-*"]
+    J --> K["theme/_variables.scss<br/>Expone --primary-*, --secondary-*, --ds-*, --ds-m-* (móvil)"]
     K --> L["mypreset.ts<br/>PrimeNG preset - solo var(--*)"]
     L --> M["🧩 PrimeNG Components"]
 
@@ -50,8 +51,15 @@ flowchart TD
 | `angular.json` (build) | `ds-entry.scss` | Design System — `@use` (SCSS moderno) |
 | `angular.json` (build) | `primeng-overrides.css` | Overrides de marca PrimeNG — `@layer` CSS |
 | `angular.json` (build) | `styles.scss` | Estilos globales legacy — `@import` |
-| `@use` desde DS | `core/`, `prime-overrides/`, `components/` | Tokens y componentes DS |
-| `@import` desde styles | `theme/`, `custom/` | Tema, dark mode y legacy |
+| `@use` desde DS | `core/`, `web/` | Tokens compartidos + overrides PrimeNG/clases DS |
+| `@import` desde styles | `base/`, `mobile/`, `shared/`, `custom/` | App-wide, Ionic, cross-cutting, legacy |
+
+> [!NOTE]
+> **Reorg por capas (04-jul-26):** los estilos se separaron en `core/` (tokens
+> compartidos), `web/` (PrimeNG), `mobile/` (Ionic), `base/` (app-wide) y `shared/`
+> (cross-cutting). Regla: `web/` no referencia Ionic y `mobile/` no referencia
+> PrimeNG; ambos consumen los tokens de `core/`. `prime-overrides/` y `components/`
+> se fusionaron en `web/`.
 
 ---
 
