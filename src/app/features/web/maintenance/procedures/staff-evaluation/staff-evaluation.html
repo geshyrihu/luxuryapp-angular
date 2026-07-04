@@ -1,0 +1,272 @@
+<div class="procedure-page">
+  <!-- Hero -->
+  <section class="proc-hero" style="--hero-gradient: linear-gradient(135deg, #4338ca 0%, #6366f1 100%)">
+    <div class="proc-hero-bg"></div>
+    <div class="proc-hero-content">
+      <a routerLink="/web/maintenance" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver a procedimientos
+      </a>
+      <span class="proc-badge">Procedimiento</span>
+      <h1 class="proc-title">Evaluaci&oacute;n de Personal de Mantenimiento</h1>
+      <p class="proc-subtitle">
+        Evaluaci&oacute;n pr&aacute;ctica y justa del equipo de
+        mantenimiento, enfocada en los aspectos que realmente impactan la
+        calidad del servicio.
+      </p>
+    </div>
+  </section>
+
+  <div class="proc-container">
+    <!-- Objective -->
+    <section class="objective-section">
+      <div class="objective-card" style="--accent: #4338ca">
+        <div class="obj-icon" style="--icon-bg: #4338ca">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="obj-label">Objetivo</h2>
+          <p class="obj-text">
+            Contar con un criterio uniforme y transparente para evaluar al
+            personal de mantenimiento, identificando &aacute;reas de mejora
+            y reconociendo el desempe&ntilde;o sobresaliente, sin caer en
+            burocracia excesiva.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nota -->
+    <section class="note-section">
+      <div class="note-card">
+        <span class="note-icon">💡</span>
+        <p>
+          Somos una administradora, no una corporativa de RH. Esta evaluaci&oacute;n
+          est&aacute; dise&ntilde;ada para ser
+          <strong>r&aacute;pida, pr&aacute;ctica y accionable</strong>.
+          Se aplica una vez al semestre por el supervisor directo y se
+          revisa con el evaluado en una conversaci&oacute;n de 15 minutos.
+        </p>
+      </div>
+    </section>
+
+    <!-- Criteria Grid -->
+    <section class="phase">
+      <div class="phase-header">
+        <span class="phase-number">Criterios</span>
+        <h2 class="phase-title">¿Qu&eacute; evaluamos?</h2>
+        <p class="phase-desc">
+          Cuatro factores simples, ponderados seg&uacute;n su impacto en
+          el d&iacute;a a d&iacute;a.
+        </p>
+      </div>
+
+      <div class="criteria-grid">
+        <!-- Antigüedad -->
+        <div class="criterion-card" style="--c-color: #3b82f6; --c-bg: #dbeafe">
+          <div class="criterion-head">
+            <span class="criterion-icon">📅</span>
+            <div>
+              <span class="criterion-weight">20%</span>
+              <h3>Antigüedad</h3>
+            </div>
+          </div>
+          <div class="criterion-levels">
+            <div class="level">
+              <span class="level-badge low">1</span>
+              <span>Menos de 6 meses</span>
+            </div>
+            <div class="level">
+              <span class="level-badge mid">2</span>
+              <span>6 meses - 1 año</span>
+            </div>
+            <div class="level">
+              <span class="level-badge high">3</span>
+              <span>1 - 3 años</span>
+            </div>
+            <div class="level">
+              <span class="level-badge top">4</span>
+              <span>Más de 3 años</span>
+            </div>
+          </div>
+          <p class="criterion-note">
+            No penaliza al nuevo. Sirve para contextualizar los otros factores.
+          </p>
+        </div>
+
+        <!-- Conocimiento -->
+        <div class="criterion-card" style="--c-color: #f59e0b; --c-bg: #fef3c7">
+          <div class="criterion-head">
+            <span class="criterion-icon">🔧</span>
+            <div>
+              <span class="criterion-weight">35%</span>
+              <h3>Conocimiento</h3>
+            </div>
+          </div>
+          <div class="criterion-levels">
+            <div class="level">
+              <span class="level-badge low">1</span>
+              <span>B&aacute;sico - requiere supervisi&oacute;n constante</span>
+            </div>
+            <div class="level">
+              <span class="level-badge mid">2</span>
+              <span>Intermedio - realiza la mayor&iacute;a sin apoyo</span>
+            </div>
+            <div class="level">
+              <span class="level-badge high">3</span>
+              <span>Avanzado - resuelve solo, entrena a otros</span>
+            </div>
+            <div class="level">
+              <span class="level-badge top">4</span>
+              <span>Experto - diagnostica y propone mejoras</span>
+            </div>
+          </div>
+          <p class="criterion-note">
+            Incluye conocimientos t&eacute;cnicos, de seguridad y de los equipos del residencial.
+          </p>
+        </div>
+
+        <!-- Puntualidad -->
+        <div class="criterion-card" style="--c-color: #22c55e; --c-bg: #dcfce7">
+          <div class="criterion-head">
+            <span class="criterion-icon">⏰</span>
+            <div>
+              <span class="criterion-weight">25%</span>
+              <h3>Puntualidad</h3>
+            </div>
+          </div>
+          <div class="criterion-levels">
+            <div class="level">
+              <span class="level-badge low">1</span>
+              <span>3+ retardos al mes o inasistencias frecuentes</span>
+            </div>
+            <div class="level">
+              <span class="level-badge mid">2</span>
+              <span>1-2 retardos al mes, avisa con tiempo</span>
+            </div>
+            <div class="level">
+              <span class="level-badge high">3</span>
+              <span>Casi siempre puntual, faltas justificadas</span>
+            </div>
+            <div class="level">
+              <span class="level-badge top">4</span>
+              <span>Siempre puntual, nunca falta, cubre emergencias</span>
+            </div>
+          </div>
+          <p class="criterion-note">
+            Clave en mantenimiento: una llegada tarde puede retrasar toda la agenda del d&iacute;a.
+          </p>
+        </div>
+
+        <!-- Actitud -->
+        <div class="criterion-card" style="--c-color: #ec4899; --c-bg: #fce7f3">
+          <div class="criterion-head">
+            <span class="criterion-icon">💪</span>
+            <div>
+              <span class="criterion-weight">20%</span>
+              <h3>Actitud</h3>
+            </div>
+          </div>
+          <div class="criterion-levels">
+            <div class="level">
+              <span class="level-badge low">1</span>
+              <span>Resistente, quejas frecuentes, roces con compa&ntilde;eros</span>
+            </div>
+            <div class="level">
+              <span class="level-badge mid">2</span>
+              <span>Cumple pero sin iniciativa, actitud neutra</span>
+            </div>
+            <div class="level">
+              <span class="level-badge high">3</span>
+              <span>Colaborador, buen trato con cond&oacute;minos, proactivo</span>
+            </div>
+            <div class="level">
+              <span class="level-badge top">4</span>
+              <span>Liderazgo positivo, resuelve conflictos, mejora el ambiente</span>
+            </div>
+          </div>
+          <p class="criterion-note">
+            El trato con cond&oacute;minos es prioridad. Una mala actitud afecta la percepci&oacute;n de todo el servicio.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scoring -->
+    <section class="phase">
+      <div class="phase-header">
+        <span class="phase-number">Resultado</span>
+        <h2 class="phase-title">¿C&oacute;mo se interpreta?</h2>
+      </div>
+
+      <div class="result-cards">
+        <div class="result-card" style="--r-color: #22c55e; --r-bg: #dcfce7">
+          <span class="result-range">3.6 - 4.0</span>
+          <h3>Destacado</h3>
+          <p>Supera expectativas. Considerar aumento o mayor responsabilidad.</p>
+        </div>
+        <div class="result-card" style="--r-color: #3b82f6; --r-bg: #dbeafe">
+          <span class="result-range">2.6 - 3.5</span>
+          <h3>Cumple</h3>
+          <p>Desempe&ntilde;o s&oacute;lido. Refuerza en puntos espec&iacute;ficos.</p>
+        </div>
+        <div class="result-card" style="--r-color: #f59e0b; --r-bg: #fef3c7">
+          <span class="result-range">1.6 - 2.5</span>
+          <h3>En desarrollo</h3>
+          <p>Requiere plan de mejora con metas claras a 3 meses.</p>
+        </div>
+        <div class="result-card" style="--r-color: #ef4444; --r-bg: #fee2e2">
+          <span class="result-range">1.0 - 1.5</span>
+          <h3>Insuficiente</h3>
+          <p>Evaluar reubicaci&oacute;n o separaci&oacute;n. Acci&oacute;n inmediata.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="phase">
+      <div class="phase-header">
+        <span class="phase-number">Proceso</span>
+        <h2 class="phase-title">¿C&oacute;mo se aplica?</h2>
+      </div>
+
+      <div class="steps-flow">
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action">1. El supervisor eval&uacute;a</span>
+            <span class="step-desc">El supervisor directo llena la tabla de 4 criterios (15 min).</span>
+          </div>
+        </div>
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action">2. C&aacute;lculo simple</span>
+            <span class="step-desc">
+              Puntaje = (Antigüedad × 0.20) + (Conocimiento × 0.35) +
+              (Puntualidad × 0.25) + (Actitud × 0.20)
+            </span>
+          </div>
+        </div>
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action">3. Conversaci&oacute;n con el evaluado</span>
+            <span class="step-desc">Reuni&oacute;n de 15 min para compartir resultado, escuchar y acordar mejoras.</span>
+          </div>
+        </div>
+        <div class="step-node decision-step">
+          <div class="step-dot orange"></div>
+          <div class="step-body">
+            <span class="step-action">4. Registrar y dar seguimiento</span>
+            <span class="step-desc">Se archiva la evaluaci&oacute;n y se programan los compromisos acordados.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
