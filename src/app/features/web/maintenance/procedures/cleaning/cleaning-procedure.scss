@@ -136,144 +136,148 @@
   color: var(--ds-text-secondary); margin-top: 0.125rem;
 }
 
-/* ── Decision Tree ── */
-.decision-tree { padding-left: 1.5rem; }
-
-/* base node */
-.tree-node { margin-bottom: 0.5rem; }
-
-.node-shape {
-  display: flex; flex-direction: column;
-  padding: 1rem 1.25rem;
-  border-radius: 0.5rem;
+/* ── Phase Description ── */
+.phase-desc {
   font-size: var(--ds-font-size-sm);
-  line-height: 1.5;
-  position: relative;
+  color: var(--ds-text-secondary);
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+  max-width: 560px;
 }
 
-.decision-shape {
+/* ── Flowchart ── */
+.flowchart {
+  background: var(--ds-bg-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 1.5rem;
+}
+
+/* diamond decision node */
+.fc-diamond {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.875rem 1.25rem;
   background: #fff7ed;
   border: 2px solid #f97316;
-  color: #c2410c;
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  min-height: 80px;
+  border-radius: 0.75rem;
+}
+
+.fc-decision-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f97316;
+  margin-bottom: 0.2rem;
+}
+
+.fc-question {
+  font-weight: 600;
+  font-size: var(--ds-font-size-sm);
+  color: #9a3412;
+  line-height: 1.4;
+}
+
+/* action rectangle node */
+.fc-rect {
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1.5rem 2rem;
-
-  .node-label {
-    font-size: 0.625rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.05em;
-    color: #f97316; margin-bottom: 0.25rem;
-  }
-
-  .node-question {
-    font-weight: 600; color: #9a3412;
-  }
-}
-
-.decision-shape.small {
-  min-height: 60px;
-  padding: 1.25rem 1.5rem;
-}
-
-.action-shape {
+  padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   font-weight: 600;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 48px;
-  white-space: nowrap;
+  font-size: var(--ds-font-size-sm);
+  line-height: 1.4;
 }
 
-.action.positive .action-shape {
+.positive-action .fc-rect {
   background: #dcfce7;
   border: 2px solid #22c55e;
   color: #166534;
 }
 
-.action.negative .action-shape {
+.negative-action .fc-rect {
   background: #fee2e2;
   border: 2px solid #ef4444;
   color: #991b1b;
 }
 
-.end-marker {
+.fc-node {
+  margin-bottom: 0.5rem;
+}
+.fc-node:last-child { margin-bottom: 0; }
+
+.fc-end {
   display: inline-block;
-  margin-top: 0.375rem;
-  padding: 0.125rem 0.75rem;
+  margin-top: 0.25rem;
+  padding: 0.125rem 0.625rem;
   border-radius: 999px;
-  font-size: 0.625rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.05em;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #6b7280;
+  color: #fff;
 }
 
-.action.positive .end-marker {
-  background: #22c55e; color: #fff;
-}
+.positive-action .fc-end { background: #22c55e; }
+.negative-action .fc-end { background: #ef4444; }
 
-.action.negative .end-marker {
-  background: #ef4444; color: #fff;
-}
-
-/* branches */
-.tree-branch {
-  display: flex; gap: 1.5rem;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.tree-branch.vertical {
+/* ── Vertical branches ── */
+.fc-branches {
+  display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+  border-left: 2px solid #d1d5db;
 }
 
-.branch-col {
-  flex: 1;
+.fc-branch {
   position: relative;
-  padding-top: 0.5rem;
+  padding-left: 1.25rem;
 }
 
-.branch-label {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 1.75rem; height: 1.75rem; border-radius: 50%;
-  font-size: 0.6875rem; font-weight: 800;
+.fc-branch::before {
+  content: "";
+  position: absolute;
+  left: -1.5rem;
+  top: 0.875rem;
+  width: 1.5rem;
+  height: 2px;
+  background: #d1d5db;
+}
+
+.fc-branch-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.branch-label.yes { background: #22c55e; color: #fff; }
-.branch-label.no { background: #ef4444; color: #fff; }
-
-/* connectors */
-.tree-branch::before {
-  content: "";
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 2px; background: #d1d5db;
+.fc-branch-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 0.625rem;
+  font-weight: 800;
+  flex-shrink: 0;
 }
 
-.branch-col::before {
-  content: "";
-  position: absolute; left: -1.5rem; top: 50%;
-  width: 1.5rem; height: 2px; background: #d1d5db;
-}
+.yes-branch .fc-branch-badge { background: #22c55e; color: #fff; }
+.no-branch .fc-branch-badge { background: #ef4444; color: #fff; }
 
-.branch-col:first-child::before { display: none; }
-
-/* responsive */
-@media (max-width: 768px) {
-  .tree-branch {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .tree-branch::before { display: none; }
-  .branch-col::before { display: none; }
-  .decision-shape {
-    clip-path: none; border-radius: 0.5rem;
-    min-height: auto; padding: 1rem;
-  }
-  .decision-tree { padding-left: 0; }
-  .action-shape { white-space: normal; }
+.fc-branch-text {
+  font-size: var(--ds-font-size-sm);
+  font-weight: 600;
+  color: var(--ds-text-secondary);
 }
 
 /* ── Legend ── */
