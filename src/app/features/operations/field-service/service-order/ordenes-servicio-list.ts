@@ -39,10 +39,29 @@ import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-prov
 import { ServiceOrderForm } from "./service-order-form";
 import { UploadImgForm } from "./upload-img-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-ordenes-servicio-list",
   templateUrl: "./ordenes-servicio-list.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconItem,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     WebButtonLabelDelete,

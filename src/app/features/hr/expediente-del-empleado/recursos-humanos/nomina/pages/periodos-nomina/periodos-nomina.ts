@@ -21,9 +21,19 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 import ModalDiasNoHabiles from "./modal-dias-no-habiles/modal-dias-no-habiles";
 import ModalPeriodoAdd from "./modal-periodo-add/modal-periodo-add";
 
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-periodos-nomina",
   imports: [
+    WebButtonIcon,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

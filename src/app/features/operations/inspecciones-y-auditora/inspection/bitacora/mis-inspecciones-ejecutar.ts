@@ -33,9 +33,12 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MisInspeccionesAgregarImagenes } from "src/app/features/operations/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-agregar-imagenes";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-mis-inspecciones-ejecutar",
   imports: [
+    WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
     ToggleSwitchModule,

@@ -34,9 +34,25 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-documento-personalizado-lista",
   imports: [
+    WebButtonIconViewPdf,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     InputTextModule,

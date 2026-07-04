@@ -1,0 +1,117 @@
+<div class="card p-0 md:p-4">
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Tipos de Cargo"
+        (add)="onModalForm()"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-14rem">Nombre</th>
+        <th class="w-10rem">Código</th>
+        <th class="w-10rem">Cuenta</th>
+        <th>Descripción</th>
+        <th class="w-8rem text-center">Origen</th>
+        <th class="w-8rem text-center">Estado</th>
+        <th class="w-8rem text-center">Opciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td class="font-semibold text-800">{{ item.name }}</td>
+        <td>
+          <span class="font-mono text-sm text-700">{{ item.code }}</span>
+        </td>
+        <td>
+          <span class="font-mono text-sm text-primary">{{ item.accountNumber }}</span>
+        </td>
+        <td class="text-600">{{ item.description || "Sin descripción" }}</td>
+        <td class="text-center">
+          <span
+            class="px-2 py-1 border-round text-xs font-semibold"
+            [ngClass]="item.isSystem
+              ? 'bg-blue-100 text-blue-800'
+              : 'bg-green-100 text-green-800'"
+          >
+            {{ item.isSystem ? "Sistema" : "Custom" }}
+          </span>
+        </td>
+        <td class="text-center">
+          <span
+            class="px-2 py-1 border-round text-xs font-semibold"
+            [ngClass]="item.isActive
+              ? 'bg-emerald-100 text-emerald-800'
+              : 'bg-orange-100 text-orange-800'"
+          >
+            {{ item.isActive ? "Activo" : "Inactivo" }}
+          </span>
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center align-items-center gap-2">
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            @if (!item.isSystem) {
+            <iw-button-delete (customClick)="onDelete(item)" />
+            } @else {
+            <span class="text-xs text-500">Protegido</span>
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage
+        [colspan]="7"
+        icon="mdi:shape-outline"
+        title="Sin tipos de cargo"
+        message="Los tipos base aparecerán aquí y desde esta pantalla podrás agregar tipos personalizados."
+      />
+    </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="['name', 'code', 'accountNumber', 'description']"
+  (add)="onModalForm()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <app-icon icon="mdi:shape-outline" class="text-blue-700 text-xl" />
+      </div>
+      <ion-label>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.accountNumber }} · {{ item.code }}</p>
+        <p>{{ item.isSystem ? "Sistema" : "Custom" }} · {{ item.isActive ? "Activo" : "Inactivo" }}</p>
+      </ion-label>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          @if (!item.isSystem) {
+          <ili-button-delete
+            (confirmed)="onDelete(item)"
+            label="Eliminar"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

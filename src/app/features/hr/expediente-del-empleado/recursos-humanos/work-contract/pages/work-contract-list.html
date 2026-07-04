@@ -43,12 +43,9 @@
           >
         </td>
         <td class="text-center">
-          <il-button-item
-            icon="mdi:eye-outline"
-            (click)="onViewDetail(item)"
-          />
-          <il-button-edit (click)="onEdit(item)" />
-          <il-button-delete (click)="onDelete(item.id)" />
+          <iw-button-item icon="mdi:eye-outline" (click)="onViewDetail(item)" />
+          <iw-button-edit (click)="onEdit(item)" />
+          <iw-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
@@ -56,8 +53,8 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
   </p-table>
 
   <app-data-view-mobile
@@ -79,7 +76,7 @@
           <app-icon
             icon="mdi:file-sign"
             style="font-size: 1.1rem; color: var(--ds-primary)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h2 class="font-bold">{{ item.contractNumber }}</h2>
@@ -94,20 +91,20 @@
             >
           </p>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Ver"
               iconName="eye-outline"
               (clicked)="onViewDetail(item)"
             />
-            <il-button-item
+            <ili-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

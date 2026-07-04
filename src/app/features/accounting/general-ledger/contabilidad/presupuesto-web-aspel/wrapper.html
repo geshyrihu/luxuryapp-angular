@@ -125,11 +125,11 @@
 
         <div class="flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
-          <il-button
+          <iw-button
             iconClass="mdi:cog"
             [outlined]="true"
             severity="secondary"
-            ngbTooltip="Gestionar Reglas de Cuentas"
+            pTooltip="Gestionar Reglas de Cuentas" tooltipPosition="bottom"
             (clicked)="onManageRules()"
           />
           }

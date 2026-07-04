@@ -22,8 +22,8 @@
       />
       <div class="flex flex-wrap gap-1">
         @for (item of filtroEquipos; track item) {
-        <il-button
-          [ngbTooltip]="'Ver ' + item.nombre"
+        <iw-button
+          [pTooltip]="'Ver ' + item.nombre" tooltipPosition="bottom"
           [iconClass]="item.icon"
           variant="outlined"
           [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
@@ -151,27 +151,27 @@
       </td>
       <td class="no-print">
         <div class="flex">
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:printer"
-            label="Imprimir soporte"
+            pTooltip="Imprimir soporte" tooltipPosition="top"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             variant="outlined"
           />
 
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:image"
-            label="Cargar imagen"
+            pTooltip="Cargar imagen" tooltipPosition="top"
             (clicked)="onModalFormUploadImg(item.id)"
             variant="outlined"
           />
 
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:paperclip"
-            label="Cargar documentos"
+            pTooltip="Cargar documentos" tooltipPosition="top"
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outlined"
           />
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onEdit({
                   id: item.id,
                   title: 'Editar',
@@ -179,7 +179,7 @@
                   providerId: item.providerId
                 })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -246,7 +246,7 @@
 
       <!-- Botún Reporte -->
       <div class="mb-2">
-        <il-button-item
+        <ili-button-item
           iconName="document-text-outline"
           label="Reporte de órdenes"
           (click)="onNavigateToReport()"
@@ -255,7 +255,7 @@
         />
       </div>
       <div class="mb-2">
-        <il-button-item
+        <ili-button-item
           iconName="grid-outline"
           label="Reporte por categoria"
           (click)="onNavigateToReportTabla()"
@@ -289,7 +289,7 @@
         <app-icon
           icon="mdi:wrench-outline"
           style="font-size: 1.1rem; color: var(--ds-warning)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
@@ -331,27 +331,27 @@
       </ion-label>
 
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               iconName="print-outline"
               label="Imprimir soporte"
               [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             />
 
-            <il-button-item
+            <ili-button-item
               iconName="image-outline"
               label="Cargar imagen"
               (clicked)="onModalFormUploadImg(item.id)"
             />
 
-            <il-button-item
+            <ili-button-item
               iconName="ellipsis-horizontal-outline"
               label="Cargar documentos"
               (clicked)="onModalFormUploadDoc(item.id)"
               variant="outlined"
             />
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onEdit({
                     id: item.id,
                     title: 'Editar',
@@ -360,12 +360,12 @@
                     })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

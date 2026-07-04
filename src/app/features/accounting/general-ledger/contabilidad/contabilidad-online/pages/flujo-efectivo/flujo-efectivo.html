@@ -3,7 +3,7 @@
   <div
     class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2"
   >
-    <app-icon [icon]="'mdi:loading'"></app-icon>
+    <app-icon [icon]="'mdi:loading'" />
     <span>Calculando flujo de caja...</span>
   </div>
   } @if (!loading() && !grupos().length) {
@@ -18,52 +18,76 @@
           <tr>
             <th class="table-col-50px"></th>
             <th class="table-col-130px">Concepto</th>
-            <th class="table-col-140px" style="color: #6366f1;">Origen (Auditoría)</th>
+            <th class="table-col-140px" style="color: #6366f1">
+              Origen (Auditoría)
+            </th>
             @for (col of columnas(); track col) {
-              <th class="text-right table-col-140px">{{ col }}</th>
+            <th class="text-right table-col-140px">{{ col }}</th>
             }
           </tr>
         </thead>
 
         <tbody>
           @for (grupo of grupos(); track grupo.nombre) {
-            <!-- Título del Grupo -->
-            <tr class="rf-row-grupo">
-              <td [colSpan]="columnas().length + 3" class="font-bold text-primary bg-primary-reverse p-2">
-                {{ grupo.nombre }}
-              </td>
-            </tr>
+          <!-- Título del Grupo -->
+          <tr class="rf-row-grupo">
+            <td
+              [colSpan]="columnas().length + 3"
+              class="font-bold text-primary bg-primary-reverse p-2"
+            >
+              {{ grupo.nombre }}
+            </td>
+          </tr>
 
-            <!-- Filas del Grupo -->
-            @for (fila of grupo.filas; track $index; let fIdx = $index) {
-              <tr [class.rf-row-total]="fila.esFilaTotal" [class.rf-row-concepto]="!fila.esFilaTotal" [class.bg-orange-100]="fila.esManual">
-                <td class="text-center font-bold" [class.rf-td-number]="!fila.esFilaTotal" [class.rf-td-number--total]="fila.esFilaTotal">
-                  {{ fila.signo }}
-                </td>
-                <td [class.rf-td-descripcion]="!fila.esFilaTotal" [class.font-bold]="fila.esFilaTotal">
-                  {{ fila.concepto }}
-                </td>
-                <td class="text-xs text-color-secondary" [class.font-bold]="fila.esFilaTotal">
-                  {{ fila.esFilaTotal || fila.ocultarOrigen ? '' : (fila.origen || 'Calculado') }}
-                </td>
-                
-                @for (monto of fila.montos; track $index; let colIdx = $index; let isLast = $last) {
-                  <td class="text-right" [class.rf-td-number]="!fila.esFilaTotal" [class.rf-td-number--total]="fila.esFilaTotal" [class.rf-neg]="monto < 0">
-                    @if (fila.esManual) {
-                      <input
-                        type="number"
-                        class="p-inputtext p-component p-inputtext-sm w-full text-right bg-white"
-                        [ngModel]="monto"
-                        (ngModelChange)="onManualInput($event, fila.concepto, colIdx)"
-                      />
-                    } @else {
-                      {{ monto === 0 && !fila.esFilaTotal ? "-" : (monto | accountingNumber: "1.0-0") }}
-                    }
-                  </td>
-                }
-              </tr>
+          <!-- Filas del Grupo -->
+          @for (fila of grupo.filas; track $index; let fIdx = $index) {
+          <tr
+            [class.rf-row-total]="fila.esFilaTotal"
+            [class.rf-row-concepto]="!fila.esFilaTotal"
+            [class.bg-orange-100]="fila.esManual"
+          >
+            <td
+              class="text-center font-bold"
+              [class.rf-td-number]="!fila.esFilaTotal"
+              [class.rf-td-number--total]="fila.esFilaTotal"
+            >
+              {{ fila.signo }}
+            </td>
+            <td
+              [class.rf-td-descripcion]="!fila.esFilaTotal"
+              [class.font-bold]="fila.esFilaTotal"
+            >
+              {{ fila.concepto }}
+            </td>
+            <td
+              class="text-xs text-color-secondary"
+              [class.font-bold]="fila.esFilaTotal"
+            >
+              {{ fila.esFilaTotal || fila.ocultarOrigen ? '' : (fila.origen ||
+              'Calculado') }}
+            </td>
+
+            @for (monto of fila.montos; track $index; let colIdx = $index; let
+            isLast = $last) {
+            <td
+              class="text-right"
+              [class.rf-td-number]="!fila.esFilaTotal"
+              [class.rf-td-number--total]="fila.esFilaTotal"
+              [class.rf-neg]="monto < 0"
+            >
+              @if (fila.esManual) {
+              <input
+                type="number"
+                class="p-inputtext p-component p-inputtext-sm w-full text-right bg-white"
+                [ngModel]="monto"
+                (ngModelChange)="onManualInput($event, fila.concepto, colIdx)"
+              />
+              } @else { {{ monto === 0 && !fila.esFilaTotal ? "-" : (monto |
+              accountingNumber: "1.0-0") }} }
+            </td>
             }
-          }
+          </tr>
+          } }
         </tbody>
       </table>
     </div>

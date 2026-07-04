@@ -12,7 +12,7 @@
     <ng-template pTemplate="caption">
       <div class="flex justify-content-between align-items-end mb-4">
         <primeng-custom-caption
-          title="Emisión de Cargos (Motor Nativo)"
+          title="Emision de Cargos (Motor Nativo)"
           (add)="onModalForm()"
           [dt]="dt"
           [noMargin]="true"
@@ -34,7 +34,7 @@
       <tr>
         <th class="w-8rem">Propiedad</th>
         <th class="w-8rem">Concepto</th>
-        <th class="w-8rem">Tipo</th>
+        <th class="w-10rem">Tipo</th>
         <th class="w-8rem text-right">Monto</th>
         <th class="w-8rem text-center">Vencimiento</th>
         <th class="w-6rem text-center">Auto</th>
@@ -48,11 +48,10 @@
         <td class="font-bold text-800">{{ item.propertyFullName || 'N/A' }}</td>
         <td>{{ item.concept }}</td>
         <td class="text-xs">
-          @switch (item.type) { @case (EChargeType.MantenimientoOrdinario) {
-          <span>Mtto. Ordinario</span> } @case (EChargeType.CuotaExtraordinaria)
-          { <span>Cuota Extra.</span> } @case (EChargeType.RecargoMora) {
-          <span>Recargo Mora</span> } @case (EChargeType.Otros) {
-          <span>Otros</span> } }
+          <div class="flex flex-column">
+            <span>{{ item.chargeTypeName || 'Sin tipo' }}</span>
+            <span class="text-400">{{ item.chargeTypeAccountNumber }}</span>
+          </div>
         </td>
         <td class="text-right font-medium text-red-600">
           {{ item.amount | number: "1.2-2" }}
@@ -66,7 +65,7 @@
             [icon]="'mdi:lightning-bolt'"
             class="text-purple-600"
             title="Generado por sistema"
-          ></app-icon>
+          />
           }
         </td>
         <td class="text-center">
@@ -82,17 +81,27 @@
           <span class="badge bg-gray-100 text-gray-800">Cancelado</span> } }
         </td>
         <td class="text-center">
-          <div class="flex justify-content-center">
-            <il-button-edit (clicked)="onModalForm(item.id)" />
-            <il-button-delete (customClick)="onDelete(item)" />
+          <div class="flex justify-content-center gap-1">
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            @if (item.status !== EChargeStatus.Cancelado) {
+            <iw-button
+              iconClass="mdi:close-circle"
+              severity="warning"
+              variant="outlined"
+              size="small"
+              pTooltip="Cancelar cargo"
+              tooltipPosition="top"
+              (clicked)="onCancel(item)"
+            />
+            }
           </div>
         </td>
       </tr>
     </ng-template>
 
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="8" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -110,25 +119,29 @@
         <app-icon
           icon="mdi:credit-card-outline"
           class="text-orange-600 text-xl"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
-        <p>{{ item.concept }} é {{ item.amount | number:'1.2-2' }}</p>
+        <p>{{ item.chargeTypeName || 'Sin tipo' }} · {{ item.concept }}</p>
+        <p>{{ item.amount | number:'1.2-2' }} · {{ item.chargeTypeAccountNumber }}</p>
         <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onModalForm(item.id)"
-            label="Editar"
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          @if (item.status !== EChargeStatus.Cancelado) {
+          <il-button
+            label="Cancelar"
+            iconClass="mdi:close-circle"
+            severity="warning"
+            variant="outlined"
+            size="small"
+            (clicked)="onCancel(item)"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item)"
-            label="Eliminar"
-          />
+          }
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

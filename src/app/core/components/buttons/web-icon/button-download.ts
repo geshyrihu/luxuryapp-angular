@@ -14,7 +14,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:download'" />
+      <app-icon [icon]="iconClass() || 'fluent-color:cloud-download-16'" />
     </button>
   `,
 })
@@ -24,4 +24,3 @@ export class WebButtonIconDownload extends BaseButton {
   );
   override severity = input<any>("secondary");
 }
-

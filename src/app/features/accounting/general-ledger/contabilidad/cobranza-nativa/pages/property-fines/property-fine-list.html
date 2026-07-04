@@ -63,14 +63,14 @@
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
             @if (canIssueCharge(item.status)) {
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onIssueCharge(item)"
               title="Generar cargo financiero"
             />
             } @if (canEdit(item.status)) {
-            <il-button-edit (clicked)="onModalForm(item.id)" />
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
             } @if (canVoid(item.status)) {
-            <il-button-delete
+            <iw-button-delete
               (customClick)="onVoid(item)"
               title="Anular multa"
             />
@@ -81,8 +81,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="8" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -100,7 +100,7 @@
         <app-icon
           icon="mdi:alert-circle-outline"
           class="text-orange-600 text-xl"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName }}</h3>
@@ -110,26 +110,17 @@
           fineStatusLabel(item.status) }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
           @if (canIssueCharge(item.status)) {
-          <il-button-edit
-            (clicked)="onIssueCharge(item)"
-            label="Editar"
-          />
+          <ili-button-edit (clicked)="onIssueCharge(item)" label="Editar" />
           } @if (canEdit(item.status)) {
-          <il-button-edit
-            (clicked)="onModalForm(item.id)"
-            label="Editar"
-          />
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           } @if (canVoid(item.status)) {
-          <il-button-delete
-            (confirmed)="onVoid(item)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onVoid(item)" label="Eliminar" />
           }
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

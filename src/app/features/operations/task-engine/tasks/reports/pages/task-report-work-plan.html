@@ -99,9 +99,17 @@
       </td>
       <td class="text-center">
         @if (item.priority === 'Alta') {
-        <app-icon [icon]="'mdi:star-outline'" class="text-md text-primary-500 cursor-pointer" (click)="onUpdatePriority(item.id)"></app-icon>
+        <app-icon
+          [icon]="'mdi:star-outline'"
+          class="text-md text-primary-500 cursor-pointer"
+          (click)="onUpdatePriority(item.id)"
+        />
         } @if (item.priority === 'Baja') {
-        <app-icon [icon]="'mdi:star-outline'" class="text-md text-primary-500 cursor-pointer" (click)="onUpdatePriority(item.id)"></app-icon>
+        <app-icon
+          [icon]="'mdi:star-outline'"
+          class="text-md text-primary-500 cursor-pointer"
+          (click)="onUpdatePriority(item.id)"
+        />
         }
       </td>
       <td class="text-center">

@@ -53,7 +53,7 @@
           }
         </td>
         <td class="text-center">
-          <il-button-item
+          <iw-button-item
             icon="mdi:sync"
             title="Cambiar estatus"
             (click)="onChangeStatus(item)"
@@ -65,8 +65,8 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
   </p-table>
 
   <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">
@@ -84,7 +84,7 @@
           <app-icon
             icon="mdi:gavel"
             style="font-size: 1.1rem; color: var(--ds-danger)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h2 class="font-bold">{{ item.sanctionTypeName }}</h2>
@@ -100,15 +100,15 @@
             >
           </p>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Cambiar estatus"
               iconName="sync-outline"
               (clicked)="onChangeStatus(item)"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

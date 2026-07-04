@@ -16,8 +16,8 @@
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
-    <il-button-download
-      label="Descargar PDF"
+    <iw-button-download
+      pTooltip="Descargar PDF" tooltipPosition="top"
       iconClass="mdi:file-pdf-box"
       variant="outlined"
       severity="danger"
@@ -66,11 +66,11 @@
 
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
@@ -105,7 +105,7 @@
         <app-icon
           icon="mdi:tools"
           style="font-size: 1.1rem; color: var(--ds-warning)"
-        ></app-icon>
+        />
       </div>
 
       <ion-label>
@@ -114,20 +114,20 @@
       </ion-label>
 
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
             }
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

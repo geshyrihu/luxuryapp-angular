@@ -23,10 +23,14 @@ import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import {
+  NativeCollectionRealTimeUpdateDTO,
+  SignalRService,
+} from "src/app/core/services/signalr.service";
 import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
 
 @Component({
@@ -36,6 +40,7 @@ import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
     ReactiveFormsModule,
     TableModule,
     CustomInputSelectSignal,
+    CustomInputDateSignal,
     UpperCasePipe,
     IonCard,
     IonCardContent,
@@ -47,19 +52,33 @@ import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
 })
 export class NativeStatement implements OnInit {
   private apiResponseS = inject(ApiResponseService);
-  private authS = inject(AuthService);
   private destroyRef = inject(DestroyRef);
   private customerIdS = inject(CustomerIdService);
+  private signalRService = inject(SignalRService);
+
+  private realtimePropertyId: string | null = null;
 
   // State
   customerId = signal<string>("");
   properties = signal<{ label: string; value: string }[]>([]);
   propertyIdCtrl = new FormControl<string>("", { nonNullable: true });
+  asOfCtrl = new FormControl<Date | string | null>(null);
 
   loading = signal<boolean>(false);
+  exportingPdf = signal<boolean>(false);
+  sendingStatement = signal<boolean>(false);
+  processingNotifications = signal<boolean>(false);
   statement = signal<NativeStatementResponseDTO | null>(null);
 
   constructor() {
+    this.destroyRef.onDestroy(() => {
+      if (this.realtimePropertyId) {
+        void this.signalRService.leaveNativeCollectionPropertyGroup(
+          this.realtimePropertyId,
+        );
+      }
+    });
+
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) {
@@ -72,9 +91,53 @@ export class NativeStatement implements OnInit {
   ngOnInit() {
     this.propertyIdCtrl.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((propertyId) => {
+        this.syncRealtimePropertyGroup(propertyId);
+        this.statement.set(null);
+      });
+
+    this.asOfCtrl.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.statement.set(null);
       });
+
+    this.signalRService.nativeCollectionUpdate$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((payload) => {
+        void this.onRealtimeUpdate(payload);
+      });
+  }
+
+  private async onRealtimeUpdate(
+    payload: NativeCollectionRealTimeUpdateDTO,
+  ): Promise<void> {
+    const currentStatement = this.statement();
+    const selectedPropertyId = this.propertyIdCtrl.value;
+
+    if (!currentStatement || !selectedPropertyId) return;
+    if (payload.propertyId && payload.propertyId !== selectedPropertyId) return;
+
+    await this.searchStatement();
+  }
+
+  private syncRealtimePropertyGroup(propertyId: string | null): void {
+    if (this.realtimePropertyId === propertyId) return;
+
+    if (this.realtimePropertyId) {
+      void this.signalRService.leaveNativeCollectionPropertyGroup(
+        this.realtimePropertyId,
+      );
+    }
+
+    this.realtimePropertyId = propertyId;
+
+    if (!propertyId) {
+      return;
+    }
+
+    this.signalRService.start();
+    void this.signalRService.joinNativeCollectionPropertyGroup(propertyId);
   }
 
   async loadProperties() {
@@ -93,7 +156,14 @@ export class NativeStatement implements OnInit {
     this.loading.set(true);
     try {
       const res = await this.apiResponseS.onGetItem<NativeStatementResponseDTO>(
-        Endpoints.AccountingCoi.NativeCollection.Statements.get(propertyId),
+        Endpoints.AccountingCoi.NativeCollection.Statements.get(
+          propertyId,
+          this.asOfCtrl.value
+            ? this.asOfCtrl.value instanceof Date
+              ? this.asOfCtrl.value.toISOString()
+              : this.asOfCtrl.value
+            : null,
+        ),
       );
       if (res) {
         this.statement.set(res);
@@ -103,8 +173,93 @@ export class NativeStatement implements OnInit {
     }
   }
 
-  exportPdf() {
-    // Stub for PDF export functionality (future enhancement)
-    window.print();
+  private getAsOfValue(): string | null {
+    return this.asOfCtrl.value
+      ? this.asOfCtrl.value instanceof Date
+        ? this.asOfCtrl.value.toISOString()
+        : this.asOfCtrl.value
+      : null;
+  }
+
+  private getStatementPdfUrl(propertyId: string): string {
+    return Endpoints.AccountingCoi.NativeCollection.Statements.pdf(
+      propertyId,
+      this.getAsOfValue(),
+    );
+  }
+
+  private getStatementPdfFileName(): string {
+    const propertyName =
+      this.statement()?.propertyInfo.propertyName
+        ?.trim()
+        .replace(/\s+/g, "-")
+        .toLowerCase() || "propiedad";
+    const cutoffDate = this.getAsOfValue()?.slice(0, 10) || "actual";
+    return `estado-cuenta-${propertyName}-${cutoffDate}.pdf`;
+  }
+
+  async previewPdf() {
+    const propertyId = this.propertyIdCtrl.value;
+    if (!propertyId) return;
+
+    this.exportingPdf.set(true);
+    try {
+      await this.apiResponseS.onPreviewPdf(this.getStatementPdfUrl(propertyId));
+    } finally {
+      this.exportingPdf.set(false);
+    }
+  }
+
+  async downloadPdf() {
+    const propertyId = this.propertyIdCtrl.value;
+    if (!propertyId) return;
+
+    this.exportingPdf.set(true);
+    try {
+      await this.apiResponseS.onDownloadFile(
+        this.getStatementPdfUrl(propertyId),
+        this.getStatementPdfFileName(),
+      );
+    } finally {
+      this.exportingPdf.set(false);
+    }
+  }
+
+  async sendStatementEmail() {
+    const propertyId = this.propertyIdCtrl.value;
+    if (!propertyId) return;
+
+    this.sendingStatement.set(true);
+    try {
+      await this.apiResponseS.onPost<boolean>(
+        Endpoints.AccountingCoi.NativeCollection.Notifications.sendStatement,
+        {
+          customerId: this.customerId(),
+          propertyId,
+          asOf: this.asOfCtrl.value
+            ? this.asOfCtrl.value instanceof Date
+              ? this.asOfCtrl.value.toISOString()
+              : this.asOfCtrl.value
+            : null,
+        },
+      );
+    } finally {
+      this.sendingStatement.set(false);
+    }
+  }
+
+  async processNotifications() {
+    if (!this.customerId()) return;
+
+    this.processingNotifications.set(true);
+    try {
+      await this.apiResponseS.onPost<number>(
+        Endpoints.AccountingCoi.NativeCollection.Notifications.process(
+          this.customerId(),
+        ),
+      );
+    } finally {
+      this.processingNotifications.set(false);
+    }
   }
 }

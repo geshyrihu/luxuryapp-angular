@@ -52,10 +52,13 @@ interface IOrdenCompraDetalleRowForm {
   retencionISRPorcentaje: FormControl<number | null>;
 }
 
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+
 @Component({
   selector: "app-orden-compra-detalle-add-producto",
   templateUrl: "./orden-compra-detalle-add-producto.html",
   imports: [
+    WebButtonIconItem,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

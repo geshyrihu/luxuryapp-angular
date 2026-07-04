@@ -32,7 +32,7 @@
           >
             <ng-template pTemplate="header">
               <div class="flex align-items-center gap-2 px-2 text-blue-900">
-                <app-icon [icon]="'mdi:pencil'"></app-icon>
+                <app-icon [icon]="'mdi:pencil'" />
                 <span class="font-bold">La "Plantilla"</span>
               </div>
             </ng-template>
@@ -51,7 +51,7 @@
           >
             <ng-template pTemplate="header">
               <div class="flex align-items-center gap-2 px-2 text-green-900">
-                <app-icon [icon]="'mdi:file-pdf-box'"></app-icon>
+                <app-icon [icon]="'mdi:file-pdf-box'" />
                 <span class="font-bold">La "Instancia"</span>
               </div>
             </ng-template>
@@ -79,7 +79,10 @@
 
           <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
-              <app-icon [icon]="'mdi:sitemap'" class="text-3xl text-primary mr-3 mt-1"></app-icon>
+              <app-icon
+                [icon]="'mdi:sitemap'"
+                class="text-3xl text-primary mr-3 mt-1"
+              />
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">
                   Diagramas de Flujo (Draw.io)
@@ -96,7 +99,10 @@
 
           <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
-              <app-icon [icon]="'mdi:table'" class="text-3xl text-orange-500 mr-3 mt-1"></app-icon>
+              <app-icon
+                [icon]="'mdi:table'"
+                class="text-3xl text-orange-500 mr-3 mt-1"
+              />
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">Matriz RACI</h4>
                 <p class="m-0 text-700 line-height-3">
@@ -110,7 +116,10 @@
 
           <p-card styleClass="mb-0 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
-              <app-icon [icon]="'mdi:paperclip'" class="text-3xl text-teal-500 mr-3 mt-1"></app-icon>
+              <app-icon
+                [icon]="'mdi:paperclip'"
+                class="text-3xl text-teal-500 mr-3 mt-1"
+              />
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">
                   Anexos y Archivos Auxiliares
@@ -201,7 +210,7 @@
                   severity="success"
                   [rounded]="true"
                   styleClass="w-2rem h-2rem text-lg"
-                  ><app-icon [icon]="'mdi:check'" class="font-bold"></app-icon>
+                  ><app-icon [icon]="'mdi:check'" class="font-bold" />
                 </p-tag>
               </div>
               <div>

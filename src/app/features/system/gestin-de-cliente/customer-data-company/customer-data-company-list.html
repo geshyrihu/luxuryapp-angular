@@ -54,7 +54,7 @@
                 : 'mdi:account'
             "
             class="text-primary mr-2"
-          ></app-icon>
+          />
           <span class="font-bold text-900">
             {{ groupingOption() === "numeroCliente" ? item.customer :
             item.applicationRoleName }}
@@ -144,7 +144,7 @@
         <app-icon
           icon="mdi:office-building-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label class="p-3">
         <div class="flex justify-content-between align-items-start mb-2">
@@ -155,27 +155,24 @@
         </div>
         <h2 class="text-base font-bold mb-1">{{ item.applicationUser }}</h2>
         <div class="flex align-items-center text-sm text-600 mb-1">
-          <app-icon [icon]="'mdi:email-outline'" class="text-xs"></app-icon>
+          <app-icon [icon]="'mdi:email-outline'" class="text-xs" />
           <span>{{ item.email }}</span>
         </div>
         <div class="flex align-items-center text-sm text-600">
-          <app-icon [icon]="'mdi:phone'" class="text-xs"></app-icon>
+          <app-icon [icon]="'mdi:phone'" class="text-xs" />
           <span>{{ item.phoneNumber }}</span>
         </div>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

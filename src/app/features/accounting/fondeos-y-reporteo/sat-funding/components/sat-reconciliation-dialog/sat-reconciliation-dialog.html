@@ -2,7 +2,7 @@
   <!-- Config Section -->
   <div *ngIf="step() === 'config'" class="flex flex-column">
     <div class="text-center">
-      <app-icon [icon]="'mdi:calendar'" class="text-primary text-5xl mb-3"></app-icon>
+      <app-icon [icon]="'mdi:calendar'" class="text-primary text-5xl mb-3" />
       <h3>
         {{ mode() === 'xml' ? 'Descargar XMLs (CFDI)' : 'Selecciona Periodo de
         Conciliación' }}
@@ -55,7 +55,7 @@
 
   <!-- Error Section -->
   <div *ngIf="step() === 'error'" class="flex flex-column align-items-center">
-    <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-6xl"></app-icon>
+    <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-6xl" />
     <div class="text-xl text-red-600 font-bold">Error en la Conciliación</div>
     <p class="text-center">{{ errorMessage() }}</p>
     <il-button
@@ -132,11 +132,7 @@
     </p-table>
 
     <div class="flex justify-content-end mt-3">
-      <il-button
-        label="Cerrar"
-        iconClass="mdi:check"
-        (clicked)="close()"
-      />
+      <il-button label="Cerrar" iconClass="mdi:check" (clicked)="close()" />
     </div>
   </div>
 </div>

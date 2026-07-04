@@ -180,7 +180,7 @@
         <app-icon
           icon="mdi:clipboard-text-outline"
           style="font-size: 1.1rem; color: var(--ds-warning)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <p class="mt-0 mb-0">
@@ -216,31 +216,31 @@
             [class.bg-secondary]="item.status == 2"
           >
             @if (item.status === 0) {
-            <app-icon [icon]="'mdi:close'" class="icon icon-"></app-icon>
+            <app-icon [icon]="'mdi:close'" class="icon icon-" />
             } @if (item.status === 1) {
-            <app-icon [icon]="'mdi:check'" class="icon icon-"></app-icon>
+            <app-icon [icon]="'mdi:check'" class="icon icon-" />
             } @if (item.status === 2) {
-            <app-icon [icon]="'mdi:ban'" class="icon icon-"></app-icon>
+            <app-icon [icon]="'mdi:ban'" class="icon icon-" />
             }
           </span>
         </p>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-item
+          <ili-button-item
             iconName="document-text-outline"
             (clicked)="onModalTodosSeguimientos(item.id)"
             label="Ver todos los seguimientos"
             iconName="list-outline"
             []="true"
           />
-          <il-button-add
+          <ili-button-add
             label="Agregar Seguimiento"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
             []="true"
           />
-          <il-button-edit
+          <ili-button-edit
             label="Editar"
             iconClass="mdi:pencil"
             (clicked)="
@@ -252,7 +252,7 @@
             []="true"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

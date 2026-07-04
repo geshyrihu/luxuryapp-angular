@@ -30,10 +30,15 @@ export interface IOrdenCompraFacturaForm {
   tipoComprobante: FormControl<string | null>;
 }
 
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-orden-compra-factura-form",
   templateUrl: "./orden-compra-factura-form.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,

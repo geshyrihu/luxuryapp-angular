@@ -28,10 +28,15 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-agenda-supervision",
   templateUrl: "./agenda-supervision.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelDelete,
     WebButtonLabelEdit,

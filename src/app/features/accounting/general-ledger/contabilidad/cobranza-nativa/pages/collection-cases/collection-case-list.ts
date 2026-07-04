@@ -22,9 +22,17 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+
 @Component({
   selector: "app-collection-case-list",
   imports: [
+    WebButtonIconEdit,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,

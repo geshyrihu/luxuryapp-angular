@@ -15,7 +15,7 @@ import { confirmAction } from "../shared/confirm";
       [disabled]="disabled() || loading()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:delete-outline'" />
+      <app-icon [icon]="iconClass() || 'fluent-color:dismiss-circle-24'" />
     </button>
   `,
 })
@@ -36,4 +36,3 @@ export class WebButtonIconDelete extends BaseButton {
     }
   }
 }
-

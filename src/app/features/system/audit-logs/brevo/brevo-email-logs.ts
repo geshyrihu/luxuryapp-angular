@@ -60,12 +60,12 @@ export class BrevoEmailLogs implements OnInit {
   totalRecords = signal<number>(0);
   cargando = signal<boolean>(false);
 
-  // --- Filtros de b鷖queda --------------------------------------------------
+  // --- Filtros de b贸squeda --------------------------------------------------
   filtroEmail = "";
   filtroFechaInicioCtrl = new FormControl<string | null>(null);
   filtroFechaFinCtrl = new FormControl<string | null>(null);
 
-  // --- Paginaci髇 -----------------------------------------------------------
+  // --- Paginaci贸n -----------------------------------------------------------
   readonly tamanioPagina = 50;
   offset = 0;
 
@@ -105,7 +105,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Aplica los filtros y reinicia la paginaci髇 desde el inicio.
+   * Aplica los filtros y reinicia la paginaci贸n desde el inicio.
    */
   aplicarFiltros(): void {
     this.offset = 0;
@@ -124,7 +124,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Maneja el cambio de p醙ina del p-table lazy.
+   * Maneja el cambio de p谩gina del p-table lazy.
    */
   alCambiarPagina(evento: { first: number; rows: number }): void {
     this.offset = evento.first;
@@ -132,7 +132,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Devuelve la severidad del Tag de PrimeNG seg鷑 el evento de Brevo.
+   * Devuelve la severidad del Tag de PrimeNG seg贸n el evento de Brevo.
    */
   severidadEvento(
     evento: string,
@@ -160,7 +160,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Etiqueta legible en espa駉l para cada tipo de evento de Brevo.
+   * Etiqueta legible en espa贸ol para cada tipo de evento de Brevo.
    */
   etiquetaEvento(evento: string): string {
     const mapa: Record<string, string> = {
@@ -172,7 +172,7 @@ export class BrevoEmailLogs implements OnInit {
       softBounce: "Rebote suave",
       hardBounce: "Rebote duro",
       blocked: "Bloqueado",
-      invalid_email: "Email inv醠ido",
+      invalid_email: "Email inv贸lido",
       deferred: "Diferido",
       complaint: "Queja",
       unsubscribed: "Desuscrito",

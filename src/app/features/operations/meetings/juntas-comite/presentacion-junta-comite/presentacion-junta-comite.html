@@ -3,14 +3,20 @@
 <div class="hidden md:block">
   <div class="flex flex-column gap-3">
     <!-- Header Section -->
-    <div class="card p-3 shadow-1 border-round-xl surface-card flex justify-content-between align-items-center border-left-3 border-blue-500">
+    <div
+      class="card p-3 shadow-1 border-round-xl surface-card flex justify-content-between align-items-center border-left-3 border-blue-500"
+    >
       <div class="flex align-items-center gap-3">
-        <div class="p-3 border-round-circle bg-blue-50 text-blue-600 flex align-items-center justify-content-center">
-          <app-icon icon="mdi:presentation" class="text-2xl"></app-icon>
+        <div
+          class="p-3 border-round-circle bg-blue-50 text-blue-600 flex align-items-center justify-content-center"
+        >
+          <app-icon icon="mdi:presentation" class="text-2xl" />
         </div>
         <div>
           <h5 class="m-0 font-bold text-900">Presentaciones de Junta</h5>
-          <span class="text-600 text-sm">Gestión centralizada de documentos y validaciones</span>
+          <span class="text-600 text-sm"
+            >Gestión centralizada de documentos y validaciones</span
+          >
         </div>
       </div>
       <div class="flex gap-2">
@@ -27,48 +33,73 @@
     <!-- Rows Container (Full Width Row-Cards) -->
     <div class="flex flex-column gap-3">
       @for (item of dataSignal(); track item.id) {
-      <div class="card p-0 shadow-1 border-round-xl surface-card overflow-hidden border-left-3 transition-all hover:shadow-2"
-           [style.border-left-color]="item.archivoFinal ? 'var(--ds-success)' : 'var(--ds-primary)'">
-        
+      <div
+        class="card p-0 shadow-1 border-round-xl surface-card overflow-hidden border-left-3 transition-all hover:shadow-2"
+        [style.border-left-color]="item.archivoFinal ? 'var(--ds-success)' : 'var(--ds-primary)'"
+      >
         <!-- Row Header (Status & Periods) -->
-        <div class="p-3 bg-gray-50 border-bottom-1 surface-border flex justify-content-between align-items-center">
+        <div
+          class="p-3 bg-gray-50 border-bottom-1 surface-border flex justify-content-between align-items-center"
+        >
           <div class="flex align-items-center gap-5">
             <div class="flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider">Periodo</span>
-              <span class="font-bold text-900 text-lg uppercase">{{ item.fechaCorrespondiente }}</span>
+              <span class="text-xs font-bold text-500 uppercase tracking-wider"
+                >Periodo</span
+              >
+              <span class="font-bold text-900 text-lg uppercase"
+                >{{ item.fechaCorrespondiente }}</span
+              >
             </div>
             <div class="flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider">Fecha de Junta</span>
+              <span class="text-xs font-bold text-500 uppercase tracking-wider"
+                >Fecha de Junta</span
+              >
               <div class="flex align-items-center gap-2 text-700">
-                <app-icon icon="mdi:calendar-clock" class="text-blue-500"></app-icon>
-                <span class="font-medium">{{ item.fechaJunta }} {{ item.horaJunta }}</span>
+                <app-icon icon="mdi:calendar-clock" class="text-blue-500" />
+                <span class="font-medium"
+                  >{{ item.fechaJunta }} {{ item.horaJunta }}</span
+                >
               </div>
             </div>
             <div class="flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider">Enviado Comité</span>
+              <span class="text-xs font-bold text-500 uppercase tracking-wider"
+                >Enviado Comité</span
+              >
               <div class="flex align-items-center gap-2">
-                <p-tag [value]="item.enviadoComite ? 'Sí' : 'NO'" 
-                       [severity]="item.enviadoComite ? 'success' : 'warning'"
-                       styleClass="text-xs"></p-tag>
+                <p-tag
+                  [value]="item.enviadoComite ? 'Sí' : 'NO'"
+                  [severity]="item.enviadoComite ? 'success' : 'warning'"
+                  styleClass="text-xs"
+                ></p-tag>
                 @if (item.enviadoComite) {
-                  <app-icon icon="mdi:check-circle" class="text-green-500"></app-icon>
+                <app-icon icon="mdi:check-circle" class="text-green-500" />
                 }
               </div>
             </div>
           </div>
-          
+
           <div class="flex gap-2 align-items-center">
             @if (item.archivoFinal) {
-              <div class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border-round-lg font-bold border-1 border-green-100">
-                <app-icon icon="mdi:lock"></app-icon>
-                <span>VERSIóN FINAL</span>
-              </div>
-            }
-            @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-              <div class="flex gap-1 bg-white p-1 border-round-lg shadow-1">
-                <il-button-edit (clicked)="showModalAdd({ id: item.id, title: 'Editar' })" variant="text" size="sm" />
-                <il-button-delete (confirmed)="onDeleteItem(item.id)" variant="text" size="sm" />
-              </div>
+            <div
+              class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border-round-lg font-bold border-1 border-green-100"
+            >
+              <app-icon icon="mdi:lock" />
+              <span>VERSIóN FINAL</span>
+            </div>
+            } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
+            AspRole.SuperUsuario])()) {
+            <div class="flex gap-1 bg-white p-1 border-round-lg shadow-1">
+              <il-button-edit
+                (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
+                variant="text"
+                size="sm"
+              />
+              <il-button-delete
+                (confirmed)="onDeleteItem(item.id)"
+                variant="text"
+                size="sm"
+              />
+            </div>
             }
           </div>
         </div>
@@ -80,26 +111,50 @@
             <div class="col-12 md:col-3 border-right-1 surface-border">
               <div class="flex align-items-center gap-3">
                 <div class="p-2 border-round bg-blue-50 text-blue-500">
-                  <app-icon icon="mdi:image-filter-frames" class="text-2xl"></app-icon>
+                  <app-icon icon="mdi:image-filter-frames" class="text-2xl" />
                 </div>
                 <div class="flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">PORTADA</span>
                   @if (item.archivoPortada) {
-                    <div class="flex flex-column gap-1">
-                      <il-button-view-pdf [url]="item.archivoPortada" fileName="Portada" size="sm" variant="text" label="Ver archivo" />
-                      <div class="flex flex-column">
-                        <small class="text-600 font-medium">Por: {{ item.applicationUserPortada }}</small>
-                        <small class="text-500">{{ item.fechaCargaPortada }}</small>
-                      </div>
+                  <div class="flex flex-column gap-1">
+                    <il-button-view-pdf
+                      [url]="item.archivoPortada"
+                      fileName="Portada"
+                      size="sm"
+                      variant="text"
+                      label="Ver archivo"
+                    />
+                    <div class="flex flex-column">
+                      <small class="text-600 font-medium"
+                        >Por: {{ item.applicationUserPortada }}</small
+                      >
+                      <small class="text-500"
+                        >{{ item.fechaCargaPortada }}</small
+                      >
                     </div>
-                  } @else if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-                    <il-button iconClass="mdi:upload" label="Cargar" variant="outlined" size="sm" (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })" />
+                  </div>
+                  } @else if (!item.archivoFinal &&
+                  aspRoleS.anyOf([AspRole.Administrador,
+                  AspRole.SuperUsuario])()) {
+                  <il-button
+                    iconClass="mdi:upload"
+                    label="Cargar"
+                    variant="outlined"
+                    size="sm"
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+                  />
                   } @else {
-                    <span class="text-400 italic text-sm">Sin carga</span>
+                  <span class="text-400 italic text-sm">Sin carga</span>
                   }
                 </div>
-                @if (item.archivoPortada && !item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-                  <il-button-delete (confirmed)="onDeleteFile(item.id, 'Portada')" size="sm" variant="text" />
+                @if (item.archivoPortada && !item.archivoFinal &&
+                aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])())
+                {
+                <il-button-delete
+                  (confirmed)="onDeleteFile(item.id, 'Portada')"
+                  size="sm"
+                  variant="text"
+                />
                 }
               </div>
             </div>
@@ -108,26 +163,50 @@
             <div class="col-12 md:col-3 border-right-1 surface-border px-4">
               <div class="flex align-items-center gap-3">
                 <div class="p-2 border-round bg-cyan-50 text-cyan-500">
-                  <app-icon icon="mdi:chart-areaspline" class="text-2xl"></app-icon>
+                  <app-icon icon="mdi:chart-areaspline" class="text-2xl" />
                 </div>
                 <div class="flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">CONTABILIDAD</span>
                   @if (item.archivoContable) {
-                    <div class="flex flex-column gap-1">
-                      <il-button-view-pdf [url]="item.archivoContable" fileName="Contabilidad" size="sm" variant="text" label="Ver archivo" severity="info" />
-                      <div class="flex flex-column">
-                        <small class="text-600 font-medium">Por: {{ item.applicationUserContable }}</small>
-                        <small class="text-500">{{ item.fechaCargaContable }}</small>
-                      </div>
+                  <div class="flex flex-column gap-1">
+                    <il-button-view-pdf
+                      [url]="item.archivoContable"
+                      fileName="Contabilidad"
+                      size="sm"
+                      variant="text"
+                      label="Ver archivo"
+                      severity="info"
+                    />
+                    <div class="flex flex-column">
+                      <small class="text-600 font-medium"
+                        >Por: {{ item.applicationUserContable }}</small
+                      >
+                      <small class="text-500"
+                        >{{ item.fechaCargaContable }}</small
+                      >
                     </div>
-                  } @else if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
-                    <il-button iconClass="mdi:upload" label="Cargar" variant="outlined" severity="info" size="sm" (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })" />
+                  </div>
+                  } @else if (!item.archivoFinal &&
+                  aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
+                  <il-button
+                    iconClass="mdi:upload"
+                    label="Cargar"
+                    variant="outlined"
+                    severity="info"
+                    size="sm"
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+                  />
                   } @else {
-                    <span class="text-400 italic text-sm">Sin carga</span>
+                  <span class="text-400 italic text-sm">Sin carga</span>
                   }
                 </div>
-                @if (item.archivoContable && !item.archivoFinal && aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
-                  <il-button-delete (confirmed)="onDeleteFile(item.id, 'Contabilidad')" size="sm" variant="text" />
+                @if (item.archivoContable && !item.archivoFinal &&
+                aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
+                <il-button-delete
+                  (confirmed)="onDeleteFile(item.id, 'Contabilidad')"
+                  size="sm"
+                  variant="text"
+                />
                 }
               </div>
             </div>
@@ -136,26 +215,50 @@
             <div class="col-12 md:col-3 border-right-1 surface-border px-4">
               <div class="flex align-items-center gap-3">
                 <div class="p-2 border-round bg-orange-50 text-orange-500">
-                  <app-icon icon="mdi:cog-sync" class="text-2xl"></app-icon>
+                  <app-icon icon="mdi:cog-sync" class="text-2xl" />
                 </div>
                 <div class="flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">OPERACIONES</span>
                   @if (item.archivoJunta) {
-                    <div class="flex flex-column gap-1">
-                      <il-button-view-pdf [url]="item.archivoJunta" fileName="Operaciones" size="sm" variant="text" label="Ver archivo" severity="warning" />
-                      <div class="flex flex-column">
-                        <small class="text-600 font-medium">Por: {{ item.applicationUser }}</small>
-                        <small class="text-500">{{ item.fechaCarga }}</small>
-                      </div>
+                  <div class="flex flex-column gap-1">
+                    <il-button-view-pdf
+                      [url]="item.archivoJunta"
+                      fileName="Operaciones"
+                      size="sm"
+                      variant="text"
+                      label="Ver archivo"
+                      severity="warning"
+                    />
+                    <div class="flex flex-column">
+                      <small class="text-600 font-medium"
+                        >Por: {{ item.applicationUser }}</small
+                      >
+                      <small class="text-500">{{ item.fechaCarga }}</small>
                     </div>
-                  } @else if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-                    <il-button iconClass="mdi:upload" label="Cargar" variant="outlined" severity="warning" size="sm" (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })" />
+                  </div>
+                  } @else if (!item.archivoFinal &&
+                  aspRoleS.anyOf([AspRole.Administrador,
+                  AspRole.SuperUsuario])()) {
+                  <il-button
+                    iconClass="mdi:upload"
+                    label="Cargar"
+                    variant="outlined"
+                    severity="warning"
+                    size="sm"
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+                  />
                   } @else {
-                    <span class="text-400 italic text-sm">Sin carga</span>
+                  <span class="text-400 italic text-sm">Sin carga</span>
                   }
                 </div>
-                @if (item.archivoJunta && !item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-                  <il-button-delete (confirmed)="onDeleteFile(item.id, 'Operaciones')" size="sm" variant="text" />
+                @if (item.archivoJunta && !item.archivoFinal &&
+                aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])())
+                {
+                <il-button-delete
+                  (confirmed)="onDeleteFile(item.id, 'Operaciones')"
+                  size="sm"
+                  variant="text"
+                />
                 }
               </div>
             </div>
@@ -163,58 +266,86 @@
             <!-- Validation/Final Section -->
             <div class="col-12 md:col-3 pl-4">
               @if (item.archivoFinal) {
-                <div class="flex flex-column gap-1">
-                  <il-button-view-pdf [url]="item.archivoFinal" fileName="Presentacion_Final" label="DESCARGAR FINAL" severity="success" [fluid]="true" iconClass="mdi:file-certificate" customClass="justify-content-start px-3" />
-                  <div class="flex align-items-center justify-content-between mt-1">
-                    <div class="flex flex-column">
-                      <small class="text-600 font-medium">Validé: {{ item.applicationUserSupervisor }}</small>
-                      <small class="text-500">{{ item.fechaCargaSupervisor }}</small>
-                    </div>
-                    @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
-                      <il-button-delete (confirmed)="onDeleteFile(item.id, 'Final')" size="sm" variant="text" />
-                    }
+              <div class="flex flex-column gap-1">
+                <il-button-view-pdf
+                  [url]="item.archivoFinal"
+                  fileName="Presentacion_Final"
+                  label="DESCARGAR FINAL"
+                  severity="success"
+                  [fluid]="true"
+                  iconClass="mdi:file-certificate"
+                  customClass="justify-content-start px-3"
+                />
+                <div
+                  class="flex align-items-center justify-content-between mt-1"
+                >
+                  <div class="flex flex-column">
+                    <small class="text-600 font-medium"
+                      >Validé: {{ item.applicationUserSupervisor }}</small
+                    >
+                    <small class="text-500"
+                      >{{ item.fechaCargaSupervisor }}</small
+                    >
                   </div>
-                </div>
-              } @else if (aspRoleS.anyOf([AspRole.SupervisionOperativa, AspRole.SuperUsuario])() && 
-                         item.archivoPortada && item.archivoContable && item.archivoJunta) {
-                <div class="flex flex-column gap-2">
-                  <il-button-confirm
-                    iconClass="mdi:email-send"
-                    label="ENVIAR COMITé"
-                    [fluid]="true"
-                    swalTitle="óEnviar presentación?"
-                    swalText="Se notificaré a todos los miembros."
-                    swalConfirmButtonText="Sí, enviar"
-                    customClass="justify-content-start px-3"
-                    (confirmed)="onValidarPresentacion(item.id)"
+                  @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
+                  <il-button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Final')"
+                    size="sm"
+                    variant="text"
                   />
-                  <il-button-confirm
-                    iconClass="mdi:check-bold"
-                    label="VALIDAR"
-                    [fluid]="true"
-                    severity="secondary"
-                    swalTitle="óValidar sin enviar?"
-                    swalText="Se generaré la versión final sin enviar correos."
-                    customClass="justify-content-start px-3"
-                    (confirmed)="onOnlyValidate(item.id)"
-                  />
-
+                  }
                 </div>
+              </div>
+              } @else if (aspRoleS.anyOf([AspRole.SupervisionOperativa,
+              AspRole.SuperUsuario])() && item.archivoPortada &&
+              item.archivoContable && item.archivoJunta) {
+              <div class="flex flex-column gap-2">
+                <il-button-confirm
+                  iconClass="mdi:email-send"
+                  label="ENVIAR COMITé"
+                  [fluid]="true"
+                  swalTitle="óEnviar presentación?"
+                  swalText="Se notificaré a todos los miembros."
+                  swalConfirmButtonText="Sí, enviar"
+                  customClass="justify-content-start px-3"
+                  (confirmed)="onValidarPresentacion(item.id)"
+                />
+                <il-button-confirm
+                  iconClass="mdi:check-bold"
+                  label="VALIDAR"
+                  [fluid]="true"
+                  severity="secondary"
+                  swalTitle="óValidar sin enviar?"
+                  swalText="Se generaré la versión final sin enviar correos."
+                  customClass="justify-content-start px-3"
+                  (confirmed)="onOnlyValidate(item.id)"
+                />
+              </div>
               } @else {
-                <div class="p-2 border-round bg-gray-50 text-center border-1 border-dashed border-300">
-                  <span class="text-500 text-xs font-bold">CARGAS PENDIENTES</span>
-                </div>
+              <div
+                class="p-2 border-round bg-gray-50 text-center border-1 border-dashed border-300"
+              >
+                <span class="text-500 text-xs font-bold"
+                  >CARGAS PENDIENTES</span
+                >
+              </div>
               }
             </div>
           </div>
         </div>
       </div>
       } @empty {
-      <div class="card p-8 shadow-1 border-round-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3">
-        <app-icon icon="mdi:file-search-outline" class="text-6xl text-300"></app-icon>
+      <div
+        class="card p-8 shadow-1 border-round-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3"
+      >
+        <app-icon icon="mdi:file-search-outline" class="text-6xl text-300" />
         <div>
-          <h6 class="m-0 font-bold text-900">No hay presentaciones registradas</h6>
-          <p class="text-600">Las presentaciones se vinculan a las sesiones de junta mensuales.</p>
+          <h6 class="m-0 font-bold text-900">
+            No hay presentaciones registradas
+          </h6>
+          <p class="text-600">
+            Las presentaciones se vinculan a las sesiones de junta mensuales.
+          </p>
         </div>
       </div>
       }
@@ -288,10 +419,7 @@
               />
               } @else if (item.archivoPortada) {
               <div class="flex justify-content-between align-items-center">
-                <il-button-view-pdf
-                  [url]="item.archivoPortada"
-                  pdf="Portada"
-                />
+                <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
                 <div class="flex gap-1">

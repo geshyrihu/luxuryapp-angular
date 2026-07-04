@@ -38,10 +38,13 @@ import { PaginationService } from "src/app/core/services/pagination.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TarjetaProducto } from "src/app/features/operations/inventarios-y-almacn/product/tarjeta-producto";
 import { IProductData } from "./product-data.interface";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-purchase-request-add-product-form",
   templateUrl: "./purchase-request-add-product-form.html",
   imports: [
+    WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

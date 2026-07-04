@@ -35,7 +35,7 @@
               "
               (click)="onSelectCategory(category.id)"
             >
-              <app-icon [icon]="category.emoji"></app-icon>
+              <app-icon [icon]="category.emoji" />
               <span class="font-medium text-sm">{{ category.name }}</span>
             </div>
             }
@@ -83,7 +83,7 @@
                 tooltipPosition="top"
               />
               <div class="flex-shrink-0" style="width: 150px">
-                <il-button-active-desactive
+                <iw-button-active-desactive
                   [state]="stateFilter() === 0"
                   (stateChange)="onSelectState($event ? 0 : 1)"
                 />
@@ -157,49 +157,49 @@
           }
           <td class="no-print">
             <div class="flex">
-              <il-button-item
+              <iw-button-item
                 (clicked)="onDocumentos(item.id)"
                 iconClass="mdi:file-pdf-box"
-                label="Documentos"
+                pTooltip="Documentos" tooltipPosition="top"
                 variant="text"
               />
-              <il-button-item
+              <iw-button-item
                 (clicked)="onServiceHistory(item.id)"
                 iconClass="mdi:file-document-outline"
-                label="Histórico de servicios"
+                pTooltip="Histórico de servicios" tooltipPosition="top"
                 variant="text"
               />
-              <il-button-item
+              <iw-button-item
                 (clicked)="onBitacoraIndividual(item.id)"
                 iconClass="mdi:book"
-                label="Bitácora"
+                pTooltip="Bitácora" tooltipPosition="top"
                 variant="text"
               />
-              <il-button-item
+              <iw-button-item
                 (clicked)="showModalFichatecnica(item.id)"
                 iconClass="mdi:clipboard-text"
-                label="Ficha técnica"
+                pTooltip="Ficha técnica" tooltipPosition="top"
                 variant="text"
               />
-              <il-button-item
+              <iw-button-item
                 (clicked)="onEquipmentInspections(item)"
                 iconClass="mdi:clipboard-check-outline"
-                label="Inspecciones"
+                pTooltip="Inspecciones" tooltipPosition="top"
                 variant="text"
               />
               @if (!mostrarPreventivos()) {
-              <il-button-item
+              <iw-button-item
                 (clicked)="openMantenimientosDialog(item)"
                 iconClass="mdi:wrench"
-                label="Mantenimientos"
+                pTooltip="Mantenimientos" tooltipPosition="top"
                 variant="text"
               />
               } @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
               AspRole.Administrador, AspRole.SuperUsuario])) {
-              <il-button-edit
+              <iw-button-edit
                 (clicked)="onModalAddOrEdit({ id: item.id, title: 'Editar registro ' + item.id })"
               />
-              <il-button-delete (confirmed)="onDelete(item.id)" />
+              <iw-button-delete (confirmed)="onDelete(item.id)" />
               }
             </div>
           </td>
@@ -269,16 +269,14 @@
             AspRole.Administrador, AspRole.SuperUsuario])) {
             <td>
               <div class="flex">
-                <il-button-item
+                <iw-button-item
                   iconClass="mdi:content-copy"
-                  label="Duplicar"
+                  pTooltip="Duplicar" tooltipPosition="top"
                   variant="text"
                   (clicked)="showModalMaintenanceCalendar({ id: order.id, task: 'copy', machineryId: order.machineryId, header: 'Duplicar Actividad' })"
                 />
-                <il-button-edit
-                  (clicked)="onEditMantenimientoDialog(order)"
-                />
-                <il-button-delete
+                <iw-button-edit (clicked)="onEditMantenimientoDialog(order)" />
+                <iw-button-delete
                   (confirmed)="onDeleteOrderFromDialog(order.id, equipo.id)"
                   [isLinked]="order.hasServiceOrder"
                 />
@@ -288,8 +286,8 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="13" />
-  </ng-template>
+          <primeng-custom-table-emptymessage [colspan]="13" />
+        </ng-template>
       </p-table>
       } @else {
       <div class="text-center text-500 p-4 surface-100 border-round italic">
@@ -326,7 +324,7 @@
         (click)="onSelectCategory(category.id)"
       >
         <ion-label class="flex align-items-center">
-          <app-icon [icon]="category.emoji"></app-icon>
+          <app-icon [icon]="category.emoji" />
           {{ category.name }}
         </ion-label>
       </ion-chip>
@@ -374,7 +372,7 @@
             <app-icon
               icon="mdi:engine-outline"
               style="font-size: 1.25rem; color: var(--ds-primary)"
-            ></app-icon>
+            />
             }
           </div>
           <ion-label>
@@ -388,47 +386,35 @@
                 size="small"
                 (click)="onDocumentos(item.id)"
               >
-                <app-icon
-                  icon="mdi:file-document-outline"
-                  slot="icon-only"
-                ></app-icon>
+                <app-icon icon="mdi:file-document-outline" slot="icon-only" />
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="onServiceHistory(item.id)"
               >
-                <app-icon icon="mdi:clock-outline" slot="icon-only"></app-icon>
+                <app-icon icon="mdi:clock-outline" slot="icon-only" />
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="onBitacoraIndividual(item.id)"
               >
-                <app-icon
-                  icon="mdi:book-open-outline"
-                  slot="icon-only"
-                ></app-icon>
+                <app-icon icon="mdi:book-open-outline" slot="icon-only" />
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="showModalFichatecnica(item.id)"
               >
-                <app-icon
-                  icon="mdi:clipboard-text-outline"
-                  slot="icon-only"
-                ></app-icon>
+                <app-icon icon="mdi:clipboard-text-outline" slot="icon-only" />
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="onEquipmentInspections(item)"
               >
-                <app-icon
-                  icon="mdi:clipboard-text-outline"
-                  slot="icon-only"
-                ></app-icon>
+                <app-icon icon="mdi:clipboard-text-outline" slot="icon-only" />
               </ion-button>
               <ion-button
                 fill="clear"
@@ -436,7 +422,7 @@
                 (click)="item.expanded = !item.expanded"
                 [color]="item.expanded ? 'primary' : 'medium'"
               >
-                <app-icon icon="mdi:hammer-wrench" slot="icon-only"></app-icon>
+                <app-icon icon="mdi:hammer-wrench" slot="icon-only" />
               </ion-button>
             </div>
 
@@ -453,10 +439,7 @@
                   size="small"
                   (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
                 >
-                  <app-icon
-                    icon="mdi:plus-circle-outline"
-                    slot="start"
-                  ></app-icon>
+                  <app-icon icon="mdi:plus-circle-outline" slot="start" />
                   Agregar
                 </ion-button>
               </div>
@@ -504,10 +487,7 @@
                       color="medium"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
                     >
-                      <app-icon
-                        icon="mdi:content-copy"
-                        slot="icon-only"
-                      ></app-icon>
+                      <app-icon icon="mdi:content-copy" slot="icon-only" />
                     </ion-button>
                     <ion-button
                       fill="clear"
@@ -515,10 +495,7 @@
                       color="primary"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
                     >
-                      <app-icon
-                        icon="mdi:pencil-outline"
-                        slot="icon-only"
-                      ></app-icon>
+                      <app-icon icon="mdi:pencil-outline" slot="icon-only" />
                     </ion-button>
                     <ion-button
                       fill="clear"
@@ -526,10 +503,7 @@
                       color="danger"
                       (click)="onDeleteOrder(service.id)"
                     >
-                      <app-icon
-                        icon="mdi:trash-can-outline"
-                        slot="icon-only"
-                      ></app-icon>
+                      <app-icon icon="mdi:trash-can-outline" slot="icon-only" />
                     </ion-button>
                   </div>
                   }
@@ -555,13 +529,10 @@
               color="primary"
               (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
             >
-              <app-icon icon="mdi:pencil-outline" slot="icon-only"></app-icon>
+              <app-icon icon="mdi:pencil-outline" slot="icon-only" />
             </ion-button>
             <ion-button fill="clear" color="danger" (click)="onDelete(item.id)">
-              <app-icon
-                icon="mdi:trash-can-outline"
-                slot="icon-only"
-              ></app-icon>
+              <app-icon icon="mdi:trash-can-outline" slot="icon-only" />
             </ion-button>
             }
           </div>

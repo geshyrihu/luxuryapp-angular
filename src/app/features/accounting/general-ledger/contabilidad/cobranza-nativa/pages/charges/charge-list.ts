@@ -1,9 +1,11 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { DatePipe, DecimalPipe } from "@angular/common";
+import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cardOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
@@ -17,30 +19,37 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ChargeResponseDTO } from "../../models/charge.dto";
+import { EChargeStatus } from "../../models/enums";
 import { ChargeForm } from "./charge-form";
 
-// Pipes
-import { DatePipe, DecimalPipe } from "@angular/common";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { EChargeStatus, EChargeType } from "../../models/enums";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 
 @Component({
   selector: "app-charge-list",
   imports: [
+    WebButtonIcon,
+    WebButtonIconEdit,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
     TableModule,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     WebButtonLabel,
     WebButtonLabelEdit,
-    WebButtonLabelDelete,
     DecimalPipe,
     DatePipe,
     DataViewMobile,
     ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],
@@ -50,24 +59,52 @@ export default class ChargeList {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private destroyRef = inject(DestroyRef);
+  private signalRService = inject(SignalRService);
 
-  // PrimeNG Constants
+  private realtimeCustomerId: string | null = null;
+
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = inject(TableScrollHeightService).scrollHeight;
 
-  // States
   dataSignal = signal<ChargeResponseDTO[]>([]);
 
-  EChargeType = EChargeType;
   EChargeStatus = EChargeStatus;
 
   constructor() {
     addIcons({ cardOutline });
+    this.signalRService.nativeCollectionUpdate$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        void this.onLoadData();
+      });
+
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) {
-        this.onLoadData();
+        this.setupRealtime(customerId);
+        void this.onLoadData();
+      }
+    });
+  }
+
+  private setupRealtime(customerId: string) {
+    if (this.realtimeCustomerId === customerId) return;
+
+    if (this.realtimeCustomerId) {
+      void this.signalRService.leaveNativeCollectionGroup(this.realtimeCustomerId);
+    }
+
+    this.realtimeCustomerId = customerId;
+    this.signalRService.start();
+    void this.signalRService.joinNativeCollectionGroup(customerId);
+
+    this.destroyRef.onDestroy(() => {
+      if (this.realtimeCustomerId) {
+        void this.signalRService.leaveNativeCollectionGroup(
+          this.realtimeCustomerId,
+        );
       }
     });
   }
@@ -79,11 +116,8 @@ export default class ChargeList {
     const result = await this.apiResponseS.onGetItem<ChargeResponseDTO[]>(
       Endpoints.AccountingCoi.NativeCollection.Charges.customer(customerId),
     );
-    if (result) {
-      this.dataSignal.set(result);
-    } else {
-      this.dataSignal.set([]);
-    }
+
+    this.dataSignal.set(result ?? []);
   }
 
   onModalForm(id: string = "") {
@@ -92,6 +126,7 @@ export default class ChargeList {
       title: id === "" ? "Nuevo Cargo a Cuota" : "Editar Cargo",
       customerId: this.customerIdS.customerId(),
     };
+
     this.dialogHandlerS
       .openDialog(ChargeForm, data, data.title, this.dialogHandlerS.sizeLg)
       .then((res: boolean) => {
@@ -99,14 +134,20 @@ export default class ChargeList {
       });
   }
 
-  async onDelete(item: ChargeResponseDTO) {
-    this.apiResponseS
-      .onDelete(
-        Endpoints.AccountingCoi.NativeCollection.Charges.delete(item.id),
+  async onCancel(item: ChargeResponseDTO) {
+    if (
+      !window.confirm(
+        `¿Deseas cancelar el cargo "${item.concept}" de ${item.propertyFullName || "la propiedad seleccionada"}?`,
       )
-      .then((res) => {
-        if (res) this.onLoadData();
-      });
+    ) {
+      return;
+    }
+
+    const res = await this.apiResponseS.onPost(
+      Endpoints.AccountingCoi.NativeCollection.Charges.cancel(item.id),
+    );
+
+    if (res !== false) this.onLoadData();
   }
 
   openBulkImport() {

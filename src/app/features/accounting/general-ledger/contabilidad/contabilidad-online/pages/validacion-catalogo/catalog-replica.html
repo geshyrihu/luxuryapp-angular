@@ -51,7 +51,7 @@
 
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4 gap-2">
-    <app-icon [icon]="'mdi:loading'"></app-icon>
+    <app-icon [icon]="'mdi:loading'" />
     <span>Consultando catálogo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -66,7 +66,7 @@
     class="surface-ground p-4 border-round mb-4 border-left-4 border-orange-500"
   >
     <div class="flex align-items-center mb-3">
-      <app-icon [icon]="'mdi:alert'" class="text-orange-500 text-xl"></app-icon>
+      <app-icon [icon]="'mdi:alert'" class="text-orange-500 text-xl" />
       <h4 class="m-0 text-orange-600 ml-2">
         {{ cuentasFaltantes().length }} cuenta(s) Nivel 1 no encontrada(s) en
         Aspel
@@ -101,7 +101,7 @@
     class="surface-ground p-3 border-round mb-4 border-left-4 border-green-500"
   >
     <div class="flex align-items-center gap-2">
-      <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
+      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
       <span class="text-green-700 font-medium text-xs">
         Todas las cuentas Nivel 1 del Catálogo General LuxuryF estén presentes
         en Aspel.
@@ -141,8 +141,8 @@
           <div class="flex align-items-center">
             <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
             @if (account.nivel === 1) {
-            <il-button
-              [label]="account.expanded ? '⬇️' : '➡️'"
+            <iw-button
+              [pTooltip]="account.expanded ? '⬇️' : '➡️'" tooltipPosition="top"
               variant="ghost-text"
               size="sm"
               (clicked)="toggleNode(account)"

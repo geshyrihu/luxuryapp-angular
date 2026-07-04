@@ -40,7 +40,7 @@
                 [class.bg-primary-50]="selectedModule() === null"
                 (click)="onModuleFilterChange(null)"
               >
-                <app-icon [icon]="'mdi:grid'" class="text-primary"></app-icon>
+                <app-icon [icon]="'mdi:grid'" class="text-primary" />
                 <span class="font-bold text-sm">Todos</span>
                 <p-tag
                   [value]="allData.length"
@@ -71,14 +71,14 @@
 
             <!-- Action Icons Group -->
             <app-action-icons-group>
-              <il-button
+              <iw-button
                 iconClass="mdi:camera"
                 severity="secondary"
                 variant="ghost-text"
                 size="sm"
                 (clicked)="openVision()"
               />
-              <il-button
+              <iw-button
                 iconClass="mdi:sparkles"
                 severity="help"
                 variant="ghost-text"
@@ -87,7 +87,7 @@
               />
               @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
               <div class="border-left-1 surface-border h-1rem mx-1"></div>
-              <il-button
+              <iw-button
                 iconClass="mdi:email-outline"
                 severity="danger"
                 variant="ghost-text"
@@ -103,7 +103,7 @@
 
           <!-- Contextual Legend (Small) -->
           <div class="flex align-items-center text-xs text-600 px-1">
-            <app-icon [icon]="'mdi:information'" class="text-primary"></app-icon>
+            <app-icon [icon]="'mdi:information'" class="text-primary" />
             <div class="flex align-items-center gap-1">
               <span
                 class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 border-round"
@@ -174,8 +174,8 @@
               >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
             >
             <span class="text-500 text-xs flex align-items-center gap-1"
-              ><app-icon [icon]="'mdi:clock-outline'" class="text-xs"></app-icon> {{ item.date | date: 'HH:mm'
-              : 'UTC' }}</span
+              ><app-icon [icon]="'mdi:clock-outline'" class="text-xs" /> {{
+              item.date | date: 'HH:mm' : 'UTC' }}</span
             >
           </div>
         </td>
@@ -216,7 +216,7 @@
         <td class="vertical-align-middle">
           @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
           <div class="flex align-items-start p-2 surface-50 border-round">
-            <app-icon [icon]="'mdi:comment'" class="text-primary mt-1"></app-icon>
+            <app-icon [icon]="'mdi:comment'" class="text-primary mt-1" />
             <span
               class="text-600 text-xs line-height-2 line-clamp-2"
               [pTooltip]="item.lastFollowup"
@@ -267,7 +267,7 @@
             <div
               class="border-circle bg-surface-200 p-4 flex align-items-center justify-content-center"
             >
-              <app-icon [icon]="'mdi:check'" class="text-4xl text-500"></app-icon>
+              <app-icon [icon]="'mdi:check'" class="text-4xl text-500" />
             </div>
             <span class="font-medium text-xl text-700"
               >Bien Bandeja Limpia!</span

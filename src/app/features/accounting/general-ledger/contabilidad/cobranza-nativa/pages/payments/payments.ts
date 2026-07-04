@@ -35,11 +35,7 @@ import {
   CobranzaPaymentResponseDTO,
   CreateCobranzaPaymentDTO,
 } from "../../models/cobranza-payment.dto";
-import {
-  EChargeType,
-  EPaymentMethod,
-  EPaymentStatus,
-} from "../../models/enums";
+import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
 
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
@@ -88,22 +84,17 @@ export class Payments implements OnInit {
   private customerIdS = inject(CustomerIdService);
   private dateS = inject(DateService);
 
-  // Enums for template access
   EPaymentMethod = EPaymentMethod;
-  EChargeType = EChargeType;
 
-  // State
   customerId = signal<string>("");
   properties = signal<{ label: string; value: string }[]>([]);
   pendingCharges = signal<PendingChargeDTO[]>([]);
 
-  // Selected Property Context
   selectedPropertyName = signal<string>("");
   totalDebt = computed(() =>
     this.pendingCharges().reduce((sum, c) => sum + c.balance, 0),
   );
 
-  // Payment Allocation State
   totalSelectedToApply = computed(() =>
     this.pendingCharges()
       .filter((c) => c._selected)
@@ -128,7 +119,7 @@ export class Payments implements OnInit {
       validators: [Validators.required],
     }),
     reference: new FormControl(""),
-    notes: new FormControl(""), // Used for allocation notes
+    notes: new FormControl(""),
   });
 
   paymentMethods = [
@@ -137,13 +128,24 @@ export class Payments implements OnInit {
       value: EPaymentMethod.ElectronicTransfer,
     },
     { label: "Depósito / Efectivo", value: EPaymentMethod.Cash },
-    { label: "Tarjeta de Cródito", value: EPaymentMethod.CreditCard },
-    { label: "Tarjeta de Dóbito", value: EPaymentMethod.DebitCard },
+    { label: "Tarjeta de Crédito", value: EPaymentMethod.CreditCard },
+    { label: "Tarjeta de Débito", value: EPaymentMethod.DebitCard },
     { label: "Cheque Nominativo", value: EPaymentMethod.NominativeCheck },
   ];
 
   submitting = signal<boolean>(false);
   loadingCharges = signal<boolean>(false);
+
+  getChargeTypeLabel(charge: PendingChargeDTO): string {
+    return charge.chargeTypeName || "Sin tipo";
+  }
+
+  getChargeTypeMeta(charge: PendingChargeDTO): string {
+    const parts = [charge.chargeTypeAccountNumber, charge.chargeTypeCode].filter(
+      (value): value is string => !!value,
+    );
+    return parts.join(" · ");
+  }
 
   constructor() {
     effect(() => {
@@ -156,7 +158,6 @@ export class Payments implements OnInit {
   }
 
   ngOnInit() {
-    // Reset pending charges when property changes
     this.form.controls.propertyId.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
@@ -191,18 +192,16 @@ export class Payments implements OnInit {
         ),
       );
       if (res) {
-        // Initialize UI helper fields
         res.forEach((c) => {
           c._selected = false;
           c._applyAmount = c.balance;
         });
         this.pendingCharges.set(res);
 
-        // Auto-fill payment amount to total debt by default to save time
         const total = res.reduce((sum, c) => sum + c.balance, 0);
         this.form.controls.amount.setValue(total);
         if (total > 0) {
-          this.autoAllocate(); // Select all by default if paying full amount
+          this.autoAllocate();
         }
       }
     } finally {
@@ -210,12 +209,11 @@ export class Payments implements OnInit {
     }
   }
 
-  // Called when user clicks "Auto Distribuir" or amount changes
   autoAllocate() {
     let remainingAmount = this.form.controls.amount.value || 0;
     const currentCharges = [...this.pendingCharges()];
 
-    for (let c of currentCharges) {
+    for (const c of currentCharges) {
       if (remainingAmount >= c.balance) {
         c._selected = true;
         c._applyAmount = c.balance;
@@ -226,18 +224,16 @@ export class Payments implements OnInit {
         remainingAmount = 0;
       } else {
         c._selected = false;
-        c._applyAmount = c.balance; // Keep default for UI view
+        c._applyAmount = c.balance;
       }
     }
     this.pendingCharges.set(currentCharges);
   }
 
   onChargeSelectionChange(charge: PendingChargeDTO) {
-    // If selecting, auto-fill remaining amount if it makes sense, otherwise fill full balance
     if (charge._selected) {
       charge._applyAmount = charge.balance;
     }
-    // Just force a re-evaluation of the computed total
     this.pendingCharges.update((charges) => [...charges]);
   }
 
@@ -245,14 +241,11 @@ export class Payments implements OnInit {
     const input = event.target as HTMLInputElement;
     let val = parseFloat(input.value);
 
-    // Prevent applying more than balance
     if (isNaN(val) || val < 0) val = 0;
     if (val > charge.balance) val = charge.balance;
 
     charge._applyAmount = val;
-    input.value = val.toString(); // visual correction back to valid bounds
-
-    // Auto-select if amount > 0
+    input.value = val.toString();
     charge._selected = val > 0;
 
     this.pendingCharges.update((charges) => [...charges]);
@@ -281,16 +274,16 @@ export class Payments implements OnInit {
     if (selectedCharges.length === 0) {
       if (
         !confirm(
-          "No has seleccionado ningón cargo para aplicar el pago. El pago quedaré registrado como saldo a favor sin aplicar. óContinuar?",
+          "No has seleccionado ningún cargo para aplicar el pago. El pago quedará registrado como saldo a favor sin aplicar. ¿Continuar?",
         )
-      )
+      ) {
         return;
+      }
     }
 
     this.submitting.set(true);
 
     try {
-      // 1. Create the Payment
       const paymentPayload: CreateCobranzaPaymentDTO = {
         customerId: this.customerId(),
         propertyId: this.form.controls.propertyId.value,
@@ -308,7 +301,6 @@ export class Payments implements OnInit {
           paymentPayload,
         );
 
-      // 2. Apply to Charges (if any selected)
       if (paymentRes && selectedCharges.length > 0) {
         const allocationPayload: ApplyPaymentToChargesDTO = {
           paymentId: paymentRes.id,
@@ -330,9 +322,8 @@ export class Payments implements OnInit {
             "Pago Registrado",
             "El pago fue aplicado a los cargos exitosamente.",
           );
-          // Reset form for next payment
           this.form.reset({
-            propertyId: this.form.controls.propertyId.value, // Keep property selected? Up to UX, leaving blank is safer.
+            propertyId: this.form.controls.propertyId.value,
             paymentDate: new Date(),
             method: EPaymentMethod.ElectronicTransfer,
             amount: 0,

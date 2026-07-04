@@ -17,10 +17,13 @@ import { ActivosForm } from "src/app/features/maintenance/equipos-y-maquinaria/m
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-inventory-engine-system",
   templateUrl: "./inventory-engine-system.html",
   imports: [
+    WebButtonIcon,
     CommonModule,
     CardModule,
     SelectModule,

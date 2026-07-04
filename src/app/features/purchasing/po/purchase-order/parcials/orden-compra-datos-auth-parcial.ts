@@ -1,4 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   Component,
   computed,
@@ -9,11 +9,12 @@ import {
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { MessageModule } from "primeng/message";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
-  imports: [ButtonModule, MessageModule, AppIcon],
+  imports: [ButtonModule, MessageModule, AppIcon, WebButtonLabel],
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);

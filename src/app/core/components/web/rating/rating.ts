@@ -1,8 +1,9 @@
-import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RatingModule } from "primeng/rating";
 import { ButtonModule } from "primeng/button";
+import { RatingBase } from "src/app/core/components/shared/rating/rating-base";
 
 /**
  * AppRating — Wrapper sobre p-rating con etiqueta, tooltips y modo readonly.
@@ -99,28 +100,4 @@ import { ButtonModule } from "primeng/button";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppRating {
-  value      = model<number | undefined>(undefined);
-  label      = input<string>("");
-  hint       = input<string>("");
-  stars      = input<number>(5);
-  readonly   = input<boolean>(false);
-  disabled   = input<boolean>(false);
-  allowCancel = input<boolean>(true);
-  showLabel  = input<boolean>(true);
-
-  changed = output<number | undefined>();
-
-  private readonly labels = ["", "Muy malo", "Malo", "Regular", "Bueno", "Excelente"];
-
-  ratingLabel(): string {
-    const v = this.value();
-    if (!v) return "";
-    return this.stars() === 5 ? (this.labels[v] ?? String(v)) : `${v} / ${this.stars()}`;
-  }
-
-  clear(): void {
-    this.value.set(undefined);
-    this.changed.emit(undefined);
-  }
-}
+export class AppRating extends RatingBase {}

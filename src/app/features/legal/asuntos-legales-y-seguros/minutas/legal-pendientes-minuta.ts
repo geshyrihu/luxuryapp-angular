@@ -26,10 +26,19 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelAdd } from "src/app/core/components/buttons/mobile-label/button-add";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+
 @Component({
   selector: "app-legal-pendientes-minuta",
   templateUrl: "./legal-pendientes-minuta.html",
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    MobileButtonLabelAdd,
+    MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelEdit,
     WebButtonLabelAdd,

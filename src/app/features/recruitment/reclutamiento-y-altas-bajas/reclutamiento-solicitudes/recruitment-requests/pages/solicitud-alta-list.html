@@ -60,8 +60,8 @@
       </td>
       <td class="no-print">
         <div class="flex gap-1">
-          <il-button-edit (clicked)="onModalForm(item)" />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-edit (clicked)="onModalForm(item)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -88,25 +88,19 @@
         <app-icon
           icon="mdi:account-plus-outline"
           class="text-xl text-green-600"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.nameEmployee }}</h3>
         <p>{{ item.nameCustomer }} é {{ item.applicationRole }}</p>
         <p>{{ item.executionDate }} é {{ item.status }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onModalForm(item)"
-            label="Editar"
-          />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

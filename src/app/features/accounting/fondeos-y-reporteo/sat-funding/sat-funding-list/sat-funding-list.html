@@ -39,18 +39,18 @@
         <td>{{ item.totalAmount | number:'1.2-2' }}</td>
         <td>
           <div class="flex justify-content-end">
-            <il-button
+            <iw-button
               (click)="goToDetail(item.id)"
-              label="Ver Detalle"
-              icon="mdi:arrow-right"
+              pTooltip="Ver Detalle" tooltipPosition="top"
+              iconClass="mdi:arrow-right"
             />
           </div>
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="4" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="4" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -78,7 +78,7 @@
         <app-icon
           icon="mdi:cash"
           style="font-size: 20px; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.periodDisplayName }}</h3>

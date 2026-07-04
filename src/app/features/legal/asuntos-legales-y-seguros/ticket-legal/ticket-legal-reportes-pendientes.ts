@@ -4,7 +4,7 @@ import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { LxEmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -21,7 +21,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
     DatePipe,
     AppIcon,
     DataViewMobile,
-    EmptyState,
+    LxEmptyState,
     IonItem,
     IonLabel,
     PageTitleReport,

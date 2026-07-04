@@ -22,10 +22,15 @@ import {
   EmployeeFileWorkPositionDTO,
 } from "../models/employee-file.interfaces";
 
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-employee-file-detail",
   templateUrl: "./employee-file-detail.html",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
     DatePipe,
     CurrencyPipe,
     TableModule,

@@ -52,12 +52,12 @@
         </td>
         <td>{{ task.scheduledDate | date : "medium" }}</td>
         <td>
-          <il-button
+          <iw-button
             (clicked)="onCompleteTask(task)"
             iconClass="mdi:check"
             [disabled]="task.status === 1"
           />
-          <il-button-confirm
+          <iw-button-confirm
             (confirmed)="onReopenTask(task.id)"
             iconClass="mdi:undo"
             [disabled]="task.status !== 1"
@@ -78,8 +78,8 @@
       />
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="5" />
+    </ng-template>
   </p-table>
 
   <!-- Mobile View -->
@@ -103,7 +103,7 @@
           <app-icon
             icon="mdi:repeat"
             style="font-size: 1.1rem; color: var(--ds-primary)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h5 class="mb-2">{{ task.title }}</h5>
@@ -115,21 +115,21 @@
             [status]="task.statusDescription"
           />
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Completar"
               (clicked)="onCompleteTask(task)"
               [disabled]="task.status === 1"
             />
-            <il-button-confirm
+            <ili-button-confirm
               label="Reabrir"
               (confirmed)="onReopenTask(task.id)"
               [disabled]="task.status !== 1"
               confirmMessage="óEstés seguro de reabrir esta tarea?"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

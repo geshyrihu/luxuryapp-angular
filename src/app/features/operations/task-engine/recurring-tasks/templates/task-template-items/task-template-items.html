@@ -44,7 +44,11 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td>
-        <app-icon [icon]="'mdi:menu'" class="icon icon-" pReorderableRowHandle></app-icon>
+        <app-icon
+          [icon]="'mdi:menu'"
+          class="icon icon-"
+          pReorderableRowHandle
+        />
       </td>
       <td>{{ item.title }}</td>
       <td>
@@ -56,10 +60,8 @@
       </td>
       <td>{{ formatRecurrenceRule(item.recurrenceRule) }}</td>
       <td>
-        <il-button-edit (clicked)="showItemForm(item)"
-/>
-        <il-button-delete (confirmed)="onDeleteItem(item.id)"
-/>
+        <iw-button-edit (clicked)="showItemForm(item)" />
+        <iw-button-delete (confirmed)="onDeleteItem(item.id)" />
       </td>
     </tr>
   </ng-template>
@@ -93,9 +95,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:file-document-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:file-document-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        />
       </div>
       <ion-label>
         <h5 class="mb-2">{{ item.title }}</h5>
@@ -108,13 +117,15 @@
           {{ formatRecurrenceRule(item.recurrenceRule) }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-        <il-button-edit label="Editar" (clicked)="showItemForm(item)"/>
-        <il-button-delete (confirmed)="onDeleteItem(item.id)"
- label="Eliminar"/>
-              </ng-container>
-      </app-action-menu>
+          <ili-button-edit label="Editar" (clicked)="showItemForm(item)" />
+          <ili-button-delete
+            (confirmed)="onDeleteItem(item.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

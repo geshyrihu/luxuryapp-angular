@@ -64,12 +64,12 @@
 
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
 
-          <il-button-send-email
+          <iw-button-send-email
             confirmMessage="Enviar usuario y contraseóa de acceso."
             (confirmed)="onSendCredential(item.id)"
           />
@@ -108,7 +108,7 @@
         <app-icon
           icon="mdi:account-group-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nameProperty }}</h2>
@@ -119,23 +119,20 @@
         <p class="text-medium text-500 m-0">{{ item.celular }}</p>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
-          <il-button-send-email
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <ili-button-send-email
             confirmMessage="Enviar usuario y contraseóa de acceso."
             (confirmed)="onSendCredential(item.id)"
             label="Enviar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

@@ -1,7 +1,7 @@
 <div class="card p-4">
   <div class="mb-5 pb-4 border-b border-gray-200">
     <h1 class="text-xl font-bold text-gray-800">
-      <app-icon [icon]="'mdi:wallet'" class="mr-2 text-primary"></app-icon>
+      <app-icon [icon]="'mdi:wallet'" class="mr-2 text-primary" />
       Registrar Pago y Aplicar a Cargos
     </h1>
     <p class="text-gray-500 text-sm mt-1">
@@ -134,7 +134,7 @@
             <div
               class="p-3 bg-red-50 text-red-700 border-1 border-red-200 border-round text-xs flex align-items-center"
             >
-              <app-icon [icon]="'mdi:alert'" class="mr-2 text-lg"></app-icon>
+              <app-icon [icon]="'mdi:alert'" class="mr-2 text-lg" />
               <span
                 >No puedes aplicar más monto del que estás recibiendo en este
                 pago.</span
@@ -186,7 +186,10 @@
             <div
               class="flex flex-column align-items-center justify-content-center p-12 text-500"
             >
-              <app-icon [icon]="'mdi:check-circle'" class="text-green-500 text-5xl mb-4"></app-icon>
+              <app-icon
+                [icon]="'mdi:check-circle'"
+                class="text-green-500 text-5xl mb-4"
+              />
               <p class="text-lg font-medium text-700">
                 Esta propiedad está al día.
               </p>
@@ -242,15 +245,14 @@
                   </td>
                   <td>
                     <div class="flex flex-column">
-                      <span
-                        class="text-xs text-500 font-semibold tracking-wide"
-                      >
-                        @if (charge.type === EChargeType.MantenimientoOrdinario)
-                        { Ordinario } @else if (charge.type ===
-                        EChargeType.CuotaExtraordinaria) { Extraordinario }
-                        @else if (charge.type === EChargeType.RecargoMora) {
-                        Recargo } @else { Otros }
+                      <span class="text-xs text-500 font-semibold tracking-wide">
+                        {{ getChargeTypeLabel(charge) }}
                       </span>
+                      @if (getChargeTypeMeta(charge)) {
+                      <span class="text-xs text-400">
+                        {{ getChargeTypeMeta(charge) }}
+                      </span>
+                      }
                       <span
                         class="text-sm font-medium text-gray-800 line-clamp-2"
                         [title]="charge.concept"
@@ -266,7 +268,8 @@
                     <div class="p-inputgroup">
                       <span
                         class="p-inputgroup-addon bg-white border-r-0 text-gray-500 px-1 py-1 h-8"
-                        ><app-icon [icon]="'mdi:dollar'" class="text-xs" /></span>
+                        ><app-icon [icon]="'mdi:dollar'" class="text-xs"
+                      /></span>
                       <input
                         type="number"
                         class="p-inputtext p-component w-full border-l-0 text-right font-semibold text-blue-700 h-8 px-2"

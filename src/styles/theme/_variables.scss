@@ -127,30 +127,36 @@
   /** Success **/
   --ion-color-success: #{c.$color-success-brand};
   --ion-color-success-rgb:
-    #{red(c.$color-success-brand)}, #{green(c.$color-success-brand)}, #{blue(c.$color-success-brand)};
+    #{red(c.$color-success-brand)}, #{green(c.$color-success-brand)},
+    #{blue(c.$color-success-brand)};
   --ion-color-success-contrast: #{c.$color-success-bg};
   --ion-color-success-contrast-rgb:
-    #{red(c.$color-success-bg)}, #{green(c.$color-success-bg)}, #{blue(c.$color-success-bg)};
+    #{red(c.$color-success-bg)}, #{green(c.$color-success-bg)},
+    #{blue(c.$color-success-bg)};
   --ion-color-success-shade: #{darken(c.$color-success-brand, 10%)};
   --ion-color-success-tint: #{lighten(c.$color-success-brand, 10%)};
 
   /** Warning **/
   --ion-color-warning: #{c.$color-warning-brand};
   --ion-color-warning-rgb:
-    #{red(c.$color-warning-brand)}, #{green(c.$color-warning-brand)}, #{blue(c.$color-warning-brand)};
+    #{red(c.$color-warning-brand)}, #{green(c.$color-warning-brand)},
+    #{blue(c.$color-warning-brand)};
   --ion-color-warning-contrast: #{c.$color-warning-bg};
   --ion-color-warning-contrast-rgb:
-    #{red(c.$color-warning-bg)}, #{green(c.$color-warning-bg)}, #{blue(c.$color-warning-bg)};
+    #{red(c.$color-warning-bg)}, #{green(c.$color-warning-bg)},
+    #{blue(c.$color-warning-bg)};
   --ion-color-warning-shade: #{darken(c.$color-warning-brand, 10%)};
   --ion-color-warning-tint: #{lighten(c.$color-warning-brand, 10%)};
 
   /** Danger **/
   --ion-color-danger: #{c.$color-danger-brand};
   --ion-color-danger-rgb:
-    #{red(c.$color-danger-brand)}, #{green(c.$color-danger-brand)}, #{blue(c.$color-danger-brand)};
+    #{red(c.$color-danger-brand)}, #{green(c.$color-danger-brand)},
+    #{blue(c.$color-danger-brand)};
   --ion-color-danger-contrast: #{c.$color-danger-bg};
   --ion-color-danger-contrast-rgb:
-    #{red(c.$color-danger-bg)}, #{green(c.$color-danger-bg)}, #{blue(c.$color-danger-bg)};
+    #{red(c.$color-danger-bg)}, #{green(c.$color-danger-bg)},
+    #{blue(c.$color-danger-bg)};
   --ion-color-danger-shade: #{darken(c.$color-danger-brand, 10%)};
   --ion-color-danger-tint: #{lighten(c.$color-danger-brand, 10%)};
 
@@ -179,10 +185,12 @@
   /** Secondary — neutro/gris, alineado con btn-secondary **/
   --ion-color-secondary: #{c.$secondary-400};
   --ion-color-secondary-rgb:
-    #{red(c.$secondary-400)}, #{green(c.$secondary-400)}, #{blue(c.$secondary-400)};
+    #{red(c.$secondary-400)}, #{green(c.$secondary-400)},
+    #{blue(c.$secondary-400)};
   --ion-color-secondary-contrast: #{c.$secondary-900};
   --ion-color-secondary-contrast-rgb:
-    #{red(c.$secondary-900)}, #{green(c.$secondary-900)}, #{blue(c.$secondary-900)};
+    #{red(c.$secondary-900)}, #{green(c.$secondary-900)},
+    #{blue(c.$secondary-900)};
   --ion-color-secondary-shade: #{c.$secondary-500};
   --ion-color-secondary-tint: #{c.$secondary-300};
 
@@ -334,7 +342,9 @@
   --ds-document-surface: #{c.$neutral-0};
 
   // Tipografía Documental
-  --ds-font-family-document: "Hanken Grotesk", "Inter", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  --ds-font-family-document:
+    "Hanken Grotesk", "Inter", "Segoe UI Emoji", "Apple Color Emoji",
+    "Noto Color Emoji", sans-serif;
   --ds-font-family-mono: "JetBrains Mono", "Roboto Mono", "Consolas", monospace;
   --ds-font-size-doc-title: 26pt;
   --ds-font-size-doc-body: 10.5pt;
@@ -347,7 +357,9 @@
   --ds-bg-sunken: var(--ds-surface-container);
   --ds-bg-overlay: rgba(0, 0, 0, 0.5);
   --ds-bg-auth-panel: #{c.$color-auth-panel-bg};
-  --ds-bg-auth-panel-rgb: #{red(c.$color-auth-panel-bg)}, #{green(c.$color-auth-panel-bg)}, #{blue(c.$color-auth-panel-bg)};
+  --ds-bg-auth-panel-rgb:
+    #{red(c.$color-auth-panel-bg)}, #{green(c.$color-auth-panel-bg)},
+    #{blue(c.$color-auth-panel-bg)};
 
   // Texto — DESIGN.md on-surface roles
   --ds-text-primary: var(--ds-on-surface);
@@ -358,7 +370,9 @@
   --ds-text-link: var(--ds-surface-tint);
 
   // Tipografía ERP — Hanken Grotesk (headlines) + Inter (body)
-  --ds-font-family-base: "Inter", "Hanken Grotesk", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  --ds-font-family-base:
+    "Inter", "Hanken Grotesk", "Segoe UI Emoji", "Apple Color Emoji",
+    "Noto Color Emoji", sans-serif;
   --ds-font-size-display: clamp(1.75rem, 4vw, 2.5rem); // 28-40px
   --ds-font-size-page-title: clamp(1.25rem, 3vw, 1.75rem); // 20-28px
   --ds-font-size-section-title: clamp(1.125rem, 2vw, 1.25rem); // 18-20px
@@ -383,7 +397,7 @@
   --ds-border-focus: var(--ds-surface-tint);
   --ds-border-error: #{c.$danger-500};
   --ds-border-success: #{c.$success-500};
-  --ds-control-border-width: 2px; /* desktop */
+  --ds-control-border-width: 1px; /* desktop */
 
   // 💎 PrimeNG 21 Native Mapping (Bridge) — valores no cubiertos por _prime-tokens.scss
   --p-content-border-radius: var(--ds-radius-md);
@@ -400,7 +414,6 @@ body.theme-dark {
   // Sidebar y topbar vuelven a navy oscuro en dark mode
   --sidebar-bg: #{c.$sidebar-bg-dark};
   --header-bg: #{c.$header-bg-dark};
-
 
   /** Ionic Step Colors **/
   --ion-background-color-step-50: #{c.$primary-950};
@@ -528,7 +541,11 @@ body.theme-dark {
 
   --ds-luxury-gold: #{c.$tertiary-200};
   --ds-luxury-gold-hover: #{c.$tertiary-100};
-  --ds-luxury-gold-light: color-mix(in srgb, #{c.$tertiary-400}, transparent 84%);
+  --ds-luxury-gold-light: color-mix(
+    in srgb,
+    #{c.$tertiary-400},
+    transparent 84%
+  );
   --ds-luxury-gold-text: #{c.$tertiary-200};
   --ds-document-neutral: #{c.$neutral-400};
   --ds-document-bg-muted: #{c.$neutral-800};
@@ -545,7 +562,8 @@ body.theme-dark {
   --ds-shadow-xl:
     0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
   --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  --ds-shadow-focus: 0 0 0 3px color-mix(in srgb, #{c.$primary-200}, transparent 70%);
+  --ds-shadow-focus: 0 0 0 3px
+    color-mix(in srgb, #{c.$primary-200}, transparent 70%);
 
   // Neon glow tokens — dark mode
   --ds-glow-primary:

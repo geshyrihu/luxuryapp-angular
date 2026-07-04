@@ -19,9 +19,21 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-lista-inspecciones",
   imports: [
+    WebButtonIcon,
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     CommonModule,
     FormsModule,
     WebButtonLabel,

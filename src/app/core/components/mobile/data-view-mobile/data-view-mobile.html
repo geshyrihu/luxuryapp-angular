@@ -2,7 +2,12 @@
 <div class="flex md:hidden flex-column no-print h-full min-h-0">
   <!-- Sticky Header: Breadcrumb + Search + Add -->
   <div
-    style="position:sticky;top:0;z-index:1000;background-color:var(--ds-bg-surface);"
+    style="
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--ds-bg-surface);
+    "
     class="pb-1"
   >
     <!-- 🧭 Breadcrumb Premium (Pill Style) -->
@@ -12,7 +17,7 @@
     >
       <div
         class="flex align-items-center gap-1 px-3 py-1 border-round-pill shadow-1 border-1 overflow-x-auto no-scrollbar max-w-full"
-        style="background:var(--ds-bg-surface);border-color:var(--ds-border);"
+        style="background: var(--ds-bg-surface); border-color: var(--ds-border)"
       >
         @for (item of breadcrumbItems(); track $index; let last = $last) {
         <div class="flex align-items-center">
@@ -21,7 +26,7 @@
             [icon]="item.icon"
             [routerLink]="item.routerLink"
             class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
-          ></app-icon>
+          />
           } @else {
           <span
             class="text-xs font-bold px-1 whitespace-nowrap"
@@ -54,11 +59,7 @@
       <!-- Inline Add Button -->
       @if (showAdd()) {
       <ion-button fill="clear" (click)="onAdd($event)">
-        <app-icon
-          icon="mdi:plus-circle"
-          slot="icon-only"
-          class="text-4xl"
-        ></app-icon>
+        <app-icon icon="mdi:plus-circle" slot="icon-only" class="text-4xl" />
       </ion-button>
       }
     </div>
@@ -104,17 +105,17 @@
       }
     </ion-list>
     } @else if (filterValue() && !loading()) {
-      <app-empty-state
-        icon="mdi:magnify"
-        title="Sin resultados"
-        [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
-      />
+    <ili-empty-state
+      icon="mdi:magnify"
+      title="Sin resultados"
+      [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
+    />
     } @else if (!loading() && filteredData().length === 0) {
-      <app-empty-state
-        icon="mdi:inbox-outline"
-        title="Sin registros"
-        message="No hay registros disponibles."
-      />
+    <ili-empty-state
+      icon="mdi:inbox-outline"
+      title="Sin registros"
+      message="No hay registros disponibles."
+    />
     }
 
     <!-- Infinite Scroll -->

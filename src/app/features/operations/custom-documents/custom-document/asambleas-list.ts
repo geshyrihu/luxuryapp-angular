@@ -17,9 +17,12 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+
 @Component({
   selector: "app-asambleas",
   imports: [
+    WebButtonIconViewPdf,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,

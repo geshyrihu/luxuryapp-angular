@@ -19,9 +19,17 @@ import { PrestamoEmpleadoDTO } from "../../interfaces/prestamo-empleado.interfac
 import ModalPrestamoAdd from "./modal-prestamo-add/modal-prestamo-add";
 import ModalPrestamoDetalle from "./modal-prestamo-detalle/modal-prestamo-detalle";
 
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-prestamos-empleado",
   imports: [
+    WebButtonIcon,
+    WebButtonIconDelete,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

@@ -31,10 +31,17 @@ import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { TaskForm } from "../../task-message/pages/task-form";
 import { TaskGroupService } from "../../task.service";
 import { MyTaskForm } from "./my-task-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
 @Component({
   selector: "app-my-requests-task",
   templateUrl: "./my-requests-task.html",
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelItem,
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,

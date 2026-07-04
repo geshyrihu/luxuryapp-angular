@@ -28,10 +28,19 @@ import { EquipmentInspectionExecutionForm } from "./equipment-inspection-executi
 import { EquipmentInspectionDefinitionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-equipment-inspection-definitions-list",
   templateUrl: "./equipment-inspection-definitions-list.html",
   imports: [
+    WebButtonIconItem,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

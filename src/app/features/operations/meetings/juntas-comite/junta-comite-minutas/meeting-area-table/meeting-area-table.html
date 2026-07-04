@@ -5,17 +5,17 @@
     <tr>
       <th colspan="7" class="bg-surface-0 border-none p-3">
         <div class="flex align-items-center gap-2">
-          <il-button-add
+          <iw-button-add
             (clicked)="onAddDetail()"
-            [label]="title() | uppercase"
+            [pTooltip]="title() | uppercase" tooltipPosition="top"
             size="sm"
             [ngbTooltip]="'Agregar pendiente a ' + title()"
           />
           @if (details() && details().length > 0) {
-          <il-button-confirm
+          <iw-button-confirm
             swalTitle="Confirmar"
             [swalText]="'Enviar Email a ' + title()"
-            [label]="'Enviar Email a ' + title()"
+            [pTooltip]="'Enviar Email a ' + title()" tooltipPosition="top"
             [ngbTooltip]="'Enviar Email a ' + title()"
             classButton="btn btn-sm btn-light"
             swalConfirmButtonText="Sí, enviar"

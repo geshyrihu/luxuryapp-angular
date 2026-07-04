@@ -77,22 +77,19 @@
         <app-icon
           icon="mdi:store-outline"
           style="font-size: 20px; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.nameComercial }}</h3>
         <p>{{ item.service }}</p>
       </ion-label>
-      <app-action-menu slot="end">
-        <il-button-edit
+      <ili-action-menu slot="end">
+        <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
         />
-        <il-button-delete
-          (confirmed)="onDelete(item.id)"
-          label="Eliminar"
-        />
-      </app-action-menu>
+        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

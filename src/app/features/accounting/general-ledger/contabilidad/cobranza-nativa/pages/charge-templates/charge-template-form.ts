@@ -11,13 +11,13 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { ChargeTypeCatalogResponseDTO } from "../../models/charge-type-catalog.dto";
 import {
   CreateChargeTemplateDTO,
   UpdateChargeTemplateDTO,
 } from "../../models/charge-template.dto";
 import {
   ECalculationMethod,
-  EChargeType,
   EDiscountType,
   ERecurrence,
 } from "../../models/enums";
@@ -34,7 +34,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 interface IChargeTemplateForm {
   name: FormControl<string>;
   calculationMethod: FormControl<ECalculationMethod>;
-  chargeType: FormControl<EChargeType>;
+  chargeTypeId: FormControl<string>;
   amount: FormControl<number>;
   recurrence: FormControl<ERecurrence>;
   dayOfMonth: FormControl<number>;
@@ -74,6 +74,7 @@ export class ChargeTemplateForm implements OnInit {
   customerId: string = "";
   form: FormGroup<IChargeTemplateForm>;
   submitting = signal(false);
+  chargeTypes = signal<{ label: string; value: string }[]>([]);
 
   constructor() {
     effect(() => {
@@ -106,22 +107,12 @@ export class ChargeTemplateForm implements OnInit {
     { label: "Prorrateo por Indiviso", value: ECalculationMethod.Indiviso },
   ];
 
-  chargeTypes = [
-    {
-      label: "Mantenimiento Ordinario",
-      value: EChargeType.MantenimientoOrdinario,
-    },
-    { label: "Cuota Extraordinaria", value: EChargeType.CuotaExtraordinaria },
-    { label: "Recargo por Mora", value: EChargeType.RecargoMora },
-    { label: "Otros", value: EChargeType.Otros },
-  ];
-
   discountTypes = [
     { label: "Monto Fijo ($)", value: EDiscountType.FixedValue },
     { label: "Porcentaje (%)", value: EDiscountType.Percentage },
   ];
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.config.data.id;
     this.customerId = this.config.data.customerId;
 
@@ -134,7 +125,7 @@ export class ChargeTemplateForm implements OnInit {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      chargeType: new FormControl(EChargeType.MantenimientoOrdinario, {
+      chargeTypeId: new FormControl("", {
         nonNullable: true,
         validators: [Validators.required],
       }),
@@ -172,8 +163,29 @@ export class ChargeTemplateForm implements OnInit {
       isActive: new FormControl(true, { nonNullable: true }),
     });
 
+    await this.loadChargeTypes();
+
     if (this.id) {
       this.loadData();
+    }
+  }
+
+  async loadChargeTypes() {
+    const res = await this.apiResponseS.onGetItem<ChargeTypeCatalogResponseDTO[]>(
+      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(this.customerId),
+    );
+
+    this.chargeTypes.set(
+      (res ?? [])
+        .filter((x) => x.isActive)
+        .map((x) => ({
+          label: `${x.name} · ${x.accountNumber}`,
+          value: x.id,
+        })),
+    );
+
+    if (!this.id && this.chargeTypes().length > 0 && !this.form.controls.chargeTypeId.value) {
+      this.form.controls.chargeTypeId.setValue(this.chargeTypes()[0].value);
     }
   }
 
@@ -216,11 +228,13 @@ export class ChargeTemplateForm implements OnInit {
           return {
             id: this.id,
             ...payloadBase,
+            chargeType: null,
           } as UpdateChargeTemplateDTO;
         } else {
           return {
             customerId: this.customerId,
             ...payloadBase,
+            chargeType: null,
           } as CreateChargeTemplateDTO;
         }
       },

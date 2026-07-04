@@ -20,10 +20,22 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CatalogoDescripcionForm } from "src/app/features/operations/properties/entrega-recepcion/catalogo-descripcion-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-catalogo-descripcion-list",
   templateUrl: "./catalogo-descripcion-list.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,

@@ -16,11 +16,10 @@ import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label";
 import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { WebButtonLabelTracking } from "src/app/core/components/buttons/web-label/button-tracking";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -34,16 +33,28 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import {
+  WebButtonIconEdit,
+  WebButtonIconTracking,
+} from "../../../../core/components/buttons";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
 import { TicketLegalForm } from "./ticket-legal-form";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
 import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimiento-solicitud-detalle";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/button-download";
+
 @Component({
   selector: "app-ticket-legal-lista",
   templateUrl: "./ticket-legal-lista.html",
   imports: [
+    WebButtonIconDownload,
+    MobileActionMenu,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
@@ -55,10 +66,11 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
     PrimeNgCustomTableFooter,
     WebButtonLabelEdit,
     WebButtonLabelDownload,
-    WebButtonLabelTracking,
     ActionMenu,
+    WebButtonIconEdit,
     DataViewMobile,
     WebButtonLabelItem,
+    WebButtonIconTracking,
   ],
 })
 export class TicketLegalLista implements OnInit {

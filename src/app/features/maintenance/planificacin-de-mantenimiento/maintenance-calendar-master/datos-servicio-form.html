@@ -1,14 +1,18 @@
 <div class="flex flex-column gap-4">
-
   @if (data?.nombreEquipo) {
-  <div class="flex align-items-center gap-2 pb-2 border-bottom-1 surface-border">
-    <app-icon [icon]="'mdi:cog'" class="text-primary text-xl"></app-icon>
+  <div
+    class="flex align-items-center gap-2 pb-2 border-bottom-1 surface-border"
+  >
+    <app-icon [icon]="'mdi:cog'" class="text-primary text-xl" />
     <span class="text-xl font-bold text-900">{{ data.nombreEquipo }}</span>
   </div>
   }
 
   <div>
-    <label class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block">Actividad</label>
+    <label
+      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
+      >Actividad</label
+    >
     <div class="surface-100 border-round p-3 text-900 line-height-3">
       {{ data?.servicio || 'Sin descripcion' }}
     </div>
@@ -16,7 +20,10 @@
 
   @if (data?.observaciones) {
   <div>
-    <label class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block">Observaciones</label>
+    <label
+      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
+      >Observaciones</label
+    >
     <div class="surface-100 border-round p-3 text-700 line-height-3">
       {{ data.observaciones }}
     </div>
@@ -24,14 +31,21 @@
   }
 
   <div>
-    <label class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block">
-      Proveedores
-      @if (proveedores?.length > 0) {
-      <p-tag [value]="proveedores.length" severity="secondary" styleClass="ml-2 text-xs" />
+    <label
+      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
+    >
+      Proveedores @if (proveedores?.length > 0) {
+      <p-tag
+        [value]="proveedores.length"
+        severity="secondary"
+        styleClass="ml-2 text-xs"
+      />
       }
     </label>
     @if (proveedores?.length > 0) {
-    <div class="surface-card border-1 surface-border border-round overflow-hidden">
+    <div
+      class="surface-card border-1 surface-border border-round overflow-hidden"
+    >
       @for (proveedor of proveedores; track proveedor; let last = $last) {
       <div
         (click)="onDataProveedor(proveedor.id)"
@@ -39,19 +53,25 @@
         [class.border-bottom-1]="!last"
         [class.surface-border]="!last"
       >
-        <div class="flex align-items-center justify-content-center w-2rem h-2rem border-round-lg bg-primary-100">
-          <app-icon [icon]="'mdi:office-building'" class="text-primary text-sm"></app-icon>
+        <div
+          class="flex align-items-center justify-content-center w-2rem h-2rem border-round-lg bg-primary-100"
+        >
+          <app-icon
+            [icon]="'mdi:office-building'"
+            class="text-primary text-sm"
+          />
         </div>
-        <span class="font-medium text-900 flex-1">{{ proveedor.nameProvider }}</span>
-        <app-icon [icon]="'mdi:chevron-right'" class="text-400"></app-icon>
+        <span class="font-medium text-900 flex-1"
+          >{{ proveedor.nameProvider }}</span
+        >
+        <app-icon [icon]="'mdi:chevron-right'" class="text-400" />
       </div>
       }
     </div>
     } @else {
     <div class="surface-100 border-round p-3 text-400 text-sm text-center">
-      <app-icon [icon]="'mdi:inbox'" class="mr-2"></app-icon>Sin proveedores asignados
+      <app-icon [icon]="'mdi:inbox'" class="mr-2" />Sin proveedores asignados
     </div>
     }
   </div>
-
 </div>

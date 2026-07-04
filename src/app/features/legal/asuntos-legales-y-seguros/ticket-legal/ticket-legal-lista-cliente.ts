@@ -24,10 +24,18 @@ import { TicketLegalFormCliente } from "./ticket-legal-form-cliente";
 import { TicketLegalSeguimientoCliente } from "./ticket-legal-seguimiento-cliente";
 import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimiento-solicitud-detalle";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconTracking } from "src/app/core/components/buttons/web-icon/button-tracking";
+
 @Component({
   selector: "app-ticket-legal-lista-cliente",
   templateUrl: "./ticket-legal-lista-cliente.html",
   imports: [
+    WebButtonIconTracking,
+    MobileActionMenu,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,

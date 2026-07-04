@@ -48,17 +48,17 @@
         </td>
         <td class="no-print">
           <div class="flex">
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Incidencia' })"
             />
-            <il-button-delete (confirmed)="onDelete(item.id)" />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="5" />
+    </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
@@ -85,7 +85,7 @@
           <app-icon
             icon="mdi:alert-circle-outline"
             style="font-size: 1.1rem; color: var(--ds-danger)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h2 class="text-base font-semibold">{{ item.name }}</h2>
@@ -103,18 +103,15 @@
           </p>
         </ion-label>
         <div slot="end">
-          <app-action-menu>
+          <ili-action-menu>
             <ng-container actions>
-              <il-button-edit
-                (clicked)="onEdit(item)"
-                label="Editar"
-              />
-              <il-button-delete
+              <ili-button-edit (clicked)="onEdit(item)" label="Editar" />
+              <ili-button-delete
                 (confirmed)="onDelete(item.id)"
                 label="Eliminar"
               />
             </ng-container>
-          </app-action-menu>
+          </ili-action-menu>
         </div>
       </ion-item>
     </ng-template>

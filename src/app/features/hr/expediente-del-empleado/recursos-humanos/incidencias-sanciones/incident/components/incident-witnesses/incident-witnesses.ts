@@ -12,9 +12,14 @@ import { SwalService } from "src/app/core/services/swal.service";
 import { IncidentWitnessListDTO } from "../../models/incident.interfaces";
 import { IncidentWitnessFormComponent } from "./incident-witness-form";
 
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-incident-witnesses",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,

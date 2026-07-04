@@ -50,7 +50,8 @@
             <ng-template #footer>
               <div class="flex justify-content-end align-items-center">
                 @if (anuncio.attachmentCount > 0) {
-                <app-icon [icon]="'mdi:paperclip'"
+                <app-icon
+                  [icon]="'mdi:paperclip'"
                   class="text-color-secondary"
                   pTooltip="Contiene adjuntos"
                 />
@@ -70,7 +71,10 @@
 <div class="block md:hidden pb-5">
   @if (!loading() && announcements().length === 0) {
   <div class="ion-text-center ion-padding mt-5">
-    <app-icon icon="mdi:tray" style="font-size: 4rem; color: var(--ion-color-medium)"></app-icon>
+    <app-icon
+      icon="mdi:tray"
+      style="font-size: 4rem; color: var(--ion-color-medium)"
+    />
     <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
   </div>
   } @if (!loading() && announcements().length > 0) {
@@ -95,7 +99,7 @@
 
         @if (anuncio.attachmentCount > 0) {
         <div class="flex justify-content-end mt-2">
-          <app-icon icon="mdi:paperclip" class="text-lg text-color-secondary"></app-icon>
+          <app-icon icon="mdi:paperclip" class="text-lg text-color-secondary" />
         </div>
         }
       </ion-card-content>

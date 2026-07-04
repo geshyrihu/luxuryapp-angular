@@ -6,9 +6,11 @@
   <div class="grid mb-3 align-items-center">
     <div class="col-12 md:col-2 flex align-items-center">
       <div class="mr-2">
-        <app-icon [icon]="'mdi:circle'"[class]="getTagSeverity(data.status)"
-           class="icon icon-"
-        ></app-icon>
+        <app-icon
+          [icon]="'mdi:circle'"
+          [class]="getTagSeverity(data.status)"
+          class="icon icon-"
+        />
       </div>
       <div>
         <strong class="block text-color-secondary">Folio:</strong>
@@ -43,18 +45,22 @@
           <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Editar' })"
             label="Editar"
-            icon="mdi:pencil"/>
+            icon="mdi:pencil"
+          />
           <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Cotizar' })"
-            label="Cotizar"/>
+            label="Cotizar"
+          />
           <il-button-item
             (clicked)="
                     onNavigatePage('purchase-request/comparison/' + data.id)
                   "
-            label="Cuadro Comparativo"/>
+            label="Cuadro Comparativo"
+          />
           <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Crear Orden' })"
-            label="Crear Orden"/>
+            label="Crear Orden"
+          />
           <il-button-item
             (clicked)="
                     onModalAddProduct({
@@ -62,7 +68,8 @@
                       title: 'Agregar productos o servicios',
                     })
                   "
-            label="Agregar productos"/>
+            label="Agregar productos"
+          />
           <div>
             @for (item of purchaseOrders; track item) {
             <p-tag

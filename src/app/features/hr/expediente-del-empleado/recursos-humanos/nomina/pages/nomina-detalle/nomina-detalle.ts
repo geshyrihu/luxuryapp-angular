@@ -23,9 +23,17 @@ import {
 import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-editar-empleado-nomina";
 
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-nomina-detalle",
   imports: [
+    WebButtonIcon,
+    WebButtonIconEdit,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

@@ -36,10 +36,10 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       <!-- Opciones -->
@@ -74,24 +74,21 @@
         <app-icon
           icon="mdi:clipboard-search-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.description }}</h2>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

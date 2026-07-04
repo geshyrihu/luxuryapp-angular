@@ -15,7 +15,7 @@ import { BaseButton } from "../base/base-button";
       (click)="toggleState()"
     >
       <app-icon
-        [icon]="state() ? 'mdi:lock-outline' : 'mdi:lock-open-variant-outline'"
+        [icon]="state() ? 'fluent-color:lock-16' : 'fluent-color:unlock-16'"
       />
     </button>
   `,
@@ -35,4 +35,3 @@ export class WebButtonIconActiveDesactive extends BaseButton {
     this.stateChange.emit(!this.state());
   }
 }
-

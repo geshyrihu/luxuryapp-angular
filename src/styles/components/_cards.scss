@@ -4,26 +4,37 @@
 // Sistema de tarjetas de contenido
 // ============================================================
 
-@use '../core/mixins' as m;
+@use "../core/mixins" as m;
 
 .card {
   background-color: var(--ds-bg-surface);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-radius-card, 12px);
+  border: var(--ds-control-border-width, 1px) solid var(--ds-border);
+  border-radius: var(--ds-radius-card, 3px);
   box-shadow: var(--ds-shadow-sm);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
   // ── Variantes visuales
-  &--flat      { box-shadow: none; }
-  &--elevated  { box-shadow: var(--ds-shadow-lg); border-color: transparent; }
-  &--bordered  { box-shadow: none; border-width: 2px; }
+  &--flat {
+    box-shadow: none;
+  }
+  &--elevated {
+    box-shadow: var(--ds-shadow-lg);
+    border-color: transparent;
+  }
+  &--bordered {
+    box-shadow: none;
+    border-width: 2px;
+  }
 
   // ── Interactiva (con hover lift)
   &--interactive {
     cursor: pointer;
-    transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease,
+      border-color 200ms ease;
 
     &:hover {
       box-shadow: var(--ds-shadow-md);
@@ -35,7 +46,9 @@
   }
 
   // ── Borde oscuro (semi-negro, útil sobre fondo claro)
-  &--dark-border { border-color: var(--ds-border-strong); }
+  &--dark-border {
+    border-color: var(--ds-border-strong);
+  }
 
   // ── Seleccionada
   &--selected {
@@ -44,11 +57,21 @@
   }
 
   // ── Acentos de color (borde superior de color)
-  &--primary { border-top: 3px solid var(--ds-primary); }
-  &--success { border-top: 3px solid var(--ds-success); }
-  &--warning { border-top: 3px solid var(--ds-warning); }
-  &--danger  { border-top: 3px solid var(--ds-danger); }
-  &--info    { border-top: 3px solid var(--ds-info); }
+  &--primary {
+    border-top: 3px solid var(--ds-primary);
+  }
+  &--success {
+    border-top: 3px solid var(--ds-success);
+  }
+  &--warning {
+    border-top: 3px solid var(--ds-warning);
+  }
+  &--danger {
+    border-top: 3px solid var(--ds-danger);
+  }
+  &--info {
+    border-top: 3px solid var(--ds-info);
+  }
 }
 
 .card-cover {
@@ -105,15 +128,20 @@
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 
-  &--2 { grid-template-columns: repeat(2, 1fr); }
-  &--3 { grid-template-columns: repeat(3, 1fr); }
-  &--4 { grid-template-columns: repeat(4, 1fr); }
+  &--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 }
-
 
 // ============================================================
 // _badges.scss
@@ -136,23 +164,75 @@
   border: 1px solid transparent;
 
   // Ícono dentro del badge
-  &-icon { font-size: 0.625rem; }
+  &-icon {
+    font-size: 0.625rem;
+  }
 }
 
 // ── VARIANTES SÓLIDAS ─────────────────────────────────────────
-.badge-primary  { @extend .badge; background-color: var(--ds-primary-light); color: var(--ds-primary); }
-.badge-success  { @extend .badge; background-color: var(--ds-success-light); color: var(--ds-success); }
-.badge-warning  { @extend .badge; background-color: var(--ds-warning-light); color: var(--ds-warning); }
-.badge-danger   { @extend .badge; background-color: var(--ds-danger-light);  color: var(--ds-danger); }
-.badge-info     { @extend .badge; background-color: var(--ds-info-light);    color: var(--ds-info); }
-.badge-neutral  { @extend .badge; background-color: var(--ds-bg-sunken); color: var(--ds-text-secondary); border-color: var(--ds-border); }
-.badge-secondary { @extend .badge; background-color: var(--ds-bg-elevated); color: var(--ds-text-secondary); border-color: var(--ds-border); }
+.badge-primary {
+  @extend .badge;
+  background-color: var(--ds-primary-light);
+  color: var(--ds-primary);
+}
+.badge-success {
+  @extend .badge;
+  background-color: var(--ds-success-light);
+  color: var(--ds-success);
+}
+.badge-warning {
+  @extend .badge;
+  background-color: var(--ds-warning-light);
+  color: var(--ds-warning);
+}
+.badge-danger {
+  @extend .badge;
+  background-color: var(--ds-danger-light);
+  color: var(--ds-danger);
+}
+.badge-info {
+  @extend .badge;
+  background-color: var(--ds-info-light);
+  color: var(--ds-info);
+}
+.badge-neutral {
+  @extend .badge;
+  background-color: var(--ds-bg-sunken);
+  color: var(--ds-text-secondary);
+  border-color: var(--ds-border);
+}
+.badge-secondary {
+  @extend .badge;
+  background-color: var(--ds-bg-elevated);
+  color: var(--ds-text-secondary);
+  border-color: var(--ds-border);
+}
 
 // ── VARIANTES OUTLINE ─────────────────────────────────────────
-.badge-outline-primary { @extend .badge; background: transparent; color: var(--ds-primary); border-color: var(--ds-primary); }
-.badge-outline-danger  { @extend .badge; background: transparent; color: var(--ds-danger);  border-color: var(--ds-danger); }
-.badge-outline-success { @extend .badge; background: transparent; color: var(--ds-success); border-color: var(--ds-success); }
-.badge-outline-warning { @extend .badge; background: transparent; color: var(--ds-warning); border-color: var(--ds-warning); }
+.badge-outline-primary {
+  @extend .badge;
+  background: transparent;
+  color: var(--ds-primary);
+  border-color: var(--ds-primary);
+}
+.badge-outline-danger {
+  @extend .badge;
+  background: transparent;
+  color: var(--ds-danger);
+  border-color: var(--ds-danger);
+}
+.badge-outline-success {
+  @extend .badge;
+  background: transparent;
+  color: var(--ds-success);
+  border-color: var(--ds-success);
+}
+.badge-outline-warning {
+  @extend .badge;
+  background: transparent;
+  color: var(--ds-warning);
+  border-color: var(--ds-warning);
+}
 
 // ── DOT BADGE (sin texto) ─────────────────────────────────────
 .badge-dot {
@@ -162,11 +242,21 @@
   padding: 0;
   display: inline-block;
 
-  &--primary { background-color: var(--ds-primary); }
-  &--success { background-color: var(--ds-success); }
-  &--warning { background-color: var(--ds-warning); }
-  &--danger  { background-color: var(--ds-danger);  }
-  &--neutral { background-color: var(--ds-text-muted); }
+  &--primary {
+    background-color: var(--ds-primary);
+  }
+  &--success {
+    background-color: var(--ds-success);
+  }
+  &--warning {
+    background-color: var(--ds-warning);
+  }
+  &--danger {
+    background-color: var(--ds-danger);
+  }
+  &--neutral {
+    background-color: var(--ds-text-muted);
+  }
 }
 
 // ── TAG ───────────────────────────────────────────────────────
@@ -196,7 +286,9 @@
       border-radius: 50%;
       color: inherit;
       opacity: 0.7;
-      transition: opacity 150ms, background-color 150ms;
+      transition:
+        opacity 150ms,
+        background-color 150ms;
 
       &:hover {
         opacity: 1;
@@ -219,14 +311,40 @@
   flex-shrink: 0;
 
   // Tamaños
-  &--xs  { width: 1.5rem;  height: 1.5rem;  font-size: 0.625rem; }
-  &--sm  { width: 2rem;    height: 2rem;    font-size: 0.75rem;  }
-  &--md  { width: 2.5rem;  height: 2.5rem;  font-size: 0.875rem; } // default
-  &--lg  { width: 3rem;    height: 3rem;    font-size: 1rem;     }
-  &--xl  { width: 4rem;    height: 4rem;    font-size: 1.25rem;  }
-  &--2xl { width: 5rem;    height: 5rem;    font-size: 1.5rem;   }
+  &--xs {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.625rem;
+  }
+  &--sm {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+  &--md {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+  } // default
+  &--lg {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1rem;
+  }
+  &--xl {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.25rem;
+  }
+  &--2xl {
+    width: 5rem;
+    height: 5rem;
+    font-size: 1.5rem;
+  }
 
-  &--square { border-radius: var(--ds-radius-md); }
+  &--square {
+    border-radius: var(--ds-radius-md);
+  }
 
   img {
     width: 100%;
@@ -244,7 +362,9 @@
     border: 2px solid var(--ds-bg-surface);
     margin-left: -0.625rem;
 
-    &:first-child { margin-left: 0; }
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   &__overflow {
@@ -257,7 +377,3 @@
     margin-left: -0.625rem;
   }
 }
-
-
-
-

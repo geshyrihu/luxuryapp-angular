@@ -1,25 +1,35 @@
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ChartModule } from "primeng/chart";
+import { NgxEchartsDirective } from "ngx-echarts";
+import type { EChartsCoreOption } from "echarts/core";
+import {
+  chartJsToCartesianOption,
+  chartJsToPieOption,
+  chartJsToRadarOption,
+  ChartJsData,
+} from "./echarts-adapters";
 
 export type ChartType = "bar" | "line" | "area" | "pie" | "doughnut" | "radar" | "polarArea";
 
+/**
+ * ChartWrapper — envoltorio genérico de gráficos. Motor: ECharts (ngx-echarts).
+ * API sin cambios: `data` en formato Chart.js `{ labels, datasets }`.
+ */
 @Component({
   selector: "app-chart-wrapper",
   standalone: true,
-  imports: [CommonModule, ChartModule],
+  imports: [CommonModule, NgxEchartsDirective],
   template: `
     <div class="chart-wrapper-root">
       @if (title()) {
         <strong class="chart-wrapper-title">{{ title() }}</strong>
       }
-      <p-chart
-        [type]="chartType()"
-        [data]="data()"
-        [options]="mergedOptions()"
-        [height]="height()"
-        [width]="width()"
-      />
+      <div
+        echarts
+        [options]="option()"
+        [style.height]="height()"
+        [style.width]="width()"
+      ></div>
     </div>
   `,
   styles: [`
@@ -40,80 +50,28 @@ export type ChartType = "bar" | "line" | "area" | "pie" | "doughnut" | "radar" |
 })
 export class ChartWrapper {
   type = input<ChartType>("bar");
-  data = input.required<any>();
-  options = input<any>(null);
+  data = input.required<ChartJsData>();
+  options = input<EChartsCoreOption | null>(null);
   title = input<string>("");
   height = input<string>("300px");
   width = input<string>("100%");
   showLegend = input<boolean>(true);
   showGrid = input<boolean>(true);
 
-  chartType = computed(() => {
+  option = computed<EChartsCoreOption>(() => {
+    if (this.options()) return this.options() as EChartsCoreOption;
     const t = this.type();
-    if (t === "area") return "line";
-    return t;
-  });
+    const legendGrid = { showLegend: this.showLegend(), showGrid: this.showGrid() };
 
-  mergedOptions = computed(() => {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue("--ds-text-secondary") || "#434654";
-    const textMuted = documentStyle.getPropertyValue("--ds-text-muted") || "#737685";
-    const borderColor = documentStyle.getPropertyValue("--ds-border") || "#e2e8f0";
-    const isArea = this.type() === "area";
-
-    const defaults: any = {
-      maintainAspectRatio: false,
-      responsive: true,
-      plugins: {
-        legend: {
-          display: this.showLegend(),
-          labels: {
-            color: textColor,
-            boxWidth: 12,
-            padding: 16,
-            font: { size: 12 },
-          },
-        },
-      },
-      scales: {},
-    };
-
-    if (this.chartType() !== "pie" && this.chartType() !== "doughnut" && this.chartType() !== "polarArea") {
-      defaults.scales = {
-        x: {
-          display: true,
-          grid: { display: this.showGrid(), color: borderColor },
-          ticks: { color: textMuted, font: { size: 11 } },
-        },
-        y: {
-          display: true,
-          beginAtZero: true,
-          grid: { display: this.showGrid(), color: borderColor },
-          ticks: { color: textMuted, font: { size: 11 } },
-        },
-      };
+    if (t === "pie" || t === "polarArea") {
+      return chartJsToPieOption(this.data(), { showLegend: this.showLegend() });
     }
-
-    if (this.chartType() === "radar") {
-      defaults.scales = {
-        r: {
-          grid: { color: borderColor },
-          ticks: { display: false },
-          pointLabels: { color: textColor, font: { size: 11 } },
-        },
-      };
+    if (t === "doughnut") {
+      return chartJsToPieOption(this.data(), { doughnut: true, showLegend: this.showLegend() });
     }
-
-    if (isArea && this.data()?.datasets) {
-      defaults.elements = {
-        line: {
-          tension: 0.4,
-          fill: true,
-          backgroundColor: this.data()?.datasets?.[0]?.backgroundColor || "rgba(0, 61, 155, 0.15)",
-        },
-      };
+    if (t === "radar") {
+      return chartJsToRadarOption(this.data(), { showLegend: this.showLegend() });
     }
-
-    return { ...defaults, ...(this.options() || {}) };
+    return chartJsToCartesianOption(this.data(), t as "bar" | "line" | "area", legendGrid);
   });
 }

@@ -10,7 +10,7 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import {
   normalizePrimeIconClass,
   resolvePrimeIcon,
-} from "src/app/core/utils/prime-icon-resolver";
+} from "src/app/core/utils/icon-mapping";
 import * as MenuItems from "./index-menu-item";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 

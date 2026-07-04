@@ -38,8 +38,8 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex justify-content-center">
-          <il-button
-            icon="edit"
+          <iw-button
+            iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="
               onModalForm({
@@ -49,7 +49,7 @@
               })
             "
           />
-          <il-button-confirm
+          <iw-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 0)"
@@ -90,24 +90,24 @@
         <app-icon
           icon="mdi:phone-outline"
           style="font-size: 20px; color: var(--ds-danger)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
         <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
             label="Editar"
           />
-          <il-button-delete
+          <ili-button-delete
             (confirmed)="onDelete(item.id, 0)"
             label="Eliminar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
@@ -154,8 +154,8 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex justify-content-center">
-          <il-button
-            icon="edit"
+          <iw-button
+            iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="
               onModalForm({
@@ -165,7 +165,7 @@
               })
             "
           />
-          <il-button-confirm
+          <iw-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 1)"
@@ -208,24 +208,24 @@
         <app-icon
           icon="mdi:account-group-outline"
           style="font-size: 20px; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
         <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
             label="Editar"
           />
-          <il-button-delete
+          <ili-button-delete
             (confirmed)="onDelete(item.id, 1)"
             label="Eliminar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

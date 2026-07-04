@@ -26,7 +26,7 @@
             [noMargin]="true"
           />
           <div class="flex-shrink-0" style="width: 160px">
-            <il-button-active-desactive
+            <iw-button-active-desactive
               [state]="state()"
               (stateChange)="onChangeState($event)"
             />
@@ -48,13 +48,13 @@
           <td>{{ template.roleName }}</td>
           <td>
             <div class="flex">
-              <il-button-item
+              <iw-button-item
                 [iconClass]="'mdi:file-document-outline'"
-                label="Items"
+                pTooltip="Items" tooltipPosition="top"
                 (clicked)="onManageItems(template.id)"
               />
-              <il-button-edit (clicked)="showForm(template)" />
-              <il-button-delete (confirmed)="onDelete(template.id)" />
+              <iw-button-edit (clicked)="showForm(template)" />
+              <iw-button-delete (confirmed)="onDelete(template.id)" />
             </div>
           </td>
         </tr>
@@ -65,8 +65,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="4" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="4" />
+      </ng-template>
     </p-table>
     <!-- Mobile View -->
     <app-data-view-mobile
@@ -77,7 +77,7 @@
     >
       <div customFilters>
         <div class="px-4 py-2">
-          <il-button-active-desactive
+          <ili-button-active-desactive
             fluid
             [state]="state()"
             (stateChange)="onChangeState($event)"
@@ -98,28 +98,25 @@
             <app-icon
               icon="mdi:file-document-outline"
               style="font-size: 1.1rem; color: var(--ds-primary)"
-            ></app-icon>
+            />
           </div>
           <ion-label>
             <h5 class="mb-2">{{ template.name }}</h5>
             <p class="text-sm text-600">Rol: {{ template.roleName }}</p>
           </ion-label>
-          <app-action-menu slot="end">
+          <ili-action-menu slot="end">
             <ng-container actions>
-              <il-button-item
+              <ili-button-item
                 label="Administrar Items"
                 (clicked)="onManageItems(template.id)"
               />
-              <il-button-item
-                label="Editar"
-                (clicked)="showForm(template)"
-              />
-              <il-button-delete
+              <ili-button-item label="Editar" (clicked)="showForm(template)" />
+              <ili-button-delete
                 (confirmed)="onDelete(template.id)"
                 label="Eliminar"
               />
             </ng-container>
-          </app-action-menu>
+          </ili-action-menu>
         </ion-item>
       </ng-template>
     </app-data-view-mobile>

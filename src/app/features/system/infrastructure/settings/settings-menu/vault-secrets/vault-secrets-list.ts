@@ -3,10 +3,10 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileButtonLabel } from "src/app/core/components/buttons/mobile-label/button";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -25,22 +25,27 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { VaultSecretForm } from "./vault-secret-form";
 import { VaultSecretSummary } from "./vault-secret.model";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-vault-secrets-list",
   templateUrl: "./vault-secrets-list.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     DatePipe,
     TableModule,
-    WebButtonLabel,
+    MobileButtonLabel,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
+    MobileActionMenu,
   ],
 })
 export class VaultSecretsList {

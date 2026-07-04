@@ -19,9 +19,14 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FaqsFondeo } from "src/app/features/accounting/fondeos-y-reporteo/funding/faqs-fondeo";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-funding-accounting-list",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
     TableModule,
     WebButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,

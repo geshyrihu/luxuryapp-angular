@@ -71,7 +71,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   private async openChecklistForEquipment(type: string, equipmentId: string, currentStatus: string) {
     if (currentStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. ÛDeseas actualizar los datos?")) return;
+      if (!window.confirm("Este equipo ya fue inspeccionado. √≥Deseas actualizar los datos?")) return;
     }
 
     const dialogs: Record<string, any> = {
@@ -85,16 +85,16 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     if (!component) return;
 
     const titles: Record<string, string> = {
-      Extintor: "InspecciÛn de Extintor",
-      Hidrante: "InspecciÛn de Hidrante",
-      EstacionManual: "InspecciÛn de EstaciÛn Manual",
-      DetectorHumo: "InspecciÛn de Detector de Humo",
+      Extintor: "Inspecci√≥n de Extintor",
+      Hidrante: "Inspecci√≥n de Hidrante",
+      EstacionManual: "Inspecci√≥n de Estaci√≥n Manual",
+      DetectorHumo: "Inspecci√≥n de Detector de Humo",
     };
 
     await this.dialogHandlerS.openDialog(
       component,
       { cycleId: this.cycleId, equipmentId },
-      titles[type] ?? "InspecciÛn",
+      titles[type] ?? "Inspecci√≥n",
       this.dialogHandlerS.sizeMd,
     );
     this.onLoadData();
@@ -102,16 +102,16 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   async startScan(video: HTMLVideoElement) {
     this.scanError.set("");
-    this.scanStatus.set("Iniciando cÛmara...");
+    this.scanStatus.set("Iniciando c√≥mara...");
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
       video.srcObject = this.stream;
       await video.play();
       this.scanning.set(true);
-      this.scanStatus.set("Apunta la cÛmara al cÛdigo QR del equipo.");
+      this.scanStatus.set("Apunta la c√≥mara al c√≥digo QR del equipo.");
       this.scanLoop(video);
     } catch {
-      this.scanError.set("No se pudo acceder a la cÛmara. Verifica los permisos.");
+      this.scanError.set("No se pudo acceder a la c√≥mara. Verifica los permisos.");
       this.scanStatus.set("");
     }
   }
@@ -149,7 +149,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
         .onGetItem(`FireEquipment/resolve/${segments[0]}`)
         .catch(() => null);
       if (!result) {
-        this.scanError.set("No se encontrÈ el equipo en el sistema.");
+        this.scanError.set("No se encontr√© el equipo en el sistema.");
         return;
       }
       const typeMap: Record<string, string> = {
@@ -165,7 +165,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     const items: any[] = this.cycle()?.items ?? [];
     const match = items.find((i) => i.equipmentId === id);
     if (!match) {
-      this.scanError.set("Este equipo no pertenece al ciclo de inspecciÛn actual.");
+      this.scanError.set("Este equipo no pertenece al ciclo de inspecci√≥n actual.");
       return;
     }
 

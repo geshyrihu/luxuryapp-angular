@@ -30,7 +30,7 @@ export default class IaTestComponent {
   form = this.fb.group({
     profile: ["Local", Validators.required],
     prompt: [
-      "Hola, ¿qué modelo eres? Responde brevemente.",
+      "Hola, Ã³quÃ© modelo eres? Responde brevemente.",
       Validators.required,
     ],
   });

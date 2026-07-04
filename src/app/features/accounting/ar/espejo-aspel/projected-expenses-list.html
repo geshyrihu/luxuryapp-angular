@@ -57,20 +57,20 @@
             <div class="flex">
               @if (!item.isFromCalendar) {
 
-              <il-button-edit
+              <iw-button-edit
                 (clicked)="
                 onModal({ id: item.id, title: 'Editar Ejecución' })
                 "
               />
-              <il-button-delete (confirmed)="onDelete(item.id)" />
+              <iw-button-delete (confirmed)="onDelete(item.id)" />
               }
             </div>
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="7" />
+      </ng-template>
     </p-table>
   </div>
 </div>
@@ -97,7 +97,7 @@
         <app-icon
           icon="mdi:file-table-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label class="ion-text-wrap">
         <h6 class="mb-0">{{ item.concept }}</h6>
@@ -109,18 +109,15 @@
         </span>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModal({ id: item.id, title: 'Editar Ejecución' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

@@ -55,7 +55,7 @@
       <td>{{ item.aprobadoPor ?? "-" }}</td>
       <td>
         <div class="flex gap-1">
-          <il-button
+          <iw-button
             iconClass="mdi:eye-outline"
             severity="info"
             variant="ghost-text"
@@ -63,7 +63,7 @@
             (clicked)="verDetalle(item)"
           />
           @if (puedeEnviar(item.estadoValue)) {
-          <il-button
+          <iw-button
             iconClass="mdi:send"
             severity="secondary"
             variant="ghost-text"
@@ -71,7 +71,7 @@
             (clicked)="cambiarEstado(item, 'enviar-revision')"
           />
           } @if (puedeAprobar(item.estadoValue)) {
-          <il-button
+          <iw-button
             iconClass="mdi:check"
             severity="success"
             variant="ghost-text"
@@ -79,7 +79,7 @@
             (clicked)="cambiarEstado(item, 'aprobar')"
           />
           } @if (puedePagar(item.estadoValue)) {
-          <il-button
+          <iw-button
             iconClass="mdi:dollar"
             severity="contrast"
             variant="ghost-text"
@@ -87,7 +87,7 @@
             (clicked)="cambiarEstado(item, 'marcar-pagada')"
           />
           } @if (puedeCerrar(item.estadoValue)) {
-          <il-button
+          <iw-button
             iconClass="mdi:lock"
             severity="secondary"
             variant="ghost-text"
@@ -125,7 +125,7 @@
         <app-icon
           icon="mdi:currency-usd"
           style="font-size: 1.1rem; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.periodoDescripcion }}</h2>
@@ -141,7 +141,7 @@
         </div>
       </ion-label>
       <div slot="end">
-        <il-button
+        <iw-button
           iconClass="mdi:eye-outline"
           severity="info"
           variant="ghost-text"

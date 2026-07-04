@@ -8148,7 +8148,7 @@
     {
       "file": "app\\features\\accounting\\general-ledger\\contabilidad\\master-dashboard\\master-dashboard.html",
       "line": 5,
-      "content": "<app-icon [icon]=\"'mdi:wallet'\" class=\"text-3xl text-primary-600 dark:text-blue-300\"></app-icon>",
+      "content": "<app-icon [icon]=\"'mdi:wallet'\" class=\"text-3xl text-primary-600 dark:text-blue-300\"/>",
       "pattern": "\\bdark:\\w+",
       "patternName": "dark-mode-tailwind",
       "severity": "high",
@@ -8157,7 +8157,7 @@
     {
       "file": "app\\features\\accounting\\general-ledger\\contabilidad\\master-dashboard\\master-dashboard.html",
       "line": 20,
-      "content": "<app-icon [icon]=\"group.icon\" class=\"text-xl text-primary-600 dark:text-blue-300\"></app-icon>",
+      "content": "<app-icon [icon]=\"group.icon\" class=\"text-xl text-primary-600 dark:text-blue-300\"/>",
       "pattern": "\\bdark:\\w+",
       "patternName": "dark-mode-tailwind",
       "severity": "high",
@@ -14412,7 +14412,7 @@
     {
       "file": "app\\features\\accounting\\general-ledger\\contabilidad\\cobranza-nativa\\pages\\cobranza-nativa-dashboard\\cobranza-nativa-dashboard.html",
       "line": 7,
-      "content": "<app-icon [icon]=\"'mdi:wallet'\" class=\"text-3xl text-primary-600 dark:text-blue-300\"></app-icon>",
+      "content": "<app-icon [icon]=\"'mdi:wallet'\" class=\"text-3xl text-primary-600 dark:text-blue-300\"/>",
       "pattern": "\\bdark:\\w+",
       "patternName": "dark-mode-tailwind",
       "severity": "high",
@@ -14457,7 +14457,7 @@
     {
       "file": "app\\features\\accounting\\general-ledger\\contabilidad\\cobranza-nativa\\pages\\cobranza-nativa-dashboard\\cobranza-nativa-dashboard.html",
       "line": 41,
-      "content": "<app-icon [icon]=\"group.icon\" class=\"text-xl text-primary-600 dark:text-blue-300\"></app-icon>",
+      "content": "<app-icon [icon]=\"group.icon\" class=\"text-xl text-primary-600 dark:text-blue-300\"/>",
       "pattern": "\\bdark:\\w+",
       "patternName": "dark-mode-tailwind",
       "severity": "high",

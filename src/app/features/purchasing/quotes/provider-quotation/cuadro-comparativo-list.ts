@@ -31,10 +31,16 @@ import Swal from "sweetalert2";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
+import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-cuadro-comparativo-list",
   templateUrl: "./cuadro-comparativo-list.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconViewPdf,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

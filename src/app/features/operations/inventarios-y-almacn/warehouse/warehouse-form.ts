@@ -36,10 +36,13 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-warehouse-form",
   templateUrl: "./warehouse-form.html",
   imports: [
+    WebButtonIcon,
     CardModule,
     CustomInputTextSignal,
     WebButtonLabelSave,

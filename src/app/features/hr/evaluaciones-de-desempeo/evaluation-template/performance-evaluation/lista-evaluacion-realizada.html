@@ -62,18 +62,18 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <il-button-edit (clicked)="onEdit(item.id)" />
-          <il-button-item
+          <iw-button-edit (clicked)="onEdit(item.id)" />
+          <iw-button-item
             (clicked)="onDetail(item.id)"
-            label="Detalle"
+            pTooltip="Detalle" tooltipPosition="top"
             [iconClass]="'mdi:receipt'"
           />
-          <il-button-item
+          <iw-button-item
             (clicked)="onDownloadIndividual(item.id, item.employeeName)"
-            label="Descargar"
+            pTooltip="Descargar" tooltipPosition="top"
             icon="mdi:download"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       <!-- Opciones -->
@@ -108,26 +108,23 @@
         <app-icon
           icon="mdi:clipboard-check-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
         <p class="text-medium text-500 m-0">{{ item.evaluationTemplate }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-item
+          <ili-button-item
             (clicked)="onEdit(item.id)"
             label="Editar"
             iconName="create-outline"
           />
 
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

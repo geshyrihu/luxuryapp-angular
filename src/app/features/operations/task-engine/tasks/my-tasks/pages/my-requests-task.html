@@ -92,13 +92,17 @@
           </td>
           <td class="text-center">
             @if (item.priority === "High") {
-            <app-icon [icon]="'mdi:star-outline'"(click)="onUpdatePriority(item.id)"
-               class="icon icon- icon-xl pointer text-primary"
-            ></app-icon>
+            <app-icon
+              [icon]="'mdi:star-outline'"
+              (click)="onUpdatePriority(item.id)"
+              class="icon icon- icon-xl pointer text-primary"
+            />
             } @if (item.priority === "Low") {
-            <app-icon [icon]="'mdi:star-outline'"(click)="onUpdatePriority(item.id)"
-               class="icon icon- icon-xl pointer text-primary"
-            ></app-icon>
+            <app-icon
+              [icon]="'mdi:star-outline'"
+              (click)="onUpdatePriority(item.id)"
+              class="icon icon- icon-xl pointer text-primary"
+            />
             }
           </td>
           <td>{{ item.scheduledAt }}</td>
@@ -135,12 +139,14 @@
                       title: 'Editar',
                       ticketGroupId: item.ticketGroupId,
                     })"
-                 label="Editar"/>
+                  label="Editar"
+                />
 
                 <il-button-item
                   iconClass="mdi:comment"
                   label="Seguimiento"
-                  (clicked)="onFollowUp(item.id)"/>
+                  (clicked)="onFollowUp(item.id)"
+                />
               </ng-container>
             </app-action-menu>
           </td>
@@ -165,9 +171,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:clipboard-list-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:clipboard-list-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        />
       </div>
       <ion-label>
         <div class="flex flex-column w-full">
@@ -214,22 +227,24 @@
         </div>
       </ion-label>
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({
                       id: item.id,
                       title: 'Editar',
                       ticketGroupId: item.ticketGroupId,
                     })"
-             label="Editar"/>
+              label="Editar"
+            />
 
-            <il-button-item
+            <ili-button-item
               iconName="ellipsis-horizontal-outline"
               label="Seguimiento"
-              (clicked)="onFollowUp(item.id)"/>
+              (clicked)="onFollowUp(item.id)"
+            />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -35,7 +35,7 @@
         <tr [pReorderableRow]="index">
           <td>
             <div>
-              <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle></app-icon>
+              <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle />
             </div>
           </td>
           <td class="text-center">{{ item.folio }}</td>
@@ -47,8 +47,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="5" />
+      </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -78,18 +78,18 @@
           <app-icon
             icon="mdi:file-star-outline"
             style="font-size: 1.1rem; color: var(--ds-primary)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <div class="flex justify-content-between align-items-center mb-1">
             <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
           </div>
           <p class="text-sm text-500 m-0">
-            <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs"></app-icon>
+            <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" />
             Folio: {{ item.folio }}
           </p>
           <p class="text-sm text-500 m-0">
-            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs"></app-icon>
+            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
             Fecha: {{ item.createAt }}
           </p>
         </ion-label>

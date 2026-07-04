@@ -14,10 +14,13 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-solicitud-compra-presentacion",
   templateUrl: "./solicitud-compra-presentacion.html",
   imports: [
+    WebButtonIcon,
     CommonModule,
     CarouselModule,
     ImageModule,

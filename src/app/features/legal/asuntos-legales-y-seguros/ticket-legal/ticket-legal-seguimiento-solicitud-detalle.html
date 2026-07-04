@@ -1,6 +1,10 @@
 ﻿@if (loading()) {
 <div class="text-center">
-  <app-icon [icon]="'mdi:loading'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+  <app-icon
+    [icon]="'mdi:loading'"
+    class="text-primary m-1"
+    aria-label="Cargando..."
+  />
 </div>
 } @if (data.length > 0) {
 <div class="card">
@@ -9,10 +13,3 @@
   </div>
 </div>
 }
-
-
-
-
-
-
-

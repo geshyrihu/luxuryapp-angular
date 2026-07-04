@@ -73,9 +73,12 @@ interface IStep3Form {
   budgets: FormArray<FormGroup<IBudgetForm>>;
 }
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-create-orden-compra-wizard",
   imports: [
+    WebButtonIcon,
     AutoCompleteModule,
     AutoCompleteModule,
     AvatarModule,

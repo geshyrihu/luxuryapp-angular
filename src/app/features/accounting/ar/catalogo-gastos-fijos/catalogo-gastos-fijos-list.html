@@ -133,7 +133,7 @@
         <app-icon
           [icon]="'mdi:information'"
           class="text-orange-500 font-bold"
-        ></app-icon>
+        />
         <span class="font-bold text-sm uppercase">Guóa de Generación:</span>
       </div>
 
@@ -148,7 +148,7 @@
       <app-icon
         [icon]="'mdi:chevron-right'"
         class="text-400 text-xs hidden md:block"
-      ></app-icon>
+      />
 
       <div class="flex align-items-center">
         <span
@@ -161,7 +161,7 @@
       <app-icon
         [icon]="'mdi:chevron-right'"
         class="text-400 text-xs hidden md:block"
-      ></app-icon>
+      />
 
       <div class="flex align-items-center">
         <span
@@ -252,10 +252,10 @@
 
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             [routerLink]="['/purchases/catalogo-gastos-fijos-form', item.id]"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -318,7 +318,7 @@
                 (click)="generateOrdenesPorQuincena(0)"
                 [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
               >
-                <app-icon icon="mdi:calendar-blank" slot="start"></app-icon>
+                <app-icon icon="mdi:calendar-blank" slot="start" />
                 Gen. 1ra Q
               </ion-button>
             </div>
@@ -329,7 +329,7 @@
                 (click)="generateOrdenesPorQuincena(1)"
                 [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
               >
-                <app-icon icon="mdi:calendar-blank" slot="start"></app-icon>
+                <app-icon icon="mdi:calendar-blank" slot="start" />
                 Gen. 2da Q
               </ion-button>
             </div>
@@ -388,7 +388,7 @@
             <h2 class="text-base font-bold">{{ item.equipoOInstalacion }}</h2>
             <p class="text-sm text-700">{{ item.justificacionGasto }}</p>
             <p class="text-xs text-color-secondary mt-1 uppercase">
-              <app-icon icon="mdi:briefcase-outline" class="mr-1"></app-icon>
+              <app-icon icon="mdi:briefcase-outline" class="mr-1" />
               {{ item.provider }}
             </p>
           </ion-label>
@@ -397,17 +397,17 @@
           @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.Administrador,
           AspRole.SuperUsuario, ])() ) {
           <div slot="end">
-            <app-action-menu>
+            <ili-action-menu>
               <ng-container actions>
-                <il-button-edit
+                <ili-button-edit
                   (clicked)="onModal({ id: item.id, title: 'Editar' })"
                   label="Editar"
-                ></il-button-edit>
-                <il-button-delete
+                ></ili-button-edit>
+                <ili-button-delete
                   (confirmed)="onDelete(item.id)"
-                ></il-button-delete>
+                ></ili-button-delete>
               </ng-container>
-            </app-action-menu>
+            </ili-action-menu>
           </div>
           }
         </ion-item>

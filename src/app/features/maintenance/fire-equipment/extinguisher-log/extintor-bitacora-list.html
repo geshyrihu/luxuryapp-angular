@@ -12,9 +12,9 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <il-button-download
+        <iw-button-download
           (clicked)="onPdfReport()"
-          label="PDF"
+          pTooltip="PDF" tooltipPosition="top"
           tooltip="Reporte PDF por rango de fecha"
         />
       </div>
@@ -75,10 +75,10 @@
       <td><small>{{ item.observations }}</small></td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -110,7 +110,7 @@
         <app-icon
           icon="mdi:fire-extinguisher"
           style="font-size: 1.1rem; color: var(--ds-danger)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
@@ -135,18 +135,18 @@
         </div>
       </ion-label>
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

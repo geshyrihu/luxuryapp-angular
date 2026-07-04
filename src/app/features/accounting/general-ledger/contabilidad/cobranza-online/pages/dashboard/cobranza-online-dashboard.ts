@@ -704,7 +704,7 @@ export class CobranzaOnlineDashboard {
 
     return {
       title: movement.concept || movement.policyConcept || "Movimiento",
-      subtitle: `${movement.policyType} ${movement.policyNumber} é ${this.formatDate(movement.policyDate)}`,
+      subtitle: `${movement.policyType} ${movement.policyNumber} Ã© ${this.formatDate(movement.policyDate)}`,
       amountLabel: this.formatCurrency(movement.amount),
     };
   });

@@ -17,9 +17,12 @@ const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
 const MAX_FILES_PER_INCIDENT = 10;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-incident-attachments",
   imports: [
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     FileUploadModule,

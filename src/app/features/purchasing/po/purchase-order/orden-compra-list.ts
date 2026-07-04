@@ -56,6 +56,10 @@ const tipoGastoIcons: { [key: number]: string } = {
   [ETipoGasto.Impuestos]: "mdi:receipt",
 };
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
 @Component({
   selector: "app-orden-compra-list",
   templateUrl: "./orden-compra-list.html",
@@ -142,6 +146,9 @@ const tipoGastoIcons: { [key: number]: string } = {
     `,
   ],
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     RouterModule,

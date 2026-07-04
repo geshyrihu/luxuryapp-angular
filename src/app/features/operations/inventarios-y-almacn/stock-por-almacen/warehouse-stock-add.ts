@@ -37,10 +37,15 @@ interface IWarehouseStockRowForm {
   errorMessage: FormControl<string | null>;
 }
 
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-warehouse-stock-add",
   templateUrl: "./warehouse-stock-add.html",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
     TableModule,
     CustomInputSelectSignal,
     PrimeNgCustomTableFooter,

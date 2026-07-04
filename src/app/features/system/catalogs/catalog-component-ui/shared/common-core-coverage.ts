@@ -30,57 +30,57 @@ import { GlobalErrorService } from "src/app/core/services/global-error.service";
 import {
   AppBottomNav,
   type BottomNavItem,
-} from "src/app/core/components/shared/bottom-nav/bottom-nav";
+} from "src/app/core/components/mobile/bottom-nav/bottom-nav";
 import {
   AppCommentThread,
   type Comment,
-} from "src/app/core/components/shared/comment-thread/comment-thread";
-import { AppContactCard } from "src/app/core/components/shared/contact-card/contact-card";
+} from "src/app/core/components/web/comment-thread/comment-thread";
+import { AppContactCard } from "src/app/core/components/web/contact-card/contact-card";
 import {
   AppCustomer360,
   type Customer360Data,
-} from "src/app/core/components/shared/customer-360/customer-360";
-import { AppEmailPreview } from "src/app/core/components/shared/email-preview/email-preview";
-import { AppLangSelector } from "src/app/core/components/shared/lang-selector/lang-selector";
-import { AppOtpInput } from "src/app/core/components/shared/otp-input/otp-input";
+} from "src/app/core/components/web/customer-360/customer-360";
+import { AppEmailPreview } from "src/app/core/components/web/email-preview/email-preview";
+import { AppLangSelector } from "src/app/core/components/web/lang-selector/lang-selector";
+import { AppOtpInput } from "src/app/core/components/web/otp-input/otp-input";
 import {
   AppPipelineCrm,
   type PipelineStage,
-} from "src/app/core/components/shared/pipeline-crm/pipeline-crm";
-import { AppPrintView } from "src/app/core/components/shared/print-view/print-view";
-import { AppProfileCard } from "src/app/core/components/shared/profile-card/profile-card";
-import { AppRating } from "src/app/core/components/shared/rating/rating";
-import { AppSlider } from "src/app/core/components/shared/slider/slider";
+} from "src/app/core/components/web/pipeline-crm/pipeline-crm";
+import { AppPrintView } from "src/app/core/components/web/print-view/print-view";
+import { AppProfileCard } from "src/app/core/components/web/profile-card/profile-card";
+import { AppRating } from "src/app/core/components/web/rating/rating";
+import { AppSlider } from "src/app/core/components/web/slider/slider";
 import { AppStatCard } from "src/app/core/components/shared/stat-card/stat-card";
 import {
   AppTabBar,
   type TabBarItem,
-} from "src/app/core/components/shared/tab-bar/tab-bar";
-import { AppTagInput } from "src/app/core/components/shared/tag-input/tag-input";
-import { AppThemeSwitcher } from "src/app/core/components/shared/theme-switcher/theme-switcher";
+} from "src/app/core/components/mobile/tab-bar/tab-bar";
+import { AppTagInput } from "src/app/core/components/web/tag-input/tag-input";
+import { AppThemeSwitcher } from "src/app/core/components/web/theme-switcher/theme-switcher";
 
 // --- Fase 9.3 ---
-import { AppBarcodeInput } from "src/app/core/components/shared/barcode-input/barcode-input";
-import { AppBarcodeScanner } from "src/app/core/components/shared/barcode-scanner/barcode-scanner";
-import { AppColorPicker } from "src/app/core/components/shared/color-picker/color-picker";
+import { AppBarcodeInput } from "src/app/core/components/web/barcode-input/barcode-input";
+import { AppBarcodeScanner } from "src/app/core/components/web/barcode-scanner/barcode-scanner";
+import { AppColorPicker } from "src/app/core/components/web/color-picker/color-picker";
 import {
   AppFormBuilder,
   type FormField,
-} from "src/app/core/components/shared/form-builder/form-builder";
-import { AppGantt, type GanttTask } from "src/app/core/components/shared/gantt/gantt";
+} from "src/app/core/components/web/form-builder/form-builder";
+import { AppGantt, type GanttTask } from "src/app/core/components/web/gantt/gantt";
 import {
   AppHeatmap,
   type HeatmapCell,
-} from "src/app/core/components/shared/heatmap/heatmap";
+} from "src/app/core/components/web/heatmap/heatmap";
 import { AppInventoryLevel } from "src/app/core/components/shared/inventory-level/inventory-level";
-import { AppQrCode } from "src/app/core/components/shared/qr-code/qr-code";
+import { AppQrCode } from "src/app/core/components/web/qr-code/qr-code";
 import { AppRealtimeIndicator } from "src/app/core/components/shared/realtime-indicator/realtime-indicator";
-import { AppReceiptScanner } from "src/app/core/components/shared/receipt-scanner/receipt-scanner";
-import { AppSignaturePad } from "src/app/core/components/shared/signature-pad/signature-pad";
+import { AppReceiptScanner } from "src/app/core/components/web/receipt-scanner/receipt-scanner";
+import { AppSignaturePad } from "src/app/core/components/web/signature-pad/signature-pad";
 import {
   AppTerritoryMap,
   type Territory,
-} from "src/app/core/components/shared/territory-map/territory-map";
+} from "src/app/core/components/web/territory-map/territory-map";
 import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switch/tristate-switch";
 import { CATALOG_DEMO_EMAIL_HTML } from "./catalog-demo-data";
 

@@ -1,10 +1,13 @@
 import { Component, input, output } from "@angular/core";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-file-section",
   templateUrl: "./file-section.html",
-  imports: [WebButtonLabelViewPdf, WebButtonLabel],
+  imports: [
+    WebButtonIcon,WebButtonLabelViewPdf, WebButtonLabel],
 })
 export class FileSection {
   title = input<string>();

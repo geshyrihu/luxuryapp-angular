@@ -35,7 +35,7 @@
               appendTo="body"
             />
             @if (selectedDateControl.value) {
-            <il-button
+            <iw-button
               iconClass="mdi:close"
               (clicked)="clearFilter()"
               severity="danger"
@@ -44,8 +44,8 @@
           </div>
 
           <!-- Botún de Reporte (funcionalidad futura) -->
-          <il-button-download
-            label="Generar Reporte"
+          <iw-button-download
+            pTooltip="Generar Reporte" tooltipPosition="top"
             iconClass="mdi:file-excel"
             severity="success"
             (clicked)="onGenerateReport()"
@@ -60,7 +60,7 @@
             placeholder="Buscar..."
             [horizontal]="false"
           />
-          <il-button
+          <iw-button
             iconClass="mdi:magnify"
             (clicked)="onLoadData()"
             severity="primary"
@@ -111,7 +111,7 @@
         <td class="no-print">
           <div class="flex">
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <il-button-edit
+            <iw-button-edit
               (clicked)="
                     onEditSalida({
                       id: item.id,
@@ -123,21 +123,21 @@
                   "
             />
             }
-            <il-button-item
+            <iw-button-item
               (clicked)="onReturnProduct(item)"
               emogi="??"
-              label="Devolver"
+              pTooltip="Devolver" tooltipPosition="top"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
 
-            <il-button-delete (confirmed)="onDelete(item.id)" />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -163,7 +163,7 @@
         <app-icon
           icon="mdi:package-down"
           style="font-size: 1.1rem; color: var(--ds-danger)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex flex-column">
@@ -179,10 +179,10 @@
       </ion-label>
 
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <il-button-item
+            <ili-button-item
               (clicked)="
                 onEditSalida({
                   id: item.id,
@@ -196,18 +196,18 @@
               iconName="create-outline"
             />
             }
-            <il-button-item
+            <ili-button-item
               (clicked)="onReturnProduct(item)"
               label="?? Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
 
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

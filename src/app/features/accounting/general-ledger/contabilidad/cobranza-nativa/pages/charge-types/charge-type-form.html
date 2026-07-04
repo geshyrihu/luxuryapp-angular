@@ -1,0 +1,54 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+  @if (isSystem()) {
+  <div class="mb-3 p-3 border-round bg-blue-50 border-1 border-blue-200">
+    <div class="font-semibold text-blue-900 mb-1">Tipo del sistema</div>
+    <div class="text-sm text-blue-700 line-height-3">
+      Este tipo base ya participa en procesos automáticos. Puedes ajustar su
+      nombre, cuenta contable y estado, pero su código queda protegido.
+    </div>
+  </div>
+  }
+
+  <custom-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre"
+    placeholder="Ej: Cuota de mantenimiento"
+    required
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.code"
+    label="Código"
+    placeholder="Ej: mantenimiento-ordinario"
+    [readonly]="isSystem()"
+    required
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.accountNumber"
+    label="Cuenta contable"
+    placeholder="Ej: 4100-MTTO"
+    required
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.description"
+    label="Descripción"
+    placeholder="Describe cuándo se usa este tipo de cargo."
+    [rows]="4"
+  />
+
+  <div class="mt-2">
+    <custom-input-check-signal
+      [control]="form.controls.isActive"
+      label="Activo"
+    />
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <il-button-save
+      [disabled]="form.invalid || submitting()"
+      [submitting]="submitting()"
+    />
+  </div>
+</form>

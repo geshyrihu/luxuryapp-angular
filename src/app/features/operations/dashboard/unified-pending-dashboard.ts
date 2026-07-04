@@ -46,9 +46,12 @@ import { SolicitudBajaUpdateStatus } from "src/app/features/recruitment/reclutam
 import { ModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-unified-pending-dashboard",
   imports: [
+    WebButtonIcon,
     CommonModule,
     TableModule,
     TagModule,

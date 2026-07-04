@@ -44,7 +44,7 @@ export class EmailDataForm implements OnInit {
   submitting = signal(false);
   public AspRole = EApplicationRole;
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     applicationUserId: new FormControl<string>(

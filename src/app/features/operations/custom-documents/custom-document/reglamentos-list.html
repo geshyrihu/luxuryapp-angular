@@ -29,19 +29,16 @@
     <tr [pReorderableRow]="index">
       <td>
         <div>
-          <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle></app-icon>
+          <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle />
         </div>
       </td>
       <td class="text-center">{{ item.folio }}</td>
       <td class="text-center">{{ item.createAt }}</td>
       <td class="text-center text-break">{{ item.name }}</td>
       <td class="text-center flex justify-content-center">
-        <il-button-view-pdf
-          [url]="item.path"
-          fileName="Reglamentos"
-        />
-        <il-button
-          label="IA"
+        <iw-button-view-pdf [url]="item.path" fileName="Reglamentos" />
+        <iw-button
+          pTooltip="IA" tooltipPosition="top"
           iconClass="mdi:comment-multiple"
           variant="outlined"
           severity="info"
@@ -82,29 +79,29 @@
           <app-icon
             icon="mdi:scale-balance"
             style="font-size: 1.1rem; color: var(--ds-primary)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <div class="flex justify-content-between align-items-center mb-1">
             <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
           </div>
           <p class="text-sm text-500 m-0">
-            <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs"></app-icon>
+            <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" />
             Folio: {{ item.folio }}
           </p>
           <p class="text-sm text-500 m-0">
-            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs"></app-icon>
+            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
             Fecha: {{ item.createAt }}
           </p>
         </ion-label>
         <div slot="end" class="flex align-items-center gap-1">
           <il-button-view-pdf [url]="item.path" pdf="Reglamento" />
-          <il-button
+          <iw-button
             iconClass="mdi:comment-multiple"
             severity="info"
             variant="ghost-text"
             (clicked)="openConsultation(item.id)"
-            ngbTooltip="Consultar con IA"
+            pTooltip="Consultar con IA" tooltipPosition="bottom"
           />
         </div>
       </ion-item>
@@ -148,7 +145,7 @@
     @if (aiResponse()) {
     <div class="surface-ground p-3 border-round-xl">
       <div class="flex align-items-center mb-2 text-primary font-bold">
-        <app-icon [icon]="'mdi:sparkles'"></app-icon>
+        <app-icon [icon]="'mdi:sparkles'" />
         <span>Respuesta del Asistente</span>
       </div>
       <div

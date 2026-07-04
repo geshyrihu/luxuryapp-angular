@@ -9,10 +9,15 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
 import { ProductoEdit } from "./producto-edit";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-solicitud-compra-detalle",
   templateUrl: "./solicitud-compra-detalle.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,TableModule, WebButtonLabelEdit, WebButtonLabelDelete],
 })
 export class SolicitudCompraDetalle {

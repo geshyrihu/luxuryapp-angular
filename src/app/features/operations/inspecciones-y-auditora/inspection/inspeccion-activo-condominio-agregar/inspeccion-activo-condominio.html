@@ -26,7 +26,12 @@
             class="flex justify-content-between align-items-center border-1 surface-border border-round p-2 mb-2"
           >
             <span>{{ review.value.label }}</span>
-            <app-icon [icon]="'mdi:delete'" class="cursor-pointer" style="color:var(--ds-danger);" (click)="onRemoveReview(i)"></app-icon>
+            <app-icon
+              [icon]="'mdi:delete'"
+              class="cursor-pointer"
+              style="color: var(--ds-danger)"
+              (click)="onRemoveReview(i)"
+            />
           </div>
           } @if (reviewsControl.controls.length === 0) {
           <div class="text-color-secondary text-sm">

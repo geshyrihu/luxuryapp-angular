@@ -1,7 +1,7 @@
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BreadcrumbModule } from "primeng/breadcrumb";
-import { MenuItem } from "primeng/api";
+import { BreadcrumbsBase } from "src/app/core/components/shared/breadcrumbs/breadcrumbs-base";
 
 @Component({
   selector: "app-breadcrumbs",
@@ -27,7 +27,4 @@ import { MenuItem } from "primeng/api";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class Breadcrumbs {
-  items = input.required<MenuItem[]>();
-  home = input<MenuItem | null>(null);
-}
+export class Breadcrumbs extends BreadcrumbsBase {}

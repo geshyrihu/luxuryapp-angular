@@ -15,11 +15,7 @@ import { BaseButton } from "../base/base-button";
       (click)="emitClick($event)"
     >
       <app-icon
-        [icon]="
-          propertyId()
-            ? 'mdi:content-save-edit-outline'
-            : 'mdi:content-save-outline'
-        "
+        [icon]="propertyId() ? 'fluent-color:save-16' : 'fluent-color:save-16'"
       />
     </button>
   `,
@@ -39,4 +35,3 @@ export class WebButtonIconSave extends BaseButton {
     return this.propertyId() ? "Actualizar" : "Guardar";
   });
 }
-

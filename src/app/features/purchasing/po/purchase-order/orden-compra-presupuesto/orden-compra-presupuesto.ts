@@ -33,10 +33,15 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-orden-compra-presupuesto",
   templateUrl: "./orden-compra-presupuesto.html",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,

@@ -48,7 +48,7 @@
     <tr pRowGroupHeader>
       <td colspan="6" class="bg-blue-50">
         <div class="flex align-items-center py-2 px-3">
-          <app-icon [icon]="'mdi:tag'" class="mr-2 text-blue-500"></app-icon>
+          <app-icon [icon]="'mdi:tag'" class="mr-2 text-blue-500" />
           <span class="font-bold text-blue-900">{{ item.departament }}</span>
         </div>
       </td>
@@ -69,10 +69,10 @@
       <td>{{ item.description }}</td>
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -106,7 +106,7 @@
         <app-icon
           icon="mdi:tag-multiple-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex align-items-center">
@@ -122,18 +122,18 @@
           class="w-6 h-6 border-round-md flex-shrink-0"
           [style.backgroundColor]="item.color"
         ></div>
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -1,68 +1,81 @@
 @if (cargando()) {
-  <div class="flex align-items-center gap-2 py-3">
-    <app-icon icon="mdi:loading" class="pi-spin text-primary"></app-icon>
-    <span class="text-sm text-500">Cargando contratos...</span>
-  </div>
+<div class="flex align-items-center gap-2 py-3">
+  <app-icon icon="mdi:loading" class="pi-spin text-primary" />
+  <span class="text-sm text-500">Cargando contratos...</span>
+</div>
 } @else {
 
-  <!-- Encabezado con total y boton -->
-  <div class="flex align-items-center justify-content-between mb-3">
-    <div class="flex align-items-center gap-2">
-      @if (resumen() && resumen()!.total > 0) {
-        <span class="text-3xl font-bold text-ds-warning">{{ resumen()!.total }}</span>
-        <span class="text-sm text-color-secondary">
-          contrato{{ resumen()!.total === 1 ? '' : 's' }} vence{{ resumen()!.total === 1 ? '' : 'n' }} en menos de 2 meses
-        </span>
-      } @else {
-        <app-icon icon="mdi:check-circle" class="text-ds-success"></app-icon>
-        <span class="text-sm text-color-secondary">Sin contratos proximos a vencer</span>
-      }
-    </div>
-    <il-button
-      label="Ver vigentes"
-      icon="mdi:file-document-edit"
-      size="sm"
-      variant="outline"
-      (clicked)="abrirVigentes()"
-    />
+<!-- Encabezado con total y boton -->
+<div class="flex align-items-center justify-content-between mb-3">
+  <div class="flex align-items-center gap-2">
+    @if (resumen() && resumen()!.total > 0) {
+    <span class="text-3xl font-bold text-ds-warning"
+      >{{ resumen()!.total }}</span
+    >
+    <span class="text-sm text-color-secondary">
+      contrato{{ resumen()!.total === 1 ? '' : 's' }} vence{{ resumen()!.total
+      === 1 ? '' : 'n' }} en menos de 2 meses
+    </span>
+    } @else {
+    <app-icon icon="mdi:check-circle" class="text-ds-success" />
+    <span class="text-sm text-color-secondary"
+      >Sin contratos proximos a vencer</span
+    >
+    }
   </div>
+  <il-button
+    label="Ver vigentes"
+    icon="mdi:file-document-edit"
+    size="sm"
+    variant="outline"
+    (clicked)="abrirVigentes()"
+  />
+</div>
 
-  <!-- Lista por cliente -->
-  @if (resumen() && resumen()!.customers.length > 0) {
-    <div class="flex flex-column gap-3">
-      @for (customer of resumen()!.customers; track customer.customerName) {
-        <div>
-          <div class="flex align-items-center justify-content-between mb-1">
-            <span class="text-sm font-bold text-color">{{ customer.customerName }}</span>
-            <span class="text-xs font-semibold border-round px-2 py-1 surface-100 text-color-secondary">
-              {{ customer.count }}
-            </span>
-          </div>
+<!-- Lista por cliente -->
+@if (resumen() && resumen()!.customers.length > 0) {
+<div class="flex flex-column gap-3">
+  @for (customer of resumen()!.customers; track customer.customerName) {
+  <div>
+    <div class="flex align-items-center justify-content-between mb-1">
+      <span class="text-sm font-bold text-color"
+        >{{ customer.customerName }}</span
+      >
+      <span
+        class="text-xs font-semibold border-round px-2 py-1 surface-100 text-color-secondary"
+      >
+        {{ customer.count }}
+      </span>
+    </div>
 
-          <div class="flex flex-column gap-1 pl-2 border-left-2 surface-border">
-            @for (contrato of customer.contratos; track contrato.id) {
-              <div class="flex align-items-center justify-content-between py-1">
-                <div class="flex flex-column gap-0 min-w-0 flex-auto">
-                  <span class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis text-color">
-                    {{ contrato.description }}
-                  </span>
-                  <span class="text-xs text-color-secondary">{{ contrato.provider }}</span>
-                </div>
-                <div class="flex align-items-center gap-2 flex-none ml-2">
-                  <span
-                    class="text-xs font-semibold flex-none"
-                    [style.color]="contrato.diasRestantes <= 30 ? 'var(--ds-error)' : 'var(--ds-warning)'"
-                  >
-                    {{ contrato.diasRestantes }}d
-                  </span>
-                  <span class="text-xs text-color-secondary">{{ formatFecha(contrato.endDate) }}</span>
-                </div>
-              </div>
-            }
-          </div>
+    <div class="flex flex-column gap-1 pl-2 border-left-2 surface-border">
+      @for (contrato of customer.contratos; track contrato.id) {
+      <div class="flex align-items-center justify-content-between py-1">
+        <div class="flex flex-column gap-0 min-w-0 flex-auto">
+          <span
+            class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis text-color"
+          >
+            {{ contrato.description }}
+          </span>
+          <span class="text-xs text-color-secondary"
+            >{{ contrato.provider }}</span
+          >
         </div>
+        <div class="flex align-items-center gap-2 flex-none ml-2">
+          <span
+            class="text-xs font-semibold flex-none"
+            [style.color]="contrato.diasRestantes <= 30 ? 'var(--ds-error)' : 'var(--ds-warning)'"
+          >
+            {{ contrato.diasRestantes }}d
+          </span>
+          <span class="text-xs text-color-secondary"
+            >{{ formatFecha(contrato.endDate) }}</span
+          >
+        </div>
+      </div>
       }
     </div>
+  </div>
   }
-
-}
+</div>
+} }

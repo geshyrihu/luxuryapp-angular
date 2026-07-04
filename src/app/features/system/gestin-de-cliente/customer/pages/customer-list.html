@@ -21,7 +21,7 @@
         [noMargin]="true"
       />
       <div class="flex-shrink-0" style="width: 160px">
-        <il-button-active-desactive
+        <iw-button-active-desactive
           [state]="state"
           (stateChange)="onSortChange($event)"
         />
@@ -64,13 +64,13 @@
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-item
-            label="Imagenes"
+          <iw-button-item
+            pTooltip="Imagenes" tooltipPosition="top"
             iconClass="mdi:image"
             (clicked)="onUpdateImages(item.id)"
           />
-          <il-button-item
-            label="Dirección"
+          <iw-button-item
+            pTooltip="Dirección" tooltipPosition="top"
             iconClass="mdi:map-marker"
             (clicked)="onUpdateAddress(item.id)"
           />
@@ -120,7 +120,7 @@
           icon="mdi:domain"
           class="text-xl"
           style="color: var(--ds-primary)"
-        ></app-icon>
+        />
         }
       </div>
 
@@ -131,28 +131,25 @@
         </p>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-item
+          <ili-button-item
             iconClass="mdi:image-multiple-outline"
             label="Imígenes"
             (clicked)="onUpdateImages(item.id)"
           />
-          <il-button-item
+          <ili-button-item
             iconClass="mdi:map-marker-outline"
             label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

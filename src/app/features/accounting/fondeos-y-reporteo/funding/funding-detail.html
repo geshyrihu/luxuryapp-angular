@@ -11,7 +11,7 @@
           {{ customerName() }}
         </h1>
         <span class="text-sm text-500 font-medium flex align-items-center gap-1"
-          ><app-icon [icon]="'mdi:calendar'"></app-icon> {{ periodo() }}</span
+          ><app-icon [icon]="'mdi:calendar'" /> {{ periodo() }}</span
         >
       </div>
     </div>
@@ -33,9 +33,7 @@
           (clicked)="onRevokeConfirmation()"
         />
       </div>
-      }
-
-      @if(!isConfirmed()){
+      } @if(!isConfirmed()){
       <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
         @if (!isVerified()) {
         <il-button
@@ -103,9 +101,10 @@
           <div
             class="flex align-items-center gap-1 border-1 surface-border border-round-3xl px-2 py-1 bg-surface-0"
           >
-            <il-button
+            <iw-button
               iconClass="mdi:file-excel"
-              ngbTooltip="Excel"
+              pTooltip="Excel"
+              tooltipPosition="bottom"
               severity="success"
               size="sm"
               variant="ghost-text"
@@ -117,22 +116,23 @@
               class="btn btn-secondary btn-sm"
               pTooltip="Catálogo de Gastos Fijos — generar OC automáticas"
               tooltipPosition="bottom"
-              ><app-icon [icon]="'mdi:format-list-bulleted'" /></a>
-            }
-
-            @if (dataSignal().length > 0) {
-            <il-button
+              ><app-icon [icon]="'mdi:format-list-bulleted'"
+            /></a>
+            } @if (dataSignal().length > 0) {
+            <iw-button
               iconClass="mdi:printer"
-              ngbTooltip="Solicitudes"
+              pTooltip="Solicitudes"
+              tooltipPosition="bottom"
               severity="warn"
               size="sm"
               variant="ghost-text"
               (clicked)="onDownloadAllSolicitudesPago()"
             />
             }
-            <il-button
+            <iw-button
               iconClass="mdi:upload"
-              ngbTooltip="Cargar XMLs"
+              pTooltip="Cargar XMLs"
+              tooltipPosition="bottom"
               severity="danger"
               size="sm"
               variant="ghost-text"
@@ -148,40 +148,50 @@
   </div>
 
   <!-- Workflow Status -->
-  <div class="flex align-items-center gap-3 flex-wrap mt-2 pt-3 border-top-1 surface-border">
+  <div
+    class="flex align-items-center gap-3 flex-wrap mt-2 pt-3 border-top-1 surface-border"
+  >
     <div class="flex align-items-center gap-1 text-sm">
       @if (isVerified()) {
-        <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
-        <span class="text-green-700 font-medium">Verificado</span>
+      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <span class="text-green-700 font-medium">Verificado</span>
       } @else {
-        <app-icon [icon]="'mdi:circle'" class="text-orange-400"></app-icon>
-        <span class="text-orange-600 font-medium">Pendiente — debe verificarse</span>
+      <app-icon [icon]="'mdi:circle'" class="text-orange-400" />
+      <span class="text-orange-600 font-medium"
+        >Pendiente — debe verificarse</span
+      >
       }
     </div>
-    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs"></app-icon>
+    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs" />
     <div class="flex align-items-center gap-1 text-sm">
       @if (isAuthorized()) {
-        <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
-        <span class="text-green-700 font-medium">Autorizado</span>
+      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <span class="text-green-700 font-medium">Autorizado</span>
       } @else if (isVerified()) {
-        <app-icon [icon]="'mdi:circle'" class="text-orange-400"></app-icon>
-        <span class="text-orange-600 font-medium">Pendiente — debe autorizarse</span>
+      <app-icon [icon]="'mdi:circle'" class="text-orange-400" />
+      <span class="text-orange-600 font-medium"
+        >Pendiente — debe autorizarse</span
+      >
       } @else {
-        <app-icon [icon]="'mdi:lock'" class="text-400"></app-icon>
-        <span class="text-400">Autorizar (requiere verificacion)</span>
+      <app-icon [icon]="'mdi:lock'" class="text-400" />
+      <span class="text-400">Autorizar (requiere verificacion)</span>
       }
     </div>
-    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs"></app-icon>
+    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs" />
     <div class="flex align-items-center gap-1 text-sm">
       @if (isConfirmed()) {
-        <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
-        <span class="text-green-700 font-medium">Confirmado por Contabilidad</span>
+      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <span class="text-green-700 font-medium"
+        >Confirmado por Contabilidad</span
+      >
       } @else if (isAuthorized()) {
-        <app-icon [icon]="'mdi:circle'" class="text-orange-400"></app-icon>
-        <span class="text-orange-600 font-medium">Pendiente — debe confirmar Contabilidad</span>
+      <app-icon [icon]="'mdi:circle'" class="text-orange-400" />
+      <span class="text-orange-600 font-medium"
+        >Pendiente — debe confirmar Contabilidad</span
+      >
       } @else {
-        <app-icon [icon]="'mdi:lock'" class="text-400"></app-icon>
-        <span class="text-400">Confirmar (requiere autorizacion)</span>
+      <app-icon [icon]="'mdi:lock'" class="text-400" />
+      <span class="text-400">Confirmar (requiere autorizacion)</span>
       }
     </div>
   </div>
@@ -196,21 +206,22 @@
     >Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
     habilitar cambios, revierte la autorizacion primero.</p-message
   >
-  }
-
-  @if (isConfirmed()) {
+  } @if (isConfirmed()) {
   <div
     class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mt-2 flex align-items-center gap-2 text-green-700"
   >
-    <app-icon [icon]="'mdi:verified'" class="text-xl"></app-icon>
-    <span class="font-bold">Este fondeo ha sido procesado por contabilidad. No se pueden realizar cambios.</span>
+    <app-icon [icon]="'mdi:verified'" class="text-xl" />
+    <span class="font-bold"
+      >Este fondeo ha sido procesado por contabilidad. No se pueden realizar
+      cambios.</span
+    >
   </div>
   } @if (dataSignal().length < 1) {
   <div
     class="flex flex-column align-items-center justify-content-center p-6 border-1 surface-border border-round-xl bg-surface-0 text-center shadow-1"
   >
     <div class="bg-surface-100 border-circle p-3 mb-3">
-      <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-500"></app-icon>
+      <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-500" />
     </div>
     <span class="text-xl font-medium text-900">Sin órdenes de Compra</span>
     <span class="text-500 mt-1"
@@ -239,12 +250,13 @@
         <span class="font-bold text-900 text-lg"
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
-        <il-button
+        <iw-button
           iconClass="mdi:folder"
           variant="ghost-text"
           severity="secondary"
           size="sm"
-          ngbTooltip="Archivos del Grupo"
+          pTooltip="Archivos del Grupo"
+          tooltipPosition="bottom"
           (clicked)="onShowGroupFiles(grupo)"
         />
       </div>
@@ -308,7 +320,11 @@
         <tr [pReorderableRow]="rowIndex" class="text-sm">
           <!-- Index -->
           <td class="text-center p-1 text-500 relative bg-surface-0">
-            <app-icon [icon]="'mdi:dots-vertical'" class="text-300 absolute left-0 top-50 mt--2 ml-1 cursor-move hidden md:block" pReorderableRowHandle></app-icon>
+            <app-icon
+              [icon]="'mdi:dots-vertical'"
+              class="text-300 absolute left-0 top-50 mt--2 ml-1 cursor-move hidden md:block"
+              pReorderableRowHandle
+            />
             <span class="font-medium text-600">{{ orden.indice }}</span>
           </td>
 
@@ -399,11 +415,23 @@
             <div class="flex justify-content-center align-items-center gap-3">
               <!-- XML Validation -->
               @if (orden.validationStatus === true) {
-              <app-icon [icon]="'mdi:check-circle'" class="text-green-500 text-lg" pTooltip="{{ orden.validationMessage }}"></app-icon>
+              <app-icon
+                [icon]="'mdi:check-circle'"
+                class="text-green-500 text-lg"
+                pTooltip="{{ orden.validationMessage }}"
+              />
               } @else if (orden.validationStatus === false) {
-              <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-lg" pTooltip="{{ orden.validationMessage }}"></app-icon>
+              <app-icon
+                [icon]="'mdi:close-circle'"
+                class="text-red-500 text-lg"
+                pTooltip="{{ orden.validationMessage }}"
+              />
               } @else {
-              <app-icon [icon]="'mdi:circle'" class="text-300 text-lg" pTooltip="Sin validar"></app-icon>
+              <app-icon
+                [icon]="'mdi:circle'"
+                class="text-300 text-lg"
+                pTooltip="Sin validar"
+              />
               }
 
               <!-- Paid Checkbox -->
@@ -420,7 +448,7 @@
           <td class="p-2 text-center">
             <div class="flex justify-content-center align-items-center gap-1">
               <!-- Start Solo lo ve el contador -->
-              <il-button
+              <iw-button
                 iconClass="mdi:wallet"
                 variant="ghost-text"
                 severity="success"
@@ -429,7 +457,7 @@
                 (clicked)="onManagePaymentVouchers(orden)"
               />
               <!-- Start Solo lo ve el contador -->
-              <il-button
+              <iw-button
                 iconClass="mdi:pencil"
                 variant="ghost-text"
                 severity="info"
@@ -438,12 +466,12 @@
                 [disabled]="!canEdit()"
                 (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
               />
-              <il-button-delete
+              <iw-button-delete
                 (confirmed)="onDeleteOrder(orden.ordenCompraId)"
                 [iconOnly]="true"
                 customClass="w-2rem h-2rem"
                 *ngIf="canEdit()"
-              ></il-button-delete>
+              ></iw-button-delete>
             </div>
           </td>
         </tr>
@@ -453,11 +481,17 @@
   }
 
   <!-- SECCIÓN: ÓRDENES FUERA DE PROCESO DE FONDEO -->
-  <div class="card mt-4 border-1 border-orange-300 border-round-xl overflow-hidden shadow-1">
-    <div class="flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200">
+  <div
+    class="card mt-4 border-1 border-orange-300 border-round-xl overflow-hidden shadow-1"
+  >
+    <div
+      class="flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200"
+    >
       <div class="flex align-items-center gap-2">
-        <app-icon [icon]="'mdi:lightning-bolt'" class="text-orange-500"></app-icon>
-        <span class="font-bold text-orange-800 text-base">ÓRDENES FUERA DE PROCESO DE FONDEO</span>
+        <app-icon [icon]="'mdi:lightning-bolt'" class="text-orange-500" />
+        <span class="font-bold text-orange-800 text-base"
+          >ÓRDENES FUERA DE PROCESO DE FONDEO</span
+        >
         <p-badge
           [value]="ordenesFueraProceso().length"
           severity="warn"
@@ -478,7 +512,7 @@
 
     @if (ordenesFueraProceso().length === 0) {
     <div class="flex align-items-center gap-2 p-3 text-500 text-sm">
-      <app-icon [icon]="'mdi:information'"></app-icon>
+      <app-icon [icon]="'mdi:information'" />
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
@@ -496,7 +530,9 @@
         <tr>
           <td class="text-sm font-medium">{{ orden.nameProvider }}</td>
           <td class="text-sm">{{ orden.justificacionGasto }}</td>
-          <td class="text-sm text-right">{{ orden.total | number: "1.2-2" }}</td>
+          <td class="text-sm text-right">
+            {{ orden.total | number: "1.2-2" }}
+          </td>
           <td class="text-center">
             <p-checkbox
               [formControl]="orden.ordenCompraPagadaControl"
@@ -506,7 +542,7 @@
           </td>
           <td class="text-center">
             <div class="flex gap-1 justify-content-center">
-              <il-button
+              <iw-button
                 iconClass="mdi:eye-outline"
                 variant="text"
                 size="sm"
@@ -514,7 +550,7 @@
                 (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
               />
               @if (isRolAdministrador() || isRolSuperUsuario()) {
-              <il-button-delete
+              <iw-button-delete
                 (confirmed)="onRemoveFueraFondeo(orden.ordenCompraId)"
                 pTooltip="Desvincular del fondeo"
                 [iconOnly]="true"

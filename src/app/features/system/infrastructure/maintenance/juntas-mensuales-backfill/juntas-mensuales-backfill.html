@@ -181,8 +181,8 @@
                   <span>Vincular minuta</span>
                 </label>
 
-                <il-button-confirm
-                  label="Aplicar sugerencias"
+                <iw-button-confirm
+                  pTooltip="Aplicar sugerencias" tooltipPosition="top"
                   iconClass="mdi:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
                   swalText="Se vincularan los registros seleccionados a la sesion mensual. Esta accion no elimina historico existente."

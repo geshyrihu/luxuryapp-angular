@@ -22,10 +22,22 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ContractAddendumListDTO } from "../models/contract-addendum.dto";
 import { ContractAddendumFormComponent } from "./contract-addendum-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-contract-addendum-list",
   templateUrl: "./contract-addendum-list.html",
   imports: [
+    WebButtonIconItem,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     DatePipe,
     TableModule,

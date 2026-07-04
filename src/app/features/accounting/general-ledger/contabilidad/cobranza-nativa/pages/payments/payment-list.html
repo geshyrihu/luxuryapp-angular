@@ -21,7 +21,7 @@
           [noPadding]="true"
         />
         <il-button
-          label="Nota de Cródito"
+          label="Nota de Crédito"
           iconClass="mdi:credit-card"
           severity="secondary"
           variant="outlined"
@@ -71,32 +71,39 @@
           } @case (EPaymentStatus.Verificado) {
           <span class="badge bg-green-100 text-green-800">Verificado</span>
           } @case (EPaymentStatus.Rechazado) {
-          <span class="badge bg-red-100 text-red-800">Rechazado</span>
+          <span class="badge bg-red-100 text-red-800">Rechazado</span> } @case
+          (EPaymentStatus.Cancelado) {
+          <span class="badge bg-gray-100 text-gray-800">Cancelado</span> } @case
+          (EPaymentStatus.Revertido) {
+          <span class="badge bg-orange-100 text-orange-800">Revertido</span>
+          } @case (EPaymentStatus.NoIdentificado) {
+          <span class="badge bg-slate-100 text-slate-800">No identificado</span>
           } }
         </td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
-            <il-button-edit (clicked)="onModalForm(item.id)" />
-            @if (item.status !== EPaymentStatus.Rechazado) {
-            <il-button
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            @if (item.status !== EPaymentStatus.Rechazado && item.status !==
+            EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
+            {
+            <iw-button
               iconClass="mdi:close-circle"
               severity="warning"
               variant="outlined"
               size="small"
-              pTooltip="Cancelar pago rebotado"
+              pTooltip="Cancelar pago"
               tooltipPosition="top"
               (clicked)="onCancelPayment(item)"
             />
             }
-            <il-button-delete (customClick)="onDelete(item)" />
           </div>
         </td>
       </tr>
     </ng-template>
 
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -111,28 +118,32 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:cash" class="text-green-600 text-xl"></app-icon>
+        <app-icon icon="mdi:cash" class="text-green-600 text-xl" />
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
         <p>
-          {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} é {{ item.amount |
+          {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} · {{ item.amount |
           number:'1.2-2' }}
         </p>
         <p>{{ item.reference || '-' }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onModalForm(item.id)"
-            label="Editar"
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          @if (item.status !== EPaymentStatus.Rechazado && item.status !==
+          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {
+          <il-button
+            label="Cancelar"
+            iconClass="mdi:close-circle"
+            severity="warning"
+            variant="outlined"
+            size="small"
+            (clicked)="onCancelPayment(item)"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item)"
-            label="Eliminar"
-          />
+          }
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

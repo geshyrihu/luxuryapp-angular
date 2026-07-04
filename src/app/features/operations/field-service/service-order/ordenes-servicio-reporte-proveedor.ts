@@ -8,10 +8,13 @@ import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
   templateUrl: "./ordenes-servicio-reporte-proveedor.html",
   imports: [
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,TableModule, WebButtonLabelDelete],
 })
 export class OrdenesServicioReporteProveedor {

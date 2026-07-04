@@ -63,7 +63,7 @@
         <td>{{ day.suspensionDate | date: "dd/MM/yyyy":"UTC" }}</td>
         <td>{{ day.notes || "—" }}</td>
         <td class="text-center">
-          <il-button-delete (confirmed)="deleteDay(day.id)" />
+          <iw-button-delete (confirmed)="deleteDay(day.id)" />
         </td>
       </tr>
     </ng-template>

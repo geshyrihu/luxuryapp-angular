@@ -4,37 +4,43 @@
       <div class="col-12 md:col-12">
         @if (loading()) {
         <div class="flex justify-content-center align-items-center p-4">
-          <app-icon [icon]="'mdi:loading'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+          <app-icon
+            [icon]="'mdi:loading'"
+            class="text-primary m-1"
+            aria-label="Cargando..."
+          />
           <span class="ml-2 text-600">Cargando seguimientos...</span>
         </div>
         }
       </div>
 
       <div class="col-12 md:col-12 mt-2">
-        @if (!loading()) {
-          @if (seguimientos().length > 0) {
-          <ul class="square-timeline">
-            @for (follow of seguimientos(); track $index) {
-            <li class="timeline-event">
-              <label class="timeline-event-icon"></label>
-              <div class="timeline-event-wrapper">
-                <p class="timeline-thumbnail font-semibold text-sm text-700">
-                  {{ follow.applicationUser }} |
-                  <span class="font-normal text-500">{{ follow.createdAt }}</span>
-                </p>
-                <p class="pt-2 mb-4 text-base text-800">{{ follow.description }}</p>
-              </div>
-            </li>
-            }
-          </ul>
-          } @else {
-          <div class="text-center p-5 border-round-sm surface-ground">
-            <app-icon [icon]="'mdi:information'" class="text-3xl text-400"></app-icon>
-            <p class="mt-2 text-lg font-medium text-600">Sin Seguimiento</p>
-            <p class="text-sm text-500">Aún no hay registros de seguimiento para este ticket.</p>
-          </div>
+        @if (!loading()) { @if (seguimientos().length > 0) {
+        <ul class="square-timeline">
+          @for (follow of seguimientos(); track $index) {
+          <li class="timeline-event">
+            <label class="timeline-event-icon"></label>
+            <div class="timeline-event-wrapper">
+              <p class="timeline-thumbnail font-semibold text-sm text-700">
+                {{ follow.applicationUser }} |
+                <span class="font-normal text-500">{{ follow.createdAt }}</span>
+              </p>
+              <p class="pt-2 mb-4 text-base text-800">
+                {{ follow.description }}
+              </p>
+            </div>
+          </li>
           }
-        }
+        </ul>
+        } @else {
+        <div class="text-center p-5 border-round-sm surface-ground">
+          <app-icon [icon]="'mdi:information'" class="text-3xl text-400" />
+          <p class="mt-2 text-lg font-medium text-600">Sin Seguimiento</p>
+          <p class="text-sm text-500">
+            Aún no hay registros de seguimiento para este ticket.
+          </p>
+        </div>
+        } }
       </div>
     </div>
   </div>

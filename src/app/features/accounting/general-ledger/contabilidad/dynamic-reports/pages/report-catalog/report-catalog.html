@@ -9,10 +9,10 @@
       >
     </div>
     <div class="flex gap-2">
-      <il-button
+      <iw-button
         iconClass="mdi:book"
         severity="secondary"
-        ngbTooltip="Ver guía del módulo"
+        pTooltip="Ver guía del módulo" tooltipPosition="bottom"
         routerLink="/contabilidad/reportes/guia"
       />
       <il-button-add (clicked)="crear()" ngbTooltip="Crear nuevo reporte" />
@@ -58,13 +58,13 @@
               <td>{{ r.createdAt | date: 'dd/MM/yyyy' }}</td>
               <td>
                 <div class="flex gap-1">
-                  <il-button
+                  <iw-button
                     (clicked)="ver(r.id)"
                     iconClass="mdi:eye-outline"
                     ngbTooltip="Ver reporte"
                   />
-                  <il-button-edit (clicked)="editar(r.id)" />
-                  <il-button-delete
+                  <iw-button-edit (clicked)="editar(r.id)" />
+                  <iw-button-delete
                     (clicked)="confirmarEliminar(r.id, r.name)"
                   />
                 </div>
@@ -99,7 +99,7 @@
                 >{{ r.createdAt | date: 'dd/MM/yyyy' }}</span
               >
               <div class="flex mt-2 justify-content-end gap-1">
-                <il-button
+                <iw-button
                   iconClass="mdi:eye-outline"
                   (clicked)="ver(r.id)"
                 />
@@ -140,7 +140,7 @@
               </td>
               <td>{{ r.createdBy }}</td>
               <td>
-                <il-button
+                <iw-button
                   (clicked)="ver(r.id)"
                   iconClass="mdi:eye-outline"
                   ngbTooltip="Ver plantilla"
@@ -172,7 +172,7 @@
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">Por: {{ r.createdBy }}</span>
               <div class="flex mt-2 justify-content-end">
-                <il-button
+                <iw-button
                   iconClass="mdi:eye-outline"
                   (clicked)="ver(r.id)"
                 />

@@ -36,10 +36,24 @@ import { CustomerAddress } from "../customer-address/pages/customer-address";
 import { ICustomerDTO } from "../models/customer.dto";
 import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-customer-list",
   templateUrl: "./customer-list.html",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelItem,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,
@@ -63,7 +77,7 @@ export class CustomerList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // Declaración e inicialización de variables con Signals
+  // DeclaraciÃ³n e inicializaciÃ³n de variables con Signals
   dataSignal = signal<ICustomerDTO[]>([]);
   loading = signal(true);
 

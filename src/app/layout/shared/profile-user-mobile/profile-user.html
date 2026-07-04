@@ -42,8 +42,7 @@
             [routerLink]="[profileRoute()]"
             (click)="popover.dismiss()"
           >
-            <app-icon icon="mdi:account-outline" slot="start"
-              color="primary"></app-icon>
+            <app-icon icon="mdi:account-outline" slot="start" color="primary" />
             <ion-label>Cambiar contraseña</ion-label>
           </ion-item>
 
@@ -51,15 +50,13 @@
 
           <!-- Force Reload -->
           <ion-item button (click)="onForceReload(); popover.dismiss()">
-            <app-icon icon="mdi:sync" slot="start"
-              color="warning"></app-icon>
+            <app-icon icon="mdi:sync" slot="start" color="warning" />
             <ion-label>Recargar app</ion-label>
           </ion-item>
 
           <!-- Logout -->
           <ion-item button (click)="logOut(); popover.dismiss()">
-            <app-icon icon="mdi:logout" slot="start"
-              color="danger"></app-icon>
+            <app-icon icon="mdi:logout" slot="start" color="danger" />
             <ion-label>Cerrar sesión</ion-label>
           </ion-item>
         </ion-list>
@@ -67,10 +64,3 @@
     </ng-template>
   </ion-popover>
 </div>
-
-
-
-
-
-
-

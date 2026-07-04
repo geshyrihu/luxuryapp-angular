@@ -68,11 +68,16 @@ interface IVersionForm {
   descripcionCambio: FormControl<string>;
 }
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-manuals-and-processes-editor",
   templateUrl: "./manuals-and-processes-editor.html",
 
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CommonModule,
     ReactiveFormsModule,
     DragDropModule,

@@ -1,17 +1,10 @@
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TimelineModule } from "primeng/timeline";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { TimelineBase } from "src/app/core/components/shared/timeline/timeline-base";
 
-export interface TimelineEvent {
-  title: string;
-  description?: string;
-  date?: string;
-  icon?: string;
-  color?: string;
-  badge?: string;
-  badgeColor?: string;
-}
+export { type TimelineEvent } from "src/app/core/components/shared/timeline/timeline-base";
 
 @Component({
   selector: "app-timeline",
@@ -107,8 +100,4 @@ export interface TimelineEvent {
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class Timeline {
-  events = input.required<TimelineEvent[]>();
-  align = input<"left" | "right" | "alternate" | "top" | "bottom">("left");
-  layout = input<"vertical" | "horizontal">("vertical");
-}
+export class Timeline extends TimelineBase {}

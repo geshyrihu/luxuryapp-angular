@@ -22,10 +22,28 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PiscinaForm } from "./piscina-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-piscina-list",
   templateUrl: "./piscina-list.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonIconItem,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     ImageModule,

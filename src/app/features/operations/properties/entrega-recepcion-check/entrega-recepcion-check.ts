@@ -9,9 +9,12 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-entrega-recepcion-check",
   imports: [
+    WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
     AccordionModule,

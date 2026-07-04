@@ -77,14 +77,14 @@
           {{ item.activities.length }}
         </td>
         <td class="text-center">
-          <il-button-edit (clicked)="openDetail(item)" />
+          <iw-button-edit (clicked)="openDetail(item)" />
         </td>
       </tr>
     </ng-template>
 
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="8" />
+    </ng-template>
   </p-table>
 
   <!-- Vista mobile -->
@@ -102,7 +102,7 @@
           <app-icon
             icon="mdi:alert-circle-outline"
             class="text-red-600 text-xl"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h3>{{ item.propertyName }}</h3>
@@ -114,14 +114,11 @@
             {{ item.status }} &middot; {{ item.activities.length }} actividades
           </p>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-edit
-              (clicked)="openDetail(item)"
-              label="Editar"
-            />
+            <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

@@ -2,15 +2,15 @@ import { CobranzaGroup } from "../../models/cobranza-nativa.model";
 
 export const COBRANZA_GROUPS: CobranzaGroup[] = [
   {
-    label: "Identidad y Responsables",
-    icon: "mdi:account-group",
+    label: "Base Maestra",
+    icon: "mdi:domain",
     description:
-      "Modelo unificado de quien vive o es responsable en cada propiedad del condominio.",
+      "Catalogos y reglas base para definir quien paga, que se cobra y bajo que politicas opera el modulo.",
     cards: [
       {
         title: "Propiedades",
         description:
-          "Catalogo de unidades del condominio: departamento, torre, piso, numero de cuenta, superficie, indiviso y cajones. Base del sistema de cobranza.",
+          "Catalogo de unidades del condominio: departamento, torre, piso, numero de cuenta, superficie, indiviso y cajones.",
         route: "/cobranza-nativa/properties",
         icon: "mdi:home",
         bgColor: "#dbeafe",
@@ -43,25 +43,22 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           },
         ],
         notes:
-          "El campo indivisoPercentage es el que usa la plantilla de cargos con calculo por Indiviso para distribuir el monto total proporcionalmente.",
+          "El campo indivisoPercentage se usa para distribuir cargos cuando la plantilla trabaja por indiviso.",
       },
       {
         title: "Miembros de Propiedad",
         description:
-          "Registro de propietarios, copropietarios, inquilinos, residentes y administradores por propiedad. Define quien es el responsable financiero activo.",
+          "Registro de propietarios, copropietarios, residentes e inquilinos. Aqui se define el responsable financiero activo.",
         route: "/cobranza-nativa/members",
         icon: "mdi:card-account-details",
         bgColor: "#ede9fe",
         roles: ["Administrador"],
         actions: [
-          { label: "Ver todos los miembros vinculados a una propiedad" },
-          { label: "Vincular nuevo miembro con rol y fecha de inicio" },
-          {
-            label:
-              "Cambiar responsable financiero (solo uno activo por propiedad)",
-          },
-          { label: "Dar de baja a un miembro (fecha de termino)" },
-          { label: "Migrar datos del modelo legacy (Owner / Occupant)" },
+          { label: "Ver miembros vinculados a una propiedad" },
+          { label: "Asignar nuevo miembro con rol y vigencia" },
+          { label: "Cambiar responsable financiero activo" },
+          { label: "Dar de baja a un miembro" },
+          { label: "Migrar datos del modelo legacy" },
         ],
         endpoints: [
           {
@@ -92,54 +89,60 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         ],
         states: ["Activo", "Baja"],
         notes:
-          "Invariante del sistema: solo puede haber un IsFinancialResponsible = true activo por propiedad. El sistema lo revoca automaticamente al asignar uno nuevo.",
+          "Solo puede existir un responsable financiero activo por propiedad.",
       },
-    ],
-  },
-  {
-    label: "Operacion Diaria",
-    icon: "mdi:calendar",
-    description:
-      "Funciones que el administrador usa en el dia a dia para registrar cargos y pagos.",
-    cards: [
       {
-        title: "Dashboard de Metricas",
+        title: "Tipos de Cargo",
         description:
-          "KPIs en tiempo real: porcentaje de cobro, totales cobrados/pendientes/vencidos, tendencia mensual y top deudores.",
-        route: "/cobranza-nativa/dashboard",
-        icon: "mdi:chart-bar",
-        bgColor: "#ccfbf1",
-        roles: ["Administrador", "Cobranza", "Contador"],
+          "Catalogo central de conceptos financieros que define nombre, codigo y cuenta contable para cargos manuales, recurrentes y automaticos.",
+        route: "/cobranza-nativa/charge-types",
+        icon: "mdi:shape-outline",
+        bgColor: "#d1fae5",
+        roles: ["Administrador", "Contador"],
         actions: [
-          { label: "Ver porcentaje de cobranza del mes" },
-          { label: "Identificar top 5 deudores" },
-          { label: "Ver tendencia mensual de ingresos" },
+          { label: "Ver tipos base del sistema" },
+          { label: "Crear tipos de cargo personalizados" },
+          { label: "Asignar cuenta contable por tipo" },
+          { label: "Desactivar tipos que ya no se usan" },
         ],
         endpoints: [
           {
             method: "GET",
-            path: "/analytics/customer/{id}",
-            description: "Metricas consolidadas del condominio",
+            path: "/charge-types/customer/{id}",
+            description: "Listar tipos de cargo",
+          },
+          {
+            method: "POST",
+            path: "/charge-types",
+            description: "Crear tipo de cargo",
+          },
+          {
+            method: "PUT",
+            path: "/charge-types/{id}",
+            description: "Actualizar tipo de cargo",
+          },
+          {
+            method: "DELETE",
+            path: "/charge-types/{id}",
+            description: "Eliminar o desactivar tipo de cargo",
           },
         ],
+        notes:
+          "Los tipos del sistema estan protegidos porque participan en automatizaciones y calculos del modulo.",
       },
-
       {
         title: "Plantillas de Cargos",
         description:
-          "Configuracion de cargos recurrentes: mantenimiento ordinario, cuotas extraordinarias. Define monto fijo o calculo por indiviso.",
+          "Configuracion de cuotas recurrentes, mantenimiento y cargos extraordinarios con monto fijo o calculo por indiviso.",
         route: "/cobranza-nativa/charge-templates",
         icon: "mdi:file-edit",
         bgColor: "#dcfce7",
         roles: ["Administrador"],
         actions: [
           { label: "Crear plantilla de mantenimiento mensual" },
-          {
-            label:
-              "Configurar cuota por indiviso (proporcional al porcentaje de cada propiedad)",
-          },
-          { label: "Activar / desactivar plantilla" },
-          { label: "Ver historial de cambios de monto" },
+          { label: "Configurar cuota fija o por indiviso" },
+          { label: "Activar o desactivar plantilla" },
+          { label: "Revisar historial de cambios de monto" },
         ],
         endpoints: [
           {
@@ -167,15 +170,15 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
       {
         title: "Cuotas Vigentes por Propiedad",
         description:
-          "Matriz de cobertura: visualiza qué cuota aplica a cada propiedad mes a mes. Muestra monto fijo o calculado por indiviso para cada periodo vigente.",
+          "Matriz que muestra que cuota aplica a cada propiedad y en que periodos esta vigente.",
         route: "/cobranza-nativa/charge-template-coverage",
         icon: "mdi:table",
-        bgColor: "#ede9fe",
+        bgColor: "#e0f2fe",
         roles: ["Administrador", "Contador"],
         actions: [
-          { label: "Ver cuotas fijas por propiedad y mes" },
-          { label: "Ver cuotas calculadas por indiviso" },
-          { label: "Identificar propiedades sin cuota asignada" },
+          { label: "Ver cuotas activas por propiedad y mes" },
+          { label: "Ver cuotas fijas y calculadas por indiviso" },
+          { label: "Detectar propiedades sin cobertura" },
         ],
         endpoints: [
           {
@@ -186,19 +189,84 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         ],
       },
       {
+        title: "Politicas de Mora",
+        description:
+          "Reglas de recargos por atraso: dias de gracia, tasa, topes y comportamiento de calculo.",
+        route: "/cobranza-nativa/late-fee-policies",
+        icon: "mdi:percent",
+        bgColor: "#fed7aa",
+        roles: ["Administrador"],
+        actions: [
+          { label: "Definir dias de gracia" },
+          { label: "Configurar tasa fija o porcentual" },
+          { label: "Establecer monto maximo de recargo" },
+          { label: "Activar o desactivar politica" },
+        ],
+        endpoints: [
+          {
+            method: "GET",
+            path: "/late-fee-policies/customer/{id}",
+            description: "Listar politicas",
+          },
+          {
+            method: "POST",
+            path: "/late-fee-policies",
+            description: "Crear politica",
+          },
+          {
+            method: "PUT",
+            path: "/late-fee-policies/{id}",
+            description: "Actualizar politica",
+          },
+          {
+            method: "DELETE",
+            path: "/late-fee-policies/{id}",
+            description: "Eliminar politica",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Operacion y Cobro",
+    icon: "mdi:cash-multiple",
+    description:
+      "Pantallas de trabajo diario para emitir cargos, registrar pagos y consultar el saldo vivo del condominio.",
+    cards: [
+      {
+        title: "Dashboard de Metricas",
+        description:
+          "KPIs operativos del periodo: porcentaje de cobro, cartera vencida, ingresos y top deudores.",
+        route: "/cobranza-nativa/dashboard",
+        icon: "mdi:chart-bar",
+        bgColor: "#ccfbf1",
+        roles: ["Administrador", "Cobranza", "Contador"],
+        actions: [
+          { label: "Ver porcentaje de cobranza del mes" },
+          { label: "Identificar top deudores" },
+          { label: "Revisar tendencia de ingresos" },
+        ],
+        endpoints: [
+          {
+            method: "GET",
+            path: "/analytics/customer/{id}",
+            description: "Metricas consolidadas del condominio",
+          },
+        ],
+      },
+      {
         title: "Cargos",
         description:
-          "Gestion individual de cargos aplicados a cada propiedad. Los cargos se generan desde plantillas o se crean manualmente.",
+          "Gestion individual de cargos emitidos a propiedades. Aqui nacen cargos manuales y se administran cargos activos.",
         route: "/cobranza-nativa/charges",
-        icon: "mdi:dollar",
+        icon: "mdi:cash-plus",
         bgColor: "#bbf7d0",
         roles: ["Administrador", "Cobranza"],
         actions: [
-          { label: "Ver cargos pendientes y vencidos por propiedad" },
-          { label: "Crear cargo manual (extraordinario)" },
+          { label: "Ver cargos pendientes y vencidos" },
+          { label: "Crear cargo manual extraordinario" },
           { label: "Cancelar un cargo" },
-          { label: "Importar saldos iniciales masivamente (CSV)" },
-          { label: "Generar cargos del mes desde plantillas" },
+          { label: "Generar cargos mensuales desde plantillas" },
           { label: "Calcular recargos por mora manualmente" },
         ],
         endpoints: [
@@ -227,25 +295,20 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             path: "/charges/calculate-late-fees",
             description: "Calcular recargos mora",
           },
-          {
-            method: "POST",
-            path: "/charges/bulk-import/saldo-inicial",
-            description: "Importacion masiva",
-          },
         ],
         states: ["Pendiente", "Pagado", "PagoParcial", "Vencido", "Cancelado"],
       },
       {
         title: "Saldos Iniciales",
         description:
-          "Registro de la deuda historica de cada propiedad al momento de migrar al sistema. Permite capturar o actualizar el monto de arranque directamente en la tabla.",
+          "Captura o actualizacion de deuda historica para arrancar el modulo con una posicion inicial correcta.",
         route: "/cobranza-nativa/initial-balance",
         icon: "mdi:wallet",
         bgColor: "#fef9c3",
         roles: ["Administrador", "Contador"],
         actions: [
           { label: "Ver estado de saldo inicial por propiedad" },
-          { label: "Capturar o actualizar saldo inicial de forma masiva" },
+          { label: "Guardar saldos iniciales de forma masiva" },
         ],
         endpoints: [
           {
@@ -263,18 +326,15 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
       {
         title: "Registrar Pagos",
         description:
-          "Registro de pagos de condominios con asignacion automatica FIFO a cargos pendientes. Soporta notas de credito y cancelaciones.",
+          "Captura de pagos con aplicacion automatica FIFO a cargos pendientes y manejo de cancelaciones.",
         route: "/cobranza-nativa/payments",
         icon: "mdi:credit-card",
         bgColor: "#a7f3d0",
         roles: ["Administrador", "Cobranza"],
         actions: [
-          {
-            label: "Registrar pago y asignarlo a cargos automaticamente (FIFO)",
-          },
-          { label: "Aplicar nota de credito a un cargo pendiente" },
+          { label: "Registrar pago y aplicarlo automaticamente" },
+          { label: "Aplicar nota de credito a cargos pendientes" },
           { label: "Cancelar un pago registrado" },
-          { label: "Generar recibo de pago" },
           { label: "Ver historial de pagos por propiedad" },
         ],
         endpoints: [
@@ -292,7 +352,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: "/payments/apply-to-charges",
-            description: "Aplicar pago a cargos (FIFO)",
+            description: "Aplicar pago a cargos",
           },
           {
             method: "GET",
@@ -302,32 +362,54 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         ],
         states: ["Registrado", "Verificado", "Rechazado"],
       },
+      {
+        title: "Estado de Cuenta Nativo",
+        description:
+          "Kardex ledger-based por propiedad con saldo acumulado, aging, PDF y envio manual por email.",
+        route: "/cobranza-nativa/estado-cuenta",
+        icon: "mdi:file-document-outline",
+        bgColor: "#cffafe",
+        roles: ["Administrador", "Cobranza", "Contador"],
+        actions: [
+          { label: "Consultar estado de cuenta por propiedad" },
+          { label: "Ver saldo al corte" },
+          { label: "Generar PDF" },
+          { label: "Enviar estado de cuenta por email" },
+        ],
+        endpoints: [
+          {
+            method: "GET",
+            path: "/native-statements/{propertyId}",
+            description: "Estado de cuenta",
+          },
+          {
+            method: "GET",
+            path: "/native-statements/{propertyId}/pdf",
+            description: "PDF del estado de cuenta",
+          },
+        ],
+      },
     ],
   },
   {
-    label: "Gobierno Financiero",
-    icon: "mdi:shield",
+    label: "Control Financiero",
+    icon: "mdi:shield-check",
     description:
-      "Controles de integridad, aprobacion de operaciones sensibles y cierre contable de periodos.",
+      "Capas de control, conciliacion y trazabilidad para validar integridad operativa y contable.",
     cards: [
       {
         title: "Ledger Financiero",
         description:
-          "Registro inmutable (append-only) de todos los eventos financieros. Es la fuente de verdad contable del sistema. No se pueden editar ni eliminar entradas.",
+          "Registro inmutable de eventos financieros. Es la fuente de verdad para saldo, trazabilidad y auditoria.",
         route: "/cobranza-nativa/ledger",
         icon: "mdi:format-list-bulleted",
         bgColor: "#e0e7ff",
         roles: ["Contador", "SuperUsuario"],
         actions: [
-          {
-            label: "Consultar movimientos de una propiedad por rango de fechas",
-          },
-          {
-            label:
-              "Filtrar por tipo de evento (Cargo, Pago, Recargo, Nota Credito)",
-          },
-          { label: "Ver saldo actual de una propiedad segun el ledger" },
-          { label: "Verificar integridad ledger vs campos operacionales" },
+          { label: "Consultar movimientos por propiedad" },
+          { label: "Filtrar por tipo de evento" },
+          { label: "Ver saldo actual segun ledger" },
+          { label: "Validar integridad ledger vs operacion" },
         ],
         endpoints: [
           {
@@ -338,7 +420,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: "/ledger/property/{id}/customer/{id}/balance",
-            description: "Saldo actual segun ledger",
+            description: "Saldo segun ledger",
           },
           {
             method: "POST",
@@ -354,20 +436,45 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           "CierrePeriodo",
         ],
         notes:
-          "Principio de diseóo: ninguna entrada puede ser modificada o eliminada. Los errores se corrigen con entradas de reverso.",
+          "Las correcciones no editan historia; se modelan como reversos o ajustes.",
+      },
+      {
+        title: "Conciliacion de Pagos",
+        description:
+          "Bolsa de pagos no aplicados y motor para reconciliarlos contra cargos pendientes.",
+        route: "/cobranza-nativa/reconciliation",
+        icon: "mdi:sync",
+        bgColor: "#fff7ed",
+        roles: ["Contador"],
+        actions: [
+          { label: "Ver pagos sin aplicar" },
+          { label: "Ejecutar auto-conciliacion" },
+        ],
+        endpoints: [
+          {
+            method: "GET",
+            path: "/reconciliation/unallocated",
+            description: "Pagos sin aplicar",
+          },
+          {
+            method: "POST",
+            path: "/reconciliation/auto-apply-all",
+            description: "Ejecutar auto-conciliacion",
+          },
+        ],
       },
       {
         title: "Aprobaciones Financieras",
         description:
-          "Bandeja de solicitudes que requieren autorizacion de un segundo revisor (maker-checker). Previene que quien solicita una operacion sensible la apruebe el mismo.",
+          "Bandeja maker-checker para operaciones sensibles que requieren un segundo revisor.",
         route: "/cobranza-nativa/approvals",
         icon: "mdi:checkbox-marked",
         bgColor: "#f3e8ff",
         roles: ["Administrador", "Contador"],
         actions: [
-          { label: "Ver solicitudes pendientes de aprobacion" },
-          { label: "Revisar detalle de la operacion y su payload tecnico" },
-          { label: "Aprobar y ejecutar la operacion automaticamente" },
+          { label: "Ver solicitudes pendientes" },
+          { label: "Revisar payload tecnico de la operacion" },
+          { label: "Aprobar y ejecutar" },
           { label: "Rechazar con nota obligatoria" },
         ],
         endpoints: [
@@ -388,22 +495,20 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           },
         ],
         states: ["Pendiente", "Aprobada", "Rechazada", "Cancelada"],
-        notes:
-          "Operaciones que requieren aprobacion: Condonacion, Devolucion de Pago, Reapertura de Periodo, Anulacion de Cargo Pagado, Ajuste al Alza.",
       },
       {
         title: "Cierres de Periodo",
         description:
-          "Control de apertura y cierre de periodos contables mensuales. Un periodo cerrado bloquea la creacion de nuevos movimientos en ese mes.",
+          "Control mensual para bloquear movimientos en periodos cerrados y reabrirlos solo por flujo autorizado.",
         route: "/cobranza-nativa/period-closures",
         icon: "mdi:lock",
         bgColor: "#fce7f3",
         roles: ["Administrador", "Contador"],
         actions: [
-          { label: "Cerrar el mes actual con notas de cierre" },
-          { label: "Ver historial de periodos cerrados y quien los cerro" },
-          { label: "Reabrir un periodo (requiere aprobacion)" },
-          { label: "Verificar si un periodo esta cerrado antes de operar" },
+          { label: "Cerrar el mes actual" },
+          { label: "Ver historial de cierres" },
+          { label: "Reabrir periodo con control" },
+          { label: "Validar si un periodo esta cerrado" },
         ],
         endpoints: [
           {
@@ -424,22 +529,22 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: "/period-closures/customer/{id}/{year}/{month}/is-closed",
-            description: "Verificar si esta cerrado",
+            description: "Verificar cierre",
           },
         ],
       },
       {
         title: "Auditoria Financiera",
         description:
-          "Bitacora de todas las acciones de negocio relevantes en lenguaje operacional. Complementa el ledger con contexto de quien hizo que y por que.",
+          "Bitacora operacional para saber quien hizo que, cuando y sobre que propiedad o proceso.",
         route: "/cobranza-nativa/audit",
         icon: "mdi:eye-outline",
         bgColor: "#f5f3ff",
         roles: ["SuperUsuario", "Contador"],
         actions: [
-          { label: "Consultar bitacora por condominio y rango de fechas" },
-          { label: "Filtrar por propiedad especifica" },
-          { label: "Ver detalle de cada operacion (exitosa o fallida)" },
+          { label: "Consultar bitacora por fechas" },
+          { label: "Filtrar por propiedad" },
+          { label: "Ver operaciones exitosas o fallidas" },
         ],
         endpoints: [
           {
@@ -456,29 +561,25 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
       },
     ],
   },
-
   {
-    label: "Cobranza Legal",
-    icon: "mdi:alert",
+    label: "Cobranza Extendida",
+    icon: "mdi:briefcase-outline",
     description:
-      "Seguimiento formal de propiedades con morosidad grave que requieren gestion activa.",
+      "Procesos complementarios que salen de la cobranza base: multas, expedientes, reglamento y CFDI.",
     cards: [
       {
         title: "Casos de Cobranza",
         description:
-          "Expedientes de cobranza legal para propiedades con deuda grave (30/60/90+ dias). Permite asignar un gestor, registrar actividades y fechas de promesa de pago.",
+          "Expedientes de gestion y cobranza legal para propiedades con morosidad grave o seguimiento especial.",
         route: "/cobranza-nativa/collection-cases",
         icon: "mdi:briefcase",
         bgColor: "#fee2e2",
         roles: ["Administrador", "Cobranza", "Legal"],
         actions: [
-          { label: "Ver todos los casos activos con su antiguedad de deuda" },
-          { label: "Registrar nota de actividad o gestion en el expediente" },
-          {
-            label:
-              "Ejecutar evaluacion automatica de morosidad (genera nuevos casos)",
-          },
-          { label: "Ver historial de contactos y promesas de pago" },
+          { label: "Ver casos activos" },
+          { label: "Registrar actividad o gestion" },
+          { label: "Evaluar y escalar morosidad" },
+          { label: "Revisar historial de contactos" },
         ],
         endpoints: [
           {
@@ -499,27 +600,20 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         ],
         states: ["Activo", "Resuelto", "Pausado"],
         notes:
-          "Los casos se crean automaticamente cuando el job de escalada detecta deuda mayor a 90 dias. Tambien se pueden crear manualmente.",
+          "Los casos tambien pueden nacer por procesos automatizados de escalamiento.",
       },
       {
-        title: "Artúculos del Reglamento",
+        title: "Articulos del Reglamento",
         description:
-          "Catalogo de articulos del reglamento interno del condominio. Define los tipos de infraccion con su numero, texto oficial y monto de multa predeterminado.",
+          "Catalogo de articulos y montos base para multas y expedientes normativos.",
         route: "/cobranza-nativa/regulation-articles",
         icon: "mdi:book",
         bgColor: "#ede9fe",
         roles: ["Administrador"],
         actions: [
-          {
-            label:
-              "Agregar articulo con su numero oficial (Art. 24, Cap. 3 Inc. b, etc.)",
-          },
-          { label: "Definir monto de multa predeterminado por articulo" },
-          { label: "Activar o desactivar articulos sin eliminarlos" },
-          {
-            label:
-              "El texto del articulo queda vinculado al expediente de cada multa",
-          },
+          { label: "Agregar articulo y referencia oficial" },
+          { label: "Definir monto predeterminado de multa" },
+          { label: "Activar o desactivar articulos" },
         ],
         endpoints: [
           {
@@ -540,36 +634,23 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "DELETE",
             path: "/regulation-articles/{id}",
-            description: "Eliminar (solo si sin multas)",
+            description: "Eliminar articulo",
           },
         ],
-        notes:
-          "No es obligatorio. Si la multa no tiene articulo asociado se puede emitir de todas formas con solo la descripcion.",
       },
       {
         title: "Multas Reglamentarias",
         description:
-          "Expedientes de infracciones al reglamento interno. Cada multa puede tener evidencia adjunta (PDF, fotos) y genera un cargo financiero al confirmarse.",
+          "Expedientes de infraccion con evidencia y capacidad de generar cargo financiero asociado.",
         route: "/cobranza-nativa/property-fines",
         icon: "mdi:ban",
         bgColor: "#fce7f3",
         roles: ["Administrador"],
         actions: [
-          {
-            label:
-              "Emitir multa indicando propiedad, infraccion, fecha y monto",
-          },
-          { label: "Vincular al articulo reglamentario incumplido" },
-          { label: "Adjuntar evidencia: PDF, fotos o video de la infraccion" },
-          {
-            label:
-              "Generar cargo financiero (tipo Multa) al saldo de la propiedad",
-          },
-          { label: "Anular multa (solo si no esta pagada)" },
-          {
-            label:
-              "Ver historial completo de multas por propiedad o por condominio",
-          },
+          { label: "Emitir multa a una propiedad" },
+          { label: "Adjuntar evidencia" },
+          { label: "Generar cargo financiero por multa" },
+          { label: "Anular multa si aplica" },
         ],
         endpoints: [
           {
@@ -602,37 +683,22 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             path: "/property-fines/{id}/evidences",
             description: "Subir evidencia",
           },
-          {
-            method: "DELETE",
-            path: "/property-fines/evidences/{id}",
-            description: "Eliminar evidencia",
-          },
         ],
         states: ["Emitida", "Notificada", "CargoGenerado", "Pagada", "Anulada"],
-        notes:
-          "El pago de la multa no se registra aqui: se maneja como cualquier otro cargo a traves del modulo de Pagos. El estado pasa a Pagada automaticamente cuando el cargo vinculado queda en estado Pagado.",
       },
-    ],
-  },
-  {
-    label: "Facturacion CFDI",
-    icon: "mdi:receipt",
-    description:
-      "Emision y cancelacion de comprobantes fiscales digitales (CFDI 4.0) vinculados a los cargos.",
-    cards: [
       {
         title: "Facturas CFDI",
         description:
-          "Gestion de facturas CFDI 4.0 asociadas a cargos del condominio. Preparado para integracion con SW Sapien. Almacena XML y PDF generados.",
+          "Emision y cancelacion de CFDI asociados a cargos, con almacenamiento de XML y PDF.",
         route: "/cobranza-nativa/invoices",
         icon: "mdi:file-pdf-box",
         bgColor: "#fef9c3",
         roles: ["Administrador", "Contador"],
         actions: [
-          { label: "Ver facturas asociadas a un cargo especifico" },
-          { label: "Emitir CFDI para un cargo" },
-          { label: "Cancelar CFDI vigente con motivo" },
-          { label: "Descargar XML y PDF del comprobante" },
+          { label: "Ver facturas de un cargo" },
+          { label: "Emitir CFDI" },
+          { label: "Cancelar CFDI vigente" },
+          { label: "Descargar XML y PDF" },
         ],
         endpoints: [
           {
@@ -648,306 +714,90 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           },
         ],
         states: ["Vigente", "Cancelado"],
-        notes:
-          "Actualmente en modo simulacion. La integracion real con el SAT via SW Sapien se activara en la siguiente fase.",
       },
     ],
   },
   {
-    label: "Conciliacion Bancaria",
-    icon: "mdi:sync",
+    label: "Automatizacion",
+    icon: "mdi:robot-outline",
     description:
-      "Cruce automatico de pagos registrados sin aplicar contra cargos pendientes.",
+      "Una sola puerta para jobs y procesos programados del modulo, en lugar de multiples cards que duplican la misma pantalla.",
     cards: [
       {
-        title: "Conciliacion de Pagos",
+        title: "Servicios Automatizados",
         description:
-          "Bolsa de pagos no identificados: pagos registrados en el sistema que aun no han sido aplicados a ningun cargo. La auto-conciliacion los cruza automaticamente.",
-        route: "/cobranza-nativa/reconciliation",
-        icon: "mdi:arrow-expand-horizontal",
-        bgColor: "#fff7ed",
-        roles: ["Contador"],
-        actions: [
-          { label: "Ver lista de pagos sin aplicar" },
-          { label: "Ejecutar auto-conciliacion (cruza pagos con cargos FIFO)" },
-        ],
-        endpoints: [
-          {
-            method: "GET",
-            path: "/reconciliation/unallocated",
-            description: "Pagos sin aplicar",
-          },
-          {
-            method: "POST",
-            path: "/reconciliation/auto-apply-all",
-            description: "Ejecutar auto-conciliacion",
-          },
-        ],
-        notes:
-          "Util despues de importaciones masivas de estado de cuenta bancario o cuando llegan pagos por transferencia sin referencia clara.",
-      },
-    ],
-  },
-  {
-    label: "Configuracion",
-    icon: "mdi:cog",
-    description:
-      "Parametros del modulo: politicas de mora, modo de facturacion y estado de cuenta.",
-    cards: [
-      {
-        title: "Propiedades",
-        description:
-          "Catalogo de unidades del condominio: torre, departamento, piso, numero de cuenta, area, indiviso, cajones y bodega. Registra o edita cada propiedad desde aqui.",
-        route: "/property",
-        icon: "mdi:office-building",
-        bgColor: "#e0e7ff",
-        roles: ["Administrador", "SuperUsuario"],
-        actions: [
-          { label: "Ver listado completo de propiedades" },
-          {
-            label:
-              "Crear o editar propiedad (numero de cuenta, indiviso, area)",
-          },
-          { label: "Marcar propiedad como morosa" },
-          { label: "Importar propiedades desde Excel" },
-        ],
-        endpoints: [
-          {
-            method: "GET",
-            path: "/Property/list/{customerId}",
-            description: "Listar propiedades",
-          },
-          { method: "POST", path: "/Property", description: "Crear propiedad" },
-          {
-            method: "PUT",
-            path: "/Property/{id}",
-            description: "Actualizar propiedad",
-          },
-          {
-            method: "DELETE",
-            path: "/Property/{id}",
-            description: "Eliminar propiedad",
-          },
-        ],
-      },
-      {
-        title: "Politicas de Mora",
-        description:
-          "Configuracion de recargos automaticos por pago tardio: dias de gracia, tasa fija o porcentaje, topes maximos y calculo de interes compuesto.",
-        route: "/cobranza-nativa/late-fee-policies",
-        icon: "mdi:percent",
-        bgColor: "#fed7aa",
-        roles: ["Administrador"],
-        actions: [
-          { label: "Definir dias de gracia antes de aplicar recargo" },
-          { label: "Configurar tasa fija o porcentual" },
-          { label: "Establecer monto maximo de recargo" },
-          { label: "Activar / desactivar politica" },
-        ],
-        endpoints: [
-          {
-            method: "GET",
-            path: "/late-fee-policies/customer/{id}",
-            description: "Listar politicas",
-          },
-          {
-            method: "POST",
-            path: "/late-fee-policies",
-            description: "Crear politica",
-          },
-          {
-            method: "PUT",
-            path: "/late-fee-policies/{id}",
-            description: "Actualizar politica",
-          },
-          {
-            method: "DELETE",
-            path: "/late-fee-policies/{id}",
-            description: "Eliminar politica",
-          },
-        ],
-      },
-      {
-        title: "Configuracion de Facturacion",
-        description:
-          "Define si el condominio genera cargos de forma nativa (en esta app) o sincronizado con ASPEL COI. Tambien configura dias de vencimiento y dias de gracia globales.",
-        route: "",
-        icon: "mdi:tune",
-        bgColor: "#e0f2fe",
-        roles: ["Administrador", "SuperUsuario"],
-        actions: [
-          { label: "Seleccionar modo: Nativo o Sincronizado con ASPEL COI" },
-          { label: "Configurar dias de vencimiento por defecto" },
-          { label: "Definir dias de gracia globales" },
-          { label: "Establecer porcentaje de mora global" },
-        ],
-        endpoints: [
-          {
-            method: "GET",
-            path: "/billing-config/customer/{id}",
-            description: "Obtener configuracion actual",
-          },
-          {
-            method: "POST",
-            path: "/billing-config",
-            description: "Guardar configuracion",
-          },
-        ],
-        notes:
-          "Se abre como modal. Pendiente: definir desde que seccion del sistema se abre definitivamente.",
-      },
-      {
-        title: "Estado de Cuenta Nativo",
-        description:
-          "Kardex de movimientos por propiedad: todos los cargos, pagos y recargos con saldo acumulado. Exportable a PDF.",
-        route: "/cobranza-nativa/estado-cuenta",
-        icon: "mdi:file-document-outline",
-        bgColor: "#cffafe",
-        roles: ["Administrador", "Cobranza", "Contador"],
-        actions: [
-          { label: "Consultar estado de cuenta de una propiedad" },
-          { label: "Ver saldo actual (pendiente de pago)" },
-          { label: "Exportar a PDF" },
-          { label: "Enviar por email al residente" },
-        ],
-        endpoints: [
-          {
-            method: "GET",
-            path: "/native-statements/{propertyId}",
-            description: "Estado de cuenta",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Servicios Automatizados del API",
-    icon: "mdi:server",
-    description:
-      "Procesos que corren automaticamente via jobs nocturnos (Hangfire/CRON). Tambien disparables manualmente.",
-    cards: [
-      {
-        title: "Generacion de Cargos Mensuales",
-        description:
-          "Job que crea automaticamente los cargos del mes para todas las propiedades activas basandose en las plantillas configuradas. Se ejecuta el primer dia de cada mes.",
+          "Centro operativo para disparar y monitorear generacion de cargos, recargos, escalamiento y auto-conciliacion.",
         route: "/cobranza-nativa/automated-services",
-        icon: "mdi:play-circle",
+        icon: "mdi:cog-play",
         bgColor: "#dcfce7",
         roles: ["Administrador"],
         actions: [
-          { label: "Disparo automatico el 1ro de cada mes (06:00 AM)" },
-          { label: "Disparo manual con seleccion de mes y aóo" },
+          { label: "Generar cargos mensuales" },
+          { label: "Calcular recargos por mora" },
+          { label: "Escalar cartera a cobranza legal" },
+          { label: "Ejecutar auto-conciliacion de pagos" },
+          { label: "Consultar que servicios son automaticos vs manuales" },
         ],
         endpoints: [
           {
             method: "POST",
             path: "/charges/generate-monthly?customerId={id}&month={m}&year={y}",
-            description: "Ejecutar generacion",
+            description: "Generacion de cargos",
           },
-        ],
-      },
-      {
-        title: "Calculo de Recargos por Mora",
-        description:
-          "Detecta cargos vencidos y aplica la politica de mora configurada. Genera nuevos cargos de tipo Recargo. Se ejecuta diariamente.",
-        route: "/cobranza-nativa/automated-services",
-        icon: "mdi:clock-outline",
-        bgColor: "#fed7aa",
-        roles: ["Administrador"],
-        actions: [
-          { label: "Disparo automatico diario (03:00 AM)" },
-          { label: "Disparo manual inmediato" },
-        ],
-        endpoints: [
           {
             method: "POST",
             path: "/charges/calculate-late-fees?customerId={id}",
-            description: "Ejecutar calculo de mora",
+            description: "Calculo de mora",
           },
-        ],
-      },
-      {
-        title: "Escalada a Cobranza Legal",
-        description:
-          "Analiza antiguedad de deuda y escala propiedades a casos de gestoria cuando superan 90 dias. Se ejecuta cada lunes.",
-        route: "/cobranza-nativa/automated-services",
-        icon: "mdi:flag-outline",
-        bgColor: "#fee2e2",
-        roles: ["Administrador"],
-        actions: [
-          { label: "Disparo automatico semanal (lunes, 07:00 AM)" },
-          { label: "Disparo manual desde la pagina de Casos de Cobranza" },
-        ],
-        endpoints: [
           {
             method: "POST",
             path: "/collection-cases/evaluate-and-escalate/{id}",
-            description: "Evaluar y escalar",
+            description: "Escalada legal",
           },
-        ],
-      },
-      {
-        title: "Auto-Conciliacion de Pagos",
-        description:
-          "Cruza pagos sin aplicar con cargos pendientes de la misma propiedad. Se ejecuta cada 4 horas para reducir la bolsa de pagos no identificados.",
-        route: "/cobranza-nativa/automated-services",
-        icon: "mdi:refresh",
-        bgColor: "#dbeafe",
-        roles: ["Administrador"],
-        actions: [
-          { label: "Disparo automatico cada 4 horas" },
-          { label: "Disparo manual desde Conciliacion de Pagos" },
-        ],
-        endpoints: [
           {
             method: "POST",
             path: "/reconciliation/auto-apply-all",
-            description: "Ejecutar auto-conciliacion",
+            description: "Auto-conciliacion",
           },
         ],
+        notes:
+          "La configuracion de canales email/push existe, pero el motor de notificaciones sigue siendo una capacidad transversal y no una pagina navegable independiente.",
+      },
+    ],
+  },
+  {
+    label: "Entendimiento del Modulo",
+    icon: "mdi:sitemap",
+    description:
+      "Material de orientacion para UI, negocio y QA. Estas pantallas explican como se conecta todo el flujo.",
+    cards: [
+      {
+        title: "Como Funciona el Sistema",
+        description:
+          "Vista narrativa para entender fases, entidades y reglas del modulo de extremo a extremo.",
+        route: "/cobranza-nativa/system-overview",
+        icon: "mdi:book-open-page-variant",
+        bgColor: "#e0f2fe",
+        roles: ["Administrador", "Cobranza", "Contador", "SuperUsuario"],
+        actions: [
+          { label: "Entender el flujo general del modulo" },
+          { label: "Revisar conceptos clave y entidades" },
+        ],
+        endpoints: [],
       },
       {
-        title: "Motor de Notificaciones (Drip)",
+        title: "Mapa Visual del Flujo",
         description:
-          "Campana de recordatorios por email: detecta cargos pendientes/vencidos y envia avisos a los ocupantes segun la proximidad al vencimiento. Evita duplicados via NotificationLog.",
-        route: "",
-        icon: "mdi:bell",
-        bgColor: "#f0fdf4",
-        roles: ["Administrador"],
-        pending: true,
+          "Diagrama visual para ver entradas maestras, eventos operativos, controles y salidas del sistema.",
+        route: "/cobranza-nativa/flow-map",
+        icon: "mdi:transit-connection-variant",
+        bgColor: "#cffafe",
+        roles: ["Administrador", "Cobranza", "Contador", "SuperUsuario"],
         actions: [
-          {
-            label: "Disparo automatico diario a las 09:00 AM (CRON: 0 9 * * *)",
-          },
-          {
-            label:
-              "Envia PreVencimiento cuando faltan 5 o 1 dias para el vencimiento",
-          },
-          { label: "Envia DiaVencimiento el mismo dia del vencimiento" },
-          {
-            label:
-              "Envia Mora a los -1, -7, -15 dias y cada multiplo de 30 dias vencidos",
-          },
-          {
-            label:
-              "Registra cada envio en NotificationLog para garantizar idempotencia",
-          },
-          {
-            label:
-              "Si el email ya fue enviado hoy para ese cargo y evento, lo omite",
-          },
+          { label: "Entender rapidamente como se conecta el modulo" },
+          { label: "Explicar el flujo a UI, QA o negocio" },
         ],
-        endpoints: [
-          {
-            method: "POST",
-            path: "/notifications/process?customerId={id}",
-            description:
-              "Endpoint pendiente de implementar é solo se ejecuta via Hangfire por ahora",
-          },
-        ],
-        states: ["PreVencimiento", "DiaVencimiento", "Mora"],
-        notes:
-          "PENDIENTE: no tiene endpoint de disparo manual ni boton en la pantalla de Servicios Automatizados. El job corre automaticamente via Hangfire. Para habilitar el disparo manual se necesita crear el controlador y agregar el boton en automated-services.",
+        endpoints: [],
       },
     ],
   },

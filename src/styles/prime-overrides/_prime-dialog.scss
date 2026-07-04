@@ -5,21 +5,21 @@
 // ============================================================
 
 :root {
-  --p-dialog-border-radius:      16px;
-  --p-dialog-header-padding:     1.25rem 1.5rem;
-  --p-dialog-content-padding:    1.5rem;
-  --p-dialog-footer-padding:     1rem 1.5rem;
-  --p-dialog-header-font-size:   1.125rem;
+  --p-dialog-border-radius: 16px;
+  --p-dialog-header-padding: 1.25rem 1.5rem;
+  --p-dialog-content-padding: 1.5rem;
+  --p-dialog-footer-padding: 1rem 1.5rem;
+  --p-dialog-header-font-size: 1.125rem;
   --p-dialog-header-font-weight: 600;
-  --p-dialog-box-shadow:         var(--ds-shadow-2xl);
-  --p-dialog-background:         var(--ds-bg-surface);
-  --p-dialog-border-color:       transparent;
+  --p-dialog-box-shadow: var(--ds-shadow-2xl);
+  --p-dialog-background: var(--ds-bg-surface);
+  --p-dialog-border-color: transparent;
 }
 
 body .p-dialog {
-  border-radius: 16px;
+  border-radius: var(--ds-radius-modal, 3px);
   box-shadow: var(--ds-shadow-2xl);
-  border: none;
+  border: var(--ds-control-border-width, 1px) solid var(--ds-border);
   overflow: hidden;
 
   .p-dialog-header {
@@ -65,7 +65,3 @@ body .p-dialog {
 body .p-dialog-mask {
   backdrop-filter: blur(2px);
 }
-
-
-
-

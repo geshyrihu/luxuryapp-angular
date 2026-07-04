@@ -46,10 +46,32 @@ import { JobDescriptionForm } from "./job-description-form";
 import { WorkPositionForm } from "./work-position-form";
 import { WorkPositionHours } from "./work-position-hours";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelActiveDesactive } from "src/app/core/components/buttons/mobile-label/button-active-desactive";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-work-position-list",
   templateUrl: "./work-position-list.html",
   imports: [
+    WebButtonIconActiveDesactive,
+    WebButtonIconEdit,
+    WebButtonIconItem,
+    WebButtonIconDelete,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelActiveDesactive,
+    MobileButtonLabelItem,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,

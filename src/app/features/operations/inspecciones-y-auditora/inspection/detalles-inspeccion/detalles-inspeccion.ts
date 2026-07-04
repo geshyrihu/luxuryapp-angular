@@ -14,9 +14,12 @@ import { InspeccionAgregarRevision } from "src/app/features/operations/inspeccio
 import { InspeccionActivoCondominio } from "../inspeccion-activo-condominio-agregar/inspeccion-activo-condominio";
 import { InspeccionActivoCondominioEditar } from "../inspeccion-activo-condominio-editar/inspeccion-activo-condominio-editar";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-detalles-inspeccion",
   imports: [
+    WebButtonIcon,
     WebButtonLabelEdit,
     WebButtonLabelItem,
     WebButtonLabelDelete,

@@ -17,9 +17,12 @@ import {
   DiasNoHabilesDTO,
 } from "../../../interfaces/periodo-nomina.interface";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-modal-dias-no-habiles",
   imports: [
+    WebButtonIcon,
     ReactiveFormsModule,
     TableModule,
     TagModule,

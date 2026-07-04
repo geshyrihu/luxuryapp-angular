@@ -28,10 +28,17 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { ExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/services/excel-export.service";
 import { OwnerForm } from "./owner-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
 @Component({
   selector: "app-owner-list",
   templateUrl: "./owner-list.html",
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,

@@ -40,10 +40,15 @@ interface IBackfillSelectionState {
   applying: boolean;
 }
 
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-juntas-mensuales-backfill",
   templateUrl: "./juntas-mensuales-backfill.html",
   imports: [
+    WebButtonIconConfirm,
+    TooltipModule,
     CommonModule,
     TableModule,
     TagModule,

@@ -13,14 +13,15 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 
 // Services
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { UpsertBillingConfigDTO } from "../../models/billing-config.dto";
+import { SaveNativeCollectionNotificationSettingsDTO } from "../../models/notification-settings.dto";
 import { EBillingMode } from "../../models/enums";
 
 @Component({
@@ -31,6 +32,7 @@ import { EBillingMode } from "../../models/enums";
     WebButtonLabel,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
+    CustomInputSwitch,
     WebButtonLabelSave,
   ],
   templateUrl: "./billing-config-modal.html",
@@ -68,44 +70,88 @@ export default class BillingConfigModal implements OnInit {
       defaultDueDays: [10, [Validators.required, Validators.min(0)]],
       graceDays: [0, [Validators.required, Validators.min(0)]],
       globalLateFeePercentage: [null, [Validators.min(0), Validators.max(100)]],
+      isEmailEnabled: [true, Validators.required],
+      isPushNotificationEnabled: [true, Validators.required],
     });
   }
 
   async loadData() {
     this.isLoading = true;
-    const result = await this.apiResponseS.onGetItem<any>(
+    const billingConfig = await this.apiResponseS.onGetItem<any>(
       Endpoints.AccountingCoi.NativeCollection.BillingConfig.customer(
         this.customerId,
       ),
     );
+    const notificationSettings = await this.apiResponseS.onGetItem<any>(
+      Endpoints.AccountingCoi.NativeCollection.NotificationSettings.byCustomer(
+        this.customerId,
+      ),
+    );
     this.isLoading = false;
-    if (result) {
+
+    if (billingConfig) {
       this.form.patchValue({
-        billingMode: result.billingMode,
-        defaultDueDays: result.defaultDueDays,
-        graceDays: result.graceDays,
-        globalLateFeePercentage: result.globalLateFeePercentage,
+        billingMode: billingConfig.billingMode,
+        defaultDueDays: billingConfig.defaultDueDays,
+        graceDays: billingConfig.graceDays,
+        globalLateFeePercentage: billingConfig.globalLateFeePercentage,
+      });
+    }
+
+    if (notificationSettings) {
+      this.form.patchValue({
+        isEmailEnabled: notificationSettings.isEmailEnabled,
+        isPushNotificationEnabled: notificationSettings.isPushNotificationEnabled,
       });
     }
   }
 
   async onSubmit() {
-    await FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.BillingConfig.save,
-      method: "POST",
-      ref: this.ref,
-      submitting: this.submitting,
-      transformPayload: (value) =>
-        ({
-          customerId: this.customerId,
-          billingMode: value.billingMode,
-          defaultDueDays: value.defaultDueDays,
-          graceDays: value.graceDays,
-          globalLateFeePercentage: value.globalLateFeePercentage,
-        }) as UpsertBillingConfigDTO,
-    });
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.submitting.set(true);
+    try {
+      const value = this.form.getRawValue();
+
+      const billingPayload = {
+        customerId: this.customerId,
+        billingMode: value.billingMode,
+        defaultDueDays: value.defaultDueDays,
+        graceDays: value.graceDays,
+        globalLateFeePercentage: value.globalLateFeePercentage,
+      } as UpsertBillingConfigDTO;
+
+      const notificationPayload = {
+        customerId: this.customerId,
+        isEmailEnabled: value.isEmailEnabled,
+        isPushNotificationEnabled: value.isPushNotificationEnabled,
+      } as SaveNativeCollectionNotificationSettingsDTO;
+
+      const billingResult = await this.apiResponseS.onPost(
+        Endpoints.AccountingCoi.NativeCollection.BillingConfig.save,
+        billingPayload,
+      );
+
+      if (!billingResult) {
+        return;
+      }
+
+      const notificationResult = await this.apiResponseS.onPost(
+        Endpoints.AccountingCoi.NativeCollection.NotificationSettings.save,
+        notificationPayload,
+      );
+
+      if (!notificationResult) {
+        return;
+      }
+
+      this.ref.close(true);
+    } finally {
+      this.submitting.set(false);
+    }
   }
 
   onClose() {

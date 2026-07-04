@@ -85,7 +85,7 @@
       </td>
       <td>{{ item.total | number: '1.2-2' }}</td>
       <td class="text-center">
-        <il-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <iw-button-edit (clicked)="onAddOrEdit(item.id)" />
       </td>
     </tr>
   </ng-template>
@@ -121,7 +121,7 @@
         <app-icon
           icon="mdi:check-circle-outline"
           style="font-size: 20px; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.proveedor }}</h3>
@@ -131,14 +131,11 @@
           date:'dd/MM/yyyy':'UTC' }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onAddOrEdit(item.id)"
-            label="Editar"
-          />
+          <ili-button-edit (clicked)="onAddOrEdit(item.id)" label="Editar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

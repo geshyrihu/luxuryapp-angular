@@ -7,7 +7,8 @@ import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Added
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -20,6 +21,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     TooltipModule,
     WebButtonLabel,
     WebButtonLabelItem,
+    WebButtonIconItem,
   ],
   templateUrl: "./funding-group-files.html",
 })

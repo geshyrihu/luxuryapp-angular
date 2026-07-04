@@ -24,10 +24,30 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { EmployeeExternalAppUser } from "./employee-external-app-user";
 import { EmployeeExternalForm } from "./employee-external-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-employee-external-list",
   templateUrl: "./employee-external-list.html",
   imports: [
+    WebButtonIconActiveDesactive,
+    WebButtonIconEdit,
+    WebButtonIconItem,
+    WebButtonIconDelete,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelItem,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabelEdit,

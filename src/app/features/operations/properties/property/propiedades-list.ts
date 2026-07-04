@@ -3,10 +3,10 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web-label";
+import { TooltipModule } from "primeng/tooltip";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -28,24 +28,33 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import Swal from "sweetalert2";
 import { PropertyOccupantManager } from "./property-occupant-manager";
 import { PropiedadesForm } from "./propiedades-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
 @Component({
   selector: "app-propiedades-list",
   templateUrl: "./propiedades-list.html",
   imports: [
-    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    DataViewMobile,
+    TooltipModule,
     DataViewMobile,
     PrimeNgCustomCaption,
+    PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,
-    WebButtonLabel,
     IonItem,
     IonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
+    // Tabla web (acciones directas → solo icono)
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonIconItem,
+    // Caption (CTA general, no es acción de fila)
+    WebButtonLabel,
+    // Vista móvil
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
   ],
 })
 export class PropiedadesList {

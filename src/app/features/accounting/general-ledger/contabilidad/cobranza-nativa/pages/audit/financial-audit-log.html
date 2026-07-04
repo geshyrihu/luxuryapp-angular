@@ -3,7 +3,7 @@
   <div
     class="p-3 mb-3 bg-purple-50 border-round border-1 border-purple-200 flex gap-2 align-items-start"
   >
-    <app-icon [icon]="'mdi:shield'" class="text-purple-600 mt-1"></app-icon>
+    <app-icon [icon]="'mdi:shield'" class="text-purple-600 mt-1" />
     <div class="text-sm text-purple-800">
       <strong>Bitacora de Auditoria Financiera.</strong> Registro inmutable de
       todas las acciones de negocio relevantes: quién hizo qué, cuándo y con qué
@@ -111,7 +111,7 @@
           <app-icon
             icon="mdi:file-document-outline"
             [class]="log.isSuccess ? 'text-green-600 text-xl' : 'text-red-600 text-xl'"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h3>{{ log.operationType }}</h3>

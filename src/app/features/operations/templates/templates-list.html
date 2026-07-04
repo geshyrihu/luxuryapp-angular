@@ -39,7 +39,7 @@
       <td>{{ item.folio }}</td>
       <td>{{ item.name | uppercase }}</td>
       <td class="text-center">
-        <il-button-view-pdf [url]="item.path" fileName="Formato" />
+        <iw-button-view-pdf [url]="item.path" fileName="Formato" />
       </td>
       <!-- Opciones -->
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
@@ -93,22 +93,19 @@
         <app-icon
           icon="mdi:file-outline"
           style="font-size: 20px; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.name | uppercase }}</h3>
         <p>Folio: {{ item.folio }}</p>
       </ion-label>
-      <app-action-menu slot="end">
-        <il-button-edit
+      <ili-action-menu slot="end">
+        <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
         />
-        <il-button-delete
-          (confirmed)="onDelete(item.id)"
-          label="Eliminar"
-        />
-      </app-action-menu>
+        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

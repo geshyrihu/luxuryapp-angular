@@ -1,27 +1,12 @@
-import {
-  Component,
-  input,
-  model,
-  output,
-  signal,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { TextareaModule } from "primeng/textarea";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { CommentThreadBase } from "src/app/core/components/shared/comment-thread/comment-thread-base";
 
-export interface Comment {
-  id: string;
-  authorName: string;
-  authorInitials?: string;
-  avatarUrl?: string;
-  text: string;
-  timestamp: string;
-  edited?: boolean;
-  reactions?: { emoji: string; count: number }[];
-}
+export { type Comment } from "src/app/core/components/shared/comment-thread/comment-thread-base";
 
 /**
  * AppCommentThread — Hilo de comentarios/notas colaborativas en registros CRM/ERP.
@@ -207,33 +192,4 @@ export interface Comment {
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppCommentThread {
-  comments    = input<Comment[]>([]);
-  title       = input<string>("Comentarios");
-  placeholder = input<string>("Escribe un comentario...");
-  readonly    = input<boolean>(false);
-
-  submit  = output<string>();
-  react   = output<{ commentId: string; emoji: string }>();
-
-  newText   = "";
-  submitting = signal(false);
-
-  submitComment(): void {
-    const text = this.newText.trim();
-    if (!text) return;
-    this.submit.emit(text);
-    this.newText = "";
-  }
-
-  avatarBg(c: Comment): string {
-    const colors = ["#003d9b", "#006477", "#006837", "#b45309", "#7c3aed", "#ba1a1a"];
-    let h = 0;
-    for (const ch of c.authorName) h = ch.charCodeAt(0) + ((h << 5) - h);
-    return colors[Math.abs(h) % colors.length];
-  }
-
-  initials(name: string): string {
-    return name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
-  }
-}
+export class AppCommentThread extends CommentThreadBase {}

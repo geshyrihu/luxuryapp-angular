@@ -47,9 +47,9 @@
         <td>Opciones</td>
         <td>
           <div class="flex justify-content-end">
-            <il-button
-              icon="edit"
-              ngbTooltip="Editar"
+            <iw-button
+              iconClass="edit"
+              pTooltip="Editar" tooltipPosition="bottom"
               (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
             />
             <il-button-confirm

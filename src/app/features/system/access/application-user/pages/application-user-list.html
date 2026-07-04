@@ -114,22 +114,22 @@
           <td class="no-print">
             <div class="flex">
               @if (item.active) {
-              <il-button-item
+              <iw-button-item
                 (clicked)="onToBlockAccount(item.id)"
                 iconClass="mdi:lock"
-                label="Bloquear"
+                pTooltip="Bloquear" tooltipPosition="top"
               />
               } @if (!item.active) {
-              <il-button-item
+              <iw-button-item
                 (clicked)="onToUnlockAccount(item.id)"
                 iconClass="mdi:lock-open"
-                label="Desbloquear"
+                pTooltip="Desbloquear" tooltipPosition="top"
               />
               }
-              <il-button-item
+              <iw-button-item
                 (clicked)="onModalEditAccount(item.id, item.email)"
                 iconClass="mdi:account"
-                label="Permisos"
+                pTooltip="Permisos" tooltipPosition="top"
               />
               <iw-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
               <iw-button-delete (confirmed)="DeleteUserId(item.id)" />
@@ -138,8 +138,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="6" />
+      </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -210,7 +210,7 @@
         <app-icon
           icon="mdi:account-circle-outline"
           style="font-size: 1.5rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
         }
       </div>
       <ion-label class="ion-text-wrap">
@@ -237,36 +237,36 @@
         }
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
           @if (item.active) {
-          <il-button-item
+          <ili-button-item
             (clicked)="onToBlockAccount(item.id)"
             iconName="lock-closed-outline"
             label="Bloquear"
           />
           } @if (!item.active) {
-          <il-button-item
+          <ili-button-item
             (clicked)="onToUnlockAccount(item.id)"
             iconName="lock-open-outline"
             label="Desbloquear"
           />
           }
-          <il-button-item
+          <ili-button-item
             (clicked)="onModalEditAccount(item.id, item.email)"
             iconName="person-outline"
             label="Permisos"
           />
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm(item.id, 'Editar')"
             label="Editar"
           />
-          <il-button-delete
+          <ili-button-delete
             (confirmed)="DeleteUserId(item.id)"
             label="Eliminar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

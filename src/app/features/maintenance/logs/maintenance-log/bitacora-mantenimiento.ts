@@ -21,10 +21,13 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+
 @Component({
   selector: "app-bitacora-mantenimiento",
   templateUrl: "./bitacora-mantenimiento.html",
   imports: [
+    WebButtonIconConfirm,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

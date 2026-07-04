@@ -24,10 +24,23 @@ import { EmployeeInternalService } from "../../employee-internal/services/employ
 import { IEmployeeClinicalData } from "../models/employee-clinical-data.interface";
 import { EmployeeClinicalDataForm } from "./employee-clinical-data-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "employee-clinical-data-list",
   templateUrl: "./employee-clinical-data-list.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconConfirm,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

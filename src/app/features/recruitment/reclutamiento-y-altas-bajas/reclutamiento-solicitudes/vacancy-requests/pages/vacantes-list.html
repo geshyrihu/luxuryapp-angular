@@ -66,13 +66,13 @@
       </td>
       <td class="no-print">
         <div class="flex gap-1">
-          <il-button-edit (clicked)="onModalForm({ id: item.id })" />
-          <il-button-item
+          <iw-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <iw-button-item
             iconClass="mdi:information"
-            label="Detalle del puesto"
+            pTooltip="Detalle del puesto" tooltipPosition="top"
             (clicked)="onModalDetail(item.workPositionId)"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -96,28 +96,22 @@
         slot="start"
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
-        <app-icon
-          icon="mdi:briefcase-outline"
-          class="text-xl text-green-600"
-        ></app-icon>
+        <app-icon icon="mdi:briefcase-outline" class="text-xl text-green-600" />
       </div>
       <ion-label>
         <h3>{{ item.applicationRoleName }}</h3>
         <p>{{ item.customer }} é {{ item.requestDate }}</p>
         <p>{{ item.status }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

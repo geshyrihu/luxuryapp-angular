@@ -7,6 +7,7 @@ import { BaseButton } from "../base/base-button";
   selector: "il-button-save",
   standalone: true,
   imports: [CommonModule, AppIcon],
+  styles: [":host { display: block; width: fit-content; margin-left: auto; }"],
   template: `
     <button
       [type]="type()"
@@ -29,9 +30,9 @@ export class WebButtonLabelSave extends BaseButton {
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 
-  override severity = input<any>("primary");
+  override severity = input<any>("info");
   override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "solid",
+    "ghost",
   );
   override type = input<"button" | "submit" | "reset">("submit");
 

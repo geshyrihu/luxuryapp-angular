@@ -1,12 +1,21 @@
 import { CommonModule, DecimalPipe } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import {
+  Component,
+  DestroyRef,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
+import { ROUTES } from "src/app/routing/route-paths";
 
 export interface CobranzaMetricasResponseDTO {
   totalFacturado: number;
@@ -45,7 +54,11 @@ export interface TendenciaMensualDTO {
 export default class CobranzaDashboard {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
+  private destroyRef = inject(DestroyRef);
   private router = inject(Router);
+  private signalRService = inject(SignalRService);
+
+  private realtimeCustomerId: string | null = null;
 
   metricas = signal<CobranzaMetricasResponseDTO | null>(null);
   meses = signal<number>(6);
@@ -60,10 +73,37 @@ export default class CobranzaDashboard {
   });
 
   constructor() {
+    this.signalRService.nativeCollectionUpdate$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        void this.onLoadData();
+      });
+
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) {
+        this.setupRealtime(customerId);
         setTimeout(() => this.onLoadData());
+      }
+    });
+  }
+
+  private setupRealtime(customerId: string) {
+    if (this.realtimeCustomerId === customerId) return;
+
+    if (this.realtimeCustomerId) {
+      void this.signalRService.leaveNativeCollectionGroup(this.realtimeCustomerId);
+    }
+
+    this.realtimeCustomerId = customerId;
+    this.signalRService.start();
+    void this.signalRService.joinNativeCollectionGroup(customerId);
+
+    this.destroyRef.onDestroy(() => {
+      if (this.realtimeCustomerId) {
+        void this.signalRService.leaveNativeCollectionGroup(
+          this.realtimeCustomerId,
+        );
       }
     });
   }

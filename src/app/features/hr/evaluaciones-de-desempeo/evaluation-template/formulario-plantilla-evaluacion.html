@@ -30,9 +30,14 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 surface-border">
+    <div
+      class="flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 surface-border"
+    >
       <div class="flex align-items-center gap-2">
-        <app-icon [icon]="'mdi:format-list-bulleted'" class="text-primary text-xl"></app-icon>
+        <app-icon
+          [icon]="'mdi:format-list-bulleted'"
+          class="text-primary text-xl"
+        />
         <h2 class="text-xl font-semibold m-0">Categorías y Preguntas</h2>
       </div>
       <div class="flex gap-2">
@@ -58,12 +63,9 @@
       (cdkDropListDropped)="onDropCategory($event)"
       class="flex flex-column gap-4"
     >
-      @for (categoryGroup of categories.controls; track categoryGroup; let i = $index) {
-      <p-fieldset
-        [formGroup]="categoryGroup"
-        cdkDrag
-        class="custom-fieldset"
-      >
+      @for (categoryGroup of categories.controls; track categoryGroup; let i =
+      $index) {
+      <p-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-3 px-2 w-full">
             <!-- Drag Handle Categoría -->
@@ -72,16 +74,16 @@
               class="cursor-move text-500 hover:text-primary transition-colors"
               pTooltip="Reordenar categoría"
             >
-              <app-icon [icon]="'mdi:menu'"></app-icon>
+              <app-icon [icon]="'mdi:menu'" />
             </div>
-            
+
             <span class="font-bold text-lg text-primary">{{ i + 1 }}.</span>
 
             <div class="flex-grow-1">
-              <input 
-                type="text" 
-                pInputText 
-                formControlName="name" 
+              <input
+                type="text"
+                pInputText
+                formControlName="name"
                 placeholder="Nombre de la categoría..."
                 class="w-full p-inputtext-sm border-none surface-ground font-semibold"
               />
@@ -107,9 +109,10 @@
           (cdkDropListDropped)="onDropQuestion($event, i)"
           class="flex flex-column gap-2 mt-2"
         >
-          @for (questionGroup of questions(i).controls; track questionGroup; let j = $index) {
-          <div 
-            [formGroup]="questionGroup" 
+          @for (questionGroup of questions(i).controls; track questionGroup; let
+          j = $index) {
+          <div
+            [formGroup]="questionGroup"
             class="flex align-items-center gap-3 p-2 surface-100 border-round hover:surface-200 transition-colors"
             cdkDrag
           >
@@ -119,16 +122,16 @@
               class="cursor-move text-400 hover:text-primary px-2"
               pTooltip="Reordenar pregunta"
             >
-              <app-icon [icon]="'mdi:dots-vertical'"></app-icon>
+              <app-icon [icon]="'mdi:dots-vertical'" />
             </div>
 
             <span class="text-600 font-medium w-2rem">{{ j + 1 }}.</span>
 
             <div class="flex-grow-1">
-              <input 
-                type="text" 
-                pInputText 
-                formControlName="questionText" 
+              <input
+                type="text"
+                pInputText
+                formControlName="questionText"
                 [placeholder]="'Pregunta ' + (j + 1)"
                 class="w-full p-inputtext-sm border-none bg-transparent"
               />
@@ -136,30 +139,39 @@
 
             <il-button-delete (confirmed)="removeQuestion(i, j)" />
           </div>
-          }
-          
-          @if (questions(i).controls.length === 0) {
-            <div class="text-center p-4 border-2 border-dashed surface-border border-round text-500">
-              <app-icon [icon]="'mdi:information'" class="mr-2"></app-icon>
-              No hay preguntas en esta categoría. Haga clic en "Pregunta" para agregar una.
-            </div>
+          } @if (questions(i).controls.length === 0) {
+          <div
+            class="text-center p-4 border-2 border-dashed surface-border border-round text-500"
+          >
+            <app-icon [icon]="'mdi:information'" class="mr-2" />
+            No hay preguntas en esta categoría. Haga clic en "Pregunta" para
+            agregar una.
+          </div>
           }
         </div>
       </p-fieldset>
-      }
-
-      @if (categories.controls.length === 0) {
-        <div class="text-center p-8 border-2 border-dashed surface-border border-round bg-white">
-          <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-200 mb-3 block"></app-icon>
-          <span class="text-xl text-500 font-medium">No se han definido categorías</span>
-          <p class="text-400 mt-2">Comience agregando una categoría para organizar sus preguntas de evaluación.</p>
-          <il-button
-            iconClass="mdi:plus"
-            (clicked)="addCategory()"
-            label="Agregar Primera Categoría"
-            customClass="mt-4"
-          />
-        </div>
+      } @if (categories.controls.length === 0) {
+      <div
+        class="text-center p-8 border-2 border-dashed surface-border border-round bg-white"
+      >
+        <app-icon
+          [icon]="'mdi:folder-open'"
+          class="text-6xl text-200 mb-3 block"
+        />
+        <span class="text-xl text-500 font-medium"
+          >No se han definido categorías</span
+        >
+        <p class="text-400 mt-2">
+          Comience agregando una categoría para organizar sus preguntas de
+          evaluación.
+        </p>
+        <il-button
+          iconClass="mdi:plus"
+          (clicked)="addCategory()"
+          label="Agregar Primera Categoría"
+          customClass="mt-4"
+        />
+      </div>
       }
     </div>
 

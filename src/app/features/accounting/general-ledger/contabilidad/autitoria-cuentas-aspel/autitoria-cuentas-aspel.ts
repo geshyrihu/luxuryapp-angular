@@ -19,9 +19,12 @@ import {
   IAutitoriaCuentasAspelResponseDTO,
 } from "./autitoria-cuentas-aspel.models";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-autitoria-cuentas-aspel",
   imports: [
+    WebButtonIcon,
     CommonModule,
     FormsModule,
     TableModule,

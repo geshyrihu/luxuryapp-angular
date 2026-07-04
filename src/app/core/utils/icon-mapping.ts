@@ -216,3 +216,179 @@ export function resolveToPrime(
   }
   return iconifyName;
 }
+
+// ─── Resolución de iconos (emoji/legacy/PrimeIcons → Iconify) ────────────────
+// Consolidado desde el antiguo prime-icon-resolver.ts. icon-mapping.ts es la
+// única fuente de verdad de iconos del proyecto.
+
+type LegacyIconRule = {
+  iconClass: string;
+  tokens: readonly string[];
+};
+
+const LEGACY_ICON_RULES: LegacyIconRule[] = [
+  {
+    tokens: ["\u{1F464}\u{1F5D1}", "\u{1F464}\u{1F5D1}️"],
+    iconClass: "pi pi-user-minus",
+  },
+  { tokens: ["←"], iconClass: "pi pi-arrow-left" },
+  { tokens: ["✅"], iconClass: "pi pi-check" },
+  {
+    tokens: ["✏", "✏️", "\u{1F4DD}"],
+    iconClass: "pi pi-pencil",
+  },
+  { tokens: ["➕"], iconClass: "pi pi-plus" },
+  { tokens: ["➖"], iconClass: "pi pi-minus" },
+  { tokens: ["❌"], iconClass: "pi pi-times-circle" },
+  { tokens: ["\u{1F50D}", "\u{1F50E}"], iconClass: "pi pi-search" },
+  { tokens: ["\u{1F441}"], iconClass: "pi pi-eye" },
+  {
+    tokens: ["\u{1F4E5}", "⬇", "⬇️"],
+    iconClass: "pi pi-download",
+  },
+  {
+    tokens: ["\u{1F4E4}", "⬆", "⬆️"],
+    iconClass: "pi pi-upload",
+  },
+  { tokens: ["\u{1F4E7}"], iconClass: "pi pi-envelope" },
+  { tokens: ["\u{1F4CD}"], iconClass: "pi pi-map-marker" },
+  { tokens: ["\u{1F4D1}", "\u{1F4C4}", "\u{1F4DC}"], iconClass: "pi pi-file" },
+  { tokens: ["\u{1F4CB}"], iconClass: "pi pi-clone" },
+  { tokens: ["\u{1F4C2}", "\u{1F4C1}"], iconClass: "pi pi-folder" },
+  { tokens: ["\u{1F5BC}", "\u{1F4F8}"], iconClass: "pi pi-image" },
+  { tokens: ["\u{1F4CE}"], iconClass: "pi pi-paperclip" },
+  { tokens: ["\u{1F4CA}"], iconClass: "pi pi-chart-bar" },
+  { tokens: ["\u{1F4C5}"], iconClass: "pi pi-calendar" },
+  { tokens: ["\u{1F4AC}"], iconClass: "pi pi-comments" },
+  { tokens: ["\u{1F4BE}", "\u{1F504}"], iconClass: "pi pi-save" },
+  { tokens: ["\u{1F4B2}"], iconClass: "pi pi-dollar" },
+  { tokens: ["\u{1F465}", "\u{1F91D}"], iconClass: "pi pi-users" },
+  { tokens: ["\u{1F464}"], iconClass: "pi pi-user" },
+  { tokens: ["\u{1F511}"], iconClass: "pi pi-key" },
+  { tokens: ["\u{1F512}"], iconClass: "pi pi-lock" },
+  { tokens: ["\u{1F513}"], iconClass: "pi pi-lock-open" },
+  { tokens: ["\u{1F517}"], iconClass: "pi pi-link" },
+  { tokens: ["\u{1F550}", "⏳"], iconClass: "pi pi-clock" },
+  { tokens: ["\u{1F680}"], iconClass: "pi pi-send" },
+  { tokens: ["\u{1F5A8}"], iconClass: "pi pi-print" },
+  { tokens: ["\u{1F4E6}"], iconClass: "pi pi-box" },
+  { tokens: ["\u{1F4D8}", "\u{1F4DA}"], iconClass: "pi pi-book" },
+  { tokens: ["\u{1F6AA}"], iconClass: "pi pi-sign-out" },
+  { tokens: ["\u{1F6AB}"], iconClass: "pi pi-ban" },
+  { tokens: ["\u{1F6E1}"], iconClass: "pi pi-shield" },
+  { tokens: ["\u{1F6E0}", "⚙", "⚙️"], iconClass: "pi pi-cog" },
+  { tokens: ["\u{1F3C1}"], iconClass: "pi pi-flag" },
+  { tokens: ["\u{1F3DB}", "\u{1F3E2}"], iconClass: "pi pi-building" },
+  { tokens: ["✨"], iconClass: "pi pi-sparkles" },
+  { tokens: ["\u{1F3CB}", "\u{1F3CB}️"], iconClass: "pi pi-heart" },
+  { tokens: ["\u{1F50C}"], iconClass: "pi pi-bolt" },
+  { tokens: ["\u{1F58C}", "\u{1F58C}️"], iconClass: "pi pi-palette" },
+  { tokens: ["\u{1FA9A}"], iconClass: "pi pi-hammer" },
+  { tokens: ["\u{1F9FE}"], iconClass: "pi pi-receipt" },
+  { tokens: ["\u{1FA9F}"], iconClass: "pi pi-window-maximize" },
+  {
+    tokens: ["⚠", "⚠️"],
+    iconClass: "pi pi-exclamation-triangle",
+  },
+];
+
+export function normalizePrimeIconClass(
+  rawIconClass: string | null | undefined,
+): string {
+  const trimmed = (rawIconClass ?? "").trim();
+  if (!trimmed) return "";
+
+  // Si ya tiene el formato de icono custom del proyecto, lo respetamos
+  if (trimmed.startsWith("icon ")) return trimmed;
+
+  // Si ya tiene el formato pi pi-, lo devolvemos tal cual
+  if (trimmed.startsWith("pi pi-")) return trimmed;
+
+  // Extraer el nombre para normalizar a pi pi-
+  let name = trimmed;
+  if (trimmed.startsWith("pi-")) name = trimmed.replace("pi-", "");
+  else if (trimmed.startsWith("pi ")) {
+    name = trimmed.replace("pi ", "").replace("pi-", "");
+  }
+
+  return `pi pi-${name}`;
+}
+
+export function resolvePrimeIcon(
+  rawValue: string | null | undefined,
+  fallback = "",
+): string {
+  if (!rawValue) return fallback;
+
+  // Si ya tiene formato de clase de icono, devolver normalizado
+  if (
+    rawValue.startsWith("pi ") ||
+    rawValue.startsWith("pi-") ||
+    rawValue.startsWith("icon ")
+  ) {
+    return normalizePrimeIconClass(rawValue);
+  }
+
+  // Intentar resolver como emoji o regla legacy
+  const normalized = rawValue
+    .normalize("NFKC")
+    .replace(/️/g, "")
+    .trim();
+
+  const matchedRule = LEGACY_ICON_RULES.find(({ tokens }) =>
+    tokens.some((token) => normalized.includes(token)),
+  );
+
+  if (matchedRule) {
+    return matchedRule.iconClass;
+  }
+
+  // Si no es nada de lo anterior, intentar normalizar como pi pi-name
+  return normalizePrimeIconClass(rawValue) || fallback;
+}
+
+export function resolveIconifyIcon(
+  rawValue: string | null | undefined,
+  fallback = "mdi:cog",
+): string {
+  if (!rawValue) return fallback;
+
+  // 1. Si ya es formato Iconify, devolverlo
+  if (rawValue.includes(":")) return rawValue;
+
+  // 2. Intentar resolver como emoji/legacy primero
+  const emojiResolved = resolvePrimeIcon(rawValue);
+  if (
+    emojiResolved &&
+    emojiResolved !== rawValue &&
+    emojiResolved.startsWith("pi pi-")
+  ) {
+    const name = emojiResolved.replace("pi pi-", "");
+    return resolveToIconify(name, fallback);
+  }
+
+  // 3. Normalizar como PrimeIcon y resolver a Iconify
+  const primeClass = normalizePrimeIconClass(rawValue);
+  const name = primeClass.replace("pi pi-", "");
+  if (name && name !== primeClass) {
+    return resolveToIconify(name, fallback);
+  }
+
+  // 4. Si es un emoji directo (que no se resolvió a pi pi-)
+  if (/\p{Emoji}/u.test(rawValue)) {
+    return rawValue;
+  }
+
+  return resolveToIconify(rawValue, fallback);
+}
+
+export function resolveIcon(
+  rawValue: string | null | undefined,
+  format: "prime" | "iconify" = "prime",
+  fallback?: string,
+): string {
+  if (format === "iconify") {
+    return resolveIconifyIcon(rawValue, fallback as string | undefined);
+  }
+  return resolvePrimeIcon(rawValue, fallback);
+}

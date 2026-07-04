@@ -4,7 +4,7 @@
     class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="flex align-items-center gap-3">
-      <il-button
+      <iw-button
         iconClass="mdi:arrow-left"
         [variant]="'text'"
         severity="secondary"
@@ -123,7 +123,7 @@
             (click)="$event.stopPropagation()"
           >
             @if (paso.diagramaId) {
-            <il-button
+            <iw-button
               iconClass="mdi:sitemap"
               [variant]="'text'"
               severity="info"
@@ -304,7 +304,7 @@
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
-                <il-button
+                <iw-button
                   iconClass="mdi:close"
                   severity="danger"
                   size="small"
@@ -367,7 +367,7 @@
               class="relative border-round overflow-hidden border-1 border-200 p-3 bg-white"
             >
               <div class="absolute top-0 right-0 m-2 z-5">
-                <il-button
+                <iw-button
                   iconClass="mdi:delete"
                   severity="danger"
                   size="small"
@@ -531,7 +531,7 @@
             <p class="text-sm text-600 m-0">{{ v.descripcionCambio }}</p>
             }
           </div>
-          <il-button
+          <iw-button
             iconClass="mdi:delete"
             [variant]="'text'"
             severity="danger"
@@ -625,14 +625,14 @@
           </div>
           <div class="flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
-              <il-button
+              <iw-button
                 iconClass="mdi:download"
                 [variant]="'text'"
                 severity="info"
                 size="small"
               />
             </a>
-            <il-button
+            <iw-button
               iconClass="mdi:delete"
               [variant]="'text'"
               severity="danger"

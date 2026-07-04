@@ -11,9 +11,9 @@
       <td>{{ invoice.folioFiscal }}</td>
       <td>{{ invoice.factura }}</td>
       <td class="text-center">
-        <il-button-item
+        <iw-button-item
           iconClass="mdi:file-pdf-box"
-          label="Ver PDF"
+          pTooltip="Ver PDF" tooltipPosition="top"
           (clicked)="viewPdf(invoice.pdfFile, 'Factura')"
         />
       </td>

@@ -220,7 +220,7 @@
         <app-icon
           icon="mdi:timeline-check-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-bold">{{ item.areaResponsable }}</h2>
@@ -251,19 +251,19 @@
           />
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-item
+          <ili-button-item
             label="Ver seguimientos"
             iconName="list-outline"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
-          <il-button-item
+          <ili-button-item
             label="Agregar Seguimiento"
             iconName="add-circle-outline"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />
-          <il-button-item
+          <ili-button-item
             label="Editar"
             iconName="create-outline"
             (clicked)="
@@ -271,7 +271,7 @@
             "
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

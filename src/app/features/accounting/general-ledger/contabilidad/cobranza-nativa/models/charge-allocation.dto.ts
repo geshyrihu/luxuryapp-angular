@@ -2,6 +2,10 @@ import { EChargeStatus, EChargeType } from "./enums";
 
 export interface PendingChargeDTO {
     id: string;
+    chargeTypeId?: string | null;
+    chargeTypeCode?: string | null;
+    chargeTypeName?: string | null;
+    chargeTypeAccountNumber?: string | null;
     type: EChargeType;
     concept: string;
     amount: number;

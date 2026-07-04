@@ -66,13 +66,13 @@
                 [style]="{'min-width':'150px'}"
                 [disabled]="!selection || selection.length === 0"
               ></p-dropdown>
-              <il-button-confirm
-                label="Aplicar"
+              <iw-button-confirm
+                pTooltip="Aplicar" tooltipPosition="top"
                 (clicked)="onBulkUpdate(bulkTipoGasto.value)"
                 [disabled]="!selection || selection.length === 0"
-              ></il-button-confirm>
+              ></iw-button-confirm>
               <span class="p-input-icon-left ml-auto">
-                <app-icon [icon]="'mdi:magnify'"></app-icon>
+                <app-icon [icon]="'mdi:magnify'" />
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
@@ -127,7 +127,7 @@
                 class="flex align-items-center justify-content-center"
                 [pReorderableRowHandle]="i"
               >
-                <app-icon [icon]="'mdi:menu'"></app-icon>
+                <app-icon [icon]="'mdi:menu'" />
               </div>
             </td>
             <td>
@@ -139,9 +139,9 @@
             <td>{{ invoice.bankShortName }}</td>
             <td>
               <!-- Edit controls -->
-              <il-button-edit
+              <iw-button-edit
                 (clicked)="onRowEditInit(invoice)"
-              ></il-button-edit>
+              ></iw-button-edit>
             </td>
           </tr>
         </ng-template>
@@ -154,10 +154,3 @@
     </p-card>
   </div>
 </div>
-
-
-
-
-
-
-

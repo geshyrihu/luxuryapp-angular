@@ -394,7 +394,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       this.toast.showError(
-        "Error de validaciÛn",
+        "Error de validaci√≥n",
         "El nombre del reporte es obligatorio.",
       );
       return;
@@ -465,8 +465,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
   aplicarEjemplo(tipo: "egp" | "balance") {
     if (tipo === "egp") {
       this.form.patchValue({
-        name: "Estado de Ganancias y PÛrdidas (Ejemplo)",
-        description: "Reporte din·mico de Ingresos vs Gastos operativos",
+        name: "Estado de Ganancias y P√≥rdidas (Ejemplo)",
+        description: "Reporte din√°mico de Ingresos vs Gastos operativos",
         visualizationType: "table-simple",
       });
 

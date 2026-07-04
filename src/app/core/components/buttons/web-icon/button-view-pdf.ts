@@ -15,7 +15,7 @@ import { openPdf } from "../shared/pdf";
       [disabled]="disabled() || loading()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:file-pdf-box'" />
+      <app-icon [icon]="iconClass() || 'fluent-color:document-16'" />
     </button>
   `,
 })
@@ -36,4 +36,3 @@ export class WebButtonIconViewPdf extends BaseButton {
     this.emitClick(event);
   }
 }
-

@@ -64,10 +64,27 @@ interface IGoogleCalendarEventListItem {
   recurrenceSummary: string;
 }
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-google-calendar",
   templateUrl: "./google-calendar.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FullCalendarModule,

@@ -18,7 +18,7 @@
         />
       </div>
       <div class="col-2">
-        <il-button-active-desactive
+        <iw-button-active-desactive
           [state]="isCurrent"
           (stateChange)="onSelectActive($event)"
         />
@@ -108,11 +108,11 @@
       <td class="text-center">
         <!-- Alineación opcional -->
         @if (item.document) {
-        <il-button-view-pdf
+        <iw-button-view-pdf
           iconClass="mdi:file-pdf-box"
           [url]="item.pathDocument"
           fileName="Poliza | Contrato"
-          label="Ver documento"
+          pTooltip="Ver documento" tooltipPosition="top"
           class="text-xl"
         />
         }
@@ -120,13 +120,13 @@
       <!-- Opciones -->
       <td>
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
           @if (item.document) {
-          <il-button-delete
-            label="Eliminar documento"
+          <iw-button-delete
+            pTooltip="Eliminar documento" tooltipPosition="top"
             ngbTooltip="Eliminar documento"
             (confirmed)="onDeleteDocument(item.id)"
           />
@@ -161,7 +161,7 @@
         <app-icon
           icon="mdi:file-sign"
           style="font-size: 1.1rem; color: var(--ds-warning)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
@@ -174,36 +174,36 @@
         </div>
         <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
         <p class="text-xs text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon> Inicio: {{
+          <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Inicio: {{
           item.startDate }}
         </p>
       </ion-label>
 
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-view-pdf
+            <ili-button-view-pdf
               [url]="item.pathDocument"
               fileName="Poliza | Contrato"
               label="Ver PDF"
             />
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
             @if (item.document) {
-            <il-button-delete
+            <ili-button-delete
               label="Eliminar documento"
               ngbTooltip="Eliminar documento"
               (confirmed)="onDeleteDocument(item.id)"
             />
             }
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

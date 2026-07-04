@@ -22,7 +22,6 @@ import {
   provideAppInitializer,
   provideZonelessChangeDetection,
 } from "@angular/core";
-import { GlobalErrorHandler } from "src/app/core/services/global-error-handler.service";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   provideRouter,
@@ -31,6 +30,7 @@ import {
 } from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
 import { provideIonicAngular } from "@ionic/angular/standalone";
+import { GlobalErrorHandler } from "src/app/core/services/global-error-handler.service";
 // Importaciones de Firebase
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
@@ -41,7 +41,9 @@ import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
+import * as echarts from "echarts";
 import { provideCharts, withDefaultRegisterables } from "ng2-charts";
+import { provideEchartsCore } from "ngx-echarts";
 import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
 import { provideToastr } from "ngx-toastr";
@@ -49,9 +51,10 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { providePrimeNG } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
+import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
 import { jwtInterceptor } from "src/app/core/services/jwt.interceptor.fn";
-import { offlineInterceptorFn } from "src/app/core/services/offline.interceptor.fn";
 import { MessagingService } from "src/app/core/services/notification-messaging.service";
+import { offlineInterceptorFn } from "src/app/core/services/offline.interceptor.fn";
 import MyPreset, { PrimeNgSpanishLocale } from "src/app/mypreset";
 import { initializeAppState } from "./app-initializer";
 import { appRoutes } from "./app.routes";
@@ -70,6 +73,7 @@ export const appConfig: ApplicationConfig = {
     ),
 
     provideAppInitializer(initializeAppState),
+    provideAppInitializer(preloadIconifyIcons()),
 
     provideHttpClient(
       withInterceptors([offlineInterceptorFn, jwtInterceptor]),
@@ -98,6 +102,7 @@ export const appConfig: ApplicationConfig = {
       translation: PrimeNgSpanishLocale,
     }),
     provideCharts(withDefaultRegisterables()),
+    provideEchartsCore({ echarts }),
     provideEnvironmentNgxMask(),
     provideFlatpickrDefaults({
       locale: Spanish,
@@ -149,11 +154,3 @@ export const appConfig: ApplicationConfig = {
     provideIonicAngular({ mode: "ios" }),
   ],
 };
-
-
-
-
-
-
-
-

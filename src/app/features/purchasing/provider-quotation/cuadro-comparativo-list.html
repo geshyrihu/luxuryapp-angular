@@ -419,7 +419,7 @@
         [style.width.%]="50 / cotizacionProveedorSignal().length"
       >
         @if (proveedor.filePath) {
-        <il-button-view-pdf [url]="proveedor.filePath" pdf="Cotizacion" />
+        <iw-button-view-pdf [url]="proveedor.filePath" pdf="Cotizacion" />
         }
       </td>
       }
@@ -472,7 +472,7 @@
         </td>
         <td class="text-center">
           @if (!cleanView) {
-          <il-button
+          <iw-button
             iconClass="mdi:delete"
             (clicked)="onDeleteBudget(budget.id)"
             severity="danger"

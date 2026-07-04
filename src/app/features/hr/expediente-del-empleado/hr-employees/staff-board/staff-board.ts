@@ -44,11 +44,18 @@ import { WorkPositionHours } from "src/app/features/recruitment/reclutamiento-y-
 import { IEmployee } from "../employees/models/employee.interface";
 import { CardEmployee } from "../employees/pages/card-employee";
 
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-staff-board",
   templateUrl: "./staff-board.html",
   styleUrl: "./staff-board.scss",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconItem,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
@@ -19,5 +19,9 @@ import { BaseButton } from "../base/base-button";
     </button>
   `,
 })
-export class WebButtonLabelAdd extends BaseButton {}
-
+export class WebButtonLabelAdd extends BaseButton {
+  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
+    "ghost",
+  );
+  override severity = input<any>("info");
+}

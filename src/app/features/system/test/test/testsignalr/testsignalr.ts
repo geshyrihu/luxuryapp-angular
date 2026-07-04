@@ -29,7 +29,7 @@ export class Testsignalr implements OnInit {
   // Form Controls
   userControl = new FormControl(null);
   multiUserControl = new FormControl([]);
-  titleControl = new FormControl("Título de prueba");
+  titleControl = new FormControl("TÃºtulo de prueba");
   messageControl = new FormControl("Mensaje de prueba desde Angular");
   routeControl = new FormControl("/ruta/prueba");
 

@@ -11,9 +11,14 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-catalog-replica",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CommonModule,
     FormsModule,
     TableModule,

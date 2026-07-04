@@ -13,7 +13,7 @@ import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/prim
 import {
   ETypeEmpresa,
   StatusBadge,
-} from "src/app/core/components/shared/status-badge/status-badge";
+} from "src/app/core/components/web/status-badge/status-badge";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -27,10 +27,22 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-aspel-customer-empresa-list",
   templateUrl: "./aspel-customer-empresa-list.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     ActionMenu,
     CommonModule,
     WebButtonLabelDelete,

@@ -7,9 +7,14 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-mis-inspecciones-agregar-imagenes",
-  imports: [WebButtonLabel, NgbTooltipModule],
+  imports: [
+    WebButtonIcon,
+    TooltipModule,WebButtonLabel, NgbTooltipModule],
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })
 export class MisInspeccionesAgregarImagenes {

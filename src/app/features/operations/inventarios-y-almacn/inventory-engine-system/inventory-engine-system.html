@@ -41,31 +41,31 @@
               <div class="card-body text-center">
                 <h4 class="text-lg font-bold">{{ item.nameMachinery }}</h4>
                 <div class="flex justify-content-center">
-                  <il-button
+                  <iw-button
                     pTooltip="Servicios calendarizados"
                     styleClass="p-button-outlined p-button-primary p-button-sm"
                     iconClass="mdi:calendar"
                     (clicked)="showModalListOrderService(item.id)"
                   />
-                  <il-button
+                  <iw-button
                     pTooltip="Historico de servicios"
                     styleClass="p-button-outlined p-button-primary p-button-sm"
                     iconClass="mdi:palette"
                     (clicked)="onServiceHistory(item.id)"
                   />
-                  <il-button
+                  <iw-button
                     pTooltip="Bitacora"
                     styleClass="p-button-outlined p-button-warning p-button-sm"
                     iconClass="mdi:book"
                     (clicked)="onBitacoraIndividual(item.id)"
                   />
-                  <il-button
+                  <iw-button
                     pTooltip="Ficha tócnica"
                     styleClass="p-button-outlined p-button-primary p-button-sm"
                     iconClass="mdi:book"
                     (clicked)="showModalFichatecnica(item)"
                   />
-                  <il-button
+                  <iw-button
                     iconClass="mdi:pencil"
                     styleClass="p-button-outlined p-button-secondary p-button-sm"
                     pTooltip="Editar"

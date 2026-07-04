@@ -23,7 +23,7 @@
           />
         </div>
         <div class="col-12 sm:col-2">
-          <il-button-active-desactive
+          <iw-button-active-desactive
             [state]="state()"
             (stateChange)="onSelectActive($event)"
           />
@@ -65,7 +65,7 @@
           @if (necesitaActualizacion(item)) {
           <div class="flex align-items-center">
             <p-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
               pTooltip="Este puesto requiere que se le asigne un rol"
             />
@@ -97,30 +97,30 @@
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
             @if (shouldShowVacancyRequest(item)) {
-            <il-button-item
+            <iw-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
               iconClass="mdi:account-plus"
-              label="Solicitar vacante"
+              pTooltip="Solicitar vacante" tooltipPosition="top"
               [pTooltip]="'Solicitar vacante'"
             />
             }
-            <il-button-item
+            <iw-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconClass="mdi:book"
-              label="Descripción"
+              pTooltip="Descripción" tooltipPosition="top"
               [pTooltip]="'Descripción de puesto'"
             />
-            <il-button-item
+            <iw-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
               iconClass="mdi:clock-outline"
-              label="Horarios"
+              pTooltip="Horarios" tooltipPosition="top"
               [pTooltip]="'Horarios de trabajo'"
             />
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             />
             @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <il-button-delete (confirmed)="onDelete(item.id)" />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
             }
           </div>
         </td>
@@ -133,8 +133,8 @@
       </div>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -149,7 +149,7 @@
       customFilters
       class="flex justify-content-end p-2 border-bottom-1 surface-border"
     >
-      <il-button-active-desactive (stateChange)="onSelectActive($event)" />
+      <ili-button-active-desactive (stateChange)="onSelectActive($event)" />
     </div>
 
     <ng-template #listItemTemplate let-item>
@@ -169,7 +169,7 @@
           <app-icon
             icon="mdi:briefcase-outline"
             style="font-size: 1.25rem; color: var(--ds-primary)"
-          ></app-icon>
+          />
           }
         </div>
 
@@ -183,8 +183,7 @@
           <h2 class="text-base font-bold m-0 text-900">
             @if (necesitaActualizacion(item)) {
             <ion-badge color="warning">
-              <app-icon [icon]="'mdi:alert'" class="mr-1"></app-icon>Actualizar
-              puesto
+              <app-icon [icon]="'mdi:alert'" class="mr-1" />Actualizar puesto
             </ion-badge>
             } @else { {{ item.applicationRoleName }} }
           </h2>
@@ -201,37 +200,37 @@
           }
         </ion-label>
 
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
             @if (shouldShowVacancyRequest(item)) {
-            <il-button-item
+            <ili-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
               iconName="person-add-outline"
               label="Solicitar vacante"
             />
             }
-            <il-button-item
+            <ili-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconName="book-outline"
               label="Descripción"
             />
-            <il-button-item
+            <ili-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
               iconName="time-outline"
               label="Horarios"
             />
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
             @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
             }
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

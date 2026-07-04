@@ -41,14 +41,17 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import {
   resolveIconifyIcon,
   resolvePrimeIcon,
-} from "src/app/core/utils/prime-icon-resolver";
+} from "src/app/core/utils/icon-mapping";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+
 @Component({
   selector: "app-cronograma-anual-mantenimiento",
   templateUrl: "./cronograma-anual-mantenimiento.html",
   imports: [
+    WebButtonIconItem,
     TableModule,
     FormsModule,
     WebButtonLabelItem,

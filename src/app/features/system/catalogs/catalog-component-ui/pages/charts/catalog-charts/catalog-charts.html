@@ -1,8 +1,57 @@
 <div class="grid">
-    <div class="col-12 lg:col-6"><p-card header="Bar Chart (Custom)"><app-chart-bar [data]="barChartData()" /></p-card></div>
-    <div class="col-12 lg:col-6"><p-card header="Pie Chart (Standard)"><app-chart-pie [data]="pieChartData()" /></p-card></div>
-    
-    <div class="col-12 lg:col-8"><p-card header="Line Chart (Tendencias)"><p-chart type="line" [data]="lineChartData()" [options]="chartOptions" height="300px"></p-chart></p-card></div>
-    <div class="col-12 lg:col-4"><p-card header="Doughnut Chart (Distribución)"><p-chart type="doughnut" [data]="doughnutChartData()" [options]="circularOptions" height="300px"></p-chart></p-card></div>
-    <div class="col-12 lg:col-6"><p-card header="Radar Chart (Presupuesto)"><p-chart type="radar" [data]="radarChartData()" [options]="circularOptions" height="300px"></p-chart></p-card></div>
+  <div class="col-12">
+    <p class="text-sm mb-2" style="color: var(--ds-text-secondary)">
+      Estos gráficos usan los componentes de <code>core/components/web/charts</code>,
+      ahora con motor <strong>ECharts</strong> (ngx-echarts). La API pública no cambió.
+    </p>
+  </div>
+
+  <!-- Bar (custom-bar-chart, tipo bar) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Bar Chart — app-custom-bar-chart">
+      <app-custom-bar-chart [data]="barChartData()" chartType="bar" />
+    </p-card>
+  </div>
+
+  <!-- Line (chart-wrapper, tipo line) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Line Chart — app-chart-wrapper">
+      <app-chart-wrapper type="line" [data]="lineChartData()" height="300px" />
+    </p-card>
+  </div>
+
+  <!-- Pie (pie-chart, formato ngx-charts) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Pie Chart — app-pie-chart">
+      <app-pie-chart [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
+    </p-card>
+  </div>
+
+  <!-- Doughnut (chart-wrapper, tipo doughnut) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Doughnut — app-chart-wrapper">
+      <app-chart-wrapper type="doughnut" [data]="doughnutChartData()" height="300px" />
+    </p-card>
+  </div>
+
+  <!-- Radar (primeng-radar-chart) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Radar Chart — app-primeng-radar-chart">
+      <app-primeng-radar-chart [chartData]="radarChartData()" />
+    </p-card>
+  </div>
+
+  <!-- Multi-axis (multi-axis-chart, doble eje Y) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Multi-Axis — app-multi-axis-chart">
+      <app-multi-axis-chart [data]="multiAxisData()" />
+    </p-card>
+  </div>
+
+  <!-- Advanced Pie (advanced-pie-chart) -->
+  <div class="col-12 lg:col-6">
+    <p-card header="Advanced Pie — app-advanced-pie-chart">
+      <app-advanced-pie-chart [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
+    </p-card>
+  </div>
 </div>

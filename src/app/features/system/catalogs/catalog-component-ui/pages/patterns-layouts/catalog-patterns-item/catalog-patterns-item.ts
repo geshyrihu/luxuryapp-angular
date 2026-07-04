@@ -13,7 +13,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/shared/status-badge/status-badge";
+} from "src/app/core/components/web/status-badge/status-badge";
 
 const PATTERNS_LABELS: Record<string, string> = {
   complexcard: "Complex Card",

@@ -1,71 +1,76 @@
 ﻿@if (cargando()) {
-  <div class="flex align-items-center gap-2 py-3">
-    <app-icon icon="mdi:loading"  class="ner text-primary ds-animate-spin"></app-icon>
-    <span class="text-sm text-500">Cargando vacantes...</span>
-  </div>
+<div class="flex align-items-center gap-2 py-3">
+  <app-icon icon="mdi:loading" class="ner text-primary ds-animate-spin" />
+  <span class="text-sm text-500">Cargando vacantes...</span>
+</div>
 } @else if (!resumen() || resumen()!.total === 0) {
-  <div class="flex align-items-center gap-2 py-2 text-400">
-    <app-icon icon="mdi:check-circle"></app-icon>
-    <span class="text-sm">Sin vacantes pendientes</span>
-  </div>
+<div class="flex align-items-center gap-2 py-2 text-400">
+  <app-icon icon="mdi:check-circle" />
+  <span class="text-sm">Sin vacantes pendientes</span>
+</div>
 } @else {
 
-  <!-- Total -->
-  <div class="flex align-items-center gap-2 mb-3">
-    <span class="text-3xl font-bold text-900">{{ resumen()!.total }}</span>
-    <span class="text-sm text-500">
-      vacante{{ resumen()!.total === 1 ? '' : 's' }} pendiente{{ resumen()!.total === 1 ? '' : 's' }}
-    </span>
-  </div>
+<!-- Total -->
+<div class="flex align-items-center gap-2 mb-3">
+  <span class="text-3xl font-bold text-900">{{ resumen()!.total }}</span>
+  <span class="text-sm text-500">
+    vacante{{ resumen()!.total === 1 ? '' : 's' }} pendiente{{ resumen()!.total
+    === 1 ? '' : 's' }}
+  </span>
+</div>
 
-  <!-- Por cliente -->
-  <div class="flex flex-column gap-3">
-    @for (customer of resumen()!.customers; track customer.customerName) {
+<!-- Por cliente -->
+<div class="flex flex-column gap-3">
+  @for (customer of resumen()!.customers; track customer.customerName) {
 
-      <div>
-        <!-- Nombre del cliente -->
-        <div class="flex align-items-center justify-content-between mb-1">
-          <span class="text-sm font-bold text-700">{{ customer.customerName }}</span>
+  <div>
+    <!-- Nombre del cliente -->
+    <div class="flex align-items-center justify-content-between mb-1">
+      <span class="text-sm font-bold text-700"
+        >{{ customer.customerName }}</span
+      >
+      <span
+        class="text-xs font-semibold border-round px-2 py-1"
+        style="background: var(--primary-100); color: var(--primary-700)"
+      >
+        {{ customer.total }}
+      </span>
+    </div>
+
+    <!-- Roles del cliente -->
+    <div class="flex flex-column gap-1 pl-2 border-left-2 surface-border">
+      @for (rol of customer.roles; track rol.roleName) {
+      <div class="flex align-items-center justify-content-between py-1">
+        <div class="flex align-items-center gap-2 min-w-0">
+          <app-icon icon="mdi:briefcase" class="text-xs text-400" />
           <span
-            class="text-xs font-semibold border-round px-2 py-1"
-            style="background: var(--primary-100); color: var(--primary-700)"
+            class="text-xs text-800 white-space-nowrap overflow-hidden text-overflow-ellipsis"
           >
-            {{ customer.total }}
+            {{ rol.roleName }}
           </span>
         </div>
-
-        <!-- Roles del cliente -->
-        <div class="flex flex-column gap-1 pl-2 border-left-2 surface-border">
-          @for (rol of customer.roles; track rol.roleName) {
-            <div class="flex align-items-center justify-content-between py-1">
-              <div class="flex align-items-center gap-2 min-w-0">
-                <app-icon icon="mdi:briefcase"  class="text-xs text-400"></app-icon>
-                <span class="text-xs text-800 white-space-nowrap overflow-hidden text-overflow-ellipsis">
-                  {{ rol.roleName }}
-                </span>
-              </div>
-              <div class="flex align-items-center gap-2 flex-none ml-2">
-                @if (rol.count > 1) {
-                  <span class="text-xs text-500">x{{ rol.count }}</span>
-                }
-                <!-- Dias del item mas antiguo -->
-                @if (rol.items[0].diasPendiente > 0) {
-                  <span
-                    class="text-xs border-round px-1"
-                    [class.text-ds-danger]="rol.items[0].diasPendiente > 30"
-                    [class.text-ds-warning]="rol.items[0].diasPendiente > 14 && rol.items[0].diasPendiente <= 30"
-                    [class.text-500]="rol.items[0].diasPendiente <= 14"
-                  >
-                    {{ rol.items[0].diasPendiente }}d
-                  </span>
-                }
-              </div>
-            </div>
+        <div class="flex align-items-center gap-2 flex-none ml-2">
+          @if (rol.count > 1) {
+          <span class="text-xs text-500">x{{ rol.count }}</span>
+          }
+          <!-- Dias del item mas antiguo -->
+          @if (rol.items[0].diasPendiente > 0) {
+          <span
+            class="text-xs border-round px-1"
+            [class.text-ds-danger]="rol.items[0].diasPendiente > 30"
+            [class.text-ds-warning]="rol.items[0].diasPendiente > 14 && rol.items[0].diasPendiente <= 30"
+            [class.text-500]="rol.items[0].diasPendiente <= 14"
+          >
+            {{ rol.items[0].diasPendiente }}d
+          </span>
           }
         </div>
       </div>
-
-    }
+      }
+    </div>
   </div>
+
+  }
+</div>
 
 }

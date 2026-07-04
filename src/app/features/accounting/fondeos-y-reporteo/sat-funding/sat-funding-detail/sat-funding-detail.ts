@@ -29,10 +29,15 @@ import {
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+
 @Component({
   selector: "app-sat-funding-detail",
   templateUrl: "./sat-funding-detail.html",
   imports: [
+    WebButtonIconConfirm,
+    WebButtonIconEdit,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

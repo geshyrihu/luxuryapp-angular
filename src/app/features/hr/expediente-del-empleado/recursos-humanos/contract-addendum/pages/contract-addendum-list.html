@@ -48,22 +48,22 @@
         <td class="text-center">
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
           'Pendiente') {
-          <il-button-item
+          <iw-button-item
             icon="mdi:login"
             title="Firmar"
             (click)="onSign(item)"
           />
-          <il-button-edit (click)="onEdit(item)" />
+          <iw-button-edit (click)="onEdit(item)" />
           } @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
           'Pendiente') {
-          <il-button-item
+          <iw-button-item
             icon="mdi:close-circle"
             title="Cancelar"
             severity="danger"
             (click)="onCancel(item)"
           />
           }
-          <il-button-delete (click)="onDelete(item.id)" />
+          <iw-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
@@ -71,8 +71,8 @@
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
   </p-table>
 
   <app-data-view-mobile
@@ -94,7 +94,7 @@
           <app-icon
             icon="mdi:file-sign"
             style="font-size: 1.1rem; color: var(--ds-warning)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h2 class="font-bold">
@@ -110,15 +110,15 @@
             >
           </p>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

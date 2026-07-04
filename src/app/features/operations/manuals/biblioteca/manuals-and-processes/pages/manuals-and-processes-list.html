@@ -2,7 +2,9 @@
 <div class="hidden md:block">
   <!-- Encabezado -->
   <div class="mb-6">
-    <div class="flex align-items-center justify-content-between gap-3 flex-wrap">
+    <div
+      class="flex align-items-center justify-content-between gap-3 flex-wrap"
+    >
       <div class="flex align-items-center gap-3">
         <div
           class="flex align-items-center justify-content-center bg-blue-50 border-round-xl flex-shrink-0"
@@ -13,7 +15,8 @@
         <div>
           <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
           <p class="text-base text-500 m-0">
-            óndice general de procedimientos y documentación operativa de la organización
+            óndice general de procedimientos y documentación operativa de la
+            organización
           </p>
         </div>
       </div>
@@ -37,7 +40,10 @@
   <!-- Loading -->
   @if (loading()) {
   <div class="flex justify-content-center align-items-center py-8">
-    <app-icon [icon]="'mdi:loading'" class="text-3xl text-400 ds-animate-spin" />
+    <app-icon
+      [icon]="'mdi:loading'"
+      class="text-3xl text-400 ds-animate-spin"
+    />
   </div>
   }
 
@@ -56,9 +62,11 @@
   @else {
   <div class="flex flex-column gap-5">
     @for (group of groupedData(); track group.dept) {
-    <div class="surface-card border-round-xl border-1 surface-border shadow-2 overflow-hidden">
+    <div
+      class="surface-card border-round-xl border-1 surface-border shadow-2 overflow-hidden"
+    >
       <!-- Encabezado de Sección (Departamento) -->
-      <div 
+      <div
         class="p-4 flex align-items-center justify-content-between gap-3 border-bottom-1 surface-border"
         [style.border-top]="'4px solid ' + group.config.color"
       >
@@ -83,12 +91,13 @@
             </p>
           </div>
         </div>
-        <span 
+        <span
           class="text-xs font-bold px-3 py-2 border-round-full"
           [style.backgroundColor]="group.config.bgColor"
           [style.color]="group.config.color"
         >
-          {{ group.manuals.length }} {{ group.manuals.length === 1 ? 'documento' : 'documentos' }}
+          {{ group.manuals.length }} {{ group.manuals.length === 1 ? 'documento'
+          : 'documentos' }}
         </span>
       </div>
 
@@ -102,12 +111,14 @@
           <!-- Izquierda: Número, Folio e óndice -->
           <div class="flex align-items-center flex-grow-1 min-w-0 mr-4">
             <!-- Número de óndice de manual -->
-            <span class="font-mono text-sm text-400 font-bold w-2rem flex-shrink-0 hidden sm:inline-block">
+            <span
+              class="font-mono text-sm text-400 font-bold w-2rem flex-shrink-0 hidden sm:inline-block"
+            >
               {{ (index + 1) | number: '2.0-0' }}
             </span>
 
             <!-- Folio del manual como badge -->
-            <span 
+            <span
               class="font-mono text-xs font-bold px-2 py-1 border-round-lg mr-3 border-1 flex-shrink-0"
               [style.borderColor]="group.config.color"
               [style.color]="group.config.color"
@@ -122,32 +133,42 @@
             </span>
 
             <!-- Lónea punteada de óndice (TOC Leader Line) -->
-            <div class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 hidden md:block" style="opacity: 0.6;"></div>
+            <div
+              class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 hidden md:block"
+              style="opacity: 0.6"
+            ></div>
           </div>
 
           <!-- Derecha: Metadatos y Acciones -->
-          <div class="flex align-items-center gap-3 flex-shrink-0" (click)="$event.stopPropagation()">
+          <div
+            class="flex align-items-center gap-3 flex-shrink-0"
+            (click)="$event.stopPropagation()"
+          >
             <!-- Versión -->
-            <span class="text-xs font-mono text-500 bg-100 border-round px-2 py-1">
+            <span
+              class="text-xs font-mono text-500 bg-100 border-round px-2 py-1"
+            >
               v{{ manual.currentVersion }}
             </span>
 
             <!-- Alcance (Global / Local) -->
             @if (manual.isGlobal) {
-            <span class="text-xs font-bold px-2 py-1 border-round bg-green-50 text-green-700">
+            <span
+              class="text-xs font-bold px-2 py-1 border-round bg-green-50 text-green-700"
+            >
               Global
             </span>
             }
 
             <!-- Divisor -->
-            <div class="hidden sm:block surface-border border-left-1 h-1.5rem mx-1"></div>
+            <div
+              class="hidden sm:block surface-border border-left-1 h-1.5rem mx-1"
+            ></div>
 
             <!-- Botones de Acción -->
             <div class="flex align-items-center gap-1">
               @if (isAdmin()) {
-              <il-button-edit
-                (clicked)="onModalForm({ id: manual.id })"
-              />
+              <il-button-edit (clicked)="onModalForm({ id: manual.id })" />
               <il-button
                 iconClass="mdi:cog"
                 label="Editor"
@@ -183,26 +204,50 @@
     [showAdd]="isAdmin()"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full" class="ion-no-padding" (click)="onViewTemplate(item.id)">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      <ion-item
+        lines="full"
+        class="ion-no-padding"
+        (click)="onViewTemplate(item.id)"
       >
-        <app-icon icon="mdi:book-open-page-variant" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-primary-50, #edf1ff);
+          "
+        >
+          <app-icon
+            icon="mdi:book-open-page-variant"
+            style="font-size: 1.1rem; color: var(--ds-primary)"
+          />
+        </div>
         <ion-label>
           <div class="flex align-items-center gap-2 mb-1">
-            <span class="font-mono text-xs font-bold text-primary">{{ item.folio }}</span>
+            <span class="font-mono text-xs font-bold text-primary"
+              >{{ item.folio }}</span
+            >
             @if (item.isGlobal) {
-            <span class="text-xs font-bold px-1.5 py-0.5 border-round bg-green-50 text-green-700">G</span>
+            <span
+              class="text-xs font-bold px-1.5 py-0.5 border-round bg-green-50 text-green-700"
+              >G</span
+            >
             }
-            <span class="text-xs text-500 font-mono">v{{ item.currentVersion }}</span>
+            <span class="text-xs text-500 font-mono"
+              >v{{ item.currentVersion }}</span
+            >
           </div>
-          <h2 class="font-semibold text-wrap m-0 text-color">{{ item.description }}</h2>
+          <h2 class="font-semibold text-wrap m-0 text-color">
+            {{ item.description }}
+          </h2>
           <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
         </ion-label>
-        <div slot="end" class="flex align-items-center gap-1" (click)="$event.stopPropagation()">
+        <div
+          slot="end"
+          class="flex align-items-center gap-1"
+          (click)="$event.stopPropagation()"
+        >
           @if (isAdmin()) {
           <il-button-edit (clicked)="onModalForm({ id: item.id })" />
           <il-button-delete (confirmed)="onDelete(item)" />

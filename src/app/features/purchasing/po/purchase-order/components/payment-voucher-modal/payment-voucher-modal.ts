@@ -6,13 +6,19 @@ import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-payment-voucher-modal",
   imports: [
+    WebButtonIcon,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

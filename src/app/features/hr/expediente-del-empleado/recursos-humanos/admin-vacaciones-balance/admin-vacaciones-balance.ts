@@ -24,9 +24,12 @@ import { VacationBalanceAdminViewDto } from "../interfaces/vacation-balance-admi
 import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit";
 
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+
 @Component({
   selector: "app-admin-vacaciones-balance",
   imports: [
+    WebButtonIconEdit,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     CardModule,

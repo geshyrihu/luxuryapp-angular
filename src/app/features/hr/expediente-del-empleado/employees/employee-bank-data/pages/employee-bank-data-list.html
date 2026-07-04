@@ -37,12 +37,12 @@
       <td>{{ item.relacionName }}</td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <il-button
-            icon="edit"
+          <iw-button
+            iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario y Beneficiario' })"
           />
-          <il-button-confirm
+          <iw-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id)"
@@ -78,7 +78,7 @@
         <app-icon
           icon="mdi:bank-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.bankName }}</h3>
@@ -86,18 +86,15 @@
         <p>Beneficiario: {{ item.nameContact }}</p>
         <p>{{ item.relacionName }} | {{ item.phoneNumber }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario y Beneficiario' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

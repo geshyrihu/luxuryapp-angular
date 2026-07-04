@@ -33,8 +33,8 @@
         (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
         [dt]="dt"
       />
-      <il-button-download
-        label="Excel"
+      <iw-button-download
+        pTooltip="Excel" tooltipPosition="top"
         (clicked)="exportToExcel()"
         pTooltip="Descargar Excel para PowerPoint"
         tooltipPosition="bottom"
@@ -88,8 +88,7 @@
         <small>{{ item.description }}</small>
       </td>
       <td>
-        <app-icon [icon]="'mdi:account'" class="mr-2"></app-icon>{{
-        item.assignee }}
+        <app-icon [icon]="'mdi:account'" class="mr-2" />{{ item.assignee }}
       </td>
       <td class="text-center">
         <p-tag
@@ -113,7 +112,7 @@
       <td>{{ item.completionDate }}</td>
       <td class="text-center">{{ item.diferenciaDias }}</td>
       <td class="text-center">
-        <il-button-tracking
+        <iw-button-tracking
           [ticketId]="item.id"
           [badgeCount]="item.tracking"
           (clickTracking)="onModalSeguimiento($event)"
@@ -121,7 +120,7 @@
       </td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalEdit({ id: item.id, title: 'EDITAR TICKET LEGAL' })"
           />
         </div>
@@ -157,7 +156,7 @@
         <app-icon
           icon="mdi:ticket-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
@@ -184,22 +183,22 @@
         </div>
       </ion-label>
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               iconName="clipboard-outline"
               label="Seguimiento"
               (clicked)="onModalSeguimiento({ ticketId: item.id, title: 'Seguimiento' })"
               []="true"
             />
-            <il-button-item
+            <ili-button-item
               iconName="refresh-outline"
               label="Status"
               (clicked)="onModalUpdateStatus({ id: item.id })"
               []="true"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

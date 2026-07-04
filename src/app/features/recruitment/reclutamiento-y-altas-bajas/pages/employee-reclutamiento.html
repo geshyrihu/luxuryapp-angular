@@ -7,7 +7,10 @@
         <li
           class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
         >
-          <app-icon [icon]="'mdi:account-plus'" class="mr-3 text-red-500 text-lg"></app-icon>
+          <app-icon
+            [icon]="'mdi:account-plus'"
+            class="mr-3 text-red-500 text-lg"
+          />
           <span class="text-red-500 font-medium">
             Solicitud de alta en proceso
           </span>
@@ -17,7 +20,7 @@
           class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
           (click)="onModalSolicitudALta()"
         >
-          <app-icon [icon]="'mdi:account-plus'" class="mr-3 text-lg"></app-icon>
+          <app-icon [icon]="'mdi:account-plus'" class="mr-3 text-lg" />
           <span class="font-medium">Solicitar Alta</span>
         </li>
         }
@@ -38,14 +41,17 @@
           class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
           (click)="onModalSolicitudBaja()"
         >
-          <app-icon [icon]="'mdi:account-minus'" class="mr-3 text-lg"></app-icon>
+          <app-icon [icon]="'mdi:account-minus'" class="mr-3 text-lg" />
           <span class="font-medium">Solicitar Baja</span>
         </li>
         } @if (solicitudBajaStatus()) {
         <li
           class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
         >
-          <app-icon [icon]="'mdi:account-minus'" class="mr-3 text-red-500 text-lg"></app-icon>
+          <app-icon
+            [icon]="'mdi:account-minus'"
+            class="mr-3 text-red-500 text-lg"
+          />
           <span class="text-red-500 font-medium"
             >Solicitar Baja en proceso</span
           >
@@ -57,7 +63,7 @@
           class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
           (click)="onModalSolicitudModificacionSalarion()"
         >
-          <app-icon [icon]="'mdi:currency-usd'" class="mr-3 text-lg"></app-icon>
+          <app-icon [icon]="'mdi:currency-usd'" class="mr-3 text-lg" />
           <span class="font-medium">Solicitar modificación de salario</span>
         </li>
         }
@@ -66,7 +72,10 @@
         <li
           class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
         >
-          <app-icon [icon]="'mdi:currency-usd'" class="mr-3 text-red-500 text-lg"></app-icon>
+          <app-icon
+            [icon]="'mdi:currency-usd'"
+            class="mr-3 text-red-500 text-lg"
+          />
           <span class="text-red-500 font-medium"
             >Solicitar modificación de salario en proceso</span
           >
@@ -76,9 +85,3 @@
     </div>
   </div>
 </p-card>
-
-
-
-
-
-

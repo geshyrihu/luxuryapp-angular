@@ -16,10 +16,15 @@ import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-presupuesto-web-aspel-wrapper",
   templateUrl: "./wrapper.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     TabsModule,
     FormsModule,
     IonSegment,

@@ -77,24 +77,24 @@
           <app-icon
             [icon]="'mdi:folder-arrow-down'"
             class="icon icon- icon-xl"
-          ></app-icon>
+          />
         </a>
         }
       </td>
 
       <td class="no-print">
         <div class="flex">
-          <il-button-item
+          <iw-button-item
             (clicked)="
               onModalDetail({ id: item.id, title: 'Detalle de la Solicitud' })
             "
-            label="??"
+            pTooltip="??" tooltipPosition="top"
           />
           @if (item.status != "Aprobada") {
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
@@ -129,7 +129,7 @@
         <app-icon
           icon="mdi:calendar-check-outline"
           style="font-size: 1.1rem; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.requestTypeName }}</h2>
@@ -143,18 +143,15 @@
         </p>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

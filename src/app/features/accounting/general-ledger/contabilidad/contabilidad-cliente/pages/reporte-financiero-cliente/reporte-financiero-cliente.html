@@ -1,172 +1,249 @@
 ﻿<div class="rf-shell">
   @if (loading()) {
-    <div class="flex align-items-center text-color-secondary mb-4 gap-2">
-      <app-icon [icon]="'mdi:loading'"></app-icon>
-      <span>Generando reporte financiero...</span>
+  <div class="flex align-items-center text-color-secondary mb-4 gap-2">
+    <app-icon [icon]="'mdi:loading'" />
+    <span>Generando reporte financiero...</span>
+  </div>
+  } @if (!loading() && !hasData()) {
+  <p class="text-color-secondary m-0">
+    No hay datos. Verifique el periodo seleccionado.
+  </p>
+  } @if (!loading() && data(); as reporte) {
+  <div class="rf-card">
+    <div class="rf-wrap">
+      <table class="rf-table">
+        <thead>
+          <tr>
+            <th>Conceptos</th>
+            @for (mes of reporte.meses; track mes; let i = $index) {
+            <th [class.rf-sum]="isLastCol(i, reporte.meses.length)">
+              {{ mes }}
+            </th>
+            }
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="rf-row-section">
+            <td colspan="100">Ingresos</td>
+          </tr>
+
+          @for (fila of reporte.ingresos; track fila.concepto) { @if
+          (!isFilaVacia(fila)) {
+          <tr>
+            <td>{{ fila.concepto }}</td>
+            @for (val of fila.valores; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, fila.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } }
+
+          <tr class="rf-row-total">
+            <td>Ingresos</td>
+            @for (val of reporte.totalIngresos; track trackByIndex($index); let
+            i = $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.totalIngresos.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+
+          <tr class="rf-row-section">
+            <td colspan="100">- ) Gastos Generales</td>
+          </tr>
+
+          @for (fila of reporte.gastosGenerales; track fila.concepto) { @if
+          (!isFilaVacia(fila)) {
+          <tr>
+            <td>{{ fila.concepto }}</td>
+            @for (val of fila.valores; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, fila.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } }
+
+          <tr class="rf-row-total">
+            <td>Total de Gastos</td>
+            @for (val of reporte.totalGastos; track trackByIndex($index); let i
+            = $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.totalGastos.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+
+          <tr class="rf-row-total">
+            <td>Subtotal</td>
+            @for (val of reporte.subtotal; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.subtotal.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+
+          <tr class="rf-row-spacer">
+            <td colspan="100"></td>
+          </tr>
+
+          @if (reporte.otrosIngresos.length > 0) {
+          <tr class="rf-row-section">
+            <td colspan="100">Otros Ingresos</td>
+          </tr>
+          @for (fila of reporte.otrosIngresos; track fila.concepto) { @if
+          (!isFilaVacia(fila)) {
+          <tr>
+            <td>{{ fila.concepto }}</td>
+            @for (val of fila.valores; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, fila.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } } } @if (reporte.otrosGastos.length > 0) {
+          <tr class="rf-row-section">
+            <td colspan="100">Otros Gastos</td>
+          </tr>
+          @for (fila of reporte.otrosGastos; track fila.concepto) { @if
+          (!isFilaVacia(fila)) {
+          <tr>
+            <td>{{ fila.concepto }}</td>
+            @for (val of fila.valores; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, fila.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } } } @if (reporte.otrosIngresos.length > 0 ||
+          reporte.otrosGastos.length > 0) {
+          <tr class="rf-row-total">
+            <td>Suma</td>
+            @for (val of reporte.sumaOtros; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.sumaOtros.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          }
+
+          <tr class="rf-row-result">
+            <td>Resultado del Periodo</td>
+            @for (val of reporte.resultadoPeriodo; track trackByIndex($index);
+            let i = $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.resultadoPeriodo.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+
+          @if (!isFilaVacia(reporte.fondoMejoras.ingresoAmenidades) ||
+          reporte.fondoMejoras.gastosAmenidades.length > 0 ||
+          reporte.fondoMejoras.gastosMejoras.length > 0) {
+          <tr class="rf-row-spacer">
+            <td colspan="100"></td>
+          </tr>
+          <tr class="rf-row-fondo">
+            <td colspan="100">Fondo para Mejoras</td>
+          </tr>
+          <tr class="rf-row-section">
+            <td colspan="100">Ingresos / Gastos Amenidades</td>
+          </tr>
+
+          @if (!isFilaVacia(reporte.fondoMejoras.ingresoAmenidades)) {
+          <tr>
+            <td>{{ reporte.fondoMejoras.ingresoAmenidades.concepto }}</td>
+            @for (val of reporte.fondoMejoras.ingresoAmenidades.valores; track
+            trackByIndex($index); let i = $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.fondoMejoras.ingresoAmenidades.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } @for (fila of reporte.fondoMejoras.gastosAmenidades; track
+          fila.concepto) { @if (!isFilaVacia(fila)) {
+          <tr>
+            <td>{{ fila.concepto }}</td>
+            @for (val of fila.valores; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, fila.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } } @for (fila of reporte.fondoMejoras.gastosMejoras; track
+          fila.concepto) { @if (!isFilaVacia(fila)) {
+          <tr>
+            <td>{{ fila.concepto }}</td>
+            @for (val of fila.valores; track trackByIndex($index); let i =
+            $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, fila.valores.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          } }
+
+          <tr class="rf-row-total">
+            <td>Remanente Amenidades</td>
+            @for (val of reporte.fondoMejoras.remanenteMejoras; track
+            trackByIndex($index); let i = $index) {
+            <td
+              [class.rf-sum]="isLastCol(i, reporte.fondoMejoras.remanenteMejoras.length)"
+              [class.rf-neg]="isNeg(val)"
+            >
+              {{ formatNum(val) }}
+            </td>
+            }
+          </tr>
+          }
+        </tbody>
+      </table>
     </div>
-  }
-
-  @if (!loading() && !hasData()) {
-    <p class="text-color-secondary m-0">No hay datos. Verifique el periodo seleccionado.</p>
-  }
-
-  @if (!loading() && data(); as reporte) {
-    <div class="rf-card">
-      <div class="rf-wrap">
-        <table class="rf-table">
-          <thead>
-            <tr>
-              <th>Conceptos</th>
-              @for (mes of reporte.meses; track mes; let i = $index) {
-                <th [class.rf-sum]="isLastCol(i, reporte.meses.length)">{{ mes }}</th>
-              }
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr class="rf-row-section">
-              <td colspan="100">Ingresos</td>
-            </tr>
-
-            @for (fila of reporte.ingresos; track fila.concepto) {
-              @if (!isFilaVacia(fila)) {
-                <tr>
-                  <td>{{ fila.concepto }}</td>
-                  @for (val of fila.valores; track trackByIndex($index); let i = $index) {
-                    <td [class.rf-sum]="isLastCol(i, fila.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                  }
-                </tr>
-              }
-            }
-
-            <tr class="rf-row-total">
-              <td>Ingresos</td>
-              @for (val of reporte.totalIngresos; track trackByIndex($index); let i = $index) {
-                <td [class.rf-sum]="isLastCol(i, reporte.totalIngresos.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-              }
-            </tr>
-
-            <tr class="rf-row-section">
-              <td colspan="100">- ) Gastos Generales</td>
-            </tr>
-
-            @for (fila of reporte.gastosGenerales; track fila.concepto) {
-              @if (!isFilaVacia(fila)) {
-                <tr>
-                  <td>{{ fila.concepto }}</td>
-                  @for (val of fila.valores; track trackByIndex($index); let i = $index) {
-                    <td [class.rf-sum]="isLastCol(i, fila.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                  }
-                </tr>
-              }
-            }
-
-            <tr class="rf-row-total">
-              <td>Total de Gastos</td>
-              @for (val of reporte.totalGastos; track trackByIndex($index); let i = $index) {
-                <td [class.rf-sum]="isLastCol(i, reporte.totalGastos.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-              }
-            </tr>
-
-            <tr class="rf-row-total">
-              <td>Subtotal</td>
-              @for (val of reporte.subtotal; track trackByIndex($index); let i = $index) {
-                <td [class.rf-sum]="isLastCol(i, reporte.subtotal.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-              }
-            </tr>
-
-            <tr class="rf-row-spacer"><td colspan="100"></td></tr>
-
-            @if (reporte.otrosIngresos.length > 0) {
-              <tr class="rf-row-section"><td colspan="100">Otros Ingresos</td></tr>
-              @for (fila of reporte.otrosIngresos; track fila.concepto) {
-                @if (!isFilaVacia(fila)) {
-                  <tr>
-                    <td>{{ fila.concepto }}</td>
-                    @for (val of fila.valores; track trackByIndex($index); let i = $index) {
-                      <td [class.rf-sum]="isLastCol(i, fila.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                    }
-                  </tr>
-                }
-              }
-            }
-
-            @if (reporte.otrosGastos.length > 0) {
-              <tr class="rf-row-section"><td colspan="100">Otros Gastos</td></tr>
-              @for (fila of reporte.otrosGastos; track fila.concepto) {
-                @if (!isFilaVacia(fila)) {
-                  <tr>
-                    <td>{{ fila.concepto }}</td>
-                    @for (val of fila.valores; track trackByIndex($index); let i = $index) {
-                      <td [class.rf-sum]="isLastCol(i, fila.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                    }
-                  </tr>
-                }
-              }
-            }
-
-            @if (reporte.otrosIngresos.length > 0 || reporte.otrosGastos.length > 0) {
-              <tr class="rf-row-total">
-                <td>Suma</td>
-                @for (val of reporte.sumaOtros; track trackByIndex($index); let i = $index) {
-                  <td [class.rf-sum]="isLastCol(i, reporte.sumaOtros.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                }
-              </tr>
-            }
-
-            <tr class="rf-row-result">
-              <td>Resultado del Periodo</td>
-              @for (val of reporte.resultadoPeriodo; track trackByIndex($index); let i = $index) {
-                <td [class.rf-sum]="isLastCol(i, reporte.resultadoPeriodo.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-              }
-            </tr>
-
-            @if (!isFilaVacia(reporte.fondoMejoras.ingresoAmenidades) || reporte.fondoMejoras.gastosAmenidades.length > 0 || reporte.fondoMejoras.gastosMejoras.length > 0) {
-              <tr class="rf-row-spacer"><td colspan="100"></td></tr>
-              <tr class="rf-row-fondo"><td colspan="100">Fondo para Mejoras</td></tr>
-              <tr class="rf-row-section"><td colspan="100">Ingresos / Gastos Amenidades</td></tr>
-
-              @if (!isFilaVacia(reporte.fondoMejoras.ingresoAmenidades)) {
-                <tr>
-                  <td>{{ reporte.fondoMejoras.ingresoAmenidades.concepto }}</td>
-                  @for (val of reporte.fondoMejoras.ingresoAmenidades.valores; track trackByIndex($index); let i = $index) {
-                    <td [class.rf-sum]="isLastCol(i, reporte.fondoMejoras.ingresoAmenidades.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                  }
-                </tr>
-              }
-
-              @for (fila of reporte.fondoMejoras.gastosAmenidades; track fila.concepto) {
-                @if (!isFilaVacia(fila)) {
-                  <tr>
-                    <td>{{ fila.concepto }}</td>
-                    @for (val of fila.valores; track trackByIndex($index); let i = $index) {
-                      <td [class.rf-sum]="isLastCol(i, fila.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                    }
-                  </tr>
-                }
-              }
-
-              @for (fila of reporte.fondoMejoras.gastosMejoras; track fila.concepto) {
-                @if (!isFilaVacia(fila)) {
-                  <tr>
-                    <td>{{ fila.concepto }}</td>
-                    @for (val of fila.valores; track trackByIndex($index); let i = $index) {
-                      <td [class.rf-sum]="isLastCol(i, fila.valores.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                    }
-                  </tr>
-                }
-              }
-
-              <tr class="rf-row-total">
-                <td>Remanente Amenidades</td>
-                @for (val of reporte.fondoMejoras.remanenteMejoras; track trackByIndex($index); let i = $index) {
-                  <td [class.rf-sum]="isLastCol(i, reporte.fondoMejoras.remanenteMejoras.length)" [class.rf-neg]="isNeg(val)">{{ formatNum(val) }}</td>
-                }
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
+  </div>
   }
 </div>

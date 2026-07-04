@@ -14,10 +14,15 @@ import { SatFundingDTO } from "src/app/core/interfaces/sat-funding.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-sat-funding-list",
   templateUrl: "./sat-funding-list.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

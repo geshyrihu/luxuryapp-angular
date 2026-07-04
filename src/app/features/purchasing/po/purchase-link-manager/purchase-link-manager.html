@@ -8,7 +8,7 @@
   >
     <div class="flex align-items-center">
       <div class="bg-primary-100 p-2 border-round">
-        <app-icon [icon]="'mdi:link'" class="text-primary text-2xl"></app-icon>
+        <app-icon [icon]="'mdi:link'" class="text-primary text-2xl" />
       </div>
       <div>
         <h2 class="text-2xl font-bold m-0 text-900 uppercase tracking-wider">
@@ -46,10 +46,15 @@
         class="surface-card h-full flex flex-column border-round-xl shadow-3 border-top-3 border-green-500 overflow-hidden"
       >
         <!-- Filtros SC -->
-        <div class="p-3 bg-green-50 border-bottom-1 surface-border flex-shrink-0">
+        <div
+          class="p-3 bg-green-50 border-bottom-1 surface-border flex-shrink-0"
+        >
           <div class="flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-green-700 font-bold">
-              <app-icon [icon]="'mdi:file-document-outline'" class="mr-2"></app-icon>SOLICITUDES
+              <app-icon
+                [icon]="'mdi:file-document-outline'"
+                class="mr-2"
+              />SOLICITUDES
             </h3>
             <p-selectButton
               [options]="statusOptions"
@@ -101,7 +106,7 @@
                     <span
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
-                      <app-icon [icon]="'mdi:calendar-minus'" class="mr-1"></app-icon>{{
+                      <app-icon [icon]="'mdi:calendar-minus'" class="mr-1" />{{
                       sc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
                     </span>
                   </div>
@@ -113,7 +118,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-600"></app-icon>
+                  <app-icon [icon]="'mdi:menu'" class="text-600" />
                 </div>
               </div>
 
@@ -135,10 +140,14 @@
                   styleClass="px-3 py-1 shadow-2 border-1 border-orange-200"
                 >
                   <div class="flex align-items-center">
-                    <app-icon [icon]="'mdi:cart'" class="text-xs"></app-icon>
+                    <app-icon [icon]="'mdi:cart'" class="text-xs" />
                     <span class="text-xs font-bold">{{ orden.folio }}</span>
-                    <app-icon [icon]="'mdi:close-circle'" class="cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200" (click)="onUnlink(orden.id)"
-                      pTooltip="Desvincular Orden"></app-icon>
+                    <app-icon
+                      [icon]="'mdi:close-circle'"
+                      class="cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200"
+                      (click)="onUnlink(orden.id)"
+                      pTooltip="Desvincular Orden"
+                    />
                   </div>
                 </p-tag>
                 } @empty {
@@ -153,7 +162,7 @@
           <div
             class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
           >
-            <app-icon [icon]="'mdi:magnify'" class="text-4xl mb-3 block"></app-icon>
+            <app-icon [icon]="'mdi:magnify'" class="text-4xl mb-3 block" />
             No se encontraron solicitudes con estos criterios.
           </div>
           }
@@ -167,10 +176,12 @@
         class="surface-card h-full flex flex-column border-round-xl shadow-3 border-top-3 border-orange-500 overflow-hidden"
       >
         <!-- Filtros OC -->
-        <div class="p-3 bg-orange-50 border-bottom-1 surface-border flex-shrink-0">
+        <div
+          class="p-3 bg-orange-50 border-bottom-1 surface-border flex-shrink-0"
+        >
           <div class="flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-orange-700 font-bold">
-              <app-icon [icon]="'mdi:shopping'" class="mr-2"></app-icon>ÓRDENES
+              <app-icon [icon]="'mdi:shopping'" class="mr-2" />ÓRDENES
             </h3>
             <p-selectButton
               [options]="statusOptions"
@@ -226,8 +237,8 @@
                     <span
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
-                      <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{ oc.fechaSolicitud |
-                      date:'dd-MMM-yy':'UTC' }}
+                      <app-icon [icon]="'mdi:calendar'" class="mr-1" />{{
+                      oc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
                     </span>
                   </div>
                   <span class="font-bold text-900 text-lg line-height-2"
@@ -238,7 +249,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-600"></app-icon>
+                  <app-icon [icon]="'mdi:menu'" class="text-600" />
                 </div>
               </div>
 
@@ -258,12 +269,19 @@
                   styleClass="px-3 py-1 shadow-2 border-1 border-green-200"
                 >
                   <div class="flex align-items-center">
-                    <app-icon [icon]="'mdi:file-document-outline'" class="text-xs"></app-icon>
+                    <app-icon
+                      [icon]="'mdi:file-document-outline'"
+                      class="text-xs"
+                    />
                     <span class="text-xs font-bold uppercase"
                       >{{ oc.folioSolicitudCompra }}</span
                     >
-                    <app-icon [icon]="'mdi:close-circle'" class="cursor-pointer hover:text-red-500 transition-all" (click)="onUnlink(oc.id)"
-                      pTooltip="Eliminar vínculo"></app-icon>
+                    <app-icon
+                      [icon]="'mdi:close-circle'"
+                      class="cursor-pointer hover:text-red-500 transition-all"
+                      (click)="onUnlink(oc.id)"
+                      pTooltip="Eliminar vínculo"
+                    />
                   </div>
                 </p-tag>
                 } @else {
@@ -278,7 +296,7 @@
           <div
             class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
           >
-            <app-icon [icon]="'mdi:shopping'" class="text-4xl mb-3 block"></app-icon>
+            <app-icon [icon]="'mdi:shopping'" class="text-4xl mb-3 block" />
             No hay órdenes disponibles para este estado.
           </div>
           }

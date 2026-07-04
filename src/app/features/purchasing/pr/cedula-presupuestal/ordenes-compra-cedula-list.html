@@ -24,8 +24,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="5" />
+    </ng-template>
     <ng-template #body let-item>
       <tr>
         <td>
@@ -36,7 +36,7 @@
             placement="top"
             class="icon icon- pointer"
             (click)="onOrdenCompraModal(item.ordenCompraId)"
-          ></app-icon>
+          />
           <!-- {{ item.folio }} -->
         </td>
         <td>{{ item.justificacion }}</td>
@@ -85,7 +85,7 @@
           <app-icon
             icon="mdi:wallet-outline"
             style="font-size: 1.1rem; color: var(--ds-success)"
-          ></app-icon>
+          />
         </div>
         <ion-label class="ion-text-wrap my-1">
           <div class="flex justify-content-between align-items-center mb-1">
@@ -105,7 +105,7 @@
             >
           </div>
         </ion-label>
-        <app-icon icon="mdi:chevron-right" slot="end" color="medium"></app-icon>
+        <app-icon icon="mdi:chevron-right" slot="end" color="medium" />
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

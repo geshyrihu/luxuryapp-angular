@@ -1,463 +1,79 @@
-PS D:\repos\luxuryapp-api\client\angular> ng s
-Application bundle generation failed. [28.918 seconds] - 2026-07-03T01:24:20.565Z
+X [ERROR] TS2724: '"src/app/core/components/shared/empty-state/empty-state"' has no exported member named 'LxEmptyState'. Did you mean 'EmptyState'? [plugin angular-compiler]
 
-X [ERROR] TS2306: File 'D:/repos/luxuryapp-api/client/angular/src/app/core/components/buttons/mobile/icon/index.ts' is not a module. [plugin angular-compiler]
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos.ts:7:9:
+      7 │ import { LxEmptyState } from "src/app/core/components/shared/empty-...
+        ╵          ~~~~~~~~~~~~
 
-    src/app/core/components/buttons/buttons-icon-ionic/index.ts:14:7:
-      14 │ } from "../mobile/icon";
-         ╵        ~~~~~~~~~~~~~~~~
+  'EmptyState' is declared here.
 
-
-X [ERROR] TS2306: File 'D:/repos/luxuryapp-api/client/angular/src/app/core/components/buttons/mobile/label/index.ts' is not a module. [plugin angular-compiler]
-
-    src/app/core/components/buttons/buttons-icon-label-ionic/index.ts:15:7:
-      15 │ } from "../mobile/label";
-         ╵        ~~~~~~~~~~~~~~~~~
+    src/app/core/components/shared/empty-state/empty-state.ts:75:13:
+      75 │ export class EmptyState {
+         ╵              ~~~~~~~~~~
 
 
 X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
   Value could not be determined statically. [plugin angular-compiler]
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:370:4:
-      370 │     IiButtonAdd,
-          ╵     ~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:370:4:
-      370 │     IiButtonAdd,
-          ╵     ~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:371:4:
-      371 │     IiButtonEdit,
-          ╵     ~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:371:4:
-      371 │     IiButtonEdit,
-          ╵     ~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:372:4:
-      372 │     IiButtonDelete,
-          ╵     ~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:372:4:
-      372 │     IiButtonDelete,
-          ╵     ~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:373:4:
-      373 │     IiButtonSave,
-          ╵     ~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:373:4:
-      373 │     IiButtonSave,
-          ╵     ~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:374:4:
-      374 │     IiButtonDownload,
-          ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:374:4:
-      374 │     IiButtonDownload,
-          ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:375:4:
-      375 │     IiButtonConfirm,
-          ╵     ~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:375:4:
-      375 │     IiButtonConfirm,
-          ╵     ~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:376:4:
-      376 │     IiButtonSendEmail,
-          ╵     ~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:376:4:
-      376 │     IiButtonSendEmail,
-          ╵     ~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:377:4:
-      377 │     IiButtonViewPdf,
-          ╵     ~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:377:4:
-      377 │     IiButtonViewPdf,
-          ╵     ~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:378:4:
-      378 │     IiButtonTracking,
-          ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:378:4:
-      378 │     IiButtonTracking,
-          ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:379:4:
-      379 │     IiBtnActiveDesactive,
-          ╵     ~~~~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:379:4:
-      379 │     IiBtnActiveDesactive,
-          ╵     ~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:391:4:
-      391 │     IliButtonAdd,
-          ╵     ~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:391:4:
-      391 │     IliButtonAdd,
-          ╵     ~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:392:4:
-      392 │     IliButtonEdit,
-          ╵     ~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:392:4:
-      392 │     IliButtonEdit,
-          ╵     ~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:393:4:
-      393 │     IliButtonDelete,
-          ╵     ~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:393:4:
-      393 │     IliButtonDelete,
-          ╵     ~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:394:4:
-      394 │     IliButtonSave,
-          ╵     ~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:394:4:
-      394 │     IliButtonSave,
-          ╵     ~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:395:4:
-      395 │     IliButtonDownload,
-          ╵     ~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:395:4:
-      395 │     IliButtonDownload,
-          ╵     ~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:396:4:
-      396 │     IliButtonConfirm,
-          ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:396:4:
-      396 │     IliButtonConfirm,
-          ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:397:4:
-      397 │     IliButtonSendEmail,
-          ╵     ~~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:397:4:
-      397 │     IliButtonSendEmail,
-          ╵     ~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:398:4:
-      398 │     IliButtonViewPdf,
-          ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:398:4:
-      398 │     IliButtonViewPdf,
-          ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:399:4:
-      399 │     IliButtonTracking,
-          ╵     ~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:399:4:
-      399 │     IliButtonTracking,
-          ╵     ~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:400:4:
-      400 │     IliButtonItem,
-          ╵     ~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:400:4:
-      400 │     IliButtonItem,
-          ╵     ~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:401:4:
-      401 │     IliBtnActiveDesactive,
-          ╵     ~~~~~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/components/button-catalog/button-catalog.ts:401:4:
-      401 │     IliBtnActiveDesactive,
-          ╵     ~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:24:4:
-      24 │     IliButtonAdd,
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos.ts:25:4:
+      25 │     LxEmptyState,
          ╵     ~~~~~~~~~~~~
 
   Unknown reference.
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:24:4:
-      24 │     IliButtonAdd,
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos.ts:25:4:
+      25 │     LxEmptyState,
          ╵     ~~~~~~~~~~~~
 
 
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
+X [ERROR] TS2724: '"src/app/core/components/shared/empty-state/empty-state"' has no exported member named 'LxEmptyState'. Did you mean 'EmptyState'? [plugin angular-compiler]
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:25:4:
-      25 │     IliButtonEdit,
-         ╵     ~~~~~~~~~~~~~
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos.ts:7:9:
+      7 │ import { LxEmptyState } from "src/app/core/components/shared/empty-...
+        ╵          ~~~~~~~~~~~~
 
-  Unknown reference.
+  'EmptyState' is declared here.
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:25:4:
-      25 │     IliButtonEdit,
-         ╵     ~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:26:4:
-      26 │     IliButtonSave,
-         ╵     ~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:26:4:
-      26 │     IliButtonSave,
-         ╵     ~~~~~~~~~~~~~
+    src/app/core/components/shared/empty-state/empty-state.ts:75:13:
+      75 │ export class EmptyState {
+         ╵              ~~~~~~~~~~
 
 
 X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
   Value could not be determined statically. [plugin angular-compiler]
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:27:4:
-      27 │     IliButtonDelete,
-         ╵     ~~~~~~~~~~~~~~~
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos.ts:25:4:
+      25 │     LxEmptyState,
+         ╵     ~~~~~~~~~~~~
 
   Unknown reference.
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:27:4:
-      27 │     IliButtonDelete,
-         ╵     ~~~~~~~~~~~~~~~
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos.ts:25:4:
+      25 │     LxEmptyState,
+         ╵     ~~~~~~~~~~~~
+
+
+X [ERROR] TS2724: '"src/app/core/components/shared/empty-state/empty-state"' has no exported member named 'LxEmptyState'. Did you mean 'EmptyState'? [plugin angular-compiler]
+
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes.ts:7:9:
+      7 │ import { LxEmptyState } from "src/app/core/components/shared/empty-...
+        ╵          ~~~~~~~~~~~~
+
+  'EmptyState' is declared here.
+
+    src/app/core/components/shared/empty-state/empty-state.ts:75:13:
+      75 │ export class EmptyState {
+         ╵              ~~~~~~~~~~
 
 
 X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
   Value could not be determined statically. [plugin angular-compiler]
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:28:4:
-      28 │     IliButtonConfirm,
-         ╵     ~~~~~~~~~~~~~~~~
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes.ts:24:4:
+      24 │     LxEmptyState,
+         ╵     ~~~~~~~~~~~~
 
   Unknown reference.
 
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:28:4:
-      28 │     IliButtonConfirm,
-         ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:29:4:
-      29 │     IiButtonDownload,
-         ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:29:4:
-      29 │     IiButtonDownload,
-         ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:30:4:
-      30 │     IliButtonSendEmail,
-         ╵     ~~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:30:4:
-      30 │     IliButtonSendEmail,
-         ╵     ~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:31:4:
-      31 │     IiButtonTracking,
-         ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:31:4:
-      31 │     IiButtonTracking,
-         ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:32:4:
-      32 │     IliButtonViewPdf,
-         ╵     ~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:32:4:
-      32 │     IliButtonViewPdf,
-         ╵     ~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:33:4:
-      33 │     IliButtonActiveDesactive,
-         ╵     ~~~~~~~~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:33:4:
-      33 │     IliButtonActiveDesactive,
-         ╵     ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:34:4:
-      34 │     IliButtonItem,
-         ╵     ~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/components/mobile-buttons/mobile-buttons.ts:34:4:
-      34 │     IliButtonItem,
-         ╵     ~~~~~~~~~~~~~
+    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes.ts:24:4:
+      24 │     LxEmptyState,
+         ╵     ~~~~~~~~~~~~

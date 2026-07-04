@@ -24,9 +24,12 @@ import {
 import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 import ModalIncidenciaAdd from "./modal-incidencia-add/modal-incidencia-add";
 
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-incidencias-nomina",
   imports: [
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

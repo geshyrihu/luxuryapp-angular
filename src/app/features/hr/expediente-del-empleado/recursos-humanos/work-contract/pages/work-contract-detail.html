@@ -1,44 +1,48 @@
 ﻿@if (isLoading()) {
-  <div class="flex justify-content-center p-6">
-    <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary"></app-icon>
-  </div>
+<div class="flex justify-content-center p-6">
+  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
+</div>
 } @else if (item()) {
-  <div class="grid p-3">
-    <div class="col-12 md:col-6">
-      <p class="text-color-secondary text-sm">Número de Contrato</p>
-      <p class="font-bold">{{ item()!.contractNumber }}</p>
-    </div>
-    <div class="col-12 md:col-6">
-      <p class="text-color-secondary text-sm">Tipo de Contrato</p>
-      <p class="font-bold">{{ item()!.contractType }}</p>
-    </div>
-    <div class="col-12 md:col-6">
-      <p class="text-color-secondary text-sm">Estatus</p>
-      <p class="font-bold">{{ item()!.contractStatus }}</p>
-    </div>
-    <div class="col-12 md:col-6">
-      <p class="text-color-secondary text-sm">Salario Contractual</p>
-      <p class="font-bold">{{ item()!.contractSalary | currency:'MXN':'symbol':'1.2-2' }}</p>
-    </div>
-    <div class="col-12 md:col-6">
-      <p class="text-color-secondary text-sm">Fecha de Inicio</p>
-      <p class="font-bold">{{ item()!.startDate | date:'dd/MM/yyyy' }}</p>
-    </div>
-    <div class="col-12 md:col-6">
-      <p class="text-color-secondary text-sm">Fecha de Fin</p>
-      <p class="font-bold">{{ item()!.endDate ? (item()!.endDate | date:'dd/MM/yyyy') : 'Indefinido' }}</p>
-    </div>
-    @if (item()!.terminationReason) {
-      <div class="col-12">
-        <p class="text-color-secondary text-sm">Motivo de Terminación</p>
-        <p class="font-bold">{{ item()!.terminationReason }}</p>
-      </div>
-    }
-    @if (item()!.notes) {
-      <div class="col-12">
-        <p class="text-color-secondary text-sm">Notas</p>
-        <p>{{ item()!.notes }}</p>
-      </div>
-    }
+<div class="grid p-3">
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Número de Contrato</p>
+    <p class="font-bold">{{ item()!.contractNumber }}</p>
   </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Tipo de Contrato</p>
+    <p class="font-bold">{{ item()!.contractType }}</p>
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Estatus</p>
+    <p class="font-bold">{{ item()!.contractStatus }}</p>
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Salario Contractual</p>
+    <p class="font-bold">
+      {{ item()!.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
+    </p>
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Fecha de Inicio</p>
+    <p class="font-bold">{{ item()!.startDate | date:'dd/MM/yyyy' }}</p>
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Fecha de Fin</p>
+    <p class="font-bold">
+      {{ item()!.endDate ? (item()!.endDate | date:'dd/MM/yyyy') : 'Indefinido'
+      }}
+    </p>
+  </div>
+  @if (item()!.terminationReason) {
+  <div class="col-12">
+    <p class="text-color-secondary text-sm">Motivo de Terminación</p>
+    <p class="font-bold">{{ item()!.terminationReason }}</p>
+  </div>
+  } @if (item()!.notes) {
+  <div class="col-12">
+    <p class="text-color-secondary text-sm">Notas</p>
+    <p>{{ item()!.notes }}</p>
+  </div>
+  }
+</div>
 }

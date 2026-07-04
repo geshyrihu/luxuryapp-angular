@@ -4,7 +4,11 @@
       <div>
         @if (loading()) {
         <div class="text-center">
-          <app-icon [icon]="'mdi:loading'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+          <app-icon
+            [icon]="'mdi:loading'"
+            class="text-primary m-1"
+            aria-label="Cargando..."
+          />
         </div>
         }
       </div>
@@ -16,10 +20,8 @@
           @for (item of data; track item) {
           <li class="activity-list activity-border">
             <div class="activity-icon b-r-8 img-50">
-              <span
-                class="avatar-title border-circle text-primary"
-              >
-                <app-icon [icon]="'mdi:pin'" class="icon icon-"></app-icon>
+              <span class="avatar-title border-circle text-primary">
+                <app-icon [icon]="'mdi:pin'" class="icon icon-" />
               </span>
             </div>
             <div class="timeline-list-item">
@@ -41,10 +43,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-

@@ -75,7 +75,7 @@
               class="cursor-pointer text-primary text-xl"
               pTooltip="Ver Ficha Túcnica"
               (click)="showModalCardProveedor(item)"
-            ></app-icon>
+            />
           </div>
 
           <!-- Calificaciones -->
@@ -141,12 +141,12 @@
             <!-- Contacto -->
             <div class="flex flex-column gap-1 text-sm">
               <div class="flex align-items-center text-600">
-                <app-icon [icon]="'mdi:phone'" class="mr-2"></app-icon>
+                <app-icon [icon]="'mdi:phone'" class="mr-2" />
                 <span>{{ item.phoneOne }}</span>
               </div>
               @if (item.phoneTwo) {
               <div class="flex align-items-center text-600">
-                <app-icon [icon]="'mdi:phone'" class="mr-2"></app-icon>
+                <app-icon [icon]="'mdi:phone'" class="mr-2" />
                 <span>{{ item.phoneTwo }}</span>
               </div>
               }
@@ -188,40 +188,40 @@
                 roles.Administrador, roles.SuperUsuario,
                 roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 )
                 {
-                <il-button-edit
+                <iw-button-edit
                   (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
                 />
                 } @if (item.activo) {
-                <il-button-item
+                <iw-button-item
                   iconClass="mdi:chart-bar"
                   pTooltip="Calificar"
                   (clicked)="showModalCalificarProveedor({ providerId: item.providerId, nameProvider: item.nameComercial })"
                 />
                 } @if (validateRole([roles.SuperUsuario])) {
-                <il-button-delete (confirmed)="onDelete(item.providerId)" />
+                <iw-button-delete (confirmed)="onDelete(item.providerId)" />
                 } @if (!item.activo && validateRole([roles.SuperUsuario])) {
-                <il-button-item
+                <iw-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:check"
-                  label="Activar"
+                  pTooltip="Activar" tooltipPosition="top"
                 />
                 } @if (item.activo && validateRole([roles.SuperUsuario])) {
-                <il-button-item
+                <iw-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:ban"
-                  label="Inactivar"
+                  pTooltip="Inactivar" tooltipPosition="top"
                 />
 
-                <il-button-item
+                <iw-button-item
                   (clicked)="onConicidencias({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:magnify"
                   pTooltip="Buscar Coincidencias"
                 />
 
-                <il-button-item
+                <iw-button-item
                   (clicked)="onAutorizarProvider(item.providerId)"
                   [iconClass]="item.autorizado ? 'mdi:shield' : 'mdi:ban'"
-                  [label]="item.autorizado ? 'Desautorizar' : 'Autorizar'"
+                  [pTooltip]="item.autorizado ? 'Desautorizar' : 'Autorizar'" tooltipPosition="top"
                 />
                 }
               </div>
@@ -247,10 +247,7 @@
         slot="start"
         class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon
-          icon="mdi:store-outline"
-          class="text-green-600 text-xl"
-        ></app-icon>
+        <app-icon icon="mdi:store-outline" class="text-green-600 text-xl" />
       </div>
       <ion-label>
         <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
@@ -259,18 +256,18 @@
         </p>
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
+          <ili-button-delete
             (confirmed)="onDelete(item.providerId)"
             label="Eliminar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

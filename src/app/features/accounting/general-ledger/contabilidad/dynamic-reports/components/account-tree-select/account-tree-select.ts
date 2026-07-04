@@ -1,5 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { DragDropModule } from "@angular/cdk/drag-drop";
+﻿import { DragDropModule } from "@angular/cdk/drag-drop";
 import {
   Component,
   computed,
@@ -13,6 +12,7 @@ import { TreeNode } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
 import { InputTextModule } from "primeng/inputtext";
 import { TreeModule } from "primeng/tree";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAccountTreeNode } from "../../models/report-definition.interface";
@@ -27,7 +27,9 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
   template: `
     <div class="flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
-        <span class="p-inputgroup-addon"><app-icon [icon]="'mdi:magnify'"></app-icon></span>
+        <span class="p-inputgroup-addon"
+          ><app-icon [icon]="'mdi:magnify'"
+        /></span>
         <input
           type="text"
           pInputText
@@ -41,7 +43,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
         <div
           class="flex flex-column align-items-center justify-content-center p-4 gap-2"
         >
-          <app-icon [icon]="'mdi:loading'" class="text-2xl text-primary-500"></app-icon>
+          <app-icon [icon]="'mdi:loading'" class="text-2xl text-primary-500" />
           <span class="text-xs text-500 uppercase font-bold tracking-wider"
             >Cargando...</span
           >
@@ -74,7 +76,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
                   *cdkDragPreview
                   class="bg-primary-50 border-1 border-primary-200 border-round p-2 shadow-2 flex align-items-center gap-2 opacity-90 z-5"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-primary-500"></app-icon>
+                  <app-icon [icon]="'mdi:menu'" class="text-primary-500" />
                   <span class="font-mono text-xs font-bold text-primary-900">{{
                     node.data.code
                   }}</span>
@@ -220,7 +222,7 @@ export class AccountTreeSelect {
   }
 
   onAccountDragStart() {
-    livePreviewState.draggingType.set('account');
+    livePreviewState.draggingType.set("account");
   }
 
   onAccountDragEnd() {

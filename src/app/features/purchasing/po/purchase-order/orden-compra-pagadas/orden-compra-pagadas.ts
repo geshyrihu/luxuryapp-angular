@@ -25,10 +25,18 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "../orden-compra";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+
 @Component({
   selector: "app-orden-compra-pagadas",
   templateUrl: "./orden-compra-pagadas.html",
   imports: [
+    WebButtonIconEdit,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,

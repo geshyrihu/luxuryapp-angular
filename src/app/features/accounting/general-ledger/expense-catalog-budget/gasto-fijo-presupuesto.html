@@ -35,7 +35,7 @@
       <td>{{ item.amount | number: "1.0-0" }}</td>
       <td>
         <div class="flex justify-content-center">
-          <il-button-delete
+          <iw-button-delete
             (confirmed)="deletePresupuestoAgregado(item.id)"
           />
         </div>
@@ -113,7 +113,7 @@
             animationDuration=".5s"
           ></p-progressSpinner>
           } @else {
-          <il-button iconClass="mdi:content-save" (clicked)="onSubmit(item)" />
+          <iw-button iconClass="mdi:content-save" (clicked)="onSubmit(item)" />
           }
         </div>
       </td>

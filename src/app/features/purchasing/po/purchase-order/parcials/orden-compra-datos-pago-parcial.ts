@@ -3,10 +3,11 @@ import { Component, input, output } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 @Component({
   selector: "app-orden-compra-datos-pago-parcial",
   templateUrl: "./orden-compra-datos-pago-parcial.html",
-  imports: [ButtonModule, TagModule, TooltipModule, AppIcon],
+  imports: [ButtonModule, TagModule, TooltipModule, AppIcon, WebButtonIcon],
 })
 export class OrdenCompraDatosPagoParcial {
   ordenCompra = input<any>();

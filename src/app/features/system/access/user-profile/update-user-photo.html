@@ -1,7 +1,7 @@
 <p-card>
   <ng-template #header>
     <div class="flex align-items-center p-3 gap-2">
-      <app-icon [icon]="'mdi:camera'" class="text-primary text-2xl"></app-icon>
+      <app-icon [icon]="'mdi:camera'" class="text-primary text-2xl" />
       <span class="text-xl font-bold">Foto de perfil</span>
     </div>
   </ng-template>
@@ -14,7 +14,9 @@
         [horizontal]="false"
       />
 
-      <div class="flex flex-column sm:flex-row gap-3 w-full justify-content-center px-4">
+      <div
+        class="flex flex-column sm:flex-row gap-3 w-full justify-content-center px-4"
+      >
         <!-- Input oculto para cámara (móvil) -->
         <input
           #cameraInput

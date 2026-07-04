@@ -50,13 +50,13 @@
       </td>
       <td>
         @if (item.nameFileEstadoFinanciero === null) {
-        <il-button
-          label="Cargar Informe"
+        <iw-button
+          pTooltip="Cargar Informe" tooltipPosition="top"
           iconClass="mdi:upload"
           [loading]="isProcessingUpload(item.id)"
           (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
           [fluid]="true"
-/>
+        />
         } @else {
         <div class="flex align-items-center">
           <div class="flex-flex-grow-1-1">
@@ -65,7 +65,7 @@
               {{ item.uploadDate }}
             </div>
           </div>
-          <il-button
+          <iw-button
             iconClass="mdi:download"
             variant="ghost-text"
             severity="secondary"
@@ -73,7 +73,7 @@
             (clicked)="viewPdf(item.nameFileEstadoFinanciero,'Informe Financiero')"
           />
           @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
-          <il-button
+          <iw-button
             iconClass="mdi:replay"
             variant="ghost-text"
             severity="warn"
@@ -88,14 +88,14 @@
       <td>
         @if (item.nameFileEstadoFinanciero !== null) { @if
         (item.personWhoAuthorized === "") {
-        <il-button
-          label="Autorizar"
+        <iw-button
+          pTooltip="Autorizar" tooltipPosition="top"
           iconClass="mdi:checkbox-marked"
           severity="success"
           [loading]="isProcessingAuthorize(item.id)"
           (clicked)="onAuthorize(item.id)"
           [fluid]="true"
-/>
+        />
         } @else {
         <div class="flex align-items-center">
           <div class="flex-flex-grow-1-1">
@@ -105,7 +105,7 @@
             </div>
           </div>
           @if (item.personWhoSend === "") {
-          <il-button
+          <iw-button
             iconClass="mdi:replay"
             variant="ghost-text"
             severity="warn"
@@ -120,9 +120,9 @@
       <td class="no-print">
         @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
         !== "" ) { @if (item.personWhoSend === "") {
-        <il-button-confirm
+        <iw-button-confirm
           icon="mdi:send"
-          label="ENVIAR PDF"
+          pTooltip="ENVIAR PDF" tooltipPosition="top"
           styleClass="p-button-primary w-full mb-2"
           swalTitle="óEnviar estados financieros?"
           swalText="El informe financiero (PDF) seré enviado."
@@ -133,7 +133,7 @@
                   title: 'ENVIAR A CONDOMINOS',
                 })"
           [disabled]="isProcessingSend(item.id)"
-/>
+        />
 
         } @else {
         <div class="flex align-items-center">
@@ -167,9 +167,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:chart-line" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:chart-line"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        />
       </div>
       <ion-label>
         <div class="flex justify-content-between mb-1">
@@ -227,11 +234,11 @@
         </div>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
           <!-- 1. Cargar Informe (Si no hay archivo) -->
           @if (!item.nameFileEstadoFinanciero) {
-          <il-button-item
+          <ili-button-item
             iconName="cloud-upload-outline"
             label="Cargar Informe"
             (clicked)="
@@ -239,21 +246,23 @@
                 id: item.id,
                 title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
               })
-            "/>
+            "
+          />
           }
 
           <!-- 2. Acciones si hay archivo -->
           @if (item.nameFileEstadoFinanciero) {
           <!-- Descargar -->
-          <il-button-item
+          <ili-button-item
             iconName="cloud-upload-outline"
             label="Descargar PDF"
             (clicked)="
                 viewPdf(item.nameFileEstadoFinanciero, 'Informe Financiero')
-              "/>
+              "
+          />
           <!-- Actualizar (Si no autorizado ni enviado) -->
           @if (!item.personWhoAuthorized && !item.personWhoSend) {
-          <il-button-item
+          <ili-button-item
             iconName="sync-outline"
             label="Actualizar Archivo"
             (clicked)="
@@ -261,26 +270,29 @@
                   id: item.id,
                   title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
                 })
-              "/>
+              "
+          />
           }
           <!-- Autorizar (Si no autorizado) -->
           @if (!item.personWhoAuthorized) {
-          <il-button-item
+          <ili-button-item
             iconName="checkmark-outline"
             label="Autorizar"
-            (clicked)="onAuthorize(item.id)"/>
+            (clicked)="onAuthorize(item.id)"
+          />
           }
           <!-- Deshacer Autorización (Si autorizado y no enviado) -->
           @if (item.personWhoAuthorized && !item.personWhoSend) {
-          <il-button-item
+          <ili-button-item
             iconName="arrow-back-outline"
             label="Deshacer Autorización"
-            (clicked)="onDesauthorize(item.id)"/>
+            (clicked)="onDesauthorize(item.id)"
+          />
           }
           <!-- Enviar (Si autorizado y no enviado) -->
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
           !item.personWhoSend) {
-          <il-button-confirm
+          <ili-button-confirm
             icon="mdi:send"
             label="ENVIAR"
             styleClass="p-button-text w-full text-left"
@@ -294,10 +306,11 @@
                   title: 'ENVIAR A CONDOMINOS'
                 })
               "
-            [disabled]="isProcessingSend(item.id)"/>
+            [disabled]="isProcessingSend(item.id)"
+          />
           } }
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

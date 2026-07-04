@@ -5,40 +5,37 @@
 // ============================================================
 
 // ── GROSOR DE BORDE ───────────────────────────────────────────
-$border-width-thin:    1px  !default;
-$border-width-default: 1px  !default;
-$border-width-medium:  2px  !default;
-$border-width-thick:   4px  !default;
+$border-width-thin: 1px !default;
+$border-width-default: 1px !default;
+$border-width-medium: 2px !default;
+$border-width-thick: 4px !default;
 
 // ── BORDER RADIUS ─────────────────────────────────────────────
-$radius-none:   0px     !default;
-$radius-xs:     2px     !default;
-$radius-sm:     4px     !default;
-$radius-md:     6px     !default;   // default de componentes
-$radius-lg:     8px     !default;
-$radius-xl:     12px    !default;
-$radius-2xl:    16px    !default;
-$radius-3xl:    24px    !default;
-$radius-full:   9999px  !default;   // completamente redondeado (pill)
+$radius-none: 0px !default;
+$radius-xs: 2px !default;
+$radius-sm: 4px !default;
+$radius-md: 6px !default; // default de componentes
+$radius-lg: 8px !default;
+$radius-xl: 12px !default;
+$radius-2xl: 16px !default;
+$radius-3xl: 24px !default;
+$radius-full: 9999px !default; // completamente redondeado (pill)
 
 // ── VARIABLES CSS DE BORDES ───────────────────────────────────
 :root {
-  --ds-radius-none:  #{$radius-none};
-  --ds-radius-xs:    #{$radius-xs};
-  --ds-radius-sm:    #{$radius-sm};
-  --ds-radius-md:    #{$radius-md};
-  --ds-radius-lg:    #{$radius-lg};
-  --ds-radius-xl:    #{$radius-xl};
-  --ds-radius-2xl:   #{$radius-2xl};
-  --ds-radius-full:  #{$radius-full};
+  --ds-radius-none: #{$radius-none};
+  --ds-radius-xs: #{$radius-xs};
+  --ds-radius-sm: #{$radius-sm};
+  --ds-radius-md: #{$radius-md};
+  --ds-radius-lg: #{$radius-lg};
+  --ds-radius-xl: #{$radius-xl};
+  --ds-radius-2xl: #{$radius-2xl};
+  --ds-radius-full: #{$radius-full};
 
   // Radius por defecto de componentes (alineado con _variables.scss)
-  --ds-radius-btn:   #{$radius-xs};
-  --ds-radius-input: #{$radius-xs};
-  --ds-radius-card:  8px;
+  --ds-radius-btn: 3px;
+  --ds-radius-input: 3px;
+  --ds-radius-card: 3px;
   --ds-radius-badge: #{$radius-full};
-  --ds-radius-modal: 12px;
+  --ds-radius-modal: 3px;
 }
-
-
-

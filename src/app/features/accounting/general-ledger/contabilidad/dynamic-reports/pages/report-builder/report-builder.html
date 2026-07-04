@@ -1,23 +1,38 @@
 ﻿<div class="h-full flex flex-column overflow-hidden">
   <!-- Header Premium -->
-  <div class="surface-0 p-3 shadow-2 flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5">
+  <div
+    class="surface-0 p-3 shadow-2 flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5"
+  >
     <div class="flex align-items-center gap-3">
       <div class="bg-primary-500 text-white border-round p-2 shadow-2">
-        <app-icon [icon]="'mdi:chart-line'" class="text-2xl"></app-icon>
+        <app-icon [icon]="'mdi:chart-line'" class="text-2xl" />
       </div>
       <div>
         <h2 class="m-0 text-primary-900 font-bold line-height-1">
           {{ id() ? 'Editar Reporte' : 'Nuevo Reporte Dinámico' }}
         </h2>
-        <input type="text" [formControl]="form.controls.name" placeholder="Nombre del reporte (requerido)" class="bg-transparent border-none text-500 text-sm font-medium uppercase tracking-wider w-20rem focus:outline-none focus:border-bottom-1 border-primary mt-1 p-1" [class.ng-invalid]="form.controls.name.invalid && form.controls.name.touched" [class.border-red-500]="form.controls.name.invalid && form.controls.name.touched" [class.border-bottom-1]="form.controls.name.invalid && form.controls.name.touched" [class.text-red-500]="form.controls.name.invalid && form.controls.name.touched" />
+        <input
+          type="text"
+          [formControl]="form.controls.name"
+          placeholder="Nombre del reporte (requerido)"
+          class="bg-transparent border-none text-500 text-sm font-medium uppercase tracking-wider w-20rem focus:outline-none focus:border-bottom-1 border-primary mt-1 p-1"
+          [class.ng-invalid]="form.controls.name.invalid && form.controls.name.touched"
+          [class.border-red-500]="form.controls.name.invalid && form.controls.name.touched"
+          [class.border-bottom-1]="form.controls.name.invalid && form.controls.name.touched"
+          [class.text-red-500]="form.controls.name.invalid && form.controls.name.touched"
+        />
       </div>
     </div>
 
     <div class="flex gap-2 align-items-center">
       <!-- Filtro de periodo rápido para el preview -->
-      <div class="flex align-items-center bg-primary-50 border-round-xl px-3 py-1 mr-3 border-1 border-primary-100">
-        <app-icon [icon]="'mdi:calendar'" class="text-primary mr-2"></app-icon>
-        <span class="text-xs font-bold text-primary-800 mr-2">PERIODO PREVIEW:</span>
+      <div
+        class="flex align-items-center bg-primary-50 border-round-xl px-3 py-1 mr-3 border-1 border-primary-100"
+      >
+        <app-icon [icon]="'mdi:calendar'" class="text-primary mr-2" />
+        <span class="text-xs font-bold text-primary-800 mr-2"
+          >PERIODO PREVIEW:</span
+        >
         <p-select
           [options]="meses"
           [ngModel]="livePreviewS.period()"
@@ -67,9 +82,10 @@
 
   <!-- Main Dashboard Layout -->
   <div cdkDropListGroup class="flex-1 flex overflow-hidden bg-surface-50">
-
     <!-- PANEL IZQUIERDO: Catálogo de Cuentas -->
-    <div class="w-20rem surface-0 border-right-1 border-primary-100 flex flex-column shadow-1 z-2">
+    <div
+      class="w-20rem surface-0 border-right-1 border-primary-100 flex flex-column shadow-1 z-2"
+    >
       <div class="p-3 border-bottom-1 border-surface-100 bg-surface-50">
         <h4 class="m-0 text-primary-900 flex align-items-center gap-2">
           Catálogo Aspel
@@ -78,9 +94,10 @@
           {{ empresaAspel() }} COI. Arrastra cuentas al canvas central
         </p>
         @if (selectedCatalogCodes().length > 0) {
-          <div class="mt-2 text-xs text-primary font-medium">
-            {{ selectedCatalogCodes().length }} seleccionada(s). Usa el botón azul en una fila para agregarlas.
-          </div>
+        <div class="mt-2 text-xs text-primary font-medium">
+          {{ selectedCatalogCodes().length }} seleccionada(s). Usa el botón azul
+          en una fila para agregarlas.
+        </div>
         }
       </div>
 
@@ -98,7 +115,9 @@
     <!-- PANEL CENTRAL: Canvas de Diseño -->
     <div class="flex-1 flex flex-column overflow-hidden relative">
       <!-- Toolbar del Canvas -->
-      <div class="p-3 flex align-items-center justify-content-between surface-0 border-bottom-1 border-surface-100 shadow-sm">
+      <div
+        class="p-3 flex align-items-center justify-content-between surface-0 border-bottom-1 border-surface-100 shadow-sm"
+      >
         <div class="flex gap-2">
           <il-button
             label="Añadir Sección"
@@ -112,15 +131,22 @@
           </span>
         </div>
         <div class="flex align-items-center gap-3">
-          <div class="hidden md:flex align-items-center gap-2 bg-surface-50 border-1 border-surface-200 border-round-lg px-3 py-2">
+          <div
+            class="hidden md:flex align-items-center gap-2 bg-surface-50 border-1 border-surface-200 border-round-lg px-3 py-2"
+          >
             <span class="text-xs font-bold text-500">CONTEXTO:</span>
-            <span class="text-xs font-medium text-primary-900">{{ customerIdS.customerName() || customerIdS.nombreCorto() || 'Cliente activo' }}</span>
+            <span class="text-xs font-medium text-primary-900"
+              >{{ customerIdS.customerName() || customerIdS.nombreCorto() ||
+              'Cliente activo' }}</span
+            >
             <span class="text-xs text-400">â€¢</span>
             <span class="text-xs text-700">{{ empresaAspel() }}</span>
             <span class="text-xs text-400">â€¢</span>
             <span class="text-xs text-700">{{ previewYear() }}</span>
           </div>
-          <div class="flex align-items-center gap-2 px-3 border-right-1 border-surface-200">
+          <div
+            class="flex align-items-center gap-2 px-3 border-right-1 border-surface-200"
+          >
             <span class="text-xs font-bold text-500">DISEÑO:</span>
             <p-select
               [options]="tiposVisualizacion"
@@ -141,75 +167,118 @@
       </div>
 
       <div class="px-4 pt-3">
-        <div class="surface-50 border-1 border-surface-200 border-round-lg px-3 py-2 flex flex-wrap align-items-center gap-2">
+        <div
+          class="surface-50 border-1 border-surface-200 border-round-lg px-3 py-2 flex flex-wrap align-items-center gap-2"
+        >
           <span class="text-xs font-bold text-500">COLUMNAS ACTIVAS:</span>
           @for (col of columns(); track col.id) {
-            <span class="inline-flex align-items-center px-2 py-1 border-round bg-primary-100 text-primary-900 text-xs font-medium">
-              {{ col.label }}
-            </span>
+          <span
+            class="inline-flex align-items-center px-2 py-1 border-round bg-primary-100 text-primary-900 text-xs font-medium"
+          >
+            {{ col.label }}
+          </span>
           }
         </div>
       </div>
 
       <!-- El Lienzo (Scrollable) -->
-      <div class="flex-1 overflow-auto p-4 bg-dots" [ngClass]="isTwoColumnPreview() ? 'flex flex-column' : 'flex flex-column gap-4'">
-
+      <div
+        class="flex-1 overflow-auto p-4 bg-dots"
+        [ngClass]="isTwoColumnPreview() ? 'flex flex-column' : 'flex flex-column gap-4'"
+      >
         @if (sections().length === 0) {
-          <div class="flex flex-column align-items-center justify-content-center h-full text-500 opacity-60">
-            <app-icon [icon]="'mdi:content-copy'" class="text-6xl mb-3"></app-icon>
-            <h3>El canvas está vacío</h3>
-            <p>Añade una sección para comenzar a diseñar tu reporte</p>
-            <il-button label="Crear primera sección" iconClass="mdi:plus" (clicked)="agregarSeccion()" />
-          </div>
+        <div
+          class="flex flex-column align-items-center justify-content-center h-full text-500 opacity-60"
+        >
+          <app-icon [icon]="'mdi:content-copy'" class="text-6xl mb-3" />
+          <h3>El canvas está vacío</h3>
+          <p>Añade una sección para comenzar a diseñar tu reporte</p>
+          <il-button
+            label="Crear primera sección"
+            iconClass="mdi:plus"
+            (clicked)="agregarSeccion()"
+          />
+        </div>
         }
 
-        <div [ngClass]="isTwoColumnPreview() ? 'grid m-0 w-full' : 'flex flex-column gap-4'">
+        <div
+          [ngClass]="isTwoColumnPreview() ? 'grid m-0 w-full' : 'flex flex-column gap-4'"
+        >
           @for (sec of sections(); track sec.sectionId) {
-            <div [ngClass]="isTwoColumnPreview() ? 'col-12 xl:col-6 p-2' : ''">
-              <div class="surface-0 border-round-xl shadow-3 border-1 border-surface-200 overflow-hidden section-card fadeinright animation-duration-300 h-full flex flex-column">
-            <!-- Header de Sección -->
-            <div class="bg-primary-50 p-3 flex align-items-center justify-content-between border-bottom-1 border-primary-100">
-              <div class="flex align-items-center gap-3 flex-1">
-                <app-icon [icon]="'mdi:folder-open'" class="text-primary-500"></app-icon>
-                <input
-                  type="text"
-                  [ngModel]="sec.title"
-                  (ngModelChange)="sec.title = $event; livePreviewS.triggerCompute()"
-                  placeholder="Título de la sección..."
-                  class="bg-transparent border-none text-primary-900 font-bold text-lg w-full focus:outline-none focus:border-bottom-1 border-primary"
-                />
+          <div [ngClass]="isTwoColumnPreview() ? 'col-12 xl:col-6 p-2' : ''">
+            <div
+              class="surface-0 border-round-xl shadow-3 border-1 border-surface-200 overflow-hidden section-card fadeinright animation-duration-300 h-full flex flex-column"
+            >
+              <!-- Header de Sección -->
+              <div
+                class="bg-primary-50 p-3 flex align-items-center justify-content-between border-bottom-1 border-primary-100"
+              >
+                <div class="flex align-items-center gap-3 flex-1">
+                  <app-icon
+                    [icon]="'mdi:folder-open'"
+                    class="text-primary-500"
+                  />
+                  <input
+                    type="text"
+                    [ngModel]="sec.title"
+                    (ngModelChange)="sec.title = $event; livePreviewS.triggerCompute()"
+                    placeholder="Título de la sección..."
+                    class="bg-transparent border-none text-primary-900 font-bold text-lg w-full focus:outline-none focus:border-bottom-1 border-primary"
+                  />
+                </div>
+                <div class="flex gap-2">
+                  <iw-button
+                    iconClass="mdi:delete"
+                    [text]="true"
+                    severity="danger"
+                    size="small"
+                    (clicked)="eliminarSeccion(sec.sectionId)"
+                  />
+                </div>
               </div>
-              <div class="flex gap-2">
-                <iw-button iconClass="mdi:delete" [text]="true" severity="danger" size="small" (clicked)="eliminarSeccion(sec.sectionId)" />
-              </div>
-            </div>
 
-            <!-- Renglones de la Sección -->
-            <div class="p-2 flex flex-column gap-2 min-h-4rem">
-              @if (sec.rows.length === 0) {
+              <!-- Renglones de la Sección -->
+              <div class="p-2 flex flex-column gap-2 min-h-4rem">
+                @if (sec.rows.length === 0) {
                 <div
                   cdkDropList
                   (cdkDropListDropped)="onAccountCdkDropToSection(sec.sectionId, $event)"
                   class="border-2 border-dashed border-primary-200 border-round-lg p-4 bg-primary-50 flex flex-column align-items-center justify-content-center text-center gap-2 text-primary-900"
                 >
-                  <app-icon [icon]="'mdi:download'" class="text-2xl text-primary-500"></app-icon>
+                  <app-icon
+                    [icon]="'mdi:download'"
+                    class="text-2xl text-primary-500"
+                  />
                   <div class="font-semibold">Sección vacía</div>
                   <div class="text-sm text-600">
-                    Arrastra una cuenta aquí para crear la primera fila o usa los botones inferiores.
+                    Arrastra una cuenta aquí para crear la primera fila o usa
+                    los botones inferiores.
                   </div>
                 </div>
-              }
-
-              @for (row of sec.rows; track row.rowId; let rowIdx = $index) {
-                <div class="surface-0 border-round-lg border-1 border-surface-100 p-2 flex align-items-center gap-3 shadow-1 hover:shadow-2 transition-all hover:border-primary-200" [class.bg-blue-50]="row.rowType === 'account'" [class.bg-purple-50]="row.rowType === 'formula'">
+                } @for (row of sec.rows; track row.rowId; let rowIdx = $index) {
+                <div
+                  class="surface-0 border-round-lg border-1 border-surface-100 p-2 flex align-items-center gap-3 shadow-1 hover:shadow-2 transition-all hover:border-primary-200"
+                  [class.bg-blue-50]="row.rowType === 'account'"
+                  [class.bg-purple-50]="row.rowType === 'formula'"
+                >
                   <!-- Botones Subir/Bajar -->
                   <div class="flex flex-column gap-0">
-                    <iw-button iconClass="mdi:chevron-up" [text]="true" size="small" severity="secondary"
+                    <iw-button
+                      iconClass="mdi:chevron-up"
+                      [text]="true"
+                      size="small"
+                      severity="secondary"
                       [disabled]="rowIdx === 0"
-                      (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx - 1)" />
-                    <iw-button iconClass="mdi:chevron-down" [text]="true" size="small" severity="secondary"
+                      (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx - 1)"
+                    />
+                    <iw-button
+                      iconClass="mdi:chevron-down"
+                      [text]="true"
+                      size="small"
+                      severity="secondary"
                       [disabled]="rowIdx === sec.rows.length - 1"
-                      (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx + 1)" />
+                      (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx + 1)"
+                    />
                   </div>
 
                   <!-- Badge de Tipo -->
@@ -234,74 +303,86 @@
 
                   <!-- Ãrea de Drop para Cuentas -->
                   @if (row.rowType === 'account') {
+                  <div
+                    cdkDropList
+                    (cdkDropListDropped)="onAccountCdkDropToRow(sec.sectionId, row.rowId, $event)"
+                    class="flex-2 flex align-items-center gap-1 overflow-hidden px-2 border-left-1 surface-border min-h-3rem hover:bg-white-alpha-20 transition-all border-round relative"
+                  >
+                    @if (row.accountNumbers.length === 0) {
                     <div
-                      cdkDropList
-                      (cdkDropListDropped)="onAccountCdkDropToRow(sec.sectionId, row.rowId, $event)"
-                      class="flex-2 flex align-items-center gap-1 overflow-hidden px-2 border-left-1 surface-border min-h-3rem hover:bg-white-alpha-20 transition-all border-round relative"
+                      class="flex align-items-center gap-2 text-400 italic text-xs w-full"
                     >
-                      @if (row.accountNumbers.length === 0) {
-                        <div class="flex align-items-center gap-2 text-400 italic text-xs w-full">
-                          <app-icon [icon]="'mdi:download'" class="animate-bounce"></app-icon>
-                          <span>Suelta cuentas aquí...</span>
-                        </div>
-                        @if (selectedCatalogCodes().length > 0) {
-                          <il-button
-                            label="Añadir seleccionadas"
-                            iconClass="mdi:plus"
-                            size="small"
-                            severity="primary"
-                            [text]="true"
-                            (clicked)="addSelectedAccountsToRow(sec.sectionId, row.rowId)"
-                          />
-                        }
-                      } @else {
-                        <div class="flex flex-wrap gap-1 max-h-4rem overflow-y-auto">
-                          @for (code of row.accountNumbers; track code) {
-                            <p-chip
-                              [label]="code"
-                              icon="mdi:check"
-                              styleClass="text-xs py-0 px-2 bg-primary-100 text-primary-900"
-                              [removable]="true"
-                              (onRemove)="eliminarCuenta(sec.sectionId, row.rowId, code)"
-                            />
-                          }
-                        </div>
-                      }
-
-                      <!-- Botón para añadir seleccionados (Fallback si el drag falla) -->
-                      @if (selectedCatalogCodes().length > 0) {
-                        <div class="ml-auto pl-2">
-                          <iw-button
-                            iconClass="mdi:plus"
-                            [rounded]="true"
-                            [text]="true"
-                            severity="primary"
-                            size="small"
-                            title="Añadir cuentas seleccionadas en el catálogo"
-                            (clicked)="addSelectedAccountsToRow(sec.sectionId, row.rowId)" />
-                        </div>
+                      <app-icon
+                        [icon]="'mdi:download'"
+                        class="animate-bounce"
+                      />
+                      <span>Suelta cuentas aquí...</span>
+                    </div>
+                    @if (selectedCatalogCodes().length > 0) {
+                    <il-button
+                      label="Añadir seleccionadas"
+                      iconClass="mdi:plus"
+                      size="small"
+                      severity="primary"
+                      [text]="true"
+                      (clicked)="addSelectedAccountsToRow(sec.sectionId, row.rowId)"
+                    />
+                    } } @else {
+                    <div
+                      class="flex flex-wrap gap-1 max-h-4rem overflow-y-auto"
+                    >
+                      @for (code of row.accountNumbers; track code) {
+                      <p-chip
+                        [label]="code"
+                        icon="mdi:check"
+                        styleClass="text-xs py-0 px-2 bg-primary-100 text-primary-900"
+                        [removable]="true"
+                        (onRemove)="eliminarCuenta(sec.sectionId, row.rowId, code)"
+                      />
                       }
                     </div>
+                    }
+
+                    <!-- Botón para añadir seleccionados (Fallback si el drag falla) -->
+                    @if (selectedCatalogCodes().length > 0) {
+                    <div class="ml-auto pl-2">
+                      <iw-button
+                        iconClass="mdi:plus"
+                        [rounded]="true"
+                        [text]="true"
+                        severity="primary"
+                        size="small"
+                        title="Añadir cuentas seleccionadas en el catálogo"
+                        (clicked)="addSelectedAccountsToRow(sec.sectionId, row.rowId)"
+                      />
+                    </div>
+                    }
+                  </div>
                   }
 
                   <!-- Input de Fórmula -->
                   @if (row.rowType === 'formula') {
-                    <div class="flex-2 border-left-1 surface-border px-3">
-                      <div class="p-inputgroup p-inputgroup-sm">
-                        <span class="p-inputgroup-addon bg-purple-100 text-purple-700 font-bold border-none">Σ</span>
-                        <input
-                          type="text"
-                          [ngModel]="row.formula"
-                          (ngModelChange)="row.formula = $event; livePreviewS.triggerCompute()"
-                          placeholder="{ID1} + {ID2}"
-                          class="p-inputtext p-inputtext-sm border-none bg-surface-50 focus:bg-white"
-                        />
-                      </div>
+                  <div class="flex-2 border-left-1 surface-border px-3">
+                    <div class="p-inputgroup p-inputgroup-sm">
+                      <span
+                        class="p-inputgroup-addon bg-purple-100 text-purple-700 font-bold border-none"
+                        >Σ</span
+                      >
+                      <input
+                        type="text"
+                        [ngModel]="row.formula"
+                        (ngModelChange)="row.formula = $event; livePreviewS.triggerCompute()"
+                        placeholder="{ID1} + {ID2}"
+                        class="p-inputtext p-inputtext-sm border-none bg-surface-50 focus:bg-white"
+                      />
                     </div>
+                  </div>
                   }
 
                   <!-- Signo/Multiplicador -->
-                  <div class="flex align-items-center gap-2 border-left-1 surface-border px-3">
+                  <div
+                    class="flex align-items-center gap-2 border-left-1 surface-border px-3"
+                  >
                     <iw-button
                       [iconClass]="row.multiplier === 1 ? 'mdi:plus' : 'mdi:minus'"
                       [severity]="row.multiplier === 1 ? 'success' : 'danger'"
@@ -314,20 +395,27 @@
                   </div>
 
                   @if (isComparativePreview() || isBudgetPreview()) {
-                    <div class="w-10rem text-right border-left-1 surface-border px-3 flex align-items-center justify-content-end gap-2">
-                      <span class="text-xs text-500 uppercase">{{ comparativeReferenceLabel }}</span>
-                      <span class="text-xs font-mono text-400">-</span>
-                    </div>
+                  <div
+                    class="w-10rem text-right border-left-1 surface-border px-3 flex align-items-center justify-content-end gap-2"
+                  >
+                    <span class="text-xs text-500 uppercase"
+                      >{{ comparativeReferenceLabel }}</span
+                    >
+                    <span class="text-xs font-mono text-400">-</span>
+                  </div>
                   }
 
                   <!-- Valor Calculado (Mini Preview) -->
-                  <div class="w-8rem text-right border-left-1 surface-border px-3 font-mono">
+                  <div
+                    class="w-8rem text-right border-left-1 surface-border px-3 font-mono"
+                  >
                     <span
                       class="text-sm font-bold"
                       [class.text-green-600]="livePreviewS.getRowValue(row.rowId) > 0"
                       [class.text-red-600]="livePreviewS.getRowValue(row.rowId) < 0"
                     >
-                      {{ livePreviewS.getRowValue(row.rowId) | currency:'USD':'symbol-narrow':'1.2-2' }}
+                      {{ livePreviewS.getRowValue(row.rowId) |
+                      currency:'USD':'symbol-narrow':'1.2-2' }}
                     </span>
                   </div>
 
@@ -344,145 +432,210 @@
                     size="small"
                     (clicked)="eliminarRenglon(sec.sectionId, row.rowId)"
                   />
-
                 </div>
-              }
-            </div>
+                }
+              </div>
 
-            <!-- Footer de Sección -->
-            <div class="p-2 bg-surface-50 flex gap-2 justify-content-center border-top-1 border-surface-100 mt-auto">
-              <il-button label="Añadir Cuenta" iconClass="mdi:plus" [text]="true" size="small" (clicked)="agregarRenglon(sec.sectionId, 'account')" />
-              <il-button label="Añadir Fórmula" iconClass="mdi:percent" [text]="true" severity="help" size="small" (clicked)="agregarRenglon(sec.sectionId, 'formula')" />
+              <!-- Footer de Sección -->
+              <div
+                class="p-2 bg-surface-50 flex gap-2 justify-content-center border-top-1 border-surface-100 mt-auto"
+              >
+                <il-button
+                  label="Añadir Cuenta"
+                  iconClass="mdi:plus"
+                  [text]="true"
+                  size="small"
+                  (clicked)="agregarRenglon(sec.sectionId, 'account')"
+                />
+                <il-button
+                  label="Añadir Fórmula"
+                  iconClass="mdi:percent"
+                  [text]="true"
+                  severity="help"
+                  size="small"
+                  (clicked)="agregarRenglon(sec.sectionId, 'formula')"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        }
+          }
         </div>
       </div>
     </div>
 
     <!-- PANEL DERECHO: Live Preview Final -->
-    <div class="w-24rem surface-0 border-left-1 border-primary-100 flex flex-column shadow-4 z-3">
-      <div class="p-3 border-bottom-1 border-surface-100 bg-primary-900 text-white flex align-items-center justify-content-between">
+    <div
+      class="w-24rem surface-0 border-left-1 border-primary-100 flex flex-column shadow-4 z-3"
+    >
+      <div
+        class="p-3 border-bottom-1 border-surface-100 bg-primary-900 text-white flex align-items-center justify-content-between"
+      >
         <h4 class="m-0 flex align-items-center gap-2">
-          <app-icon [icon]="'mdi:eye-outline'"></app-icon>
+          <app-icon [icon]="'mdi:eye-outline'" />
           Vista Previa Real
         </h4>
         @if (livePreviewS.computing()) {
-          <app-icon [icon]="'mdi:loading'"></app-icon>
+        <app-icon [icon]="'mdi:loading'" />
         }
       </div>
 
       <div class="flex-1 overflow-auto p-0 bg-white">
         @if (isSimplePreview()) {
-          <table class="w-full border-collapse">
-            <tbody>
-              @for (sec of sections(); track sec.sectionId) {
-                <tr class="bg-surface-100">
-                  <td class="p-2 font-bold text-xs text-primary uppercase">{{ sec.title || 'SECCION' }}</td>
-                  <td class="p-2 text-right text-xs text-primary font-bold">MONTO</td>
-                </tr>
-                @for (row of sec.rows; track row.rowId) {
-                  <tr class="hover:bg-surface-50 border-bottom-1 border-surface-100">
-                    <td class="p-2 text-xs text-700">{{ row.label || '(Sin nombre)' }}</td>
-                    <td class="p-2 text-right font-mono text-xs font-bold" [class.text-danger]="livePreviewS.getRowValue(row.rowId) < 0">
-                      {{ livePreviewS.getRowValue(row.rowId) | currency:'USD':'symbol-narrow':'1.2-2' }}
-                    </td>
-                  </tr>
-                }
-              }
-            </tbody>
-            <tfoot class="bg-surface-900 text-white sticky bottom-0 font-bold shadow-4">
-              <tr>
-                <td class="p-3 uppercase">Total Reporte</td>
-                <td class="p-3 text-right font-mono text-lg">
-                  {{ livePreviewS.grandTotal() | currency:'USD':'symbol-narrow':'1.2-2' }}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        } @else if (isTwoColumnPreview()) {
-          <div class="p-3">
-            <div class="grid m-0">
-              @for (sec of sections(); track sec.sectionId) {
-                <div class="col-6 p-1">
-                  <div class="border-1 border-surface-200 border-round overflow-hidden h-full flex flex-column">
-                    <div class="bg-surface-100 px-3 py-2 text-xs font-bold text-primary uppercase border-bottom-1 border-surface-200">
-                      {{ sec.title || 'SECCION' }}
-                    </div>
-                    <div class="flex-1 flex flex-column">
-                      @for (row of sec.rows; track row.rowId) {
-                        <div class="flex justify-content-between align-items-center px-3 py-2 border-bottom-1 border-surface-100">
-                          <span class="text-xs text-700">{{ row.label || '(Sin nombre)' }}</span>
-                          <span class="text-xs font-mono font-bold" [class.text-danger]="livePreviewS.getRowValue(row.rowId) < 0">
-                            {{ livePreviewS.getRowValue(row.rowId) | currency:'USD':'symbol-narrow':'1.2-2' }}
-                          </span>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
-        } @else if (isSummaryCardsPreview()) {
-          <div class="p-3 grid">
+        <table class="w-full border-collapse">
+          <tbody>
             @for (sec of sections(); track sec.sectionId) {
-              @for (row of sec.rows; track row.rowId) {
-                <div class="col-12">
-                  <div class="border-1 border-surface-200 border-round-xl p-3 bg-surface-50">
-                    <div class="text-xs text-500 uppercase mb-2">{{ sec.title || 'SECCION' }}</div>
-                    <div class="text-sm font-semibold text-900">{{ row.label || '(Sin nombre)' }}</div>
-                    <div class="text-xl font-bold text-primary-900 mt-2 font-mono">
-                      {{ livePreviewS.getRowValue(row.rowId) | currency:'USD':'symbol-narrow':'1.2-2' }}
-                    </div>
-                  </div>
+            <tr class="bg-surface-100">
+              <td class="p-2 font-bold text-xs text-primary uppercase">
+                {{ sec.title || 'SECCION' }}
+              </td>
+              <td class="p-2 text-right text-xs text-primary font-bold">
+                MONTO
+              </td>
+            </tr>
+            @for (row of sec.rows; track row.rowId) {
+            <tr class="hover:bg-surface-50 border-bottom-1 border-surface-100">
+              <td class="p-2 text-xs text-700">
+                {{ row.label || '(Sin nombre)' }}
+              </td>
+              <td
+                class="p-2 text-right font-mono text-xs font-bold"
+                [class.text-danger]="livePreviewS.getRowValue(row.rowId) < 0"
+              >
+                {{ livePreviewS.getRowValue(row.rowId) |
+                currency:'USD':'symbol-narrow':'1.2-2' }}
+              </td>
+            </tr>
+            } }
+          </tbody>
+          <tfoot
+            class="bg-surface-900 text-white sticky bottom-0 font-bold shadow-4"
+          >
+            <tr>
+              <td class="p-3 uppercase">Total Reporte</td>
+              <td class="p-3 text-right font-mono text-lg">
+                {{ livePreviewS.grandTotal() |
+                currency:'USD':'symbol-narrow':'1.2-2' }}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        } @else if (isTwoColumnPreview()) {
+        <div class="p-3">
+          <div class="grid m-0">
+            @for (sec of sections(); track sec.sectionId) {
+            <div class="col-6 p-1">
+              <div
+                class="border-1 border-surface-200 border-round overflow-hidden h-full flex flex-column"
+              >
+                <div
+                  class="bg-surface-100 px-3 py-2 text-xs font-bold text-primary uppercase border-bottom-1 border-surface-200"
+                >
+                  {{ sec.title || 'SECCION' }}
                 </div>
-              }
+                <div class="flex-1 flex flex-column">
+                  @for (row of sec.rows; track row.rowId) {
+                  <div
+                    class="flex justify-content-between align-items-center px-3 py-2 border-bottom-1 border-surface-100"
+                  >
+                    <span class="text-xs text-700"
+                      >{{ row.label || '(Sin nombre)' }}</span
+                    >
+                    <span
+                      class="text-xs font-mono font-bold"
+                      [class.text-danger]="livePreviewS.getRowValue(row.rowId) < 0"
+                    >
+                      {{ livePreviewS.getRowValue(row.rowId) |
+                      currency:'USD':'symbol-narrow':'1.2-2' }}
+                    </span>
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
             }
           </div>
+        </div>
+        } @else if (isSummaryCardsPreview()) {
+        <div class="p-3 grid">
+          @for (sec of sections(); track sec.sectionId) { @for (row of sec.rows;
+          track row.rowId) {
+          <div class="col-12">
+            <div
+              class="border-1 border-surface-200 border-round-xl p-3 bg-surface-50"
+            >
+              <div class="text-xs text-500 uppercase mb-2">
+                {{ sec.title || 'SECCION' }}
+              </div>
+              <div class="text-sm font-semibold text-900">
+                {{ row.label || '(Sin nombre)' }}
+              </div>
+              <div class="text-xl font-bold text-primary-900 mt-2 font-mono">
+                {{ livePreviewS.getRowValue(row.rowId) |
+                currency:'USD':'symbol-narrow':'1.2-2' }}
+              </div>
+            </div>
+          </div>
+          } }
+        </div>
         } @else if (isComparativePreview() || isBudgetPreview()) {
-          <table class="w-full border-collapse">
-            <thead>
-              <tr class="bg-surface-100">
-                <th class="p-2 text-left text-xs text-primary font-bold">CONCEPTO</th>
-                <th class="p-2 text-right text-xs text-primary font-bold">ACTUAL</th>
-                <th class="p-2 text-right text-xs text-primary font-bold">
-                  {{ isBudgetPreview() ? 'PRESUPUESTO' : 'REFERENCIA' }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (sec of sections(); track sec.sectionId) {
-                <tr class="bg-primary-50">
-                  <td colspan="3" class="p-2 font-bold text-xs text-primary uppercase">{{ sec.title || 'SECCION' }}</td>
-                </tr>
-                @for (row of sec.rows; track row.rowId) {
-                  <tr class="border-bottom-1 border-surface-100">
-                    <td class="p-2 text-xs text-700">{{ row.label || '(Sin nombre)' }}</td>
-                    <td class="p-2 text-right text-xs font-mono font-bold">
-                      {{ livePreviewS.getRowValue(row.rowId) | currency:'USD':'symbol-narrow':'1.2-2' }}
-                    </td>
-                    <td class="p-2 text-right text-xs text-400">-</td>
-                  </tr>
-                }
-              }
-            </tbody>
-          </table>
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-surface-100">
+              <th class="p-2 text-left text-xs text-primary font-bold">
+                CONCEPTO
+              </th>
+              <th class="p-2 text-right text-xs text-primary font-bold">
+                ACTUAL
+              </th>
+              <th class="p-2 text-right text-xs text-primary font-bold">
+                {{ isBudgetPreview() ? 'PRESUPUESTO' : 'REFERENCIA' }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (sec of sections(); track sec.sectionId) {
+            <tr class="bg-primary-50">
+              <td
+                colspan="3"
+                class="p-2 font-bold text-xs text-primary uppercase"
+              >
+                {{ sec.title || 'SECCION' }}
+              </td>
+            </tr>
+            @for (row of sec.rows; track row.rowId) {
+            <tr class="border-bottom-1 border-surface-100">
+              <td class="p-2 text-xs text-700">
+                {{ row.label || '(Sin nombre)' }}
+              </td>
+              <td class="p-2 text-right text-xs font-mono font-bold">
+                {{ livePreviewS.getRowValue(row.rowId) |
+                currency:'USD':'symbol-narrow':'1.2-2' }}
+              </td>
+              <td class="p-2 text-right text-xs text-400">-</td>
+            </tr>
+            } }
+          </tbody>
+        </table>
         }
 
         <!-- Alertas y Advertencias -->
         @if (livePreviewS.warnings().length > 0) {
-          <div class="p-3">
-            <div class="bg-orange-50 border-round p-2 border-left-3 border-orange-500">
-              <span class="text-xs font-bold text-orange-900 block mb-2"><app-icon [icon]="'mdi:alert'"></app-icon> ADVERTENCIAS:</span>
-              <ul class="m-0 p-0 pl-3 list-none flex flex-column gap-1">
-                @for (warn of livePreviewS.warnings(); track $index) {
-                  <li class="text-xs text-orange-700 line-height-2">â€¢ {{ warn }}</li>
-                }
-              </ul>
-            </div>
+        <div class="p-3">
+          <div
+            class="bg-orange-50 border-round p-2 border-left-3 border-orange-500"
+          >
+            <span class="text-xs font-bold text-orange-900 block mb-2"
+              ><app-icon [icon]="'mdi:alert'" /> ADVERTENCIAS:</span
+            >
+            <ul class="m-0 p-0 pl-3 list-none flex flex-column gap-1">
+              @for (warn of livePreviewS.warnings(); track $index) {
+              <li class="text-xs text-orange-700 line-height-2">
+                â€¢ {{ warn }}
+              </li>
+              }
+            </ul>
           </div>
+        </div>
         }
       </div>
     </div>
@@ -492,14 +645,17 @@
 <!-- Popover de Configuración Avanzada -->
 <p-popover #opConfig>
   <div class="p-3 flex flex-column gap-3 w-20rem">
-    <h5 class="m-0 border-bottom-1 border-surface-100 pb-2">Propiedades del Reporte</h5>
+    <h5 class="m-0 border-bottom-1 border-surface-100 pb-2">
+      Propiedades del Reporte
+    </h5>
     <div class="flex flex-column gap-1">
       <label class="text-xs font-bold text-500">Descripción</label>
       <textarea
         [formControl]="form.controls.description"
         class="p-inputtext p-inputtext-sm w-full"
         rows="3"
-        placeholder="Objetivo del reporte..."></textarea>
+        placeholder="Objetivo del reporte..."
+      ></textarea>
     </div>
     <div class="flex flex-column gap-1">
       <label class="text-xs font-bold text-500">Base COI</label>
@@ -544,17 +700,23 @@
       class="surface-card border-1 surface-border border-round-xl p-3 hover:surface-100 cursor-pointer flex align-items-center gap-3 transition-all hover:border-primary shadow-1"
       (click)="aplicarEjemplo('egp')"
     >
-      <div class="bg-success-100 text-success-700 border-circle w-3rem h-3rem flex align-items-center justify-content-center shadow-sm">
-        <app-icon [icon]="'mdi:wallet'" class="text-xl"></app-icon>
+      <div
+        class="bg-success-100 text-success-700 border-circle w-3rem h-3rem flex align-items-center justify-content-center shadow-sm"
+      >
+        <app-icon [icon]="'mdi:wallet'" class="text-xl" />
       </div>
       <div>
         <h5 class="m-0 text-primary-900">Estado de Resultados</h5>
         <p class="m-0 text-xs text-500">Ingresos vs Egresos</p>
       </div>
     </div>
-    <div class="surface-card border-1 surface-border border-round-xl p-3 opacity-50 cursor-not-allowed flex align-items-center gap-3 grayscale shadow-1">
-      <div class="bg-surface-100 text-surface-500 border-circle w-3rem h-3rem flex align-items-center justify-content-center">
-        <app-icon [icon]="'mdi:scale-balance'" class="text-xl"></app-icon>
+    <div
+      class="surface-card border-1 surface-border border-round-xl p-3 opacity-50 cursor-not-allowed flex align-items-center gap-3 grayscale shadow-1"
+    >
+      <div
+        class="bg-surface-100 text-surface-500 border-circle w-3rem h-3rem flex align-items-center justify-content-center"
+      >
+        <app-icon [icon]="'mdi:scale-balance'" class="text-xl" />
       </div>
       <div>
         <h5 class="m-0">Balance General</h5>
@@ -572,5 +734,7 @@
   .section-card {
     border-left: 6px solid var(--primary-500);
   }
-  .flex-2 { flex: 2; }
+  .flex-2 {
+    flex: 2;
+  }
 </style>

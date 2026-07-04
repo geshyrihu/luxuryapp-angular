@@ -24,10 +24,15 @@ import { EquipmentInspectionExecutionForm } from "./equipment-inspection-executi
 import { EquipmentInspectionExecutionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-equipment-inspection-execution-history-list",
   templateUrl: "./equipment-inspection-execution-history-list.html",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
     CommonModule,
     TableModule,
     Tag,

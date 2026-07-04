@@ -2,12 +2,12 @@
   ============================================================================
   ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
-  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
-  FUNCIONAL y ESTABLE. 
-  
+  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+  FUNCIONAL y ESTABLE.
+
   Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
   sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
-  
+
   Por favor, NO rompan el código.
   ============================================================================
 -->
@@ -48,8 +48,12 @@
           supportForm.get("files")?.value; track file.name) {
           <p-tag value="{{ file.name }}" severity="info"></p-tag>
           }
-          <app-icon [icon]="'mdi:close-circle'" class="text-danger text-xl cursor-pointer" (click)="removeFile()"
-            pTooltip="Limpiar selección"></app-icon>
+          <app-icon
+            [icon]="'mdi:close-circle'"
+            class="text-danger text-xl cursor-pointer"
+            (click)="removeFile()"
+            pTooltip="Limpiar selección"
+          />
           }
         </div>
       </div>
@@ -82,7 +86,7 @@
     <ng-template let-file pTemplate="item">
       <div class="flex justify-content-between align-items-center w-full py-1">
         <div class="flex align-items-center gap-2 overflow-hidden">
-          <app-icon [icon]="'mdi:file-pdf-box'" class="text-danger text-xl"></app-icon>
+          <app-icon [icon]="'mdi:file-pdf-box'" class="text-danger text-xl" />
           <span class="text-sm font-medium truncate">{{ file.fileName }}</span>
         </div>
         <div class="flex gap-2">
@@ -107,7 +111,7 @@
 </p-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 border-round p-4 text-center mt-3">
-  <app-icon [icon]="'mdi:information'" class="text-4xl text-info mb-2"></app-icon>
+  <app-icon [icon]="'mdi:information'" class="text-4xl text-info mb-2" />
   <p class="text-500 italic">No hay archivos adjuntos para esta partida.</p>
 </div>
 } }

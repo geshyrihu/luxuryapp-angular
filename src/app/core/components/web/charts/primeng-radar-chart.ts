@@ -1,58 +1,58 @@
-import { Component, input, viewChild } from "@angular/core";
-import { ChartConfiguration, ChartData } from "chart.js";
-import { ChartModule, UIChart } from "primeng/chart";
+import { Component, computed, input } from "@angular/core";
+import { NgxEchartsDirective } from "ngx-echarts";
+import type { ECharts, EChartsCoreOption } from "echarts/core";
+import { chartJsToRadarOption, ChartJsData } from "./echarts-adapters";
 
 /**
- * 📡 PRIMENG RADAR CHART
- * -------------------------------------------------------------------------
- * Gráfico de radar (o araña) usando PrimeNG / Chart.js.
- * Perfecto para comparar habilidades, stats o atributos múltiples.
+ * PrimengRadarChart — radar / araña. Motor: ECharts (ngx-echarts).
+ * API sin cambios: `chartData` en formato Chart.js `{ labels, datasets }`.
+ * Mantiene `getBase64Image()` y `reinit()` para el flujo de impresión.
  */
 @Component({
   selector: "app-primeng-radar-chart",
-  imports: [ChartModule],
+  standalone: true,
+  imports: [NgxEchartsDirective],
   template: `
-    @if (chartData().datasets[0].data.length > 0) {
-      <div style="display: block">
-        <p-chart
-          #chartEl
-          type="radar"
-          [data]="chartData()"
-          [options]="chartOptions()"
-        ></p-chart>
-      </div>
+    @if ((chartData().datasets?.[0]?.data?.length ?? 0) > 0) {
+      <div
+        echarts
+        [options]="option()"
+        (chartInit)="onInit($event)"
+        style="height: 340px; display: block"
+      ></div>
     }
   `,
-  styles: [],
 })
 export class PrimengRadarChart {
-  // <--- Signals --->
-  chart = viewChild<UIChart>("chartEl");
-
-  chartData = input<ChartData<"radar">>({
+  chartData = input<ChartJsData>({
     labels: [],
     datasets: [{ data: [], label: "Cargando..." }],
   });
 
-  chartOptions = input<ChartConfiguration["options"]>({
-    responsive: true,
-  });
+  // Se conserva por compatibilidad de API (ECharts ignora opciones de Chart.js).
+  chartOptions = input<unknown>({});
 
-  /**
-   * Expone de forma segura la imagen del gráfico en formato base64.
-   * @returns La imagen en base64 o undefined si el gráfico no está listo.
-   */
-  public getBase64Image(): string | undefined {
-    return this.chart()?.getBase64Image();
+  private instance: ECharts | null = null;
+
+  option = computed<EChartsCoreOption>(() =>
+    chartJsToRadarOption(this.chartData()),
+  );
+
+  onInit(chart: ECharts): void {
+    this.instance = chart;
   }
 
-  /**
-   * Redibuja el gráfico. Esencial para actualizar el tamaño del canvas
-   * en escenarios como la impresión, donde el contenedor cambia de tamaño.
-   */
+  /** Imagen base64 del gráfico (para impresión/exportación). */
+  public getBase64Image(): string | undefined {
+    return this.instance?.getDataURL({
+      type: "png",
+      pixelRatio: 2,
+      backgroundColor: "#ffffff",
+    });
+  }
+
+  /** Redibuja el gráfico (útil al cambiar el tamaño del contenedor). */
   public reinit(): void {
-    if (this.chart()) {
-      this.chart()!.reinit();
-    }
+    this.instance?.resize();
   }
 }

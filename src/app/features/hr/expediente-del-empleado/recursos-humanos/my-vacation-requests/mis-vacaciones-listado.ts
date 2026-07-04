@@ -24,10 +24,24 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { getStatusSeverity } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationRequestMyDTO } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/interfaces/vacation-request.interface";
 import { VacacionesForm } from "./vacaciones-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
   imports: [
+    WebButtonIconItem,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,

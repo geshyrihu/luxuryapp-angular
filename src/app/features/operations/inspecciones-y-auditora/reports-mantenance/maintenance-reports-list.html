@@ -48,7 +48,7 @@
       <td class="text-center">
         <a [routerLink]="[item.route]">
           ver
-          <app-icon [icon]="'mdi:hand-pointing-up'"></app-icon>
+          <app-icon [icon]="'mdi:hand-pointing-up'" />
         </a>
       </td>
     </tr>
@@ -65,12 +65,24 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div slot="start" style="
-        width:36px; height:36px; border-radius:10px;
-        background:var(--ds-border); display:flex; align-items:center;
-        justify-content:center; flex-shrink:0; margin-left:16px;
-      ">
-        <app-icon icon="mdi:file-document-outline" style="font-size:20px; color:var(--ds-warning);"></app-icon>
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: var(--ds-border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <app-icon
+          icon="mdi:file-document-outline"
+          style="font-size: 20px; color: var(--ds-warning)"
+        />
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
@@ -78,10 +90,3 @@
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

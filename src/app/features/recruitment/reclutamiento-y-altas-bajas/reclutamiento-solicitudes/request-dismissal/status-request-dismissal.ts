@@ -17,10 +17,15 @@ import { StatusSolicitudVacanteService } from "src/app/core/services/status-soli
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
 import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-status-request-dismissal",
   templateUrl: "./status-request-dismissal.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CardModule,
     NgbTooltipModule,
     WebButtonLabel,

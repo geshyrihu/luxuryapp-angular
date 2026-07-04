@@ -198,13 +198,13 @@
                 item.ivaAplicado / 100) | currency: "MXN" }}
               </td>
               <td class="text-center">
-                <il-button
+                <iw-button
                   iconClass="mdi:pencil"
                   variant="text"
                   severity="info"
                   (clicked)="editItem(item, i)"
                 />
-                <il-button
+                <iw-button
                   iconClass="mdi:delete"
                   variant="text"
                   severity="danger"
@@ -288,7 +288,7 @@
                 ></p-inputNumber>
               </td>
               <td>
-                <il-button
+                <iw-button
                   iconClass="mdi:delete"
                   severity="danger"
                   variant="text"
@@ -348,7 +348,10 @@
             <div
               class="flex align-items-center justify-content-center flex-column py-5"
             >
-              <app-icon [icon]="'mdi:cloud-upload'" class="border-2 border-circle p-5 text-8xl text-400 border-400"></app-icon>
+              <app-icon
+                [icon]="'mdi:cloud-upload'"
+                class="border-2 border-circle p-5 text-8xl text-400 border-400"
+              />
               <p class="mt-4 mb-0">Arrastre y suelte los archivos aquó.</p>
             </div>
             }
@@ -457,7 +460,11 @@
         <ul>
           @for (file of uploadedFiles(); track $index) {
           <li>
-            <app-icon [icon]="getActionIcon(file.name)" [ngClass]="getActionIconClass(file.name)" class="mr-2"></app-icon>
+            <app-icon
+              [icon]="getActionIcon(file.name)"
+              [ngClass]="getActionIconClass(file.name)"
+              class="mr-2"
+            />
             {{ file.name }}
           </li>
           }

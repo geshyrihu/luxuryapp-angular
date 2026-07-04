@@ -12,8 +12,8 @@
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
-    <il-button-download
-      label="Descargar PDF"
+    <iw-button-download
+      pTooltip="Descargar PDF" tooltipPosition="top"
       (clicked)="onDownloadPdf()"
       class="mt-1"
     />
@@ -67,10 +67,10 @@
       <td>{{ item.applicationUser }}</td>
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -83,7 +83,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <div customFilters style="padding: 4px 16px 8px">
-    <il-button-download (clicked)="onDownloadPdf()" />
+    <ili-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
@@ -104,25 +104,22 @@
         <app-icon
           icon="mdi:radio"
           style="font-size: 20px; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.marca }} é {{ item.modelo }}</h3>
         <p>Serie: {{ item.serie }} | Bateróa: {{ item.bateria }}</p>
         <p>{{ item.applicationUser }} é {{ item.departament }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

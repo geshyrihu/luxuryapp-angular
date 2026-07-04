@@ -1,13 +1,8 @@
-import {
-  Component,
-  input,
-  model,
-  output,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { TagInputBase } from "src/app/core/components/shared/tag-input/tag-input-base";
 
 /**
  * AppTagInput — Input de tags/chips con autocompletado opcional.
@@ -105,24 +100,4 @@ import { AutoCompleteModule } from "primeng/autocomplete";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppTagInput {
-  value       = model<string[]>([]);
-  label       = input<string>("");
-  hint        = input<string>("");
-  placeholder = input<string>("Escribe un tag...");
-  disabled    = input<boolean>(false);
-  suggestions = input<string[]>([]);
-  forceSelection = input<boolean>(false);
-
-  tagAdded   = output<string>();
-  tagRemoved = output<string>();
-
-  filteredSuggestions: string[] = [];
-
-  onSearch(event: { query: string }): void {
-    const q = event.query.toLowerCase();
-    const existing = this.value();
-    this.filteredSuggestions = this.suggestions()
-      .filter((s) => s.toLowerCase().includes(q) && !existing.includes(s));
-  }
-}
+export class AppTagInput extends TagInputBase {}

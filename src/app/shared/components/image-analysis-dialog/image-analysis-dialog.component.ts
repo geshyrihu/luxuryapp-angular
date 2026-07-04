@@ -84,7 +84,10 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
       @if (analysisResult) {
         <div class="result-container">
           <div class="text-center mb-3">
-            <app-icon [icon]="'mdi:check-circle'" class="pi text-green-500 text-3xl"></app-icon>
+            <app-icon
+              [icon]="'mdi:check-circle'"
+              class="pi text-green-500 text-3xl"
+            />
             <h3 class="m-0">Análisis Completado</h3>
           </div>
 

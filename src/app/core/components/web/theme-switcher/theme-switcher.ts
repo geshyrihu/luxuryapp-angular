@@ -1,15 +1,9 @@
-import {
-  Component,
-  OnInit,
-  signal,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-
-type Theme = "light" | "dark";
+import { ThemeSwitcherBase } from "src/app/core/components/shared/theme-switcher/theme-switcher-base";
 
 /**
  * AppThemeSwitcher — Toggle que aplica/remueve `body.theme-dark`.
@@ -44,26 +38,4 @@ type Theme = "light" | "dark";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppThemeSwitcher implements OnInit {
-  theme = signal<Theme>("light");
-
-  private readonly STORAGE_KEY = "ds-theme";
-
-  ngOnInit(): void {
-    const saved = localStorage.getItem(this.STORAGE_KEY) as Theme | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    this.applyTheme(saved ?? preferred);
-  }
-
-  toggle(): void {
-    this.applyTheme(this.theme() === "light" ? "dark" : "light");
-  }
-
-  private applyTheme(t: Theme): void {
-    this.theme.set(t);
-    document.body.classList.toggle("theme-dark", t === "dark");
-    localStorage.setItem(this.STORAGE_KEY, t);
-  }
-}
+export class AppThemeSwitcher extends ThemeSwitcherBase {}

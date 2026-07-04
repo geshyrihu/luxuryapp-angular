@@ -11,7 +11,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
@@ -19,6 +18,7 @@ import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-i
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import Swal from "sweetalert2";
 
 interface IResetPasswordForm {
@@ -146,7 +146,7 @@ interface IResetPasswordForm {
                     <app-icon
                       icon="mdi:alert-circle-outline"
                       class="text-xl mr-3"
-                    ></app-icon>
+                    />
                     <span class="text-sm font-medium">{{
                       errorMessage()
                     }}</span>
@@ -190,7 +190,7 @@ interface IResetPasswordForm {
                 icon="mdi:star"
                 class="text-4xl"
                 style="color: var(--ds-secondary);"
-              ></app-icon>
+              />
             </div>
             <h1
               class="text-6xl font-bold mb-4 line-height-2 text-white drop-shadow-lg"

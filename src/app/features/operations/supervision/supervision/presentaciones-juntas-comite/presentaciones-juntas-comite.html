@@ -61,10 +61,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCargaPortada }}</p>
           </div>
           <div class="mt-1">
-            <il-button-view-pdf
-              [url]="item.archivoPortada"
-              pdf="Portada"
-            />
+            <iw-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
           </div>
         </div>
         }
@@ -81,10 +78,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCargaContable }}</p>
           </div>
           <div class="mt-1">
-            <il-button-view-pdf
-              [url]="item.archivoContable"
-              pdf="Portada"
-            />
+            <iw-button-view-pdf [url]="item.archivoContable" pdf="Portada" />
           </div>
         </div>
         }
@@ -101,10 +95,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCarga }}</p>
           </div>
           <div class="mt-1">
-            <il-button-view-pdf
-              [url]="item.archivoJunta"
-              pdf="Portada"
-            />
+            <iw-button-view-pdf [url]="item.archivoJunta" pdf="Portada" />
           </div>
         </div>
         }
@@ -121,10 +112,7 @@
             <p class="m-0 text-xs text-500">{{ item.fechaCargaSupervisor }}</p>
           </div>
           <div class="mt-1">
-            <il-button-view-pdf
-              [url]="item.archivoFinal"
-              pdf="Portada"
-            />
+            <iw-button-view-pdf [url]="item.archivoFinal" pdf="Portada" />
           </div>
         </div>
         }
@@ -154,7 +142,7 @@
         <app-icon
           icon="mdi:presentation"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <!-- Cliente -->
@@ -183,10 +171,7 @@
           <p class="font-bold mb-0">Portada:</p>
           <p class="text-color-secondary mb-0">{{ item.userPortada }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCargaPortada }}</p>
-          <il-button-view-pdf
-            [url]="item.archivoPortada"
-            pdf="Portada"
-          />
+          <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
         </div>
         }
 
@@ -196,10 +181,7 @@
           <p class="font-bold mb-0">Contable:</p>
           <p class="text-color-secondary mb-0">{{ item.userContable }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCargaContable }}</p>
-          <il-button-view-pdf
-            [url]="item.archivoContable"
-            pdf="Portada"
-          />
+          <il-button-view-pdf [url]="item.archivoContable" pdf="Portada" />
         </div>
         }
 
@@ -209,10 +191,7 @@
           <p class="font-bold mb-0">Operaciones:</p>
           <p class="text-color-secondary mb-0">{{ item.fullName }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCarga }}</p>
-          <il-button-view-pdf
-            [url]="item.archivoJunta"
-            pdf="Portada"
-          />
+          <il-button-view-pdf [url]="item.archivoJunta" pdf="Portada" />
         </div>
         }
 
@@ -224,10 +203,7 @@
           <p class="text-color-secondary mb-0">
             {{ item.fechaCargaSupervisor }}
           </p>
-          <il-button-view-pdf
-            [url]="item.archivoFinal"
-            pdf="Portada"
-          />
+          <il-button-view-pdf [url]="item.archivoFinal" pdf="Portada" />
         </div>
         }
       </ion-label>

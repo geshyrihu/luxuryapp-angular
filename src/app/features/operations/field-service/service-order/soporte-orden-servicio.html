@@ -7,11 +7,7 @@
   </tr>
   <tr>
     <td class="table-col-10">
-      <img
-        [src]="logoCustomer"
-        alt=""
-        class="w-6rem h-auto"
-      />
+      <img [src]="logoCustomer" alt="" class="w-6rem h-auto" />
     </td>
     <td class="table-col-50">
       <div>
@@ -19,11 +15,17 @@
         <p class="font-size-11 m-0">{{ dataCustomer.adreess }}</p>
         <div class="flex flex-wrap align-items-start gap-3 font-size-11 m-0">
           <div class="m-0">
-            <app-icon icon="mdi:circle-medium" class="mr-1 text-success align-middle"></app-icon>
+            <app-icon
+              icon="mdi:circle-medium"
+              class="mr-1 text-success align-middle"
+            />
             {{ dataCustomer.phoneOne }}
           </div>
           <div class="m-0">
-            <app-icon icon="mdi:circle-medium" class="mr-1 text-success align-middle"></app-icon>
+            <app-icon
+              icon="mdi:circle-medium"
+              class="mr-1 text-success align-middle"
+            />
             {{ dataCustomer.phoneTwo }}
           </div>
         </div>
@@ -39,11 +41,13 @@
         </p>
         <p class="m-0 font-size-11">
           Tipo de servicio:
-          <app-icon [icon]="'mdi:pin'" class="icon icon-"
+          <app-icon
+            [icon]="'mdi:pin'"
+            class="icon icon-"
             [class.text-success]="item.tipoServicio == 'Preventivo'"
             [class.text-danger]="item.tipoServicio == 'Correctivo'"
             [class.txt-primary]="item.tipoServicio == 'Predictivo'"
-          ></app-icon>
+          />
           {{ item.tipoServicio }}, {{ item.recurrencia }}
         </p>
       </div>
@@ -121,16 +125,28 @@
             <div>
               <p class="m-0">
                 @if (item.cumplimientoActividades) {
-                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:check'"
+                  class="text-success mr-1 icon icon-"
+                />
                 } @if (!item.cumplimientoActividades) {
-                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:close'"
+                  class="text-danger mr-1 icon icon-"
+                />
                 } Se cumplio con las actividades correspondientes a la orden
               </p>
               <p>
                 @if (item.equiposOperando) {
-                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:check'"
+                  class="text-success mr-1 icon icon-"
+                />
                 } @if (!item.equiposOperando) {
-                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:close'"
+                  class="text-danger mr-1 icon icon-"
+                />
                 } Equipos/Areas operando sin ningun inconveniente
               </p>
             </div>
@@ -139,16 +155,28 @@
             <div>
               <p class="m-0">
                 @if (item.ocacionoDanos) {
-                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:check'"
+                  class="text-success mr-1 icon icon-"
+                />
                 } @if (!item.ocacionoDanos) {
-                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:close'"
+                  class="text-danger mr-1 icon icon-"
+                />
                 } Afectación en el Area donde se realizo el trabajo
               </p>
               <p class="m-0">
                 @if (item.calidadTrabajos) {
-                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:check'"
+                  class="text-success mr-1 icon icon-"
+                />
                 } @if (!item.calidadTrabajos) {
-                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
+                <app-icon
+                  [icon]="'mdi:close'"
+                  class="text-danger mr-1 icon icon-"
+                />
                 } Se cumplio con la calidad de los trabajos realizados
               </p>
             </div>

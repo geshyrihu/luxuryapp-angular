@@ -1,236 +1,423 @@
-<!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
+<!-- Mobile (< md) -->
 <div class="block md:hidden fadein">
-
-  <!-- Header compacto -->
-  <div class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border">
-    <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-         style="width:40px;height:40px;background:var(--ds-primary-50,#edf1ff);">
-      <app-icon icon="mdi:wallet" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+  <div
+    class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border"
+  >
+    <div
+      class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+      style="
+        width: 40px;
+        height: 40px;
+        background: var(--ds-primary-50, #edf1ff);
+      "
+    >
+      <app-icon
+        icon="mdi:wallet"
+        style="font-size: 1.25rem; color: var(--ds-primary)"
+      />
     </div>
     <div>
-      <h2 class="font-bold m-0 text-color" style="font-size:1.1rem;">Cobranza Nativa</h2>
-      <p class="text-xs m-0 text-color-secondary">Sistema integral condominial</p>
+      <h2 class="font-bold m-0 text-color" style="font-size: 1.1rem">
+        Cobranza Nativa
+      </h2>
+      <p class="text-xs m-0 text-color-secondary">
+        Inventario claro de pantallas y controles reales
+      </p>
     </div>
   </div>
 
-  <!-- KPIs compactos -->
   <div class="px-3 py-2 flex flex-column gap-2">
     @for (metric of heroMetrics; track metric.label) {
-      <div class="surface-card p-3 border-round-lg shadow-1 flex justify-content-between align-items-center border-left-3"
-           [class]="'border-' + (metric.tone === 'primary' ? 'primary' : metric.tone === 'success' ? 'success' : 'warning')">
-        <div>
-          <span class="block text-xs font-bold uppercase mb-1" style="color:var(--ds-text-secondary);">{{ metric.label }}</span>
-          <span class="text-xl font-bold text-900">{{ metric.value }}</span>
-        </div>
-        <app-icon [icon]="metric.icon" class="text-2xl text-400"></app-icon>
+    <div
+      class="surface-card p-3 border-round-lg shadow-1 flex justify-content-between align-items-center border-left-3"
+      [class]="'border-' + (metric.tone === 'primary' ? 'primary' : metric.tone === 'success' ? 'success' : 'warning')"
+    >
+      <div>
+        <span
+          class="block text-xs font-bold uppercase mb-1"
+          style="color: var(--ds-text-secondary)"
+          >{{ metric.label }}</span
+        >
+        <span class="text-xl font-bold text-900">{{ metric.value }}</span>
       </div>
+      <app-icon [icon]="metric.icon" class="text-2xl text-400" />
+    </div>
     }
+
+    <button
+      type="button"
+      class="mobile-flow-entry"
+      (click)="navigateTo('/cobranza-nativa/flow-map')"
+    >
+      <span class="mobile-flow-entry__icon">
+        <app-icon [icon]="'mdi:transit-connection-variant'" />
+      </span>
+      <span class="mobile-flow-entry__copy">
+        <strong>Ver mapa visual del flujo</strong>
+        <small>Explica properties, cargos, pagos, ledger, PDF y controles.</small>
+      </span>
+      <app-icon [icon]="'mdi:arrow-right'" class="mobile-flow-entry__arrow" />
+    </button>
+
+    <button
+      type="button"
+      class="mobile-config-entry"
+      (click)="openBillingConfig()"
+    >
+      <span class="mobile-config-entry__icon">
+        <app-icon [icon]="'mdi:tune'" />
+      </span>
+      <span class="mobile-config-entry__copy">
+        <strong>Configurar facturacion y notificaciones</strong>
+        <small>Abre el modal real de modo de cobro, mora global y canales email/push.</small>
+      </span>
+      <app-icon [icon]="'mdi:arrow-top-right'" class="mobile-config-entry__arrow" />
+    </button>
   </div>
 
-  <!-- Módulos de navegación -->
   @for (group of groups; track group.label) {
-    <ion-list>
-      <ion-item-divider class="px-3 py-2" style="background:var(--ds-bg-elevated,#f4f5f8);">
-        <div class="flex align-items-center gap-2">
-          <app-icon [icon]="group.icon" style="font-size:1rem;color:var(--ds-primary);"></app-icon>
-          <span class="text-xs font-bold uppercase" style="color:var(--ds-text-secondary);">{{ group.label }}</span>
-        </div>
-      </ion-item-divider>
+  <ion-list>
+    <ion-item-divider
+      class="px-3 py-2"
+      style="background: var(--ds-bg-elevated, #f4f5f8)"
+    >
+      <div class="flex align-items-center gap-2">
+        <app-icon
+          [icon]="group.icon"
+          style="font-size: 1rem; color: var(--ds-primary)"
+        />
+        <span
+          class="text-xs font-bold uppercase"
+          style="color: var(--ds-text-secondary)"
+          >{{ group.label }}</span
+        >
+      </div>
+    </ion-item-divider>
 
-      @for (card of group.cards; track card.title) {
-        @if (card.route) {
-          <ion-item lines="full" detail="true" class="ion-no-padding"
-                    (click)="navigateTo(card.route)">
-            <div slot="start"
-                 class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-                 style="width:38px;height:38px;"
-                 [style.backgroundColor]="card.bgColor">
-              <app-icon [icon]="card.icon" style="font-size:1.1rem;" [style.color]="getCardColor(card)"></app-icon>
-            </div>
-            <ion-label class="ion-text-wrap">
-              <h3 class="font-semibold m-0 text-color">{{ card.title }}</h3>
-              <p class="text-xs m-0 mt-1 text-color-secondary">{{ card.description }}</p>
-            </ion-label>
-          </ion-item>
-        }
-      }
-    </ion-list>
+    @for (card of group.cards; track card.title) {
+    <ion-item
+      lines="full"
+      detail="true"
+      class="ion-no-padding"
+      (click)="navigateTo(card.route)"
+    >
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width: 38px; height: 38px"
+        [style.backgroundColor]="card.bgColor"
+      >
+        <app-icon
+          [icon]="card.icon"
+          style="font-size: 1.1rem"
+          [style.color]="getCardColor(card)"
+        />
+      </div>
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ card.title }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ card.description }}
+        </p>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
   }
 </div>
 
-<!-- ─── WEB (≥ md) ─────────────────────────────────────────────── -->
+<!-- Web (>= md) -->
 <div class="hidden md:block fadein">
-<div class="p-4">
-
-  <!-- Encabezado (Estilo Luxury Design System) -->
-  <div class="mb-6">
-    <div class="flex align-items-center gap-3 mb-2">
-      <div class="flex align-items-center justify-content-center border-round-xl shadow-1"
-           style="width:56px;height:56px;background:var(--ds-primary-50,#edf1ff);">
-        <app-icon icon="mdi:wallet" style="font-size:1.75rem;color:var(--ds-primary);"></app-icon>
-      </div>
-      <div>
-        <h1 class="ds-heading text-3xl font-bold text-900 m-0">Cobranza Nativa</h1>
-        <p class="ds-text-secondary text-base m-0">
-          Sistema integral de cobranza condominial. Gestión de cargos, pagos, mora, facturación CFDI y auditoría financiera.
-        </p>
+  <div class="p-4">
+    <div class="mb-6">
+      <div class="flex align-items-center gap-3 mb-2">
+        <div
+          class="flex align-items-center justify-content-center border-round-xl shadow-1"
+          style="
+            width: 56px;
+            height: 56px;
+            background: var(--ds-primary-50, #edf1ff);
+          "
+        >
+          <app-icon
+            icon="mdi:wallet"
+            style="font-size: 1.75rem; color: var(--ds-primary)"
+          />
+        </div>
+        <div>
+          <h1 class="ds-heading text-3xl font-bold text-900 m-0">
+            Cobranza Nativa
+          </h1>
+          <p class="ds-text-secondary text-base m-0">
+            Inventario ordenado por flujo real: base maestra, operacion, control,
+            cobranza extendida, automatizacion y vistas de entendimiento.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Métricas (Tarjetas KPI Alineadas) -->
-  <div class="grid mb-4">
-    @for (metric of heroMetrics; track metric.label) {
+    <div class="dashboard-spotlights">
+      <button
+        type="button"
+        class="desktop-flow-entry"
+        (click)="navigateTo('/cobranza-nativa/flow-map')"
+      >
+        <span class="desktop-flow-entry__badge">Nuevo para UI</span>
+        <div class="desktop-flow-entry__body">
+          <div class="desktop-flow-entry__icon">
+            <app-icon [icon]="'mdi:transit-connection-variant'" />
+          </div>
+          <div class="desktop-flow-entry__copy">
+            <strong>Mapa visual del flujo completo</strong>
+            <span>
+              Una vista clara para entender como se conectan properties,
+              plantillas, cargos, pagos, ledger, PDF, notificaciones y auditoria.
+            </span>
+          </div>
+          <app-icon [icon]="'mdi:arrow-right'" class="desktop-flow-entry__arrow" />
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="desktop-config-entry"
+        (click)="openBillingConfig()"
+      >
+        <span class="desktop-flow-entry__badge desktop-flow-entry__badge--neutral">
+          Configuracion real
+        </span>
+        <div class="desktop-flow-entry__body">
+          <div class="desktop-config-entry__icon">
+            <app-icon [icon]="'mdi:tune'" />
+          </div>
+          <div class="desktop-flow-entry__copy">
+            <strong>Facturacion y canales de notificacion</strong>
+            <span>
+              Este ajuste no es una pagina aparte: se abre como modal y controla
+              modo nativo, vencimiento, gracia, mora global, email y push.
+            </span>
+          </div>
+          <app-icon [icon]="'mdi:open-in-app'" class="desktop-flow-entry__arrow" />
+        </div>
+      </button>
+    </div>
+
+    <div class="grid mb-4">
+      @for (metric of heroMetrics; track metric.label) {
       <div class="col-12 md:col-4">
-        <div class="surface-card p-3 border-round-lg shadow-1 border-left-3 flex justify-content-between align-items-center"
-             [class]="'border-' + (metric.tone === 'primary' ? 'primary' : metric.tone === 'success' ? 'success' : 'warning')">
+        <div
+          class="surface-card p-3 border-round-lg shadow-1 border-left-3 flex justify-content-between align-items-center"
+          [class]="'border-' + (metric.tone === 'primary' ? 'primary' : metric.tone === 'success' ? 'success' : 'warning')"
+        >
           <div>
-            <span class="block text-secondary text-xs font-bold uppercase mb-1">{{ metric.label }}</span>
+            <span class="block text-secondary text-xs font-bold uppercase mb-1"
+              >{{ metric.label }}</span
+            >
             <span class="text-2xl font-bold text-900">{{ metric.value }}</span>
           </div>
-          <div class="w-3rem h-3rem border-round flex align-items-center justify-content-center"
-               [class]="'bg-' + (metric.tone === 'primary' ? 'blue-50 dark:bg-blue-950/20 text-primary-600 dark:text-blue-300' : metric.tone === 'success' ? 'green-50 dark:bg-green-950/20 text-green-600 dark:text-green-300' : 'yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-300')">
+          <div
+            class="w-3rem h-3rem border-round flex align-items-center justify-content-center"
+            [class]="'bg-' + (metric.tone === 'primary' ? 'blue-50 dark:bg-blue-950/20 text-primary-600 dark:text-blue-300' : metric.tone === 'success' ? 'green-50 dark:bg-green-950/20 text-green-600 dark:text-green-300' : 'yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-300')"
+          >
             <app-icon [icon]="metric.icon" class="text-2xl" />
           </div>
         </div>
       </div>
-    }
-  </div>
+      }
+    </div>
 
-  <!-- Grupos de módulos -->
-  @for (group of groups; track group.label) {
-    <!-- Título del grupo (Estilo Luxury Design System) -->
-    <div class="flex align-items-center gap-2 mb-4 mt-6">
-      <app-icon [icon]="group.icon" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+    @for (group of groups; track group.label) {
+    <div class="flex align-items-center gap-2 mb-2 mt-6">
+      <app-icon
+        [icon]="group.icon"
+        style="font-size: 1.25rem; color: var(--ds-primary)"
+      />
       <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
         {{ group.label }}
       </h2>
       <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
     </div>
 
+    <p class="group-description ds-text-secondary text-sm mt-0 mb-4">
+      {{ group.description }}
+    </p>
+
     <div class="grid">
       @for (card of group.cards; track card.title) {
-        <div class="col-12 sm:col-6 lg:col-3">
-          <p-card
-            styleClass="card card--interactive card--elevated h-full"
-            [style]="{'border-top': '3px solid ' + getCardColor(card)}"
-            (click)="card.route ? navigateTo(card.route) : null"
-          >
-            <div class="flex flex-column gap-3">
-
-              <!-- Icono + indicadores (igual a master-dashboard) -->
-              <div class="flex align-items-center justify-content-between">
-                <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-                     style="width:48px;height:48px;"
-                     [style.backgroundColor]="card.bgColor">
-                  <app-icon [icon]="card.icon" style="font-size:1.5rem;" [style.color]="getCardColor(card)"></app-icon>
-                </div>
-                <div class="flex align-items-center gap-1">
-                  @if (card.pending) {
-                    <p-tag value="Pendiente" severity="warn" styleClass="text-xs" />
-                  } @else if (!card.route) {
-                    <p-tag value="Modal" severity="info" styleClass="text-xs" />
-                  }
-                  <app-icon icon="mdi:arrow-up-right" class="text-400"></app-icon>
-                </div>
+      <div class="col-12 sm:col-6 lg:col-3">
+        <p-card
+          styleClass="card card--interactive card--elevated h-full"
+          [style]="{'border-top': '3px solid ' + getCardColor(card)}"
+          (click)="navigateTo(card.route)"
+        >
+          <div class="flex flex-column gap-3">
+            <div class="flex align-items-center justify-content-between">
+              <div
+                class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+                style="width: 48px; height: 48px"
+                [style.backgroundColor]="card.bgColor"
+              >
+                <app-icon
+                  [icon]="card.icon"
+                  style="font-size: 1.5rem"
+                  [style.color]="getCardColor(card)"
+                />
               </div>
-
-              <!-- Título y descripción -->
-              <div>
-                <h3 class="m-0 font-bold text-900 line-height-2 text-base">
-                  {{ card.title }}
-                </h3>
-                <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-                  {{ card.description }}
-                </p>
+              <div class="flex align-items-center gap-1">
+                @if (card.pending) {
+                <p-tag value="Pendiente" severity="warn" styleClass="text-xs" />
+                }
+                <app-icon icon="mdi:arrow-up-right" class="text-400" />
               </div>
-            </div><!-- /gap-3 -->
-
-            <!-- Detalle expandible técnico (solo SuperAdmin) — oculto por defecto -->
-            <div (click)="$event.stopPropagation()">
-              <il-button
-                [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'"
-                [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle técnico'"
-                variant="link"
-                severity="secondary"
-                size="small"
-                styleClass="text-xs mt-2"
-                (clicked)="toggleExpand(card.title)"
-              />
             </div>
 
-            <!-- Detalle expandible (Técnico) -->
-              @if (isExpanded(card.title)) {
-                <div class="mt-4 p-3 border-round-lg bloque-advertencia" (click)="$event.stopPropagation()">
-                  <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
-                    <app-icon [icon]="'mdi:format-list-bulleted'" class="text-xs mr-2 text-primary"></app-icon>Acciones
-                  </div>
-                  <ul class="m-0 pl-3 mb-3 text-secondary">
-                    @for (action of card.actions; track action.label) {
-                      <li class="text-xs line-height-3 mb-1">{{ action.label }}</li>
-                    }
-                  </ul>
+            <div>
+              <h3 class="m-0 font-bold text-900 line-height-2 text-base">
+                {{ card.title }}
+              </h3>
+              <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+                {{ card.description }}
+              </p>
+            </div>
+          </div>
 
-                  <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
-                    <app-icon [icon]="'mdi:server'" class="text-xs mr-2 text-primary"></app-icon>Endpoints API
-                  </div>
-                  @for (ep of card.endpoints; track ep.path) {
-                    <div class="text-xs mb-1 p-2 bg-white dark:bg-gray-900 border-round flex align-items-start border-1 surface-border">
-                      <span
-                        class="font-mono font-bold mr-2 w-3rem flex-shrink-0"
-                        [class]="ep.method === 'GET' ? 'text-blue-600' : ep.method === 'DELETE' ? 'text-red-600' : 'text-green-600'"
-                      >{{ ep.method }}</span>
-                      <span class="font-mono text-secondary break-all">{{ ep.path }}</span>
-                    </div>
-                  }
+          <div (click)="$event.stopPropagation()">
+            <il-button
+              [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'"
+              [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle tecnico'"
+              variant="link"
+              severity="secondary"
+              size="small"
+              styleClass="text-xs mt-2"
+              (clicked)="toggleExpand(card.title)"
+            />
+          </div>
 
-                  @if (card.states?.length) {
-                    <div class="mt-3">
-                      <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
-                        <app-icon [icon]="'mdi:tag'" class="text-xs mr-2 text-primary"></app-icon>Estados
-                      </div>
-                      <div class="flex flex-wrap gap-1">
-                        @for (s of card.states; track s) {
-                          <p-tag [value]="s" severity="secondary" styleClass="text-xs font-mono" />
-                        }
-                      </div>
-                    </div>
-                  }
-
-                  @if (card.notes) {
-                    <div class="mt-3 pt-3 border-top-1 border-primary-100 dark:border-primary-900">
-                      <div class="text-xs line-height-3 text-900">
-                        <app-icon [icon]="'mdi:information'" class="mr-1 text-primary"></app-icon> {{ card.notes }}
-                      </div>
-                    </div>
-                  }
-                </div>
+          @if (isExpanded(card.title)) {
+          <div
+            class="mt-4 p-3 border-round-lg bloque-advertencia"
+            (click)="$event.stopPropagation()"
+          >
+            <div
+              class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
+            >
+              <app-icon
+                [icon]="'mdi:format-list-bulleted'"
+                class="text-xs mr-2 text-primary"
+              />Acciones
+            </div>
+            <ul class="m-0 pl-3 mb-3 text-secondary">
+              @for (action of card.actions; track action.label) {
+              <li class="text-xs line-height-3 mb-1">{{ action.label }}</li>
               }
-          </p-card>
-        </div>
+            </ul>
+
+            <div
+              class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
+            >
+              <app-icon
+                [icon]="'mdi:server'"
+                class="text-xs mr-2 text-primary"
+              />Endpoints API
+            </div>
+            @if (card.endpoints.length) {
+            @for (ep of card.endpoints; track ep.path) {
+            <div
+              class="text-xs mb-1 p-2 bg-white dark:bg-gray-900 border-round flex align-items-start border-1 surface-border"
+            >
+              <span
+                class="font-mono font-bold mr-2 w-3rem flex-shrink-0"
+                [class]="ep.method === 'GET' ? 'text-blue-600' : ep.method === 'DELETE' ? 'text-red-600' : 'text-green-600'"
+                >{{ ep.method }}</span
+              >
+              <span class="font-mono text-secondary break-all"
+                >{{ ep.path }}</span
+              >
+            </div>
+            }
+            } @else {
+            <div class="text-xs text-secondary line-height-3">
+              Esta vista es documental y no expone endpoints operativos directos.
+            </div>
+            }
+
+            @if (card.states?.length) {
+            <div class="mt-3">
+              <div
+                class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
+              >
+                <app-icon
+                  [icon]="'mdi:tag'"
+                  class="text-xs mr-2 text-primary"
+                />Estados
+              </div>
+              <div class="flex flex-wrap gap-1">
+                @for (s of card.states; track s) {
+                <p-tag
+                  [value]="s"
+                  severity="secondary"
+                  styleClass="text-xs font-mono"
+                />
+                }
+              </div>
+            </div>
+            }
+
+            @if (card.notes) {
+            <div
+              class="mt-3 pt-3 border-top-1 border-primary-100 dark:border-primary-900"
+            >
+              <div class="text-xs line-height-3 text-900">
+                <app-icon
+                  [icon]="'mdi:information'"
+                  class="mr-1 text-primary"
+                />
+                {{ card.notes }}
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </p-card>
+      </div>
       }
     </div>
-  }
+    }
 
-  <!-- Footer CTA -->
-  <div class="mt-6 p-4 border-round-xl border-1 surface-border flex align-items-center gap-4"
-       style="background:var(--ds-bg-elevated,#f4f5f8);">
-    <div class="p-3 border-round-lg shadow-1 hidden sm:block"
-         style="background:var(--ds-bg-surface,#fff);">
-      <app-icon icon="mdi:sitemap" style="font-size:1.75rem;color:var(--ds-primary);"></app-icon>
-    </div>
-    <div class="flex-1">
-      <div class="font-bold text-900 text-lg mb-1">Entender la Arquitectura</div>
-      <div class="ds-text-secondary text-sm line-height-3">
-        Consulta el flujo completo: desde plantillas hasta cierre contable.
+    <div
+      class="mt-6 p-4 border-round-xl border-1 surface-border flex align-items-center gap-4"
+      style="background: var(--ds-bg-elevated, #f4f5f8)"
+    >
+      <div
+        class="p-3 border-round-lg shadow-1 hidden sm:block"
+        style="background: var(--ds-bg-surface, #fff)"
+      >
+        <app-icon
+          icon="mdi:sitemap"
+          style="font-size: 1.75rem; color: var(--ds-primary)"
+        />
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-900 text-lg mb-1">
+          Entender la Arquitectura
+        </div>
+        <div class="ds-text-secondary text-sm line-height-3">
+          Si alguien nuevo entra al modulo, empiecen por el mapa visual y despues
+          validen la configuracion real desde el modal de facturacion.
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-content-end">
+        <il-button
+          label="Ver Mapa Visual"
+          iconClass="mdi:external-link"
+          (clicked)="navigateTo('/cobranza-nativa/flow-map')"
+        />
+        <il-button
+          label="Abrir Configuracion"
+          iconClass="mdi:tune"
+          severity="secondary"
+          (clicked)="openBillingConfig()"
+        />
       </div>
     </div>
-    <il-button
-      label="Ver Arquitectura"
-      iconClass="mdi:external-link"
-      (clicked)="navigateTo('/cobranza-nativa/system-overview')"
-    />
   </div>
-
-</div><!-- /p-4 web -->
-</div><!-- /hidden md:block web -->
+</div>

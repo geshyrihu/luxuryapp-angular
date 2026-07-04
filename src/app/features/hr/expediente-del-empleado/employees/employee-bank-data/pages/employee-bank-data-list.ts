@@ -24,10 +24,23 @@ import { EmployeeInternalService } from "../../employee-internal/services/employ
 import { IEmployeeBankData } from "../models/employee-bank-data.interface";
 import { EmployeeBankDataForm } from "./employee-bank-data-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "employee-bank-data-list",
   templateUrl: "./employee-bank-data-list.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconConfirm,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

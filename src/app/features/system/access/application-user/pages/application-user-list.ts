@@ -34,10 +34,24 @@ import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employ
 import { IApplicationUserDTO } from "../models/application-user.dto";
 import { ApplicationUserForm } from "./application-user-form";
 import { MdEditAccount } from "./md-edit-account";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-application-user-list",
   templateUrl: "./application-user-list.html",
   imports: [
+    WebButtonIconItem,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
@@ -66,7 +80,7 @@ export class ApplicationUserList implements OnInit {
   dataSignal = signal<IApplicationUserDTO[]>([]);
   filteredDataSignal = signal<IApplicationUserDTO[]>([]);
 
-  searchText: string = ""; // Para almacenar el texto de búsqueda
+  searchText: string = ""; // Para almacenar el texto de bÃ³squeda
   selectCustomerSignal = signal<ISelectItem[]>([]);
   cbTypePersonSignal = signal<ISelectItem[]>([]);
 
@@ -122,14 +136,14 @@ export class ApplicationUserList implements OnInit {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
 
-          // Agrupar customers únicos para el select
+          // Agrupar customers Ã³nicos para el select
           const uniqueCustomers = [
             ...new Set(result.map((item: any) => item.customer)),
           ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
-            { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
+            { label: "Mostrar todos", value: "all" }, // OpciÃ³n para mostrar todos
             ...uniqueCustomers.map(
               (customer): ISelectItem => ({
                 label: customer ? String(customer) : "Sin Cliente",
@@ -141,7 +155,7 @@ export class ApplicationUserList implements OnInit {
       });
   }
 
-  // Método para filtrar por cliente
+  // MÃ©todo para filtrar por cliente
   onSelectForCustomer(selectedValue: string) {
     if (selectedValue === "all") {
       // Si selecciona "Mostrar todos", mostrar todos los datos

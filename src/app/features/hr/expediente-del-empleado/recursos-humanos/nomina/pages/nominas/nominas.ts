@@ -20,9 +20,14 @@ import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interfac
 import ModalGenerarNomina from "./modal-generar-nomina/modal-generar-nomina";
 
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-nominas",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

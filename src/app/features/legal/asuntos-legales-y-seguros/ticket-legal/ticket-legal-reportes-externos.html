@@ -3,25 +3,30 @@
 <!-- Selector de rango de fechas -->
 <div class="grid mb-3">
   <div class="col-12 md:col-6">
-    <app-task-date-range-selector (selectedDates)="onDateRangeSelected($event)" />
+    <app-task-date-range-selector
+      (selectedDates)="onDateRangeSelected($event)"
+    />
   </div>
 </div>
 <hr />
 
 <div class="text-center mb-3">
   <h4 class="mb-0">
-    LEGAL EXTERNO — CIERRE DEL {{ startDate() | uppercase }} HASTA {{ endDate() | uppercase }}
+    LEGAL EXTERNO — CIERRE DEL {{ startDate() | uppercase }} HASTA {{ endDate()
+    | uppercase }}
   </h4>
 </div>
 
 <!-- DESKTOP VIEW -->
 <div class="hidden md:block">
-
   @if (reportData()) {
   <div class="card mb-4">
     <p-table [value]="kpiRows()" styleClass="custom-table">
       <ng-template #caption>
-        <primeng-custom-caption title="Resultado del Periodo" [showAdd]="false" />
+        <primeng-custom-caption
+          title="Resultado del Periodo"
+          [showAdd]="false"
+        />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -34,7 +39,7 @@
         <tr>
           <td class="text-center">
             @if (row.icon) {
-              <app-icon [icon]="row.icon" [style.color]="row.iconColor"></app-icon>
+            <app-icon [icon]="row.icon" [style.color]="row.iconColor" />
             }
           </td>
           <td class="text-center font-bold">{{ row.value }}</td>
@@ -43,15 +48,22 @@
       </ng-template>
     </p-table>
   </div>
-  }
-
-  @if (requestsAttended().length > 0) {
+  } @if (requestsAttended().length > 0) {
   <div class="card mb-4">
-    <p-table [value]="requestsAttended()" [scrollable]="true" [scrollHeight]="scrollHeight()" styleClass="custom-table">
+    <p-table
+      [value]="requestsAttended()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      styleClass="custom-table"
+    >
       <ng-template #header>
         <tr>
           <th colspan="3" class="text-center">
-            <app-icon icon="mdi:check-circle" style="color:var(--ds-success);vertical-align:middle;" class="mr-2"></app-icon>
+            <app-icon
+              icon="mdi:check-circle"
+              style="color: var(--ds-success); vertical-align: middle"
+              class="mr-2"
+            />
             SOLICITUDES ATENDIDAS
           </th>
         </tr>
@@ -70,15 +82,22 @@
       </ng-template>
     </p-table>
   </div>
-  }
-
-  @if (requestsPending().length > 0) {
+  } @if (requestsPending().length > 0) {
   <div class="card mb-4">
-    <p-table [value]="requestsPending()" [scrollable]="true" [scrollHeight]="scrollHeight()" styleClass="custom-table">
+    <p-table
+      [value]="requestsPending()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      styleClass="custom-table"
+    >
       <ng-template #header>
         <tr>
           <th colspan="7" class="text-center">
-            <app-icon icon="mdi:alert-circle" style="color:var(--ds-danger);vertical-align:middle;" class="mr-2"></app-icon>
+            <app-icon
+              icon="mdi:alert-circle"
+              style="color: var(--ds-danger); vertical-align: middle"
+              class="mr-2"
+            />
             SOLICITUDES PENDIENTES
           </th>
         </tr>
@@ -99,32 +118,53 @@
           <td class="text-center">{{ ticket.fecha | date: "dd/MM/yyyy" }}</td>
           <td class="text-center">{{ ticket.cliente }}</td>
           <td>{{ ticket.asunto }}<br />{{ ticket.descripcion }}</td>
-          <td class="text-center" [style.color]="ticket.dias > 10 ? 'var(--ds-danger)' : null">{{ ticket.dias }}</td>
+          <td
+            class="text-center"
+            [style.color]="ticket.dias > 10 ? 'var(--ds-danger)' : null"
+          >
+            {{ ticket.dias }}
+          </td>
           <td>{{ ticket.ultimoSeguimiento }}</td>
         </tr>
       </ng-template>
     </p-table>
   </div>
+  } @if (!reportData() && requestsAttended().length === 0 &&
+  requestsPending().length === 0) {
+  <lx-empty-state
+    icon="mdi:file-document-outline"
+    title="Sin datos"
+    message="No hay información para el periodo seleccionado."
+  />
   }
-
-  @if (!reportData() && requestsAttended().length === 0 && requestsPending().length === 0) {
-    <app-empty-state icon="mdi:file-document-outline" title="Sin datos" message="No hay información para el periodo seleccionado." />
-  }
-
 </div>
 
 <!-- MOBILE VIEW -->
 <div class="block md:hidden">
-
   @if (reportData()) {
   <div class="card mb-4">
-    <h5 class="p-3 m-0 text-center" style="border-bottom:1px solid var(--ds-border,#e2e8f0);">RESULTADO</h5>
+    <h5
+      class="p-3 m-0 text-center"
+      style="border-bottom: 1px solid var(--ds-border, #e2e8f0)"
+    >
+      RESULTADO
+    </h5>
     <app-data-view-mobile [data]="[reportData()]" [showAdd]="false">
       <ng-template #listItemTemplate let-d>
         <ion-item lines="full" class="ion-no-padding" detail="false">
-          <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-               style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);">
-            <app-icon icon="mdi:ticket-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+          <div
+            slot="start"
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+            style="
+              width: 38px;
+              height: 38px;
+              background: var(--ds-primary-50, #edf1ff);
+            "
+          >
+            <app-icon
+              icon="mdi:ticket-outline"
+              style="font-size: 1.1rem; color: var(--ds-primary)"
+            />
           </div>
           <ion-label class="ion-text-wrap">
             <div class="flex justify-content-between align-items-center mb-2">
@@ -141,11 +181,17 @@
             </div>
             <div class="flex justify-content-between align-items-center mb-2">
               <span>SOLICITUDES ATENDIDAS</span>
-              <p-tag [value]="d.solicitudesAtendidas" severity="success"></p-tag>
+              <p-tag
+                [value]="d.solicitudesAtendidas"
+                severity="success"
+              ></p-tag>
             </div>
             <div class="flex justify-content-between align-items-center mb-2">
               <span>PENDIENTES DEL PERIODO</span>
-              <p-tag [value]="d.pendientesSoloDelPeriodo" severity="warn"></p-tag>
+              <p-tag
+                [value]="d.pendientesSoloDelPeriodo"
+                severity="warn"
+              ></p-tag>
             </div>
             <div class="flex justify-content-between align-items-center">
               <span>PENDIENTES ACUMULADAS</span>
@@ -156,20 +202,35 @@
       </ng-template>
     </app-data-view-mobile>
   </div>
-  }
-
-  @if (requestsAttended().length > 0) {
+  } @if (requestsAttended().length > 0) {
   <div class="card mb-4">
-    <h5 class="p-3 m-0 text-center" style="border-bottom:1px solid var(--ds-border,#e2e8f0);">
-      <app-icon icon="mdi:check-circle" style="color:var(--ds-success);vertical-align:middle;" class="mr-2"></app-icon>
+    <h5
+      class="p-3 m-0 text-center"
+      style="border-bottom: 1px solid var(--ds-border, #e2e8f0)"
+    >
+      <app-icon
+        icon="mdi:check-circle"
+        style="color: var(--ds-success); vertical-align: middle"
+        class="mr-2"
+      />
       SOLICITUDES ATENDIDAS
     </h5>
     <app-data-view-mobile [data]="requestsAttended()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
         <ion-item lines="full" class="ion-no-padding" detail="false">
-          <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-               style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);">
-            <app-icon icon="mdi:check" style="font-size:1.1rem;color:var(--ds-success,#006837);"></app-icon>
+          <div
+            slot="start"
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+            style="
+              width: 38px;
+              height: 38px;
+              background: var(--ds-success-light, #d1fae5);
+            "
+          >
+            <app-icon
+              icon="mdi:check"
+              style="font-size: 1.1rem; color: var(--ds-success, #006837)"
+            />
           </div>
           <ion-label class="ion-text-wrap">
             <div class="flex justify-content-between align-items-center">
@@ -181,28 +242,48 @@
       </ng-template>
     </app-data-view-mobile>
   </div>
-  }
-
-  @if (requestsPending().length > 0) {
+  } @if (requestsPending().length > 0) {
   <div class="card mb-4">
-    <h5 class="p-3 m-0 text-center" style="border-bottom:1px solid var(--ds-border,#e2e8f0);">
-      <app-icon icon="mdi:alert" style="color:var(--ds-danger);vertical-align:middle;" class="mr-2"></app-icon>
+    <h5
+      class="p-3 m-0 text-center"
+      style="border-bottom: 1px solid var(--ds-border, #e2e8f0)"
+    >
+      <app-icon
+        icon="mdi:alert"
+        style="color: var(--ds-danger); vertical-align: middle"
+        class="mr-2"
+      />
       SOLICITUDES PENDIENTES
     </h5>
     <app-data-view-mobile [data]="requestsPending()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
         <ion-item lines="full" class="ion-no-padding" detail="false">
-          <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-               style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);">
-            <app-icon icon="mdi:ticket-confirmation" style="font-size:1.1rem;color:var(--ds-danger,#ba1a1a);"></app-icon>
+          <div
+            slot="start"
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+            style="
+              width: 38px;
+              height: 38px;
+              background: var(--ds-danger-light, #ffdad6);
+            "
+          >
+            <app-icon
+              icon="mdi:ticket-confirmation"
+              style="font-size: 1.1rem; color: var(--ds-danger, #ba1a1a)"
+            />
           </div>
           <ion-label class="ion-text-wrap">
             <div class="flex justify-content-between align-items-center">
               <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
               <p-tag [value]="ticket.dias + ' días'" severity="danger"></p-tag>
             </div>
-            <small style="color:var(--ds-text-secondary);">{{ ticket.fecha | date: "dd/MM/yyyy" }} — {{ ticket.cliente }}</small>
-            <p class="mt-2 mb-1"><strong>Asunto:</strong> {{ ticket.asunto }}</p>
+            <small style="color: var(--ds-text-secondary)"
+              >{{ ticket.fecha | date: "dd/MM/yyyy" }} — {{ ticket.cliente
+              }}</small
+            >
+            <p class="mt-2 mb-1">
+              <strong>Asunto:</strong> {{ ticket.asunto }}
+            </p>
             <p class="text-sm mt-0 mb-2">{{ ticket.descripcion }}</p>
             <p class="mt-0 mb-1"><strong>Último Seguimiento:</strong></p>
             <p class="text-sm mt-0 mb-1">{{ ticket.ultimoSeguimiento }}</p>
@@ -211,10 +292,12 @@
       </ng-template>
     </app-data-view-mobile>
   </div>
+  } @if (!reportData() && requestsAttended().length === 0 &&
+  requestsPending().length === 0) {
+  <lx-empty-state
+    icon="mdi:file-document-outline"
+    title="Sin datos"
+    message="No hay información para el periodo seleccionado."
+  />
   }
-
-  @if (!reportData() && requestsAttended().length === 0 && requestsPending().length === 0) {
-    <app-empty-state icon="mdi:file-document-outline" title="Sin datos" message="No hay información para el periodo seleccionado." />
-  }
-
 </div>

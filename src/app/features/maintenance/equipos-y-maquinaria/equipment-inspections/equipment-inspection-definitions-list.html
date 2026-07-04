@@ -67,18 +67,18 @@
             ])
           "
         >
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:play-circle-outline"
-            label="Iniciar"
+            pTooltip="Iniciar" tooltipPosition="top"
             (clicked)="onStartManual(item.id)"
           />
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:power"
-            [label]="item.isActive ? 'Desactivar' : 'Activar'"
+            [pTooltip]="item.isActive ? 'Desactivar' : 'Activar'" tooltipPosition="top"
             (clicked)="onToggleActive(item)"
           />
-          <il-button-edit (clicked)="onAddOrEdit(item.id)" />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-edit (clicked)="onAddOrEdit(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>

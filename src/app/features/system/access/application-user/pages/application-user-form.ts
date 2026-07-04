@@ -39,7 +39,7 @@ export class ApplicationUserForm implements OnInit {
   cb_customer = signal<ISelectItem[]>([]);
   cb_typePerson = toSignal(this.enumSelectS.typePerson(), { initialValue: [] });
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     email: new FormControl<string>(""),
     phoneNumber: new FormControl<string>(""),

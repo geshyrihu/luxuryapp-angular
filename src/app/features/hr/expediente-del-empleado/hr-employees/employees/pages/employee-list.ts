@@ -23,10 +23,22 @@ import { EmployeeProviderForm } from "../../../../../purchasing/providers/provid
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
 import { IEmployee } from "../models/employee.interface";
 import { CardEmployee } from "./card-employee";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-employee-list",
   templateUrl: "./employee-list.html",
   imports: [
+    WebButtonIconActiveDesactive,
+    WebButtonIconItem,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabelActiveDesactive,

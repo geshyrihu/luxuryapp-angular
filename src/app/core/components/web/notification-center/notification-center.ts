@@ -1,19 +1,12 @@
-import { Component, input, output, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
 import { BadgeModule } from "primeng/badge";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { NotificationCenterBase } from "src/app/core/components/shared/notification-center/notification-center-base";
 
-export interface NotificationItem {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  time: string;
-  read: boolean;
-  severity?: "info" | "warn" | "danger" | "success" | "contrast";
-}
+export { type NotificationItem } from "src/app/core/components/shared/notification-center/notification-center-base";
 
 @Component({
   selector: "app-notification-center",
@@ -107,14 +100,4 @@ export interface NotificationItem {
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class NotificationCenter {
-  notifications = input<NotificationItem[]>([]);
-  unreadCount = input<number>(0);
-
-  notificationClick = output<NotificationItem>();
-  markAllRead = output<void>();
-
-  onItemClick(item: NotificationItem): void {
-    this.notificationClick.emit(item);
-  }
-}
+export class NotificationCenter extends NotificationCenterBase {}

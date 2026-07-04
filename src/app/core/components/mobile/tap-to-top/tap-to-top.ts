@@ -1,6 +1,6 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, ViewportScroller } from "@angular/common";
 import { Component, HostListener, inject } from "@angular/core";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 /**
  * ⬆️ TAP TO TOP
@@ -17,7 +17,7 @@ import { Component, HostListener, inject } from "@angular/core";
       (click)="tapToTop()"
       [ngStyle]="{ display: show ? 'block' : 'none' }"
     >
-      <app-icon [icon]="'mdi:arrow-up'" class="m-0 icon icon-"></app-icon>
+      <app-icon [icon]="'mdi:arrow-up'" class="m-0 icon icon-" />
     </div>
   `,
 })

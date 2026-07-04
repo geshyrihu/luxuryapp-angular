@@ -1,14 +1,27 @@
-<section class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report">
-
+<section
+  class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report"
+>
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
   <div class="print-preparing-overlay">
-    <app-icon [icon]="'mdi:loading'" style="font-size: 2.5rem; color: var(--ds-primary-hover);"></app-icon>
-    <p style="margin: 0; font-size: 1.1rem; color: var(--ds-primary-hover); font-weight: 700; letter-spacing: 0.04em;">
+    <app-icon
+      [icon]="'mdi:loading'"
+      style="font-size: 2.5rem; color: var(--ds-primary-hover)"
+    />
+    <p
+      style="
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--ds-primary-hover);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      "
+    >
       Cargando todos los reportes...
     </p>
-    <p style="margin: 0; font-size: 0.85rem; color: var(--ds-text-muted);">
-      El dialogo de impresion abrira automaticamente cuando todos los datos esten listos.
+    <p style="margin: 0; font-size: 0.85rem; color: var(--ds-text-muted)">
+      El dialogo de impresion abrira automaticamente cuando todos los datos
+      esten listos.
     </p>
   </div>
   }
@@ -77,20 +90,22 @@
             </p>
           </div>
           <div class="flex justify-content-end">
-          <div class="flex align-items-center gap-2 bg-white px-2 py-1 border-round-lg border-1 border-200 flex-wrap">
-            <div style="width: 140px">
-              <custom-input-text-signal
-                [(ngModel)]="filterS.year"
-                type="number"
-                size="small"
-                [horizontal]="false"
-                [noMargin]="true"
-              />
-            </div>
+            <div
+              class="flex align-items-center gap-2 bg-white px-2 py-1 border-round-lg border-1 border-200 flex-wrap"
+            >
+              <div style="width: 140px">
+                <custom-input-text-signal
+                  [(ngModel)]="filterS.year"
+                  type="number"
+                  size="small"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                />
+              </div>
 
-            <div style="width: 165px">
-              <custom-input-select-signal
-                [data]="[
+              <div style="width: 165px">
+                <custom-input-select-signal
+                  [data]="[
                   { label: 'Enero', value: 0 },
                   { label: 'Febrero', value: 1 },
                   { label: 'Marzo', value: 2 },
@@ -104,70 +119,70 @@
                   { label: 'Noviembre', value: 10 },
                   { label: 'Diciembre', value: 11 }
                 ]"
-                [(ngModel)]="filterS.mesIdx"
-                optionLabel="label"
-                optionValue="value"
-                size="small"
-                [showClear]="false"
-                [horizontal]="false"
-                [noMargin]="true"
-                [filter]="true"
-              />
-            </div>
+                  [(ngModel)]="filterS.mesIdx"
+                  optionLabel="label"
+                  optionValue="value"
+                  size="small"
+                  [showClear]="false"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                  [filter]="true"
+                />
+              </div>
 
-            <div class="flex gap-2 flex-wrap align-items-center">
-              <il-button
-                iconClass="mdi:refresh"
-                label="Actualizar"
-                variant="outlined"
-                severity="secondary"
-                size="small"
-                (clicked)="refreshReports()"
-              />
-              <il-button
-                [iconClass]="isPreparing() ? 'mdi:loading pi-spinner' : 'mdi:printer'"
-                [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
-                variant="outlined"
-                severity="secondary"
-                size="small"
-                [disabled]="isPreparing()"
-                (clicked)="printReport()"
-              />
-              <il-button
-                iconClass="mdi:comment-multiple"
-                label="Explicar IA"
-                variant="outlined"
-                size="small"
-                severity="info"
-                (clicked)="aiAgentExplicador.togglePanel()"
-              />
-              <il-button
-                iconClass="mdi:sparkles"
-                label="Auditor CO"
-                variant="outlined"
-                size="small"
-                severity="contrast"
-                (clicked)="aiAgentContabilidadOnline.togglePanel()"
-              />
-              <il-button
-                iconClass="mdi:sparkles"
-                label="Auditor IA"
-                variant="outlined"
-                size="small"
-                severity="help"
-                (clicked)="aiAgent.togglePanel()"
-              />
-              <il-button
-                iconClass="mdi:external-link"
-                label="Vista cliente"
-                variant="outlined"
-                size="small"
-                severity="success"
-                [disabled]="!clienteUrl()"
-                (clicked)="openClienteView()"
-              />
+              <div class="flex gap-2 flex-wrap align-items-center">
+                <il-button
+                  iconClass="mdi:refresh"
+                  label="Actualizar"
+                  variant="outlined"
+                  severity="secondary"
+                  size="small"
+                  (clicked)="refreshReports()"
+                />
+                <il-button
+                  [iconClass]="isPreparing() ? 'mdi:loading pi-spinner' : 'mdi:printer'"
+                  [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
+                  variant="outlined"
+                  severity="secondary"
+                  size="small"
+                  [disabled]="isPreparing()"
+                  (clicked)="printReport()"
+                />
+                <il-button
+                  iconClass="mdi:comment-multiple"
+                  label="Explicar IA"
+                  variant="outlined"
+                  size="small"
+                  severity="info"
+                  (clicked)="aiAgentExplicador.togglePanel()"
+                />
+                <il-button
+                  iconClass="mdi:sparkles"
+                  label="Auditor CO"
+                  variant="outlined"
+                  size="small"
+                  severity="contrast"
+                  (clicked)="aiAgentContabilidadOnline.togglePanel()"
+                />
+                <il-button
+                  iconClass="mdi:sparkles"
+                  label="Auditor IA"
+                  variant="outlined"
+                  size="small"
+                  severity="help"
+                  (clicked)="aiAgent.togglePanel()"
+                />
+                <il-button
+                  iconClass="mdi:external-link"
+                  label="Vista cliente"
+                  variant="outlined"
+                  size="small"
+                  severity="success"
+                  [disabled]="!clienteUrl()"
+                  (clicked)="openClienteView()"
+                />
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -179,19 +194,27 @@
     @if (printMode()) {
     <div class="print-all-reports">
       <div class="print-report-section">
-        <div class="print-section-header"><span>Estado de Posicion Financiera</span></div>
+        <div class="print-section-header">
+          <span>Estado de Posicion Financiera</span>
+        </div>
         <app-estado-posicion-financiera />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Estado de Resultados</span></div>
+        <div class="print-section-header">
+          <span>Estado de Resultados</span>
+        </div>
         <app-estado-resultados />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Cedula Extraordinaria</span></div>
+        <div class="print-section-header">
+          <span>Cedula Extraordinaria</span>
+        </div>
         <app-cedula-extraordinaria />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Presupuesto vs Resultado</span></div>
+        <div class="print-section-header">
+          <span>Presupuesto vs Resultado</span>
+        </div>
         <app-cedula-presupuestal />
       </div>
       <div class="print-report-section">
@@ -203,15 +226,21 @@
         <app-flujo-efectivo />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Dashboard de Cobranza</span></div>
+        <div class="print-section-header">
+          <span>Dashboard de Cobranza</span>
+        </div>
         <app-cobranza-online-dashboard />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Presupuesto Contabilidad</span></div>
+        <div class="print-section-header">
+          <span>Presupuesto Contabilidad</span>
+        </div>
         <app-presupuesto-contabilidad />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Bancos e Inversiones</span></div>
+        <div class="print-section-header">
+          <span>Bancos e Inversiones</span>
+        </div>
         <app-bancos-inversiones />
       </div>
       <div class="print-report-section">
@@ -225,37 +254,51 @@
     </div>
     }
 
-    <div class="surface-card border-round-xl border-1 surface-border shadow-1 print-hide-on-print">
+    <div
+      class="surface-card border-round-xl border-1 surface-border shadow-1 print-hide-on-print"
+    >
       <p-tabs [value]="reportIndex()" (valueChange)="onTabChange($event)">
         <p-tablist class="print-hide-on-print">
-          <p-tab [value]="0"><app-icon [icon]="'mdi:scale-balance'" class="mr-2"></app-icon>EPF</p-tab>
+          <p-tab [value]="0"
+            ><app-icon [icon]="'mdi:scale-balance'" class="mr-2" />EPF</p-tab
+          >
           <p-tab [value]="1"
-            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados</p-tab
+            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2" />E.
+            Resultados</p-tab
           >
           <!-- <p-tab [value]="2"
-            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados V2</p-tab
+            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"/>E. Resultados V2</p-tab
           > -->
           <p-tab [value]="3"
-            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2"></app-icon>C. Extraordinaria</p-tab>
-          <p-tab [value]="4"><app-icon [icon]="'mdi:percent'" class="mr-2"></app-icon>P vs R</p-tab>
+            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2" />C.
+            Extraordinaria</p-tab
+          >
+          <p-tab [value]="4"
+            ><app-icon [icon]="'mdi:percent'" class="mr-2" />P vs R</p-tab
+          >
           <p-tab [value]="5"
-            ><app-icon [icon]="'mdi:table'" class="mr-2"></app-icon>R. Financiero</p-tab
+            ><app-icon [icon]="'mdi:table'" class="mr-2" />R. Financiero</p-tab
           >
           <p-tab [value]="6"
-            ><app-icon [icon]="'mdi:currency-usd'" class="mr-2"></app-icon>Flujo Efectivo</p-tab
+            ><app-icon [icon]="'mdi:currency-usd'" class="mr-2" />Flujo
+            Efectivo</p-tab
           >
-          <p-tab [value]="7"><app-icon [icon]="'mdi:account-group'" class="mr-2"></app-icon>Dashboard Cobranza</p-tab>
+          <p-tab [value]="7"
+            ><app-icon [icon]="'mdi:account-group'" class="mr-2" />Dashboard
+            Cobranza</p-tab
+          >
           <p-tab [value]="8"
-            ><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Presupuesto</p-tab
+            ><app-icon [icon]="'mdi:wallet'" class="mr-2" />Presupuesto</p-tab
           >
           <p-tab [value]="9"
-            ><app-icon [icon]="'mdi:office-building'" class="mr-2"></app-icon>Bancos e Inv.</p-tab
+            ><app-icon [icon]="'mdi:office-building'" class="mr-2" />Bancos e
+            Inv.</p-tab
           >
           <p-tab [value]="10"
-            ><app-icon [icon]="'mdi:shield'" class="mr-2"></app-icon>Fondo Reserva</p-tab
+            ><app-icon [icon]="'mdi:shield'" class="mr-2" />Fondo Reserva</p-tab
           >
           <p-tab [value]="11"
-            ><app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>Proyectos</p-tab
+            ><app-icon [icon]="'mdi:briefcase'" class="mr-2" />Proyectos</p-tab
           >
         </p-tablist>
 
@@ -300,7 +343,11 @@
       </p-tabs>
     </div>
 
-    <app-contabilidad-ai-agent #aiAgent [autoReadResponses]="true" class="print-hide-on-print" />
+    <app-contabilidad-ai-agent
+      #aiAgent
+      [autoReadResponses]="true"
+      class="print-hide-on-print"
+    />
     <app-contabilidad-online-ai-agent
       #aiAgentContabilidadOnline
       [autoReadResponses]="true"

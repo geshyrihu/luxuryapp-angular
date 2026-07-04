@@ -4,9 +4,9 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileButtonLabel } from "src/app/core/components/buttons/mobile-label";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -25,16 +25,21 @@ import {
 } from "../../models/enums";
 import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dto";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-approval-inbox",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,
-    WebButtonLabel,
+    MobileButtonLabel,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
     IonItem,
     IonLabel,
     DatePipe,

@@ -1,19 +1,17 @@
 ﻿<div class="rf-shell">
   @if (loading()) {
-  <div class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2">
-    <app-icon [icon]="'mdi:loading'"></app-icon>
+  <div
+    class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2"
+  >
+    <app-icon [icon]="'mdi:loading'" />
     <span>Consultando datos en Aspel...</span>
   </div>
-  }
-
-  @if (!loading() && !rows().length) {
+  } @if (!loading() && !rows().length) {
   <div class="rf-card rf-empty">
     No hay datos de gastos para este cliente. Verifique que tenga configurado
     <strong>EjercicioFiscal</strong> en Aspel.
   </div>
-  }
-
-  @if (rows().length) {
+  } @if (rows().length) {
   <div class="rf-card rf-wrap">
     <p-table
       [value]="rows()"
@@ -25,9 +23,7 @@
           <th class="th-col-dark" style="width: 130px; min-width: 110px">
             CUENTA
           </th>
-          <th class="th-col-dark" style="min-width: 240px">
-            DESCRIPCIÓN
-          </th>
+          <th class="th-col-dark" style="min-width: 240px">DESCRIPCIÓN</th>
           <th class="th-col-green" style="min-width: 180px">
             PRESUP. MENSUAL APROBADO
           </th>
@@ -59,16 +55,13 @@
             {{ row.descripcion }}
           </td>
         </tr>
-        }
-
-        @if (row.tipo === 'item') {
+        } @if (row.tipo === 'item') {
         <tr class="rf-row-concepto">
-          <td class="rf-td-cuenta">
-            {{ row.numeroCuenta }}
-          </td>
+          <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
           <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
           <td class="rf-td-number">
-            {{ row.presupMes === 0 ? "-" : (row.presupMes | accountingNumber : "1.0-0") }}
+            {{ row.presupMes === 0 ? "-" : (row.presupMes | accountingNumber :
+            "1.0-0") }}
           </td>
           <td class="rf-td-number">
             {{ row.oct === 0 ? "-" : (row.oct | accountingNumber : "1.0-0") }}
@@ -83,34 +76,41 @@
             {{ row.acum === 0 ? "-" : (row.acum | accountingNumber : "1.0-0") }}
           </td>
           <td class="rf-td-number--total">
-            {{ row.presupAnual === 0 ? "-" : (row.presupAnual | accountingNumber : "1.0-0") }}
+            {{ row.presupAnual === 0 ? "-" : (row.presupAnual | accountingNumber
+            : "1.0-0") }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="row.restante < 0"
-          >
-            {{ row.restante === 0 ? "-" : (row.restante | accountingNumber : "1.0-0") }}
+          <td class="rf-td-number--total" [class.rf-neg]="row.restante < 0">
+            {{ row.restante === 0 ? "-" : (row.restante | accountingNumber :
+            "1.0-0") }}
           </td>
         </tr>
-        }
-
-        @if (row.tipo === 'gran-total') {
+        } @if (row.tipo === 'gran-total') {
         <tr class="rf-row-result">
           <td></td>
           <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-          <td class="rf-td-number--total" [class.rf-neg]="row.presupMes < 0">{{ row.presupMes | accountingNumber : "1.0-0" }}</td>
-          <td class="rf-td-number--total" [class.rf-neg]="row.oct < 0">{{ row.oct | accountingNumber : "1.0-0" }}</td>
-          <td class="rf-td-number--total" [class.rf-neg]="row.nov < 0">{{ row.nov | accountingNumber : "1.0-0" }}</td>
-          <td class="rf-td-number--total" [class.rf-neg]="row.mes < 0">{{ row.mes | accountingNumber : "1.0-0" }}</td>
-          <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">{{ row.acum | accountingNumber : "1.0-0" }}</td>
-          <td class="rf-td-number--total" [class.rf-neg]="row.presupAnual < 0">{{ row.presupAnual | accountingNumber : "1.0-0" }}</td>
+          <td class="rf-td-number--total" [class.rf-neg]="row.presupMes < 0">
+            {{ row.presupMes | accountingNumber : "1.0-0" }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="row.oct < 0">
+            {{ row.oct | accountingNumber : "1.0-0" }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="row.nov < 0">
+            {{ row.nov | accountingNumber : "1.0-0" }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="row.mes < 0">
+            {{ row.mes | accountingNumber : "1.0-0" }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">
+            {{ row.acum | accountingNumber : "1.0-0" }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="row.presupAnual < 0">
+            {{ row.presupAnual | accountingNumber : "1.0-0" }}
+          </td>
           <td class="rf-td-number--total" [class.rf-neg]="row.restante < 0">
             {{ row.restante | accountingNumber : "1.0-0" }}
           </td>
         </tr>
-        }
-
-        @if (row.tipo === 'total-extra') {
+        } @if (row.tipo === 'total-extra') {
         <tr class="rf-row-total">
           <td></td>
           <td class="rf-td-descripcion">{{ row.descripcion }}</td>
@@ -132,10 +132,7 @@
           <td class="rf-td-number--total">
             {{ row.presupAnual | accountingNumber : "1.0-0" }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="row.restante < 0"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="row.restante < 0">
             {{ row.restante | accountingNumber : "1.0-0" }}
           </td>
         </tr>

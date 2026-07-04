@@ -71,7 +71,6 @@
       (modalOrdenCompra)="onModalOrdenCompra()"
     />
   </div>
-
   <!-- 2. Panel: Datos de Pago -->
   <div class="col-12 md:col-4">
     <app-orden-compra-datos-pago-parcial
@@ -178,10 +177,10 @@
           <td>{{ item.amount | number: '1.2-2' }}</td>
           <td>
             <div class="flex">
-              <il-button-edit
+              <iw-button-edit
                 (clicked)="onModalEditarPresupuestoUtilizado(item.id)"
               />
-              <il-button-delete
+              <iw-button-delete
                 (confirmed)="onDeleteOrdenCompraPresupuesto(item.id)"
               />
             </div>
@@ -189,8 +188,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="16" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="16" />
+      </ng-template>
     </p-table>
   </div>
   }
@@ -261,10 +260,7 @@
             class="pointer ml-1 text-white"
           >
             AGREGAR
-            <app-icon
-              [icon]="'mdi:plus'"
-              class="icon ml-1 text-white"
-            ></app-icon>
+            <app-icon [icon]="'mdi:plus'" class="icon ml-1 text-white" />
           </span>
           }
         </div>
@@ -310,8 +306,8 @@
       <td>
         @if (canEditBudget()) {
         <div class="flex">
-          <il-button-edit (clicked)="onModalEditarDetalle(item)" />
-          <il-button-delete (confirmed)="onDeleteProduct(item.id)" />
+          <iw-button-edit (clicked)="onModalEditarDetalle(item)" />
+          <iw-button-delete (confirmed)="onDeleteProduct(item.id)" />
         </div>
         }
       </td>

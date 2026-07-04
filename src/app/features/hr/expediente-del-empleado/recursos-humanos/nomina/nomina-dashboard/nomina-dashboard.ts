@@ -573,9 +573,12 @@ interface HeroMetric {
   tone: string;
 }
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-nomina-dashboard",
-  imports: [WebButtonLabel, TagModule, AppIcon],
+  imports: [
+    WebButtonIcon,WebButtonLabel, TagModule, AppIcon],
   templateUrl: "./nomina-dashboard.html",
   styleUrls: ["./nomina-dashboard.scss"],
 })

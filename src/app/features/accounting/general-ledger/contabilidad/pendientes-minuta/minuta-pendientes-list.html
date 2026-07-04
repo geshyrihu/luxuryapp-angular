@@ -137,17 +137,17 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:comment"
-            label="Seguimientos"
+            pTooltip="Seguimientos" tooltipPosition="top"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
-          <il-button-item
+          <iw-button-item
             [iconClass]="'mdi:plus'"
-            label="Agregar seguimiento"
+            pTooltip="Agregar seguimiento" tooltipPosition="top"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto', })"
           />
         </div>
@@ -178,7 +178,7 @@
         <app-icon
           icon="mdi:alert-circle-outline"
           class="text-orange-600 text-xl"
-        ></app-icon>
+        />
       </div>
 
       <ion-label>
@@ -186,14 +186,14 @@
         <p>{{ item.cliente }} é Folio: {{ item.folio }}</p>
         <p>{{ item.fechaSolicitud }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto' })"
             label="Editar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

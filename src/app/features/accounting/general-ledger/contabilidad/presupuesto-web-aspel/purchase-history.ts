@@ -5,7 +5,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -21,10 +21,13 @@ import { OrdenCompra } from "src/app/features/purchasing/po/purchase-order/orden
 import { AppIcon } from "../../../../../core/components/shared/app-icon/app-icon.component";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-purchase-history",
   templateUrl: "./purchase-history.html",
   imports: [
+    WebButtonIcon,
     AppIcon,
     CommonModule,
     TableModule,

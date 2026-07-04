@@ -24,10 +24,15 @@ import type {
 } from "../../models/cobranza-online-inspection.model";
 import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspection-history-modal";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-cobranza-online-inspection",
   templateUrl: "./cobranza-online-inspection.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CommonModule,
     RouterModule,
     TableModule,
@@ -130,7 +135,7 @@ export class CobranzaOnlineInspection {
         month: this.currentMonth(),
         row,
       },
-      `Histórico de ${row.departmentCode || row.accountNumber}`,
+      `HistÃºrico de ${row.departmentCode || row.accountNumber}`,
       this.dialogHandlerS.sizeFull,
       true,
     );

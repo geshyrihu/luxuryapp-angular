@@ -18,7 +18,7 @@ import { ActionIconsGroupComponent } from "src/app/core/components/shared/action
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/shared/status-badge/status-badge";
+} from "src/app/core/components/web/status-badge/status-badge";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 

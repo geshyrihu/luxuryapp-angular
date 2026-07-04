@@ -42,7 +42,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
     IonAccordionGroup,
   ],
 })
-// ÛCAMBIO! Ya no implementamos OnInit
+// √≥CAMBIO! Ya no implementamos OnInit
 export class BitacoraAcceso {
   public ButtonType = ButtonType;
   // --- INYECCIONES (sin cambios) ---
@@ -50,11 +50,11 @@ export class BitacoraAcceso {
   private customerIdS = inject(CustomerIdService);
   private filtroCalendarService = inject(FiltroCalendarService);
   apiResponseS = inject(ApiResponseService);
-  data = signal<any[]>([]); // ÛMEJORA! Convertimos los datos a un signal.
+  data = signal<any[]>([]); // √≥MEJORA! Convertimos los datos a un signal.
   loading = signal(true);
 
-  // ÛMAGIA! Convertimos el Observable de fechas en un signal.
-  // Se actualizarÛ automÛticamente cada vez que el observable emita un nuevo valor.
+  // √≥MAGIA! Convertimos el Observable de fechas en un signal.
+  // Se actualizar√© autom√≠ticamente cada vez que el observable emita un nuevo valor.
   private dates = toSignal(this.filtroCalendarService.getDates$());
 
   // --- PROPIEDADES DE TABLA (sin cambios) ---
@@ -63,7 +63,7 @@ export class BitacoraAcceso {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   constructor() {
-    // ÛEL ÛNICO CHEF! Este effect ahora gobierna toda la carga de datos.
+    // √≥EL √≥NICO CHEF! Este effect ahora gobierna toda la carga de datos.
     effect(() => {
       // 1. Leemos TODAS las dependencias para que el effect se suscriba a ellas.
       const customerId: string = this.customerIdS.customerId();
@@ -79,11 +79,11 @@ export class BitacoraAcceso {
     });
   }
 
-  // ÛOBSOLETO! ngOnInit ya no es necesario. El effect se encarga de todo.
+  // √≥OBSOLETO! ngOnInit ya no es necesario. El effect se encarga de todo.
   // ngOnInit(): void { ... }
 
   private onLoadData(fechaInicial: string, fechaFinal: string): void {
-    // ÛCORRECCIÛN! Leemos el valor del customerId con parÛntesis.
+    // √≥CORRECCI√≥N! Leemos el valor del customerId con par√≥ntesis.
     const urlApi = Endpoints.AccessHistory.byCustomerAndRange(
       this.customerIdS.customerId(),
       fechaInicial,

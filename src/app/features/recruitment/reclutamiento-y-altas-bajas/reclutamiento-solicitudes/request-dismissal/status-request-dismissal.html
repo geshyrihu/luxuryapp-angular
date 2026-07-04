@@ -33,9 +33,9 @@
         @if (aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento])) {
         <td>
           <div class="flex justify-content-end">
-            <il-button
-              icon="edit"
-              ngbTooltip="Editar"
+            <iw-button
+              iconClass="edit"
+              pTooltip="Editar" tooltipPosition="bottom"
               (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
             />
             <il-button-confirm
@@ -108,8 +108,8 @@
           {
           <div class="col-3">
             <div class="flex justify-content-end">
-              <il-button
-                icon="edit"
+              <iw-button
+                iconClass="edit"
                 (clicked)="
                         onModalFormDiscounts({
                           id: item.id,

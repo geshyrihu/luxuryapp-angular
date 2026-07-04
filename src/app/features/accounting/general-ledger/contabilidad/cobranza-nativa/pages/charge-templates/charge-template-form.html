@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
   <custom-input-select-signal
-    [control]="form.controls.chargeType"
-    [data]="chargeTypes"
+    [control]="form.controls.chargeTypeId"
+    [data]="chargeTypes()"
     optionLabel="label"
     optionValue="value"
     label="Tipo de Cargo"

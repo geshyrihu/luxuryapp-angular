@@ -11,7 +11,7 @@
         </div>
         @if (lastResult() !== null) {
         <div class="mt-2 text-sm text-green-700 font-medium">
-          <app-icon [icon]="'mdi:check-circle'" class="mr-1"></app-icon>
+          <app-icon [icon]="'mdi:check-circle'" class="mr-1" />
           Ultima ejecucion: {{ lastResult() }} pagos conciliados.
         </div>
         }
@@ -94,10 +94,7 @@
           slot="start"
           class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon
-            icon="mdi:source-merge"
-            class="text-orange-600 text-xl"
-          ></app-icon>
+          <app-icon icon="mdi:source-merge" class="text-orange-600 text-xl" />
         </div>
         <ion-label>
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>

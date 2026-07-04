@@ -186,6 +186,17 @@ export const EndpointsTenant = {
         `accounting-coi/migration/legacy-collection/sync-aspel/${customerId}/ejercicio/${year}`,
     },
     NativeCollection: {
+      ChargeTypes: {
+        customer: (customerId: string) =>
+          `accounting-coi/native-collection/charge-types/customer/${customerId}`,
+        getById: (id: string) =>
+          `accounting-coi/native-collection/charge-types/${id}`,
+        create: "accounting-coi/native-collection/charge-types",
+        update: (id: string) =>
+          `accounting-coi/native-collection/charge-types/${id}`,
+        delete: (id: string) =>
+          `accounting-coi/native-collection/charge-types/${id}`,
+      },
       Charges: {
         customer: (customerId: string) =>
           `accounting-coi/native-collection/charges/customer/${customerId}`,
@@ -194,6 +205,8 @@ export const EndpointsTenant = {
         create: "accounting-coi/native-collection/charges",
         update: (id: string) =>
           `accounting-coi/native-collection/charges/${id}`,
+        cancel: (id: string) =>
+          `accounting-coi/native-collection/charges/${id}/cancel`,
         delete: (id: string) =>
           `accounting-coi/native-collection/charges/${id}`,
         generateMonthly:
@@ -239,8 +252,26 @@ export const EndpointsTenant = {
           "accounting-coi/native-collection/payments/apply-to-charges",
       },
       Statements: {
-        get: (propertyId: string) =>
-          `accounting-coi/native-collection/statements/${propertyId}`,
+        get: (propertyId: string, asOf?: string | null) =>
+          asOf
+            ? `accounting-coi/native-collection/statements/${propertyId}?asOf=${encodeURIComponent(asOf)}`
+            : `accounting-coi/native-collection/statements/${propertyId}`,
+        pdf: (propertyId: string, asOf?: string | null) =>
+          asOf
+            ? `accounting-coi/native-collection/statements/${propertyId}/pdf?asOf=${encodeURIComponent(asOf)}`
+            : `accounting-coi/native-collection/statements/${propertyId}/pdf`,
+      },
+      Notifications: {
+        process: (customerId: string) =>
+          `accounting-coi/native-collection/notifications/process?customerId=${customerId}`,
+        sendStatement: "accounting-coi/native-collection/notifications/statements/send",
+        sendPaymentReceipt: (paymentId: string) =>
+          `accounting-coi/native-collection/notifications/receipts/${paymentId}/send`,
+      },
+      NotificationSettings: {
+        byCustomer: (customerId: string) =>
+          `accounting-coi/native-collection/notification-settings/customer/${customerId}`,
+        save: "accounting-coi/native-collection/notification-settings",
       },
       BillingConfig: {
         customer: (customerId: string) =>
@@ -264,7 +295,7 @@ export const EndpointsTenant = {
           `accounting-coi/native-collection/late-fee-policies/${id}`,
         create: "accounting-coi/native-collection/late-fee-policies",
         update: (id: string) =>
-          `accounting-coi/native-fee-policies/${id}`,
+          `accounting-coi/native-collection/late-fee-policies/${id}`,
         delete: (id: string) =>
           `accounting-coi/native-collection/late-fee-policies/${id}`,
       },

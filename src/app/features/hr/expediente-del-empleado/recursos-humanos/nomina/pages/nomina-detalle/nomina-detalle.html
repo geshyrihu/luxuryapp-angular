@@ -3,7 +3,7 @@
   class="flex justify-content-center align-items-center"
   style="min-height: 200px"
 >
-  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary"></app-icon>
+  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
 </div>
 } @else {
 
@@ -100,8 +100,8 @@
       </td>
       <td>
         <div class="flex gap-1">
-          <il-button-edit (clicked)="openEditar(item)" />
-          <il-button
+          <iw-button-edit (clicked)="openEditar(item)" />
+          <iw-button
             iconClass="mdi:file-pdf-box"
             severity="danger"
             variant="ghost-text"
@@ -138,7 +138,7 @@
         <app-icon
           icon="mdi:currency-usd"
           style="font-size: 1.1rem; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>

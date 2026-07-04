@@ -71,17 +71,17 @@
           </span>
         </td>
         <td class="text-center">
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:folder-open"
-            label="Ver Expediente"
+            pTooltip="Ver Expediente" tooltipPosition="top"
             (click)="onViewFile(item)"
           />
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
 
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
@@ -103,7 +103,7 @@
           <app-icon
             icon="mdi:folder-account-outline"
             style="font-size: 1.1rem; color: var(--ds-primary)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h2 class="font-bold">{{ item.fullName }}</h2>
@@ -118,15 +118,15 @@
             </span>
           </p>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Ver Expediente"
               iconName="folder-open-outline"
               (clicked)="onViewFile(item)"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

@@ -23,9 +23,14 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { PeriodClosureResponseDTO } from "../../models/period-closure.dto";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-period-closure-dashboard",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,

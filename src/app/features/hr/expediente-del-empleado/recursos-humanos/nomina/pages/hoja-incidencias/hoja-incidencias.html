@@ -1,5 +1,7 @@
 <!-- Header toolbar -->
-<div class="flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+<div
+  class="flex flex-wrap align-items-center justify-content-between gap-2 mb-3"
+>
   <!-- Selector de aóo + periodo -->
   <div class="flex flex-wrap align-items-center gap-2">
     <!-- Aóos -->
@@ -24,8 +26,7 @@
       [variant]="periodoSeleccionado() !== p.value ? 'outline' : 'solid'"
       (clicked)="cambiarPeriodo(p.value)"
     />
-    }
-    }
+    } }
   </div>
 
   <!-- Leyenda + botún guardar -->
@@ -36,7 +37,7 @@
         class="px-2 py-1 border-round text-xs font-medium"
         [style.background]="statusConfig[entry].bgClass"
         [style.color]="statusConfig[entry].color"
-        style="border: 1px solid currentColor; opacity: .9"
+        style="border: 1px solid currentColor; opacity: 0.9"
       >
         {{ entry }} = {{ statusConfig[entry].label }}
       </span>
@@ -55,45 +56,66 @@
 
 <!-- Loading -->
 @if (loading()) {
-<div class="flex justify-content-center align-items-center" style="min-height: 200px">
-  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary"></app-icon>
+<div
+  class="flex justify-content-center align-items-center"
+  style="min-height: 200px"
+>
+  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
 </div>
 }
 
 <!-- Sin periodos -->
 @if (!loading() && !periodos().length) {
-<div class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary" style="min-height: 200px">
-  <app-icon [icon]="'mdi:calendar-remove'" class="text-5xl"></app-icon>
+<div
+  class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary"
+  style="min-height: 200px"
+>
+  <app-icon [icon]="'mdi:calendar-remove'" class="text-5xl" />
   <span class="text-lg">No hay periodos de nómina para {{ anioFiltro() }}</span>
-  <span class="text-sm">Crea un periodo desde <strong>Periodos de Nómina</strong> para comenzar.</span>
+  <span class="text-sm"
+    >Crea un periodo desde <strong>Periodos de Nómina</strong> para
+    comenzar.</span
+  >
 </div>
 }
 
 <!-- Grid de incidencias -->
 @if (!loading() && hoja(); as h) {
-<div class="overflow-x-auto" style="max-height: calc(100vh - 220px); overflow-y: auto">
-  <table class="hoja-incidencias-table" style="border-collapse: collapse; min-width: max-content">
+<div
+  class="overflow-x-auto"
+  style="max-height: calc(100vh - 220px); overflow-y: auto"
+>
+  <table
+    class="hoja-incidencias-table"
+    style="border-collapse: collapse; min-width: max-content"
+  >
     <!-- ENCABEZADO: días del calendario -->
     <thead style="position: sticky; top: 0; z-index: 10; background: white">
       <tr>
         <!-- Columnas fijas del empleado -->
-        <th
-          class="hoja-th-fixed"
-          style="min-width: 220px; left: 0"
-          rowspan="2"
-        >
+        <th class="hoja-th-fixed" style="min-width: 220px; left: 0" rowspan="2">
           Empleado / Puesto
         </th>
-        <th class="hoja-th text-center" style="min-width: 50px" rowspan="2">Dias</th>
-        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">F</th>
-        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">RE</th>
-        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">VA</th>
-        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">IN</th>
+        <th class="hoja-th text-center" style="min-width: 50px" rowspan="2">
+          Dias
+        </th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">
+          F
+        </th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">
+          RE
+        </th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">
+          VA
+        </th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">
+          IN
+        </th>
         <!-- Columnas de días del periodo -->
         @for (dia of h.dias; track dia.fecha) {
         <th
           class="hoja-th text-center"
-          style="min-width: 42px; font-size: .7rem"
+          style="min-width: 42px; font-size: 0.7rem"
           [class.bg-slate-100]="dia.esDescanso"
           [class.bg-blue-50]="dia.esFestivo"
           [pTooltip]="dia.descripcionDia ?? ''"
@@ -106,7 +128,7 @@
         @for (dia of h.dias; track dia.fecha) {
         <th
           class="hoja-th text-center"
-          style="min-width: 42px; font-size: .75rem; font-weight: 700"
+          style="min-width: 42px; font-size: 0.75rem; font-weight: 700"
           [class.bg-slate-100]="dia.esDescanso"
           [class.bg-blue-50]="dia.esFestivo"
         >
@@ -126,9 +148,7 @@
           <div class="text-xs text-color-secondary">{{ emp.puesto }}</div>
         </td>
         <!-- Totales -->
-        <td class="hoja-td text-center font-bold">
-          {{ getDiasAPagar(emp) }}
-        </td>
+        <td class="hoja-td text-center font-bold">{{ getDiasAPagar(emp) }}</td>
         <td class="hoja-td text-center text-red-700 font-semibold">
           {{ getCountOf(emp, "F") || "" }}
         </td>
@@ -164,7 +184,16 @@
             {{ getStatus(emp.employeeId, celda.fecha) }}
           </span>
           @if (isSyncronizada(emp.employeeId, celda.fecha)) {
-          <span style="position: absolute; top: 1px; right: 2px; font-size: .55rem; color: var(--ds-text-muted)">S</span>
+          <span
+            style="
+              position: absolute;
+              top: 1px;
+              right: 2px;
+              font-size: 0.55rem;
+              color: var(--ds-text-muted);
+            "
+            >S</span
+          >
           }
         </td>
         <!-- Context menu overlay para selección directa -->

@@ -13,9 +13,12 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+
 @Component({
   selector: "app-task-report-work-plan-preview",
   imports: [
+    WebButtonIconConfirm,
     TableModule,
     PrimeNgCustomCaption,
     ReactiveFormsModule,

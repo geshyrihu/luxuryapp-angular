@@ -124,20 +124,20 @@
       </td>
       <td>
         <div class="flex justify-content-center">
-          <il-button
+          <iw-button
             styleClass="p-button-outlined p-button-primary"
             pTooltip="Gastos realizados"
             iconClass="mdi:cart"
             (clicked)="onModalOrdenesCompraCedula(item.id)"
           />
 
-          <il-button
+          <iw-button
             iconClass="mdi:pencil"
             pTooltip="Editar"
             styleClass="p-button-outlined p-button-secondary"
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
           />
-          <il-button-confirm
+          <iw-button-confirm
             iconClass="mdi:delete"
             pTooltip="Eliminar"
             styleClass="p-button-outlined p-button-danger"
@@ -177,7 +177,7 @@
         <app-icon
           icon="mdi:wallet-outline"
           style="font-size: 20px; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
@@ -187,18 +187,15 @@
           item.presupuestoDisponible }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

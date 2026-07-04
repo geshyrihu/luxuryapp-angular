@@ -28,10 +28,15 @@ import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-
 import { SolicitudModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+
 @Component({
   selector: "app-solicitudes-cliente-list",
   templateUrl: "./solicitudes-cliente-list.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,

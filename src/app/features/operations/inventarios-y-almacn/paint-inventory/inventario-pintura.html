@@ -46,10 +46,10 @@
       <td>{{ itm.area }}</td>
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(itm.id)" />
+          <iw-button-delete (confirmed)="onDelete(itm.id)" />
         </div>
       </td>
     </tr>
@@ -91,7 +91,7 @@
         <app-icon
           icon="mdi:palette-outline"
           style="font-size: 20px; color: var(--ds-help)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3 style="font-weight: 700; color: var(--ds-help)">
@@ -110,18 +110,15 @@
         <h3>{{ itm.nameMachinery }}</h3>
         <p>{{ itm.area }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(itm.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(itm.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
     }
   </ng-template>

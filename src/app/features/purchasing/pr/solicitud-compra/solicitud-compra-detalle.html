@@ -17,7 +17,7 @@
       <td>{{ item.unidadMedida }}</td>
       <td class="no-print">
         <div class="fluid">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="
                 editProduct({
                   purchasesolicitaId: solicitudCompraId(),
@@ -25,7 +25,7 @@
                 })
               "
           />
-          <il-button-delete (confirmed)="onDeleteProduct(item.id)" />
+          <iw-button-delete (confirmed)="onDeleteProduct(item.id)" />
         </div>
       </td>
     </tr>

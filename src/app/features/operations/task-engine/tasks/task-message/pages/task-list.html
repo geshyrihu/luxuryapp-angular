@@ -181,10 +181,7 @@
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
             >
-              <app-icon
-                [icon]="'mdi:information'"
-                class="text-primary mr-1"
-              ></app-icon>
+              <app-icon [icon]="'mdi:information'" class="text-primary mr-1" />
               Como interactuar con las tareas
             </p>
 
@@ -199,7 +196,7 @@
                     [icon]="'mdi:menu'"
                     class="text-primary"
                     style="font-size: 0.75rem"
-                  ></app-icon>
+                  />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -224,7 +221,7 @@
                     [icon]="'mdi:link'"
                     class="text-purple-600"
                     style="font-size: 0.75rem"
-                  ></app-icon>
+                  />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -253,7 +250,7 @@
                     [icon]="'mdi:sitemap'"
                     class="text-orange-600"
                     style="font-size: 0.75rem"
-                  ></app-icon>
+                  />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -265,13 +262,13 @@
                       [icon]="'mdi:sitemap'"
                       class="text-primary"
                       style="font-size: 0.7rem"
-                    ></app-icon>
+                    />
                     tienen subtareas. Las tareas con
                     <app-icon
                       [icon]="'mdi:arrow-down-bold'"
                       class="text-400"
                       style="font-size: 0.7rem"
-                    ></app-icon>
+                    />
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
                   </p>
@@ -330,7 +327,7 @@
             class="cursor-move text-400"
             pReorderableRowHandle
             style="font-size: 0.85rem"
-          ></app-icon>
+          />
           <app-icon
             [icon]="'mdi:link'"
             class="text-300 cursor-grab"
@@ -341,7 +338,7 @@
             (dragend)="onLinkDragEnd()"
             pTooltip="Arrastra sobre otra tarea para asignar predecesora"
             tooltipPosition="top"
-          ></app-icon>
+          />
         </div>
       </td>
       <td>
@@ -356,7 +353,7 @@
             style="font-size: 0.75rem; margin-top: 0.2rem"
             pTooltip="Tarea hija"
             tooltipPosition="top"
-          ></app-icon>
+          />
           } @if (item.hasSubTasks) {
           <app-icon
             [icon]="'mdi:sitemap'"
@@ -364,7 +361,7 @@
             style="font-size: 0.75rem; margin-top: 0.2rem"
             pTooltip="Tiene subtareas"
             tooltipPosition="top"
-          ></app-icon>
+          />
           }
           <p-avatar
             (click)="onCardEmployee(item.creatorId)"
@@ -394,7 +391,7 @@
                 (click)="onClearDependency(item.id)"
                 pTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
               >
-                <app-icon [icon]="'mdi:arrow-right'" class="text-xs"></app-icon>
+                <app-icon [icon]="'mdi:arrow-right'" class="text-xs" />
                 {{ item.dependsOnTaskFolio }}
               </span>
               }
@@ -407,7 +404,7 @@
                 [icon]="'mdi:clock-outline'"
                 class="text-orange-600"
                 pTooltip="Urgente: Mís de 15 días sin programar"
-              ></app-icon>
+              />
               } @if (item.priority === 'High') {
               <app-icon
                 [icon]="'mdi:star-outline'"
@@ -415,7 +412,7 @@
                 (click)="onUpdatePriority(item.id)"
                 style="font-size: 0.8rem"
                 pTooltip="Alta prioridad - click para cambiar"
-              ></app-icon>
+              />
               } @if (item.priority === 'Low') {
               <app-icon
                 [icon]="'mdi:alert'"
@@ -423,7 +420,7 @@
                 (click)="onUpdatePriority(item.id)"
                 style="font-size: 0.8rem"
                 pTooltip="Baja prioridad - click para cambiar"
-              ></app-icon>
+              />
               } {{ item.title }}
             </p>
             <p
@@ -460,13 +457,12 @@
 
       <td>
         <p class="m-0 text-xs text-color-secondary">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{
-          item.scheduledAt }}
+          <app-icon [icon]="'mdi:calendar'" class="mr-1" />{{ item.scheduledAt
+          }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-color-secondary mt-1">
-          <app-icon [icon]="'mdi:lock'" class="mr-1"></app-icon>{{
-          item.closedAtDate }}
+          <app-icon [icon]="'mdi:lock'" class="mr-1" />{{ item.closedAtDate }}
         </p>
         }
       </td>
@@ -540,10 +536,7 @@
             class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
             pTooltip="Seguimientos"
           >
-            <app-icon
-              [icon]="'mdi:comment-multiple'"
-              class="text-blue-500"
-            ></app-icon>
+            <app-icon [icon]="'mdi:comment-multiple'" class="text-blue-500" />
             <span class="badge bg-info px-2 py-1 text-xs font-semibold">
               {{ item.ticketMessageFollowUp }}
             </span>
@@ -574,10 +567,7 @@
                 (clicked)="onReopen(item.id)"
               />
               }
-              <il-button-edit
-                (clicked)="onModalForm(item)"
-                label="Editar"
-              />
+              <il-button-edit (clicked)="onModalForm(item)" label="Editar" />
               @if (isSuperUser()) {
               <il-button-delete
                 (confirmed)="onDelete(item.id)"
@@ -661,7 +651,7 @@
               icon="mdi:view-grid-outline"
               slot="start"
               style="font-size: 14px"
-            ></app-icon>
+            />
             Tablero
           </ion-button>
         </ion-col>
@@ -682,7 +672,7 @@
               icon="mdi:clipboard-text-outline"
               slot="start"
               style="font-size: 14px"
-            ></app-icon>
+            />
             Plan
           </ion-button>
         </ion-col>
@@ -703,7 +693,7 @@
               icon="mdi:eye-outline"
               slot="start"
               style="font-size: 14px"
-            ></app-icon>
+            />
             Previa
           </ion-button>
         </ion-col>
@@ -725,7 +715,7 @@
               icon="mdi:send-outline"
               slot="start"
               style="font-size: 14px"
-            ></app-icon>
+            />
             Reporte
           </ion-button>
         </ion-col>
@@ -760,10 +750,7 @@
             class="font-normal m-0 text-xs flex align-items-center gap-1 flex-wrap"
           >
             @if (item.priority === 'High') {
-            <app-icon
-              [icon]="'mdi:star-outline'"
-              class="text-warning mr-1"
-            ></app-icon>
+            <app-icon [icon]="'mdi:star-outline'" class="text-warning mr-1" />
             } {{ item.folio }} @if (chainedTaskIds().has(item.id)) {
             <span
               class="px-1 border-round text-xs font-semibold"
@@ -776,8 +763,8 @@
               class="text-purple-500 text-xs cursor-pointer"
               (click)="onClearDependency(item.id)"
             >
-              <app-icon [icon]="'mdi:arrow-right'"></app-icon> {{
-              item.dependsOnTaskFolio }}
+              <app-icon [icon]="'mdi:arrow-right'" /> {{ item.dependsOnTaskFolio
+              }}
             </span>
             }
           </p>
@@ -792,10 +779,7 @@
 
         <h2 class="text-sm font-normal m-0 text-wrap mb-1">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <app-icon
-            [icon]="'mdi:clock-outline'"
-            class="text-orange-600 mr-1"
-          ></app-icon>
+          <app-icon [icon]="'mdi:clock-outline'" class="text-orange-600 mr-1" />
           } {{ item.title }}
         </h2>
         <p class="text-xs text-500 m-0 text-wrap truncate">
@@ -831,7 +815,7 @@
             class="flex align-items-center gap-1"
             (click)="onFollowUp(item.id)"
           >
-            <app-icon icon="mdi:forum-outline"></app-icon>
+            <app-icon icon="mdi:forum-outline" />
             {{ item.ticketMessageFollowUp }}
           </ion-badge>
           <span class="text-xs" [class.text-red-500]="item.daysDifference > 7">
@@ -841,49 +825,46 @@
       </ion-label>
 
       <div slot="end" class="flex align-items-center">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               iconName="chatbubbles-outline"
               [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
               (clicked)="onFollowUp(item.id)"
             />
-            <il-button-item
+            <ili-button-item
               iconName="calendar-outline"
               label="Programar"
               (clicked)="onProgram(item.id)"
             />
             @if (item.status !== 'Completed') {
-            <il-button-item
+            <ili-button-item
               iconName="lock-closed-outline"
               label="Cerrar"
               (clicked)="onClosed(item.id)"
             />
             } @if (item.status !== 'InProgress') {
-            <il-button-item
+            <ili-button-item
               iconName="sync-outline"
               label="En proceso"
               (clicked)="onProgress(item.id)"
             />
             } @if (item.status === 'Completed') {
-            <il-button-item
+            <ili-button-item
               iconName="lock-open-outline"
               label="Reabrir"
               (clicked)="onReopen(item.id)"
             />
             }
-            <il-button-edit
-              (clicked)="onModalForm(item)"
-              label="Editar"
-            />
+            <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
             @if (isSuperUser()) {
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
             }
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -97,7 +97,9 @@
 
           <p class="text-justify">
             <strong>Evaluación de desempeño:</strong>
-            Las evaluaciones ya están en el sistema. El sistema validará que existan evaluaciones aplicadas para proceder con la baja. No necesitas adjuntarlas.
+            Las evaluaciones ya están en el sistema. El sistema validará que
+            existan evaluaciones aplicadas para proceder con la baja. No
+            necesitas adjuntarlas.
           </p>
         </div>
       </div>
@@ -260,14 +262,22 @@
       </div>
       <div class="col-12 md:col-4">
         @if (tipobaja() == 3 && hasEvaluations === false) {
-          <div class="mb-4 bg-red-100 text-red-900 border-1 border-red-500 p-3 border-round font-bold">
-            No se encontraron evaluaciones previas aplicadas para este empleado en el sistema. 
-            No se puede proceder con la baja por Evaluación de Desempeño hasta que existan evaluaciones registradas.
-            <br/><br/>
-            <a href="javascript:void(0)" (click)="goToCreateEvaluation()" class="text-red-700 underline cursor-pointer">
-              <app-icon [icon]="'mdi:external-link'" class="mr-1"></app-icon> Ir a crear una evaluación de desempeño
-            </a>
-          </div>
+        <div
+          class="mb-4 bg-red-100 text-red-900 border-1 border-red-500 p-3 border-round font-bold"
+        >
+          No se encontraron evaluaciones previas aplicadas para este empleado en
+          el sistema. No se puede proceder con la baja por Evaluación de
+          Desempeño hasta que existan evaluaciones registradas.
+          <br /><br />
+          <a
+            href="javascript:void(0)"
+            (click)="goToCreateEvaluation()"
+            class="text-red-700 underline cursor-pointer"
+          >
+            <app-icon [icon]="'mdi:external-link'" class="mr-1" /> Ir a crear
+            una evaluación de desempeño
+          </a>
+        </div>
         }
         <div
           class="mb-4 bg-red-50 text-red-900 border-1 border-red-200 p-3 border-round"
@@ -300,8 +310,7 @@
                 <b>Arrastrar y soltar archivos</b><br />
                 <span>o haga clic aquí</span>
                 } @else {
-                <b>Haz clic aquí</b> para seleccionar un archivo
-                }
+                <b>Haz clic aquí</b> para seleccionar un archivo }
               </file-upload-drop-zone>
             </ng-template>
 

@@ -1,11 +1,14 @@
 <div class="p-3" *ngIf="item() as c">
   <!-- Cabecera -->
   <div class="flex align-items-center gap-3 mb-4 p-3 border-round surface-100">
-    <app-icon [icon]="'mdi:alert'" class="text-3xl text-red-600"></app-icon>
+    <app-icon [icon]="'mdi:alert'" class="text-3xl text-red-600" />
     <div>
       <div class="font-bold text-lg">{{ c.propertyName }}</div>
       <div class="text-500 text-sm">
-        Deuda: <span class="font-bold text-red-700">{{ c.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}</span>
+        Deuda:
+        <span class="font-bold text-red-700"
+          >{{ c.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}</span
+        >
         &nbsp;&middot;&nbsp; Antiguedad: {{ c.agingBucket }}
         &nbsp;&middot;&nbsp; Estado: {{ c.status }}
       </div>
@@ -14,23 +17,29 @@
 
   <!-- Historial de actividades -->
   <div class="mb-4">
-    <label class="text-500 text-xs uppercase font-medium">Historial de Actividades ({{ c.activities.length }})</label>
+    <label class="text-500 text-xs uppercase font-medium"
+      >Historial de Actividades ({{ c.activities.length }})</label
+    >
     @if (c.activities.length === 0) {
-      <p class="text-500 text-sm mt-2">Sin actividades registradas aun.</p>
+    <p class="text-500 text-sm mt-2">Sin actividades registradas aun.</p>
     } @else {
-      <div class="mt-2 flex flex-column gap-2">
-        @for (act of c.activities; track act.id) {
-          <div class="p-2 surface-50 border-round border-1 surface-border text-sm">
-            <div class="flex justify-content-between mb-1">
-              <span class="font-medium">{{ act.activityDate | date:'dd/MM/yyyy HH:mm' }}</span>
-              @if (act.promisedDate) {
-                <span class="text-500">Promesa: {{ act.promisedDate | date:'dd/MM/yyyy' }}</span>
-              }
-            </div>
-            <p class="m-0 text-800">{{ act.notes }}</p>
-          </div>
-        }
+    <div class="mt-2 flex flex-column gap-2">
+      @for (act of c.activities; track act.id) {
+      <div class="p-2 surface-50 border-round border-1 surface-border text-sm">
+        <div class="flex justify-content-between mb-1">
+          <span class="font-medium"
+            >{{ act.activityDate | date:'dd/MM/yyyy HH:mm' }}</span
+          >
+          @if (act.promisedDate) {
+          <span class="text-500"
+            >Promesa: {{ act.promisedDate | date:'dd/MM/yyyy' }}</span
+          >
+          }
+        </div>
+        <p class="m-0 text-800">{{ act.notes }}</p>
       </div>
+      }
+    </div>
     }
   </div>
 

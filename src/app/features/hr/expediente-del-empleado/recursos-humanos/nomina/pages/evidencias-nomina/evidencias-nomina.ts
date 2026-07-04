@@ -17,9 +17,14 @@ import {
 } from "../../interfaces/evidencia-nomina.interface";
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-evidencias-nomina",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CommonModule,
     ReactiveFormsModule,
     TagModule,

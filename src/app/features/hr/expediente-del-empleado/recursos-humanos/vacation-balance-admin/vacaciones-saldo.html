@@ -76,7 +76,10 @@
               class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
             >
               <div>
-                <app-icon [icon]="'mdi:calendar-plus'" class="text-4xl mb-4 text-primary"></app-icon>
+                <app-icon
+                  [icon]="'mdi:calendar-plus'"
+                  class="text-4xl mb-4 text-primary"
+                />
                 <div class="text-3xl font-bold">{{ balance()?.totalDays }}</div>
                 <div
                   class="text-500 text-sm uppercase tracking-wider font-semibold"
@@ -92,7 +95,10 @@
               class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
             >
               <div>
-                <app-icon [icon]="'mdi:calendar-minus'" class="text-4xl mb-4 text-red-500"></app-icon>
+                <app-icon
+                  [icon]="'mdi:calendar-minus'"
+                  class="text-4xl mb-4 text-red-500"
+                />
                 <div class="text-3xl font-bold">{{ balance()?.usedDays }}</div>
                 <div
                   class="text-500 text-sm uppercase tracking-wider font-semibold"
@@ -122,7 +128,10 @@
               class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
             >
               <div>
-                <app-icon [icon]="'mdi:calendar'" class="text-4xl mb-4 text-yellow-500"></app-icon>
+                <app-icon
+                  [icon]="'mdi:calendar'"
+                  class="text-4xl mb-4 text-yellow-500"
+                />
                 <div class="text-3xl font-bold">
                   {{ balance()?.pendingDays }}
                 </div>
@@ -154,7 +163,10 @@
               class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
             >
               <div>
-                <app-icon [icon]="'mdi:calendar-check'" class="text-4xl mb-4 text-green-500"></app-icon>
+                <app-icon
+                  [icon]="'mdi:calendar-check'"
+                  class="text-4xl mb-4 text-green-500"
+                />
                 <div class="text-3xl font-bold">
                   {{ balance()?.availableDays }}
                 </div>
@@ -174,7 +186,7 @@
           class="p-4 border-round-lg shadow-2 mt-4 mx-3 surface-100 text-900 border-1 border-300"
         >
           <div class="flex align-items-center">
-            <app-icon [icon]="'mdi:information'" class="text-2xl mr-3"></app-icon>
+            <app-icon [icon]="'mdi:information'" class="text-2xl mr-3" />
             <div>
               <h4 class="text-xl font-bold mb-1">
                 ¡Adelanto de vacaciones disponible!
@@ -244,7 +256,7 @@
 
             @if (requests().length === 0) {
             <div class="surface-100 border-round-lg p-4 text-center text-500">
-              <app-icon [icon]="'mdi:information'" class="mr-2"></app-icon>
+              <app-icon [icon]="'mdi:information'" class="mr-2" />
               No hay solicitudes de vacaciones en este periodo.
             </div>
             } @else {

@@ -32,10 +32,22 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FilterRequestsService } from "src/app/core/services/filter-requests.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SolicitudBajaUpdateStatus } from "../components/solicitud-baja-update-status";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-solicitud-baja-list",
   templateUrl: "./solicitud-baja-list.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

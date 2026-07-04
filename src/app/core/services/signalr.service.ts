@@ -15,6 +15,18 @@ export interface GoogleCalendarEventRealTimeUpdateDTO {
   timestampUtc: string;
 }
 
+export interface NativeCollectionRealTimeUpdateDTO {
+  customerId: string;
+  propertyId: string | null;
+  chargeId: string | null;
+  paymentId: string | null;
+  allocationId: string | null;
+  eventType: string;
+  action: string;
+  description: string | null;
+  occurredAtUtc: string;
+}
+
 @Injectable({
   providedIn: "root",
 })
@@ -23,6 +35,7 @@ export class SignalRService {
   private consoleLogger = inject(ConsoleLoggerService);
 
   private hubConnection!: signalR.HubConnection;
+  private joinedGroups = new Set<string>();
 
   private connectionStateSignal: WritableSignal<boolean> = signal(false);
   public connectionState = this.connectionStateSignal.asReadonly();
@@ -49,23 +62,28 @@ export class SignalRService {
   public googleCalendarEventUpdate$ =
     this.googleCalendarEventUpdateSource.asObservable();
 
+  private nativeCollectionUpdateSource =
+    new Subject<NativeCollectionRealTimeUpdateDTO>();
+  public nativeCollectionUpdate$ =
+    this.nativeCollectionUpdateSource.asObservable();
+
   public start(): void {
     if (
       this.hubConnection &&
       this.hubConnection.state !== signalR.HubConnectionState.Disconnected
     ) {
       this.consoleLogger.custom(
-        "🔌",
+        "LINK",
         "orange",
-        "[SignalR] Se intentó iniciar una conexión ya existente.",
+        "[SignalR] Se intento iniciar una conexion ya existente.",
       );
       return;
     }
 
     this.consoleLogger.custom(
-      "🔌",
+      "LINK",
       "blue",
-      "[SignalR] Construyendo conexión...",
+      "[SignalR] Construyendo conexion...",
     );
 
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -77,14 +95,17 @@ export class SignalRService {
       .withAutomaticReconnect([2000, 5000, 10000, 20000, null])
       .build();
 
-    this.consoleLogger.custom("🔌", "blue", "[SignalR] Iniciando conexión...");
+    this.addConnectionLifecycleListeners();
+    this.registerListeners();
+
+    this.consoleLogger.custom("LINK", "blue", "[SignalR] Iniciando conexion...");
     this.hubConnection
       .start()
       .then(() => {
         this.consoleLogger.custom(
-          "🔌",
+          "LINK",
           "green",
-          "[SignalR] Conexión iniciada con éxito.",
+          "[SignalR] Conexion iniciada con exito.",
         );
 
         this.connectionStateSignal.set(true);
@@ -96,19 +117,17 @@ export class SignalRService {
           `[SignalR] connectionId = '${this.hubConnection.connectionId}'`,
         );
 
-        this.registerListeners();
+        void this.rejoinGroups();
       })
       .catch((err) => {
         this.consoleLogger.custom(
-          "❌",
+          "ERROR",
           "red",
-          "[SignalR] Error iniciando conexión:",
+          "[SignalR] Error iniciando conexion:",
           err,
         );
         this.connectionStateSignal.set(false);
       });
-
-    this.addConnectionLifecycleListeners();
   }
 
   public stop(): void {
@@ -120,18 +139,19 @@ export class SignalRService {
         .stop()
         .then(() => {
           this.consoleLogger.custom(
-            "🛑",
+            "STOP",
             "red",
-            "[SignalR] Conexión detenida limpiamente.",
+            "[SignalR] Conexion detenida limpiamente.",
           );
 
           this.connectionStateSignal.set(false);
           this.connectionIdSignal.set(null);
           this.connectedUserSignal.set(null);
+          this.joinedGroups.clear();
         })
         .catch((err) =>
           this.consoleLogger.error(
-            "Error al detener la conexión SignalR:",
+            "Error al detener la conexion SignalR:",
             err,
           ),
         );
@@ -142,13 +162,44 @@ export class SignalRService {
     customerId: string,
     fiscalYear: number,
   ): Promise<void> {
-    const groupName = `proposal-${customerId}-${fiscalYear}`;
+    await this.joinGroup(`proposal-${customerId}-${fiscalYear}`);
+  }
+
+  public async leaveProposalGroup(
+    customerId: string,
+    fiscalYear: number,
+  ): Promise<void> {
+    await this.leaveGroup(`proposal-${customerId}-${fiscalYear}`);
+  }
+
+  public async joinNativeCollectionGroup(customerId: string): Promise<void> {
+    await this.joinGroup(`native-collection-${customerId}`);
+  }
+
+  public async leaveNativeCollectionGroup(customerId: string): Promise<void> {
+    await this.leaveGroup(`native-collection-${customerId}`);
+  }
+
+  public async joinNativeCollectionPropertyGroup(
+    propertyId: string,
+  ): Promise<void> {
+    await this.joinGroup(`native-collection-property-${propertyId}`);
+  }
+
+  public async leaveNativeCollectionPropertyGroup(
+    propertyId: string,
+  ): Promise<void> {
+    await this.leaveGroup(`native-collection-property-${propertyId}`);
+  }
+
+  private async joinGroup(groupName: string): Promise<void> {
+    this.joinedGroups.add(groupName);
 
     if (this.hubConnection?.state === signalR.HubConnectionState.Connected) {
       try {
         await this.hubConnection.invoke("JoinGroup", groupName);
         this.consoleLogger.custom(
-          "🤝",
+          "JOIN",
           "blue",
           `[SignalR] Unido al grupo: ${groupName}`,
         );
@@ -157,22 +208,18 @@ export class SignalRService {
       }
     } else {
       this.consoleLogger.warn(
-        `No se pudo unir al grupo ${groupName}. Conexión no establecida.`,
+        `Grupo ${groupName} en espera. Se unira al conectar.`,
       );
     }
   }
 
-  public async leaveProposalGroup(
-    customerId: string,
-    fiscalYear: number,
-  ): Promise<void> {
-    const groupName = `proposal-${customerId}-${fiscalYear}`;
-
+  private async leaveGroup(groupName: string): Promise<void> {
     if (this.hubConnection?.state === signalR.HubConnectionState.Connected) {
       try {
         await this.hubConnection.invoke("LeaveGroup", groupName);
+        this.joinedGroups.delete(groupName);
         this.consoleLogger.custom(
-          "👋",
+          "LEAVE",
           "blue",
           `[SignalR] Abandonado el grupo: ${groupName}`,
         );
@@ -183,34 +230,35 @@ export class SignalRService {
         );
       }
     } else {
+      this.joinedGroups.delete(groupName);
       this.consoleLogger.warn(
-        `No se pudo abandonar el grupo ${groupName}. Conexión no establecida.`,
+        `No se pudo abandonar el grupo ${groupName}. Conexion no establecida.`,
       );
     }
   }
 
   private registerListeners(): void {
     this.consoleLogger.custom(
-      "🎧",
+      "HEADSET",
       "cyan",
       "[SignalR] Registrando listeners...",
     );
 
-    this.hubConnection.on("ConnectedUser", (mensaje: string) => {
+    this.hubConnection.on("ConnectedUser", (message: string) => {
       this.consoleLogger.custom(
-        "👤",
+        "USER",
         "blue",
         "[SignalR] Evento ConnectedUser recibido:",
-        mensaje,
+        message,
       );
-      this.connectedUserSignal.set(mensaje);
+      this.connectedUserSignal.set(message);
     });
 
     this.hubConnection.on("ReceiveNotification", (payload: any) => {
       this.consoleLogger.custom(
-        "📨",
+        "MAIL",
         "purple",
-        "[SignalR] Notificación recibida:",
+        "[SignalR] Notificacion recibida:",
         payload,
       );
       this.messageReceivedSource.next(payload);
@@ -220,7 +268,7 @@ export class SignalRService {
       "ReceiveBudgetProposalItemUpdate",
       (itemDTO: BudgetProposalItemDTO) => {
         this.consoleLogger.custom(
-          "🔄",
+          "REFRESH",
           "green",
           "[SignalR] Update de Item recibido:",
           itemDTO,
@@ -231,7 +279,7 @@ export class SignalRService {
 
     this.hubConnection.on("ReceiveProjectedExpenseUpdate", (payload: any) => {
       this.consoleLogger.custom(
-        "📊",
+        "CHART",
         "blue",
         "[SignalR] Update de Gasto Proyectado recibido:",
         payload,
@@ -243,7 +291,7 @@ export class SignalRService {
       "ReceiveGoogleCalendarEventUpdate",
       (payload: GoogleCalendarEventRealTimeUpdateDTO) => {
         this.consoleLogger.custom(
-          "📅",
+          "CAL",
           "dodgerblue",
           "[SignalR] Update de Google Calendar recibido:",
           payload,
@@ -251,12 +299,25 @@ export class SignalRService {
         this.googleCalendarEventUpdateSource.next(payload);
       },
     );
+
+    this.hubConnection.on(
+      "ReceiveNativeCollectionUpdate",
+      (payload: NativeCollectionRealTimeUpdateDTO) => {
+        this.consoleLogger.custom(
+          "MONEY",
+          "teal",
+          "[SignalR] Update de Cobranza Nativa recibido:",
+          payload,
+        );
+        this.nativeCollectionUpdateSource.next(payload);
+      },
+    );
   }
 
   private addConnectionLifecycleListeners(): void {
     this.hubConnection.onreconnecting((error) => {
       this.consoleLogger.custom(
-        "⏳",
+        "WAIT",
         "orange",
         "[SignalR] Reintentando...",
         error,
@@ -266,20 +327,21 @@ export class SignalRService {
 
     this.hubConnection.onreconnected((connectionId) => {
       this.consoleLogger.custom(
-        "✅",
+        "OK",
         "green",
         "[SignalR] Reconectado. ID:",
         connectionId,
       );
       this.connectionStateSignal.set(true);
       this.connectionIdSignal.set(connectionId);
+      void this.rejoinGroups();
     });
 
     this.hubConnection.onclose((error) => {
       this.consoleLogger.custom(
-        "🔌",
+        "LINK",
         "red",
-        "[SignalR] Conexión cerrada:",
+        "[SignalR] Conexion cerrada:",
         error,
       );
 
@@ -288,5 +350,22 @@ export class SignalRService {
       this.connectedUserSignal.set(null);
     });
   }
-}
 
+  private async rejoinGroups(): Promise<void> {
+    for (const groupName of this.joinedGroups) {
+      try {
+        await this.hubConnection.invoke("JoinGroup", groupName);
+        this.consoleLogger.custom(
+          "SYNC",
+          "blue",
+          `[SignalR] Reingreso al grupo: ${groupName}`,
+        );
+      } catch (err) {
+        this.consoleLogger.error(
+          `Error al reingresar al grupo ${groupName}:`,
+          err,
+        );
+      }
+    }
+  }
+}

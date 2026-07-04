@@ -37,7 +37,10 @@ export enum EChargeStatus {
 export enum EPaymentStatus {
     Registrado,
     Verificado,
-    Rechazado
+    Rechazado,
+    Cancelado,
+    Revertido,
+    NoIdentificado,
 }
 
 export enum ELateFeeType {

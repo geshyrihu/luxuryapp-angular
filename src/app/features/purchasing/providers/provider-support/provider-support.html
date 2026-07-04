@@ -70,10 +70,10 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="flex">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       <!-- Opciones -->
@@ -108,25 +108,22 @@
         <app-icon
           icon="mdi:account-outline"
           style="font-size: 20px; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.fullName }}</h3>
         <p>{{ item.nameComercial }} é {{ item.applicationRoleName }}</p>
         <p>{{ item.nameCustomer }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

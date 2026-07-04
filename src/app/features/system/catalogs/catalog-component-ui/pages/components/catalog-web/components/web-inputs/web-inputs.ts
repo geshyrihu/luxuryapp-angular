@@ -73,8 +73,8 @@ import {
   ],
   template: `
     <form [formGroup]="webForm" class="flex flex-column gap-3">
-      <!-- Texto, B˙squeda y ContraseÒa -->
-      <p-card header="Texto, B˙squeda y ContraseÒa">
+      <!-- Texto, B√≥squeda y Contrase√≥a -->
+      <p-card header="Texto, B√≥squeda y Contrase√≥a">
         <div class="grid">
           <div class="col-12 lg:col-6">
             <custom-input-text-signal
@@ -90,7 +90,7 @@ import {
           <div class="col-12 lg:col-6">
             <custom-input-password-signal
               [control]="webForm.controls['password']"
-              label="ContraseÒa"
+              label="Contrase√≥a"
               [showStrengthIndicator]="true"
               [horizontal]="false"
             />
@@ -106,13 +106,13 @@ import {
         </div>
       </p-card>
 
-      <!-- NumÈricos -->
-      <p-card header="NumÈricos y Moneda">
+      <!-- Num√≠ricos -->
+      <p-card header="Num√≠ricos y Moneda">
         <div class="grid">
           <div class="col-12 lg:col-3">
             <custom-input-number-signal
               [control]="webForm.controls['edad']"
-              label="N˙mero entero"
+              label="N√∫mero entero"
               [showButtons]="true"
               [min]="0"
               [horizontal]="false"
@@ -178,8 +178,8 @@ import {
         </div>
       </p-card>
 
-      <!-- SelecciÛn -->
-      <p-card header="SelecciÛn y B˙squeda Avanzada">
+      <!-- Selecci√≥n -->
+      <p-card header="Selecci√≥n y B√≥squeda Avanzada">
         <div class="grid">
           <div class="col-12 lg:col-4">
             <custom-input-select-signal
@@ -209,7 +209,7 @@ import {
             <custom-input-ng-select
               [control]="webForm.controls['ngSelect']"
               [items]="options"
-              label="Ng-Select (b˙squeda avanzada)"
+              label="Ng-Select (b√≥squeda avanzada)"
               [horizontal]="false"
             />
           </div>
@@ -233,7 +233,7 @@ import {
           <div class="col-12 lg:col-6">
             <custom-input-autocomplete-multiple-signal
               [control]="webForm.controls['autoMultiple']"
-              label="Autocomplete m˙ltiple"
+              label="Autocomplete m√≠ltiple"
               [data]="options"
               [horizontal]="false"
             />
@@ -242,12 +242,12 @@ import {
       </p-card>
 
       <!-- Especiales -->
-      <p-card header="Especiales ó M·scara, URL y TelÈfono">
+      <p-card header="Especiales √© M√≠scara, URL y Tel√≥fono">
         <div class="grid">
           <div class="col-12 lg:col-4">
             <custom-input-mask-signal
               [control]="webForm.controls['codigoPostal']"
-              label="CÛdigo postal"
+              label="C√≥digo postal"
               [customMask]="'99999'"
               [horizontal]="false"
             />
@@ -262,20 +262,20 @@ import {
           <div class="col-12 lg:col-4">
             <custom-input-phone-prefix
               [control]="webForm.controls['telefono']"
-              label="TelÈfono con lada"
+              label="Tel√≥fono con lada"
               [horizontal]="false"
             />
           </div>
         </div>
       </p-card>
 
-      <!-- Archivos e Im·genes -->
-      <p-card header="Archivos e Im·genes">
+      <!-- Archivos e Im√≠genes -->
+      <p-card header="Archivos e Im√≠genes">
         <div class="grid">
           <div class="col-12 lg:col-4">
             <custom-input-file-signal
               [control]="webForm.controls['archivo']"
-              label="Archivo genÈrico"
+              label="Archivo gen√≥rico"
               [horizontal]="false"
             />
           </div>
@@ -298,7 +298,7 @@ import {
                 <span class="block font-semibold mb-1"
                   >app-custom-input-upload-pdf-signal</span
                 >
-                Componente de di·logo ó se abre vÌa
+                Componente de di√≥logo √© se abre v√≠a
                 <code>DynamicDialogService</code>, no como input directo.
               </div>
             </div>
@@ -315,7 +315,7 @@ import {
           />
           <custom-input-check-signal
             [control]="webForm.controls['terminos']"
-            label="Acepto tÈrminos y condiciones"
+            label="Acepto t√∫rminos y condiciones"
           />
         </div>
       </p-card>
@@ -357,9 +357,9 @@ export class WebInputs {
   });
 
   readonly options = [
-    { label: "OpciÛn 1", value: 1 },
-    { label: "OpciÛn 2", value: 2 },
-    { label: "OpciÛn 3", value: 3 },
+    { label: "Opci√≥n 1", value: 1 },
+    { label: "Opci√≥n 2", value: 2 },
+    { label: "Opci√≥n 3", value: 3 },
   ];
 }
 

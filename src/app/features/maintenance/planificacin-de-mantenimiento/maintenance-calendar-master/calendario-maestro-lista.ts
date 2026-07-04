@@ -21,10 +21,17 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CalendarioMaestroForm } from "./calendario-maestro-form";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
 @Component({
   selector: "app-calendario-maestro-lista",
   templateUrl: "./calendario-maestro-lista.html",
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     DividerModule,
     WebButtonLabelAdd,
     WebButtonLabelItem,

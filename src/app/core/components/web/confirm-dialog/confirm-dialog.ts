@@ -1,17 +1,11 @@
-import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { ConfirmDialogBase } from "src/app/core/components/shared/confirm-dialog/confirm-dialog-base";
 
-type ConfirmType = "danger" | "warning" | "info" | "success";
-
-const typeConfig: Record<ConfirmType, { icon: string; color: string; severity: "danger" | "warn" | "info" | "success" }> = {
-  danger:  { icon: "mdi:alert-circle",    color: "var(--ds-danger)",  severity: "danger" },
-  warning: { icon: "mdi:alert",           color: "var(--ds-warning)", severity: "warn" },
-  info:    { icon: "mdi:information",     color: "var(--ds-info)",    severity: "info" },
-  success: { icon: "mdi:check-circle",    color: "var(--ds-success)", severity: "success" },
-};
+export type { ConfirmType } from "src/app/core/components/shared/confirm-dialog/confirm-dialog-base";
 
 @Component({
   selector: "app-confirm-dialog",
@@ -53,26 +47,4 @@ const typeConfig: Record<ConfirmType, { icon: string; color: string; severity: "
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class ConfirmDialog {
-  visible = model<boolean>(false);
-  title = input("Confirmar acción");
-  message = input("¿Estás seguro de realizar esta acción?");
-  type = input<ConfirmType>("danger");
-  confirmLabel = input("Confirmar");
-  cancelLabel = input("Cancelar");
-
-  confirm = output<void>();
-  cancel = output<void>();
-
-  get config() {
-    return typeConfig[this.type()] || typeConfig.danger;
-  }
-
-  onConfirm(): void {
-    this.confirm.emit();
-  }
-
-  onCancel(): void {
-    this.cancel.emit();
-  }
-}
+export class ConfirmDialog extends ConfirmDialogBase {}

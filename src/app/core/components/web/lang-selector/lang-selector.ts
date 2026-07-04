@@ -1,29 +1,13 @@
-import {
-  Component,
-  input,
-  model,
-  output,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { SelectModule } from "primeng/select";
+import { LangSelectorBase } from "src/app/core/components/shared/lang-selector/lang-selector-base";
 
-export interface Language {
-  code: string;
-  label: string;
-  flag: string;
-  locale: string;
-}
-
-export const DEFAULT_LANGUAGES: Language[] = [
-  { code: "es-MX", label: "Español (México)", flag: "🇲🇽", locale: "es-MX" },
-  { code: "es-ES", label: "Español (España)", flag: "🇪🇸", locale: "es-ES" },
-  { code: "en-US", label: "English (US)", flag: "🇺🇸", locale: "en-US" },
-  { code: "en-GB", label: "English (UK)", flag: "🇬🇧", locale: "en-GB" },
-  { code: "pt-BR", label: "Português (Brasil)", flag: "🇧🇷", locale: "pt-BR" },
-  { code: "fr-FR", label: "Français", flag: "🇫🇷", locale: "fr-FR" },
-];
+export {
+  type Language,
+  DEFAULT_LANGUAGES,
+} from "src/app/core/components/shared/lang-selector/lang-selector-base";
 
 /**
  * AppLangSelector — Dropdown de selección de idioma/locale.
@@ -89,17 +73,4 @@ export const DEFAULT_LANGUAGES: Language[] = [
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppLangSelector {
-  selectedCode = model<string>("es-MX");
-  languages = input<Language[]>(DEFAULT_LANGUAGES);
-  label = input<string>("Idioma / Región");
-  placeholder = input<string>("Seleccionar idioma");
-  showLabel = input<boolean>(true);
-
-  langChange = output<Language>();
-
-  onLangChange(code: string): void {
-    const lang = this.languages().find((l) => l.code === code);
-    if (lang) this.langChange.emit(lang);
-  }
-}
+export class AppLangSelector extends LangSelectorBase {}

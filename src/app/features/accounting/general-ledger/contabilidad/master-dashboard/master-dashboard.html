@@ -1,17 +1,26 @@
 <!-- ─── WEB (≥ md) ─────────────────────────────────────────────── -->
 <div class="hidden md:block fadein">
-
   <!-- Encabezado -->
   <div class="mb-6">
     <div class="flex align-items-center gap-3 mb-2">
-      <div class="flex align-items-center justify-content-center border-round-xl shadow-1"
-           style="width:56px;height:56px;background:var(--ds-primary-50,#edf1ff);">
-        <app-icon icon="mdi:wallet" style="font-size:1.75rem;color:var(--ds-primary);"></app-icon>
+      <div
+        class="flex align-items-center justify-content-center border-round-xl shadow-1"
+        style="
+          width: 56px;
+          height: 56px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
+      >
+        <app-icon
+          icon="mdi:wallet"
+          style="font-size: 1.75rem; color: var(--ds-primary)"
+        />
       </div>
       <div>
         <h1 class="ds-heading text-3xl font-bold text-900 m-0">Contabilidad</h1>
         <p class="ds-text-secondary text-base m-0">
-          Panel central de gestión contable, cobranza, presupuestos y estados financieros
+          Panel central de gestión contable, cobranza, presupuestos y estados
+          financieros
         </p>
       </div>
     </div>
@@ -19,82 +28,129 @@
 
   <!-- Grupos de módulos -->
   @for (group of getVisibleGroups(); track group.label) {
-    <div class="flex align-items-center gap-2 mb-4 mt-6">
-      <app-icon [icon]="group.icon" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
-      <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">{{ group.label }}</h2>
-      <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
-    </div>
+  <div class="flex align-items-center gap-2 mb-4 mt-6">
+    <app-icon
+      [icon]="group.icon"
+      style="font-size: 1.25rem; color: var(--ds-primary)"
+    />
+    <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
+      {{ group.label }}
+    </h2>
+    <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
+  </div>
 
-    <div class="grid">
-      @for (module of group.cards; track module.route) {
-        <div class="col-12 sm:col-6 md:col-3">
-          <p-card
-            styleClass="card card--interactive card--elevated h-full"
-            [style]="{'border-top': '3px solid ' + module.color}"
-            (click)="navigateTo(module.route)"
-          >
-            <div class="flex flex-column gap-3">
-              <div class="flex align-items-center justify-content-between">
-                <div class="flex align-items-center justify-content-center border-round-lg text-2xl flex-shrink-0"
-                     style="width:48px;height:48px;"
-                     [style.backgroundColor]="module.bgColor">
-                  <app-icon [icon]="module.icon" [style.color]="module.color"></app-icon>
-                </div>
-                <app-icon icon="mdi:arrow-up-right" class="text-400"></app-icon>
-              </div>
-              <div>
-                <h3 class="m-0 font-bold text-900 line-height-2 text-base">{{ module.title }}</h3>
-                <p class="text-sm text-secondary m-0 mt-2 line-height-3">{{ module.description }}</p>
-              </div>
+  <div class="grid">
+    @for (module of group.cards; track module.route) {
+    <div class="col-12 sm:col-6 md:col-3">
+      <p-card
+        styleClass="card card--interactive card--elevated h-full"
+        [style]="{'border-top': '3px solid ' + module.color}"
+        (click)="navigateTo(module.route)"
+      >
+        <div class="flex flex-column gap-3">
+          <div class="flex align-items-center justify-content-between">
+            <div
+              class="flex align-items-center justify-content-center border-round-lg text-2xl flex-shrink-0"
+              style="width: 48px; height: 48px"
+              [style.backgroundColor]="module.bgColor"
+            >
+              <app-icon [icon]="module.icon" [style.color]="module.color" />
             </div>
-          </p-card>
+            <app-icon icon="mdi:arrow-up-right" class="text-400" />
+          </div>
+          <div>
+            <h3 class="m-0 font-bold text-900 line-height-2 text-base">
+              {{ module.title }}
+            </h3>
+            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+              {{ module.description }}
+            </p>
+          </div>
         </div>
-      }
+      </p-card>
     </div>
+    }
+  </div>
   }
 </div>
 
 <!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
 <div class="block md:hidden fadein">
-
   <!-- Header compacto -->
-  <div class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border">
-    <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-         style="width:40px;height:40px;background:var(--ds-primary-50,#edf1ff);">
-      <app-icon icon="mdi:wallet" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+  <div
+    class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border"
+  >
+    <div
+      class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+      style="
+        width: 40px;
+        height: 40px;
+        background: var(--ds-primary-50, #edf1ff);
+      "
+    >
+      <app-icon
+        icon="mdi:wallet"
+        style="font-size: 1.25rem; color: var(--ds-primary)"
+      />
     </div>
     <div>
-      <h2 class="font-bold m-0 text-color" style="font-size:1.1rem;">Contabilidad</h2>
-      <p class="text-xs m-0 text-color-secondary">Gestión contable y financiera</p>
+      <h2 class="font-bold m-0 text-color" style="font-size: 1.1rem">
+        Contabilidad
+      </h2>
+      <p class="text-xs m-0 text-color-secondary">
+        Gestión contable y financiera
+      </p>
     </div>
   </div>
 
   <!-- Lista por grupo -->
   @for (group of getVisibleGroups(); track group.label) {
-    <ion-list>
-      <!-- Divisor de grupo -->
-      <ion-item-divider class="px-3 py-2" style="background:var(--ds-bg-elevated,#f4f5f8);">
-        <div class="flex align-items-center gap-2">
-          <app-icon [icon]="group.icon" style="font-size:1rem;color:var(--ds-primary);"></app-icon>
-          <span class="text-xs font-bold uppercase" style="color:var(--ds-text-secondary);">{{ group.label }}</span>
-        </div>
-      </ion-item-divider>
+  <ion-list>
+    <!-- Divisor de grupo -->
+    <ion-item-divider
+      class="px-3 py-2"
+      style="background: var(--ds-bg-elevated, #f4f5f8)"
+    >
+      <div class="flex align-items-center gap-2">
+        <app-icon
+          [icon]="group.icon"
+          style="font-size: 1rem; color: var(--ds-primary)"
+        />
+        <span
+          class="text-xs font-bold uppercase"
+          style="color: var(--ds-text-secondary)"
+          >{{ group.label }}</span
+        >
+      </div>
+    </ion-item-divider>
 
-      @for (module of group.cards; track module.route) {
-        <ion-item lines="full" detail="true" class="ion-no-padding"
-                  (click)="navigateTo(module.route)">
-          <div slot="start"
-               class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-               style="width:38px;height:38px;"
-               [style.backgroundColor]="module.bgColor">
-            <app-icon [icon]="module.icon" [style.color]="module.color" style="font-size:1.1rem;"></app-icon>
-          </div>
-          <ion-label class="ion-text-wrap">
-            <h3 class="font-semibold m-0 text-color">{{ module.title }}</h3>
-            <p class="text-xs m-0 mt-1 text-color-secondary">{{ module.description }}</p>
-          </ion-label>
-        </ion-item>
-      }
-    </ion-list>
+    @for (module of group.cards; track module.route) {
+    <ion-item
+      lines="full"
+      detail="true"
+      class="ion-no-padding"
+      (click)="navigateTo(module.route)"
+    >
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width: 38px; height: 38px"
+        [style.backgroundColor]="module.bgColor"
+      >
+        <app-icon
+          [icon]="module.icon"
+          [style.color]="module.color"
+          style="font-size: 1.1rem"
+        />
+      </div>
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ module.title }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ module.description }}
+        </p>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
   }
 </div>

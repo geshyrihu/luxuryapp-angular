@@ -3,7 +3,7 @@
   class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
 >
   <div class="flex align-items-center gap-2">
-    <app-icon icon="mdi:calendar" class="text-primary text-xl"></app-icon>
+    <app-icon icon="mdi:calendar" class="text-primary text-xl" />
     <span class="font-bold text-lg text-900">Agenda</span>
     @if (totalEventos() > 0) {
     <span class="text-xs surface-200 text-600 border-round px-2 py-1">
@@ -60,7 +60,7 @@
     icon="mdi:loading"
     class="pi-spin text-primary"
     style="font-size: 1.5rem"
-  ></app-icon>
+  />
   <span class="ml-2 text-500">Cargando agenda...</span>
 </div>
 } @else {
@@ -135,7 +135,7 @@
               icon="mdi:refresh"
               class="text-xs text-400"
               pTooltip="Recurrente"
-            ></app-icon>
+            />
             }
           </div>
           <div class="flex align-items-center gap-2 flex-wrap">
@@ -155,11 +155,11 @@
             target="_blank"
             class="text-xs text-primary no-underline flex align-items-center gap-1"
           >
-            <app-icon icon="mdi:video" class="mr-1"></app-icon> Unirse a Meet
+            <app-icon icon="mdi:video" class="mr-1" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
           <span class="text-xs text-500 flex align-items-center gap-1">
-            <app-icon icon="mdi:map-marker"></app-icon> {{ evento.location }}
+            <app-icon icon="mdi:map-marker" /> {{ evento.location }}
           </span>
           }
         </div>
@@ -170,7 +170,7 @@
           class="flex align-items-center gap-1 flex-none text-400"
           [pTooltip]="evento.guestCount + ' invitados'"
         >
-          <app-icon icon="mdi:account-group" class="text-xs"></app-icon>
+          <app-icon icon="mdi:account-group" class="text-xs" />
           <span class="text-xs">{{ evento.guestCount }}</span>
         </div>
         }

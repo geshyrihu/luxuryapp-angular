@@ -15,10 +15,15 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-status-request-salary-modification",
   templateUrl: "./status-request-salary-modification.html",
-  imports: [CardModule, NgbTooltipModule, WebButtonLabel, WebButtonLabelConfirm],
+  imports: [
+    WebButtonIcon,
+    TooltipModule,CardModule, NgbTooltipModule, WebButtonLabel, WebButtonLabelConfirm],
 })
 export class StatusRequestSalaryModification implements OnInit {
   private statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);

@@ -21,7 +21,7 @@ import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomToast } from "src/app/core/components/web/primeng-custom-toast/primeng-custom-toast";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -45,10 +45,15 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-orden-compra",
   templateUrl: "./orden-compra.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CardModule,
     CommonModule,

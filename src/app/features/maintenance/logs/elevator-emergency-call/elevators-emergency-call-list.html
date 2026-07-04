@@ -68,18 +68,18 @@
 
           <td>
             <div class="flex">
-              <il-button-edit
+              <iw-button-edit
                 (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               />
-              <il-button-delete (confirmed)="onDelete(item.id)" />
+              <iw-button-delete (confirmed)="onDelete(item.id)" />
             </div>
           </td>
           <!-- Opciones -->
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="8" />
+      </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -108,7 +108,7 @@
         <app-icon
           icon="mdi:elevator-passenger-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
@@ -117,11 +117,11 @@
           </h2>
         </div>
         <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs"></app-icon> Folio:
-          {{ item.folio }}
+          <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" /> Folio: {{
+          item.folio }}
         </p>
         <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs"></app-icon> {{
+          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" /> {{
           item.requestDate }}
         </p>
         <p class="text-sm text-700 mt-2 mb-1">
@@ -140,18 +140,18 @@
         </div>
       </ion-label>
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

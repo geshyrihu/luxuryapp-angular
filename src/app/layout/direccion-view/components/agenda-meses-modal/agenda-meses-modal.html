@@ -1,111 +1,131 @@
 ﻿<!-- Filtro de meses -->
-<div class="flex align-items-center justify-content-between gap-3 mb-4 flex-wrap">
+<div
+  class="flex align-items-center justify-content-between gap-3 mb-4 flex-wrap"
+>
   <div class="flex align-items-center gap-2">
     <span class="text-sm text-500">Mostrar:</span>
     @for (opcion of [3, 6, 9, 12]; track opcion) {
-      <il-button
-        [label]="opcion + ' meses'"
-        size="sm"
-        [severity]="mesesSeleccionados() === opcion ? 'primary' : 'secondary'"
-        [variant]="mesesSeleccionados() === opcion ? 'solid' : 'outline'"
-        (clicked)="cambiarMeses(opcion)"
-      />
+    <il-button
+      [label]="opcion + ' meses'"
+      size="sm"
+      [severity]="mesesSeleccionados() === opcion ? 'primary' : 'secondary'"
+      [variant]="mesesSeleccionados() === opcion ? 'solid' : 'outline'"
+      (clicked)="cambiarMeses(opcion)"
+    />
     }
   </div>
   @if (totalEventos() > 0) {
-    <span class="text-sm text-500">
-      {{ totalEventos() }} evento{{ totalEventos() === 1 ? '' : 's' }} encontrados
-    </span>
+  <span class="text-sm text-500">
+    {{ totalEventos() }} evento{{ totalEventos() === 1 ? '' : 's' }} encontrados
+  </span>
   }
 </div>
 
 <!-- Cargando -->
 @if (cargando()) {
-  <div class="flex justify-content-center align-items-center py-6">
-    <app-icon icon="mdi:loading" style="font-size: 1.5rem" class="ner text-primary ds-animate-spin"></app-icon>
-    <span class="ml-2 text-500">Cargando eventos...</span>
-  </div>
+<div class="flex justify-content-center align-items-center py-6">
+  <app-icon
+    icon="mdi:loading"
+    style="font-size: 1.5rem"
+    class="ner text-primary ds-animate-spin"
+  />
+  <span class="ml-2 text-500">Cargando eventos...</span>
+</div>
 } @else if (eventosPorMes().length === 0) {
-  <div class="flex flex-column align-items-center justify-content-center py-6 gap-3">
-    <app-icon icon="mdi:calendar-blank" style="font-size: 3rem" class="text-400"></app-icon>
-    <span class="text-500">No hay eventos en los proximos {{ mesesSeleccionados() }} meses</span>
-  </div>
+<div
+  class="flex flex-column align-items-center justify-content-center py-6 gap-3"
+>
+  <app-icon
+    icon="mdi:calendar-blank"
+    style="font-size: 3rem"
+    class="text-400"
+  />
+  <span class="text-500"
+    >No hay eventos en los proximos {{ mesesSeleccionados() }} meses</span
+  >
+</div>
 } @else {
-  <div class="flex flex-column gap-4">
-    @for (mes of eventosPorMes(); track mes.label) {
+<div class="flex flex-column gap-4">
+  @for (mes of eventosPorMes(); track mes.label) {
 
-      <div class="surface-card border-1 surface-border border-round-lg overflow-hidden">
+  <div
+    class="surface-card border-1 surface-border border-round-lg overflow-hidden"
+  >
+    <!-- Cabecera del mes -->
+    <div
+      class="bg-primary-50 border-bottom-1 surface-border px-4 py-2 flex align-items-center justify-content-between"
+    >
+      <span class="font-bold text-primary capitalize">{{ mes.label }}</span>
+      <span class="text-xs text-500">
+        {{ mes.eventos.length }} evento{{ mes.eventos.length === 1 ? '' : 's' }}
+      </span>
+    </div>
 
-        <!-- Cabecera del mes -->
-        <div class="bg-primary-50 border-bottom-1 surface-border px-4 py-2 flex align-items-center justify-content-between">
-          <span class="font-bold text-primary capitalize">{{ mes.label }}</span>
-          <span class="text-xs text-500">
-            {{ mes.eventos.length }} evento{{ mes.eventos.length === 1 ? '' : 's' }}
+    <!-- Lista de eventos del mes -->
+    <div class="flex flex-column">
+      @for (evento of mes.eventos; track evento.id; let last = $last) {
+      <div
+        class="px-4 py-3 flex align-items-start gap-3"
+        [class.border-bottom-1]="!last"
+        [class.surface-border]="!last"
+      >
+        <!-- Fecha y hora -->
+        <div class="flex flex-column flex-none" style="min-width: 9rem">
+          <span class="text-sm font-semibold text-700 capitalize">
+            {{ formatFechaHora(evento.startAt) }}
           </span>
         </div>
 
-        <!-- Lista de eventos del mes -->
-        <div class="flex flex-column">
-          @for (evento of mes.eventos; track evento.id; let last = $last) {
-            <div
-              class="px-4 py-3 flex align-items-start gap-3"
-              [class.border-bottom-1]="!last"
-              [class.surface-border]="!last"
-            >
-              <!-- Fecha y hora -->
-              <div class="flex flex-column flex-none" style="min-width: 9rem">
-                <span class="text-sm font-semibold text-700 capitalize">
-                  {{ formatFechaHora(evento.startAt) }}
-                </span>
-              </div>
-
-              <!-- Detalle -->
-              <div class="flex flex-column gap-1 flex-auto min-w-0">
-                <span class="text-sm font-semibold text-900">{{ evento.title }}</span>
-                <div class="flex align-items-center gap-2 flex-wrap">
-                  <span class="text-xs surface-200 text-600 border-round px-2 py-1">
-                    {{ evento.customerName }}
-                  </span>
-                  <span class="text-xs text-500">{{ evento.subjectTypeName }}</span>
-                  <p-tag
-                    [value]="evento.modalityName"
-                    [severity]="getModalityClass(evento.modalityName)"
-                    styleClass="text-xs"
-                  />
-                  @if (evento.isRecurring) {
-                    <app-icon icon="mdi:refresh" pTooltip="Recurrente" class="text-xs text-400"></app-icon>
-                  }
-                </div>
-                @if (evento.googleMeetUrl) {
-                  <a
-                    [href]="evento.googleMeetUrl"
-                    target="_blank"
-                    class="text-xs text-primary no-underline flex align-items-center gap-1"
-                  >
-                    <app-icon icon="mdi:video-outline"></app-icon> Unirse a Meet
-                  </a>
-                } @else if (evento.location) {
-                  <span class="text-xs text-500 flex align-items-center gap-1">
-                    <app-icon icon="mdi:map-marker-outline"></app-icon> {{ evento.location }}
-                  </span>
-                }
-              </div>
-
-              <!-- Invitados -->
-              @if (evento.guestCount > 0) {
-                <div
-                  class="flex align-items-center gap-1 flex-none text-400"
-                  [pTooltip]="evento.guestCount + ' invitados'"
-                >
-                  <app-icon icon="mdi:account-group-outline"  class="text-xs"></app-icon>
-                  <span class="text-xs">{{ evento.guestCount }}</span>
-                </div>
-              }
-            </div>
+        <!-- Detalle -->
+        <div class="flex flex-column gap-1 flex-auto min-w-0">
+          <span class="text-sm font-semibold text-900">{{ evento.title }}</span>
+          <div class="flex align-items-center gap-2 flex-wrap">
+            <span class="text-xs surface-200 text-600 border-round px-2 py-1">
+              {{ evento.customerName }}
+            </span>
+            <span class="text-xs text-500">{{ evento.subjectTypeName }}</span>
+            <p-tag
+              [value]="evento.modalityName"
+              [severity]="getModalityClass(evento.modalityName)"
+              styleClass="text-xs"
+            />
+            @if (evento.isRecurring) {
+            <app-icon
+              icon="mdi:refresh"
+              pTooltip="Recurrente"
+              class="text-xs text-400"
+            />
+            }
+          </div>
+          @if (evento.googleMeetUrl) {
+          <a
+            [href]="evento.googleMeetUrl"
+            target="_blank"
+            class="text-xs text-primary no-underline flex align-items-center gap-1"
+          >
+            <app-icon icon="mdi:video-outline" /> Unirse a Meet
+          </a>
+          } @else if (evento.location) {
+          <span class="text-xs text-500 flex align-items-center gap-1">
+            <app-icon icon="mdi:map-marker-outline" /> {{ evento.location }}
+          </span>
           }
         </div>
 
+        <!-- Invitados -->
+        @if (evento.guestCount > 0) {
+        <div
+          class="flex align-items-center gap-1 flex-none text-400"
+          [pTooltip]="evento.guestCount + ' invitados'"
+        >
+          <app-icon icon="mdi:account-group-outline" class="text-xs" />
+          <span class="text-xs">{{ evento.guestCount }}</span>
+        </div>
+        }
       </div>
-    }
+      }
+    </div>
   </div>
+  }
+</div>
 }

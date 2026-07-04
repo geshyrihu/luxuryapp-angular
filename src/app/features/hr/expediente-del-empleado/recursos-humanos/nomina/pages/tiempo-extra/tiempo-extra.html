@@ -65,9 +65,9 @@
       </td>
       <td>
         <div class="flex gap-1">
-          <il-button-edit (clicked)="openEdit(item)" />
+          <iw-button-edit (clicked)="openEdit(item)" />
           @if (!item.aprobado) {
-          <il-button
+          <iw-button
             iconClass="mdi:check"
             severity="success"
             variant="ghost-text"
@@ -75,7 +75,7 @@
             (clicked)="aprobar(item)"
           />
           }
-          <il-button-delete (confirmed)="onDelete(item)" />
+          <iw-button-delete (confirmed)="onDelete(item)" />
         </div>
       </td>
     </tr>
@@ -106,7 +106,7 @@
         <app-icon
           icon="mdi:currency-usd"
           style="font-size: 1.1rem; color: var(--ds-success)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>

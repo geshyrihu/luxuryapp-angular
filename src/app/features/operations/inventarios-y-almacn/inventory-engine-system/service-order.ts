@@ -11,10 +11,13 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-service-order",
   templateUrl: "./service-order.html",
   imports: [
+    WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
     EditorModule,

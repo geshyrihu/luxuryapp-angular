@@ -75,11 +75,11 @@
           @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
           AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
           account_id ) {
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           }
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -115,7 +115,7 @@
         <app-icon
           icon="mdi:package-outline"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>
@@ -124,22 +124,19 @@
         </p>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
           @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
           AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
           account_id ) {
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
           }
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

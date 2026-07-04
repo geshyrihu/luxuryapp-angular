@@ -7,10 +7,10 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -37,12 +37,12 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
     SelectButtonModule,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
+    MobileActionMenu,
     SelectModule,
     CustomInputSelectSignal,
     IonItem,

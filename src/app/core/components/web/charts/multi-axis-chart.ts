@@ -1,83 +1,29 @@
 import { Component, computed, input } from "@angular/core";
-import { ChartModule } from "primeng/chart";
+import { NgxEchartsDirective } from "ngx-echarts";
+import type { EChartsCoreOption } from "echarts/core";
+import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
 
 /**
- * 🎢 MULTI AXIS CHART
- * -------------------------------------------------------------------------
- * Gráfico multitarea: Dos ejes Y para comparar peras con manzanas.
- * (O ingresos vs cantidad). 🍎🍐
+ * MultiAxisChart — barras con doble eje Y. Motor: ECharts (ngx-echarts).
+ * API sin cambios: `data` en formato Chart.js `{ labels, datasets }`
+ * (usa `yAxisID: "y1"` en un dataset para el eje derecho).
  */
 @Component({
   selector: "app-multi-axis-chart",
-  imports: [ChartModule],
+  standalone: true,
+  imports: [NgxEchartsDirective],
   template: `
     <div class="p-card">
-      <p-chart
-        type="bar"
-        [data]="dataSignal()"
-        [options]="chartOptions()"
-      ></p-chart>
+      <div echarts [options]="option()" style="height: 320px"></div>
     </div>
   `,
 })
 export class MultiAxisChart {
-  dataSignal = input<any>(null, { alias: "data" });
-  optionsSignal = input<any>(null, { alias: "options" });
+  dataSignal = input<ChartJsData | null>(null, { alias: "data" });
+  optionsSignal = input<EChartsCoreOption | null>(null, { alias: "options" });
 
-  chartOptions = computed(() => {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue("--text-color");
-    const textColorSecondary = documentStyle.getPropertyValue(
-      "--text-color-secondary",
-    );
-    const surfaceBorder = documentStyle.getPropertyValue("--surface-border");
-
-    const defaultOptions = {
-      stacked: false,
-      maintainAspectRatio: false,
-      aspectRatio: 0.6,
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor,
-          },
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-          },
-        },
-        y: {
-          type: "linear",
-          display: true,
-          position: "left",
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-          },
-        },
-        y1: {
-          type: "linear",
-          display: true,
-          position: "right",
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            drawOnChartArea: false,
-            color: surfaceBorder,
-          },
-        },
-      },
-    };
-
-    return this.optionsSignal() || defaultOptions;
+  option = computed<EChartsCoreOption>(() => {
+    if (this.optionsSignal()) return this.optionsSignal() as EChartsCoreOption;
+    return chartJsToCartesianOption(this.dataSignal(), "bar", { dualAxis: true });
   });
 }

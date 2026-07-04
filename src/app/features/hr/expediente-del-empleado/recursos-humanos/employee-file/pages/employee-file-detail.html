@@ -44,10 +44,7 @@
         <div
           class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
         >
-          <app-icon
-            [icon]="'mdi:card-account-details'"
-            class="text-primary"
-          ></app-icon>
+          <app-icon [icon]="'mdi:card-account-details'" class="text-primary" />
           <span class="text-500">No.</span>
           <strong class="text-800"
             >{{ header()!.numberEmployee ?? 'é' }}</strong
@@ -56,23 +53,20 @@
         <div
           class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
         >
-          <app-icon
-            [icon]="'mdi:email-outline'"
-            class="text-primary"
-          ></app-icon>
+          <app-icon [icon]="'mdi:email-outline'" class="text-primary" />
           <strong class="text-800">{{ header()!.email }}</strong>
         </div>
         <div
           class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
         >
-          <app-icon [icon]="'mdi:phone'" class="text-primary"></app-icon>
+          <app-icon [icon]="'mdi:phone'" class="text-primary" />
           <strong class="text-800">{{ header()!.phoneNumber || 'é' }}</strong>
         </div>
         @if (header()!.dateAdmission) {
         <div
           class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
         >
-          <app-icon [icon]="'mdi:calendar'" class="text-primary"></app-icon>
+          <app-icon [icon]="'mdi:calendar'" class="text-primary" />
           <span class="text-500">Ingreso:</span>
           <strong class="text-800"
             >{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong
@@ -93,35 +87,35 @@
       >Personales</p-tab
     >
     <p-tab [value]="1"
-      ><app-icon [icon]="'mdi:phone'" class="mr-2"></app-icon>Emergencia</p-tab
+      ><app-icon [icon]="'mdi:phone'" class="mr-2" />Emergencia</p-tab
     >
     <p-tab [value]="2"
       ><app-icon [icon]="'mdi:heart-outline'" class="mr-2"></app-icon
       >Clónicos</p-tab
     >
     <p-tab [value]="3"
-      ><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Bancarios</p-tab
+      ><app-icon [icon]="'mdi:wallet'" class="mr-2" />Bancarios</p-tab
     >
     <p-tab [value]="4"
       ><app-icon [icon]="'mdi:file-document-outline'" class="mr-2"></app-icon
       >Contratos</p-tab
     >
     <p-tab [value]="5"
-      ><app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>Puesto</p-tab
+      ><app-icon [icon]="'mdi:briefcase'" class="mr-2" />Puesto</p-tab
     >
     <p-tab [value]="6"
       ><app-icon [icon]="'mdi:calendar-plus'" class="mr-2"></app-icon
       >Vacaciones</p-tab
     >
     <p-tab [value]="7"
-      ><app-icon [icon]="'mdi:alert'" class="mr-2"></app-icon>Incidencias</p-tab
+      ><app-icon [icon]="'mdi:alert'" class="mr-2" />Incidencias</p-tab
     >
     <p-tab [value]="8"
       ><app-icon [icon]="'mdi:chart-line'" class="mr-2"></app-icon
       >Evaluaciones</p-tab
     >
     <p-tab [value]="9"
-      ><app-icon [icon]="'mdi:send'" class="mr-2"></app-icon>Solicitudes</p-tab
+      ><app-icon [icon]="'mdi:send'" class="mr-2" />Solicitudes</p-tab
     >
   </p-tablist>
 
@@ -140,7 +134,7 @@
                 <app-icon
                   [icon]="'mdi:card-account-details'"
                   class="text-primary"
-                ></app-icon>
+                />
               </div>
               <h4 class="m-0 font-bold text-900">Identificación</h4>
             </div>
@@ -240,10 +234,7 @@
                   <div
                     class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
                   >
-                    <app-icon
-                      [icon]="'mdi:phone'"
-                      class="text-blue-500"
-                    ></app-icon>
+                    <app-icon [icon]="'mdi:phone'" class="text-blue-500" />
                   </div>
                   <h4 class="m-0 font-bold text-900">Contacto</h4>
                 </div>
@@ -287,10 +278,7 @@
               class="border-round-xl bg-primary shadow-2 p-4 h-full flex flex-column justify-content-center gap-2"
             >
               <div class="flex align-items-center gap-2 text-white opacity-80">
-                <app-icon
-                  [icon]="'mdi:cash-multiple'"
-                  class="text-lg"
-                ></app-icon>
+                <app-icon [icon]="'mdi:cash-multiple'" class="text-lg" />
                 <span class="text-xs font-bold uppercase">Salario Mensual</span>
               </div>
               <p class="text-4xl font-black text-white m-0">
@@ -310,10 +298,7 @@
               <div
                 class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
               >
-                <app-icon
-                  [icon]="'mdi:map-marker'"
-                  class="text-orange-500"
-                ></app-icon>
+                <app-icon [icon]="'mdi:map-marker'" class="text-orange-500" />
               </div>
               <h4 class="m-0 font-bold text-900">Dirección de Residencia</h4>
             </div>
@@ -377,10 +362,7 @@
         <div
           class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
         >
-          <app-icon
-            [icon]="'mdi:account-minus'"
-            class="text-4xl text-300"
-          ></app-icon>
+          <app-icon [icon]="'mdi:account-minus'" class="text-4xl text-300" />
         </div>
         <p class="text-500 m-0">Sin datos personales registrados.</p>
       </div>
@@ -408,7 +390,7 @@
             <td class="font-medium">{{ item.nameContact }}</td>
             <td>
               <div class="flex align-items-center gap-2">
-                <app-icon [icon]="'mdi:phone'" class="text-primary"></app-icon>
+                <app-icon [icon]="'mdi:phone'" class="text-primary" />
                 {{ item.phoneNumber }}
               </div>
             </td>
@@ -428,7 +410,7 @@
         <div
           class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
         >
-          <app-icon [icon]="'mdi:phone'" class="text-4xl text-300"></app-icon>
+          <app-icon [icon]="'mdi:phone'" class="text-4xl text-300" />
         </div>
         <p class="text-500 m-0">Sin contactos de emergencia registrados.</p>
       </div>
@@ -453,7 +435,7 @@
           <tr>
             <td>
               <div class="flex align-items-center gap-2">
-                <app-icon [icon]="'mdi:heart'" class="text-red-500"></app-icon>
+                <app-icon [icon]="'mdi:heart'" class="text-red-500" />
                 <span class="font-medium text-red-600">{{ item.name }}</span>
               </div>
             </td>
@@ -466,10 +448,7 @@
         <div
           class="w-5rem h-5rem border-round-circle bg-green-50 flex align-items-center justify-content-center"
         >
-          <app-icon
-            [icon]="'mdi:heart'"
-            class="text-4xl text-green-400"
-          ></app-icon>
+          <app-icon [icon]="'mdi:heart'" class="text-4xl text-green-400" />
         </div>
         <p class="text-500 m-0">Sin condiciones clónicas registradas.</p>
       </div>
@@ -513,10 +492,7 @@
         <div
           class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
         >
-          <app-icon
-            [icon]="'mdi:credit-card'"
-            class="text-4xl text-300"
-          ></app-icon>
+          <app-icon [icon]="'mdi:credit-card'" class="text-4xl text-300" />
         </div>
         <p class="text-500 m-0">Sin datos bancarios registrados.</p>
       </div>
@@ -557,10 +533,7 @@
             <td>
               <div class="flex align-items-center gap-2 text-sm">
                 <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
-                <app-icon
-                  [icon]="'mdi:arrow-right'"
-                  class="text-xs text-400"
-                ></app-icon>
+                <app-icon [icon]="'mdi:arrow-right'" class="text-xs text-400" />
                 <span
                   >{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado'
                   }}</span
@@ -582,7 +555,7 @@
           <app-icon
             [icon]="'mdi:file-document-outline'"
             class="text-4xl text-300"
-          ></app-icon>
+          />
         </div>
         <p class="text-500 m-0">Sin contratos registrados en el sistema.</p>
       </div>
@@ -599,10 +572,7 @@
               <div
                 class="w-2rem h-2rem border-round-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
               >
-                <app-icon
-                  [icon]="'mdi:briefcase'"
-                  class="text-primary"
-                ></app-icon>
+                <app-icon [icon]="'mdi:briefcase'" class="text-primary" />
               </div>
               <h4 class="m-0 font-bold text-900">Posición Actual</h4>
             </div>
@@ -674,10 +644,7 @@
               <div
                 class="w-2rem h-2rem border-round-lg bg-teal-100 flex align-items-center justify-content-center flex-shrink-0"
               >
-                <app-icon
-                  [icon]="'mdi:calendar-clock'"
-                  class="text-teal-500"
-                ></app-icon>
+                <app-icon [icon]="'mdi:calendar-clock'" class="text-teal-500" />
               </div>
               <h4 class="m-0 font-bold text-900">Horario Semanal</h4>
             </div>
@@ -776,10 +743,7 @@
             <div
               class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
-                [icon]="'mdi:history'"
-                class="text-orange-500"
-              ></app-icon>
+              <app-icon [icon]="'mdi:history'" class="text-orange-500" />
             </div>
             <h4 class="m-0 font-bold text-900">
               Historial de Modificaciones Salariales
@@ -808,7 +772,7 @@
                     <app-icon
                       [icon]="'mdi:chevron-right'"
                       class="text-primary"
-                    ></app-icon>
+                    />
                     <span class="font-semibold text-900"
                       >{{ item.puestoNuevo }}</span
                     >
@@ -841,10 +805,7 @@
         <div
           class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
         >
-          <app-icon
-            [icon]="'mdi:briefcase'"
-            class="text-4xl text-300"
-          ></app-icon>
+          <app-icon [icon]="'mdi:briefcase'" class="text-4xl text-300" />
         </div>
         <p class="text-500 m-0">Sin información de posición laboral activa.</p>
       </div>
@@ -865,10 +826,7 @@
               <div
                 class="w-2rem h-2rem border-round-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0"
               >
-                <app-icon
-                  [icon]="'mdi:calculator'"
-                  class="text-yellow-600"
-                ></app-icon>
+                <app-icon [icon]="'mdi:calculator'" class="text-yellow-600" />
               </div>
               <h4 class="m-0 font-bold text-900">
                 Saldo de Vacaciones ({{ vl.balance.year }})
@@ -926,10 +884,7 @@
             <div
               class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
-                [icon]="'mdi:weather-sunny'"
-                class="text-orange-500"
-              ></app-icon>
+              <app-icon [icon]="'mdi:weather-sunny'" class="text-orange-500" />
             </div>
             <h4 class="m-0 font-bold text-900">Solicitudes de Vacaciones</h4>
           </div>
@@ -992,10 +947,7 @@
             <div
               class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
-                [icon]="'mdi:clock-outline'"
-                class="text-blue-500"
-              ></app-icon>
+              <app-icon [icon]="'mdi:clock-outline'" class="text-blue-500" />
             </div>
             <h4 class="m-0 font-bold text-900">Permisos y Ausencias</h4>
           </div>
@@ -1108,9 +1060,9 @@
             <td class="text-center">
               <div class="flex justify-content-center">
                 @if (item.isActGenerated) {
-                <il-button-item
+                <iw-button-item
                   iconClass="mdi:file-pdf-box"
-                  label="Ver Acta"
+                  pTooltip="Ver Acta" tooltipPosition="top"
                   [size]="'small'"
                   severity="danger"
                   variant="outlined"
@@ -1130,10 +1082,7 @@
         <div
           class="w-5rem h-5rem border-round-circle bg-green-50 flex align-items-center justify-content-center"
         >
-          <app-icon
-            [icon]="'mdi:verified'"
-            class="text-4xl text-green-400"
-          ></app-icon>
+          <app-icon [icon]="'mdi:verified'" class="text-4xl text-green-400" />
         </div>
         <p class="text-500 m-0">
           El colaborador no cuenta con incidencias disciplinarias.
@@ -1160,7 +1109,7 @@
                 <app-icon
                   [icon]="'mdi:chart-bar'"
                   class="text-primary text-xl"
-                ></app-icon>
+                />
               </div>
               <div class="flex flex-column">
                 <span class="text-lg font-bold text-900"
@@ -1214,10 +1163,7 @@
         <div
           class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
         >
-          <app-icon
-            [icon]="'mdi:chart-line'"
-            class="text-4xl text-300"
-          ></app-icon>
+          <app-icon [icon]="'mdi:chart-line'" class="text-4xl text-300" />
         </div>
         <p class="text-500 m-0">
           No se han realizado evaluaciones de desempeóo a este colaborador.
@@ -1236,10 +1182,7 @@
             <div
               class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
-                [icon]="'mdi:account-plus'"
-                class="text-green-500"
-              ></app-icon>
+              <app-icon [icon]="'mdi:account-plus'" class="text-green-500" />
             </div>
             <h4 class="m-0 font-bold text-900">Solicitud de Ingreso (Alta)</h4>
           </div>
@@ -1310,10 +1253,7 @@
             <div
               class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
-                [icon]="'mdi:account-minus'"
-                class="text-red-500"
-              ></app-icon>
+              <app-icon [icon]="'mdi:account-minus'" class="text-red-500" />
             </div>
             <h4 class="m-0 font-bold text-900">Solicitud de Egreso (Baja)</h4>
           </div>
@@ -1349,17 +1289,14 @@
                   <app-icon
                     [icon]="'mdi:check-circle'"
                     class="text-green-500"
-                  ></app-icon>
+                  />
                   <span class="text-sm font-medium text-green-700"
                     >{{ d.legalAuthorizationDate | date:'dd/MM/yyyy' }}</span
                   >
                 </div>
                 } @else {
                 <div class="flex align-items-center gap-2">
-                  <app-icon
-                    [icon]="'mdi:clock-outline'"
-                    class="text-500"
-                  ></app-icon>
+                  <app-icon [icon]="'mdi:clock-outline'" class="text-500" />
                   <span class="text-sm text-500">Pendiente</span>
                 </div>
                 }
@@ -1373,17 +1310,14 @@
                   <app-icon
                     [icon]="'mdi:check-circle'"
                     class="text-green-500"
-                  ></app-icon>
+                  />
                   <span class="text-sm font-medium text-green-700"
                     >{{ d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span
                   >
                 </div>
                 } @else {
                 <div class="flex align-items-center gap-2">
-                  <app-icon
-                    [icon]="'mdi:clock-outline'"
-                    class="text-500"
-                  ></app-icon>
+                  <app-icon [icon]="'mdi:clock-outline'" class="text-500" />
                   <span class="text-sm text-500">Pendiente</span>
                 </div>
                 }
@@ -1430,10 +1364,7 @@
             d.evaluations.length > 0) {
             <div class="mt-4 pt-3 border-top-1 border-200">
               <div class="flex align-items-center gap-2 mb-3">
-                <app-icon
-                  [icon]="'mdi:folder-open'"
-                  class="text-primary"
-                ></app-icon>
+                <app-icon [icon]="'mdi:folder-open'" class="text-primary" />
                 <h5 class="m-0 font-bold text-800">Evidencia Adjunta</h5>
               </div>
 
@@ -1449,10 +1380,7 @@
                     target="_blank"
                     class="p-button p-button-outlined p-button-sm p-button-secondary no-underline"
                   >
-                    <app-icon
-                      [icon]="'mdi:file-pdf-box'"
-                      class="mr-2"
-                    ></app-icon>
+                    <app-icon [icon]="'mdi:file-pdf-box'" class="mr-2" />
                     {{ file.fileName }}
                   </a>
                   }
@@ -1475,7 +1403,7 @@
                       [href]="acta.administrativeActPdfUrl"
                       target="_blank"
                       class="ml-2 text-primary font-bold"
-                      ><app-icon [icon]="'mdi:download'"></app-icon> PDF</a
+                      ><app-icon [icon]="'mdi:download'" /> PDF</a
                     >
                     }
                   </div>

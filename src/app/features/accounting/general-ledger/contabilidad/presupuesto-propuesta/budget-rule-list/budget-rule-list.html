@@ -2,12 +2,12 @@
   ============================================================================
   ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
-  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
-  FUNCIONAL y ESTABLE. 
-  
+  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+  FUNCIONAL y ESTABLE.
+
   Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
   sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
-  
+
   Por favor, NO rompan el código.
   ============================================================================
 -->
@@ -55,11 +55,10 @@
       </td>
       <td class="text-center">
         <div class="flex justify-content-center">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: Item.id, title: 'Editar Regla' })"
-/>
-          <il-button-delete (confirmed)="onDelete(Item.id)"
-/>
+          />
+          <iw-button-delete (confirmed)="onDelete(Item.id)" />
         </div>
       </td>
     </tr>
@@ -85,7 +84,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:google-analytics" class="text-blue-600 text-xl"></app-icon>
+        <app-icon icon="mdi:google-analytics" class="text-blue-600 text-xl" />
       </div>
       <ion-label>
         <h3>{{ item.accountNumber }} ó {{ item.accountName || '-' }}</h3>
@@ -94,15 +93,15 @@
           getScopeLabel(item.customerId) }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-        <il-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
- label="Editar"/>
-        <il-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar"/>
-              </ng-container>
-      </app-action-menu>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

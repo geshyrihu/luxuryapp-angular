@@ -18,10 +18,13 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/button-download";
+
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",
   templateUrl: "./recepcion-pipas-agua-reporte.html",
   imports: [
+    WebButtonIconDownload,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,

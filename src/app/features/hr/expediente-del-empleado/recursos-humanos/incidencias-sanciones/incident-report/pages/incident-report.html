@@ -107,7 +107,9 @@
       <div class="card">
         <h3 class="font-bold mb-3">Por Categoría</h3>
         @for (g of stats()!.byCategory; track g.key) {
-        <div class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border">
+        <div
+          class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
+        >
           <span>{{ g.key }}</span>
           <span class="badge badge-primary">{{ g.count }}</span>
         </div>
@@ -118,7 +120,9 @@
       <div class="card">
         <h3 class="font-bold mb-3">Por Severidad</h3>
         @for (g of stats()!.bySeverity; track g.key) {
-        <div class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border">
+        <div
+          class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
+        >
           <span>{{ g.key }}</span>
           <span [class]="'badge ' + getSeverityBadge(g.key)"
             >{{ g.count }}</span
@@ -161,7 +165,11 @@
           <td class="text-right">{{ item.hoursWithoutAttention }}h</td>
           <td class="text-center">
             @if (item.requiresAlert) {
-            <app-icon [icon]="'mdi:alert'" class="text-danger" title="Requiere atención urgente"></app-icon>
+            <app-icon
+              [icon]="'mdi:alert'"
+              class="text-danger"
+              title="Requiere atención urgente"
+            />
             }
           </td>
         </tr>

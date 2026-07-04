@@ -13,10 +13,13 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+
 @Component({
   selector: "app-contracts-policies",
   templateUrl: "./contracts-policies.html",
   imports: [
+    WebButtonIconViewPdf,
     CommonModule,
     TableModule,
     WebButtonLabelViewPdf,

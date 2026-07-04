@@ -178,7 +178,7 @@
         }
         <br />
         <span class="text-xs text-600">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>
+          <app-icon [icon]="'mdi:calendar'" class="mr-1" />
           {{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}
         </span>
       </td>
@@ -348,10 +348,7 @@
           margin-left: 16px;
         "
       >
-        <app-icon
-          [icon]="'mdi:shopping'"
-          class="text-xl text-yellow-700"
-        ></app-icon>
+        <app-icon [icon]="'mdi:shopping'" class="text-xl text-yellow-700" />
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
@@ -361,18 +358,12 @@
           date:'d MMM yyyy':'UTC' }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onAddOrEdit(item.id)"
-            label="Editar"
-          />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-edit (clicked)="onAddOrEdit(item.id)" label="Editar" />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

@@ -14,7 +14,9 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="flex justify-content-between align-items-center mt-2 px-1">
+            <div
+              class="flex justify-content-between align-items-center mt-2 px-1"
+            >
               <small class="text-500 text-xs">Mínimo 10 caracteres.</small>
               <small
                 [ngClass]="{
@@ -39,21 +41,33 @@
 
       <div class="col-12 md:col-12 mt-6">
         <div class="border-top-1 border-200 pt-6">
-          <h3 class="text-2xl font-bold text-900 mb-6">Historial de Seguimientos</h3>
+          <h3 class="text-2xl font-bold text-900 mb-6">
+            Historial de Seguimientos
+          </h3>
 
           @if (seguimientos() && seguimientos().length > 0) {
-          <div class="relative flex flex-column gap-6 border-left-2 border-200 ml-3">
+          <div
+            class="relative flex flex-column gap-6 border-left-2 border-200 ml-3"
+          >
             @for (data of seguimientos(); track $index) {
             <div class="relative pl-8">
-              <div class="absolute left-[-9px] top-1 h-4 w-4 bg-primary-500 border-round border-2 surface-card"></div>
-              <div class="surface-card p-4 border-round-lg border border-200 shadow-1">
-                <div class="flex align-items-center justify-content-between mb-3">
+              <div
+                class="absolute left-[-9px] top-1 h-4 w-4 bg-primary-500 border-round border-2 surface-card"
+              ></div>
+              <div
+                class="surface-card p-4 border-round-lg border border-200 shadow-1"
+              >
+                <div
+                  class="flex align-items-center justify-content-between mb-3"
+                >
                   <div class="flex align-items-center">
-                    <app-icon [icon]="'mdi:account'" class="text-primary-500"></app-icon>
-                    <span class="font-semibold text-900 text-md">{{ data.applicationUser }}</span>
+                    <app-icon [icon]="'mdi:account'" class="text-primary-500" />
+                    <span class="font-semibold text-900 text-md"
+                      >{{ data.applicationUser }}</span
+                    >
                   </div>
                   <span class="text-xs text-500 bg-100 px-2 py-1 border-round">
-                    <app-icon [icon]="'mdi:calendar-remove'" class="mr-1"></app-icon>
+                    <app-icon [icon]="'mdi:calendar-remove'" class="mr-1" />
                     {{ data.createdAt }}
                   </span>
                 </div>
@@ -63,12 +77,23 @@
             }
           </div>
           } @else {
-          <div class="text-center p-8 surface-ground border-round-lg border-2 border-dashed border-300">
-            <div class="inline-flex align-items-center justify-content-center w-4rem h-4rem border-round bg-primary-50 mb-4">
-              <app-icon [icon]="'mdi:comment-multiple'" class="text-4xl text-primary-600"></app-icon>
+          <div
+            class="text-center p-8 surface-ground border-round-lg border-2 border-dashed border-300"
+          >
+            <div
+              class="inline-flex align-items-center justify-content-center w-4rem h-4rem border-round bg-primary-50 mb-4"
+            >
+              <app-icon
+                [icon]="'mdi:comment-multiple'"
+                class="text-4xl text-primary-600"
+              />
             </div>
-            <h3 class="text-xl font-semibold text-900">No hay seguimientos registrados</h3>
-            <p class="text-500 mt-2">Sé el primero en agregar un comentario para iniciar el historial.</p>
+            <h3 class="text-xl font-semibold text-900">
+              No hay seguimientos registrados
+            </h3>
+            <p class="text-500 mt-2">
+              Sé el primero en agregar un comentario para iniciar el historial.
+            </p>
           </div>
           }
         </div>

@@ -12,7 +12,7 @@
               severity="warning"
               size="small"
               (clicked)="onValidateInvoice()"
-              [submitting]="isValidating()"
+              [loading]="isValidating()"
             />
             }
           </div>
@@ -87,7 +87,7 @@
         <tr>
           <td colspan="8" class="text-center p-4">
             <div class="flex flex-column align-items-center">
-              <app-icon [icon]="'mdi:file-excel'" class="text-4xl text-500"></app-icon>
+              <app-icon [icon]="'mdi:file-excel'" class="text-4xl text-500" />
               <span
                 >No hay facturas asociadas. Haz clic en "Administrar" para
                 agregar una.</span

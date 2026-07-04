@@ -22,9 +22,19 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 import { TiempoExtraDTO } from "../../interfaces/tiempo-extra.interface";
 import ModalTiempoExtraAdd from "./modal-tiempo-extra-add/modal-tiempo-extra-add";
 
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-tiempo-extra",
   imports: [
+    WebButtonIcon,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

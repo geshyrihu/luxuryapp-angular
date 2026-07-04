@@ -1,10 +1,15 @@
 <div class="p-3" *ngIf="item() as req">
   <!-- Cabecera -->
   <div class="flex align-items-center gap-3 mb-4 p-3 border-round surface-100">
-    <app-icon [icon]="'mdi:shield'" class="text-3xl text-purple-600"></app-icon>
+    <app-icon [icon]="'mdi:shield'" class="text-3xl text-purple-600" />
     <div>
-      <div class="font-bold text-lg">{{ operationLabel(req.operationType) }}</div>
-      <div class="text-500 text-sm">Solicitado por {{ req.requestedBy }} el {{ req.requestedAt | date:'dd/MM/yyyy HH:mm' }}</div>
+      <div class="font-bold text-lg">
+        {{ operationLabel(req.operationType) }}
+      </div>
+      <div class="text-500 text-sm">
+        Solicitado por {{ req.requestedBy }} el {{ req.requestedAt |
+        date:'dd/MM/yyyy HH:mm' }}
+      </div>
     </div>
   </div>
 
@@ -15,25 +20,36 @@
   </div>
 
   @if (req.requestNotes) {
-    <div class="mb-4">
-      <label class="text-500 text-xs uppercase font-medium">Notas del Solicitante</label>
-      <p class="mt-1 text-800">{{ req.requestNotes }}</p>
-    </div>
+  <div class="mb-4">
+    <label class="text-500 text-xs uppercase font-medium"
+      >Notas del Solicitante</label
+    >
+    <p class="mt-1 text-800">{{ req.requestNotes }}</p>
+  </div>
   }
 
   <!-- Payload tecnico -->
   @if (payload()) {
-    <div class="mb-4">
-      <label class="text-500 text-xs uppercase font-medium">Parametros de la Operacion</label>
-      <pre class="mt-1 p-3 surface-100 border-round text-sm overflow-auto max-h-10rem">{{ payload() | json }}</pre>
-    </div>
+  <div class="mb-4">
+    <label class="text-500 text-xs uppercase font-medium"
+      >Parametros de la Operacion</label
+    >
+    <pre
+      class="mt-1 p-3 surface-100 border-round text-sm overflow-auto max-h-10rem"
+    >
+{{ payload() | json }}</pre
+    >
+  </div>
   }
 
   <!-- Advertencia anti-auto-aprobacion -->
-  <div class="p-3 mb-4 border-round bg-yellow-50 border-1 border-yellow-300 flex gap-2 align-items-start">
-    <app-icon [icon]="'mdi:alert'" class="text-yellow-600 mt-1"></app-icon>
+  <div
+    class="p-3 mb-4 border-round bg-yellow-50 border-1 border-yellow-300 flex gap-2 align-items-start"
+  >
+    <app-icon [icon]="'mdi:alert'" class="text-yellow-600 mt-1" />
     <span class="text-sm text-yellow-800">
-      No puedes aprobar una solicitud que tu mismo creaste. Al aprobar, la operacion se ejecuta automaticamente.
+      No puedes aprobar una solicitud que tu mismo creaste. Al aprobar, la
+      operacion se ejecuta automaticamente.
     </span>
   </div>
 

@@ -61,7 +61,7 @@
           @switch (item.tipoSolicitud) { @case ('Alta') {
           <div class="body-card">
             <!-- Contenido específico para el caso 'pesificacion' -->
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onModalEditSolicitudAlta({
                           id: item.id,
                           })"
@@ -70,7 +70,7 @@
           } @case ('Vacante') {
           <div class="body-card">
             <!-- Contenido específico para otro caso -->
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onModalEditVacante({
                           id: item.id,
                           })"
@@ -80,7 +80,7 @@
           <div class="body-card">
             <!-- Contenido específico para otro caso -->
 
-            <il-button-edit
+            <iw-button-edit
               (clicked)="
                           onModalEditSolicitudBaja({
                           id: item.id,
@@ -91,7 +91,7 @@
           } @case ('Modificacion') {
           <div class="body-card">
             <!-- Contenido específico para otro caso -->
-            <il-button-item
+            <iw-button-item
               iconClass="mdi:dollar"
               (clicked)="
                           onModalEditModificacionSalario({
@@ -130,7 +130,7 @@
         <app-icon
           icon="mdi:account-group-outline"
           class="text-xl text-purple-600"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.nombreEmpleado }}</h3>

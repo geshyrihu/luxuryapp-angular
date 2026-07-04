@@ -57,8 +57,8 @@
         </td>
         <td class="text-center">
           <div class="flex justify-content-center">
-            <il-button-edit (clicked)="onModalForm(item.id)" />
-            <il-button-delete (customClick)="onDelete(item)" />
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            <iw-button-delete (customClick)="onDelete(item)" />
           </div>
         </td>
       </tr>
@@ -85,10 +85,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon
-          icon="mdi:alert-outline"
-          class="text-red-600 text-xl"
-        ></app-icon>
+        <app-icon icon="mdi:alert-outline" class="text-red-600 text-xl" />
       </div>
       <ion-label>
         <h3>{{ item.graceDays }} días de gracia</h3>
@@ -98,18 +95,12 @@
         </p>
         <p>Míx: {{ item.maxRate | number:'1.2-2' }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onModalForm(item.id)"
-            label="Editar"
-          />
-          <il-button-delete
-            (confirmed)="onDelete(item)"
-            label="Eliminar"
-          />
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          <ili-button-delete (confirmed)="onDelete(item)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

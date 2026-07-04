@@ -83,10 +83,18 @@ interface IHistorialSolicitud {
   approvalDate?: string | null;
 }
 
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-solicitudes-historial",
   templateUrl: "./solicitudes-historial.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconItem,
+    TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,

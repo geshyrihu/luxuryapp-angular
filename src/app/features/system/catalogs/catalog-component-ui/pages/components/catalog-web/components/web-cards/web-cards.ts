@@ -6,7 +6,7 @@ import { DividerModule } from "primeng/divider";
 import { SkeletonModule } from "primeng/skeleton";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badge/status-badge";
+import { StatusBadge, EStatus } from "src/app/core/components/web/status-badge/status-badge";
 
 @Component({
   selector: "app-web-cards",

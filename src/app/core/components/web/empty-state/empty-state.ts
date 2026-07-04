@@ -1,7 +1,8 @@
-import { Component, input, output, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyStateBase } from "src/app/core/components/shared/empty-state/empty-state-base";
 
 @Component({
   selector: "app-empty-state",
@@ -72,15 +73,4 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class EmptyState {
-  icon = input<string>("mdi:database-off-outline");
-  iconColor = input<string>("var(--ds-text-muted)");
-  title = input<string>("Sin registros");
-  message = input<string>("No hay datos disponibles.");
-  actionLabel = input<string>("");
-  actionIcon = input<string>("mdi:plus");
-  actionSeverity = input<"primary" | "secondary" | "success" | "info" | "warn" | "danger">("primary");
-  tag = input<string>("");
-
-  action = output<void>();
-}
+export class EmptyState extends EmptyStateBase {}

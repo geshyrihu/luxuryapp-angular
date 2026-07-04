@@ -6,7 +6,7 @@
       <il-button-add
         label="Agregar Medidor"
         (clicked)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
-/>
+      />
     </div>
     <div class="col-12 text-right mb-2"></div>
     @for (item of dataSignal(); track item) {
@@ -32,7 +32,10 @@
               @if (item.medidorCategoriaId ===
               '019c6c01-bbcf-76a2-a863-43569af55a55') {
               <!-- Gas -> Sol (Calor) -->
-              <app-icon [icon]="'mdi:weather-sunny'" class="text-yellow-500 text-6xl" />
+              <app-icon
+                [icon]="'mdi:weather-sunny'"
+                class="text-yellow-500 text-6xl"
+              />
               } @if (item.medidorCategoriaId ===
               '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
               <!-- Agua -> Filtro (Liquido) -->
@@ -40,7 +43,10 @@
               } @if (item.medidorCategoriaId ===
               '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
               <!-- Luz -> Rayo -->
-              <app-icon [icon]="'mdi:lightning-bolt'" class="text-green-500 text-6xl" />
+              <app-icon
+                [icon]="'mdi:lightning-bolt'"
+                class="text-green-500 text-6xl"
+              />
               }
               <hr class="my-3" />
               <h6 class="mb-2 text-color-secondary">
@@ -55,30 +61,30 @@
               <il-button-edit
                 class="text-xl"
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
-/>
+              />
               <il-button-delete
                 class="text-xl"
                 (confirmed)="onDelete(item.id)"
-/>
+              />
               <il-button-item
                 iconClass="mdi:content-save"
                 label="Lecturas"
                 class="text-xl"
                 (clicked)="onGoToLecturas(item.id)"
-/>
+              />
               <il-button-item
                 iconClass="mdi:chart-line"
                 label="Grófica"
                 class="text-xl"
                 (clicked)="onGoToGrafico(item.id)"
-/>
+              />
               <il-button-item
                 iconClass="mdi:chart-bar"
                 label="Exportar a Excel"
                 class="text-xl"
                 (clicked)="exportExcel(item.id)"
                 severity="success"
-/>
+              />
             </div>
           </ng-template>
         </p-card>
@@ -113,27 +119,33 @@
               >{{ item.numeroMedidor }}</span
             >
           </div>
-          <app-action-menu>
+          <ili-action-menu>
             <ng-container actions>
-              <il-button-edit
+              <ili-button-edit
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
- label="Editar"/>
-              <il-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar"/>
-              <il-button-item
+                label="Editar"
+              />
+              <ili-button-delete
+                (confirmed)="onDelete(item.id)"
+                label="Eliminar"
+              />
+              <ili-button-item
                 iconName="save-outline"
                 label="Lecturas"
-                (clicked)="onGoToLecturas(item.id)"/>
-              <il-button-item
+                (clicked)="onGoToLecturas(item.id)"
+              />
+              <ili-button-item
                 iconName="trending-up-outline"
                 label="Grófica"
-                (clicked)="onGoToGrafico(item.id)"/>
-              <il-button-item
+                (clicked)="onGoToGrafico(item.id)"
+              />
+              <ili-button-item
                 iconName="bar-chart-outline"
                 label="Exportar Excel"
-                (clicked)="exportExcel(item.id)"/>
+                (clicked)="exportExcel(item.id)"
+              />
             </ng-container>
-          </app-action-menu>
+          </ili-action-menu>
         </div>
 
         <!-- Descripción -->
@@ -147,14 +159,15 @@
         >
           <div class="flex align-items-center">
             @if (item.medidorCategoriaId === 1) {
-            <app-icon icon="mdi:white-balance-sunny" color="warning"
-              class="text-2xl mr-2"></app-icon>
+            <app-icon
+              icon="mdi:white-balance-sunny"
+              color="warning"
+              class="text-2xl mr-2"
+            />
             } @if (item.medidorCategoriaId === 3) {
-            <app-icon icon="mdi:filter" color="primary"
-              class="text-2xl mr-2"></app-icon>
+            <app-icon icon="mdi:filter" color="primary" class="text-2xl mr-2" />
             } @if (item.medidorCategoriaId === 2) {
-            <app-icon icon="mdi:flash" color="success"
-              class="text-2xl mr-2"></app-icon>
+            <app-icon icon="mdi:flash" color="success" class="text-2xl mr-2" />
             }
             <div class="flex flex-column">
               <span class="text-xs text-500 uppercase font-bold">Máximo</span>
@@ -170,7 +183,7 @@
             class="m-0"
             (click)="modalMedidorLecturaAddEdit(item)"
           >
-            <app-icon icon="mdi:plus-circle-outline" slot="start"></app-icon>
+            <app-icon icon="mdi:plus-circle-outline" slot="start" />
             Registrar
           </ion-button>
         </div>

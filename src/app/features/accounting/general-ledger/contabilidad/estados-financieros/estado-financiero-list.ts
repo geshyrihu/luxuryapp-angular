@@ -10,7 +10,7 @@ import {
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -23,10 +23,25 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelConfirm } from "src/app/core/components/buttons/mobile-label/button-confirm";
+
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+import { TooltipModule } from "primeng/tooltip";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-estado-financiero-list",
   templateUrl: "./estado-financiero-list.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconConfirm,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    MobileButtonLabelConfirm,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,

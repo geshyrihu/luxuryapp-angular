@@ -23,7 +23,7 @@ import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
@@ -72,9 +72,15 @@ const tipoGastoEmojis: { [key: number]: string } = {
   [ETipoGasto.Impuestos]: "⚖️",
 };
 
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-funding-detail",
   imports: [
+    WebButtonIcon,
+    WebButtonIconDelete,
     BadgeModule,
     WebButtonLabel,
     CommonModule,

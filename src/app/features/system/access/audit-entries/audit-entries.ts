@@ -35,7 +35,7 @@ interface AuditEntry {
   userName: string;
   changedAt: string;
   customerId: string | null;
-  /** Grupo lógico para expandir: mismo entityName + entityId + changedAt */
+  /** Grupo lÃ­gico para expandir: mismo entityName + entityId + changedAt */
   groupKey?: string;
   expanded?: boolean;
 }

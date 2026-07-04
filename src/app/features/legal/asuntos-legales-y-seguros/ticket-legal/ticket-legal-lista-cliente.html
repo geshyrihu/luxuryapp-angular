@@ -47,7 +47,7 @@
               class="icon-xl cursor-pointer"
               (click)="onModalViewDetail({ id: item.id })"
               pTooltip="Ver detalles"
-            ></app-icon>
+            />
             }
           </td>
           <td class="text-center">
@@ -72,7 +72,7 @@
           <td>{{ item.completionDate }}</td>
           <td class="text-center">{{ item.diferenciaDias }}</td>
           <td class="text-center">
-            <il-button-tracking
+            <iw-button-tracking
               [ticketId]="item.id"
               [badgeCount]="item.tracking"
               (clickTracking)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
@@ -81,8 +81,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="9" />
+      </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -112,7 +112,7 @@
             <app-icon
               icon="mdi:ticket-outline"
               style="font-size: 1.1rem; color: var(--ds-primary)"
-            ></app-icon>
+            />
           </div>
           <ion-label>
             <div class="flex justify-content-between align-items-start mb-2">
@@ -152,28 +152,24 @@
             </div>
           </ion-label>
 
-          <app-action-menu slot="end">
+          <ili-action-menu slot="end">
             <ng-container actions>
-              <il-button-item
+              <ili-button-item
                 iconName="book-outline"
                 label="Ver detalles"
                 (clicked)="onModalViewDetail({ id: item.id })"
                 [disabled]="!item.description || item.description.length === 0"
                 []="true"
               />
-              <il-button-item
+              <ili-button-item
                 iconName="ellipsis-horizontal-outline"
                 label="Seguimiento"
                 (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
               >
-                <p-badge
-                  [value]="item.tracking"
-                  severity="danger"
-                  []="true"
-                />
-              </il-button-item>
+                <p-badge [value]="item.tracking" severity="danger" []="true" />
+              </ili-button-item>
             </ng-container>
-          </app-action-menu>
+          </ili-action-menu>
         </ion-item>
       </ng-template>
     </app-data-view-mobile>

@@ -38,24 +38,16 @@
           <app-icon
             [icon]="'mdi:check-circle'"
             class="text-green-500 text-lg"
-          ></app-icon>
+          />
           } @else {
-          <app-icon
-            [icon]="'mdi:close-circle'"
-            class="text-red-500 text-lg"
-          ></app-icon>
+          <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-lg" />
           }
         </td>
         <td>
           <div class="flex flex-column">
-            <span class="text-xs text-500">
-              @if (item.chargeType === EChargeType.MantenimientoOrdinario) {
-              Mantenimiento } @else if (item.chargeType ===
-              EChargeType.CuotaExtraordinaria) { Extraordinaria } @else if
-              (item.chargeType === EChargeType.RecargoMora) { Mora } @else {
-              Otros }
-            </span>
+            <span class="text-xs text-500">{{ item.chargeTypeName || 'Tipo sin clasificar' }}</span>
             <span class="font-semibold">{{ item.name }}</span>
+            <span class="text-xs text-400">{{ item.chargeTypeAccountNumber }}</span>
           </div>
         </td>
         <td class="text-center font-medium">
@@ -120,16 +112,16 @@
         </td>
         <td class="text-center">
           <div class="flex justify-content-center">
-            <il-button-edit (clicked)="onModalForm(item.id)" />
-            <il-button-delete (customClick)="onDelete(item)" />
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            <iw-button-delete (customClick)="onDelete(item)" />
           </div>
         </td>
       </tr>
     </ng-template>
 
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -144,7 +136,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:receipt" class="text-purple-600 text-xl"></app-icon>
+        <app-icon icon="mdi:receipt" class="text-purple-600 text-xl" />
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
@@ -154,18 +146,12 @@
           (item.endDate | date:'dd/MM/yyyy':'UTC') : 'Indefinido' }}
         </p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="onModalForm(item.id)"
-            label="Editar"
-          />
-          <il-button-delete
-            (confirmed)="onDelete(item)"
-            label="Eliminar"
-          />
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          <ili-button-delete (confirmed)="onDelete(item)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

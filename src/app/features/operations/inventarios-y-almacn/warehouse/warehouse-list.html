@@ -44,20 +44,20 @@
       <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
       <td class="no-print">
         <div class="flex">
-          <il-button-item
+          <iw-button-item
             (clicked)="onViewProducts(item.id)"
-            label="Ver Productos"
+            pTooltip="Ver Productos" tooltipPosition="top"
             iconClass="mdi:package"
           />
-          <il-button-item
+          <iw-button-item
             (clicked)="onDownloadInventory(item.id, item.nombre)"
-            label="Descargar Inventario"
+            pTooltip="Descargar Inventario" tooltipPosition="top"
             iconClass="mdi:file-pdf-box"
           />
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -92,7 +92,7 @@
         <app-icon
           icon="mdi:warehouse"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <p class="mt-0 mb-0 font-bold">{{ item.nombre }}</p>
@@ -102,28 +102,28 @@
       </ion-label>
 
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               (clicked)="onViewProducts(item.id)"
               label="Ver Productos"
               iconName="cube-outline"
             />
-            <il-button-item
+            <ili-button-item
               (clicked)="onDownloadInventory(item.id, item.nombre)"
               label="Descargar Inventario"
               iconName="document-text-outline"
             />
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -134,9 +134,9 @@
       </td>
 
       <td class="text-center">
-        <il-button
-          icon="mdi:file-document-multiple"
-          [label]="item.cotizacionesCount"
+        <iw-button
+          iconClass="mdi:file-document-multiple"
+          [pTooltip]="item.cotizacionesCount" tooltipPosition="top"
           (clicked)="onCuadroComparativo(item.id)"
           size="small"
           severity="help"
@@ -149,8 +149,8 @@
       <td>
         @for (orden of item.ordenesRelacionadas; track orden.id) {
         <div class="inline-flex align-items-center mb-1 mr-1">
-          <il-button
-            [label]="orden.folio"
+          <iw-button
+            [pTooltip]="orden.folio" tooltipPosition="top"
             (clicked)="onViewPurchaseOrder(orden.id)"
             variant="ghost"
             severity="warning"
@@ -170,8 +170,8 @@
 
       <td>
         <div class="flex">
-          <il-button-edit (clicked)="onSolicitudCompra(item.id)" />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-edit (clicked)="onSolicitudCompra(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -221,25 +221,22 @@
         <app-icon
           icon="mdi:cart-outline"
           style="font-size: 20px; color: var(--ds-warning)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
         <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
         <p>{{ item.fechaSolicitud | date }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onSolicitudCompra(item.id)"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

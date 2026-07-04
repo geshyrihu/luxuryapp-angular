@@ -4,10 +4,10 @@ import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
 import { WebButtonIconSendEmail } from "src/app/core/components/buttons/web-icon/button-send-email";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web-label/button-send-email";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelSendEmail } from "src/app/core/components/buttons/mobile-label/button-send-email";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -31,13 +31,13 @@ import { EmailDataForm } from "./email-data-form";
     WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonIconSendEmail,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelSendEmail,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    MobileButtonLabelSendEmail,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
+    MobileActionMenu,
   ],
 })
 export class EmailDataList {

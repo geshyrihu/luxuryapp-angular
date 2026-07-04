@@ -17,9 +17,12 @@ import {
 } from "./models/espejo-aspel-full.interface";
 import { ReportFilterService } from "./services/financial-report-filter.service";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-espejo-aspel-full",
   imports: [
+    WebButtonIcon,
     CommonModule,
     FormsModule,
     TableModule,

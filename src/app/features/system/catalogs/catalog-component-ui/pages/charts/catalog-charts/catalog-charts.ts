@@ -1,19 +1,29 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { CardModule } from "primeng/card";
-import { ChartBar } from "./components/chart-bar/chart-bar";
-import { ChartPie } from "./components/chart-pie/chart-pie";
-import { ChartModule } from "primeng/chart";
+import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
+import { CustomBarChart } from "src/app/core/components/web/charts/custom-bar-chart";
+import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
+import { PieChart } from "src/app/core/components/web/charts/pie-chart";
+import { AdvancedPieChart } from "src/app/core/components/web/charts/advanced-pie-chart";
+import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
 
+/**
+ * Catálogo de gráficos — ejemplos renderizados de los 6 componentes de charts
+ * migrados a ECharts (ngx-echarts). Ruta: /settings/ui-catalog/charts.
+ */
 @Component({
   selector: "app-catalog-charts",
   standalone: true,
   imports: [
     CommonModule,
     CardModule,
-    ChartBar,
-    ChartPie,
-    ChartModule,
+    ChartWrapper,
+    CustomBarChart,
+    MultiAxisChart,
+    PieChart,
+    AdvancedPieChart,
+    PrimengRadarChart,
   ],
   templateUrl: "./catalog-charts.html",
   styleUrls: ["./catalog-charts.scss"],
@@ -22,134 +32,72 @@ import { ChartModule } from "primeng/chart";
 export class CatalogCharts {
   isDarkMode = input<boolean>(false);
 
-  barChartData = computed(() => {
-    const isDark = this.isDarkMode();
-    const style = getComputedStyle(document.body);
-    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
-    return {
-      labels: ["Ene", "Feb", "Mar", "Abr", "May"],
-      datasets: [
-        {
-          label: "Consumo Elóctrico",
-          data: [65, 59, 80, 81, 56],
-          backgroundColor: primaryColor,
-          fill: false,
-          borderColor: primaryColor,
-          tension: 0.4,
-        },
-      ],
-    };
-  });
-
-  pieChartData = computed<any[]>(() => {
-    const isDark = this.isDarkMode();
-    const style = getComputedStyle(document.body);
-    const successColor = style.getPropertyValue('--ds-success').trim() || (isDark ? "#10b981" : "#065f46");
-    const warningColor = style.getPropertyValue('--ds-warning').trim() || (isDark ? "#f59e0b" : "#c9a74d");
-    const dangerColor = style.getPropertyValue('--ds-error').trim() || (isDark ? "#ef4444" : "#991b1b");
-    return [
-      { name: "Completado", value: 300, color: successColor },
-      { name: "En Proceso", value: 50, color: warningColor },
-      { name: "Pendiente", value: 100, color: dangerColor },
-    ];
-  });
-
-  lineChartData = computed(() => {
-    const isDark = this.isDarkMode();
-    const style = getComputedStyle(document.body);
-    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
-    const secondaryColor = style.getPropertyValue('--ds-secondary').trim() || (isDark ? "#94a3b8" : "#64748b");
-    
-    return {
-      labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-      datasets: [
-        {
-          label: "Gastos",
-          data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          borderColor: primaryColor,
-          tension: 0.4
-        },
-        {
-          label: "Ingresos",
-          data: [28, 48, 40, 19, 86, 27, 90],
-          fill: false,
-          borderColor: secondaryColor,
-          tension: 0.4
-        }
-      ]
-    };
-  });
-
-  doughnutChartData = computed(() => {
-    const isDark = this.isDarkMode();
-    const style = getComputedStyle(document.body);
-    const color1 = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
-    const color2 = style.getPropertyValue('--ds-tertiary').trim() || (isDark ? "#14b8a6" : "#0f766e");
-    const color3 = style.getPropertyValue('--ds-luxury-gold').trim() || (isDark ? "#d8bd69" : "#c9a74d");
-
-    return {
-      labels: ['Mantenimiento', 'Operaciones', 'Administración'],
-      datasets: [
-        {
-          data: [300, 50, 100],
-          backgroundColor: [color1, color2, color3],
-          hoverBackgroundColor: [color1, color2, color3]
-        }
-      ]
-    };
-  });
-
-  radarChartData = computed(() => {
-    const isDark = this.isDarkMode();
-    const style = getComputedStyle(document.body);
-    const primaryLight = style.getPropertyValue('--ds-primary-light').trim() || (isDark ? "rgba(59, 130, 246, 0.2)" : "rgba(11, 49, 100, 0.2)");
-    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
-
-    return {
-      labels: ['Comida', 'Transporte', 'Vivienda', 'Servicios', 'Entretenimiento', 'Salud', 'Ahorro'],
-      datasets: [
-        {
-          label: 'Presupuesto Asignado',
-          backgroundColor: primaryLight,
-          borderColor: primaryColor,
-          pointBackgroundColor: primaryColor,
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: primaryColor,
-          data: [65, 59, 90, 81, 56, 55, 40]
-        }
-      ]
-    };
-  });
-
-  chartOptions = {
-    plugins: {
-      legend: {
-        labels: {
-          color: 'var(--ds-text-secondary)'
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: { color: 'var(--ds-text-secondary)' },
-        grid: { color: 'var(--ds-border)' }
+  // Chart.js format { labels, datasets } — para bar/line/doughnut/radar/wrapper
+  barChartData = computed(() => ({
+    labels: ["Ene", "Feb", "Mar", "Abr", "May"],
+    datasets: [
+      {
+        label: "Consumo Eléctrico",
+        data: [65, 59, 80, 81, 56],
+        backgroundColor: "var(--ds-primary)",
+        borderColor: "var(--ds-primary)",
+        tension: 0.4,
       },
-      y: {
-        ticks: { color: 'var(--ds-text-secondary)' },
-        grid: { color: 'var(--ds-border)' }
-      }
-    }
-  };
+    ],
+  }));
 
-  circularOptions = {
-    plugins: {
-      legend: {
-        labels: {
-          color: 'var(--ds-text-secondary)'
-        }
-      }
-    }
-  };
+  lineChartData = computed(() => ({
+    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+    datasets: [
+      { label: "Gastos", data: [65, 59, 80, 81, 56, 55, 40], borderColor: "#003d9b" },
+      { label: "Ingresos", data: [28, 48, 40, 19, 86, 27, 90], borderColor: "#006477" },
+    ],
+  }));
+
+  doughnutChartData = computed(() => ({
+    labels: ["Mantenimiento", "Operaciones", "Administración"],
+    datasets: [
+      {
+        data: [300, 50, 100],
+        backgroundColor: ["#003d9b", "#006477", "#c9a74d"],
+      },
+    ],
+  }));
+
+  radarChartData = computed(() => ({
+    labels: [
+      "Comida",
+      "Transporte",
+      "Vivienda",
+      "Servicios",
+      "Entretenimiento",
+      "Salud",
+      "Ahorro",
+    ],
+    datasets: [
+      {
+        label: "Presupuesto Asignado",
+        borderColor: "#003d9b",
+        data: [65, 59, 90, 81, 56, 55, 40],
+      },
+    ],
+  }));
+
+  // Doble eje Y: Ingresos ($, izq) vs Tickets (cant, der)
+  multiAxisData = computed(() => ({
+    labels: ["Ene", "Feb", "Mar", "Abr", "May"],
+    datasets: [
+      { label: "Ingresos ($)", data: [12000, 15000, 9000, 18000, 14000], backgroundColor: "#003d9b" },
+      { label: "Tickets", data: [40, 55, 30, 70, 50], yAxisID: "y1", backgroundColor: "#c9a74d" },
+    ],
+  }));
+
+  // ngx-charts format [{ name, value }] — para pie/advanced-pie
+  pieChartData = computed(() => [
+    { name: "Completado", value: 300 },
+    { name: "En Proceso", value: 50 },
+    { name: "Pendiente", value: 100 },
+  ]);
+
+  pieScheme = { domain: ["#006837", "#c9a74d", "#ba1a1a"] };
 }

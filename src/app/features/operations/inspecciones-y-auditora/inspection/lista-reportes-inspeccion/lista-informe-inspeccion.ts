@@ -13,9 +13,12 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-lista-informe-inspeccion",
   imports: [
+    WebButtonIcon,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     WebButtonLabel,

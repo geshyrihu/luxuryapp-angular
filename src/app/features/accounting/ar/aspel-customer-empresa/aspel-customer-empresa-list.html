@@ -47,8 +47,8 @@
       <td>{{ item.customerIdAspelId }}</td>
       <td class="text-center">
         <div class="flex justify-content-center">
-          <il-button-edit (clicked)="onModalForm(item)" />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-edit (clicked)="onModalForm(item)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -82,7 +82,7 @@
         <app-icon
           icon="mdi:domain"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h2>{{ item.customerName }}</h2>
@@ -98,18 +98,12 @@
         </div>
       </ion-label>
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
-              (clicked)="onModalForm(item)"
-              label="Editar"
-            />
-            <il-button-delete
-              (clicked)="onDelete(item.id)"
-              label="Eliminar"
-            />
+            <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
+            <ili-button-delete (clicked)="onDelete(item.id)" label="Eliminar" />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -80,15 +80,9 @@
       <td>{{ item.email }}</td>
       <td class="no-print">
         @if (item.enviarMails) {
-        <app-icon
-          [icon]="'mdi:check'"
-          class="text-success icon icon-"
-        ></app-icon>
+        <app-icon [icon]="'mdi:check'" class="text-success icon icon-" />
         } @if (!item.enviarMails) {
-        <app-icon
-          [icon]="'mdi:close'"
-          class="text-danger icon icon-"
-        ></app-icon>
+        <app-icon [icon]="'mdi:close'" class="text-danger icon icon-" />
         }
       </td>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
@@ -141,23 +135,20 @@
         <app-icon
           icon="mdi:home-outline"
           style="font-size: 20px; color: var(--ds-help)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.habitant }}</h3>
         <p>{{ item.property }} é {{ item.phoneNumber }}</p>
         <p>{{ item.email }}</p>
       </ion-label>
-      <app-action-menu slot="end">
-        <il-button-edit
+      <ili-action-menu slot="end">
+        <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
         />
-        <il-button-delete
-          (confirmed)="onDelete(item.id)"
-          label="Eliminar"
-        />
-      </app-action-menu>
+        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

@@ -1,7 +1,8 @@
-import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ColorPickerModule } from "primeng/colorpicker";
+import { ColorPickerBase } from "src/app/core/components/shared/color-picker/color-picker-base";
 
 /**
  * AppColorPicker — Wrapper sobre p-colorpicker con label, formato y vista inline.
@@ -65,24 +66,4 @@ import { ColorPickerModule } from "primeng/colorpicker";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppColorPicker {
-  value        = model<string>("");
-  label        = input<string>("");
-  hint         = input<string>("");
-  format       = input<"hex" | "rgb" | "hsb">("hex");
-  inline       = input<boolean>(false);
-  disabled     = input<boolean>(false);
-  showHex      = input<boolean>(true);
-  allowClear   = input<boolean>(true);
-  defaultColor = input<string>("ff0000");
-
-  changed = output<string>();
-
-  hexDisplay(): string {
-    const v = this.value();
-    if (!v) return "";
-    return v.startsWith("#") ? v.toUpperCase() : `#${v}`.toUpperCase();
-  }
-
-  clear(): void { this.value.set(""); this.changed.emit(""); }
-}
+export class AppColorPicker extends ColorPickerBase {}

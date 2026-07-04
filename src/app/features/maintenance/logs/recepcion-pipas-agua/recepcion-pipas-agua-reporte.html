@@ -190,7 +190,7 @@
       [showAdd]="false"
     >
       <ng-template #extraButtons>
-        <il-button-download (clicked)="exportExcel()" />
+        <iw-button-download (clicked)="exportExcel()" />
       </ng-template>
     </primeng-custom-caption>
   </ng-template>
@@ -277,12 +277,12 @@
       <td>
         @if (item.colaboradorMtto) {
         <small class="block"
-          ><app-icon [icon]="'mdi:wrench'" class="mr-1 text-400"></app-icon>{{
+          ><app-icon [icon]="'mdi:wrench'" class="mr-1 text-400" />{{
           item.colaboradorMtto }}</small
         >
         } @if (item.guardiaSeguridad) {
         <small class="text-500"
-          ><app-icon [icon]="'mdi:shield'" class="mr-1"></app-icon>{{
+          ><app-icon [icon]="'mdi:shield'" class="mr-1" />{{
           item.guardiaSeguridad }}</small
         >
         }

@@ -132,13 +132,13 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
 
   async openChecklist(item: any) {
     if (!this.activeCycle()) {
-      window.alert("No hay un ciclo de inspecci髇 activo para este periodo.");
+      window.alert("No hay un ciclo de inspecci贸n activo para este periodo.");
       return;
     }
     if (item.cycleStatus === "Realizada") {
       if (
         !window.confirm(
-          "Este equipo ya fue inspeccionado. 驞eseas actualizar los datos?",
+          "Este equipo ya fue inspeccionado. 贸Deseas actualizar los datos?",
         )
       )
         return;
@@ -146,7 +146,7 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
     await this.dialogHandlerS.openDialog(
       FireCycleInspectionHidranteForm,
       { cycleId: this.activeCycle().id, equipmentId: item.hydrantId },
-      "Inspecci髇 de Hidrante",
+      "Inspecci贸n de Hidrante",
       this.dialogHandlerS.sizeMd,
     );
     this.onLoadData();
@@ -182,7 +182,7 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
 
   async startScan() {
     this.scanError.set("");
-    this.scanStatus.set("Iniciando c髆ara...");
+    this.scanStatus.set("Iniciando c贸mara...");
     this.scanning.set(true);
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({
@@ -191,12 +191,12 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
       const video = this.videoEl.nativeElement;
       video.srcObject = this.stream;
       await video.play();
-      this.scanStatus.set("Apunta la c髆ara al c骴igo QR del equipo.");
+      this.scanStatus.set("Apunta la c贸mara al c贸digo QR del equipo.");
       this.scanLoop(video);
     } catch {
       this.scanning.set(false);
       this.scanError.set(
-        "No se pudo acceder a la c髆ara. Verifica los permisos.",
+        "No se pudo acceder a la c贸mara. Verifica los permisos.",
       );
       this.scanStatus.set("");
     }
@@ -229,7 +229,7 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
     const match = this.periodItems().find((p) => p.hydrantId === equipmentId);
     if (!match) {
       this.scanError.set(
-        "Este equipo no pertenece al periodo de inspecci髇 actual.",
+        "Este equipo no pertenece al periodo de inspecci贸n actual.",
       );
       return;
     }

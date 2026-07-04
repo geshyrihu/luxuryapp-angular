@@ -93,9 +93,10 @@
     <div
       class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
     >
-      <app-icon [icon]="'mdi:loading'" class="text-2xl"></app-icon>
+      <app-icon [icon]="'mdi:loading'" class="text-2xl" />
       <span class="text-lg">
-        Consultando informacion en {{ dataSource() === "local" ? "snapshot local" : "Aspel live" }}...
+        Consultando informacion en {{ dataSource() === "local" ? "snapshot
+        local" : "Aspel live" }}...
       </span>
     </div>
   </p-card>
@@ -119,7 +120,9 @@
           >Ejercicio</span
         >
         <strong class="block text-xl">{{ yearLabel() }}</strong>
-        <small class="text-500">Usado para cargar el catalogo seleccionado</small>
+        <small class="text-500"
+          >Usado para cargar el catalogo seleccionado</small
+        >
       </p-card>
     </div>
 
@@ -131,7 +134,9 @@
           >Total cuentas</span
         >
         <strong class="block text-xl">{{ accountRows().length }}</strong>
-        <small class="text-500">Cuentas devueltas por la fuente seleccionada</small>
+        <small class="text-500"
+          >Cuentas devueltas por la fuente seleccionada</small
+        >
       </p-card>
     </div>
   </div>

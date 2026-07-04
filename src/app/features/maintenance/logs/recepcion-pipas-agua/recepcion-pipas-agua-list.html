@@ -28,10 +28,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon
-              [icon]="'mdi:format-list-bulleted'"
-              class="mr-1"
-            ></app-icon>
+            <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1" />
             Registros
           </a>
           <a
@@ -39,14 +36,14 @@
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'mdi:table'" class="mr-1"></app-icon> Reporte
+            <app-icon [icon]="'mdi:table'" class="mr-1" /> Reporte
           </a>
           <a
             routerLink="/logbook/water-truck-reception/analisis"
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'mdi:chart-bar'" class="mr-1"></app-icon> Analisis
+            <app-icon [icon]="'mdi:chart-bar'" class="mr-1" /> Analisis
           </a>
         </div>
       </div>
@@ -202,15 +199,15 @@
       </td>
       <td>
         <div class="flex">
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:file-pdf-box"
             tooltip="Descargar soporte PDF"
             (clicked)="onDownloadPdf(item)"
           />
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -237,7 +234,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1"></app-icon>
+        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1" />
         Registros
       </a>
       <a
@@ -245,14 +242,14 @@
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:table'" class="mr-1"></app-icon> Reporte
+        <app-icon [icon]="'mdi:table'" class="mr-1" /> Reporte
       </a>
       <a
         routerLink="/logbook/water-truck-reception/analisis"
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:chart-bar'" class="mr-1"></app-icon> Analisis
+        <app-icon [icon]="'mdi:chart-bar'" class="mr-1" /> Analisis
       </a>
     </div>
   </div>
@@ -275,7 +272,7 @@
         <app-icon
           icon="mdi:water-outline"
           style="font-size: 20px; color: var(--ds-info)"
-        ></app-icon>
+        />
       </div>
 
       <ion-label>
@@ -319,22 +316,19 @@
         </div>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-download
+          <ili-button-download
             (clicked)="onDownloadPdf(item)"
             label="Descargar"
           />
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
             label="Editar"
           />
-          <il-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

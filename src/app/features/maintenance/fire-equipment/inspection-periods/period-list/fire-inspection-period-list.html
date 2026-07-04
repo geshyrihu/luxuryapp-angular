@@ -42,10 +42,10 @@
       </td>
       <td class="no-print" (click)="$event.stopPropagation()">
         <div class="flex justify-content-center">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Periodo' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -81,7 +81,7 @@
         <app-icon
           icon="mdi:fire-alert"
           style="font-size: 1.1rem; color: var(--ds-danger)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
@@ -91,18 +91,18 @@
         </p>
       </ion-label>
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Periodo' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -24,7 +24,7 @@
             variant="ghost-text"
             (clicked)="onOpenGallery()"
           />
-          <il-button-add (clicked)="onAddDiagram()" />
+          <iw-button-add (clicked)="onAddDiagram()" />
         </div>
       </div>
     </ng-template>
@@ -49,31 +49,31 @@
         </td>
         <td>
           <div class="flex justify-content-center gap-2">
-            <il-button
+            <iw-button
               iconClass="mdi:pencil"
               (clicked)="onEditDiagram(diagram.id)"
               ngbTooltip="Editar Propiedades"
               variant="text"
               severity="secondary"
-              label="Propiedades"
+              pTooltip="Propiedades" tooltipPosition="top"
             />
-            <il-button
+            <iw-button
               iconClass="mdi:palette"
               (clicked)="onOpenEditor(diagram.id)"
               ngbTooltip="Abrir Editor Grófico"
               variant="text"
               severity="info"
-              label="Editor"
+              pTooltip="Editor" tooltipPosition="top"
             />
-            <il-button
+            <iw-button
               iconClass="mdi:eye-outline"
               (clicked)="onViewDiagram(diagram.id)"
               ngbTooltip="Visualizar Diagrama"
               variant="text"
               severity="success"
-              label="Ver"
+              pTooltip="Ver" tooltipPosition="top"
             />
-            <il-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
+            <iw-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
           </div>
         </td>
       </tr>
@@ -87,8 +87,8 @@
       </div>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="3" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="3" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -104,18 +104,15 @@
         class="flex align-items-center justify-content-center bg-green-50 border-round-md ml-3"
         style="width: 40px; height: 40px; flex-shrink: 0"
       >
-        <app-icon
-          icon="mdi:source-branch"
-          class="text-2xl text-green-600"
-        ></app-icon>
+        <app-icon icon="mdi:source-branch" class="text-2xl text-green-600" />
       </div>
       <ion-label class="ml-3">
         <h3 class="font-bold text-700">{{ diagram.name }}</h3>
         <p class="text-500">{{ diagram.updateAt | date:'dd/MM/yyyy HH:mm' }}</p>
       </ion-label>
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
+          <ili-button-edit
             (clicked)="onEditDiagram(diagram.id)"
             label="Editar"
           />
@@ -133,12 +130,12 @@
             variant="text"
             severity="success"
           />
-          <il-button-delete
+          <ili-button-delete
             (confirmed)="onDeleteDiagram(diagram.id)"
             label="Eliminar"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

@@ -11,11 +11,15 @@ import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { DialogSize } from "src/app/core/enums/dialog-size";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
   HeroMetric,
   ProposedRole,
   TagSeverity,
 } from "../../models/cobranza-nativa.model";
+import BillingConfigModal from "../billing-config/billing-config-modal";
 import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
@@ -36,6 +40,8 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 })
 export default class CobranzaNativaDashboard {
   private router = inject(Router);
+  private dialogHandlerS = inject(DialogHandlerService);
+  private customerIdS = inject(CustomerIdService);
 
   groups = COBRANZA_GROUPS;
   expandedCard = signal<string | null>(null);
@@ -73,17 +79,30 @@ export default class CobranzaNativaDashboard {
     if (route) this.router.navigateByUrl(route);
   }
 
+  async openBillingConfig() {
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) return;
+
+    await this.dialogHandlerS.openDialog(
+      BillingConfigModal,
+      { customerId },
+      "Configuracion de Facturacion y Notificaciones",
+      DialogSize.md,
+    );
+  }
+
   toggleExpand(cardTitle: string) {
-    this.expandedCard.update((v) => (v === cardTitle ? null : cardTitle));
+    this.expandedCard.update((value) => (value === cardTitle ? null : cardTitle));
   }
 
   isExpanded(cardTitle: string): boolean {
     return this.expandedCard() === cardTitle;
   }
 
-  /** Deriva el color de acento (borde/icono) desde el bgColor pastel si no esté definido en los datos */
+  /** Deriva el color de acento desde el bgColor pastel si no viene definido. */
   getCardColor(card: { bgColor: string; color?: string }): string {
     if (card.color) return card.color;
+
     const map: Record<string, string> = {
       "#dbeafe": "#1d4ed8",
       "#e0f2fe": "#0284c7",
@@ -101,6 +120,7 @@ export default class CobranzaNativaDashboard {
       "#fce7f3": "#9d174d",
       "#fef2f2": "#dc2626",
     };
+
     return map[card.bgColor.toLowerCase()] ?? "#6b7280";
   }
 
@@ -112,6 +132,7 @@ export default class CobranzaNativaDashboard {
       Contador: "secondary",
       Legal: "danger",
     };
+
     return map[role];
   }
 }

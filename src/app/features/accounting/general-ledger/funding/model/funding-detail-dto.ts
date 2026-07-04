@@ -46,12 +46,3 @@ export interface FundingOrdenDTO {
   validationStatus?: boolean;
   validationMessage?: string;
 }
-
-
-
-
-
-
-
-
-

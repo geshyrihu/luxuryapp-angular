@@ -93,21 +93,21 @@
         <td class="no-print">
           <div class="flex justify-content-end">
             <!-- Botún Ver Detalle -->
-            <il-button-item (clicked)="onDetail(item.id)" label="??" />
+            <iw-button-item (clicked)="onDetail(item.id)" pTooltip="??" tooltipPosition="top" />
 
             @if (item.status === "Pendiente") {
-            <il-button-edit
+            <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <il-button-delete (confirmed)="onDelete(item.id)" />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
             }
           </div>
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="6" />
+    </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -132,7 +132,7 @@
           <app-icon
             icon="mdi:beach"
             style="font-size: 1.1rem; color: var(--ds-info)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <h2 class="font-bold">{{ item.requestDate }}</h2>
@@ -148,22 +148,22 @@
           </p>
           <p class="text-sm text-500">{{ item.approverFullName || 'é' }}</p>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Ver Detalle"
               iconName="eye-outline"
               (clicked)="onDetail(item.id)"
             />
             @if (item.status === 'Pendiente') {
-            <il-button-item
+            <ili-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
             }
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

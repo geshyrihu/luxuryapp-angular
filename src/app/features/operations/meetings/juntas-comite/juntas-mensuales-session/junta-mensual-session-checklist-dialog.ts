@@ -45,10 +45,15 @@ interface IJuntaMensualSessionDetail {
   } | null;
 }
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-junta-mensual-session-checklist-dialog",
   templateUrl: "./junta-mensual-session-checklist-dialog.html",
   imports: [
+    WebButtonIcon,
+    TooltipModule,
     CommonModule,
     FormsModule,
     TableModule,

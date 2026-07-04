@@ -1,52 +1,38 @@
-import { Component, input } from "@angular/core";
-import { PieChartModule } from "@swimlane/ngx-charts";
+import { Component, computed, input } from "@angular/core";
+import { NgxEchartsDirective } from "ngx-echarts";
+import type { EChartsCoreOption } from "echarts/core";
+import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
 
 /**
- * 🍩 PIE CHART
- * -------------------------------------------------------------------------
- * Gráfico de pastel clásico (o dona).
- * Simple, legible y delicioso para tus datos.
+ * PieChart — pastel / dona. Motor: ECharts (ngx-echarts).
+ * API sin cambios: `dataGrafico` en formato ngx-charts `[{ name, value }]`.
  */
 @Component({
   selector: "app-pie-chart",
-  imports: [PieChartModule],
-  template: `
-    <ngx-charts-pie-chart
-      [view]="view()"
-      [scheme]="colorScheme()"
-      [results]="dataGrafico()"
-      [gradient]="gradient"
-      [legend]="showLegend"
-      [legendPosition]="legendPosition"
-      [labels]="true"
-      [doughnut]="isDoughnut"
-    >
-    </ngx-charts-pie-chart>
-  `,
+  standalone: true,
+  imports: [NgxEchartsDirective],
+  template: `<div echarts [options]="option()" [style.height]="chartHeight()"></div>`,
 })
 export class PieChart {
-  // <--- Inputs --->
-  dataGrafico = input<any[]>([
-    {
-      name: "Germany",
-      value: 8940000,
-    },
-    {
-      name: "USA",
-      value: 5000000,
-    },
+  dataGrafico = input<NgxChartsDatum[]>([
+    { name: "Germany", value: 8940000 },
+    { name: "USA", value: 5000000 },
   ]);
 
-  colorScheme = input<any>({
-    domain: ["#5AA454", "#A10A28"],
-  });
+  colorScheme = input<{ domain?: string[] }>({ domain: ["#5AA454", "#A10A28"] });
 
   view = input<[number, number] | undefined>(undefined);
 
-  // <--- Configuración --->
-  gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  isDoughnut: boolean = false;
-  legendPosition: any = "below";
+  isDoughnut = false;
+
+  protected chartHeight = computed(() => {
+    const v = this.view();
+    return v ? `${v[1]}px` : "300px";
+  });
+
+  option = computed<EChartsCoreOption>(() =>
+    ngxToPieOption(this.dataGrafico(), this.colorScheme(), {
+      doughnut: this.isDoughnut,
+    }),
+  );
 }

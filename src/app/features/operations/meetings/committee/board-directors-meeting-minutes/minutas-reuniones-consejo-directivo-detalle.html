@@ -20,7 +20,9 @@
       </div>
 
       <div class="p-4 lg:p-5">
-        <h2 class="text-xl border-bottom-1 surface-border pb-2 mb-3 flex align-items-center">
+        <h2
+          class="text-xl border-bottom-1 surface-border pb-2 mb-3 flex align-items-center"
+        >
           <app-icon [icon]="'mdi:account-group'" class="mr-2" />Asistentes
         </h2>
         <div class="grid">
@@ -31,14 +33,10 @@
             <div class="flex flex-column">
               @for (admin of meeting.administracion; track admin) {
               <div class="flex align-items-center py-1">
-                <app-icon [icon]="'mdi:circle'"
-                  class="text-xs mr-2 text-500"
-                />
+                <app-icon [icon]="'mdi:circle'" class="text-xs mr-2 text-500" />
                 <span
                   >{{ admin.applicationUser }}
-                  <small class="text-500"
-                    >({{ admin.cargo }})</small
-                  ></span
+                  <small class="text-500">({{ admin.cargo }})</small></span
                 >
               </div>
               } @if (!meeting.administracion || meeting.administracion.length
@@ -54,14 +52,10 @@
             <div class="flex flex-column">
               @for (member of meeting.comite; track member) {
               <div class="flex align-items-center py-1">
-                <app-icon [icon]="'mdi:circle'"
-                  class="text-xs mr-2 text-500"
-                />
+                <app-icon [icon]="'mdi:circle'" class="text-xs mr-2 text-500" />
                 <span
                   >{{ member.applicationUser }}
-                  <small class="text-500"
-                    >({{ member.cargo }})</small
-                  ></span
+                  <small class="text-500">({{ member.cargo }})</small></span
                 >
               </div>
               } @if (!meeting.comite || meeting.comite.length === 0) {
@@ -71,14 +65,13 @@
           </div>
           <div class="col-12 md:col-4 mb-3">
             <h6 class="font-bold mb-2 flex align-items-center">
-              <app-icon [icon]="'mdi:account-plus'" class="mr-2" />Invitados Externos
+              <app-icon [icon]="'mdi:account-plus'" class="mr-2" />Invitados
+              Externos
             </h6>
             <div class="flex flex-column">
               @for (guest of meeting.externos; track guest) {
               <div class="flex align-items-center py-1">
-                <app-icon [icon]="'mdi:circle'"
-                  class="text-xs mr-2 text-500"
-                />
+                <app-icon [icon]="'mdi:circle'" class="text-xs mr-2 text-500" />
                 <span>{{ guest.invitado }}</span>
               </div>
               } @if (!meeting.externos || meeting.externos.length === 0) {
@@ -90,8 +83,11 @@
 
         <hr class="my-4 border-top-1 surface-border" />
 
-        <h2 class="text-xl border-bottom-1 surface-border pb-2 mb-3 flex align-items-center">
-          <app-icon [icon]="'mdi:clipboard-text'" class="mr-2" />Acuerdos y Asuntos Tratados
+        <h2
+          class="text-xl border-bottom-1 surface-border pb-2 mb-3 flex align-items-center"
+        >
+          <app-icon [icon]="'mdi:clipboard-text'" class="mr-2" />Acuerdos y
+          Asuntos Tratados
         </h2>
         @for (group of meeting.groupedDetails; track group) {
         <div class="mb-4">
@@ -104,8 +100,13 @@
               <div
                 class="surface-card shadow-1 p-3 border-round h-full flex flex-column"
               >
-                <div class="flex justify-content-between align-items-center mb-2">
-                  <p-tag [severity]="getStatusBadgeColor(detail.status)" [value]="detail.status"></p-tag>
+                <div
+                  class="flex justify-content-between align-items-center mb-2"
+                >
+                  <p-tag
+                    [severity]="getStatusBadgeColor(detail.status)"
+                    [value]="detail.status"
+                  ></p-tag>
                   <h5 class="text-lg font-bold m-0">{{ detail.title }}</h5>
                 </div>
                 <p class="text-500 flex-flex-grow-1-1">
@@ -158,9 +159,14 @@
   <!-- Header -->
   <ion-card class="m-3 border-1 surface-border shadow-1 border-round-xl">
     <ion-card-header>
-      <ion-card-title class="text-lg font-bold text-900">Minuta de Junta</ion-card-title>
+      <ion-card-title class="text-lg font-bold text-900"
+        >Minuta de Junta</ion-card-title
+      >
       <ion-card-subtitle class="flex align-items-center">
-        <app-icon icon="mdi:calendar-blank" class="mr-1 vertical-align-middle"></app-icon>
+        <app-icon
+          icon="mdi:calendar-blank"
+          class="mr-1 vertical-align-middle"
+        />
         {{ meeting.date }}
       </ion-card-subtitle>
     </ion-card-header>
@@ -173,8 +179,11 @@
   <ion-list [inset]="true" class="m-0">
     @for (admin of meeting.administracion; track admin) {
     <ion-item lines="full" class="ion-no-padding">
-      <app-icon icon="mdi:account-outline" slot="start"
-        class="text-blue-600 ml-3"></app-icon>
+      <app-icon
+        icon="mdi:account-outline"
+        slot="start"
+        class="text-blue-600 ml-3"
+      />
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ admin.applicationUser }}</h3>
         <p class="text-sm text-500">{{ admin.cargo }}</p>
@@ -194,8 +203,11 @@
   <ion-list [inset]="true" class="m-0">
     @for (member of meeting.comite; track member) {
     <ion-item lines="full" class="ion-no-padding">
-      <app-icon icon="mdi:account-group-outline" slot="start"
-        class="text-blue-600 ml-3"></app-icon>
+      <app-icon
+        icon="mdi:account-group-outline"
+        slot="start"
+        class="text-blue-600 ml-3"
+      />
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ member.applicationUser }}</h3>
         <p class="text-sm text-500">{{ member.cargo }}</p>
@@ -215,9 +227,14 @@
   <ion-list [inset]="true" class="m-0">
     @for (guest of meeting.externos; track guest) {
     <ion-item lines="full" class="ion-no-padding">
-      <app-icon icon="mdi:account-plus-outline" slot="start"
-        class="text-blue-600 ml-3"></app-icon>
-      <ion-label class="ml-2"><h3 class="font-bold text-900">{{ guest.invitado }}</h3></ion-label>
+      <app-icon
+        icon="mdi:account-plus-outline"
+        slot="start"
+        class="text-blue-600 ml-3"
+      />
+      <ion-label class="ml-2"
+        ><h3 class="font-bold text-900">{{ guest.invitado }}</h3></ion-label
+      >
     </ion-item>
     } @if (!meeting.externos || meeting.externos.length === 0) {
     <ion-item lines="none" class="ion-no-padding">
@@ -228,7 +245,9 @@
 
   <!-- Acuerdos -->
   <ion-list-header>
-    <ion-label class="font-bold text-900">Acuerdos y Asuntos Tratados</ion-label>
+    <ion-label class="font-bold text-900"
+      >Acuerdos y Asuntos Tratados</ion-label
+    >
   </ion-list-header>
 
   @for (group of meeting.groupedDetails; track group) {
@@ -244,24 +263,16 @@
         <ion-badge [color]="getStatusBadgeColor(detail.status)"
           >{{ detail.status }}</ion-badge
         >
-        <span class="text-sm font-bold text-900"
-          >{{ detail.title }}</span
-        >
+        <span class="text-sm font-bold text-900">{{ detail.title }}</span>
       </div>
-      <p class="text-600 text-sm mb-2">
-        {{ detail.requestService }}
-      </p>
+      <p class="text-600 text-sm mb-2">{{ detail.requestService }}</p>
       @if (detail.latestFollowUp) {
       <div class="border-top-1 surface-border pt-2">
-        <p class="text-xs text-500 mb-1">
-          Último seguimiento:
-        </p>
+        <p class="text-xs text-500 mb-1">Último seguimiento:</p>
         <p class="text-sm mb-1 font-medium text-900">
           {{ detail.latestFollowUp.seguimiento }}
         </p>
-        <p class="text-xs text-500 m-0">
-          {{ detail.latestFollowUp.fecha }}
-        </p>
+        <p class="text-xs text-500 m-0">{{ detail.latestFollowUp.fecha }}</p>
       </div>
       } @else {
       <p class="text-xs text-500 font-italic m-0">
@@ -281,9 +292,7 @@
   } } @if (!loading() && !data()) {
   <div class="text-center p-6">
     <app-icon [icon]="'mdi:alert'" class="text-5xl text-orange-500 mb-3" />
-    <p class="text-500 mt-3">
-      No se pudo cargar la información de la minuta.
-    </p>
+    <p class="text-500 mt-3">No se pudo cargar la información de la minuta.</p>
   </div>
   }
 </div>

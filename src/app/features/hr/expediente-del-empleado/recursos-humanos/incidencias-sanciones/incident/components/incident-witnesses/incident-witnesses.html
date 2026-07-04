@@ -5,7 +5,7 @@
       <app-icon
         [icon]="'mdi:account-group'"
         class="text-xl text-primary mr-2"
-      ></app-icon>
+      />
       <h3 class="text-base font-semibold text-color m-0">Testigos</h3>
       <span class="text-sm text-color-secondary"
         >({{ witnesses().length }})</span
@@ -26,7 +26,7 @@
   </div>
   } @else if (witnesses().length === 0) {
   <div class="text-center p-4 text-color-secondary surface-100 border-round">
-    <app-icon [icon]="'mdi:account'" class="text-3xl text-400"></app-icon>
+    <app-icon [icon]="'mdi:account'" class="text-3xl text-400" />
     <p class="mt-2 m-0">No hay testigos registrados</p>
   </div>
   } @else {
@@ -55,7 +55,7 @@
           <span
             class="text-green-600 flex align-items-center justify-content-center gap-1"
           >
-            <app-icon [icon]="'mdi:check-circle'"></app-icon>
+            <app-icon [icon]="'mdi:check-circle'" />
             <span>Firmado</span>
           </span>
           } @else {
@@ -64,15 +64,15 @@
         </td>
         <td>
           <div class="flex gap-1">
-            <il-button-edit (clicked)="openEditDialog(witness)" />
-            <il-button-delete (confirmed)="deleteWitness(witness)" />
+            <iw-button-edit (clicked)="openEditDialog(witness)" />
+            <iw-button-delete (confirmed)="deleteWitness(witness)" />
           </div>
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="5" />
+    </ng-template>
   </p-table>
   }
 </div>

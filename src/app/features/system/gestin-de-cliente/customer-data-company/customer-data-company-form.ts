@@ -43,7 +43,7 @@ export class CustomerDataCompanyForm implements OnInit {
   cb_customer = signal<ISelectItem[]>([]);
   cb_applicationRole = signal<ISelectItem[]>([]);
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     customerId: new FormControl<string | null>("", {

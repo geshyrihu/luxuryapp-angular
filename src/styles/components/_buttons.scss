@@ -529,6 +529,64 @@
   }
 }
 
+// ── Botones de ICONO de acción (iw-button-*) ─────────────────────────────────
+// Todos los botones solo-icono de acción de fila comparten el look compacto y
+// circular (como bank-list), sin necesidad de size/styleClass por uso.
+:is(
+    iw-button-edit,
+    iw-button-delete,
+    iw-button-item,
+    iw-button-save,
+    iw-button-download,
+    iw-button-confirm,
+    iw-button-add,
+    iw-button-active-desactive,
+    iw-button-send-email,
+    iw-button-tracking,
+    iw-button-view-pdf,
+    iw-button
+  )
+  > .btn {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: var(--ds-radius-lg);
+  flex-shrink: 0;
+}
+
+// Espaciado consistente entre botones de icono adyacentes (por si el contenedor
+// no define `gap`).
+:is(
+    iw-button-edit,
+    iw-button-delete,
+    iw-button-item,
+    iw-button-save,
+    iw-button-download,
+    iw-button-confirm,
+    iw-button-add,
+    iw-button-active-desactive,
+    iw-button-send-email,
+    iw-button-tracking,
+    iw-button-view-pdf,
+    iw-button
+  )
+  + :is(
+    iw-button-edit,
+    iw-button-delete,
+    iw-button-item,
+    iw-button-save,
+    iw-button-download,
+    iw-button-confirm,
+    iw-button-add,
+    iw-button-active-desactive,
+    iw-button-send-email,
+    iw-button-tracking,
+    iw-button-view-pdf,
+    iw-button
+  ) {
+  margin-inline-start: 0.25rem;
+}
+
 // ── MODIFICADOR: BOTÓN PÍLDORA (redondeado con texto) ────────────────────────
 .btn--pill {
   border-radius: 999px;

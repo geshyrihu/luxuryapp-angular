@@ -1,15 +1,24 @@
 <section class="surface-ground min-h-screen flex flex-column gap-4">
   <div class="w-full xl:w-11 mx-auto flex flex-column gap-4 p-3">
-    <header class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden">
+    <header
+      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
+    >
       <div class="bg-primary" style="height: 0.45rem"></div>
       <div class="surface-100 p-3 flex align-items-center gap-3">
         <div class="flex flex-column gap-1">
-          <small class="text-primary font-bold uppercase" style="letter-spacing: 0.14em">
+          <small
+            class="text-primary font-bold uppercase"
+            style="letter-spacing: 0.14em"
+          >
             LuxuryApp · Contabilidad
           </small>
-          <h1 class="text-primary text-2xl md:text-3xl line-height-2 m-0">Estados Financieros</h1>
+          <h1 class="text-primary text-2xl md:text-3xl line-height-2 m-0">
+            Estados Financieros
+          </h1>
           @if (periodo()) {
-            <p class="text-color-secondary m-0">Periodo: <strong>{{ periodo() }}</strong></p>
+          <p class="text-color-secondary m-0">
+            Periodo: <strong>{{ periodo() }}</strong>
+          </p>
           }
         </div>
       </div>
@@ -19,55 +28,135 @@
     <div class="surface-card border-round-xl border-1 surface-border shadow-1">
       <p-tabs [value]="tabIndex()" (valueChange)="onTabChange($event)">
         <p-tablist>
-          <p-tab [value]="0"><app-icon [icon]="'mdi:scale-balance'" class="mr-2"></app-icon>EPF</p-tab>
-          <p-tab [value]="1"><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados</p-tab>
-          <p-tab [value]="2"><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados V2</p-tab>
-          <p-tab [value]="3"><app-icon [icon]="'mdi:plus-circle'" class="mr-2"></app-icon>C. Extraordinaria</p-tab>
-          <p-tab [value]="4"><app-icon [icon]="'mdi:percent'" class="mr-2"></app-icon>P vs R</p-tab>
-          <p-tab [value]="5"><app-icon [icon]="'mdi:table'" class="mr-2"></app-icon>R. Financiero</p-tab>
-          <p-tab [value]="6"><app-icon [icon]="'mdi:currency-usd'" class="mr-2"></app-icon>Flujo Efectivo</p-tab>
-          <p-tab [value]="7"><app-icon [icon]="'mdi:account-group'" class="mr-2"></app-icon>Cobranza</p-tab>
-          <p-tab [value]="8"><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Presupuesto</p-tab>
-          <p-tab [value]="9"><app-icon [icon]="'mdi:bank'" class="mr-2"></app-icon>Bancos Inversiones</p-tab>
-          <p-tab [value]="10"><app-icon [icon]="'mdi:shield'" class="mr-2"></app-icon>Fondo Reserva</p-tab>
-          <p-tab [value]="11"><app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>Proyectos</p-tab>
+          <p-tab [value]="0"
+            ><app-icon [icon]="'mdi:scale-balance'" class="mr-2" />EPF</p-tab
+          >
+          <p-tab [value]="1"
+            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2" />E.
+            Resultados</p-tab
+          >
+          <p-tab [value]="2"
+            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2" />E.
+            Resultados V2</p-tab
+          >
+          <p-tab [value]="3"
+            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2" />C.
+            Extraordinaria</p-tab
+          >
+          <p-tab [value]="4"
+            ><app-icon [icon]="'mdi:percent'" class="mr-2" />P vs R</p-tab
+          >
+          <p-tab [value]="5"
+            ><app-icon [icon]="'mdi:table'" class="mr-2" />R. Financiero</p-tab
+          >
+          <p-tab [value]="6"
+            ><app-icon [icon]="'mdi:currency-usd'" class="mr-2" />Flujo
+            Efectivo</p-tab
+          >
+          <p-tab [value]="7"
+            ><app-icon
+              [icon]="'mdi:account-group'"
+              class="mr-2"
+            />Cobranza</p-tab
+          >
+          <p-tab [value]="8"
+            ><app-icon [icon]="'mdi:wallet'" class="mr-2" />Presupuesto</p-tab
+          >
+          <p-tab [value]="9"
+            ><app-icon [icon]="'mdi:bank'" class="mr-2" />Bancos
+            Inversiones</p-tab
+          >
+          <p-tab [value]="10"
+            ><app-icon [icon]="'mdi:shield'" class="mr-2" />Fondo Reserva</p-tab
+          >
+          <p-tab [value]="11"
+            ><app-icon [icon]="'mdi:briefcase'" class="mr-2" />Proyectos</p-tab
+          >
         </p-tablist>
         <p-tabpanels>
           <p-tabpanel [value]="0" class="p-4 pt-5">
-            <app-epf-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-epf-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="1" class="p-4 pt-5">
-            <app-estado-resultados-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-estado-resultados-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="2" class="p-4 pt-5">
-            <app-estado-resultados-v2-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-estado-resultados-v2-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="3" class="p-4 pt-5">
-            <app-cedula-extraordinaria-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-cedula-extraordinaria-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="4" class="p-4 pt-5">
-            <app-cedula-presupuestal-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-cedula-presupuestal-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="5" class="p-4 pt-5">
-            <app-reporte-financiero-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-reporte-financiero-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="6" class="p-4 pt-5">
-            <app-flujo-efectivo-cliente [customerId]="customerId()" [year]="year()" [month]="mes()" />
+            <app-flujo-efectivo-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [month]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="7" class="p-4 pt-5">
-            <app-analisis-cobranza-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-analisis-cobranza-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="8" class="p-4 pt-5">
-            <app-presupuesto-contabilidad-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-presupuesto-contabilidad-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="9" class="p-4 pt-5">
-            <app-bancos-inversiones-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-bancos-inversiones-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="10" class="p-4 pt-5">
-            <app-fondo-reserva-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-fondo-reserva-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
           <p-tabpanel [value]="11" class="p-4 pt-5">
-            <app-proyectos-aprobados-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+            <app-proyectos-aprobados-cliente
+              [customerId]="customerId()"
+              [year]="year()"
+              [mes]="mes()"
+            />
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>

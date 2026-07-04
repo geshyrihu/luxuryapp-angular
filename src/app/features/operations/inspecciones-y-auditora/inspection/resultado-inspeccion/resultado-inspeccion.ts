@@ -7,10 +7,13 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
-  imports: [WebButtonLabel, TooltipModule],
+  imports: [
+    WebButtonIcon,WebButtonLabel, TooltipModule],
 })
 export class ResultadoInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);

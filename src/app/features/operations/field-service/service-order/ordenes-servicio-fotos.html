@@ -1,7 +1,7 @@
 <div class="grid p-2">
   @if (loading()) {
   <div class="col-12 flex justify-content-center">
-    <app-icon [icon]="'mdi:loading'" style="font-size: 2rem"></app-icon>
+    <app-icon [icon]="'mdi:loading'" style="font-size: 2rem" />
   </div>
   } @else { @for (item of data(); track item.id) {
   <div class="col-12 md:col-4 lg:col-3">

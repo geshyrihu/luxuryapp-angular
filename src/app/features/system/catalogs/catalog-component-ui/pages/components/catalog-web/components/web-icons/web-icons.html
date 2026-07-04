@@ -4,7 +4,8 @@
     <code>material-symbols:*</code> directos). Esto permite cambiar la librería
     subyacente sin tocar los templates. Fuente única:
     <code>core/utils/icon-mapping.ts → ICON_CATALOG</code>. Pack actual:
-    <strong>Material Symbols</strong>. Haz clic en un icono para copiar su nombre.
+    <strong>Material Symbols</strong>. Haz clic en un icono para copiar su
+    nombre.
   </p>
 
   <!-- Buscador -->
@@ -19,7 +20,7 @@
           transform: translateY(-50%);
           color: var(--ds-text-secondary);
         "
-      ></app-icon>
+      />
       <input
         type="text"
         pInputText
@@ -61,7 +62,7 @@
       <app-icon
         [icon]="icon.key"
         style="font-size: 1.6rem; color: var(--ds-primary)"
-      ></app-icon>
+      />
       <span
         class="text-xs text-center"
         style="
@@ -72,9 +73,7 @@
       >
         @if (copiedKey() === icon.key) {
         <strong style="color: var(--ds-success)">¡Copiado!</strong>
-        } @else {
-        {{ icon.key }}
-        }
+        } @else { {{ icon.key }} }
       </span>
     </button>
     }
@@ -84,7 +83,7 @@
     class="flex flex-column align-items-center gap-2 py-5"
     style="color: var(--ds-text-secondary)"
   >
-    <app-icon icon="icon.search" style="font-size: 2rem"></app-icon>
+    <app-icon icon="icon.search" style="font-size: 2rem" />
     <span>No se encontraron iconos para "{{ search() }}"</span>
   </div>
   }

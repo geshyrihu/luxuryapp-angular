@@ -11,8 +11,9 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { ChargeTypeCatalogResponseDTO } from "../../models/charge-type-catalog.dto";
 import { CreateChargeDTO, UpdateChargeDTO } from "../../models/charge.dto";
-import { EChargeStatus, EChargeType } from "../../models/enums";
+import { EChargeStatus } from "../../models/enums";
 
 // Custom Inputs
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
@@ -24,7 +25,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 
 interface IChargeForm {
   propertyId: FormControl<string>;
-  type: FormControl<EChargeType>;
+  chargeTypeId: FormControl<string>;
   concept: FormControl<string>;
   amount: FormControl<number>;
   dueDate: FormControl<Date>;
@@ -65,17 +66,7 @@ export class ChargeForm implements OnInit {
 
   propertiesOptions = signal<any[]>([]);
   templatesOptions = signal<any[]>([]);
-
-  typeOptions = [
-    {
-      label: "Mantenimiento Ordinario",
-      value: EChargeType.MantenimientoOrdinario,
-    },
-    { label: "Cuota Extraordinaria", value: EChargeType.CuotaExtraordinaria },
-    { label: "Recargo por Mora", value: EChargeType.RecargoMora },
-    { label: "Saldo Inicial", value: EChargeType.SaldoInicial },
-    { label: "Otros", value: EChargeType.Otros },
-  ];
+  chargeTypeOptions = signal<{ label: string; value: string }[]>([]);
 
   // Pagado y PagoParcial solo los asigna el sistema via aplicacion de pago.
   // No se exponen en el formulario manual para evitar mutacion directa de estados financieros.
@@ -85,7 +76,7 @@ export class ChargeForm implements OnInit {
     { label: "Cancelado", value: EChargeStatus.Cancelado },
   ];
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.config.data.id;
     this.customerId = this.config.data.customerId;
 
@@ -94,7 +85,7 @@ export class ChargeForm implements OnInit {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      type: new FormControl(EChargeType.MantenimientoOrdinario, {
+      chargeTypeId: new FormControl("", {
         nonNullable: true,
         validators: [Validators.required],
       }),
@@ -129,11 +120,33 @@ export class ChargeForm implements OnInit {
     });
     this.formInvalid.set(this.form.status !== "VALID");
 
-    this.loadProperties();
-    this.loadTemplates();
+    await Promise.all([
+      this.loadProperties(),
+      this.loadTemplates(),
+      this.loadChargeTypes(),
+    ]);
 
     if (this.id) {
       this.loadData();
+    }
+  }
+
+  async loadChargeTypes() {
+    const res = await this.apiResponseS.onGetItem<ChargeTypeCatalogResponseDTO[]>(
+      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(this.customerId),
+    );
+
+    this.chargeTypeOptions.set(
+      (res ?? [])
+        .filter((x) => x.isActive)
+        .map((x) => ({
+          label: `${x.name} · ${x.accountNumber}`,
+          value: x.id,
+        })),
+    );
+
+    if (!this.id && this.chargeTypeOptions().length > 0 && !this.form.controls.chargeTypeId.value) {
+      this.form.controls.chargeTypeId.setValue(this.chargeTypeOptions()[0].value);
     }
   }
 
@@ -210,10 +223,11 @@ export class ChargeForm implements OnInit {
           discountDeadline: this.dateS.getDateFormat(raw.discountDeadline),
         };
         return this.id
-          ? ({ id: this.id, ...payload } as UpdateChargeDTO)
+          ? ({ id: this.id, type: null, ...payload } as UpdateChargeDTO)
           : ({
               customerId: this.customerId,
               sourcePolicyId: null,
+              type: null,
               ...payload,
             } as CreateChargeDTO);
       },

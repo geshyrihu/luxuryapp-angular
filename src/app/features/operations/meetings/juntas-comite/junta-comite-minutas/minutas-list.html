@@ -127,7 +127,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon [icon]="'mdi:chart-bar'" class="text-xs"></app-icon>
+                <app-icon [icon]="'mdi:chart-bar'" class="text-xs" />
                 <span>TOTAL</span>
               </span>
               <span class="font-bold">{{ item.issues }}</span>
@@ -148,10 +148,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon
-                  [icon]="'mdi:check-circle'"
-                  class="text-xs"
-                ></app-icon>
+                <app-icon [icon]="'mdi:check-circle'" class="text-xs" />
                 <span>CONCL.</span>
               </span>
               <span class="font-bold">{{ item.concluidos }}</span>
@@ -172,10 +169,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon
-                  [icon]="'mdi:clock-outline'"
-                  class="text-xs"
-                ></app-icon>
+                <app-icon [icon]="'mdi:clock-outline'" class="text-xs" />
                 <span>PEND.</span>
               </span>
               <span class="font-bold">{{ item.pending }}</span>
@@ -196,7 +190,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon [icon]="'mdi:ban'" class="text-xs"></app-icon>
+                <app-icon [icon]="'mdi:ban'" class="text-xs" />
                 <span>NO AUT.</span>
               </span>
               <span class="font-bold">{{ item.noAutorizado }}</span>
@@ -205,9 +199,9 @@
 
           <!-- GESTIONAR -->
           <td class="text-center">
-            <il-button
+            <iw-button
               iconClass="mdi:file-edit"
-              label="GESTIONAR"
+              pTooltip="GESTIONAR" tooltipPosition="top"
               severity="secondary"
               size="sm"
               (clicked)="navigateToGestionMinuta(item.id)"
@@ -258,8 +252,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="7" />
+      </ng-template>
 
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
@@ -353,7 +347,7 @@
             <app-icon
               icon="mdi:notebook-outline"
               style="font-size: 1.1rem; color: var(--ds-primary)"
-            ></app-icon>
+            />
           </div>
           <div class="flex flex-column w-full p-3">
             <div class="flex justify-content-between align-items-center mb-3">
@@ -365,31 +359,31 @@
                   Total Asuntos: {{ item.issues }}
                 </p>
               </ion-label>
-              <app-action-menu slot="end">
+              <ili-action-menu slot="end">
                 <ng-container actions>
-                  <il-button-item
+                  <ili-button-item
                     iconName="trending-up-outline"
                     label="Exportar Excel"
                     (clicked)="exportToExcel(item.id)"
                   />
-                  <il-button-confirm
+                  <ili-button-confirm
                     label="Enviar a Comité"
                     swalTitle="Confirmar envío"
                     swalText="óEsté seguro de que desea enviar la minuta?"
                     swalConfirmButtonText="Sí, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
                   />
-                  <il-button-item
+                  <ili-button-item
                     iconName="document-outline"
                     label="Minuta PDF"
                     (clicked)="onGeneretePDF(item.id)"
                   />
-                  <il-button-item
+                  <ili-button-item
                     iconName="bar-chart-outline"
                     label="Resumen minuta"
                     (clicked)="resumenMinuta(item.id)"
                   />
-                  <il-button-edit
+                  <ili-button-edit
                     (clicked)="
                       showModalAddOrEditMeeting({
                         id: item.id,
@@ -399,13 +393,13 @@
                     label="Editar"
                   />
                   @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
-                  <il-button-delete
+                  <ili-button-delete
                     label="Eliminar"
                     (confirmed)="onDelete(item.id)"
                   />
                   }
                 </ng-container>
-              </app-action-menu>
+              </ili-action-menu>
             </div>
             <div class="grid">
               <div class="col-6">

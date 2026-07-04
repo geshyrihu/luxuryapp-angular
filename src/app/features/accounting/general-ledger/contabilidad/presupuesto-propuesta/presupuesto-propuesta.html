@@ -2,12 +2,12 @@
   ============================================================================
   ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
-  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
-  FUNCIONAL y ESTABLE. 
-  
+  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+  FUNCIONAL y ESTABLE.
+
   Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
   sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
-  
+
   Por favor, NO rompan el código.
   ============================================================================
 -->
@@ -68,7 +68,10 @@
     -->
 
     <ng-template #caption>
-      <div class="flex flex-row overflow-x-auto gap-2 p-2 align-items-stretch w-full" style="scrollbar-width: thin;">
+      <div
+        class="flex flex-row overflow-x-auto gap-2 p-2 align-items-stretch w-full"
+        style="scrollbar-width: thin"
+      >
         <!-- Cuotas (Fija) -->
         <div class="flex-shrink-0 w-8rem flex">
           <div
@@ -79,7 +82,7 @@
               icon="mdi:tag-outline"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-text-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Fija)</span
             >
@@ -96,7 +99,7 @@
               icon="mdi:chart-bar"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-text-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Indiviso)</span
             >
@@ -114,7 +117,7 @@
               icon="mdi:plus-circle-outline"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-blue-700"
               >Añadir Cuenta</span
             >
@@ -132,7 +135,7 @@
               icon="mdi:robot-outline"
               class="mb-1"
               style="font-size: 1.5rem; color: #4338ca"
-            ></app-icon>
+            />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Auditoría IA</span
@@ -151,7 +154,7 @@
               icon="mdi:chart-line"
               class="mb-1"
               style="font-size: 1.5rem; color: #4338ca"
-            ></app-icon>
+            />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Proyección {{ fiscalYear }}</span
@@ -169,7 +172,7 @@
               icon="mdi:alert-decagram-outline"
               class="mb-1"
               style="font-size: 1.5rem; color: #ea580c"
-            ></app-icon>
+            />
             <span
               class="text-xs text-center line-height-2 text-orange-700 font-medium"
               >Alertas > 5%</span
@@ -187,7 +190,7 @@
               icon="mdi:microsoft-excel"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-success, #006837)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-green-700"
               >Excel</span
             >
@@ -205,7 +208,7 @@
               [icon]="baseBudgetMonthlyButtonIcon"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-text-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetMonthlyButtonLabel }}</span
             >
@@ -221,7 +224,7 @@
               [icon]="baseBudgetAnnualButtonIcon"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-text-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetAnnualButtonLabel }}</span
             >
@@ -237,7 +240,7 @@
               [icon]="fiscalYearAnnualButtonIcon"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-text-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ fiscalYearAnnualButtonLabel }}</span
             >
@@ -253,7 +256,7 @@
               [icon]="projectedExpensesButtonIcon"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-text-primary)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ projectedExpensesButtonLabel }}</span
             >
@@ -270,7 +273,7 @@
               icon="mdi:cog-outline"
               class="mb-1"
               style="font-size: 1.5rem; color: var(--ds-warning, #b45309)"
-            ></app-icon>
+            />
             <span class="text-xs text-center line-height-2 text-orange-700"
               >Admin Proyección</span
             >
@@ -287,7 +290,7 @@
               icon="mdi:calendar-outline"
               class="mb-1"
               style="font-size: 1.5rem; color: #4338ca"
-            ></app-icon>
+            />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Calendario Mtto</span
@@ -337,7 +340,7 @@
             <app-icon
               icon="mdi:information-outline"
               style="font-size: 1.2rem"
-            ></app-icon>
+            />
             Guía Rápida:
           </div>
 
@@ -365,7 +368,7 @@
             class="flex align-items-center gap-2"
             pTooltip="Ver historial de compras asociadas a la cuenta"
           >
-            <app-icon icon="mdi:cart-outline" class="text-blue-500"></app-icon>
+            <app-icon icon="mdi:cart-outline" class="text-blue-500" />
             <span>Historial Compras</span>
           </div>
 
@@ -373,7 +376,7 @@
             class="flex align-items-center gap-2"
             pTooltip="Ver histórico de movimientos contables"
           >
-            <app-icon icon="mdi:history" class="text-indigo-500"></app-icon>
+            <app-icon icon="mdi:history" class="text-indigo-500" />
             <span>Historial Partida</span>
           </div>
 
@@ -381,10 +384,7 @@
             class="flex align-items-center gap-2"
             pTooltip="Ver cotizaciones y documentos soporte"
           >
-            <app-icon
-              icon="mdi:folder-outline"
-              class="text-orange-500"
-            ></app-icon>
+            <app-icon icon="mdi:folder-outline" class="text-orange-500" />
             <span>Documentos Soporte</span>
           </div>
 
@@ -531,21 +531,14 @@
                 class="pointer mr-1 text-sm"
                 (click)="showPurchaseHistory(item)"
                 pTooltip="Historial de compras"
-                ><app-icon
-                  icon="mdi:cart-outline"
-                  class="text-blue-500"
-                ></app-icon>
+                ><app-icon icon="mdi:cart-outline" class="text-blue-500" />
                 |</span
               >
               <span
                 class="pointer mr-1 text-sm"
                 (click)="showItemHistory(item)"
                 pTooltip="Historial de partidas"
-                ><app-icon
-                  icon="mdi:history"
-                  class="text-indigo-500"
-                ></app-icon>
-                |</span
+                ><app-icon icon="mdi:history" class="text-indigo-500" /> |</span
               >
               <span
                 class="pointer mr-1 text-sm"
@@ -903,7 +896,6 @@
   para crear interfaces de datos complejas. óQue la fuerza te acompaóe en tus refactorizaciones!
 -->
 
-
 <!-- Dialogo para Alertas > 5% -->
 <p-dialog
   header="Análisis de Incrementos > 5%"
@@ -917,7 +909,12 @@
   appendTo="body"
 >
   <div class="p-3">
-    <p-table [value]="highIncreaseItems()" [scrollable]="true" scrollHeight="60vh" styleClass="p-datatable-sm p-datatable-striped">
+    <p-table
+      [value]="highIncreaseItems()"
+      [scrollable]="true"
+      scrollHeight="60vh"
+      styleClass="p-datatable-sm p-datatable-striped"
+    >
       <ng-template pTemplate="header">
         <tr>
           <th>Cuenta</th>
@@ -933,14 +930,22 @@
           <td class="font-medium">{{item.accountNumber}}</td>
           <td>{{item.accountName}}</td>
           <td class="text-right">{{item.currentAmount | number:'1.0-0'}}</td>
-          <td class="text-right font-medium">{{item.proposedAmount | number:'1.0-0'}}</td>
-          <td class="text-right text-red-600 font-medium">{{item.difference | number:'1.0-0'}}</td>
-          <td class="text-right text-red-600 font-bold bg-red-50 border-round">{{item.percentageIncrease | number:'1.0-0'}}%</td>
+          <td class="text-right font-medium">
+            {{item.proposedAmount | number:'1.0-0'}}
+          </td>
+          <td class="text-right text-red-600 font-medium">
+            {{item.difference | number:'1.0-0'}}
+          </td>
+          <td class="text-right text-red-600 font-bold bg-red-50 border-round">
+            {{item.percentageIncrease | number:'1.0-0'}}%
+          </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="6" class="text-center p-4">No hay gastos con incremento mayor al 5%.</td>
+          <td colspan="6" class="text-center p-4">
+            No hay gastos con incremento mayor al 5%.
+          </td>
         </tr>
       </ng-template>
     </p-table>

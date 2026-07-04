@@ -19,9 +19,14 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-property-occupant-manager",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

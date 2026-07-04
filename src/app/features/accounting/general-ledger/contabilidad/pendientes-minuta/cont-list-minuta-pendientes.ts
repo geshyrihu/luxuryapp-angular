@@ -10,8 +10,12 @@ import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { TooltipModule } from "primeng/tooltip";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -37,17 +41,20 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
+    TooltipModule,
     CustomInputSelectSignal,
     TagModule,
     WebButtonLabelEdit,
     WebButtonLabelItem,
+    WebButtonIconEdit,
+    WebButtonIconItem,
     WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     SanitizeHtmlPipe,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
     IonItem,
     IonLabel,
   ],

@@ -16,10 +16,15 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-calendario-maestro-equipo",
   templateUrl: "./calendario-maestro-equipo.html",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabelEdit,

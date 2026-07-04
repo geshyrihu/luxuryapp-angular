@@ -78,10 +78,10 @@
 
       <td class="no-print">
         <div class="flex justify-content-center">
-          <il-button-edit
+          <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <il-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       <!-- Opciones -->
@@ -115,15 +115,12 @@
         <app-icon
           icon="mdi:pool"
           style="font-size: 1.1rem; color: var(--ds-info)"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base">
-            <app-icon
-              [icon]="'mdi:calendar'"
-              class="mr-1 text-primary"
-            ></app-icon>
+            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-primary" />
             {{ item.dateString }}
           </h2>
         </div>
@@ -158,7 +155,7 @@
             <app-icon
               [icon]="item.cepillado ? 'mdi:check' : 'mdi:close'"
               [class]="item.cepillado ? 'text-green-600' : 'text-400'"
-            ></app-icon>
+            />
             <small class="text-xs">Cepillado</small>
           </div>
           <div
@@ -168,25 +165,25 @@
             <app-icon
               [icon]="item.aspirado ? 'mdi:check' : 'mdi:close'"
               [class]="item.aspirado ? 'text-green-600' : 'text-400'"
-            ></app-icon>
+            />
             <small class="text-xs">Aspirado</small>
           </div>
         </div>
       </ion-label>
 
       <div slot="end">
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

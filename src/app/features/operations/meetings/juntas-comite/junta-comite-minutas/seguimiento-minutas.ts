@@ -26,10 +26,15 @@ import { ContMinutaSeguimientos } from "src/app/features/accounting/general-ledg
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
 @Component({
   selector: "app-seguimiento-minutas",
   templateUrl: "./seguimiento-minutas.html",
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelItem,
     CommonModule,

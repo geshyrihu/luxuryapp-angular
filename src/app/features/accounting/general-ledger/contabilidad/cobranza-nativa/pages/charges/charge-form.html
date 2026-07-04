@@ -18,8 +18,8 @@
   />
 
   <custom-input-select-signal
-    [control]="form.controls.type"
-    [data]="typeOptions"
+    [control]="form.controls.chargeTypeId"
+    [data]="chargeTypeOptions()"
     label="Tipo de Cargo"
     [filter]="true"
     required

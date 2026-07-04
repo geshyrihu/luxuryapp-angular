@@ -2,7 +2,7 @@
 import { authGuard } from "src/app/core/guard/auth.guard";
 
 export const COBRANZA_NATIVA_ROUTES: Routes = [
-  // Ruta raóz: /cobranza-nativa
+  // Ruta raíz: /cobranza-nativa
   {
     path: "",
     loadComponent: () =>
@@ -16,7 +16,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
     },
   },
 
-  // Dashboard de mótricas
+  // Dashboard de métricas
   {
     path: "dashboard",
     loadComponent: () =>
@@ -27,6 +27,18 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
     data: {
       title: "Dashboard de Cobranza",
       breadcrumb: "Dashboard",
+    },
+  },
+
+  // Plantillas de cargos
+  {
+    path: "charge-types",
+    loadComponent: () =>
+      import("./pages/charge-types/charge-type-list").then((m) => m.default),
+    canActivate: [authGuard],
+    data: {
+      title: "Tipos de Cargo",
+      breadcrumb: "Tipos de Cargo",
     },
   },
 
@@ -160,7 +172,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
     },
   },
 
-  // Articulos del reglamento (catalogo base para multas)
+  // Artículos del reglamento (catálogo base para multas)
   {
     path: "regulation-articles",
     loadComponent: () =>
@@ -168,7 +180,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
         (m) => m.default,
       ),
     canActivate: [authGuard],
-    data: { title: "Artóculos del Reglamento", breadcrumb: "Reglamento" },
+    data: { title: "Artículos del Reglamento", breadcrumb: "Reglamento" },
   },
 
   // Multas reglamentarias
@@ -266,5 +278,13 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
       import("./pages/system-overview/system-overview").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Como Funciona el Sistema", breadcrumb: "Como Funciona" },
+  },
+
+  {
+    path: "flow-map",
+    loadComponent: () =>
+      import("./pages/system-flow-map/system-flow-map").then((m) => m.default),
+    canActivate: [authGuard],
+    data: { title: "Mapa Visual del Flujo", breadcrumb: "Mapa Visual" },
   },
 ];

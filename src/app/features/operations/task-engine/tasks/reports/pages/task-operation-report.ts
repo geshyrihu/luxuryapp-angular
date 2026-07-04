@@ -33,10 +33,13 @@ import { TaskReadList } from "../../components/task-read-list";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
 import { TaskForm } from "../../task-message/pages/task-form";
+import { WebButtonIconTracking } from "src/app/core/components/buttons/web-icon/button-tracking";
+
 @Component({
   selector: "app-task-operation-report",
   templateUrl: "./task-operation-report.html",
   imports: [
+    WebButtonIconTracking,
     TaskStatus,
     TaskReportActions,
     TaskDateRangeSelector,

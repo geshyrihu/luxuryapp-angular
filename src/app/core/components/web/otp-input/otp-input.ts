@@ -1,13 +1,8 @@
-import {
-  Component,
-  input,
-  model,
-  output,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { InputOtpModule } from "primeng/inputotp";
+import { OtpInputBase } from "src/app/core/components/shared/otp-input/otp-input-base";
 
 /**
  * AppOtpInput — Wrapper sobre p-inputotp para 2FA y confirmación de operaciones críticas.
@@ -87,21 +82,4 @@ import { InputOtpModule } from "primeng/inputotp";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppOtpInput {
-  value = model<string>("");
-  label = input<string>("");
-  hint = input<string>("");
-  error = input<string>("");
-  length = input<number>(6);
-  integerOnly = input<boolean>(true);
-  disabled = input<boolean>(false);
-  mask = input<boolean>(false);
-
-  complete = output<string>();
-
-  onValueChange(val: string): void {
-    if (val && val.length === this.length()) {
-      this.complete.emit(val);
-    }
-  }
-}
+export class AppOtpInput extends OtpInputBase {}

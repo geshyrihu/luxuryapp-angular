@@ -123,10 +123,10 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
       </td>
       <td class="text-center">
         @if (!submitting() && ordenCompraService.totalPorCubrir() > 0) {
-        <il-button-item
+        <iw-button-item
           (clicked)="onSubmit(item)"
           iconClass="mdi:content-save"
-          label="Guardar"
+          pTooltip="Guardar" tooltipPosition="top"
         />
         } @if (submitting()) {
         <p-progressSpinner

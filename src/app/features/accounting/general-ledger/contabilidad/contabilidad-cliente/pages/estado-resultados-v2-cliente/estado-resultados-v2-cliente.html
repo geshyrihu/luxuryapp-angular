@@ -6,8 +6,10 @@
   </div>
   } @else if (!rows().length) {
   <div class="surface-card p-6 border-round shadow-1 text-center">
-    <app-icon [icon]="'mdi:magnify'" class="text-4xl text-500 mb-3"></app-icon>
-    <p class="text-color-secondary m-0">No se encontraron registros para el periodo seleccionado.</p>
+    <app-icon [icon]="'mdi:magnify'" class="text-4xl text-500 mb-3" />
+    <p class="text-color-secondary m-0">
+      No se encontraron registros para el periodo seleccionado.
+    </p>
   </div>
   } @else {
   <p-table
@@ -28,40 +30,62 @@
     <ng-template pTemplate="body" let-row>
       @if (row.tipo === 'header') {
       <tr class="rf-row-section">
-        <td colspan="5" class="py-2 px-3 uppercase text-xs tracking-wider">{{ row.descripcion }}</td>
+        <td colspan="5" class="py-2 px-3 uppercase text-xs tracking-wider">
+          {{ row.descripcion }}
+        </td>
       </tr>
-      }
-      @if (row.tipo === 'group') {
+      } @if (row.tipo === 'group') {
       <tr class="rf-row-group">
         <td class="rf-td-descripcion font-semibold">{{ row.descripcion }}</td>
         <td colspan="4"></td>
       </tr>
-      }
-      @if (row.tipo === 'item') {
+      } @if (row.tipo === 'item') {
       <tr class="rf-row-concepto">
         <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
-        <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 === 0 ? '-' : (row.mes1 | accountingNumber : '1.0-0') }}</td>
-        <td class="rf-td-number" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 === 0 ? '-' : (row.mes2 | accountingNumber : '1.0-0') }}</td>
-        <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 === 0 ? '-' : (row.mes3 | accountingNumber : '1.0-0') }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">{{ row.acum === 0 ? '-' : (row.acum | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">
+          {{ row.mes1 === 0 ? '-' : (row.mes1 | accountingNumber : '1.0-0') }}
+        </td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes2 < 0">
+          {{ row.mes2 === 0 ? '-' : (row.mes2 | accountingNumber : '1.0-0') }}
+        </td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">
+          {{ row.mes3 === 0 ? '-' : (row.mes3 | accountingNumber : '1.0-0') }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">
+          {{ row.acum === 0 ? '-' : (row.acum | accountingNumber : '1.0-0') }}
+        </td>
       </tr>
-      }
-      @if (row.tipo === 'total-ingresos' || row.tipo === 'total-gastos') {
+      } @if (row.tipo === 'total-ingresos' || row.tipo === 'total-gastos') {
       <tr class="rf-row-total">
         <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 | accountingNumber : '1.0-0' }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 | accountingNumber : '1.0-0' }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 | accountingNumber : '1.0-0' }}</td>
-        <td class="rf-td-number--total">{{ row.acum | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">
+          {{ row.mes1 | accountingNumber : '1.0-0' }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">
+          {{ row.mes2 | accountingNumber : '1.0-0' }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">
+          {{ row.mes3 | accountingNumber : '1.0-0' }}
+        </td>
+        <td class="rf-td-number--total">
+          {{ row.acum | accountingNumber : '1.0-0' }}
+        </td>
       </tr>
-      }
-      @if (row.tipo === 'diferencia') {
+      } @if (row.tipo === 'diferencia') {
       <tr class="rf-row-result">
         <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 | accountingNumber : '1.0-0' }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 | accountingNumber : '1.0-0' }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 | accountingNumber : '1.0-0' }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">{{ row.acum | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">
+          {{ row.mes1 | accountingNumber : '1.0-0' }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">
+          {{ row.mes2 | accountingNumber : '1.0-0' }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">
+          {{ row.mes3 | accountingNumber : '1.0-0' }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">
+          {{ row.acum | accountingNumber : '1.0-0' }}
+        </td>
       </tr>
       }
     </ng-template>

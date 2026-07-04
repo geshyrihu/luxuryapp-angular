@@ -28,10 +28,15 @@ import {
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-gasto-fijo-servicios",
   templateUrl: "./gasto-fijo-servicios.html",
   imports: [
+    WebButtonIconItem,
+    WebButtonIconDelete,
     CommonModule,
     FormsModule,
     TableModule,

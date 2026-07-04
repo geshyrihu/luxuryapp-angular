@@ -4,11 +4,10 @@
     class="flex align-items-center justify-content-center py-8"
     style="min-height: 20rem"
   >
-    <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl"></app-icon>
+    <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl" />
   </div>
   } @else {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
-
     <!-- Header -->
     <header
       class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
@@ -39,14 +38,20 @@
           prioridad de ejecucion.
         </p>
 
-        <div class="border-top-1 surface-border pt-3 flex flex-wrap align-items-center justify-content-between gap-3">
+        <div
+          class="border-top-1 surface-border pt-3 flex flex-wrap align-items-center justify-content-between gap-3"
+        >
           <div class="flex flex-wrap gap-3">
-            <div class="inline-flex align-items-center gap-2 text-color-secondary">
-              <app-icon [icon]="'mdi:format-list-bulleted'"></app-icon>
+            <div
+              class="inline-flex align-items-center gap-2 text-color-secondary"
+            >
+              <app-icon [icon]="'mdi:format-list-bulleted'" />
               <span>Total: {{ totalTasks() }} tareas</span>
             </div>
-            <div class="inline-flex align-items-center gap-2 text-color-secondary">
-              <app-icon [icon]="'mdi:grid'"></app-icon>
+            <div
+              class="inline-flex align-items-center gap-2 text-color-secondary"
+            >
+              <app-icon [icon]="'mdi:grid'" />
               <span>Areas: {{ groupedTasks().length }}</span>
             </div>
           </div>
@@ -66,8 +71,8 @@
     </header>
 
     <!-- Grupos por area -->
-    @if (groupedTasks().length) {
-    @for (group of groupedTasks(); track group.title; let i = $index) {
+    @if (groupedTasks().length) { @for (group of groupedTasks(); track
+    group.title; let i = $index) {
     <article
       class="surface-card border-round-xl border-1 surface-border p-4 shadow-1"
     >
@@ -85,8 +90,8 @@
           <div>
             <h3 class="text-lg text-900 m-0">{{ group.title }}</h3>
             <p class="text-sm text-color-secondary m-0">
-              {{ group.tasks.length }}
-              {{ group.tasks.length === 1 ? "tarea" : "tareas" }} pendiente(s)
+              {{ group.tasks.length }} {{ group.tasks.length === 1 ? "tarea" :
+              "tareas" }} pendiente(s)
             </p>
           </div>
         </div>
@@ -100,74 +105,76 @@
       <div class="grid">
         @for (task of group.tasks; track task.id; let ti = $index) {
         <div class="col-12 md:col-6">
-        <article
-          class="surface-ground border-round-xl border-1 surface-border p-3 h-full"
-        >
-          <!-- Info de la tarea -->
-          <div class="flex align-items-start gap-3">
-            <div
-              class="w-2rem h-2rem border-circle text-white flex align-items-center justify-content-center font-bold flex-shrink-0 text-xs"
-              style="background: var(--ds-luxury-gold-hover)"
-            >
-              {{ formatIndex(ti + 1) }}
-            </div>
+          <article
+            class="surface-ground border-round-xl border-1 surface-border p-3 h-full"
+          >
+            <!-- Info de la tarea -->
+            <div class="flex align-items-start gap-3">
+              <div
+                class="w-2rem h-2rem border-circle text-white flex align-items-center justify-content-center font-bold flex-shrink-0 text-xs"
+                style="background: var(--ds-luxury-gold-hover)"
+              >
+                {{ formatIndex(ti + 1) }}
+              </div>
 
-            <div class="flex-1 min-w-0">
-              <div class="flex align-items-center gap-2 flex-wrap mb-2">
-                <span class="text-xs font-bold text-color-secondary">{{
-                  task.folio
-                }}</span>
-                <p-tag
-                  [value]="statusLabel(task.status)"
-                  [severity]="statusSeverity(task.status)"
-                />
-                @if (task.assignee) {
-                <span class="text-xs text-color-secondary"
-                  ><app-icon [icon]="'mdi:account'" class="mr-1"></app-icon>{{ task.assignee }}</span
-                >
-                } @if (task.scheduledAt) {
-                <span class="text-xs text-color-secondary"
-                  ><app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon
-                  >{{ task.scheduledAt }}</span
-                >
+              <div class="flex-1 min-w-0">
+                <div class="flex align-items-center gap-2 flex-wrap mb-2">
+                  <span class="text-xs font-bold text-color-secondary"
+                    >{{ task.folio }}</span
+                  >
+                  <p-tag
+                    [value]="statusLabel(task.status)"
+                    [severity]="statusSeverity(task.status)"
+                  />
+                  @if (task.assignee) {
+                  <span class="text-xs text-color-secondary"
+                    ><app-icon [icon]="'mdi:account'" class="mr-1" />{{
+                    task.assignee }}</span
+                  >
+                  } @if (task.scheduledAt) {
+                  <span class="text-xs text-color-secondary"
+                    ><app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon
+                    >{{ task.scheduledAt }}</span
+                  >
+                  }
+                </div>
+                @if (task.description) {
+                <p class="m-0 text-sm line-height-3 text-color-secondary">
+                  {{ task.description }}
+                </p>
                 }
               </div>
-              @if (task.description) {
-              <p class="m-0 text-sm line-height-3 text-color-secondary">
-                {{ task.description }}
-              </p>
-              }
             </div>
-          </div>
 
-          <!-- Imagen antes -->
-          @if (task.beforeWork) {
-          <div class="mt-3">
-            <p-image
-              [src]="task.beforeWork"
-              alt="Antes"
-              [preview]="true"
-              imageClass="block max-w-full h-auto border-round-lg"
-            />
-          </div>
-          }
-        </article>
+            <!-- Imagen antes -->
+            @if (task.beforeWork) {
+            <div class="mt-3">
+              <p-image
+                [src]="task.beforeWork"
+                alt="Antes"
+                [preview]="true"
+                imageClass="block max-w-full h-auto border-round-lg"
+              />
+            </div>
+            }
+          </article>
         </div>
         }
       </div>
     </article>
-    }
-    } @else {
+    } } @else {
     <div
       class="surface-card border-round-xl border-1 surface-border p-6 shadow-1 text-center"
     >
-      <app-icon [icon]="'mdi:check-circle'" class="text-4xl text-400 mb-3 block"></app-icon>
+      <app-icon
+        [icon]="'mdi:check-circle'"
+        class="text-4xl text-400 mb-3 block"
+      />
       <p class="text-500 m-0 text-lg">
         No hay tareas pendientes en este grupo.
       </p>
     </div>
     }
-
   </div>
   }
 </section>

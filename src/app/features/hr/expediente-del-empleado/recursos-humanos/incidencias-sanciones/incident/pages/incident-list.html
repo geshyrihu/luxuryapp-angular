@@ -96,36 +96,36 @@
           <div class="flex align-items-center gap-2">
             @if (item.investigationStatus === 'Reportado' ||
             item.investigationStatus === 'EnInvestigacion') {
-            <il-button-item
+            <iw-button-item
               iconClass="mdi:check-circle"
-              label="Resolver"
+              pTooltip="Resolver" tooltipPosition="top"
               (click)="onResolve(item)"
             />
-            <il-button-edit (click)="onEdit(item)" />
-            <il-button-item
+            <iw-button-edit (click)="onEdit(item)" />
+            <iw-button-item
               iconClass="mdi:close-circle"
-              label="Cancelar"
+              pTooltip="Cancelar" tooltipPosition="top"
               (click)="onCancel(item)"
             />
             }
 
             <!-- Generar y descargar acta para firma fósica -->
-            <il-button-download
+            <iw-button-download
               iconClass="mdi:file-edit"
               size="small"
               (clicked)="onGenerateAct(item)"
             />
 
             <!-- Subir acta firmada escaneada -->
-            <il-button-item
+            <iw-button-item
               iconClass="mdi:upload"
-              [label]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
+              [pTooltip]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'" tooltipPosition="top"
               (click)="onUploadSignedAct(item)"
             />
 
             <!-- Ver acta firmada en visor é solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
-            <il-button-view-pdf
+            <iw-button-view-pdf
               iconClass="mdi:file-pdf-box"
               [url]="item.administrativeActPdfUrl"
               fileName="Acta Administrativa"
@@ -134,14 +134,14 @@
             />
             }
 
-            <il-button-delete (confirmed)="onDelete(item.id)" />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="9" />
+    </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -167,7 +167,7 @@
           <app-icon
             icon="mdi:alert-circle-outline"
             style="font-size: 1.1rem; color: var(--ds-danger)"
-          ></app-icon>
+          />
         </div>
         <ion-label>
           <div class="flex justify-content-between align-items-center mb-1">
@@ -200,20 +200,20 @@
             >
           </div>
         </ion-label>
-        <app-action-menu slot="end">
+        <ili-action-menu slot="end">
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               label="Editar"
               iconName="create-outline"
               (clicked)="onEdit(item)"
             />
-            <il-button-item
+            <ili-button-item
               label="Resolver"
               iconName="checkmark-circle-outline"
               (clicked)="onResolve(item)"
             />
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

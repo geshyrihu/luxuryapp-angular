@@ -15,12 +15,15 @@ import { DiagramPreviewComponent } from "../components/diagram-preview";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 import { ROUTES } from "src/app/routing/route-paths";
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-manuals-and-processes-detail",
   templateUrl: "./manuals-and-processes-detail.html",
   styleUrls: [],
 
   imports: [
+    WebButtonIcon,
     CommonModule,
     ImageModule,
     TagModule,

@@ -21,41 +21,41 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import {
   CommandPalette,
   PaletteCommand,
-} from "src/app/core/components/shared/command-palette/command-palette";
+} from "src/app/core/components/web/command-palette/command-palette";
 import {
   ComparisonItem,
   ComparisonTable,
-} from "src/app/core/components/shared/comparison-table/comparison-table";
-import { ConfirmDialog } from "src/app/core/components/shared/confirm-dialog/confirm-dialog";
-import { ContextMenu } from "src/app/core/components/shared/context-menu/context-menu";
-import { DateRange } from "src/app/core/components/shared/date-range/date-range";
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { FileUpload } from "src/app/core/components/shared/file-upload/file-upload";
-import { FunnelChart } from "src/app/core/components/shared/funnel-chart/funnel-chart";
+} from "src/app/core/components/web/comparison-table/comparison-table";
+import { ConfirmDialog } from "src/app/core/components/web/confirm-dialog/confirm-dialog";
+import { ContextMenu } from "src/app/core/components/web/context-menu/context-menu";
+import { DateRange } from "src/app/core/components/web/date-range/date-range";
+import { EmptyState } from "src/app/core/components/web/empty-state/empty-state";
+import { FileUpload } from "src/app/core/components/web/file-upload/file-upload";
+import { FunnelChart } from "src/app/core/components/web/funnel-chart/funnel-chart";
 import { Gauge } from "src/app/core/components/shared/gauge/gauge";
 import {
   KanbanBoard,
   KanbanStage,
-} from "src/app/core/components/shared/kanban-board/kanban-board";
+} from "src/app/core/components/web/kanban-board/kanban-board";
 import { Loader } from "src/app/core/components/shared/loader/loader";
 import {
   NotificationCenter,
   NotificationItem,
-} from "src/app/core/components/shared/notification-center/notification-center";
-import { SplitPane } from "src/app/core/components/shared/split-pane/split-pane";
+} from "src/app/core/components/web/notification-center/notification-center";
+import { SplitPane } from "src/app/core/components/web/split-pane/split-pane";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/shared/status-badge/status-badge";
+} from "src/app/core/components/web/status-badge/status-badge";
 import { Tour, TourStep } from "src/app/core/components/shared/tour/tour";
 import {
   TreeTable,
   TreeTableColumn,
-} from "src/app/core/components/shared/tree-table/tree-table";
+} from "src/app/core/components/web/tree-table/tree-table";
 import {
   Wizard,
   WizardStep,
-} from "src/app/core/components/shared/wizard/wizard";
+} from "src/app/core/components/web/wizard/wizard";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 // 13.3.3 demos de prioridad baja
 import {
@@ -66,39 +66,39 @@ import {
   AvatarGroup,
   AvatarItem,
 } from "src/app/core/components/shared/avatar-group/avatar-group";
-import { AppBarcodeInput } from "src/app/core/components/shared/barcode-input/barcode-input";
-import { AppColorPicker } from "src/app/core/components/shared/color-picker/color-picker";
-import { AppCommentThread } from "src/app/core/components/shared/comment-thread/comment-thread";
+import { AppBarcodeInput } from "src/app/core/components/web/barcode-input/barcode-input";
+import { AppColorPicker } from "src/app/core/components/web/color-picker/color-picker";
+import { AppCommentThread } from "src/app/core/components/web/comment-thread/comment-thread";
 import {
   AppCustomer360,
   Customer360Data,
-} from "src/app/core/components/shared/customer-360/customer-360";
+} from "src/app/core/components/web/customer-360/customer-360";
 import {
   DashboardLayout,
   DashboardWidget,
-} from "src/app/core/components/shared/dashboard-layout/dashboard-layout";
+} from "src/app/core/components/web/dashboard-layout/dashboard-layout";
 import {
   DataGrid,
   DataGridColumn,
-} from "src/app/core/components/shared/data-grid/data-grid";
-import { AppDock } from "src/app/core/components/shared/dock/dock";
-import { DocumentPreviewer } from "src/app/core/components/shared/document-previewer/document-previewer";
-import { AppEmailPreview } from "src/app/core/components/shared/email-preview/email-preview";
+} from "src/app/core/components/web/data-grid/data-grid";
+import { AppDock } from "src/app/core/components/web/dock/dock";
+import { DocumentPreviewer } from "src/app/core/components/web/document-previewer/document-previewer";
+import { AppEmailPreview } from "src/app/core/components/web/email-preview/email-preview";
 import {
   AppFormBuilder,
   FormField,
-} from "src/app/core/components/shared/form-builder/form-builder";
+} from "src/app/core/components/web/form-builder/form-builder";
 import {
   AppGantt,
   GanttTask,
-} from "src/app/core/components/shared/gantt/gantt";
+} from "src/app/core/components/web/gantt/gantt";
 import {
   AppHeatmap,
   HeatmapCell,
-} from "src/app/core/components/shared/heatmap/heatmap";
+} from "src/app/core/components/web/heatmap/heatmap";
 import { AppInventoryLevel } from "src/app/core/components/shared/inventory-level/inventory-level";
 import { KpiCard } from "src/app/core/components/shared/kpi-card/kpi-card";
-import { AppLangSelector } from "src/app/core/components/shared/lang-selector/lang-selector";
+import { AppLangSelector } from "src/app/core/components/web/lang-selector/lang-selector";
 import {
   LeadScoreCategory,
   LeadScoring,
@@ -107,31 +107,31 @@ import {
   OrderStatus,
   OrderStatusStep,
 } from "src/app/core/components/shared/order-status/order-status";
-import { AppOtpInput } from "src/app/core/components/shared/otp-input/otp-input";
+import { AppOtpInput } from "src/app/core/components/web/otp-input/otp-input";
 import {
   AppPipelineCrm,
   PipelineStage,
-} from "src/app/core/components/shared/pipeline-crm/pipeline-crm";
+} from "src/app/core/components/web/pipeline-crm/pipeline-crm";
 import {
   PivotDimension,
   PivotTable,
   PivotValue,
-} from "src/app/core/components/shared/pivot-table/pivot-table";
-import { AppPrintView } from "src/app/core/components/shared/print-view/print-view";
-import { AppProfileCard } from "src/app/core/components/shared/profile-card/profile-card";
-import { AppQrCode } from "src/app/core/components/shared/qr-code/qr-code";
-import { AppRating } from "src/app/core/components/shared/rating/rating";
+} from "src/app/core/components/web/pivot-table/pivot-table";
+import { AppPrintView } from "src/app/core/components/web/print-view/print-view";
+import { AppProfileCard } from "src/app/core/components/web/profile-card/profile-card";
+import { AppQrCode } from "src/app/core/components/web/qr-code/qr-code";
+import { AppRating } from "src/app/core/components/web/rating/rating";
 import { AppRealtimeIndicator } from "src/app/core/components/shared/realtime-indicator/realtime-indicator";
-import { AppSignaturePad } from "src/app/core/components/shared/signature-pad/signature-pad";
-import { SkeletonPresets } from "src/app/core/components/shared/skeleton-presets/skeleton-presets";
-import { AppSlider } from "src/app/core/components/shared/slider/slider";
+import { AppSignaturePad } from "src/app/core/components/web/signature-pad/signature-pad";
+import { SkeletonPresets } from "src/app/core/components/web/skeleton-presets/skeleton-presets";
+import { AppSlider } from "src/app/core/components/web/slider/slider";
 import { AppStatCard } from "src/app/core/components/shared/stat-card/stat-card";
-import { AppTagInput } from "src/app/core/components/shared/tag-input/tag-input";
-import { AppThemeSwitcher } from "src/app/core/components/shared/theme-switcher/theme-switcher";
+import { AppTagInput } from "src/app/core/components/web/tag-input/tag-input";
+import { AppThemeSwitcher } from "src/app/core/components/web/theme-switcher/theme-switcher";
 import {
   Timeline,
   TimelineEvent,
-} from "src/app/core/components/shared/timeline/timeline";
+} from "src/app/core/components/web/timeline/timeline";
 import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switch/tristate-switch";
 import { CATALOG_DEMO_AVATARS } from "../../../shared/catalog-demo-data";
 
@@ -282,7 +282,7 @@ const CORE_LABELS: Record<string, string> = {
               Dentro de <code>app-action-menu</code> los botones muestran
               <strong>icono + label alineados</strong>. Siempre agrega
               <code>[showLabelOnDesktop]="true"</code> y un
-              <code>label</code> expl�cito.
+              <code>label</code> explócito.
             </p>
             <div class="flex gap-4">
               <div>
@@ -399,14 +399,14 @@ const CORE_LABELS: Record<string, string> = {
         @case ("confirmdialog") {
           <p-card header="Confirm Dialog">
             <p-button
-              label="Abrir confirmaci�n"
+              label="Abrir confirmación"
               severity="danger"
               (onClick)="confirmVisible.set(true)"
             />
             <app-confirm-dialog
               [(visible)]="confirmVisible"
               title="Eliminar registro"
-              message="�Est�s seguro?"
+              message="óEstés seguro?"
               type="danger"
               confirmLabel="Eliminar"
             />
@@ -460,7 +460,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
             <div class="col-12 md:col-6 lg:col-3">
               <app-kpi-card
-                label="Conversi�n"
+                label="Conversión"
                 [value]="68"
                 format="percent"
                 suffix="%"
@@ -1217,7 +1217,7 @@ export class CatalogCoreItem {
   readonly timelineEvents: TimelineEvent[] = [
     {
       title: "Solicitud recibida",
-      description: "El cliente envi� la solicitud de compra.",
+      description: "El cliente envió la solicitud de compra.",
       date: "10 Jun 2026",
       icon: "mdi:inbox-arrow-down",
       color: "var(--ds-primary)",
@@ -1225,8 +1225,8 @@ export class CatalogCoreItem {
       badgeColor: "primary",
     },
     {
-      title: "Revisi�n de cr�dito",
-      description: "Validaci�n aprobada por el �rea financiera.",
+      title: "Revisión de cródito",
+      description: "Validación aprobada por el órea financiera.",
       date: "12 Jun 2026",
       icon: "mdi:shield-check",
       color: "var(--ds-success)",
@@ -1299,7 +1299,7 @@ export class CatalogCoreItem {
     },
     {
       id: "negotiation",
-      name: "Negociaci�n",
+      name: "Negociación",
       color: "var(--ds-primary)",
       deals: [
         {
@@ -1377,7 +1377,7 @@ export class CatalogCoreItem {
       id: "1",
       label: "Solicitante",
       status: "approved",
-      assignee: "Juan Garc�a",
+      assignee: "Juan Garcóa",
       date: "10 Jun 2026",
       comment: "Solicitud generada.",
     },
@@ -1385,15 +1385,15 @@ export class CatalogCoreItem {
       id: "2",
       label: "Jefe de Área",
       status: "approved",
-      assignee: "Mar�a L�pez",
+      assignee: "Maróa López",
       date: "11 Jun 2026",
     },
     { id: "3", label: "Finanzas", status: "pending", assignee: "Carlos Ruiz" },
     {
       id: "4",
-      label: "Direcci�n",
+      label: "Dirección",
       status: "pending",
-      assignee: "Ana Mart�nez",
+      assignee: "Ana Martúnez",
     },
   ];
 
@@ -1413,7 +1413,7 @@ export class CatalogCoreItem {
       icon: "mdi:check-circle",
     },
     {
-      label: "En tr�nsito",
+      label: "En trónsito",
       date: "13 Jun 2026",
       completed: false,
       active: true,
@@ -1429,26 +1429,26 @@ export class CatalogCoreItem {
 
   readonly dashWidgets: DashboardWidget[] = [
     { id: "w1", title: "KPIs Generales", cols: 2, rows: 1 },
-    { id: "w2", title: "Gr�fica de Ventas", cols: 1, rows: 1 },
+    { id: "w2", title: "Grófica de Ventas", cols: 1, rows: 1 },
     { id: "w3", title: "Pipeline CRM", cols: 3, rows: 1 },
     { id: "w4", title: "Actividad Reciente", cols: 1, rows: 1 },
-    { id: "w5", title: "Inventario Cr�tico", cols: 2, rows: 1 },
+    { id: "w5", title: "Inventario Crótico", cols: 2, rows: 1 },
   ];
 
   readonly sampleComments = [
     {
       id: "1",
-      author: "Juan Garc�a",
+      author: "Juan Garcóa",
       authorInitials: "JG",
-      content: "El cliente solicit� extensi�n de plazo de pago a 45 d�as.",
+      content: "El cliente solicitú extensión de plazo de pago a 45 días.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
     {
       id: "2",
-      author: "Mar�a L�pez",
+      author: "Maróa López",
       authorInitials: "ML",
-      content: "Confirmado con finanzas. Se aplicar� a partir de julio.",
+      content: "Confirmado con finanzas. Se aplicaré a partir de julio.",
       timestamp: new Date("2026-06-24T10:30:00"),
       read: false,
     },
@@ -1456,16 +1456,16 @@ export class CatalogCoreItem {
 
   readonly emailHtml = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmaci�n de Orden</h2>
+      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y est� en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y esté en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material el�ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material elóctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP � sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP é sistema@luxuryapp.mx</p>
     </div>`;
 
   private resolvePrimaryColor(): string {
@@ -1483,16 +1483,16 @@ export class CatalogCoreItem {
 
   readonly emailHtmlTokenized = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmaci�n de Orden</h2>
+      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y est� en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y esté en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material el�ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material elóctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP � sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP é sistema@luxuryapp.mx</p>
     </div>`;
 
   readonly formSchema: FormField[] = [
@@ -1501,12 +1501,12 @@ export class CatalogCoreItem {
       type: "text",
       label: "Nombre completo",
       required: true,
-      placeholder: "Juan Garc�a",
+      placeholder: "Juan Garcóa",
     },
     {
       key: "email",
       type: "email",
-      label: "Correo electr�nico",
+      label: "Correo electrónico",
       required: true,
     },
     {
@@ -1543,7 +1543,7 @@ export class CatalogCoreItem {
     company: "GHR SA de CV",
     email: "contacto@ghr.mx",
     phone: "+52 55 9876 5432",
-    tags: ["Premium", "Hoteler�a", "CDMX"],
+    tags: ["Premium", "Hoteleróa", "CDMX"],
     totalRevenue: 2450000,
     openDeals: 3,
     lastContact: "24 Jun 2026",
@@ -1552,27 +1552,27 @@ export class CatalogCoreItem {
       {
         icon: "mdi:phone",
         text: "Llamada de seguimiento Q3",
-        time: "Hace 2 d�as",
+        time: "Hace 2 días",
       },
       {
         icon: "mdi:email",
         text: "Propuesta enviada por email",
-        time: "Hace 5 d�as",
+        time: "Hace 5 días",
       },
       {
         icon: "mdi:calendar",
-        text: "Reuni�n de revisi�n anual",
+        text: "Reunión de revisión anual",
         time: "Hace 2 sem.",
       },
     ],
     deals: [
       {
-        title: "Remodelaci�n Lobby",
-        stage: "Negociaci�n",
+        title: "Remodelación Lobby",
+        stage: "Negociación",
         value: 850000,
       },
       { title: "Mantenimiento anual", stage: "Propuesta", value: 420000 },
-      { title: "Instalaci�n AC", stage: "Prospecto" },
+      { title: "Instalación AC", stage: "Prospecto" },
     ],
   };
 
@@ -1585,7 +1585,7 @@ export class CatalogCoreItem {
   ];
 
   readonly heatmapData: HeatmapCell[] = [
-    ...[["Lun", "Mar", "Mi�", "Jue", "Vie"]].flatMap((cols) =>
+    ...[["Lun", "Mar", "Mié", "Jue", "Vie"]].flatMap((cols) =>
       [
         "08:00",
         "09:00",
@@ -1612,8 +1612,8 @@ export class CatalogCoreItem {
   readonly ganttTasks: GanttTask[] = [
     {
       id: "g1",
-      name: "Dise�o de arquitectura",
-      group: "Planificaci�n",
+      name: "Diseóo de arquitectura",
+      group: "Planificación",
       startDate: new Date("2026-07-01"),
       endDate: new Date("2026-07-07"),
       progress: 100,
@@ -1653,7 +1653,7 @@ export class CatalogCoreItem {
     },
     {
       id: "g5",
-      name: "Despliegue producci�n",
+      name: "Despliegue producción",
       group: "Deploy",
       startDate: new Date("2026-08-06"),
       endDate: new Date("2026-08-08"),
@@ -1713,8 +1713,8 @@ export class CatalogCoreItem {
       id: "1",
       type: "call",
       title: "Llamada con el cliente",
-      description: "Se discuti� el presupuesto para Q3.",
-      user: "Juan Garc�a",
+      description: "Se discutié el presupuesto para Q3.",
+      user: "Juan Garcóa",
       timestamp: new Date("2026-06-24T10:00:00"),
     },
     {
@@ -1722,14 +1722,14 @@ export class CatalogCoreItem {
       type: "email",
       title: "Propuesta enviada",
       description: "Propuesta comercial por $120,000 MXN.",
-      user: "Mar�a L�pez",
+      user: "Maróa López",
       timestamp: new Date("2026-06-23T15:30:00"),
     },
     {
       id: "3",
       type: "meeting",
-      title: "Reuni�n de seguimiento",
-      description: "Revisi�n de avances del proyecto.",
+      title: "Reunión de seguimiento",
+      description: "Revisión de avances del proyecto.",
       user: "Carlos Ruiz",
       timestamp: new Date("2026-06-22T09:00:00"),
     },
@@ -1738,14 +1738,14 @@ export class CatalogCoreItem {
       type: "note",
       title: "Nota interna",
       description: "El cliente solicita entrega antes del 30 de junio.",
-      user: "Ana Mart�nez",
+      user: "Ana Martúnez",
       timestamp: new Date("2026-06-21T17:00:00"),
     },
     {
       id: "5",
       type: "approval",
-      title: "Aprobaci�n de cr�dito",
-      description: "Aprobado por el �rea financiera.",
+      title: "Aprobación de cródito",
+      description: "Aprobado por el órea financiera.",
       user: "Sistema",
       timestamp: new Date("2026-06-20T12:00:00"),
     },
@@ -1759,7 +1759,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k1",
-          title: "Actualizar documentaci�n",
+          title: "Actualizar documentación",
           stage: "todo",
           priority: "low",
           tags: ["docs"],
@@ -1780,7 +1780,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k3",
-          title: "Integraci�n con SAT",
+          title: "Integración con SAT",
           stage: "in-progress",
           priority: "high",
           assignee: "JG",
@@ -1790,7 +1790,7 @@ export class CatalogCoreItem {
     },
     {
       id: "review",
-      title: "Revisi�n",
+      title: "Revisión",
       color: "var(--ds-info)",
       cards: [
         {
@@ -1809,7 +1809,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k5",
-          title: "Migraci�n de base de datos",
+          title: "Migración de base de datos",
           stage: "done",
           priority: "critical",
           assignee: "CR",
@@ -1921,7 +1921,7 @@ export class CatalogCoreItem {
     },
     {
       id: "settings",
-      label: "Configuraci�n",
+      label: "Configuración",
       description: "Abrir preferencias del sistema",
       icon: "mdi:cog",
       category: "Sistema",
@@ -1933,30 +1933,30 @@ export class CatalogCoreItem {
   tourVisible = signal(false);
   readonly tourSteps: TourStep[] = [
     {
-      title: "�Bienvenido al sistema!",
+      title: "óBienvenido al sistema!",
       description:
-        "Este tour te guiar� por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
+        "Este tour te guiaré por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
       icon: "mdi:hand-wave",
       position: "center",
     },
     {
-      title: "Men� lateral",
+      title: "Mení lateral",
       description:
-        "Aqu� encontrar�s todos los m�dulos del ERP organizados por �rea.",
+        "Aqué encontrarós todos los módulos del ERP organizados por órea.",
       icon: "mdi:menu",
       position: "center",
     },
     {
       title: "Design System",
       description:
-        "El cat�logo de componentes est� disponible para SuperUsuarios en el men� lateral.",
+        "El catálogo de componentes esté disponible para SuperUsuarios en el mení lateral.",
       icon: "mdi:palette",
       position: "center",
     },
     {
-      title: "�Listo!",
+      title: "óListo!",
       description:
-        "Ya conoces lo b�sico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
+        "Ya conoces lo bósico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
       icon: "mdi:check-circle",
       position: "center",
     },

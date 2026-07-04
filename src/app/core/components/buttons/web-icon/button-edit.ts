@@ -14,7 +14,8 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:pencil'" />
+      <!-- <app-icon [icon]="iconClass() || 'mdi:pencil'" /> -->
+      <app-icon [icon]="iconClass() || 'fluent-color:drafts-16'" />
     </button>
   `,
 })
@@ -24,4 +25,3 @@ export class WebButtonIconEdit extends BaseButton {
   );
   override severity = input<any>("info");
 }
-

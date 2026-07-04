@@ -85,15 +85,9 @@
           </td>
           <td class="text-center">
             @if (item.priority === "Alta") {
-            <app-icon
-              [icon]="'mdi:star-outline'"
-              class="icon icon- icon-xl"
-            ></app-icon>
+            <app-icon [icon]="'mdi:star-outline'" class="icon icon- icon-xl" />
             } @if (item.priority === "Baja") {
-            <app-icon
-              [icon]="'mdi:star-outline'"
-              class="icon icon- icon-xl"
-            ></app-icon>
+            <app-icon [icon]="'mdi:star-outline'" class="icon icon- icon-xl" />
             }
           </td>
           <td>{{ item.scheduledAt }}</td>
@@ -115,7 +109,7 @@
   (click): Ejecuta la función deseada.
   p-badge: Muestra el contador. Se oculta si el contador es 0.
 -->
-              <il-button-tracking
+              <iw-button-tracking
                 iconClass="mdi:star-outline"
                 ngbTooltip="Dar seguimiento"
                 [badgeCount]="item.ticketMessageFollowUp"
@@ -162,8 +156,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="10" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="10" />
+      </ng-template>
     </p-table>
     }
   </div>

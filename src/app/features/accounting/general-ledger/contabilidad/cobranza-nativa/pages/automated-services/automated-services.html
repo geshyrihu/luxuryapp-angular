@@ -1,45 +1,64 @@
 <div class="p-3 md:p-4">
-
   <!-- Info header -->
-  <div class="mb-4 p-3 bg-indigo-50 border-round border-1 border-indigo-200 flex gap-2 align-items-start">
-    <app-icon [icon]="'mdi:cog'" class="text-indigo-600 mt-1 text-xl"></app-icon>
+  <div
+    class="mb-4 p-3 bg-indigo-50 border-round border-1 border-indigo-200 flex gap-2 align-items-start"
+  >
+    <app-icon [icon]="'mdi:cog'" class="text-indigo-600 mt-1 text-xl" />
     <div>
-      <div class="font-bold text-indigo-800 mb-1">Servicios Automatizados del Sistema</div>
+      <div class="font-bold text-indigo-800 mb-1">
+        Servicios Automatizados del Sistema
+      </div>
       <div class="text-sm text-indigo-700 line-height-3">
-        Estos procesos se ejecutan automaticamente via jobs nocturnos (Hangfire/CRON).
-        Tambien puedes dispararlos manualmente desde aqui cuando sea necesario,
-        por ejemplo tras una importacion masiva o para probar el sistema.
+        Estos procesos se ejecutan automaticamente via jobs nocturnos
+        (Hangfire/CRON). Tambien puedes dispararlos manualmente desde aqui
+        cuando sea necesario, por ejemplo tras una importacion masiva o para
+        probar el sistema.
       </div>
     </div>
   </div>
 
   <div class="grid">
-
     <!-- Job 1: Generacion de cargos -->
     <div class="col-12 md:col-6">
-      <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+      <div
+        class="surface-card border-round-xl border-1 surface-border p-4 h-full"
+      >
         <div class="flex align-items-center gap-2 mb-3">
-          <div class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center">
-            <app-icon [icon]="'mdi:plus-circle'" class="text-green-600"></app-icon>
+          <div
+            class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center"
+          >
+            <app-icon [icon]="'mdi:plus-circle'" class="text-green-600" />
           </div>
           <div class="font-semibold">Generacion de Cargos Mensuales</div>
         </div>
         <p class="text-sm text-500 line-height-3 mb-3">
-          Crea automaticamente los cargos del mes para todas las propiedades activas,
-          basandose en las plantillas configuradas (mantenimiento, cuotas extraordinarias, etc.).
-          Calcula montos por indiviso cuando aplica.
+          Crea automaticamente los cargos del mes para todas las propiedades
+          activas, basandose en las plantillas configuradas (mantenimiento,
+          cuotas extraordinarias, etc.). Calcula montos por indiviso cuando
+          aplica.
         </p>
         <div class="text-xs text-400 mb-3">
-          <span class="font-medium">Cron:</span> Primer dia de cada mes, 06:00 AM &nbsp;|&nbsp;
+          <span class="font-medium">Cron:</span> Primer dia de cada mes, 06:00
+          AM &nbsp;|&nbsp;
           <span class="font-medium">Permiso:</span> Administrador
         </div>
         <!-- Parametros -->
         <div class="grid formgrid align-items-end mb-3">
           <div class="field col-6">
-            <custom-input-select-signal label="Mes" [data]="monthOptions()" [control]="monthCtrl" [noMargin]="true" [filter]="true" />
+            <custom-input-select-signal
+              label="Mes"
+              [data]="monthOptions()"
+              [control]="monthCtrl"
+              [noMargin]="true"
+              [filter]="true"
+            />
           </div>
           <div class="field col-6">
-            <custom-input-number-signal label="Año" [control]="yearCtrl" [noMargin]="true" />
+            <custom-input-number-signal
+              label="Año"
+              [control]="yearCtrl"
+              [noMargin]="true"
+            />
           </div>
         </div>
         <il-button
@@ -55,17 +74,22 @@
 
     <!-- Job 2: Recargos por mora -->
     <div class="col-12 md:col-6">
-      <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+      <div
+        class="surface-card border-round-xl border-1 surface-border p-4 h-full"
+      >
         <div class="flex align-items-center gap-2 mb-3">
-          <div class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center">
-            <app-icon [icon]="'mdi:percent'" class="text-orange-600"></app-icon>
+          <div
+            class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center"
+          >
+            <app-icon [icon]="'mdi:percent'" class="text-orange-600" />
           </div>
           <div class="font-semibold">Calculo de Recargos por Mora</div>
         </div>
         <p class="text-sm text-500 line-height-3 mb-3">
-          Detecta cargos vencidos y aplica los recargos configurados en las politicas de mora
-          (fijo o porcentaje, con dias de gracia). Genera nuevos cargos de tipo "Recargo Mora"
-          y los registra en el ledger financiero.
+          Detecta cargos vencidos y aplica los recargos configurados en las
+          politicas de mora (fijo o porcentaje, con dias de gracia). Genera
+          nuevos cargos de tipo "Recargo Mora" y los registra en el ledger
+          financiero.
         </p>
         <div class="text-xs text-400 mb-3">
           <span class="font-medium">Cron:</span> Diario, 03:00 AM &nbsp;|&nbsp;
@@ -84,17 +108,21 @@
 
     <!-- Job 3: Escalada a cobranza legal -->
     <div class="col-12 md:col-6">
-      <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+      <div
+        class="surface-card border-round-xl border-1 surface-border p-4 h-full"
+      >
         <div class="flex align-items-center gap-2 mb-3">
-          <div class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center">
-            <app-icon [icon]="'mdi:alert'" class="text-red-600"></app-icon>
+          <div
+            class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center"
+          >
+            <app-icon [icon]="'mdi:alert'" class="text-red-600" />
           </div>
           <div class="font-semibold">Escalada a Cobranza Legal (Gestoria)</div>
         </div>
         <p class="text-sm text-500 line-height-3 mb-3">
-          Analiza la antiguedad de deuda por propiedad (30/60/90+ dias).
-          Las que superan el umbral configurado se promueven automaticamente
-          a un Caso de Cobranza para seguimiento por un gestor.
+          Analiza la antiguedad de deuda por propiedad (30/60/90+ dias). Las que
+          superan el umbral configurado se promueven automaticamente a un Caso
+          de Cobranza para seguimiento por un gestor.
         </p>
         <div class="text-xs text-400 mb-3">
           <span class="font-medium">Cron:</span> Lunes, 07:00 AM &nbsp;|&nbsp;
@@ -113,17 +141,22 @@
 
     <!-- Job 4: Auto-conciliacion -->
     <div class="col-12 md:col-6">
-      <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+      <div
+        class="surface-card border-round-xl border-1 surface-border p-4 h-full"
+      >
         <div class="flex align-items-center gap-2 mb-3">
-          <div class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center">
-            <app-icon [icon]="'mdi:sync'" class="text-blue-600"></app-icon>
+          <div
+            class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center"
+          >
+            <app-icon [icon]="'mdi:sync'" class="text-blue-600" />
           </div>
           <div class="font-semibold">Auto-Conciliacion de Pagos</div>
         </div>
         <p class="text-sm text-500 line-height-3 mb-3">
           Busca pagos registrados sin aplicar (bolsa de pagos no identificados)
           e intenta cruzarlos automaticamente con cargos pendientes de la misma
-          propiedad usando logica FIFO. Util tras importaciones masivas de estado de cuenta.
+          propiedad usando logica FIFO. Util tras importaciones masivas de
+          estado de cuenta.
         </p>
         <div class="text-xs text-400 mb-3">
           <span class="font-medium">Cron:</span> Cada 4 horas &nbsp;|&nbsp;
@@ -144,42 +177,61 @@
     <div class="col-12">
       <div class="surface-card border-round-xl border-1 surface-border p-4">
         <div class="flex align-items-center gap-2 mb-3">
-          <div class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center">
-            <app-icon [icon]="'mdi:lightning-bolt'" class="text-purple-600"></app-icon>
+          <div
+            class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center"
+          >
+            <app-icon [icon]="'mdi:lightning-bolt'" class="text-purple-600" />
           </div>
           <div class="font-semibold">Webhooks de Pasarelas de Pago</div>
-          <span class="badge bg-yellow-100 text-yellow-800 text-xs ml-2">Infraestructura lista, pendiente de activar</span>
+          <span class="badge bg-yellow-100 text-yellow-800 text-xs ml-2"
+            >Infraestructura lista, pendiente de activar</span
+          >
         </div>
         <p class="text-sm text-500 line-height-3">
-          El sistema cuenta con un endpoint publico para recibir notificaciones automaticas
-          de pasarelas de pago externas como <strong>Conekta</strong>, <strong>Stripe</strong> y <strong>STP</strong>.
-          Cuando una pasarela notifique un pago confirmado, el sistema lo procesara automaticamente
-          y lo aplicara al cargo correspondiente, sin intervencion manual.
-          Esta funcionalidad se activara cuando se contrate la pasarela de pago.
+          El sistema cuenta con un endpoint publico para recibir notificaciones
+          automaticas de pasarelas de pago externas como
+          <strong>Conekta</strong>, <strong>Stripe</strong> y
+          <strong>STP</strong>. Cuando una pasarela notifique un pago
+          confirmado, el sistema lo procesara automaticamente y lo aplicara al
+          cargo correspondiente, sin intervencion manual. Esta funcionalidad se
+          activara cuando se contrate la pasarela de pago.
         </p>
         <div class="text-xs text-400 mt-2">
-          Endpoint: <span class="font-mono">POST /api/accounting-coi/native-collection/webhooks/pasarela</span>
+          Endpoint:
+          <span class="font-mono"
+            >POST /api/accounting-coi/native-collection/webhooks/pasarela</span
+          >
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- Historial de ejecuciones manuales -->
   @if (results().length > 0) {
-    <div class="mt-4">
-      <label class="text-500 text-xs uppercase font-medium">Historial de esta sesion</label>
-      <div class="mt-2 flex flex-column gap-2">
-        @for (r of results(); track r.executedAt) {
-          <div class="flex align-items-center gap-3 p-2 surface-50 border-round border-1 surface-border text-sm">
-            <app-icon [icon]="'mdi:check-circle'" class="pi" [class]="r.success ? ' text-green-600' : 'mdi:close-circle text-red-600'"></app-icon>
-            <span class="font-medium">{{ r.jobName }}</span>
-            <span class="text-500">{{ r.recordsAffected }} registros afectados</span>
-            <span class="text-400 ml-auto">{{ r.executedAt | date:'HH:mm:ss' }}</span>
-          </div>
-        }
+  <div class="mt-4">
+    <label class="text-500 text-xs uppercase font-medium"
+      >Historial de esta sesion</label
+    >
+    <div class="mt-2 flex flex-column gap-2">
+      @for (r of results(); track r.executedAt) {
+      <div
+        class="flex align-items-center gap-3 p-2 surface-50 border-round border-1 surface-border text-sm"
+      >
+        <app-icon
+          [icon]="'mdi:check-circle'"
+          class="pi"
+          [class]="r.success ? ' text-green-600' : 'mdi:close-circle text-red-600'"
+        />
+        <span class="font-medium">{{ r.jobName }}</span>
+        <span class="text-500"
+          >{{ r.recordsAffected }} registros afectados</span
+        >
+        <span class="text-400 ml-auto"
+          >{{ r.executedAt | date:'HH:mm:ss' }}</span
+        >
       </div>
+      }
     </div>
+  </div>
   }
-
 </div>

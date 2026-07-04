@@ -47,8 +47,8 @@
         </td>
         <td class="text-center">
           @if (item.status === EFinancialApprovalStatus.Pendiente) {
-          <il-button
-            label="Revisar"
+          <iw-button
+            pTooltip="Revisar" tooltipPosition="top"
             iconClass="mdi:eye-outline"
             size="small"
             severity="warn"
@@ -60,8 +60,8 @@
     </ng-template>
 
     <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
-  </ng-template>
+      <primeng-custom-table-emptymessage [colspan]="6" />
+    </ng-template>
   </p-table>
 </div>
 
@@ -79,7 +79,7 @@
         <app-icon
           icon="mdi:shield-check-outline"
           class="text-purple-600 text-xl"
-        ></app-icon>
+        />
       </div>
       <ion-label>
         <h3>{{ operationLabel(item.operationType) }}</h3>
@@ -90,14 +90,11 @@
         </p>
       </ion-label>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-edit
-            (clicked)="openDetail(item)"
-            label="Editar"
-          />
+          <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
       }
     </ion-item>
   </ng-template>

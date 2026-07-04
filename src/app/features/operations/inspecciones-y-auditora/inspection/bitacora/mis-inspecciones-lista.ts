@@ -7,9 +7,9 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -22,13 +22,13 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   selector: "app-mis-inspecciones-lista",
   imports: [
     PrimeNgCustomTableEmptyMessage,
-    ActionMenu,
+    MobileActionMenu,
     CardModule,
     NgbTooltipModule,
     CommonModule,
     CustomInputDateSignal,
     DataViewMobile,
-    WebButtonLabelItem,
+    MobileButtonLabelItem,
     ReactiveFormsModule,
     RouterModule,
     TableModule,

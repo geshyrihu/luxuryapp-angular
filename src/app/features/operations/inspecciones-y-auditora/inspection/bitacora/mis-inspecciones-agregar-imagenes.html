@@ -2,7 +2,7 @@
   <!-- Input para cargar imógenes -->
   <div class="flex justify-content-center gap-2 mb-3">
     <!-- Botón para abrir la cómara -->
-    <il-button
+    <iw-button
       iconClass="mdi:camera"
       variant="outlined"
       (clicked)="cameraInput.click()"
@@ -17,7 +17,7 @@
     />
 
     <!-- Botón para abrir la galeróa -->
-    <il-button
+    <iw-button
       iconClass="mdi:image"
       severity="secondary"
       variant="outlined"
@@ -44,9 +44,9 @@
         style="object-fit: cover; aspect-ratio: 1/1"
         alt="Imagen seleccionada"
       />
-      <il-button
+      <iw-button
         iconClass="mdi:delete"
-        ngbTooltip="Eliminar"
+        pTooltip="Eliminar" tooltipPosition="bottom"
         severity="danger"
         size="sm"
         variant="ghost-text"
@@ -68,7 +68,7 @@
         style="object-fit: cover; aspect-ratio: 1/1"
         alt="Imagen subida"
       />
-      <il-button
+      <iw-button
         iconClass="mdi:close"
         severity="danger"
         size="sm"

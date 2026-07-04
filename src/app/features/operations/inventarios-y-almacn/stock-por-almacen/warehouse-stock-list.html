@@ -97,31 +97,31 @@
           <td class="text-center">{{ item.compraRequerida }}</td>
           <td class="no-print">
             <div class="flex">
-              <il-button-item
+              <iw-button-item
                 [iconClass]="'mdi:plus'"
-                label="Entrada"
+                pTooltip="Entrada" tooltipPosition="top"
                 (clicked)="onAddEntrada({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
-              <il-button-item
+              <iw-button-item
                 iconClass="mdi:minus"
-                label="Salida"
+                pTooltip="Salida" tooltipPosition="top"
                 (clicked)="onAddSalida({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
-              <il-button-edit
+              <iw-button-edit
                 (clicked)="editProductos({ id: item.id, title: 'Editar' })"
               />
               @if (item.existencia <= 0) {
-              <il-button-delete (confirmed)="onDelete(item.id)" />
+              <iw-button-delete (confirmed)="onDelete(item.id)" />
               }
             </div>
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="7" />
+      </ng-template>
     </p-table>
   </div>
 </div>
@@ -155,7 +155,7 @@
         <app-icon
           icon="mdi:warehouse"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
 
       <ion-label>
@@ -172,9 +172,9 @@
           {{ item.existencia }}
         </span>
 
-        <app-action-menu>
+        <ili-action-menu>
           <ng-container actions>
-            <il-button-item
+            <ili-button-item
               iconName="add-outline"
               label="Entrada"
               (clicked)="
@@ -187,7 +187,7 @@
               "
             />
 
-            <il-button-item
+            <ili-button-item
               iconName="ellipsis-horizontal-outline"
               label="Salida"
               (clicked)="
@@ -201,18 +201,18 @@
               "
             />
 
-            <il-button-edit
+            <ili-button-edit
               (clicked)="editProductos({ id: item.id, title: 'Editar' })"
               label="Editar"
             />
             @if (item.existencia <= 0) {
-            <il-button-delete
+            <ili-button-delete
               (confirmed)="onDelete(item.id)"
               label="Eliminar"
             />
             }
           </ng-container>
-        </app-action-menu>
+        </ili-action-menu>
       </div>
     </ion-item>
   </ng-template>

@@ -59,7 +59,9 @@
 // DM Sans se carga desde index.html para evitar FOUT y optimizar CSP.
 
 body {
-  font-family: var(--ds-font-family-base), "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
+  font-family:
+    var(--ds-font-family-base), "Segoe UI Emoji", "Apple Color Emoji",
+    "Noto Color Emoji", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -88,7 +90,13 @@ iconify-icon {
   display: inline-block;
   width: 1em;
   height: 1em;
-  vertical-align: -.125em;
+  vertical-align: -0.125em;
+}
+
+/* 9. MODAL BORDER OVERRIDE */
+body .p-dialog {
+  border: 1px solid var(--ds-border) !important;
+  border-radius: 3px !important;
 }
 
 /* 🖼️ FIX: PrimeNG Image Preview en Móvil (Ionic)

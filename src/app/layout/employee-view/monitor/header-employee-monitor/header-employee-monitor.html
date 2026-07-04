@@ -13,7 +13,7 @@
           pTooltip="Menú"
           tooltipPosition="bottom"
         >
-          <app-icon icon="fluent-color:text-bullet-list-square-24"></app-icon>
+          <app-icon icon="fluent-color:text-bullet-list-square-24" />
         </button>
 
         <!-- Selector de Condominio -->
@@ -71,7 +71,7 @@
 
     <ng-template #center>
       <!-- <span class="flex align-items-center gap-2">
-        <app-icon icon="flag:mx-4x3" style="font-size: 1.25rem"></app-icon>
+        <app-icon icon="flag:mx-4x3" style="font-size: 1.25rem"/>
         ¿Pero, y si si? 🤩🥳
       </span> -->
     </ng-template>
@@ -94,7 +94,7 @@
           <app-icon
             [icon]="navIcon.iconClass"
             [class.pi-spin]="navIcon.iconExtraClass?.includes('pi-spin')"
-          ></app-icon>
+          />
         </button>
         } }
 
@@ -106,7 +106,7 @@
           pTooltip="Cambiar Tema"
           tooltipPosition="bottom"
         >
-          <app-icon [icon]="getThemeIcon()"></app-icon>
+          <app-icon [icon]="getThemeIcon()" />
         </button>
 
         <!-- Componentes de la derecha -->
@@ -245,7 +245,7 @@
                 <app-icon
                   [icon]="['mdi:information', 'mdi:shield-outline', 'mdi:account-group', 'mdi:check-circle'][i % 4]"
                   class="text-xl"
-                ></app-icon>
+                />
               </div>
               <div class="flex-1">
                 <p

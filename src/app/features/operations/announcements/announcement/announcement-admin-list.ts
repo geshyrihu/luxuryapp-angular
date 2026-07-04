@@ -33,9 +33,27 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
 import { IAnnouncementAdminList } from "./announcement.model";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/button-download";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+
 @Component({
   selector: "app-announcement-admin-list",
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonIconDownload,
+    WebButtonIconItem,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     RouterModule,

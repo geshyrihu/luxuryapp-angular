@@ -24,9 +24,14 @@ export interface SeguimientoEvent {
   idMeetingSeguimiento: number;
 }
 
+import { WebButtonIconAdd } from "src/app/core/components/buttons/web-icon/button-add";
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+
 @Component({
   selector: "app-area-details-table",
   imports: [
+    WebButtonIconAdd,
+    WebButtonIconConfirm,
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelItem,
     WebButtonLabelEdit,

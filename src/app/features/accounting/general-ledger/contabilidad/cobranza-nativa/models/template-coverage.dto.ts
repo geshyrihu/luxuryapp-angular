@@ -14,7 +14,11 @@ export interface TemplateCoverageDTO {
   indivisoPercentage: number | null;
   templateId: string;
   templateName: string;
+  chargeTypeId?: string | null;
   chargeType: EChargeType;
+  chargeTypeCode?: string | null;
+  chargeTypeName?: string | null;
+  chargeTypeAccountNumber?: string | null;
   calculationMethod: ECalculationMethod;
   baseAmount: number;
   recurrence: ERecurrence;

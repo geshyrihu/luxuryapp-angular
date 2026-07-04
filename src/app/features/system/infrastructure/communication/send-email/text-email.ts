@@ -15,7 +15,7 @@ export class TextEmail {
 
   onSendEmail() {
     if (!this.emailControl.value) {
-      alert("Por favor, ingresa un correo vólido");
+      alert("Por favor, ingresa un correo vÃ³lido");
       return;
     }
 

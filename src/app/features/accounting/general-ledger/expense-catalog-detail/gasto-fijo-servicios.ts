@@ -29,10 +29,15 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-gasto-fijo-servicios",
   templateUrl: "./gasto-fijo-servicios.html",
   imports: [
+    WebButtonIconItem,
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,

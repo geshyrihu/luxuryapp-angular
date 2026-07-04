@@ -1,36 +1,25 @@
-import { Component, input } from "@angular/core";
-import { PieChartModule } from "@swimlane/ngx-charts";
+import { Component, computed, input } from "@angular/core";
+import { NgxEchartsDirective } from "ngx-echarts";
+import type { EChartsCoreOption } from "echarts/core";
+import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
 
 /**
- * 🥧 ADVANCED PIE CHART
- * -------------------------------------------------------------------------
- * Gráfico de pastel avanzado usando ngx-charts.
- * Porque a veces un pastel normal no es suficiente. 🍰✨
+ * AdvancedPieChart — pastel con leyenda/detalle. Motor: ECharts (ngx-echarts).
+ * API sin cambios: `dataGrafico` en formato ngx-charts `[{ name, value }]`.
  */
 @Component({
   selector: "app-advanced-pie-chart",
-  imports: [PieChartModule],
-  template: `
-    <ngx-charts-advanced-pie-chart
-      [view]="view"
-      [scheme]="colorScheme()"
-      [results]="dataGrafico()"
-      [gradient]="gradient"
-    >
-    </ngx-charts-advanced-pie-chart>
-  `,
+  standalone: true,
+  imports: [NgxEchartsDirective],
+  template: `<div echarts [options]="option()" style="height: 400px"></div>`,
 })
 export class AdvancedPieChart {
-  // <--- Inputs --->
-  dataGrafico = input<any[]>([]);
-  colorScheme = input<any>({
+  dataGrafico = input<NgxChartsDatum[]>([]);
+  colorScheme = input<{ domain?: string[] }>({
     domain: ["#5AA454", "#A10A28", "#C7B42C"],
   });
 
-  // <--- Configuración Fija --->
-  view: [number, number] = [700, 400];
-  gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  isDoughnut: boolean = false;
+  option = computed<EChartsCoreOption>(() =>
+    ngxToPieOption(this.dataGrafico(), this.colorScheme(), { showLegend: true }),
+  );
 }

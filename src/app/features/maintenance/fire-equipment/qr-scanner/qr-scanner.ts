@@ -32,7 +32,7 @@ export class QrScanner implements OnDestroy {
 
   async startScan(video: HTMLVideoElement) {
     this.errorMsg.set("");
-    this.statusMsg.set("Iniciando cómara...");
+    this.statusMsg.set("Iniciando cÃ³mara...");
     this.videoEl = video;
 
     try {
@@ -44,10 +44,10 @@ export class QrScanner implements OnDestroy {
 
       this.detector = new BarcodeDetector({ formats: ["qr_code"] });
       this.scanning.set(true);
-      this.statusMsg.set("Apunta la cómara al código QR del equipo.");
+      this.statusMsg.set("Apunta la cÃ³mara al cÃ³digo QR del equipo.");
       this.scanLoop(video);
     } catch {
-      this.errorMsg.set("No se pudo acceder a la cómara. Verifica los permisos.");
+      this.errorMsg.set("No se pudo acceder a la cÃ³mara. Verifica los permisos.");
       this.statusMsg.set("");
     }
   }
@@ -115,7 +115,7 @@ export class QrScanner implements OnDestroy {
       .catch(() => null);
 
     if (!result) {
-      this.errorMsg.set("No se encontré el equipo en el sistema.");
+      this.errorMsg.set("No se encontrÃ© el equipo en el sistema.");
       this.statusMsg.set("");
       return;
     }

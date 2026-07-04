@@ -20,7 +20,7 @@
           ])
         "
       />
-      <il-button-active-desactive
+      <iw-button-active-desactive
         [state]="activo()"
         (stateChange)="onSelectActive($event)"
       />
@@ -99,9 +99,9 @@
         <div class="flex justify-content-center">
           @if ( aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Administrador,
           AspRole.Asistente, AspRole.Reclutamiento ]) ) {
-          <il-button-item
+          <iw-button-item
             iconClass="mdi:dots-vertical"
-            label="Opciones"
+            pTooltip="Opciones" tooltipPosition="top"
             tooltipPosition="left"
             (clicked)="onShowEditEmpleado(item.employeeId,item.applicationUserId)"
           />
@@ -140,7 +140,7 @@
         <app-icon
           icon="mdi:account-tie-outline"
           style="font-size: 1.25rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
         }
       </div>
       <ion-label class="ion-text-wrap">
@@ -154,15 +154,15 @@
         </p>
       </ion-label>
 
-      <app-action-menu slot="end">
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button-item
+          <ili-button-item
             (clicked)="onShowEditEmpleado(item.applicationUserId, item.employeeId, item.fullName)"
             label="Editar"
             iconName="create-outline"
           />
         </ng-container>
-      </app-action-menu>
+      </ili-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

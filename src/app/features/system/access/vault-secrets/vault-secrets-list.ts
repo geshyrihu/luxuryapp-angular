@@ -4,10 +4,10 @@ import { TableModule } from "primeng/table";
 import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
 import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { MobileButtonLabel } from "src/app/core/components/buttons/mobile-label/button";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -36,13 +36,13 @@ import { VaultSecretSummary } from "./vault-secret.model";
     WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    WebButtonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+    MobileButtonLabel,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
+    MobileActionMenu,
   ],
 })
 export class VaultSecretsList {

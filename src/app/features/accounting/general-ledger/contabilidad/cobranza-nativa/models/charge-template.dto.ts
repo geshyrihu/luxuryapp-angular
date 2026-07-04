@@ -5,6 +5,10 @@ export interface ChargeTemplateResponseDTO {
     customerId: string;
     name: string;
     calculationMethod: ECalculationMethod;
+    chargeTypeId?: string | null;
+    chargeTypeCode?: string | null;
+    chargeTypeName?: string | null;
+    chargeTypeAccountNumber?: string | null;
     chargeType: EChargeType;
     amount: number;
     recurrence: ERecurrence;
@@ -24,7 +28,8 @@ export interface CreateChargeTemplateDTO {
     customerId: string;
     name: string;
     calculationMethod: ECalculationMethod;
-    chargeType: EChargeType;
+    chargeTypeId?: string | null;
+    chargeType?: EChargeType | null;
     amount: number;
     recurrence: ERecurrence;
     dayOfMonth: number;
@@ -43,7 +48,8 @@ export interface UpdateChargeTemplateDTO {
     id: string;
     name: string;
     calculationMethod: ECalculationMethod;
-    chargeType: EChargeType;
+    chargeTypeId?: string | null;
+    chargeType?: EChargeType | null;
     amount: number;
     recurrence: ERecurrence;
     dayOfMonth: number;

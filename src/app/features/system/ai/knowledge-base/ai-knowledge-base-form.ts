@@ -69,11 +69,11 @@ export class AiKnowledgeBaseForm implements OnInit {
     isActive: new FormControl(true, {
       nonNullable: true,
     }),
-    moduleAppId: new FormControl<string | null>(null), // Control para el módulo
+    moduleAppId: new FormControl<string | null>(null), // Control para el mÃ³dulo
   });
 
   ngOnInit(): void {
-    this.onLoadModules(); // Cargar módulos al inicio
+    this.onLoadModules(); // Cargar mÃ³dulos al inicio
 
     // DynamicDialogConfig pasa 'id' en 'data' if editing
     if (this.config.data && this.config.data.id) {

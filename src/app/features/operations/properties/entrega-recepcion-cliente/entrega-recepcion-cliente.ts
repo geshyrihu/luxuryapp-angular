@@ -24,10 +24,13 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EntregaRecepcionClienteForm } from "src/app/features/operations/properties/entrega-recepcion/entrega-recepcion-cliente-form";
+import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
   imports: [
+    WebButtonIconViewPdf,
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelEdit,
     WebButtonLabelItem,

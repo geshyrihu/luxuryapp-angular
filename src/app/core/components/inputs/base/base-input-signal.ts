@@ -4,10 +4,10 @@ import {
   computed,
   DestroyRef,
   effect,
+  HostBinding,
   inject,
   input,
   OnInit,
-  HostBinding,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -41,7 +41,11 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
           <ng-content></ng-content>
         </div>
       } @else {
-        <div class="field" [class.field-horizontal]="horizontal()" [class.mb-0]="noMargin()">
+        <div
+          class="field"
+          [class.field-horizontal]="horizontal()"
+          [class.mb-0]="noMargin()"
+        >
           @if (label()) {
             <label [for]="id()" class="field-label">
               {{ label() }}
@@ -53,10 +57,10 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
           <div class="field-content">
             <ng-content></ng-content>
             @if (description()) {
-            <small class="block mt-1 text-500 line-height-2 italic px-1">
-              <app-icon [icon]="'mdi:information'" class="pi mr-1 text-xs"></app-icon>
-              {{ description() }}
-            </small>
+              <small class="block mt-1 text-500 line-height-2 italic px-1">
+                <app-icon [icon]="'mdi:information'" class="pi mr-1 text-xs" />
+                {{ description() }}
+              </small>
             }
             <app-validation-errors-custom-input
               [control]="control() || internalControl"

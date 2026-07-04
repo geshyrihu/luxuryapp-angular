@@ -6,6 +6,10 @@ export interface ChargeResponseDTO {
     propertyId: string;
     propertyFullName: string;
     coiCobranzaAccountId?: string | null;
+    chargeTypeId?: string | null;
+    chargeTypeCode?: string | null;
+    chargeTypeName?: string | null;
+    chargeTypeAccountNumber?: string | null;
     type: EChargeType;
     concept: string;
     amount: number;
@@ -23,7 +27,8 @@ export interface ChargeResponseDTO {
 export interface CreateChargeDTO {
     customerId: string;
     propertyId: string;
-    type: EChargeType;
+    chargeTypeId?: string | null;
+    type?: EChargeType | null;
     concept: string;
     amount: number;
     dueDate: Date | string;
@@ -66,7 +71,8 @@ export interface BulkSetInitialBalanceResultDTO {
 export interface UpdateChargeDTO {
     id: string;
     propertyId: string;
-    type: EChargeType;
+    chargeTypeId?: string | null;
+    type?: EChargeType | null;
     concept: string;
     amount: number;
     dueDate: Date | string;

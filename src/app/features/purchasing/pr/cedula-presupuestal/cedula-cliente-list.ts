@@ -27,10 +27,23 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { OrdenesCompraCedulaListComponent } from "./ordenes-compra-cedula-list";
 import { PeriodoCedulaForm } from "./periodo-cedula-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-cedula-cliente-list",
   templateUrl: "./cedula-cliente-list.html",
   imports: [
+    WebButtonIcon,
+    WebButtonIconConfirm,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,

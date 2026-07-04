@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 
 import { WebAlerts } from "./components/web-alerts/web-alerts";
@@ -15,6 +15,7 @@ import { WebNavigation } from "./components/web-navigation/web-navigation";
 import { WebOverlays } from "./components/web-overlays/web-overlays";
 import { WebProgress } from "./components/web-progress/web-progress";
 import { WebTables } from "./components/web-tables/web-tables";
+import { WebMultiplatform } from "./components/web-multiplatform/web-multiplatform";
 import { WebCoreCoverage } from "../../../shared/web-core-coverage";
 
 @Component({
@@ -39,6 +40,7 @@ import { WebCoreCoverage } from "../../../shared/web-core-coverage";
     // Patrones ERP & AI
     WebErpPatterns,
     WebAiPatterns,
+    WebMultiplatform,
   ],
   templateUrl: "./catalog-web.html",
   styleUrls: ["./catalog-web.scss"],

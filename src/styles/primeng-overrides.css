@@ -100,8 +100,14 @@
   }
 
   .p-inputtext:focus {
+    border-radius: var(--ds-radius-input);
     border-color: var(--ds-border-focus);
     box-shadow: 0 0 0 2px var(--ds-border-focus);
+    outline: none;
+  }
+
+  .p-inputtext:focus-visible {
+    outline: none;
   }
 
   .p-inputtext:disabled {

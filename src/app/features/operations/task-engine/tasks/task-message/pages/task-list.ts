@@ -92,6 +92,11 @@ import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { ITaskResultDTO } from "../models/task-message.dto";
 import { TaskForm } from "./task-form";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
 @Component({
   selector: "app-task-list",
   templateUrl: "./task-list.html",
@@ -126,6 +131,10 @@ import { TaskForm } from "./task-form";
     `,
   ],
   imports: [
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     ActionMenu,

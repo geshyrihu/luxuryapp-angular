@@ -15,7 +15,7 @@ import { confirmAction } from "../shared/confirm";
       [disabled]="disabled() || loading()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="iconClass() || 'mdi:email-outline'" />
+      <app-icon [icon]="iconClass() || 'fluent-color:mail-16'" />
     </button>
   `,
 })
@@ -35,4 +35,3 @@ export class WebButtonIconSendEmail extends BaseButton {
     }
   }
 }
-

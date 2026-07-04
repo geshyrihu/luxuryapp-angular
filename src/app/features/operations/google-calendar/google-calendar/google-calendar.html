@@ -88,9 +88,9 @@
           </td>
           <td>
             @if (canOpenAssemblyChecklist(item)) {
-            <il-button
-              label="Checklist"
-              icon="mdi:format-list-checks"
+            <iw-button
+              pTooltip="Checklist" tooltipPosition="top"
+              iconClass="mdi:format-list-checks"
               [noMargin]="true"
               customClass="p-button-sm p-button-outlined"
               (clicked)="onOpenAssemblyChecklist(item)"
@@ -127,15 +127,15 @@
           </td>
           @if (canManageItem(item)) {
           <td class="flex gap-2">
-            <il-button-edit (clicked)="onModalForm(item.id)" />
-            <il-button-delete (confirmed)="onDelete(item.id)" />
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
           </td>
           }
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="11" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="11" />
+      </ng-template>
     </p-table>
 
     <app-data-view-mobile
@@ -159,7 +159,7 @@
             <app-icon
               icon="mdi:calendar-outline"
               style="font-size: 1.1rem; color: var(--ds-primary)"
-            ></app-icon>
+            />
           </div>
           <ion-label>
             <h2>{{ item.title }}</h2>
@@ -181,20 +181,20 @@
             }
           </ion-label>
           <div slot="end">
-            <app-action-menu>
+            <ili-action-menu>
               <ng-container actions>
                 @if (canManageItem(item)) {
-                <il-button-edit
+                <ili-button-edit
                   (clicked)="onModalForm(item.id)"
                   label="Editar"
                 />
-                <il-button-delete
+                <ili-button-delete
                   (confirmed)="onDelete(item.id)"
                   label="Eliminar"
                 />
                 }
               </ng-container>
-            </app-action-menu>
+            </ili-action-menu>
           </div>
         </ion-item>
       </ng-template>

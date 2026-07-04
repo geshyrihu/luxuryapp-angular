@@ -164,7 +164,7 @@ export class ElevenLabsSettingsComponent implements OnInit {
       this.voices.set([]);
       this.voiceOptions.set([]);
       this.voicesLoadError.set(
-        "No fue posible listar las voces con esta API key. Puedes capturar manualmente el Voice ID y seguir usando text-to-speech si tu llave sÌ tiene permiso para generar audio.",
+        "No fue posible listar las voces con esta API key. Puedes capturar manualmente el Voice ID y seguir usando text-to-speech si tu llave s√≠ tiene permiso para generar audio.",
       );
     } finally {
       this.loadingVoices.set(false);
@@ -185,8 +185,8 @@ export class ElevenLabsSettingsComponent implements OnInit {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.toastS.showError(
-        "ConfiguraciÛn incompleta",
-        "Selecciona una voz y revisa los par·metros antes de guardar.",
+        "Configuraci√≥n incompleta",
+        "Selecciona una voz y revisa los par√≥metros antes de guardar.",
       );
       return;
     }
@@ -207,8 +207,8 @@ export class ElevenLabsSettingsComponent implements OnInit {
     });
 
     this.toastS.showSuccess(
-      "ConfiguraciÛn guardada",
-      "La voz predeterminada de ElevenLabs quedÛ lista para el Auditor IA.",
+      "Configuraci√≥n guardada",
+      "La voz predeterminada de ElevenLabs qued√© lista para el Auditor IA.",
     );
   }
 

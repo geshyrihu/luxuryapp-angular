@@ -64,7 +64,10 @@
               [class.text-red-400]="!item.isAssigned"
               [class.border-red-100]="!item.isAssigned"
             >
-              <app-icon [icon]="item.isAssigned ? 'mdi:check' : 'mdi:close'" style="font-size: 0.7rem"></app-icon>
+              <app-icon
+                [icon]="item.isAssigned ? 'mdi:check' : 'mdi:close'"
+                style="font-size: 0.7rem"
+              />
             </span>
             <span
               class="font-medium text-xs truncate"
@@ -94,7 +97,7 @@
 
     <!-- Buscador Móvil -->
     <div class="p-input-icon-left w-full mb-3">
-      <app-icon [icon]="'mdi:magnify'"></app-icon>
+      <app-icon [icon]="'mdi:magnify'" />
       <custom-search-input-signal
         placeholder="Filtrar módulos..."
         (searchChange)="searchTerm.set($event)"
@@ -113,14 +116,25 @@
       <h3 class="text-xs text-500 font-bold px-3 uppercase m-0 mb-1">
         {{ group.groupTitle }}
       </h3>
-      <ion-list inset="true" class="m-0 border-round-lg overflow-hidden shadow-1">
+      <ion-list
+        inset="true"
+        class="m-0 border-round-lg overflow-hidden shadow-1"
+      >
         @for (item of group.items; track item.moduleAppId) {
         <ion-item class="ion-no-padding">
           <div slot="start" class="pl-3 py-2 flex align-items-center">
-            <app-icon [icon]="item.isAssigned ? 'mdi:check-circle' : 'mdi:circle-outline'" [class.text-green-500]="item.isAssigned" [class.text-400]="!item.isAssigned"></app-icon>
+            <app-icon
+              [icon]="item.isAssigned ? 'mdi:check-circle' : 'mdi:circle-outline'"
+              [class.text-green-500]="item.isAssigned"
+              [class.text-400]="!item.isAssigned"
+            />
           </div>
           <ion-label class="ion-text-wrap py-2">
-            <h2 class="text-sm font-medium" [class.text-900]="item.isAssigned" [class.text-500]="!item.isAssigned">
+            <h2
+              class="text-sm font-medium"
+              [class.text-900]="item.isAssigned"
+              [class.text-500]="!item.isAssigned"
+            >
               {{ item.moduleAppName }}
             </h2>
           </ion-label>

@@ -23,11 +23,27 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileButtonLabelSendEmail } from "src/app/core/components/buttons/mobile-label/button-send-email";
+
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconSendEmail } from "src/app/core/components/buttons/web-icon/button-send-email";
+
 @Component({
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
   // Aóadido para Angular 20
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    WebButtonIconSendEmail,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    MobileButtonLabelSendEmail,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     NgbTooltipModule,

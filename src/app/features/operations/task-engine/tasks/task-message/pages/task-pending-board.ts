@@ -150,7 +150,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, this.nameGroup(), `Total: ${this.totalTasks()} tareas | óreas: ${groups.length}`, today, "TABLERO DE PENDIENTES")}
+  ${this.htmlPrintS.buildStandardHeader(logo, this.nameGroup(), `Total: ${this.totalTasks()} tareas | Ã³reas: ${groups.length}`, today, "TABLERO DE PENDIENTES")}
 
   <div class="body-doc">
     ${groupsHtml}
@@ -226,7 +226,7 @@ ${this.htmlPrintS.getStandardCss()}
         canvas.height = img.height;
         const ctx = canvas.getContext("2d");
         if (!ctx) return reject("Could not get canvas context");
-        // Fondo blanco para evitar problemas con imógenes transparentes (como PNG)
+        // Fondo blanco para evitar problemas con imÃ­genes transparentes (como PNG)
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);

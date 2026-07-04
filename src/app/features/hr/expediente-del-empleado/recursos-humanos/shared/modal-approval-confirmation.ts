@@ -1,20 +1,20 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TagModule } from "primeng/tag";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
-import { EPaidStatus } from "../interfaces/leave-request.interface";
+import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
   LeaveHistorySummaryDTO,
   OverlappingApprovalRequestDTO,
 } from "../interfaces/approval.interface";
+import { EPaidStatus } from "../interfaces/leave-request.interface";
 import { VacationBalanceDTO } from "../interfaces/vacation-balance.interface";
 import { ApprovalInfoService } from "./approval-info.service";
 
@@ -58,7 +58,9 @@ import { ApprovalInfoService } from "./approval-info.service";
             >
               <p-toggleswitch [formControl]="paidStatus"></p-toggleswitch>
               <label class="font-bold">
-                {{ paidStatus.value ? "CON GOCE DE SUELDO" : "SIN GOCE DE SUELDO" }}
+                {{
+                  paidStatus.value ? "CON GOCE DE SUELDO" : "SIN GOCE DE SUELDO"
+                }}
               </label>
             </div>
           </div>
@@ -67,7 +69,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <app-icon [icon]="'mdi:history'" class="text-xl"></app-icon>
+              <app-icon [icon]="'mdi:history'" class="text-xl" />
               <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
             </div>
             <p class="text-600">
@@ -84,7 +86,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <app-icon [icon]="'mdi:weather-sunny'" class="text-xl"></app-icon>
+              <app-icon [icon]="'mdi:weather-sunny'" class="text-xl" />
               <h5 class="mb-0 font-semibold">Saldo de Vacaciones</h5>
             </div>
             <p class="text-600">
@@ -101,7 +103,10 @@ import { ApprovalInfoService } from "./approval-info.service";
 
         <div class="mt-4">
           <div class="flex items-center mb-3">
-            <app-icon [icon]="'mdi:account-group'" class="text-xl text-orange-500"></app-icon>
+            <app-icon
+              [icon]="'mdi:account-group'"
+              class="text-xl text-orange-500"
+            />
             <h5 class="mb-0 font-semibold text-orange-500">
               Posible Solapamiento de Fechas
             </h5>
@@ -114,7 +119,10 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingLeaveRequests; track req.id) {
                     <li class="flex items-center justify-between p-2">
                       <span>
-                        <app-icon [icon]="'mdi:account'" class="mr-2 text-gray-600"></app-icon>
+                        <app-icon
+                          [icon]="'mdi:account'"
+                          class="mr-2 text-gray-600"
+                        />
                         {{ req.fullName }}
                       </span>
                       <p-tag
@@ -145,7 +153,10 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingVacationRequests; track req.id) {
                     <li class="flex items-center justify-between p-2">
                       <span>
-                        <app-icon [icon]="'mdi:account'" class="mr-2 text-gray-600"></app-icon>
+                        <app-icon
+                          [icon]="'mdi:account'"
+                          class="mr-2 text-gray-600"
+                        />
                         {{ req.fullName }}
                       </span>
                       <p-tag

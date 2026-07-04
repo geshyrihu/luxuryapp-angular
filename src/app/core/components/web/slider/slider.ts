@@ -1,7 +1,8 @@
-import { Component, input, model, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { SliderModule } from "primeng/slider";
+import { SliderBase } from "src/app/core/components/shared/slider/slider-base";
 
 /**
  * AppSlider — Wrapper sobre p-slider con etiqueta, valor y soporte de rango.
@@ -99,26 +100,4 @@ import { SliderModule } from "primeng/slider";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppSlider {
-  value = model<number | [number, number]>(0);
-
-  label    = input<string>("");
-  min      = input<number>(0);
-  max      = input<number>(100);
-  step     = input<number>(1);
-  range    = input<boolean>(false);
-  disabled = input<boolean>(false);
-  showValue = input<boolean>(true);
-  prefix   = input<string>("");
-  suffix   = input<string>("");
-
-  singleDisplay(): string {
-    const v = this.value();
-    return typeof v === "number" ? String(v) : "";
-  }
-
-  rangeDisplay(): string {
-    const v = this.value();
-    return Array.isArray(v) ? `${v[0]} – ${v[1]}` : "";
-  }
-}
+export class AppSlider extends SliderBase {}

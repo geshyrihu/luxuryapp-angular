@@ -22,10 +22,26 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { EstacionManualChecklist } from "../manual-call-point-checklist/estacion-manual-checklist";
 import { EstacionManualBitacoraPdfService } from "./estacion-manual-bitacora-pdf.service";
 
+import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+
+import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/button-download";
+import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { TooltipModule } from "primeng/tooltip";
+
 @Component({
   selector: "app-estacion-manual-bitacora-list",
   templateUrl: "./estacion-manual-bitacora-list.html",
   imports: [
+    WebButtonIconDownload,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    TooltipModule,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

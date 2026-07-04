@@ -23,9 +23,12 @@ import {
   SuspensionDayDetailDTO,
 } from "../../models/incident.interfaces";
 
+import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+
 @Component({
   selector: "app-suspension-days-manager",
   imports: [
+    WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,

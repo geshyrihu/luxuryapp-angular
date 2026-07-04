@@ -31,7 +31,7 @@
           <!-- Parte Derecha: Filtros adicionales -->
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
             <div style="width: 150px">
-              <il-button-active-desactive
+              <iw-button-active-desactive
                 [state]="state"
                 (stateChange)="onSelectActive($event)"
               />
@@ -77,13 +77,13 @@
             }
           </td>
           <td class="text-right">
-            <app-icon [icon]="'mdi:chevron-right'"></app-icon>
+            <app-icon [icon]="'mdi:chevron-right'" />
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
-  </ng-template>
+        <primeng-custom-table-emptymessage [colspan]="5" />
+      </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -128,7 +128,7 @@
         <app-icon
           icon="mdi:domain"
           style="font-size: 1.25rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
         }
       </div>
       <ion-label class="ion-text-wrap">

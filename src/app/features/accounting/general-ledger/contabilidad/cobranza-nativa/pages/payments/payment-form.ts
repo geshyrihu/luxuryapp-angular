@@ -49,8 +49,8 @@ export class PaymentForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
 
-  id: string = "";
-  customerId: string = "";
+  id = "";
+  customerId = "";
   submitting = signal(false);
 
   propertiesOptions = signal<{ label: string; value: string }[]>([]);
@@ -67,8 +67,8 @@ export class PaymentForm implements OnInit {
     },
     { label: "Efectivo", value: EPaymentMethod.Cash },
     { label: "Cheque nominativo", value: EPaymentMethod.NominativeCheck },
-    { label: "Tarjeta de cródito", value: EPaymentMethod.CreditCard },
-    { label: "Tarjeta de dóbito", value: EPaymentMethod.DebitCard },
+    { label: "Tarjeta de crédito", value: EPaymentMethod.CreditCard },
+    { label: "Tarjeta de débito", value: EPaymentMethod.DebitCard },
     { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined },
   ];
 
@@ -117,19 +117,24 @@ export class PaymentForm implements OnInit {
       Endpoints.AccountingCoi.NativeCollection.Payments.getById(this.id),
     );
     if (!res) return;
-    if (res.paymentDate)
+    if (res.paymentDate) {
       res.paymentDate = this.dateS.parseDate(res.paymentDate);
+    }
     this.form.patchValue(res);
 
-    if (res.status === EPaymentStatus.Rechazado) {
+    const lockedStatuses: Partial<Record<EPaymentStatus, string>> = {
+      [EPaymentStatus.Rechazado]: "Rechazado",
+      [EPaymentStatus.Cancelado]: "Cancelado",
+      [EPaymentStatus.Revertido]: "Revertido",
+      [EPaymentStatus.NoIdentificado]: "No identificado",
+    };
+
+    if (res.status in lockedStatuses) {
       this.form.disable();
-      const labels: Record<number, string> = {
-        [EPaymentStatus.Rechazado]: "Rechazado",
-      };
       if (!this.statusOptions().some((o) => o.value === res.status)) {
         this.statusOptions.update((opts) => [
           ...opts,
-          { label: labels[res.status] ?? res.status, value: res.status },
+          { label: lockedStatuses[res.status] ?? String(res.status), value: res.status },
         ]);
       }
     }

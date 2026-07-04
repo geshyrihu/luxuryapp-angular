@@ -1,36 +1,37 @@
-const fs = require('fs');
-const htmlPath = "D:/repos/luxuryapp-api/client/angular/src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/presupuesto-propuesta.html";
-let htmlCode = fs.readFileSync(htmlPath, 'utf8');
+const fs = require("fs");
+const htmlPath =
+  "D:/repos/luxuryapp-api/client/angular/src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/presupuesto-propuesta.html";
+let htmlCode = fs.readFileSync(htmlPath, "utf8");
 
 const legendHtml = `
       <!-- Leyenda y Acotaciones -->
       <div class="mt-3 surface-ground border-round-md p-3 border-1 surface-border">
         <div class="flex flex-wrap gap-4 align-items-center text-sm text-700">
           <div class="font-semibold text-800 flex align-items-center gap-1">
-            <app-icon icon="mdi:information-outline" style="font-size:1.2rem;"></app-icon> 
+            <app-icon icon="mdi:information-outline" style="font-size:1.2rem;"/>
             Guía Rápida:
           </div>
-          
+
           <div class="flex align-items-center gap-2" pTooltip="La cuenta presenta un déficit en el presupuesto actual">
             <span class="w-1rem h-1rem border-round bg-red-100 border-1 border-red-300"></span>
             <span>Déficit Presupuestal</span>
           </div>
-          
+
           <div class="flex align-items-center gap-2" pTooltip="La propuesta supera en más de 10% al presupuesto actual">
             <span class="w-1rem h-1rem border-round bg-yellow-100 border-1 border-yellow-300"></span>
             <span>Incremento > 10%</span>
           </div>
-          
+
           <div class="flex align-items-center gap-2" pTooltip="Ver historial de compras asociadas a la cuenta">
             <span>🛒</span>
             <span>Historial Compras</span>
           </div>
-          
+
           <div class="flex align-items-center gap-2" pTooltip="Ver histórico de movimientos contables">
             <span>🕒</span>
             <span>Historial Partida</span>
           </div>
-          
+
           <div class="flex align-items-center gap-2" pTooltip="Ver cotizaciones y documentos soporte">
             <span>📂</span>
             <span>Documentos Soporte</span>
@@ -57,12 +58,18 @@ const searchTarget = `        </div>
 const searchTargetCRLF = `        </div>\r\n      </div>\r\n    </ng-template>`;
 
 if (htmlCode.includes(searchTargetCRLF)) {
-    htmlCode = htmlCode.replace(searchTargetCRLF, `        </div>\r\n      </div>\r\n${legendHtml.replace(/\\n/g, '\\r\\n')}`);
+  htmlCode = htmlCode.replace(
+    searchTargetCRLF,
+    `        </div>\r\n      </div>\r\n${legendHtml.replace(/\\n/g, "\\r\\n")}`,
+  );
 } else if (htmlCode.includes(searchTarget)) {
-    htmlCode = htmlCode.replace(searchTarget, `        </div>\n      </div>\n${legendHtml}`);
+  htmlCode = htmlCode.replace(
+    searchTarget,
+    `        </div>\n      </div>\n${legendHtml}`,
+  );
 } else {
-    console.log("Could not find the target string to insert the legend");
+  console.log("Could not find the target string to insert the legend");
 }
 
-fs.writeFileSync(htmlPath, htmlCode, 'utf8');
+fs.writeFileSync(htmlPath, htmlCode, "utf8");
 console.log("Legend added successfully");

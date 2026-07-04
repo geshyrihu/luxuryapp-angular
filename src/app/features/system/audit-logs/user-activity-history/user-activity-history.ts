@@ -60,7 +60,7 @@ export class UserActivityHistory implements OnInit {
   data = signal<any[]>([]);
   loading = signal(true);
 
-  // Signals para paginación y búsqueda
+  // Signals para paginaciÃ³n y bÃ³squeda
   totalRecords = signal(0);
   rows = signal(tablePrimeNgRows());
   searchTerm = signal<string>("");
@@ -175,7 +175,7 @@ export class UserActivityHistory implements OnInit {
   onPageChange(event: any): void {
     this.rows.set(event.rows);
     this.currentPage.set(event.first / event.rows + 1);
-    this.onLoadData(true); // En la tabla de escritorio, cada cambio de página es una nueva búsqueda
+    this.onLoadData(true); // En la tabla de escritorio, cada cambio de pÃ¡gina es una nueva bÃ³squeda
   }
 
   onSearch(term: string): void {

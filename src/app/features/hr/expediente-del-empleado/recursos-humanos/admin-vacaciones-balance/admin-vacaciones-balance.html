@@ -71,7 +71,7 @@
         ></p-tag>
       </td>
       <td>
-        <il-button-edit (clicked)="openEditModal(item)" />
+        <iw-button-edit (clicked)="openEditModal(item)" />
       </td>
     </tr>
   </ng-template>
@@ -101,7 +101,7 @@
         <app-icon
           icon="mdi:format-list-bulleted"
           style="font-size: 1.1rem; color: var(--ds-primary)"
-        ></app-icon>
+        />
       </div>
       <ion-label [class.p-datatable-discrepant]="item.isDiscrepant">
         <h2 class="font-normal m-0">{{ item.fullName }}</h2>

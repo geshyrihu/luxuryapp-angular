@@ -1,4 +1,3 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -6,9 +5,10 @@ import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
 import { InputTextModule } from "primeng/inputtext";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
@@ -19,7 +19,8 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     CardModule,
     InputTextModule,
     WebButtonLabel,
-   AppIcon],
+    AppIcon,
+  ],
   template: `
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">
@@ -34,7 +35,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
           />
         </div>
         <span class="p-input-icon-left">
-          <app-icon [icon]="'mdi:magnify'"></app-icon>
+          <app-icon [icon]="'mdi:magnify'" />
           <input
             type="text"
             pInputText
@@ -65,7 +66,10 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                   class="flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
                   style="min-height: 150px"
                 >
-                  <app-icon [icon]="'mdi:image-multiple'" class="text-6xl text-primary-400"></app-icon>
+                  <app-icon
+                    [icon]="'mdi:image-multiple'"
+                    class="text-6xl text-primary-400"
+                  />
                 </div>
                 <ng-template #footer>
                   <div class="flex ">

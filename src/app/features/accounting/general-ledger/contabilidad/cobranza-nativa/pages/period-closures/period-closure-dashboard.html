@@ -2,7 +2,7 @@
   <!-- Panel de accion: cerrar periodo -->
   <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
     <div class="font-semibold mb-3 flex align-items-center gap-2">
-      <app-icon [icon]="'mdi:lock'" class="text-primary"></app-icon>
+      <app-icon [icon]="'mdi:lock'" class="text-primary" />
       <span>Cerrar Periodo Contable</span>
     </div>
 
@@ -48,7 +48,7 @@
         />
         } @else {
         <div class="flex align-items-center h-3rem gap-2 text-green-700">
-          <app-icon [icon]="'mdi:check-circle'"></app-icon>
+          <app-icon [icon]="'mdi:check-circle'" />
           <span class="text-sm font-medium">Periodo ya cerrado</span>
         </div>
         }
@@ -94,11 +94,11 @@
         <td class="text-center">
           @if (item.isClosed) {
           <span class="badge bg-red-100 text-red-800 text-xs">
-            <app-icon [icon]="'mdi:lock'" class="mr-1"></app-icon>Cerrado
+            <app-icon [icon]="'mdi:lock'" class="mr-1" />Cerrado
           </span>
           } @else {
           <span class="badge bg-green-100 text-green-800 text-xs">
-            <app-icon [icon]="'mdi:lock-open'" class="mr-1"></app-icon>Abierto
+            <app-icon [icon]="'mdi:lock-open'" class="mr-1" />Abierto
           </span>
           }
         </td>
@@ -109,8 +109,8 @@
         <td class="text-sm text-500">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <il-button
-            label="Reabrir"
+          <iw-button
+            pTooltip="Reabrir" tooltipPosition="top"
             iconClass="mdi:lock-open"
             size="small"
             severity="danger"

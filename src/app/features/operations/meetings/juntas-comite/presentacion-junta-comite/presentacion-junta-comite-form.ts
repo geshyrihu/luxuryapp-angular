@@ -19,10 +19,13 @@ interface IPresentacionJuntaComiteForm {
   area: FormControl<string | null>;
 }
 
+import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+
 @Component({
   selector: "app-presentacion-junta-comite-form",
   templateUrl: "./presentacion-junta-comite-form.html",
   imports: [
+    WebButtonIcon,
     ReactiveFormsModule,
     FileUploadModule,
     ButtonModule,

@@ -22,6 +22,28 @@
 - `2320a53`: Migración `icon-pi-*` → `app-icon` / `pi pi-*` en 14 archivos + HTML/TS
 - `2320a53`: Foco shadows unificados en `--ds-shadow-focus*`, toast/alerts con DS tokens
 
+## Botones de opciones de menú / acciones de fila
+
+Ver detalle en `core/components/buttons/BUTTON-USAGE-RULES.md`. Aplica **solo** a
+opciones de menú / acciones de fila (no a botones generales).
+
+**Regla raíz — la plataforma la decide el contenedor:**
+- **FUERA** de `<app-data-view-mobile>` (incluye todo `<p-table>`) → solo **web**:
+  `iw-*`, `il-*`, `<app-action-menu>`. Prohibido `ii-*`/`ili-*`/`<ili-action-menu>`.
+- **DENTRO** de `<app-data-view-mobile>` → solo **móvil**: `ii-*`, `ili-*`,
+  `<ili-action-menu>`. Prohibido `iw-*`/`il-*`/`<app-action-menu>`.
+
+**Regla hija — icono vs label la decide el action-menu:**
+
+| Contexto | Botón |
+|---|---|
+| Fila de tabla, directa (sin action-menu) | `iw-button-*` (solo icono) |
+| Dentro de `<app-action-menu>` (web) | `il-button-*` (label + icono) |
+| Dentro de `<ili-action-menu>` (en `<app-data-view-mobile>`) | `ili-button-*` (label + icono) |
+
+Action-menus: `<app-action-menu>` = web (p-popover); `<ili-action-menu>` = móvil
+(bottom-sheet), solo dentro de `<app-data-view-mobile>`.
+
 ## Recordatorios para el Agente
 
 1. **No usar jamás** `icon-pi-*` en nuevos templates — usar `<app-icon icon="mdi:xxx">` o `pi pi-xxx`.
