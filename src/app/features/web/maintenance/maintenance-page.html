@@ -38,12 +38,11 @@
           <div class="proc-header">
             <div class="proc-icon" [style.background]="proc.gradient">
               <span class="proc-icon-symbol">{{
-                proc.icon === "mdi:broom"
-                  ? "🧹"
-                  : proc.icon === "mdi:shield-check"
-                  ? "🛡"
-                  : proc.icon === "mdi:alert-circle"
-                  ? "⚡"
+                proc.icon === "mdi:broom" ? "🧹"
+                  : proc.icon === "mdi:shield-check" ? "🛡"
+                  : proc.icon === "mdi:alert-circle" ? "⚡"
+                  : proc.icon === "mdi:cog" ? "⚙"
+                  : proc.icon === "mdi:file-document" ? "📋"
                   : "🌿"
               }}</span>
             </div>

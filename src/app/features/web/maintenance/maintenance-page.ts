@@ -47,6 +47,24 @@ export class MaintenancePage {
       steps: 5,
     },
     {
+      id: "machinery-survey",
+      title: "Levantamiento de Maquinaria y Equipos",
+      objective:
+        "Inventariar, clasificar y diagnosticar el estado de toda la maquinaria y equipos del residencial para planificar su mantenimiento y reparación.",
+      icon: "mdi:cog",
+      gradient: "linear-gradient(135deg, #b45309 0%, #d97706 100%)",
+      steps: 8,
+    },
+    {
+      id: "budget-preparation",
+      title: "Preparación de Presupuestos de Mantenimiento",
+      objective:
+        "Consolidar diagnósticos, cotizaciones y calendarios en un presupuesto estructurado listo para presentar a dirección o asamblea.",
+      icon: "mdi:file-document",
+      gradient: "linear-gradient(135deg, #15803d 0%, #22c55e 100%)",
+      steps: 6,
+    },
+    {
       id: "green-areas",
       title: "Mantenimiento de Áreas Verdes",
       objective:

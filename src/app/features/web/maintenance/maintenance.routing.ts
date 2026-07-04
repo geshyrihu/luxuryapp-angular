@@ -20,4 +20,26 @@ export const maintenanceRoutes: Routes = [
       breadcrumb: "Limpieza de Áreas",
     },
   },
+  {
+    path: "machinery-survey",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/machinery-survey/machinery-survey"
+      ).then((m) => m.MachinerySurvey),
+    data: {
+      title: "Levantamiento de Maquinaria y Equipos",
+      breadcrumb: "Levantamiento de Maquinaria",
+    },
+  },
+  {
+    path: "budget-preparation",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/budget-preparation/budget-preparation"
+      ).then((m) => m.BudgetPreparation),
+    data: {
+      title: "Preparación de Presupuestos de Mantenimiento",
+      breadcrumb: "Presupuestos de Mantenimiento",
+    },
+  },
 ];

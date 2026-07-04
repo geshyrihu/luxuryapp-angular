@@ -1,0 +1,221 @@
+<div class="procedure-page">
+  <!-- Hero -->
+  <section class="proc-hero">
+    <div class="proc-hero-bg"></div>
+    <div class="proc-hero-content">
+      <a routerLink="/web/maintenance" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver a procedimientos
+      </a>
+      <span class="proc-badge">Procedimiento</span>
+      <h1 class="proc-title">Preparaci&oacute;n de Presupuestos de Mantenimiento</h1>
+      <p class="proc-subtitle">
+        Integraci&oacute;n de diagn&oacute;sticos, cotizaciones y
+        calendarios en un presupuesto &uacute;nico para autorizaci&oacute;n.
+      </p>
+    </div>
+  </section>
+
+  <div class="proc-container">
+    <!-- Objective -->
+    <section class="objective-section">
+      <div class="objective-card" style="--accent: #15803d">
+        <div class="obj-icon" style="--icon-bg: #15803d">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="obj-label">Objetivo</h2>
+          <p class="obj-text">
+            Consolidar todos los diagn&oacute;sticos, levantamientos y
+            cotizaciones del &aacute;rea de mantenimiento en un presupuesto
+            estructurado, claro y listo para presentar a direcci&oacute;n o
+            asamblea para su autorizaci&oacute;n.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inputs -->
+    <section class="phase">
+      <div class="phase-header">
+        <span class="phase-number">Insumos</span>
+        <h2 class="phase-title">¿Qu&eacute; necesitamos?</h2>
+      </div>
+
+      <div class="input-cards">
+        <a routerLink="/web/maintenance/cleaning-classification" class="input-card" style="--i-color: #c2410c; --i-bg: #ffedd5">
+          <span class="i-icon">🧹</span>
+          <div>
+            <h3>Limpieza y clasificaci&oacute;n</h3>
+            <p>Objetos clasificados con destino final definido</p>
+          </div>
+          <svg class="i-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a routerLink="/web/maintenance/machinery-survey" class="input-card" style="--i-color: #b45309; --i-bg: #fef3c7">
+          <span class="i-icon">⚙️</span>
+          <div>
+            <h3>Levantamiento de maquinaria</h3>
+            <p>Inventario, diagn&oacute;stico, cotizaciones y calendario</p>
+          </div>
+          <svg class="i-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <div class="input-card" style="--i-color: #3b82f6; --i-bg: #dbeafe">
+          <span class="i-icon">📋</span>
+          <div>
+            <h3>Reportes de inspecciones</h3>
+            <p>&Aacute;reas comunes, instalaciones y fachadas</p>
+          </div>
+        </div>
+
+        <div class="input-card" style="--i-color: #8b5cf6; --i-bg: #f3e8ff">
+          <span class="i-icon">📄</span>
+          <div>
+            <h3>Contratos vigentes</h3>
+            <p>Proveedores, servicios recurrentes y mantenimientos externos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="phase">
+      <div class="phase-header">
+        <span class="phase-number">Proceso</span>
+        <h2 class="phase-title">Armado del presupuesto</h2>
+      </div>
+
+      <div class="steps-flow">
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action"
+              >1. Recopilar insumos</span
+            >
+            <span class="step-desc"
+              >Reunir reportes de levantamiento, diagn&oacute;sticos,
+              cotizaciones y calendarios de todas las &aacute;reas de
+              mantenimiento.</span
+            >
+          </div>
+        </div>
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action"
+              >2. Clasificar partidas</span
+            >
+            <span class="step-desc"
+              >Agrupar gastos por categor&iacute;a: mantenimiento
+              preventivo, correctivo, urgentes, refacciones, servicios
+              externos.</span
+            >
+          </div>
+        </div>
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action"
+              >3. Calcular costos</span
+            >
+            <span class="step-desc"
+              >Integrar cotizaciones, estimar costos de mano de obra,
+              refacciones y materiales para cada partida.</span
+            >
+          </div>
+        </div>
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action"
+              >4. Priorizar</span
+            >
+            <span class="step-desc"
+              >Clasificar cada partida como urgente, necesaria u
+              opcional seg&uacute;n criticidad y presupuesto
+              disponible.</span
+            >
+          </div>
+        </div>
+        <div class="step-node process">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <span class="step-action"
+              >5. Estructurar presupuesto</span
+            >
+            <span class="step-desc"
+              >Armar documento con resumen ejecutivo, desglose de
+              partidas, calendario de ejecuci&oacute;n y flujo de
+              egresos.</span
+            >
+          </div>
+        </div>
+        <div class="step-node decision-step">
+          <div class="step-dot orange"></div>
+          <div class="step-body">
+            <span class="step-action"
+              >6. Presentar para autorizaci&oacute;n</span
+            >
+            <span class="step-desc"
+              >Entregar expediente a direcci&oacute;n o asamblea para
+              revisi&oacute;n, ajustes y aprobaci&oacute;n final.</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Structure diagram -->
+    <section class="phase">
+      <div class="phase-header">
+        <span class="phase-number">Estructura</span>
+        <h2 class="phase-title">¿C&oacute;mo se organiza el presupuesto?</h2>
+      </div>
+
+      <div class="budget-structure">
+        <div class="struct-card" style="--s-color: #b45309">
+          <div class="struct-head">
+            <span class="struct-badge">1</span>
+            <h3>Resumen ejecutivo</h3>
+          </div>
+          <p>Vista general del presupuesto total por categor&iacute;a</p>
+        </div>
+        <div class="struct-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="struct-card" style="--s-color: #d97706">
+          <div class="struct-head">
+            <span class="struct-badge">2</span>
+            <h3>Desglose de partidas</h3>
+          </div>
+          <p>Detalle de cada rubro con costo unitario y total</p>
+        </div>
+        <div class="struct-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="struct-card" style="--s-color: #f59e0b">
+          <div class="struct-head">
+            <span class="struct-badge">3</span>
+            <h3>Calendario de ejecuci&oacute;n</h3>
+          </div>
+          <p>Cronograma mensual con hitos y entregables</p>
+        </div>
+        <div class="struct-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="struct-card" style="--s-color: #22c55e">
+          <div class="struct-head">
+            <span class="struct-badge">4</span>
+            <h3>Anexos y cotizaciones</h3>
+          </div>
+          <p>Soportes documentales de cada partida presupuestada</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
