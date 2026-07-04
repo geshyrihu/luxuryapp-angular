@@ -17,7 +17,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
-import { HeaderCommitteeMobile } from "../shared/header-mobile/header-mobile";
+import { HeaderMobile } from "../shared/header-mobile/header-mobile";
 import { FooterCommitteeMonitor } from "./monitor/components/footer-committee-monitor/footer-committee-monitor";
 import { HeaderCommitteeMonitor } from "./monitor/header-committee-monitor/header-committee-monitor";
 @Component({
@@ -28,7 +28,7 @@ import { HeaderCommitteeMonitor } from "./monitor/header-committee-monitor/heade
     RouterOutlet,
     HeaderCommitteeMonitor,
     FooterCommitteeMonitor,
-    HeaderCommitteeMobile,
+    HeaderMobile,
     IonApp,
     IonHeader,
     IonToolbar,

@@ -47,7 +47,7 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
   ],
   templateUrl: "./profile-user.html",
 })
-export class ProfileCommitteeMobile {
+export class ProfileUserMobile {
   updateService = inject(UpdateService);
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);

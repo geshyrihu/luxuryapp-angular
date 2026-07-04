@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ProfileCommitteeMobile } from './profile-user';
+import { ProfileUserMobile } from './profile-user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UpdateService } from 'src/app/core/services/update-pwa.service';
@@ -25,9 +25,9 @@ vi.mock('@ionic/angular/standalone', () => ({
   IonSelectOption: class {},
 }));
 
-describe('ProfileCommitteeMobile', () => {
-  let component: ProfileCommitteeMobile;
-  let fixture: ComponentFixture<ProfileCommitteeMobile>;
+describe('ProfileUserMobile', () => {
+  let component: ProfileUserMobile;
+  let fixture: ComponentFixture<ProfileUserMobile>;
   let updateServiceMock: any;
   let apiResponseServiceMock: any;
   let authServiceMock: any;
@@ -93,7 +93,7 @@ describe('ProfileCommitteeMobile', () => {
       success: vi.fn(),
     };
 
-    TestBed.overrideComponent(ProfileCommitteeMobile, {
+    TestBed.overrideComponent(ProfileUserMobile, {
       set: {
         template: '<div>Mock</div>',
         imports: [],
@@ -101,7 +101,7 @@ describe('ProfileCommitteeMobile', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [ProfileCommitteeMobile],
+      imports: [ProfileUserMobile],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: UpdateService, useValue: updateServiceMock },
@@ -116,7 +116,7 @@ describe('ProfileCommitteeMobile', () => {
       ],
     });
 
-    fixture = TestBed.createComponent(ProfileCommitteeMobile);
+    fixture = TestBed.createComponent(ProfileUserMobile);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

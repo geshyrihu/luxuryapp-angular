@@ -8,20 +8,20 @@ import { chevronBack } from "ionicons/icons";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { NavigationService } from "src/app/core/services/navigation.service";
 import { CustomerHeaderDataMobile } from "src/app/layout/shared/customer-header-data-mobile/customer-header-data-mobile";
-import { ProfileCommitteeMobile } from "../profile-user-mobile/profile-user";
+import { ProfileUserMobile } from "../profile-user-mobile/profile-user";
 @Component({
   selector: "app-header-mobile",
   imports: [
     AppIcon,
     CustomerHeaderDataMobile,
-    ProfileCommitteeMobile,
+    ProfileUserMobile,
     IonToolbar,
     IonButtons,
     IonButton,
   ],
   templateUrl: "./header-mobile.html",
 })
-export class HeaderCommitteeMobile {
+export class HeaderMobile {
   private location = inject(Location);
   private navigationService = inject(NavigationService);
   private router = inject(Router);

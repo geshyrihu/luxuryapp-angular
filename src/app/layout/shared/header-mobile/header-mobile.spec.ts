@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HeaderCommitteeMobile } from './header-mobile';
+import { HeaderMobile } from './header-mobile';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { NavigationService } from 'src/app/core/services/navigation.service';
@@ -31,9 +31,9 @@ vi.mock('@ionic/angular/standalone', () => ({
   IonSelectOption: class {},
 }));
 
-describe('HeaderCommitteeMobile', () => {
-  let component: HeaderCommitteeMobile;
-  let fixture: ComponentFixture<HeaderCommitteeMobile>;
+describe('HeaderMobile', () => {
+  let component: HeaderMobile;
+  let fixture: ComponentFixture<HeaderMobile>;
   let locationMock: any;
   let navigationServiceMock: any;
   let routerMock: any;
@@ -51,7 +51,7 @@ describe('HeaderCommitteeMobile', () => {
       navigateByUrl: vi.fn(),
     };
 
-    TestBed.overrideComponent(HeaderCommitteeMobile, {
+    TestBed.overrideComponent(HeaderMobile, {
       set: {
         template: '<div>Mock</div>',
         imports: [],
@@ -59,7 +59,7 @@ describe('HeaderCommitteeMobile', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [HeaderCommitteeMobile],
+      imports: [HeaderMobile],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Location, useValue: locationMock },
@@ -68,7 +68,7 @@ describe('HeaderCommitteeMobile', () => {
       ],
     });
 
-    fixture = TestBed.createComponent(HeaderCommitteeMobile);
+    fixture = TestBed.createComponent(HeaderMobile);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

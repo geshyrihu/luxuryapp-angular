@@ -7,13 +7,13 @@ import {
   IonToolbar,
 } from "@ionic/angular/standalone";
 import { Loader } from "@ui/mobile/loader/loader";
-import { HeaderCommitteeMobile } from "../../../shared/header-mobile/header-mobile";
+import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 
 @Component({
   selector: "app-view-direccion-mobile",
   imports: [
     RouterOutlet,
-    HeaderCommitteeMobile,
+    HeaderMobile,
     IonApp,
     IonContent,
     IonHeader,

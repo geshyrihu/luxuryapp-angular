@@ -13,7 +13,7 @@ import { Loader } from "@ui/mobile/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
-import { HeaderCommitteeMobile } from "../../../shared/header-mobile/header-mobile";
+import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 import { FooterEmployeeMobile } from "../footer-employee-mobile/footer-employee-mobile";
 import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
 @Component({
@@ -21,7 +21,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
   imports: [
     RouterOutlet,
     FooterEmployeeMobile,
-    HeaderCommitteeMobile,
+    HeaderMobile,
     HomeMenu,
     IonApp,
     IonContent,
@@ -52,10 +52,6 @@ export class ViewEmployeeMobile implements OnInit {
   public layout = inject(LayoutService);
   private menuCtrl = inject(MenuController);
 
-  public footerFix = false;
-  public footerLight = false;
-  public footerDark: boolean = false;
-
   ngOnInit() {
     document.body.setAttribute("data-layout", "vertical");
   }
@@ -66,26 +62,6 @@ export class ViewEmployeeMobile implements OnInit {
 
   get layoutClass() {
     return this.layout.config.settings.sidebar_type + "";
-  }
-
-  ngDoCheck() {
-    if (window.location.pathname.includes("/page-layout/footer-dark")) {
-      this.footerDark = true;
-      this.footerLight = false;
-      this.footerFix = false;
-    } else if (window.location.pathname.includes("/page-layout/footer-light")) {
-      this.footerLight = true;
-      this.footerDark = false;
-      this.footerFix = false;
-    } else if (window.location.pathname.includes("/page-layout/footer-fixed")) {
-      this.footerFix = true;
-      this.footerLight = false;
-      this.footerDark = false;
-    }
-  }
-
-  ngOnDestroy() {
-    this.footerDark = false;
   }
 }
 
