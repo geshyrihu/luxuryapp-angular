@@ -5,10 +5,10 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";

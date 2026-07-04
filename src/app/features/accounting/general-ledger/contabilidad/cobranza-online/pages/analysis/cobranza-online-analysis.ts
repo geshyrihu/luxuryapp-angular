@@ -4,14 +4,14 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 
 import { MessageModule } from "primeng/message";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

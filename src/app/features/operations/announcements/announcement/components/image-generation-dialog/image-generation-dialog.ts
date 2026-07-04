@@ -4,9 +4,9 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { SwalService } from "src/app/core/services/swal.service";
 

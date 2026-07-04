@@ -9,11 +9,11 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 // PrimeNG Modules
 // Project components & services
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
-import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraDetalleCompForm {

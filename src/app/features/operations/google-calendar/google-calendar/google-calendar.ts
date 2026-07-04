@@ -19,12 +19,12 @@ import { TagModule } from "primeng/tag";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web-label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+} from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -64,14 +64,14 @@ interface IGoogleCalendarEventListItem {
   recurrenceSummary: string;
 }
 
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

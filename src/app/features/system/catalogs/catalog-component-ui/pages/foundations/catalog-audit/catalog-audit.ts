@@ -8,7 +8,7 @@ import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { resolveIconifyIcon } from "src/app/core/utils/icon-mapping";
 
 interface ItemChecklist {

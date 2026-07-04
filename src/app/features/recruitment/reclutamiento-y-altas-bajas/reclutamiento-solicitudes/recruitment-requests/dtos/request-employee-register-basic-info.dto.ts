@@ -1,4 +1,4 @@
-import { EStatus } from "src/app/core/components/web/status-badge/status-badge";
+import { EStatus } from "@ui/web/status-badge/status-badge";
 export interface IRequestEmployeeRegisterBasicInfo {
   folio: number;
   employeeName: string;

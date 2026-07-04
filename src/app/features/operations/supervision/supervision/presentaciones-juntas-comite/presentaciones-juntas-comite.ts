@@ -3,10 +3,10 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -16,8 +16,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
 @Component({
   selector: "app-presentaciones-juntas-comite",

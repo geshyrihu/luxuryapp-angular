@@ -6,9 +6,9 @@ import { ImageModule } from "primeng/image";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelTracking } from "src/app/core/components/buttons/web-label/button-tracking";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabelTracking } from "@ui/buttons/web-label/button-tracking";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -33,7 +33,7 @@ import { TaskReadList } from "../../components/task-read-list";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
 import { TaskForm } from "../../task-message/pages/task-form";
-import { WebButtonIconTracking } from "src/app/core/components/buttons/web-icon/button-tracking";
+import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 
 @Component({
   selector: "app-task-operation-report",

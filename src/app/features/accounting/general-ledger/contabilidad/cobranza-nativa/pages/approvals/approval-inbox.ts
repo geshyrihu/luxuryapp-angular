@@ -4,12 +4,12 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { MobileButtonLabel } from "src/app/core/components/buttons/mobile-label";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { MobileButtonLabel } from "@ui/buttons/mobile-label";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -25,7 +25,7 @@ import {
 } from "../../models/enums";
 import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dto";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

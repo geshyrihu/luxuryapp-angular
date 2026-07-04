@@ -9,10 +9,10 @@ import { TooltipModule } from "primeng/tooltip";
 import {
   WebButtonLabelEdit,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web-label";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+} from "@ui/buttons/web-label";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -31,9 +31,9 @@ import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { TaskForm } from "../../task-message/pages/task-form";
 import { TaskGroupService } from "../../task.service";
 import { MyTaskForm } from "./my-task-form";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
 @Component({
   selector: "app-my-requests-task",

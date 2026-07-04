@@ -3,10 +3,10 @@ import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import FileSaver from "file-saver";
 import { TableModule } from "primeng/table";
-import { CustomInputDatepicker } from "src/app/core/components/inputs/web/custom-input-datepicker-signal";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -17,8 +17,8 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/button-download";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",

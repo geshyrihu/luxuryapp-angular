@@ -17,8 +17,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -37,13 +37,13 @@ import {
 } from "../../models/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
 
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IPaymentForm {
   propertyId: FormControl<string>;

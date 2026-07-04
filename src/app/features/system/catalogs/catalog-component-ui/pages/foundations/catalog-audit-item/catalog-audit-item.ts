@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { CheckboxModule } from "primeng/checkbox";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { resolveToIconify } from "src/app/core/utils/icon-mapping";
 
 const AUDIT_LABELS: Record<string, string> = {

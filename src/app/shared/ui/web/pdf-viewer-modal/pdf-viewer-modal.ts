@@ -4,7 +4,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { environment } from "src/environments/environment";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 
 /**
  * 📄 PDF VIEWER MODAL

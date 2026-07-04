@@ -20,10 +20,10 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, of, startWith, switchMap } from "rxjs";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -33,7 +33,7 @@ import { LoaderService } from "src/app/core/services/loader.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import { SecurityService } from "src/app/core/services/security.service";
 
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-login",

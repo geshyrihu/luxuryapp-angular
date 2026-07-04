@@ -7,10 +7,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

@@ -3,11 +3,11 @@ import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -18,10 +18,10 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "src/app/features/purchasing/po/purchase-order/orden-compra";
-import { AppIcon } from "../../../../../core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-purchase-history",

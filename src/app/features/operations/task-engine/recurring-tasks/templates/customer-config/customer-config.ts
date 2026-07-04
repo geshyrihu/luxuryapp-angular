@@ -1,9 +1,9 @@
 import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { FieldsetModule } from "primeng/fieldset";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";

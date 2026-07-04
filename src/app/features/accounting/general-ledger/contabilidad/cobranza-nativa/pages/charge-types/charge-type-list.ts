@@ -4,16 +4,16 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { layersOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,

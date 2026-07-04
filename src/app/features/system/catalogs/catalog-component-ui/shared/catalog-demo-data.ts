@@ -1,5 +1,5 @@
 import { EventInput } from "@fullcalendar/core";
-import { AvatarItem } from "src/app/core/components/shared/avatar-group/avatar-group";
+import { AvatarItem } from "@ui/shared/avatar-group/avatar-group";
 
 export const CATALOG_DEMO_EVENTS: EventInput[] = [
   {

@@ -10,6 +10,39 @@ export const maintenanceRoutes: Routes = [
     data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" },
   },
   {
+    path: "preventive-maintenance",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/preventive-maintenance/preventive-maintenance"
+      ).then((m) => m.PreventiveMaintenance),
+    data: {
+      title: "Mantenimiento Preventivo de Instalaciones",
+      breadcrumb: "Mantenimiento Preventivo",
+    },
+  },
+  {
+    path: "emergency-response",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/emergency-response/emergency-response"
+      ).then((m) => m.EmergencyResponse),
+    data: {
+      title: "Atención a Emergencias y Averías",
+      breadcrumb: "Emergencias y Averías",
+    },
+  },
+  {
+    path: "green-areas",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/green-areas/green-areas"
+      ).then((m) => m.GreenAreas),
+    data: {
+      title: "Mantenimiento de Áreas Verdes",
+      breadcrumb: "Áreas Verdes",
+    },
+  },
+  {
     path: "cleaning-classification",
     loadComponent: () =>
       import(
@@ -84,6 +117,17 @@ export const maintenanceRoutes: Routes = [
     data: {
       title: "Inventario de Áreas Comunes",
       breadcrumb: "Inventario de Áreas Comunes",
+    },
+  },
+  {
+    path: "supplier-review",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/supplier-review/supplier-review"
+      ).then((m) => m.SupplierReview),
+    data: {
+      title: "Revisión de Contratos y Proveedores",
+      breadcrumb: "Contratos y Proveedores",
     },
   },
 ];

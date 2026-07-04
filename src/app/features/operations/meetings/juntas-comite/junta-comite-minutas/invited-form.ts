@@ -7,9 +7,9 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

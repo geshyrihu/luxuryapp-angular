@@ -3,7 +3,7 @@ import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
 import { AccordionModule } from "primeng/accordion";
 import { ButtonModule } from "primeng/button";
@@ -16,12 +16,12 @@ import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web-label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+} from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -46,13 +46,13 @@ import { MeetingForm } from "./meeting-form";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
 import { MinutaPdfService } from "./minuta-pdf.service";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
-import { MobileButtonLabelConfirm } from "src/app/core/components/buttons/mobile-label/button-confirm";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-minutas-list",

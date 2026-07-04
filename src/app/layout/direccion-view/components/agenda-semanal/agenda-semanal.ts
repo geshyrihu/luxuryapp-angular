@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { TooltipModule } from "primeng/tooltip";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -12,7 +12,7 @@ import type {
   AgendaDiaGroup,
   AgendaSemanalEventDTO,
 } from "./agenda-semanal.model";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-agenda-semanal",

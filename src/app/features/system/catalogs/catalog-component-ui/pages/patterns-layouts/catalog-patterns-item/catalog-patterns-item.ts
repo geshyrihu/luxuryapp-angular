@@ -9,11 +9,11 @@ import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/web/status-badge/status-badge";
+} from "@ui/web/status-badge/status-badge";
 
 const PATTERNS_LABELS: Record<string, string> = {
   complexcard: "Complex Card",

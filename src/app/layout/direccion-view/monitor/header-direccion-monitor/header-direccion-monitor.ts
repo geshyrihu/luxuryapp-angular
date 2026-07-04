@@ -12,7 +12,7 @@ import {
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { SelectModule } from "primeng/select";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";

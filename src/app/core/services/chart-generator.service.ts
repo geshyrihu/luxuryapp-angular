@@ -3,7 +3,7 @@ import * as echarts from "echarts";
 import {
   chartJsToRadarOption,
   ChartJsData,
-} from "src/app/core/components/web/charts/echarts-adapters";
+} from "@ui/web/charts/echarts-adapters";
 
 /** Datos del radar en formato Chart.js `{ labels, datasets }` (compatibilidad). */
 export type RadarChartData = ChartJsData;

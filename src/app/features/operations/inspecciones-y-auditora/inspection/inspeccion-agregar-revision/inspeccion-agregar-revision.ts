@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-inspeccion-agregar-revision",

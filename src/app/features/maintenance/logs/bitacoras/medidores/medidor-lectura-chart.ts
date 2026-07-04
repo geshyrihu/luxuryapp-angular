@@ -11,11 +11,11 @@ import {
 } from "@ionic/angular/standalone";
 import { NgxEchartsDirective } from "ngx-echarts";
 import type { EChartsCoreOption } from "echarts/core";
-import { chartJsToCartesianOption } from "src/app/core/components/web/charts/echarts-adapters";
+import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { IChartType } from "src/app/core/interfaces/chart-type.interface";
 import { IDataSet } from "src/app/core/interfaces/data-set.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

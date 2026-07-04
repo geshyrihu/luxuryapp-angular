@@ -20,13 +20,13 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelAdd } from "src/app/core/components/buttons/web-label/button-add";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
@@ -37,10 +37,10 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
 @Component({
   selector: "app-medidores-list",

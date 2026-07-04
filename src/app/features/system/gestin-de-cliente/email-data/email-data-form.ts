@@ -8,9 +8,9 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web-label/button-send-email";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";

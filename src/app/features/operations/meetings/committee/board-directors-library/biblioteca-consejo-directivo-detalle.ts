@@ -12,11 +12,11 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -27,8 +27,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
 @Component({
   selector: "app-biblioteca-consejo-directivo-detalle",

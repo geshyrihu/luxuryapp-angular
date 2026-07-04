@@ -11,16 +11,16 @@ import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web-label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+} from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
@@ -33,15 +33,15 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
 import { IAnnouncementAdminList } from "./announcement.model";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/button-download";
-import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
   selector: "app-announcement-admin-list",

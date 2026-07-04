@@ -1,8 +1,8 @@
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export type NominaRole =
   | "SuperUsuario"
@@ -573,7 +573,7 @@ interface HeroMetric {
   tone: string;
 }
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-nomina-dashboard",

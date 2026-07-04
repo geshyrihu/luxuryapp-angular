@@ -3,14 +3,14 @@ import { Component, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelAdd } from "src/app/core/components/buttons/web-label/button-add";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
 export interface DetailEvent {
   meetingId: any;
@@ -24,8 +24,8 @@ export interface SeguimientoEvent {
   idMeetingSeguimiento: number;
 }
 
-import { WebButtonIconAdd } from "src/app/core/components/buttons/web-icon/button-add";
-import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 @Component({
   selector: "app-area-details-table",

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TimelineModule } from "primeng/timeline";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TimelineBase } from "@ui/base/timeline.base";
 
 export { type TimelineEvent } from "@ui/base/timeline.base";

@@ -3,10 +3,10 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -22,11 +22,11 @@ import {
 } from "../../interfaces/nomina-encabezado.interface";
 import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-editar-empleado-nomina";
 
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { TooltipModule } from "primeng/tooltip";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-nomina-detalle",

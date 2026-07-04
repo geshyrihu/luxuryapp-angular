@@ -4,13 +4,13 @@ import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -27,8 +27,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

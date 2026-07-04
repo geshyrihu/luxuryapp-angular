@@ -16,8 +16,8 @@ import {
   IonSpinner,
 } from "@ionic/angular/standalone";
 import { catchError, finalize, throwError } from "rxjs";
-// import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
-import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
+// import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
+import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 

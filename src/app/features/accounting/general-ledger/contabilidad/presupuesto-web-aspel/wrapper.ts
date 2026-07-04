@@ -6,17 +6,17 @@ import {
   IonSegmentButton,
 } from "@ionic/angular/standalone";
 import { MessageModule } from "primeng/message";
-import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TabsModule } from "primeng/tabs";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { EspejoAspelExtraordinarios } from "./espejo-aspel-extraordinarios";
 import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

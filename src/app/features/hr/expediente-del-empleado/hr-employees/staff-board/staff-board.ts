@@ -13,15 +13,15 @@ import { Dialog } from "primeng/dialog";
 import { Drawer } from "primeng/drawer";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size";
@@ -44,8 +44,8 @@ import { WorkPositionHours } from "src/app/features/recruitment/reclutamiento-y-
 import { IEmployee } from "../employees/models/employee.interface";
 import { CardEmployee } from "../employees/pages/card-employee";
 
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

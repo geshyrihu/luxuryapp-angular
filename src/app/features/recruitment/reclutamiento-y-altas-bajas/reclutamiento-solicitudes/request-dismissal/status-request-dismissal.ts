@@ -4,8 +4,8 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { PhoneFormatPipe } from "src/app/core/pipes/phone-format.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -17,7 +17,7 @@ import { StatusSolicitudVacanteService } from "src/app/core/services/status-soli
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
 import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

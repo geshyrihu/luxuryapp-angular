@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";

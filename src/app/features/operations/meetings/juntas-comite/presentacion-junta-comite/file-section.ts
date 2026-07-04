@@ -1,7 +1,7 @@
 import { Component, input, output } from "@angular/core";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-file-section",

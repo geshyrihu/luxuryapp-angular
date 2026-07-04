@@ -15,8 +15,8 @@ import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -30,9 +30,9 @@ import Swal from "sweetalert2";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
-import { WebButtonIconViewPdf } from "src/app/core/components/buttons/web-icon/button-view-pdf";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-cuadro-comparativo-list",

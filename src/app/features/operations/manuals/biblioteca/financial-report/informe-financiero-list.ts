@@ -1,8 +1,8 @@
 import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({

@@ -18,7 +18,7 @@ import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomButtonDelete } from "src/app/core/components/buttons/legacy/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/legacy/buttons/custom-button-edit";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-web-overlays",

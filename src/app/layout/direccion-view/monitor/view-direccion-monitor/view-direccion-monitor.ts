@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { Loader } from "src/app/core/components/shared/loader/loader";
+import { Loader } from "@ui/mobile/loader/loader";
 import { FooterDireccionMonitor } from "../components/footer-direccion-monitor/footer-direccion-monitor";
 import { HeaderDireccionMonitor } from "../header-direccion-monitor/header-direccion-monitor";
 

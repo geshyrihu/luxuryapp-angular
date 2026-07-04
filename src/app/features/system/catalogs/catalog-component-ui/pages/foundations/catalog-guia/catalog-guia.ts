@@ -2,8 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { CheckboxModule } from "primeng/checkbox";
 import { DatePickerModule } from "primeng/datepicker";
 import { DialogModule } from "primeng/dialog";
@@ -23,7 +23,7 @@ import { TagModule } from "primeng/tag";
 import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 

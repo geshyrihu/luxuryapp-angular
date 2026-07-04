@@ -1,5 +1,5 @@
 import { Component, input } from "@angular/core";
-import { PieChart } from "src/app/core/components/web/charts/pie-chart";
+import { PieChart } from "@ui/web/charts/pie-chart";
 
 @Component({
   selector: "app-chart-pie",

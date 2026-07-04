@@ -12,8 +12,8 @@ import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web-label";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+} from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -23,10 +23,10 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IReportDefinitionList } from "../../models/report-definition.interface";
 
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 import { TooltipModule } from "primeng/tooltip";
 

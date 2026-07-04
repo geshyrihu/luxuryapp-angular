@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 
 vi.mock('ng2-pdf-viewer', () => ({ PdfViewerModule: class {} }));
-vi.mock('src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal', () => ({
+vi.mock('@ui/web/pdf-viewer-modal/pdf-viewer-modal', () => ({
   PdfViewerModal: class {},
 }));
 

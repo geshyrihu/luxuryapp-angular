@@ -1,6 +1,6 @@
 import { Component, input, computed, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 
 @Component({
   selector: "app-funnel-chart",

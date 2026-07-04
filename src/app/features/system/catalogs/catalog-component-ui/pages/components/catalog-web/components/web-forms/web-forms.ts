@@ -10,17 +10,17 @@ import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web-inputs/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web-inputs/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web-inputs/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/inputs/web-inputs/custom-input-file-signal";
-import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web-inputs/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web-inputs/custom-input-number-signal";
-import { CustomInputPassword } from "src/app/core/components/inputs/web-inputs/custom-input-password-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web-inputs/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web-inputs/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web-inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web-inputs/custom-input-textarea-signal";
+import { CustomInputCheckSignal } from "@ui/inputs/web-inputs/custom-input-check-signal";
+import { CustomInputCurrencySignal } from "@ui/inputs/web-inputs/custom-input-currency-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web-inputs/custom-input-date-signal";
+import { CustomInputFile } from "@ui/inputs/web-inputs/custom-input-file-signal";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web-inputs/custom-input-multiselect-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web-inputs/custom-input-number-signal";
+import { CustomInputPassword } from "@ui/inputs/web-inputs/custom-input-password-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web-inputs/custom-input-select-signal";
+import { CustomInputSwitch } from "@ui/inputs/web-inputs/custom-input-switch-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web-inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web-inputs/custom-input-textarea-signal";
 
 @Component({
   selector: "app-web-forms",

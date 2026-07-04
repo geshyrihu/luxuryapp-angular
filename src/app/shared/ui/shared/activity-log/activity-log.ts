@@ -1,6 +1,6 @@
 import { Component, input, computed } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface ActivityEntry {
   id: string;

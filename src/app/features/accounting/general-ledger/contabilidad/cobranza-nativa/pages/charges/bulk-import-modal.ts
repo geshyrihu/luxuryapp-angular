@@ -5,8 +5,8 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 
 // PrimeNG
 import { MessageModule } from "primeng/message";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 
 // Services
 import { ApiResponseService } from "src/app/core/services/api-response.service";

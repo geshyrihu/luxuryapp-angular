@@ -49,12 +49,12 @@ import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelSave,
-} from "src/app/core/components/buttons/web-label";
+} from "@ui/buttons/web-label";
 import {
   WebButtonIconDownload,
   WebButtonIconSendEmail,
   WebButtonIconViewPdf,
-} from "src/app/core/components/buttons/web-icon";
+} from "@ui/buttons/web-icon";
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
@@ -63,8 +63,8 @@ import {
   CustomInputNumberSignal,
   CustomInputSelectSignal,
   CustomInputTextSignal,
-} from "src/app/core/components/inputs/web";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+} from "@ui/inputs/web";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CATALOG_DEMO_EVENTS } from "../../../shared/catalog-demo-data";
 
 const WEB_ITEM_LABELS: Record<string, string> = {

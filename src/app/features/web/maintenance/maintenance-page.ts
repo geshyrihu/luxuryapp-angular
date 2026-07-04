@@ -101,6 +101,15 @@ export class MaintenancePage {
       steps: 8,
     },
     {
+      id: "supplier-review",
+      title: "Revisión de Contratos y Proveedores",
+      objective:
+        "Controlar contratos, trabajos pendientes, pólizas vigentes, reclamos y demandas con proveedores de servicios y mantenimiento.",
+      icon: "mdi:file-sign",
+      gradient: "linear-gradient(135deg, #be185d 0%, #ec4899 100%)",
+      steps: 9,
+    },
+    {
       id: "green-areas",
       title: "Mantenimiento de Áreas Verdes",
       objective:

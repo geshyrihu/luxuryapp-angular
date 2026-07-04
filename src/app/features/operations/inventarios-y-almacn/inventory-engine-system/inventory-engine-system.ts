@@ -2,9 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -17,7 +17,7 @@ import { ActivosForm } from "src/app/features/maintenance/equipos-y-maquinaria/m
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-inventory-engine-system",

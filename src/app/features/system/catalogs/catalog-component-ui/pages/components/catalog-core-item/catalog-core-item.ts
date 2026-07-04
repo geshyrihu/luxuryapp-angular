@@ -10,129 +10,129 @@ import { TagModule } from "primeng/tag";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web-label";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+} from "@ui/buttons/web-label";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import {
   ActivityEntry,
   ActivityLog,
-} from "src/app/core/components/shared/activity-log/activity-log";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+} from "@ui/shared/activity-log/activity-log";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
   CommandPalette,
   PaletteCommand,
-} from "src/app/core/components/web/command-palette/command-palette";
+} from "@ui/web/command-palette/command-palette";
 import {
   ComparisonItem,
   ComparisonTable,
-} from "src/app/core/components/web/comparison-table/comparison-table";
-import { ConfirmDialog } from "src/app/core/components/web/confirm-dialog/confirm-dialog";
-import { ContextMenu } from "src/app/core/components/web/context-menu/context-menu";
-import { DateRange } from "src/app/core/components/web/date-range/date-range";
-import { EmptyState } from "src/app/core/components/web/empty-state/empty-state";
-import { FileUpload } from "src/app/core/components/web/file-upload/file-upload";
-import { FunnelChart } from "src/app/core/components/web/funnel-chart/funnel-chart";
-import { Gauge } from "src/app/core/components/shared/gauge/gauge";
+} from "@ui/web/comparison-table/comparison-table";
+import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
+import { ContextMenu } from "@ui/web/context-menu/context-menu";
+import { DateRange } from "@ui/web/date-range/date-range";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
+import { FileUpload } from "@ui/web/file-upload/file-upload";
+import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
+import { Gauge } from "@ui/shared/gauge/gauge";
 import {
   KanbanBoard,
   KanbanStage,
-} from "src/app/core/components/web/kanban-board/kanban-board";
-import { Loader } from "src/app/core/components/shared/loader/loader";
+} from "@ui/web/kanban-board/kanban-board";
+import { Loader } from "@ui/mobile/loader/loader";
 import {
   NotificationCenter,
   NotificationItem,
-} from "src/app/core/components/web/notification-center/notification-center";
-import { SplitPane } from "src/app/core/components/web/split-pane/split-pane";
+} from "@ui/web/notification-center/notification-center";
+import { SplitPane } from "@ui/web/split-pane/split-pane";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/web/status-badge/status-badge";
-import { Tour, TourStep } from "src/app/core/components/shared/tour/tour";
+} from "@ui/web/status-badge/status-badge";
+import { Tour, TourStep } from "@ui/shared/tour/tour";
 import {
   TreeTable,
   TreeTableColumn,
-} from "src/app/core/components/web/tree-table/tree-table";
+} from "@ui/web/tree-table/tree-table";
 import {
   Wizard,
   WizardStep,
-} from "src/app/core/components/web/wizard/wizard";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+} from "@ui/web/wizard/wizard";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 // 13.3.3 demos de prioridad baja
 import {
   ApprovalNode,
   ApprovalWorkflow,
-} from "src/app/core/components/shared/approval-workflow/approval-workflow";
+} from "@ui/shared/approval-workflow/approval-workflow";
 import {
   AvatarGroup,
   AvatarItem,
-} from "src/app/core/components/shared/avatar-group/avatar-group";
-import { AppBarcodeInput } from "src/app/core/components/web/barcode-input/barcode-input";
-import { AppColorPicker } from "src/app/core/components/web/color-picker/color-picker";
-import { AppCommentThread } from "src/app/core/components/web/comment-thread/comment-thread";
+} from "@ui/shared/avatar-group/avatar-group";
+import { AppBarcodeInput } from "@ui/web/barcode-input/barcode-input";
+import { AppColorPicker } from "@ui/web/color-picker/color-picker";
+import { AppCommentThread } from "@ui/web/comment-thread/comment-thread";
 import {
   AppCustomer360,
   Customer360Data,
-} from "src/app/core/components/web/customer-360/customer-360";
+} from "@ui/web/customer-360/customer-360";
 import {
   DashboardLayout,
   DashboardWidget,
-} from "src/app/core/components/web/dashboard-layout/dashboard-layout";
+} from "@ui/web/dashboard-layout/dashboard-layout";
 import {
   DataGrid,
   DataGridColumn,
-} from "src/app/core/components/web/data-grid/data-grid";
-import { AppDock } from "src/app/core/components/web/dock/dock";
-import { DocumentPreviewer } from "src/app/core/components/web/document-previewer/document-previewer";
-import { AppEmailPreview } from "src/app/core/components/web/email-preview/email-preview";
+} from "@ui/web/data-grid/data-grid";
+import { AppDock } from "@ui/web/dock/dock";
+import { DocumentPreviewer } from "@ui/web/document-previewer/document-previewer";
+import { AppEmailPreview } from "@ui/web/email-preview/email-preview";
 import {
   AppFormBuilder,
   FormField,
-} from "src/app/core/components/web/form-builder/form-builder";
+} from "@ui/web/form-builder/form-builder";
 import {
   AppGantt,
   GanttTask,
-} from "src/app/core/components/web/gantt/gantt";
+} from "@ui/web/gantt/gantt";
 import {
   AppHeatmap,
   HeatmapCell,
-} from "src/app/core/components/web/heatmap/heatmap";
-import { AppInventoryLevel } from "src/app/core/components/shared/inventory-level/inventory-level";
-import { KpiCard } from "src/app/core/components/shared/kpi-card/kpi-card";
-import { AppLangSelector } from "src/app/core/components/web/lang-selector/lang-selector";
+} from "@ui/web/heatmap/heatmap";
+import { AppInventoryLevel } from "@ui/shared/inventory-level/inventory-level";
+import { KpiCard } from "@ui/shared/kpi-card/kpi-card";
+import { AppLangSelector } from "@ui/web/lang-selector/lang-selector";
 import {
   LeadScoreCategory,
   LeadScoring,
-} from "src/app/core/components/shared/lead-scoring/lead-scoring";
+} from "@ui/shared/lead-scoring/lead-scoring";
 import {
   OrderStatus,
   OrderStatusStep,
-} from "src/app/core/components/shared/order-status/order-status";
-import { AppOtpInput } from "src/app/core/components/web/otp-input/otp-input";
+} from "@ui/shared/order-status/order-status";
+import { AppOtpInput } from "@ui/web/otp-input/otp-input";
 import {
   AppPipelineCrm,
   PipelineStage,
-} from "src/app/core/components/web/pipeline-crm/pipeline-crm";
+} from "@ui/web/pipeline-crm/pipeline-crm";
 import {
   PivotDimension,
   PivotTable,
   PivotValue,
-} from "src/app/core/components/web/pivot-table/pivot-table";
-import { AppPrintView } from "src/app/core/components/web/print-view/print-view";
-import { AppProfileCard } from "src/app/core/components/web/profile-card/profile-card";
-import { AppQrCode } from "src/app/core/components/web/qr-code/qr-code";
-import { AppRating } from "src/app/core/components/web/rating/rating";
-import { AppRealtimeIndicator } from "src/app/core/components/shared/realtime-indicator/realtime-indicator";
-import { AppSignaturePad } from "src/app/core/components/web/signature-pad/signature-pad";
-import { SkeletonPresets } from "src/app/core/components/web/skeleton-presets/skeleton-presets";
-import { AppSlider } from "src/app/core/components/web/slider/slider";
-import { AppStatCard } from "src/app/core/components/shared/stat-card/stat-card";
-import { AppTagInput } from "src/app/core/components/web/tag-input/tag-input";
-import { AppThemeSwitcher } from "src/app/core/components/web/theme-switcher/theme-switcher";
+} from "@ui/web/pivot-table/pivot-table";
+import { AppPrintView } from "@ui/web/print-view/print-view";
+import { AppProfileCard } from "@ui/web/profile-card/profile-card";
+import { AppQrCode } from "@ui/web/qr-code/qr-code";
+import { AppRating } from "@ui/web/rating/rating";
+import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+import { AppSignaturePad } from "@ui/web/signature-pad/signature-pad";
+import { SkeletonPresets } from "@ui/web/skeleton-presets/skeleton-presets";
+import { AppSlider } from "@ui/web/slider/slider";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { AppTagInput } from "@ui/web/tag-input/tag-input";
+import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
 import {
   Timeline,
   TimelineEvent,
-} from "src/app/core/components/web/timeline/timeline";
-import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switch/tristate-switch";
+} from "@ui/web/timeline/timeline";
+import { AppTristateSwitch } from "@ui/shared/tristate-switch/tristate-switch";
 import { CATALOG_DEMO_AVATARS } from "../../../shared/catalog-demo-data";
 
 const CORE_LABELS: Record<string, string> = {

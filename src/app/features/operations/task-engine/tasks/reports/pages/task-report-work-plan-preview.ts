@@ -2,9 +2,9 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -13,7 +13,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 
-import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 @Component({
   selector: "app-task-report-work-plan-preview",

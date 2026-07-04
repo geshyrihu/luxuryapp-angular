@@ -22,9 +22,9 @@ import {
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {

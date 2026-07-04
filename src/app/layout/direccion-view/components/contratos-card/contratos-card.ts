@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DialogSize } from "src/app/core/enums/dialog-size";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ContratosVigentesModal } from "../contratos-vigentes-modal/contratos-vigentes-modal";
 import type { ContratosPorVencerResumenDTO } from "./contratos-card.model";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-contratos-card",

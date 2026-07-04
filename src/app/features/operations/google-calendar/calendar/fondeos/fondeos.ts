@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 @Component({
   selector: "app-fondeos",
   templateUrl: "./fondeos.html",

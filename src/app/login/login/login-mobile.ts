@@ -24,8 +24,8 @@ import {
 } from "@ionic/angular/standalone";
 import { startWith } from "rxjs";
 import { catchError, finalize, of, switchMap } from "rxjs";
-import { IonInputPassword } from "src/app/core/components/inputs/mobile/ion-input-password";
-import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
+import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
+import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";

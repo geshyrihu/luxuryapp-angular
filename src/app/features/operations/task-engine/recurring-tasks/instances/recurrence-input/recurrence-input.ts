@@ -20,10 +20,10 @@ import {
 } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 
 
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 interface RecurrenceFrequency {
   label: string;

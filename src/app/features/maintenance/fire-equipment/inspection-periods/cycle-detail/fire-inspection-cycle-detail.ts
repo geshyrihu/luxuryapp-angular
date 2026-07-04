@@ -3,7 +3,7 @@ import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionExtintorForm } from "../cycle-checklist-extintor/fire-cycle-inspection-extintor-form";

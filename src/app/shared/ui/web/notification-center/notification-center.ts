@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
 import { BadgeModule } from "primeng/badge";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
 
 export { type NotificationItem } from "@ui/base/notification-center.base";

@@ -7,11 +7,11 @@ import { CardModule } from "primeng/card";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
-} from "src/app/core/components/buttons/web-label";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+} from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

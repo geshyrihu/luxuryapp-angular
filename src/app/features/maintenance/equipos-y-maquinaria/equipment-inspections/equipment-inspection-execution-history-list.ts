@@ -11,8 +11,8 @@ import {
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -24,7 +24,7 @@ import { EquipmentInspectionExecutionForm } from "./equipment-inspection-executi
 import { EquipmentInspectionExecutionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
-import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

@@ -2,7 +2,7 @@
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { IRoles } from "src/app/core/interfaces/roles.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

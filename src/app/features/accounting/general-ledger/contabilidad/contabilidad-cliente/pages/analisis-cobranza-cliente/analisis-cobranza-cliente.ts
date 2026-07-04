@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, input, signal } from '@angular/cor
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
-import { ChartWrapper } from 'src/app/core/components/web/charts/chart-wrapper';
+import { ChartWrapper } from '@ui/web/charts/chart-wrapper';
 import type {
   IAnalisisCobranzaOnlineDto,
   ICobranzaOnlineAnalysisCondominoDto,

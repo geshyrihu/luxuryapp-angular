@@ -2,7 +2,7 @@ import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface Customer360Data {
   // Identity

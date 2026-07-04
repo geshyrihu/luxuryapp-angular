@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
 
 /**

@@ -36,10 +36,10 @@ import {
   IonInputTextarea,
   IonInputTime,
   IonInputToggle,
-} from "src/app/core/components/inputs/mobile";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
+} from "@ui/inputs/mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
 
 @Component({
   selector: "app-mobile-core-coverage",

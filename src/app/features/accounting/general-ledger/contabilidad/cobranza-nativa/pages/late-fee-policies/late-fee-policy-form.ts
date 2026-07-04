@@ -15,11 +15,11 @@ import {
   UpdateLateFeePolicyDTO,
 } from "../../models/late-fee-policy.dto";
 
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 interface ILateFeePolicyForm {
   graceDays: FormControl<number>;

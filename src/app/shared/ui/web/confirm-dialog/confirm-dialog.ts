@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
 
 export type { ConfirmType } from "@ui/base/confirm-dialog.base";

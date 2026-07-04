@@ -4,8 +4,8 @@ import { RouterModule } from "@angular/router";
 import { AccordionModule } from "primeng/accordion";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface RouteEntry {
   path: string;

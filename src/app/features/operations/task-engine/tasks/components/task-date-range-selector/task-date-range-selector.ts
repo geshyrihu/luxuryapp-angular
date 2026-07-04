@@ -1,7 +1,7 @@
 import { Component, OnInit, output } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { DateRangeStorageService } from "../../services/date-range-storage.service";
 @Component({
   selector: "app-task-date-range-selector",

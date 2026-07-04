@@ -43,15 +43,15 @@ import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
 import { PopoverModule } from "primeng/popover";
 import { TableModule } from "primeng/table";
-import { CustomInputToggleSwitch } from "src/app/core/components/inputs/web/custom-input-toggle-switch-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -78,8 +78,8 @@ import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-} from "src/app/core/components/buttons/web-label";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+} from "@ui/buttons/web-label";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { TaskClose } from "../../components/task-close";
@@ -92,10 +92,10 @@ import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { ITaskResultDTO } from "../models/task-message.dto";
 import { TaskForm } from "./task-form";
 
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "src/app/core/components/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-label/button-delete";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
 @Component({
   selector: "app-task-list",

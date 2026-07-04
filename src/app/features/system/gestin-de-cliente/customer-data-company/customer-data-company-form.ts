@@ -7,11 +7,11 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
-import { CustomInputPhonePrefix } from "src/app/core/components/inputs/web/custom-input-phone-prefix";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { CustomInputPhonePrefix } from "@ui/inputs/web/custom-input-phone-prefix";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";

@@ -10,7 +10,7 @@ import {
 import { TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { TreeTableModule } from "primeng/treetable";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface TreeTableColumn {
   field: string;

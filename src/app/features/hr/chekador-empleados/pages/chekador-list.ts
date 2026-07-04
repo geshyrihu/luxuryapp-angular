@@ -6,17 +6,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ImageModule } from "primeng/image";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { IonInputCheckbox } from "src/app/core/components/inputs/mobile/ion-input-checkbox";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   tablePrimeNgRows,
@@ -27,7 +27,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { IRegistroChecador } from "../models/chekador-empleados.models";
 import { ChekadorEmpleadosService } from "../services/chekador-empleados.service";
 
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-chekador-list",
   templateUrl: "./chekador-list.html",

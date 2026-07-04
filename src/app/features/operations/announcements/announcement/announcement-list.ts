@@ -12,7 +12,7 @@ import {
 } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAnnouncementList } from "./announcement.model";
 @Component({

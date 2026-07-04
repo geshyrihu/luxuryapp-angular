@@ -7,7 +7,7 @@ import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TagModule } from "primeng/tag";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,

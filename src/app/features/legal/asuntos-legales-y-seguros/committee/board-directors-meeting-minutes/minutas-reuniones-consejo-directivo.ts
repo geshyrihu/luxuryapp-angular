@@ -9,7 +9,7 @@ import {
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
 import { TableModule } from "primeng/table";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,

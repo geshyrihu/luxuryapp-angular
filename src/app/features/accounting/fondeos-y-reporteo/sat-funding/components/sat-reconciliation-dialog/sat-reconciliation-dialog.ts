@@ -6,13 +6,13 @@ import { MessageModule } from "primeng/message";
 import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ReconciledItemDTO } from "../../interfaces/sat-reconciliation.dtos";
 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 

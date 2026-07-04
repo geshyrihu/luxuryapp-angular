@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { CardModule } from "primeng/card";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DrawerModule } from "primeng/drawer";
 import { StepperModule } from "primeng/stepper";
 import { DividerModule } from "primeng/divider";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";

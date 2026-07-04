@@ -11,9 +11,9 @@ import {
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
 import {

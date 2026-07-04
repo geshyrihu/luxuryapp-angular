@@ -28,13 +28,13 @@ import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
 import { MultiSelect } from "primeng/multiselect";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,

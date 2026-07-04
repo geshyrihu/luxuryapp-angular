@@ -8,8 +8,8 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { ReportHeader } from "@ui/web/report-header/report-header";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
 @Component({
   selector: "app-entrega-recepcion-insumos",

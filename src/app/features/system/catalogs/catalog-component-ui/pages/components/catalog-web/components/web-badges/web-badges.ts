@@ -11,13 +11,13 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomButtonDelete } from "src/app/core/components/buttons/legacy/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/legacy/buttons/custom-button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/web/status-badge/status-badge";
+} from "@ui/web/status-badge/status-badge";
 
 @Component({
   selector: "app-web-badges",

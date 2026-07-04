@@ -2,12 +2,12 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ReportFilterService } from "../espejo-aspel-full/services/financial-report-filter.service";
@@ -19,7 +19,7 @@ import {
   IAutitoriaCuentasAspelResponseDTO,
 } from "./autitoria-cuentas-aspel.models";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-autitoria-cuentas-aspel",

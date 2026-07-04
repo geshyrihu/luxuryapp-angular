@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { CardModule } from "primeng/card";
-import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
-import { CustomBarChart } from "src/app/core/components/web/charts/custom-bar-chart";
-import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
-import { PieChart } from "src/app/core/components/web/charts/pie-chart";
-import { AdvancedPieChart } from "src/app/core/components/web/charts/advanced-pie-chart";
-import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
+import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
+import { PieChart } from "@ui/web/charts/pie-chart";
+import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
+import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
 
 /**
  * Catálogo de gráficos — ejemplos renderizados de los 6 componentes de charts

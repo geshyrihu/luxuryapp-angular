@@ -23,10 +23,10 @@ import { checkboxOutline, createOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import {
   globalFilterFields,
@@ -45,7 +45,7 @@ import {
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
-import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
   selector: "app-cronograma-anual-mantenimiento",

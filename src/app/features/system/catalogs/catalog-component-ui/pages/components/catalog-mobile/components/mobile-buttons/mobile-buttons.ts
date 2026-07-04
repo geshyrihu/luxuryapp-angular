@@ -4,7 +4,7 @@ import {
   MobileButtonIconDownload,
   MobileButtonIconEdit,
   MobileButtonIconTracking,
-} from "src/app/core/components/buttons/mobile-icon";
+} from "@ui/buttons/mobile-icon";
 import {
   MobileButtonLabel,
   MobileButtonLabelActiveDesactive,
@@ -16,8 +16,8 @@ import {
   MobileButtonLabelSave,
   MobileButtonLabelSendEmail,
   MobileButtonLabelViewPdf,
-} from "src/app/core/components/buttons/mobile-label";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
+} from "@ui/buttons/mobile-label";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-styles";
 
 /**

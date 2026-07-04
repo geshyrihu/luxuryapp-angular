@@ -8,15 +8,15 @@ import {
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelAdd } from "src/app/core/components/buttons/web-label/button-add";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -26,7 +26,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-send-operation-report",
   imports: [

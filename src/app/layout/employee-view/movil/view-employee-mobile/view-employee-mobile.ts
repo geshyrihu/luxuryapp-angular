@@ -9,7 +9,7 @@ import {
   IonToolbar,
   MenuController,
 } from "@ionic/angular/standalone";
-import { Loader } from "src/app/core/components/shared/loader/loader";
+import { Loader } from "@ui/mobile/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";

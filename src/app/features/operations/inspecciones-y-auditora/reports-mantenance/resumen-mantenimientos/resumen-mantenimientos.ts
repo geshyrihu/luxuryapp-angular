@@ -1,7 +1,7 @@
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { TableModule } from "primeng/table";
-import { PageTitleReportMaintenance } from "src/app/core/components/web/title-page-report-maintenance/page-title-report-maintenance";
+import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

@@ -13,7 +13,7 @@ import { MessageModule } from "primeng/message";
 import { Table, TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import {
   globalFilterFields,
   rowsPerPageOptions,

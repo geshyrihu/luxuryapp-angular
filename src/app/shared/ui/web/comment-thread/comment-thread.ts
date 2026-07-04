@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { TextareaModule } from "primeng/textarea";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
 
 export { type Comment } from "@ui/base/comment-thread.base";

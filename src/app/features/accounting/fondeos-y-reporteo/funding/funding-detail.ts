@@ -13,17 +13,17 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MenuItem, SortEvent } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
 import { DialogModule } from "primeng/dialog";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { MessageModule } from "primeng/message";
 import { ProgressBarModule } from "primeng/progressbar"; // Added
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
@@ -72,9 +72,9 @@ const tipoGastoEmojis: { [key: number]: string } = {
   [ETipoGasto.Impuestos]: "⚖️",
 };
 
-import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-funding-detail",

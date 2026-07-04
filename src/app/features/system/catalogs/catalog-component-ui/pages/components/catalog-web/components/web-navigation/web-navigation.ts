@@ -12,7 +12,7 @@ import { MenubarModule } from "primeng/menubar";
 import { StepperModule } from "primeng/stepper";
 import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-web-navigation",

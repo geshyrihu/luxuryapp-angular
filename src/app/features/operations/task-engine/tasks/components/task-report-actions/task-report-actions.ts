@@ -1,5 +1,5 @@
 import { Component, output } from "@angular/core";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 @Component({
   selector: "app-task-report-actions",
   templateUrl: "./task-report-actions.html",

@@ -6,8 +6,8 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
   ChartGeneratorService,

@@ -7,22 +7,22 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { AdvancedPieChart } from "src/app/core/components/web/charts/advanced-pie-chart";
-import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
-import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
-import { GlobalErrorAlert } from "src/app/core/components/shared/global-error-alert/global-error-alert";
-import { HeaderCustomer } from "src/app/core/components/web/header-customer/haeder-customer";
-import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
-import { PrimeNgCustomGlobalFilter } from "src/app/core/components/web/primeng-custom-global-filter/primeng-custom-global-filter";
-import { PrimeNgCustomToast } from "src/app/core/components/web/primeng-custom-toast/primeng-custom-toast";
-import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
-import { PageTitleReportMaintenance } from "src/app/core/components/web/title-page-report-maintenance/page-title-report-maintenance";
-import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
-import { CabeceraSolicitudPagoPdf } from "src/app/core/components/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf";
-import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
+import { BitacoraFiltroFechaForm } from "@ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
+import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
+import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
+import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
+import { GlobalErrorAlert } from "@ui/mobile/global-error-alert/global-error-alert";
+import { HeaderCustomer } from "@ui/web/header-customer/haeder-customer";
+import { Mesanio } from "@ui/web/mesanio/mesanio";
+import { PrimeNgCustomGlobalFilter } from "@ui/web/primeng-custom-global-filter/primeng-custom-global-filter";
+import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
+import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { ReportHeader } from "@ui/web/report-header/report-header";
+import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
+import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
+import { CabeceraSolicitudPagoPdf } from "@ui/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf";
+import { Touchspin } from "@ui/web/touchspin/touchspin";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
 
@@ -30,58 +30,58 @@ import { GlobalErrorService } from "src/app/core/services/global-error.service";
 import {
   AppBottomNav,
   type BottomNavItem,
-} from "src/app/core/components/mobile/bottom-nav/bottom-nav";
+} from "@ui/mobile/bottom-nav/bottom-nav";
 import {
   AppCommentThread,
   type Comment,
-} from "src/app/core/components/web/comment-thread/comment-thread";
-import { AppContactCard } from "src/app/core/components/web/contact-card/contact-card";
+} from "@ui/web/comment-thread/comment-thread";
+import { AppContactCard } from "@ui/web/contact-card/contact-card";
 import {
   AppCustomer360,
   type Customer360Data,
-} from "src/app/core/components/web/customer-360/customer-360";
-import { AppEmailPreview } from "src/app/core/components/web/email-preview/email-preview";
-import { AppLangSelector } from "src/app/core/components/web/lang-selector/lang-selector";
-import { AppOtpInput } from "src/app/core/components/web/otp-input/otp-input";
+} from "@ui/web/customer-360/customer-360";
+import { AppEmailPreview } from "@ui/web/email-preview/email-preview";
+import { AppLangSelector } from "@ui/web/lang-selector/lang-selector";
+import { AppOtpInput } from "@ui/web/otp-input/otp-input";
 import {
   AppPipelineCrm,
   type PipelineStage,
-} from "src/app/core/components/web/pipeline-crm/pipeline-crm";
-import { AppPrintView } from "src/app/core/components/web/print-view/print-view";
-import { AppProfileCard } from "src/app/core/components/web/profile-card/profile-card";
-import { AppRating } from "src/app/core/components/web/rating/rating";
-import { AppSlider } from "src/app/core/components/web/slider/slider";
-import { AppStatCard } from "src/app/core/components/shared/stat-card/stat-card";
+} from "@ui/web/pipeline-crm/pipeline-crm";
+import { AppPrintView } from "@ui/web/print-view/print-view";
+import { AppProfileCard } from "@ui/web/profile-card/profile-card";
+import { AppRating } from "@ui/web/rating/rating";
+import { AppSlider } from "@ui/web/slider/slider";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import {
   AppTabBar,
   type TabBarItem,
-} from "src/app/core/components/mobile/tab-bar/tab-bar";
-import { AppTagInput } from "src/app/core/components/web/tag-input/tag-input";
-import { AppThemeSwitcher } from "src/app/core/components/web/theme-switcher/theme-switcher";
+} from "@ui/mobile/tab-bar/tab-bar";
+import { AppTagInput } from "@ui/web/tag-input/tag-input";
+import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
 
 // --- Fase 9.3 ---
-import { AppBarcodeInput } from "src/app/core/components/web/barcode-input/barcode-input";
-import { AppBarcodeScanner } from "src/app/core/components/web/barcode-scanner/barcode-scanner";
-import { AppColorPicker } from "src/app/core/components/web/color-picker/color-picker";
+import { AppBarcodeInput } from "@ui/web/barcode-input/barcode-input";
+import { AppBarcodeScanner } from "@ui/web/barcode-scanner/barcode-scanner";
+import { AppColorPicker } from "@ui/web/color-picker/color-picker";
 import {
   AppFormBuilder,
   type FormField,
-} from "src/app/core/components/web/form-builder/form-builder";
-import { AppGantt, type GanttTask } from "src/app/core/components/web/gantt/gantt";
+} from "@ui/web/form-builder/form-builder";
+import { AppGantt, type GanttTask } from "@ui/web/gantt/gantt";
 import {
   AppHeatmap,
   type HeatmapCell,
-} from "src/app/core/components/web/heatmap/heatmap";
-import { AppInventoryLevel } from "src/app/core/components/shared/inventory-level/inventory-level";
-import { AppQrCode } from "src/app/core/components/web/qr-code/qr-code";
-import { AppRealtimeIndicator } from "src/app/core/components/shared/realtime-indicator/realtime-indicator";
-import { AppReceiptScanner } from "src/app/core/components/web/receipt-scanner/receipt-scanner";
-import { AppSignaturePad } from "src/app/core/components/web/signature-pad/signature-pad";
+} from "@ui/web/heatmap/heatmap";
+import { AppInventoryLevel } from "@ui/shared/inventory-level/inventory-level";
+import { AppQrCode } from "@ui/web/qr-code/qr-code";
+import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+import { AppReceiptScanner } from "@ui/web/receipt-scanner/receipt-scanner";
+import { AppSignaturePad } from "@ui/web/signature-pad/signature-pad";
 import {
   AppTerritoryMap,
   type Territory,
-} from "src/app/core/components/web/territory-map/territory-map";
-import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switch/tristate-switch";
+} from "@ui/web/territory-map/territory-map";
+import { AppTristateSwitch } from "@ui/shared/tristate-switch/tristate-switch";
 import { CATALOG_DEMO_EMAIL_HTML } from "./catalog-demo-data";
 
 @Component({

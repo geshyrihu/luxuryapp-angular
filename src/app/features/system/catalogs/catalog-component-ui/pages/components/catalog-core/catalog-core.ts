@@ -11,26 +11,26 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/legacy/buttons";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { ConfirmDialog } from "src/app/core/components/web/confirm-dialog/confirm-dialog";
-import { DateRange } from "src/app/core/components/web/date-range/date-range";
-import { EmptyState } from "src/app/core/components/web/empty-state/empty-state";
-import { FileUpload } from "src/app/core/components/web/file-upload/file-upload";
-import { Loader } from "src/app/core/components/shared/loader/loader";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
+import { DateRange } from "@ui/web/date-range/date-range";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
+import { FileUpload } from "@ui/web/file-upload/file-upload";
+import { Loader } from "@ui/mobile/loader/loader";
 import {
   NotificationCenter,
   NotificationItem,
-} from "src/app/core/components/web/notification-center/notification-center";
+} from "@ui/web/notification-center/notification-center";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/web/status-badge/status-badge";
+} from "@ui/web/status-badge/status-badge";
 import {
   Wizard,
   WizardStep,
-} from "src/app/core/components/web/wizard/wizard";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+} from "@ui/web/wizard/wizard";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { CommonCoreCoverage } from "../../../shared/common-core-coverage";
 
 @Component({

@@ -1,6 +1,6 @@
 import { CommonModule, ViewportScroller } from "@angular/common";
 import { Component, HostListener, inject } from "@angular/core";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /**
  * ⬆️ TAP TO TOP

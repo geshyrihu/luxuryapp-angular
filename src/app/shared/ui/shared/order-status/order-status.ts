@@ -1,6 +1,6 @@
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface OrderStatusStep {
   label: string;

@@ -1,5 +1,5 @@
 import { Component, input } from "@angular/core";
-import { EmptyState } from "src/app/core/components/web/empty-state/empty-state";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
 
 @Component({
   selector: "primeng-custom-table-emptymessage",

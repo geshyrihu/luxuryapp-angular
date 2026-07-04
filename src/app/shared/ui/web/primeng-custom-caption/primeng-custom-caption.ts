@@ -7,8 +7,8 @@ import {
   output,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { WebButtonLabelAdd } from "src/app/core/components/buttons/web-label/button-add";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { GlobalTableFilterService } from "src/app/core/services/global-table-filter.service";
 
 @Component({

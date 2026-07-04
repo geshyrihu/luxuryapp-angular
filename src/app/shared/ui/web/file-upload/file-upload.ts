@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { ProgressBarModule } from "primeng/progressbar";
 import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PlatformService } from "src/app/core/services/platform.service";
 
 export interface UploadFile {

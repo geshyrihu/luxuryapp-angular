@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

@@ -8,8 +8,8 @@ import {
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Nueva importación
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 
@@ -19,7 +19,7 @@ interface IPresentacionJuntaComiteForm {
   area: FormControl<string | null>;
 }
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-presentacion-junta-comite-form",

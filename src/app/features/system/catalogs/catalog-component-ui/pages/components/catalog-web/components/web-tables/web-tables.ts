@@ -12,15 +12,15 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomButtonDelete } from "src/app/core/components/buttons/legacy/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/legacy/buttons/custom-button-edit";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/web/status-badge/status-badge";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+} from "@ui/web/status-badge/status-badge";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 
 interface ErpRow {
   id: number;

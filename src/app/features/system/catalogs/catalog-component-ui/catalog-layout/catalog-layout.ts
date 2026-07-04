@@ -3,8 +3,8 @@ import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 
 @Component({
   selector: "app-catalog-layout",

@@ -19,16 +19,16 @@ import {
 import {
   CustomInputDateSignal,
   CustomInputSelectSignal,
-} from "src/app/core/components/inputs/web";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+} from "@ui/inputs/web";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
   EStatus,
   StatusBadge,
-} from "src/app/core/components/web/status-badge/status-badge";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+} from "@ui/web/status-badge/status-badge";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-patterns-kpi",

@@ -21,7 +21,7 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 @Component({

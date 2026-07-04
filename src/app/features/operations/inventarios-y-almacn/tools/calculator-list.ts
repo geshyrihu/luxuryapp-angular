@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 @Component({
   selector: "app-calculator-list",
   templateUrl: "./calculator-list.html",

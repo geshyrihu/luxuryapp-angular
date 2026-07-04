@@ -1,4 +1,4 @@
-﻿import { AppIcon } from 'src/app/core/components/shared/app-icon/app-icon.component';
+﻿import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, input, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -21,7 +21,7 @@ import {
   sparkles,
   ticketOutline,
 } from "ionicons/icons";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AiService } from "src/app/core/services/ai.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

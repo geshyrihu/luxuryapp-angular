@@ -2,8 +2,8 @@
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { Mesanio } from "@ui/web/mesanio/mesanio";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -15,7 +15,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-reporte-tickets",
   templateUrl: "./reporte-tickets.html",

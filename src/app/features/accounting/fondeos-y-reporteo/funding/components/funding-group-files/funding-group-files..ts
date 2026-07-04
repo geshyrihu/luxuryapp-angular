@@ -3,12 +3,12 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Added
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
-import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
-import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({

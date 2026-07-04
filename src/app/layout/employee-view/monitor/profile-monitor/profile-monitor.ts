@@ -9,7 +9,7 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ProfielService } from "src/app/core/services/profiel-service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 

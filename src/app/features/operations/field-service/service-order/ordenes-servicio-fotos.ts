@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
-import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

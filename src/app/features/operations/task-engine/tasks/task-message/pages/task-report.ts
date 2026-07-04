@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";

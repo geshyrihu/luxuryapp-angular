@@ -12,13 +12,13 @@ import {
 import { RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import Swal from "sweetalert2";
-import { AppIcon } from "../../core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ROUTES } from "src/app/routing/route-paths";
 
 interface IRecoverPasswordForm {

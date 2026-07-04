@@ -4,7 +4,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TextareaModule } from "primeng/textarea";
 import { firstValueFrom } from "rxjs";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";

@@ -3,7 +3,7 @@ import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
 vi.mock('@ionic/angular/standalone', () => ({ ...IonicMocks }));
 vi.mock('@ionic/core', () => ({}));
 vi.mock('@ionic/core/components', () => ({}));
-vi.mock("src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
+vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class {},
 }));
 vi.mock("heic2any", () => ({ default: vi.fn() }));

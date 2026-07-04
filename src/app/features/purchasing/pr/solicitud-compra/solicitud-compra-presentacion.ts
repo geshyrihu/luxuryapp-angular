@@ -3,8 +3,8 @@ import { Component, effect, inject, signal, ViewChild } from "@angular/core";
 import { Carousel, CarouselModule } from "primeng/carousel";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -14,7 +14,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-solicitud-compra-presentacion",

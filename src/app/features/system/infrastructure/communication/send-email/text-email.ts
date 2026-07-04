@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelSendEmail } from "src/app/core/components/buttons/web-label/button-send-email";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-text-email",

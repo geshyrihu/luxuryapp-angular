@@ -17,7 +17,7 @@ import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; // Added DynamicDialogConfig
 import { FileUploadModule } from "primeng/fileupload"; // Added
 import { InputTextModule } from "primeng/inputtext";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { MessageModule } from "primeng/message"; // Added
 import { StepsModule } from "primeng/steps";
 import { TableModule } from "primeng/table";
@@ -25,10 +25,10 @@ import { TagModule } from "primeng/tag"; // Added
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -73,7 +73,7 @@ interface IStep3Form {
   budgets: FormArray<FormGroup<IBudgetForm>>;
 }
 
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-create-orden-compra-wizard",

@@ -5,13 +5,13 @@ import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label";
-import { WebButtonLabelActiveDesactive } from "src/app/core/components/buttons/web-label/button-active-desactive";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { WebButtonLabelItem } from "@ui/buttons/web-label";
+import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { EDepartament } from "src/app/core/enums/EDepartament";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -23,11 +23,11 @@ import { EmployeeProviderForm } from "../../../../../purchasing/providers/provid
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
 import { IEmployee } from "../models/employee.interface";
 import { CardEmployee } from "./card-employee";
-import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "src/app/core/components/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
-import { WebButtonIconActiveDesactive } from "src/app/core/components/buttons/web-icon/button-active-desactive";
-import { WebButtonIconItem } from "src/app/core/components/buttons/web-icon/button-item";
+import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

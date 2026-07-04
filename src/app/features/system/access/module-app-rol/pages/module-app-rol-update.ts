@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonList } from "@ionic/angular/standalone";
-import { IonInputToggle } from "src/app/core/components/inputs/mobile/ion-input-toggle";
+import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";

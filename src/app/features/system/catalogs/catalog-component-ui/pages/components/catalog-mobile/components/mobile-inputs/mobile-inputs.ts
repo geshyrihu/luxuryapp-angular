@@ -16,7 +16,7 @@ import {
   IonInputTextarea,
   IonInputTime,
   IonInputToggle,
-} from "src/app/core/components/inputs/mobile-inputs";
+} from "@ui/inputs/mobile-inputs";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-styles";
 
 @Component({

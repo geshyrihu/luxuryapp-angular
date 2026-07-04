@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { environment } from "src/environments/environment";
 
 @Component({

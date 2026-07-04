@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { AdvancedPieChart } from "src/app/core/components/web/charts/advanced-pie-chart";
+import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
 @Component({
   selector: "app-resumen-ordenes-servicio-grafico",

@@ -7,7 +7,7 @@ import type {
   ContratosVigentesCustomerGroupDTO,
   ContratosVigentesResumenDTO,
 } from "../contratos-card/contratos-card.model";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-contratos-vigentes-modal",

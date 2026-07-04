@@ -1,0 +1,48 @@
+<div class="procedure-page">
+  <section class="proc-hero" style="--hero-gradient: linear-gradient(135deg, #991b1b 0%, #ef4444 100%)">
+    <div class="proc-hero-bg"></div>
+    <div class="proc-hero-content">
+      <a routerLink="/web/maintenance" class="back-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Volver a procedimientos</a>
+      <span class="proc-badge">Procedimiento</span>
+      <h1 class="proc-title">Baja de Activos</h1>
+      <p class="proc-subtitle">Proceso formal para dar de baja equipos, mobiliario, herramientas o insumos que ya no son &uacute;tiles, asegurando que la salida quede registrada y autorizada.</p>
+    </div>
+  </section>
+  <div class="proc-container">
+    <section class="objective-section">
+      <div class="objective-card" style="--accent: #991b1b">
+        <div class="obj-icon" style="--icon-bg: #991b1b"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><h2 class="obj-label">Objetivo</h2><p class="obj-text">Formalizar la salida de activos que ya no son &uacute;tiles, asegurando que se sigan los criterios de disposici&oacute;n final (reciclar, donar, vender, desechar) y que el inventario siempre refleje la realidad.</p></div>
+      </div>
+    </section>
+    <section class="phase">
+      <div class="phase-header"><span class="phase-number">Fase 1</span><h2 class="phase-title">Identificaci&oacute;n y Evaluaci&oacute;n</h2></div>
+      <div class="steps-flow">
+        <div class="step-node process"><div class="step-dot"></div><div class="step-body"><span class="step-action">1. Detectar activo a dar de baja</span><span class="step-desc">Puede venir de: limpieza y clasificaci&oacute;n, inventario de maquinaria, &aacute;reas comunes, herramientas o insumos.</span></div></div>
+        <div class="step-node process"><div class="step-dot"></div><div class="step-body"><span class="step-action">2. Evaluar destino final</span><span class="step-desc">Aplicar el &aacute;rbol de decisiones del procedimiento de limpieza: &iquest;funciona? &iquest;se necesita? &iquest;se puede vender, donar, reciclar o desechar?</span></div></div>
+        <div class="step-node process"><div class="step-dot"></div><div class="step-body"><span class="step-action">3. Llenar formato de baja</span><span class="step-desc">Documentar: c&oacute;digo del activo, descripci&oacute;n, motivo de baja, destino final, fotograf&iacute;as y valor estimado si aplica.</span></div></div>
+      </div>
+    </section>
+    <section class="phase">
+      <div class="phase-header"><span class="phase-number">Fase 2</span><h2 class="phase-title">Autorizaci&oacute;n y Ejecuci&oacute;n</h2></div>
+      <div class="steps-flow">
+        <div class="step-node decision-step"><div class="step-dot orange"></div><div class="step-body"><span class="step-action">4. Autorizar baja</span><span class="step-desc">Supervisor revisa y autoriza. Para activos de alto valor (&gt;$5,000), requiere autorizaci&oacute;n de administraci&oacute;n.</span></div></div>
+        <div class="step-node process"><div class="step-dot"></div><div class="step-body"><span class="step-action">5. Ejecutar disposici&oacute;n final</span><span class="step-desc">Seg&uacute;n destino: enviar a reciclaje, donar, poner en venta o desechar en contenedor apropiado. Dejar evidencia.</span></div></div>
+        <div class="step-node process"><div class="step-dot"></div><div class="step-body"><span class="step-action">6. Actualizar inventario</span><span class="step-desc">Eliminar o marcar como dado de baja en el inventario correspondiente. Adjuntar formato de baja y evidencia.</span></div></div>
+      </div>
+    </section>
+    <section class="phase">
+      <div class="phase-header"><span class="phase-number">Formato</span><h2 class="phase-title">Ejemplo de registro de baja</h2></div>
+      <div class="table-wrap">
+        <table class="sample-table">
+          <thead><tr><th>C&oacute;digo</th><th>Activo</th><th>Motivo</th><th>Destino</th><th>Autoriz&oacute;</th><th>Fecha</th></tr></thead>
+          <tbody>
+            <tr><td>HER-005</td><td>C&aacute;mara termogr&aacute;fica</td><td>Da&ntilde;o irreversible</td><td>Desechar</td><td>Admin.</td><td>15/03/2026</td></tr>
+            <tr><td>MOB-012</td><td>Sill&oacute;n lobby (rasgado)</td><td>Obsoleto</td><td>Donar</td><td>Supervisor</td><td>02/04/2026</td></tr>
+            <tr><td>INS-008</td><td>Lote de focos fundidos</td><td>Ins fungibles vencidos</td><td>Reciclar</td><td>Supervisor</td><td>10/04/2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

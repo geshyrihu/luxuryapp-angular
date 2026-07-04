@@ -6,8 +6,8 @@ import {
   ViewChild,
 } from "@angular/core";
 import { CardModule } from "primeng/card";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";

@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 

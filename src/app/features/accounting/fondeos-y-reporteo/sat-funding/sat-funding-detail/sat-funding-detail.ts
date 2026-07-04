@@ -15,11 +15,11 @@ import { DialogModule } from "primeng/dialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
-import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
-import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   BulkUpdateTipoGastoDTO,
   SatCfdiDTO,
@@ -29,8 +29,8 @@ import {
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
-import { WebButtonIconConfirm } from "src/app/core/components/buttons/web-icon/button-confirm";
-import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-sat-funding-detail",

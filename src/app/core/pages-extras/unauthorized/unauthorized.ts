@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { DividerModule } from "primeng/divider";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-unauthorized",

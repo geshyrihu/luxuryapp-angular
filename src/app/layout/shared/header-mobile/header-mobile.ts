@@ -5,7 +5,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { IonButton, IonButtons, IonToolbar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { NavigationService } from "src/app/core/services/navigation.service";
 import { CustomerHeaderDataMobile } from "src/app/layout/shared/customer-header-data-mobile/customer-header-data-mobile";
 import { ProfileCommitteeMobile } from "../profile-user-mobile/profile-user";

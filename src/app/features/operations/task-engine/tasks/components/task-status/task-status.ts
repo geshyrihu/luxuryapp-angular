@@ -13,7 +13,7 @@ import {
   refreshOutline,
   settingsOutline,
 } from "ionicons/icons";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "../../task.service";

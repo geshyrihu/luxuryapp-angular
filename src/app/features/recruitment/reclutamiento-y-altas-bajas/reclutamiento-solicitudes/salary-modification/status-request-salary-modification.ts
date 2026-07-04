@@ -4,8 +4,8 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "src/app/core/components/buttons/web-label/button-confirm";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -15,7 +15,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({

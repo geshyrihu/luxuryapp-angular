@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 import { debounceTime, filter } from "rxjs/operators";
 import { ConnectivityService } from "../../services/connectivity.service";
 import { RedirectService } from "../../services/redirect.service";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-offline",

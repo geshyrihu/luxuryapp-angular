@@ -23,7 +23,7 @@ import { TagModule } from "primeng/tag";
 import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonCatalog } from "./components/button-catalog/button-catalog";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";

@@ -10,9 +10,9 @@ import {
   IonButtonDelete,
   IonButtonEdit,
 } from "src/app/core/components/buttons/legacy/buttons-mobiil";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-styles";
 
 @Component({

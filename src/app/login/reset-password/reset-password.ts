@@ -13,9 +13,9 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import { ROUTES } from "src/app/routing/route-paths";

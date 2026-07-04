@@ -1,8 +1,8 @@
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomBarChart } from "src/app/core/components/web/charts/custom-bar-chart";
-import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
+import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
+import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";

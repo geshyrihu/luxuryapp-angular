@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { StatusBadgeBase } from "@ui/base/status-badge.base";
 
 // Re-export para consumidores existentes que importan desde este módulo.

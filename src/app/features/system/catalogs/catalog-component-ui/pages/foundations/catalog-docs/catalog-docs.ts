@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 

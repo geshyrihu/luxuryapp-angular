@@ -15,7 +15,7 @@ import { AvatarModule } from "primeng/avatar";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
 import { filter, map } from "rxjs/operators";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
 import { AspRoleService } from "src/app/core/services/asp-role.service";

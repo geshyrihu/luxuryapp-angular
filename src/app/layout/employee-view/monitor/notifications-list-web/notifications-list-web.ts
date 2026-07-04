@@ -3,13 +3,13 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { BadgeModule } from "primeng/badge";
 import { CardModule } from "primeng/card";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-notifications-list-web",

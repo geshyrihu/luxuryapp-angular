@@ -14,7 +14,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { Subject } from "rxjs";
 
-vi.mock("src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
+vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class PdfViewerModal {},
 }));
 

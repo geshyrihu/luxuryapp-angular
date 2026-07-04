@@ -1,8 +1,8 @@
 import { DecimalPipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { NgxEchartsDirective } from "ngx-echarts";
-import { chartJsToCartesianOption } from "src/app/core/components/web/charts/echarts-adapters";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";

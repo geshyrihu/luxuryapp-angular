@@ -9,8 +9,8 @@ import {
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
 import { of } from "rxjs";
-import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApplicationUserForm } from "./application-user-form";
 
 describe("ApplicationUserForm", () => {

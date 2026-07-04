@@ -18,8 +18,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { RippleModule } from "primeng/ripple";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAvailableAccountDTO } from "./models/IAvailableAccountDto";
 

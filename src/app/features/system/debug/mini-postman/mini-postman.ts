@@ -5,10 +5,10 @@ import { BadgeModule } from "primeng/badge";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
-import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
 

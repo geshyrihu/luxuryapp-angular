@@ -6,7 +6,7 @@ import {
   IonHeader,
   IonToolbar,
 } from "@ionic/angular/standalone";
-import { Loader } from "src/app/core/components/shared/loader/loader";
+import { Loader } from "@ui/mobile/loader/loader";
 import { HeaderCommitteeMobile } from "../../../shared/header-mobile/header-mobile";
 
 @Component({

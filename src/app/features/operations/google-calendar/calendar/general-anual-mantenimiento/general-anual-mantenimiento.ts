@@ -8,9 +8,9 @@ import {
   IonListHeader,
 } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

@@ -10,7 +10,7 @@ import {
   IonToolbar,
 } from "@ionic/angular/standalone";
 import { filter, map } from "rxjs/operators";
-import { Loader } from "src/app/core/components/shared/loader/loader";
+import { Loader } from "@ui/mobile/loader/loader";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";

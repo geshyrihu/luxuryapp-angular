@@ -2,7 +2,7 @@
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
-import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ChartBar } from "../catalog-charts/components/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/components/chart-pie/chart-pie";
 

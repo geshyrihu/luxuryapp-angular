@@ -16,9 +16,9 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
-import { WebButtonLabelViewPdf } from "src/app/core/components/buttons/web-label";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { PdfViewerModal } from "src/app/core/components/web/pdf-viewer-modal/pdf-viewer-modal";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

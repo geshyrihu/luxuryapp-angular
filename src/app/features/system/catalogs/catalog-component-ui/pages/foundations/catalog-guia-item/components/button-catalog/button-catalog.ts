@@ -17,7 +17,7 @@ import {
   MobileButtonIconSendEmail,
   MobileButtonIconTracking,
   MobileButtonIconViewPdf,
-} from "src/app/core/components/buttons/mobile-icon";
+} from "@ui/buttons/mobile-icon";
 
 import {
   WebButtonLabelActiveDesactive,
@@ -31,7 +31,7 @@ import {
   WebButtonLabelSendEmail,
   WebButtonLabelTracking,
   WebButtonLabelViewPdf,
-} from "src/app/core/components/buttons/web-label";
+} from "@ui/buttons/web-label";
 
 import {
   MobileButtonLabelActiveDesactive,
@@ -45,7 +45,7 @@ import {
   MobileButtonLabelSendEmail,
   MobileButtonLabelTracking,
   MobileButtonLabelViewPdf,
-} from "src/app/core/components/buttons/mobile-label";
+} from "@ui/buttons/mobile-label";
 
 import {
   WebButtonIconActiveDesactive,
@@ -58,7 +58,7 @@ import {
   WebButtonIconSendEmail,
   WebButtonIconTracking,
   WebButtonIconViewPdf,
-} from "src/app/core/components/buttons/web-icon";
+} from "@ui/buttons/web-icon";
 
 type WebSize = "sm" | "md" | "lg";
 type IonicSize = "small" | "default" | "large";

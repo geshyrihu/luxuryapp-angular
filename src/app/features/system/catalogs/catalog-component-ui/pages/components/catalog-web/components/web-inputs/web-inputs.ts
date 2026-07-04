@@ -35,7 +35,7 @@ import {
   CustomInputTime,
   CustomInputUrl,
   CustomSearchInput,
-} from "src/app/core/components/inputs/web-inputs";
+} from "@ui/inputs/web-inputs";
 
 @Component({
   selector: "app-web-inputs",

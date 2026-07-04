@@ -44,7 +44,7 @@ import {
   CustomInputTime,
   CustomInputUrl,
   CustomSearchInput,
-} from "src/app/core/components/inputs/web";
+} from "@ui/inputs/web";
 
 @Component({
   selector: "app-web-core-coverage",
