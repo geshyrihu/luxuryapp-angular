@@ -43,6 +43,17 @@ export const maintenanceRoutes: Routes = [
     },
   },
   {
+    path: "inspection-rounds",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/inspection-rounds/inspection-rounds"
+      ).then((m) => m.InspectionRounds),
+    data: {
+      title: "Rutinas y Recorridos de Revisión de Equipos y Áreas",
+      breadcrumb: "Rutinas y Recorridos",
+    },
+  },
+  {
     path: "cleaning-classification",
     loadComponent: () =>
       import(

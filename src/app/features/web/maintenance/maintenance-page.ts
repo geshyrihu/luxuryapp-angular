@@ -110,6 +110,15 @@ export class MaintenancePage {
       steps: 9,
     },
     {
+      id: "inspection-rounds",
+      title: "Rutinas y Recorridos de Revisión de Equipos y Áreas",
+      objective:
+        "Establecer rutinas diarias, semanales y mensuales de recorridos de inspección en equipos críticos y áreas comunes con listas de verificación estandarizadas.",
+      icon: "mdi:clipboard-check",
+      gradient: "linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)",
+      steps: 9,
+    },
+    {
       id: "green-areas",
       title: "Mantenimiento de Áreas Verdes",
       objective:

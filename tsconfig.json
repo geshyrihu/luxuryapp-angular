@@ -20,7 +20,6 @@
     "moduleResolution": "bundler",
     "paths": {
       "src/*": ["./src/*"],
-      "@components/*": ["./src/app/core/components/*"],
       "@ui/*": ["./src/app/shared/ui/*"]
     },
     "importHelpers": true,

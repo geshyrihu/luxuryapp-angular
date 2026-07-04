@@ -1,7 +1,7 @@
 Ruta: 📂 client/angular > 🧩 src/app > 🤝 shared > 🎨 ui
 
 > 📅 Última Revisión: 04-jul-26
-> 🛡️ Estado: En Ejecución (17 componentes reubicados · build verde)
+> 🛡️ Estado: ✅ Vigente — migración completa (toda la librería en `shared/ui`, imports en `@ui/*`)
 > 👤 Responsable: geshyrihu
 
 # 🎨 Arquitectura de `shared/ui` (librería de componentes)
@@ -121,10 +121,14 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 ---
 
 ## 5. 🚚 Estado de la migración
-Ver plan y checklist: `docs/plans/20260704-frontend-reorganizacion-core-components.md`.
-- ✅ 17 componentes de ambas plataformas reubicados a `shared/ui`.
-- ⏳ Resto de `core/components` (web-only, mobile-only, buttons, inputs, agnósticos)
-  y estilos por capas.
+✅ **Completa.** Toda la librería (web-only, mobile-only, agnósticos, ambas
+plataformas, `buttons/`, `inputs/`) vive en `shared/ui`; los imports usan `@ui/*`;
+los bridges de compatibilidad se eliminaron. `core/components/` quedó solo con
+`buttons/BUTTON-USAGE-RULES.md` y `inputs/documentacionprimeng.txt`.
+Detalle y checklist: `docs/plans/20260704-frontend-reorganizacion-core-components.md`.
+
+Pendiente (no bloqueante): regla ESLint de fronteras (el repo no tiene ESLint);
+fase 2 de estilos (`src/styles` en capas).
 
 ---
 
