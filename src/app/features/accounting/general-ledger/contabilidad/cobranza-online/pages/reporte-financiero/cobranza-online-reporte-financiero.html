@@ -7,43 +7,37 @@
       <!-- Año -->
       <div class="rf-field">
         <label class="rf-label" for="rfYear">Ejercicio</label>
-        <p-select
-          inputId="rfYear"
-          [options]="yearsOptions()"
+        <custom-input-select-signal
+          [id]="'rfYear'"
+          [data]="yearsOptions()"
           optionLabel="label"
           optionValue="value"
           [(ngModel)]="currentYear"
-          [ngModelOptions]="{standalone: true}"
-          (onChange)="onConsultar()"
-          styleClass="w-full"
+          (selectionChange)="onConsultar()"
         />
       </div>
 
       <!-- Mes Inicio -->
       <div class="rf-field">
         <label class="rf-label" for="rfMesInicio">Desde</label>
-        <p-select
-          inputId="rfMesInicio"
-          [options]="mesesOpciones"
+        <custom-input-select-signal
+          [id]="'rfMesInicio'"
+          [data]="mesesOpciones"
           optionLabel="label"
           optionValue="value"
           [(ngModel)]="mesInicio"
-          [ngModelOptions]="{standalone: true}"
-          styleClass="w-full"
         />
       </div>
 
       <!-- Mes Fin -->
       <div class="rf-field">
         <label class="rf-label" for="rfMesFin">Hasta</label>
-        <p-select
-          inputId="rfMesFin"
-          [options]="mesesOpciones"
+        <custom-input-select-signal
+          [id]="'rfMesFin'"
+          [data]="mesesOpciones"
           optionLabel="label"
           optionValue="value"
           [(ngModel)]="mesFin"
-          [ngModelOptions]="{standalone: true}"
-          styleClass="w-full"
         />
       </div>
 

@@ -1,26 +1,3 @@
-import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { DateRange } from "src/app/core/components/web/date-range/date-range";
-import { MobileDateRange } from "src/app/core/components/mobile/date-range/date-range";
-import { DateRangeBase } from "./date-range-base";
-
-/**
- * Wrapper multiplataforma de DateRange. Renderiza `app-date-range` (presets
- * PrimeNG) o `ili-date-range` (presets Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-date-range [(value)]="..." />`.
- */
-@Component({
-  selector: "lx-date-range",
-  standalone: true,
-  imports: [DateRange, MobileDateRange],
-  template: `
-    @if (platform.isMobile()) {
-      <ili-date-range [(value)]="value" />
-    } @else {
-      <app-date-range [(value)]="value" />
-    }
-  `,
-})
-export class LxDateRange extends DateRangeBase {
-  protected platform = inject(PlatformService);
-}
+// bridge de compatibilidad: movido a @ui. Se elimina tras el codemod.
+export * from "@ui/adaptive/date-range/date-range";
+export * from "@ui/base/date-range.base";

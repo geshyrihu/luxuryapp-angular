@@ -125,11 +125,12 @@
         <!-- ================================================== -->
 
         <td class="text-center">
-          <p-checkbox
-            [binary]="true"
-            [formControl]="orden.ordenCompraPagadaControl"
-            (onChange)="onPaymentStatusChange(orden)"
-          ></p-checkbox>
+          <custom-input-check-signal
+            [control]="orden.ordenCompraPagadaControl"
+            (checkChange)="onPaymentStatusChange(orden)"
+            [horizontal]="false"
+            noMargin
+          ></custom-input-check-signal>
         </td>
         <!-- ================================================== -->
         <!-- FIN DE LA NUEVA COLUMNA                            -->

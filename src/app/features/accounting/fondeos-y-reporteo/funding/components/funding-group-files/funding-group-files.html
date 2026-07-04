@@ -3,16 +3,16 @@
     <span class="text-xl font-bold"></span>
     <div class="flex-grow-1"></div>
 
-    <p-selectButton
+    <custom-input-select-button-signal
       [options]="viewOptions"
-      [formControl]="viewModeControl"
+      [control]="viewModeControl"
       optionLabel="label"
       optionValue="value"
     >
       <ng-template let-item pTemplate="item">
         <app-icon [icon]="item.icon" />
       </ng-template>
-    </p-selectButton>
+    </custom-input-select-button-signal>
 
     <il-button
       label="Descargar ({{ selectedFiles().length }})"

@@ -28,7 +28,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder() || 'Selecciona múltiples'"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [disabled]="disabled() || readonly()"
         interface="alert"
         [cancelText]="cancelText()"

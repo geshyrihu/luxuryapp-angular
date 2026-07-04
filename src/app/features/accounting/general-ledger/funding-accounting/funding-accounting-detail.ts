@@ -3,8 +3,8 @@ import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { CheckboxModule } from "primeng/checkbox";
 import { MessageModule } from "primeng/message";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -24,7 +24,7 @@ import { FundingExcelExportService } from "src/app/features/accounting/general-l
     CommonModule,
     ReactiveFormsModule,
     TableModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     MessageModule,
     TagModule,
     TooltipModule,

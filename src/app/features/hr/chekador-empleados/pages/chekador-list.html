@@ -38,7 +38,6 @@
             >DESDE</label
           >
           <input
-            pInputText
             type="date"
             [ngModel]="filtroDesde()"
             (ngModelChange)="filtroDesde.set($event)"
@@ -53,7 +52,6 @@
             >HASTA</label
           >
           <input
-            pInputText
             type="date"
             [ngModel]="filtroHasta()"
             (ngModelChange)="filtroHasta.set($event)"
@@ -62,20 +60,13 @@
           />
         </div>
 
-        <div class="flex align-items-center gap-2 flex-shrink-0">
-          <p-checkbox
-            [ngModel]="filtroSoloAnomalias()"
-            (ngModelChange)="filtroSoloAnomalias.set($event)"
-            [binary]="true"
-            inputId="soloAnomalias"
-          />
-          <label
-            for="soloAnomalias"
-            class="text-sm cursor-pointer white-space-nowrap"
-          >
-            Solo anomalías
-          </label>
-        </div>
+        <custom-input-check-signal
+          [ngModel]="filtroSoloAnomalias()"
+          (ngModelChange)="filtroSoloAnomalias.set($event)"
+          placeholder="Solo anomalías"
+          [horizontal]="false"
+          noMargin
+        />
 
         <div class="flex gap-2 flex-shrink-0">
           <il-button
@@ -242,7 +233,6 @@
           >DESDE</label
         >
         <input
-          pInputText
           type="date"
           [ngModel]="filtroDesde()"
           (ngModelChange)="filtroDesde.set($event)"
@@ -256,24 +246,19 @@
           >HASTA</label
         >
         <input
-          pInputText
           type="date"
           [ngModel]="filtroHasta()"
           (ngModelChange)="filtroHasta.set($event)"
           class="p-inputtext-sm flex-1"
         />
       </div>
-      <div class="flex align-items-center gap-2">
-        <p-checkbox
-          [ngModel]="filtroSoloAnomalias()"
-          (ngModelChange)="filtroSoloAnomalias.set($event)"
-          [binary]="true"
-          inputId="soloAnomaliasMobile"
-        />
-        <label for="soloAnomaliasMobile" class="text-sm cursor-pointer"
-          >Solo anomalías</label
-        >
-      </div>
+      <ion-input-checkbox
+        [ngModel]="filtroSoloAnomalias()"
+        (ngModelChange)="filtroSoloAnomalias.set($event)"
+        placeholder="Solo anomalías"
+        [horizontal]="false"
+        noMargin
+      />
       <div class="flex gap-2">
         <il-button
           label="Filtrar"

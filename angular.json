@@ -84,6 +84,7 @@
               "node_modules/primeflex/primeflex.css",
               "flatpickr/dist/flatpickr.css",
               "node_modules/primeicons/primeicons.css",
+              "node_modules/@angular/cdk/overlay-prebuilt.css",
               "src/styles/ds-entry.scss",
               "src/styles/styles.scss",
               "node_modules/animate.css/animate.min.css"

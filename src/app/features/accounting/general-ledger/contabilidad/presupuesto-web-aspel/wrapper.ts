@@ -6,7 +6,7 @@ import {
   IonSegmentButton,
 } from "@ionic/angular/standalone";
 import { MessageModule } from "primeng/message";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TabsModule } from "primeng/tabs";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
@@ -36,7 +36,7 @@ import { TooltipModule } from "primeng/tooltip";
     CustomSearchInput,
     CustomInputSelectSignal,
     MessageModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
   ],
   providers: [PresupuestoWebAspelService, PresupuestoAspelExcelService],
 })

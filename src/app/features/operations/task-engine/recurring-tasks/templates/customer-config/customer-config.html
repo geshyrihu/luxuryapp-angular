@@ -25,14 +25,11 @@
         >
         @for (item of template.items; track item.id) {
         <div class="field-checkbox">
-          <p-checkbox
-            [binary]="true"
-            [label]="item.title"
-            [value]="item.id"
+          <custom-input-check-signal
+            [placeholder]="item.title"
             [ngModel]="selectedItems().get(item.id)"
-            (onChange)="onItemCheckChange(item.id, $event.checked)"
-          >
-          </p-checkbox>
+            (checkChange)="onItemCheckChange(item.id, $event)"
+          />
         </div>
         } @empty {
         <div class="text-color-secondary">Esta plantilla no tiene items.</div>

@@ -11,7 +11,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -35,7 +35,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     TagModule,
     TooltipModule,
     DragDropModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

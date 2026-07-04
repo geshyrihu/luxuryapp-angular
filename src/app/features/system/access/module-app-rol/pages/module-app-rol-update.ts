@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
-import { IonList, IonToggle } from "@ionic/angular/standalone";
+import { IonList } from "@ionic/angular/standalone";
+import { IonInputToggle } from "src/app/core/components/inputs/mobile/ion-input-toggle";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
@@ -22,7 +23,7 @@ import {
     CommonModule,
     MessageModule,
     IonList,
-    IonToggle,
+    IonInputToggle,
     ProgressSpinnerModule,
   ],
   templateUrl: "./module-app-rol-update.html",

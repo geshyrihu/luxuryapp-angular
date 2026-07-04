@@ -56,18 +56,11 @@ import { BaseInputSignal } from "./base-input-signal";
       ion-input,
       ion-textarea,
       ion-select {
-        --border-radius: 12px;
+        --background: var(--ds-bg-surface);
         --padding-start: 1rem;
         --padding-end: 1rem;
-        --background: #ffffff;
+        --border-radius: var(--ds-radius-lg);
         margin-bottom: 0px;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      }
-      .dark ion-input,
-      .dark ion-textarea,
-      .dark ion-select {
-        --background: #1e1e1e;
-        --color: #ffffff;
       }
       ion-note {
         display: block;

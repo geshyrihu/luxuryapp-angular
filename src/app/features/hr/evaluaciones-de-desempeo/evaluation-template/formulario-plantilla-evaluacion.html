@@ -80,12 +80,10 @@
             <span class="font-bold text-lg text-primary">{{ i + 1 }}.</span>
 
             <div class="flex-grow-1">
-              <input
-                type="text"
-                pInputText
-                formControlName="name"
+              <custom-input-text-signal
+                [control]="categoryGroup.controls.name"
                 placeholder="Nombre de la categoría..."
-                class="w-full p-inputtext-sm border-none surface-ground font-semibold"
+                [horizontal]="false"
               />
             </div>
 
@@ -128,12 +126,10 @@
             <span class="text-600 font-medium w-2rem">{{ j + 1 }}.</span>
 
             <div class="flex-grow-1">
-              <input
-                type="text"
-                pInputText
-                formControlName="questionText"
+              <custom-input-text-signal
+                [control]="questionGroup.controls.questionText"
                 [placeholder]="'Pregunta ' + (j + 1)"
-                class="w-full p-inputtext-sm border-none bg-transparent"
+                [horizontal]="false"
               />
             </div>
 

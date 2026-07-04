@@ -2,19 +2,14 @@
   <div class="col-12 md:col-3">
     <div class="mb-3">
       <label for="systemSelect">Sistema</label>
-      <p-select
-        inputId="systemSelect"
-        [options]="dataSignal()"
+      <custom-input-select-signal
+        [data]="systemOptions()"
         optionLabel="system"
         optionValue="system"
         placeholder="Mostrar todos"
-        (onChange)="onFilterForSystem($event.value)"
-        fluid
-      >
-        <ng-template pTemplate="empty">
-          <p-option value="">Mostrar todos</p-option>
-        </ng-template>
-      </p-select>
+        (selectionChange)="onFilterForSystem($event.value)"
+        [id]="'systemSelect'"
+      />
     </div>
   </div>
 </div>

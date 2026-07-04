@@ -42,7 +42,6 @@ import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import * as echarts from "echarts";
-import { provideCharts, withDefaultRegisterables } from "ng2-charts";
 import { provideEchartsCore } from "ngx-echarts";
 import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
@@ -101,7 +100,6 @@ export const appConfig: ApplicationConfig = {
       },
       translation: PrimeNgSpanishLocale,
     }),
-    provideCharts(withDefaultRegisterables()),
     provideEchartsCore({ echarts }),
     provideEnvironmentNgxMask(),
     provideFlatpickrDefaults({

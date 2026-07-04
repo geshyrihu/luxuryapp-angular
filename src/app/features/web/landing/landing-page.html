@@ -1,0 +1,89 @@
+<div class="web-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-badge">Administración Profesional</span>
+      <h1 class="hero-title">
+        Transformamos la gestión<br />
+        de tu <span class="hero-highlight">residencial</span>
+      </h1>
+      <p class="hero-subtitle">
+        Somos una administradora con experiencia en la gestión integral de
+        condominios y residenciales. Nos encargamos de todo para que tú solo
+        disfrutes de tu hogar.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#areas"> Nuestras Áreas </a>
+        <a class="btn-secondary" routerLink="/web/legal"> Conoce más </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stat-item">
+      <span class="stat-number">15+</span>
+      <span class="stat-label">Años de experiencia</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">120+</span>
+      <span class="stat-label">Residenciales administrados</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">98%</span>
+      <span class="stat-label">Satisfacción de clientes</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">50+</span>
+      <span class="stat-label">Profesionales en equipo</span>
+    </div>
+  </section>
+
+  <!-- Areas Section -->
+  <section id="areas" class="areas">
+    <div class="section-header">
+      <span class="section-tag">Nuestras Áreas</span>
+      <h2 class="section-title">Gestión integral para tu residencial</h2>
+      <p class="section-desc">
+        Cubrimos cada aspecto de la administración con equipos especializados
+        en cada área.
+      </p>
+    </div>
+
+    <div class="areas-grid">
+      @for (area of areas; track area.route) {
+      <a
+        class="area-card"
+        [routerLink]="area.route"
+        [style]="{ '--card-accent': area.accent }"
+      >
+        <div class="card-icon" [style.background]="area.gradient">
+          <span class="card-icon-symbol">{{ area.icon.charAt(area.icon.length - 1) === 'e' ? '⚖' : area.icon.includes('cogs') ? '⚙' : area.icon.includes('tools') ? '🔧' : area.icon.includes('finance') ? '📊' : '👥' }}</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{ area.title }}</h3>
+          <p class="card-desc">{{ area.description }}</p>
+        </div>
+        <div class="card-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+      }
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="cta-content">
+      <h2 class="cta-title">¿Listo para una administración sin preocupaciones?</h2>
+      <p class="cta-desc">
+        Contáctanos y descubre cómo podemos ayudarte a gestionar tu
+        residencial de manera eficiente y profesional.
+      </p>
+      <a class="btn-primary cta-btn" routerLink="/web/legal"> Solicitar información </a>
+    </div>
+  </section>
+</div>

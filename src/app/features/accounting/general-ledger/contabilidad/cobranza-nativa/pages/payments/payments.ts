@@ -16,8 +16,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
 import { TableModule } from "primeng/table";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -62,7 +62,7 @@ interface IPaymentForm {
     FormsModule,
     ReactiveFormsModule,
     TableModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     CustomInputCurrencySignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,

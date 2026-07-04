@@ -3,9 +3,9 @@ import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
-import { InputTextModule } from "primeng/inputtext";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -17,9 +17,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     CommonModule,
     DataViewModule,
     CardModule,
-    InputTextModule,
     WebButtonLabel,
     AppIcon,
+    CustomInputTextSignal,
   ],
   template: `
     <div class="card p-4">
@@ -34,15 +34,13 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
             variant="text"
           />
         </div>
-        <span class="p-input-icon-left">
-          <app-icon [icon]="'mdi:magnify'" />
-          <input
-            type="text"
-            pInputText
-            placeholder="Buscar diagrama..."
-            (input)="onFilter($event)"
-          />
-        </span>
+        <custom-input-text-signal
+          placeholder="Buscar diagrama..."
+          (input)="onFilter($event)"
+          [horizontal]="false"
+          noMargin
+          onlyInput
+        />
       </div>
 
       <p-dataView

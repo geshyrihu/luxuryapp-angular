@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -36,7 +36,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 
 @Component({
   selector: "app-presupuesto-contabilidad",
-  imports: [CommonModule, FormsModule, ButtonModule, SelectModule, DataViewMobile, IonItem, IonLabel, WebButtonLabel],
+  imports: [CommonModule, FormsModule, ButtonModule, CustomInputSelectSignal, DataViewMobile, IonItem, IonLabel, WebButtonLabel],
   templateUrl: "./presupuesto-contabilidad.html",
 })
 export class PresupuestoContabilidad {

@@ -43,7 +43,7 @@ import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
 import { PopoverModule } from "primeng/popover";
 import { TableModule } from "primeng/table";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { CustomInputToggleSwitch } from "src/app/core/components/inputs/web/custom-input-toggle-switch-signal";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
@@ -144,7 +144,7 @@ import { MobileButtonLabelDelete } from "src/app/core/components/buttons/mobile-
     WebButtonLabel,
     AvatarModule,
     ImageModule,
-    ToggleSwitchModule,
+    CustomInputToggleSwitch,
     FormsModule,
     ReactiveFormsModule,
     PrimeNgCustomCaption,

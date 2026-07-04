@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { InputNumberModule } from "primeng/inputnumber";
 import { MessageModule } from "primeng/message";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 @Component({
   selector: "app-calculator-list",
   templateUrl: "./calculator-list.html",
-  imports: [FormsModule, MessageModule, CardModule, InputNumberModule],
+  imports: [FormsModule, MessageModule, CardModule, CustomInputNumberSignal],
 })
 export class CalculatorList {
   precio: number = 0;

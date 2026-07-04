@@ -42,34 +42,32 @@
     <div class="flex align-items-center gap-2 flex-wrap">
       <div class="flex align-items-center gap-1">
         <span class="text-500 text-xs">Desde</span>
-        <p-datepicker
+        <custom-input-datepicker-signal
           [(ngModel)]="startDate"
           [showIcon]="true"
           [showTime]="true"
-          hourFormat="24"
-          dateFormat="dd/mm/yy"
+          [hourFormat]="'24'"
+          [dateFormat]="'dd/mm/yy'"
           [readonlyInput]="true"
           (ngModelChange)="onFilterChange()"
           placeholder="Inicio"
-          appendTo="body"
           [showButtonBar]="true"
-          [style]="{ minWidth: '195px' }"
+          [dateStyle]="{ minWidth: '195px' }"
         />
       </div>
       <div class="flex align-items-center gap-1">
         <span class="text-500 text-xs">Hasta</span>
-        <p-datepicker
+        <custom-input-datepicker-signal
           [(ngModel)]="endDate"
           [showIcon]="true"
           [showTime]="true"
-          hourFormat="24"
-          dateFormat="dd/mm/yy"
+          [hourFormat]="'24'"
+          [dateFormat]="'dd/mm/yy'"
           [readonlyInput]="true"
           (ngModelChange)="onFilterChange()"
           placeholder="Fin"
-          appendTo="body"
           [showButtonBar]="true"
-          [style]="{ minWidth: '195px' }"
+          [dateStyle]="{ minWidth: '195px' }"
         />
       </div>
       <il-button-download (clicked)="onDownloadPdf()" />

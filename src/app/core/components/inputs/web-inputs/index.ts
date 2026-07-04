@@ -4,6 +4,7 @@
 export { CustomInputAutoMultiple } from "./custom-input-autocomplete-multiple-signal";
 export { CustomInputAutoComplete } from "./custom-input-autocomplete-signal";
 export { CustomInputCheckSignal } from "./custom-input-check-signal";
+export { CustomInputDatepicker } from "./custom-input-datepicker-signal";
 export { CustomInputCurrencySignal } from "./custom-input-currency-signal";
 export { CustomInputDateSignal } from "./custom-input-date-signal";
 export { CustomInputDateTimeSignal } from "./custom-input-date-time-signal";
@@ -21,8 +22,10 @@ export { CustomInputPassword } from "./custom-input-password-signal";
 export { CustomInputPhonePrefix } from "./custom-input-phone-prefix";
 export { CustomInputSelectBool } from "./custom-input-select-bool-signal";
 export { CustomInputSelectPrefix } from "./custom-input-select-prefix-signal";
+export { CustomInputSelectButton } from "./custom-input-select-button-signal";
 export { CustomInputSelectSignal } from "./custom-input-select-signal";
 export { CustomInputSwitch } from "./custom-input-switch-signal";
+export { CustomInputToggleSwitch } from "./custom-input-toggle-switch-signal";
 export { CustomInputTextSignal } from "./custom-input-text-signal";
 export { CustomInputTextAreaSignal } from "./custom-input-textarea-signal";
 export { CustomInputTime } from "./custom-input-time-signal";

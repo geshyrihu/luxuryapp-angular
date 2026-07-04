@@ -2,14 +2,13 @@
   <label class="font-semibold text-sm text-600 white-space-nowrap"
     >Filtrar por cliente:</label
   >
-  <p-select
-    [options]="cb_customer()"
+  <custom-input-select-signal
+    [data]="cb_customer()"
     optionLabel="label"
     optionValue="value"
     placeholder="-- Todos los clientes --"
     [showClear]="true"
-    styleClass="w-full md:w-20rem"
-    (onChange)="onCustomerFilter($event.value)"
+    (selectionChange)="onCustomerFilter($event.value)"
   />
 </div>
 

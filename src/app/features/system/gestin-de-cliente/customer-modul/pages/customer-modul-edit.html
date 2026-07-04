@@ -138,11 +138,10 @@
               {{ item.moduleAppName }}
             </h2>
           </ion-label>
-          <ion-toggle
-            slot="end"
-            [checked]="item.isAssigned"
-            (ionChange)="toggleModuleActivation(item)"
-          ></ion-toggle>
+          <ion-input-toggle
+            [ngModel]="item.isAssigned"
+            (toggleChange)="toggleModuleActivation(item)"
+          ></ion-input-toggle>
         </ion-item>
         }
       </ion-list>

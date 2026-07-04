@@ -11,8 +11,8 @@ import { MobileButtonBase } from "../mobile-button-base";
   template: `
     <ion-button
       [expand]="expand()"
-      [fill]="fill()"
-      [color]="color()"
+      [fill]="resolvedFill()"
+      [color]="resolvedColor()"
       [size]="size()"
       [disabled]="disabled() || submitting()"
       [class]="styleClass()"
@@ -31,7 +31,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonLabelSave extends MobileButtonBase {
-  override color = input<string>("success");
+  override color = input<string>("primary");
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 

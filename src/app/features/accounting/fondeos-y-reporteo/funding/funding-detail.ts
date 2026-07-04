@@ -12,8 +12,8 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MenuItem, SortEvent } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
-import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { MessageModule } from "primeng/message";
 import { ProgressBarModule } from "primeng/progressbar"; // Added
 import { SplitButtonModule } from "primeng/splitbutton";
@@ -96,7 +96,7 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     TagModule,
     TooltipModule,
     UpperCasePipe,
-    CheckboxModule,
+    CustomInputCheckSignal,
     AppIcon,
   ],
   templateUrl: "./funding-detail.html",

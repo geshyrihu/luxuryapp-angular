@@ -41,4 +41,35 @@ export const MOBILE_SHOWCASE_STYLES = `
     color: var(--ds-text-primary);
     margin: 0;
   }
+
+  /* 📱 Marco de teléfono para previsualizar componentes móviles como app real */
+  .phone-frame {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    background: var(--ds-bg-page);
+    border: 8px solid var(--ds-text-primary);
+    border-radius: 36px;
+    box-shadow: var(--ds-shadow-lg);
+    overflow: hidden;
+    position: relative;
+  }
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 22px;
+    background: var(--ds-text-primary);
+    border-radius: 0 0 14px 14px;
+    z-index: 2;
+  }
+  .phone-frame__screen {
+    padding: 32px 12px 16px;
+    min-height: 120px;
+    max-height: 520px;
+    overflow-y: auto;
+  }
 `;

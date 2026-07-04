@@ -8,9 +8,9 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
-import { CheckboxModule } from "primeng/checkbox";
 import { ImageModule } from "primeng/image";
-import { InputTextModule } from "primeng/inputtext";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { IonInputCheckbox } from "src/app/core/components/inputs/mobile/ion-input-checkbox";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -37,10 +37,10 @@ import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/prim
     TagModule,
     WebButtonLabel,
     WebButtonIcon,
-    CheckboxModule,
     ImageModule,
-    InputTextModule,
     TooltipModule,
+    CustomInputCheckSignal,
+    IonInputCheckbox,
     FormsModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

@@ -63,9 +63,9 @@
                   ></p-tag>
                 </td>
                 <td>
-                  <p-selectButton
+                  <custom-input-select-button-signal
                     [options]="statusOptions"
-                    [formControl]="item.statusControl"
+                    [control]="item.statusControl"
                     optionLabel="label"
                     optionValue="value"
                   >
@@ -79,7 +79,7 @@
                             }"
                       ></i>
                     </ng-template>
-                  </p-selectButton>
+                  </custom-input-select-button-signal>
                 </td>
                 <td>
                   <custom-input-text-area-signal

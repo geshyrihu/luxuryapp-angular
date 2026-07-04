@@ -40,6 +40,8 @@
         <th class="w-8rem">Método</th>
         <th class="w-8rem">Referencia</th>
         <th class="w-8rem text-right">Monto Recibido</th>
+        <th class="w-8rem text-right">Aplicado</th>
+        <th class="w-8rem text-right">Sin Aplicar</th>
         <th class="w-6rem text-center">Estado</th>
         <th class="w-10rem text-center">Opciones</th>
       </tr>
@@ -65,9 +67,21 @@
         <td class="text-right font-medium text-green-600">
           {{ item.amount | number: "1.2-2" }}
         </td>
+        <td class="text-right font-medium text-blue-600">
+          {{ item.allocatedAmount | number: "1.2-2" }}
+        </td>
+        <td class="text-right">
+          <span
+            class="font-medium"
+            [class.text-orange-600]="item.unappliedAmount > 0.009"
+            [class.text-500]="item.unappliedAmount <= 0.009"
+          >
+            {{ item.unappliedAmount | number: "1.2-2" }}
+          </span>
+        </td>
         <td class="text-center">
           @switch (item.status) { @case (EPaymentStatus.Registrado) {
-          <span class="badge bg-yellow-100 text-yellow-800">Registrado</span>
+          <span class="badge bg-yellow-100 text-yellow-800">{{ getPaymentFlowLabel(item) }}</span>
           } @case (EPaymentStatus.Verificado) {
           <span class="badge bg-green-100 text-green-800">Verificado</span>
           } @case (EPaymentStatus.Rechazado) {
@@ -82,6 +96,15 @@
         </td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
+            <iw-button
+              iconClass="mdi:eye-outline"
+              severity="info"
+              variant="outlined"
+              size="small"
+              pTooltip="Ver detalle"
+              tooltipPosition="top"
+              (clicked)="onViewDetail(item)"
+            />
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EPaymentStatus.Rechazado && item.status !==
             EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
@@ -102,7 +125,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <primeng-custom-table-emptymessage [colspan]="9" />
     </ng-template>
   </p-table>
 </div>
@@ -126,10 +149,22 @@
           {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} · {{ item.amount |
           number:'1.2-2' }}
         </p>
+        <p>
+          Aplicado: {{ item.allocatedAmount | number:'1.2-2' }} · Sin aplicar:
+          {{ item.unappliedAmount | number:'1.2-2' }}
+        </p>
         <p>{{ item.reference || '-' }}</p>
       </ion-label>
       <ili-action-menu slot="end">
         <ng-container actions>
+          <il-button
+            label="Detalle"
+            iconClass="mdi:eye-outline"
+            severity="info"
+            variant="outlined"
+            size="small"
+            (clicked)="onViewDetail(item)"
+          />
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           @if (item.status !== EPaymentStatus.Rechazado && item.status !==
           EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {

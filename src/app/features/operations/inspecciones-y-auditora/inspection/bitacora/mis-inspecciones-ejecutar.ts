@@ -13,7 +13,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { CustomInputToggleSwitch } from "src/app/core/components/inputs/web/custom-input-toggle-switch-signal";
 import { TooltipModule } from "primeng/tooltip";
 import { map } from "rxjs";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
@@ -41,7 +41,7 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
-    ToggleSwitchModule,
+    CustomInputToggleSwitch,
     CustomInputTextAreaSignal,
     ImageModule,
     WebButtonLabel,

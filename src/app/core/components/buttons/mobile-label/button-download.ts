@@ -11,8 +11,8 @@ import { MobileButtonBase } from "../mobile-button-base";
   template: `
     <ion-button
       [expand]="expand()"
-      [fill]="fill()"
-      [color]="color()"
+      [fill]="resolvedFill()"
+      [color]="resolvedColor()"
       [size]="size()"
       [disabled]="disabled() || loading()"
       [class]="styleClass()"

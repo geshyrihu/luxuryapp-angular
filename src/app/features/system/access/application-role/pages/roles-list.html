@@ -53,11 +53,12 @@
       <td>{{ item.displayName }}</td>
       <td>{{ item.departament }}</td>
       <td class="text-center">
-        <p-checkbox
-          [binary]="true"
-          [readonly]="true"
+        <custom-input-check-signal
           [ngModel]="item.isActive"
-        ></p-checkbox>
+          [readonly]="true"
+          [horizontal]="false"
+          noMargin
+        ></custom-input-check-signal>
       </td>
       <td class="no-print">
         <div class="flex">

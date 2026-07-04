@@ -8,7 +8,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
-import { DatePickerModule } from "primeng/datepicker";
+import { CustomInputDatepicker } from "src/app/core/components/inputs/web/custom-input-datepicker-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
@@ -42,7 +42,7 @@ interface ITaskTemplateItemForm {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     RecurrenceInput,
-    DatePickerModule,
+    CustomInputDatepicker,
     CheckboxModule,
     CustomInputCheckSignal,
   ],

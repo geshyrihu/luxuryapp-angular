@@ -10,8 +10,8 @@ import {
 } from "@angular/core";
 import { TreeNode } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
-import { InputTextModule } from "primeng/inputtext";
 import { TreeModule } from "primeng/tree";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -23,19 +23,19 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
 @Component({
   selector: "app-account-tree-select",
 
-  imports: [TreeModule, BadgeModule, InputTextModule, DragDropModule, AppIcon],
+  imports: [TreeModule, BadgeModule, DragDropModule, AppIcon, CustomInputTextSignal],
   template: `
     <div class="flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
         <span class="p-inputgroup-addon"
           ><app-icon [icon]="'mdi:magnify'"
         /></span>
-        <input
-          type="text"
-          pInputText
+        <custom-input-text-signal
           placeholder="Filtrar catálogo..."
-          class="w-full p-inputtext-sm border-none shadow-none"
           (input)="onFilter($event)"
+          [horizontal]="false"
+          noMargin
+          onlyInput
         />
       </div>
 

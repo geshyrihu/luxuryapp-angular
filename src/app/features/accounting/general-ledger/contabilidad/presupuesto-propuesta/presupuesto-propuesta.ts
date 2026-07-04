@@ -28,7 +28,7 @@ import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
 import { MultiSelect } from "primeng/multiselect";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
@@ -79,7 +79,7 @@ import { ExcelExportService } from "./services/excel-export.service";
     CustomInputNumberSignal,
     MultiSelect,
     TableModule,
-    SelectModule,
+    CustomInputSelectSignal,
     DialogModule,
     CheckboxModule,
     TooltipModule,

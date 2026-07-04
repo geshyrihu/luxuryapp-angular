@@ -3,8 +3,8 @@ import { FormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
-import { InputNumberModule } from "primeng/inputnumber";
 import { TableModule } from "primeng/table";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -26,7 +26,7 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
   imports: [
     FormsModule,
     TableModule,
-    InputNumberModule,
+    CustomInputCurrencySignal,
     WebButtonLabel,
     DataViewMobile,
     PrimeNgCustomCaption,

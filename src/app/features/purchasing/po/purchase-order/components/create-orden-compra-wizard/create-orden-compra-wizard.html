@@ -277,15 +277,11 @@
               </td>
               <td>{{ item.get("accountName")?.value }}</td>
               <td>
-                <p-inputNumber
-                  formControlName="amount"
-                  mode="decimal"
+                <custom-input-currency-signal
+                  [control]="item.controls.amount"
                   [minFractionDigits]="2"
                   [maxFractionDigits]="2"
-                  locale="es-MX"
-                  mode="currency"
-                  currency="MXN"
-                ></p-inputNumber>
+                ></custom-input-currency-signal>
               </td>
               <td>
                 <iw-button

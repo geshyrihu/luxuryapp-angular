@@ -7,7 +7,7 @@ import { addIcons } from "ionicons";
 import { checkmarkCircleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelEdit } from "src/app/core/components/buttons/web-label/button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
@@ -41,7 +41,7 @@ import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/butt
     CommonModule,
     ReactiveFormsModule,
     TableModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     WebButtonLabelEdit,

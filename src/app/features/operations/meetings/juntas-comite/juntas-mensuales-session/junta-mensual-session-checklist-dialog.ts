@@ -3,7 +3,7 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -57,7 +57,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     FormsModule,
     TableModule,
-    SelectModule,
+    CustomInputSelectSignal,
     WebButtonLabel,
     TagModule,
     DatePipe,

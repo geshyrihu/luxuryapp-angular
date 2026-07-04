@@ -47,6 +47,15 @@
           [loading]="sendingStatement()"
         />
         <il-button
+          label="Enviar Masivo"
+          iconClass="mdi:email-multiple-outline"
+          variant="outlined"
+          severity="secondary"
+          [disabled]="!customerId() || sendingBatchStatements()"
+          (clicked)="sendBatchStatementEmails()"
+          [loading]="sendingBatchStatements()"
+        />
+        <il-button
           label="Procesar Avisos"
           iconClass="mdi:bell-outline"
           variant="outlined"

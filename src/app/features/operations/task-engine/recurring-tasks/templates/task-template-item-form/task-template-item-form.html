@@ -27,19 +27,21 @@
   <div class="grid mt-3">
     <div class="col-12 md:col-6 flex flex-column gap-1">
       <label for="timeWindowStart">Inicio Ventana Horaria</label>
-      <p-datepicker
+      <custom-input-datepicker-signal
         inputId="timeWindowStart"
-        formControlName="timeWindowStart"
-        [timeOnly]="true"
-      ></p-datepicker>
+        [control]="form.controls.timeWindowStart"
+        [showTime]="true"
+        [showButtonBar]="false"
+      ></custom-input-datepicker-signal>
     </div>
     <div class="col-12 md:col-6 flex flex-column gap-1">
       <label for="timeWindowEnd">Fin Ventana Horaria</label>
-      <p-datepicker
+      <custom-input-datepicker-signal
         inputId="timeWindowEnd"
-        formControlName="timeWindowEnd"
-        [timeOnly]="true"
-      ></p-datepicker>
+        [control]="form.controls.timeWindowEnd"
+        [showTime]="true"
+        [showButtonBar]="false"
+      ></custom-input-datepicker-signal>
     </div>
   </div>
   <br />

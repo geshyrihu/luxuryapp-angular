@@ -95,12 +95,11 @@
       <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
       <td>{{ item.presupuestoMensual | number: "1.0-0" }}</td>
       <td>
-        <p-inputNumber
+        <custom-input-number-signal
           [(ngModel)]="item.amount"
           mode="decimal"
           [minFractionDigits]="2"
-          class="w-full"
-        ></p-inputNumber>
+        ></custom-input-number-signal>
       </td>
       <!-- Opciones -->
       <td>

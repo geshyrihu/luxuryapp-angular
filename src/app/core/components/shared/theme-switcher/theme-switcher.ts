@@ -1,27 +1,3 @@
-import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppThemeSwitcher } from "src/app/core/components/web/theme-switcher/theme-switcher";
-import { MobileThemeSwitcher } from "src/app/core/components/mobile/theme-switcher/theme-switcher";
-
-/**
- * Wrapper multiplataforma de ThemeSwitcher. Renderiza `app-theme-switcher`
- * (botón PrimeNG) o `ili-theme-switcher` (ion-toggle) según la plataforma.
- * No hereda de la base para evitar doble aplicación del tema (cada versión
- * gestiona su propio estado/persistencia).
- * Punto de entrada recomendado: `<lx-theme-switcher />`.
- */
-@Component({
-  selector: "lx-theme-switcher",
-  standalone: true,
-  imports: [AppThemeSwitcher, MobileThemeSwitcher],
-  template: `
-    @if (platform.isMobile()) {
-      <ili-theme-switcher />
-    } @else {
-      <app-theme-switcher />
-    }
-  `,
-})
-export class LxThemeSwitcher {
-  protected platform = inject(PlatformService);
-}
+// bridge de compatibilidad: movido a @ui. Se elimina tras el codemod.
+export * from "@ui/adaptive/theme-switcher/theme-switcher";
+export * from "@ui/base/theme-switcher.base";

@@ -2,9 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { ChartModule } from "primeng/chart";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -18,7 +18,7 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ChartModule,
+    ChartWrapper,
     TableModule,
     CardModule,
     CustomInputDateSignal,

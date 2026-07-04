@@ -13,7 +13,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
@@ -30,9 +30,8 @@ import { DateService } from "src/app/core/services/date.service";
     ReactiveFormsModule,
     CardModule,
     MessageModule,
-    SelectModule,
+    CustomInputSelectSignal,
     DividerModule,
-    SelectModule,
     DividerModule,
     CustomInputTextAreaSignal,
     Touchspin,

@@ -7,15 +7,12 @@
       cobranza.
     </div>
     <div class="mt-3 flex align-items-center gap-2">
-      <p-checkbox
-        [binary]="true"
+      <custom-input-check-signal
+        id="onlyWithoutPropertyMatch"
         [ngModel]="onlyWithoutPropertyMatch()"
-        inputId="onlyWithoutPropertyMatch"
-        (ngModelChange)="onlyWithoutPropertyMatch.set(!!$event)"
+        (checkChange)="onlyWithoutPropertyMatch.set($event)"
+        placeholder="Mostrar sólo cuentas sin match con Property"
       />
-      <label class="text-sm cursor-pointer" for="onlyWithoutPropertyMatch">
-        Mostrar sólo cuentas sin match con Property
-      </label>
     </div>
   </div>
 
@@ -88,11 +85,10 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <p-checkbox
-            [binary]="true"
+          <custom-input-check-signal
             [ngModel]="item.isExcluded"
             [disabled]="savingAccountNumber() === item.accountNumber"
-            (ngModelChange)="onToggleExcluded(item, $event)"
+            (checkChange)="onToggleExcluded(item, $event)"
           />
         </td>
         <td>{{ item.accountNumber }}</td>
@@ -167,11 +163,10 @@
         </ion-label>
 
         <div slot="end" class="pr-3">
-          <p-checkbox
-            [binary]="true"
+          <ion-input-checkbox
             [ngModel]="item.isExcluded"
             [disabled]="savingAccountNumber() === item.accountNumber"
-            (ngModelChange)="onToggleExcluded(item, $event)"
+            (checkChange)="onToggleExcluded(item, $event)"
           />
         </div>
       </ion-item>

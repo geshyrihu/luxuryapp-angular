@@ -11,8 +11,8 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LazyLoadEvent } from "primeng/api";
 import { CardModule } from "primeng/card";
-import { DatePickerModule } from "primeng/datepicker";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDatepicker } from "src/app/core/components/inputs/web/custom-input-datepicker-signal";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDownload } from "src/app/core/components/buttons/web-label/button-download";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -77,7 +77,7 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     WebButtonLabelDownload,
     WebButtonLabel,
 
-    DatePickerModule,
+    CustomInputDatepicker,
 
     WebButtonLabelItem,
   ],

@@ -32,13 +32,12 @@
           >Fuente</label
         >
         <div class="col-12 sm:col-9">
-          <p-select
-            formControlName="fuente"
-            [options]="cb_fuente()"
+          <custom-input-select-signal
+            [control]="form.controls.fuente"
+            [data]="cb_fuente()"
             optionLabel="label"
             optionValue="value"
             placeholder="--Selecciona una opción--"
-            fluid
           />
         </div>
       </div>

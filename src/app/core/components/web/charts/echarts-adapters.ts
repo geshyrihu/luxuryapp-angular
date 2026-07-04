@@ -11,6 +11,11 @@ export interface ChartJsDataset {
   data: number[];
   backgroundColor?: string | string[];
   borderColor?: string;
+  pointBackgroundColor?: string;
+  hoverBackgroundColor?: string;
+  hoverBorderColor?: string;
+  borderWidth?: number;
+  barPercentage?: number;
   fill?: boolean;
   tension?: number;
   yAxisID?: string;
@@ -183,12 +188,13 @@ function pieOptionFromItems(
 /** radar a partir de Chart.js {labels, datasets}. */
 export function chartJsToRadarOption(
   data: ChartJsData | null,
-  opts?: { showLegend?: boolean },
+  opts?: { showLegend?: boolean; max?: number },
 ): EChartsCoreOption {
   const t = dsChartTheme();
   const labels = data?.labels ?? [];
   const datasets = data?.datasets ?? [];
   const max =
+    opts?.max ??
     Math.max(
       1,
       ...datasets.flatMap((d) => d.data.filter((n) => typeof n === "number")),

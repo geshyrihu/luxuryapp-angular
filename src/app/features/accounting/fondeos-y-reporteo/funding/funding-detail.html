@@ -435,12 +435,13 @@
               }
 
               <!-- Paid Checkbox -->
-              <p-checkbox
-                [binary]="true"
-                [formControl]="orden.ordenCompraPagadaControl"
-                (onChange)="onPaymentStatusChange(orden)"
+              <custom-input-check-signal
+                [control]="orden.ordenCompraPagadaControl"
+                (checkChange)="onPaymentStatusChange(orden)"
+                [horizontal]="false"
+                noMargin
                 pTooltip="Marcado como Pagado"
-              ></p-checkbox>
+              ></custom-input-check-signal>
             </div>
           </td>
 
@@ -534,11 +535,12 @@
             {{ orden.total | number: "1.2-2" }}
           </td>
           <td class="text-center">
-            <p-checkbox
-              [formControl]="orden.ordenCompraPagadaControl"
-              [binary]="true"
-              (onChange)="onPaymentStatusChange(orden)"
-            />
+            <custom-input-check-signal
+              [control]="orden.ordenCompraPagadaControl"
+              (checkChange)="onPaymentStatusChange(orden)"
+              [horizontal]="false"
+              noMargin
+            ></custom-input-check-signal>
           </td>
           <td class="text-center">
             <div class="flex gap-1 justify-content-center">

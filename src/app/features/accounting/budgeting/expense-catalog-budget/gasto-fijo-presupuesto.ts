@@ -2,8 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputNumberModule } from "primeng/inputnumber";
 import { MessageModule } from "primeng/message";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
@@ -36,7 +36,7 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     WebButtonLabel,
     MessageModule,
     CustomInputSelectSignal,
-    InputNumberModule,
+    CustomInputNumberSignal,
     ProgressSpinnerModule,
     WebButtonLabelDelete,
     PrimeNgCustomCaption,

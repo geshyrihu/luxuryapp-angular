@@ -4,6 +4,13 @@ export interface NativeStatementResponseDTO {
     ledger: LedgerEntryDTO[];
 }
 
+export interface SendNativeStatementBatchResponseDTO {
+    totalPropertiesEvaluated: number;
+    sentProperties: number;
+    skippedProperties: number;
+    failedProperties: number;
+}
+
 export interface PropertyInfoDTO {
     propertyId: string;
     propertyName: string;

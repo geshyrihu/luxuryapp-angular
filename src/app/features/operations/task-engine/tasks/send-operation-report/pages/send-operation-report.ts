@@ -7,8 +7,8 @@ import {
 } from "@angular/forms";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
-import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -37,7 +37,7 @@ import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/prim
     CustomInputTextSignal,
     TagModule,
     TooltipModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     WebButtonLabel,
     WebButtonLabelConfirm,
     WebButtonLabelAdd,

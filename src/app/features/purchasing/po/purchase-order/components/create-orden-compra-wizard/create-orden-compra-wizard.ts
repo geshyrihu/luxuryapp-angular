@@ -16,8 +16,8 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; // Added DynamicDialogConfig
 import { FileUploadModule } from "primeng/fileupload"; // Added
-import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextModule } from "primeng/inputtext";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { MessageModule } from "primeng/message"; // Added
 import { StepsModule } from "primeng/steps";
 import { TableModule } from "primeng/table";
@@ -89,8 +89,8 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     CustomInputTextAreaSignal,
     FileUploadModule,
     FormsModule,
-    InputNumberModule,
     InputTextModule,
+    CustomInputCurrencySignal,
     MessageModule, // Added
     ReactiveFormsModule,
     StepsModule,

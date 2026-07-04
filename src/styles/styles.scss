@@ -40,7 +40,17 @@
 @import "@ionic/angular/css/flex-utils.css";
 @import "@ionic/angular/css/display.css";
 
+/* Override Ionic structure.css — body debe hacer scroll */
+body {
+  position: static;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: auto;
+  height: auto;
+}
+
 @import "theme/ionic-rn-theme";
+@import "theme/ili-buttons";
 @import "theme/cdk-overrides";
 @import "theme/auth";
 @import "theme/dark-mode"; /* último: unlayered, máxima prioridad en cascade */

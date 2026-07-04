@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "src/app/core/components/buttons/web-icon/button-edit";
@@ -30,7 +30,7 @@ import { RoleForm } from "./role-form";
     CommonModule,
     FormsModule,
     TableModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     PrimeNgCustomCaption,
     DataViewMobile,
     MobileActionMenu,

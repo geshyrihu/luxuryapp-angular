@@ -220,12 +220,12 @@
                   [ngClass]="{'bg-blue-50/30': charge._selected, 'opacity-70': charge.balance <= 0}"
                 >
                   <td class="text-center border-r border-gray-100">
-                    <p-checkbox
+                    <custom-input-check-signal
                       [(ngModel)]="charge._selected"
-                      [ngModelOptions]="{standalone: true}"
-                      (onChange)="onChargeSelectionChange(charge)"
-                      [binary]="true"
-                    ></p-checkbox>
+                      (checkChange)="onChargeSelectionChange(charge)"
+                      [horizontal]="false"
+                      noMargin
+                    ></custom-input-check-signal>
                   </td>
                   <td>
                     <div class="flex flex-column">

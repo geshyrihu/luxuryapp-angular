@@ -22,7 +22,7 @@
           [showAdd]="false"
           [dt]="dt"
         />
-        <p-selectButton
+        <custom-input-select-button-signal
           [options]="[
       { label: 'Fijos', value: 0 },
       { label: 'Variable', value: 1 },
@@ -34,10 +34,10 @@
       { label: 'Nomina', value: 7 },
       { label: 'Impuestos y contribuciones', value: 8 },
       ]"
-          [formControl]="tipoControl"
+          [control]="tipoControl"
           optionLabel="label"
           optionValue="value"
-          (onChange)="onLoadData(tipoControl.value)"
+          (selectionChange)="onLoadData(tipoControl.value)"
         />
       </div>
     </div>

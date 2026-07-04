@@ -6,15 +6,14 @@
       <p-card>
         <div class="mb-4">
           <label class="block mb-2" for="precio">Ingresa el precio</label>
-          <p-inputNumber
-            styleClass="w-full"
+          <custom-input-number-signal
             inputId="precio"
             [(ngModel)]="precio"
             (onInput)="calcularPrecioSinIva()"
             mode="decimal"
             [minFractionDigits]="0"
             [maxFractionDigits]="4"
-          ></p-inputNumber>
+          ></custom-input-number-signal>
         </div>
       </p-card>
     </div>
@@ -22,15 +21,14 @@
       <p-card>
         <div class="mb-4">
           <label class="block mb-2" for="precioSinIva">Precio sin iva</label>
-          <p-inputNumber
-            styleClass="w-full"
+          <custom-input-number-signal
             inputId="precioSinIva"
             [(ngModel)]="precioSinIva"
             mode="decimal"
             [minFractionDigits]="0"
             [maxFractionDigits]="4"
             [disabled]="true"
-          ></p-inputNumber>
+          ></custom-input-number-signal>
         </div>
       </p-card>
     </div>
@@ -38,15 +36,14 @@
       <p-card>
         <div class="mb-4">
           <label class="block mb-2" for="iva">I.V.A.</label>
-          <p-inputNumber
-            styleClass="w-full"
+          <custom-input-number-signal
             inputId="iva"
             [(ngModel)]="iva"
             mode="decimal"
             [minFractionDigits]="0"
             [maxFractionDigits]="4"
             [disabled]="true"
-          ></p-inputNumber>
+          ></custom-input-number-signal>
         </div>
       </p-card>
     </div>

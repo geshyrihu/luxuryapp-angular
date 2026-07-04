@@ -53,7 +53,7 @@
         [horizontal]="false"
       />
       <div class="field-checkbox mt-3">
-        <p-toggleSwitch formControlName="sendByEmail"></p-toggleSwitch>
+        <custom-input-toggle-switch-signal [control]="form.controls.sendByEmail" />
         <label class="ml-2">Enviar por Email</label>
       </div>
     </div>

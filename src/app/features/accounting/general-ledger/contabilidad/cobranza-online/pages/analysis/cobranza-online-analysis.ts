@@ -4,11 +4,11 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
-import { ChartModule } from "primeng/chart";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
+import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
 
 import { MessageModule } from "primeng/message";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
@@ -32,15 +32,15 @@ function buildTodayInputValue() {
     FormsModule,
     RouterModule,
     ButtonModule,
-    ChartModule,
     MessageModule,
-    SelectModule,
+    CustomInputSelectSignal,
     TableModule,
     TagModule,
     DataViewMobile,
     IonItem,
     IonLabel,
     WebButtonLabel,
+    ChartWrapper,
   ],
   templateUrl: "./cobranza-online-analysis.html",
 })

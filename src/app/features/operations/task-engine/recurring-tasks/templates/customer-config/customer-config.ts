@@ -1,6 +1,6 @@
 import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { FieldsetModule } from "primeng/fieldset";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
@@ -17,7 +17,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     FormsModule,
     CustomInputSelectSignal,
     FieldsetModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     WebButtonLabelSave,
   ],
 })

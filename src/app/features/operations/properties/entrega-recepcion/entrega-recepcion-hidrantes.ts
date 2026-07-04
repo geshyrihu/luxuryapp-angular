@@ -1,6 +1,5 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
 import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
@@ -10,10 +9,11 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 @Component({
   selector: "app-entrega-recepcion-hidrantes",
   templateUrl: "./entrega-recepcion-hidrantes.html",
-  imports: [TableModule, ReportHeader, FormsModule, CheckboxModule],
+  imports: [TableModule, ReportHeader, FormsModule, CustomInputCheckSignal],
 })
 export class EntregaRecepcionHidrantes {
   apiResponseS = inject(ApiResponseService);

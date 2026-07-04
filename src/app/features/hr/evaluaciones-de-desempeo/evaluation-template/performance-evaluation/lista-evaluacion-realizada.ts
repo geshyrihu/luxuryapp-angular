@@ -3,7 +3,6 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { ChartConfiguration, ChartData } from "chart.js";
 import { TableModule } from "primeng/table";
 import {
   WebButtonLabelDelete,
@@ -23,7 +22,10 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
+import {
+  ChartGeneratorService,
+  RadarChartData,
+} from "src/app/core/services/chart-generator.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -160,7 +162,7 @@ export class ListaEvaluacionRealizada {
           ? parseFloat((c.categoryScore / c.answers.length).toFixed(2))
           : 0,
       );
-      const radarChartData: ChartData<"radar"> = {
+      const radarChartData: RadarChartData = {
         labels: labels,
         datasets: [
           {
@@ -172,19 +174,11 @@ export class ListaEvaluacionRealizada {
           },
         ],
       };
-      const radarChartOptions: ChartConfiguration["options"] = {
-        scales: {
-          r: { min: 1, max: 5, ticks: { stepSize: 1 } },
-        },
-        plugins: {
-          legend: { position: "top" },
-        },
-      };
 
       // 2. Generar imagen del gráfico de forma headless
       const chartImage = await this.chartGeneratorS.generateRadarChartBase64(
         radarChartData,
-        radarChartOptions,
+        { max: 5 },
       );
 
       // 3. Construir y descargar el PDF

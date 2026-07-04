@@ -139,7 +139,7 @@
 
         <div class="mt-4">
           <div style="position: relative; width: 100%; height: 280px">
-            <p-chart
+            <app-chart-wrapper
               type="pie"
               [data]="chartData()!"
               [options]="chartOptions"
@@ -242,11 +242,10 @@
           Tabla base para auditar cómo se clasifica cada cuenta 104 al corte.
         </div>
       </div>
-      <p-select
-        [options]="classificationOptions"
+      <custom-input-select-signal
+        [data]="classificationOptions"
         [ngModel]="selectedClassification()"
         (ngModelChange)="selectedClassification.set($event)"
-        class="w-14rem"
       />
     </div>
 

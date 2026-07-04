@@ -18,13 +18,12 @@
     </div>
     <div class="col-12 md:col-9">
       <div class="flex align-items-end">
-        <p-inputNumber
-          [formControl]="recurrenceForm.controls.interval"
+        <custom-input-number-signal
+          [control]="recurrenceForm.controls.interval"
           [min]="1"
           [showButtons]="true"
           mode="decimal"
-          styleClass="w-full md:w-10rem"
-        ></p-inputNumber>
+        ></custom-input-number-signal>
         <span class="p-text-secondary pb-1 ml-2"> {{ currentFrequencyLabel }} </span>
       </div>
     </div>
@@ -83,16 +82,14 @@
       </div>
       <div class="flex align-items-end ml-4 flex-wrap gap-2">
         <span class="pb-1">El día</span>
-        <p-select
-          [formControl]="recurrenceForm.controls.monthDay"
-          [options]="monthNumbers"
+        <custom-input-select-signal
+          [control]="recurrenceForm.controls.monthDay"
+          [data]="monthNumbers"
           optionLabel="label"
           optionValue="value"
-          placeholder="Dóa"
+          placeholder="Día"
           [disabled]="monthlyType !== 'dayOfMonth'"
-          styleClass="w-full md:w-5rem"
-          appendTo="body"
-        ></p-select>
+        ></custom-input-select-signal>
         <span class="pb-1">de cada mes</span>
       </div>
       <small class="p-text-secondary ml-4 mt-1 block">
@@ -118,26 +115,22 @@
       </div>
       <div class="flex align-items-end flex-wrap ml-4 gap-2">
         <span class="pb-1">El</span>
-        <p-select
-          [formControl]="recurrenceForm.controls.monthPosition"
-          [options]="positions"
+        <custom-input-select-signal
+          [control]="recurrenceForm.controls.monthPosition"
+          [data]="positions"
           optionLabel="label"
           optionValue="value"
           placeholder="Posición"
           [disabled]="monthlyType !== 'dayOfWeek'"
-          styleClass="w-full md:w-8rem"
-          appendTo="body"
-        ></p-select>
-        <p-select
-          [formControl]="recurrenceForm.controls.monthWeekDay"
-          [options]="weekDays"
+        ></custom-input-select-signal>
+        <custom-input-select-signal
+          [control]="recurrenceForm.controls.monthWeekDay"
+          [data]="weekDays"
           optionLabel="label"
           optionValue="value"
-          placeholder="Dóa"
+          placeholder="Día"
           [disabled]="monthlyType !== 'dayOfWeek'"
-          styleClass="w-full md:w-8rem"
-          appendTo="body"
-        ></p-select>
+        ></custom-input-select-signal>
         <span class="pb-1">de cada mes</span>
       </div>
       <small class="p-text-secondary ml-4 mt-1 block">
@@ -154,25 +147,21 @@
     <div class="p-3 border-1 surface-border border-round surface-50">
       <div class="flex align-items-end flex-wrap">
         <span class="pb-1">Cada</span>
-        <p-select
-          [formControl]="recurrenceForm.controls.yearDay"
-          [options]="monthNumbers"
+        <custom-input-select-signal
+          [control]="recurrenceForm.controls.yearDay"
+          [data]="monthNumbers"
           optionLabel="label"
           optionValue="value"
-          placeholder="Dóa"
-          styleClass="w-full md:w-5rem"
-          appendTo="body"
-        ></p-select>
+          placeholder="Día"
+        ></custom-input-select-signal>
         <span class="pb-1">de</span>
-        <p-select
-          [formControl]="recurrenceForm.controls.yearMonth"
-          [options]="months"
+        <custom-input-select-signal
+          [control]="recurrenceForm.controls.yearMonth"
+          [data]="months"
           optionLabel="label"
           optionValue="value"
           placeholder="Mes"
-          styleClass="w-full md:w-10rem"
-          appendTo="body"
-        ></p-select>
+        ></custom-input-select-signal>
       </div>
       <small class="p-text-secondary mt-2 block">
         Ejemplo: Cada 25 de Diciembre

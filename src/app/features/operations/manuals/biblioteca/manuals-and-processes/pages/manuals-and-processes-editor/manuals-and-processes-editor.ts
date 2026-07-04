@@ -17,7 +17,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TagModule } from "primeng/tag";
 import {
   WebButtonLabelDelete,
@@ -83,7 +83,7 @@ import { TooltipModule } from "primeng/tooltip";
     DragDropModule,
     ButtonModule,
     TagModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
     CustomInputSwitch,
     FileUploadModule,
     WebButtonLabel,

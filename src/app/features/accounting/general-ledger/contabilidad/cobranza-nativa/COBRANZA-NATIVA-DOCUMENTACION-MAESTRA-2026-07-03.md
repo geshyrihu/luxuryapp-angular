@@ -1,6 +1,6 @@
 # Cobranza Nativa - Documentacion Maestra
 
-Fecha de actualizacion: 2026-07-03
+Fecha de actualizacion: 2026-07-04
 Modulo: `client/angular/src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa`
 Estado funcional: Activo, con Fases 1 a 7 ejecutadas
 
@@ -78,8 +78,10 @@ Las operaciones sensibles se controlan con:
 - estado de cuenta ledger-based con fecha de corte
 - PDF real del estado de cuenta
 - envio manual de estado de cuenta por email
+- envio masivo de estados de cuenta por condominio
 - configuracion de canales email/push
 - auditoria financiera
+- bitacora funcional de envio de estados de cuenta
 - conciliacion de pagos
 - cierres de periodo
 - aprobaciones financieras

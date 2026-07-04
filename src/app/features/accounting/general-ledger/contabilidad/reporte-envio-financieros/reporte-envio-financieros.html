@@ -22,13 +22,12 @@
       <div class="col-12 sm:col-3">
         <div class="flex justify-content-end align-items-center gap-2">
           <label class="font-bold">Año:</label>
-          <p-select
-            [options]="years"
+          <custom-input-select-signal
+            [data]="years"
             [(ngModel)]="selectedYear"
             optionLabel="label"
             optionValue="value"
-            (onChange)="onChangeYear()"
-            class="w-full sm:w-10rem"
+            (selectionChange)="onChangeYear()"
           />
         </div>
       </div>

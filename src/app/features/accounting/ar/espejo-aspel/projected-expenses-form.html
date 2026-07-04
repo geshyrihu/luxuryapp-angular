@@ -14,13 +14,13 @@
     <!-- Fila 1.5: Recurrencia -->
     <div class="col-12 md:col-6">
       <div class="flex align-items-center mb-4 mt-4">
-        <p-checkbox
-          formControlName="isFromRecurrence"
-          [binary]="true"
-          inputId="isFromRecurrence"
-          (onChange)="toggleRecurrenceFields($event.checked)"
-        />
-        <label for="isFromRecurrence" class="ml-2">Es Recurrente?</label>
+        <custom-input-check-signal
+          [control]="form.controls.isFromRecurrence"
+          placeholder="Es Recurrente?"
+          (checkChange)="toggleRecurrenceFields($event)"
+          [horizontal]="false"
+          noMargin
+        ></custom-input-check-signal>
       </div>
     </div>
 

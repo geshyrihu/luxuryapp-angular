@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { SelectButtonModule } from "primeng/selectbutton";
 import { SkeletonModule } from "primeng/skeleton";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
@@ -24,7 +24,7 @@ import {
     FormsModule,
     CardModule,
     TableModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
     TooltipModule,
     SkeletonModule,
     AppIcon,

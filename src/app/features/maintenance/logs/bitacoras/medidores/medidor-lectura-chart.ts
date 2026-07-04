@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from "@angular/core";
+import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -9,7 +9,9 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/angular/standalone";
-import { BaseChartDirective } from "ng2-charts";
+import { NgxEchartsDirective } from "ngx-echarts";
+import type { EChartsCoreOption } from "echarts/core";
+import { chartJsToCartesianOption } from "src/app/core/components/web/charts/echarts-adapters";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { RadioButtonModule } from "primeng/radiobutton";
 import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
@@ -24,7 +26,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
   selector: "app-medidor-lectura-chart",
   templateUrl: "./medidor-lectura-chart.html",
   imports: [
-    BaseChartDirective,
+    NgxEchartsDirective,
     CalendarRange,
     RangoCalendarioyyyymmdd,
     RadioButtonModule,
@@ -151,6 +153,7 @@ export class MedidorLecturaChart implements OnInit {
     });
   }
   lineBarChart: IChartType;
+  chartOption = signal<EChartsCoreOption | null>(null);
   // lineBarChartDiario: ChartType;
   onLoadChart(
     label: string,
@@ -193,5 +196,6 @@ export class MedidorLecturaChart implements OnInit {
         },
       },
     };
+    this.chartOption.set(chartJsToCartesianOption(this.lineBarChart, "bar"));
   }
 }

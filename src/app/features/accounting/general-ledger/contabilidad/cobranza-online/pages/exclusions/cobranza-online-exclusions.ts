@@ -4,7 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
-import { CheckboxModule } from "primeng/checkbox";
+import { IonInputCheckbox } from "src/app/core/components/inputs/mobile/ion-input-checkbox";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -33,7 +34,8 @@ import type {
     RouterModule,
     TableModule,
     ButtonModule,
-    CheckboxModule,
+    IonInputCheckbox,
+    CustomInputCheckSignal,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

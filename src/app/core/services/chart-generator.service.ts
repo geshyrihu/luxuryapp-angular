@@ -1,66 +1,55 @@
 import { Injectable } from "@angular/core";
-import { Chart, ChartConfiguration, ChartData } from "chart.js";
+import * as echarts from "echarts";
+import {
+  chartJsToRadarOption,
+  ChartJsData,
+} from "src/app/core/components/web/charts/echarts-adapters";
+
+/** Datos del radar en formato Chart.js `{ labels, datasets }` (compatibilidad). */
+export type RadarChartData = ChartJsData;
+
 @Injectable({
   providedIn: "root",
 })
 export class ChartGeneratorService {
   /**
-   * Generates a base64 image representation of a radar chart "headlessly"
-   * (without rendering it to the DOM).
-   * @param data The Chart.js data object.
-   * @param options The Chart.js configuration options.
-   * @returns A promise that resolves to the base64 string of the chart image.
+   * Genera una imagen base64 (PNG) de un gráfico de radar de forma "headless"
+   * (sin renderizarlo en el DOM). Motor: ECharts.
+   * @param data Datos del radar en formato Chart.js `{ labels, datasets }`.
+   * @param opts Opciones; `max` fija el tope de la escala radial (p. ej. 5).
+   * @returns Promesa que resuelve al string base64 de la imagen.
    */
   public generateRadarChartBase64(
-    data: ChartData<"radar">,
-    options?: ChartConfiguration["options"],
+    data: RadarChartData,
+    opts?: { max?: number },
   ): Promise<string> {
     return new Promise((resolve, reject) => {
-      // Merge default options with provided options
-      const finalOptions: ChartConfiguration["options"] = {
-        ...options,
-        // CRITICAL: Disable animations for instant rendering
-        animation: false,
-        // Ensure the chart is not responsive to a non-existent container
-        responsive: false,
-      };
+      try {
+        const option = chartJsToRadarOption(data, {
+          showLegend: true,
+          max: opts?.max,
+        });
 
-      // Create a canvas element in memory
-      const canvas = document.createElement("canvas");
-      canvas.width = 1000; // Increase resolution for better quality in PDF
-      canvas.height = 500;
-      const ctx = canvas.getContext("2d");
+        // Contenedor en memoria con dimensiones explícitas (no requiere DOM).
+        const div = document.createElement("div");
+        const chart = echarts.init(div, null, {
+          renderer: "canvas",
+          width: 1000,
+          height: 500,
+        });
 
-      if (!ctx) {
-        return reject(new Error("Failed to get canvas context"));
+        // Animaciones desactivadas → render síncrono antes de capturar.
+        chart.setOption(
+          { ...(option as object), animation: false, backgroundColor: "#ffffff" },
+          true,
+        );
+
+        const base64Image = chart.getDataURL({ type: "png", pixelRatio: 2 });
+        chart.dispose();
+        resolve(base64Image);
+      } catch (error) {
+        reject(error);
       }
-
-      const chart = new Chart(ctx, {
-        type: "radar",
-        data: data,
-        options: finalOptions,
-      });
-
-      // The chart rendering is asynchronous, even with animations off.
-      // A small timeout ensures the chart is fully drawn before we capture it.
-      setTimeout(() => {
-        try {
-          const base64Image = chart.toBase64Image();
-          chart.destroy(); // Clean up the chart instance
-          resolve(base64Image);
-        } catch (error) {
-          reject(error);
-        }
-      }, 100); // 100ms delay as a safeguard
     });
   }
 }
-
-
-
-
-
-
-
-
-

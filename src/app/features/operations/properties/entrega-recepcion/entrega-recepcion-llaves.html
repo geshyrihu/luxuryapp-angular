@@ -45,7 +45,7 @@
       <td class="text-sm">{{ item.marca }}</td>
       <td class="text-sm">{{ item.cantidad }}</td>
       <td class="text-sm text-center">
-        <p-checkbox [binary]="true" [ngModel]="false" [disabled]="true" />
+        <custom-input-check-signal [ngModel]="false" [disabled]="true" [horizontal]="false" noMargin />
       </td>
       <td class="text-sm"></td>
     </tr>

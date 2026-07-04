@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
@@ -21,7 +21,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
   templateUrl: "./projected-expenses-form.html",
   imports: [
     ReactiveFormsModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,

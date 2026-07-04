@@ -29,6 +29,12 @@ export const appRoutes: Routes = [
       import("src/app/routing/auth.routing").then((m) => m.authRoutes),
   },
   {
+    path: "web",
+    loadChildren: () =>
+      import("src/app/features/web/web.routing").then((m) => m.webRoutes),
+    data: { title: "Inicio", breadcrumb: "Inicio" },
+  },
+  {
     path: "publico",
     loadChildren: () =>
       import("src/app/routing/public.routing").then((m) => m.publicRoutes),

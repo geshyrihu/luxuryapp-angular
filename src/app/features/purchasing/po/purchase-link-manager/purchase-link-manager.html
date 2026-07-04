@@ -56,10 +56,9 @@
                 class="mr-2"
               />SOLICITUDES
             </h3>
-            <p-selectButton
+            <custom-input-select-button-signal
               [options]="statusOptions"
-              [formControl]="statusSCControl"
-              [unselectable]="true"
+              [control]="statusSCControl"
               size="small"
             />
           </div>
@@ -183,10 +182,9 @@
             <h3 class="m-0 text-orange-700 font-bold">
               <app-icon [icon]="'mdi:shopping'" class="mr-2" />ÓRDENES
             </h3>
-            <p-selectButton
+            <custom-input-select-button-signal
               [options]="statusOptions"
-              [formControl]="statusOCControl"
-              [unselectable]="true"
+              [control]="statusOCControl"
               size="small"
             />
           </div>

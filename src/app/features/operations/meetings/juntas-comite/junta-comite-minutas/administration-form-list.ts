@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -17,7 +17,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   templateUrl: "./administration-form-list.html",
   imports: [
     ReactiveFormsModule,
-    SelectModule,
+    CustomInputSelectSignal,
     WebButtonLabelItem,
     WebButtonLabelDelete,
   ],

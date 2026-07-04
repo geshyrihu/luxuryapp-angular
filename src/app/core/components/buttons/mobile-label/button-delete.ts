@@ -12,8 +12,8 @@ import { confirmAction } from "../shared/confirm";
   template: `
     <ion-button
       [expand]="expand()"
-      [fill]="fill()"
-      [color]="color()"
+      [fill]="resolvedFill()"
+      [color]="resolvedColor()"
       [size]="size()"
       [disabled]="disabled() || loading()"
       [class]="styleClass()"
@@ -25,6 +25,7 @@ import { confirmAction } from "../shared/confirm";
   `,
 })
 export class MobileButtonLabelDelete extends MobileButtonBase {
+  override color = input<string>("danger");
   confirmHeader = input<string>("Confirmar eliminacion");
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");
   confirmed = output<void>();

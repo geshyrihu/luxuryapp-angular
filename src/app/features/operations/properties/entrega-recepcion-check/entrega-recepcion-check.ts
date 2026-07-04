@@ -4,8 +4,8 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 // PrimeNG Modules
 import { AccordionModule } from "primeng/accordion";
-import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 
@@ -20,7 +20,7 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     AccordionModule,
     TableModule,
     TagModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
     WebButtonLabel,
   ],
   templateUrl: "./entrega-recepcion-check.html",

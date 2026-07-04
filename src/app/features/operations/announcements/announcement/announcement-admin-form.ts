@@ -12,7 +12,7 @@ import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { ListboxModule } from "primeng/listbox";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { CustomInputToggleSwitch } from "src/app/core/components/inputs/web/custom-input-toggle-switch-signal";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { WebButtonLabelDelete } from "src/app/core/components/buttons/web-label/button-delete";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
@@ -52,7 +52,7 @@ import { ImageGenerationDialog } from "./components/image-generation-dialog/imag
     CustomInputDateSignal,
     WebButtonLabelDelete,
     WebButtonLabelSave,
-    ToggleSwitchModule,
+    CustomInputToggleSwitch,
     EditorModule,
     DividerModule,
     ListboxModule,

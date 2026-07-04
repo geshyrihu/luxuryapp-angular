@@ -8,7 +8,7 @@ import {
 import { of } from 'rxjs';
 import { vi } from 'vitest';
 
-// ResizeObserver polyfill for chart.js compatibility in jsdom
+// ResizeObserver polyfill for ECharts compatibility in jsdom
 if (typeof globalThis.ResizeObserver === 'undefined') {
   class ResizeObserverMock {
     observe() {}

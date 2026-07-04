@@ -19,9 +19,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
-import { InputNumberModule } from "primeng/inputnumber";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { SelectModule } from "primeng/select";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+
 
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 
@@ -49,9 +49,8 @@ interface IRecurrenceForm {
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    InputNumberModule,
+    CustomInputNumberSignal,
     CheckboxModule,
-    SelectModule,
     RadioButtonModule,
     CustomInputSelectSignal,
   ],

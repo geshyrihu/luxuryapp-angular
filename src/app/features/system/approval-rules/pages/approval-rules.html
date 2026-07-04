@@ -59,19 +59,18 @@
           </td>
           @for (approver of approverRoles(); track approver) {
           <td class="body-cell text-center">
-            <p-selectButton
+            <custom-input-select-button-signal
               [options]="scopeOptions"
               [ngModel]="getScope(approver, target)"
               (ngModelChange)="onRuleChange(approver, target, $event)"
               optionLabel="label"
               optionValue="value"
-              [allowEmpty]="false"
             >
               <ng-template pTemplate="item" let-item>
                 <app-icon [icon]="item.icon" class="mr-2" />
                 <span>{{ item.label }}</span>
               </ng-template>
-            </p-selectButton>
+            </custom-input-select-button-signal>
           </td>
           }
         </tr>

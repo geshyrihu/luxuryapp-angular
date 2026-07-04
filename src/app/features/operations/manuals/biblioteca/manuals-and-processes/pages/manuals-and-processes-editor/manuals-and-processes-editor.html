@@ -205,9 +205,9 @@
 
           <div class="flex flex-column gap-2">
             <label class="font-bold text-sm text-700">Tipo de Nota</label>
-            <p-selectButton
+            <custom-input-select-button-signal
               [options]="tipoNotaOpciones"
-              formControlName="tipoNota"
+              [control]="pasoForm.controls.tipoNota"
               optionLabel="label"
               optionValue="value"
             />

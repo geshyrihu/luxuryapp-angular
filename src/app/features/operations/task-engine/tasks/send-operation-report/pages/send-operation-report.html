@@ -183,10 +183,11 @@
   <ng-template #body let-item>
     <tr>
       <td class="text-center">
-        <p-checkbox
-          [formControl]="item.selectControl"
-          [binary]="true"
-        ></p-checkbox>
+        <custom-input-check-signal
+          [control]="item.selectControl"
+          [horizontal]="false"
+          noMargin
+        ></custom-input-check-signal>
       </td>
       <td>{{ item.departamento }}</td>
       <td>{{ item.label }}</td>

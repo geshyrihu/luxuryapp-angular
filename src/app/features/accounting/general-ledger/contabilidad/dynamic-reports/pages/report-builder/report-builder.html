@@ -33,26 +33,22 @@
         <span class="text-xs font-bold text-primary-800 mr-2"
           >PERIODO PREVIEW:</span
         >
-        <p-select
-          [options]="meses"
+        <custom-input-select-signal
+          [data]="meses"
           [ngModel]="livePreviewS.period()"
           (ngModelChange)="livePreviewS.period.set($event)"
           optionLabel="label"
           optionValue="value"
           [showClear]="false"
-          appendTo="body"
-          class="p-select-sm border-none bg-transparent"
         />
         <span class="mx-2 text-primary-300">|</span>
-        <p-select
-          [options]="aniosPreview"
+        <custom-input-select-signal
+          [data]="aniosPreview"
           [ngModel]="previewYear()"
           (ngModelChange)="previewYear.set($event)"
           optionLabel="label"
           optionValue="value"
           [showClear]="false"
-          appendTo="body"
-          class="p-select-sm border-none bg-transparent min-w-6rem"
         />
       </div>
 
@@ -148,12 +144,11 @@
             class="flex align-items-center gap-2 px-3 border-right-1 border-surface-200"
           >
             <span class="text-xs font-bold text-500">DISEÑO:</span>
-            <p-select
-              [options]="tiposVisualizacion"
-              [formControl]="form.controls.visualizationType"
+            <custom-input-select-signal
+              [data]="tiposVisualizacion"
+              [control]="form.controls.visualizationType"
               optionLabel="label"
               optionValue="value"
-              class="p-select-sm"
             />
           </div>
           <iw-button
@@ -659,28 +654,30 @@
     </div>
     <div class="flex flex-column gap-1">
       <label class="text-xs font-bold text-500">Base COI</label>
-      <p-select
-        [options]="fuentesAspel"
-        [formControl]="form.controls.dataSource"
+      <custom-input-select-signal
+        [data]="fuentesAspel"
+        [control]="form.controls.dataSource"
         optionLabel="label"
         optionValue="value"
-        appendTo="body"
       />
     </div>
     <div class="flex flex-column gap-1">
       <label class="text-xs font-bold text-500">Año preview</label>
-      <p-select
-        [options]="aniosPreview"
+      <custom-input-select-signal
+        [data]="aniosPreview"
         [ngModel]="previewYear()"
         (ngModelChange)="previewYear.set($event)"
         optionLabel="label"
         optionValue="value"
-        appendTo="body"
       />
     </div>
     <div class="flex align-items-center gap-2">
-      <p-checkbox [formControl]="form.controls.isTemplate" [binary]="true" />
-      <label class="text-sm">¿Es una plantilla global?</label>
+      <custom-input-check-signal
+        [control]="form.controls.isTemplate"
+        placeholder="¿Es una plantilla global?"
+        [horizontal]="false"
+        noMargin
+      ></custom-input-check-signal>
     </div>
   </div>
 </p-popover>

@@ -31,7 +31,7 @@
       style="height: 2rem; flex-shrink: 0"
     ></span>
 
-    <p-selectButton
+    <custom-input-select-button-signal
       [options]="empresaOptions"
       [ngModel]="empresaSeleccionada()"
       (ngModelChange)="$event != null && empresaSeleccionada.set($event)"

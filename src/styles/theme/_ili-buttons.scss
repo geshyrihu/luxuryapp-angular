@@ -1,0 +1,60 @@
+// ═══════════════════════════════════════════════════════════════
+// _ili-buttons.scss
+// Estilos de los botones móviles ili-* / ii-* y contextos reutilizables.
+// Todo por tokens --ds-* / --ds-m-* (cero hex hardcodeado).
+// ═══════════════════════════════════════════════════════════════
+
+// ── Contexto: lista de acciones tipo action-sheet iOS ───────────
+// Aplicar `.ili-menu-list` a un contenedor cuyos hijos sean botones
+// ili-* (uno por fila). Convierte cualquier ili-button (incluso fill
+// solid) en una fila de menú plana: fondo transparente, texto en el
+// color del botón (edit→primary/azul, delete→danger/rojo), separadores
+// finos y área táctil cómoda. Usado por <ili-action-menu>.
+.ili-menu-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  // Cada wrapper (ili-button-edit, ili-button-delete, …) ocupa toda la fila
+  > * {
+    display: block;
+    width: 100%;
+  }
+  > *:not(:last-child) {
+    border-bottom: 0.5px solid var(--ds-border);
+  }
+
+  ion-button {
+    // Neutraliza el fill solid → fila plana; el color del texto sale del
+    // color semántico del botón (--ion-color-base lo fija Ionic vía [color]).
+    --background: transparent;
+    --background-hover: var(--ds-m-press);
+    --background-activated: var(--ds-m-press);
+    --background-focused: var(--ds-m-press);
+    --color: var(--ion-color-base, var(--ds-text-primary));
+    --box-shadow: none;
+    --border-width: 0;
+    --border-radius: 0;
+    --ripple-color: var(--ds-m-press);
+    --padding-start: 6px;
+    --padding-end: 6px;
+    margin: 0;
+    width: 100%;
+    height: var(--ds-m-row-height);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    text-transform: none;
+
+    &::part(native) {
+      justify-content: flex-start;
+    }
+  }
+
+  // Icono a la izquierda, separado del label
+  ion-button app-icon,
+  ion-button ion-icon {
+    margin-inline-end: 14px;
+    font-size: 1.3rem;
+  }
+}

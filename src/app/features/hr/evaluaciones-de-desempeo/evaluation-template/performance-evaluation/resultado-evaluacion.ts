@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { ChartConfiguration, ChartData } from "chart.js";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
@@ -10,7 +9,10 @@ import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
+import {
+  ChartGeneratorService,
+  RadarChartData,
+} from "src/app/core/services/chart-generator.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
@@ -42,12 +44,13 @@ export class ResultadoEvaluacion {
   chartImageUrl = signal<string | null>(null);
   today = signal(new Date());
 
-  radarChartData = signal<ChartData<"radar">>({
+  radarChartData = signal<RadarChartData>({
     labels: [],
     datasets: [{ data: [], label: "Cargando..." }],
   });
 
-  radarChartOptions: ChartConfiguration["options"] = {
+  // Se conserva para el binding [chartOptions] del gráfico en vivo.
+  radarChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -127,7 +130,7 @@ export class ResultadoEvaluacion {
     try {
       const chartImage = await this.chartGeneratorS.generateRadarChartBase64(
         this.radarChartData(),
-        this.radarChartOptions,
+        { max: 5 },
       );
 
       if (!chartImage) {

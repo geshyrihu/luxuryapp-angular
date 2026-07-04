@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import {
@@ -26,7 +26,7 @@ import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     CardModule,
-    SelectModule,
+    CustomInputSelectSignal,
     TooltipModule,
     WebButtonLabel,
   ],
@@ -43,6 +43,9 @@ export class InventoryEngineSystem {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   filteredDataSignal = signal<any[]>([]); // Usar signal para datos filtrados
+  systemOptions = computed(() => {
+    return [{ system: "Mostrar todos" }, ...this.dataSignal()];
+  });
 
   ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
 
@@ -113,8 +116,7 @@ export class InventoryEngineSystem {
 
   // Método para filtrar los datos por sistema
   onFilterForSystem(system: string) {
-    if (system === "") {
-      // Si el valor es vacóo, mostrar todos
+    if (!system || system === "Mostrar todos") {
       this.showAll();
     } else {
       // Filtra los datos basados en el sistema seleccionado

@@ -7,8 +7,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -33,7 +33,7 @@ import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/bu
     CardModule,
     WebButtonLabel,
     CustomInputTextSignal,
-    CheckboxModule,
+    CustomInputCheckSignal,
     TagModule,
     MessageModule,
     WebButtonLabelEdit,

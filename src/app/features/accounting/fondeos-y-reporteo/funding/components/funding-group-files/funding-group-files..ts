@@ -2,8 +2,8 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { CustomInputSelectButton } from "src/app/core/components/inputs/web/custom-input-select-button-signal";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button"; // Added
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label/button-item";
@@ -15,7 +15,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   selector: "app-funding-group-files",
   imports: [
     ReactiveFormsModule,
-    SelectButtonModule,
+    CustomInputSelectButton,
     CheckboxModule,
     TableModule,
     TooltipModule,

@@ -43,10 +43,10 @@
         <td>{{ revision.inspectionDescription }}</td>
         <td>
           <div class="flex align-items-center">
-            <p-toggleswitch
-              [formControl]="revision.stateControl"
-              (onChange)="saveRevision(revision)"
-            ></p-toggleswitch>
+            <custom-input-toggle-switch-signal
+              [control]="revision.stateControl"
+              (toggleChange)="saveRevision(revision)"
+            />
             <span class="text-sm ml-2">
               {{ revision.stateControl.value ? "Bien" : "Mal" }}
             </span>
@@ -99,10 +99,10 @@
             {{ item.inspectionDescription }}
           </span>
           <div class="flex align-items-center">
-            <p-toggleswitch
-              [formControl]="item.stateControl"
-              (onChange)="saveRevision(item)"
-            ></p-toggleswitch>
+            <custom-input-toggle-switch-signal
+              [control]="item.stateControl"
+              (toggleChange)="saveRevision(item)"
+            />
             <span class="text-xs ml-2">
               {{ item.stateControl.value ? "Bien" : "Mal" }}
             </span>

@@ -278,20 +278,16 @@
         </ion-item>
         <div class="ion-padding" slot="content">
           <!-- Year and Month -->
-          <ion-item lines="full" class="mb-2">
-            <ion-label>Aóo</ion-label>
-            <ion-select
-              [ngModel]="fundingYear()"
-              (ionChange)="fundingYear.set($event.detail.value)"
-              interface="popover"
-            >
-              @for(year of cb_fundingYear; track year.value) {
-              <ion-select-option [value]="year.value"
-                >{{year.label}}</ion-select-option
-              >
-              }
-            </ion-select>
-          </ion-item>
+          <ion-input-select
+            [ngModel]="fundingYear()"
+            (selectionChange)="fundingYear.set($event)"
+            [data]="cb_fundingYear"
+            optionLabel="label"
+            optionValue="value"
+            label="Año"
+            interfaceMode="popover"
+            class="mb-2"
+          ></ion-input-select>
 
           <p class="mb-1 text-sm font-bold ml-1">Mes de Fondeo</p>
           <ion-segment
@@ -370,11 +366,10 @@
     >
       <ng-template #listItemTemplate let-item>
         <ion-item lines="full" class="ion-no-padding">
-          <ion-checkbox
-            slot="start"
-            [checked]="item.crearOrdenCompra"
-            (ionChange)="crearOrder(item.id, $event.detail.checked)"
-          ></ion-checkbox>
+          <ion-input-checkbox
+            [ngModel]="item.crearOrdenCompra"
+            (checkChange)="crearOrder(item.id, $event)"
+          ></ion-input-checkbox>
 
           <ion-label class="ion-text-wrap my-2">
             <div class="flex justify-content-between align-items-center mb-1">

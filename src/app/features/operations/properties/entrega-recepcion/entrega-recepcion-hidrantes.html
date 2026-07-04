@@ -50,7 +50,7 @@
       <td class="text-sm">{{ item.eExtintor }}</td>
       <td class="text-sm">{{ item.ubicacion }}</td>
       <td class="text-sm text-center">
-        <p-checkbox [binary]="true" [ngModel]="false" [disabled]="true" />
+        <custom-input-check-signal [ngModel]="false" [disabled]="true" [horizontal]="false" noMargin />
       </td>
       <td class="text-sm"></td>
     </tr>

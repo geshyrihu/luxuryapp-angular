@@ -3,13 +3,12 @@
   <div class="grid col-12 align-items-center">
     <div class="col-10">
       <div class="mb-2">
-        <p-select
-          [formControl]="administrationparticipante"
-          [options]="cb_Administration()"
+        <custom-input-select-signal
+          [control]="administrationparticipante"
+          [data]="cb_Administration()"
           optionLabel="label"
           optionValue="value"
           placeholder="Selecciona una opción"
-          fluid
         />
       </div>
     </div>

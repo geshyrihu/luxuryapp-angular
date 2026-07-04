@@ -19,7 +19,6 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { FieldsetModule } from "primeng/fieldset";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
@@ -51,7 +50,6 @@ interface ICategoryForm {
   imports: [
     InputGroupModule,
     InputGroupAddonModule,
-    InputTextModule,
     MessageModule,
     TooltipModule,
     FieldsetModule,

@@ -8,7 +8,7 @@ import {
   IonListHeader,
 } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -20,7 +20,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   templateUrl: "./general-anual-mantenimiento.html",
   imports: [
     ReactiveFormsModule,
-    SelectModule,
+    CustomInputSelectSignal,
     CardModule,
 
     TooltipModule,
@@ -53,7 +53,7 @@ export class GeneralAnualMantenimiento {
   onLoadProveedores() {
     const url = `MaintenanceCalendars/ProveedoresCalendario/${this.customerIdS.customerId()}`;
     this.apiResponseS.onGetList(url).then((result: any) => {
-      this.cb_providers.set(result || []);
+      this.cb_providers.set([{ label: "Todos", value: "" } as any, ...(result || [])]);
     });
   }
 

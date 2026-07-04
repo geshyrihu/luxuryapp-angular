@@ -2,7 +2,8 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { IonList, IonToggle } from "@ionic/angular/standalone";
+import { IonList } from "@ionic/angular/standalone";
+import { IonInputToggle } from "src/app/core/components/inputs/mobile/ion-input-toggle";
 import { addIcons } from "ionicons";
 import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -41,7 +42,7 @@ interface CustomerModulListDTO {
     CustomSearchInput,
     FormsModule,
     IonList,
-    IonToggle,
+    IonInputToggle,
     AppIcon,
   ],
   templateUrl: "./customer-modul-edit.html",

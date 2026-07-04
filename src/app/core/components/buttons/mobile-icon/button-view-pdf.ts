@@ -11,8 +11,8 @@ import { openPdf } from "../shared/pdf";
   imports: [CommonModule, IonButton, AppIcon],
   template: `
     <ion-button
-      [fill]="fill()"
-      [color]="color()"
+      [fill]="resolvedFill()"
+      [color]="resolvedColor()"
       [size]="size()"
       [disabled]="disabled() || loading()"
       [class]="styleClass()"

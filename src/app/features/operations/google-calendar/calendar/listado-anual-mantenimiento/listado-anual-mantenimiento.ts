@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelItem } from "src/app/core/components/buttons/web-label";
@@ -52,7 +52,7 @@ import { WebButtonIconDelete } from "src/app/core/components/buttons/web-icon/bu
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
-    SelectModule,
+    CustomInputSelectSignal,
     PrimeNgCustomCaption,
     WebButtonLabelEdit,
     WebButtonLabelItem,
@@ -170,7 +170,7 @@ export class ListadoAnualMantenimiento {
       .onGetEnumSelectItem(`EMonth/${false}`)
       .then((result: any) => {
         const sorted = (result || []).sort((a, b) => a.value - b.value);
-        this.months.set(sorted);
+        this.months.set([{ label: "Todos", value: "" } as any, ...sorted]);
       });
   }
 }

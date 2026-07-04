@@ -1,0 +1,146 @@
+@if (loading()) {
+<div class="p-5 text-center text-500">Cargando detalle del pago...</div>
+} @else if (payment()) {
+<div class="p-3 md:p-4 flex flex-column gap-4">
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <div class="surface-card border-1 border-100 border-round-xl p-4 h-full">
+        <div class="text-xs text-500 uppercase font-semibold mb-2">Propiedad</div>
+        <div class="font-bold text-900">{{ payment()!.propertyFullName || "N/A" }}</div>
+        <div class="text-sm text-500 mt-2">
+          {{ payment()!.paymentDate | date:'dd/MM/yyyy':'UTC' }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="surface-card border-1 border-100 border-round-xl p-4 h-full">
+        <div class="text-xs text-500 uppercase font-semibold mb-2">Monto</div>
+        <div class="text-2xl font-bold text-green-600">
+          {{ payment()!.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+        </div>
+        <div class="text-sm text-500 mt-2">
+          {{ getMethodLabel(payment()!.method) }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="surface-card border-1 border-100 border-round-xl p-4 h-full">
+        <div class="text-xs text-500 uppercase font-semibold mb-2">Estado</div>
+        <div class="font-bold text-900">{{ getStatusLabel(payment()!) }}</div>
+        <div class="text-sm text-500 mt-2">
+          Ref: {{ payment()!.reference || "-" }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <div class="surface-card border-1 border-blue-100 border-round-xl p-4">
+        <div class="text-xs text-blue-600 uppercase font-semibold mb-2">Aplicado</div>
+        <div class="text-xl font-bold text-blue-700">
+          {{ payment()!.allocatedAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="surface-card border-1 border-orange-100 border-round-xl p-4">
+        <div class="text-xs text-orange-600 uppercase font-semibold mb-2">Sin aplicar</div>
+        <div class="text-xl font-bold text-orange-700">
+          {{ payment()!.unappliedAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="surface-card border-1 border-100 border-round-xl overflow-hidden hidden md:block">
+    <div class="px-4 py-3 border-bottom-1 border-100">
+      <div class="font-semibold text-800">Asignaciones a cargos</div>
+      <div class="text-sm text-500">Detalle de cómo se distribuyó el pago.</div>
+    </div>
+
+    <p-table [value]="payment()!.allocations || []" styleClass="custom-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Tipo de cargo</th>
+          <th>Concepto del cargo</th>
+          <th class="w-10rem text-right">Monto aplicado</th>
+          <th class="w-10rem">Aplicado por</th>
+          <th class="w-10rem text-center">Fecha</th>
+          <th class="w-6rem text-center">Acción</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>
+            <div class="flex flex-column">
+              <span class="font-medium text-800">{{ item.chargeTypeName || "Sin tipo" }}</span>
+              @if (getChargeTypeMeta(item)) {
+              <span class="text-xs text-400">{{ getChargeTypeMeta(item) }}</span>
+              }
+            </div>
+          </td>
+          <td>{{ item.chargeConcept }}</td>
+          <td class="text-right font-semibold text-blue-700">
+            {{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          </td>
+          <td>{{ item.appliedBy || "Sistema" }}</td>
+          <td class="text-center">{{ item.appliedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td class="text-center">
+            <iw-button
+              iconClass="mdi:open-in-new"
+              severity="info"
+              variant="outlined"
+              size="small"
+              pTooltip="Abrir cargo relacionado"
+              tooltipPosition="top"
+              (clicked)="openCharge(item)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <primeng-custom-table-emptymessage
+          [colspan]="6"
+          title="Sin asignaciones"
+          message="Este pago no ha sido aplicado a cargos todavía."
+        />
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="block md:hidden">
+    @if ((payment()!.allocations || []).length === 0) {
+    <div class="p-4 text-center text-500 surface-card border-round-xl border-1 border-100">
+      Este pago no ha sido aplicado a cargos todavía.
+    </div>
+    } @else {
+    @for (item of payment()!.allocations || []; track item.allocationId) {
+    <ion-item lines="full" detail="false" class="ion-no-padding mb-2 border-round-xl border-1 surface-border">
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <app-icon icon="mdi:receipt-text-outline" class="text-blue-700 text-xl" />
+      </div>
+      <ion-label>
+        <h3>{{ item.chargeTypeName || "Sin tipo" }}</h3>
+        <p>{{ item.chargeConcept }}</p>
+        <p>{{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }} · {{ item.appliedBy || "Sistema" }}</p>
+      </ion-label>
+      <iw-button
+        slot="end"
+        iconClass="mdi:open-in-new"
+        severity="info"
+        variant="outlined"
+        size="small"
+        (clicked)="openCharge(item)"
+      />
+    </ion-item>
+    }
+    }
+  </div>
+</div>
+} @else {
+<div class="p-5 text-center text-500">No fue posible cargar el detalle del pago.</div>
+}

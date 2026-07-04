@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
-import { ChartModule } from 'primeng/chart';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { ChartWrapper } from 'src/app/core/components/web/charts/chart-wrapper';
 import type {
   IAnalisisCobranzaOnlineDto,
   ICobranzaOnlineAnalysisCondominoDto,
@@ -13,7 +13,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 
 @Component({
   selector: 'app-analisis-cobranza-cliente',
-  imports: [CommonModule, ChartModule, SelectModule, TableModule, TagModule, AccountingNumberPipe],
+  imports: [CommonModule, ChartWrapper, SelectModule, TableModule, TagModule, AccountingNumberPipe],
   templateUrl: './analisis-cobranza-cliente.html',
 })
 export class AnalisisCobranzaClienteComponent {

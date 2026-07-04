@@ -11,8 +11,8 @@ import { TrackingEvent } from "../shared/tracking";
   imports: [CommonModule, IonButton, IonBadge, AppIcon],
   template: `
     <ion-button
-      [fill]="fill()"
-      [color]="color()"
+      [fill]="resolvedFill()"
+      [color]="resolvedColor()"
       [size]="size()"
       [disabled]="disabled() || loading()"
       [class]="styleClass()"

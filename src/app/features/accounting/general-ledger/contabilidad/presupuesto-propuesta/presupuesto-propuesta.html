@@ -304,11 +304,9 @@
       >
         <div class="flex flex-wrap gap-2 align-items-center">
           <div class="w-7rem">
-            <p-select
-              styleClass="w-full"
-              size="small"
+            <custom-input-select-signal
               [(ngModel)]="selectedFiscalYear"
-              [options]="availableYears"
+              [data]="availableYears"
               (ngModelChange)="onFiscalYearChange()"
               placeholder="Año"
             />

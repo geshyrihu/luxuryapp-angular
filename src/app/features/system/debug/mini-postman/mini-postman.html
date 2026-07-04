@@ -146,15 +146,14 @@
           <!-- BODY -->
           @if (hasBody()) {
             <p-tabpanel value="body">
-              <textarea
-                pTextarea
+              <custom-input-textarea-signal
                 [ngModel]="bodyRaw()"
                 (ngModelChange)="bodyRaw.set($event)"
                 placeholder='{ "key": "value" }'
-                rows="12"
-                class="w-full font-mono text-sm"
-                style="resize: vertical"
-              ></textarea>
+                [rows]="12"
+                [customClass]="'font-mono text-sm'"
+                [disableResize]="false"
+              ></custom-input-textarea-signal>
             </p-tabpanel>
           }
 

@@ -2,7 +2,7 @@
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
-import { ChartModule } from "primeng/chart";
+import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
 import { ChartBar } from "../catalog-charts/components/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/components/chart-pie/chart-pie";
 
@@ -16,7 +16,7 @@ const CHARTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-charts-item",
-  imports: [CommonModule, CardModule, ChartModule, ChartBar, ChartPie],
+  imports: [CommonModule, CardModule, ChartWrapper, ChartBar, ChartPie],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -26,9 +26,9 @@ const CHARTS_LABELS: Record<string, string> = {
         @switch (item()) {
           @case ('bar') { <app-chart-bar [data]="barData" /> }
           @case ('pie') { <app-chart-pie [data]="pieData" /> }
-          @case ('line') { <p-chart type="line" [data]="lineData" [options]="chartOptions" height="300px" /> }
-          @case ('doughnut') { <p-chart type="doughnut" [data]="doughnutData" [options]="circularOptions" height="300px" /> }
-          @case ('radar') { <p-chart type="radar" [data]="radarData" [options]="circularOptions" height="300px" /> }
+          @case ('line') { <app-chart-wrapper type="line" [data]="lineData" [options]="chartOptions" height="300px" /> }
+          @case ('doughnut') { <app-chart-wrapper type="doughnut" [data]="doughnutData" [options]="circularOptions" height="300px" /> }
+          @case ('radar') { <app-chart-wrapper type="radar" [data]="radarData" [options]="circularOptions" height="300px" /> }
         }
       </p-card>
     </section>

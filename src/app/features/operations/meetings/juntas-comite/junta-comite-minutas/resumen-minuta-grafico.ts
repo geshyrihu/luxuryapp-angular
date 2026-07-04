@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { AdvancedPieChart } from "src/app/core/components/web/charts/advanced-pie-chart";
 import { ReportService } from "src/app/core/services/report.service";
 @Component({
   selector: "app-resumen-minuta-grafico",
   templateUrl: "./resumen-minuta-grafico.html",
-  imports: [NgxChartsModule],
+  imports: [AdvancedPieChart],
 })
 export class ResumenMinutaGrafico {
   public reportService = inject(ReportService);

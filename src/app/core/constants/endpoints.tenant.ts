@@ -261,13 +261,15 @@ export const EndpointsTenant = {
             ? `accounting-coi/native-collection/statements/${propertyId}/pdf?asOf=${encodeURIComponent(asOf)}`
             : `accounting-coi/native-collection/statements/${propertyId}/pdf`,
       },
-      Notifications: {
-        process: (customerId: string) =>
-          `accounting-coi/native-collection/notifications/process?customerId=${customerId}`,
-        sendStatement: "accounting-coi/native-collection/notifications/statements/send",
-        sendPaymentReceipt: (paymentId: string) =>
-          `accounting-coi/native-collection/notifications/receipts/${paymentId}/send`,
-      },
+        Notifications: {
+          process: (customerId: string) =>
+            `accounting-coi/native-collection/notifications/process?customerId=${customerId}`,
+          sendStatement: "accounting-coi/native-collection/notifications/statements/send",
+          sendStatementBatch:
+            "accounting-coi/native-collection/notifications/statements/send-batch",
+          sendPaymentReceipt: (paymentId: string) =>
+            `accounting-coi/native-collection/notifications/receipts/${paymentId}/send`,
+        },
       NotificationSettings: {
         byCustomer: (customerId: string) =>
           `accounting-coi/native-collection/notification-settings/customer/${customerId}`,

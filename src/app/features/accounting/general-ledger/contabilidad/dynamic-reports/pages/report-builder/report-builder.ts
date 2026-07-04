@@ -24,15 +24,15 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import { BadgeModule } from "primeng/badge";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
-import { CheckboxModule } from "primeng/checkbox";
 import { ChipModule } from "primeng/chip";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { DialogModule } from "primeng/dialog";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { MultiSelectModule } from "primeng/multiselect";
 import { PopoverModule } from "primeng/popover";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -68,13 +68,13 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     DragDropModule,
     AccordionModule,
     AutoCompleteModule,
-    SelectModule,
     TooltipModule,
     DialogModule,
     TabsModule,
     TagModule,
+    CustomInputSelectSignal,
     MultiSelectModule,
-    CheckboxModule,
+    CustomInputCheckSignal,
     ProgressSpinnerModule,
     BadgeModule,
     PopoverModule,

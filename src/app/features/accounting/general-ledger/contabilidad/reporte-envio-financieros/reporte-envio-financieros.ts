@@ -1,7 +1,7 @@
 ﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -24,7 +24,7 @@ import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/prim
     TableModule,
     TagModule,
     TooltipModule,
-    SelectModule,
+    CustomInputSelectSignal,
     FormsModule,
   ],
 })

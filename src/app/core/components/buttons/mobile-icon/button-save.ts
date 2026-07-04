@@ -10,8 +10,8 @@ import { MobileButtonBase } from "../mobile-button-base";
   imports: [CommonModule, IonButton, AppIcon],
   template: `
     <ion-button
-      [fill]="fill()"
-      [color]="color()"
+      [fill]="resolvedFill()"
+      [color]="resolvedColor()"
       [size]="size()"
       [disabled]="disabled() || submitting()"
       [class]="styleClass()"

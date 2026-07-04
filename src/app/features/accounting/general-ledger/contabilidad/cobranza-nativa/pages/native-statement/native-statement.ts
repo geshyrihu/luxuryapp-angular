@@ -31,7 +31,10 @@ import {
   NativeCollectionRealTimeUpdateDTO,
   SignalRService,
 } from "src/app/core/services/signalr.service";
-import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
+import {
+  NativeStatementResponseDTO,
+  SendNativeStatementBatchResponseDTO,
+} from "../../models/native-statement.dto";
 
 @Component({
   selector: "app-native-statement",
@@ -67,6 +70,7 @@ export class NativeStatement implements OnInit {
   loading = signal<boolean>(false);
   exportingPdf = signal<boolean>(false);
   sendingStatement = signal<boolean>(false);
+  sendingBatchStatements = signal<boolean>(false);
   processingNotifications = signal<boolean>(false);
   statement = signal<NativeStatementResponseDTO | null>(null);
 
@@ -245,6 +249,32 @@ export class NativeStatement implements OnInit {
       );
     } finally {
       this.sendingStatement.set(false);
+    }
+  }
+
+  async sendBatchStatementEmails() {
+    if (!this.customerId()) return;
+
+    const confirmed = window.confirm(
+      "Se enviaran estados de cuenta a todas las propiedades del condominio con correo notificable. ¿Deseas continuar?",
+    );
+    if (!confirmed) return;
+
+    this.sendingBatchStatements.set(true);
+    try {
+      await this.apiResponseS.onPost<SendNativeStatementBatchResponseDTO>(
+        Endpoints.AccountingCoi.NativeCollection.Notifications.sendStatementBatch,
+        {
+          customerId: this.customerId(),
+          asOf: this.asOfCtrl.value
+            ? this.asOfCtrl.value instanceof Date
+              ? this.asOfCtrl.value.toISOString()
+              : this.asOfCtrl.value
+            : null,
+        },
+      );
+    } finally {
+      this.sendingBatchStatements.set(false);
     }
   }
 

@@ -496,9 +496,9 @@
       </td>
 
       <td class="text-center no-print">
-        <p-toggleswitch
+        <custom-input-toggle-switch-signal
           [(ngModel)]="item.isRelevant"
-          (onChange)="onUpdateStateTicket(item)"
+          (toggleChange)="onUpdateStateTicket(item)"
           size="small"
         />
       </td>

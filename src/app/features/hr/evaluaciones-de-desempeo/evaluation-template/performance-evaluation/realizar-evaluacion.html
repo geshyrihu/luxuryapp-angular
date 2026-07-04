@@ -10,27 +10,25 @@
       <div class="grid mb-4">
         <div class="col-12 md:col-6">
           <label for="evaluatedId">Empleado a Evaluar</label>
-          <p-select
-            id="evaluatedId"
-            [options]="employees"
+          <custom-input-select-signal
+            [id]="'evaluatedId'"
+            [data]="employees"
             optionLabel="label"
             optionValue="value"
-            formControlName="evaluatedId"
+            [control]="form.controls.evaluatedId"
             placeholder="Seleccione un empleado..."
-            fluid
           />
         </div>
         <div class="col-12 md:col-6">
           <label for="evaluationTemplateId">Plantilla de Evaluación</label>
-          <p-select
-            id="evaluationTemplateId"
-            [options]="templates"
+          <custom-input-select-signal
+            [id]="'evaluationTemplateId'"
+            [data]="templates"
             optionLabel="label"
             optionValue="value"
-            formControlName="evaluationTemplateId"
-            (onChange)="onTemplateSelect($event.value)"
+            [control]="form.controls.evaluationTemplateId"
+            (selectionChange)="onTemplateSelect($event.value)"
             placeholder="Seleccione una plantilla..."
-            styleClass="w-full"
           />
         </div>
       </div>

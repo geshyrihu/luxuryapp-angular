@@ -1,0 +1,243 @@
+.area-page { font-family: var(--ds-font-family-document); }
+
+.area-hero {
+  position: relative; min-height: 50vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--area-gradient);
+}
+.area-hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  z-index: 0;
+}
+.area-hero-content {
+  position: relative; z-index: 1; max-width: 680px;
+  text-align: center; padding: 3rem 1.5rem;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  color: rgba(255,255,255,0.7); text-decoration: none;
+  font-size: var(--ds-font-size-sm); font-weight: 500;
+  margin-bottom: 1.5rem; transition: color 0.2s;
+  &:hover { color: #fff; }
+}
+.area-badge {
+  display: inline-block; padding: 0.375rem 1rem; border-radius: 999px;
+  font-size: var(--ds-font-size-micro); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  background: rgba(255,255,255,0.15); color: #fff; margin-bottom: 1.5rem;
+}
+.area-title {
+  font-family: var(--ds-font-family-document);
+  font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800;
+  color: #fff; margin: 0 0 1rem; letter-spacing: -0.02em;
+}
+.area-subtitle {
+  font-size: var(--ds-font-size-body); line-height: 1.7;
+  color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto;
+}
+
+.area-container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-tag {
+  display: inline-block; font-size: var(--ds-font-size-micro);
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+  color: #c2410c; margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--ds-font-family-document);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 700;
+  color: var(--ds-text-primary); margin: 0 0 0.5rem; letter-spacing: -0.01em;
+}
+.section-desc {
+  font-size: var(--ds-font-size-body); color: var(--ds-text-secondary);
+  line-height: 1.6; max-width: 480px; margin: 0 auto;
+}
+
+/* ── Procedure Cards ── */
+.procedures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.procedure-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--ds-bg-surface);
+  border-radius: var(--ds-radius-card);
+  border: 1px solid var(--ds-border);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--card-accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ds-shadow-lg);
+    border-color: transparent;
+
+    &::before { opacity: 1; }
+    .proc-cta { gap: 0.625rem; }
+  }
+}
+
+.proc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.proc-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: #fff;
+}
+
+.proc-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  background: var(--ds-bg-page);
+  color: var(--ds-text-secondary);
+}
+
+.proc-title {
+  font-family: var(--ds-font-family-base);
+  font-size: var(--ds-font-size-base);
+  font-weight: 700;
+  color: var(--ds-text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.proc-objective {
+  font-size: var(--ds-font-size-sm);
+  line-height: 1.6;
+  color: var(--ds-text-secondary);
+  margin: 0 0 1.25rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.proc-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #c2410c;
+  font-size: var(--ds-font-size-sm);
+  font-weight: 600;
+}
+
+.proc-cta {
+  transition: gap 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* ── Objectives ── */
+.objectives { margin-top: 4rem; }
+
+.objectives-list {
+  display: grid;
+  gap: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.objective-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--ds-bg-surface);
+  border-radius: var(--ds-radius-card);
+  border: 1px solid var(--ds-border);
+}
+
+.obj-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--obj-bg);
+  color: var(--obj-color);
+}
+
+.obj-title {
+  font-family: var(--ds-font-family-base);
+  font-size: var(--ds-font-size-base);
+  font-weight: 700;
+  color: var(--ds-text-primary);
+  margin: 0 0 0.25rem;
+}
+
+.obj-desc {
+  font-size: var(--ds-font-size-sm);
+  color: var(--ds-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── CTA ── */
+.cta-section { margin-top: 4rem; }
+
+.cta-card {
+  background: var(--cta-gradient);
+  padding: 3rem 2rem;
+  border-radius: var(--ds-radius-card);
+  text-align: center;
+}
+
+.cta-title {
+  font-family: var(--ds-font-family-document);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+
+.cta-desc {
+  font-size: var(--ds-font-size-body);
+  color: rgba(255,255,255,0.8);
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem; border-radius: var(--ds-radius-btn);
+  font-family: var(--ds-font-family-base); font-size: var(--ds-font-size-sm);
+  font-weight: 600; text-decoration: none;
+  background: #fff; color: #c2410c;
+  border: 2px solid #fff; transition: all 0.2s ease;
+  &:hover { background: color-mix(in srgb, #fff 90%, transparent); }
+}
+
+@media (max-width: 640px) {
+  .procedures-grid { grid-template-columns: 1fr; }
+}

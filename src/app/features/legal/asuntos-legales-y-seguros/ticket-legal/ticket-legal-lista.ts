@@ -9,7 +9,7 @@ import {
   createOutline,
   refreshOutline,
 } from "ionicons/icons";
-import { SelectModule } from "primeng/select";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -52,6 +52,7 @@ import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/
   selector: "app-ticket-legal-lista",
   templateUrl: "./ticket-legal-lista.html",
   imports: [
+    CustomInputSelectSignal,
     WebButtonIconDownload,
     MobileActionMenu,
     MobileButtonLabelItem,
@@ -61,7 +62,6 @@ import { WebButtonIconDownload } from "src/app/core/components/buttons/web-icon/
     TableModule,
     TagModule,
     TooltipModule,
-    SelectModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     WebButtonLabelEdit,

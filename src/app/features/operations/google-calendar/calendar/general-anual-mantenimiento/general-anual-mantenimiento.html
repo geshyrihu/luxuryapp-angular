@@ -2,21 +2,16 @@
   <div class="w-full sm:w-1/3">
     <div class="mb-3">
       <label for="providerSelect" class="block mb-2">Proveedor</label>
-      <p-select
-        inputId="providerSelect"
-        [options]="cb_providers()"
+      <custom-input-select-signal
+        [control]="providerIdControl"
+        [data]="cb_providers()"
         optionLabel="label"
         optionValue="value"
         placeholder="Todos"
-        (onChange)="onLoadData()"
-        [formControl]="providerIdControl"
+        (selectionChange)="onLoadData()"
+        [id]="'providerSelect'"
         pTooltip="Seleccionar Proveedor"
-        fluid
-      >
-        <ng-template pTemplate="empty">
-          <p-option value="">Todos</p-option>
-        </ng-template>
-      </p-select>
+      />
     </div>
   </div>
 </div>
@@ -95,19 +90,15 @@
   <!-- Filters -->
   <div class="mb-3 px-2">
     <label class="text-sm font-bold block mb-1">Proveedor</label>
-    <p-select
-      [options]="cb_providers()"
+    <custom-input-select-signal
+      [control]="providerIdControl"
+      [data]="cb_providers()"
       optionLabel="label"
       optionValue="value"
       placeholder="Todos"
-      (onChange)="onLoadData()"
-      [formControl]="providerIdControl"
-      fluid
-    >
-      <ng-template pTemplate="empty">
-        <p-option value="">Todos</p-option>
-      </ng-template>
-    </p-select>
+      (selectionChange)="onLoadData()"
+      [id]="'providerSelectMobile'"
+    />
   </div>
 
   <!-- List -->

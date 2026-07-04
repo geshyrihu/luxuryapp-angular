@@ -1,10 +1,10 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ChartModule } from "primeng/chart";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { ChartWrapper } from "src/app/core/components/web/charts/chart-wrapper";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -21,7 +21,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
   imports: [
     CommonModule,
     FormsModule,
-    ChartModule,
+    ChartWrapper,
     SelectModule,
     TableModule,
     TagModule,

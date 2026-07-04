@@ -27,6 +27,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { CobranzaPaymentResponseDTO } from "../../models/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
 import CreditNoteModalComponent from "./credit-note-modal";
+import { PaymentDetailModal } from "./payment-detail-modal";
 import { PaymentForm } from "./payment-form";
 
 import { MobileActionMenu } from "src/app/core/components/mobile/action-menu-mobile/action-menu-mobile";
@@ -80,6 +81,18 @@ export default class PaymentList {
 
   EPaymentStatus = EPaymentStatus;
   EPaymentMethod = EPaymentMethod;
+
+  getPaymentFlowLabel(item: CobranzaPaymentResponseDTO): string {
+    if (item.unappliedAmount > 0.009 && item.allocatedAmount > 0.009) {
+      return "Parcialmente aplicado";
+    }
+
+    if (item.unappliedAmount > 0.009) {
+      return "Sin aplicar";
+    }
+
+    return "Aplicado";
+  }
 
   constructor() {
     addIcons({ cashOutline });
@@ -141,6 +154,15 @@ export default class PaymentList {
       .then((res: boolean) => {
         if (res) this.onLoadData();
       });
+  }
+
+  onViewDetail(item: CobranzaPaymentResponseDTO) {
+    this.dialogHandlerS.openDialog(
+      PaymentDetailModal,
+      { id: item.id },
+      "Detalle del Pago",
+      this.dialogHandlerS.sizeMd,
+    );
   }
 
   onCreditNote() {

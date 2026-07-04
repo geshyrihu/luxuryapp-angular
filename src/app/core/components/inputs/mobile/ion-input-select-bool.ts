@@ -27,7 +27,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder() || 'Seleccione una opción'"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [disabled]="disabled() || readonly()"
         interface="action-sheet"
         cancelText="Cancelar"

@@ -5,8 +5,8 @@ import { BadgeModule } from "primeng/badge";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
-import { TextareaModule } from "primeng/textarea";
 import { WebButtonIcon } from "src/app/core/components/buttons/web-icon/button";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { WebButtonLabel } from "src/app/core/components/buttons/web-label/button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
@@ -34,7 +34,7 @@ interface HistoryEntry {
     InputTextModule,
     SelectModule,
     TabsModule,
-    TextareaModule,
+    CustomInputTextAreaSignal,
     BadgeModule,
     WebButtonLabel,
     WebButtonIcon,

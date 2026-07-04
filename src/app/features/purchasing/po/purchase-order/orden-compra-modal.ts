@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { CustomInputToggleSwitch } from "src/app/core/components/inputs/web/custom-input-toggle-switch-signal";
 import { WebButtonLabelSave } from "src/app/core/components/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -41,7 +41,7 @@ interface IModalOrdenCompra {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
-    ToggleSwitchModule,
+    CustomInputToggleSwitch,
   ],
 })
 export class ModalOrdenCompra implements OnInit {

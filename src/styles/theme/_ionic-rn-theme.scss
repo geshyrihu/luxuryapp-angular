@@ -20,6 +20,21 @@
   --ion-toolbar-color: var(--ds-text-primary);
   --ion-ripple-color: rgba(0, 0, 0, 0.06);
   --ion-font-family: var(--ds-font-family-base);
+
+  // ── Mobile design tokens (iOS-native refined) ────────────────
+  // Namespaced --ds-m-* para que móvil use esquinas redondeadas y alturas
+  // táctiles SIN tocar los --ds-radius-* globales (compartidos con PrimeNG/web,
+  // que usan 3px a propósito). Todo lo móvil consume estos tokens.
+  --ds-m-radius-btn: 12px;
+  --ds-m-radius-input: 10px;
+  --ds-m-radius-sheet: 16px;
+  --ds-m-radius-row: 12px;
+  --ds-m-btn-height-sm: 38px;
+  --ds-m-btn-height: 48px;
+  --ds-m-btn-height-lg: 56px;
+  --ds-m-touch-min: 44px;
+  --ds-m-row-height: 52px;
+  --ds-m-press: rgba(0, 0, 0, 0.06);
 }
 
 // ── 2. ion-content ─────────────────────────────────────────────
@@ -157,25 +172,25 @@ ion-card-content {
 
 // ── 7. ion-button ─────────────────────────────────────────────
 ion-button {
-  --border-radius: var(--ds-radius-btn);
+  --border-radius: var(--ds-m-radius-btn);
   font-weight: 600;
   font-size: 15px;
   letter-spacing: -0.1px;
   text-transform: none;
 
   &[expand="block"] {
-    --border-radius: var(--ds-radius-lg);
-    height: 50px;
+    --border-radius: var(--ds-m-radius-btn);
+    height: var(--ds-m-btn-height);
   }
   &[shape="round"] {
-    --border-radius: 25px;
+    --border-radius: var(--ds-m-radius-full, 999px);
   }
 }
 
 // ── 8. ion-fab-button ─────────────────────────────────────────
 ion-fab-button {
-  --border-radius: 16px;
-  --box-shadow: 0 4px 16px rgba(0, 5, 14, 0.35);
+  --border-radius: var(--ds-m-radius-sheet);
+  --box-shadow: var(--ds-shadow-lg);
 }
 
 // ── 9. ion-input / ion-textarea / ion-select ──────────────────
@@ -183,9 +198,9 @@ ion-input,
 ion-textarea,
 ion-select {
   border: 1px solid var(--ds-border);
-  border-radius: var(--ds-radius-input);
+  border-radius: var(--ds-m-radius-input);
   background-color: var(--ds-bg-surface);
-  min-height: 40px;
+  min-height: 44px;
   font-size: 0.875rem;
   overflow: hidden;
   transition: border-color 150ms ease, box-shadow 150ms ease;
@@ -196,7 +211,7 @@ ion-select {
   --highlight-color-valid: transparent;
   --highlight-color-invalid: transparent;
   --background: var(--ds-bg-surface);
-  --border-radius: var(--ds-radius-input);
+  --border-radius: var(--ds-m-radius-input);
   --color: var(--ds-text-primary);
   --placeholder-color: var(--ds-text-muted);
   --placeholder-opacity: 1;
