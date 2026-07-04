@@ -1,2 +1,2 @@
-export * from "./web-inputs";
-export * from "./mobile-inputs";
+// bridge: movido a @ui/inputs. Se elimina tras el codemod.
+export * from "@ui/inputs/index";

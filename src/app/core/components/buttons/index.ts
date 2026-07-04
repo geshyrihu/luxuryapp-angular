@@ -1,4 +1,2 @@
-export * from "./web-icon";
-export * from "./web-label";
-export * from "./mobile-icon";
-export * from "./mobile-label";
+// bridge: movido a @ui/buttons. Se elimina tras el codemod.
+export * from "@ui/buttons/index";

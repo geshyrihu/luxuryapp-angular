@@ -1,27 +1,2 @@
-// 📱 MOBILE INPUTS - Componentes Ionic para vistas móviles
-// Importa desde aquí en páginas Ionic (ion-page / ion-content)
-
-export { IonInputCheckbox } from "./ion-input-checkbox";
-export { IonInputCurrency } from "./ion-input-currency";
-export { IonInputDate } from "./ion-input-date";
-export { IonInputFile } from "./ion-input-file";
-export { IonInputMultiselect } from "./ion-input-multiselect";
-export { IonInputNumber } from "./ion-input-number";
-export { IonInputPassword } from "./ion-input-password";
-export { IonInputSearch } from "./ion-input-search";
-export { IonInputSelect } from "./ion-input-select";
-export { IonInputSelectBool } from "./ion-input-select-bool";
-export { IonInputText } from "./ion-input-text";
-export { IonInputTextarea } from "./ion-input-textarea";
-export { IonInputTime } from "./ion-input-time";
-export { IonInputToggle } from "./ion-input-toggle";
-
-
-
-
-
-
-
-
-
-
+// bridge: movido a @ui/inputs. Se elimina tras el codemod.
+export * from "@ui/inputs/mobile/index";

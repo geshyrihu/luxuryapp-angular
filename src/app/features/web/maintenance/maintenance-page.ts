@@ -65,6 +65,33 @@ export class MaintenancePage {
       steps: 6,
     },
     {
+      id: "staff-evaluation",
+      title: "Evaluación de Personal de Mantenimiento",
+      objective:
+        "Evaluar al equipo de mantenimiento con criterios claros y justos: antigüedad, conocimiento, puntualidad y actitud.",
+      icon: "mdi:account-check",
+      gradient: "linear-gradient(135deg, #4338ca 0%, #6366f1 100%)",
+      steps: 4,
+    },
+    {
+      id: "supplies-inventory",
+      title: "Control de Inventario de Insumos",
+      objective:
+        "Registrar, organizar y controlar los insumos de mantenimiento en almacén, con depuración periódica y niveles mínimos de stock.",
+      icon: "mdi:package-variant",
+      gradient: "linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)",
+      steps: 8,
+    },
+    {
+      id: "tools-inventory",
+      title: "Control de Inventario de Herramientas",
+      objective:
+        "Inventariar, diagnosticar, organizar y controlar las herramientas del equipo de mantenimiento para trabajar de forma eficiente y segura.",
+      icon: "mdi:toolbox",
+      gradient: "linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%)",
+      steps: 8,
+    },
+    {
       id: "green-areas",
       title: "Mantenimiento de Áreas Verdes",
       objective:

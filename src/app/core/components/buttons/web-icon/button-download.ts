@@ -1,26 +1,2 @@
-import { CommonModule } from "@angular/common";
-import { Component, input } from "@angular/core";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
-import { BaseButton } from "../base/base-button";
-
-@Component({
-  selector: "iw-button-download",
-  standalone: true,
-  imports: [CommonModule, AppIcon],
-  template: `
-    <button
-      type="button"
-      [class]="buttonClasses()"
-      [disabled]="disabled() || loading()"
-      (click)="emitClick($event)"
-    >
-      <app-icon [icon]="iconClass() || 'fluent-color:cloud-download-16'" />
-    </button>
-  `,
-})
-export class WebButtonIconDownload extends BaseButton {
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
-  );
-  override severity = input<any>("secondary");
-}
+// bridge: movido a @ui/buttons. Se elimina tras el codemod.
+export * from "@ui/buttons/web-icon/button-download";

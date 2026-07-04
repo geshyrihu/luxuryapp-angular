@@ -1,0 +1,1 @@
+export function openPdf(url: string): void {  window.open(url, "_blank");}

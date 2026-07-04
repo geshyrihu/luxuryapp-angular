@@ -1,1 +1,2 @@
-export { BaseButton } from "./base-button";export { BaseIonicButton } from "./base-ionic-button";
+// bridge: movido a @ui/buttons. Se elimina tras el codemod.
+export * from "@ui/buttons/base/index";

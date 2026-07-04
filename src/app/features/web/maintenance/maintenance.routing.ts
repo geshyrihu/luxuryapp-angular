@@ -42,4 +42,37 @@ export const maintenanceRoutes: Routes = [
       breadcrumb: "Presupuestos de Mantenimiento",
     },
   },
+  {
+    path: "staff-evaluation",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/staff-evaluation/staff-evaluation"
+      ).then((m) => m.StaffEvaluation),
+    data: {
+      title: "Evaluación de Personal de Mantenimiento",
+      breadcrumb: "Evaluación de Personal",
+    },
+  },
+  {
+    path: "supplies-inventory",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/supplies-inventory/supplies-inventory"
+      ).then((m) => m.SuppliesInventory),
+    data: {
+      title: "Control de Inventario de Insumos",
+      breadcrumb: "Inventario de Insumos",
+    },
+  },
+  {
+    path: "tools-inventory",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/tools-inventory/tools-inventory"
+      ).then((m) => m.ToolsInventory),
+    data: {
+      title: "Control de Inventario de Herramientas",
+      breadcrumb: "Inventario de Herramientas",
+    },
+  },
 ];

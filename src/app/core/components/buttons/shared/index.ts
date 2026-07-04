@@ -1,1 +1,2 @@
-export { confirmAction } from "./confirm";export { openPdf } from "./pdf";export type { TrackingEvent } from "./tracking";
+// bridge: movido a @ui/buttons. Se elimina tras el codemod.
+export * from "@ui/buttons/shared/index";
