@@ -29,7 +29,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         mode="md"
         fill="outline"
         [readonly]="readonly()"
-        [disabled]="disabled()"
         [rows]="rows()"
         [maxlength]="maxLength()"
         [autoGrow]="autoGrow()"

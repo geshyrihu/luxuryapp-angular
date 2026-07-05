@@ -29,7 +29,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         label-placement="floating"
         mode="md"
         fill="outline"
-        [disabled]="disabled() || readonly()"
         interface="alert"
         [cancelText]="cancelText()"
         [okText]="okText()"

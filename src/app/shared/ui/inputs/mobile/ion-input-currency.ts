@@ -35,7 +35,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         mode="md"
         fill="outline"
           [readonly]="readonly()"
-          [disabled]="disabled()"
           [step]="0.01"
           clearInput
           style="flex: 1;"

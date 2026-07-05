@@ -33,7 +33,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         mode="md"
         fill="outline"
         [readonly]="readonly()"
-        [disabled]="disabled()"
         [min]="min()"
         [max]="max()"
         [step]="step()"

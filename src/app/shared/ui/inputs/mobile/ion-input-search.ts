@@ -25,7 +25,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder() || 'Buscar...'"
-        [disabled]="disabled() || readonly()"
         animated="true"
         [debounce]="debounce()"
         (ionInput)="onSearchChange($event)"

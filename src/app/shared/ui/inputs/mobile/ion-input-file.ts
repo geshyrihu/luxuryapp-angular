@@ -37,7 +37,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
             expand="block"
             mode="md"
         fill="outline"
-            [disabled]="disabled() || readonly()"
             (click)="triggerFileInput()"
           >
             <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
@@ -59,7 +58,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
               color="danger"
               size="small"
               (click)="removeFile()"
-              [disabled]="disabled() || readonly()"
             >
               <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
             </ion-button>

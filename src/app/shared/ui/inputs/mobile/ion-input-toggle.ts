@@ -24,7 +24,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         slot="end"
         [id]="id()"
         [formControl]="control() || internalControl"
-        [disabled]="disabled() || readonly()"
         (ionChange)="onToggleChange($event)"
       >
         @if (placeholder()) {

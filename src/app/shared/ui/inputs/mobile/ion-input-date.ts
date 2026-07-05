@@ -31,7 +31,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         mode="md"
         fill="outline"
         [readonly]="readonly()"
-        [disabled]="disabled()"
       >
         @if (requiredInput()) {
           <div slot="label" style="color: var(--ion-color-danger)">*</div>

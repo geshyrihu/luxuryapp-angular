@@ -65,12 +65,14 @@ body {
   }
 
   // Panel del overlay
+  // !important: PrimeNG 21 inyecta en runtime `.p-component.p-select-overlay`
+  // (mayor especificidad) con un surface oscuro; forzamos el fondo claro de marca.
   .p-select-overlay,
   .p-multiselect-overlay {
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
     border: 1px solid var(--ds-border);
-    background-color: var(--ds-bg-surface);
+    background: var(--ds-bg-surface) !important;
     overflow: hidden;
     animation: ds-dropdown-in 150ms ease;
   }
@@ -81,6 +83,7 @@ body {
     font-size: 0.875rem;
     padding: 0.625rem 1rem;
     transition: background-color 100ms ease;
+    background: transparent !important;
 
     &:hover:not(.p-select-option-selected) {
       background-color: var(--ds-bg-sunken);
