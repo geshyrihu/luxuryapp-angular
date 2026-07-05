@@ -53,15 +53,8 @@ import { BaseInputSignal } from "./base-input-signal";
   `,
   styles: [
     `
-      ion-input,
-      ion-textarea,
-      ion-select {
-        --background: var(--ds-bg-surface);
-        --padding-start: 1rem;
-        --padding-end: 1rem;
-        --border-radius: var(--ds-radius-lg);
-        margin-bottom: 0px;
-      }
+      /* El estilo del outline nativo lo maneja el theme global
+         (_ionic-rn-theme.scss § 9). Aquí solo la nota de error. */
       ion-note {
         display: block;
         font-size: 0.75rem;

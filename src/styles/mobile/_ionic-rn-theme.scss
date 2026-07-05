@@ -193,61 +193,38 @@ ion-fab-button {
   --box-shadow: var(--ds-shadow-lg);
 }
 
-// ── 9. ion-input / ion-textarea / ion-select ──────────────────
+// ── 9. ion-input / ion-textarea / ion-select (fill="outline") ──
+// Se deja que Ionic dibuje su OUTLINE NATIVO (borde + notch del label flotante
+// + padding interno). Solo se le pasan colores de marca por sus CSS vars.
+// ⚠️ NO border manual ni `--border-width: 0`: eso rompía el fill y dejaba el
+// texto pegado a la izquierda (ver ionicframework.com/docs/api/input).
 ion-input,
 ion-textarea,
 ion-select {
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-m-radius-input);
-  background-color: var(--ds-bg-surface);
-  min-height: 44px;
-  font-size: 0.875rem;
-  overflow: hidden;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
-  --border-width: 0;
-  --inner-border-width: 0;
-  --highlight-height: 0px;
-  --highlight-color-focused: transparent;
-  --highlight-color-valid: transparent;
-  --highlight-color-invalid: transparent;
   --background: var(--ds-bg-surface);
-  --border-radius: var(--ds-m-radius-input);
   --color: var(--ds-text-primary);
   --placeholder-color: var(--ds-text-muted);
   --placeholder-opacity: 1;
-  --padding-start: 0.75rem;
-  --padding-end: 0.75rem;
-  --padding-top: 0.5rem;
-  --padding-bottom: 0.5rem;
-}
-
-ion-input.ion-focused,
-ion-textarea.ion-focused,
-ion-select.ion-focused {
-  border-color: var(--ds-border-focus);
-  box-shadow: var(--ds-shadow-focus);
-  outline: none;
+  --border-color: var(--ds-border);
+  --border-radius: var(--ds-m-radius-input);
+  --highlight-color-focused: var(--ds-primary);
+  --highlight-color-valid: var(--ds-success);
+  --highlight-color-invalid: var(--ds-danger);
+  font-size: 0.9375rem;
+  margin-bottom: 0;
 }
 
 ion-input.ion-invalid.ion-touched,
 ion-textarea.ion-invalid.ion-touched,
 ion-select.ion-invalid.ion-touched {
-  border-color: var(--ds-border-error);
-}
-
-ion-input.ion-invalid.ion-focused,
-ion-textarea.ion-invalid.ion-focused,
-ion-select.ion-invalid.ion-focused {
-  box-shadow: var(--ds-shadow-focus-danger);
+  --border-color: var(--ds-danger);
 }
 
 ion-input.ion-disabled,
 ion-textarea.ion-disabled,
 ion-select.ion-disabled {
-  opacity: 0.55;
-  background-color: var(--ds-bg-sunken);
-  cursor: not-allowed;
-  font-style: italic;
+  opacity: 0.6;
+  --background: var(--ds-bg-sunken);
 }
 
 // ── 10. ion-searchbar ─────────────────────────────────────────
