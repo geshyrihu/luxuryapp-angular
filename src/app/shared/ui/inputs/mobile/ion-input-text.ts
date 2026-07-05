@@ -21,6 +21,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [required]="requiredInput()"
     >
       <ion-input
+        mode="md"
         [type]="type()"
         [id]="id()"
         [formControl]="control() || internalControl"

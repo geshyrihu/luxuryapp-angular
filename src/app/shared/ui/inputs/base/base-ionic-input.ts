@@ -54,7 +54,11 @@ import { BaseInputSignal } from "./base-input-signal";
   styles: [
     `
       /* El estilo del outline nativo lo maneja el theme global
-         (_ionic-rn-theme.scss § 9). Aquí solo la nota de error. */
+         (_ionic-rn-theme.scss § 9). Aquí: separación entre campos + nota. */
+      :host {
+        display: block;
+        margin-bottom: 1rem;
+      }
       ion-note {
         display: block;
         font-size: 0.75rem;
