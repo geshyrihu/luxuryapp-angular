@@ -3,6 +3,7 @@
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-text-signal
         [control]="form.controls.id"
+        hidden
         label="Id"
         [readonly]="true"
       />
@@ -62,16 +63,7 @@
         label="Información adicional"
         placeholder="información adicional"
       />
-      <il-button-save
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
-      />
+      <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
     </form>
   </div>
 </div>
-
-
-
-
-
-

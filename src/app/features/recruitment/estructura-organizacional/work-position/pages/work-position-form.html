@@ -11,6 +11,7 @@
           @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
           <custom-input-text-signal
             [control]="form.controls.id"
+            hidden
             label="ID de Puesto"
             placeholder="id-guid"
             [readonly]="true"

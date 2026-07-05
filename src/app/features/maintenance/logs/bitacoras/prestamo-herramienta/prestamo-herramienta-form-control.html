@@ -1,5 +1,5 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal [control]="form.controls.id" label="Id" />
+  <custom-input-text-signal [control]="form.controls.id" hidden label="Id" />
 
   <custom-input-date-time-signal
     [control]="form.controls.fechaSalida"
@@ -39,10 +39,3 @@
     [submitting]="submitting()"
   />
 </form>
-
-
-
-
-
-
-

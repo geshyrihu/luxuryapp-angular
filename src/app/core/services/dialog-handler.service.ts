@@ -30,6 +30,12 @@ export class DialogHandlerService {
       resizable: true,
       baseZIndex: 1100,
       modal: true,
+      // 📱 En móvil montamos el diálogo DENTRO de <ion-app>. Motivo: ion-app
+      // tiene `contain: layout size style` (contexto de apilamiento en z-index 0).
+      // Los overlays de Ionic (action-sheet del ion-select, pickers) se montan ahí
+      // dentro; si el diálogo vive en <body> quedan atrapados por debajo. Al
+      // compartir contexto, el z-index de esos overlays (20001) gana al diálogo.
+      appendTo: this.mobileMountTarget(),
     });
 
     if (autoMaximize && ref) {
@@ -65,10 +71,20 @@ export class DialogHandlerService {
       modal: config.modal ?? true,
       dismissableMask: config.dismissableMask,
       position: config.position,
+      appendTo: this.mobileMountTarget(),
       ...config.extraOptions,
     });
 
     return this.subscribeToDialogClose<T>(ref);
+  }
+
+  /**
+   * Objetivo de montaje del diálogo. En móvil existe `<ion-app>` (vista Ionic):
+   * montar ahí evita que los overlays de Ionic queden detrás. En desktop no hay
+   * `<ion-app>`, así que cae a `"body"` (comportamiento normal de PrimeNG).
+   */
+  private mobileMountTarget(): HTMLElement | "body" {
+    return document.querySelector("ion-app") ?? "body";
   }
 
   private subscribeToDialogClose<T>(ref: DynamicDialogRef): Promise<T> {

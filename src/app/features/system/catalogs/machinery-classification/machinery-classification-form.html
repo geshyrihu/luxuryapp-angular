@@ -3,6 +3,7 @@
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-text-signal
         [control]="form.controls.id"
+        hidden
         label="Id"
         [readonly]="true"
       />
@@ -21,10 +22,3 @@
     </form>
   </div>
 </div>
-
-
-
-
-
-
-

@@ -7,6 +7,7 @@
           [hidden]="true"
           [horizontal]="false"
           [control]="form.controls.id"
+          hidden
         />
       </div>
 
@@ -87,8 +88,11 @@
             />
             }
           </div>
-          @if (form.controls.typeMaintance.invalid && form.controls.typeMaintance.touched) {
-          <small class="form-btn-group-error">Selecciona un tipo de mantenimiento</small>
+          @if (form.controls.typeMaintance.invalid &&
+          form.controls.typeMaintance.touched) {
+          <small class="form-btn-group-error"
+            >Selecciona un tipo de mantenimiento</small
+          >
           }
         </div>
         <div class="col-12 md:col-6">
@@ -187,21 +191,27 @@
   }
   .btn-opt {
     padding: 0.375rem 1rem;
-    border: 1.5px solid var(--p-primary-color, #0B3164);
+    border: 1.5px solid var(--p-primary-color, #0b3164);
     border-radius: 6px;
     background: transparent;
-    color: var(--p-primary-color, #0B3164);
+    color: var(--p-primary-color, #0b3164);
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    transition:
+      background 0.15s,
+      color 0.15s;
     line-height: 1.5;
   }
   .btn-opt:hover:not(.btn-opt--active) {
-    background: color-mix(in srgb, var(--p-primary-color, #0B3164) 10%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--p-primary-color, #0b3164) 10%,
+      transparent
+    );
   }
   .btn-opt--active {
-    background: var(--p-primary-color, #0B3164);
+    background: var(--p-primary-color, #0b3164);
     color: #fff;
   }
 </style>

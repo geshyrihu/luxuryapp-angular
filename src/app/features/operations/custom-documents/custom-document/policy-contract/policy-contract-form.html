@@ -1,6 +1,7 @@
 <form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
   <custom-input-text-signal
     [control]="form.controls.id"
+    hidden
     label="Id"
     [hidden]="false"
   />
