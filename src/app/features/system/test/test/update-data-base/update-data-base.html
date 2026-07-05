@@ -126,6 +126,32 @@
         <p-card
           class="cursor-pointer h-full block"
           styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          (click)="runSeedNativeCollectionTestData()"
+        >
+          <div class="flex align-items-start gap-3">
+            <div
+              class="flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center border-round-xl bg-purple-50 text-2xl"
+            >
+              CN
+            </div>
+            <div class="flex flex-column gap-1">
+              <div class="font-bold text-900">Seed Cobranza Nativa</div>
+              <div class="text-xs text-color-secondary line-height-2">
+                Crea propiedades, propietarios, responsables financieros y
+                configuracion base para pruebas del customer seleccionado.
+              </div>
+              <div class="text-xs text-600">
+                Default: {{ nativeCollectionCustomerId() }} / {{ nativeCollectionTargetProperties() }} propiedades
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <p-card
+          class="cursor-pointer h-full block"
+          styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runResyncGoogleCalendarEventTimes()"
         >
           <div class="flex align-items-start gap-3">

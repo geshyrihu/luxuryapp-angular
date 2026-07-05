@@ -1,18 +1,15 @@
 <div class="area-page">
-  <!-- ══════ HERO (compacto) ══════ -->
-  <section class="hero-compact" style="background:linear-gradient(135deg, #c2410c 0%, #ea580c 100%)">
-    <div class="hero-compact-bg"></div>
-    <span class="shadow-title">MANTENIMIENTO</span>
-    <div class="hero-compact-content">
+  <!-- ══════ HEADER (compacto) ══════ -->
+  <header class="proc-header" style="--proc-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%)">
+    <div class="proc-header-start">
       <a routerLink="/web" class="back-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Volver
       </a>
-      <span class="hero-badge">Área de Mantenimiento</span>
-      <h1 class="hero-title">Procedimientos de Mantenimiento</h1>
-      <p class="hero-subtitle">Procedimientos estandarizados que garantizan la calidad, seguridad y eficiencia en cada intervención de mantenimiento.</p>
+      <span class="proc-badge">Área</span>
     </div>
-  </section>
+    <h1 class="proc-title">Procedimientos de Mantenimiento</h1>
+  </header>
 
   <!-- ══════ PROCEDURES ══════ -->
   <div class="page-container">
@@ -42,11 +39,11 @@
   </div>
 
   <!-- ══════ OBJECTIVES ══════ -->
-  <section class="section-dark animate-on-scroll">
+  <section class="section-dark animate-on-scroll" style="padding:2rem 1.5rem">
     <div class="section-dark-inner">
-      <div style="text-align:center;margin-bottom:2.5rem">
+      <div style="text-align:center;margin-bottom:1.5rem">
         <span class="section-tagline" style="color:var(--ds-text-secondary)">Objetivos</span>
-        <h2 class="section-heading">¿Qué buscamos con estos procedimientos?</h2>
+        <h2 class="section-heading" style="font-size:1.1rem;margin-bottom:0">¿Qué buscamos con estos procedimientos?</h2>
       </div>
       <div class="objectives-grid">
         <div class="obj-card">
@@ -81,12 +78,5 @@
     </div>
   </section>
 
-  <!-- ══════ CTA ══════ -->
-  <section class="animate-on-scroll" style="background:linear-gradient(135deg, #c2410c 0%, #ea580c 100%);padding:3.5rem 1.5rem;text-align:center">
-    <div style="max-width:520px;margin:0 auto">
-      <h2 style="font-family:var(--ds-font-family-document);font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:#fff;margin:0 0 0.75rem">¿Necesitas un plan de mantenimiento?</h2>
-      <p style="font-size:var(--ds-font-size-body);color:rgba(255,255,255,0.75);margin:0 0 1.5rem">Adopta nuestros procedimientos estandarizados para tu residencial.</p>
-      <a routerLink="/web" class="btn-luxury btn-luxury-primary">Solicitar información</a>
-    </div>
-  </section>
+
 </div>

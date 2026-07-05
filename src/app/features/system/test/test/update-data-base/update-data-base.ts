@@ -16,6 +16,8 @@ export class UpdateDataBase {
   loading = signal(false);
   result = signal<any>(null);
   serviceOrderId = signal<string>("");
+  nativeCollectionCustomerId = signal("019e04ce-9233-744d-8686-e64390db4e7d");
+  nativeCollectionTargetProperties = signal(12);
 
   runMigrateCoiAspel() {
     this.loading.set(true);
@@ -164,6 +166,63 @@ export class UpdateDataBase {
         this.customToastS.showError(
           "Error",
           "La resincronizacion de horarios de Google Calendar fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
+  runSeedNativeCollectionTestData() {
+    const customerId =
+      window.prompt(
+        "CustomerId para cargar propiedades y propietarios de prueba",
+        this.nativeCollectionCustomerId(),
+      )?.trim() || this.nativeCollectionCustomerId();
+
+    const targetPropertiesRaw =
+      window.prompt(
+        "Numero objetivo de propiedades de prueba",
+        this.nativeCollectionTargetProperties().toString(),
+      ) || this.nativeCollectionTargetProperties().toString();
+
+    const targetProperties = Number(targetPropertiesRaw);
+    if (!customerId) {
+      this.customToastS.showError("Error", "CustomerId requerido.");
+      return;
+    }
+
+    if (!Number.isFinite(targetProperties) || targetProperties <= 0) {
+      this.customToastS.showError("Error", "Numero de propiedades invalido.");
+      return;
+    }
+
+    this.nativeCollectionCustomerId.set(customerId);
+    this.nativeCollectionTargetProperties.set(targetProperties);
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Cargando datos de prueba de Cobranza Nativa...",
+      "Se generaran propiedades, propietarios y configuracion base del customer.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedNativeCollectionTestData, {
+        customerId,
+        targetProperties,
+      })
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Datos de prueba de Cobranza Nativa cargados.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La carga de datos de prueba de Cobranza Nativa fallo.",
         );
         this.loading.set(false);
       });

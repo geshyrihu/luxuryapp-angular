@@ -65,6 +65,7 @@ export const EndpointsInfrastructure = {
     importAsambleaChecklist:
       "UpdateDataBase/import-asamblea-checklist-catalog",
     resyncGoogleCalendar: "UpdateDataBase/resync-google-calendar-event-times",
+    seedNativeCollectionTestData: "UpdateDataBase/seed-native-collection-test-data",
   },
 
   // ==========================================================================

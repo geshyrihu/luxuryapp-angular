@@ -141,4 +141,48 @@ export const maintenanceRoutes: Routes = [
       breadcrumb: "Evaluación de Personal",
     },
   },
+  {
+    path: "supplier-site-control",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/supplier-site-control/supplier-site-control"
+      ).then((m) => m.SupplierSiteControl),
+    data: {
+      title: "Control de Sitio de Proveedores",
+      breadcrumb: "Control de Proveedores",
+    },
+  },
+  {
+    path: "asset-disposal",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/asset-disposal/asset-disposal"
+      ).then((m) => m.AssetDisposal),
+    data: {
+      title: "Disposición de Activos",
+      breadcrumb: "Disposición de Activos",
+    },
+  },
+  {
+    path: "purchase-request",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/purchase-request/purchase-request"
+      ).then((m) => m.PurchaseRequest),
+    data: {
+      title: "Solicitud de Compras",
+      breadcrumb: "Solicitud de Compras",
+    },
+  },
+  {
+    path: "installation-inspection",
+    loadComponent: () =>
+      import(
+        "src/app/features/web/maintenance/procedures/installation-inspection/installation-inspection"
+      ).then((m) => m.InstallationInspection),
+    data: {
+      title: "Inspección de Instalaciones",
+      breadcrumb: "Inspección de Instalaciones",
+    },
+  },
 ];

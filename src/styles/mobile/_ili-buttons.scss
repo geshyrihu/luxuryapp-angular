@@ -27,14 +27,16 @@
   ion-button {
     // Neutraliza el fill solid → fila plana; el color del texto sale del
     // color semántico del botón (--ion-color-base lo fija Ionic vía [color]).
-    --background: transparent;
-    --background-hover: var(--ds-m-press);
-    --background-activated: var(--ds-m-press);
-    --background-focused: var(--ds-m-press);
-    --color: var(--ion-color-base, var(--ds-text-primary));
-    --box-shadow: none;
-    --border-width: 0;
-    --border-radius: 0;
+    // ⚠️ !important necesario: Ionic define el fondo con `:host(.button-solid)`
+    // (especificidad 0,2,0) que gana sobre `.ili-menu-list ion-button` (0,1,1).
+    --background: transparent !important;
+    --background-hover: var(--ds-m-press) !important;
+    --background-activated: var(--ds-m-press) !important;
+    --background-focused: var(--ds-m-press) !important;
+    --color: var(--ion-color-base, var(--ds-text-primary)) !important;
+    --box-shadow: none !important;
+    --border-width: 0 !important;
+    --border-radius: 0 !important;
     --ripple-color: var(--ds-m-press);
     --padding-start: 6px;
     --padding-end: 6px;
@@ -47,7 +49,7 @@
     text-transform: none;
 
     &::part(native) {
-      justify-content: flex-start;
+      justify-content: flex-start !important;
     }
   }
 
