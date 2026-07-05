@@ -1,4 +1,4 @@
-﻿import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
+import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
 
 vi.mock('@ionic/angular/standalone', () => ({ ...IonicMocks }));
 vi.mock('@ionic/core', () => ({}));

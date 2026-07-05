@@ -1,4 +1,4 @@
-﻿import { Injectable, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";

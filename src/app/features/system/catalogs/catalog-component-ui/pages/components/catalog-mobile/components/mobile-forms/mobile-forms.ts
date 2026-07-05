@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-styles";

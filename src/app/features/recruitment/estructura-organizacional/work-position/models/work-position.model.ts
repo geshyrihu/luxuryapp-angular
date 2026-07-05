@@ -1,4 +1,4 @@
-﻿export interface IWorkPosition {
+export interface IWorkPosition {
   id: string;
   folio: string;
   applicationRoleId: string;

@@ -183,7 +183,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORÃƒÂA";
+          const category = item.category || "SIN CATEGORÍA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;

@@ -1,4 +1,4 @@
-﻿import { inject, Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Injectable({ providedIn: "root" })

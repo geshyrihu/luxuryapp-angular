@@ -1,4 +1,4 @@
-﻿import { vi } from 'vitest';
+import { vi } from 'vitest';
 import { SupervisionModuleCard, SupervisionModuleGroup } from './supervision-module.model';
 
 describe('SupervisionModuleCard / SupervisionModuleGroup', () => {

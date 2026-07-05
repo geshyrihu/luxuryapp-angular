@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, NgClass } from "@angular/common";
+import { CurrencyPipe, NgClass } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";

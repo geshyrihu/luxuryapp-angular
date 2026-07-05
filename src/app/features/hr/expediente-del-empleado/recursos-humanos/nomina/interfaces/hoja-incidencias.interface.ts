@@ -1,4 +1,4 @@
-﻿export interface HojaIncidenciasDTO {
+export interface HojaIncidenciasDTO {
   periodoNominaId: string;
   periodoDescripcion: string;
   fechaInicio: string;

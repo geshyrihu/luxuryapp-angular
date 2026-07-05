@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Interfaz para el tipo de dato esperado en la tabla de este componente.
  * Define la estructura de un producto que se puede agregar.
  */

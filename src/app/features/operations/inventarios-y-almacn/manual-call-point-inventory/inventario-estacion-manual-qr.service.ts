@@ -1,4 +1,4 @@
-﻿import { Injectable, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import QRCode from "qrcode";
 import { IInventarioEstacionManual } from "src/app/core/interfaces/inventario-estacion-manual.interface";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";

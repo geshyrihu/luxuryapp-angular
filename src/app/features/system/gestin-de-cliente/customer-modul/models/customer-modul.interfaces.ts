@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Interfaces para el módulo de asignación de módulos a clientes.
  */
 

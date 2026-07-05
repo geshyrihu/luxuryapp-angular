@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Devuelve el ícono y el color de FontAwesome según la extensión del archivo.
  * @param extension La extensión del archivo (ej. 'pdf', 'xlsx').
  * @returns Un objeto con las clases de CSS para el ícono y el color.

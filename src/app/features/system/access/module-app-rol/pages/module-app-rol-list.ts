@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonNote } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";

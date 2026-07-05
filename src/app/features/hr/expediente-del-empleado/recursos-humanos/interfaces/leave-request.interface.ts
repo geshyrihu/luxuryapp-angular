@@ -1,4 +1,4 @@
-﻿export enum EPaidStatus {
+export enum EPaidStatus {
   ConGozedeSueldo = 0,
   SinGozedeSueldo = 1,
 }

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TokensColors } from "../../../shared/tokens-colors/tokens-colors";
 import { TokensTypography } from "../../../shared/tokens-typography/tokens-typography";

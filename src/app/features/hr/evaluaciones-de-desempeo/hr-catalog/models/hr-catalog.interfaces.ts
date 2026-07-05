@@ -1,4 +1,4 @@
-﻿// Tipos para formularios (envían valores tócnicos del enum al backend)
+// Tipos para formularios (envían valores tócnicos del enum al backend)
 export type EIncidentCategory = 'Conducta' | 'Desempeno' | 'Seguridad' | 'Asistencia' | 'Etica';
 export type ESeverityLevel = 'Low' | 'Moderate' | 'Medium' | 'High';
 export type ESanctionStatus = 'Activa' | 'Apelada' | 'Suspendida' | 'Cumplida' | 'Revocada';

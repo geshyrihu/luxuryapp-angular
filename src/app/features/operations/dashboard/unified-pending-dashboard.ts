@@ -541,7 +541,7 @@ export class UnifiedPendingDashboard {
   onVisionResult(analysis: string) {
     // En el dashboard solo mostramos el resultado
     Swal.fire({
-      title: "ðŸââ‚¬ËœÃ‚Âï¸Ã‚Â Diagnóstico Visual",
+      title: "🔍 Diagnóstico Visual",
       text: analysis,
       icon: "info",
       width: "600px",

@@ -1,4 +1,4 @@
-﻿// -- EPF (Estado de Posición Financiera) ó DTO compacto -----------------------
+// -- EPF (Estado de Posición Financiera) ó DTO compacto -----------------------
 
 /** Respuesta del endpoint balance-sheet/{customerId}/{year}/{mes} */
 export interface IEpfDTO {

@@ -1,4 +1,4 @@
-﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
 import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";

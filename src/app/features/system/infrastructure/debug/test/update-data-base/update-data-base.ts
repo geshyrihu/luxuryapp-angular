@@ -1,4 +1,4 @@
-﻿import { CommonModule, JsonPipe } from "@angular/common";
+import { CommonModule, JsonPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";

@@ -1,4 +1,4 @@
-﻿import { Component, inject, input, OnInit } from "@angular/core";
+import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { PermissionDTO } from "src/app/core/interfaces/permission.dto";

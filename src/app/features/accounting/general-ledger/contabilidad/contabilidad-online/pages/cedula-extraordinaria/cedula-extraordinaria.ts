@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, untracked } from "@angular/core";
 import { SkeletonModule } from "primeng/skeleton";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

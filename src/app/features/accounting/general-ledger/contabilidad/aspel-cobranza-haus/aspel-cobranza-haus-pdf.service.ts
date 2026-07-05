@@ -1,4 +1,4 @@
-﻿import { Injectable, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import {
   AspelCobranzaDetalleConcepto,

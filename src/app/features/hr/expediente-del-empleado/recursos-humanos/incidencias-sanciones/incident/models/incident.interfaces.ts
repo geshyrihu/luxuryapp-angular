@@ -1,4 +1,4 @@
-﻿export type EInvestigationStatus = 'Reportado' | 'EnInvestigacion' | 'ResueltoSinSancion' | 'ResueltoConSancion' | 'Archivado';
+export type EInvestigationStatus = 'Reportado' | 'EnInvestigacion' | 'ResueltoSinSancion' | 'ResueltoConSancion' | 'Archivado';
 export type ESeverityLevel = 'Low' | 'Moderate' | 'Medium' | 'High';
 export type EIncidentCategory = 'Conducta' | 'Desempeno' | 'Seguridad' | 'Asistencia' | 'Etica';
 

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, effect, inject, input, untracked, signal } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 import { EspejoAspelExtraordinarios } from '../../../presupuesto-web-aspel/espejo-aspel-extraordinarios';

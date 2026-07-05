@@ -1,4 +1,4 @@
-﻿import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
+import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonAccordion, IonAccordionGroup } from "@ionic/angular/standalone";

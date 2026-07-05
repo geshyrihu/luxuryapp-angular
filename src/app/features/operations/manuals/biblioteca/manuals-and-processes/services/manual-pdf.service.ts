@@ -1,4 +1,4 @@
-﻿import { inject, Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import type { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 import type { IManualPasoDTO } from "../models/manuals-and-processes.dto";

@@ -1,4 +1,4 @@
-﻿import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";

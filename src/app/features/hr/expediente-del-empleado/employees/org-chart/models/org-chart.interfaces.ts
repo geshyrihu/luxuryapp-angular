@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Interfaces para el organigrama jerírquico de puestos.
  */
 

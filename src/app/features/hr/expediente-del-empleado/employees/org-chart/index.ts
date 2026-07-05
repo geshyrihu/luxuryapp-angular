@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Barrel export del módulo de organigrama jerírquico de puestos.
  */
 

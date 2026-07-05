@@ -1,4 +1,4 @@
-﻿import { Injectable, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
