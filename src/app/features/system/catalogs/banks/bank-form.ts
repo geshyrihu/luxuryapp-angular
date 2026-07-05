@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -24,7 +24,7 @@ interface IBankForm {
 @Component({
   selector: "app-bank-form",
   templateUrl: "./bank-form.html",
-  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, InputText, WebButtonLabelSave],
 })
 export class BankForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

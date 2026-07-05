@@ -91,195 +91,119 @@
       </div>
     </section>
 
-    <!-- Phase 2 -->
+    <!-- ══════ PHASE 2: DECISION TREE (ngx-graph) ══════ -->
     <section class="phase">
       <div class="phase-header">
         <span class="phase-number">Fase 2</span>
-        <h2 class="phase-title">Toma de Decisiones</h2>
+        <h2 class="phase-title">Árbol de Decisiones</h2>
         <p class="phase-desc">
-          Clasifica cada objeto siguiendo este árbol de decisiones. Sigue las
-          ramas SÍ / NO según corresponda.
+          Flujo vertical de decisión: <strong>rombo</strong> = pregunta,
+          <strong>rectángulo</strong> = acción final.
+          <span style="color:#16a34a">Verde</span> = SÍ,
+          <span style="color:#dc2626">rojo</span> = NO.
         </p>
       </div>
 
-      <div class="flowchart">
+      <div class="dt-graph-shell">
+        <ngx-graph
+          class="dt-graph"
+          [view]="graphView"
+          layout="dagre"
+          [layoutSettings]="graphLayoutSettings"
+          [nodes]="graphNodes"
+          [links]="graphLinks"
+          [autoCenter]="true"
+          [autoZoom]="false"
+          [enableZoom]="true"
+          [enablePan]="true"
+          [animate]="false"
+        >
+          <ng-template #defsTemplate>
+            <svg:marker
+              id="dt-arrow-yes"
+              viewBox="0 -5 10 10"
+              refX="9"
+              refY="0"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto"
+            >
+              <svg:path d="M0,-5L10,0L0,5" class="dt-arrow-yes"></svg:path>
+            </svg:marker>
+            <svg:marker
+              id="dt-arrow-no"
+              viewBox="0 -5 10 10"
+              refX="9"
+              refY="0"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto"
+            >
+              <svg:path d="M0,-5L10,0L0,5" class="dt-arrow-no"></svg:path>
+            </svg:marker>
+          </ng-template>
 
-        <!-- D1 -->
-        <div class="fc-node decision">
-          <div class="fc-diamond">
-            <span class="fc-decision-label">Decisión 1</span>
-            <span class="fc-question">¿El objeto funciona correctamente?</span>
-          </div>
-        </div>
+          <ng-template #linkTemplate let-link>
+            <svg:g>
+              <svg:path
+                class="dt-link-line"
+                [class.dt-link-yes]="link.data?.kind === 'yes'"
+                [class.dt-link-no]="link.data?.kind === 'no'"
+                [attr.marker-end]="link.data?.kind === 'yes' ? 'url(#dt-arrow-yes)' : 'url(#dt-arrow-no)'"
+              ></svg:path>
+              @if (link.label) {
+                <svg:g>
+                  <svg:rect
+                    class="dt-link-label-bg"
+                    [attr.x]="-8"
+                    [attr.y]="-8"
+                    width="22"
+                    height="16"
+                    rx="8"
+                  />
+                  <svg:text
+                    class="dt-link-label"
+                    [class.dt-label-yes]="link.data?.kind === 'yes'"
+                    [class.dt-label-no]="link.data?.kind === 'no'"
+                    text-anchor="middle"
+                    dominant-baseline="central"
+                  >
+                    <svg:tspan>{{ link.label }}</svg:tspan>
+                  </svg:text>
+                </svg:g>
+              }
+            </svg:g>
+          </ng-template>
 
-        <div class="fc-branches">
-          <!-- ── NO ── -->
-          <div class="fc-branch no-branch">
-            <div class="fc-branch-header no">
-              <span class="fc-branch-badge">NO</span>
-              <span class="fc-branch-text">No funciona</span>
-            </div>
-
-            <div class="fc-node decision">
-              <div class="fc-diamond sm">
-                <span class="fc-decision-label">Decisión 1a</span>
-                <span class="fc-question">¿Tiene piezas reparables o valor como scrap?</span>
-              </div>
-            </div>
-
-            <div class="fc-branches">
-              <div class="fc-branch no-branch">
-                <div class="fc-branch-header no">
-                  <span class="fc-branch-badge">NO</span>
-                </div>
-                <div class="fc-node action negative-action">
-                  <div class="fc-rect">
-                    <span>🗑️ Desechar en contenedor apropiado</span>
+          <ng-template #nodeTemplate let-node>
+            <svg:g>
+              <svg:foreignObject
+                [attr.width]="node.dimension?.width"
+                [attr.height]="node.dimension?.height"
+              >
+                @if (node.data.type === 'decision') {
+                  <div
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    class="dt-decision-node"
+                  >
+                    <span class="dtn-label">{{ node.data.label }}</span>
+                    <span class="dtn-question">{{ node.data.question }}</span>
                   </div>
-                  <div class="fc-end">FIN</div>
-                </div>
-              </div>
-              <div class="fc-branch yes-branch">
-                <div class="fc-branch-header yes">
-                  <span class="fc-branch-badge">SÍ</span>
-                </div>
-                <div class="fc-node action positive-action">
-                  <div class="fc-rect">
-                    <span>🔄 Enviar a reciclaje / taller</span>
+                } @else {
+                  <div
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    class="dt-action-node"
+                    [class.dt-action-good]="node.data.outcome === 'good'"
+                    [class.dt-action-bad]="node.data.outcome === 'bad'"
+                  >
+                    <span class="dtn-emoji">{{ node.data.emoji }}</span>
+                    <span class="dtn-text">{{ node.data.text }}</span>
                   </div>
-                  <div class="fc-end">FIN</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── SÍ ── -->
-          <div class="fc-branch yes-branch">
-            <div class="fc-branch-header yes">
-              <span class="fc-branch-badge">SÍ</span>
-              <span class="fc-branch-text">Funciona</span>
-            </div>
-
-            <!-- D2 -->
-            <div class="fc-node decision">
-              <div class="fc-diamond sm">
-                <span class="fc-decision-label">Decisión 2</span>
-                <span class="fc-question">¿Se necesita en la empresa / área?</span>
-              </div>
-            </div>
-
-            <div class="fc-branches">
-              <div class="fc-branch yes-branch">
-                <div class="fc-branch-header yes">
-                  <span class="fc-branch-badge">SÍ</span>
-                </div>
-                <div class="fc-node action positive-action">
-                  <div class="fc-rect">
-                    <span>✅ Reintegrar al inventario / área</span>
-                  </div>
-                  <div class="fc-end">FIN</div>
-                </div>
-              </div>
-              <div class="fc-branch no-branch">
-                <div class="fc-branch-header no">
-                  <span class="fc-branch-badge">NO</span>
-                </div>
-
-                <!-- D3 -->
-                <div class="fc-node decision">
-                  <div class="fc-diamond sm">
-                    <span class="fc-decision-label">Decisión 3</span>
-                    <span class="fc-question">¿Tiene valor comercial? (¿Se puede vender?)</span>
-                  </div>
-                </div>
-
-                <div class="fc-branches">
-                  <div class="fc-branch yes-branch">
-                    <div class="fc-branch-header yes">
-                      <span class="fc-branch-badge">SÍ</span>
-                    </div>
-                    <div class="fc-node action positive-action">
-                      <div class="fc-rect">
-                        <span>💰 Evaluar precio de mercado → Poner en venta / bazar</span>
-                      </div>
-                      <div class="fc-end">FIN</div>
-                    </div>
-                  </div>
-                  <div class="fc-branch no-branch">
-                    <div class="fc-branch-header no">
-                      <span class="fc-branch-badge">NO</span>
-                    </div>
-
-                    <!-- D4 -->
-                    <div class="fc-node decision">
-                      <div class="fc-diamond sm">
-                        <span class="fc-decision-label">Decisión 4</span>
-                        <span class="fc-question">¿Está en condiciones de donarse / regalarse?</span>
-                      </div>
-                    </div>
-
-                    <div class="fc-branches">
-                      <div class="fc-branch yes-branch">
-                        <div class="fc-branch-header yes">
-                          <span class="fc-branch-badge">SÍ</span>
-                        </div>
-                        <div class="fc-node action positive-action">
-                          <div class="fc-rect">
-                            <span>🎁 Donar a instituciones / empleados</span>
-                          </div>
-                          <div class="fc-end">FIN</div>
-                        </div>
-                      </div>
-                      <div class="fc-branch no-branch">
-                        <div class="fc-branch-header no">
-                          <span class="fc-branch-badge">NO</span>
-                        </div>
-
-                        <!-- D5 -->
-                        <div class="fc-node decision">
-                          <div class="fc-diamond sm">
-                            <span class="fc-decision-label">Decisión 5</span>
-                            <span class="fc-question">¿Es material reciclable?</span>
-                          </div>
-                        </div>
-
-                        <div class="fc-branches">
-                          <div class="fc-branch yes-branch">
-                            <div class="fc-branch-header yes">
-                              <span class="fc-branch-badge">SÍ</span>
-                            </div>
-                            <div class="fc-node action positive-action">
-                              <div class="fc-rect">
-                                <span>♻️ Separar por tipo (papel, plástico, metal) → Enviar a centro de reciclaje</span>
-                              </div>
-                              <div class="fc-end">FIN</div>
-                            </div>
-                          </div>
-                          <div class="fc-branch no-branch">
-                            <div class="fc-branch-header no">
-                              <span class="fc-branch-badge">NO</span>
-                            </div>
-                            <div class="fc-node action negative-action">
-                              <div class="fc-rect">
-                                <span>🗑️ Desechar como basura</span>
-                              </div>
-                              <div class="fc-end">FIN</div>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-
+                }
+              </svg:foreignObject>
+            </svg:g>
+          </ng-template>
+        </ngx-graph>
       </div>
     </section>
 
