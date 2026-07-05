@@ -26,6 +26,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [label]="label()"
         [placeholder]="placeholder() || 'Seleccione una opción'"
         label-placement="floating"
+        mode="md"
         fill="outline"
         [disabled]="disabled() || readonly()"
         [interface]="interfaceMode()"

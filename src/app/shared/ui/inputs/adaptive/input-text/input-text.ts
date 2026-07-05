@@ -1,4 +1,5 @@
-import { Component, inject, input } from "@angular/core";
+import { Component, forwardRef, inject, input } from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
 import { IonInputText } from "../../mobile/ion-input-text";
@@ -18,10 +19,17 @@ import { WebInputText } from "../../web/input-text/input-text";
   selector: "custom-input-text-signal",
   standalone: true,
   imports: [WebInputText, IonInputText],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputText),
+      multi: true,
+    },
+  ],
   template: `
     @if (platform.isMobile()) {
       <ion-input-text
-        [control]="control()"
+        [control]="control() || internalControl"
         [id]="id()"
         [label]="label()"
         [placeholder]="placeholder()"
@@ -32,7 +40,7 @@ import { WebInputText } from "../../web/input-text/input-text";
       />
     } @else {
       <web-input-text
-        [control]="control()"
+        [control]="control() || internalControl"
         [id]="id()"
         [label]="label()"
         [placeholder]="placeholder()"

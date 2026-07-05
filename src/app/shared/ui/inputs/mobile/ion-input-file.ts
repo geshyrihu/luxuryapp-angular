@@ -35,7 +35,8 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         @if (!fileSelectedValue) {
           <ion-button
             expand="block"
-            fill="outline"
+            mode="md"
+        fill="outline"
             [disabled]="disabled() || readonly()"
             (click)="triggerFileInput()"
           >

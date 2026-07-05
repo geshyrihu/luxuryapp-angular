@@ -29,6 +29,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [label]="label()"
         [placeholder]="placeholder()"
         label-placement="floating"
+        mode="md"
         fill="outline"
         clearInput
         [readonly]="readonly()"
