@@ -1,44 +1,52 @@
 <div class="hide-on-print h-full">
   <nav class="sidebar-layout">
+    <!-- Brand (LuxuryApp) -->
+    <div class="sidebar-brand flex flex-column align-items-center text-center">
+      <span class="sidebar-brand-title">LuxuryApp</span>
+      <span class="sidebar-brand-subtitle">Gestión Inteligente</span>
+    </div>
+
     <!-- Fixed Header Section -->
-    <div
-      class="sidebar-header p-4 flex flex-column align-items-center text-center"
-    >
-      <!-- Avatar Section -->
-      <div class="relative mb-3">
-        <p-avatar
-          [image]="profileImageUrl || 'assets/images/default-avatar.png'"
-          size="xlarge"
-          shape="square"
-          styleClass="border-round-lg border-2 border-transparent shadow-4"
-        ></p-avatar>
-        <!-- Online Indicator -->
-        <span class="online-indicator"></span>
-      </div>
+    <div class="sidebar-header p-3">
+      <div class="grid grid-nogutter align-items-center">
+        <!-- Avatar Section (2/12) -->
+        <div class="col-4 flex align-items-center justify-content-center">
+          <div class="relative inline-flex">
+            <p-avatar
+              [image]="profileImageUrl || 'assets/images/default-avatar.png'"
+              size="large"
+              shape="square"
+              styleClass="border-round-lg border-2 border-transparent shadow-4"
+            ></p-avatar>
+            <!-- Online Indicator -->
+            <span class="online-indicator"></span>
+          </div>
+        </div>
 
-      <!-- User Info -->
-      <div class="w-full">
-        <h2
-          class="user-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
-          title="{{ infoAccountAuthDTO?.fullName }}"
-        >
-          {{ infoAccountAuthDTO?.fullName }}
-        </h2>
-        <p
-          class="user-position white-space-nowrap overflow-hidden text-overflow-ellipsis"
-        >
-          {{ infoAccountAuthDTO?.position || 'En línea' }}
-        </p>
-      </div>
+        <!-- User Info (resto: nombre, puesto, condominio) -->
+        <div class="col-8 pl-2 min-w-0 text-left">
+          <h2
+            class="user-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            title="{{ infoAccountAuthDTO?.fullName }}"
+          >
+            {{ infoAccountAuthDTO?.fullName }}
+          </h2>
+          <p
+            class="user-position white-space-nowrap overflow-hidden text-overflow-ellipsis"
+          >
+            {{ infoAccountAuthDTO?.position || 'En línea' }}
+          </p>
 
-      <!-- Customer Name Header -->
-      <div class="customer-divider">
-        <h3
-          class="customer-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
-          title="{{ customerName() }}"
-        >
-          {{ customerName() }}
-        </h3>
+          <!-- Customer Name Header -->
+          <div class="customer-divider">
+            <h3
+              class="mt-2 customer-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
+              title="{{ customerName() }}"
+            >
+              {{ customerName() }}
+            </h3>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Scrollable Menu Area -->

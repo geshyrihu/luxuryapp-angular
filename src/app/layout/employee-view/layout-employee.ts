@@ -4,7 +4,6 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { map } from "rxjs/operators";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { MenuService } from "src/app/core/services/menu.service";
 import { OneSignalService } from "src/app/core/services/one-signal.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ViewEmployeeMonitor } from "./monitor/view-employee-monitor/view-employee-monitor";
@@ -86,12 +85,3 @@ export class LayoutEmployee implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-

@@ -6,9 +6,9 @@
 
 // ── FAMILIAS TIPOGRÁFICAS ─────────────────────────────────────
 // Corporate Integrity System — DESIGN.md typography
-// Headlines: Hanken Grotesk | Body: Inter
-$font-family-base:    'Inter', 'Hanken Grotesk', sans-serif !default;
-$font-family-heading: 'Hanken Grotesk', 'Inter', sans-serif !default;
+// System font: Outfit (headlines + body)
+$font-family-base:    'Outfit', 'Inter', sans-serif !default;
+$font-family-heading: 'Outfit', 'Inter', sans-serif !default;
 $font-family-mono:    'JetBrains Mono', 'Roboto Mono', 'Courier New', monospace !default;
 
 // ── ESCALA DE TAMAÑOS ─────────────────────────────────────────

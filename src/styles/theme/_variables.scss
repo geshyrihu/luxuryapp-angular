@@ -343,7 +343,7 @@
 
   // Tipografía Documental
   --ds-font-family-document:
-    "Hanken Grotesk", "Inter", "Segoe UI Emoji", "Apple Color Emoji",
+    "Outfit", "Inter", "Segoe UI Emoji", "Apple Color Emoji",
     "Noto Color Emoji", sans-serif;
   --ds-font-family-mono: "JetBrains Mono", "Roboto Mono", "Consolas", monospace;
   --ds-font-size-doc-title: 26pt;
@@ -369,9 +369,9 @@
   --ds-text-disabled: #{c.$neutral-400};
   --ds-text-link: var(--ds-surface-tint);
 
-  // Tipografía ERP — Hanken Grotesk (headlines) + Inter (body)
+  // Tipografía ERP — Outfit (system font)
   --ds-font-family-base:
-    "Inter", "Hanken Grotesk", "Segoe UI Emoji", "Apple Color Emoji",
+    "Outfit", "Inter", "Segoe UI Emoji", "Apple Color Emoji",
     "Noto Color Emoji", sans-serif;
   --ds-font-size-display: clamp(1.75rem, 4vw, 2.5rem); // 28-40px
   --ds-font-size-page-title: clamp(1.25rem, 3vw, 1.75rem); // 20-28px
