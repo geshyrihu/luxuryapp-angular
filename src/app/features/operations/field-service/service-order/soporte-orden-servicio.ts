@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -16,6 +16,7 @@ export class SoporteOrdenServicio implements OnInit {
   dateS = inject(DateService);
   route = inject(ActivatedRoute);
   customerIdS = inject(CustomerIdService);
+  private cdr = inject(ChangeDetectorRef);
   id: string = "";
   item: any;
   dataCustomer: any;
@@ -42,6 +43,7 @@ export class SoporteOrdenServicio implements OnInit {
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.nameCarpetaFecha = this.dateS.getDateFormat(result.fechaSolicitud);
       this.item = result;
+      this.cdr.detectChanges();
     });
   }
   onLoadData() {
@@ -52,6 +54,7 @@ export class SoporteOrdenServicio implements OnInit {
       this.dataCustomer = result;
       this.nameCustomer = result.nameCustomer;
       this.logoCustomer = result.photoPath;
+      this.cdr.detectChanges();
     });
   }
 }
