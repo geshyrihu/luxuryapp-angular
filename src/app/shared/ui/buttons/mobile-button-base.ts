@@ -21,33 +21,38 @@ type IonFill = "clear" | "outline" | "solid" | "default";
  */
 @Directive()
 export abstract class MobileButtonBase extends BaseIonicButton {
-  /** Variante semántica. Tiene prioridad sobre fill/color cuando se define. */
-  variant = input<IliButtonVariant | "">("");
+  /** Variante semántica (ver variantMap). Tiene prioridad sobre fill/color.
+   *  Tipo `string` para tolerar alias web; valores desconocidos caen a fill/color. */
+  variant = input<IliButtonVariant | (string & {})>("");
   color = input<string>("primary");
   fill = input<IonFill>("solid");
   expand = input<"block" | "full" | "">("");
   size = input<"small" | "default" | "large">("default");
   styleClass = input<string>("");
 
-  private readonly variantMap: Record<
-    IliButtonVariant,
-    { fill: IonFill; color: string }
-  > = {
-    primary: { fill: "solid", color: "primary" },
-    secondary: { fill: "solid", color: "secondary" },
-    outline: { fill: "outline", color: "primary" },
-    text: { fill: "clear", color: "primary" },
-    danger: { fill: "solid", color: "danger" },
-    ghost: { fill: "clear", color: "medium" },
-  };
+  // Incluye alias de las variantes WEB (outlined/ghost-text/link/solid) para
+  // tolerar plantillas donde se copió un `variant` de un botón web a uno móvil.
+  private readonly variantMap: Record<string, { fill: IonFill; color: string }> =
+    {
+      primary: { fill: "solid", color: "primary" },
+      secondary: { fill: "solid", color: "secondary" },
+      outline: { fill: "outline", color: "primary" },
+      outlined: { fill: "outline", color: "primary" },
+      text: { fill: "clear", color: "primary" },
+      link: { fill: "clear", color: "primary" },
+      danger: { fill: "solid", color: "danger" },
+      ghost: { fill: "clear", color: "medium" },
+      "ghost-text": { fill: "clear", color: "medium" },
+      solid: { fill: "solid", color: "primary" },
+    };
 
   protected resolvedFill = computed<IonFill>(() => {
-    const v = this.variant();
-    return v ? this.variantMap[v].fill : this.fill();
+    const mapped = this.variantMap[this.variant() as IliButtonVariant];
+    return mapped ? mapped.fill : this.fill();
   });
 
   protected resolvedColor = computed<string>(() => {
-    const v = this.variant();
-    return v ? this.variantMap[v].color : this.color();
+    const mapped = this.variantMap[this.variant() as IliButtonVariant];
+    return mapped ? mapped.color : this.color();
   });
 }
