@@ -182,10 +182,16 @@ Los forms se abren con `DialogHandlerService.openDialog(...)` (PrimeNG DynamicDi
 > **Overlays de Ionic detrás del diálogo — resuelto.** `<ion-app>` tiene
 > `contain: layout size style` → contexto de apilamiento en z-index 0. Los overlays
 > de Ionic (action-sheet del `ion-select`, pickers) se montan dentro de `ion-app`;
-> si el diálogo vive en `<body>` (z-index 1100) quedan **detrás**. Solución:
-> `DialogHandlerService` monta el diálogo con **`appendTo = <ion-app>`** cuando existe
-> (móvil) → comparten contexto y el z-index de los overlays (20001) gana. En desktop
-> no hay `ion-app` → cae a `"body"`. (`core/services/dialog-handler.service.ts`.)
+> si el diálogo vive en `<body>` (z-index 1100+) quedan **detrás**.
+> Solución (CSS, en `styles/mobile/_ionic-rn-theme.scss`): cuando hay un diálogo
+> abierto, PrimeNG pone `.p-overflow-hidden` en `<body>`; en ese caso liberamos el
+> contain de ion-app para que los overlays escapen a la raíz y su z-index (20001)
+> gane al diálogo:
+> ```scss
+> body.p-overflow-hidden ion-app { contain: none !important; }
+> ```
+> ⚠️ Ojo: `DynamicDialogConfig` **NO** soporta `appendTo` (se probó y PrimeNG lo
+> ignora). Por eso el fix es por CSS, no montando el diálogo en otro lado.
 
 ### 5.3 Panel del `p-select` en web
 PrimeNG 21 inyecta en runtime `.p-component.p-select-overlay` con un surface oscuro;
@@ -247,8 +253,8 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 ## 9. 🧯 Gotchas / troubleshooting
 | Síntoma | Causa / Fix |
 |---|---|
-| Overlay Ionic (select/picker) detrás del diálogo en móvil | Ya resuelto vía `appendTo ion-app`. Si reaparece, revisar que la vista tenga `<ion-app>`. |
-| Panel `p-select` oscuro en web | Override `!important` en `_prime-dropdown.scss`. |
+| Overlay Ionic (select/picker) detrás del diálogo en móvil | `body.p-overflow-hidden ion-app { contain: none }` (libera el trap solo con diálogo abierto). `DynamicDialog` NO soporta `appendTo`. |
+| Panel `p-select` oscuro o **opciones invisibles** en web | `_prime-dropdown.scss`: `background`/`color` con `!important` en `.p-select-overlay` y `.p-select-option` (PrimeNG 21 inyecta panel oscuro + texto claro en runtime). |
 | Input Ionic sin recuadro / texto pegado | Falta `mode="md"` o el theme le mete border manual (ver §5.1). |
 | `Cannot read properties of undefined (reading 'fill')` en botón móvil | `variant` fuera del mapa → ya es defensivo; revisar que no sea un `variant` web en botón móvil. |
 | `NG0100 ExpressionChanged…` con datos async | `@if` que voltea al asignar en `.then()`; `cdr.detectChanges()` tras asignar o usar signals. |
