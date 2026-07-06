@@ -314,7 +314,10 @@ ion-popover {
 // diálogo abierto, PrimeNG pone `.p-overflow-hidden` en <body>: en ese caso
 // liberamos el contain de ion-app para que esos overlays escapen a la raíz y su
 // z-index (20001) gane al diálogo. Sin diálogo, ion-app conserva su contain.
-body.p-overflow-hidden ion-app {
+body.p-overflow-hidden ion-app,
+body.p-overflow-hidden .ion-page,
+body.p-overflow-hidden ion-content,
+body.p-overflow-hidden ion-router-outlet {
   contain: none !important;
 }
 

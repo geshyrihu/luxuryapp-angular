@@ -81,12 +81,18 @@ body {
   // color !important: PrimeNG 21 inyecta texto claro (para su panel oscuro);
   // como forzamos el panel claro, el texto debe ser oscuro o queda invisible.
   .p-select-option,
+  .p-select-option *,
+  .p-select-option-label,
+  .p-multiselect-option,
+  .p-multiselect-option * {
+    color: var(--ds-text-primary) !important;
+  }
+  .p-select-option,
   .p-multiselect-option {
     font-size: 0.875rem;
     padding: 0.625rem 1rem;
     transition: background-color 100ms ease;
     background: transparent !important;
-    color: var(--ds-text-primary) !important;
 
     &:hover:not(.p-select-option-selected) {
       background-color: var(--ds-bg-sunken);
