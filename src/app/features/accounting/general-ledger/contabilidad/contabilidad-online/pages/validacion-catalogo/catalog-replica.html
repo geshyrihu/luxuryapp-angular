@@ -2,13 +2,16 @@
   <!-- Filtros propios del componente -->
   <div class="flex mb-4 align-items-end gap-2">
     <div class="mb-0">
-      <input
-        pInputText
+      <custom-input-text-signal
         [ngModel]="year()"
         (ngModelChange)="year.set($event)"
+        [ngModelOptions]="{ standalone: true }"
         type="number"
-        pSize="small"
-        class="w-10rem"
+        size="small"
+        [horizontal]="false"
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="w-10rem"
       />
     </div>
     <div class="mb-0">
@@ -86,7 +89,7 @@
         <p-tag
           [value]="faltante.clasificacion"
           [severity]="getSeverity(faltante.clasificacion)"
-          styleClass="text-xs"
+          class="text-xs"
         ></p-tag>
         <span class="font-mono text-xs font-bold"
           >{{ faltante.numeroCuenta }}</span
@@ -114,7 +117,7 @@
   <p-table
     [value]="flatData()"
     [tableStyle]="{ 'min-width': '50rem' }"
-    styleClass="custom-table p-datatable-gridlines"
+    class="custom-table p-datatable-gridlines"
   >
     <ng-template #header>
       <tr>
@@ -142,7 +145,8 @@
             <!-- â¬†ï¸ â¬‡ï¸ âž¡ï¸ â¬…ï¸ -->
             @if (account.nivel === 1) {
             <iw-button
-              [pTooltip]="account.expanded ? 'â¬‡ï¸' : 'âž¡ï¸'" tooltipPosition="top"
+              [pTooltip]="account.expanded ? 'â¬‡ï¸' : 'âž¡ï¸'"
+              tooltipPosition="top"
               variant="ghost-text"
               size="sm"
               (clicked)="toggleNode(account)"

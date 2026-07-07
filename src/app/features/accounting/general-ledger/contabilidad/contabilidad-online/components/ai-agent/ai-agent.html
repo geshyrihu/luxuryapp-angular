@@ -2,7 +2,7 @@
   [visible]="visible()"
   (visibleChange)="visible.set($event)"
   position="right"
-  styleClass="w-full lg:w-8 xl:w-7 p-0"
+  class="w-full lg:w-8 xl:w-7 p-0"
   [blockScroll]="false"
 >
   <ng-template #header>
@@ -69,7 +69,7 @@
                 class="p-3 surface-200 border-round-xl border-noround-left flex align-items-center gap-2"
               >
                 <p-progressspinner
-                  styleClass="w-1rem h-1rem"
+                  class="w-1rem h-1rem"
                   strokeWidth="6"
                   animationDuration=".5s"
                 ></p-progressspinner>
@@ -105,7 +105,7 @@
                 size="small"
                 variant="outline"
                 severity="secondary"
-                styleClass="text-xs justify-content-start w-full"
+                class="text-xs justify-content-start w-full"
                 iconClass="mdi:help-circle"
               />
             </div>
@@ -121,7 +121,7 @@
                 label="Releer última respuesta"
                 size="small"
                 variant="text"
-                styleClass="justify-content-start"
+                class="justify-content-start"
                 [disabled]="loading() || messages().length === 0"
                 (clicked)="replayMessage(messages()[messages().length - 1])"
               />
@@ -130,7 +130,7 @@
                 label="Detener audio"
                 size="small"
                 variant="text"
-                styleClass="justify-content-start"
+                class="justify-content-start"
                 [disabled]="!speaking()"
                 (clicked)="stopAudio()"
               />
@@ -141,21 +141,23 @@
 
       <div class="p-2 border-top-1 surface-border bg-white mt-1">
         <div class="p-inputgroup">
-          <input
-            pInputText
-            type="text"
+          <custom-input-text-signal
             [ngModel]="currentQuery()"
             (ngModelChange)="currentQuery.set($event)"
-            (keyup.enter)="sendQuery()"
+            [ngModelOptions]="{ standalone: true }"
+            (enter)="sendQuery()"
             placeholder="Pregunta sobre este informe..."
             [disabled]="loading()"
-            class="border-round-left-3xl pl-4"
+            [horizontal]="false"
+            [onlyInput]="true"
+            [noMargin]="true"
+            customClass="w-full border-round-left-3xl pl-4"
           />
           <iw-button
             iconClass="mdi:send"
             (clicked)="sendQuery()"
             [disabled]="loading() || !currentQuery()"
-            styleClass="border-round-right-3xl px-4"
+            class="border-round-right-3xl px-4"
           />
         </div>
       </div>

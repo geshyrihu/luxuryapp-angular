@@ -1,6 +1,6 @@
 <div class="card p-0 md:p-4">
   <p-table
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
     [value]="data()"
     [rows]="10"
@@ -41,7 +41,8 @@
           <div class="flex justify-content-end">
             <iw-button
               (click)="goToDetail(item.id)"
-              pTooltip="Ver Detalle" tooltipPosition="top"
+              pTooltip="Ver Detalle"
+              tooltipPosition="top"
               iconClass="mdi:arrow-right"
             />
           </div>

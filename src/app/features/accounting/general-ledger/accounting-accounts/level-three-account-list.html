@@ -7,7 +7,7 @@
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
-  styleClass="custom-table hidden md:block"
+  class="custom-table hidden md:block"
 >
   <ng-template #caption>
     <div class="grid">
@@ -53,9 +53,8 @@
         <div class="flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-          <iw-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       }
@@ -89,9 +88,9 @@
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar"/>
-          <ili-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar"/>
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
     </div>

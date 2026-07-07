@@ -13,7 +13,7 @@
   [value]="formControls()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table"
+  class="custom-table"
   style="max-height: 80vh; overflow-y: auto"
 >
   <ng-template #caption>
@@ -140,10 +140,7 @@
         </td>
         <td>
           <div class="flex justify-content-center">
-            <iw-button-item
-              iconClass="mdi:plus"
-              (clicked)="onSubmit(row)"
-            />
+            <iw-button-item iconClass="mdi:plus" (clicked)="onSubmit(row)" />
           </div>
         </td>
       </tr>

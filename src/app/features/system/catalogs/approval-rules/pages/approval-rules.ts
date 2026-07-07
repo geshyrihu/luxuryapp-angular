@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { SkeletonModule } from "primeng/skeleton";
@@ -50,19 +56,19 @@ export class ApprovalRules implements OnInit {
       label: "N/A",
       value: ApprovalScope.None,
       icon: "mdi:block-helper",
-      styleClass: "opt-none",
+      class: "opt-none",
     },
     {
       label: "Cliente",
       value: ApprovalScope.SameCustomer,
       icon: "mdi:account-group",
-      styleClass: "opt-cliente",
+      class: "opt-cliente",
     },
     {
       label: "Global",
       value: ApprovalScope.Global,
       icon: "mdi:earth",
-      styleClass: "opt-global",
+      class: "opt-global",
     },
   ];
 

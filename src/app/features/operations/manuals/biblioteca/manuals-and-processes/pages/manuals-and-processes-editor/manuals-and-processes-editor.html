@@ -67,7 +67,10 @@
     >
       @if (!pasos().length) {
       <div class="p-4 text-center text-500">
-        <app-icon [icon]="'mdi:format-list-bulleted'" class="text-3xl mb-2 block" />
+        <app-icon
+          [icon]="'mdi:format-list-bulleted'"
+          class="text-3xl mb-2 block"
+        />
         <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
       </div>
       }
@@ -113,7 +116,7 @@
             <p-tag
               [value]="tipoNotaLabel(paso.tipoNota)"
               [severity]="tipoNotaSeverity(paso.tipoNota)"
-              styleClass="text-xs mt-1"
+              class="text-xs mt-1"
             />
             }
           </div>
@@ -148,7 +151,9 @@
         <app-icon [icon]="'mdi:book'" class="text-6xl text-primary mb-4" />
         <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
         <p class="text-500 line-height-3 mb-4">
-          Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso de la lista de la izquierda para editarlo, o haz clic en <strong>Agregar Paso</strong> para crear una nueva instrucción.
+          Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso
+          de la lista de la izquierda para editarlo, o haz clic en
+          <strong>Agregar Paso</strong> para crear una nueva instrucción.
         </p>
         <il-button
           iconClass="mdi:plus"
@@ -161,14 +166,19 @@
       } @else {
 
       <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
-        
         <div class="surface-ground border-round-xl p-4 border-1 surface-border">
           <div class="flex align-items-center gap-3 mb-2">
             <app-icon [icon]="'mdi:pencil'" class="text-2xl text-primary" />
-            <h3 class="m-0 text-900 font-semibold">{{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}</h3>
+            <h3 class="m-0 text-900 font-semibold">
+              {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
+            </h3>
           </div>
           <p class="text-color-secondary m-0 line-height-3">
-            Detalla la instrucción a realizar. Usa el tipo <strong>Normal</strong> para instrucciones regulares, o resalta precauciones cambiando a <strong>Advertencia</strong> o <strong>Buenas Prácticas</strong>. Puedes asignar uno o más roles como responsables exclusivos de esta acción.
+            Detalla la instrucción a realizar. Usa el tipo
+            <strong>Normal</strong> para instrucciones regulares, o resalta
+            precauciones cambiando a <strong>Advertencia</strong> o
+            <strong>Buenas Prácticas</strong>. Puedes asignar uno o más roles
+            como responsables exclusivos de esta acción.
           </p>
         </div>
 
@@ -235,26 +245,36 @@
           @if (!selectedPaso()!.diagramaId) {
           <div class="surface-ground border-round p-3 border-1 surface-border">
             <div class="flex align-items-center gap-2 mb-2">
-              <app-icon [icon]="'mdi:lightbulb-on-outline'" class="text-yellow-500" />
+              <app-icon
+                [icon]="'mdi:lightbulb-on-outline'"
+                class="text-yellow-500"
+              />
               <span class="font-bold text-700 text-sm">Tip Visual</span>
             </div>
             <p class="text-sm text-500 m-0 line-height-3">
-              Puedes agregar un <strong>Diagrama de Flujo interactivo</strong> (estilo BPMN) para explicar visualmente este paso. Haz clic en "Crear Diagrama" para abrir el editor integrado de draw.io.
+              Puedes agregar un
+              <strong>Diagrama de Flujo interactivo</strong> (estilo BPMN) para
+              explicar visualmente este paso. Haz clic en "Crear Diagrama" para
+              abrir el editor integrado de draw.io.
             </p>
           </div>
           } @else {
-            <div class="surface-ground border-round p-3 border-1 surface-border mb-2">
-              <div class="flex align-items-center gap-2 mb-2">
-                <app-icon [icon]="'mdi:check-circle-outline'" class="text-green-500" />
-                <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
-              </div>
-              <p class="text-sm text-500 m-0 line-height-3">
-                Este paso cuenta con un diagrama interactivo. Usa el botón "Abrir Diagrama" para realizar modificaciones.
-              </p>
+          <div
+            class="surface-ground border-round p-3 border-1 surface-border mb-2"
+          >
+            <div class="flex align-items-center gap-2 mb-2">
+              <app-icon
+                [icon]="'mdi:check-circle-outline'"
+                class="text-green-500"
+              />
+              <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
             </div>
-          }
-          
-          @if (selectedPaso()!.diagramaXml) {
+            <p class="text-sm text-500 m-0 line-height-3">
+              Este paso cuenta con un diagrama interactivo. Usa el botón "Abrir
+              Diagrama" para realizar modificaciones.
+            </p>
+          </div>
+          } @if (selectedPaso()!.diagramaXml) {
           <div class="border-round overflow-hidden border-1 border-200">
             <app-diagram-preview [xml]="selectedPaso()!.diagramaXml!" />
           </div>
@@ -278,11 +298,11 @@
                 [auto]="true"
                 [customUpload]="true"
                 (uploadHandler)="onSubirImagen($event, imgUploader)"
-                styleClass="p-button-sm p-button-outlined"
+                class="p-button-sm p-button-outlined"
                 [disabled]="uploadingImagen()"
               >
                 <ng-template #content>
-                   <app-icon [icon]="'mdi:image'" class="mr-2" />
+                  <app-icon [icon]="'mdi:image'" class="mr-2" />
                 </ng-template>
               </p-fileupload>
             </div>
@@ -290,7 +310,8 @@
 
           @if (uploadingImagen()) {
           <div class="flex align-items-center gap-2 text-500 text-sm">
-            <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" /> Subiendo...
+            <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />
+            Subiendo...
           </div>
           } @if (selectedPaso()!.imagenes?.length) {
           <div class="flex flex-wrap gap-3">
@@ -582,16 +603,17 @@
               [auto]="true"
               [customUpload]="true"
               (uploadHandler)="onSubirAdjunto($event, adjuntoUploader, adjuntoNombreInput)"
-              styleClass="p-button-sm p-button-outlined"
+              class="p-button-sm p-button-outlined"
               [disabled]="uploadingAdjunto()"
             >
               <ng-template #content>
-                 <app-icon [icon]="'mdi:upload'" class="mr-2" />
+                <app-icon [icon]="'mdi:upload'" class="mr-2" />
               </ng-template>
             </p-fileupload>
             @if (uploadingAdjunto()) {
             <span class="text-500 text-sm flex align-items-center gap-1">
-              <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" /> Subiendo...
+              <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />
+              Subiendo...
             </span>
             }
           </div>
@@ -612,7 +634,10 @@
         <div
           class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3"
         >
-          <app-icon [icon]="'mdi:file-document-outline'" class="text-2xl text-400 flex-shrink-0" />
+          <app-icon
+            [icon]="'mdi:file-document-outline'"
+            class="text-2xl text-400 flex-shrink-0"
+          />
           <div class="flex-1 min-w-0">
             <div
               class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"

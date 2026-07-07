@@ -2,9 +2,9 @@ import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@ang
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TextareaModule } from "primeng/textarea";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -14,7 +14,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
   selector: "app-solicitud-vacante",
   templateUrl: "./solicitud-vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CardModule, WebButtonLabelSave, TextareaModule],
+  imports: [ReactiveFormsModule, CardModule, WebButtonLabelSave, CustomInputTextAreaSignal],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

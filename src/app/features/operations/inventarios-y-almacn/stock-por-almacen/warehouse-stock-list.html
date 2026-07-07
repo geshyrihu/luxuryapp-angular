@@ -14,7 +14,7 @@
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       sortField="category"
       sortMode="single"
-      styleClass="custom-table"
+      class="custom-table"
     >
       <ng-template #caption>
         <primeng-custom-caption
@@ -99,13 +99,15 @@
             <div class="flex">
               <iw-button-item
                 [iconClass]="'mdi:plus'"
-                pTooltip="Entrada" tooltipPosition="top"
+                pTooltip="Entrada"
+                tooltipPosition="top"
                 (clicked)="onAddEntrada({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
               <iw-button-item
                 iconClass="mdi:minus"
-                pTooltip="Salida" tooltipPosition="top"
+                pTooltip="Salida"
+                tooltipPosition="top"
                 (clicked)="onAddSalida({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 

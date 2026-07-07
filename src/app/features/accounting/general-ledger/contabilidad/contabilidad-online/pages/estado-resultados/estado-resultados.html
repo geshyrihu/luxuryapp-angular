@@ -1,7 +1,7 @@
 <div class="rf-shell">
   @if (loading()) {
   <div class="rf-card p-4">
-    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" class="mb-2" />
     <p-skeleton height="10rem" />
   </div>
   } @else if (!rows().length) {
@@ -18,7 +18,7 @@
   <!-- Tabla de Escritorio -->
   <p-table
     [value]="rows()"
-    styleClass="rf-prime-table hidden md:block p-datatable-sm"
+    class="rf-prime-table hidden md:block p-datatable-sm"
     [tableStyle]="{ 'min-width': '800px' }"
   >
     <ng-template #header>

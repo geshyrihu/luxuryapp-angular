@@ -1,5 +1,5 @@
 <div class="flex flex-column gap-4">
-  <p-card styleClass="shadow-2">
+  <p-card class="shadow-2">
     <ng-template #header>
       <div class="flex flex-column p-4 border-bottom-1 surface-border">
         <div class="text-xs uppercase font-bold tracking-wider text-500">
@@ -14,12 +14,16 @@
         <div
           class="mt-3 border-round-lg border-1 border-yellow-300 bg-yellow-50 p-3 text-sm text-800"
         >
-          <div class="font-semibold text-900">Orden recomendado para JuntasMensuales</div>
+          <div class="font-semibold text-900">
+            Orden recomendado para JuntasMensuales
+          </div>
           <div class="mt-2 line-height-3">
-            1. Ejecuta <strong>Paso 1. Recuperar horas historicas de juntas</strong>.
+            1. Ejecuta
+            <strong>Paso 1. Recuperar horas historicas de juntas</strong>.
           </div>
           <div class="line-height-3">
-            2. Despues ejecuta <strong>Paso 2. Backfill agenda desde minutas</strong>.
+            2. Despues ejecuta
+            <strong>Paso 2. Backfill agenda desde minutas</strong>.
           </div>
         </div>
       </div>
@@ -29,7 +33,7 @@
       <div class="col-12 md:col-6 lg:col-4">
         <p-card
           class="cursor-pointer h-full block"
-          styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runMigrateCoiAspel()"
         >
           <div class="flex align-items-start gap-3">
@@ -51,7 +55,7 @@
       <div class="col-12 md:col-6 lg:col-4">
         <p-card
           class="cursor-pointer h-full block"
-          styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runImportAsambleaChecklistCatalog()"
         >
           <div class="flex align-items-start gap-3">
@@ -61,7 +65,9 @@
               CK
             </div>
             <div class="flex flex-column gap-1">
-              <div class="font-bold text-900">Importar checklist de asamblea</div>
+              <div class="font-bold text-900">
+                Importar checklist de asamblea
+              </div>
               <div class="text-xs text-color-secondary line-height-2">
                 Lee el markdown operativo y agrega al catalogo solo los items
                 faltantes.
@@ -74,7 +80,7 @@
       <div class="col-12 md:col-6 lg:col-4">
         <p-card
           class="cursor-pointer h-full block"
-          styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runBackfillHistoricalMeetingTimes()"
         >
           <div class="flex align-items-start gap-3">
@@ -100,7 +106,7 @@
       <div class="col-12 md:col-6 lg:col-4">
         <p-card
           class="cursor-pointer h-full block"
-          styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runBackfillAgendaEventsFromMeetings()"
         >
           <div class="flex align-items-start gap-3">
@@ -125,7 +131,7 @@
       <div class="col-12 md:col-6 lg:col-4">
         <p-card
           class="cursor-pointer h-full block"
-          styleClass="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runResyncGoogleCalendarEventTimes()"
         >
           <div class="flex align-items-start gap-3">

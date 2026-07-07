@@ -1,7 +1,7 @@
 @if (evaluationResult()) {
 <div class="evaluation-report p-4">
   <!-- SECCIÓN DE ENCABEZADO -->
-  <p-card styleClass="mb-4">
+  <p-card class="mb-4">
     <ng-template #header>
       <div class="text-center p-3">
         <h3 class="m-0 mb-2">
@@ -52,7 +52,7 @@
   <!-- SECCIÓN DE GRÁFICO Y RESUMEN -->
   <div class="grid">
     <div class="col-12 lg:col-6">
-      <p-card styleClass="h-full">
+      <p-card class="h-full">
         <ng-template #content>
           <div class="chart-container">
             <!-- Canvas del gráfico -->
@@ -78,21 +78,21 @@
 
     <!-- Puntuación Final -->
     <div class="col-12 lg:col-6">
-      <p-card styleClass="h-full">
+      <p-card class="h-full">
         <ng-template #content>
           <div class="text-center">
             <div class="flex flex-column align-items-center">
               <p-tag
                 [value]="evaluationResult()!.finalScoreFormatted"
                 [severity]="finalScoreSeverity()"
-                styleClass="evaluation-score-tag"
+                class="evaluation-score-tag"
               ></p-tag>
               <div class="text-lg mt-3">
                 Promedio: {{ evaluationResult()!.finalScore | number:'1.2-2' }}
                 / 5.00
               </div>
             </div>
-            <p-divider layout="horizontal" styleClass="my-3" />
+            <p-divider layout="horizontal" class="my-3" />
             <div class="final-comments">
               <h4 class="mb-1">Comentarios</h4>
               @if (evaluationResult()!.finalComments &&
@@ -101,13 +101,13 @@
               <p-message
                 [severity]="comment.severity"
                 [text]="comment.categoryName + ': ' + comment.comment"
-                styleClass="mb-2 w-full"
+                class="mb-2 w-full"
               ></p-message>
               } } @else {
               <p-message
                 severity="info"
                 text="Sin comentarios finales."
-                styleClass="w-full"
+                class="w-full"
               ></p-message>
               }
             </div>
@@ -118,7 +118,7 @@
   </div>
 
   <!-- SECCIÓN DE DETALLES POR CATEGORÍA -->
-  <p-card styleClass="mt-4">
+  <p-card class="mt-4">
     <ng-template #title>
       <div class="bg-primary text-white p-3 border-round-top">
         <h5 class="m-0">Detalle por Categorías</h5>

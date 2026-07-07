@@ -11,13 +11,13 @@
   </div>
 
   @if (filteredFaqs.length === 0) {
-  <p-message severity="info" styleClass="w-full">
+  <p-message severity="info" class="w-full">
     <ng-template #content>
       <div class="text-center w-full">No se encontraron resultados.</div>
     </ng-template>
   </p-message>
   } @for (faq of filteredFaqs; track faq) {
-  <p-card styleClass="mb-3">
+  <p-card class="mb-3">
     <ng-template #header>
       <div class="flex align-items-center px-3 pt-3 gap-2">
         <app-icon [icon]="'mdi:help-circle'" class="text-primary text-xl" />

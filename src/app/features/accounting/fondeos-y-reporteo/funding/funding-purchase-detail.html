@@ -1,7 +1,7 @@
 <!-- Spinner de carga que se muestra mientras se obtienen los datos -->
 @if (!data() && submitting()) {
 <div class="text-center my-5">
-  <p-progressspinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+  <p-progressspinner class="w-3rem h-3rem" strokeWidth="4" />
   <p class="mt-2">Cargando detalle de la orden...</p>
 </div>
 }
@@ -110,7 +110,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         >
         <p>
           <p-tag
-            styleClass="text-base"
+            class="text-base"
             [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' :
                         data().statusOrdenCompra === 'Pendiente' ? 'warning' :
                         data().statusOrdenCompra === 'Rechazada' ? 'danger' :
@@ -123,7 +123,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         <label class="block text-color-secondary font-medium">Recibido</label>
         <p>
           <p-tag
-            styleClass="text-base"
+            class="text-base"
             [severity]="data().seRecibio ? 'success' : 'secondary'"
             [value]="data().seRecibio ? 'Só' : 'No'"
           />
@@ -133,7 +133,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         <label class="block text-color-secondary font-medium">Pagado</label>
         <p>
           <p-tag
-            styleClass="text-base"
+            class="text-base"
             [severity]="data().sePago ? 'success' : 'secondary'"
             [value]="data().sePago ? 'Só' : 'No'"
           />
@@ -145,7 +145,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         >
         <p>
           <p-tag
-            styleClass="text-base"
+            class="text-base"
             [severity]="data().tramitarPago ? 'info' : 'secondary'"
             [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'"
           />
@@ -224,10 +224,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 6: AFECTACIóN PRESUPUESTAL -->
     <h5 class="text-xl font-medium m-0 mt-4">Afectación Presupuestal</h5>
     <div class="py-3">
-      <p-table
-        [value]="data().detallePresupuesto"
-        showGridlines="true"
-      >
+      <p-table [value]="data().detallePresupuesto" showGridlines="true">
         <ng-template #header>
           <tr>
             <th>Año Fiscal</th>

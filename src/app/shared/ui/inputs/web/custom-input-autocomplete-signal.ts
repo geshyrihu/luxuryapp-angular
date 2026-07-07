@@ -1,24 +1,31 @@
-import { CommonModule } from "@angular/common";
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import {
-    FormsModule,
-    NG_VALUE_ACCESSOR,
-    ReactiveFormsModule,
+  Component,
+  contentChild,
+  forwardRef,
+  input,
+  output,
+  TemplateRef,
+  ChangeDetectionStrategy,
+} from "@angular/core";
+import {
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-autocomplete-signal",
   imports: [
     CommonModule,
+    NgTemplateOutlet,
     BaseInputSignal,
     ReactiveFormsModule,
     AutoCompleteModule,
     FormsModule,
   ],
-
   template: `
     <base-input-signal
       [control]="control()"
@@ -31,34 +38,58 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [required]="requiredInput()"
       [description]="description()"
       [hidden]="hidden()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
     >
       <p-autocomplete
-        [suggestions]="filteredData"
-        (completeMethod)="search($event)"
+        [suggestions]="resolvedSuggestions()"
+        (completeMethod)="onComplete($event)"
         (onSelect)="onSelectItem($event)"
         (onClear)="onClear()"
         [ngModel]="(control() || internalControl).value"
         (ngModelChange)="onModelChange($event)"
-        [optionLabel]="'label'"
-        [dataKey]="'value'"
+        [optionLabel]="optionLabel()"
+        [dataKey]="dataKey()"
         [placeholder]="placeholder()"
-        [forceSelection]="true"
-        [showClear]="true"
+        [forceSelection]="forceSelection()"
+        [showClear]="showClear()"
+        [dropdown]="dropdown()"
         [disabled]="disabled()"
         [readonly]="readonly()"
-        [emptyMessage]="'No se encontraron resultados'"
+        [emptyMessage]="emptyMessage()"
+        [scrollHeight]="scrollHeight()"
+        [panelStyleClass]="panelStyleClass()"
+        [panelStyle]="panelStyle()"
+        [inputStyleClass]="inputStyleClass()"
         fluid
         [inputId]="id()"
-        [class.p-inputtext-sm]="size() === 'small'"
-        [class.p-inputtext-lg]="size() === 'large'"
         appendTo="body"
       >
-        <ng-template let-item #item>
-          {{ item.label }}
-        </ng-template>
-        <ng-template let-item #selectedItem>
-          {{ item?.label || "" }}
-        </ng-template>
+        @if (itemTemplate(); as tpl) {
+          <ng-template let-item #item>
+            <ng-container
+              [ngTemplateOutlet]="tpl"
+              [ngTemplateOutletContext]="{ $implicit: item }"
+            />
+          </ng-template>
+        } @else {
+          <ng-template let-item #item>
+            {{ resolveItemLabel(item) }}
+          </ng-template>
+        }
+
+        @if (selectedItemTemplate(); as tpl) {
+          <ng-template let-item #selectedItem>
+            <ng-container
+              [ngTemplateOutlet]="tpl"
+              [ngTemplateOutletContext]="{ $implicit: item }"
+            />
+          </ng-template>
+        } @else {
+          <ng-template let-item #selectedItem>
+            {{ resolveItemLabel(item) }}
+          </ng-template>
+        }
       </p-autocomplete>
     </base-input-signal>
   `,
@@ -72,44 +103,70 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputAutoComplete extends BaseInputSignal {
-  data = input<ISelectItem[]>([]);
+  itemTemplate = contentChild<TemplateRef<any>>("item");
+  selectedItemTemplate = contentChild<TemplateRef<any>>("selectedItem");
+
+  data = input<any[]>([]);
+  suggestionsInput = input<any[]>([], { alias: "suggestions" });
+  optionLabel = input<string>("label");
+  dataKey = input<string>("value");
   size = input<"small" | "large" | undefined>(undefined);
+  showClear = input<boolean>(true);
+  forceSelection = input<boolean>(true);
+  dropdown = input<boolean>(false);
+  emptyMessage = input<string>("No se encontraron resultados");
+  scrollHeight = input<string>("14rem");
+  panelStyleClass = input<string>("");
+  panelStyle = input<Record<string, string> | null>(null);
+  inputStyleClass = input<string>("");
+
   propagar = output<any>();
+  completeMethod = output<any>();
+  cleared = output<void>();
 
-  filteredData: ISelectItem[] = [];
+  onComplete(event: any): void {
+    this.completeMethod.emit(event);
 
-  search(event: any): void {
-    const query = event.query.toLowerCase();
-    this.filteredData = this.data().filter((item) =>
-      item.label.toLowerCase().includes(query),
-    );
+    const query = (event?.query ?? "").toLowerCase();
+    const suggestions = this.data();
+    const optionLabel = this.optionLabel();
+    const filtered = !query
+      ? suggestions
+      : suggestions.filter((item) =>
+          `${item?.[optionLabel] ?? ""}`.toLowerCase().includes(query),
+        );
+
+    this.writeValue((this.control() || this.internalControl).value);
+    this._suggestionsCache = filtered;
+  }
+
+  private _suggestionsCache: any[] = [];
+
+  resolveItemLabel(item: any): string {
+    if (!item) return "";
+    if (typeof item === "string") return item;
+    return item?.[this.optionLabel()] ?? "";
   }
 
   public onModelChange(value: any): void {
-    // Actualizar el FormControl con el objeto completo
     (this.control() || this.internalControl).setValue(value);
   }
 
   public onSelectItem(event: any): void {
-    const selectedItem = event.value as ISelectItem;
-    // Actualizar el FormControl con el objeto completo
+    const selectedItem = event.value;
     (this.control() || this.internalControl).setValue(selectedItem);
-    // Emitir el OBJETO COMPLETO para actualizar el formulario padre
     this.propagar.emit(selectedItem);
   }
 
   public onClear(): void {
     (this.control() || this.internalControl).setValue(null);
     this.propagar.emit(null);
+    this.cleared.emit();
+  }
+
+  resolvedSuggestions() {
+    return this.suggestionsInput().length
+      ? this.suggestionsInput()
+      : this._suggestionsCache;
   }
 }
-
-
-
-
-
-
-
-
-
-

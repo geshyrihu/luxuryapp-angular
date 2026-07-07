@@ -1,8 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import type { MenuItem } from "primeng/api";
 import { DockModule } from "primeng/dock";
 import { TooltipModule } from "primeng/tooltip";
+import { DockBase } from "@ui/base/dock.base";
 
 /**
  * AppDock — Wrapper sobre p-dock para barra de herramientas tipo macOS.
@@ -26,7 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
             class="app-dock-item"
             [pTooltip]="item.label"
             [tooltipPosition]="tooltipPosition()"
-            (click)="item.command ? item.command({}) : itemClick.emit(item)"
+            (click)="runCommand(item)"
           >
             <img
               *ngIf="item.icon && item.icon.startsWith('assets')"
@@ -83,12 +84,8 @@ import { TooltipModule } from "primeng/tooltip";
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
-export class AppDock {
-  items = input<MenuItem[]>([]);
-  position = input<"bottom" | "top" | "left" | "right">("bottom");
+export class AppDock extends DockBase {
   dockId = input<string>("app-dock");
-
-  itemClick = output<MenuItem>();
 
   tooltipPosition(): string {
     const pos = this.position();

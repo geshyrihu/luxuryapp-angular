@@ -2,13 +2,16 @@
   <!-- Filtros -->
   <div class="flex mb-4 align-items-center">
     <div class="mb-0">
-      <input
-        pInputText
+      <custom-input-text-signal
         [ngModel]="year()"
         (ngModelChange)="year.set($event)"
+        [ngModelOptions]="{ standalone: true }"
         type="number"
-        pSize="small"
-        class="w-10rem"
+        size="small"
+        [horizontal]="false"
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="w-10rem"
       />
     </div>
     <div class="mb-0">
@@ -50,7 +53,7 @@
   <div class="rf-card rf-wrap">
     <p-table
       [value]="rows()"
-      styleClass="rf-prime-table p-datatable-sm"
+      class="rf-prime-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1200px' }"
     >
       <ng-template #header>

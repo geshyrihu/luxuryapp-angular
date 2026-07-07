@@ -12,7 +12,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table p-1 hidden md:block"
+  class="custom-table p-1 hidden md:block"
 >
   <!-- CAPTION: Filtros y botún de agregar -->
   <ng-template #caption>
@@ -152,16 +152,12 @@
               }
               <div class="flex flex-wrap gap-1 mt-1">
                 @if (item.sales) {
-                <p-tag
-                  value="Ventas"
-                  severity="secondary"
-                  styleClass="text-xs"
-                />
+                <p-tag value="Ventas" severity="secondary" class="text-xs" />
                 } @if (item.repair) {
                 <p-tag
                   value="Reparación"
                   severity="secondary"
-                  styleClass="text-xs"
+                  class="text-xs"
                 />
                 }
               </div>
@@ -178,7 +174,7 @@
                 <p-tag
                   value="{{ categoria.nombreCategoria | uppercase }}"
                   severity="info"
-                  styleClass="text-xs"
+                  class="text-xs"
                 ></p-tag>
                 }
               </div>
@@ -203,13 +199,15 @@
                 <iw-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:check"
-                  pTooltip="Activar" tooltipPosition="top"
+                  pTooltip="Activar"
+                  tooltipPosition="top"
                 />
                 } @if (item.activo && validateRole([roles.SuperUsuario])) {
                 <iw-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:ban"
-                  pTooltip="Inactivar" tooltipPosition="top"
+                  pTooltip="Inactivar"
+                  tooltipPosition="top"
                 />
 
                 <iw-button-item
@@ -221,7 +219,8 @@
                 <iw-button-item
                   (clicked)="onAutorizarProvider(item.providerId)"
                   [iconClass]="item.autorizado ? 'mdi:shield' : 'mdi:ban'"
-                  [pTooltip]="item.autorizado ? 'Desautorizar' : 'Autorizar'" tooltipPosition="top"
+                  [pTooltip]="item.autorizado ? 'Desautorizar' : 'Autorizar'"
+                  tooltipPosition="top"
                 />
                 }
               </div>

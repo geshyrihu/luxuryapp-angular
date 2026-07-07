@@ -11,7 +11,7 @@
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table card hidden md:block"
+    class="custom-table card hidden md:block"
   >
     <ng-template #caption>
       <div class="grid">
@@ -100,20 +100,23 @@
             <iw-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
               iconClass="mdi:account-plus"
-              pTooltip="Solicitar vacante" tooltipPosition="top"
+              pTooltip="Solicitar vacante"
+              tooltipPosition="top"
               [pTooltip]="'Solicitar vacante'"
             />
             }
             <iw-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconClass="mdi:book"
-              pTooltip="Descripción" tooltipPosition="top"
+              pTooltip="Descripción"
+              tooltipPosition="top"
               [pTooltip]="'Descripción de puesto'"
             />
             <iw-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
               iconClass="mdi:clock-outline"
-              pTooltip="Horarios" tooltipPosition="top"
+              pTooltip="Horarios"
+              tooltipPosition="top"
               [pTooltip]="'Horarios de trabajo'"
             />
             <iw-button-edit

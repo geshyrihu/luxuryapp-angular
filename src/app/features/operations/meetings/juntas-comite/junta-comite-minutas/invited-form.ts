@@ -6,7 +6,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -19,7 +18,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     WebButtonLabelItem,
     WebButtonLabelDelete,
     CustomInputTextSignal,

@@ -63,7 +63,7 @@
           <p-message
             severity="info"
             text="Nota: Domingos y días festivos no se descuentan de tu balance."
-            styleClass="mt-3 w-full"
+            class="mt-3 w-full"
           ></p-message>
         </p-panel>
       </div>
@@ -158,19 +158,19 @@
       <p-message
         severity="error"
         text="La fecha de fin no puede ser anterior a la fecha de inicio."
-        styleClass="mt-2 w-full"
+        class="mt-2 w-full"
       />
       } @if (form.hasError('beforeAdmission')) {
       <p-message
         severity="error"
         text="No puedes solicitar vacaciones en fechas previas a tu ingreso a la empresa."
-        styleClass="mt-2 w-full"
+        class="mt-2 w-full"
       />
       } @if (form.hasError('overlapDates')) {
       <p-message
         severity="error"
         text="El rango de fechas se empalma con otra solicitud en proceso o vacaciones ya tomadas."
-        styleClass="mt-2 w-full"
+        class="mt-2 w-full"
       />
       } @if (form.hasError('advanceLimitExceeded')) {
       <p-message
@@ -180,7 +180,7 @@
             ' días y solo te quedan ' +
             form.getError('advanceLimitExceeded').availableAdvance +
             ' de adelanto disponibles.'"
-        styleClass="mt-2 w-full"
+        class="mt-2 w-full"
       />
       } @if (form.hasError('notEnoughDays')) {
       <p-message
@@ -190,17 +190,13 @@
             ' y tienes ' +
             form.getError('notEnoughDays').availableDays +
             ' disponibles.'"
-        styleClass="mt-2 w-full"
+        class="mt-2 w-full"
       />
       }
 
       <!-- Server Error -->
       @if (serverError()) {
-      <p-message
-        severity="error"
-        [text]="serverError()"
-        styleClass="mt-2 w-full"
-      />
+      <p-message severity="error" [text]="serverError()" class="mt-2 w-full" />
       }
 
       <!-- Botones -->

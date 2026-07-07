@@ -1,9 +1,10 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, input, output, TemplateRef, ChangeDetectionStrategy } from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
+import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import { SelectModule } from "primeng/select";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -14,7 +15,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-select",
   standalone: true,
-  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
+  imports: [CommonModule, NgTemplateOutlet, BaseInputSignal, ReactiveFormsModule, SelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -49,7 +50,25 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [filterBy]="filterBy()"
         [invalid]="isInvalid()"
         [size]="size()"
-      />
+        [optionDisabled]="optionDisabled()"
+      >
+        @if (itemTemplate(); as tpl) {
+          <ng-template let-item #item>
+            <ng-container
+              [ngTemplateOutlet]="tpl"
+              [ngTemplateOutletContext]="{ $implicit: item }"
+            />
+          </ng-template>
+        }
+        @if (selectedItemTemplate(); as tpl) {
+          <ng-template let-item #selectedItem>
+            <ng-container
+              [ngTemplateOutlet]="tpl"
+              [ngTemplateOutletContext]="{ $implicit: item }"
+            />
+          </ng-template>
+        }
+      </p-select>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -72,8 +91,11 @@ export class WebInputSelect
   filterBy = input<string>("label");
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
+  optionDisabled = input<string | undefined>(undefined);
   customClass = input<string>("");
   size = input<"small" | "large" | undefined>(undefined);
+  itemTemplate = input<TemplateRef<any> | undefined>(undefined);
+  selectedItemTemplate = input<TemplateRef<any> | undefined>(undefined);
 
   constructor() {
     super();

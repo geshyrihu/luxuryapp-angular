@@ -10,7 +10,6 @@ import { CardModule } from "primeng/card";
 import { DialogModule } from "primeng/dialog";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
-import { TextareaModule } from "primeng/textarea";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -36,18 +35,15 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     NgbTooltipModule,
     DialogModule,
     MessageModule,
-    TextareaModule,
   ],
 })
 export class JobDescriptionForm implements OnInit {
-  // --- INYECCIóN DE DEPENDENCIAS ---
   private fb = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
   readonly apiS = inject(ApiResponseService);
   private aiS = inject(AiService);
 
-  // --- SIGNALS ---
   submitting = signal(false);
   generatingProposal = signal(false);
   analyzingDescription = signal(false);
@@ -56,12 +52,10 @@ export class JobDescriptionForm implements OnInit {
   showInstructionsDialog = signal(false);
   customInstructions = "";
 
-  // --- PROPIEDADES ---
   id = signal<string | null>(null);
   workPositionId = signal<string | null>(null);
   applicationRoleName = signal<string>("");
 
-  // --- FORMULARIO REACTIVO ---
   form = this.fb.nonNullable.group({
     id: [{ value: "", disabled: true }],
     summary: ["", [Validators.required, Validators.minLength(5)]],
@@ -87,7 +81,6 @@ export class JobDescriptionForm implements OnInit {
   }
 
   async onLoadData() {
-    // Sincronizado con kebab-case
     const result = await this.apiS.onGetItem<any>(
       `job-descriptions/${this.id()}`,
     );

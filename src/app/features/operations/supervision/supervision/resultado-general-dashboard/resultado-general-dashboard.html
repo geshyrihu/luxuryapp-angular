@@ -5,7 +5,7 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="grid mb-3">
@@ -49,12 +49,36 @@
       />
     </div>
     <div class="flex flex-wrap gap-2 no-print mb-3">
-      <il-button variant="outlined" label="MINUTAS GENERAL" (clicked)="onLoadDataMinutas()" />
-      <il-button variant="outlined" label="MINUTAS CONTABLE" (clicked)="onLoadDataMinutaFiltro(0)" />
-      <il-button variant="outlined" label="MINUTAS OPERACIONES" (clicked)="onLoadDataMinutaFiltro(1)" />
-      <il-button variant="outlined" label="MINUTAS LEGAL" (clicked)="onLoadDataMinutaFiltro(2)" />
-      <il-button variant="outlined" label="PREVENTIVOS" (clicked)="onLoadDataPreventivos()" />
-      <il-button variant="outlined" label="TICKETS" (clicked)="onLoadDataTickets()" />
+      <il-button
+        variant="outlined"
+        label="MINUTAS GENERAL"
+        (clicked)="onLoadDataMinutas()"
+      />
+      <il-button
+        variant="outlined"
+        label="MINUTAS CONTABLE"
+        (clicked)="onLoadDataMinutaFiltro(0)"
+      />
+      <il-button
+        variant="outlined"
+        label="MINUTAS OPERACIONES"
+        (clicked)="onLoadDataMinutaFiltro(1)"
+      />
+      <il-button
+        variant="outlined"
+        label="MINUTAS LEGAL"
+        (clicked)="onLoadDataMinutaFiltro(2)"
+      />
+      <il-button
+        variant="outlined"
+        label="PREVENTIVOS"
+        (clicked)="onLoadDataPreventivos()"
+      />
+      <il-button
+        variant="outlined"
+        label="TICKETS"
+        (clicked)="onLoadDataTickets()"
+      />
     </div>
   </ng-template>
   <ng-template #header>
@@ -116,7 +140,7 @@
       @if (mostrar) {
       <td class="text-center">
         <p-tag
-          styleClass="w-full text-lg p-1 cursor-pointer"
+          class="w-full text-lg p-1 cursor-pointer"
           severity="info"
           [value]="item.solicitudesTotal"
         />
@@ -124,7 +148,7 @@
       } @if (mostrar) {
       <td class="text-center">
         <p-tag
-          styleClass="w-full text-lg p-1 cursor-pointer"
+          class="w-full text-lg p-1 cursor-pointer"
           severity="success"
           [value]="item.solicitudesAtendidas"
         />
@@ -132,7 +156,7 @@
       } @if (mostrar) {
       <td class="text-center">
         <p-tag
-          styleClass="w-full text-lg p-1 cursor-pointer"
+          class="w-full text-lg p-1 cursor-pointer"
           severity="danger"
           [value]="item.solicitudesPendientes"
         />

@@ -210,14 +210,17 @@
     <div class="col-12 lg:col-6">
       <div class="mb-4">
         <label class="m-1 block mb-2">Categorías</label>
-        <p-multiselect
+        <custom-input-multiselect-signal
+          [control]="form.controls.categorias"
           [options]="cb_category()"
-          formControlName="categorias"
           optionLabel="label"
+          [optionValue]="undefined"
           placeholder="Seleccionar categoróas"
-          styleClass="w-full"
-          display="chip"
+          [selectionDisplay]="'chip'"
           [maxSelectedLabels]="cb_category().length"
+          [customClass]="'w-full'"
+          [horizontal]="false"
+          [noMargin]="true"
         />
       </div>
     </div>

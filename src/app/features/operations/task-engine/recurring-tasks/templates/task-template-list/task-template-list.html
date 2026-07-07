@@ -13,7 +13,7 @@
       size="small"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
-      styleClass="hidden md:block custom-table"
+      class="hidden md:block custom-table"
     >
       <ng-template #caption>
         <div
@@ -50,7 +50,8 @@
             <div class="flex">
               <iw-button-item
                 [iconClass]="'mdi:file-document-outline'"
-                pTooltip="Items" tooltipPosition="top"
+                pTooltip="Items"
+                tooltipPosition="top"
                 (clicked)="onManageItems(template.id)"
               />
               <iw-button-edit (clicked)="showForm(template)" />

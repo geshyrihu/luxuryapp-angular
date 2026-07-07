@@ -9,15 +9,20 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <iw-button-download (clicked)="onDownloadPdf()" pTooltip="PDF" tooltipPosition="top" />
+        <iw-button-download
+          (clicked)="onDownloadPdf()"
+          pTooltip="PDF"
+          tooltipPosition="top"
+        />
         <iw-button-download
           (clicked)="onDownloadAllQr()"
-          pTooltip="QR" tooltipPosition="top"
+          pTooltip="QR"
+          tooltipPosition="top"
           tooltip="Descargar todos los QR"
         />
         <iw-button (clicked)="onOpenScanner()" [iconClass]="'mdi:qrcode'" />
@@ -27,7 +32,8 @@
         />
         <iw-button-item
           (clicked)="onViewPeriodos()"
-          pTooltip="Periodos" tooltipPosition="top"
+          pTooltip="Periodos"
+          tooltipPosition="top"
           tooltip="Configurar periodos de inspección"
         />
       </div>

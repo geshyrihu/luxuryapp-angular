@@ -125,7 +125,7 @@
       @if (personalData(); as pd) {
       <div class="flex flex-column gap-4 py-3">
         <!-- Identificación -->
-        <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
+        <p-card class="shadow-1 border-round-xl overflow-hidden">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -228,7 +228,7 @@
         <!-- Contacto + Salario -->
         <div class="grid row-gap-4">
           <div class="col-12 lg:col-8">
-            <p-card styleClass="shadow-1 border-round-xl h-full">
+            <p-card class="shadow-1 border-round-xl h-full">
               <ng-template #header>
                 <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
                   <div
@@ -292,7 +292,7 @@
         </div>
 
         <!-- Dirección -->
-        <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
+        <p-card class="shadow-1 border-round-xl overflow-hidden">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -374,7 +374,7 @@
       @if (emergencyContacts().length > 0) {
       <p-table
         [value]="emergencyContacts()"
-        styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -421,7 +421,7 @@
       @if (clinicalData().length > 0) {
       <p-table
         [value]="clinicalData()"
-        styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -458,7 +458,7 @@
       @if (bankData().length > 0) {
       <p-table
         [value]="bankData()"
-        styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -501,7 +501,7 @@
       @if (contracts().length > 0) {
       <p-table
         [value]="contracts()"
-        styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -562,7 +562,7 @@
     <p-tabpanel [value]="5">
       @if (workPosition(); as wp) {
       <div class="flex flex-column gap-4 py-3">
-        <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
+        <p-card class="shadow-1 border-round-xl overflow-hidden">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -634,7 +634,7 @@
         </p-card>
 
         <!-- Horarios -->
-        <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
+        <p-card class="shadow-1 border-round-xl overflow-hidden">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -747,7 +747,7 @@
           </div>
           <p-table
             [value]="wp.salaryModifications"
-            styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
+            class="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
           >
             <ng-template #header>
               <tr>
@@ -814,7 +814,7 @@
         <!-- Balance -->
         @if (vl.balance) {
         <p-card
-          styleClass="shadow-1 border-round-xl overflow-hidden bg-primary-reverse"
+          class="shadow-1 border-round-xl overflow-hidden bg-primary-reverse"
         >
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
@@ -886,7 +886,7 @@
           @if (vl.vacations.length > 0) {
           <p-table
             [value]="vl.vacations"
-            styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
+            class="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
           >
             <ng-template #header>
               <tr>
@@ -948,7 +948,7 @@
           @if (vl.leaves.length > 0) {
           <p-table
             [value]="vl.leaves"
-            styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
+            class="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
           >
             <ng-template #header>
               <tr>
@@ -998,7 +998,7 @@
       @if (incidents().length > 0) {
       <p-table
         [value]="incidents()"
-        styleClass="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -1054,7 +1054,8 @@
                 @if (item.isActGenerated) {
                 <iw-button-item
                   iconClass="mdi:file-pdf-box"
-                  pTooltip="Ver Acta" tooltipPosition="top"
+                  pTooltip="Ver Acta"
+                  tooltipPosition="top"
                   [size]="'small'"
                   severity="danger"
                   variant="outlined"

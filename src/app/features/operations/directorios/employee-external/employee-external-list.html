@@ -4,7 +4,7 @@
   #dt
   rowGroupMode="subheader"
   sortMode="single"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="grid">
@@ -81,7 +81,8 @@
           />
           <iw-button-item
             iconClass="mdi:account"
-            pTooltip="Usuario App" tooltipPosition="top"
+            pTooltip="Usuario App"
+            tooltipPosition="top"
             (clicked)="onModalUserApp(item.applicationUserId)"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />

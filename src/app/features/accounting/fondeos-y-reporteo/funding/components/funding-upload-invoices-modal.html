@@ -39,11 +39,7 @@
     Revisa la información y selecciona las órdenes de compra que deseas crear.
   </p>
 
-  <p-table
-    [value]="analysisResult()"
-    styleClass="p-datatable-sm"
-    dataKey="tempId"
-  >
+  <p-table [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
     <ng-template #header>
       <tr>
         <th class="table-col-3rem">

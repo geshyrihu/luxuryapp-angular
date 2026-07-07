@@ -7,18 +7,22 @@
 
 // ── VARIABLES CSS — Reporte Financiero ────────────────────
 :root {
-  --rf-ink:        #0f172a;
-  --rf-muted:      #64748b;
-  --rf-line:       #d7dfeb;
-  --rf-soft:       #f5f7fb;
-  --rf-head:       #203453;
-  --rf-accent:     #1e3a5f;
-  --rf-total:      color-mix(in srgb, var(--ds-document-neutral, #6b7280) 20%, white); /* tinte claro del neutral */
-  --rf-total-ink:  var(--rf-head);                      /* texto sobre fondo total */
-  --rf-result:     #111827;
+  --rf-ink: #0f172a;
+  --rf-muted: #64748b;
+  --rf-line: #d7dfeb;
+  --rf-soft: #f5f7fb;
+  --rf-head: #203453;
+  --rf-accent: #1e3a5f;
+  --rf-total: color-mix(
+    in srgb,
+    var(--ds-document-neutral, #6b7280) 20%,
+    white
+  ); /* tinte claro del neutral */
+  --rf-total-ink: var(--rf-head); /* texto sobre fondo total */
+  --rf-result: #111827;
   --rf-result-ink: #ffffff;
-  --rf-fondo-bg:   #f0f4f8;
-  --rf-header-bg:  #c8d8ea;
+  --rf-fondo-bg: #f0f4f8;
+  --rf-header-bg: #c8d8ea;
 }
 
 // ── LAYOUT — contenedores presupuestales ──────────────────
@@ -44,7 +48,7 @@
 
 // ── FINANCIAL DATA TABLE ───────────────────────────────────
 // Modificador PrimeNG para tablas de datos contables densos.
-// Uso: styleClass="custom-table financial-data-table p-datatable-sm"
+// Uso: class="custom-table  financial-data-table p-datatable-sm"
 .financial-data-table {
   &.p-datatable,
   .p-datatable {
@@ -141,7 +145,9 @@
 // ── CELDAS NUMÉRICAS ──────────────────────────────────────
 .numeric-column {
   font-variant-numeric: tabular-nums;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
   font-size: 0.8rem;
 }
 
@@ -204,7 +210,9 @@
   white-space: nowrap;
   overflow: hidden;
 
-  span { color: inherit !important; }
+  span {
+    color: inherit !important;
+  }
 }
 
 .fila-nivel-2-agrupadora > td {
@@ -216,7 +224,9 @@
   white-space: nowrap;
   overflow: hidden;
 
-  span { color: inherit !important; }
+  span {
+    color: inherit !important;
+  }
 }
 
 .fila-nivel-2-hoja > td {
@@ -258,9 +268,15 @@
   display: inline-block;
   flex-shrink: 0;
 }
-.legend-dot-cargo       { background: #1d4ed8; }
-.legend-dot-abono       { background: #dc2626; }
-.legend-dot-presupuesto { background: #16a34a; }
+.legend-dot-cargo {
+  background: #1d4ed8;
+}
+.legend-dot-abono {
+  background: #dc2626;
+}
+.legend-dot-presupuesto {
+  background: #16a34a;
+}
 
 // ── FILAS JERÁRQUICAS — espejo-aspel-full ────────────────
 // Devueltas por rowClass() en espejo-aspel-full.ts.
@@ -595,7 +611,9 @@
 }
 
 .rf-td-cuenta {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
   font-size: 0.75rem;
   color: #64748b;
 }
@@ -738,14 +756,24 @@
 // ── ALERTAS FINANCIERAS (Forecast) ────────────────────────
 // Clases de utilidad para resaltar filas completas en base a cálculos
 .fila-deficit > td {
-  background-color: rgba(239, 68, 68, 0.08) !important; /* Tinte muy sutil rojo */
+  background-color: rgba(
+    239,
+    68,
+    68,
+    0.08
+  ) !important; /* Tinte muy sutil rojo */
 }
 .fila-deficit > td:first-child {
   box-shadow: inset 4px 0 0 0 var(--ds-danger, #ef4444) !important; /* Borde izquierdo indicador */
 }
 
 .fila-alerta-incremento > td {
-  background-color: rgba(245, 158, 11, 0.08) !important; /* Tinte muy sutil naranja/amarillo */
+  background-color: rgba(
+    245,
+    158,
+    11,
+    0.08
+  ) !important; /* Tinte muy sutil naranja/amarillo */
 }
 .fila-alerta-incremento > td:first-child {
   box-shadow: inset 4px 0 0 0 var(--ds-warning, #f59e0b) !important; /* Borde izquierdo indicador */

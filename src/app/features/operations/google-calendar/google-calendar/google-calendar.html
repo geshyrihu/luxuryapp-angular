@@ -35,7 +35,7 @@
       [value]="listData()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="custom-table card hidden md:block"
+      class="custom-table card hidden md:block"
     >
       <ng-template #caption>
         <primeng-custom-caption
@@ -89,7 +89,8 @@
           <td>
             @if (canOpenAssemblyChecklist(item)) {
             <iw-button
-              pTooltip="Checklist" tooltipPosition="top"
+              pTooltip="Checklist"
+              tooltipPosition="top"
               iconClass="mdi:format-list-checks"
               [noMargin]="true"
               customClass="p-button-sm p-button-outlined"

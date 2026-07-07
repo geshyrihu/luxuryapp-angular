@@ -1,7 +1,7 @@
 <p-table
   [value]="dataSignal()"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   rowGroupMode="subheader"
   groupRowsBy="typeOfContract"
   sortField="typeOfContract"
@@ -112,7 +112,8 @@
           iconClass="mdi:file-pdf-box"
           [url]="item.pathDocument"
           fileName="Poliza | Contrato"
-          pTooltip="Ver documento" tooltipPosition="top"
+          pTooltip="Ver documento"
+          tooltipPosition="top"
           class="text-xl"
         />
         }
@@ -126,7 +127,8 @@
           <iw-button-delete (confirmed)="onDelete(item.id)" />
           @if (item.document) {
           <iw-button-delete
-            pTooltip="Eliminar documento" tooltipPosition="top"
+            pTooltip="Eliminar documento"
+            tooltipPosition="top"
             ngbTooltip="Eliminar documento"
             (confirmed)="onDeleteDocument(item.id)"
           />

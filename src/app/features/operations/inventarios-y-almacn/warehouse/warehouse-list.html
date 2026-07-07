@@ -8,7 +8,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <!-- CAMBIO: El tútulo y el ID inicial se ajustan para Almacón -->
@@ -46,12 +46,14 @@
         <div class="flex">
           <iw-button-item
             (clicked)="onViewProducts(item.id)"
-            pTooltip="Ver Productos" tooltipPosition="top"
+            pTooltip="Ver Productos"
+            tooltipPosition="top"
             iconClass="mdi:package"
           />
           <iw-button-item
             (clicked)="onDownloadInventory(item.id, item.nombre)"
-            pTooltip="Descargar Inventario" tooltipPosition="top"
+            pTooltip="Descargar Inventario"
+            tooltipPosition="top"
             iconClass="mdi:file-pdf-box"
           />
           <iw-button-edit

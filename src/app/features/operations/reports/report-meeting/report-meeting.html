@@ -46,7 +46,7 @@
         <!-- Comité de Vigilancia -->
         @if (data.comite && data.comite.length > 0) {
         <div>
-          <p-card styleClass="h-full">
+          <p-card class="h-full">
             <ng-template #title
               ><span class="text-lg">Comité de Vigilancia</span></ng-template
             >
@@ -55,7 +55,7 @@
                 [value]="data.comite"
                 [scrollable]="true"
                 [scrollHeight]="scrollHeight"
-                styleClass="p-datatable-sm"
+                class="p-datatable-sm"
               >
                 <ng-template #header>
                   <tr>
@@ -78,7 +78,7 @@
         <!-- Administración -->
         @if (data.administracion && data.administracion.length > 0) {
         <div>
-          <p-card styleClass="h-full">
+          <p-card class="h-full">
             <ng-template #title
               ><span class="text-lg">Administración</span></ng-template
             >
@@ -87,7 +87,7 @@
                 [value]="data.administracion"
                 [scrollable]="true"
                 [scrollHeight]="scrollHeight"
-                styleClass="p-datatable-sm"
+                class="p-datatable-sm"
               >
                 <ng-template #header>
                   <tr>
@@ -119,7 +119,7 @@
                 [value]="data.externos"
                 [scrollable]="true"
                 [scrollHeight]="scrollHeight"
-                styleClass="p-datatable-sm"
+                class="p-datatable-sm"
               >
                 <ng-template #body let-item>
                   <tr>

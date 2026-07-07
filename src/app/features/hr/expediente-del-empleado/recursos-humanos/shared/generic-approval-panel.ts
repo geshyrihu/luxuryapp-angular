@@ -1,5 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  output,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -39,7 +46,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="card custom-table"
+      class="card custom-table"
       size="small"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
@@ -81,14 +88,12 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
                 />
               }
               <il-button
-
                 iconClass="mdi:checkbox-marked"
                 label="Aprobar"
                 size="small"
                 (clicked)="onApprove(request)"
               />
               <il-button
-
                 iconClass="mdi:close"
                 label="Rechazar"
                 size="small"

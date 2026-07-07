@@ -19,7 +19,6 @@ import { InputTextModule } from "primeng/inputtext";
 import { ListboxModule } from "primeng/listbox";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
-import { TextareaModule } from "primeng/textarea";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -33,7 +32,6 @@ import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledge
   imports: [
     ReactiveFormsModule,
     InputTextModule,
-    TextareaModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputFile,

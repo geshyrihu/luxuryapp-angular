@@ -71,7 +71,7 @@
         iconClass="mdi:content-save"
         [loading]="guardando()"
         (clicked)="guardar()"
-        styleClass="shadow-4"
+        class="shadow-4"
       />
     </div>
   </div>
@@ -281,7 +281,7 @@
                     <p-tag
                       [value]="row.rowType === 'account' ? 'CTA' : 'FX'"
                       [severity]="row.rowType === 'account' ? 'info' : 'help'"
-                      styleClass="text-xs font-bold"
+                      class="text-xs font-bold"
                     />
                   </div>
 
@@ -330,7 +330,7 @@
                       <p-chip
                         [label]="code"
                         icon="mdi:check"
-                        styleClass="text-xs py-0 px-2 bg-primary-100 text-primary-900"
+                        class="text-xs py-0 px-2 bg-primary-100 text-primary-900"
                         [removable]="true"
                         (onRemove)="eliminarCuenta(sec.sectionId, row.rowId, code)"
                       />
@@ -417,7 +417,7 @@
                   <p-tag
                     [value]="row.rowId"
                     severity="secondary"
-                    styleClass="text-xs opacity-60 font-mono flex-shrink-0"
+                    class="text-xs opacity-60 font-mono flex-shrink-0"
                   />
 
                   <iw-button
@@ -690,7 +690,7 @@
   [style]="{ width: '400px' }"
   [draggable]="false"
   [resizable]="false"
-  styleClass="premium-dialog"
+  class="premium-dialog"
 >
   <div class="flex flex-column gap-3 p-2">
     <div

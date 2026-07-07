@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { SwalService } from "src/app/core/services/swal.service";
@@ -20,7 +20,7 @@ import { SwalService } from "src/app/core/services/swal.service";
     ReactiveFormsModule,
     WebButtonLabel,
     WebButtonIcon,
-    TextareaModule,
+    CustomInputTextAreaSignal,
     TooltipModule,
     AppIcon,
   ],
@@ -38,7 +38,6 @@ export class ImageGenerationDialog {
   isListening = signal(false);
   generating = signal(false);
 
-  // Web Speech API
   recognition: any;
 
   styles = [
@@ -68,17 +67,17 @@ export class ImageGenerationDialog {
     {
       label: "Luminoso",
       value: "bright, sunny, natural lighting",
-      emoji: "☀️",
+      emoji: "â˜€ï¸",
     },
     {
       label: "Elegante",
       value: "elegant, luxury, golden hour, warm tones",
-      emoji: "✨",
+      emoji: "âœ¨",
     },
     {
       label: "Profesional",
       value: "corporate, clean, white background, office",
-      emoji: "🏢",
+      emoji: "ðŸ¢",
     },
     { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" },
   ];
@@ -196,7 +195,6 @@ export class ImageGenerationDialog {
   async generate() {
     this.generating.set(true);
 
-    // Construct Prompt
     const prompt = `Create an image for a luxury building announcement.
     Style: ${this.selectedStyle()}.
     Mood: ${this.selectedMood()}.
@@ -206,7 +204,6 @@ export class ImageGenerationDialog {
 
     try {
       const blob = await this.aiService.generateImage(prompt);
-      // Close with result
       this.ref.close(blob);
     } catch (error) {
       console.error(error);

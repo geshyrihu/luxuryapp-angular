@@ -3,7 +3,7 @@
   <div class="p-3">
     <p-table
       [value]="dataSignal()"
-      styleClass="custom-table"
+      class="custom-table"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
@@ -60,7 +60,7 @@
                 [alt]="item.nameCustomer"
                 size="normal"
                 shape="circle"
-                styleClass="mr-2"
+                class="mr-2"
               />
               <span class="m-0 font-medium text-sm"
                 >{{ item.nameCustomer }}</span

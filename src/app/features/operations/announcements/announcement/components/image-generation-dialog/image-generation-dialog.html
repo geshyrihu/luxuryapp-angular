@@ -12,7 +12,6 @@
   </div>
 
   <div class="step-content mb-4">
-    <!-- PASO 1: ESTILO -->
     @if (currentStep() === 1) {
     <div class="grid">
       @for (option of styles; track option.value) {
@@ -28,10 +27,7 @@
       </div>
       }
     </div>
-    }
-
-    <!-- PASO 2: AMBIENTE -->
-    @if (currentStep() === 2) {
+    } @if (currentStep() === 2) {
     <div class="grid">
       @for (option of moods; track option.value) {
       <div class="col-12">
@@ -46,10 +42,7 @@
       </div>
       }
     </div>
-    }
-
-    <!-- PASO 3: ELEMENTOS -->
-    @if (currentStep() === 3) {
+    } @if (currentStep() === 3) {
     <div class="grid">
       @for (option of elements; track option.value) {
       <div class="col-12">
@@ -64,10 +57,7 @@
       </div>
       }
     </div>
-    }
-
-    <!-- PASO 4: DETALLES EXTRA (VOZ) -->
-    @if (currentStep() === 4) {
+    } @if (currentStep() === 4) {
     <div class="flex flex-column align-items-center">
       <div class="text-center">
         <p class="text-lg">óAlgón detalle adicional?</p>
@@ -77,18 +67,19 @@
       </div>
 
       <div class="w-full relative">
-        <textarea
-          pTextarea
+        <custom-input-textarea-signal
           [formControl]="additionalPromptControl"
-          rows="4"
-          class="w-full"
+          [rows]="4"
+          customClass="w-full"
           placeholder="Describe detalles extra aquó..."
-        ></textarea>
+          [onlyInput]="true"
+          [noMargin]="true"
+        />
 
         <div class="flex justify-content-center mt-3">
           <iw-button
             [iconClass]="isListening() ? 'mdi:stop' : 'mdi:microphone'"
-            [styleClass]="isListening() ? 'mic-button shadow-2 listening' : 'mic-button shadow-2'"
+            [class]="isListening() ? 'mic-button shadow-2 listening' : 'mic-button shadow-2'"
             title="Presiona para dictar"
             (clicked)="toggleListing()"
           />

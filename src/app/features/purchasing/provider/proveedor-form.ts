@@ -8,14 +8,13 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
-import { MultiSelectModule } from "primeng/multiselect";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
 import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -66,17 +65,16 @@ interface IProveedorForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    MultiSelectModule,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputMaskSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
+    CustomInputMultiselectSignal,
     CustomInputAutoComplete,
     CustomInputFile,
     CustomInputImg,
     WebButtonLabelSave,
-    InputTextModule,
   ],
 })
 export class ProveedorForm implements OnInit {

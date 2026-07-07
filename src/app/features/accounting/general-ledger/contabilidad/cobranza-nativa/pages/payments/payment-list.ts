@@ -115,7 +115,9 @@ export default class PaymentList {
     if (this.realtimeCustomerId === customerId) return;
 
     if (this.realtimeCustomerId) {
-      void this.signalRService.leaveNativeCollectionGroup(this.realtimeCustomerId);
+      void this.signalRService.leaveNativeCollectionGroup(
+        this.realtimeCustomerId,
+      );
     }
 
     this.realtimeCustomerId = customerId;
@@ -188,7 +190,7 @@ export default class PaymentList {
       icon: "mdi:alert",
       acceptLabel: "Sí, cancelar pago",
       rejectLabel: "No",
-      acceptButtonStyleClass: "p-button-danger",
+      acceptButtonclass: "p-button-danger",
       accept: async () => {
         const reason = window.prompt(
           "Ingresa el motivo formal de cancelación del pago (mínimo 10 caracteres):",

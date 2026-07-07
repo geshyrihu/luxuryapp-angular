@@ -96,7 +96,7 @@
     [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '72rem' }"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    styleClass="custom-table card hidden md:block mb-4"
+    class="custom-table card hidden md:block mb-4"
     #dt
   >
     <ng-template #caption>
@@ -135,7 +135,8 @@
         <td>{{ item.lastConcept || "-" }}</td>
         <td>
           <iw-button
-            pTooltip="Ver histórico" tooltipPosition="top"
+            pTooltip="Ver histórico"
+            tooltipPosition="top"
             size="small"
             variant="outline"
             (clicked)="$event.stopPropagation(); onSelectRow(item)"

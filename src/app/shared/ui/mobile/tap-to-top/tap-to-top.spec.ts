@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ViewportScroller } from '@angular/common';
-import { TapToTop } from './tap-to-top';
+import { MobileTapToTop } from './tap-to-top';
 
-describe('TapToTop', () => {
-  let component: TapToTop;
-  let fixture: ComponentFixture<TapToTop>;
+describe('MobileTapToTop', () => {
+  let component: MobileTapToTop;
+  let fixture: ComponentFixture<MobileTapToTop>;
   let viewportScroller: ViewportScroller;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TapToTop],
+      imports: [MobileTapToTop],
       providers: [
         {
           provide: ViewportScroller,
@@ -17,7 +17,7 @@ describe('TapToTop', () => {
         },
       ],
     });
-    fixture = TestBed.createComponent(TapToTop);
+    fixture = TestBed.createComponent(MobileTapToTop);
     component = fixture.componentInstance;
     viewportScroller = TestBed.inject(ViewportScroller);
     fixture.detectChanges();

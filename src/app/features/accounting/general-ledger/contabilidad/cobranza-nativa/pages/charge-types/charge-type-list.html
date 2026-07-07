@@ -6,7 +6,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -36,7 +36,9 @@
           <span class="font-mono text-sm text-700">{{ item.code }}</span>
         </td>
         <td>
-          <span class="font-mono text-sm text-primary">{{ item.accountNumber }}</span>
+          <span class="font-mono text-sm text-primary"
+            >{{ item.accountNumber }}</span
+          >
         </td>
         <td class="text-600">{{ item.description || "Sin descripción" }}</td>
         <td class="text-center">
@@ -99,16 +101,16 @@
       <ion-label>
         <h3>{{ item.name }}</h3>
         <p>{{ item.accountNumber }} · {{ item.code }}</p>
-        <p>{{ item.isSystem ? "Sistema" : "Custom" }} · {{ item.isActive ? "Activo" : "Inactivo" }}</p>
+        <p>
+          {{ item.isSystem ? "Sistema" : "Custom" }} · {{ item.isActive ?
+          "Activo" : "Inactivo" }}
+        </p>
       </ion-label>
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           @if (!item.isSystem) {
-          <ili-button-delete
-            (confirmed)="onDelete(item)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item)" label="Eliminar" />
           }
         </ng-container>
       </ili-action-menu>

@@ -10,7 +10,7 @@
         [paginator]="true"
         [globalFilterFields]="globalFilterFields()"
         [rowsPerPageOptions]="rowsPerPageOptions"
-        styleClass="custom-table"
+        class="custom-table"
         [scrollable]="true"
         [scrollHeight]="scrollHeight"
       >
@@ -175,13 +175,15 @@
                 <iw-button-item
                   (clicked)="onShowDetail(item)"
                   iconClass="mdi:information-outline"
-                  pTooltip="Ver Detalle" tooltipPosition="top"
+                  pTooltip="Ver Detalle"
+                  tooltipPosition="top"
                 />
                 @if(item.status === 'Aprobada' && canCancel()){
                 <iw-button-item
                   (clicked)="onCancel(item)"
                   iconClass="mdi:ban"
-                  pTooltip="Cancelar" tooltipPosition="top"
+                  pTooltip="Cancelar"
+                  tooltipPosition="top"
                 />
                 }
               </div>
@@ -231,7 +233,7 @@
               <p-tag
                 [value]="item.status"
                 [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
-                styleClass="ml-2"
+                class="ml-2"
               />
             </div>
           </ion-item>

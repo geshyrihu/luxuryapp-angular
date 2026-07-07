@@ -1,6 +1,4 @@
-@let execution = detail();
-
-@if (execution) {
+@let execution = detail(); @if (execution) {
 <div class="flex flex-column gap-4">
   <div class="grid">
     <div class="col-12 md:col-6">
@@ -58,7 +56,7 @@
 
   <div>
     <div class="font-semibold mb-2">Criterios</div>
-    <p-table [value]="execution.items" styleClass="custom-table">
+    <p-table [value]="execution.items" class="custom-table">
       <ng-template #header>
         <tr>
           <th>#</th>
@@ -100,15 +98,15 @@
             alt="evidencia"
             width="100%"
           />
-          <div class="text-sm mt-2">{{ image.caption || "Sin descripcion" }}</div>
+          <div class="text-sm mt-2">
+            {{ image.caption || "Sin descripcion" }}
+          </div>
         </div>
       </div>
       }
     </div>
   </div>
-  }
-
-  @if (execution.serviceOrderIds.length > 0) {
+  } @if (execution.serviceOrderIds.length > 0) {
   <div>
     <div class="font-semibold mb-2">Ordenes de servicio relacionadas</div>
     <div class="flex flex-wrap gap-2">
@@ -117,9 +115,7 @@
       }
     </div>
   </div>
-  }
-
-  @if (!execution.isClosed) {
+  } @if (!execution.isClosed) {
   <div class="flex justify-content-end">
     <il-button
       label="Completar inspeccion"
@@ -132,4 +128,3 @@
 } @else {
 <div class="text-center text-500 p-4">Cargando detalle...</div>
 }
-

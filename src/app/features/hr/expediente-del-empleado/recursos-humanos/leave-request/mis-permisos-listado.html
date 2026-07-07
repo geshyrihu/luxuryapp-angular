@@ -10,7 +10,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -88,7 +88,8 @@
             (clicked)="
               onModalDetail({ id: item.id, title: 'Detalle de la Solicitud' })
             "
-            pTooltip="??" tooltipPosition="top"
+            pTooltip="??"
+            tooltipPosition="top"
           />
           @if (item.status != "Aprobada") {
           <iw-button-edit

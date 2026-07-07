@@ -5,10 +5,14 @@
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption title="TICKETS POR ÁREA" [showAdd]="false" [showSearch]="false" />
+    <primeng-custom-caption
+      title="TICKETS POR ÁREA"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -56,7 +60,7 @@
   [value]="dataResponsable()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #header>
     <tr>
@@ -68,7 +72,11 @@
     </tr>
   </ng-template>
   <ng-template #caption>
-    <primeng-custom-caption title="ASIGNACIÓN DE TICKETS" [showAdd]="false" [showSearch]="false" />
+    <primeng-custom-caption
+      title="ASIGNACIÓN DE TICKETS"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
   </ng-template>
   <ng-template #body let-rowData let-rowIndex="rowIndex">
     @if (!rowData.subgroup) {
@@ -93,10 +101,14 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption title="TICKETS SOLICITADOS" [showAdd]="false" [showSearch]="false" />
+    <primeng-custom-caption
+      title="TICKETS SOLICITADOS"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -127,19 +139,25 @@
             alt=""
             shape="square"
             size="large"
-            styleClass="b-r-8 img-70 mr-2"
+            class="b-r-8 img-70 mr-2"
           />
           {{ item.empleado }}
         </div>
       </td>
       <td class="text-center">
-        <span class="font-bold" style="color:var(--ds-primary);">{{ item.solicitudes }}</span>
+        <span class="font-bold" style="color: var(--ds-primary)"
+          >{{ item.solicitudes }}</span
+        >
       </td>
       <td class="text-center">
-        <span class="font-bold" style="color:var(--ds-success);">{{ item.atendidas }}</span>
+        <span class="font-bold" style="color: var(--ds-success)"
+          >{{ item.atendidas }}</span
+        >
       </td>
       <td class="text-center">
-        <span class="font-bold" style="color:var(--ds-danger);">{{ item.pendientes }}</span>
+        <span class="font-bold" style="color: var(--ds-danger)"
+          >{{ item.pendientes }}</span
+        >
       </td>
     </tr>
   </ng-template>
@@ -165,10 +183,3 @@
   </ng-template>
 </p-table>
 }
-
-
-
-
-
-
-

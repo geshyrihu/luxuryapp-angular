@@ -7,7 +7,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table custom-table-fixed card hidden md:block"
+  class="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
     <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
@@ -139,12 +139,14 @@
         <div class="flex">
           <iw-button-item
             iconClass="mdi:comment"
-            pTooltip="Seguimientos" tooltipPosition="top"
+            pTooltip="Seguimientos"
+            tooltipPosition="top"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
           <iw-button-item
             [iconClass]="'mdi:plus'"
-            pTooltip="Agregar seguimiento" tooltipPosition="top"
+            pTooltip="Agregar seguimiento"
+            tooltipPosition="top"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />
           <iw-button-edit

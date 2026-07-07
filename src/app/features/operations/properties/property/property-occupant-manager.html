@@ -1,8 +1,8 @@
 @if (errorMensaje) {
-<p-message severity="error" [text]="errorMensaje" styleClass="mt-3"></p-message>
+<p-message severity="error" [text]="errorMensaje" class="mt-3"></p-message>
 } @else {
 <!-- Formulario para Añadir/editar ocupante -->
-<p-card styleClass="mb-4">
+<p-card class="mb-4">
   <ng-template #header>
     {{ occupantForm.controls.id.value ? "Editar Ocupante" : "Añadir Nuevo
     Ocupante" }}
@@ -68,7 +68,7 @@
 @if (occupants().length > 0) {
 <h5 class="mb-2">Ocupantes Existentes</h5>
 <div class="card-body">
-  <p-table [value]="occupants()" styleClass="p-datatable-sm">
+  <p-table [value]="occupants()" class="p-datatable-sm">
     <ng-template #header>
       <tr>
         <th>Nombre</th>
@@ -86,11 +86,7 @@
         <td>{{ occupant.phoneNumber }}</td>
         <td>
           @if (occupant.isOwner) {
-          <p-tag
-            value="Propietario"
-            severity="success"
-            styleClass="mr-1"
-          ></p-tag>
+          <p-tag value="Propietario" severity="success" class="mr-1"></p-tag>
           } @if (occupant.isResident) {
           <p-tag value="Residente" severity="info"></p-tag>
           }
@@ -116,6 +112,6 @@
 <p-message
   severity="info"
   text="No hay ocupantes registrados para esta propiedad."
-  styleClass="mt-3"
+  class="mt-3"
 ></p-message>
 } }

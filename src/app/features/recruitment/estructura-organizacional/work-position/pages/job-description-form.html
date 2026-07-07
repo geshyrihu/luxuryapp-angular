@@ -1,4 +1,4 @@
-<p-card styleClass="p-0 border-none shadow-none">
+<p-card class="p-0 border-none shadow-none">
   <ng-template #content>
     <form
       autocomplete="off"
@@ -24,7 +24,7 @@
           (clicked)="analyzeDescription()"
           [loading]="analyzingDescription()"
           [disabled]="!applicationRoleName()"
-          ngbTooltip="Analiza la descripción actual en busca de mejoras"
+          ngbTooltip="Analiza la descripciÃ³n actual en busca de mejoras"
         />
         <il-button
           label="Generar con IA"
@@ -37,26 +37,26 @@
         />
       </div>
 
-      <!-- Diálogos de IA -->
       <p-dialog
         header="Instrucciones para la IA (Opcional)"
         [(visible)]="showInstructionsDialog"
         [modal]="true"
-        styleClass="max-w-30rem w-full"
+        class="max-w-30rem w-full"
         [draggable]="false"
         [resizable]="false"
       >
         <p class="mb-3 text-600 text-sm">
           Agrega contexto adicional para que la IA genere una mejor propuesta.
         </p>
-        <textarea
-          pTextarea
+        <custom-input-textarea-signal
           [rows]="5"
-          class="w-full"
           [(ngModel)]="customInstructions"
           [ngModelOptions]="{standalone: true}"
-          placeholder="Ej: Enfocarse en atención de lujo, requiere nivel bilingüe..."
-        ></textarea>
+          placeholder="Ej: Enfocarse en atenciÃ³n de lujo, requiere nivel bilingÃ¼e..."
+          [onlyInput]="true"
+          [noMargin]="true"
+          customClass="w-full"
+        />
 
         <ng-template #footer>
           <il-button
@@ -77,10 +77,10 @@
       </p-dialog>
 
       <p-dialog
-        header="Análisis de la IA"
+        header="AnÃ¡lisis de la IA"
         [(visible)]="showAnalysisDialog"
         [modal]="true"
-        styleClass="max-w-40rem w-full"
+        class="max-w-40rem w-full"
         [maximizable]="true"
         [draggable]="false"
         [resizable]="false"
@@ -96,12 +96,11 @@
         </ng-template>
       </p-dialog>
 
-      <!-- Campos del Formulario -->
       <div class="flex flex-column">
         <custom-input-textarea-signal
           [control]="form.controls.summary"
           label="Objetivo General"
-          placeholder="¿Cuál es el propósito principal de este puesto?"
+          placeholder="Â¿CuÃ¡l es el propÃ³sito principal de este puesto?"
           [rows]="3"
         />
 
@@ -115,27 +114,27 @@
         <custom-input-textarea-signal
           [control]="form.controls.skills"
           label="Habilidades y Conocimientos"
-          placeholder="Habilidades técnicas, blandas, idiomas, etc."
+          placeholder="Habilidades tÃ©cnicas, blandas, idiomas, etc."
           [rows]="3"
         />
 
         <custom-input-textarea-signal
           [control]="form.controls.additionalRequirements"
           label="Requisitos Adicionales"
-          placeholder="Escolaridad, edad, certificaciones específicas..."
+          placeholder="Escolaridad, edad, certificaciones especÃ­ficas..."
           [rows]="2"
         />
 
         <custom-input-textarea-signal
           [control]="form.controls.workEnvironment"
           label="Entorno y Equipo"
-          placeholder="Descripción del lugar, uniforme, equipo proporcionado..."
+          placeholder="DescripciÃ³n del lugar, uniforme, equipo proporcionado..."
           [rows]="2"
         />
 
         <custom-input-check-signal
           [control]="form.controls.requiresWeekendShift"
-          label="¿Requiere cobertura de Fin de Semana (Sab/Dom)?"
+          label="Â¿Requiere cobertura de Fin de Semana (Sab/Dom)?"
         />
       </div>
 

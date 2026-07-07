@@ -5,7 +5,7 @@
     <img
       [src]="urlLogo"
       alt="logo"
-      style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;"
+      style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px"
     />
     <div>
       <div class="font-bold text-lg text-900">{{ model.nameProvider }}</div>
@@ -16,19 +16,26 @@
   <div class="grid">
     <!-- General -->
     <div class="col-12 md:col-4">
-      <p-fieldset legend="General" styleClass="mb-3 h-full">
+      <p-fieldset legend="General" class="mb-3 h-full">
         <div class="flex flex-column gap-2">
           <div class="flex justify-content-between">
             <span class="text-500 text-sm">Nombre Comercial</span>
-            <span class="font-medium text-sm text-right">{{ model.nameComercial }}</span>
+            <span class="font-medium text-sm text-right"
+              >{{ model.nameComercial }}</span
+            >
           </div>
           <div class="flex justify-content-between">
             <span class="text-500 text-sm">Direccion</span>
-            <span class="font-medium text-sm text-right" style="max-width: 60%">{{ model.address }}</span>
+            <span class="font-medium text-sm text-right" style="max-width: 60%"
+              >{{ model.address }}</span
+            >
           </div>
           <div class="flex justify-content-between">
             <span class="text-500 text-sm">Telefonos</span>
-            <span class="font-medium text-sm">{{ model.phoneOne }}{{ model.phoneTwo ? ' - ' + model.phoneTwo : '' }}</span>
+            <span class="font-medium text-sm"
+              >{{ model.phoneOne }}{{ model.phoneTwo ? ' - ' + model.phoneTwo :
+              '' }}</span
+            >
           </div>
           <div class="flex justify-content-between">
             <span class="text-500 text-sm">RFC</span>
@@ -39,15 +46,13 @@
             <span class="text-500 text-sm">Pagina web</span>
             <span class="font-medium text-sm">{{ model.webPage }}</span>
           </div>
-          }
-          @if (model.sales || model.repair) {
+          } @if (model.sales || model.repair) {
           <div class="flex justify-content-between align-items-center">
             <span class="text-500 text-sm">Alcances</span>
             <div class="flex gap-1">
               @if (model.sales) {
               <p-tag value="Ventas" severity="success" />
-              }
-              @if (model.repair) {
+              } @if (model.repair) {
               <p-tag value="Reparaciones" severity="success" />
               }
             </div>
@@ -59,7 +64,7 @@
 
     <!-- Contactos -->
     <div class="col-12 md:col-4">
-      <p-fieldset legend="Contactos" styleClass="mb-3 h-full">
+      <p-fieldset legend="Contactos" class="mb-3 h-full">
         <div class="flex flex-column gap-3">
           @if (model.contactOne) {
           <div>
@@ -67,27 +72,22 @@
             <div class="font-medium text-sm">{{ model.contactOne }}</div>
             @if (model.positionOne) {
             <div class="text-400 text-xs">{{ model.positionOne }}</div>
-            }
-            @if (model.cellPhoneOne) {
+            } @if (model.cellPhoneOne) {
             <div class="text-sm">{{ model.cellPhoneOne }}</div>
-            }
-            @if (model.emailOne) {
+            } @if (model.emailOne) {
             <div class="text-sm text-primary">{{ model.emailOne }}</div>
             }
           </div>
-          }
-          @if (model.contactTwo) {
-          <p-divider styleClass="my-2" />
+          } @if (model.contactTwo) {
+          <p-divider class="my-2" />
           <div>
             <div class="text-500 text-xs mb-1">Contacto 2</div>
             <div class="font-medium text-sm">{{ model.contactTwo }}</div>
             @if (model.positionTwo) {
             <div class="text-400 text-xs">{{ model.positionTwo }}</div>
-            }
-            @if (model.cellPhoneTwo) {
+            } @if (model.cellPhoneTwo) {
             <div class="text-sm">{{ model.cellPhoneTwo }}</div>
-            }
-            @if (model.emailTwo) {
+            } @if (model.emailTwo) {
             <div class="text-sm text-primary">{{ model.emailTwo }}</div>
             }
           </div>
@@ -98,11 +98,13 @@
 
     <!-- Datos Bancarios -->
     <div class="col-12 md:col-4">
-      <p-fieldset legend="Datos Bancarios" styleClass="mb-3 h-full">
+      <p-fieldset legend="Datos Bancarios" class="mb-3 h-full">
         <div class="flex flex-column gap-2">
           <div class="flex justify-content-between">
             <span class="text-500 text-sm">Beneficiario</span>
-            <span class="font-medium text-sm text-right">{{ model.nameCheck }}</span>
+            <span class="font-medium text-sm text-right"
+              >{{ model.nameCheck }}</span
+            >
           </div>
           <div class="flex justify-content-between">
             <span class="text-500 text-sm">Banco</span>

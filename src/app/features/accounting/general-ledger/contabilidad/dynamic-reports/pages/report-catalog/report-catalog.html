@@ -12,7 +12,8 @@
       <iw-button
         iconClass="mdi:book"
         severity="secondary"
-        pTooltip="Ver guía del módulo" tooltipPosition="bottom"
+        pTooltip="Ver guía del módulo"
+        tooltipPosition="bottom"
         routerLink="/contabilidad/reportes/guia"
       />
       <il-button-add (clicked)="crear()" ngbTooltip="Crear nuevo reporte" />
@@ -35,7 +36,7 @@
           [rowsPerPageOptions]="rowsPerPage"
           [paginator]="true"
           [globalFilterFields]="globalFilterFields"
-          styleClass="custom-table card hidden md:block"
+          class="custom-table card hidden md:block"
           dataKey="id"
         >
           <ng-template #header>
@@ -99,14 +100,9 @@
                 >{{ r.createdAt | date: 'dd/MM/yyyy' }}</span
               >
               <div class="flex mt-2 justify-content-end gap-1">
-                <iw-button
-                  iconClass="mdi:eye-outline"
-                  (clicked)="ver(r.id)"
-                />
+                <iw-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
                 <il-button-edit (clicked)="editar(r.id)" />
-                <il-button-delete
-                  (clicked)="confirmarEliminar(r.id, r.name)"
-                />
+                <il-button-delete (clicked)="confirmarEliminar(r.id, r.name)" />
               </div>
             </div>
           </ng-template>
@@ -118,7 +114,7 @@
           [value]="plantillas()"
           [rows]="rows"
           [paginator]="true"
-          styleClass="custom-table card hidden md:block"
+          class="custom-table card hidden md:block"
           dataKey="id"
         >
           <ng-template #header>
@@ -172,10 +168,7 @@
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">Por: {{ r.createdBy }}</span>
               <div class="flex mt-2 justify-content-end">
-                <iw-button
-                  iconClass="mdi:eye-outline"
-                  (clicked)="ver(r.id)"
-                />
+                <iw-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
               </div>
             </div>
           </ng-template>

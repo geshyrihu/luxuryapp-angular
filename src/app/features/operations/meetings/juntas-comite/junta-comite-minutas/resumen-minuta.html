@@ -26,7 +26,7 @@
 
   <!-- 📊 CONTENIDO PRINCIPAL -->
   @if (dataSignal()) {
-  <p-card styleClass="shadow-2 border-round-xl overflow-hidden p-0 border-none">
+  <p-card class="shadow-2 border-round-xl overflow-hidden p-0 border-none">
     <p-table
       #dt
       [value]="dataSignal()"
@@ -35,7 +35,7 @@
       [paginator]="true"
       [loading]="loading()"
       [globalFilterFields]="['title', 'requestService']"
-      styleClass="p-datatable-sm p-datatable-gridlines font-sm border-none"
+      class="p-datatable-sm p-datatable-gridlines font-sm border-none"
       [rowHover]="true"
       size="small"
       [showCurrentPageReport]="true"
@@ -84,16 +84,25 @@
 
       <!-- CUERPO DE TABLA -->
       <ng-template #body let-item>
-        <tr class="transition-all hover:bg-surface-50 border-bottom-1 surface-border">
+        <tr
+          class="transition-all hover:bg-surface-50 border-bottom-1 surface-border"
+        >
           <!-- Columna: Requerimiento -->
           <td class="vertical-align-top py-4 pl-4">
             <div class="flex flex-column gap-2">
-              <span class="font-bold text-900 text-lg line-height-2 tracking-tight">
+              <span
+                class="font-bold text-900 text-lg line-height-2 tracking-tight"
+              >
                 {{ item.title | uppercase }}
               </span>
               <div
                 class="text-600 text-sm line-height-3 overflow-hidden text-overflow-ellipsis"
-                style="max-height: 4.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
+                style="
+                  max-height: 4.5rem;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                "
                 [innerHTML]="item.requestService | sanitizeHtml"
               ></div>
             </div>
@@ -101,27 +110,38 @@
 
           <!-- Columna: Seguimiento -->
           <td class="vertical-align-top py-4">
-            @if (item.meetingDertailsSeguimientos && item.meetingDertailsSeguimientos.length > 0) {
-              <div class="flex flex-column gap-2 p-3 bg-blue-50 border-round-lg border-1 border-blue-100 mx-2 shadow-1">
-                <div class="flex align-items-center justify-content-between">
-                  <div class="flex align-items-center gap-2">
-                    <app-icon [icon]="'mdi:calendar-check'" class="text-primary text-xs" />
-                    <span class="font-bold text-xs text-primary-700 uppercase">
-                      {{ item.meetingDertailsSeguimientos[0].fecha | date: 'mediumDate' }}
-                    </span>
-                  </div>
-                </div>
-                <div class="text-700 text-sm line-height-2 italic relative pl-3 border-left-2 border-primary-200"
-                     [pTooltip]="item.meetingDertailsSeguimientos[0].seguimiento"
-                     tooltipPosition="top">
-                  "{{ item.meetingDertailsSeguimientos[0].seguimiento }}"
+            @if (item.meetingDertailsSeguimientos &&
+            item.meetingDertailsSeguimientos.length > 0) {
+            <div
+              class="flex flex-column gap-2 p-3 bg-blue-50 border-round-lg border-1 border-blue-100 mx-2 shadow-1"
+            >
+              <div class="flex align-items-center justify-content-between">
+                <div class="flex align-items-center gap-2">
+                  <app-icon
+                    [icon]="'mdi:calendar-check'"
+                    class="text-primary text-xs"
+                  />
+                  <span class="font-bold text-xs text-primary-700 uppercase">
+                    {{ item.meetingDertailsSeguimientos[0].fecha | date:
+                    'mediumDate' }}
+                  </span>
                 </div>
               </div>
+              <div
+                class="text-700 text-sm line-height-2 italic relative pl-3 border-left-2 border-primary-200"
+                [pTooltip]="item.meetingDertailsSeguimientos[0].seguimiento"
+                tooltipPosition="top"
+              >
+                "{{ item.meetingDertailsSeguimientos[0].seguimiento }}"
+              </div>
+            </div>
             } @else {
-              <div class="flex align-items-center justify-content-center gap-2 text-400 italic py-3 opacity-60">
-                <app-icon [icon]="'mdi:comment-off-outline'" class="text-xl" />
-                <span class="text-sm">Sin seguimiento registrado</span>
-              </div>
+            <div
+              class="flex align-items-center justify-content-center gap-2 text-400 italic py-3 opacity-60"
+            >
+              <app-icon [icon]="'mdi:comment-off-outline'" class="text-xl" />
+              <span class="text-sm">Sin seguimiento registrado</span>
+            </div>
             }
           </td>
 
@@ -132,20 +152,23 @@
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
-                styleClass="px-3 py-1 font-bold text-xs shadow-1"
+                class="px-3 py-1 font-bold text-xs shadow-1"
               ></p-tag>
-              
+
               @if (item.status === 0) {
-                <div class="flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 border-round-sm font-semibold text-xs border-1 border-red-100">
-                  <app-icon [icon]="'mdi:calendar-alert'" />
-                  <span>Vence: {{ item.deliveryDate | date: 'shortDate' }}</span>
-                </div>
-              }
-              @if (item.status === 1) {
-                <div class="flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 border-round-sm font-semibold text-xs border-1 border-green-100">
-                  <app-icon [icon]="'mdi:check-circle'" />
-                  <span>Completado</span>
-                </div>
+              <div
+                class="flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 border-round-sm font-semibold text-xs border-1 border-red-100"
+              >
+                <app-icon [icon]="'mdi:calendar-alert'" />
+                <span>Vence: {{ item.deliveryDate | date: 'shortDate' }}</span>
+              </div>
+              } @if (item.status === 1) {
+              <div
+                class="flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 border-round-sm font-semibold text-xs border-1 border-green-100"
+              >
+                <app-icon [icon]="'mdi:check-circle'" />
+                <span>Completado</span>
+              </div>
               }
             </div>
           </td>
@@ -157,12 +180,21 @@
         <tr>
           <td colspan="3" class="text-center p-8 bg-surface-50">
             <div class="flex flex-column align-items-center gap-4 py-4">
-              <div class="border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-2">
-                <app-icon [icon]="'mdi:clipboard-check-outline'" class="text-7xl text-primary opacity-50" />
+              <div
+                class="border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-2"
+              >
+                <app-icon
+                  [icon]="'mdi:clipboard-check-outline'"
+                  class="text-7xl text-primary opacity-50"
+                />
               </div>
               <div class="flex flex-column gap-2">
-                <span class="font-bold text-2xl text-900">¡Agenda Despejada!</span>
-                <span class="text-600 text-lg">No hay minutas pendientes de revisión en este momento.</span>
+                <span class="font-bold text-2xl text-900"
+                  >¡Agenda Despejada!</span
+                >
+                <span class="text-600 text-lg"
+                  >No hay minutas pendientes de revisión en este momento.</span
+                >
               </div>
             </div>
           </td>

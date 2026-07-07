@@ -5,7 +5,7 @@ import { SkeletonModule } from "primeng/skeleton";
 export type SkeletonPresetType = "card" | "table" | "chart" | "form" | "avatar" | "list" | "stat";
 
 @Component({
-  selector: "app-skeleton-presets",
+  selector: "web-skeleton-presets",
   standalone: true,
   imports: [CommonModule, SkeletonModule],
   template: `
@@ -119,7 +119,7 @@ export type SkeletonPresetType = "card" | "table" | "chart" | "form" | "avatar" 
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
-export class SkeletonPresets {
+export class WebSkeletonPresets {
   variant = input.required<SkeletonPresetType>();
   rows = input<number>(4);
   fields = input<number>(3);

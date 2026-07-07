@@ -12,7 +12,7 @@
       [scrollHeight]="scrollHeight()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="custom-table hidden md:block"
+      class="custom-table hidden md:block"
       [tableStyle]="{ 'min-width': '60rem' }"
     >
       <ng-template #caption>
@@ -79,7 +79,7 @@
               alt="Creador"
               shape="circle"
               size="normal"
-              styleClass="cursor-pointer"
+              class="cursor-pointer"
               [pTooltip]="item.creator"
               tooltipPosition="top"
             />

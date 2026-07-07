@@ -92,7 +92,7 @@
           [model]="createOrderItems"
           size="small"
           severity="primary"
-          styleClass="p-button-sm"
+          class="p-button-sm"
           [disabled]="!canEdit()"
         ></p-splitbutton>
 
@@ -197,12 +197,12 @@
   </div>
 
   @if (isVerified() && !isAuthorized() && !isConfirmed()) {
-  <p-message severity="warn" styleClass="mt-2 w-full"
+  <p-message severity="warn" class="mt-2 w-full"
     >Fondeo verificado — las OC vinculadas no se pueden modificar. Para
     habilitar cambios, revierte la verificacion.</p-message
   >
   } @if (isAuthorized() && !isConfirmed()) {
-  <p-message severity="warn" styleClass="mt-2 w-full"
+  <p-message severity="warn" class="mt-2 w-full"
     >Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
     habilitar cambios, revierte la autorizacion primero.</p-message
   >
@@ -243,7 +243,7 @@
         <p-badge
           [value]="grupo.ordenes.length"
           severity="secondary"
-          styleClass="font-bold"
+          class="font-bold"
         ></p-badge>
       </div>
       <div class="flex align-items-center gap-3">
@@ -264,7 +264,7 @@
 
     <p-table
       [value]="grupo.ordenes"
-      styleClass="p-datatable-sm p-datatable-gridlines font-sm border-none"
+      class="p-datatable-sm p-datatable-gridlines font-sm border-none"
       [rowHover]="true"
       (onRowReorder)="onRowReorder($event)"
       [reorderableColumns]="true"
@@ -359,7 +359,7 @@
                   [value]="orden.listadoFacturas.length + ' Docs'"
                   class="cursor-pointer hover:surface-hover transition-duration-200"
                   (click)="showInvoices(orden)"
-                  styleClass="text-xs px-2 py-0 border-round-md"
+                  class="text-xs px-2 py-0 border-round-md"
                 ></p-tag>
                 } @else if (orden.pdfFile || orden.factura) {
                 <p-tag
@@ -368,7 +368,7 @@
                   icon="mdi:file-pdf-box"
                   class="cursor-pointer hover:surface-hover transition-duration-200"
                   (click)="viewPdf(orden.pdfFile,'Factura')"
-                  styleClass="text-xs px-2 py-0 bg-surface-200 text-700 border-round-md"
+                  class="text-xs px-2 py-0 bg-surface-200 text-700 border-round-md"
                 ></p-tag>
                 } @if (orden.comprobantesPago?.length > 0) {
                 <p-tag
@@ -377,7 +377,7 @@
                   icon="mdi:check"
                   class="cursor-pointer hover:surface-hover transition-duration-200"
                   (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
-                  styleClass="text-xs px-2 py-0 border-round-md"
+                  class="text-xs px-2 py-0 border-round-md"
                 ></p-tag>
                 }
               </div>
@@ -496,7 +496,7 @@
         <p-badge
           [value]="ordenesFueraProceso().length"
           severity="warn"
-          styleClass="font-bold"
+          class="font-bold"
         ></p-badge>
       </div>
       @if (isRolAdministrador() || isRolSuperUsuario()) {
@@ -517,7 +517,7 @@
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
-    <p-table [value]="ordenesFueraProceso()" styleClass="p-datatable-sm">
+    <p-table [value]="ordenesFueraProceso()" class="p-datatable-sm">
       <ng-template #header>
         <tr>
           <th>Proveedor</th>
@@ -580,7 +580,7 @@
       <p-progressbar
         [value]="downloadProgress()"
         [style]="{'width': '100%', 'height': '20px'}"
-        styleClass="mb-3"
+        class="mb-3"
       ></p-progressbar>
       <span class="text-700 font-medium">{{ downloadStatusText() }}</span>
       <span class="text-500 text-sm mt-2"

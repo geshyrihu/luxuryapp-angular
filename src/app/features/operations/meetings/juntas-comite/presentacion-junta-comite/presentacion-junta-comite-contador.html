@@ -70,7 +70,7 @@
               <p-tag
                 [value]="item.archivoContable ? 'CARGADO' : 'PENDIENTE'"
                 [severity]="item.archivoContable ? 'success' : 'danger'"
-                styleClass="text-xs"
+                class="text-xs"
               ></p-tag>
             </div>
           </div>
@@ -190,7 +190,7 @@
                   <p-tag
                     [severity]="item.archivoPortada ? 'success' : 'warning'"
                     [value]="item.archivoPortada ? 'LISTO' : 'PENDIENTE'"
-                    styleClass="text-xs"
+                    class="text-xs"
                   ></p-tag>
                 </div>
 
@@ -207,7 +207,7 @@
                   <p-tag
                     [severity]="item.archivoJunta ? 'success' : 'warning'"
                     [value]="item.archivoJunta ? 'LISTO' : 'PENDIENTE'"
-                    styleClass="text-xs"
+                    class="text-xs"
                   ></p-tag>
                 </div>
               </div>
@@ -287,7 +287,7 @@
           <p-tag
             [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
-            styleClass="text-xs"
+            class="text-xs"
           ></p-tag>
         </div>
 
@@ -299,7 +299,7 @@
               legend="Portada"
               [toggleable]="true"
               [collapsed]="true"
-              styleClass="mb-2"
+              class="mb-2"
             >
               @if ( !item.archivoPortada &&
               aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])() )
@@ -341,7 +341,7 @@
               legend="Contable"
               [toggleable]="true"
               [collapsed]="true"
-              styleClass="mb-2"
+              class="mb-2"
             >
               @if ( !item.archivoContable && aspRoleS.anyOf([AspRole.Contador,
               AspRole.SuperUsuario])() ) {
@@ -387,7 +387,7 @@
               legend="Operaciones"
               [toggleable]="true"
               [collapsed]="true"
-              styleClass="mb-2"
+              class="mb-2"
             >
               @if ( !item.archivoJunta && aspRoleS.anyOf([AspRole.Administrador,
               AspRole.SuperUsuario])() ) {

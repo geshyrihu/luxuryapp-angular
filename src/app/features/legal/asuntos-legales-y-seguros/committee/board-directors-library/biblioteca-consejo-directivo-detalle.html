@@ -13,7 +13,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
   [loading]="loading()"
   breakpoint="960px"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center">
@@ -46,11 +46,7 @@
       <td>{{ item.date }}</td>
       <td>{{ item.name }}</td>
       <td>
-        <iw-button-view-pdf
-          []="true"
-          [url]="item.path"
-          fileName="Biblioteca"
-        />
+        <iw-button-view-pdf []="true" [url]="item.path" fileName="Biblioteca" />
       </td>
     </tr>
   </ng-template>
@@ -83,11 +79,16 @@
         slot="start"
         class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-blue-700" />
+        <app-icon
+          [icon]="'mdi:file-document-outline'"
+          class="text-xl text-blue-700"
+        />
       </div>
       <ion-label class="ml-2">
         <h3 class="text-wrap font-bold text-900">{{ item.name }}</h3>
-        <p class="text-sm text-500">{{ item.primaryDetail }} @if (item.date) { | {{ item.date }} }</p>
+        <p class="text-sm text-500">
+          {{ item.primaryDetail }} @if (item.date) { | {{ item.date }} }
+        </p>
         @if (pageTitle.trim() === 'Póliza de Mantenimiento' &&
         item.policyValidity) {
         <p class="text-sm text-500">{{ item.policyValidity }}</p>

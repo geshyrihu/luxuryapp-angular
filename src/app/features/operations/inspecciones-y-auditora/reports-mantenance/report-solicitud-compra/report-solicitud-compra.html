@@ -5,10 +5,14 @@
   [value]="solicitudes()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption title="SOLICITUDES DE COMPRA" [showAdd]="false" [showSearch]="false" />
+    <primeng-custom-caption
+      title="SOLICITUDES DE COMPRA"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -39,10 +43,14 @@
   [value]="ordenesCompra()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption title="ÓRDENES DE COMPRA" [showAdd]="false" [showSearch]="false" />
+    <primeng-custom-caption
+      title="ÓRDENES DE COMPRA"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -68,10 +76,3 @@
   </ng-template>
 </p-table>
 }
-
-
-
-
-
-
-

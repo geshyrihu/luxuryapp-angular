@@ -11,7 +11,7 @@
     [value]="dataSignal()"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    styleClass="custom-table card hidden md:block"
+    class="custom-table card hidden md:block"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -98,13 +98,15 @@
             item.investigationStatus === 'EnInvestigacion') {
             <iw-button-item
               iconClass="mdi:check-circle"
-              pTooltip="Resolver" tooltipPosition="top"
+              pTooltip="Resolver"
+              tooltipPosition="top"
               (click)="onResolve(item)"
             />
             <iw-button-edit (click)="onEdit(item)" />
             <iw-button-item
               iconClass="mdi:close-circle"
-              pTooltip="Cancelar" tooltipPosition="top"
+              pTooltip="Cancelar"
+              tooltipPosition="top"
               (click)="onCancel(item)"
             />
             }
@@ -119,7 +121,8 @@
             <!-- Subir acta firmada escaneada -->
             <iw-button-item
               iconClass="mdi:upload"
-              [pTooltip]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'" tooltipPosition="top"
+              [pTooltip]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
+              tooltipPosition="top"
               (click)="onUploadSignedAct(item)"
             />
 

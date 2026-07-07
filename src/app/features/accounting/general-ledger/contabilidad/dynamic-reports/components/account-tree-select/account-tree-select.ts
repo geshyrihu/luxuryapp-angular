@@ -7,7 +7,7 @@ import {
   input,
   model,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { TreeNode } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
@@ -24,7 +24,13 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
 @Component({
   selector: "app-account-tree-select",
 
-  imports: [TreeModule, BadgeModule, DragDropModule, AppIcon, CustomInputTextSignal],
+  imports: [
+    TreeModule,
+    BadgeModule,
+    DragDropModule,
+    AppIcon,
+    CustomInputTextSignal,
+  ],
   template: `
     <div class="flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
@@ -89,7 +95,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
                 <p-badge
                   [value]="'N' + node.data.level"
                   [severity]="getBadgeSeverity(node.data.level)"
-                  styleClass="text-xs"
+                  class="text-xs"
                 />
 
                 <div class="flex flex-column gap-0 overflow-hidden">

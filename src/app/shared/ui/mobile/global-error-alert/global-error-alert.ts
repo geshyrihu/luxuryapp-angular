@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, ViewEncapsulation } from "@angular/core";
 import {
   IonButton,
   IonIcon,
@@ -7,18 +7,13 @@ import {
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { alertCircleOutline, closeOutline } from "ionicons/icons";
-import { GlobalErrorService } from "src/app/core/services/global-error.service";
+import { CommonModule } from "@angular/common";
+import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
 
-/**
- * 🚨 GLOBAL ERROR ALERT
- * -------------------------------------------------------------------------
- * El guardián de las malas noticias.
- * Muestra alertas de error globales que descienden dramáticamente.
- * Usa Ionic para un look nativo.
- */
 @Component({
-  selector: "app-global-error-alert",
-  imports: [IonItem, IonLabel, IonButton, IonIcon],
+  selector: "ili-global-error-alert",
+  standalone: true,
+  imports: [CommonModule, IonItem, IonLabel, IonButton, IonIcon],
   template: `
     @if (error) {
       <ion-item color="danger" lines="none" class="global-error-alert">
@@ -42,6 +37,7 @@ import { GlobalErrorService } from "src/app/core/services/global-error.service";
     }
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
+  encapsulation: ViewEncapsulation.None,
   styles: [
     `
       .global-error-alert {
@@ -70,29 +66,10 @@ import { GlobalErrorService } from "src/app/core/services/global-error.service";
     `,
   ],
 })
-export class GlobalErrorAlert implements OnInit, OnDestroy {
-  private globalErrorService = inject(GlobalErrorService);
-  error: any | null = null;
-
+export class MobileGlobalErrorAlert extends GlobalErrorAlertBase {
   constructor() {
+    super();
     addIcons({ alertCircleOutline, closeOutline });
-  }
-
-  ngOnInit(): void {
-    // Nos suscribimos al observable del servicio
-    this.globalErrorService.error$.subscribe((error) => {
-      this.error = error;
-    });
-  }
-
-  onClose(): void {
-    this.globalErrorService.clearError();
-  }
-
-  ngOnDestroy(): void {
-    // Si usáramos señales derivadas no sería necesario, pero con suscripción manual
-    // Angular maneja la destrucción del componente, aunque idealmente deberíamos desuscribirnos si fuera un Subject caliente de larga duración.
-    // Al ser un servicio singleton, está bien por ahora.
   }
 }
 

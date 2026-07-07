@@ -5,7 +5,7 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -14,7 +14,8 @@
       [dt]="dt"
     />
     <iw-button-download
-      pTooltip="Descargar PDF" tooltipPosition="top"
+      pTooltip="Descargar PDF"
+      tooltipPosition="top"
       (clicked)="onDownloadPdf()"
       class="mt-1"
     />

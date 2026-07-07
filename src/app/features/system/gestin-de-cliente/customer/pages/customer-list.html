@@ -8,7 +8,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div
@@ -49,7 +49,7 @@
           [image]="item.photoPath"
           alt=""
           shape="square"
-          styleClass="b-r-8 img-40"
+          class="b-r-8 img-40"
         />
       </td>
       <td>{{ item.nameCustomer }}</td>
@@ -65,12 +65,14 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           <iw-button-item
-            pTooltip="Imagenes" tooltipPosition="top"
+            pTooltip="Imagenes"
+            tooltipPosition="top"
             iconClass="mdi:image"
             (clicked)="onUpdateImages(item.id)"
           />
           <iw-button-item
-            pTooltip="Dirección" tooltipPosition="top"
+            pTooltip="Dirección"
+            tooltipPosition="top"
             iconClass="mdi:map-marker"
             (clicked)="onUpdateAddress(item.id)"
           />

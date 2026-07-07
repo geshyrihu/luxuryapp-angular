@@ -468,11 +468,15 @@
       </div>
       <p-iconfield iconPosition="left">
         <p-inputicon styleClass="mdi mdi-magnify" />
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+        <custom-input-text-signal
+          [ngModel]="''"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="dt.filterGlobal($event, 'contains')"
           placeholder="Buscar departamento..."
+          [horizontal]="false"
+          [onlyInput]="true"
+          [noMargin]="true"
+          customClass="w-full"
         />
       </p-iconfield>
     </div>

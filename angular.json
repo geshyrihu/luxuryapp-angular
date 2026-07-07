@@ -95,7 +95,7 @@
             "production": {
               "optimization": {
                 "scripts": true,
-                "styles": true,
+                "styles": false,
                 "fonts": false
               },
               "budgets": [

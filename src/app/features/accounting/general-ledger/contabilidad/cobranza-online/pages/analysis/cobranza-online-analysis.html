@@ -253,7 +253,7 @@
       #dt
       [value]="filteredRows()"
       [globalFilterFields]="globalFilterFields()"
-      styleClass="p-datatable-sm p-datatable-gridlines hidden md:block"
+      class="p-datatable-sm p-datatable-gridlines hidden md:block"
       [tableStyle]="{ 'min-width': '700px' }"
       [paginator]="true"
       [rows]="50"
@@ -282,7 +282,7 @@
             <p-tag
               [value]="row.clasificacion"
               [severity]="getSeverity(row.clasificacion)"
-              styleClass="text-xs"
+              class="text-xs"
             />
           </td>
         </tr>

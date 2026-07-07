@@ -8,7 +8,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectModule } from "primeng/select";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -139,7 +138,6 @@ interface IGoogleCalendarEventForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SelectModule,
     WebButtonLabel,
     WebButtonIcon,
     WebButtonLabelSave,

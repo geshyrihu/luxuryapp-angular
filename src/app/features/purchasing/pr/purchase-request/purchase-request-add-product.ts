@@ -14,9 +14,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { AutoCompleteModule } from "primeng/autocomplete";
-import { FluidModule } from "primeng/fluid";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -40,8 +39,7 @@ interface IPurchaseRequestAddProductForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FluidModule,
-    AutoCompleteModule,
+    CustomInputAutoComplete,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     WebButtonLabelSave,

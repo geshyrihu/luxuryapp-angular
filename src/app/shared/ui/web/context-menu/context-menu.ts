@@ -1,8 +1,8 @@
-import { Component, input, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ContextMenuModule } from "primeng/contextmenu";
 import { ContextMenu as PrimeContextMenu } from "primeng/contextmenu";
-import { MenuItem } from "primeng/api";
+import { ContextMenuBase } from "@ui/base/context-menu.base";
 
 @Component({
   selector: "app-context-menu",
@@ -26,9 +26,7 @@ import { MenuItem } from "primeng/api";
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
-export class ContextMenu {
-  items = input.required<MenuItem[]>();
-
+export class ContextMenu extends ContextMenuBase {
   @ViewChild("cm") cm!: PrimeContextMenu;
 
   onContextMenu(event: MouseEvent): void {

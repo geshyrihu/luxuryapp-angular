@@ -4,19 +4,19 @@
     <div class="grid align-items-end">
       <div class="col-12 md:col-7">
         <label class="block font-medium mb-1">BUSCAR</label>
-        <p-autocomplete
+        <custom-input-autocomplete-signal
           [suggestions]="products()"
           (completeMethod)="searchProducts($event)"
-          (onSelect)="onSelectProduct($event)"
-          [formControl]="form.controls.productName"
+          (propagar)="onSelectProduct($event)"
+          [control]="form.controls.productName"
           optionLabel="label"
           dataKey="value"
           placeholder="Escribe para buscar producto o servicio..."
           [forceSelection]="true"
           [showClear]="true"
           [emptyMessage]="'No se encontraron resultados'"
-          fluid
-          appendTo="body"
+          [onlyInput]="true"
+          [noMargin]="true"
         >
           <ng-template let-item #item>
             {{ item.label }}
@@ -24,7 +24,7 @@
           <ng-template let-item #selectedItem>
             {{ item?.label || "" }}
           </ng-template>
-        </p-autocomplete>
+        </custom-input-autocomplete-signal>
       </div>
       <div class="col-12 md:col-2">
         <custom-input-text-signal

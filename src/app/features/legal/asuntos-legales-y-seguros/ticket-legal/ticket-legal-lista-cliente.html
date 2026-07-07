@@ -13,7 +13,7 @@
       [scrollHeight]="scrollHeight"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="custom-table"
+      class="custom-table"
     >
       <ng-template #caption>
         <primeng-custom-caption
@@ -52,7 +52,7 @@
           </td>
           <td class="text-center">
             <p-tag
-              styleClass="p-2 cursor-pointer"
+              class="p-2 cursor-pointer"
               pTooltip="Actualizar estatus"
               (click)="onModalUpdateStatus({ id: item.id })"
               [severity]="
@@ -129,7 +129,7 @@
             <div class="flex justify-content-between align-items-center mt-2">
               <p-tag
                 (click)="onModalUpdateStatus({ id: item.id })"
-                styleClass="p-2 cursor-pointer"
+                class="p-2 cursor-pointer"
                 [severity]="
                   item.status === 0 ? 'danger' :
                   item.status === 1 ? 'info' :

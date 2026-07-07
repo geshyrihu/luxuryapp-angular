@@ -10,7 +10,7 @@
     [scrollHeight]="scrollHeight"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
   >
     <ng-template #caption>
       <div class="flex align-items-center">
@@ -73,7 +73,7 @@
           <p-tag
             severity="info"
             [value]="item.requestedDays"
-            styleClass="text-base p-2"
+            class="text-base p-2"
           />
         </td>
         <td>
@@ -93,7 +93,11 @@
         <td class="no-print">
           <div class="flex justify-content-end">
             <!-- Botún Ver Detalle -->
-            <iw-button-item (clicked)="onDetail(item.id)" pTooltip="??" tooltipPosition="top" />
+            <iw-button-item
+              (clicked)="onDetail(item.id)"
+              pTooltip="??"
+              tooltipPosition="top"
+            />
 
             @if (item.status === "Pendiente") {
             <iw-button-edit

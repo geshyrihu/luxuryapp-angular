@@ -90,7 +90,7 @@
       [selection]="selectedFilesControl.value || []"
       (selectionChange)="selectedFilesControl.setValue($event)"
       dataKey="url"
-      styleClass="p-datatable-sm"
+      class="p-datatable-sm"
     >
       <ng-template #header>
         <tr>
@@ -121,13 +121,15 @@
           <td class="text-center">
             <iw-button-item
               iconClass="mdi:eye-outline"
-              pTooltip="ver" tooltipPosition="top"
+              pTooltip="ver"
+              tooltipPosition="top"
               [border-round]="true"
               (clicked)="viewPdf(file.url, file.displayName)"
             />
             <iw-button-item
               [iconClass]="'mdi:upload'"
-              pTooltip="descargar" tooltipPosition="top"
+              pTooltip="descargar"
+              tooltipPosition="top"
               [border-round]="true"
               severity="success"
               (clicked)="descargarArchivo(file.url)"

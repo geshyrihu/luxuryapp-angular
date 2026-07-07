@@ -3,7 +3,6 @@ import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { CardModule } from "primeng/card";
-import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -33,7 +32,6 @@ import { DateService } from "src/app/core/services/date.service";
     ReactiveFormsModule,
     TableModule,
     CardModule,
-    InputTextModule,
     TagModule,
     TooltipModule,
     FlatpickrModule,

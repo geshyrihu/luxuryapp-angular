@@ -9,7 +9,7 @@ import {
   IonToolbar,
   MenuController,
 } from "@ionic/angular/standalone";
-import { Loader } from "@ui/mobile/loader/loader";
+import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
@@ -29,7 +29,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
     IonToolbar,
     IonMenu,
     IonTitle,
-    Loader,
+    LxLoader,
   ],
   templateUrl: "./view-employee-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,

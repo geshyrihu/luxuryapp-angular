@@ -14,7 +14,7 @@
       'status',
       'formattedDate',
     ]"
-    styleClass="p-datatable-sm p-datatable-gridlines font-sm"
+    class="p-datatable-sm p-datatable-gridlines font-sm"
     [rowHover]="true"
     size="small"
     [showCurrentPageReport]="true"
@@ -44,7 +44,7 @@
                 <p-tag
                   [value]="allData.length"
                   severity="secondary"
-                  styleClass="text-xs py-0"
+                  class="text-xs py-0"
                 ></p-tag>
               </div>
 
@@ -162,7 +162,7 @@
           <p-tag
             [value]="item.module"
             [severity]="getModuleSeverity(item.module)"
-            styleClass="text-xs uppercase font-bold px-2 py-1"
+            class="text-xs uppercase font-bold px-2 py-1"
           ></p-tag>
         </td>
 
@@ -198,7 +198,7 @@
           <div class="flex align-items-center">
             <p-avatar
               label="{{item.responsible.charAt(0)}}"
-              styleClass="mr-1 {{ isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700' }}"
+              class="mr-1 {{ isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700' }}"
               size="normal"
               shape="circle"
             ></p-avatar>
@@ -234,7 +234,7 @@
             [value]="item.status"
             [severity]="getSeverity(item.status)"
             [border-round]="true"
-            styleClass="text-xs font-bold px-2"
+            class="text-xs font-bold px-2"
           ></p-tag>
         </td>
 

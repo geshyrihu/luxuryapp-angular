@@ -13,7 +13,7 @@
       [scrollHeight]="scrollHeight"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="custom-table"
+      class="custom-table"
     >
       <ng-template #caption>
         <primeng-custom-caption
@@ -203,7 +203,7 @@
                 alt="Evidencia inicial"
                 width="30"
                 [preview]="true"
-                styleClass="mr-2 border border-danger"
+                class="mr-2 border border-danger"
               />
               } @if (item.afterWork) {
               <p-image
@@ -211,7 +211,7 @@
                 alt="Evidencia final"
                 width="30"
                 [preview]="true"
-                styleClass="border border-success"
+                class="border border-success"
               />
               }
             </div>

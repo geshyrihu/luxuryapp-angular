@@ -4,7 +4,7 @@
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   [reorderableColumns]="true"
 >
   <ng-template #caption>
@@ -38,7 +38,8 @@
       <td class="text-center flex justify-content-center">
         <iw-button-view-pdf [url]="item.path" fileName="Reglamentos" />
         <iw-button
-          pTooltip="IA" tooltipPosition="top"
+          pTooltip="IA"
+          tooltipPosition="top"
           iconClass="mdi:comment-multiple"
           variant="outlined"
           severity="info"
@@ -57,8 +58,6 @@
   </ng-template>
 </p-table>
 
-<!-- Vista para míviles -->
-<!-- Vista para míviles -->
 <div class="block md:hidden">
   <app-data-view-mobile
     [data]="dataSignal()"
@@ -101,7 +100,8 @@
             severity="info"
             variant="ghost-text"
             (clicked)="openConsultation(item.id)"
-            pTooltip="Consultar con IA" tooltipPosition="bottom"
+            pTooltip="Consultar con IA"
+            tooltipPosition="bottom"
           />
         </div>
       </ion-item>
@@ -123,7 +123,7 @@
       <div class="p-message-wrapper p-3">
         <span class="p-message-icon mdi:information text-xl"></span>
         <span class="p-message-text ml-2"
-          >Haz una pregunta específica sobre este reglamento y la IA analizaré
+          >Haz una pregunta especÃ­fica sobre este reglamento y la IA analizarÃ©
           el documento para responderte.</span
         >
       </div>
@@ -131,15 +131,16 @@
 
     <div class="mb-4">
       <label for="query" class="font-bold block mb-2">Tu Consulta</label>
-      <textarea
+      <custom-input-textarea-signal
         id="query"
-        rows="4"
-        pTextarea
-        placeholder="Ej. óCuóles son las sanciones por ruido excesivo? óCuól es el horario de la alberca?"
-        [formControl]="consultationQueryControl"
-        class="w-full"
+        [rows]="4"
+        placeholder="Ej. Ã³CuÃ³les son las sanciones por ruido excesivo? Ã³CuÃ³l es el horario de la alberca?"
+        [control]="consultationQueryControl"
+        customClass="w-full"
         [disabled]="consultingDoc()"
-      ></textarea>
+        [horizontal]="false"
+        [noMargin]="true"
+      />
     </div>
 
     @if (aiResponse()) {

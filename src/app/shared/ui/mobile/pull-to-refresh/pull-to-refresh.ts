@@ -1,9 +1,10 @@
-import { Component, output, signal, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
 
 @Component({
-  selector: "app-pull-to-refresh",
+  selector: "ili-pull-to-refresh",
   standalone: true,
   imports: [CommonModule, AppIcon],
   template: `
@@ -61,37 +62,4 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class PullToRefresh {
-  refresh = output<void>();
-
-  pullDistance = signal(0);
-  pulling = signal(false);
-  refreshing = signal(false);
-  private startY = 0;
-  private threshold = 60;
-
-  onTouchStart(event: TouchEvent): void {
-    const scrollTop = (event.target as HTMLElement)?.closest(".ptr-root")?.scrollTop || window.scrollY;
-    if (scrollTop <= 0) {
-      this.startY = event.touches[0].clientY;
-      this.pulling.set(true);
-    }
-  }
-
-  onTouchMove(event: TouchEvent): void {
-    if (!this.pulling()) return;
-    const dist = Math.max(0, event.touches[0].clientY - this.startY);
-    this.pullDistance.set(Math.min(dist * 0.5, this.threshold * 1.5));
-  }
-
-  onTouchEnd(): void {
-    if (!this.pulling()) return;
-    if (this.pullDistance() >= this.threshold) {
-      this.refreshing.set(true);
-      this.refresh.emit();
-    }
-    this.pulling.set(false);
-    this.pullDistance.set(0);
-    setTimeout(() => this.refreshing.set(false), 2000);
-  }
-}
+export class MobilePullToRefresh extends PullToRefreshBase {}

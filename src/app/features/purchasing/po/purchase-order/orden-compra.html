@@ -8,7 +8,7 @@
     ariaLabel="loading"
     fill="transparent"
     strokeWidth="4"
-    styleClass="w-4rem h-4rem"
+    class="w-4rem h-4rem"
   />
   <span class="mt-2 text-primary font-bold">Cargando Orden de Compra...</span>
 </div>
@@ -22,13 +22,13 @@
     @if (ordenCompra(); as oc) {
     <p-message
       [severity]="isLocked() ? 'warn' : 'info'"
-      styleClass="mt-1 p-0 w-full"
+      class="mt-1 p-0 w-full"
     >
       {{ oc.lockReason }}
     </p-message>
 
     @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
-    <p-message severity="warn" icon="mdi:alert" styleClass="mt-2 p-0 w-full">
+    <p-message severity="warn" icon="mdi:alert" class="mt-2 p-0 w-full">
       <div class="flex align-items-center">
         <span
           >Esta orden tiene un folio de solicitud escrito
@@ -128,7 +128,7 @@
   <div class="col-12 sm:col-7">
     <p-table
       [value]="purchaseOrderBudget()"
-      styleClass="custom-table card hidden md:block"
+      class="custom-table card hidden md:block"
     >
       <ng-template #caption>
         <div
@@ -197,7 +197,7 @@
   <!-- 6. Panel: Enlaces a Documentos -->
   <div class="hidden sm:block sm:col-3"></div>
   <div class="col-12 sm:col-2 text-right">
-    <p-card styleClass="p-0">
+    <p-card class="p-0">
       <div class="flex flex-column">
         @if (solicitudCompraId() > 0) {
         <il-button-item
@@ -231,7 +231,7 @@
 } @else {
 <div class="mb-2">
   <div>
-    <p-message severity="info" styleClass="w-full mt-2"
+    <p-message severity="info" class="w-full mt-2"
       >Esta es una orden de compra por devolución y no afecta ni consume
       presupuesto.</p-message
     >
@@ -244,7 +244,7 @@
 <!-- ================================================================== -->
 <p-table
   [value]="ordenCompraDetalle()"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   dataKey="id"
 >
   <ng-template #header>

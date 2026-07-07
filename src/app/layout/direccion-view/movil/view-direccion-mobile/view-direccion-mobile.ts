@@ -6,7 +6,7 @@ import {
   IonHeader,
   IonToolbar,
 } from "@ionic/angular/standalone";
-import { Loader } from "@ui/mobile/loader/loader";
+import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 
 @Component({
@@ -18,7 +18,7 @@ import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
     IonContent,
     IonHeader,
     IonToolbar,
-    Loader,
+    LxLoader,
   ],
   templateUrl: "./view-direccion-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,

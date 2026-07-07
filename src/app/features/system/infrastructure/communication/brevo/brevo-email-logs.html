@@ -7,11 +7,14 @@
       <label class="text-sm font-medium text-color-secondary"
         >Destinatario</label
       >
-      <input
-        pInputText
+      <custom-input-text-signal
         [(ngModel)]="filtroEmail"
+        [ngModelOptions]="{ standalone: true }"
         placeholder="Filtrar por email..."
-        class="p-inputtext-sm"
+        [horizontal]="false"
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="w-full"
         style="width: 260px"
       />
     </div>
@@ -69,7 +72,7 @@
   [loading]="cargando()"
   (onLazyLoad)="alCambiarPagina($any($event))"
   [rowHover]="true"
-  styleClass="p-datatable-sm p-datatable-striped"
+  class="p-datatable-sm p-datatable-striped"
   [scrollable]="true"
   scrollHeight="calc(100vh - 320px)"
 >

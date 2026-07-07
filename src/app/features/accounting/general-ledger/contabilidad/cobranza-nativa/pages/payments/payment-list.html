@@ -8,7 +8,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -81,7 +81,9 @@
         </td>
         <td class="text-center">
           @switch (item.status) { @case (EPaymentStatus.Registrado) {
-          <span class="badge bg-yellow-100 text-yellow-800">{{ getPaymentFlowLabel(item) }}</span>
+          <span class="badge bg-yellow-100 text-yellow-800"
+            >{{ getPaymentFlowLabel(item) }}</span
+          >
           } @case (EPaymentStatus.Verificado) {
           <span class="badge bg-green-100 text-green-800">Verificado</span>
           } @case (EPaymentStatus.Rechazado) {
@@ -107,8 +109,8 @@
             />
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EPaymentStatus.Rechazado && item.status !==
-            EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
-            {
+            EPaymentStatus.Cancelado && item.status !==
+            EPaymentStatus.Revertido) {
             <iw-button
               iconClass="mdi:close-circle"
               severity="warning"
@@ -167,7 +169,8 @@
           />
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           @if (item.status !== EPaymentStatus.Rechazado && item.status !==
-          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {
+          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
+          {
           <il-button
             label="Cancelar"
             iconClass="mdi:close-circle"

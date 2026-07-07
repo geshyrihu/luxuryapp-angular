@@ -14,7 +14,7 @@
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       dataKey="equipoClasificacion"
-      styleClass="custom-table"
+      class="custom-table"
       rowGroupMode="subheader"
       groupRowsBy="equipoClasificacion"
       sortField="equipoClasificacion"
@@ -148,7 +148,7 @@
             <p-tag
               [value]="item.maintenanceCalendars?.toString()"
               severity="info"
-              styleClass="cursor-pointer"
+              class="cursor-pointer"
               (click)="openMantenimientosDialog(item)"
               pTooltip="Ver Mantenimientos"
               tooltipPosition="top"
@@ -160,38 +160,44 @@
               <iw-button-item
                 (clicked)="onDocumentos(item.id)"
                 iconClass="mdi:file-pdf-box"
-                pTooltip="Documentos" tooltipPosition="top"
+                pTooltip="Documentos"
+                tooltipPosition="top"
                 variant="text"
               />
               <iw-button-item
                 (clicked)="onServiceHistory(item.id)"
                 iconClass="mdi:file-document-outline"
-                pTooltip="Histórico de servicios" tooltipPosition="top"
+                pTooltip="Histórico de servicios"
+                tooltipPosition="top"
                 variant="text"
               />
               <iw-button-item
                 (clicked)="onBitacoraIndividual(item.id)"
                 iconClass="mdi:book"
-                pTooltip="Bitácora" tooltipPosition="top"
+                pTooltip="Bitácora"
+                tooltipPosition="top"
                 variant="text"
               />
               <iw-button-item
                 (clicked)="showModalFichatecnica(item.id)"
                 iconClass="mdi:clipboard-text"
-                pTooltip="Ficha técnica" tooltipPosition="top"
+                pTooltip="Ficha técnica"
+                tooltipPosition="top"
                 variant="text"
               />
               <iw-button-item
                 (clicked)="onEquipmentInspections(item)"
                 iconClass="mdi:clipboard-check-outline"
-                pTooltip="Inspecciones" tooltipPosition="top"
+                pTooltip="Inspecciones"
+                tooltipPosition="top"
                 variant="text"
               />
               @if (!mostrarPreventivos()) {
               <iw-button-item
                 (clicked)="openMantenimientosDialog(item)"
                 iconClass="mdi:wrench"
-                pTooltip="Mantenimientos" tooltipPosition="top"
+                pTooltip="Mantenimientos"
+                tooltipPosition="top"
                 variant="text"
               />
               } @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
@@ -235,7 +241,7 @@
       </div>
 
       @if (equipo.maintenanceCalendar?.length > 0) {
-      <p-table [value]="equipo.maintenanceCalendar" styleClass="custom-table">
+      <p-table [value]="equipo.maintenanceCalendar" class="custom-table">
         <ng-template #header>
           <tr>
             <th class="table-col-5"></th>
@@ -253,7 +259,9 @@
         <ng-template #body let-order>
           <tr class="animate__fadeIn">
             <td>
-              <span [innerHTML]="order.hasServiceOrder ? 'ðŸ› ï¸' : 'âšª'"></span>
+              <span
+                [innerHTML]="order.hasServiceOrder ? 'ðŸ› ï¸' : 'âšª'"
+              ></span>
             </td>
             <td>
               <p
@@ -271,7 +279,8 @@
               <div class="flex">
                 <iw-button-item
                   iconClass="mdi:content-copy"
-                  pTooltip="Duplicar" tooltipPosition="top"
+                  pTooltip="Duplicar"
+                  tooltipPosition="top"
                   variant="text"
                   (clicked)="showModalMaintenanceCalendar({ id: order.id, task: 'copy', machineryId: order.machineryId, header: 'Duplicar Actividad' })"
                 />

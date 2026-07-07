@@ -21,7 +21,7 @@
 <div class="hidden md:block">
   @if (reportData()) {
   <div class="card mb-4">
-    <p-table [value]="kpiRows()" styleClass="custom-table custom-table-fixed">
+    <p-table [value]="kpiRows()" class="custom-table custom-table-fixed">
       <ng-template #caption>
         <primeng-custom-caption
           title="Resultado del Periodo"
@@ -61,7 +61,7 @@
       [value]="requestsAttended()"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
-      styleClass="custom-table custom-table-fixed"
+      class="custom-table custom-table-fixed"
     >
       <ng-template #colgroup>
         <colgroup>
@@ -102,7 +102,7 @@
       [value]="requestsPending()"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
-      styleClass="custom-table custom-table-fixed"
+      class="custom-table custom-table-fixed"
     >
       <ng-template #colgroup>
         <colgroup>

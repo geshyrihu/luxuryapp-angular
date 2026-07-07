@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MenuItem, TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
@@ -33,39 +39,24 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
 import { Gauge } from "@ui/shared/gauge/gauge";
-import {
-  KanbanBoard,
-  KanbanStage,
-} from "@ui/web/kanban-board/kanban-board";
+import { KanbanBoard, KanbanStage } from "@ui/web/kanban-board/kanban-board";
 import { Loader } from "@ui/mobile/loader/loader";
 import {
   NotificationCenter,
   NotificationItem,
 } from "@ui/web/notification-center/notification-center";
 import { SplitPane } from "@ui/web/split-pane/split-pane";
-import {
-  EStatus,
-  StatusBadge,
-} from "@ui/web/status-badge/status-badge";
+import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { Tour, TourStep } from "@ui/shared/tour/tour";
-import {
-  TreeTable,
-  TreeTableColumn,
-} from "@ui/web/tree-table/tree-table";
-import {
-  Wizard,
-  WizardStep,
-} from "@ui/web/wizard/wizard";
+import { TreeTable, TreeTableColumn } from "@ui/web/tree-table/tree-table";
+import { Wizard, WizardStep } from "@ui/web/wizard/wizard";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 // 13.3.3 demos de prioridad baja
 import {
   ApprovalNode,
   ApprovalWorkflow,
 } from "@ui/shared/approval-workflow/approval-workflow";
-import {
-  AvatarGroup,
-  AvatarItem,
-} from "@ui/shared/avatar-group/avatar-group";
+import { AvatarGroup, AvatarItem } from "@ui/shared/avatar-group/avatar-group";
 import { AppBarcodeInput } from "@ui/web/barcode-input/barcode-input";
 import { AppColorPicker } from "@ui/web/color-picker/color-picker";
 import { AppCommentThread } from "@ui/web/comment-thread/comment-thread";
@@ -77,25 +68,13 @@ import {
   DashboardLayout,
   DashboardWidget,
 } from "@ui/web/dashboard-layout/dashboard-layout";
-import {
-  DataGrid,
-  DataGridColumn,
-} from "@ui/web/data-grid/data-grid";
+import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { AppDock } from "@ui/web/dock/dock";
 import { DocumentPreviewer } from "@ui/web/document-previewer/document-previewer";
 import { AppEmailPreview } from "@ui/web/email-preview/email-preview";
-import {
-  AppFormBuilder,
-  FormField,
-} from "@ui/web/form-builder/form-builder";
-import {
-  AppGantt,
-  GanttTask,
-} from "@ui/web/gantt/gantt";
-import {
-  AppHeatmap,
-  HeatmapCell,
-} from "@ui/web/heatmap/heatmap";
+import { AppFormBuilder, FormField } from "@ui/web/form-builder/form-builder";
+import { AppGantt, GanttTask } from "@ui/web/gantt/gantt";
+import { AppHeatmap, HeatmapCell } from "@ui/web/heatmap/heatmap";
 import { AppInventoryLevel } from "@ui/shared/inventory-level/inventory-level";
 import { KpiCard } from "@ui/shared/kpi-card/kpi-card";
 import { AppLangSelector } from "@ui/web/lang-selector/lang-selector";
@@ -123,15 +102,12 @@ import { AppQrCode } from "@ui/web/qr-code/qr-code";
 import { AppRating } from "@ui/web/rating/rating";
 import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
 import { AppSignaturePad } from "@ui/web/signature-pad/signature-pad";
-import { SkeletonPresets } from "@ui/web/skeleton-presets/skeleton-presets";
+import { SkeletonPresets } from "@ui/adaptive/skeleton/skeleton";
 import { AppSlider } from "@ui/web/slider/slider";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { AppTagInput } from "@ui/web/tag-input/tag-input";
 import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
-import {
-  Timeline,
-  TimelineEvent,
-} from "@ui/web/timeline/timeline";
+import { Timeline, TimelineEvent } from "@ui/web/timeline/timeline";
 import { AppTristateSwitch } from "@ui/shared/tristate-switch/tristate-switch";
 import { CATALOG_DEMO_AVATARS } from "../../../shared/catalog-demo-data";
 
@@ -289,12 +265,8 @@ const CORE_LABELS: Record<string, string> = {
                 <p class="text-xs font-bold text-secondary mb-2">Correcto</p>
                 <app-action-menu>
                   <ng-container actions>
-                    <il-button-edit
-                      label="Editar"
-                    />
-                    <il-button-delete
-                      label="Eliminar"
-                    />
+                    <il-button-edit label="Editar" />
+                    <il-button-delete label="Eliminar" />
                   </ng-container>
                 </app-action-menu>
               </div>
@@ -484,11 +456,17 @@ const CORE_LABELS: Record<string, string> = {
             <div class="flex flex-column gap-4">
               <div>
                 <p class="text-sm font-bold mb-2">Mx. 4 visibles:</p>
-                <app-avatar-group [avatars]="CATALOG_DEMO_AVATARS" [maxVisible]="4" />
+                <app-avatar-group
+                  [avatars]="CATALOG_DEMO_AVATARS"
+                  [maxVisible]="4"
+                />
               </div>
               <div>
                 <p class="text-sm font-bold mb-2">Mx. 3 visibles:</p>
-                <app-avatar-group [avatars]="CATALOG_DEMO_AVATARS" [maxVisible]="3" />
+                <app-avatar-group
+                  [avatars]="CATALOG_DEMO_AVATARS"
+                  [maxVisible]="3"
+                />
               </div>
             </div>
           </p-card>
@@ -718,8 +696,8 @@ const CORE_LABELS: Record<string, string> = {
                 (onClick)="cmdPaletteVisible.set(true)"
               />
               <p class="text-xs text-secondary m-0">
-                Tambin puedes presionar <kbd>Ctrl+K</kbd> cuando el dilogo
-                est registrado.
+                Tambin puedes presionar <kbd>Ctrl+K</kbd> cuando el dilogo est
+                registrado.
               </p>
             </div>
             <app-command-palette
@@ -789,9 +767,7 @@ const CORE_LABELS: Record<string, string> = {
           <p-card header="OTP Input - 2FA / Verificacin">
             <div class="flex flex-column gap-4">
               <div>
-                <p class="text-sm font-bold mb-2">
-                  6 dgitos (predeterminado):
-                </p>
+                <p class="text-sm font-bold mb-2">6 dgitos (predeterminado):</p>
                 <app-otp-input [(value)]="otpValue" />
                 <p class="text-xs text-secondary mt-1">
                   Valor:
@@ -1212,8 +1188,6 @@ export class CatalogCoreItem {
       activo: false,
     },
   ];
-
-
 
   readonly timelineEvents: TimelineEvent[] = [
     {
@@ -1891,7 +1865,7 @@ export class CatalogCoreItem {
     { separator: true },
     { label: "Exportar PDF", icon: "mdi:file-pdf-box" },
     { separator: true },
-    { label: "Eliminar", icon: "mdi:delete", styleClass: "text-danger" },
+    { label: "Eliminar", icon: "mdi:delete", class: "text-danger" },
   ];
 
   cmdPaletteVisible = signal(false);

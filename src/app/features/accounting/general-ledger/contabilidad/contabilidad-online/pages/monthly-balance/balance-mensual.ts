@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -18,7 +18,7 @@ import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
     FormsModule,
     TableModule,
     WebButtonLabel,
-    InputTextModule,
+    CustomInputTextSignal,
     AccountingNumberPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

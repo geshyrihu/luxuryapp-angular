@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-12">
-    <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
+    <p-card class="shadow-1 border-round-xl overflow-hidden">
       <ng-template #content>
         <div class="grid">
           <div class="col-12 lg:col-4">
@@ -79,34 +79,50 @@
 
   @if (report(); as data) {
   <div class="col-12 md:col-6 xl:col-3">
-    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+    <div
+      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+    >
       <div class="text-500 text-sm mb-2">Consumo total</div>
-      <div class="text-3xl font-bold text-900">{{ data.totalConsumo | number: "1.0-2" }}</div>
+      <div class="text-3xl font-bold text-900">
+        {{ data.totalConsumo | number: "1.0-2" }}
+      </div>
       <div class="text-500 text-sm mt-2">
-        {{ data.fechaInicio | date: "dd/MM/yyyy" }} al
-        {{ data.fechaFin | date: "dd/MM/yyyy" }}
+        {{ data.fechaInicio | date: "dd/MM/yyyy" }} al {{ data.fechaFin | date:
+        "dd/MM/yyyy" }}
       </div>
     </div>
   </div>
 
   <div class="col-12 md:col-6 xl:col-3">
-    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+    <div
+      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+    >
       <div class="text-500 text-sm mb-2">Promedio semanal</div>
-      <div class="text-3xl font-bold text-900">{{ data.promedioSemanal | number: "1.0-2" }}</div>
-      <div class="text-500 text-sm mt-2">{{ data.totalSemanas }} semanas consideradas</div>
+      <div class="text-3xl font-bold text-900">
+        {{ data.promedioSemanal | number: "1.0-2" }}
+      </div>
+      <div class="text-500 text-sm mt-2">
+        {{ data.totalSemanas }} semanas consideradas
+      </div>
     </div>
   </div>
 
   <div class="col-12 md:col-6 xl:col-3">
-    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+    <div
+      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+    >
       <div class="text-500 text-sm mb-2">Medidores incluidos</div>
       <div class="text-3xl font-bold text-900">{{ data.totalMedidores }}</div>
-      <div class="text-500 text-sm mt-2">Filtros aplicados sobre medidores activos</div>
+      <div class="text-500 text-sm mt-2">
+        Filtros aplicados sobre medidores activos
+      </div>
     </div>
   </div>
 
   <div class="col-12 md:col-6 xl:col-3">
-    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+    <div
+      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+    >
       <div class="text-500 text-sm mb-2">Categorias</div>
       <div class="text-3xl font-bold text-900">{{ data.totalCategorias }}</div>
       <div class="text-500 text-sm mt-2">Desglose ejecutivo por categoria</div>
@@ -114,7 +130,7 @@
   </div>
 
   <div class="col-12 xl:col-8">
-    <p-card styleClass="h-full shadow-1 border-round-xl">
+    <p-card class="h-full shadow-1 border-round-xl">
       <ng-template #header>
         <div class="px-3 pt-3">
           <div class="text-xl font-semibold">Consumo semanal</div>
@@ -130,24 +146,35 @@
   </div>
 
   <div class="col-12 xl:col-4">
-    <p-card styleClass="h-full shadow-1 border-round-xl">
+    <p-card class="h-full shadow-1 border-round-xl">
       <ng-template #header>
         <div class="px-3 pt-3">
           <div class="text-xl font-semibold">Resumen por categoria</div>
-          <div class="text-500 text-sm">Consumo total y cantidad de medidores</div>
+          <div class="text-500 text-sm">
+            Consumo total y cantidad de medidores
+          </div>
         </div>
       </ng-template>
       <ng-template #content>
         <div class="flex flex-column gap-2">
-          @for (categoria of data.categorias; track categoria.medidorCategoriaId) {
-          <div class="surface-50 border-round-lg p-3 border-1 border-surface-200">
+          @for (categoria of data.categorias; track
+          categoria.medidorCategoriaId) {
+          <div
+            class="surface-50 border-round-lg p-3 border-1 border-surface-200"
+          >
             <div class="flex justify-content-between gap-3">
               <div>
-                <div class="font-semibold text-900">{{ categoria.categoria }}</div>
-                <div class="text-500 text-sm">{{ categoria.totalMedidores }} medidores</div>
+                <div class="font-semibold text-900">
+                  {{ categoria.categoria }}
+                </div>
+                <div class="text-500 text-sm">
+                  {{ categoria.totalMedidores }} medidores
+                </div>
               </div>
               <div class="text-right">
-                <div class="font-bold text-900">{{ categoria.totalConsumo | number: "1.0-2" }}</div>
+                <div class="font-bold text-900">
+                  {{ categoria.totalConsumo | number: "1.0-2" }}
+                </div>
                 <div class="text-500 text-sm">consumo</div>
               </div>
             </div>
@@ -159,7 +186,7 @@
   </div>
 
   <div class="col-12">
-    <p-card styleClass="shadow-1 border-round-xl">
+    <p-card class="shadow-1 border-round-xl">
       <ng-template #header>
         <div class="px-3 pt-3">
           <div class="text-xl font-semibold">Detalle por medidor</div>
@@ -172,10 +199,14 @@
           [paginator]="true"
           [rows]="10"
           [rowsPerPageOptions]="[10, 25, 50]"
-          styleClass="custom-table"
+          class="custom-table"
         >
           <ng-template #caption>
-            <primeng-custom-caption title="Detalle por medidor" [showAdd]="false" [showSearch]="false" />
+            <primeng-custom-caption
+              title="Detalle por medidor"
+              [showAdd]="false"
+              [showSearch]="false"
+            />
           </ng-template>
           <ng-template #header>
             <tr>
@@ -195,12 +226,18 @@
               <td>{{ item.numeroMedidor }}</td>
               <td>{{ item.area }}</td>
               <td>{{ item.descripcion }}</td>
-              <td class="text-right">{{ item.consumoTotal | number: "1.0-2" }}</td>
-              <td class="text-right">{{ item.promedioSemanal | number: "1.0-2" }}</td>
+              <td class="text-right">
+                {{ item.consumoTotal | number: "1.0-2" }}
+              </td>
+              <td class="text-right">
+                {{ item.promedioSemanal | number: "1.0-2" }}
+              </td>
               <td class="text-right">
                 {{ item.consumoDiarioMaximoConfigurado | number: "1.0-2" }}
               </td>
-              <td class="text-right">{{ item.consumoMaximoDetectado | number: "1.0-2" }}</td>
+              <td class="text-right">
+                {{ item.consumoMaximoDetectado | number: "1.0-2" }}
+              </td>
             </tr>
           </ng-template>
         </p-table>
@@ -209,7 +246,9 @@
   </div>
   } @else {
   <div class="col-12">
-    <div class="surface-card border-round-xl border-1 border-surface-200 p-4 text-center text-500">
+    <div
+      class="surface-card border-round-xl border-1 border-surface-200 p-4 text-center text-500"
+    >
       No hay datos disponibles para el rango y filtros seleccionados.
     </div>
   </div>

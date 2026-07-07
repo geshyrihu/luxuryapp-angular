@@ -3,7 +3,7 @@
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   size="small"
   [scrollable]="true"
   scrollHeight="750px"
@@ -98,29 +98,29 @@
     <!-- Indicador de estado del fondeo para el mes seleccionado -->
     @if (selectedMonthName() && selectedFundingStatus()) { @if
     (selectedFundingStatus()!.firstQNA?.isVerified) {
-    <p-message severity="warn" styleClass="mb-1">
+    <p-message severity="warn" class="mb-1">
       1ra Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
       generar órdenes de compra.
     </p-message>
     } @else if (selectedFundingStatus()!.firstQNA?.isConfirmed) {
-    <p-message severity="success" styleClass="mb-1">
+    <p-message severity="success" class="mb-1">
       1ra Quincena de {{ selectedMonthName() }} esté confirmada.
     </p-message>
     } @else if (selectedFundingStatus()!.firstQNA?.isAuthorized) {
-    <p-message severity="info" styleClass="mb-1">
+    <p-message severity="info" class="mb-1">
       1ra Quincena de {{ selectedMonthName() }} esté autorizada.
     </p-message>
     } @if (selectedFundingStatus()!.secondQNA?.isVerified) {
-    <p-message severity="warn" styleClass="mb-1">
+    <p-message severity="warn" class="mb-1">
       2da Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
       generar órdenes de compra.
     </p-message>
     } @else if (selectedFundingStatus()!.secondQNA?.isConfirmed) {
-    <p-message severity="success" styleClass="mb-1">
+    <p-message severity="success" class="mb-1">
       2da Quincena de {{ selectedMonthName() }} esté confirmada.
     </p-message>
     } @else if (selectedFundingStatus()!.secondQNA?.isAuthorized) {
-    <p-message severity="info" styleClass="mb-1">
+    <p-message severity="info" class="mb-1">
       2da Quincena de {{ selectedMonthName() }} esté autorizada.
     </p-message>
     } }

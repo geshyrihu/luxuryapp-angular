@@ -11,9 +11,9 @@
       [value]="dataSignal()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="custom-table"
+      class="custom-table"
     >
-      <!-- styleClass="p-datatable-sm" -->
+      <!-- class="p-datatable-sm" -->
       <ng-template #caption>
         <primeng-custom-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

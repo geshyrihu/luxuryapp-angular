@@ -30,7 +30,10 @@
     font-size: 0.875rem;
     font-weight: 500;
     white-space: nowrap;
-    transition: color 150ms, border-color 150ms, background 150ms;
+    transition:
+      color 150ms,
+      border-color 150ms,
+      background 150ms;
     outline: none;
   }
 
@@ -77,10 +80,10 @@
        VISTA ESCRITORIO
        ========================= -->
   <div class="hidden md:flex flex-column flex-1 min-h-0">
-
     <!-- Fila única: [Año Fiscal] | [Presupuesto] [Extraordinarios] | spacer | [Buscar] [Botones] -->
-    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round mb-2">
-
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round mb-2"
+    >
       <!-- Lado Izquierdo: Año Fiscal y Tabs de navegación -->
       <div class="flex flex-wrap align-items-center gap-3">
         <!-- Año Fiscal -->
@@ -103,14 +106,14 @@
         <div class="budget-nav-divider"></div>
 
         <!-- Tabs de navegación usando p-selectButton -->
-        <custom-input-select-button-signal 
+        <custom-input-select-button-signal
           [options]="[
             { label: 'Presupuesto', value: 'presupuesto' },
             { label: 'Extraordinarios (605) y Proyectos (606)', value: 'especiales' }
-          ]" 
-          [ngModel]="activeTabValue()" 
+          ]"
+          [ngModel]="activeTabValue()"
           (ngModelChange)="activeTabValue.set($event)"
-          optionLabel="label" 
+          optionLabel="label"
           optionValue="value"
         />
       </div>
@@ -129,12 +132,11 @@
             iconClass="mdi:cog"
             [outlined]="true"
             severity="secondary"
-            pTooltip="Gestionar Reglas de Cuentas" tooltipPosition="bottom"
+            pTooltip="Gestionar Reglas de Cuentas"
+            tooltipPosition="bottom"
             (clicked)="onManageRules()"
           />
-          }
-
-          @if (sharedS.allMonths()) {
+          } @if (sharedS.allMonths()) {
           <il-button
             iconClass="mdi:close"
             label="Ninguno"
@@ -152,9 +154,7 @@
             variant="outlined"
             severity="info"
           />
-          }
-
-          @if (activeTabValue() === 'presupuesto') {
+          } @if (activeTabValue() === 'presupuesto') {
           <il-button
             iconClass="mdi:magnify"
             label="Full"
@@ -171,9 +171,7 @@
             severity="help"
             (clicked)="analyzeFinancialData()"
           />
-          }
-
-          @if (sharedS.budgetData()) {
+          } @if (sharedS.budgetData()) {
           <il-button
             iconClass="mdi:microsoft-excel"
             label="Excel"
@@ -193,20 +191,17 @@
     <p-message
       severity="error"
       [text]="sharedS.errorMensaje()!"
-      styleClass="w-full"
+      class="w-full"
     />
     }
 
     <!-- Contenido del tab activo -->
     <div class="budget-content">
-      @switch (activeTabValue()) {
-        @case ('presupuesto') {
-          <app-presupuesto-aspel-ejercicio-fiscal />
-        }
-        @case ('especiales') {
-          <app-espejo-aspel-extraordinarios />
-        }
-      }
+      @switch (activeTabValue()) { @case ('presupuesto') {
+      <app-presupuesto-aspel-ejercicio-fiscal />
+      } @case ('especiales') {
+      <app-espejo-aspel-extraordinarios />
+      } }
     </div>
   </div>
 
@@ -214,7 +209,9 @@
        VISTA MÓVIL
        ========================= -->
   <div class="block md:hidden">
-    <div class="flex align-items-center gap-2 p-2 surface-card border-round mb-2">
+    <div
+      class="flex align-items-center gap-2 p-2 surface-card border-round mb-2"
+    >
       <custom-input-select-signal
         id="yearSelectorMobile"
         label="Año Fiscal"
@@ -248,14 +245,11 @@
     </ion-segment>
 
     <div class="mt-2">
-      @switch (activeTabValue()) {
-        @case ('presupuesto') {
-          <app-presupuesto-aspel-ejercicio-fiscal />
-        }
-        @case ('especiales') {
-          <app-espejo-aspel-extraordinarios />
-        }
-      }
+      @switch (activeTabValue()) { @case ('presupuesto') {
+      <app-presupuesto-aspel-ejercicio-fiscal />
+      } @case ('especiales') {
+      <app-espejo-aspel-extraordinarios />
+      } }
     </div>
   </div>
 </div>

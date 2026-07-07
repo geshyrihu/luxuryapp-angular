@@ -13,7 +13,7 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   dataKey="id"
-  styleClass="custom-table hidden md:block"
+  class="custom-table hidden md:block"
 >
   <ng-template #caption>
     <div
@@ -35,7 +35,8 @@
         </div>
         <div class="flex-shrink-0">
           <iw-button
-            pTooltip="Actualizar Información" tooltipPosition="bottom"
+            pTooltip="Actualizar Información"
+            tooltipPosition="bottom"
             iconClass="mdi:sync"
             (clicked)="onLoadData()"
             [rounded]="true"

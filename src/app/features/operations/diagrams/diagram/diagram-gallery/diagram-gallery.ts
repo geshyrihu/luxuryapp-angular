@@ -1,5 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
@@ -59,7 +66,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 [subheader]="
                   'Actualizado: ' + (diagram.updateAt | date: 'dd/MM/yyyy')
                 "
-                styleClass="h-full shadow-2 hover:shadow-4 transition-duration-150"
+                class="h-full shadow-2 hover:shadow-4 transition-duration-150"
               >
                 <div
                   class="flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"

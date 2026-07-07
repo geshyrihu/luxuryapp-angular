@@ -4,9 +4,9 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DialogModule } from "primeng/dialog";
 import { TableModule } from "primeng/table";
-import { TextareaModule } from "primeng/textarea";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -24,7 +24,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
@@ -43,7 +42,7 @@ import { TooltipModule } from "primeng/tooltip";
     DataViewMobile,
     WebButtonLabelViewPdf,
     DialogModule,
-    TextareaModule,
+    CustomInputTextAreaSignal,
     ReactiveFormsModule,
     IonItem,
     IonLabel,
@@ -88,7 +87,6 @@ export class Reglamentos {
     });
   }
 
-  // AI Consultation
   showConsultationDialog = signal(false);
   consultationQueryControl = new FormControl<string>("");
   consultingDoc = signal(false);
@@ -117,7 +115,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "Ocurrió un error al consultar el documento. Por favor intenta de nuevo.",
+        "OcurriÃ³ un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);
@@ -129,10 +127,8 @@ export class Reglamentos {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
-        // Opcional: Manejar el error y revertir el orden si es necesario
       });
   }
 }

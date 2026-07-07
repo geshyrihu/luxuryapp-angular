@@ -10,7 +10,7 @@
     <p-table
       [value]="dataSignal()"
       dataKey="id"
-      styleClass="custom-table"
+      class="custom-table"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
@@ -201,7 +201,8 @@
           <td class="text-center">
             <iw-button
               iconClass="mdi:file-edit"
-              pTooltip="GESTIONAR" tooltipPosition="top"
+              pTooltip="GESTIONAR"
+              tooltipPosition="top"
               severity="secondary"
               size="sm"
               (clicked)="navigateToGestionMinuta(item.id)"

@@ -47,9 +47,9 @@
   </div>
   <div class="col-12 md:col-4">
     <label class="block mb-2 font-semibold">Hora de inicio *</label>
-    <p-select
-      [options]="startTimeOptions()"
-      formControlName="startTime"
+    <custom-input-select-signal
+      [control]="form.controls.startTime"
+      [data]="startTimeOptions()"
       optionLabel="label"
       optionValue="value"
       optionDisabled="disabled"
@@ -58,8 +58,10 @@
           ? 'Selecciona primero una fecha'
           : 'Selecciona una hora'
       "
-      appendTo="body"
-      class="w-full"
+      [showClear]="false"
+      [horizontal]="false"
+      [noMargin]="true"
+      customClass="w-full"
       size="small"
     >
       <ng-template let-selected #selectedItem>
@@ -79,7 +81,7 @@
           }
         </div>
       </ng-template>
-    </p-select>
+    </custom-input-select-signal>
   </div>
 
   @if (isAssemblySelected()) {

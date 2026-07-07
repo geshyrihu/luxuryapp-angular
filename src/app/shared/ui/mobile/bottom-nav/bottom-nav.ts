@@ -1,22 +1,12 @@
-import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { BottomNavBase } from "@ui/base/bottom-nav.base";
 
-export interface BottomNavItem {
-  id: string;
-  icon: string;
-  activeIcon?: string;
-  label: string;
-  badge?: number;
-}
+export type { BottomNavItem } from "@ui/base/bottom-nav.base";
 
-/**
- * AppBottomNav — Barra de navegación inferior para apps mobile (iOS/Android pattern).
- * Compatible con web y Ionic. Emite `navChange` al seleccionar un ítem.
- * Colocar con posición fixed al fondo del layout en mobile.
- */
 @Component({
-  selector: "app-bottom-nav",
+  selector: "ili-bottom-nav",
   standalone: true,
   imports: [CommonModule, AppIcon],
   template: `
@@ -52,7 +42,6 @@ export interface BottomNavItem {
       border-top: 1px solid var(--ds-border, #e2e8f0);
       height: 60px;
       width: 100%;
-      /* Safe area for iOS home indicator */
       padding-bottom: env(safe-area-inset-bottom, 0px);
     }
     .bottom-nav-item {
@@ -110,15 +99,4 @@ export interface BottomNavItem {
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppBottomNav {
-  items     = input<BottomNavItem[]>([]);
-  activeId  = model<string>("");
-  ariaLabel = input<string>("Navegación principal");
-
-  navChange = output<string>();
-
-  select(id: string): void {
-    this.activeId.set(id);
-    this.navChange.emit(id);
-  }
-}
+export class MobileBottomNav extends BottomNavBase {}

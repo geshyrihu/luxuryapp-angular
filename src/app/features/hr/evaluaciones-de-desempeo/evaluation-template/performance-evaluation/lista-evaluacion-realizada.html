@@ -9,7 +9,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   dzfxcvcv
   <ng-template #caption>
@@ -65,12 +65,14 @@
           <iw-button-edit (clicked)="onEdit(item.id)" />
           <iw-button-item
             (clicked)="onDetail(item.id)"
-            pTooltip="Detalle" tooltipPosition="top"
+            pTooltip="Detalle"
+            tooltipPosition="top"
             [iconClass]="'mdi:receipt'"
           />
           <iw-button-item
             (clicked)="onDownloadIndividual(item.id, item.employeeName)"
-            pTooltip="Descargar" tooltipPosition="top"
+            pTooltip="Descargar"
+            tooltipPosition="top"
             icon="mdi:download"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />

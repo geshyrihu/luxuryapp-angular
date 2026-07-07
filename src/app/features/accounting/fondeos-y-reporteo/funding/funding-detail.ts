@@ -6,7 +6,7 @@ import {
   effect,
   inject,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -159,7 +159,7 @@ export class FundingDetail {
         return {
           label: `${emoji} ${title}`,
           command: () => this.openCreateOrdenCompraWizard(id),
-          styleClass: "p-2",
+          class: "p-2",
           disabled: !this.canEdit(), // Disable menu items individually too
         };
       });

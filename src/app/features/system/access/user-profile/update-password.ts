@@ -7,9 +7,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { FloatLabelModule } from "primeng/floatlabel";
-import { PasswordModule } from "primeng/password";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { IChangePassword } from "src/app/core/interfaces/change-password.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,9 +21,8 @@ import { AuthService } from "src/app/core/services/auth.service";
     CommonModule,
     ReactiveFormsModule,
     CardModule,
-    PasswordModule,
     WebButtonLabelSave,
-    FloatLabelModule,
+    CustomInputPassword,
   ],
 })
 export class UpdatePasswordComponent implements OnInit {

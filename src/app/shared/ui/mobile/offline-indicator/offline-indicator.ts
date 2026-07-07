@@ -1,9 +1,10 @@
-import { Component, computed, OnDestroy, signal, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
 
 @Component({
-  selector: "app-offline-indicator",
+  selector: "ili-offline-indicator",
   standalone: true,
   imports: [CommonModule, AppIcon],
   template: `
@@ -43,25 +44,4 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class OfflineIndicator implements OnDestroy {
-  online = signal(navigator.onLine);
-  showBanner = signal(false);
-  private timeoutId: ReturnType<typeof setTimeout> | null = null;
-
-  constructor() {
-    window.addEventListener("online", () => this.updateStatus(true));
-    window.addEventListener("offline", () => this.updateStatus(false));
-  }
-
-  private updateStatus(isOnline: boolean): void {
-    this.online.set(isOnline);
-    this.showBanner.set(true);
-    if (this.timeoutId) clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => this.showBanner.set(false), isOnline ? 3000 : 0);
-  }
-
-  ngOnDestroy(): void {
-    window.removeEventListener("online", () => {});
-    window.removeEventListener("offline", () => {});
-  }
-}
+export class MobileOfflineIndicator extends OfflineIndicatorBase {}

@@ -1,4 +1,4 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -43,6 +43,8 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [pSize]="size()"
         [invalid]="isInvalid()"
         [attr.list]="list()"
+        (blur)="blur.emit()"
+        (keydown.enter)="enter.emit()"
         fluid
       />
     </base-input-signal>
@@ -67,6 +69,8 @@ export class WebInputText
   size = input<"small" | "large" | undefined>(undefined);
   type = input<string>("text");
   list = input<string | undefined>(undefined);
+  blur = output<void>();
+  enter = output<void>();
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

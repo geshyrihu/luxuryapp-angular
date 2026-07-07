@@ -8,7 +8,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="card custom-table hidden md:block"
+  class="card custom-table hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -18,25 +18,25 @@
     <tr>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="1" severity="info" styleClass="mr-2"></p-tag>
+          <p-tag value="1" severity="info" class="mr-2"></p-tag>
           <span class="font-semibold">PERIODO</span>
         </div>
       </th>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="2" severity="info" styleClass="mr-2"></p-tag>
+          <p-tag value="2" severity="info" class="mr-2"></p-tag>
           <span class="font-semibold">ARCHIVO</span>
         </div>
       </th>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="3" severity="info" styleClass="mr-2"></p-tag>
+          <p-tag value="3" severity="info" class="mr-2"></p-tag>
           <span class="font-semibold">AUTORIZACIóN</span>
         </div>
       </th>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="4" severity="info" styleClass="mr-2"></p-tag>
+          <p-tag value="4" severity="info" class="mr-2"></p-tag>
           <span class="font-semibold">ENVíO</span>
         </div>
       </th>
@@ -50,7 +50,8 @@
       <td>
         @if (item.nameFileEstadoFinanciero === null) {
         <iw-button
-          pTooltip="Cargar Informe" tooltipPosition="top"
+          pTooltip="Cargar Informe"
+          tooltipPosition="top"
           iconClass="mdi:upload"
           [loading]="isProcessingUpload(item.id)"
           (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
@@ -88,7 +89,8 @@
         @if (item.nameFileEstadoFinanciero !== null) { @if
         (item.personWhoAuthorized === "") {
         <iw-button
-          pTooltip="Autorizar" tooltipPosition="top"
+          pTooltip="Autorizar"
+          tooltipPosition="top"
           iconClass="mdi:checkbox-marked"
           severity="success"
           [loading]="isProcessingAuthorize(item.id)"
@@ -121,8 +123,9 @@
         !== "" ) { @if (item.personWhoSend === "") {
         <iw-button-confirm
           icon="mdi:send"
-          pTooltip="ENVIAR PDF" tooltipPosition="top"
-          styleClass="p-button-primary w-full mb-2"
+          pTooltip="ENVIAR PDF"
+          tooltipPosition="top"
+          class="p-button-primary w-full mb-2"
           swalTitle="óEnviar estados financieros?"
           swalText="El informe financiero (PDF) seré enviado."
           swalConfirmButtonText="Sí, enviar"
@@ -294,7 +297,7 @@
           <ili-button-confirm
             icon="mdi:send"
             label="ENVIAR"
-            styleClass="p-button-text w-full text-left"
+            class="p-button-text w-full text-left"
             swalTitle="óEnviar estados financieros?"
             swalText="El informe financiero sera enviado."
             swalConfirmButtonText="Sí, enviar"

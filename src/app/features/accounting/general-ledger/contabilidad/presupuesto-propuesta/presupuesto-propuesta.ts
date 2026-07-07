@@ -28,7 +28,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
-import { MultiSelect } from "primeng/multiselect";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -81,6 +81,7 @@ import { ExcelExportService } from "./services/excel-export.service";
 
     TableModule,
     CustomInputSelectSignal,
+    CustomInputMultiselectSignal,
     DialogModule,
     CheckboxModule,
     TooltipModule,

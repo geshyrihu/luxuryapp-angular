@@ -14,7 +14,7 @@ Actualmente cada lista sigue el mismo boilerplate:
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {...}"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table  card hidden md:block"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
 >
@@ -178,7 +178,7 @@ core/components/app-table/
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table  card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -253,7 +253,7 @@ core/components/app-table/
 - **`scrollHeight="flex"`**: recomendado para auto-ajuste responsivo (sin px fijo).
 - **`currentPageReportTemplate`**: string con placeholders `{first}`, `{last}`, `{totalRecords}`.
 - **`pcPaginator`** (v21): en lugar de `paginatorStyle`, usar pass-through para estilizar el paginador.
-- **`tableStyle` vs `styleClass`**: `tableStyle` para estilos inline, `styleClass` para clases CSS (recomendado).
+- **`tableStyle` vs `class`**: `tableStyle` para estilos inline, `class` para clases CSS (recomendado).
 
 ## Consideraciones
 

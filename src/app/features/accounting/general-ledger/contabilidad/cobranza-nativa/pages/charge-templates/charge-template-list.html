@@ -6,7 +6,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -45,9 +45,13 @@
         </td>
         <td>
           <div class="flex flex-column">
-            <span class="text-xs text-500">{{ item.chargeTypeName || 'Tipo sin clasificar' }}</span>
+            <span class="text-xs text-500"
+              >{{ item.chargeTypeName || 'Tipo sin clasificar' }}</span
+            >
             <span class="font-semibold">{{ item.name }}</span>
-            <span class="text-xs text-400">{{ item.chargeTypeAccountNumber }}</span>
+            <span class="text-xs text-400"
+              >{{ item.chargeTypeAccountNumber }}</span
+            >
           </div>
         </td>
         <td class="text-center font-medium">

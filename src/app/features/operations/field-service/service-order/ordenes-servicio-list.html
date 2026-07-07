@@ -4,7 +4,7 @@
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   rowGroupMode="subheader"
   groupRowsBy="equipoClasificacion"
 >
@@ -23,7 +23,8 @@
       <div class="flex flex-wrap gap-1">
         @for (item of filtroEquipos; track item) {
         <iw-button
-          [pTooltip]="'Ver ' + item.nombre" tooltipPosition="bottom"
+          [pTooltip]="'Ver ' + item.nombre"
+          tooltipPosition="bottom"
           [iconClass]="item.icon"
           variant="outlined"
           [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
@@ -153,21 +154,24 @@
         <div class="flex">
           <iw-button-item
             iconClass="mdi:printer"
-            pTooltip="Imprimir soporte" tooltipPosition="top"
+            pTooltip="Imprimir soporte"
+            tooltipPosition="top"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             variant="outlined"
           />
 
           <iw-button-item
             iconClass="mdi:image"
-            pTooltip="Cargar imagen" tooltipPosition="top"
+            pTooltip="Cargar imagen"
+            tooltipPosition="top"
             (clicked)="onModalFormUploadImg(item.id)"
             variant="outlined"
           />
 
           <iw-button-item
             iconClass="mdi:paperclip"
-            pTooltip="Cargar documentos" tooltipPosition="top"
+            pTooltip="Cargar documentos"
+            tooltipPosition="top"
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outlined"
           />

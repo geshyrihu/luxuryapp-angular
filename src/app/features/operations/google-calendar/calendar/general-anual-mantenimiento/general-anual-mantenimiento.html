@@ -24,7 +24,7 @@
     </div>
     @for (servicio of item.servicios; track servicio) {
     <div class="mb-3">
-      <p-card styleClass="h-full shadow-1">
+      <p-card class="h-full shadow-1">
         <div class="card-body">
           <div class="flex flex-column">
             <div class="mb-3 border-bottom-1 surface-border pb-2">
@@ -137,7 +137,8 @@
           </div>
         </div>
         <p class="text-xs text-color-secondary mt-2 mb-0">
-          <app-icon [icon]="'mdi:briefcase'" class="mr-1" /> {{ servicio.proveedor }}
+          <app-icon [icon]="'mdi:briefcase'" class="mr-1" /> {{
+          servicio.proveedor }}
         </p>
       </ion-label>
     </ion-item>

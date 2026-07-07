@@ -12,7 +12,7 @@
       <p-tag
         [value]="customerId()"
         severity="secondary"
-        styleClass="max-w-16rem overflow-hidden text-overflow-ellipsis"
+        class="max-w-16rem overflow-hidden text-overflow-ellipsis"
       />
       <p-tag
         [value]="dataSource() === 'local' ? 'Local' : 'Live'"
@@ -88,7 +88,7 @@
   </div>
   } @if (loading()) {
   <p-card
-    styleClass="shadow-none border-1 surface-border border-dashed border-round-xl"
+    class="shadow-none border-1 surface-border border-dashed border-round-xl"
   >
     <div
       class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
@@ -103,7 +103,7 @@
   } @else if (mode() === "accounts" && accountRows().length) {
   <div class="grid">
     <div class="col-12 md:col-4">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
@@ -113,9 +113,7 @@
     </div>
 
     <div class="col-12 md:col-4">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-blue-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Ejercicio</span
         >
@@ -127,9 +125,7 @@
     </div>
 
     <div class="col-12 md:col-4">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-orange-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Total cuentas</span
         >
@@ -153,7 +149,7 @@
     [value]="accountRows()"
     #dtAccounts
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
-    styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -199,7 +195,7 @@
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta</span
         >
@@ -209,7 +205,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
@@ -224,9 +220,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-blue-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial</span
         >
@@ -239,9 +233,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-orange-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final</span
         >
@@ -266,7 +258,7 @@
     [value]="estadoMovimientos()"
     #dtEstado
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} movimientos"
-    styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -334,7 +326,7 @@
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta base</span
         >
@@ -346,7 +338,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
@@ -361,9 +353,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-blue-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial total</span
         >
@@ -376,7 +366,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cargos / Abonos</span
         >
@@ -392,7 +382,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Adelantos</span
         >
@@ -405,9 +395,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-orange-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final total</span
         >
@@ -420,7 +408,7 @@
     </div>
   </div>
 
-  <p-card styleClass="shadow-none border-1 surface-border border-dashed">
+  <p-card class="shadow-none border-1 surface-border border-dashed">
     <div class="flex flex-column gap-3">
       <div class="flex justify-content-between align-items-start gap-3">
         <div>
@@ -440,7 +428,7 @@
         [rowsPerPageOptions]="rowsPerPageOptions"
         [value]="detalleConceptRows()"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
-        styleClass="custom-table hidden md:block"
+        class="custom-table hidden md:block"
       >
         <ng-template #header>
           <tr>
@@ -511,7 +499,7 @@
   <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card styleClass="shadow-none border-1 surface-border h-full">
+          <p-card class="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
             <strong class="block text-xl">{{ contrapartidas()?.numCtaBase }}</strong>
             <small class="text-500">{{ contrapartidas()?.departamento }}</small>
@@ -519,7 +507,7 @@
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card styleClass="shadow-none border-1 surface-border h-full">
+          <p-card class="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
             <strong class="block text-xl">{{ contrapartidas()?.fechaInicio }} - {{ contrapartidas()?.fechaFin }}</strong>
             <small class="text-500">{{ contrapartidas()?.totalMovimientos }} movimientos</small>
@@ -527,7 +515,7 @@
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card styleClass="shadow-none border-1 surface-border bg-blue-50 h-full">
+          <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
             <strong class="block text-xl">{{ contrapartidas()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Cuenta base</small>
@@ -535,7 +523,7 @@
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card styleClass="shadow-none border-1 surface-border bg-orange-50 h-full">
+          <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo final</span>
             <strong class="block text-xl">{{ contrapartidas()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Cuenta base</small>
@@ -555,7 +543,7 @@
         [value]="contrapartidaRows()"
         #dtContra
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} grupos"
-        styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+        class="custom-table  hidden md:block border-1 surface-border border-round shadow-1 bg-white"
       >
         <ng-template #caption>
           <primeng-custom-caption
@@ -602,7 +590,7 @@
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
@@ -612,7 +600,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card styleClass="shadow-none border-1 surface-border h-full">
+      <p-card class="shadow-none border-1 surface-border h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Fecha corte</span
         >
@@ -624,9 +612,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-orange-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Propiedades con deuda</span
         >
@@ -638,9 +624,7 @@
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card
-        styleClass="shadow-none border-1 surface-border bg-blue-50 h-full"
-      >
+      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Deuda total</span
         >
@@ -665,7 +649,7 @@
     [value]="deudaActualRows()"
     #dtDeudas
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} propiedades con deuda"
-    styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -743,7 +727,7 @@
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-2">
-          <p-card styleClass="shadow-none border-1 surface-border h-full">
+          <p-card class="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
             <strong class="block text-xl">{{ pendientes()?.numCtaBase }}</strong>
             <small class="text-500">{{ pendientes()?.departamento || "Sin nombre de departamento" }}</small>
@@ -751,7 +735,7 @@
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card styleClass="shadow-none border-1 surface-border h-full">
+          <p-card class="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Rango consultado</span>
             <strong class="block text-xl">{{ pendientes()?.fechaInicio }} - {{ pendientes()?.fechaFin }}</strong>
             <small class="text-500">Customer actual en contexto</small>
@@ -759,7 +743,7 @@
         </div>
 
         <div class="col-12 md:col-6 lg:col-2">
-          <p-card styleClass="shadow-none border-1 surface-border bg-orange-50 h-full">
+          <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Conceptos encontrados</span>
             <strong class="block text-xl">{{ pendientes()?.totalConceptos }}</strong>
             <small class="text-500">Conceptos disponibles en la cuenta</small>
@@ -767,7 +751,7 @@
         </div>
 
         <div class="col-12 md:col-6 lg:col-2">
-          <p-card styleClass="shadow-none border-1 surface-border h-full">
+          <p-card class="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial total</span>
             <strong class="block text-xl">{{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Suma inicial del rango consultado</small>
@@ -775,7 +759,7 @@
         </div>
 
         <div class="col-12 md:col-12 lg:col-3">
-          <p-card styleClass="shadow-none border-1 surface-border bg-blue-50 h-full">
+          <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente total</span>
             <strong class="block text-xl">{{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Saldo vigente acumulado por concepto</small>
@@ -795,7 +779,7 @@
         [value]="pendienteRows()"
         #dtPend
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
-        styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+        class="custom-table  hidden md:block border-1 surface-border border-round shadow-1 bg-white"
       >
         <ng-template #caption>
           <primeng-custom-caption

@@ -6,7 +6,7 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" />
@@ -52,10 +52,7 @@
         </span>
       </td>
       <td class="text-center">
-        <iw-button-view-pdf
-          [url]="item.path"
-          fileName="Poliza | Contrato"
-        />
+        <iw-button-view-pdf [url]="item.path" fileName="Poliza | Contrato" />
       </td>
     </tr>
   </ng-template>
@@ -63,10 +60,3 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-
-
-
-
-
-
-

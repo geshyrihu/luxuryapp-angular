@@ -95,7 +95,7 @@
         groupRowsBy="sistema"
         rowGroupMode="subheader"
         sortMode="single"
-        styleClass="custom-table-report"
+        class="custom-table -report"
         [loading]="loading()"
       >
         <ng-template #caption>
@@ -116,7 +116,7 @@
               <il-button
                 label="Exportar Excel"
                 iconClass="mdi:file-excel"
-                styleClass="btn-luxury-excel"
+                class="btn-luxury-excel"
                 title="Exportar a Excel"
                 (clicked)="exportExcel()"
               />
@@ -124,7 +124,7 @@
               <il-button
                 label="Exportar PDF"
                 iconClass="mdi:file-pdf-box"
-                styleClass="btn-luxury-pdf"
+                class="btn-luxury-pdf"
                 title="Exportar a PDF"
                 (clicked)="exportPdf()"
               />
@@ -213,13 +213,13 @@
         <il-button
           label="Exportar a Excel"
           iconClass="mdi:file-excel"
-          styleClass="btn-luxury-excel w-full justify-content-center py-3"
+          class="btn-luxury-excel w-full justify-content-center py-3"
           (clicked)="exportExcel()"
         />
         <il-button
           label="Exportar a PDF"
           iconClass="mdi:file-pdf-box"
-          styleClass="btn-luxury-pdf w-full justify-content-center py-3"
+          class="btn-luxury-pdf w-full justify-content-center py-3"
           (clicked)="exportPdf()"
         />
       </div>

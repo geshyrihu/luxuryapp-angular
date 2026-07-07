@@ -1,16 +1,12 @@
-import { Component, input, signal, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
 
-export interface SwipeAction {
-  icon: string;
-  label: string;
-  color: string;
-  action: () => void;
-}
+export type { SwipeAction } from "@ui/base/swipe-actions.base";
 
 @Component({
-  selector: "app-swipe-actions",
+  selector: "ili-swipe-actions",
   standalone: true,
   imports: [CommonModule, AppIcon],
   template: `
@@ -77,47 +73,4 @@ export interface SwipeAction {
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class SwipeActions {
-  actions = input.required<SwipeAction[]>();
-  threshold = input<number>(40);
-
-  offset = signal(0);
-  open = signal(false);
-  private startX = 0;
-  private currentX = 0;
-
-  get actionsWidth(): number {
-    return this.actions().length * 64;
-  }
-
-  onTouchStart(event: TouchEvent): void {
-    this.startX = event.touches[0].clientX;
-    this.currentX = this.startX;
-  }
-
-  onTouchMove(event: TouchEvent): void {
-    this.currentX = event.touches[0].clientX;
-    const diff = this.startX - this.currentX;
-
-    if (diff > 0) {
-      this.offset.set(Math.min(-diff, -this.actionsWidth));
-      this.open.set(diff > 20);
-    } else if (this.open()) {
-      const reveal = Math.max(diff, -this.actionsWidth);
-      this.offset.set(reveal);
-    }
-  }
-
-  onTouchEnd(): void {
-    if (this.open() && this.offset() < -(this.actionsWidth / 2)) {
-      this.offset.set(-this.actionsWidth);
-    } else {
-      this.reset();
-    }
-  }
-
-  reset(): void {
-    this.offset.set(0);
-    this.open.set(false);
-  }
-}
+export class MobileSwipeActions extends SwipeActionsBase {}

@@ -8,7 +8,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -34,7 +33,6 @@ interface IMedidorLecturaForm {
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,
-    InputTextModule,
     CustomInputNumberSignal,
     CustomInputTextSignal,
   ],

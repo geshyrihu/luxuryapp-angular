@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
-import { GlobalErrorAlert } from './global-error-alert';
-import { GlobalErrorService } from '../../services/global-error.service';
+import { MobileGlobalErrorAlert as GlobalErrorAlert } from './global-error-alert';
+import { GlobalErrorService } from '../../../core/services/global-error.service';
 import { CommonModule } from '@angular/common';
 
 // Mock de Ionicons

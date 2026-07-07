@@ -10,7 +10,7 @@
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} diagramas"
     [showCurrentPageReport]="true"
     [loading]="loading()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
   >
     <ng-template #caption>
       <div class="flex align-items-center justify-content-between p-2">
@@ -54,7 +54,8 @@
               ngbTooltip="Editar Propiedades"
               variant="text"
               severity="secondary"
-              pTooltip="Propiedades" tooltipPosition="top"
+              pTooltip="Propiedades"
+              tooltipPosition="top"
             />
             <iw-button
               iconClass="mdi:palette"
@@ -62,7 +63,8 @@
               ngbTooltip="Abrir Editor Grófico"
               variant="text"
               severity="info"
-              pTooltip="Editor" tooltipPosition="top"
+              pTooltip="Editor"
+              tooltipPosition="top"
             />
             <iw-button
               iconClass="mdi:eye-outline"
@@ -70,7 +72,8 @@
               ngbTooltip="Visualizar Diagrama"
               variant="text"
               severity="success"
-              pTooltip="Ver" tooltipPosition="top"
+              pTooltip="Ver"
+              tooltipPosition="top"
             />
             <iw-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
           </div>

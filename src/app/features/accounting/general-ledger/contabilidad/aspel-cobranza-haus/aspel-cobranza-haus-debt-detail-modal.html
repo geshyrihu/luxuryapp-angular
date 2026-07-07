@@ -1,11 +1,14 @@
 <section class="flex flex-column gap-3">
-  <div class="flex flex-column md:flex-row justify-content-between align-items-start gap-3">
+  <div
+    class="flex flex-column md:flex-row justify-content-between align-items-start gap-3"
+  >
     <div>
       <div class="text-xl font-bold text-900">
         {{ row?.numCtaBase }} · {{ row?.departamento || "Sin nombre" }}
       </div>
       <div class="mt-1 text-600">
-        Corte {{ fechaFin || "Sin fecha" }} · {{ row?.tieneDesgloseConceptos ? "Desglose por concepto" : "Saldo global" }}
+        Corte {{ fechaFin || "Sin fecha" }} · {{ row?.tieneDesgloseConceptos ?
+        "Desglose por concepto" : "Saldo global" }}
       </div>
     </div>
     <div class="flex align-items-center justify-content-end flex-wrap gap-2">
@@ -40,32 +43,59 @@
   } @else if (detail()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col">
-      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500">Conceptos</span>
+      <div
+        class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Conceptos</span
+        >
         <strong class="text-xl">{{ detail()?.totalConceptos }}</strong>
       </div>
     </div>
     <div class="col-12 md:col-6 lg:col">
-      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
-        <strong class="text-xl">{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+      <div
+        class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Saldo inicial</span
+        >
+        <strong class="text-xl"
+          >{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2"
+          }}</strong
+        >
       </div>
     </div>
     <div class="col-12 md:col-6 lg:col">
-      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500">Cargos</span>
-        <strong class="text-xl text-orange-600">{{ totalCargos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+      <div
+        class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Cargos</span
+        >
+        <strong class="text-xl text-orange-600"
+          >{{ totalCargos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong
+        >
       </div>
     </div>
     <div class="col-12 md:col-6 lg:col">
-      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500">Abonos</span>
-        <strong class="text-xl text-green-600">{{ totalAbonos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+      <div
+        class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Abonos</span
+        >
+        <strong class="text-xl text-green-600"
+          >{{ totalAbonos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong
+        >
       </div>
     </div>
     <div class="col-12 md:col-6 lg:col">
-      <div class="border-1 surface-border border-round-xl p-3 bg-blue-50 h-full flex flex-column justify-content-center">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente</span>
+      <div
+        class="border-1 surface-border border-round-xl p-3 bg-blue-50 h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Saldo pendiente</span
+        >
         <strong class="text-xl" [ngClass]="getBalanceClass(totalPendiente())">
           {{ totalPendiente() | currency: "MXN" : "symbol" : "1.2-2" }}
         </strong>
@@ -83,7 +113,7 @@
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
     [tableStyle]="{ 'min-width': '64rem' }"
-    styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white mt-3"
+    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white mt-3"
     #detailTable
   >
     <ng-template #caption>
@@ -114,7 +144,11 @@
             [severity]="getConceptSeverity(item.concepto)"
           />
         </td>
-        <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.numCta }}</code></td>
+        <td>
+          <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
+            >{{ item.numCta }}</code
+          >
+        </td>
         <td>{{ item.nombreCuenta }}</td>
         <td class="text-right font-mono">
           {{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}

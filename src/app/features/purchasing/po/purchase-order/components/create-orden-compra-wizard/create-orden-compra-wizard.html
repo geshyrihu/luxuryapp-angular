@@ -90,7 +90,7 @@
             <div class="col-12 md:col-6 lg:col-4">
               <p-message
                 [text]="month.monthName"
-                styleClass="w-full justify-content-start"
+                class="w-full justify-content-start"
               >
                 <div class="flex-flex-grow-1-1 text-right">
                   @for ( quincena of month.quincenas; track quincena.value ) {
@@ -103,7 +103,7 @@
                                 ? 'success'
                                 : 'secondary'
                             "
-                    styleClass="ml-2 cursor-pointer"
+                    class="ml-2 cursor-pointer"
                   ></p-tag>
                   }
                 </div>
@@ -127,19 +127,20 @@
 
       <div class="mt-4">
         <div class="mb-4">
-          <p-autocomplete
-            inputId="products-autocomplete"
-            [dropdown]="true"
+          <custom-input-autocomplete-signal
+            id="products-autocomplete"
+            [control]="selectedProductControl"
             [suggestions]="filteredRichProducts()"
             (completeMethod)="filterRichProducts($event)"
-            [formControl]="selectedProductControl"
-            (onSelect)="onProductSelect($event)"
+            (propagar)="onProductSelect($event)"
+            [dropdown]="true"
             [forceSelection]="true"
-            field="label"
-            fluid
+            optionLabel="label"
+            dataKey="value"
             placeholder="Escriba para buscar un producto..."
             [scrollHeight]="'1200px'"
-            appendTo="body"
+            [onlyInput]="true"
+            [noMargin]="true"
           >
             <ng-template let-product #item>
               <div class="flex flex-wrap p-1 align-items-center w-full">
@@ -162,13 +163,13 @@
                 </div>
               </div>
             </ng-template>
-          </p-autocomplete>
+          </custom-input-autocomplete-signal>
         </div>
       </div>
 
       @if (itemsSignal().length > 0) {
       <div class="mt-4">
-        <p-table [value]="itemsSignal()" styleClass="p-datatable-sm">
+        <p-table [value]="itemsSignal()" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th>Producto</th>
@@ -255,10 +256,7 @@
 
       <div class="mt-4" formArrayName="budgets">
         @if (budgetsFormArray.length > 0) {
-        <p-table
-          [value]="budgetsFormArray.controls"
-          styleClass="p-datatable-sm"
-        >
+        <p-table [value]="budgetsFormArray.controls" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th class="table-col-35">Nómero de Cuenta</th>
@@ -390,7 +388,7 @@
         <hr />
 
         <h5>Artóculos</h5>
-        <p-table [value]="itemsSignal()" styleClass="p-datatable-sm">
+        <p-table [value]="itemsSignal()" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th>Producto</th>
@@ -432,7 +430,7 @@
         <h5>Cuentas de Presupuesto</h5>
         <p-table
           [value]="step3Form.getRawValue().budgets"
-          styleClass="p-datatable-sm"
+          class="p-datatable-sm"
         >
           <ng-template #header>
             <tr>

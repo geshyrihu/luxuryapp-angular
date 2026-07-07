@@ -64,7 +64,7 @@
                 iconClass="mdi:lightning-bolt"
                 variant="link"
                 size="small"
-                styleClass="text-xs"
+                class="text-xs"
                 (clicked)="autoAllocate()"
               />
             </div>
@@ -202,7 +202,7 @@
               [value]="pendingCharges()"
               [scrollable]="true"
               scrollHeight="flex"
-              styleClass="p-datatable-sm custom-table"
+              class="p-datatable-sm custom-table"
             >
               <ng-template #header>
                 <tr>
@@ -245,7 +245,9 @@
                   </td>
                   <td>
                     <div class="flex flex-column">
-                      <span class="text-xs text-500 font-semibold tracking-wide">
+                      <span
+                        class="text-xs text-500 font-semibold tracking-wide"
+                      >
                         {{ getChargeTypeLabel(charge) }}
                       </span>
                       @if (getChargeTypeMeta(charge)) {

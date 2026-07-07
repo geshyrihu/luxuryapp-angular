@@ -8,10 +8,9 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MultiSelectModule } from "primeng/multiselect";
-import { SelectModule } from "primeng/select";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -37,8 +36,7 @@ interface ICalendarioMaestroForm {
     ReactiveFormsModule,
     FormsModule,
     CardModule,
-    SelectModule,
-    MultiSelectModule,
+    CustomInputMultiselectSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,

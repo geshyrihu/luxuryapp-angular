@@ -17,13 +17,13 @@
           label="Día completo"
           [variant]="isPartial() ? 'outline' : 'solid'"
           (clicked)="onLeaveModeChange('full')"
-          styleClass="flex-1"
+          class="flex-1"
         />
         <il-button
           label="Parcial"
           [variant]="!isPartial() ? 'outline' : 'solid'"
           (clicked)="onLeaveModeChange('partial')"
-          styleClass="flex-1"
+          class="flex-1"
         />
       </div>
     </div>
@@ -39,27 +39,27 @@
 
     <!-- Fecha de Fin (solo en modo Día completo) -->
     @if (!isPartial()) {
-      <custom-input-date-signal
-        [control]="form.controls.endDate"
-        label="Fecha de Fin"
-        placeholder="Seleccione fecha de fin"
-        [required]="true"
-        [disable]="disabledDates()"
-      />
+    <custom-input-date-signal
+      [control]="form.controls.endDate"
+      label="Fecha de Fin"
+      placeholder="Seleccione fecha de fin"
+      [required]="true"
+      [disable]="disabledDates()"
+    />
     }
 
     <!-- Hora de Inicio y Hora de Fin (solo en modo Parcial) -->
     @if (isPartial()) {
-      <custom-input-time-signal
-        [control]="form.controls.startTime"
-        label="Hora de Entrada"
-        placeholder="Hora de entrada"
-      />
-      <custom-input-time-signal
-        [control]="form.controls.endTime"
-        label="Hora de Salida"
-        placeholder="Hora de salida"
-      />
+    <custom-input-time-signal
+      [control]="form.controls.startTime"
+      label="Hora de Entrada"
+      placeholder="Hora de entrada"
+    />
+    <custom-input-time-signal
+      [control]="form.controls.endTime"
+      label="Hora de Salida"
+      placeholder="Hora de salida"
+    />
     }
 
     <!-- Motivo -->

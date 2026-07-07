@@ -13,12 +13,14 @@
       [rows]="rows()"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [globalFilterFields]="globalFilterFields()"
-      styleClass="custom-table"
+      class="custom-table"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [showCurrentPageReport]="true"
     >
       <ng-template #caption>
-        <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+        >
           <div class="flex-grow-1">
             <primeng-custom-caption
               [dt]="dt"
@@ -151,9 +153,15 @@
     >
       <ng-template #listItemTemplate let-item>
         <ion-item lines="full" class="ion-no-padding">
-          <div slot="start" class="mobile-avatar-slot" style="background:var(--ds-primary);border-radius:50%;">
-                <span style="font-size:1rem;font-weight:700;color:#fff;">{{ item.userName.charAt(0).toUpperCase() }}</span>
-              </div>
+          <div
+            slot="start"
+            class="mobile-avatar-slot"
+            style="background: var(--ds-primary); border-radius: 50%"
+          >
+            <span style="font-size: 1rem; font-weight: 700; color: #fff"
+              >{{ item.userName.charAt(0).toUpperCase() }}</span
+            >
+          </div>
           <ion-label>
             <div class="flex justify-content-between align-items-center mb-1">
               <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
@@ -161,8 +169,8 @@
             </div>
 
             <p class="text-medium text-500 m-0 text-sm mb-1">
-              <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" /> {{ item.timestamp | date:
-              "dd/MM/yyyy h:mm a" }}
+              <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" /> {{
+              item.timestamp | date: "dd/MM/yyyy h:mm a" }}
             </p>
 
             <div class="flex align-items-center gap-2 mb-1">
@@ -170,7 +178,7 @@
               <p-tag
                 [value]="item.activityType"
                 severity="info"
-                styleClass="text-xs"
+                class="text-xs"
               ></p-tag>
             </div>
 

@@ -4,7 +4,7 @@
 
    Uso:
      Case 1 — wrapper:      <div class="custom-table"><p-table>...</p-table></div>
-     Case 2 — styleClass:   <p-table styleClass="custom-table">
+     Case 2 — styleClass:   <p-table class="custom-table ">
    ========================================================================== */
 
 .custom-table {
@@ -63,7 +63,7 @@
     }
   }
 
-  /* Case 2: Used in styleClass <p-table styleClass="custom-table">
+  /* Case 2: Used in styleClass <p-table class="custom-table ">
      This places the class ON the p-datatable-component or the div.p-datatable */
   &.p-datatable,
   .p-datatable {
@@ -204,7 +204,7 @@
 // }
 
 /* ─── Modifier: sin scroll horizontal ───────────────────────────
-   Uso: <p-table styleClass="custom-table custom-table-fixed">
+   Uso: <p-table class="custom-table  custom-table-fixed">
    Elimina min-width fijo, fuerza table-layout:fixed y permite
    que las celdas envuelvan texto en vez de desbordar.
    ─────────────────────────────────────────────────────────────── */

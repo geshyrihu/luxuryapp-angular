@@ -5,7 +5,7 @@
     [scrollable]="true"
     [scrollHeight]="scrollHeight"
     #dt
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -40,9 +40,14 @@
           <div class="flex">
             <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              pTooltip="Editar" tooltipPosition="top"
+              pTooltip="Editar"
+              tooltipPosition="top"
             />
-            <iw-button-delete (confirmed)="onDelete(item.id)" pTooltip="Eliminar" tooltipPosition="top">
+            <iw-button-delete
+              (confirmed)="onDelete(item.id)"
+              pTooltip="Eliminar"
+              tooltipPosition="top"
+            >
             </iw-button-delete>
           </div>
         </td>

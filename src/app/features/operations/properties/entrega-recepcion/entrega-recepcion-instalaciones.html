@@ -5,7 +5,7 @@
   sortField="clasificacion"
   rowGroupMode="subheader"
   groupRowsBy="clasificacion"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="flex align-items-center justify-content-between">
@@ -55,16 +55,14 @@
       <td class="text-sm">{{ item.sistema }}</td>
       <td class="text-sm">{{ item.ubicacion }}</td>
       <td class="text-sm text-center">
-        <custom-input-check-signal [ngModel]="false" [disabled]="true" [horizontal]="false" noMargin />
+        <custom-input-check-signal
+          [ngModel]="false"
+          [disabled]="true"
+          [horizontal]="false"
+          noMargin
+        />
       </td>
       <td class="text-sm">{{ item.observations | striptags }}</td>
     </tr>
   </ng-template>
 </p-table>
-
-
-
-
-
-
-

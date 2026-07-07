@@ -11,13 +11,12 @@ import {
 import {
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { AutoCompleteModule } from "primeng/autocomplete";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -61,10 +60,9 @@ interface IProductSuggestion {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule,
-    AutoCompleteModule,
     WebButtonLabel,
     WebButtonLabelSave,
+    CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,
   ],
@@ -154,8 +152,8 @@ export class ProductAdd implements OnInit {
     this.products.set([]);
   }
 
-  onProductSelected(event: { value: IProductSuggestion }): void {
-    const selected = event.value;
+  onProductSelected(event: IProductSuggestion | { value: IProductSuggestion }): void {
+    const selected = "value" in event ? event.value : event;
     this.form.patchValue({
       productName: selected.displayName,
       productoId: selected.productoId,

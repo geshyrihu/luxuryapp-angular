@@ -2,11 +2,11 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BadgeModule } from "primeng/badge";
-import { InputTextModule } from "primeng/inputtext";
-import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
@@ -32,10 +32,10 @@ interface HistoryEntry {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
-    InputTextModule,
-    SelectModule,
     TabsModule,
+    CustomInputSelectSignal,
     CustomInputTextAreaSignal,
+    InputText,
     BadgeModule,
     WebButtonLabel,
     WebButtonIcon,

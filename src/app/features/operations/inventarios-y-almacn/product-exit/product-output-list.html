@@ -13,7 +13,7 @@
     [showCurrentPageReport]="true"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    styleClass="custom-table"
+    class="custom-table"
     [globalFilterFields]="globalFilterFields()"
   >
     <ng-template #caption>
@@ -44,7 +44,8 @@
 
           <!-- Botún de Reporte (funcionalidad futura) -->
           <iw-button-download
-            pTooltip="Generar Reporte" tooltipPosition="top"
+            pTooltip="Generar Reporte"
+            tooltipPosition="top"
             iconClass="mdi:file-excel"
             severity="success"
             (clicked)="onGenerateReport()"
@@ -125,7 +126,8 @@
             <iw-button-item
               (clicked)="onReturnProduct(item)"
               emogi="??"
-              pTooltip="Devolver" tooltipPosition="top"
+              pTooltip="Devolver"
+              tooltipPosition="top"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
 

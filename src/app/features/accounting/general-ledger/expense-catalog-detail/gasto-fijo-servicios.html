@@ -4,7 +4,7 @@
 </p>
 }
 
-<p-table [value]="productosAgregados()" #dc styleClass="card hidden md:block">
+<p-table [value]="productosAgregados()" #dc class="card hidden md:block">
   <ng-template #caption>
     <primeng-custom-caption [dt]="dc" [showAdd]="false" [showSearch]="false" />
   </ng-template>
@@ -81,7 +81,7 @@
 <p-table
   [(selection)]="selectedProducts"
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   [value]="productos()"
   [rows]="tablePrimeNgRows"
   [paginator]="true"

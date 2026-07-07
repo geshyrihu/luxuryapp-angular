@@ -1,24 +1,26 @@
 <div class="flex flex-column gap-3 p-3 h-full">
-
   <!-- Barra de URL -->
   <div class="surface-card border-round p-3 shadow-1">
     <div class="flex align-items-center gap-2 mb-2">
-      <p-select
-        [options]="methods"
+      <custom-input-select-signal
+        [data]="methods"
         [ngModel]="method()"
         (ngModelChange)="method.set($event)"
-        optionLabel="label"
-        optionValue="value"
-        styleClass="w-7rem font-bold"
+        [optionLabel]="'label'"
+        [optionValue]="'value'"
+        [showClear]="false"
+        [customClass]="'w-7rem font-bold'"
+        [horizontal]="false"
+        [noMargin]="true"
       />
-      <input
-        pInputText
-        type="text"
+      <custom-input-text-signal
         [ngModel]="url()"
         (ngModelChange)="onUrlInput($event)"
         placeholder="Endpoint o URL completa (con ?params se detectan automatico)..."
-        class="flex-1"
-        (keydown.enter)="send()"
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="flex-1"
+        (enter)="send()"
       />
       <il-button
         label="Enviar"
@@ -31,66 +33,74 @@
 
     <div class="flex align-items-center gap-3 text-sm">
       <label class="flex align-items-center gap-1 cursor-pointer select-none">
-        <input type="checkbox" [ngModel]="useBaseUrl()" (ngModelChange)="useBaseUrl.set($event)" />
+        <input
+          type="checkbox"
+          [ngModel]="useBaseUrl()"
+          (ngModelChange)="useBaseUrl.set($event)"
+        />
         <span class="text-500">Usar base URL</span>
       </label>
       @if (useBaseUrl()) {
-        <span class="text-400 text-xs font-italic">{{ baseUrl }}</span>
-      }
-      @if (url()) {
-        <span class="text-300 text-xs ml-auto truncate" style="max-width: 50ch">
-          {{ fullUrl() }}
-        </span>
+      <span class="text-400 text-xs font-italic">{{ baseUrl }}</span>
+      } @if (url()) {
+      <span class="text-300 text-xs ml-auto truncate" style="max-width: 50ch">
+        {{ fullUrl() }}
+      </span>
       }
     </div>
   </div>
 
   <!-- Paneles request / response -->
   <div class="flex gap-3 flex-1 min-h-0">
-
     <!-- Panel izquierdo: Request -->
-    <div class="surface-card border-round shadow-1 flex flex-column" style="flex: 1; min-width: 0">
-      <p-tabs value="params" styleClass="flex flex-column h-full">
+    <div
+      class="surface-card border-round shadow-1 flex flex-column"
+      style="flex: 1; min-width: 0"
+    >
+      <p-tabs value="params" class="flex flex-column h-full">
         <p-tablist>
           <p-tab value="params">Params</p-tab>
           <p-tab value="headers">Headers</p-tab>
           @if (hasBody()) {
-            <p-tab value="body">Body</p-tab>
+          <p-tab value="body">Body</p-tab>
           }
         </p-tablist>
 
         <p-tabpanels class="flex-1 overflow-auto">
-
           <!-- PARAMS -->
           <p-tabpanel value="params">
             <div class="flex flex-column gap-2 p-2">
               @for (p of params(); track trackByIndex($index); let i = $index) {
-                <div class="flex align-items-center gap-2">
-                  <input type="checkbox" [ngModel]="p.enabled" (ngModelChange)="updateParam(i, 'enabled', $event)" />
-                  <input
-                    pInputText
-                    type="text"
-                    [ngModel]="p.key"
-                    (ngModelChange)="updateParam(i, 'key', $event)"
-                    placeholder="Clave"
-                    class="flex-1"
-                  />
-                  <input
-                    pInputText
-                    type="text"
-                    [ngModel]="p.value"
-                    (ngModelChange)="updateParam(i, 'value', $event)"
-                    placeholder="Valor"
-                    class="flex-1"
-                  />
-                  <iw-button
-                    iconClass="mdi:close"
-                    severity="danger"
-                    variant="text"
-                    size="small"
-                    (clicked)="removeParam(i)"
-                  />
-                </div>
+              <div class="flex align-items-center gap-2">
+                <input
+                  type="checkbox"
+                  [ngModel]="p.enabled"
+                  (ngModelChange)="updateParam(i, 'enabled', $event)"
+                />
+                <custom-input-text-signal
+                  [ngModel]="p.key"
+                  (ngModelChange)="updateParam(i, 'key', $event)"
+                  placeholder="Clave"
+                  [onlyInput]="true"
+                  [noMargin]="true"
+                  customClass="flex-1"
+                />
+                <custom-input-text-signal
+                  [ngModel]="p.value"
+                  (ngModelChange)="updateParam(i, 'value', $event)"
+                  placeholder="Valor"
+                  [onlyInput]="true"
+                  [noMargin]="true"
+                  customClass="flex-1"
+                />
+                <iw-button
+                  iconClass="mdi:close"
+                  severity="danger"
+                  variant="text"
+                  size="small"
+                  (clicked)="removeParam(i)"
+                />
+              </div>
               }
               <il-button
                 label="Agregar param"
@@ -105,33 +115,38 @@
           <!-- HEADERS -->
           <p-tabpanel value="headers">
             <div class="flex flex-column gap-2 p-2">
-              @for (h of headers(); track trackByIndex($index); let i = $index) {
-                <div class="flex align-items-center gap-2">
-                  <input type="checkbox" [ngModel]="h.enabled" (ngModelChange)="updateHeader(i, 'enabled', $event)" />
-                  <input
-                    pInputText
-                    type="text"
-                    [ngModel]="h.key"
-                    (ngModelChange)="updateHeader(i, 'key', $event)"
-                    placeholder="Header"
-                    class="flex-1"
-                  />
-                  <input
-                    pInputText
-                    type="text"
-                    [ngModel]="h.value"
-                    (ngModelChange)="updateHeader(i, 'value', $event)"
-                    placeholder="Valor"
-                    class="flex-1"
-                  />
-                  <iw-button
-                    iconClass="mdi:close"
-                    severity="danger"
-                    variant="text"
-                    size="small"
-                    (clicked)="removeHeader(i)"
-                  />
-                </div>
+              @for (h of headers(); track trackByIndex($index); let i = $index)
+              {
+              <div class="flex align-items-center gap-2">
+                <input
+                  type="checkbox"
+                  [ngModel]="h.enabled"
+                  (ngModelChange)="updateHeader(i, 'enabled', $event)"
+                />
+                <custom-input-text-signal
+                  [ngModel]="h.key"
+                  (ngModelChange)="updateHeader(i, 'key', $event)"
+                  placeholder="Header"
+                  [onlyInput]="true"
+                  [noMargin]="true"
+                  customClass="flex-1"
+                />
+                <custom-input-text-signal
+                  [ngModel]="h.value"
+                  (ngModelChange)="updateHeader(i, 'value', $event)"
+                  placeholder="Valor"
+                  [onlyInput]="true"
+                  [noMargin]="true"
+                  customClass="flex-1"
+                />
+                <iw-button
+                  iconClass="mdi:close"
+                  severity="danger"
+                  variant="text"
+                  size="small"
+                  (clicked)="removeHeader(i)"
+                />
+              </div>
               }
               <il-button
                 label="Agregar header"
@@ -145,64 +160,79 @@
 
           <!-- BODY -->
           @if (hasBody()) {
-            <p-tabpanel value="body">
-              <custom-input-textarea-signal
-                [ngModel]="bodyRaw()"
-                (ngModelChange)="bodyRaw.set($event)"
-                placeholder='{ "key": "value" }'
-                [rows]="12"
-                [customClass]="'font-mono text-sm'"
-                [disableResize]="false"
-              ></custom-input-textarea-signal>
-            </p-tabpanel>
+          <p-tabpanel value="body">
+            <custom-input-textarea-signal
+              [ngModel]="bodyRaw()"
+              (ngModelChange)="bodyRaw.set($event)"
+              placeholder='{ "key": "value" }'
+              [rows]="12"
+              [customClass]="'font-mono text-sm'"
+              [disableResize]="false"
+            ></custom-input-textarea-signal>
+          </p-tabpanel>
           }
-
         </p-tabpanels>
       </p-tabs>
     </div>
 
     <!-- Panel derecho: Response -->
-    <div class="surface-card border-round shadow-1 flex flex-column" style="flex: 1; min-width: 0">
-
+    <div
+      class="surface-card border-round shadow-1 flex flex-column"
+      style="flex: 1; min-width: 0"
+    >
       <!-- Status bar -->
-      <div class="flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border">
+      <div
+        class="flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border"
+      >
         <span class="font-semibold text-sm text-500">Respuesta</span>
         @if (statusCode() !== null) {
-          <span class="font-bold text-sm px-2 py-1 border-round" [class]="statusBadgeClass(statusCode()!)">
-            {{ statusCode() }}
-          </span>
-          <span class="text-500 text-xs">{{ durationMs() }} ms</span>
-          <iw-button
-            iconClass="mdi:content-copy"
-            variant="text"
-            size="small"
-            (clicked)="copyToClipboard(prettyResponse())"
-            customClass="ml-auto"
-          />
-        }
-        @if (loading()) {
-          <app-icon [icon]="'mdi:loading'" class="ds-animate-spin text-primary ml-auto" />
+        <span
+          class="font-bold text-sm px-2 py-1 border-round"
+          [class]="statusBadgeClass(statusCode()!)"
+        >
+          {{ statusCode() }}
+        </span>
+        <span class="text-500 text-xs">{{ durationMs() }} ms</span>
+        <iw-button
+          iconClass="mdi:content-copy"
+          variant="text"
+          size="small"
+          (clicked)="copyToClipboard(prettyResponse())"
+          customClass="ml-auto"
+        />
+        } @if (loading()) {
+        <app-icon
+          [icon]="'mdi:loading'"
+          class="ds-animate-spin text-primary ml-auto"
+        />
         }
       </div>
 
-      <p-tabs value="body-res" styleClass="flex flex-column flex-1 min-h-0">
+      <p-tabs value="body-res" class="flex flex-column flex-1 min-h-0">
         <p-tablist>
           <p-tab value="body-res">Body</p-tab>
           <p-tab value="headers-res">Headers</p-tab>
         </p-tablist>
 
         <p-tabpanels class="flex-1 overflow-auto">
-
           <!-- Body response -->
           <p-tabpanel value="body-res">
             @if (responseError()) {
-              <pre class="m-0 p-3 text-red-600 text-sm overflow-auto h-full font-mono white-space-pre-wrap">{{ responseError() }}</pre>
+            <pre
+              class="m-0 p-3 text-red-600 text-sm overflow-auto h-full font-mono white-space-pre-wrap"
+            >
+{{ responseError() }}</pre>
             } @else if (prettyResponse()) {
-              <pre class="m-0 p-3 text-sm overflow-auto h-full font-mono white-space-pre-wrap text-800">{{ prettyResponse() }}</pre>
+            <pre
+              class="m-0 p-3 text-sm overflow-auto h-full font-mono white-space-pre-wrap text-800"
+            >
+{{ prettyResponse() }}</pre>
             } @else if (!loading()) {
-              <div class="flex align-items-center justify-content-center h-full text-400 text-sm">
-                Envia una peticion para ver la respuesta
-              </div>
+            <div
+              class="flex align-items-center justify-content-center h-full text-400 text-sm"
+            >
+              Envia una peticion para ver la respuesta
+            </div>
             }
           </p-tabpanel>
 
@@ -210,16 +240,19 @@
           <p-tabpanel value="headers-res">
             <div class="p-2">
               @for (entry of responseHeaderEntries(); track entry[0]) {
-                <div class="flex gap-2 py-1 border-bottom-1 surface-border text-sm">
-                  <span class="font-medium text-primary w-12rem flex-shrink-0">{{ entry[0] }}</span>
-                  <span class="text-700 break-all">{{ entry[1] }}</span>
-                </div>
+              <div
+                class="flex gap-2 py-1 border-bottom-1 surface-border text-sm"
+              >
+                <span class="font-medium text-primary w-12rem flex-shrink-0"
+                  >{{ entry[0] }}</span
+                >
+                <span class="text-700 break-all">{{ entry[1] }}</span>
+              </div>
               } @empty {
-                <span class="text-400 text-sm">Sin headers</span>
+              <span class="text-400 text-sm">Sin headers</span>
               }
             </div>
           </p-tabpanel>
-
         </p-tabpanels>
       </p-tabs>
     </div>
@@ -227,36 +260,48 @@
 
   <!-- Historial -->
   @if (history().length) {
-    <div class="surface-card border-round shadow-1 p-3">
-      <div class="flex align-items-center justify-content-between mb-2">
-        <span class="font-semibold text-sm text-700">Historial reciente</span>
-        <il-button
-          label="Limpiar"
-          iconClass="mdi:trash-can"
-          severity="danger"
-          variant="text"
-          size="small"
-          (clicked)="clearHistory()"
-        />
-      </div>
-      <div class="flex flex-column gap-1" style="max-height: 160px; overflow-y: auto">
-        @for (entry of history(); track entry.timestamp) {
-          <div
-            class="flex align-items-center gap-2 px-2 py-1 border-round cursor-pointer hover:surface-hover text-sm"
-            (click)="loadFromHistory(entry)"
-          >
-            <span class="font-bold text-xs px-2 py-1 border-round w-4rem text-center" [class]="methodBadgeClass(entry.method)">
-              {{ entry.method }}
-            </span>
-            <span class="flex-1 text-700 text-xs truncate font-mono">{{ entry.url }}</span>
-            <span class="text-xs px-2 py-1 border-round" [class]="statusBadgeClass(entry.statusCode)">
-              {{ entry.statusCode }}
-            </span>
-            <span class="text-400 text-xs w-5rem text-right">{{ entry.durationMs }} ms</span>
-          </div>
-        }
-      </div>
+  <div class="surface-card border-round shadow-1 p-3">
+    <div class="flex align-items-center justify-content-between mb-2">
+      <span class="font-semibold text-sm text-700">Historial reciente</span>
+      <il-button
+        label="Limpiar"
+        iconClass="mdi:trash-can"
+        severity="danger"
+        variant="text"
+        size="small"
+        (clicked)="clearHistory()"
+      />
     </div>
+    <div
+      class="flex flex-column gap-1"
+      style="max-height: 160px; overflow-y: auto"
+    >
+      @for (entry of history(); track entry.timestamp) {
+      <div
+        class="flex align-items-center gap-2 px-2 py-1 border-round cursor-pointer hover:surface-hover text-sm"
+        (click)="loadFromHistory(entry)"
+      >
+        <span
+          class="font-bold text-xs px-2 py-1 border-round w-4rem text-center"
+          [class]="methodBadgeClass(entry.method)"
+        >
+          {{ entry.method }}
+        </span>
+        <span class="flex-1 text-700 text-xs truncate font-mono"
+          >{{ entry.url }}</span
+        >
+        <span
+          class="text-xs px-2 py-1 border-round"
+          [class]="statusBadgeClass(entry.statusCode)"
+        >
+          {{ entry.statusCode }}
+        </span>
+        <span class="text-400 text-xs w-5rem text-right"
+          >{{ entry.durationMs }} ms</span
+        >
+      </div>
+      }
+    </div>
+  </div>
   }
-
 </div>

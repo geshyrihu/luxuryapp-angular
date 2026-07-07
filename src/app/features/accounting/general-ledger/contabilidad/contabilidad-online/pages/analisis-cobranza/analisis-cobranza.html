@@ -193,7 +193,7 @@
       </div>
       <p-table
         [value]="summaryRows"
-        styleClass="rf-prime-table p-datatable-sm p-datatable-striped"
+        class="rf-prime-table p-datatable-sm p-datatable-striped"
         [tableStyle]="{ 'width': '100%' }"
         [paginator]="true"
         [rows]="25"
@@ -246,17 +246,20 @@
             Tabla base para auditar cómo se clasifica cada cuenta 104 al corte.
           </div>
         </div>
-        <p-select
-          [options]="classificationOptions"
+        <custom-input-select-signal
+          [data]="classificationOptions"
           [ngModel]="selectedClassification()"
           (ngModelChange)="selectedClassification.set($event)"
-          class="w-14rem"
+          [showClear]="false"
+          [onlyInput]="true"
+          [noMargin]="true"
+          customClass="w-14rem"
         />
       </div>
 
       <p-table
         [value]="filteredRows()"
-        styleClass="rf-prime-table p-datatable-sm p-datatable-striped"
+        class="rf-prime-table p-datatable-sm p-datatable-striped"
         [tableStyle]="{ 'min-width': '1000px' }"
         [paginator]="true"
         [rows]="50"

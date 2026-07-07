@@ -16,18 +16,16 @@
     </div>
 
     <!-- Rejilla de tarjetas con Tailwind Grid -->
-    <div
-      class="grid md:grid lg:grid xl:grid"
-    >
+    <div class="grid md:grid lg:grid xl:grid">
       @for (item of dataSignal(); track item) {
       <div>
-        <p-card styleClass="text-center">
+        <p-card class="text-center">
           <ng-template #header>
             <p-avatar
               [image]="
                 item.photo ? item.photo : 'assets/images/default-avatar.png'
               "
-              styleClass="mx-auto mt-3"
+              class="mx-auto mt-3"
               size="xlarge"
               shape="circle"
             ></p-avatar>
@@ -46,7 +44,10 @@
       <div
         class="col-12 flex flex-column align-items-center justify-content-center p-4 text-center"
       >
-        <app-icon [icon]="'mdi:calendar-remove'" class="text-6xl text-gray-400 mb-3" />
+        <app-icon
+          [icon]="'mdi:calendar-remove'"
+          class="text-6xl text-gray-400 mb-3"
+        />
         <h4 class="m-0">No hay cumpleAños este mes.</h4>
         <p class="text-color-secondary">
           Selecciona otro mes para ver si hay cumpleAños.

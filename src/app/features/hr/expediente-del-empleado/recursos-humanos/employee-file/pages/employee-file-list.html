@@ -24,7 +24,7 @@
     [value]="dataSignal()"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    styleClass="custom-table card hidden md:block"
+    class="custom-table card hidden md:block"
   >
     <ng-template #caption>
       <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -73,7 +73,8 @@
         <td class="text-center">
           <iw-button-item
             iconClass="mdi:folder-open"
-            pTooltip="Ver Expediente" tooltipPosition="top"
+            pTooltip="Ver Expediente"
+            tooltipPosition="top"
             (click)="onViewFile(item)"
           />
         </td>

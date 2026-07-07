@@ -85,10 +85,7 @@
 </div>
 } @for (grupo of dataSignal(); track grupo) {
 <div>
-  <p-table
-    [value]="grupo.ordenes"
-    styleClass="custom-table card hidden md:block"
-  >
+  <p-table [value]="grupo.ordenes" class="custom-table card hidden md:block">
     <ng-template #caption>
       <p-message severity="secondary"
         >{{grupo.tipoGasto | uppercase}}</p-message
@@ -144,7 +141,7 @@
           }  -->
           @if (orden.factura || orden.pdfFile) {
           <p-tag
-            styleClass="tag-sm cursor-pointer w-fluid text-xs"
+            class="tag-sm cursor-pointer w-fluid text-xs"
             [style]="{ width: '100%' }"
             severity="danger"
             [value]="orden.folioFiscal"
@@ -156,7 +153,7 @@
         <td class="text-center">
           @if (orden.validationStatus === true) {
           <p-tag
-            styleClass=" cursor-pointer text-xs"
+            class="cursor-pointer text-xs"
             pTooltip="{{ orden.validationMessage }}"
             tooltipPosition="left"
             icon="mdi:check-circle"
@@ -164,7 +161,7 @@
           ></p-tag>
           } @else if (orden.validationStatus === false) {
           <p-tag
-            styleClass=" cursor-pointer text-xs"
+            class="cursor-pointer text-xs"
             pTooltip="{{ orden.validationMessage }}"
             tooltipPosition="left"
             icon="mdi:close-circle"
@@ -172,7 +169,7 @@
           ></p-tag>
           } @else {
           <p-tag
-            styleClass="cursor-pointer text-xs"
+            class="cursor-pointer text-xs"
             pTooltip="No hay XML para validar"
             tooltipPosition="left"
             icon="mdi:help-circle"
@@ -201,10 +198,3 @@
   </p-table>
 </div>
 }
-
-
-
-
-
-
-

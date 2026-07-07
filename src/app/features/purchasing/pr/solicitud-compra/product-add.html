@@ -4,24 +4,25 @@
       <div class="col-12 md:col-6">
         <label for="example-text-input" class="block">BUSCAR </label>
 
-        <p-autocomplete
-          [formControl]="productSearchControl"
+        <custom-input-autocomplete-signal
+          [control]="productSearchControl"
           [suggestions]="products()"
-          [optionLabel]="'displayName'"
+          optionLabel="displayName"
+          dataKey="productoId"
           [forceSelection]="true"
           [showClear]="true"
-          [dropdown]="false"
-          [inputStyleClass]="'w-full'"
+          [inputclass]="'w-full'"
           [placeholder]="'Escribe para buscar producto o servicio...'"
           [emptyMessage]="'No se encontraron resultados'"
-          [panelStyleClass]="'product-search-panel'"
+          [panelclass]="'product-search-panel'"
           [panelStyle]="{ width: '32rem', maxWidth: '32rem' }"
           [scrollHeight]="'34rem'"
-          appendTo="body"
-          fluid
+          [horizontal]="false"
+          [noMargin]="true"
+          [onlyInput]="true"
           (completeMethod)="searchProducts($event)"
-          (onSelect)="onProductSelected($event)"
-          (onClear)="onProductCleared()"
+          (propagar)="onProductSelected($event)"
+          (cleared)="onProductCleared()"
         >
           <ng-template let-item #item>
             <div class="product-search-option flex align-items-center gap-3">
@@ -44,7 +45,7 @@
           <ng-template let-item #selectedItem>
             {{ productLabel(item) }}
           </ng-template>
-        </p-autocomplete>
+        </custom-input-autocomplete-signal>
       </div>
 
       <div class="col-12 md:col-2">

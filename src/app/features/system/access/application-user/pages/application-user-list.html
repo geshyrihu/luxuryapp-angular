@@ -13,7 +13,7 @@
       [value]="filteredDataSignal()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      styleClass="custom-table hidden md:block"
+      class="custom-table hidden md:block"
     >
       <ng-template #caption>
         <div
@@ -117,19 +117,22 @@
               <iw-button-item
                 (clicked)="onToBlockAccount(item.id)"
                 iconClass="mdi:lock"
-                pTooltip="Bloquear" tooltipPosition="top"
+                pTooltip="Bloquear"
+                tooltipPosition="top"
               />
               } @if (!item.active) {
               <iw-button-item
                 (clicked)="onToUnlockAccount(item.id)"
                 iconClass="mdi:lock-open"
-                pTooltip="Desbloquear" tooltipPosition="top"
+                pTooltip="Desbloquear"
+                tooltipPosition="top"
               />
               }
               <iw-button-item
                 (clicked)="onModalEditAccount(item.id, item.email)"
                 iconClass="mdi:account"
-                pTooltip="Permisos" tooltipPosition="top"
+                pTooltip="Permisos"
+                tooltipPosition="top"
               />
               <iw-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
               <iw-button-delete (confirmed)="DeleteUserId(item.id)" />

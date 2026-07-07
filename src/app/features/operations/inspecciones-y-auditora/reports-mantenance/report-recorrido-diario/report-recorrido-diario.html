@@ -3,10 +3,14 @@
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption title="BITÁCORA DIARIA" [showAdd]="false" [showSearch]="false" />
+    <primeng-custom-caption
+      title="BITÁCORA DIARIA"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
   </ng-template>
   <ng-template #body let-item>
     <tr>
@@ -25,10 +29,3 @@
     }
   </ng-template>
 </p-table>
-
-
-
-
-
-
-

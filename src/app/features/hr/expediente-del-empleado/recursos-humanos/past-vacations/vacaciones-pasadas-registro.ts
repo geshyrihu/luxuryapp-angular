@@ -18,13 +18,13 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { DatePickerModule } from "primeng/datepicker";
 import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -50,7 +50,7 @@ import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/
     ReactiveFormsModule,
     CardModule,
     CustomInputSelectSignal,
-    DatePickerModule,
+    CustomInputDatepicker,
     MessageModule,
     SkeletonModule,
     CustomInputTextAreaSignal,

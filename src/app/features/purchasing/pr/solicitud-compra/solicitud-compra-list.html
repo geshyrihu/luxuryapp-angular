@@ -10,7 +10,7 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [tableStyle]="{ 'table-layout': 'fixed', 'min-width': 'auto' }"
-  styleClass="custom-table custom-table-fixed card hidden md:block"
+  class="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
     <div
@@ -136,7 +136,8 @@
       <td class="text-center">
         <iw-button
           iconClass="mdi:file-document-multiple"
-          [pTooltip]="item.cotizacionesCount" tooltipPosition="top"
+          [pTooltip]="item.cotizacionesCount"
+          tooltipPosition="top"
           (clicked)="onCuadroComparativo(item.id)"
           size="small"
           severity="help"
@@ -150,7 +151,8 @@
         @for (orden of item.ordenesRelacionadas; track orden.id) {
         <div class="inline-flex align-items-center mb-1 mr-1">
           <iw-button
-            [pTooltip]="orden.folio" tooltipPosition="top"
+            [pTooltip]="orden.folio"
+            tooltipPosition="top"
             (clicked)="onViewPurchaseOrder(orden.id)"
             variant="ghost"
             severity="warning"

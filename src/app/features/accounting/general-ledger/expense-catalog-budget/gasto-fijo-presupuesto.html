@@ -7,11 +7,7 @@
   </p>
 </p-message>
 } @if (presupuestoAgregados().length > 0) {
-<p-table
-  #dtt
-  styleClass="card hidden md:block"
-  [value]="presupuestoAgregados()"
->
+<p-table #dtt class="card hidden md:block" [value]="presupuestoAgregados()">
   <ng-template #caption>
     <primeng-custom-caption
       [title]="'Partidas agregadas'"
@@ -35,9 +31,7 @@
       <td>{{ item.amount | number: "1.0-0" }}</td>
       <td>
         <div class="flex justify-content-center">
-          <iw-button-delete
-            (confirmed)="deletePresupuestoAgregado(item.id)"
-          />
+          <iw-button-delete (confirmed)="deletePresupuestoAgregado(item.id)" />
         </div>
       </td>
     </tr>
@@ -46,7 +40,7 @@
 } @if (dataSignal()) {
 <p-table
   #dt
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
   [value]="dataSignal()"
   [rows]="tablePrimeNgRows"
   [paginator]="true"
@@ -106,7 +100,7 @@
         <div class="flex justify-content-center">
           @if (submitting()) {
           <p-progressspinner
-            styleClass="w-2rem h-2rem"
+            class="w-2rem h-2rem"
             strokeWidth="8"
             fill="var(--surface-ground)"
             animationDuration=".5s"

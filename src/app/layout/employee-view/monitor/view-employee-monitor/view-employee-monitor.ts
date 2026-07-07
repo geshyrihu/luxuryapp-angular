@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { Loader } from "@ui/mobile/loader/loader";
+import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
@@ -16,7 +16,7 @@ import { HeaderEmployeeMonitor } from "../header-employee-monitor/header-employe
 import { Sidebar } from "../sidebar/sidebar";
 @Component({
   selector: "app-view-employee-monitor",
-  imports: [CommonModule, RouterOutlet, Sidebar, HeaderEmployeeMonitor, Loader],
+  imports: [CommonModule, RouterOutlet, Sidebar, HeaderEmployeeMonitor, LxLoader],
   templateUrl: "./view-employee-monitor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./view-employee-monitor.scss",

@@ -13,7 +13,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
   [loading]="loading()"
   breakpoint="960px"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center">
@@ -46,10 +46,7 @@
       <td>{{ item.date }}</td>
       <td>{{ item.name }}</td>
       <td>
-        <iw-button-view-pdf
-          [url]="item.path"
-          fileName="Biblioteca"
-        />
+        <iw-button-view-pdf [url]="item.path" fileName="Biblioteca" />
       </td>
     </tr>
   </ng-template>

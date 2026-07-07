@@ -11,7 +11,7 @@
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
     [globalFilterFields]="['userName', 'email', 'propertyName', 'accountNumber']"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -45,7 +45,8 @@
               >
             </div>
             <iw-button
-              pTooltip="Nuevo Miembro" tooltipPosition="top"
+              pTooltip="Nuevo Miembro"
+              tooltipPosition="top"
               iconClass="mdi:account-plus"
               severity="success"
               size="small"
@@ -168,7 +169,10 @@
             label="Eliminar"
           />
           }
-          <ili-button-delete (confirmed)="onDeleteUser(item)" label="Eliminar" />
+          <ili-button-delete
+            (confirmed)="onDeleteUser(item)"
+            label="Eliminar"
+          />
         </ng-container>
       </ili-action-menu>
     </ion-item>

@@ -1,4 +1,4 @@
-import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, inject, input, output, contentChild, TemplateRef, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { PlatformService } from "src/app/core/services/platform.service";
@@ -57,8 +57,11 @@ import { WebInputSelect } from "../../web/input-select/input-select";
         [showClear]="showClear()"
         [filter]="filter()"
         [filterBy]="filterBy()"
+        [optionDisabled]="optionDisabled()"
         [customClass]="customClass()"
         [size]="size()"
+        [itemTemplate]="itemTemplate()"
+        [selectedItemTemplate]="selectedItemTemplate()"
         (selectionChange)="selectionChange.emit($event)"
       />
     }
@@ -66,10 +69,13 @@ import { WebInputSelect } from "../../web/input-select/input-select";
 })
 export class InputSelect extends BaseInputSignal {
   protected platform = inject(PlatformService);
+  itemTemplate = contentChild<TemplateRef<any>>("item");
+  selectedItemTemplate = contentChild<TemplateRef<any>>("selectedItem");
   selectionChange = output<any>();
   data = input<ISelectItem[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
+  optionDisabled = input<string | undefined>(undefined);
   showClear = input<boolean>(true);
   filter = input<boolean>(false);
   filterBy = input<string>("label");

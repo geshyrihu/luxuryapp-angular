@@ -9,7 +9,7 @@
   [scrollHeight]="scrollHeight()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #header>
     <tr>
@@ -69,7 +69,8 @@
           <iw-button-edit (clicked)="onModalForm({ id: item.id })" />
           <iw-button-item
             iconClass="mdi:information"
-            pTooltip="Detalle del puesto" tooltipPosition="top"
+            pTooltip="Detalle del puesto"
+            tooltipPosition="top"
             (clicked)="onModalDetail(item.workPositionId)"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />

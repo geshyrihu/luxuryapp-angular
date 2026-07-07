@@ -26,20 +26,20 @@
         <p-message
           severity="error"
           text="Este empleado no puede registrar vacaciones hasta cumplir 6 meses de antigóedad."
-          styleClass="mt-2"
+          class="mt-2"
         ></p-message>
         } @else if (eligibilityStatus() === 'not-eligible-this-year') {
         <p-message
           severity="error"
           text="Este empleado no tiene derecho a vacaciones para el Año consultado."
-          styleClass="mt-2"
+          class="mt-2"
         ></p-message>
         } @else if (eligibilityStatus() === 'eligible' &&
         allowedAdvanceDaysDisplay() !== null) {
         <p-message
           severity="info"
           [text]="'Puede solicitar un adelanto de hasta ' + allowedAdvanceDaysDisplay() + ' días. Disponibles para adelanto: ' + availableAdvanceDaysDisplay()"
-          styleClass="mt-2"
+          class="mt-2"
         ></p-message>
         } }
       </div>
@@ -49,21 +49,24 @@
       <!-- Date Range Picker -->
       <div class="col-12 md:col-4">
         <div class="flex flex-column mb-2">
-          <label for="dateRange">Rango de Fechas de las Vacaciones</label>
           <div class="p-inputgroup">
             <div class="flex">
-              <p-datepicker
+              <custom-input-datepicker-signal
                 id="dateRange"
-                [formControl]="form.controls.dateRange"
+                [control]="form.controls.dateRange"
+                label="Rango de Fechas de las Vacaciones"
+                placeholder="Selecciona el inicio y el fin"
                 [selectionMode]="'range'"
                 [readonlyInput]="true"
-                placeholder="Selecciona el inicio y el fin"
-                styleClass="w-full"
                 dateFormat="dd/mm/yy"
                 [showClear]="true"
-                (onClear)="clearDateRange()"
-                (onSelect)="onDateSelect($event)"
-                fluid
+                [showButtonBar]="false"
+                [showIcon]="false"
+                [dateStyle]="{ minWidth: '100%' }"
+                [horizontal]="false"
+                [noMargin]="true"
+                (dateClear)="clearDateRange()"
+                (dateSelect)="onDateSelect($event)"
               />
               <il-button
                 (click)="clearDateRange()"
@@ -82,7 +85,7 @@
         <p-message
           severity="info"
           text="Nota: Domingos y días festivos no se cuentan en el total."
-          styleClass="mt-2"
+          class="mt-2"
         ></p-message>
         }
       </div>
@@ -103,7 +106,7 @@
       <!-- Balance Information -->
       <div class="col-12 md:col-6">
         @if (loadingBalance()) {
-        <p-skeleton height="8.5rem" styleClass="h-full" />
+        <p-skeleton height="8.5rem" class="h-full" />
         } @else if (balance(); as b) {
         <div class="surface-ground p-3 border-round h-full">
           <div class="flex justify-content-between align-items-center mb-2">
@@ -214,12 +217,12 @@
       }
       <!-- Server Error -->
       @if (serverError()) {
-      <p-message severity="error" [text]="serverError()" styleClass="mt-2" />
+      <p-message severity="error" [text]="serverError()" class="mt-2" />
       } @if (balance()?.isEligibleForAdvance) {
       <p-message
         severity="info"
         text="Este empleado puede solicitar un adelanto de hasta {{balance().allowedAdvanceDays}} días. Disponibles para adelanto: {{balance().availableAdvanceDays}}."
-        styleClass="mt-2"
+        class="mt-2"
       />
       }
     </div>

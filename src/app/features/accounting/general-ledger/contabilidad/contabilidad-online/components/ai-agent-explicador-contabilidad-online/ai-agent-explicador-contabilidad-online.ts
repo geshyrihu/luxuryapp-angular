@@ -9,9 +9,9 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ButtonModule } from "primeng/button";
 import { DrawerModule } from "primeng/drawer";
-import { InputTextModule } from "primeng/inputtext";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -34,7 +34,7 @@ interface AiMessage {
     FormsModule,
     DrawerModule,
     ButtonModule,
-    InputTextModule,
+    CustomInputTextSignal,
     ProgressSpinnerModule,
   ],
   templateUrl: "./ai-agent-explicador-contabilidad-online.html",

@@ -7,7 +7,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table hidden md:block"
+  class="custom-table hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="true" (add)="onModalAdd()" [dt]="dt" />
@@ -33,14 +33,14 @@
       <div class="col-12 md:col-2">
         <il-button
           (clicked)="editarPeriodo()"
-          styleClass="p-button-outlined p-button-primary w-full"
+          class="p-button-outlined p-button-primary w-full"
           label="Editar periodo"
         />
       </div>
       <div class="col-12 md:col-2">
         <il-button
           pTooltip="Descargar excel"
-          styleClass="p-button-outlined p-button-primary w-full"
+          class="p-button-outlined p-button-primary w-full"
           iconClass="mdi:file-excel text-success mr-2"
           label="Descargar excel"
           (clicked)="DownloadExcel()"
@@ -111,13 +111,13 @@
           <p-tag
             [value]="item.presupuestoDisponible"
             severity="success"
-            styleClass="p-3 border-round"
+            class="p-3 border-round"
           ></p-tag>
           } @if (!item.disponible) {
           <p-tag
             [value]="item.presupuestoDisponible"
             severity="danger"
-            styleClass="p-3 border-round"
+            class="p-3 border-round"
           ></p-tag>
           }
         </div>
@@ -125,7 +125,7 @@
       <td>
         <div class="flex justify-content-center">
           <iw-button
-            styleClass="p-button-outlined p-button-primary"
+            class="p-button-outlined p-button-primary"
             pTooltip="Gastos realizados"
             iconClass="mdi:cart"
             (clicked)="onModalOrdenesCompraCedula(item.id)"
@@ -134,13 +134,13 @@
           <iw-button
             iconClass="mdi:pencil"
             pTooltip="Editar"
-            styleClass="p-button-outlined p-button-secondary"
+            class="p-button-outlined p-button-secondary"
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
           />
           <iw-button-confirm
             iconClass="mdi:delete"
             pTooltip="Eliminar"
-            styleClass="p-button-outlined p-button-danger"
+            class="p-button-outlined p-button-danger"
             (confirmed)="onDelete(item.id)"
           />
         </div>

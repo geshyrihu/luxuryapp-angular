@@ -4,7 +4,7 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  styleClass="custom-table hidden md:block"
+  class="custom-table hidden md:block"
 >
   <ng-template #caption>
     <div class="grid align-items-center mb-3">
@@ -56,7 +56,7 @@
             alt=""
             shape="square"
             size="large"
-            styleClass="mr-2"
+            class="mr-2"
           />
           {{ item.empleado }}
         </div>
@@ -65,21 +65,21 @@
         <p-tag
           severity="info"
           [value]="item.solicitudes"
-          styleClass="text-lg p-2 w-full"
+          class="text-lg p-2 w-full"
         />
       </td>
       <td class="text-center">
         <p-tag
           severity="success"
           [value]="item.atendidas"
-          styleClass="text-lg p-2 w-full"
+          class="text-lg p-2 w-full"
         />
       </td>
       <td class="text-center">
         <p-tag
           severity="danger"
           [value]="item.pendientes"
-          styleClass="text-lg p-2 w-full"
+          class="text-lg p-2 w-full"
         />
       </td>
     </tr>

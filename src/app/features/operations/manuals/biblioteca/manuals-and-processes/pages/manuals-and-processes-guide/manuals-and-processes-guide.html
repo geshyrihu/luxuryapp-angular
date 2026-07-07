@@ -9,7 +9,7 @@
         size="large"
         (clicked)="onBack()"
         title="Volver al listado"
-        styleClass="mr-3 border-round-lg"
+        class="mr-3 border-round-lg"
       />
       <div>
         <h1 class="text-4xl font-bold text-primary m-0">
@@ -23,12 +23,12 @@
     </div>
 
     <!-- Section 1: Conceptos -->
-    <p-panel header="1. Conceptos Fundamentales" styleClass="mb-4 shadow-1">
+    <p-panel header="1. Conceptos Fundamentales" class="mb-4 shadow-1">
       <div class="grid pt-2">
         <div class="col-12 md:col-6">
           <p-fieldset
             legend="La Plantilla (Borrador Dinámico)"
-            styleClass="h-full bg-blue-50 border-blue-200"
+            class="h-full bg-blue-50 border-blue-200"
           >
             <ng-template #header>
               <div class="flex align-items-center gap-2 px-2 text-blue-900">
@@ -47,7 +47,7 @@
         <div class="col-12 md:col-6">
           <p-fieldset
             legend="La Instancia (PDF Oficial)"
-            styleClass="h-full bg-green-50 border-green-200"
+            class="h-full bg-green-50 border-green-200"
           >
             <ng-template #header>
               <div class="flex align-items-center gap-2 px-2 text-green-900">
@@ -70,14 +70,14 @@
     <div class="grid">
       <!-- Section 2: Editor Dinámico -->
       <div class="col-12 lg:col-8">
-        <p-panel header="2. El Editor de Bloques" styleClass="h-full shadow-1">
+        <p-panel header="2. El Editor de Bloques" class="h-full shadow-1">
           <p class="text-600 mb-4 line-height-3 mt-0">
             En lugar de usar Word, nuestro sistema te permite armar tu manual
             usando "bloques" inteligentes. Puedes agregar tantos bloques como
             necesites y cambiar su orden arrastrándolos.
           </p>
 
-          <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
+          <p-card class="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
               <app-icon
                 [icon]="'mdi:sitemap'"
@@ -97,7 +97,7 @@
             </div>
           </p-card>
 
-          <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
+          <p-card class="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
               <app-icon
                 [icon]="'mdi:table'"
@@ -114,7 +114,7 @@
             </div>
           </p-card>
 
-          <p-card styleClass="mb-0 bg-gray-50 shadow-none border-1 border-300">
+          <p-card class="mb-0 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
               <app-icon
                 [icon]="'mdi:paperclip'"
@@ -138,14 +138,14 @@
 
       <!-- Section 3: Flujo de Trabajo -->
       <div class="col-12 lg:col-4">
-        <p-panel header="3. Flujo de Trabajo" styleClass="h-full shadow-1">
+        <p-panel header="3. Flujo de Trabajo" class="h-full shadow-1">
           <div class="flex flex-column gap-4 pt-3">
             <div class="flex">
               <div class="flex flex-column align-items-center mr-3">
                 <p-tag
                   severity="info"
                   [rounded]="true"
-                  styleClass="w-2rem h-2rem text-lg"
+                  class="w-2rem h-2rem text-lg"
                   ><span class="font-bold">1</span></p-tag
                 >
                 <div
@@ -165,7 +165,7 @@
                 <p-tag
                   severity="info"
                   [rounded]="true"
-                  styleClass="w-2rem h-2rem text-lg"
+                  class="w-2rem h-2rem text-lg"
                   ><span class="font-bold">2</span></p-tag
                 >
                 <div
@@ -188,7 +188,7 @@
                 <p-tag
                   severity="warn"
                   [rounded]="true"
-                  styleClass="w-2rem h-2rem text-lg"
+                  class="w-2rem h-2rem text-lg"
                   ><span class="font-bold">3</span></p-tag
                 >
                 <div
@@ -209,7 +209,7 @@
                 <p-tag
                   severity="success"
                   [rounded]="true"
-                  styleClass="w-2rem h-2rem text-lg"
+                  class="w-2rem h-2rem text-lg"
                   ><app-icon [icon]="'mdi:check'" class="font-bold" />
                 </p-tag>
               </div>
@@ -229,7 +229,7 @@
     <!-- Nueva Sección: Estándar Documental LuxuryApp -->
     <p-panel
       header="4. Estándar Documental LuxuryApp"
-      styleClass="mt-4 shadow-1 border-top-3 border-yellow-500"
+      class="mt-4 shadow-1 border-top-3 border-yellow-500"
     >
       <div class="grid pt-3">
         <div class="col-12 lg:col-6">

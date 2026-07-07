@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -10,10 +16,7 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import {
-  EStatus,
-  StatusBadge,
-} from "@ui/web/status-badge/status-badge";
+import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 
 const PATTERNS_LABELS: Record<string, string> = {
   complexcard: "Complex Card",
@@ -98,11 +101,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 placeholder="Contraseóa"
                 class="w-full mb-2"
               />
-              <p-button
-                label="Iniciar Sesión"
-                class="w-full"
-                styleClass="w-full"
-              />
+              <p-button label="Iniciar Sesión" class="w-full" class="w-full" />
             </div>
           </p-card>
         }
@@ -195,7 +194,7 @@ const PATTERNS_LABELS: Record<string, string> = {
             <h3 class="text-base font-bold mb-2">3. Reglas del esténdar</h3>
             <div class="grid text-sm">
               <div class="col-12 md:col-6">
-                <p-card styleClass="border-round-lg p-2" header="? Web (= md)">
+                <p-card class="border-round-lg p-2" header="? Web (= md)">
                   <ul class="m-0 pl-3 text-xs line-height-3">
                     <li>
                       <code>border-top: 3px solid card.color</code> (acento del
@@ -223,10 +222,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 </p-card>
               </div>
               <div class="col-12 md:col-6">
-                <p-card
-                  styleClass="border-round-lg p-2"
-                  header="?? Mobile (< md)"
-                >
+                <p-card class="border-round-lg p-2" header="?? Mobile (< md)">
                   <ul class="m-0 pl-3 text-xs line-height-3">
                     <li>
                       <code>ion-list</code> con
@@ -363,4 +359,3 @@ interface DashboardGroup {
     { label: "Cobranza Nativa", icon: "icon.cash", route: "/cobranza-nativa" },
   ];
 }
-

@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+  ViewEncapsulation,
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -8,10 +14,34 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { FullCalendarModule } from "@fullcalendar/angular";
-import { CalendarOptions, EventInput } from "@fullcalendar/core";
+import { CalendarOptions } from "@fullcalendar/core";
 import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import {
+  WebButtonIconDownload,
+  WebButtonIconSendEmail,
+  WebButtonIconViewPdf,
+} from "@ui/buttons/web-icon";
+import {
+  WebButtonLabel,
+  WebButtonLabelAdd,
+  WebButtonLabelConfirm,
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+  WebButtonLabelSave,
+} from "@ui/buttons/web-label";
+import {
+  CustomInputCheckSignal,
+  CustomInputCurrencySignal,
+  CustomInputDateSignal,
+  CustomInputMultiselectSignal,
+  CustomInputNumberSignal,
+  CustomInputSelectSignal,
+  CustomInputTextAreaSignal,
+  CustomInputTextSignal,
+} from "@ui/inputs/web";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AccordionModule } from "primeng/accordion";
 import { BadgeModule } from "primeng/badge";
 import { BreadcrumbModule } from "primeng/breadcrumb";
@@ -38,34 +68,9 @@ import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
-import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
-import {
-  WebButtonLabel,
-  WebButtonLabelAdd,
-  WebButtonLabelConfirm,
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelSave,
-} from "@ui/buttons/web-label";
-import {
-  WebButtonIconDownload,
-  WebButtonIconSendEmail,
-  WebButtonIconViewPdf,
-} from "@ui/buttons/web-icon";
-import {
-  CustomInputCheckSignal,
-  CustomInputCurrencySignal,
-  CustomInputDateSignal,
-  CustomInputMultiselectSignal,
-  CustomInputNumberSignal,
-  CustomInputSelectSignal,
-  CustomInputTextSignal,
-} from "@ui/inputs/web";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { CATALOG_DEMO_EVENTS } from "../../../shared/catalog-demo-data";
 
 const WEB_ITEM_LABELS: Record<string, string> = {
   accordion: "Accordion",
@@ -113,6 +118,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CustomInputCheckSignal,
+    CustomInputTextAreaSignal,
 
     AccordionModule,
     BadgeModule,
@@ -140,7 +146,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     TableModule,
     TabsModule,
     TagModule,
-    TextareaModule,
     ToggleSwitchModule,
     ToolbarModule,
     TooltipModule,
@@ -243,10 +248,11 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             </div>
           </p-card>
           <div class="mt-3">
-              <p-card header="Action Buttons - il-button-* / iw-button-*">
-                <p class="text-sm text-secondary m-0 mb-3">
-                  Botones ERP: <code>il-*</code> con label, <code>iw-*</code> solo icono.
-                </p>
+            <p-card header="Action Buttons - il-button-* / iw-button-*">
+              <p class="text-sm text-secondary m-0 mb-3">
+                Botones ERP: <code>il-*</code> con label, <code>iw-*</code> solo
+                icono.
+              </p>
               <div class="flex flex-wrap gap-2">
                 <il-button label="Genórico" />
                 <il-button-add label="Crear" />
@@ -341,7 +347,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       <li>
                         Accion ERP (guardar, editar, eliminar, descargar...)
                       </li>
-                      <li>Usa <code>il-*</code> si tiene label, <code>iw-*</code> si es solo icono</li>
+                      <li>
+                        Usa <code>il-*</code> si tiene label,
+                        <code>iw-*</code> si es solo icono
+                      </li>
                       <li>Es accion dentro de una tabla o formulario</li>
                     </ul>
                   </div>
@@ -585,7 +594,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         }
         @case ("table") {
           <p-card header="Table - p-table">
-            <p-table [value]="tableData" styleClass="p-datatable-sm">
+            <p-table [value]="tableData" class="p-datatable-sm">
               <ng-template #header
                 ><tr>
                   <th>Nombre</th>
@@ -641,13 +650,16 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         }
         @case ("textarea") {
           <p-card header="Textarea - p-textarea">
-            <textarea
-              pTextarea
+            <custom-input-textarea-signal
+              [onlyInput]="true"
+              [noMargin]="true"
+              [horizontal]="false"
               rows="4"
               [(ngModel)]="textAreaVal"
+              [ngModelOptions]="{ standalone: true }"
               placeholder="Escribe aqué..."
-              class="w-full"
-            ></textarea>
+              customClass="w-full"
+            />
           </p-card>
         }
         @case ("toast") {
@@ -775,7 +787,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
           <p-card
             header="Custom Inputs - Vertical layout (onlyInput)"
-            styleClass="mt-3"
+            class="mt-3"
           >
             <div class="grid">
               <div class="col-12 md:col-4">
@@ -855,12 +867,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             <p-card header="Tabla de eventos - patron ERP">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Debajo del calendario:
-                <code>p-table styleClass="custom-table"</code>
+                <code>p-table class="custom-table "</code>
                 con paginacion, busqueda y botones de accion DS.
               </p>
               <p-table
                 [value]="calendarTableDemo"
-                styleClass="custom-table"
+                class="custom-table "
                 [rows]="4"
               >
                 <ng-template #header>
@@ -1022,7 +1034,6 @@ export class CatalogWebItem {
     },
     buttonText: { today: "Hoy", month: "Mes", week: "Semana", day: "Dia" },
   };
-
 
   readonly calendarTableDemo = [
     {

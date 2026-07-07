@@ -12,7 +12,7 @@
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
     frozenWidth="500px"
     scrollHeight="700px"
-    styleClass="financial-data-table budget-sticky-footer-table card border-none shadow-1"
+    class="financial-data-table budget-sticky-footer-table card border-none shadow-1"
   >
     <!-- =========================
     CAPTION: Encabezado (Idéntico al anterior)
@@ -46,10 +46,7 @@
           <span class="text-900"> {{ cuenta.descripcion_Cuenta }} </span>
         </td>
         <!-- Presupuesto mensual base -->
-        <td
-          pFrozenColumn
-          class="text-right text-green-600 font-bold text-xs"
-        >
+        <td pFrozenColumn class="text-right text-green-600 font-bold text-xs">
           <!-- SIN CONDICIONALES: Mostramos el dato directamente -->
           {{ getPresupuestoBaseMensual(cuenta) | number: '1.0-0' }}
         </td>

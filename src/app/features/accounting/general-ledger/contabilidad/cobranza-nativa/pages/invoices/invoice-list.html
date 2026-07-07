@@ -19,7 +19,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -84,14 +84,16 @@
           <div class="flex gap-1 justify-content-center">
             @if (inv.xmlFilePath) {
             <iw-button
-              pTooltip="XML" tooltipPosition="top"
+              pTooltip="XML"
+              tooltipPosition="top"
               size="small"
               severity="secondary"
               iconClass="mdi:code-tags"
             />
             } @if (inv.pdfFilePath) {
             <iw-button
-              pTooltip="PDF" tooltipPosition="top"
+              pTooltip="PDF"
+              tooltipPosition="top"
               size="small"
               severity="info"
               iconClass="mdi:file-pdf-box"

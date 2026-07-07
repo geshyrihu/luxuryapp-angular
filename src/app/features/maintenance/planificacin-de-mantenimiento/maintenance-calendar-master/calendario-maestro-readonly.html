@@ -7,11 +7,7 @@
     >
       <span>{{ item.month }}</span>
       @if (item.items?.length > 0) {
-      <p-tag
-        [value]="item.items.length"
-        severity="secondary"
-        styleClass="text-xs"
-      />
+      <p-tag [value]="item.items.length" severity="secondary" class="text-xs" />
       }
     </div>
 
@@ -46,7 +42,7 @@
               [value]="evento.frequency"
               severity="info"
               icon="mdi:clock-outline"
-              styleClass="text-xs"
+              class="text-xs"
             />
             }
           </div>

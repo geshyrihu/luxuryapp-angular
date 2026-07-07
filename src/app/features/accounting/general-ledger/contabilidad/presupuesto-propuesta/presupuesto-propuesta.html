@@ -48,7 +48,7 @@
     - `[value]`: Los datos que se mostrarón, en este caso, `proposalItems()`.
     - `[globalFilterFields]`: Campos para el filtro global (bósqueda).
     - `[scrollable]="true"` y `scrollHeight="flex"`: Hacen que la tabla tenga un scroll vertical y se adapte al contenedor.
-    - `styleClass`: Clases CSS personalizadas para darle estilo.
+    - `class`: Clases CSS personalizadas para darle estilo.
     - `[style]`: Estilos en lónea, como el ancho mónimo para el scroll horizontal.
     - `#dt`: Una referencia a la tabla para poder interactuar con ella desde el código (ej. para el caption).
   -->
@@ -58,7 +58,7 @@
     [scrollable]="true"
     scrollDirection="both"
     scrollHeight="calc(100vh - 320px)"
-    styleClass="financial-data-table budget-sticky-footer-table"
+    class="financial-data-table budget-sticky-footer-table"
     [style]="{ 'min-width': '1800px' }"
     #dt
   >
@@ -311,14 +311,20 @@
               placeholder="Año"
             />
           </div>
-          <p-multiselect
+          <custom-input-multiselect-signal
+            [ngModel]="selectedMonthsForAvg()"
+            (ngModelChange)="selectedMonthsForAvg.set($event)"
             [options]="monthOptions"
-            [(ngModel)]="selectedMonthsForAvg"
             placeholder="Meses Promedio"
-            display="chip"
+            [selectionDisplay]="'chip'"
             size="small"
             selectedItemsLabel="{0} meses"
-            styleClass="w-full md:w-18rem"
+            customClass="w-full md:w-18rem"
+            [scrollHeight]="'20rem'"
+            [panelStyle]="{ 'min-width': '18rem' }"
+            [showClear]="true"
+            [onlyInput]="true"
+            [noMargin]="true"
           />
         </div>
 
@@ -911,7 +917,7 @@
       [value]="highIncreaseItems()"
       [scrollable]="true"
       scrollHeight="60vh"
-      styleClass="p-datatable-sm p-datatable-striped"
+      class="p-datatable-sm p-datatable-striped"
     >
       <ng-template #header>
         <tr>

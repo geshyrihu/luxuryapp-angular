@@ -9,7 +9,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
@@ -21,22 +21,26 @@
         />
         <iw-button-download
           (clicked)="onDownloadAllQr()"
-          pTooltip="QR" tooltipPosition="top"
+          pTooltip="QR"
+          tooltipPosition="top"
           tooltip="Descargar todos los QR"
         />
         <iw-button-item
           (clicked)="onViewPeriodos()"
-          pTooltip="Periodos" tooltipPosition="top"
+          pTooltip="Periodos"
+          tooltipPosition="top"
           tooltip="Configurar periodos de inspección"
         />
         <iw-button-download
           (clicked)="downloadTemplate()"
-          pTooltip="Plantilla" tooltipPosition="top"
+          pTooltip="Plantilla"
+          tooltipPosition="top"
           tooltip="Descargar plantilla Excel"
         />
         <iw-button-download
           (clicked)="fileInput.click()"
-          pTooltip="Importar" tooltipPosition="top"
+          pTooltip="Importar"
+          tooltipPosition="top"
           tooltip="Importar desde Excel"
         />
         <input

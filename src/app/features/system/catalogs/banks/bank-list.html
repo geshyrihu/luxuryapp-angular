@@ -12,7 +12,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -47,12 +47,12 @@
         <div class="flex gap-1">
           <iw-button-edit
             size="sm"
-            styleClass="btn--circle"
+            class="btn--circle"
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           <iw-button-delete
             size="sm"
-            styleClass="btn--circle"
+            class="btn--circle"
             (confirmed)="onDelete(item.id)"
           />
         </div>

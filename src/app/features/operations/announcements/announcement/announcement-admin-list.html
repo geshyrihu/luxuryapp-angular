@@ -9,7 +9,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <div
@@ -136,12 +136,14 @@
           <iw-button-item
             (clicked)="onViewPreview(item.id)"
             iconClass="mdi:book"
-            pTooltip="Vista previa" tooltipPosition="top"
+            pTooltip="Vista previa"
+            tooltipPosition="top"
           />
           <iw-button-item
             (clicked)="onViewAnalytics(item.id)"
             iconClass="mdi:chart-bar"
-            pTooltip="Analíticas" tooltipPosition="top"
+            pTooltip="Analíticas"
+            tooltipPosition="top"
           />
         </div>
       </td>

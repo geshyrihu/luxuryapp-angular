@@ -12,11 +12,9 @@ import {
 import { Endpoints } from "src/app/core/constants/endpoints";
 // PrimeNG Modules
 import { MenuItem } from "primeng/api";
-import { AutoCompleteModule } from "primeng/autocomplete";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; // Added DynamicDialogConfig
 import { FileUploadModule } from "primeng/fileupload"; // Added
-import { InputTextModule } from "primeng/inputtext";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { MessageModule } from "primeng/message"; // Added
 import { StepsModule } from "primeng/steps";
@@ -79,8 +77,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-create-orden-compra-wizard",
   imports: [
     WebButtonIcon,
-    AutoCompleteModule,
-    AutoCompleteModule,
     AvatarModule,
     WebButtonLabel,
     CommonModule,
@@ -89,7 +85,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputTextAreaSignal,
     FileUploadModule,
     FormsModule,
-    InputTextModule,
     CustomInputCurrencySignal,
     MessageModule, // Added
     ReactiveFormsModule,
@@ -331,7 +326,7 @@ export class CreateOrdenCompraWizard implements OnInit {
   }
 
   onProductSelect(event: any): void {
-    const selectedProduct = event.value;
+    const selectedProduct = event?.value ?? event;
     const existingItem = this.itemsSignal().find(
       (item) => item.productoId === selectedProduct.value,
     );

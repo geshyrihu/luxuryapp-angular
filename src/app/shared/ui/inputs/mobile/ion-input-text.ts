@@ -1,12 +1,12 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
 /**
- * ✍️ ION INPUT TEXT - Mobile (Ionic)
+ * âœï¸ ION INPUT TEXT - Mobile (Ionic)
  * -------------------------------------------------------------------------
- * Input de texto nativo para vistas móviles. Equivalente a custom-input-text-signal.
+ * Input de texto nativo para vistas mÃ³viles. Equivalente a custom-input-text-signal.
  */
 @Component({
   selector: "ion-input-text",
@@ -31,6 +31,8 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         fill="outline"
         clearInput
         [readonly]="readonly()"
+        (ionBlur)="blur.emit()"
+        (keydown.enter)="enter.emit()"
       >
         @if (requiredInput()) {
           <!-- Se inyecta estrellita roja nativamente a la par del label si es obligatorio -->
@@ -49,12 +51,14 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputText extends BaseIonicInput {
-  // <--- Configuración --->
   type = input<string>("text");
+  blur = output<void>();
+  enter = output<void>();
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   override registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }

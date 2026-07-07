@@ -2,17 +2,23 @@
  * ============================================================================
  * ?? ADVERTENCIA CRóTICA / CRITICAL WARNING ??
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
  * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
  * sin antes consultar y obtener autorización explócita del Ing. Ricardo Marques.
- * 
+ *
  * Por favor, NO rompan el código.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -51,7 +57,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <p-divider styleClass="my-3"></p-divider>
+                <p-divider class="my-3"></p-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -75,7 +81,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <p-divider styleClass="my-3"></p-divider>
+                <p-divider class="my-3"></p-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -102,7 +108,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <p-divider styleClass="my-3"></p-divider>
+                <p-divider class="my-3"></p-divider>
                 <div class="text-600">
                   <div>
                     Cambio:
@@ -112,7 +118,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
               </div>
             </div>
 
-            <p-divider layout="horizontal" align="center" styleClass="my-4">
+            <p-divider layout="horizontal" align="center" class="my-4">
               <h6 class="text-uppercase font-semibold">
                 Detalle por Propiedad
               </h6>

@@ -4,24 +4,23 @@ import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
+import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
+import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
+import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
+import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { CheckboxModule } from "primeng/checkbox";
-import { DatePickerModule } from "primeng/datepicker";
 import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
-import { IconFieldModule } from "primeng/iconfield";
-import { InputIconModule } from "primeng/inputicon";
-import { InputNumberModule } from "primeng/inputnumber";
-import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
-import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { SelectModule } from "primeng/select";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { TextareaModule } from "primeng/textarea";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -35,24 +34,23 @@ type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contr
     CardModule,
     WebButtonLabel,
     WebButtonIcon,
+    InputText,
+    InputTextarea,
+    InputNumber,
+    CustomInputDatepicker,
+    CustomInputToggleSwitch,
+    CustomInputSelectSignal,
+    CustomInputMultiselectSignal,
+    CustomSearchInput,
     CheckboxModule,
-    DatePickerModule,
     DialogModule,
     DividerModule,
-    IconFieldModule,
-    InputIconModule,
-    InputNumberModule,
-    InputTextModule,
     MessageModule,
-    MultiSelectModule,
     ProgressSpinnerModule,
     RadioButtonModule,
-    SelectModule,
     SkeletonModule,
     TableModule,
     TagModule,
-    TextareaModule,
-    ToggleSwitchModule,
     ToolbarModule,
     AppIcon,
   ],

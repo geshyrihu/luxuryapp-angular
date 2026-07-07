@@ -35,6 +35,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [placeholder]="placeholder()"
         [dateFormat]="dateFormat()"
         [showTime]="showTime()"
+        [showClear]="showClear()"
         [showIcon]="showIcon()"
         [hourFormat]="hourFormat()"
         [readonlyInput]="readonlyInput()"
@@ -44,6 +45,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [invalid]="isInvalid()"
         [style]="dateStyle()"
         appendTo="body"
+        (onClear)="dateClear.emit()"
         (onSelect)="dateSelect.emit($event)"
         fluid
       />
@@ -63,8 +65,10 @@ export class CustomInputDatepicker
   implements ControlValueAccessor
 {
   dateSelect = output<any>();
+  dateClear = output<void>();
   dateFormat = input<string>("dd/mm/yy");
   showTime = input<boolean>(false);
+  showClear = input<boolean>(false);
   showIcon = input<boolean>(true);
   hourFormat = input<string>("24");
   readonlyInput = input<boolean>(true);

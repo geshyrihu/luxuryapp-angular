@@ -40,14 +40,14 @@ import { environment } from "src/environments/environment";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import { Spanish } from "flatpickr/dist/l10n/es";
 import * as echarts from "echarts";
+import { Spanish } from "flatpickr/dist/l10n/es";
 import { provideEchartsCore } from "ngx-echarts";
 import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
 import { provideToastr } from "ngx-toastr";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { providePrimeNG } from "primeng/config";
+import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
 import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
@@ -61,6 +61,22 @@ import { appRoutes } from "./app.routes";
 registerLocaleData(localeEs);
 
 // Configuración principal de la aplicación
+const primeNgConfig: PrimeNGConfigType = {
+  license:
+    "eyJpZCI6IjYwMjZhNmI2LTAxM2MtNGI1Yy1hZTc0LTFjMjUyZWI0NmRmNCIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODMzOTM4NjcsImV4cCI6MTgxNDkyOTg2N30.q9Bg8B3KhNVh6x40y5CBrosDUg5XsbUSUGE3tVtwl66DwRgF5pj8HdWB0906k5qFcEGQNTz5Gs7VzQAtoT0XBg",
+  theme: {
+    preset: MyPreset,
+    options: {
+      darkModeSelector: '[data-theme="dark"], .theme-dark',
+      cssLayer: {
+        name: "primeng",
+        order: "primeng, primeflex",
+      },
+    },
+  },
+  translation: PrimeNgSpanishLocale,
+};
+
 export const appConfig: ApplicationConfig = {
   providers: [
     // --- Proveedores base de Angular y Plantilla ---
@@ -87,19 +103,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     // --- Configuración de Librerías de UI y Terceros ---
     provideToastr(),
-    providePrimeNG({
-      theme: {
-        preset: MyPreset,
-        options: {
-          darkModeSelector: '[data-theme="dark"], .theme-dark',
-          cssLayer: {
-            name: "primeng",
-            order: "primeng, primeflex",
-          },
-        },
-      },
-      translation: PrimeNgSpanishLocale,
-    }),
+    providePrimeNG(primeNgConfig),
     provideEchartsCore({ echarts }),
     provideEnvironmentNgxMask(),
     provideFlatpickrDefaults({

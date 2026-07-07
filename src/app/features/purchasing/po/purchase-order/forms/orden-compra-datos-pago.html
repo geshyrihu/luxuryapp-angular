@@ -44,14 +44,14 @@
   <div class="grid col-12 md:col-6 lg:col-4">
     @for (month of fundingPeriodsByMonth(); track month.monthName) {
     <div>
-      <p-message [text]="month.monthName" styleClass="w-full justify-content-start">
+      <p-message [text]="month.monthName" class="w-full justify-content-start">
         <div class="flex-grow-1 text-right">
           @for (quincena of month.quincenas; track quincena.value) {
           <p-tag
             (click)="selectFundingPeriod(quincena)"
             [value]="quincena.label.split(' ')[0]"
             [severity]="form.controls.fundingPeriod.value === quincena.value ? 'success' : 'secondary'"
-            styleClass="ml-2 pointer"
+            class="ml-2 pointer"
           ></p-tag>
           }
         </div>

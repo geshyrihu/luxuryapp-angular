@@ -1,12 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonModule } from "primeng/button";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
-import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -32,13 +33,14 @@ import type {
   selector: "app-cobranza-online-dashboard",
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule,
     MessageModule,
     ButtonModule,
     TableModule,
     IconFieldModule,
     InputIconModule,
-    InputTextModule,
+    CustomInputTextSignal,
     PieChart,
     AppIcon,
     WebButtonLabel,

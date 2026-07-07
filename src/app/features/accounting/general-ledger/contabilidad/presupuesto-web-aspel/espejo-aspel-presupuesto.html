@@ -16,7 +16,7 @@ Contenedor principal de la vista de presupuesto.
         dataKey="codigo_Cuenta"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
         scrollHeight="flex"
-        styleClass="custom-table financial-data-table rf-prime-table budget-sticky-footer-table p-datatable-sm text-sm"
+        class="custom-table financial-data-table rf-prime-table budget-sticky-footer-table p-datatable-sm text-sm"
       >
         <!-- =========================
         CAPTION: Encabezado superior de la tabla
@@ -68,13 +68,9 @@ Contenedor principal de la vista de presupuesto.
             <!-- Fusión de las dos primeras columnas congeladas (CUENTA + PRE-MEN) -->
             <td pFrozenColumn [attr.colspan]="2">
               <div class="flex align-items-center gap-2">
-                <span class="font-semibold">
-                  {{ cuenta.codigo_Cuenta }}
-                </span>
+                <span class="font-semibold"> {{ cuenta.codigo_Cuenta }} </span>
                 <span>|</span>
-                <span class="font-bold">
-                  {{ cuenta.descripcion_Cuenta }}
-                </span>
+                <span class="font-bold"> {{ cuenta.descripcion_Cuenta }} </span>
               </div>
             </td>
             <!-- El resto de las columnas se mantienen individuales pero vacías para mantener la rejilla -->
@@ -253,7 +249,7 @@ Contenedor principal de la vista de presupuesto.
                 [value]="
                               totalRestante !== 0 ? (totalRestante | number: '1.0-0') : '-'
                             "
-                styleClass="w-full text-right"
+                class="w-full text-right"
               ></p-tag>
             </td>
           </tr>
@@ -301,7 +297,7 @@ Contenedor principal de la vista de presupuesto.
               <p-tag
                 value="Agrupadora"
                 severity="info"
-                styleClass="text-xs px-2"
+                class="text-xs px-2"
               ></p-tag>
               }
             </div>

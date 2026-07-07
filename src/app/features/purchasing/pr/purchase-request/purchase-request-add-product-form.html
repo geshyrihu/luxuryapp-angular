@@ -13,7 +13,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table hidden md:block"
+  class="custom-table hidden md:block"
 >
   <ng-template #caption>
     <div class="hidden md:block">
@@ -96,7 +96,7 @@
           <div class="flex justify-content-center">
             <iw-button
               iconClass="mdi:content-save"
-              styleClass="p-button-outlined p-button-primary"
+              class="p-button-outlined p-button-primary"
               (clicked)="onSubmit(rowItem, i)"
               [disabled]="
               !formArray.at(i).value.unitId ||

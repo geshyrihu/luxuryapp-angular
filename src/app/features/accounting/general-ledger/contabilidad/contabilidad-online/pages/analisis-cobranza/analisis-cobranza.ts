@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,7 +22,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
     CommonModule,
     FormsModule,
     ChartWrapper,
-    SelectModule,
+    CustomInputSelectSignal,
     TableModule,
     TagModule,
     AccountingNumberPipe,
@@ -42,11 +42,11 @@ export class AnalisisCobranza {
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
   readonly classificationOptions = [
-    "TODAS",
-    "COBRANZA JUDICIAL",
-    "MOROSOS",
-    "DEUDA CORRIENTE",
-    "SIN ADEUDO",
+    { label: "TODAS", value: "TODAS" },
+    { label: "COBRANZA JUDICIAL", value: "COBRANZA JUDICIAL" },
+    { label: "MOROSOS", value: "MOROSOS" },
+    { label: "DEUDA CORRIENTE", value: "DEUDA CORRIENTE" },
+    { label: "SIN ADEUDO", value: "SIN ADEUDO" },
   ];
 
   readonly chartData = computed(() => {

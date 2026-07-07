@@ -1,14 +1,12 @@
-import { Component, contentChildren, input, model, output, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { StepperModule } from "primeng/stepper";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { StepperBase } from "@ui/base/stepper.base";
+import type { StepperStep } from "@ui/base/stepper.base";
 
-export interface WizardStep {
-  value: number;
-  label: string;
-  icon: string;
-}
+export type WizardStep = StepperStep;
 
 @Component({
   selector: "app-wizard",
@@ -45,7 +43,7 @@ export interface WizardStep {
                 } @else {
                   <div></div>
                 }
-                @if (step.value < lastStep()) {
+                @if (step.value < lastStep) {
                   <p-button
                     label="Siguiente"
                     icon="mdi:arrow-right"
@@ -75,28 +73,4 @@ export interface WizardStep {
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
-export class Wizard {
-  steps = input.required<WizardStep[]>();
-  linear = input<boolean>(true);
-  finishLabel = input("Finalizar");
-  activeStep = model<number>(1);
-  finish = output<void>();
-
-  get lastStep(): number {
-    return this.steps().length;
-  }
-
-  next(): void {
-    const next = this.activeStep() + 1;
-    if (next <= this.lastStep) {
-      this.activeStep.set(next);
-    }
-  }
-
-  previous(): void {
-    const prev = this.activeStep() - 1;
-    if (prev >= 1) {
-      this.activeStep.set(prev);
-    }
-  }
-}
+export class Wizard extends StepperBase {}

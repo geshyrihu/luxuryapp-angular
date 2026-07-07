@@ -7,7 +7,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  class="custom-table card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption [dt]="dt" [showAdd]="false" />
@@ -37,7 +37,8 @@
       <td><span [class]="statusClass(item.status)">{{ item.status }}</span></td>
       <td>
         <iw-button-item
-          pTooltip="Detalle" tooltipPosition="top"
+          pTooltip="Detalle"
+          tooltipPosition="top"
           (clicked)="onViewDetail(item.id)"
           tooltip="Ver detalle del ciclo"
         />

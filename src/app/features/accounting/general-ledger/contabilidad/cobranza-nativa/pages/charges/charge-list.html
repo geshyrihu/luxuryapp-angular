@@ -6,7 +6,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -124,7 +124,10 @@
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
         <p>{{ item.chargeTypeName || 'Sin tipo' }} · {{ item.concept }}</p>
-        <p>{{ item.amount | number:'1.2-2' }} · {{ item.chargeTypeAccountNumber }}</p>
+        <p>
+          {{ item.amount | number:'1.2-2' }} · {{ item.chargeTypeAccountNumber
+          }}
+        </p>
         <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
       </ion-label>
       <ili-action-menu slot="end">

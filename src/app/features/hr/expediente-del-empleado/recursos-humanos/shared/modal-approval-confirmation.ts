@@ -1,13 +1,19 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TagModule } from "primeng/tag";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
@@ -29,14 +35,14 @@ import { ApprovalInfoService } from "./approval-info.service";
     TagModule,
     DividerModule,
     MessageModule,
-    ToggleSwitchModule,
+    CustomInputToggleSwitch,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (loading) {
       <div class="flex justify-center items-center p-5">
         <p-progressspinner
-          styleClass="w-4rem h-4rem"
+          class="w-4rem h-4rem"
           strokeWidth="6"
           ariaLabel="loading"
         ></p-progressspinner>
@@ -57,7 +63,11 @@ import { ApprovalInfoService } from "./approval-info.service";
               [class.bg-yellow-100]="!paidStatus.value"
               [class.text-yellow-800]="!paidStatus.value"
             >
-              <p-toggleswitch [formControl]="paidStatus"></p-toggleswitch>
+              <custom-input-toggle-switch-signal
+                [control]="paidStatus"
+                [onlyInput]="true"
+                [noMargin]="true"
+              />
               <label class="font-bold">
                 {{
                   paidStatus.value ? "CON GOCE DE SUELDO" : "SIN GOCE DE SUELDO"
@@ -142,7 +152,7 @@ import { ApprovalInfoService } from "./approval-info.service";
               <p-message
                 severity="info"
                 text="No hay otras solicitudes de permiso que se solapen en estas fechas."
-                styleClass="w-full"
+                class="w-full"
               />
             }
           }
@@ -176,7 +186,7 @@ import { ApprovalInfoService } from "./approval-info.service";
               <p-message
                 severity="info"
                 text="No hay otras solicitudes de vacaciones que se solapen en estas fechas."
-                styleClass="w-full"
+                class="w-full"
               />
             }
           }

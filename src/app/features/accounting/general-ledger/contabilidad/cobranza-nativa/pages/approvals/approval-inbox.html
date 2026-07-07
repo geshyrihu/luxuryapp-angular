@@ -6,7 +6,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    styleClass="custom-table hidden md:block"
+    class="custom-table hidden md:block"
     #dt
   >
     <ng-template #caption>
@@ -48,7 +48,8 @@
         <td class="text-center">
           @if (item.status === EFinancialApprovalStatus.Pendiente) {
           <iw-button
-            pTooltip="Revisar" tooltipPosition="top"
+            pTooltip="Revisar"
+            tooltipPosition="top"
             iconClass="mdi:eye-outline"
             size="small"
             severity="warn"

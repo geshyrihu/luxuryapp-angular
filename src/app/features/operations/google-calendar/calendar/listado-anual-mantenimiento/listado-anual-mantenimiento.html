@@ -11,7 +11,7 @@
   rowGroupMode="subheader"
   sortField="inventoryCategory"
   sortMode="single"
-  styleClass="custom-table hidden md:block"
+  class="custom-table hidden md:block"
 >
   <ng-template #caption>
     <div class="grid">
@@ -152,7 +152,8 @@
                     header: 'Duplicar servicio',
                   })
                 "
-            pTooltip="Duplicar" tooltipPosition="top"
+            pTooltip="Duplicar"
+            tooltipPosition="top"
             iconClass="mdi:content-copy"
           />
           <iw-button-delete

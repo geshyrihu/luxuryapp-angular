@@ -33,7 +33,7 @@ import { MessageService } from "primeng/api";
 import { filter } from "rxjs/operators";
 // 🧩 Componentes globales que acompañan siempre a la app
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
-import { TapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
+import { LxScrollTop } from "@ui/adaptive/tap-to-top/tap-to-top";
 // 🛠️ Servicios esenciales (nivel App, no de sesión)
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
@@ -45,7 +45,7 @@ import { TitleService } from "./core/services/title.service";
   selector: "app-root",
   imports: [
     RouterOutlet,
-    TapToTop,
+    LxScrollTop,
     PrimeNgCustomToast,
     ConfirmDialogModule,
     // WhatsNew,

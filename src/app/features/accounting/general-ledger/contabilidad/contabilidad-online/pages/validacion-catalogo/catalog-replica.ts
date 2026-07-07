@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -23,7 +23,7 @@ import { TooltipModule } from "primeng/tooltip";
     FormsModule,
     TableModule,
     WebButtonLabel,
-    InputTextModule,
+    CustomInputTextSignal,
     TagModule,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

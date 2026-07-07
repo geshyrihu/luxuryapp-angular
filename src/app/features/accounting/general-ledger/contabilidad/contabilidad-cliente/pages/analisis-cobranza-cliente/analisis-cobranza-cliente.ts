@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
-import { SelectModule } from 'primeng/select';
+import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ChartWrapper } from '@ui/web/charts/chart-wrapper';
+import { CustomInputSelectSignal } from '@ui/inputs/web/custom-input-select-signal';
 import type {
   IAnalisisCobranzaOnlineDto,
   ICobranzaOnlineAnalysisCondominoDto,
@@ -13,7 +14,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 
 @Component({
   selector: 'app-analisis-cobranza-cliente',
-  imports: [CommonModule, ChartWrapper, SelectModule, TableModule, TagModule, AccountingNumberPipe],
+  imports: [CommonModule, FormsModule, ChartWrapper, CustomInputSelectSignal, TableModule, TagModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './analisis-cobranza-cliente.html',
 })
@@ -29,11 +30,11 @@ export class AnalisisCobranzaClienteComponent {
   readonly data = signal<IAnalisisCobranzaOnlineDto | null>(null);
 
   readonly classificationOptions = [
-    'TODAS',
-    'COBRANZA JUDICIAL',
-    'MOROSOS',
-    'DEUDA CORRIENTE',
-    'SIN ADEUDO',
+    { label: 'TODAS', value: 'TODAS' },
+    { label: 'COBRANZA JUDICIAL', value: 'COBRANZA JUDICIAL' },
+    { label: 'MOROSOS', value: 'MOROSOS' },
+    { label: 'DEUDA CORRIENTE', value: 'DEUDA CORRIENTE' },
+    { label: 'SIN ADEUDO', value: 'SIN ADEUDO' },
   ];
 
   readonly chartData = computed(() => {

@@ -5,13 +5,25 @@
 >
   <div class="grid">
     <div class="col-12">
-      <div class="surface-ground border-round-xl p-4 mb-4 border-1 surface-border">
+      <div
+        class="surface-ground border-round-xl p-4 mb-4 border-1 surface-border"
+      >
         <div class="flex align-items-center gap-3 mb-2">
-          <app-icon [icon]="'mdi:information-outline'" class="text-2xl text-primary" />
-          <h3 class="m-0 text-900 font-semibold">Configuración General del Manual</h3>
+          <app-icon
+            [icon]="'mdi:information-outline'"
+            class="text-2xl text-primary"
+          />
+          <h3 class="m-0 text-900 font-semibold">
+            Configuración General del Manual
+          </h3>
         </div>
         <p class="text-color-secondary m-0 line-height-3">
-          Define los datos principales de tu manual o proceso. Un <strong>Folio</strong> claro ayuda a ubicarlo rápidamente, mientras que el <strong>Departamento</strong> y la <strong>Frecuencia</strong> aseguran que los responsables sean notificados en el momento correcto. Si este manual aplica a toda la empresa, marca la opción <strong>Manual Global</strong>.
+          Define los datos principales de tu manual o proceso. Un
+          <strong>Folio</strong> claro ayuda a ubicarlo rápidamente, mientras
+          que el <strong>Departamento</strong> y la
+          <strong>Frecuencia</strong> aseguran que los responsables sean
+          notificados en el momento correcto. Si este manual aplica a toda la
+          empresa, marca la opción <strong>Manual Global</strong>.
         </p>
       </div>
     </div>
@@ -59,75 +71,75 @@
 
         <!-- Opciones Semanales (3) -->
         @if (periodicityVal() === 3) {
-          <custom-input-multiselect-signal
-            [control]="form.controls.executionDaysOfWeek"
-            [options]="daysOfWeekOptions"
-            label="¿Qué días de la semana?"
-            placeholder="Seleccionar días..."
-            [horizontal]="false"
-          />
+        <custom-input-multiselect-signal
+          [control]="form.controls.executionDaysOfWeek"
+          [options]="daysOfWeekOptions"
+          label="¿Qué días de la semana?"
+          placeholder="Seleccionar días..."
+          [horizontal]="false"
+        />
         }
 
         <!-- Opciones Mensuales (4) -->
         @if (periodicityVal() === 4) {
-          <div class="grid mt-2">
-            <div class="col-12 md:col-6">
-              <custom-input-select-signal
-                [control]="form.controls.executionDayOfMonth"
-                [data]="daysOfMonthOptions"
-                label="Día fijo del mes (Opcional)"
-                placeholder="Ej: Día 15"
-                [horizontal]="false"
-                [filter]="true"
-              />
-            </div>
-            <div class="col-12 text-center text-500 font-bold">O</div>
-            <div class="col-12 md:col-6">
-              <custom-input-select-signal
-                [control]="form.controls.executionWeekOfMonth"
-                [data]="weeksOfMonthOptions"
-                label="¿Qué semana?"
-                placeholder="Ej: 3ra Semana"
-                [horizontal]="false"
-                [filter]="true"
-              />
-            </div>
-            <div class="col-12 md:col-6">
-              <custom-input-multiselect-signal
-                [control]="form.controls.executionDaysOfWeek"
-                [options]="daysOfWeekOptions"
-                label="¿Qué día(s)?"
-                placeholder="Ej: Jueves"
-                [horizontal]="false"
-              />
-            </div>
+        <div class="grid mt-2">
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.executionDayOfMonth"
+              [data]="daysOfMonthOptions"
+              label="Día fijo del mes (Opcional)"
+              placeholder="Ej: Día 15"
+              [horizontal]="false"
+              [filter]="true"
+            />
           </div>
+          <div class="col-12 text-center text-500 font-bold">O</div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.executionWeekOfMonth"
+              [data]="weeksOfMonthOptions"
+              label="¿Qué semana?"
+              placeholder="Ej: 3ra Semana"
+              [horizontal]="false"
+              [filter]="true"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-multiselect-signal
+              [control]="form.controls.executionDaysOfWeek"
+              [options]="daysOfWeekOptions"
+              label="¿Qué día(s)?"
+              placeholder="Ej: Jueves"
+              [horizontal]="false"
+            />
+          </div>
+        </div>
         }
 
         <!-- Opciones Anuales (5) -->
         @if (periodicityVal() === 5) {
-          <div class="grid mt-2">
-            <div class="col-12 md:col-6">
-              <custom-input-select-signal
-                [control]="form.controls.executionMonthOfYear"
-                [data]="monthsOfYearOptions"
-                label="Mes del Año"
-                placeholder="Seleccionar mes..."
-                [horizontal]="false"
-                [filter]="true"
-              />
-            </div>
-            <div class="col-12 md:col-6">
-              <custom-input-select-signal
-                [control]="form.controls.executionDayOfMonth"
-                [data]="daysOfMonthOptions"
-                label="Día del mes (Opcional)"
-                placeholder="Ej: Día 1"
-                [horizontal]="false"
-                [filter]="true"
-              />
-            </div>
+        <div class="grid mt-2">
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.executionMonthOfYear"
+              [data]="monthsOfYearOptions"
+              label="Mes del Año"
+              placeholder="Seleccionar mes..."
+              [horizontal]="false"
+              [filter]="true"
+            />
           </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.executionDayOfMonth"
+              [data]="daysOfMonthOptions"
+              label="Día del mes (Opcional)"
+              placeholder="Ej: Día 1"
+              [horizontal]="false"
+              [filter]="true"
+            />
+          </div>
+        </div>
         }
       </div>
 
@@ -205,7 +217,7 @@
             [style]="{ width: '100%' }"
             [listStyle]="{ 'max-height': '680px' }"
             emptyFilterMessage="No se encontraron clientes"
-            styleClass="w-full border-round-xl overflow-hidden shadow-1"
+            class="w-full border-round-xl overflow-hidden shadow-1"
           />
         </div>
         <div class="col-12 md:col-6">
@@ -226,7 +238,7 @@
             [style]="{ width: '100%' }"
             [listStyle]="{ 'max-height': '680px' }"
             emptyFilterMessage="No se encontraron roles"
-            styleClass="w-full border-round-xl overflow-hidden shadow-1"
+            class="w-full border-round-xl overflow-hidden shadow-1"
           />
         </div>
       </div>

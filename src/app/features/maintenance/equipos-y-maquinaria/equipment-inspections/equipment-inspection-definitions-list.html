@@ -7,7 +7,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table"
+  class="custom-table"
   #dt
 >
   <ng-template #caption>
@@ -69,12 +69,14 @@
         >
           <iw-button-item
             iconClass="mdi:play-circle-outline"
-            pTooltip="Iniciar" tooltipPosition="top"
+            pTooltip="Iniciar"
+            tooltipPosition="top"
             (clicked)="onStartManual(item.id)"
           />
           <iw-button-item
             iconClass="mdi:power"
-            [pTooltip]="item.isActive ? 'Desactivar' : 'Activar'" tooltipPosition="top"
+            [pTooltip]="item.isActive ? 'Desactivar' : 'Activar'"
+            tooltipPosition="top"
             (clicked)="onToggleActive(item)"
           />
           <iw-button-edit (clicked)="onAddOrEdit(item.id)" />

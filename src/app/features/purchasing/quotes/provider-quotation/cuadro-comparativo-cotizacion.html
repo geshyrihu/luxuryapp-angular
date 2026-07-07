@@ -103,7 +103,7 @@
     <p-table
       [value]="solicitudCompraDetalle"
       [showCurrentPageReport]="true"
-      styleClass="custom-table"
+      class="custom-table"
     >
       <ng-template #header>
         <tr>
@@ -161,8 +161,8 @@
           </td>
 
           <td>
-            {{ (posicionCotizacion === 1 ? item.subTotal : posicionCotizacion ===
-            2 ? item.subTotal2 : item.subTotal3) | number: "1.2-2" }}
+            {{ (posicionCotizacion === 1 ? item.subTotal : posicionCotizacion
+            === 2 ? item.subTotal2 : item.subTotal3) | number: "1.2-2" }}
           </td>
 
           <td>

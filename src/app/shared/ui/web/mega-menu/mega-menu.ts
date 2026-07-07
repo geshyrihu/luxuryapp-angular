@@ -1,7 +1,7 @@
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MegaMenuModule } from "primeng/megamenu";
-import { MegaMenuItem } from "primeng/api";
+import { MegaMenuBase } from "@ui/base/mega-menu.base";
 
 @Component({
   selector: "app-mega-menu",
@@ -35,7 +35,4 @@ import { MegaMenuItem } from "primeng/api";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class MegaMenu {
-  items = input.required<MegaMenuItem[]>();
-  orientation = input<"horizontal" | "vertical">("horizontal");
-}
+export class MegaMenu extends MegaMenuBase {}

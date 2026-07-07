@@ -1,4 +1,4 @@
-import { Component, forwardRef, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -38,6 +38,8 @@ import { WebInputText } from "../../web/input-text/input-text";
         [disabled]="disabled()"
         [required]="requiredInput()"
         [type]="type()"
+        (blur)="blur.emit()"
+        (enter)="enter.emit()"
       />
     } @else {
       <web-input-text
@@ -56,6 +58,8 @@ import { WebInputText } from "../../web/input-text/input-text";
         [customClass]="customClass()"
         [size]="size()"
         [list]="list()"
+        (blur)="blur.emit()"
+        (enter)="enter.emit()"
       />
     }
   `,
@@ -68,4 +72,6 @@ export class InputText extends BaseInputSignal {
   customClass = input<string>("");
   size = input<"small" | "large" | undefined>(undefined);
   list = input<string | undefined>(undefined);
+  blur = output<void>();
+  enter = output<void>();
 }
