@@ -10,7 +10,6 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
-import { TranslateModule } from "@ngx-translate/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { AvatarModule } from "primeng/avatar";
@@ -30,7 +29,6 @@ import { MenuService } from "src/app/core/services/menu.service";
   imports: [
     CommonModule,
     RouterModule,
-    TranslateModule,
     FormsModule,
     InputTextModule,
     AvatarModule,
