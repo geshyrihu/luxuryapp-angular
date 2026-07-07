@@ -1,19 +1,24 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { ConfirmationService } from "primeng/api";
-import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { Table, TableModule } from "primeng/table";
-import { TabsModule } from "primeng/tabs";
-import { TagModule } from "primeng/tag";
 import {
-  WebButtonLabel,
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  viewChild,
+} from "@angular/core";
+import { Router, RouterModule } from "@angular/router";
+import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
 } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ConfirmationService } from "primeng/api";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { Table, TableModule } from "primeng/table";
+import { TabsModule } from "primeng/tabs";
+import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -21,10 +26,11 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IReportDefinitionList } from "../../models/report-definition.interface";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -46,7 +52,6 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonLabelAdd,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    WebButtonLabel,
     DataViewMobile,
   ],
   providers: [ConfirmationService],

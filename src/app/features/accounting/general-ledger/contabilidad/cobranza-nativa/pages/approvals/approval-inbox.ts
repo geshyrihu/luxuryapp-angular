@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -36,7 +36,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,
-    MobileButtonLabel,
+
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelEdit,

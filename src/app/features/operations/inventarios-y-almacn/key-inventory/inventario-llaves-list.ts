@@ -1,17 +1,24 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, keyOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { IInventarioLlave } from "src/app/core/interfaces/inventario-llave-dto.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -21,14 +28,10 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { InventarioLlaveForm } from "./inventario-llave-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -46,16 +49,9 @@ import { TooltipModule } from "primeng/tooltip";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelDownload,
     IonItem,
     IonLabel,
   ],

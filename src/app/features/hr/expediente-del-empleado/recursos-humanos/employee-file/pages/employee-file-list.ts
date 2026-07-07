@@ -1,14 +1,18 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { TableModule } from "primeng/table";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -18,10 +22,11 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeFileSummaryDTO } from "../models/employee-file.interfaces";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
@@ -39,11 +44,8 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    WebButtonLabelItem,
     CustomInputSelectSignal,
-    ActionMenu,
     DataViewMobile,
-    WebButtonLabelItem,
   ],
 })
 export class EmployeeFileList {

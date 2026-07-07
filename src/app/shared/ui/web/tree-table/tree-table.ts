@@ -39,7 +39,7 @@ export interface TreeTableColumn {
         </div>
       }
 
-      <p-treeTable
+      <p-treetable
         [value]="nodesWithIcon()"
         [columns]="cols()"
         [selectionMode]="selectionMode()"
@@ -75,7 +75,7 @@ export interface TreeTableColumn {
         styleClass="w-full"
         tableStyleClass="w-full"
       >
-        <ng-template pTemplate="caption">
+        <ng-template #caption>
           <ng-content select="[caption]" />
         </ng-template>
 
@@ -86,7 +86,7 @@ export interface TreeTableColumn {
           </div>
         </ng-template>
 
-        <ng-template pTemplate="summary">
+        <ng-template #summary>
           @if (summaryTemplate()) {
             <ng-content select="[summary]" />
           } @else {
@@ -95,7 +95,7 @@ export interface TreeTableColumn {
             </span>
           }
         </ng-template>
-      </p-treeTable>
+      </p-treetable>
     </div>
   `,
   styles: [

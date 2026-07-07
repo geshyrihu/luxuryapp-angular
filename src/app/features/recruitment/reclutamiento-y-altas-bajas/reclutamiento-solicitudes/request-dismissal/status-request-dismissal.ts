@@ -1,11 +1,17 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { TooltipModule } from "primeng/tooltip";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { PhoneFormatPipe } from "src/app/core/pipes/phone-format.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -16,9 +22,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
+import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-status-request-dismissal",
@@ -29,7 +34,6 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CardModule,
     NgbTooltipModule,
-    WebButtonLabel,
     WebButtonLabelConfirm,
     PhoneFormatPipe,
   ],

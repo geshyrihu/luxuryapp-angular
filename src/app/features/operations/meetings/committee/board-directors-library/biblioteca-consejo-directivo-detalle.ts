@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -37,7 +37,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     WebButtonIconViewPdf,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    WebButtonLabelViewPdf,
+
     DataViewMobile,
     CustomSearchInput,
     IonItem,
@@ -73,7 +73,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
         this.pageTitle = data["title"];
         this.documentType = data["documentType"];
         console.log("Tipo de documento:", this.documentType);
-        console.log("Tútulo de la página:", this.pageTitle);
+        console.log("TÃºtulo de la pÃ¡gina:", this.pageTitle);
         this.onLoadData();
       }
     });

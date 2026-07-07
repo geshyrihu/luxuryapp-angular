@@ -32,7 +32,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Casos de Cobranza Legal"
         [showAddButton]="false"
@@ -40,7 +40,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>Propiedad</th>
         <th class="w-10rem text-right">Deuda Total</th>
@@ -53,7 +53,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="font-medium text-sm">{{ item.propertyName }}</td>
         <td class="text-right font-bold text-red-700">

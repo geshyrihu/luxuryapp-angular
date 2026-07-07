@@ -1,13 +1,18 @@
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -26,7 +31,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     TableModule,
     TagModule,
-    WebButtonLabel,
     WebButtonLabelSave,
     CustomInputDateSignal,
     CustomInputTextSignal,

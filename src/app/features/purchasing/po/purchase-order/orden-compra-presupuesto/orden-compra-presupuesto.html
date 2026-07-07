@@ -53,14 +53,14 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
     <tr>
       <th class="table-col-20" pSortableColumn="accountNumber">
         Cuenta
-        <p-sortIcon field="accountNumber" />
+        <p-sorticon field="accountNumber" />
       </th>
       <th class="table-col-13">Pres. Mensual</th>
       <th class="table-col-13">Gastado</th>
       <th class="table-col-13">Provisionado</th>
       <th class="table-col-13" pSortableColumn="availableBudget">
         Disponible
-        <p-sortIcon field="availableBudget" />
+        <p-sorticon field="availableBudget" />
       </th>
       <th class="table-col-13">Gasto</th>
       <th class="table-col-15"></th>
@@ -100,7 +100,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
         </div>
       </td>
       <td>
-        <!-- <p-inputNumber
+        <!-- <p-inputnumber
           [(ngModel)]="item.dineroUsado"
           [minFractionDigits]="2"
           [maxFractionDigits]="2"
@@ -129,12 +129,12 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
           pTooltip="Guardar" tooltipPosition="top"
         />
         } @if (submitting()) {
-        <p-progressSpinner
+        <p-progressspinner
           styleClass="w-2rem h-2rem"
           strokeWidth="8"
           fill="var(--surface-ground)"
           animationDuration=".5s"
-        ></p-progressSpinner>
+        ></p-progressspinner>
         }
       </td>
     </tr>

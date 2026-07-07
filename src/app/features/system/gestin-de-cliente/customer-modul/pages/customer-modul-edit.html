@@ -17,7 +17,7 @@
 
   @if (loading()) {
   <div class="flex justify-content-center my-5">
-    <p-progressSpinner ariaLabel="Cargando módulos"></p-progressSpinner>
+    <p-progressspinner ariaLabel="Cargando módulos"></p-progressspinner>
   </div>
   } @if (!loading() && filteredGroupedData().length === 0) {
   <p-message
@@ -107,7 +107,7 @@
 
     @if (loading()) {
     <div class="flex justify-content-center my-5">
-      <p-progressSpinner ariaLabel="Cargando módulos"></p-progressSpinner>
+      <p-progressspinner ariaLabel="Cargando módulos"></p-progressspinner>
     </div>
     } @if (!loading() && filteredGroupedData().length === 0) {
     <p-message severity="warn" text="No se encontraron módulos."></p-message>

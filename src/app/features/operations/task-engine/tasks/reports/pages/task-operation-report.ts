@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -45,7 +45,7 @@ import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
     TaskReportActions,
     TaskDateRangeSelector,
     TableModule,
-    WebButtonLabelTracking,
+
     PrimeNgCustomCaption,
     MenuModule,
     PrimeNgCustomCaption,
@@ -122,7 +122,7 @@ export class TaskMessageOperationReport {
     this.startDate = startDateFormatted;
     this.endDate = endDateFormatted;
 
-    // Aqué puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // AquÃ© puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData();
   }
 
@@ -193,11 +193,11 @@ export class TaskMessageOperationReport {
   }
 
   onPreviewClicked(): void {
-    // Lígica para la vista previa
+    // LÃ­gica para la vista previa
     this.router.navigate(ROUTES.TICKETS.REPORTE_SEMANAL_VISTA);
   }
   onSendReportClicked(): void {
-    // Lígica para enviar el reporte
+    // LÃ­gica para enviar el reporte
     this.dialogHandlerS
       .openDialog(
         SendOperationReport,

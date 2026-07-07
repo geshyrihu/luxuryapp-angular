@@ -3,7 +3,7 @@
     <app-calendar-range></app-calendar-range>
   </div>
 </div>
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="hidden md:block">
   <p-table
     [value]="data()"
@@ -22,7 +22,7 @@
         <th class="table-col-5rem"></th>
         <th colspan="2" pSortableColumn="fullName">
           COLABORADOR
-          <p-sortIcon field="fullName" />
+          <p-sorticon field="fullName" />
         </th>
       </tr>
     </ng-template>
@@ -47,7 +47,7 @@
         <td>{{ item.fullName }}</td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="rowexpansion" let-item>
+    <ng-template #rowexpansion let-item>
       <tr>
         <td colspan="3">
           <div class="p-3">
@@ -93,7 +93,7 @@
   </p-table>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
   @if(data().length > 0) {
   <ion-accordion-group>

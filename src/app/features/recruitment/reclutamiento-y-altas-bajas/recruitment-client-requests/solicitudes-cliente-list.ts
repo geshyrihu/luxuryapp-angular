@@ -1,17 +1,24 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { ROUTES } from "src/app/routing/route-paths";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -27,9 +34,7 @@ import { SolicitudAltaForm } from "src/app/features/recruitment/reclutamiento-y-
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-solicitudes-cliente-list",
@@ -41,8 +46,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

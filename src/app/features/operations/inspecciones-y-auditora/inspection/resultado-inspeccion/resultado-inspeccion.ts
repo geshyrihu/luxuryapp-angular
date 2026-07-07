@@ -1,8 +1,13 @@
-import { Component, effect, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
@@ -13,8 +18,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,WebButtonLabel, TooltipModule],
+  imports: [WebButtonIcon, TooltipModule],
 })
 export class ResultadoInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);

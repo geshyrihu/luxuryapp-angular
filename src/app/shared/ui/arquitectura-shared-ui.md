@@ -175,23 +175,40 @@ forms** (mismo import, mismo selector en el HTML) y todos se vuelven adaptativos
 > No pongas `[disabled]` en los `ion-input-*` (choca con reactive forms → warning
 > "changed after checked"). El `effect` de `BaseInputSignal` ya deshabilita el control.
 
-### 5.2 Formularios en móvil = diálogo PrimeNG montado en `<ion-app>`
-Los forms se abren con `DialogHandlerService.openDialog(...)` (PrimeNG DynamicDialog).
+### 5.2 Formularios en móvil = `ion-modal` nativo (Fase 3 ✅)
+`DialogHandlerService.openDialog(...)` / `openDialogCustom(...)` ramifican por
+plataforma:
+
+- **Web** → PrimeNG `DynamicDialog` (como siempre).
+- **Móvil** (`PlatformService.isMobile()`) → `ion-modal` nativo vía
+  `ModalController`, presentando el wrapper `IonicDialogModal`
+  (`core/services/ionic-dialog-modal.ts`).
+
+El wrapper renderiza el **mismo** componente de formulario (`ngComponentOutlet`)
+dentro de `ion-header`+`ion-content`, y le inyecta —vía `Injector.create`— **stubs**
+de `DynamicDialogConfig` (`{ data, header }`) y `DynamicDialogRef` (`close()` →
+`modalCtrl.dismiss(result)`, más `onClose`/`onDestroy`). Así los **~170 forms no
+cambian**: siguen leyendo `config.data` y llamando `ref.close(true)`. El `Promise`
+de `openDialog` resuelve con `modal.onDidDismiss().data`.
 
 > [!IMPORTANT]
-> **Overlays de Ionic detrás del diálogo — resuelto.** `<ion-app>` tiene
+> **Por qué ion-modal y no el diálogo PrimeNG en móvil.** `<ion-app>` tiene
 > `contain: layout size style` → contexto de apilamiento en z-index 0. Los overlays
 > de Ionic (action-sheet del `ion-select`, pickers) se montan dentro de `ion-app`;
-> si el diálogo vive en `<body>` (z-index 1100+) quedan **detrás**.
-> Solución (CSS, en `styles/mobile/_ionic-rn-theme.scss`): cuando hay un diálogo
-> abierto, PrimeNG pone `.p-overflow-hidden` en `<body>`; en ese caso liberamos el
-> contain de ion-app para que los overlays escapen a la raíz y su z-index (20001)
-> gane al diálogo:
-> ```scss
-> body.p-overflow-hidden ion-app { contain: none !important; }
-> ```
-> ⚠️ Ojo: `DynamicDialogConfig` **NO** soporta `appendTo` (se probó y PrimeNG lo
-> ignora). Por eso el fix es por CSS, no montando el diálogo en otro lado.
+> con el diálogo PrimeNG en `<body>` (z-index 1100+) quedaban **detrás**. Con el
+> form dentro de un `ion-modal`, select y modal viven en el **mismo** sistema de
+> overlays de Ionic → el action-sheet abre por encima, sin trucos de z-index.
+>
+> El parche CSS previo (`body.p-overflow-hidden ion-app { contain: none !important }`
+> en `styles/mobile/_ionic-rn-theme.scss`) queda como red de seguridad para
+> cualquier `DynamicDialog` que aún se abra en móvil, pero el camino principal ya no
+> lo necesita. `DynamicDialogConfig` **NO** soporta `appendTo` (se probó, PrimeNG lo
+> ignora): por eso no se resolvió montando el diálogo en otro lado.
+>
+> El wrapper vive en `core/services/` (no en `shared/ui`) porque necesita importar
+> los tokens de PrimeNG (`DynamicDialogConfig/Ref`) **como valores** para proveerlos
+> por DI — lo que violaría la frontera `mobile/` del audit. Es infraestructura de
+> puente, co-locada con `DialogHandlerService`.
 
 ### 5.3 Panel del `p-select` en web
 PrimeNG 21 inyecta en runtime `.p-component.p-select-overlay` con un surface oscuro;
@@ -245,7 +262,8 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 - [ ] Inputs adaptativos restantes: currency, password, multiselect, select-bool, time,
   search, switch/toggle.
 - [ ] **date / autocomplete / file** (valor complejo — pase dedicado).
-- [ ] Fase 3 (opcional): forms móviles en `ion-modal` nativo en vez de diálogo PrimeNG.
+- [x] **Fase 3**: forms móviles en `ion-modal` nativo (`IonicDialogModal` + `ModalController`
+  en `DialogHandlerService`), sin tocar los forms. Ver §5.2.
 - [ ] Regla ESLint formal de fronteras (hoy es el audit script; el repo no usa ESLint).
 
 ---
@@ -253,7 +271,7 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 ## 9. 🧯 Gotchas / troubleshooting
 | Síntoma | Causa / Fix |
 |---|---|
-| Overlay Ionic (select/picker) detrás del diálogo en móvil | `body.p-overflow-hidden ion-app { contain: none }` (libera el trap solo con diálogo abierto). `DynamicDialog` NO soporta `appendTo`. |
+| Overlay Ionic (select/picker) detrás del diálogo en móvil | **Resuelto en Fase 3**: en móvil el form se abre en `ion-modal` (`IonicDialogModal`), no en `DynamicDialog` → select y modal comparten overlay Ionic. Fallback CSS: `body.p-overflow-hidden ion-app { contain: none }`. |
 | Panel `p-select` oscuro o **opciones invisibles** en web | `_prime-dropdown.scss`: `background`/`color` con `!important` en `.p-select-overlay` y `.p-select-option` (PrimeNG 21 inyecta panel oscuro + texto claro en runtime). |
 | Input Ionic sin recuadro / texto pegado | Falta `mode="md"` o el theme le mete border manual (ver §5.1). |
 | `Cannot read properties of undefined (reading 'fill')` en botón móvil | `variant` fuera del mapa → ya es defensivo; revisar que no sea un `variant` web en botón móvil. |

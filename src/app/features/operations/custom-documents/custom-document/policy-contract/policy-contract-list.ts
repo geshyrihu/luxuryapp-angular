@@ -1,18 +1,22 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
-import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -23,15 +27,11 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PolicyContractForm } from "./policy-contract-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -53,16 +53,8 @@ import { TooltipModule } from "primeng/tooltip";
     TagModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    WebButtonLabelViewPdf,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelActiveDesactive,
     IonItem,
     IonLabel,
-    ActionMenu,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelViewPdf,
   ],
 })
 export class PolicyContractList {

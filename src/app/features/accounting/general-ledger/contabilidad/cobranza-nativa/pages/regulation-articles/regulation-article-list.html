@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Artúculos del Reglamento"
         (add)="onModalForm()"
@@ -17,7 +17,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-8rem">Artúculo</th>
         <th>Tútulo</th>
@@ -27,7 +27,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="font-bold text-primary">{{ item.articleNumber }}</td>
         <td>{{ item.title }}</td>

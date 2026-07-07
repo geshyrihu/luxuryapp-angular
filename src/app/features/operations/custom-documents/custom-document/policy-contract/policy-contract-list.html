@@ -34,30 +34,30 @@
       <th class="table-col-20" pSortableColumn="description">
         <!-- Cambiado a Description -->
         Servicio
-        <p-sortIcon field="description" />
+        <p-sorticon field="description" />
       </th>
       <th class="table-col-20" pSortableColumn="provider">
         <!-- Cambiado a Provider -->
         Proveedor
-        <p-sortIcon field="Provider" />
+        <p-sorticon field="Provider" />
       </th>
       <th pSortableColumn="startDateFilter">
         Inicio
-        <p-sortIcon field="startDateFilter" />
+        <p-sorticon field="startDateFilter" />
       </th>
       <th pSortableColumn="endDateFilter">
         Túrmino
-        <p-sortIcon field="endDateFilter" />
+        <p-sorticon field="endDateFilter" />
       </th>
       <th pSortableColumn="tagLabel">
         <!-- Cambiado a tagLabel -->
         Estado
-        <p-sortIcon field="tagLabel" />
+        <p-sorticon field="tagLabel" />
       </th>
       <th pSortableColumn="validity">
         <!-- Cambiado a validity -->
         Vigencia
-        <p-sortIcon field="validity" />
+        <p-sorticon field="validity" />
       </th>
       <th>Documento</th>
       <th></th>
@@ -66,7 +66,7 @@
   </ng-template>
 
   <!-- Plantilla para el encabezado de CADA GRUPO -->
-  <ng-template pTemplate="groupheader" let-group>
+  <ng-template #groupheader let-group>
     <tr pRowGroupHeader>
       <!-- La celda abarca todas las columnas definidas en el header -->
       <td [attr.colspan]="9">

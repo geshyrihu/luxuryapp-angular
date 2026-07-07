@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   OnInit,
   signal,
   WritableSignal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import {
   FormBuilder,
@@ -13,16 +13,14 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
+import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit"; // Added
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraFacturaForm {
@@ -31,8 +29,8 @@ export interface IOrdenCompraFacturaForm {
   tipoComprobante: FormControl<string | null>;
 }
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-orden-compra-factura-form",
@@ -46,8 +44,6 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     ReactiveFormsModule,
     CardModule,
     TableModule,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
     CustomInputFile,
     WebButtonLabel,
     CustomInputSelectSignal,

@@ -60,7 +60,7 @@
     </div>
 
     <p-table [value]="payment()!.allocations || []" styleClass="custom-table">
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th>Tipo de cargo</th>
           <th>Concepto del cargo</th>
@@ -70,7 +70,7 @@
           <th class="w-6rem text-center">Acción</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-item>
+      <ng-template #body let-item>
         <tr>
           <td>
             <div class="flex flex-column">

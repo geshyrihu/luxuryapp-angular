@@ -1,11 +1,11 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   OnDestroy,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import {
   FormArray,
@@ -23,7 +23,6 @@ import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 import { CommonModule } from "@angular/common";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -68,7 +67,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     InputNumberModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     MessageModule,

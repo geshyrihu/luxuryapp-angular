@@ -170,9 +170,8 @@
           [value]="statement()!.ledger"
           styleClass="p-datatable-sm p-datatable-striped"
           [rowHover]="true"
-          responsiveLayout="scroll"
         >
-          <ng-template pTemplate="header">
+          <ng-template #header>
             <tr>
               <th>Fecha</th>
               <th>Concepto</th>
@@ -183,7 +182,7 @@
               <th class="text-right font-bold surface-50">Saldo</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-entry>
+          <ng-template #body let-entry>
             <tr>
               <td>{{ entry.date | date:'dd/MMM/yyyy' }}</td>
               <td class="font-medium text-800">{{ entry.concept }}</td>

@@ -55,11 +55,11 @@
     [rowsPerPageOptions]="[10, 20, 50]"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>Propiedad</th>
         <th class="w-9rem">No. Cuenta</th>
@@ -73,7 +73,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-row>
+    <ng-template #body let-row>
       <tr>
         <td class="font-medium">{{ row.propertyFullName }}</td>
         <td class="text-sm text-500">{{ row.accountNumber }}</td>

@@ -14,11 +14,11 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>Nombre</th>
         <th>Email</th>
@@ -31,7 +31,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="groupheader" let-item>
+    <ng-template #groupheader let-item>
       <tr pRowGroupHeader>
         <td colspan="8" class="surface-100 py-2 px-3">
           <div class="flex align-items-center justify-content-between">
@@ -56,7 +56,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr [class.opacity-50]="!item.isActive">
         <td class="font-bold">{{ item.userName }}</td>
         <td class="text-sm text-500">{{ item.email }}</td>

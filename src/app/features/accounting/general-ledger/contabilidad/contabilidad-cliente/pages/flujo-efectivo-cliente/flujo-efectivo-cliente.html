@@ -13,7 +13,7 @@
   } @if (grupos().length) {
   <div class="rf-card">
     <p-table [value]="grupos()" styleClass="rf-prime-table p-datatable-sm">
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th class="table-col-50px"></th>
           <th class="table-col-130px">Concepto</th>
@@ -23,7 +23,7 @@
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-grupo>
+      <ng-template #body let-grupo>
         <!-- Título del Grupo -->
         <tr class="rf-row-grupo">
           <td

@@ -16,7 +16,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [readonly]="readonly()"
       [disabled]="disabled()"
     >
-      <p-multiSelect
+      <p-multiselect
         [options]="options()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
@@ -36,7 +36,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         (onBlur)="onTouch()"
         appendTo="body"
         fluid
-      ></p-multiSelect>
+      ></p-multiselect>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,

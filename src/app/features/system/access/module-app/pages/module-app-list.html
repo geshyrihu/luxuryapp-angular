@@ -23,7 +23,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="groupheader" let-item>
+    <ng-template #groupheader let-item>
       <tr pRowGroupHeader>
         <td colspan="7" class="p-3">
           <span class="font-bold"
@@ -39,27 +39,27 @@
         <!-- <th >Index</th> -->
         <th pSortableColumn="nameModule">
           Nombre
-          <p-sortIcon field="nameModule" />
+          <p-sorticon field="nameModule" />
         </th>
         <th pSortableColumn="label">
           Label
-          <p-sortIcon field="label" />
+          <p-sorticon field="label" />
         </th>
         <th pSortableColumn="icon">
           Icon
-          <p-sortIcon field="icon" />
+          <p-sorticon field="icon" />
         </th>
         <th pSortableColumn="routerLink">
           RouterLink
-          <p-sortIcon field="routerLink" />
+          <p-sorticon field="routerLink" />
         </th>
         <th pSortableColumn="viewMobil">
           Modulo celular
-          <p-sortIcon field="viewMobil" />
+          <p-sorticon field="viewMobil" />
         </th>
         <th pSortableColumn="rolLevel">
           Nivel
-          <p-sortIcon field="rolLevel" />
+          <p-sorticon field="rolLevel" />
         </th>
 
         <th class="no-print"></th>

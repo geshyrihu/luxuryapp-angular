@@ -1,22 +1,22 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   effect,
   inject,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { AvatarModule } from "primeng/avatar";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
 import { filter, map } from "rxjs/operators";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
 import { AspRoleService } from "src/app/core/services/asp-role.service";

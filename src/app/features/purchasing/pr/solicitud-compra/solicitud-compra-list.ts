@@ -1,8 +1,19 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -10,15 +21,6 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -33,15 +35,16 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
 import { OrdenCompra } from "src/app/features/purchasing/po/purchase-order/orden-compra";
+import { ROUTES } from "src/app/routing/route-paths";
 import Swal from "sweetalert2";
 import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-link-manager";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -62,14 +65,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TagModule,
     TooltipModule,
     WebButtonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
     IonItem,
     IonLabel,
     AppIcon,
@@ -279,7 +277,7 @@ export class SolicitudCompraList {
   }
 
   onCreateOrder(id: any) {
-    this.router.navigate([...ROUTES.COMPRAS.ORDEN_COMPRA('0'), id]);
+    this.router.navigate([...ROUTES.COMPRAS.ORDEN_COMPRA("0"), id]);
   }
 
   onViewPurchaseOrder(id: string) {

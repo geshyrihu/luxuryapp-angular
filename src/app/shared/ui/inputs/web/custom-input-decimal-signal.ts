@@ -23,7 +23,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      <p-inputNumber
+      <p-inputnumber
         [inputId]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"

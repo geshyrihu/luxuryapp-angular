@@ -105,12 +105,12 @@
       <td>
         <div class="flex justify-content-center">
           @if (submitting()) {
-          <p-progressSpinner
+          <p-progressspinner
             styleClass="w-2rem h-2rem"
             strokeWidth="8"
             fill="var(--surface-ground)"
             animationDuration=".5s"
-          ></p-progressSpinner>
+          ></p-progressspinner>
           } @else {
           <iw-button iconClass="mdi:content-save" (clicked)="onSubmit(item)" />
           }

@@ -4,7 +4,7 @@
     <div class="grid align-items-end">
       <div class="col-12 md:col-7">
         <label class="block font-medium mb-1">BUSCAR</label>
-        <p-autoComplete
+        <p-autocomplete
           [suggestions]="products()"
           (completeMethod)="searchProducts($event)"
           (onSelect)="onSelectProduct($event)"
@@ -18,13 +18,13 @@
           fluid
           appendTo="body"
         >
-          <ng-template let-item pTemplate="item">
+          <ng-template let-item #item>
             {{ item.label }}
           </ng-template>
-          <ng-template let-item pTemplate="selectedItem">
+          <ng-template let-item #selectedItem>
             {{ item?.label || "" }}
           </ng-template>
-        </p-autoComplete>
+        </p-autocomplete>
       </div>
       <div class="col-12 md:col-2">
         <custom-input-text-signal

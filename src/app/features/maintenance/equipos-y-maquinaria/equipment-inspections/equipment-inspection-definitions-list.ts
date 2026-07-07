@@ -1,21 +1,19 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   input,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -29,9 +27,9 @@ import { EquipmentInspectionExecutionForm } from "./equipment-inspection-executi
 import { EquipmentInspectionDefinitionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -47,9 +45,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     Tag,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
+
     PrimeNgCustomCaption,
   ],
 })

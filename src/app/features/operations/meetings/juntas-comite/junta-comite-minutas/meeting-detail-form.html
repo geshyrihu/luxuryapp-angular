@@ -12,24 +12,24 @@
       <th class="table-col-2 text-sm">#</th>
       <th class="table-col-15 text-sm" pSortableColumn="title">
         Titulo
-        <p-sortIcon field="title" />
+        <p-sorticon field="title" />
       </th>
       <th class="table-col-25 text-sm" pSortableColumn="requestService">
         Asunto
-        <p-sortIcon field="requestService" />
+        <p-sorticon field="requestService" />
       </th>
       <th class="table-col-7 text-sm" pSortableColumn="status">
         Estatus
-        <p-sortIcon field="status" />
+        <p-sorticon field="status" />
       </th>
       <th class="table-col-7 text-sm" pSortableColumn="deliveryDateFiltro">
         Entrega
-        <p-sortIcon field="deliveryDateFiltro" />
+        <p-sorticon field="deliveryDateFiltro" />
       </th>
       <th class="table-col-25 text-sm">Seguimiento</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-customer>
+  <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="6">
         <span class="font-bold ml-2"
@@ -38,7 +38,7 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupfooter" let-customer>
+  <ng-template #groupfooter let-customer>
     <tr class="p-rowgroup-footer">
       <td colspan="6" style="text-align: right">
         Solicitudes Totales: {{ calculateDetailTotal(customer.area) }}

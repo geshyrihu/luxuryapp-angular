@@ -21,7 +21,7 @@
     styleClass="rf-prime-table hidden md:block p-datatable-sm"
     [tableStyle]="{ 'min-width': '800px' }"
   >
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th style="width: 120px">Cuenta</th>
         <th>Descripción</th>
@@ -32,7 +32,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-row>
+    <ng-template #body let-row>
       <!-- Fila de Encabezado de Sección -->
       @if (row.tipo === 'header') {
       <tr class="rf-row-section">

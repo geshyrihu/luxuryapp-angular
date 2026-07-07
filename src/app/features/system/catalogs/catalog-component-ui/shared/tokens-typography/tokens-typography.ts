@@ -43,7 +43,7 @@ import { MessageModule } from "primeng/message";
       <p class="text-sm text-color-secondary mt-1 mb-4">
         Tokens de tamaño de texto para cada contexto operativo. Un solo uso por nivel evita jerarquías rotas.
       </p>
-      <p-table [value]="erpScale" responsiveLayout="scroll" styleClass="p-datatable-sm">
+      <p-table [value]="erpScale" styleClass="p-datatable-sm">
         <ng-template #header>
           <tr>
             <th>Uso</th>

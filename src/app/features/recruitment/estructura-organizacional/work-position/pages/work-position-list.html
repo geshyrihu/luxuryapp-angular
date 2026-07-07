@@ -34,25 +34,25 @@
     <ng-template #header>
       <tr>
         <th class="w-8rem" pSortableColumn="folio">
-          CóDIGO <p-sortIcon field="folio" />
+          CóDIGO <p-sorticon field="folio" />
         </th>
         <th class="w-auto" pSortableColumn="applicationRoleName">
-          PUESTO <p-sortIcon field="applicationRoleName" />
+          PUESTO <p-sorticon field="applicationRoleName" />
         </th>
         <th class="w-8rem" pSortableColumn="turno">
-          TURNO <p-sortIcon field="turno" />
+          TURNO <p-sorticon field="turno" />
         </th>
         @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
         AspRole.Administrador, AspRole.SuperUsuario])) {
         <th class="w-10rem" pSortableColumn="sueldoBase">
-          PRESUPUESTADO <p-sortIcon field="sueldoBase" />
+          PRESUPUESTADO <p-sorticon field="sueldoBase" />
         </th>
         <th class="w-10rem" pSortableColumn="sueldo">
-          ACTUAL <p-sortIcon field="sueldo" />
+          ACTUAL <p-sorticon field="sueldo" />
         </th>
         }
         <th class="w-15rem" pSortableColumn="applicationUser">
-          COLABORADOR <p-sortIcon field="applicationUser" />
+          COLABORADOR <p-sorticon field="applicationUser" />
         </th>
         <th class="w-12rem text-center">ACCIONES</th>
       </tr>

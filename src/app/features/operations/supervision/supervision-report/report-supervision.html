@@ -13,7 +13,7 @@
 
 <!-- Minutas Pendientes -->
 <p-card styleClass="mb-4 shadow-1">
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <div class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary">
       <span class="font-bold text-lg">Minutas Pendientes</span>
     </div>
@@ -21,7 +21,7 @@
 
   @if (loadingMinutas()) {
     <div class="flex align-items-center justify-content-center gap-3 py-4">
-      <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+      <p-progressspinner styleClass="w-3rem h-3rem" strokeWidth="4" />
       <span class="text-secondary">Cargando minutas...</span>
     </div>
   }
@@ -70,7 +70,7 @@
 
 <!-- Tickets Pendientes -->
 <p-card styleClass="mb-4 shadow-1">
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <div class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary">
       <span class="font-bold text-lg">Tickets Pendientes</span>
     </div>
@@ -78,7 +78,7 @@
 
   @if (loadingTickets()) {
     <div class="flex align-items-center justify-content-center gap-3 py-4">
-      <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+      <p-progressspinner styleClass="w-3rem h-3rem" strokeWidth="4" />
       <span class="text-secondary">Cargando tickets...</span>
     </div>
   }
@@ -127,7 +127,7 @@
 
 <!-- Pendientes Legales -->
 <p-card styleClass="mb-4 shadow-1">
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <div class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary">
       <span class="font-bold text-lg">Pendientes Legales</span>
     </div>
@@ -135,7 +135,7 @@
 
   @if (loadingPendingLegal()) {
     <div class="flex align-items-center justify-content-center gap-3 py-4">
-      <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+      <p-progressspinner styleClass="w-3rem h-3rem" strokeWidth="4" />
       <span class="text-secondary">Cargando pendientes legales...</span>
     </div>
   }
@@ -180,7 +180,7 @@
 
 <!-- Estados Financieros -->
 <p-card styleClass="mb-4 shadow-1">
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <div class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary">
       <span class="font-bold text-lg">Estados Financieros</span>
     </div>
@@ -188,7 +188,7 @@
 
   @if (loadingEnvioFinancieros()) {
     <div class="flex align-items-center justify-content-center gap-3 py-4">
-      <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+      <p-progressspinner styleClass="w-3rem h-3rem" strokeWidth="4" />
       <span class="text-secondary">Cargando estados financieros...</span>
     </div>
   }

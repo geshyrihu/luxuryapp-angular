@@ -9,7 +9,7 @@
     styleClass="custom-table"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Cuotas Vigentes por Propiedad"
         [showAdd]="false"
@@ -18,7 +18,7 @@
     </ng-template>
 
     <!-- Cabecera fija: columnas de propiedad + plantilla + meses dinámicos -->
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-14rem" pFrozenColumn>Plantilla / Cuota</th>
         <th class="w-7rem text-center">Método</th>
@@ -30,7 +30,7 @@
     </ng-template>
 
     <!-- Encabezado de grupo: la propiedad -->
-    <ng-template pTemplate="groupheader" let-row>
+    <ng-template #groupheader let-row>
       <tr pRowGroupHeader>
         <td
           [attr.colspan]="3 + periodColumns().length"
@@ -53,7 +53,7 @@
     </ng-template>
 
     <!-- Fila: una por plantilla vigente -->
-    <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+    <ng-template #body let-row let-rowIndex="rowIndex">
       <tr>
         <!-- Plantilla -->
         <td pFrozenColumn>

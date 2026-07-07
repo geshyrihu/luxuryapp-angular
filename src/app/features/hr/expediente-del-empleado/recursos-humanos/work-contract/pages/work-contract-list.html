@@ -10,14 +10,14 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [globalFilterFields]="globalFilterFields"
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Contratos Laborales"
         (add)="onModalForm({ id: '', title: 'Nuevo Contrato Laboral' })"
         [dt]="dt"
       />
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="table-col-md">Número</th>
         <th class="table-col-md">Tipo</th>
@@ -28,7 +28,7 @@
         <th class="table-col-actions">Acciones</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td>{{ item.contractNumber }}</td>
         <td>{{ item.contractType }}</td>
@@ -49,7 +49,7 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="footer">
+    <ng-template #footer>
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>

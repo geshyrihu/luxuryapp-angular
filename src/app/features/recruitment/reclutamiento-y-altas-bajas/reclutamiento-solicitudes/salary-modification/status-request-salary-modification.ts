@@ -1,11 +1,17 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { TooltipModule } from "primeng/tooltip";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -14,9 +20,8 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
+import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-status-request-salary-modification",
@@ -24,7 +29,11 @@ import { TooltipModule } from "primeng/tooltip";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    TooltipModule,CardModule, NgbTooltipModule, WebButtonLabel, WebButtonLabelConfirm],
+    TooltipModule,
+    CardModule,
+    NgbTooltipModule,
+    WebButtonLabelConfirm,
+  ],
 })
 export class StatusRequestSalaryModification implements OnInit {
   private statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);

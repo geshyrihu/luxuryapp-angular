@@ -259,7 +259,7 @@
       [rows]="50"
       [rowsPerPageOptions]="[25, 50, 100, 250]"
     >
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th class="table-col-160px">Cuenta</th>
           <th>Condómino</th>
@@ -267,7 +267,7 @@
           <th class="table-col-180px">Clasificación</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-row>
+      <ng-template #body let-row>
         <tr>
           <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
           <td class="text-sm">{{ row.condomino }}</td>

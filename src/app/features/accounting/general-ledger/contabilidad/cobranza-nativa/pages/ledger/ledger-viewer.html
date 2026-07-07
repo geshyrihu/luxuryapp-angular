@@ -57,7 +57,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Ledger Financiero"
         [showAdd]="false"
@@ -67,7 +67,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-8rem text-center">Fecha</th>
         <th class="w-10rem text-center">Tipo de Evento</th>
@@ -78,7 +78,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-entry>
+    <ng-template #body let-entry>
       <tr>
         <td class="text-center text-sm">
           {{ entry.effectiveDate | date:'dd/MM/yyyy' }}

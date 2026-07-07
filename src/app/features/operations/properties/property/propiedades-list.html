@@ -8,7 +8,6 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  responsiveLayout="scroll"
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
@@ -55,43 +54,43 @@
     <tr>
       <th class="w-5rem text-small" pSortableColumn="accountNumber">
         Cta.
-        <p-sortIcon field="accountNumber" />
+        <p-sorticon field="accountNumber" />
       </th>
       <th class="w-6rem text-small" pSortableColumn="tower">
         Torre
-        <p-sortIcon field="tower" />
+        <p-sorticon field="tower" />
       </th>
       <th class="w-9rem text-small" pSortableColumn="department">
         Departamento
-        <p-sortIcon field="department" />
+        <p-sorticon field="department" />
       </th>
       <th class="w-6rem text-small" pSortableColumn="floor">
         Piso
-        <p-sortIcon field="floor" />
+        <p-sorticon field="floor" />
       </th>
       <th class="w-7rem text-small" pSortableColumn="unitNumber">
         No. Int.
-        <p-sortIcon field="unitNumber" />
+        <p-sorticon field="unitNumber" />
       </th>
       <th class="w-7rem text-small" pSortableColumn="areaM2">
         órea mí
-        <p-sortIcon field="areaM2" />
+        <p-sorticon field="areaM2" />
       </th>
       <th class="w-8rem text-small" pSortableColumn="indivisoPercentage">
         Indiviso
-        <p-sortIcon field="indivisoPercentage" />
+        <p-sorticon field="indivisoPercentage" />
       </th>
       <th class="w-7rem text-small" pSortableColumn="parkingSlots">
         Cajones
-        <p-sortIcon field="parkingSlots" />
+        <p-sorticon field="parkingSlots" />
       </th>
       <th class="w-7rem text-small" pSortableColumn="storageUnit">
         Bodega
-        <p-sortIcon field="storageUnit" />
+        <p-sorticon field="storageUnit" />
       </th>
       <th class="w-6rem text-center text-small" pSortableColumn="isDelinquent">
         Moroso
-        <p-sortIcon field="isDelinquent" />
+        <p-sorticon field="isDelinquent" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario])) {

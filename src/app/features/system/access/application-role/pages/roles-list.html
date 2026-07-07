@@ -22,24 +22,24 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="sortOrder" style="width: 8%">
-        Orden <p-sortIcon field="sortOrder" />
+        Orden <p-sorticon field="sortOrder" />
       </th>
       <th pSortableColumn="name" style="width: 20%">
-        Nombre Interno <p-sortIcon field="name" />
+        Nombre Interno <p-sorticon field="name" />
       </th>
       <th pSortableColumn="displayName" style="width: 25%">
-        Nombre para Mostrar <p-sortIcon field="displayName" />
+        Nombre para Mostrar <p-sorticon field="displayName" />
       </th>
       <th pSortableColumn="departament" style="width: 15%">
-        Departamento <p-sortIcon field="departament" />
+        Departamento <p-sorticon field="departament" />
       </th>
       <th pSortableColumn="isActive" style="width: 10%">
-        Activo <p-sortIcon field="isActive" />
+        Activo <p-sorticon field="isActive" />
       </th>
       <th style="width: 22%">Acciones</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-item>
+  <ng-template #groupheader let-item>
     <tr class="p-rowgroup-header">
       <td colspan="6">
         <span class="font-bold">{{ item.roleType }}</span>

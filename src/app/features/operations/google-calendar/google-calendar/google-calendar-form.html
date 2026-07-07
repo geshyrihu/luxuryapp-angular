@@ -62,12 +62,12 @@
       class="w-full"
       size="small"
     >
-      <ng-template let-selected pTemplate="selectedItem">
+      <ng-template let-selected #selectedItem>
         <div class="flex align-items-center min-h-2rem">
           <span>{{ selected?.label || "Selecciona una hora" }}</span>
         </div>
       </ng-template>
-      <ng-template let-slot pTemplate="item">
+      <ng-template let-slot #item>
         <div
           class="flex justify-content-between align-items-center w-full py-1"
         >

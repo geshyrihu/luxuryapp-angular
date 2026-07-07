@@ -37,7 +37,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Pagos Sin Aplicar"
         [showAddButton]="false"
@@ -45,7 +45,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-9rem text-center">Fecha</th>
         <th class="w-10rem text-right">Monto</th>
@@ -54,7 +54,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-pay>
+    <ng-template #body let-pay>
       <tr>
         <td class="text-center text-sm">
           {{ pay.paymentDate | date:'dd/MM/yyyy' }}

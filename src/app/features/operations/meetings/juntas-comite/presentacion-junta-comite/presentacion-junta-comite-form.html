@@ -1,7 +1,7 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <!-- img -->
   <div class="mb-3">
-    <p-fileUpload
+    <p-fileupload
       mode="basic"
       chooseLabel="Seleccionar Archivo"
       [auto]="false"
@@ -11,7 +11,7 @@
       [fileLimit]="1"
       [showUploadButton]="false"
       [showCancelButton]="false"
-    ></p-fileUpload>
+    ></p-fileupload>
 
     <!-- Mostrar nombre del archivo seleccionado -->
     @if (selectedFileName()) {

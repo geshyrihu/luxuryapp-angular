@@ -1,24 +1,24 @@
-import {
+﻿import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { ROUTES } from "src/app/routing/route-paths";
-import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -32,15 +32,12 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { WarehouseForm } from "./warehouse-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -61,15 +58,9 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelItem,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+
     IonItem,
     IonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
   ],
 })
 export class WarehouseList implements OnInit {
@@ -81,7 +72,7 @@ export class WarehouseList implements OnInit {
   aspRoleService = inject(AspRoleService);
   htmlPrintS = inject(HtmlPrintService);
 
-  // Declaración e inicialización de signals
+  // DeclaraciÃ³n e inicializaciÃ³n de signals
   dataSignal = signal<any[]>([]);
   loading = signal(false); // ? Added loading state
 
@@ -92,7 +83,7 @@ export class WarehouseList implements OnInit {
     EApplicationRole.Administrador,
     EApplicationRole.SuperUsuario,
   ]);
-  // El computed se mantiene, es genórico y funcionaró perfectamente
+  // El computed se mantiene, es genÃ³rico y funcionarÃ³ perfectamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -127,11 +118,11 @@ export class WarehouseList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // CAMBIO: El ID de un almacón es 'string', no 'number'
+  // CAMBIO: El ID de un almacÃ³n es 'string', no 'number'
   onDelete(id: string) {
-    // Usamos el servicio genórico para la petición DELETE
+    // Usamos el servicio genÃ³rico para la peticiÃ³n DELETE
     this.apiResponseS.onDelete(Endpoints.Almacen.delete(id)).then(() => {
-      // Actualizamos el signal localmente para una UI mós rópida
+      // Actualizamos el signal localmente para una UI mÃ³s rÃ³pida
       this.dataSignal.update((currentData) =>
         currentData.filter((item) => item.id !== id),
       );
@@ -139,16 +130,16 @@ export class WarehouseList implements OnInit {
   }
 
   onModalForm(data: any) {
-    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diálogo
+    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diÃ¡logo
     this.dialogHandlerS
       .openDialog(
         WarehouseForm,
         data,
-        data.title, // El Título se pasa en el objeto 'data'
+        data.title, // El TÃ­tulo se pasa en el objeto 'data'
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
-        // Si el diálogo se cerró con un resultado exitoso, recargamos los datos
+        // Si el diÃ¡logo se cerrÃ³ con un resultado exitoso, recargamos los datos
         if (result) {
           this.onLoadData();
         }
@@ -156,7 +147,7 @@ export class WarehouseList implements OnInit {
   }
   onViewProducts(almacenId: string) {
     this.router.navigate(ROUTES.ALMACEN.PRODUCTOS(almacenId));
-    // Asegórate de que '/ruta-a-tu-inventario/stock' coincida con tu configuración de rutas
+    // AsegÃ³rate de que '/ruta-a-tu-inventario/stock' coincida con tu configuraciÃ³n de rutas
   }
 
   async onDownloadInventory(almacenId: string, warehouseName: string) {
@@ -185,7 +176,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORÍA";
+          const category = item.category || "SIN CATEGORÃA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -238,7 +229,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacén: ${warehouseName}`, generatedAt, "ALMACÉN")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `AlmacÃ©n: ${warehouseName}`, generatedAt, "ALMACÃ‰N")}
 
   <div class="body-doc">
     <table class="data-table">

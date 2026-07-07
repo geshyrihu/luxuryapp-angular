@@ -128,13 +128,13 @@
       [rows]="10"
       styleClass="p-datatable-sm"
     >
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th>Empleado</th>
           <th class="text-center">Cantidad</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-item>
+      <ng-template #body let-item>
         <tr>
           <td>{{ item.employeeName }}</td>
           <td class="text-center">

@@ -1,11 +1,16 @@
 import { Injectable, inject } from "@angular/core";
+import { ModalController } from "@ionic/angular/standalone";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { DialogSize } from "../enums/dialog-size";
+import { PlatformService } from "./platform.service";
+import { IonicDialogModal } from "./ionic-dialog-modal";
 @Injectable({
   providedIn: "root",
 })
 export class DialogHandlerService {
   dialogS = inject(DialogService);
+  private readonly platform = inject(PlatformService);
+  private readonly modalCtrl = inject(ModalController);
 
   openDialog<T = boolean>(
     component: any,
@@ -14,6 +19,9 @@ export class DialogHandlerService {
     size: DialogSize,
     autoMaximize: boolean = false,
   ): Promise<T> {
+    if (this.platform.isMobile()) {
+      return this.openMobileModal<T>(component, data, title);
+    }
     const dialogConfig = this.getDialogConfig(size);
 
     const ref: DynamicDialogRef = this.dialogS.open(component, {
@@ -45,6 +53,9 @@ export class DialogHandlerService {
   }
 
   openDialogCustom<T = any>(component: any, config: DialogConfig): Promise<T> {
+    if (this.platform.isMobile()) {
+      return this.openMobileModal<T>(component, config.data, config.title);
+    }
     const dialogConfig = config.width
       ? { width: config.width, breakpoints: config.breakpoints }
       : this.getDialogConfig(config.size);
@@ -69,6 +80,27 @@ export class DialogHandlerService {
     });
 
     return this.subscribeToDialogClose<T>(ref);
+  }
+
+  /**
+   * En móvil abre el formulario en un `ion-modal` nativo (vía `ModalController`)
+   * en lugar del diálogo PrimeNG. El wrapper `IonicDialogModal` inyecta stubs de
+   * `DynamicDialogConfig`/`DynamicDialogRef`, así que los forms no cambian.
+   * Resuelve con el resultado que el form pase a `ref.close(value)`.
+   */
+  private async openMobileModal<T>(
+    component: any,
+    data: any,
+    title: string,
+  ): Promise<T> {
+    const modal = await this.modalCtrl.create({
+      component: IonicDialogModal,
+      componentProps: { formComponent: component, data, title },
+      cssClass: "lx-form-modal",
+    });
+    await modal.present();
+    const { data: result } = await modal.onDidDismiss();
+    return result as T;
   }
 
   private subscribeToDialogClose<T>(ref: DynamicDialogRef): Promise<T> {

@@ -26,7 +26,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [hidden]="hidden()"
       [onlyInput]="onlyInput()"
     >
-      <p-selectButton
+      <p-selectbutton
         [options]="options()"
         [formControl]="control() || internalControl"
         [optionLabel]="optionLabel()"
@@ -39,7 +39,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         (onChange)="selectionChange.emit($event)"
       >
         <ng-content></ng-content>
-      </p-selectButton>
+      </p-selectbutton>
     </base-input-signal>
   `,
   providers: [

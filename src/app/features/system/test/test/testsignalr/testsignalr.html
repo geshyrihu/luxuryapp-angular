@@ -3,7 +3,7 @@
 
   <!-- Selección de usuario individual -->
   <p-card styleClass="mb-4">
-    <ng-template pTemplate="title">Enviar a un usuario</ng-template>
+    <ng-template #title>Enviar a un usuario</ng-template>
     <div class="flex flex-wrap align-items-center mb-3">
       <div class="col-12 md:col-6">
         <custom-input-autocomplete-signal
@@ -53,7 +53,7 @@
 
   <!-- Selección de usuarios móltiples -->
   <p-card styleClass="mb-4">
-    <ng-template pTemplate="title">Enviar a varios usuarios</ng-template>
+    <ng-template #title>Enviar a varios usuarios</ng-template>
     <div class="flex flex-wrap align-items-c gap-4">
       <div class="col-12 md:col-8">
         <custom-input-autocomplete-multiple-signal

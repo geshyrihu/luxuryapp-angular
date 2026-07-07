@@ -418,9 +418,8 @@
   <p-table
     [value]="budgetSignal()"
     styleClass="custom-table text-sm"
-    responsiveLayout="scroll"
   >
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="text-left">CUENTA</th>
         <th class="text-right">PRE-MEN</th>
@@ -432,7 +431,7 @@
         <th class="text-center"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-budget>
+    <ng-template #body let-budget>
       <tr>
         <td>
           <div class="font-semibold">{{ budget.accountNumber }}</div>

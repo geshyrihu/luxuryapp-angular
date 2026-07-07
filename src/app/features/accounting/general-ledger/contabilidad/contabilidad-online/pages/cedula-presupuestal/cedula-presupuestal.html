@@ -18,7 +18,7 @@
       styleClass="rf-prime-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1100px' }"
     >
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr class="font-bold text-sm text-center">
           <th class="th-col-dark" style="width: 130px; min-width: 110px">
             CUENTA
@@ -48,7 +48,7 @@
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-row>
+      <ng-template #body let-row>
         @if (row.tipo === 'header') {
         <tr class="rf-row-section">
           <td colspan="9" class="font-bold text-base py-2 px-3">

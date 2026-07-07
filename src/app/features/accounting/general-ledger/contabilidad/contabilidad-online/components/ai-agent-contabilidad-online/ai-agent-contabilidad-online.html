@@ -5,7 +5,7 @@
   styleClass="w-full lg:w-8 xl:w-7 p-0"
   [blockScroll]="false"
 >
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <div class="flex align-items-center gap-2">
       <app-icon
         [icon]="'mdi:sparkles'"
@@ -21,7 +21,7 @@
     </div>
   </ng-template>
 
-  <ng-template pTemplate="content">
+  <ng-template #content>
     <div class="flex flex-column h-full">
       <div class="flex-1 min-h-0 flex flex-column xl:flex-row gap-3 p-3">
         <div class="flex-1 min-h-0 flex flex-column">
@@ -68,11 +68,11 @@
               <div
                 class="p-3 surface-200 border-round-xl border-noround-left flex align-items-center gap-2"
               >
-                <p-progressSpinner
+                <p-progressspinner
                   styleClass="w-1rem h-1rem"
                   strokeWidth="6"
                   animationDuration=".5s"
-                ></p-progressSpinner>
+                ></p-progressspinner>
                 <span class="text-sm">Analizando datos del módulo...</span>
               </div>
             </div>

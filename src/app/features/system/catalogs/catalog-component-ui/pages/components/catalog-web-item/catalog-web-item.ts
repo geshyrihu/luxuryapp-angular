@@ -505,17 +505,17 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         }
         @case ("progressbar") {
           <p-card header="ProgressBar - p-progressbar">
-            <p-progressBar [value]="75" />
+            <p-progressbar [value]="75" />
             <p class="mt-3">
-              <p-progressBar [value]="50" [showValue]="false" />
+              <p-progressbar [value]="50" [showValue]="false" />
             </p>
           </p-card>
         }
         @case ("progressspinner") {
           <p-card header="ProgressSpinner - p-progressspinner">
             <div class="flex gap-3">
-              <p-progressSpinner strokeWidth="4" />
-              <p-progressSpinner strokeWidth="8" />
+              <p-progressspinner strokeWidth="4" />
+              <p-progressspinner strokeWidth="8" />
             </div>
           </p-card>
         }
@@ -523,21 +523,21 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           <p-card header="RadioButton - p-radiobutton">
             <div class="flex flex-column gap-2">
               <div class="flex align-items-center gap-2">
-                <p-radioButton
+                <p-radiobutton
                   name="radio"
                   value="1"
                   [(ngModel)]="radioVal"
                 /><label>Opcion 1</label>
               </div>
               <div class="flex align-items-center gap-2">
-                <p-radioButton
+                <p-radiobutton
                   name="radio"
                   value="2"
                   [(ngModel)]="radioVal"
                 /><label>Opcion 2</label>
               </div>
               <div class="flex align-items-center gap-2">
-                <p-radioButton
+                <p-radiobutton
                   name="radio"
                   value="3"
                   [(ngModel)]="radioVal"
@@ -560,7 +560,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         }
         @case ("selectbutton") {
           <p-card header="SelectButton - p-selectbutton">
-            <p-selectButton
+            <p-selectbutton
               [options]="selectOptions"
               [(ngModel)]="selectBtnVal"
               optionLabel="label"
@@ -661,7 +661,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         @case ("toggleswitch") {
           <p-card header="ToggleSwitch - p-toggleswitch">
             <div class="flex align-items-center gap-3">
-              <p-toggleSwitch [(ngModel)]="toggleVal" />
+              <p-toggleswitch [(ngModel)]="toggleVal" />
               <span>{{ toggleVal() ? "Activado" : "Desactivado" }}</span>
             </div>
           </p-card>

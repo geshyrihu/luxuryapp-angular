@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Políticas de Mora (Motor Nativo)"
         (add)="onModalForm()"
@@ -17,7 +17,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-8rem text-center">Días de Gracia</th>
         <th class="w-10rem">Tipo</th>
@@ -28,7 +28,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="text-center font-bold text-700">{{ item.graceDays }}</td>
         <td class="font-medium text-800">

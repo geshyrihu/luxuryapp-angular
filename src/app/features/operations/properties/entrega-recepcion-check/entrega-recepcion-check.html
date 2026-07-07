@@ -28,8 +28,8 @@
   <div class="card">
     <p-accordion [multiple]="true">
       @for (module of auditModules; track module.name) {
-      <p-accordionTab>
-        <ng-template pTemplate="header">
+      <p-accordiontab>
+        <ng-template #header>
           <div class="flex align-items-center w-full">
             <app-icon [icon]="module.icon" class="mr-2" />
             <span class="font-bold">{{ module.name }}</span>
@@ -44,7 +44,7 @@
 
         <div>
           <p-table [value]="module.items" styleClass="p-datatable-sm">
-            <ng-template pTemplate="header">
+            <ng-template #header>
               <tr>
                 <th class="table-col-40">Documento / Control Requerido</th>
                 <th class="table-col-10">Tipo</th>
@@ -53,7 +53,7 @@
                 <th class="table-col-10">Evidencia</th>
               </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-item>
+            <ng-template #body let-item>
               <tr>
                 <td>{{ item.control }}</td>
                 <td>
@@ -69,7 +69,7 @@
                     optionLabel="label"
                     optionValue="value"
                   >
-                    <ng-template let-option pTemplate="item">
+                    <ng-template let-option #item>
                       <i
                         [class]="option.icon"
                         [ngClass]="{
@@ -102,7 +102,7 @@
             </ng-template>
           </p-table>
         </div>
-      </p-accordionTab>
+      </p-accordiontab>
       }
     </p-accordion>
   </div>

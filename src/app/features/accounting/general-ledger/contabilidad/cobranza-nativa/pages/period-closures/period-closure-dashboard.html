@@ -67,7 +67,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Historial de Cierres de Periodo"
         [showAdd]="false"
@@ -75,7 +75,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-6rem text-center">Año</th>
         <th class="w-8rem text-center">Mes</th>
@@ -87,7 +87,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="text-center font-medium">{{ item.year }}</td>
         <td class="text-center">{{ monthName(item.month) }}</td>

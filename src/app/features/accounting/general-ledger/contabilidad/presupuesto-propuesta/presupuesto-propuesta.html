@@ -1,6 +1,6 @@
 <!--
   ============================================================================
-  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
   ============================================================================
   Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
   FUNCIONAL y ESTABLE.
@@ -311,7 +311,7 @@
               placeholder="Año"
             />
           </div>
-          <p-multiSelect
+          <p-multiselect
             [options]="monthOptions"
             [(ngModel)]="selectedMonthsForAvg"
             placeholder="Meses Promedio"
@@ -549,7 +549,7 @@
                 class="pointer mr-1"
                 (click)="deleteItem(item)"
                 pTooltip="Eliminar cuenta"
-                >🗑️</span
+                >ðŸ—‘ï¸</span
               >}
 
               <small class="numeric-column">{{ item.accountNumber }} </small>
@@ -588,7 +588,7 @@
             class="pointer"
             (click)="showBudgetExecutionDetails(month, item.accountNumber)"
             pTooltip="Ver detalles de ejecución"
-            >🔍</span
+            >ðŸ”</span
           >
           <span class="text-xs text-color-secondary">
             {{ getPresupuestoDelMes(item, month) > 0 ?
@@ -913,7 +913,7 @@
       scrollHeight="60vh"
       styleClass="p-datatable-sm p-datatable-striped"
     >
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th>Cuenta</th>
           <th>Descripción</th>
@@ -923,7 +923,7 @@
           <th class="text-right">Incremento (%)</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-item>
+      <ng-template #body let-item>
         <tr>
           <td class="font-medium">{{item.accountNumber}}</td>
           <td>{{item.accountName}}</td>
@@ -939,7 +939,7 @@
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="emptymessage">
+      <ng-template #emptymessage>
         <tr>
           <td colspan="6" class="text-center p-4">
             No hay gastos con incremento mayor al 5%.

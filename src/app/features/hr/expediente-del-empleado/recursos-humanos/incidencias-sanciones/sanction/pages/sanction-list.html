@@ -10,13 +10,13 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [globalFilterFields]="globalFilterFields"
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Sanciones Disciplinarias"
         [(globalFilter)]="globalFilter"
       />
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="table-col-lg">Tipo de Sancion</th>
         <th class="table-col-md">Severidad</th>
@@ -27,7 +27,7 @@
         <th class="table-col-actions">Acciones</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td>{{ item.sanctionTypeName }}</td>
         <td>{{ item.severityLevel }}</td>
@@ -61,7 +61,7 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="footer">
+    <ng-template #footer>
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>

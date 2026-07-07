@@ -1,26 +1,31 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-property-occupant-manager",
@@ -36,8 +41,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     CustomInputCheckSignal,
     TagModule,
     MessageModule,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-occupant-manager.html",
@@ -54,7 +58,7 @@ export class PropertyOccupantManager implements OnInit {
   propertyId: any = this.config.data.propertyId;
   propertyName: string = this.config.data.propertyName;
 
-  // Definición estricta del formulario
+  // DefiniciÃ³n estricta del formulario
   occupantForm = new FormGroup({
     id: new FormControl<string | null>(null),
     fullName: new FormControl<string>("", {
@@ -141,7 +145,7 @@ export class PropertyOccupantManager implements OnInit {
         })
         .finally(() => this.loading.set(false));
     } else {
-      // Aóadir
+      // AÃ³adir
       this.apiResponseS
         .onPost<IPropertyOccupant>("PropertyOccupant", occupantData)
         .then((response) => {
@@ -149,12 +153,12 @@ export class PropertyOccupantManager implements OnInit {
             this.occupants.update((current) => [...current, response]);
             this.resetForm();
           } else {
-            this.errorMensaje = "Error al Aóadir el ocupante.";
+            this.errorMensaje = "Error al AÃ³adir el ocupante.";
           }
         })
         .catch((error) => {
           this.errorMensaje =
-            error.error?.message || "Error al Aóadir el ocupante.";
+            error.error?.message || "Error al AÃ³adir el ocupante.";
           console.error("Error adding occupant:", error);
         })
         .finally(() => this.loading.set(false));

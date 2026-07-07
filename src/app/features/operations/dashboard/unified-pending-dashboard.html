@@ -16,7 +16,6 @@
     ]"
     styleClass="p-datatable-sm p-datatable-gridlines font-sm"
     [rowHover]="true"
-    responsiveLayout="scroll"
     size="small"
     [showCurrentPageReport]="true"
     currentPageReportTemplate="{first}-{last} de {totalRecords}"
@@ -127,26 +126,26 @@
           pSortableColumn="module"
           class="white-space-nowrap pl-3 table-col-8"
         >
-          Módulo <p-sortIcon field="module"></p-sortIcon>
+          Módulo <p-sorticon field="module"></p-sorticon>
         </th>
         <th
           pSortableColumn="date"
           class="white-space-nowrap text-center table-col-10"
         >
-          Fecha <p-sortIcon field="date"></p-sortIcon>
+          Fecha <p-sorticon field="date"></p-sorticon>
         </th>
         <th pSortableColumn="title" class="table-col-32">
-          Actividad / Asunto <p-sortIcon field="title"></p-sortIcon>
+          Actividad / Asunto <p-sorticon field="title"></p-sorticon>
         </th>
         <th pSortableColumn="responsible" class="table-col-15">
-          Responsable <p-sortIcon field="responsible"></p-sortIcon>
+          Responsable <p-sorticon field="responsible"></p-sorticon>
         </th>
         <th class="table-col-20">último Seguimiento</th>
         <th pSortableColumn="status" class="text-center table-col-10">
-          Estatus <p-sortIcon field="status"></p-sortIcon>
+          Estatus <p-sorticon field="status"></p-sorticon>
         </th>
         <th pSortableColumn="daysOpen" class="text-center pr-3 table-col-5">
-          Días <p-sortIcon field="daysOpen"></p-sortIcon>
+          Días <p-sorticon field="daysOpen"></p-sorticon>
         </th>
       </tr>
     </ng-template>

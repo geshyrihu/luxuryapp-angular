@@ -8,7 +8,7 @@ import { MegaMenuItem } from "primeng/api";
   standalone: true,
   imports: [CommonModule, MegaMenuModule],
   template: `
-    <p-megaMenu
+    <p-megamenu
       [model]="items()"
       [orientation]="orientation()"
       [style]="{ background: 'transparent', border: 'none' }"

@@ -1,6 +1,15 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import {
   chatbubblesOutline,
@@ -12,23 +21,8 @@ import {
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import {
-  WebButtonLabelActiveDesactive,
-  WebButtonLabel,
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ROUTES } from "src/app/routing/route-paths";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -43,21 +37,23 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskGroupParticipant } from "src/app/features/operations/task-engine/tasks/participants/pages/task-group-participant";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
 import { TaskGroupForm } from "./task-group-form";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-task-group-list",
@@ -81,20 +77,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabel,
-    WebButtonLabelActiveDesactive,
-    TagModule,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
-    WebButtonLabelActiveDesactive,
+
     TooltipModule,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
-    PrimeNgCustomCaption,
-    StatusBadge,
   ],
 })
 export class TaskGroupList {

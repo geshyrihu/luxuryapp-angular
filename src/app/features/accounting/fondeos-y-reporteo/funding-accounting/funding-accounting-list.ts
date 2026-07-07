@@ -1,15 +1,22 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TooltipModule } from "primeng/tooltip";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -19,8 +26,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FaqsFondeo } from "src/app/features/accounting/fondeos-y-reporteo/funding/faqs-fondeo";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-funding-accounting-list",
@@ -28,7 +34,6 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonIconItem,
     TooltipModule,
     TableModule,
-    WebButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

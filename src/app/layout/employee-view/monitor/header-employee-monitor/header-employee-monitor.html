@@ -36,7 +36,7 @@
           [popup]="true"
           appendTo="body"
         >
-          <ng-template pTemplate="item" let-item>
+          <ng-template #item let-item>
             <div class="flex align-items-center gap-2 px-3 py-2 cursor-pointer">
               <img
                 [src]="item.data.image"
@@ -72,7 +72,7 @@
     <ng-template #center>
       <!-- <span class="flex align-items-center gap-2">
         <app-icon icon="flag:mx-4x3" style="font-size: 1.25rem"/>
-        ¿Pero, y si si? 🤩🥳
+        ¿Pero, y si si? ðŸ¤©ðŸ¥³
       </span> -->
     </ng-template>
 
@@ -132,7 +132,7 @@
   [resizable]="false"
   styleClass="elegant-modal"
 >
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <div class="flex align-items-center gap-3">
       <img
         [src]="customerPhotoPath()"
@@ -178,11 +178,11 @@
     <div
       class="flex flex-column align-items-center justify-content-center py-5 gap-3"
     >
-      <p-progressSpinner
+      <p-progressspinner
         styleClass="w-3rem h-3rem"
         strokeWidth="4"
         animationDuration=".5s"
-      ></p-progressSpinner>
+      ></p-progressspinner>
       <p class="text-gray-600 font-medium text-center px-4">
         {{ currentMode() === 'poster' ? 'Diseñando póster visual...' :
         'Redactando comunicado empático con emojis...' }}
@@ -399,14 +399,14 @@
           <span class="text-sm font-semibold text-600"
             >Tema del Documento:</span
           >
-          <p-selectButton
+          <p-selectbutton
             [options]="colorOptions"
             [ngModel]="documentColor()"
             (ngModelChange)="documentColor.set($event)"
             optionLabel="label"
             optionValue="value"
             size="small"
-          ></p-selectButton>
+          ></p-selectbutton>
         </div>
         <div class="flex gap-2">
           <il-button
@@ -429,7 +429,7 @@
     }
   </div>
 
-  <ng-template pTemplate="footer">
+  <ng-template #footer>
     <div
       class="flex justify-content-end gap-2 w-full border-top-1 surface-border pt-3 mt-2"
     >

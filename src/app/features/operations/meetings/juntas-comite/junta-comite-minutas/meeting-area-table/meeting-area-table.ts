@@ -1,16 +1,20 @@
-import { CommonModule } from "@angular/common";
-import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
+import { TooltipModule } from "primeng/tooltip";
+import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
 export interface DetailEvent {
   meetingId: any;
@@ -38,11 +42,10 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     WebButtonLabelDelete,
     CommonModule,
     TableModule,
-    WebButtonLabelAdd,
+
     TagModule,
     TooltipModule,
     ActionMenu,
-    WebButtonLabelConfirm,
     SanitizeHtmlPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -62,7 +65,7 @@ export class AreaDetailsTable {
   editSeguimiento = output<SeguimientoEvent>();
   deleteSeguimiento = output<number>();
 
-  // --- métodos para emitir eventos al componente padre ---
+  // --- mÃ©todos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
@@ -107,7 +110,7 @@ export class AreaDetailsTable {
     this.deleteSeguimiento.emit(seguimientoId);
   }
 
-  // --- métodos de ayuda para la vista (Helpers) ---
+  // --- mÃ©todos de ayuda para la vista (Helpers) ---
 
   /** Devuelve la clase CSS para el badge de estatus. */
   /** Devuelve el severity de PrimeNG para el estatus. */
@@ -140,5 +143,5 @@ export class AreaDetailsTable {
     }
   }
 
-  // Elimina el método getStatusIcon ya que usamos emojis
+  // Elimina el mÃ©todo getStatusIcon ya que usamos emojis
 }

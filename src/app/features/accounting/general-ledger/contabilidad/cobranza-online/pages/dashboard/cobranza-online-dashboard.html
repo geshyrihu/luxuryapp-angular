@@ -332,9 +332,8 @@
             <p-table
               [value]="tableCobranzaPerfecta()"
               styleClass="p-datatable-sm"
-              responsiveLayout="scroll"
             >
-              <ng-template pTemplate="header">
+              <ng-template #header>
                 <tr>
                   <th style="width: 3rem">ID</th>
                   <th>CLASIFICACIÓN</th>
@@ -342,7 +341,7 @@
                   <th class="text-right">%</th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-row>
+              <ng-template #body let-row>
                 <tr
                   [ngClass]="{'font-bold text-primary': row.isTotal, 'border-bottom-2 surface-border': row.isTotal}"
                 >
@@ -372,9 +371,8 @@
             <p-table
               [value]="tableDeudaCondominos()"
               styleClass="p-datatable-sm"
-              responsiveLayout="scroll"
             >
-              <ng-template pTemplate="header">
+              <ng-template #header>
                 <tr>
                   <th style="width: 3rem">ID</th>
                   <th>CLASIFICACIÓN</th>
@@ -382,7 +380,7 @@
                   <th class="text-right">%</th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-row>
+              <ng-template #body let-row>
                 <tr
                   [ngClass]="{'font-bold text-primary': row.isTotal, 'border-top-2 surface-border': row.isTotal}"
                 >
@@ -487,28 +485,27 @@
       [globalFilterFields]="['accountNumber', 'propertyFullName', 'accountName']"
       [rowsPerPageOptions]="[10, 25, 50]"
       styleClass="p-datatable-sm"
-      responsiveLayout="scroll"
     >
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th pSortableColumn="accountNumber">
-            Cuenta <p-sortIcon field="accountNumber" />
+            Cuenta <p-sorticon field="accountNumber" />
           </th>
           <th pSortableColumn="propertyFullName">
-            Condómino <p-sortIcon field="propertyFullName" />
+            Condómino <p-sorticon field="propertyFullName" />
           </th>
           <th pSortableColumn="maintenanceBalance" class="text-right">
-            Adeudo Mtto. <p-sortIcon field="maintenanceBalance" />
+            Adeudo Mtto. <p-sorticon field="maintenanceBalance" />
           </th>
           <th pSortableColumn="extraordinaryBalance" class="text-right">
-            Adeudo Ext. <p-sortIcon field="extraordinaryBalance" />
+            Adeudo Ext. <p-sorticon field="extraordinaryBalance" />
           </th>
           <th pSortableColumn="balance" class="text-right">
-            Saldo Total <p-sortIcon field="balance" />
+            Saldo Total <p-sorticon field="balance" />
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-debtor>
+      <ng-template #body let-debtor>
         <tr>
           <td class="font-medium">{{ debtor.accountNumber }}</td>
           <td>{{ debtor.propertyFullName || debtor.accountName }}</td>
@@ -530,7 +527,7 @@
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="footer">
+      <ng-template #footer>
         <tr>
           <td colspan="2" class="text-right font-bold">TOTALES</td>
           <td class="text-right font-bold">

@@ -35,11 +35,11 @@ import { ApprovalInfoService } from "./approval-info.service";
   template: `
     @if (loading) {
       <div class="flex justify-center items-center p-5">
-        <p-progressSpinner
+        <p-progressspinner
           styleClass="w-4rem h-4rem"
           strokeWidth="6"
           ariaLabel="loading"
-        ></p-progressSpinner>
+        ></p-progressspinner>
       </div>
     } @else {
       <div class="p-fluid p-3">

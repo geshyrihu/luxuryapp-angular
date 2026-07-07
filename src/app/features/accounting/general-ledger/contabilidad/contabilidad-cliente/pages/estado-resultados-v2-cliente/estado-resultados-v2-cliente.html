@@ -17,7 +17,7 @@
     styleClass="rf-prime-table card p-datatable-sm"
     [tableStyle]="{ 'min-width': '700px' }"
   >
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>Descripción</th>
         <th class="text-right w-8rem">{{ monthHeaders()[0] }}</th>
@@ -27,7 +27,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-row>
+    <ng-template #body let-row>
       @if (row.tipo === 'header') {
       <tr class="rf-row-section">
         <td colspan="5" class="py-2 px-3 uppercase text-xs tracking-wider">

@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -32,16 +32,16 @@
         <tr>
           <th pSortableColumn="codigoCuenta" class="table-col-150px">
             Código
-            <p-sortIcon field="codigoCuenta" />
+            <p-sorticon field="codigoCuenta" />
           </th>
           <th pSortableColumn="descripcionCuenta">
             Descripción
-            <p-sortIcon field="descripcionCuenta" />
+            <p-sorticon field="descripcionCuenta" />
           </th>
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="groupheader" let-group>
+      <ng-template #groupheader let-group>
         <tr class="p-rowgroup-header">
           <td colspan="2">
             <div class="flex align-items-center">
@@ -76,7 +76,7 @@
   </div>
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile

@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -7,9 +8,14 @@ import {
   Signal,
   signal,
   WritableSignal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
@@ -17,13 +23,6 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -46,8 +45,6 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 @Component({
   selector: "app-orden-compra",
@@ -59,10 +56,8 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomTableEmptyMessage,
     CardModule,
     CommonModule,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
     WebButtonLabelItem,
-    WebButtonLabel, // Nuevo componente importado
+    // Nuevo componente importado
     MessageModule,
     OrdenCompraDatosAuthParcial,
     OrdenCompraDatosCotizacion,

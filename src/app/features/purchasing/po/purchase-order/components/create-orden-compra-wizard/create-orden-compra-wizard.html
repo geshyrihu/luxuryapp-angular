@@ -141,7 +141,7 @@
             [scrollHeight]="'1200px'"
             appendTo="body"
           >
-            <ng-template let-product pTemplate="item">
+            <ng-template let-product #item>
               <div class="flex flex-wrap p-1 align-items-center w-full">
                 @if (product.image) {
                 <p-avatar
@@ -317,7 +317,7 @@
       </p>
 
       <div class="mt-4">
-        <p-fileUpload
+        <p-fileupload
           #fileUpload
           name="invoices[]"
           [multiple]="true"
@@ -333,7 +333,7 @@
           (onRemove)="onFileRemove($event)"
           (onClear)="onClearFiles()"
         >
-          <ng-template pTemplate="content">
+          <ng-template #content>
             @if (uploadedFiles().length > 0) {
             <div class="p-2">
               <ul class="list-none p-0 m-0">
@@ -352,7 +352,7 @@
             </div>
             }
           </ng-template>
-        </p-fileUpload>
+        </p-fileupload>
       </div>
     </div>
     }

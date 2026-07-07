@@ -108,10 +108,9 @@
     <div class="rf-wrap">
       <p-table
         [value]="reporte.proyectos"
-        responsiveLayout="scroll"
         styleClass="rf-prime-table p-datatable-sm"
       >
-        <ng-template pTemplate="header">
+        <ng-template #header>
           <tr>
             <th class="th-col-dark" style="min-width: 250px">PROYECTO</th>
             <th class="th-col-green">PRE-MEN</th>
@@ -126,7 +125,7 @@
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-proyecto>
+        <ng-template #body let-proyecto>
           <tr class="rf-row-concepto">
             <td class="rf-td-descripcion--item">
               <div class="font-bold text-sm uppercase">
@@ -175,7 +174,7 @@
         </ng-template>
 
         @if (reporte.totalGeneral; as total) {
-        <ng-template pTemplate="footer">
+        <ng-template #footer>
           <tr class="rf-row-result">
             <td class="rf-td-descripcion">TOTAL GENERAL</td>
             <td class="rf-td-number--total text-green-400">

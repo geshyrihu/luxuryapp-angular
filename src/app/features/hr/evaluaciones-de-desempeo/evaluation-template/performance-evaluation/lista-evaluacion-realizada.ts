@@ -1,20 +1,23 @@
 import { DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { TableModule } from "primeng/table";
 import {
-  WebButtonLabelDelete,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -30,13 +33,11 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { ROUTES } from "src/app/routing/route-paths";
 
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -53,16 +54,10 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
     WebButtonLabel,
-    WebButtonLabelDelete,
     PrimeNgCustomTableFooter,
     IonItem,
     IonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
     DatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

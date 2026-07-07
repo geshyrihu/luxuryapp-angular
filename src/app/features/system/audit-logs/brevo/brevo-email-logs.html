@@ -73,22 +73,22 @@
   [scrollable]="true"
   scrollHeight="calc(100vh - 320px)"
 >
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <tr>
       <th pSortableColumn="email" style="min-width: 220px">
-        Destinatario <p-sortIcon field="email" />
+        Destinatario <p-sorticon field="email" />
       </th>
       <th style="min-width: 280px">Asunto</th>
       <th style="min-width: 140px">Estado</th>
       <th pSortableColumn="date" style="min-width: 160px">
-        Fecha <p-sortIcon field="date" />
+        Fecha <p-sorticon field="date" />
       </th>
       <th style="min-width: 200px">Remitente</th>
       <th style="min-width: 100px">Plantilla</th>
     </tr>
   </ng-template>
 
-  <ng-template pTemplate="body" let-log>
+  <ng-template #body let-log>
     <tr>
       <!-- Destinatario -->
       <td>
@@ -148,7 +148,7 @@
   </ng-template>
 
   <!-- Esqueleto de carga -->
-  <ng-template pTemplate="loadingbody">
+  <ng-template #loadingbody>
     @for (i of [1, 2, 3, 4, 5]; track i) {
     <tr>
       <td><p-skeleton /></td>

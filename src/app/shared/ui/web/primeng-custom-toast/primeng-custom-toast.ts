@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { ToastModule } from "primeng/toast";
 
 /**
@@ -11,15 +11,6 @@ import { ToastModule } from "primeng/toast";
   selector: "primeng-custom-toast",
   imports: [ToastModule],
   changeDetection: ChangeDetectionStrategy.Eager,
-  template: `
-    <p-toast
-      position="top-left"
-      [baseZIndex]="99999"
-      [showTransformOptions]="'translateY(-100%)'"
-      [hideTransformOptions]="'translateY(100%)'"
-      [showTransitionOptions]="'1000ms'"
-      [hideTransitionOptions]="'1000ms'"
-    />
-  `,
+  template: ` <p-toast position="top-left" [baseZIndex]="99999" /> `,
 })
 export class PrimeNgCustomToast {}

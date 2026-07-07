@@ -94,7 +94,7 @@
       </ng-template>
 
       <!-- Encabezado de grupo -->
-      <ng-template pTemplate="groupheader" let-item>
+      <ng-template #groupheader let-item>
         <tr pRowGroupHeader class="animate__fadeIn">
           <td [attr.colspan]="mostrarPreventivos() ? 6 : 5">
             <span class="font-bold">{{ item.equipoClasificacion }}</span>
@@ -108,20 +108,20 @@
           <th class="table-col-5">IMG</th>
           <th class="table-col-20" pSortableColumn="nameMachinery">
             NOMBRE
-            <p-sortIcon field="nameMachinery" />
+            <p-sorticon field="nameMachinery" />
           </th>
           <th class="table-col-20" pSortableColumn="equipoClasificacion">
             SISTEMA
-            <p-sortIcon field="equipoClasificacion" />
+            <p-sorticon field="equipoClasificacion" />
           </th>
           <th class="table-col-20" pSortableColumn="ubication">
             UBICACIÓN
-            <p-sortIcon field="ubication" />
+            <p-sorticon field="ubication" />
           </th>
           @if (mostrarPreventivos()) {
           <th class="table-col-10" pSortableColumn="maintenanceCalendars">
             SERVICIOS
-            <p-sortIcon field="maintenanceCalendars" />
+            <p-sorticon field="maintenanceCalendars" />
           </th>
           }
           <th class="table-col-10 no-print"></th>
@@ -206,7 +206,7 @@
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="paginatorleft">
+      <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="data()" />
       </ng-template>
     </p-table>
@@ -253,7 +253,7 @@
         <ng-template #body let-order>
           <tr class="animate__fadeIn">
             <td>
-              <span [innerHTML]="order.hasServiceOrder ? '🛠️' : '⚪'"></span>
+              <span [innerHTML]="order.hasServiceOrder ? 'ðŸ› ï¸' : 'âšª'"></span>
             </td>
             <td>
               <p
@@ -454,7 +454,7 @@
                       [innerHTML]="service.activity | sanitizeHtml"
                     ></span>
                     <span
-                      [innerHTML]="service.hasServiceOrder ? '🛠️' : '⚪'"
+                      [innerHTML]="service.hasServiceOrder ? 'ðŸ› ï¸' : 'âšª'"
                     ></span>
                   </div>
                   <div class="grid text-sm text-600 mt-1">

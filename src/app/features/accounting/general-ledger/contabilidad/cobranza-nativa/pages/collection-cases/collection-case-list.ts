@@ -1,16 +1,20 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -22,8 +26,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
@@ -37,10 +41,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
-    WebButtonLabelEdit,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
     IonItem,
     IonLabel,
     DatePipe,

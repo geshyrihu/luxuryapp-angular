@@ -1,7 +1,18 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
-import { ROUTES } from "src/app/routing/route-paths";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -12,16 +23,6 @@ import {
 } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -33,19 +34,20 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { InventarioEstacionManualForm } from "./inventario-estacion-manual-form";
 import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-qr.service";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -67,18 +69,9 @@ import { TooltipModule } from "primeng/tooltip";
     AppIcon,
     ImageModule,
     TableModule,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
-    WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelDownload,
-    WebButtonLabelItem,
     IonButton,
     IonItem,
     IonLabel,

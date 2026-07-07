@@ -1,30 +1,34 @@
-import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { gitBranchOutline } from "ionicons/icons";
 import { DialogService } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { DiagramForm } from "../diagram-form/diagram-form";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -47,12 +51,8 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     WebButtonLabel,
     NgbTooltipModule,
-    WebButtonLabelAdd,
-    WebButtonLabelDelete,
+
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
     IonItem,
     IonLabel,
   ],

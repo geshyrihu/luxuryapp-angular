@@ -9,7 +9,7 @@
       optionLabel="label"
       optionValue="value"
     >
-      <ng-template let-item pTemplate="item">
+      <ng-template let-item #item>
         <app-icon [icon]="item.icon" />
       </ng-template>
     </custom-input-select-button-signal>
@@ -95,7 +95,7 @@
       <ng-template #header>
         <tr>
           <th class="table-col-4rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            <p-tableheadercheckbox></p-tableheadercheckbox>
           </th>
           <th class="table-col-4rem">Tipo</th>
           <th>Nombre Archivo</th>
@@ -105,7 +105,7 @@
       </ng-template>
       <ng-template #body let-file>
         <tr>
-          <td><p-tableCheckbox [value]="file"></p-tableCheckbox></td>
+          <td><p-tablecheckbox [value]="file"></p-tablecheckbox></td>
           <td>
             @if (file.type === "pdf") {
             <app-icon

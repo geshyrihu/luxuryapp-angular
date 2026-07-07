@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import {
   Component,
   computed,
@@ -37,7 +37,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelAdd,
-    WebButtonLabelDelete,
+
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./suspension-days-manager.html",
@@ -68,12 +68,12 @@ export class SuspensionDaysManager implements OnInit {
     return new Date(`${isoStr.substring(0, 10)}T00:00:00`);
   }
 
-  /** Fechas ya registradas ââ‚¬â€ para deshabilitar en el datepicker */
+  /** Fechas ya registradas Ã¢Ã¢â€šÂ¬Ã¢â‚¬Â para deshabilitar en el datepicker */
   disabledDates = computed(() =>
     this.days().map((d) => this.parseLocalDate(String(d.suspensionDate))),
   );
 
-  /** Resumen legible de los días registrados */
+  /** Resumen legible de los dÃ­as registrados */
   daysFormatted = computed(() =>
     this.days()
       .map((d) =>
@@ -130,19 +130,19 @@ export class SuspensionDaysManager implements OnInit {
 
     if (sorted.length === 0) return;
 
-    // Validar lunes (1) y sábado (6)
+    // Validar lunes (1) y sÃ¡bado (6)
     const invalidas = sorted.filter(
       (f) => f.getDay() === 1 || f.getDay() === 6,
     );
     if (invalidas.length > 0) {
       this.toastS.showWarn(
-        "Días no permitidos",
-        `Las suspensiones no aplican en lunes ni sábado: ${invalidas.map((d) => d.toLocaleDateString("es-MX")).join(", ")}`,
+        "DÃ­as no permitidos",
+        `Las suspensiones no aplican en lunes ni sÃ¡bado: ${invalidas.map((d) => d.toLocaleDateString("es-MX")).join(", ")}`,
       );
       return;
     }
 
-    // Validar días consecutivos (cuando hay más de 1)
+    // Validar dÃ­as consecutivos (cuando hay mÃ¡s de 1)
     if (sorted.length > 1) {
       for (let i = 0; i < sorted.length - 1; i++) {
         const diffDias = Math.round(
@@ -150,20 +150,20 @@ export class SuspensionDaysManager implements OnInit {
         );
         if (diffDias === 1) {
           this.toastS.showWarn(
-            "Días consecutivos",
-            `Los días de suspensión no pueden ser consecutivos: ${sorted[i].toLocaleDateString("es-MX")} y ${sorted[i + 1].toLocaleDateString("es-MX")}`,
+            "DÃ­as consecutivos",
+            `Los dÃ­as de suspensiÃ³n no pueden ser consecutivos: ${sorted[i].toLocaleDateString("es-MX")} y ${sorted[i + 1].toLocaleDateString("es-MX")}`,
           );
           return;
         }
       }
     }
 
-    // Validar máximo 8 días total
+    // Validar mÃ¡ximo 8 dÃ­as total
     const totalActual = this.days().length;
     if (totalActual + sorted.length > 8) {
       this.toastS.showWarn(
-        "Límite excedido",
-        `No se pueden superar 8 días de suspensión. Registrados: ${totalActual}. Intentando agregar: ${sorted.length}.`,
+        "LÃ­mite excedido",
+        `No se pueden superar 8 dÃ­as de suspensiÃ³n. Registrados: ${totalActual}. Intentando agregar: ${sorted.length}.`,
       );
       return;
     }

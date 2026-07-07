@@ -32,7 +32,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [description]="description()"
       [hidden]="hidden()"
     >
-      <p-autoComplete
+      <p-autocomplete
         [suggestions]="filteredData"
         (completeMethod)="search($event)"
         (onSelect)="onSelectItem($event)"
@@ -53,13 +53,13 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [class.p-inputtext-lg]="size() === 'large'"
         appendTo="body"
       >
-        <ng-template let-item pTemplate="item">
+        <ng-template let-item #item>
           {{ item.label }}
         </ng-template>
-        <ng-template let-item pTemplate="selectedItem">
+        <ng-template let-item #selectedItem>
           {{ item?.label || "" }}
         </ng-template>
-      </p-autoComplete>
+      </p-autocomplete>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,

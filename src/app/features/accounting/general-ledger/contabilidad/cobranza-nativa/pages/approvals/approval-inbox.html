@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Bandeja de Aprobaciones"
         [showAdd]="false"
@@ -17,7 +17,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-10rem text-center">Tipo de Operacion</th>
         <th>Descripcion</th>
@@ -28,7 +28,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="text-center">
           <span class="badge bg-purple-100 text-purple-800 text-xs">

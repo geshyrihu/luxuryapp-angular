@@ -1,6 +1,6 @@
 <div class="p-4" style="min-height: 400px">
   @switch (status()) { @case ('initial') {
-  <p-fileUpload
+  <p-fileupload
     name="files[]"
     (onSelect)="onFileSelect($event)"
     [multiple]="true"
@@ -8,7 +8,7 @@
     [maxFileSize]="10000000"
     chooseLabel="Seleccionar Facturas (XML y PDF)"
   >
-    <ng-template pTemplate="content">
+    <ng-template #content>
       <div class="text-center p-5 border-2 border-dashed border-round-md">
         <app-icon [icon]="'mdi:cloud-upload'" class="text-4xl text-primary" />
         <p class="mt-3 text-lg">
@@ -16,7 +16,7 @@
         </p>
       </div>
     </ng-template>
-  </p-fileUpload>
+  </p-fileupload>
   } @case ('analyzing') {
   <div
     class="flex flex-column justify-content-center align-items-center"

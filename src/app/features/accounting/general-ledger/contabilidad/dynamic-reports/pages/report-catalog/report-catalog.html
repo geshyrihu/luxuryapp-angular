@@ -1,4 +1,4 @@
-<p-confirmDialog />
+<p-confirmdialog />
 
 <div class="card">
   <div class="flex align-items-center justify-content-between mb-3">
@@ -38,7 +38,7 @@
           styleClass="custom-table card hidden md:block"
           dataKey="id"
         >
-          <ng-template pTemplate="header">
+          <ng-template #header>
             <tr>
               <th>Nombre</th>
               <th>Descripcion</th>
@@ -49,7 +49,7 @@
             </tr>
           </ng-template>
 
-          <ng-template pTemplate="body" let-r>
+          <ng-template #body let-r>
             <tr>
               <td class="font-semibold">{{ r.name }}</td>
               <td class="text-500 text-sm">{{ r.description }}</td>
@@ -121,7 +121,7 @@
           styleClass="custom-table card hidden md:block"
           dataKey="id"
         >
-          <ng-template pTemplate="header">
+          <ng-template #header>
             <tr>
               <th>Nombre</th>
               <th>Descripcion</th>
@@ -131,7 +131,7 @@
             </tr>
           </ng-template>
 
-          <ng-template pTemplate="body" let-r>
+          <ng-template #body let-r>
             <tr>
               <td class="font-semibold">{{ r.name }}</td>
               <td class="text-500 text-sm">{{ r.description }}</td>

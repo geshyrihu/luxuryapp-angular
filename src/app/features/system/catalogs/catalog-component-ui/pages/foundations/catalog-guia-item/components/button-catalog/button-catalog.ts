@@ -419,7 +419,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label class="text-xs font-semibold text-color-secondary block mb-2"
               >Size (Web)</label
             >
-            <p-selectButton
+            <p-selectbutton
               [options]="webSizeCtrl"
               [ngModel]="webSize()"
               (ngModelChange)="webSize.set($event)"
@@ -431,7 +431,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label class="text-xs font-semibold text-color-secondary block mb-2"
               >Size (Ionic)</label
             >
-            <p-selectButton
+            <p-selectbutton
               [options]="ionicSizeCtrl"
               [ngModel]="ionicSize()"
               (ngModelChange)="ionicSize.set($event)"
@@ -440,7 +440,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             />
           </div>
           <div class="flex align-items-center gap-2">
-            <p-toggleSwitch
+            <p-toggleswitch
               [ngModel]="isDisabled()"
               (ngModelChange)="isDisabled.set($event)"
               inputId="btn-dis"
@@ -448,7 +448,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label for="btn-dis" class="font-semibold text-sm">Disabled</label>
           </div>
           <div class="flex align-items-center gap-2">
-            <p-toggleSwitch
+            <p-toggleswitch
               [ngModel]="isLoading()"
               (ngModelChange)="isLoading.set($event)"
               inputId="btn-load"

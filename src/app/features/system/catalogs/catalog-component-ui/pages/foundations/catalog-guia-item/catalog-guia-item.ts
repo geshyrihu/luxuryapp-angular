@@ -135,7 +135,7 @@ const GUIA_LABELS: Record<string, string> = {
           <p-message severity="info" class="mb-4 block"
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables." />
           <p-card>
-            <p-table [value]="colorAssessment" responsiveLayout="scroll" styleClass="p-datatable-sm">
+            <p-table [value]="colorAssessment" styleClass="p-datatable-sm">
               <ng-template #header><tr><th>Rol</th><th>Actual</th><th>Veredicto</th><th>Sugerencia</th></tr></ng-template>
               <ng-template #body let-item>
                 <tr>
@@ -152,7 +152,7 @@ const GUIA_LABELS: Record<string, string> = {
         @case ('componentcatalog') {
           <p-message severity="info" text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)." class="mb-3 block" />
           <p-card>
-            <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="p-datatable-sm">
+            <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" styleClass="p-datatable-sm">
               <ng-template #header>
                 <tr><th>Familia</th><th>Selector</th><th>Ubicación</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
               </ng-template>
@@ -234,7 +234,7 @@ const GUIA_LABELS: Record<string, string> = {
               </div>
               <div class="field col-12 md:col-4 flex align-items-center gap-3">
                 <label>Activo</label>
-                <p-toggleSwitch [(ngModel)]="enabled" />
+                <p-toggleswitch [(ngModel)]="enabled" />
               </div>
               <div class="field col-12 md:col-4 flex align-items-center gap-3">
                 <p-checkbox [(ngModel)]="accepted" [binary]="true" inputId="accepted" />
@@ -243,8 +243,8 @@ const GUIA_LABELS: Record<string, string> = {
               <div class="field col-12 md:col-4 flex align-items-center gap-3">
                 <label>Prioridad</label>
                 <div class="flex gap-3">
-                  <div class="flex align-items-center gap-1"><p-radioButton name="priority" value="baja" [(ngModel)]="priority" inputId="pbaja" /><label for="pbaja" class="font-normal">Baja</label></div>
-                  <div class="flex align-items-center gap-1"><p-radioButton name="priority" value="media" [(ngModel)]="priority" inputId="pmedia" /><label for="pmedia" class="font-normal">Media</label></div>
+                  <div class="flex align-items-center gap-1"><p-radiobutton name="priority" value="baja" [(ngModel)]="priority" inputId="pbaja" /><label for="pbaja" class="font-normal">Baja</label></div>
+                  <div class="flex align-items-center gap-1"><p-radiobutton name="priority" value="media" [(ngModel)]="priority" inputId="pmedia" /><label for="pmedia" class="font-normal">Media</label></div>
                 </div>
               </div>
             </div>

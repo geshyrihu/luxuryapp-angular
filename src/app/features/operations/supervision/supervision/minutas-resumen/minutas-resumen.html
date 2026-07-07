@@ -22,8 +22,8 @@
       <th rowspan="2" class="table-col-5">#</th>
       <th rowspan="2" class="table-col-16" pSortableColumn="numeroCliente">
         CLIENTE
-        <p-sortIcon field="numeroCliente" />
-        <p-columnFilter
+        <p-sorticon field="numeroCliente" />
+        <p-columnfilter
           field="customer"
           matchMode="in"
           display="menu"
@@ -31,22 +31,22 @@
           [showOperator]="false"
           [showAddButton]="false"
         >
-          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-            <p-multiSelect
+          <ng-template #filter let-value let-filter="filterCallback">
+            <p-multiselect
               [ngModel]="value"
               [options]="cb_customers()"
               placeholder="Ninguno"
               (onChange)="filter($event.value)"
               optionLabel="label"
             >
-              <ng-template let-option pTemplate="item">
+              <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
                   <span class="ml-1">{{ option.label }}</span>
                 </div>
               </ng-template>
-            </p-multiSelect>
+            </p-multiselect>
           </ng-template>
-        </p-columnFilter>
+        </p-columnfilter>
       </th>
       <th colspan="3">
         <p class="p-2 w-full border-round text-white bg-contable">CONTABLE</p>

@@ -1,33 +1,31 @@
-import {
+﻿import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   input,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { callOutline, peopleOutline } from "ionicons/icons";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { addIcons } from "ionicons";
+import { callOutline, peopleOutline } from "ionicons/icons";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 import { CommonModule } from "@angular/common";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
@@ -48,10 +46,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableModule,
     TooltipModule,
     PrimeNgCustomCaption,
-    WebButtonLabel,
-    WebButtonLabelConfirm,
+
     DataViewMobile,
-    ActionMenu,
     IonItem,
     IonLabel,
   ],

@@ -39,7 +39,7 @@ cb_departamento; track item) {
       <th class="table-col-8">ACTUALIZAR</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-customer>
+  <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="5">
         <span class="font-bold ml-2">{{ customer.grupo }}</span>

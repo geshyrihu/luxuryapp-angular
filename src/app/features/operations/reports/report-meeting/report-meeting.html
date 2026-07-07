@@ -47,10 +47,10 @@
         @if (data.comite && data.comite.length > 0) {
         <div>
           <p-card styleClass="h-full">
-            <ng-template pTemplate="title"
+            <ng-template #title
               ><span class="text-lg">Comité de Vigilancia</span></ng-template
             >
-            <ng-template pTemplate="content">
+            <ng-template #content>
               <p-table
                 [value]="data.comite"
                 [scrollable]="true"
@@ -79,10 +79,10 @@
         @if (data.administracion && data.administracion.length > 0) {
         <div>
           <p-card styleClass="h-full">
-            <ng-template pTemplate="title"
+            <ng-template #title
               ><span class="text-lg">Administración</span></ng-template
             >
-            <ng-template pTemplate="content">
+            <ng-template #content>
               <p-table
                 [value]="data.administracion"
                 [scrollable]="true"
@@ -111,10 +111,10 @@
         @if (data.externos && data.externos.length > 0) {
         <div class="col-12 md:col-2 mt-4">
           <p-card>
-            <ng-template pTemplate="title"
+            <ng-template #title
               ><span class="text-lg">Invitados</span></ng-template
             >
-            <ng-template pTemplate="content">
+            <ng-template #content>
               <p-table
                 [value]="data.externos"
                 [scrollable]="true"
@@ -143,10 +143,10 @@
       <div class="flex flex-column">
         @for (item of data.asuntos; track item) {
         <p-card>
-          <ng-template pTemplate="title">
+          <ng-template #title>
             <span class="text-xl text-primary">{{ item.responsibleArea }}</span>
           </ng-template>
-          <ng-template pTemplate="content">
+          <ng-template #content>
             <ul class="list-none p-0 m-0">
               @for (asunto of item.items; track asunto; let i = $index) {
               <li
@@ -176,6 +176,6 @@
   class="flex justify-content-center align-items-center"
   style="height: 400px"
 >
-  <p-progressSpinner></p-progressSpinner>
+  <p-progressspinner></p-progressspinner>
 </div>
 }

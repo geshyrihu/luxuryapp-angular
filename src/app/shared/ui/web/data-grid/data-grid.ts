@@ -113,11 +113,11 @@ export interface DataGridColumn {
         styleClass="w-full"
         tableStyleClass="w-full"
       >
-        <ng-template pTemplate="header" let-columns>
+        <ng-template #header let-columns>
           <tr>
             @if (selectionMode() === "multiple") {
               <th style="width: 3rem">
-                <p-tableHeaderCheckbox />
+                <p-tableheadercheckbox />
               </th>
             }
             @for (col of columns; track col.field) {
@@ -132,7 +132,7 @@ export interface DataGridColumn {
                   }
                   {{ col.header }}
                   @if (col.sortable) {
-                    <p-sortIcon [field]="col.field" />
+                    <p-sorticon [field]="col.field" />
                   }
                 </div>
                 @if (col.filterable) {
@@ -153,8 +153,7 @@ export interface DataGridColumn {
           </tr>
         </ng-template>
 
-        <ng-template
-          pTemplate="body"
+        <ng-template #body
           let-row
           let-columns="columns"
           let-index="rowIndex"
@@ -162,7 +161,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
-                <p-tableCheckbox [value]="row" />
+                <p-tablecheckbox [value]="row" />
               </td>
             }
             @for (col of columns; track col.field) {
@@ -177,7 +176,7 @@ export interface DataGridColumn {
                       styleClass="w-full"
                     />
                   } @else if (col.type === "date") {
-                    <p-datePicker
+                    <p-datepicker
                       [(ngModel)]="row[col.field]"
                       styleClass="w-full"
                     />

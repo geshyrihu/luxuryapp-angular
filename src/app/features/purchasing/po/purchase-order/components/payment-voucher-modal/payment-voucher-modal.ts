@@ -1,16 +1,21 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -23,7 +28,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CommonModule,
     TableModule,
     WebButtonLabel,
-    WebButtonLabelDelete,
     CustomInputFile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

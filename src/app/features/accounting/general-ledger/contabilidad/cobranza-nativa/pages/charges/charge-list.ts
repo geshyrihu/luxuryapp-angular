@@ -1,16 +1,21 @@
 import { DatePipe, DecimalPipe } from "@angular/common";
-import { Component, DestroyRef, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { cardOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -25,8 +30,8 @@ import { ChargeResponseDTO } from "../../models/charge.dto";
 import { EChargeStatus } from "../../models/enums";
 import { ChargeForm } from "./charge-form";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { TooltipModule } from "primeng/tooltip";
@@ -45,11 +50,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     WebButtonLabel,
-    WebButtonLabelEdit,
     DecimalPipe,
     DatePipe,
     DataViewMobile,
-    ActionMenu,
     IonItem,
     IonLabel,
   ],
@@ -94,7 +97,9 @@ export default class ChargeList {
     if (this.realtimeCustomerId === customerId) return;
 
     if (this.realtimeCustomerId) {
-      void this.signalRService.leaveNativeCollectionGroup(this.realtimeCustomerId);
+      void this.signalRService.leaveNativeCollectionGroup(
+        this.realtimeCustomerId,
+      );
     }
 
     this.realtimeCustomerId = customerId;

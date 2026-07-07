@@ -47,16 +47,16 @@
       <th class="table-col-6 text-sm">FOLIO</th>
       <th class="table-col-30 text-sm" pSortableColumn="responsibleArea">
         SOLICITUD
-        <p-sortIcon field="responsibleArea" />
+        <p-sorticon field="responsibleArea" />
       </th>
       <th class="text-sm">EVIDENCIA</th>
       <th class="table-col-8 text-sm" pSortableColumn="priority">
         PRIORIDAD
-        <p-sortIcon field="priority" />
+        <p-sorticon field="priority" />
       </th>
       <th class="table-col-8 text-sm" pSortableColumn="responsableNombre">
         ASIGNADO A
-        <p-sortIcon field="responsableNombre" />
+        <p-sorticon field="responsableNombre" />
       </th>
       <th
         class="table-col-10"
@@ -64,11 +64,11 @@
         pSortableColumn="scheduledAtFilter"
       >
         PROGRAMADO
-        <p-sortIcon field="scheduledAtFilter" />
+        <p-sorticon field="scheduledAtFilter" />
       </th>
       <th class="table-col-10 text-sm" pSortableColumn="daysDifference">
         DIAS
-        <p-sortIcon field="daysDifference" />
+        <p-sorticon field="daysDifference" />
       </th>
       <th></th>
     </tr>
@@ -141,12 +141,12 @@
             [count]="item.ticketMessageFollowUp"
             (followUpCompleted)="onLoadData()"
           />
-          <p-splitButton
+          <p-splitbutton
             icon="mdi:dots-vertical"
             styleClass="p-button-outlined p-button-primary"
             pTooltip="Opciones"
             [model]="getMenuItems(item)"
-          ></p-splitButton> -->
+          ></p-splitbutton> -->
         </div>
       </td>
     </tr>

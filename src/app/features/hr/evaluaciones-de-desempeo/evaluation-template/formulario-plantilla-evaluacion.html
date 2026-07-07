@@ -66,7 +66,7 @@
       @for (categoryGroup of categories.controls; track categoryGroup; let i =
       $index) {
       <p-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
-        <ng-template pTemplate="header">
+        <ng-template #header>
           <div class="flex align-items-center gap-3 px-2 w-full">
             <!-- Drag Handle Categoría -->
             <div

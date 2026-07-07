@@ -1,6 +1,6 @@
 <!--
   ============================================================================
-  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
   ============================================================================
   Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
   FUNCIONAL y ESTABLE.
@@ -20,14 +20,14 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="executionMonthName">
-        Mes <p-sortIcon field="executionMonthName" />
+        Mes <p-sorticon field="executionMonthName" />
       </th>
-      <th pSortableColumn="concept">Concepto <p-sortIcon field="concept" /></th>
+      <th pSortableColumn="concept">Concepto <p-sorticon field="concept" /></th>
       <th pSortableColumn="budgetedAmount">
-        Monto <p-sortIcon field="budgetedAmount" />
+        Monto <p-sorticon field="budgetedAmount" />
       </th>
       <th pSortableColumn="providerName">
-        Proveedor <p-sortIcon field="providerName" />
+        Proveedor <p-sorticon field="providerName" />
       </th>
     </tr>
   </ng-template>
@@ -41,7 +41,7 @@
       <td>{{ item.providerName || "N/A" }}</td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="summary">
+  <ng-template #summary>
     <div class="flex align-items-center justify-content-end">
       Total de registros: {{ budgetExecutions() ? budgetExecutions()!.length : 0
       }}

@@ -44,7 +44,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         />
       </div>
 
-      <p-dataView
+      <p-dataview
         #dv
         [value]="diagrams()"
         [rows]="9"
@@ -85,7 +85,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
             </div>
           </div>
         </ng-template>
-      </p-dataView>
+      </p-dataview>
     </div>
   `,
 })

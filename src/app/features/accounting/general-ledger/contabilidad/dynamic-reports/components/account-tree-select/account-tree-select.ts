@@ -63,7 +63,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
             [metaKeySelection]="false"
             class="w-full border-none"
           >
-            <ng-template pTemplate="default" let-node>
+            <ng-template #default let-node>
               <div
                 class="flex align-items-center gap-2 py-1 w-full account-node"
                 cdkDrag

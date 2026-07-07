@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Multas Reglamentarias"
         (add)="onModalForm()"
@@ -17,7 +17,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>Propiedad</th>
         <th class="w-12rem">Artúculo</th>
@@ -30,7 +30,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="font-medium text-800">{{ item.propertyFullName }}</td>
         <td class="text-xs text-500">

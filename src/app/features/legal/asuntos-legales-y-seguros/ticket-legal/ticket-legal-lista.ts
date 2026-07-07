@@ -1,6 +1,20 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { addIcons } from "ionicons";
@@ -9,18 +23,9 @@ import {
   createOutline,
   refreshOutline,
 } from "ionicons/icons";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -33,18 +38,14 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import {
-  WebButtonIconEdit,
-  WebButtonIconTracking,
-} from "@ui/buttons";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
 import { TicketLegalForm } from "./ticket-legal-form";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
 import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimiento-solicitud-detalle";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 
@@ -65,12 +66,9 @@ import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    WebButtonLabelEdit,
-    WebButtonLabelDownload,
-    ActionMenu,
+
     WebButtonIconEdit,
     DataViewMobile,
-    WebButtonLabelItem,
     WebButtonIconTracking,
   ],
 })
@@ -193,7 +191,7 @@ export class TicketLegalLista implements OnInit {
       2: "CONCLUIDO",
       4: "CANCELADO",
     };
-    // Paleta Office é discreta, bien en PowerPoint
+    // Paleta Office Ã© discreta, bien en PowerPoint
     const STATUS_COLOR: Record<number, string> = {
       0: "FFED7D31", // naranja suave
       1: "FF4472C4", // azul medio
@@ -222,8 +220,8 @@ export class TicketLegalLista implements OnInit {
       { header: "ASUNTO", key: "title", width: 40 },
       { header: "RESPONSABLE", key: "assignee", width: 24 },
       { header: "ESTATUS", key: "status", width: 14 },
-      { header: "FECHA CONCLUSIóN", key: "completionDate", width: 18 },
-      { header: "DÍAS", key: "dias", width: 8 },
+      { header: "FECHA CONCLUSIÃ³N", key: "completionDate", width: 18 },
+      { header: "DÃAS", key: "dias", width: 8 },
     ];
 
     // Encabezado
@@ -253,7 +251,7 @@ export class TicketLegalLista implements OnInit {
         customer: item.customer,
         title: `${item.title ?? ""}${item.description ? "\n" + item.description : ""}`,
         assignee: item.assignee,
-        status: STATUS_LABEL[status] ?? "é",
+        status: STATUS_LABEL[status] ?? "Ã©",
         completionDate: item.completionDate ?? "",
         dias: item.diferenciaDias ?? "",
       });
@@ -279,7 +277,7 @@ export class TicketLegalLista implements OnInit {
       };
       statusCell.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
 
-      // DÍAS en rojo si supera 10
+      // DÃAS en rojo si supera 10
       const diasVal = item.diferenciaDias ?? 0;
       if (diasVal > 10) {
         row.getCell("dias").font = {

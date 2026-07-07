@@ -247,7 +247,7 @@
               [listStyle]="{'max-height': '300px'}"
               [filter]="true"
             >
-              <ng-template let-customer pTemplate="item">
+              <ng-template let-customer #item>
                 <div
                   class="custom-list-item flex align-items-center"
                   [class.selected-item-green]="form.controls.targetedCustomerIds.value.includes(customer.value)"
@@ -281,7 +281,7 @@
               [listStyle]="{'max-height': '300px'}"
               [filter]="true"
             >
-              <ng-template let-role pTemplate="item">
+              <ng-template let-role #item>
                 <div
                   class="custom-list-item flex align-items-center"
                   [class.selected-item-green]="form.controls.recipientRoleIds.value.includes(role.value)"

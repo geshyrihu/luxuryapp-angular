@@ -1,13 +1,18 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   EmployeeFileBankDataDTO,
   EmployeeFileClinicalDataDTO,
@@ -36,7 +41,6 @@ import { TooltipModule } from "primeng/tooltip";
     CurrencyPipe,
     TableModule,
     TabsModule,
-    WebButtonLabelItem,
     AppIcon,
   ],
 })

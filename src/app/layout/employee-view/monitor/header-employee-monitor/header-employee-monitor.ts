@@ -1,5 +1,6 @@
 import { CommonModule, Location } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -7,7 +8,6 @@ import {
   input,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -19,15 +19,14 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { MenuModule } from "primeng/menu";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -58,7 +57,6 @@ import { ROUTES } from "src/app/routing/route-paths";
     BreadcrumbModule,
     CommonModule,
     WebButtonLabel,
-    WebButtonIcon,
     DialogModule,
     TextareaModule,
     FormsModule,

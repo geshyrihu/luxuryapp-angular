@@ -36,27 +36,27 @@
         <tr>
           <th pSortableColumn="producto.nombreProducto">
             Producto
-            <p-sortIcon field="producto.nombreProducto" />
+            <p-sorticon field="producto.nombreProducto" />
           </th>
           <th pSortableColumn="existencia">
             Existencia
-            <p-sortIcon field="existencia" />
+            <p-sorticon field="existencia" />
           </th>
           <th pSortableColumn="unidadDeMedida.descripcion">
             Unidad
-            <p-sortIcon field="unidadDeMedida.descripcion" />
+            <p-sorticon field="unidadDeMedida.descripcion" />
           </th>
           <th pSortableColumn="stockMin">
             Stock Min
-            <p-sortIcon field="stockMin" />
+            <p-sorticon field="stockMin" />
           </th>
           <th pSortableColumn="stockMax">
             Stock Max
-            <p-sortIcon field="stockMax" />
+            <p-sorticon field="stockMax" />
           </th>
           <th pSortableColumn="compraRequerida">
             Compra Sugerida
-            <p-sortIcon field="compraRequerida" />
+            <p-sorticon field="compraRequerida" />
           </th>
           @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario ])() ) {

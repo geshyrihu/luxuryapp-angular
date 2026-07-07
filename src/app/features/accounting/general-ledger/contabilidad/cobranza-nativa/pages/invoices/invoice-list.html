@@ -22,7 +22,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <!-- Selector de cargo -->
       <div class="p-1 grid formgrid align-items-end">
         <div class="field col-12 md:col-6">
@@ -56,7 +56,7 @@
       </div>
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>UUID CFDI</th>
         <th class="w-7rem">Serie</th>
@@ -67,7 +67,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-inv>
+    <ng-template #body let-inv>
       <tr>
         <td class="text-xs font-mono">{{ inv.uuid }}</td>
         <td class="text-sm">{{ inv.serie || '—' }}</td>

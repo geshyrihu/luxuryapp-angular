@@ -52,7 +52,7 @@
           <label for="dateRange">Rango de Fechas de las Vacaciones</label>
           <div class="p-inputgroup">
             <div class="flex">
-              <p-datePicker
+              <p-datepicker
                 id="dateRange"
                 [formControl]="form.controls.dateRange"
                 [selectionMode]="'range'"
@@ -159,7 +159,6 @@
       } @else {
       <p-table
         [value]="history()"
-        responsiveLayout="scroll"
         [tableStyle]="{ 'min-width': '50rem' }"
         [scrollable]="true"
         [scrollHeight]="scrollHeight"

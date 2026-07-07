@@ -1,5 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import {
   MobileButtonIconDownload,
   MobileButtonIconEdit,
@@ -12,7 +16,6 @@ import {
   MobileButtonLabelConfirm,
   MobileButtonLabelDelete,
   MobileButtonLabelEdit,
-  MobileButtonLabelItem,
   MobileButtonLabelSave,
   MobileButtonLabelSendEmail,
   MobileButtonLabelViewPdf,
@@ -37,7 +40,6 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
     MobileButtonLabelSendEmail,
     MobileButtonLabelViewPdf,
     MobileButtonLabelActiveDesactive,
-    MobileButtonLabelItem,
     MobileButtonIconEdit,
     MobileButtonIconDownload,
     MobileButtonIconTracking,
@@ -53,8 +55,8 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
             <div>
               <div class="section-label">Variantes semánticas</div>
               <p class="section-desc">
-                <code>&lt;ili-button variant="…"&gt;</code> — primary, secondary,
-                outline, text, danger, ghost.
+                <code>&lt;ili-button variant="…"&gt;</code> — primary,
+                secondary, outline, text, danger, ghost.
               </p>
               <div class="flex flex-column gap-2">
                 <ili-button variant="primary" label="Primary" expand="block" />

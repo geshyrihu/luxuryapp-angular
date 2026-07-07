@@ -83,7 +83,7 @@
       />
     </div>
     } @if (loading()) {
-    <p-progressSpinner styleClass="w-1rem h-1rem" strokeWidth="4" />
+    <p-progressspinner styleClass="w-1rem h-1rem" strokeWidth="4" />
     }
   </div>
 </div>
@@ -192,7 +192,7 @@
       [scrollable]="true"
       scrollHeight="65vh"
     >
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr>
           <th
             class="text-center"
@@ -222,7 +222,7 @@
           }
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-cuenta>
+      <ng-template #body let-cuenta>
         <tr
           [style.backgroundColor]="getRowBackgroundColor(cuenta.nivelReferencia)"
         >

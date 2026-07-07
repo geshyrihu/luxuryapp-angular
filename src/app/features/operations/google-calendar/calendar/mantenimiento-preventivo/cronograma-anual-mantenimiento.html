@@ -86,7 +86,7 @@
 
 <ng-container>
   <ng-container>
-    <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+    <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
     <div class="hidden md:block">
       <p-table
         [value]="dataSignal()"
@@ -164,7 +164,7 @@
           <tr>
             <th class="table-col-40" pSortableColumn="nameMachinery">
               DESCRIPCIóN
-              <p-sortIcon field="nameMachinery" />
+              <p-sorticon field="nameMachinery" />
             </th>
             @for (mes of meses; track mes) {
             <th class="table-col-5">{{ mes }}</th>
@@ -172,7 +172,7 @@
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="groupheader" let-customer>
+        <ng-template #groupheader let-customer>
           <tr pRowGroupHeader>
             <td [attr.colspan]="meses.length + 1">
               <span class="font-size-16">
@@ -207,7 +207,7 @@
       </p-table>
     </div>
 
-    <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+    <!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
     <div class="block md:hidden">
       <div class="px-2 mb-3 flex flex-column gap-2">
         <il-button

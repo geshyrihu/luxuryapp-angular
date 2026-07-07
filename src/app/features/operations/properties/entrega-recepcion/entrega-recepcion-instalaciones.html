@@ -18,25 +18,25 @@
       <th class="table-col-14 text-sm">Foto</th>
       <th class="table-col-15 text-sm" pSortableColumn="nombre">
         Nombre
-        <p-sortIcon field="nombre" />
+        <p-sorticon field="nombre" />
       </th>
       <th class="table-col-15 text-sm" pSortableColumn="sistema">
         Sistema
-        <p-sortIcon field="sistema" />
+        <p-sorticon field="sistema" />
       </th>
       <th class="table-col-15 text-sm">Ubicación</th>
       <th class="table-col-10 text-sm">Check</th>
       <th class="table-col-45 text-sm">Observaciones</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-customer>
+  <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="7">
         <span class="font-bold ml-2">{{ customer.clasificacion }}</span>
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupfooter" let-customer>
+  <ng-template #groupfooter let-customer>
     <tr class="p-rowgroup-footer">
       <td class="text-sm" colspan="7">
         <div style="text-align: right">

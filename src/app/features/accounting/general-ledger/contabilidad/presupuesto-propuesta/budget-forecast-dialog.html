@@ -1,6 +1,6 @@
 <!--
   ============================================================================
-  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
   ============================================================================
   Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
   FUNCIONAL y ESTABLE.
@@ -34,30 +34,30 @@
     scrollHeight="400px"
     styleClass="p-datatable-sm p-datatable-striped"
   >
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="table-col-4rem">
-          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          <p-tableheadercheckbox></p-tableheadercheckbox>
         </th>
         <th pSortableColumn="accountNumber">
-          Cuenta <p-sortIcon field="accountNumber"></p-sortIcon>
+          Cuenta <p-sorticon field="accountNumber"></p-sorticon>
         </th>
         <th pSortableColumn="currentAmount" class="text-right">
-          Psto Mensual Actual <p-sortIcon field="currentAmount"></p-sortIcon>
+          Psto Mensual Actual <p-sorticon field="currentAmount"></p-sorticon>
         </th>
         <th pSortableColumn="averageExpense" class="text-right">
           Gasto Promedio ({{selectedMonthsForAvg().length}}m)
-          <p-sortIcon field="averageExpense"></p-sortIcon>
+          <p-sorticon field="averageExpense"></p-sorticon>
         </th>
         <th pSortableColumn="suggestedAmount" class="text-right">
-          Sugerido Mensual <p-sortIcon field="suggestedAmount"></p-sortIcon>
+          Sugerido Mensual <p-sorticon field="suggestedAmount"></p-sorticon>
         </th>
         <th>Razonamiento IA</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
-        <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
+        <td><p-tablecheckbox [value]="item"></p-tablecheckbox></td>
         <td>
           <div class="font-bold">{{item.accountNumber}}</div>
           <div class="text-sm text-500">{{item.accountName}}</div>

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -28,7 +28,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     Tag,
-    WebButtonLabelItem,
+
     PrimeNgCustomCaption,
   ],
 })

@@ -1,10 +1,15 @@
-import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -12,8 +17,8 @@ import { SwalService } from "src/app/core/services/swal.service";
 import { IncidentWitnessListDTO } from "../../models/incident.interfaces";
 import { IncidentWitnessFormComponent } from "./incident-witness-form";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-incident-witnesses",
@@ -23,8 +28,6 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

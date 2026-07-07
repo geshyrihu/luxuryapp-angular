@@ -51,14 +51,14 @@
   </div>
 
   <p-table [value]="days()" styleClass="p-datatable-sm">
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th>Fecha</th>
         <th>Notas</th>
         <th class="text-center w-8rem">Acción</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-day>
+    <ng-template #body let-day>
       <tr>
         <td>{{ day.suspensionDate | date: "dd/MM/yyyy":"UTC" }}</td>
         <td>{{ day.notes || "—" }}</td>

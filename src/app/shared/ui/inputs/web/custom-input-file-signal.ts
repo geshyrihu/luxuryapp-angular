@@ -26,7 +26,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
     >
       <!-- 🚀 CONTENIDO PROYECTADO -->
-      <p-fileUpload
+      <p-fileupload
         styleClass="w-full"
         chooseStyleClass="w-full"
         [id]="id()"

@@ -66,7 +66,7 @@
 
   <h3 class="text-xl font-bold mb-3">Validación de Color</h3>
   <p-card class="mb-5">
-    <p-table [value]="colorAssessment" responsiveLayout="scroll" styleClass="p-datatable-sm">
+    <p-table [value]="colorAssessment" styleClass="p-datatable-sm">
       <ng-template #header><tr><th>Rol</th><th>Actual</th><th>Veredicto</th><th>Sugerencia</th></tr></ng-template>
       <ng-template #body let-item>
         <tr>
@@ -82,7 +82,7 @@
   <h3 class="text-xl font-bold mb-3">Catálogo de Componentes Core</h3>
   <p-message severity="info" text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)." class="mb-3 block" />
   <p-card class="mb-5">
-    <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="p-datatable-sm">
+    <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" styleClass="p-datatable-sm">
       <ng-template #header>
         <tr><th>Familia</th><th>Selector</th><th>Ubicación</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
       </ng-template>
@@ -158,7 +158,7 @@
       </div>
       <div class="field col-12 md:col-4 flex align-items-center gap-3">
         <label>Activo</label>
-        <p-toggleSwitch [(ngModel)]="enabled" />
+        <p-toggleswitch [(ngModel)]="enabled" />
       </div>
       <div class="field col-12 md:col-4 flex align-items-center gap-3">
         <p-checkbox [(ngModel)]="accepted" [binary]="true" inputId="accepted" />
@@ -167,8 +167,8 @@
       <div class="field col-12 md:col-4 flex align-items-center gap-3">
         <label>Prioridad</label>
         <div class="flex gap-3">
-          <div class="flex align-items-center gap-1"><p-radioButton name="priority" value="baja" [(ngModel)]="priority" inputId="pbaja" /><label for="pbaja" class="font-normal">Baja</label></div>
-          <div class="flex align-items-center gap-1"><p-radioButton name="priority" value="media" [(ngModel)]="priority" inputId="pmedia" /><label for="pmedia" class="font-normal">Media</label></div>
+          <div class="flex align-items-center gap-1"><p-radiobutton name="priority" value="baja" [(ngModel)]="priority" inputId="pbaja" /><label for="pbaja" class="font-normal">Baja</label></div>
+          <div class="flex align-items-center gap-1"><p-radiobutton name="priority" value="media" [(ngModel)]="priority" inputId="pmedia" /><label for="pmedia" class="font-normal">Media</label></div>
         </div>
       </div>
     </div>
@@ -181,7 +181,7 @@
 
   <h3 class="text-xl font-bold mb-3">Tabla ERP y Estados del Sistema</h3>
   <p-card class="mb-5">
-    <p-table [value]="tableRows" [paginator]="true" [rows]="4" responsiveLayout="scroll" styleClass="p-datatable-sm">
+    <p-table [value]="tableRows" [paginator]="true" [rows]="4" styleClass="p-datatable-sm">
       <ng-template #caption>
         <div class="flex flex-wrap justify-content-between align-items-center gap-3">
           <div><strong>Solicitudes operativas</strong><span class="block text-sm text-color-secondary">Acciones visibles maximas: 2 + menu contextual.</span></div>
@@ -203,7 +203,7 @@
     </p-table>
   </p-card>
   <div class="grid mb-5">
-    <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round text-center"><p-progressSpinner strokeWidth="4" /><strong class="block mt-2">Loading</strong><span class="text-xs text-color-secondary">Spinner en acciones cortas, skeleton en carga estructural.</span></div></div>
+    <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round text-center"><p-progressspinner strokeWidth="4" /><strong class="block mt-2">Loading</strong><span class="text-xs text-color-secondary">Spinner en acciones cortas, skeleton en carga estructural.</span></div></div>
     <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round flex flex-column gap-2"><p-skeleton width="100%" height="1.25rem" /><p-skeleton width="70%" height="1.25rem" /><strong>Skeleton</strong><span class="text-xs text-color-secondary">Anticipa layout en cards, listas o tablas.</span></div></div>
     <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="success" text="Registro guardado correctamente." /><p-message severity="warn" text="Faltan documentos por validar." /></div></div>
     <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="error" text="Sin permisos para aprobar este proceso." /><il-button label="Abrir confirmacion" iconClass="icon.external-link" (clicked)="openDialog()" customClass="mt-2 w-full" /></div></div>

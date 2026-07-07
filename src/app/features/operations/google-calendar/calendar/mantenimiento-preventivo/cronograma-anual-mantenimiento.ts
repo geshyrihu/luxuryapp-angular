@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -56,7 +56,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     WebButtonIconItem,
     TableModule,
     FormsModule,
-    WebButtonLabelItem,
+
     WebButtonLabel,
     CommonModule,
     TooltipModule,
@@ -74,7 +74,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 export class CronogramaAnualMantenimiento {
   TooltipPlacement = TooltipPlacement;
   readonly resolvePrimeIcon = resolvePrimeIcon;
-  // --- Inyección de Dependencias ---
+  // --- InyecciÃ³n de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
@@ -89,7 +89,7 @@ export class CronogramaAnualMantenimiento {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // ? MEJORA: Filtros globales calculados dinámicamente
+  // ? MEJORA: Filtros globales calculados dinÃ¡micamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -103,14 +103,14 @@ export class CronogramaAnualMantenimiento {
   // Usamos la interfaz para el array de filtros
   filtroEquipos: FiltroEquipo[] = [
     { emoji: "??", id: "", nombre: "todos" },
-    { emoji: "✨", id: 2, nombre: "amenidades" },
-    { emoji: "🏢", id: 8, nombre: "A. Comunes" },
-    { emoji: "📦", id: 7, nombre: "bodegas" },
-    { emoji: "⚙️", id: 1, nombre: "equipos" },
-    { emoji: "🏋️", id: 5, nombre: "gimnasio" },
+    { emoji: "âœ¨", id: 2, nombre: "amenidades" },
+    { emoji: "ðŸ¢", id: 8, nombre: "A. Comunes" },
+    { emoji: "ðŸ“¦", id: 7, nombre: "bodegas" },
+    { emoji: "âš™ï¸", id: 1, nombre: "equipos" },
+    { emoji: "ðŸ‹ï¸", id: 5, nombre: "gimnasio" },
     { emoji: "??", id: 6, nombre: "sistemas" },
-    { emoji: "🖌️", id: 9, nombre: "pintura" },
-    { emoji: "🪚", id: 11, nombre: "Carpinteria" },
+    { emoji: "ðŸ–Œï¸", id: 9, nombre: "pintura" },
+    { emoji: "ðŸªš", id: 11, nombre: "Carpinteria" },
   ];
 
   // Nombres de los meses
@@ -176,7 +176,7 @@ export class CronogramaAnualMantenimiento {
     this.selectedMobileMonth.set(event.detail.value);
   }
 
-  // --- Lígica de Carga y Filtro de Datos ---
+  // --- LÃ­gica de Carga y Filtro de Datos ---
   onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
     let endpoint = `MaintenanceCalendars/CronogramaAnual/${customerId}`;
@@ -241,7 +241,7 @@ export class CronogramaAnualMantenimiento {
   // --- Acciones de la Interfaz ---
 
   onModalForm(data: any): void {
-    // Si data es solo un ID (número), lo adaptamos, o si es objeto lo usamos
+    // Si data es solo un ID (nÃºmero), lo adaptamos, o si es objeto lo usamos
     const id = typeof data === "number" ? data : data.id;
 
     this.dialogHandlerS
@@ -359,7 +359,7 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th style="width: 25%;">DESCRIPCIóN</th>
+          <th style="width: 25%;">DESCRIPCIÃ³N</th>
           ${monthsHeaders}
         </tr>
       </thead>

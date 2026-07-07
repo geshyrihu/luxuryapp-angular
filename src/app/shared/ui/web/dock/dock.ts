@@ -21,7 +21,7 @@ import { TooltipModule } from "primeng/tooltip";
         [id]="dockId()"
         [class]="'app-dock-inner'"
       >
-        <ng-template pTemplate="item" let-item>
+        <ng-template #item let-item>
           <div
             class="app-dock-item"
             [pTooltip]="item.label"

@@ -1,8 +1,23 @@
-import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton } from "@ionic/angular/standalone";
-import { ROUTES } from "src/app/routing/route-paths";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import {
@@ -20,13 +35,6 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
@@ -35,12 +43,9 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
 @Component({
   selector: "app-medidores-list",
@@ -54,16 +59,14 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     CommonModule,
     TableModule,
     WebButtonLabelAdd,
-    WebButtonLabelDelete,
     WebButtonLabelEdit,
     DataViewMobile,
     CardModule,
     TooltipModule,
     WebButtonLabelItem,
     IonButton,
-    ActionMenu,
+
     AppIcon,
-    WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,
   ],
@@ -145,12 +148,12 @@ export class MedidoresList {
   exportExcel(id: any) {
     const urlApi = Endpoints.MeterReadings.exportExcel(id);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      console.log("Datos recibidos de la API para Excel:", result); // Log para depuración
+      console.log("Datos recibidos de la API para Excel:", result); // Log para depuraciÃ³n
       this.datosExcel = result;
       if (result && result.length > 0) {
         this.generate();
       } else {
-        console.log("No se generó el Excel porque no hay datos");
+        console.log("No se generÃ³ el Excel porque no hay datos");
       }
     });
   }

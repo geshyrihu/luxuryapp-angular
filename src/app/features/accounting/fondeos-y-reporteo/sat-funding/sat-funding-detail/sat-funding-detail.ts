@@ -1,5 +1,11 @@
-import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormsModule,
@@ -10,16 +16,17 @@ import { ActivatedRoute } from "@angular/router";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // PrimeNG Modules
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
 import { DialogModule } from "primeng/dialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   BulkUpdateTipoGastoDTO,
   SatCfdiDTO,
@@ -29,8 +36,6 @@ import {
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-sat-funding-detail",
@@ -50,8 +55,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     TooltipModule,
     CardModule,
     WebButtonLabelSave,
-    WebButtonLabelConfirm,
-    WebButtonLabelEdit,
+
   ],
 })
 export class SatFundingDetailComponent implements OnInit {

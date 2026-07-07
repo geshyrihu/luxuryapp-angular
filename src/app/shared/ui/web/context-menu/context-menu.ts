@@ -16,7 +16,7 @@ import { MenuItem } from "primeng/api";
     >
       <ng-content />
     </div>
-    <p-contextMenu #cm [model]="items()" />
+    <p-contextmenu #cm [model]="items()" />
   `,
   styles: [`
     .context-menu-host {

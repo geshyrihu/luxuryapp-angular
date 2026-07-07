@@ -1,19 +1,25 @@
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MenuItem } from "primeng/api";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu, MenuModule } from "primeng/menu";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-} from "@ui/buttons/web-label";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -21,9 +27,6 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CalendarioMaestroForm } from "./calendario-maestro-form";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
 @Component({
   selector: "app-calendario-maestro-lista",
@@ -40,11 +43,9 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     MenuModule,
     TagModule,
     DataViewMobile,
-    ActionMenu,
+
     IonItem,
     IonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
   ],
 })
 export class CalendarioMaestroLista implements OnInit {
@@ -118,7 +119,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "Información de servicio",
+      "InformaciÃ³n de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }

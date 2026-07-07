@@ -37,10 +37,10 @@
       <tr>
         <th class="table-col-10 text-center">GRUPO</th>
         <th pSortableColumn="nameGroup">
-          NOMBRE <p-sortIcon field="nameGroup" />
+          NOMBRE <p-sorticon field="nameGroup" />
         </th>
         <th pSortableColumn="visibility">
-          VISIBILIDAD <p-sortIcon field="visibility" />
+          VISIBILIDAD <p-sorticon field="visibility" />
         </th>
         <th class="table-col-15 text-center">PENDIENTES</th>
         <th class="table-col-20 no-print text-right">ACCIONES</th>
@@ -95,14 +95,16 @@
             <iw-button-item
               (clicked)="onModalParticipants(item)"
               iconClass="mdi:account-group"
-              pTooltip="Integrantes" tooltipPosition="top"
+              pTooltip="Integrantes"
+              tooltipPosition="top"
               variant="text"
             />
             } @if (hasSuperUsuario()) {
             <iw-button-item
               (clicked)="SendReportPendingTicketGroupAsync(item)"
               iconClass="mdi:email-outline"
-              pTooltip="Reporte" tooltipPosition="top"
+              pTooltip="Reporte"
+              tooltipPosition="top"
               variant="text"
             />
             }

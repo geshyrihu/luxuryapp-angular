@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -48,7 +48,7 @@
           <th class="table-col-15"></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="groupheader" let-category>
+      <ng-template #groupheader let-category>
         <tr pRowGroupHeader>
           <td colspan="3">
             <span class="font-bold ml-2 font-size-18">{{ category.name }}</span>

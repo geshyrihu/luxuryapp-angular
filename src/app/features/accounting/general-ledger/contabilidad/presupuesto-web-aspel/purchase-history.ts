@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -32,7 +32,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AppIcon,
     CommonModule,
     TableModule,
-    WebButtonLabel,
+
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

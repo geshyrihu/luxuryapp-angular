@@ -30,7 +30,7 @@
             legend="La Plantilla (Borrador Dinámico)"
             styleClass="h-full bg-blue-50 border-blue-200"
           >
-            <ng-template pTemplate="header">
+            <ng-template #header>
               <div class="flex align-items-center gap-2 px-2 text-blue-900">
                 <app-icon [icon]="'mdi:pencil'" />
                 <span class="font-bold">La "Plantilla"</span>
@@ -49,7 +49,7 @@
             legend="La Instancia (PDF Oficial)"
             styleClass="h-full bg-green-50 border-green-200"
           >
-            <ng-template pTemplate="header">
+            <ng-template #header>
               <div class="flex align-items-center gap-2 px-2 text-green-900">
                 <app-icon [icon]="'mdi:file-pdf-box'" />
                 <span class="font-bold">La "Instancia"</span>

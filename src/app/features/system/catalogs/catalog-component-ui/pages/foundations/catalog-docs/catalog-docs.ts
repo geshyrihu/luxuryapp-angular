@@ -74,8 +74,8 @@ interface NomenclaturaCampo {
               <code class="text-sm md:text-base">[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code>
             </div>
             <p-table [value]="camposNomenclatura" styleClass="p-datatable-sm">
-              <ng-template pTemplate="header"><tr><th>Campo</th><th>Valores</th></tr></ng-template>
-              <ng-template pTemplate="body" let-row><tr><td><code>{{ row.campo }}</code></td><td class="text-xs">{{ row.valores }}</td></tr></ng-template>
+              <ng-template #header><tr><th>Campo</th><th>Valores</th></tr></ng-template>
+              <ng-template #body let-row><tr><td><code>{{ row.campo }}</code></td><td class="text-xs">{{ row.valores }}</td></tr></ng-template>
             </p-table>
           </p-card>
         </div>
@@ -83,10 +83,10 @@ interface NomenclaturaCampo {
         <div class="col-12 lg:col-6 mt-4">
           <p-card header="Matriz de Acceso por Rol">
             <p-table [value]="matrizAcceso" [scrollable]="true" scrollHeight="300px" styleClass="p-datatable-sm">
-              <ng-template pTemplate="header">
+              <ng-template #header>
                 <tr><th>Documento</th><th>Super Usuario</th><th>Dirección</th><th>Staff</th><th>Condomino</th><th>Proveedor</th></tr>
               </ng-template>
-              <ng-template pTemplate="body" let-row>
+              <ng-template #body let-row>
                 <tr>
                   <td class="text-xs font-bold">{{ row.documento }}</td>
                   <td><p-tag [value]="row.superUsuario" [severity]="getColorAcceso(row.superUsuario)" /></td>

@@ -1,15 +1,20 @@
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { WebButtonLabelTracking } from "@ui/buttons/web-label/button-tracking";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
-import { WebButtonLabelTracking } from "@ui/buttons/web-label/button-tracking";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -24,8 +29,8 @@ import { TicketLegalFormCliente } from "./ticket-legal-form-cliente";
 import { TicketLegalSeguimientoCliente } from "./ticket-legal-seguimiento-cliente";
 import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimiento-solicitud-detalle";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 
@@ -43,11 +48,9 @@ import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    WebButtonLabelTracking,
-    ActionMenu,
+
     DataViewMobile,
     CardModule,
-    WebButtonLabelItem,
   ],
 })
 export class TicketLegalListaCliente implements OnInit {

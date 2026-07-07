@@ -7,7 +7,6 @@
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
-  responsiveLayout="scroll"
   styleClass="custom-table hidden md:block"
 >
   <ng-template #caption>
@@ -33,11 +32,11 @@
       <th>Id</th>
       <th class="table-col-30" pSortableColumn="numeroCuenta">
         CUENTA
-        <p-sortIcon field="numeroCuenta" />
+        <p-sorticon field="numeroCuenta" />
       </th>
       <th style="width: 65%" pSortableColumn="descripcion">
         DESCRIPCIóN DE LA CUENTA
-        <p-sortIcon field="descripcion" />
+        <p-sorticon field="descripcion" />
       </th>
       @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
       <th class="table-col-5"></th>

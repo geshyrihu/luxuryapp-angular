@@ -72,23 +72,23 @@
     <tr>
       <th pSortableColumn="code">
         FOLIO
-        <p-sortIcon field="code" />
+        <p-sorticon field="code" />
       </th>
       <th pSortableColumn="cliente">
         CLIENTE
-        <p-sortIcon field="cliente" />
+        <p-sorticon field="cliente" />
       </th>
       <th pSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
-        <p-sortIcon field="fechaSolicitudFiltro" />
+        <p-sorticon field="fechaSolicitudFiltro" />
       </th>
       <th pSortableColumn="pendiente">
         SEGUIMIENTO
-        <p-sortIcon field="pendiente" />
+        <p-sorticon field="pendiente" />
       </th>
       <th colspan="2" pSortableColumn="status">
         ESTATUS
-        <p-sortIcon field="status" />
+        <p-sorticon field="status" />
       </th>
     </tr>
   </ng-template>
@@ -159,7 +159,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-  <ng-template pTemplate="paginatorleft">
+  <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>

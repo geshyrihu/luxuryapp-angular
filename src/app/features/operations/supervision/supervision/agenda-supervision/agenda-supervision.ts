@@ -1,16 +1,25 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { MultiSelectModule } from "primeng/multiselect";
-import { TableModule } from "primeng/table";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { MultiSelectModule } from "primeng/multiselect";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -27,9 +36,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-agenda-supervision",
@@ -47,8 +53,7 @@ import { TooltipModule } from "primeng/tooltip";
     MultiSelectModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    WebButtonLabel,
-    ActionMenu,
+
     RangoCalendarioyyyymmdd,
   ],
 })
@@ -82,7 +87,7 @@ export class AgendaSupervision implements OnInit {
     this.rangoCalendarioService.fechaFinalDateFull,
   );
   applicationUserId = this.authS.applicationUserId;
-  depto: string = "SUPERVISIóN DE OPERACIONES";
+  depto: string = "SUPERVISIÃ³N DE OPERACIONES";
   nombre: string =
     this.authS.infoUserAuth.firstName + " " + this.authS.infoUserAuth.lastName;
   semana: string = this.fechaInicial + " a " + this.fechaFinal;

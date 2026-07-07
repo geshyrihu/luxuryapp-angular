@@ -6,7 +6,7 @@
     [circular]="true"
     [autoplayInterval]="3000"
   >
-    <ng-template let-image pTemplate="item">
+    <ng-template let-image #item>
       <div class="item event-list">
         <div
           class="slide-bg"
@@ -59,14 +59,14 @@
             </div>
           </div>
           <div class="mt-5 mx-auto">
-            <p-iconField iconPosition="right">
-              <p-inputIcon class="bx bx-paper-plane align-middle"></p-inputIcon>
+            <p-iconfield iconPosition="right">
+              <p-inputicon class="bx bx-paper-plane align-middle"></p-inputicon>
               <input
                 pInputText
                 type="text"
                 placeholder="Enter your email address"
               />
-            </p-iconField>
+            </p-iconfield>
           </div>
         </div>
       </div>

@@ -1,12 +1,17 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -16,11 +21,12 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 import ModalGenerarNomina from "./modal-generar-nomina/modal-generar-nomina";
 
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -32,7 +38,6 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     TagModule,
-    WebButtonLabel,
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
@@ -91,7 +96,9 @@ export default class Nominas {
   }
 
   verDetalle(item: NominaEncabezadoDTO): void {
-    this.router.navigate(ROUTES.RECURSOS_HUMANOS.NOMINA.NOMINA_DETALLE(item.id));
+    this.router.navigate(
+      ROUTES.RECURSOS_HUMANOS.NOMINA.NOMINA_DETALLE(item.id),
+    );
   }
 
   async cambiarEstado(

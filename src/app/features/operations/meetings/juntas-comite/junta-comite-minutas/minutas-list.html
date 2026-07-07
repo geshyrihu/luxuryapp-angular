@@ -83,23 +83,23 @@
         <tr>
           <th class="table-col-17" pSortableColumn="date">
             Fecha
-            <p-sortIcon field="date" />
+            <p-sorticon field="date" />
           </th>
           <th class="table-col-15" pSortableColumn="issues">
             Total
-            <p-sortIcon field="issues" />
+            <p-sorticon field="issues" />
           </th>
           <th class="table-col-15" pSortableColumn="concluidos">
             Concluido
-            <p-sortIcon field="concluidos" />
+            <p-sorticon field="concluidos" />
           </th>
           <th class="table-col-15" pSortableColumn="pending">
             Pendiente
-            <p-sortIcon field="pending" />
+            <p-sorticon field="pending" />
           </th>
           <th class="table-col-15" pSortableColumn="noAutorizado">
             No Autorizado
-            <p-sortIcon field="noAutorizado" />
+            <p-sorticon field="noAutorizado" />
           </th>
           <th style="width: 18%">Acciones</th>
           <th class="table-col-5"></th>
@@ -455,7 +455,7 @@
             <!-- Nested app-area-details-table components for mobile -->
             <div class="mt-3">
               <p-accordion>
-                <p-accordionTab header="Detalles Contables">
+                <p-accordiontab header="Detalles Contables">
                   <app-area-details-table
                     title="Contable"
                     [meetingId]="item.id"
@@ -469,8 +469,8 @@
                     (editSeguimiento)="onModalFormSeguimiento($event)"
                     (deleteSeguimiento)="onDeleteSeguimiento($event)"
                   />
-                </p-accordionTab>
-                <p-accordionTab header="Detalles Operaciones">
+                </p-accordiontab>
+                <p-accordiontab header="Detalles Operaciones">
                   <app-area-details-table
                     title="Operaciones"
                     [meetingId]="item.id"
@@ -484,8 +484,8 @@
                     (editSeguimiento)="onModalFormSeguimiento($event)"
                     (deleteSeguimiento)="onDeleteSeguimiento($event)"
                   />
-                </p-accordionTab>
-                <p-accordionTab header="Detalles Legales">
+                </p-accordiontab>
+                <p-accordiontab header="Detalles Legales">
                   <app-area-details-table
                     title="Legal"
                     [meetingId]="item.id"
@@ -499,7 +499,7 @@
                     (editSeguimiento)="onModalFormSeguimiento($event)"
                     (deleteSeguimiento)="onDeleteSeguimiento($event)"
                   />
-                </p-accordionTab>
+                </p-accordiontab>
               </p-accordion>
             </div>
           </div>

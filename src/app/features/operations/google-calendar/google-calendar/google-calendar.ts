@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
   effect,
   inject,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FullCalendarModule } from "@fullcalendar/angular";
@@ -15,17 +15,13 @@ import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -65,12 +61,12 @@ interface IGoogleCalendarEventListItem {
   recurrenceSummary: string;
 }
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
@@ -94,14 +90,9 @@ import { TooltipModule } from "primeng/tooltip";
     TagModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+
     IonItem,
-    IonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+    IonLabel
   ],
 })
 export class GoogleCalendar {

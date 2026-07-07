@@ -1,7 +1,7 @@
 <!-- Spinner de carga que se muestra mientras se obtienen los datos -->
 @if (!data() && submitting()) {
 <div class="text-center my-5">
-  <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+  <p-progressspinner styleClass="w-3rem h-3rem" strokeWidth="4" />
   <p class="mt-2">Cargando detalle de la orden...</p>
 </div>
 }
@@ -62,7 +62,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
       </div>
       <div class="col-12">
         <label class="block text-color-secondary font-medium"
-          >Área, Equipo o Instalación</label
+          >Ãrea, Equipo o Instalación</label
         >
         <p>{{ data().equipoOInstalacion }}</p>
       </div>
@@ -171,7 +171,6 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         [value]="data().detalleItems"
         showGridlines="true"
         stripedRows="true"
-        responsiveLayout="scroll"
       >
         <ng-template #header>
           <tr>
@@ -228,7 +227,6 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
       <p-table
         [value]="data().detallePresupuesto"
         showGridlines="true"
-        responsiveLayout="scroll"
       >
         <ng-template #header>
           <tr>

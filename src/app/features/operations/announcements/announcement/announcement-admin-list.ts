@@ -1,28 +1,32 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ROUTES } from "src/app/routing/route-paths";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -31,16 +35,13 @@ import {
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
 import { IAnnouncementAdminList } from "./announcement.model";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
@@ -61,22 +62,15 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     TableModule,
     SelectModule,
     WebButtonLabel,
-    WebButtonLabelDownload,
+
     TagModule,
     TooltipModule,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
     AppIcon,
     IonItem,
     IonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
     CustomInputSelectSignal,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

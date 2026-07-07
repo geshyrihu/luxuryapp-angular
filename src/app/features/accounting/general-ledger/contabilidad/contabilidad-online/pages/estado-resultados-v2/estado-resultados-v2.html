@@ -20,7 +20,7 @@
     styleClass="rf-prime-table card hidden md:block p-datatable-sm"
     [tableStyle]="{ 'min-width': '800px' }"
   >
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th style="width: 120px">Cuenta</th>
         <th>Descripción</th>
@@ -31,7 +31,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-row>
+    <ng-template #body let-row>
       @if (row.tipo === 'header') {
       <tr class="rf-row-section">
         <td colspan="6" class="py-2 px-3 uppercase text-xs tracking-wider">

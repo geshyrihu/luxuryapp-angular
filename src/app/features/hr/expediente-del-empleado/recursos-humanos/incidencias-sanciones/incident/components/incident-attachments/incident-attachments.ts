@@ -1,12 +1,17 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ImageCompressionService } from "src/app/core/services/image-compression.service";
@@ -29,7 +34,6 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     TableModule,
     DatePipe,
     WebButtonLabel,
-    WebButtonLabelDelete,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

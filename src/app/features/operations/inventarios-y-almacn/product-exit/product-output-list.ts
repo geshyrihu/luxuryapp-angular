@@ -1,30 +1,28 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   OnDestroy,
   OnInit,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { LazyLoadEvent } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
 import { TableModule } from "primeng/table";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 // import { Subscription } from "rxjs"; // Removed
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -39,14 +37,11 @@ import { PaginationService } from "src/app/core/services/pagination.service";
 import { ExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/services/excel-export.service";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -70,23 +65,16 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableFooter,
     CustomInputTextSignal,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+
     ReactiveFormsModule,
     CardModule,
-    WebButtonLabelDownload,
-    WebButtonLabel,
-
     CustomInputDatepicker,
-
-    WebButtonLabelItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PaginationService],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
-  // Inyección de Dependencias
+  // InyecciÃ³n de Dependencias
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -117,7 +105,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
   selectedDateControl = new FormControl<Date | null>(null);
   filterControl = new FormControl<string>("");
 
-  // Configuración de la tabla
+  // ConfiguraciÃ³n de la tabla
   // loading = signal(true); // Replaced by toSignal
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

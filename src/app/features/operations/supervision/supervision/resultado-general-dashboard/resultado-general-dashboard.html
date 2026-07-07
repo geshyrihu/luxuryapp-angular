@@ -61,8 +61,8 @@
     <tr [hidden]="false">
       <th pSortableColumn="numeroCliente" class="table-col-20">
         Cliente
-        <p-sortIcon field="numeroCliente" />
-        <p-columnFilter
+        <p-sorticon field="numeroCliente" />
+        <p-columnfilter
           field="customer"
           matchMode="in"
           display="menu"
@@ -71,42 +71,42 @@
           [showOperator]="false"
           [showAddButton]="false"
         >
-          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-            <p-multiSelect
+          <ng-template #filter let-value let-filter="filterCallback">
+            <p-multiselect
               [ngModel]="value"
               [options]="cb_customers"
               placeholder="Ninguno"
               (onChange)="filter($event.value)"
               optionLabel="label"
             >
-              <ng-template let-option pTemplate="item">
+              <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
                   <span class="ml-1">{{ option.label }}</span>
                 </div>
               </ng-template>
-            </p-multiSelect>
+            </p-multiselect>
           </ng-template>
-        </p-columnFilter>
+        </p-columnfilter>
       </th>
       @if (mostrar) {
       <th pSortableColumn="solicitudesTotal" class="table-col-20">
         Solicitudes
-        <p-sortIcon field="solicitudesTotal" />
+        <p-sorticon field="solicitudesTotal" />
       </th>
       } @if (mostrar) {
       <th pSortableColumn="solicitudesAtendidas" class="table-col-20">
         Atendidas
-        <p-sortIcon field="solicitudesAtendidas" />
+        <p-sorticon field="solicitudesAtendidas" />
       </th>
       } @if (mostrar) {
       <th pSortableColumn="solicitudesPendientes" class="table-col-20">
         Pendientes
-        <p-sortIcon field="solicitudesPendientes" />
+        <p-sorticon field="solicitudesPendientes" />
       </th>
       }
       <th pSortableColumn="porcentajeEjecucionValue" class="table-col-20">
         Cumplimiento
-        <p-sortIcon field="porcentajeEjecucionValue" />
+        <p-sorticon field="porcentajeEjecucionValue" />
       </th>
     </tr>
   </ng-template>
@@ -146,13 +146,13 @@
         } @if (item.porcentajeEjecucionValue > 0) {
         <div>
           <div>
-            <p-progressBar
+            <p-progressbar
               [value]="item.porcentajeEjecucionValue"
               [style]="{'height': '24px'}"
               [showValue]="true"
               [color]="onValueProgress(item.porcentajeEjecucionValue)"
             >
-            </p-progressBar>
+            </p-progressbar>
           </div>
         </div>
         }

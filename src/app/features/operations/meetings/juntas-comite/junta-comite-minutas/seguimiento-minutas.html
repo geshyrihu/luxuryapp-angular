@@ -65,20 +65,20 @@
     <tr>
       <th style="width: 6%" pSortableColumn="areaResponsable">
         AREA
-        <p-sortIcon field="areaResponsable" />
+        <p-sorticon field="areaResponsable" />
       </th>
       <th style="width: 28%" pSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
-        <p-sortIcon field="fechaSolicitudFiltro" />
+        <p-sorticon field="fechaSolicitudFiltro" />
       </th>
       <th pSortableColumn="pendiente" class="table-col-pendiente">
         PENDIENTE
-        <p-sortIcon field="pendiente" />
+        <p-sorticon field="pendiente" />
       </th>
       <th class="table-col-seguimiento">SEGUIMIENTO</th>
       <th style="width: 6%" class="text-center" pSortableColumn="status">
         ESTATUS
-        <p-sortIcon field="status" />
+        <p-sorticon field="status" />
       </th>
       <th style="width: 3%" class="no-print"></th>
     </tr>
@@ -120,7 +120,7 @@
           "
           [border-round]="true"
         >
-          <ng-template pTemplate="content">
+          <ng-template #content>
             <app-icon
               [icon]="
                 item.status == 0

@@ -15,18 +15,18 @@
           styleClass="rf-prime-table p-datatable-sm"
           [tableStyle]="{'max-width': '700px'}"
         >
-          <ng-template pTemplate="caption">
+          <ng-template #caption>
             <div class="text-lg font-bold text-primary">
               SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
             </div>
           </ng-template>
-          <ng-template pTemplate="header">
+          <ng-template #header>
             <tr>
               <th style="width: 70%">No. CUENTA DE CHEQUES</th>
               <th style="width: 30%" class="text-right">IMPORTE</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-banco>
+          <ng-template #body let-banco>
             <tr class="rf-row-concepto">
               <td class="rf-td-descripcion--item">{{ banco.cuenta }}</td>
               <td class="text-right rf-td-number">
@@ -34,7 +34,7 @@
               </td>
             </tr>
           </ng-template>
-          <ng-template pTemplate="footer">
+          <ng-template #footer>
             <tr class="rf-row-total">
               <td class="rf-td-descripcion font-bold text-right">(1) SUMA</td>
               <td class="text-right rf-td-number--total">
@@ -52,19 +52,19 @@
           styleClass="rf-prime-table p-datatable-sm"
           [tableStyle]="{'max-width': '900px'}"
         >
-          <ng-template pTemplate="caption">
+          <ng-template #caption>
             <div class="text-lg font-bold text-primary">
               SALDO EN INVERSIONES AL {{ data()?.fechaReporte | uppercase }}
             </div>
           </ng-template>
-          <ng-template pTemplate="header">
+          <ng-template #header>
             <tr>
               <th style="width: 45%">No. CUENTA</th>
               <th style="width: 25%" class="text-right">IMPORTE</th>
               <th style="width: 30%">DESCRIPCIÓN</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-inv>
+          <ng-template #body let-inv>
             <tr class="rf-row-concepto">
               <td class="rf-td-descripcion--item">{{ inv.cuenta }}</td>
               <td class="text-right rf-td-number">
@@ -73,7 +73,7 @@
               <td class="rf-td-descripcion--item">{{ inv.descripcion }}</td>
             </tr>
           </ng-template>
-          <ng-template pTemplate="footer">
+          <ng-template #footer>
             <tr class="rf-row-result">
               <td class="rf-td-descripcion font-bold text-right">
                 (2) SUBTOTAL

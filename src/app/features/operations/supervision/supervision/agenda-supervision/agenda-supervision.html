@@ -50,8 +50,8 @@
     <tr>
       <th [width]="'15%'" class="ocultar center" pSortableColumn="name.label">
         SUPERVISOR
-        <p-sortIcon field="name.label" />
-        <p-columnFilter
+        <p-sorticon field="name.label" />
+        <p-columnfilter
           field="name"
           matchMode="in"
           display="menu"
@@ -64,31 +64,31 @@
               <span class="font-bold">Supervisor</span>
             </div>
           </ng-template>
-          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-            <p-multiSelect
+          <ng-template #filter let-value let-filter="filterCallback">
+            <p-multiselect
               [ngModel]="value"
               [options]="cb_user()"
               placeholder="Ninguno"
               (onChange)="filter($event.value)"
               optionLabel="label"
             >
-              <ng-template let-option pTemplate="item">
+              <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
                   <span class="ml-1">{{ option.label }}</span>
                 </div>
               </ng-template>
-            </p-multiSelect>
+            </p-multiselect>
           </ng-template>
-        </p-columnFilter>
+        </p-columnfilter>
       </th>
       <th [width]="'7%'" pSortableColumn="fechaSolicitud">
         SOLICITUD
-        <p-sortIcon field="fechaSolicitud" />
+        <p-sorticon field="fechaSolicitud" />
       </th>
       <th [width]="'9%'" pSortableColumn="numeroCliente">
         CLIENTE
-        <p-sortIcon field="numeroCliente" />
-        <p-columnFilter
+        <p-sorticon field="numeroCliente" />
+        <p-columnfilter
           field="customer"
           matchMode="in"
           display="menu"
@@ -101,47 +101,47 @@
               <span class="font-bold">Cliente</span>
             </div>
           </ng-template>
-          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-            <p-multiSelect
+          <ng-template #filter let-value let-filter="filterCallback">
+            <p-multiselect
               [ngModel]="value"
               [options]="cb_customers()"
               placeholder="Ninguno"
               (onChange)="filter($event.value)"
               optionLabel="label"
             >
-              <ng-template let-option pTemplate="item">
+              <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
                   <span class="ml-1">{{ option.label }}</span>
                 </div>
               </ng-template>
-            </p-multiSelect>
+            </p-multiselect>
           </ng-template>
-        </p-columnFilter>
+        </p-columnfilter>
       </th>
       <th [width]="'20%'" pSortableColumn="problema">
         PROBLEMA/TEMA
-        <p-sortIcon field="problema" />
+        <p-sorticon field="problema" />
       </th>
       <th [width]="'20%'" pSortableColumn="solucion">
         SOLUCION/SEGUIMIENTO
-        <p-sortIcon field="solucion" />
+        <p-sorticon field="solucion" />
       </th>
       <th [width]="'9%'" pSortableColumn="fechaConclusion">
         CONCLUSION
-        <p-sortIcon field="fechaConclusion" />
+        <p-sorticon field="fechaConclusion" />
       </th>
       <th pSortableColumn="duracion">
         DIAS
-        <p-sortIcon field="duracion" />
+        <p-sorticon field="duracion" />
       </th>
       <th pSortableColumn="estatus">
         ESTATUS
-        <p-sortIcon field="estatus" />
-        <p-columnFilter
+        <p-sorticon field="estatus" />
+        <p-columnfilter
           type="boolean"
           field="estatus"
           display="menu"
-        ></p-columnFilter>
+        ></p-columnfilter>
       </th>
       <th class="ocultar"></th>
     </tr>

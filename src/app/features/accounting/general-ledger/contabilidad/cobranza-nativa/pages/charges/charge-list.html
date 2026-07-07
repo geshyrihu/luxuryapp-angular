@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <div class="flex justify-content-between align-items-end mb-4">
         <primeng-custom-caption
           title="Emision de Cargos (Motor Nativo)"
@@ -30,7 +30,7 @@
       </div>
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-8rem">Propiedad</th>
         <th class="w-8rem">Concepto</th>
@@ -43,7 +43,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="font-bold text-800">{{ item.propertyFullName || 'N/A' }}</td>
         <td>{{ item.concept }}</td>

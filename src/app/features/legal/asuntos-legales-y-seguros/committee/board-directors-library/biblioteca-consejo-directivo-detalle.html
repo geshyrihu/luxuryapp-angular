@@ -1,7 +1,7 @@
 <br />
 <h3 class="text-center p-2 text-2xl font-bold text-900">{{ pageTitle }}</h3>
 
-<!-- 🖥️ DESKTOP: PrimeNG Table -->
+<!-- ðŸ–¥ï¸ DESKTOP: PrimeNG Table -->
 <p-table
   #dt
   [value]="dataSignal()"
@@ -12,7 +12,6 @@
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
   [loading]="loading()"
-  responsiveLayout="stack"
   breakpoint="960px"
   styleClass="custom-table card hidden md:block"
 >
@@ -29,13 +28,13 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="primaryDetail">
-        Folio <p-sortIcon field="primaryDetail"></p-sortIcon>
+        Folio <p-sorticon field="primaryDetail"></p-sorticon>
       </th>
       <th pSortableColumn="date">
-        Fecha <p-sortIcon field="date"></p-sortIcon>
+        Fecha <p-sorticon field="date"></p-sorticon>
       </th>
       <th pSortableColumn="name">
-        Nombre <p-sortIcon field="name"></p-sortIcon>
+        Nombre <p-sorticon field="name"></p-sorticon>
       </th>
       <th></th>
     </tr>
@@ -63,7 +62,7 @@
   </ng-template>
 </p-table>
 
-<!-- 📱 MOBILE: app-data-view-mobile con ion-item moderno -->
+<!-- ðŸ“± MOBILE: app-data-view-mobile con ion-item moderno -->
 <app-data-view-mobile
   class="block md:hidden"
   [data]="dataSignal()"

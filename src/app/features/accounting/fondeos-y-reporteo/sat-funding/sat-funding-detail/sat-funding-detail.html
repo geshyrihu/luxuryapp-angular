@@ -83,7 +83,7 @@
           </div>
         </ng-template>
 
-        <ng-template pTemplate="groupheader" let-invoice>
+        <ng-template #groupheader let-invoice>
           <tr class="p-rowgroup-header">
             <td colspan="7">
               <span class="font-bold"
@@ -99,16 +99,16 @@
             <!-- Reorder Handle -->
             <th class="table-col-4rem">Sel.</th>
             <th pSortableColumn="fechaEmision">
-              Fecha <p-sortIcon field="fechaEmision"></p-sortIcon>
+              Fecha <p-sorticon field="fechaEmision"></p-sorticon>
             </th>
             <th pSortableColumn="emisorNombre">
-              Emisor <p-sortIcon field="emisorNombre"></p-sortIcon>
+              Emisor <p-sorticon field="emisorNombre"></p-sorticon>
             </th>
             <th pSortableColumn="total">
-              Total <p-sortIcon field="total"></p-sortIcon>
+              Total <p-sorticon field="total"></p-sorticon>
             </th>
             <th pSortableColumn="bankShortName">
-              Banco <p-sortIcon field="bankShortName"></p-sortIcon>
+              Banco <p-sorticon field="bankShortName"></p-sorticon>
             </th>
             <th>Acciones</th>
           </tr>
@@ -131,7 +131,7 @@
               </div>
             </td>
             <td>
-              <p-tableCheckbox [value]="invoice"></p-tableCheckbox>
+              <p-tablecheckbox [value]="invoice"></p-tablecheckbox>
             </td>
             <td>{{ invoice.fechaEmision | date: 'short' }}</td>
             <td>{{ invoice.emisorNombre }}</td>

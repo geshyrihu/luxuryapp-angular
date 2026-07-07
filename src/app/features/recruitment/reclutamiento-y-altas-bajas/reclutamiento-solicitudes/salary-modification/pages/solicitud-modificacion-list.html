@@ -22,7 +22,7 @@
       <th style="width: 10rem">PUESTO NUEVO</th>
       <th style="width: 8rem">SUELDO NUEVO</th>
       <th pSortableColumn="status" style="width: 8rem">
-        ESTATUS <p-sortIcon field="status" />
+        ESTATUS <p-sorticon field="status" />
       </th>
       <th style="width: 6rem"></th>
     </tr>
@@ -76,7 +76,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="10" />
   </ng-template>
-  <ng-template pTemplate="paginatorleft">
+  <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>

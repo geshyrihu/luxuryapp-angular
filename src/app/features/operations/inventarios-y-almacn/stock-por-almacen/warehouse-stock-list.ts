@@ -1,19 +1,25 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -30,14 +36,10 @@ import { TarjetaProducto } from "src/app/features/operations/inventarios-y-almac
 import { ProductEntryForm } from "../product-entry/product-entry-form";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -58,16 +60,10 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    ActionMenu,
-    WebButtonLabelItem,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
+
     CardModule,
     IonItem,
     IonLabel,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
   ],
 })
 export class WarehouseStockList {
@@ -78,7 +74,7 @@ export class WarehouseStockList {
   route = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // Seóales
+  // SeÃ³ales
   dataSignal = signal<any[]>([]);
   almacenIdFromRoute: string | null = null;
 

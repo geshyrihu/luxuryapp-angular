@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -7,13 +8,11 @@ import {
   input,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Tag } from "primeng/tag";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -38,7 +37,6 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     Tag,
-    WebButtonLabelItem,
     PrimeNgCustomCaption,
   ],
 })

@@ -9,16 +9,16 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AvatarModule } from "primeng/avatar";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { AvatarModule } from "primeng/avatar";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields as getGlobalFilterFields,
@@ -28,8 +28,6 @@ import {
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 @Component({
   selector: "app-gasto-fijo-servicios",
@@ -44,8 +42,6 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputSelectSignal,
-    WebButtonLabelItem,
-    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],

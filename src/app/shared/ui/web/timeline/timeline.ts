@@ -12,7 +12,7 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
   imports: [CommonModule, TimelineModule, AppIcon],
   template: `
     <p-timeline [value]="events()" [align]="align()" [layout]="layout()">
-      <ng-template pTemplate="marker" let-event>
+      <ng-template #marker let-event>
         <div
           class="timeline-marker"
           [style.background]="event.color || 'var(--ds-primary)'"
@@ -22,7 +22,7 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
           }
         </div>
       </ng-template>
-      <ng-template pTemplate="content" let-event>
+      <ng-template #content let-event>
         <div class="timeline-card">
           <div class="timeline-card-header">
             <strong>{{ event.title }}</strong>

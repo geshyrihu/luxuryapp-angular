@@ -20,7 +20,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     TableModule,
     TooltipModule,
     WebButtonLabel,
-    WebButtonLabelItem,
     WebButtonIconItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

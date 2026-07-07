@@ -1,6 +1,16 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import {
   add,
@@ -16,16 +26,6 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import {
-  WebButtonLabelActiveDesactive,
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import {
@@ -46,16 +46,16 @@ import { JobDescriptionForm } from "./job-description-form";
 import { WorkPositionForm } from "./work-position-form";
 import { WorkPositionHours } from "./work-position-hours";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -77,20 +77,11 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     AvatarModule,
     TagModule,
-    WebButtonLabelActiveDesactive,
-    WebButtonLabelItem,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
     PrimeNgCustomCaption,
-    ActionMenu,
     DataViewMobile,
     IonBadge,
     IonItem,
     IonLabel,
-    WebButtonLabelActiveDesactive,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
   ],
 })
 export class WorkPositionList {

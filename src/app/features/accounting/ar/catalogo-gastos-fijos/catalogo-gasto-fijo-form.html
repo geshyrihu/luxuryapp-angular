@@ -25,7 +25,7 @@
         <div class="col-12 md:col-6">
           <custom-input-text-signal
             [control]="form.controls.idFondeo"
-            label="Índice de Fondeo"
+            label="Ãndice de Fondeo"
             [horizontal]="false"
           />
           <custom-input-select-signal
@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <!-- SECCIóN 4: BOTóN DE ENVÍO -->
+      <!-- SECCIóN 4: BOTóN DE ENVÃO -->
       <div class="flex justify-content-end">
         @if (!id()) {
         <p-message severity="info" styleClass="mr-2"
@@ -114,7 +114,6 @@
 
     <p-table
       [value]="detalles()"
-      responsiveLayout="scroll"
       styleClass="card  custom-table"
     >
       <ng-template #header>
@@ -161,7 +160,6 @@
     </div>
     <p-table
       [value]="budgets()"
-      responsiveLayout="scroll"
       styleClass="card  custom-table"
     >
       <ng-template #header>

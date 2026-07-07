@@ -1,4 +1,4 @@
-<p-confirmDialog />
+<p-confirmdialog />
 
 <div class="card p-0 md:p-4">
   <p-table
@@ -11,7 +11,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <div class="flex align-items-end justify-content-between flex-wrap mb-4">
         <primeng-custom-caption
           title="Cobranza y Recepción de Pagos (Motor Nativo)"
@@ -33,7 +33,7 @@
       </div>
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-8rem">Fecha de Pago</th>
         <th class="w-12rem">Propiedad</th>
@@ -47,7 +47,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="font-medium">
           {{ item.paymentDate | date: 'dd/MM/yyyy':'UTC' }}

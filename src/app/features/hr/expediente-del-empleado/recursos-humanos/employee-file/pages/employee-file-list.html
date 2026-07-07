@@ -30,7 +30,7 @@
       <primeng-custom-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="table-col-sm">Foto</th>
         <th class="table-col-lg">Nombre</th>
@@ -42,7 +42,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td>
           @if (item.photoUrl) {

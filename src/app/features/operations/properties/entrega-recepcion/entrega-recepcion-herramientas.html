@@ -18,20 +18,20 @@
       <th class="table-col-15 text-sm">Marca</th>
       <th class="table-col-15 text-sm" pSortableColumn="nombre">
         Nombre
-        <p-sortIcon field="nombre" />
+        <p-sorticon field="nombre" />
       </th>
       <th class="table-col-10 text-sm">Check</th>
       <th class="table-col-45 text-sm">Observaciones</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-item>
+  <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td colspan="6">
         <span class="font-bold ml-2">{{ item.clasificacion }}</span>
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupfooter" let-item>
+  <ng-template #groupfooter let-item>
     <tr class="p-rowgroup-footer">
       <td class="text-sm" colspan="6">
         <div style="text-align: right">

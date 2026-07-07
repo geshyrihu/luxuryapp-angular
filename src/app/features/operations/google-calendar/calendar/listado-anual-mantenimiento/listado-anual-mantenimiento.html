@@ -8,7 +8,6 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   groupRowsBy="inventoryCategory"
-  responsiveLayout="scroll"
   rowGroupMode="subheader"
   sortField="inventoryCategory"
   sortMode="single"
@@ -51,14 +50,14 @@
       </div>
     </div>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-item>
+  <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td colspan="5">
         <span class="font-bold ml-2">{{ item.inventoryCategory }}</span>
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupfooter" let-item>
+  <ng-template #groupfooter let-item>
     <tr class="p-rowgroup-footer">
       <td colspan="5" class="table-col-80 font-bold">
         <div class="text-right w-full">
@@ -72,30 +71,30 @@
     <tr>
       <th pSortableColumn="id">
         Id
-        <p-sortIcon field="id" />
+        <p-sorticon field="id" />
       </th>
       <th pSortableColumn="nombre">
-        <p-sortIcon field="nombre" />
+        <p-sorticon field="nombre" />
       </th>
       <th pSortableColumn="actividad">
         Actividad
-        <p-sortIcon field="actividad" />
+        <p-sorticon field="actividad" />
       </th>
       <th pSortableColumn="provider">
         Proveedor
-        <p-sortIcon field="provider" />
+        <p-sorticon field="provider" />
       </th>
       <th pSortableColumn="recurrence">
         Recurrencia
-        <p-sortIcon field="recurrence" />
+        <p-sorticon field="recurrence" />
       </th>
       <th pSortableColumn="fechaServicioFiltro">
         Fecha
-        <p-sortIcon field="fechaServicioFiltro" />
+        <p-sorticon field="fechaServicioFiltro" />
       </th>
       <th pSortableColumn="precio">
         Costo
-        <p-sortIcon field="precio" />
+        <p-sorticon field="precio" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario, ]) ) {

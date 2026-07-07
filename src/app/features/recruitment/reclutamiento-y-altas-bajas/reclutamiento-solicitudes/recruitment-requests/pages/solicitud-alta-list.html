@@ -14,19 +14,19 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="folio" style="width: 5rem">
-        FOLIO <p-sortIcon field="folio" />
+        FOLIO <p-sorticon field="folio" />
       </th>
       <th pSortableColumn="folioVacante" style="width: 5rem">
-        VAC <p-sortIcon field="folioVacante" />
+        VAC <p-sorticon field="folioVacante" />
       </th>
       <th pSortableColumn="requestDateFilter" style="width: 8rem">
-        SOLICITUD <p-sortIcon field="requestDateFilter" />
+        SOLICITUD <p-sorticon field="requestDateFilter" />
       </th>
       <th style="width: 12rem">CLIENTE</th>
       <th style="width: 12rem">NOMBRE</th>
       <th style="width: 10rem">PUESTO</th>
       <th pSortableColumn="status" style="width: 8rem">
-        ESTATUS <p-sortIcon field="status" />
+        ESTATUS <p-sorticon field="status" />
       </th>
       <th style="width: 6rem"></th>
     </tr>
@@ -69,7 +69,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-  <ng-template pTemplate="paginatorleft">
+  <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>

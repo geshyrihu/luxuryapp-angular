@@ -43,7 +43,7 @@
     </div>
   </ng-template>
 
-  <ng-template pTemplate="groupheader" let-item>
+  <ng-template #groupheader let-item>
     <tr pRowGroupHeader class="surface-ground">
       <td colspan="6" class="py-2">
         <div class="flex align-items-center">
@@ -67,19 +67,19 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="customer" style="width: 25%">
-        CLIENTE <p-sortIcon field="customer" />
+        CLIENTE <p-sorticon field="customer" />
       </th>
       <th pSortableColumn="applicationRoleName" style="width: 20%">
-        ROL <p-sortIcon field="applicationRoleName" />
+        ROL <p-sorticon field="applicationRoleName" />
       </th>
       <th pSortableColumn="applicationUser" style="width: 20%">
-        USUARIO <p-sortIcon field="applicationUser" />
+        USUARIO <p-sorticon field="applicationUser" />
       </th>
       <th pSortableColumn="email" style="width: 20%">
-        EMAIL <p-sortIcon field="email" />
+        EMAIL <p-sorticon field="email" />
       </th>
       <th pSortableColumn="phoneNumber" style="width: 10%">
-        TELóFONO <p-sortIcon field="phoneNumber" />
+        TELóFONO <p-sorticon field="phoneNumber" />
       </th>
       <th style="width: 5%"></th>
     </tr>

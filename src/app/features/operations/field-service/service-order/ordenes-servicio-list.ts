@@ -1,5 +1,12 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import {
@@ -8,22 +15,19 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/angular/standalone";
+import { WebButtonLabelItem } from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -39,14 +43,14 @@ import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-prov
 import { ServiceOrderForm } from "./service-order-form";
 import { UploadImgForm } from "./upload-img-form";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -65,12 +69,10 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabel, // Aóadir WebButtonLabel a imports
-    WebButtonLabelItem,
+    WebButtonLabel,
+    // AÃ³adir WebButtonLabel a imports
+
     DataViewMobile,
-    ActionMenu,
     ReactiveFormsModule,
     CustomInputTextSignal,
     InputTextModule,
@@ -83,7 +85,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     IonSegmentButton,
     IonItem,
     IonLabel,
-    WebButtonLabelItem,
     AppIcon,
   ],
 })
@@ -95,7 +96,7 @@ export class OrdenesServicio {
   reporteOrdenesServicioService = inject(ReporteOrdenesServicioService);
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
-  periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
+  periodMonthService = inject(PeriodMonthService); // Asegurarse de que estÃ© inyectado
   pdfService = inject(OrdenesServicioListPdfService);
 
   mm: number;
@@ -138,7 +139,7 @@ export class OrdenesServicio {
   onReloadOrdenes(id: any, filtroEquiposValue: any) {
     this.filtroEquiposValue = filtroEquiposValue;
     this.filtroId = id;
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el método correcto
+    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el mÃ©todo correcto
 
     if (this.filtroId === 10) {
       this.onLoadPintura();
@@ -157,7 +158,7 @@ export class OrdenesServicio {
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);
-    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el método correcto
+    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el mÃ©todo correcto
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {

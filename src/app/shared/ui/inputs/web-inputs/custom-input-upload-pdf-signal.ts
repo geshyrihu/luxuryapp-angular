@@ -16,7 +16,7 @@ import { environment } from "src/environments/environment";
   imports: [FileUploadModule, SharedModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <p-fileUpload
+    <p-fileupload
       name="files"
       [customUpload]="true"
       (uploadHandler)="customUploadHandler($event)"
@@ -27,7 +27,7 @@ import { environment } from "src/environments/environment";
       uploadLabel="Cargar PDFs"
       [maxFileSize]="maxFileSize"
     >
-      <ng-template pTemplate="toolbar">
+      <ng-template #toolbar>
         <div class="py-3">Cargar o arrastrar PDF</div>
       </ng-template>
       <ng-template #content let-files>
@@ -37,7 +37,7 @@ import { environment } from "src/environments/environment";
           }
         </div>
       </ng-template>
-    </p-fileUpload>
+    </p-fileupload>
   `,
 })
 export class SubirPdf implements OnInit {

@@ -204,7 +204,7 @@
               scrollHeight="flex"
               styleClass="p-datatable-sm custom-table"
             >
-              <ng-template pTemplate="header">
+              <ng-template #header>
                 <tr>
                   <th class="w-12 text-center border-r border-gray-200">
                     Sel.
@@ -215,7 +215,7 @@
                   <th class="w-32 text-center bg-blue-50">Aplicar ($)</th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-charge>
+              <ng-template #body let-charge>
                 <tr
                   [ngClass]="{'bg-blue-50/30': charge._selected, 'opacity-70': charge.balance <= 0}"
                 >

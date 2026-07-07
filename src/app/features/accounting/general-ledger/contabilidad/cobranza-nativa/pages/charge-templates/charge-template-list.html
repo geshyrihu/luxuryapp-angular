@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Plantillas de Cargos (Motor Nativo)"
         (add)="onModalForm()"
@@ -19,7 +19,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-4rem text-center">Activa</th>
         <th class="w-12rem">Tipo y Nombre</th>
@@ -31,7 +31,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr [ngClass]="{'opacity-50': !item.isActive}">
         <td class="text-center">
           @if (item.isActive) {

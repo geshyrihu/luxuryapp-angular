@@ -1,14 +1,14 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * Este mÃ³dulo (Presupuesto Propuesta y sus modales) se encuentra 100%
  * FUNCIONAL y ESTABLE.
  *
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lÃ­gica, estructura o flujos de IA
+ * sin antes consultar y obtener autorizaciÃ³n explÃ­cita del Ing. Ricardo Marques.
  *
- * Por favor, NO rompan el código.
+ * Por favor, NO rompan el cÃ³digo.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
@@ -65,9 +65,9 @@ import { BudgetExecutionDetailsModal } from "./modal-budget-execution-details";
 import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso";
 import { ExcelExportService } from "./services/excel-export.service";
 /**
- * Componente principal para la gestión de la propuesta de presupuesto.
- * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.
- * Utiliza Angular Signals para una gestión de estado reactiva y eficiente.
+ * Componente principal para la gestiÃ³n de la propuesta de presupuesto.
+ * Maneja la visualizaciÃ³n, ediciÃ³n y colaboraciÃ³n en tiempo real de las partidas presupuestarias.
+ * Utiliza Angular Signals para una gestiÃ³n de estado reactiva y eficiente.
  */
 
 @Component({
@@ -78,7 +78,7 @@ import { ExcelExportService } from "./services/excel-export.service";
     CustomSearchInput,
     FormsModule,
     CustomInputNumberSignal,
-    MultiSelect,
+
     TableModule,
     CustomInputSelectSignal,
     DialogModule,
@@ -91,33 +91,33 @@ import { ExcelExportService } from "./services/excel-export.service";
 export class PresupuestoPropuesta implements OnDestroy, OnInit {
   private destroyRef = inject(DestroyRef);
   // --------------------------------------------------------------------------------
-  // Inyección de Servicios
+  // InyecciÃ³n de Servicios
   // --------------------------------------------------------------------------------
 
   /** Servicio para realizar operaciones CRUD con el API. */
   private apiResponseS = inject(ApiResponseService);
   /** Servicio para obtener y reaccionar a cambios en el ID del cliente. */
   private customerIdS = inject(CustomerIdService);
-  /** Servicio para manejar la apertura y cierre de diólogos modales. */
+  /** Servicio para manejar la apertura y cierre de diÃ³logos modales. */
   private dialogHandlerS = inject(DialogHandlerService);
-  /** Servicio para la comunicación en tiempo real con SignalR. */
+  /** Servicio para la comunicaciÃ³n en tiempo real con SignalR. */
   private signalRService = inject(SignalRService);
   /** Servicio para mostrar notificaciones (toasts) personalizadas. */
   private customToastService = inject(CustomToastService);
-  /** Servicio para la gestión y verificación de roles de usuario. */
+  /** Servicio para la gestiÃ³n y verificaciÃ³n de roles de usuario. */
   public aspRoleS = inject(AspRoleService);
-  /** Servicio especializado en la exportación de datos a formato Excel. */
+  /** Servicio especializado en la exportaciÃ³n de datos a formato Excel. */
   private excelExportService = inject(ExcelExportService);
   dt = viewChild<Table>("dt");
 
   // --------------------------------------------------------------------------------
-  // Propiedades de Estado y Seóales (Signals)
+  // Propiedades de Estado y SeÃ³ales (Signals)
   // --------------------------------------------------------------------------------
 
   /** Enum para referenciar los roles de usuario de forma segura. */
   aspRole = EApplicationRole;
 
-  /** Signal que indica si una operación de carga de datos esté en curso. */
+  /** Signal que indica si una operaciÃ³n de carga de datos estÃ© en curso. */
   loading = signal(false);
   /** Mensaje de error a mostrar en la UI si algo falla. */
   errorMensaje: string | null = null;
@@ -134,12 +134,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /** ID del cliente actual. */
   customerId: string = this.customerIdS.customerId();
-  /** Aóo fiscal para el cual se esté generando la propuesta (normalmente el próximo Aóo). */
+  /** AÃ³o fiscal para el cual se estÃ© generando la propuesta (normalmente el prÃ³ximo AÃ³o). */
   selectedFiscalYear: number = new Date().getFullYear();
   fiscalYear: number = this.selectedFiscalYear;
-  /** Aóo fiscal que se usa como base para comparaciones (normalmente el Aóo actual). */
+  /** AÃ³o fiscal que se usa como base para comparaciones (normalmente el AÃ³o actual). */
   baseBudgetYear: number = this.selectedFiscalYear - 1;
-  /** Lista de aóos disponibles para la selección del Aóo fiscal. */
+  /** Lista de aÃ³os disponibles para la selecciÃ³n del AÃ³o fiscal. */
   availableYears: number[] = [];
 
   /** Campos utilizados por el filtro global de la tabla PrimeNG. */
@@ -149,9 +149,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   currentProposal = signal<BudgetProposalDTO | null>(null);
   /** Signal que contiene la lista maestra y completa de todas las partidas de la propuesta, tal como se reciben del API. Sirve como la fuente de verdad. */
   allProposalItems = signal<BudgetProposalItemDTO[]>([]);
-  /** Signal que contiene la lista de partidas que se muestra en la tabla, despuós de aplicar los filtros. Es un estado derivado de `allProposalItems`. */
+  /** Signal que contiene la lista de partidas que se muestra en la tabla, despuÃ³s de aplicar los filtros. Es un estado derivado de `allProposalItems`. */
   proposalItems = signal<BudgetProposalItemDTO[]>([]);
-  /** Signal que almacena un Map de claves de items ejecutados a sus IDs de BudgetExecution para una bósqueda rápida. */
+  /** Signal que almacena un Map de claves de items ejecutados a sus IDs de BudgetExecution para una bÃ³squeda rÃ¡pida. */
   projectedExpenseItems = signal<Map<string, string>>(new Map());
   /** Signal computada con las partidas cuyo incremento es > 5% */
   highIncreaseItems = computed(() =>
@@ -163,7 +163,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   originalProposalItems: BudgetProposalItemDTO[] = [];
 
   // --------------------------------------------------------------------------------
-  // Propiedades para Filtros y Paginación
+  // Propiedades para Filtros y PaginaciÃ³n
   // --------------------------------------------------------------------------------
 
   /** Indica si existen partidas de tipo 'Extraordinarios' en la propuesta. */
@@ -181,7 +181,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   // ... inside class PresupuestoPropuesta
 
-  // Variables para Auditoría IA y Forecast Eliminadas (Manejadas por dialogs)
+  // Variables para AuditorÃ­a IA y Forecast Eliminadas (Manejadas por dialogs)
   inflationRate: number = 5;
   // ...
 
@@ -197,8 +197,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.dialogHandlerS.openDialog(
       BudgetAuditDialog,
       { items: this.proposalItems() },
-      "🤖 Reporte de Auditoría Presupuestal",
-      this.dialogHandlerS.sizeMd, // Ajustar tamaóo segón preferencia
+      "ðŸ¤– Reporte de AuditorÃ­a Presupuestal",
+      this.dialogHandlerS.sizeMd, // Ajustar tamaÃ³o segÃ³n preferencia
     );
   }
 
@@ -219,7 +219,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           inflationRate: this.inflationRate,
           selectedMonthsForAvg: this.selectedMonthsForAvg(),
         },
-        `?? Proyección Financiera Inteligente ${this.selectedFiscalYear}`,
+        `?? ProyecciÃ³n Financiera Inteligente ${this.selectedFiscalYear}`,
         this.dialogHandlerS.sizeFull,
       )
       .then((selectedItems: any[]) => {
@@ -244,20 +244,20 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     });
 
     this.customToastService.showSuccess(
-      "Proyección Aplicada",
+      "ProyecciÃ³n Aplicada",
       `Se actualizaron ${appliedCount} partidas.`,
     );
     this.recalculateTotals();
   }
 
   /**
-   * Determina si una partida tiene un déficit presupuestal (Propuesta < Gasto Promedio).
+   * Determina si una partida tiene un dÃ©ficit presupuestal (Propuesta < Gasto Promedio).
    * @param item Partida a evaluar
    */
   isDeficit(item: BudgetProposalItemDTO): boolean {
     if (item.esFilaAgrupadora) return false;
     const avgExpense = this.getAverageMonthlyExpense(item);
-    // Margen de tolerancia pequeóo (ej. $1) para evitar falsos positivos por redondeo
+    // Margen de tolerancia pequeÃ³o (ej. $1) para evitar falsos positivos por redondeo
     return item.proposedAmount < avgExpense - 1;
   }
 
@@ -271,9 +271,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     return item.percentageIncrease > 5;
   }
 
-  /** Número de filas por página para la tabla. */
+  /** NÃºmero de filas por pÃ¡gina para la tabla. */
   tablePrimeNgRows: number = tablePrimeNgRows();
-  /** Opciones de número de filas por página. */
+  /** Opciones de nÃºmero de filas por pÃ¡gina. */
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   /** Array para almacenar las suscripciones de RxJS y poder desuscribirse en ngOnDestroy. */
@@ -324,12 +324,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
   get projectedExpensesButtonLabel(): string {
     return this.showProjectedExpenses()
-      ? "Ocultar Proyección Gastos"
-      : "Mostrar Proyección Gastos";
+      ? "Ocultar ProyecciÃ³n Gastos"
+      : "Mostrar ProyecciÃ³n Gastos";
   }
 
   constructor() {
-    // `effect` de Angular Signals que se ejecuta automíticamente cuando `customerId` cambia.
+    // `effect` de Angular Signals que se ejecuta automÃ­ticamente cuando `customerId` cambia.
     effect(() => {
       this.customerId = this.customerIdS.customerId();
       if (this.customerId) this.onLoadData();
@@ -337,10 +337,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Se ejecuta al inicializar el componente. Inicia la conexión SignalR y se suscribe a los eventos de actualización.
+   * Se ejecuta al inicializar el componente. Inicia la conexiÃ³n SignalR y se suscribe a los eventos de actualizaciÃ³n.
    */
   /**
-   * Se ejecuta al inicializar el componente. Inicia la conexión SignalR y se suscribe a los eventos de actualización.
+   * Se ejecuta al inicializar el componente. Inicia la conexiÃ³n SignalR y se suscribe a los eventos de actualizaciÃ³n.
    */
   ngOnInit(): void {
     this.signalRService.start();
@@ -364,7 +364,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Se ejecuta al destruir el componente. Limpia las suscripciones y la conexión SignalR.
+   * Se ejecuta al destruir el componente. Limpia las suscripciones y la conexiÃ³n SignalR.
    */
   ngOnDestroy(): void {
     // this.subscriptions.forEach((sub) => sub.unsubscribe()); // Handled by takeUntilDestroyed
@@ -384,7 +384,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   /**
-   * Carga los datos de la propuesta de presupuesto desde el API para el cliente y Aóo fiscal actuales.
+   * Carga los datos de la propuesta de presupuesto desde el API para el cliente y AÃ³o fiscal actuales.
    */
   onLoadData(): void {
     this.loading.set(true);
@@ -396,7 +396,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         if (response && response.items) {
           this.currentProposal.set(response);
           this.allProposalItems.set(response.items || []);
-          // Convertir la lista de ExecutedBudgetItemDTO a un Map para bósqueda rápida
+          // Convertir la lista de ExecutedBudgetItemDTO a un Map para bÃ³squeda rÃ¡pida
           const executedMap = new Map<string, string>();
           (response.projectedExpenseItems || []).forEach((execItem) => {
             executedMap.set(execItem.key, execItem.budgetExecutionId);
@@ -432,7 +432,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           this.allProposalItems.set([]);
           this.proposalItems.set([]);
           this.errorMensaje =
-            "No se encontré una propuesta para el Aóo fiscal seleccionado.";
+            "No se encontrÃ© una propuesta para el AÃ³o fiscal seleccionado.";
         }
         this.loading.set(false);
       })
@@ -442,7 +442,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
   /**
-   * Inicializa la lista de aóos disponibles para el selector, desde 2014 hasta el Aóo actual + 1.
+   * Inicializa la lista de aÃ³os disponibles para el selector, desde 2014 hasta el AÃ³o actual + 1.
    */
   initializeYears(): void {
     const currentYear = new Date().getFullYear();
@@ -452,12 +452,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Se ejecuta cuando el usuario cambia el Aóo fiscal en el selector.
-   * Actualiza el Aóo fiscal seleccionado y vuelve a cargar los datos.
+   * Se ejecuta cuando el usuario cambia el AÃ³o fiscal en el selector.
+   * Actualiza el AÃ³o fiscal seleccionado y vuelve a cargar los datos.
    */
 
   /**
-   * Analiza todas las partidas para detectar hasta qué mes hay gastos reales (mayores a cero).
+   * Analiza todas las partidas para detectar hasta quÃ© mes hay gastos reales (mayores a cero).
    */
   autoSelectMonthsWithExpenses(items: BudgetProposalItemDTO[]): void {
     if (!items || items.length === 0) return;
@@ -513,7 +513,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Maneja la actualización de una partida recibida por SignalR.
+   * Maneja la actualizaciÃ³n de una partida recibida por SignalR.
    * Actualiza la lista maestra y la copia original, y luego reaplica los filtros y recalcula los totales.
    * @param updatedItem La partida actualizada recibida desde el servidor.
    */
@@ -552,11 +552,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   // --------------------------------------------------------------------------------
-  // Lígica de Filtros
+  // LÃ­gica de Filtros
   // --------------------------------------------------------------------------------
 
   /**
-   * Filtra la lista maestra (`allProposalItems`) segón el estado de los toggles `showExtraordinarios` y `showProyectos`,
+   * Filtra la lista maestra (`allProposalItems`) segÃ³n el estado de los toggles `showExtraordinarios` y `showProyectos`,
    * y actualiza la lista visible (`proposalItems`).
    */
   applyFilters(): void {
@@ -611,9 +611,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Fuerza una recalculación del layout de la tabla.
-   * Se usa un setTimeout para asegurar que se ejecute despuós de que Angular actualice el DOM.
-   * Se utiliza updateSize() ya que recalculateLayout() no existe en la API póblica de p-table.
+   * Fuerza una recalculaciÃ³n del layout de la tabla.
+   * Se usa un setTimeout para asegurar que se ejecute despuÃ³s de que Angular actualice el DOM.
+   * Se utiliza updateSize() ya que recalculateLayout() no existe en la API pÃ³blica de p-table.
    */
   private recalculateTableLayout(): void {
     setTimeout(() => {
@@ -625,13 +625,13 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Calcula dinámicamente el `colspan` para el encabezado 'PRESUPUESTO ACTUAL'.
-   * El valor cambia segón las columnas de presupuesto base que estén visibles.
-   * @returns El número de columnas que debe abarcar el encabezado.
+   * Calcula dinÃ¡micamente el `colspan` para el encabezado 'PRESUPUESTO ACTUAL'.
+   * El valor cambia segÃ³n las columnas de presupuesto base que estÃ©n visibles.
+   * @returns El nÃºmero de columnas que debe abarcar el encabezado.
    */
   /**
-   * Calcula dinámicamente los valores de colspan para los encabezados y filas de agrupación.
-   * Centraliza la lígica para asegurar la sincronización de la tabla.
+   * Calcula dinÃ¡micamente los valores de colspan para los encabezados y filas de agrupaciÃ³n.
+   * Centraliza la lÃ­gica para asegurar la sincronizaciÃ³n de la tabla.
    * @returns Un objeto con los colspans para 'presupuestoActual', 'propuesta' y 'total'.
    */
   get colspans() {
@@ -647,7 +647,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     // Base: Propuesta Mensual (1) + Dif (1) + % (1) = 3
     const propuesta = 3 + (fiscalAnnual ? 1 : 0);
 
-    // Total de columnas para las filas de agrupación
+    // Total de columnas para las filas de agrupaciÃ³n
     const total = presupuestoActual + propuesta;
 
     return {
@@ -658,7 +658,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   // --------------------------------------------------------------------------------
-  // Métodos de Cólculo
+  // MÃ©todos de CÃ³lculo
   // --------------------------------------------------------------------------------
 
   /**
@@ -679,8 +679,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Calcula el gasto promedio mensual para una partida.
-   * Puede promediar sobre todos los meses o sobre una selección personalizada del usuario.
-   * @param item La partida para la cual se calcularé el promedio.
+   * Puede promediar sobre todos los meses o sobre una selecciÃ³n personalizada del usuario.
+   * @param item La partida para la cual se calcularÃ© el promedio.
    * @returns El gasto promedio mensual.
    */
   getAverageMonthlyExpense(item: BudgetProposalItemDTO): number {
@@ -746,7 +746,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /**
    * Calcula el presupuesto promedio mensual para una partida.
    * Similar a `getAverageMonthlyExpense`, pero para los montos presupuestados.
-   * @param item La partida para la cual se calcularé el promedio.
+   * @param item La partida para la cual se calcularÃ© el promedio.
    * @returns El presupuesto promedio mensual.
    */
   getAverageMonthlyBudget(item: BudgetProposalItemDTO): number {
@@ -811,7 +811,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /**
    * Se dispara cuando el usuario modifica el campo de monto propuesto.
    * Recalcula la diferencia y el porcentaje de cambio en tiempo real para esa fila.
-   * @param item La partida que esté siendo modificada.
+   * @param item La partida que estÃ© siendo modificada.
    */
   onProposedAmountChange(item: BudgetProposalItemDTO): void {
     const proposedAmount = Number(
@@ -854,7 +854,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Guarda los cambios de una partida en el backend.
-   * Optimización: solo envía la petición si el valor realmente ha cambiado.
+   * OptimizaciÃ³n: solo envÃ­a la peticiÃ³n si el valor realmente ha cambiado.
    * @param item La partida a actualizar.
    */
   updateProposalItem(item: BudgetProposalItemDTO): void {
@@ -915,11 +915,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   // --------------------------------------------------------------------------------
-  // Métodos de Interacción y Diólogos
+  // MÃ©todos de InteracciÃ³n y DiÃ³logos
   // --------------------------------------------------------------------------------
 
   /**
-   * Muestra un diólogo con el historial de compras de una cuenta.
+   * Muestra un diÃ³logo con el historial de compras de una cuenta.
    * @param item La partida seleccionada.
    */
   showPurchaseHistory(item: BudgetProposalItemDTO) {
@@ -962,10 +962,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   // --------------------------------------------------------------------------------
-  // Métodos y Propiedades para el Footer y Cólculos de Totales
+  // MÃ©todos y Propiedades para el Footer y CÃ³lculos de Totales
   // --------------------------------------------------------------------------------
 
-  /** Definición estructurada de columnas de meses para O(1) en HTML */
+  /** DefiniciÃ³n estructurada de columnas de meses para O(1) en HTML */
   readonly monthColumns = [
     {
       name: "enero",
@@ -1044,7 +1044,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /** Lista de meses para iterar en la plantilla (mantenido para reportes y utilidades) */
   readonly months: string[] = this.monthColumns.map((m) => m.name);
 
-  /** Opciones para el selector de meses para el cólculo de promedios. */
+  /** Opciones para el selector de meses para el cÃ³lculo de promedios. */
   monthOptions = this.months.map((m) => ({
     label: m.charAt(0).toUpperCase() + m.slice(1),
     value: m,
@@ -1054,7 +1054,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   selectedMonthsForAvg = signal<string[]>([...this.months]);
 
   /**
-   * Calcula el gasto total para un mes específico.
+   * Calcula el gasto total para un mes especÃ­fico.
    * @param mes El nombre del mes.
    * @returns El gasto total de ese mes.
    */
@@ -1069,7 +1069,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Calcula el presupuesto total para un mes específico.
+   * Calcula el presupuesto total para un mes especÃ­fico.
    * @param mes El nombre del mes.
    * @returns El presupuesto total de ese mes.
    */
@@ -1108,7 +1108,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     return (totalGasto / totalPresupuesto) * 100;
   }
 
-  /** @returns El monto total del presupuesto que aón no se ha gastado. */
+  /** @returns El monto total del presupuesto que aÃ³n no se ha gastado. */
   getPresupuestoTotalRestante(): number {
     return this.getSumaTotalPresupuestos() - this.getSumaTotalGastos();
   }
@@ -1124,13 +1124,13 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   // --------------------------------------------------------------------------------
-  // Métodos de Ayuda para la Plantilla (Template Helpers)
+  // MÃ©todos de Ayuda para la Plantilla (Template Helpers)
   // --------------------------------------------------------------------------------
 
   /**
-   * Verifica si una combinación de partida y mes ha sido ejecutada.
+   * Verifica si una combinaciÃ³n de partida y mes ha sido ejecutada.
    * @param item La partida de presupuesto.
-   * @param mes El nombre del mes en minísculas.
+   * @param mes El nombre del mes en minÃ­sculas.
    * @returns `true` si la partida ha sido ejecutada para ese mes.
    */
   isProjected(item: BudgetProposalItemDTO, mes: string): boolean {
@@ -1160,7 +1160,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /**
    * Obtiene el ID de la BudgetExecution asociada a una partida y mes.
    * @param item La partida de presupuesto.
-   * @param mes El nombre del mes en minísculas.
+   * @param mes El nombre del mes en minÃ­sculas.
    * @returns El ID de la BudgetExecution o `undefined` si no se encuentra.
    */
   getProjectedExpenseId(
@@ -1191,7 +1191,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Obtiene el gasto de un mes específico para una partida.
+   * Obtiene el gasto de un mes especÃ­fico para una partida.
    * @param item La partida.
    * @param mes El nombre del mes.
    * @returns El monto del gasto.
@@ -1203,7 +1203,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Obtiene el presupuesto de un mes específico para una partida.
+   * Obtiene el presupuesto de un mes especÃ­fico para una partida.
    * @param item La partida.
    * @param mes El nombre del mes.
    * @returns El monto del presupuesto.
@@ -1227,7 +1227,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un diólogo con el historial de cambios de una partida.
+   * Muestra un diÃ³logo con el historial de cambios de una partida.
    * @param item La partida seleccionada.
    */
   showItemHistory(item: BudgetProposalItemDTO): void {
@@ -1243,7 +1243,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un diólogo para ver o adjuntar archivos de soporte a una partida.
+   * Muestra un diÃ³logo para ver o adjuntar archivos de soporte a una partida.
    * @param item La partida seleccionada.
    */
   showSupportDialog(item: BudgetProposalItemDTO): void {
@@ -1259,7 +1259,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para Aóadir nuevas cuentas a la propuesta.
+   * Muestra el diÃ³logo modal para AÃ³adir nuevas cuentas a la propuesta.
    */
   showAddAccountModal(): void {
     const currentProposal = this.currentProposal();
@@ -1273,7 +1273,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           fiscalYear: currentProposal.fiscalYear,
           proposalId: currentProposal.id,
         },
-        "Aóadir Cuentas",
+        "AÃ³adir Cuentas",
         this.dialogHandlerS.sizeLg,
       )
       .then((selectedAccountNumbers: string[]) => {
@@ -1284,22 +1284,22 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un modal con los detalles de una ejecución presupuestaria específica.
-   * @param budgetExecutionId El ID de la ejecución presupuestaria a mostrar.
+   * Muestra un modal con los detalles de una ejecuciÃ³n presupuestaria especÃ­fica.
+   * @param budgetExecutionId El ID de la ejecuciÃ³n presupuestaria a mostrar.
    */
   showBudgetExecutionDetails(month: string, accountNumber: string): void {
     this.dialogHandlerS.openDialog(
       BudgetExecutionDetailsModal,
       { month: month, accountNumber: accountNumber },
-      "Detalles de Ejecución Presupuestaria",
+      "Detalles de EjecuciÃ³n Presupuestaria",
       this.dialogHandlerS.sizeLg,
     );
   }
 
   /**
    * Se ejecuta cuando el usuario selecciona cuentas en el modal `AddAccountModal`.
-   * Envía las nuevas cuentas al backend para ser aóadidas a la propuesta.
-   * @param accountNumbers Array de números de cuenta a Aóadir.
+   * EnvÃ­a las nuevas cuentas al backend para ser aÃ³adidas a la propuesta.
+   * @param accountNumbers Array de nÃºmeros de cuenta a AÃ³adir.
    */
   onAccountsSelected(accountNumbers: string[]): void {
     const currentProposal = this.currentProposal();
@@ -1324,9 +1324,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Determina si una partida puede ser eliminada.
-   * La regla es que solo se puede eliminar si no ha tenido actividad (gastos o presupuesto) en todo el Aóo base.
+   * La regla es que solo se puede eliminar si no ha tenido actividad (gastos o presupuesto) en todo el AÃ³o base.
    * @param item La partida a verificar.
-   * @returns `true` si el ótem puede ser eliminado.
+   * @returns `true` si el Ã³tem puede ser eliminado.
    */
   canDeleteItem(item: BudgetProposalItemDTO): boolean {
     const hasNoActivity = this.months.every(
@@ -1339,16 +1339,16 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Elimina una partida de la propuesta, previa confirmación del usuario.
+   * Elimina una partida de la propuesta, previa confirmaciÃ³n del usuario.
    * @param item La partida a eliminar.
    */
   deleteItem(item: BudgetProposalItemDTO): void {
     Swal.fire({
       title: "Confirmar",
-      text: "óEsté seguro de eliminar esta cuenta?",
+      text: "Ã³EstÃ© seguro de eliminar esta cuenta?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sí, eliminar",
+      confirmButtonText: "SÃ­, eliminar",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -1357,7 +1357,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           .onDelete(`BudgetProposal/item/${item.id}`)
           .then((success) => {
             if (success) {
-              // Actualiza el estado local para remover el ótem sin recargar toda la data.
+              // Actualiza el estado local para remover el Ã³tem sin recargar toda la data.
               this.allProposalItems.update((items) =>
                 items.filter((i) => i.id !== item.id),
               );
@@ -1385,7 +1385,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo para comparar las cuotas de mantenimiento resultantes de la propuesta.
+   * Muestra el diÃ³logo para comparar las cuotas de mantenimiento resultantes de la propuesta.
    */
   showFeeComparisonModal(): void {
     const proposal = this.currentProposal();
@@ -1402,7 +1402,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para comparar las cuotas de mantenimiento resultantes de la propuesta, calculadas por indiviso.
+   * Muestra el diÃ³logo modal para comparar las cuotas de mantenimiento resultantes de la propuesta, calculadas por indiviso.
    */
   showFeeComparisonByIndivisoModal(): void {
     const proposal = this.currentProposal();
@@ -1413,17 +1413,17 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       {
         proposalId: proposal.id,
       },
-      "COMPARACIóN DE CUOTAS DE MANTENIMIENTO (POR INDIVISO)",
+      "COMPARACIÃ³N DE CUOTAS DE MANTENIMIENTO (POR INDIVISO)",
       this.dialogHandlerS.sizeLg,
     );
   }
 
   // --------------------------------------------------------------------------------
-  // Exportación a Excel
+  // ExportaciÃ³n a Excel
   // --------------------------------------------------------------------------------
 
   /**
-   * Prepara los datos y llama al servicio de exportación a Excel.
+   * Prepara los datos y llama al servicio de exportaciÃ³n a Excel.
    */
   exportarResumenExcel(): void {
     const meses = this.months;

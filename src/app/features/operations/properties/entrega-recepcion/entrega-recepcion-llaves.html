@@ -22,14 +22,14 @@
       <th class="table-col-20 text-sm">Observaciones</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupheader" let-customer>
+  <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="7">
         <span class="font-bold ml-2">{{ customer.descripcion }}</span>
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="groupfooter" let-customer>
+  <ng-template #groupfooter let-customer>
     <tr class="p-rowgroup-footer">
       <td class="text-sm" colspan="7">
         <div style="text-align: right">

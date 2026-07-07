@@ -1,24 +1,23 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   effect,
   inject,
   OnDestroy,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -49,7 +48,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DividerModule,
     ImageModule,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
     CustomInputSelectSignal,
     DialogModule,
   ],

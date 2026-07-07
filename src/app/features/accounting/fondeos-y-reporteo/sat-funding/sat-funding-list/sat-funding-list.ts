@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -27,7 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,
-    WebButtonLabel,
+
     DataViewMobile,
     PrimeNgCustomTableEmptyMessage,
     IonItem,

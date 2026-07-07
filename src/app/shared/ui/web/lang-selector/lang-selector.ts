@@ -32,7 +32,7 @@ export {
         styleClass="lang-selector-dropdown"
         (ngModelChange)="onLangChange($event)"
       >
-        <ng-template pTemplate="selectedItem" let-item>
+        <ng-template #selectedItem let-item>
           @if (item) {
             <span class="lang-item">
               <span class="lang-flag">{{ item.flag }}</span>
@@ -40,7 +40,7 @@ export {
             </span>
           }
         </ng-template>
-        <ng-template pTemplate="item" let-item>
+        <ng-template #item let-item>
           <span class="lang-item">
             <span class="lang-flag">{{ item.flag }}</span>
             <span>{{ item.label }}</span>

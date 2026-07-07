@@ -1,9 +1,19 @@
-import { Component, ElementRef, inject, input, output, signal, viewChild, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ButtonModule } from "primeng/button";
-import { ProgressBarModule } from "primeng/progressbar";
-import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+  ViewEncapsulation,
+} from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ButtonModule } from "primeng/button";
+import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
+import { ProgressBarModule } from "primeng/progressbar";
 import { PlatformService } from "src/app/core/services/platform.service";
 
 export interface UploadFile {
@@ -18,7 +28,13 @@ export interface UploadFile {
 @Component({
   selector: "app-file-upload",
   standalone: true,
-  imports: [CommonModule, ButtonModule, ProgressBarModule, FileUploadModule, AppIcon],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    ProgressBarModule,
+    FileUploadModule,
+    AppIcon,
+  ],
   template: `
     <div class="file-upload-root">
       <!-- Drop Zone -->
@@ -29,7 +45,7 @@ export interface UploadFile {
         (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)"
       >
-        <p-fileUpload
+        <p-fileupload
           #fileUpload
           mode="basic"
           [chooseLabel]="chooseLabel()"
@@ -43,7 +59,9 @@ export interface UploadFile {
         />
 
         @if (!files().length) {
-          <span class="text-sm text-color-secondary">o arrastra y suelta aquí</span>
+          <span class="text-sm text-color-secondary"
+            >o arrastra y suelta aquí</span
+          >
         }
       </div>
 
@@ -95,7 +113,9 @@ export interface UploadFile {
       @if (files().length > 0) {
         <div class="file-list flex flex-column gap-2 mt-3">
           @for (file of files(); track file.name) {
-            <div class="file-item flex align-items-center gap-2 p-2 surface-ground border-round">
+            <div
+              class="file-item flex align-items-center gap-2 p-2 surface-ground border-round"
+            >
               @if (isImage(file.type)) {
                 <img
                   [src]="file.objectURL"
@@ -103,21 +123,34 @@ export interface UploadFile {
                   class="file-preview border-round"
                 />
               } @else {
-                <app-icon icon="mdi:file-document-outline" class="text-2xl text-color-muted" />
+                <app-icon
+                  icon="mdi:file-document-outline"
+                  class="text-2xl text-color-muted"
+                />
               }
 
               <div class="flex flex-column gap-1 flex-1 min-w-0">
                 <strong class="text-sm truncate">{{ file.name }}</strong>
-                <span class="text-xs text-color-secondary">{{ formatSize(file.size) }}</span>
+                <span class="text-xs text-color-secondary">{{
+                  formatSize(file.size)
+                }}</span>
                 @if (file.status === "uploading") {
-                  <p-progressBar [value]="file.progress" styleClass="h-1" />
+                  <p-progressbar [value]="file.progress" styleClass="h-1" />
                 }
               </div>
 
               @if (file.status === "done") {
-                <app-icon icon="mdi:check-circle" class="text-lg" style="color: var(--ds-success)" />
+                <app-icon
+                  icon="mdi:check-circle"
+                  class="text-lg"
+                  style="color: var(--ds-success)"
+                />
               } @else if (file.status === "error") {
-                <app-icon icon="mdi:alert-circle" class="text-lg" style="color: var(--ds-danger)" />
+                <app-icon
+                  icon="mdi:alert-circle"
+                  class="text-lg"
+                  style="color: var(--ds-danger)"
+                />
               } @else {
                 <p-button
                   [rounded]="true"
@@ -135,30 +168,34 @@ export interface UploadFile {
       }
     </div>
   `,
-  styles: [`
-    .file-upload-root { width: 100%; }
-    .file-upload-dropzone {
-      transition: all 0.15s;
-      background-color: var(--ds-bg-surface);
-    }
-    .file-upload-dropzone:hover,
-    .file-upload-dragover {
-      border-color: var(--ds-primary) !important;
-      background-color: var(--ds-primary-light);
-    }
-    .file-preview {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: var(--ds-radius-sm);
-    }
-    .file-item {
-      transition: background-color 0.15s;
-    }
-    .file-item:hover {
-      background-color: var(--ds-bg-sunken);
-    }
-  `],
+  styles: [
+    `
+      .file-upload-root {
+        width: 100%;
+      }
+      .file-upload-dropzone {
+        transition: all 0.15s;
+        background-color: var(--ds-bg-surface);
+      }
+      .file-upload-dropzone:hover,
+      .file-upload-dragover {
+        border-color: var(--ds-primary) !important;
+        background-color: var(--ds-primary-light);
+      }
+      .file-preview {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: var(--ds-radius-sm);
+      }
+      .file-item {
+        transition: background-color 0.15s;
+      }
+      .file-item:hover {
+        background-color: var(--ds-bg-sunken);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -180,7 +217,8 @@ export class FileUpload {
   isMobile = this.platform.isMobile;
 
   cameraInput = viewChild.required<ElementRef<HTMLInputElement>>("cameraInput");
-  galleryInput = viewChild.required<ElementRef<HTMLInputElement>>("galleryInput");
+  galleryInput =
+    viewChild.required<ElementRef<HTMLInputElement>>("galleryInput");
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();

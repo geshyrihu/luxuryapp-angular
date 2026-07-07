@@ -42,11 +42,11 @@
     *ngIf="loading() || step() === 'waiting' || step() === 'requesting' || step() === 'processing'"
     class="text-center"
   >
-    <p-progressBar
+    <p-progressbar
       mode="indeterminate"
       [style]="{'height': '6px'}"
       *ngIf="loading()"
-    ></p-progressBar>
+    ></p-progressbar>
     <div class="mt-3 text-xl font-semibold">{{ statusMessage() }}</div>
     <div class="text-500 mt-2" *ngIf="step() === 'waiting'">
       Esto puede tomar unos segundos...

@@ -1,25 +1,30 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { alertCircleOutline } from "ionicons/icons";
-import { MessageService } from "primeng/api";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { addIcons } from "ionicons";
+import { alertCircleOutline } from "ionicons/icons";
+import { MessageService } from "primeng/api";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
+import { TooltipModule } from "primeng/tooltip";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -45,11 +50,9 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
     TooltipModule,
     CustomInputSelectSignal,
     TagModule,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
+
     WebButtonIconEdit,
     WebButtonIconItem,
-    WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     SanitizeHtmlPipe,

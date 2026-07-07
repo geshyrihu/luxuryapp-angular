@@ -1,6 +1,6 @@
 <div class="p-4">
   <p-card>
-    <ng-template pTemplate="title">
+    <ng-template #title>
       <div class="flex justify-content-between align-items-center">
         <h2 class="text-2xl font-bold mb-0">Analóticas del Comunicado</h2>
         <a routerLink="/announcements/manage" class="btn btn-secondary btn-sm">
@@ -15,7 +15,7 @@
         <p class="mt-2">Aón no hay visualizaciones para este comunicado.</p>
       </div>
       } @else {
-      <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+      <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
       <div class="hidden md:block">
         <p-table
           [value]="analytics()"
@@ -27,20 +27,20 @@
           <ng-template #header>
             <tr>
               <th pSortableColumn="userName">
-                Usuario <p-sortIcon field="userName"></p-sortIcon>
+                Usuario <p-sorticon field="userName"></p-sorticon>
               </th>
               <th pSortableColumn="userEmail">
-                Email <p-sortIcon field="userEmail"></p-sortIcon>
+                Email <p-sorticon field="userEmail"></p-sorticon>
               </th>
               <th pSortableColumn="customerName">
-                Cliente <p-sortIcon field="customerName"></p-sortIcon>
+                Cliente <p-sorticon field="customerName"></p-sorticon>
               </th>
               <th pSortableColumn="role">
-                Rol <p-sortIcon field="role"></p-sortIcon>
+                Rol <p-sorticon field="role"></p-sorticon>
               </th>
               <th pSortableColumn="viewDate">
                 Fecha de Visualización
-                <p-sortIcon field="viewDate"></p-sortIcon>
+                <p-sorticon field="viewDate"></p-sorticon>
               </th>
             </tr>
           </ng-template>
@@ -56,7 +56,7 @@
         </p-table>
       </div>
 
-      <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+      <!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
       <div class="block md:hidden">
         <app-data-view-mobile
           [data]="analytics()"

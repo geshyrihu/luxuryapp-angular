@@ -36,7 +36,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
             analizará automáticamente.
           </p>
 
-          <p-fileUpload
+          <p-fileupload
             mode="basic"
             chooseLabel="Seleccionar Foto"
             accept="image/*"
@@ -44,7 +44,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
             (onSelect)="onFileSelect($event)"
             [auto]="false"
           >
-          </p-fileUpload>
+          </p-fileupload>
 
           @if (selectedFile) {
             <div class="mt-3 text-center">
@@ -56,10 +56,10 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
 
               @if (loading) {
                 <div class="mt-2">
-                  <p-progressBar
+                  <p-progressbar
                     mode="indeterminate"
                     [style]="{ height: '6px' }"
-                  ></p-progressBar>
+                  ></p-progressbar>
                   <small class="text-muted"
                     >Analizando imagen con Gemini Vision...</small
                   >

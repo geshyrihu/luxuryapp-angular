@@ -1,9 +1,9 @@
 <div class="card">
   <p-toolbar styleClass="mb-4 ">
-    <ng-template pTemplate="left">
+    <ng-template #left>
       <h3 class="m-0">Mis Tareas Diarias</h3>
     </ng-template>
-    <ng-template pTemplate="right">
+    <ng-template #right>
       <custom-input-date-signal
         [control]="selectedDateControl"
         label="Fecha"

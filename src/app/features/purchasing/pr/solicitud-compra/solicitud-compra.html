@@ -1,12 +1,12 @@
 <div class="card shadow-1 border-round p-4 surface-card">
   <!-- BARRA DE ESTADO VISUAL -->
   <div class="mb-4">
-    <p-progressBar
+    <p-progressbar
       [value]="100"
       [showValue]="false"
       [style]="{ height: '6px' }"
       [class]="'p-progressbar-' + type"
-    ></p-progressBar>
+    ></p-progressbar>
   </div>
 
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">

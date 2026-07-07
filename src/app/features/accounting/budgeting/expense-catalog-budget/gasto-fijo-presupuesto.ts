@@ -1,16 +1,23 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { TableModule } from "primeng/table";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { MessageModule } from "primeng/message";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -20,7 +27,6 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -34,12 +40,11 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CommonModule,
     FormsModule,
     TableModule,
-    WebButtonLabel,
+
     MessageModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     ProgressSpinnerModule,
-    WebButtonLabelDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],

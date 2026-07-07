@@ -1,18 +1,24 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+﻿import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -23,9 +29,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { TooltipModule } from "primeng/tooltip";
@@ -45,17 +48,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileButtonLabelConfirm,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    WebButtonLabel,
+
     NgbTooltipModule,
     TagModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    WebButtonLabelConfirm,
     DataViewMobile,
     CardModule,
-
-    WebButtonLabelConfirm,
-    WebButtonLabelItem,
   ],
 })
 export class EstadoFinancieroList {
@@ -70,7 +69,7 @@ export class EstadoFinancieroList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acción
+  // Signals para controlar el estado de procesamiento de cada acciÃ³n
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -90,7 +89,7 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // Función para verificar si un botún esté procesando
+  // FunciÃ³n para verificar si un botÃºn estÃ© procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -107,7 +106,7 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // Función para abrir un cuadro de diólogo modal para agregar el archivo
+  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -202,7 +201,7 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // éé€éÂ autoMaximize = true
+      true, // Ã©Ã©â‚¬Ã©Ã‚Â autoMaximize = true
     );
   }
 }

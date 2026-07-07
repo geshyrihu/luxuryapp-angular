@@ -19,22 +19,22 @@
         [dt]="dt"
       />
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
-        <th pSortableColumn="name">Nombre <p-sortIcon field="name" /></th>
+        <th pSortableColumn="name">Nombre <p-sorticon field="name" /></th>
         <th pSortableColumn="category">
-          Categoróa <p-sortIcon field="category" />
+          Categoróa <p-sorticon field="category" />
         </th>
         <th pSortableColumn="defaultSeverity">
-          Severidad por Defecto <p-sortIcon field="defaultSeverity" />
+          Severidad por Defecto <p-sorticon field="defaultSeverity" />
         </th>
         <th pSortableColumn="isActive" class="text-center">
-          Activo <p-sortIcon field="isActive" />
+          Activo <p-sorticon field="isActive" />
         </th>
         <th class="no-print">Acciones</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td>{{ item.name }}</td>
         <td>{{ item.category }}</td>

@@ -54,7 +54,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
           @for (col of columns(); track col.field) {
             <th [pSortableColumn]="col.field">
               {{ col.header }}
-              <p-sortIcon [field]="col.field" />
+              <p-sorticon [field]="col.field" />
             </th>
           }
           <th class="text-center">Acciones</th>

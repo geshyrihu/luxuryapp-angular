@@ -9,7 +9,7 @@
     styleClass="custom-table hidden md:block"
     #dt
   >
-    <ng-template pTemplate="caption">
+    <ng-template #caption>
       <primeng-custom-caption
         title="Tipos de Cargo"
         (add)="onModalForm()"
@@ -17,7 +17,7 @@
       />
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template #header>
       <tr>
         <th class="w-14rem">Nombre</th>
         <th class="w-10rem">Código</th>
@@ -29,7 +29,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-item>
+    <ng-template #body let-item>
       <tr>
         <td class="font-semibold text-800">{{ item.name }}</td>
         <td>
