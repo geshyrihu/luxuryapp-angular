@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { CardModule } from "primeng/card";
@@ -45,6 +45,7 @@ import { DateService } from "src/app/core/services/date.service";
     AppIcon,
   ],
   templateUrl: "./user-activity-history.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     provideFlatpickrDefaults({
       dateFormat: "d/m/Y",

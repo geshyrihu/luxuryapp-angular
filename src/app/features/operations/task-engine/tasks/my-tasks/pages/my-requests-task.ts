@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -38,6 +38,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 @Component({
   selector: "app-my-requests-task",
   templateUrl: "./my-requests-task.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
     MobileButtonLabelEdit,

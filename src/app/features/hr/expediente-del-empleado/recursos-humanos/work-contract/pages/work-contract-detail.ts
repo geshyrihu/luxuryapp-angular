@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -8,6 +8,7 @@ import { WorkContractDetailDTO } from "../models/work-contract.dto";
 @Component({
   selector: "app-work-contract-detail",
   templateUrl: "./work-contract-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DatePipe, CurrencyPipe],
 })
 export class WorkContractDetailComponent implements OnInit {

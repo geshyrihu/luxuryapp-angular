@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, signal } from "@angular/core";
+import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { AvatarModule } from "primeng/avatar";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -34,6 +34,7 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
       <div class="header-empty"></div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .header-customer {

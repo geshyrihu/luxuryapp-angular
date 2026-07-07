@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormsModule,
@@ -41,6 +41,7 @@ import { ImageGenerationDialog } from "./components/image-generation-dialog/imag
 @Component({
   selector: "app-announcement-admin-form",
   templateUrl: "./announcement-admin-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

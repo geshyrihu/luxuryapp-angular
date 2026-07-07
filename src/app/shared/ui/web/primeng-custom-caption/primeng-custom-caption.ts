@@ -5,6 +5,7 @@ import {
   inject,
   input,
   output,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
@@ -15,6 +16,7 @@ import { GlobalTableFilterService } from "src/app/core/services/global-table-fil
   selector: "primeng-custom-caption",
   templateUrl: "./primeng-custom-caption.html",
   imports: [RouterModule, WebButtonLabelAdd, CustomSearchInput],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -45,6 +45,7 @@ import type {
     WebButtonIcon,
   ],
   templateUrl: "./cobranza-online-dashboard.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: `
     :host {
       --co-surface: #ffffff;

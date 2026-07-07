@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -42,6 +42,7 @@ interface IHidranteChecklistForm {
 @Component({
   selector: "app-hidrante-checklist",
   templateUrl: "./hidrante-checklist.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

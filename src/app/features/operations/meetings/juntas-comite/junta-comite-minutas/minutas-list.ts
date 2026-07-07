@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -57,6 +57,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "app-minutas-list",
   templateUrl: "./minutas-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     MobileActionMenu,

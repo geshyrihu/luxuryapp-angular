@@ -8,6 +8,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -50,6 +51,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       ]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     RouterModule,

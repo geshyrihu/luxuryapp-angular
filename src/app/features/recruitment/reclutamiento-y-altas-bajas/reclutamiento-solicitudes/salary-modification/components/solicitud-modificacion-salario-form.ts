@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -26,6 +26,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 @Component({
   selector: "app-solicitud-modificacion-salario",
   templateUrl: "./solicitud-modificacion-salario-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     FileUploadModule,

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import {
   IonCard,
@@ -32,6 +32,7 @@ export interface DocumentCategory {
     IonLabel,
     IonRippleEffect,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./biblioteca-consejo-directivo.html",
 })
 export class BibliotecaConsejoDirectivo implements OnInit {

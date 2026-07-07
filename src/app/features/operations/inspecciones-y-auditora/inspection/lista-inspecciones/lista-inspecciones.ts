@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -50,6 +50,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonLabelDelete,
     WebButtonLabelItem,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./lista-inspecciones.html",
 })
 export class ListaInspecciones {

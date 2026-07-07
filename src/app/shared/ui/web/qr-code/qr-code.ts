@@ -7,6 +7,7 @@ import {
   signal,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
@@ -88,6 +89,7 @@ import QRCode from "qrcode";
       white-space: nowrap;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppQrCode implements OnChanges {

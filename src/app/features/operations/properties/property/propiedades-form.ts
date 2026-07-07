@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -37,6 +37,7 @@ interface IPropiedadesForm {
 @Component({
   selector: "app-propiedades-form",
   templateUrl: "./propiedades-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DatePipe,
     ReactiveFormsModule,

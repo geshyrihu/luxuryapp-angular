@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -31,6 +31,7 @@ interface IAgendaSupervisionForm {
 @Component({
   selector: "app-agenda-supervision-form",
   templateUrl: "./agenda-supervision-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

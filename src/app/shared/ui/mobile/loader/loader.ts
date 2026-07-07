@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { IonSpinner } from "@ionic/angular/standalone";
 import { LoaderService } from "src/app/core/services/loader.service";
 
@@ -33,6 +33,7 @@ import { LoaderService } from "src/app/core/services/loader.service";
       </div>
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

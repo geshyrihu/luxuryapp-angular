@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -34,6 +34,7 @@ interface IWorkContractForm {
 @Component({
   selector: "app-work-contract-form",
   templateUrl: "./work-contract-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputSelectSignal,

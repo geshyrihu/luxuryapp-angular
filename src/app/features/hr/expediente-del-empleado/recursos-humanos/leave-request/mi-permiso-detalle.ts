@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -10,6 +10,7 @@ import { LeaveRequestDetailDTO } from "src/app/features/hr/expediente-del-emplea
 @Component({
   selector: "app-leave-request-detail-my",
   imports: [TagModule, WebButtonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })
 export class MiPermisoDetalle implements OnInit {

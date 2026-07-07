@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
@@ -63,6 +63,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     IonItem,
     IonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-fine-list.html",
 })
 export default class PropertyFineList {

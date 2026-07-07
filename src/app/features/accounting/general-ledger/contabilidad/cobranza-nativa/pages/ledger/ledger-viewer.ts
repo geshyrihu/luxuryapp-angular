@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -37,6 +37,7 @@ import { FinancialLedgerEntryDTO } from "../../models/ledger.dto";
     CustomInputSelectSignal,
     CustomInputDateSignal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./ledger-viewer.html",
 })
 export default class LedgerViewer {

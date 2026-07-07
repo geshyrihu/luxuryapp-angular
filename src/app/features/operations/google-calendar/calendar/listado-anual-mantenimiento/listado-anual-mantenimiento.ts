@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -41,6 +41,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 @Component({
   selector: "app-listado-anual-mantenimiento",
   templateUrl: "./listado-anual-mantenimiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconItem,

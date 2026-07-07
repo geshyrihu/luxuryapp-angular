@@ -11,7 +11,7 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AiService } from "src/app/core/services/ai.service";
@@ -20,6 +20,7 @@ import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
 @Component({
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [WebButtonLabel],
 })
 export class BudgetAuditDialog implements OnInit {

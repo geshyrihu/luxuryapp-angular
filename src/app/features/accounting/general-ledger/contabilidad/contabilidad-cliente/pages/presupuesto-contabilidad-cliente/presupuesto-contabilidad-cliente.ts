@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
@@ -11,6 +11,7 @@ import { PurchaseHistory } from 'src/app/features/accounting/general-ledger/cont
 @Component({
   selector: 'app-presupuesto-contabilidad-cliente',
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './presupuesto-contabilidad-cliente.html',
 })
 export class PresupuestoContabilidadClienteComponent {

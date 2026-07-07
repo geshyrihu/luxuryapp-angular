@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -49,6 +49,7 @@ import { TooltipModule } from "primeng/tooltip";
     IonLabel,
     WebButtonLabelViewPdf,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reglamentos-list.html",
 })
 export class Reglamentos {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -29,6 +29,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconViewPdf,
     PrimeNgCustomTableEmptyMessage,

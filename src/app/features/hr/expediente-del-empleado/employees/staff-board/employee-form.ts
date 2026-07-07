@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -26,6 +26,7 @@ import { EmployeePrincipalDataForm } from "../employee-internal/pages/employee-p
 @Component({
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CardModule,
     CommonModule,

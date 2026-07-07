@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
@@ -26,6 +26,7 @@ import { TooltipModule } from "primeng/tooltip";
     InputTextModule,
     TagModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalog-replica.html",
 })
 export class CatalogReplica {

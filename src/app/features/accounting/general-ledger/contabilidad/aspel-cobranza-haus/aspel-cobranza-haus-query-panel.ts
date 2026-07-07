@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -22,6 +22,7 @@ import {
     CustomInputSelectSignal,
     WebButtonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-card styleClass="shadow-none border-1 surface-border">
       <div class="grid formgrid align-items-start">

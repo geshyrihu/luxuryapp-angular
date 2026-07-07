@@ -6,6 +6,7 @@ import {
   effect,
   inject,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FullCalendarModule } from "@fullcalendar/angular";
@@ -77,6 +78,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-google-calendar",
   templateUrl: "./google-calendar.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     TooltipModule,

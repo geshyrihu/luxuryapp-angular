@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { TagModule } from "primeng/tag";
@@ -15,6 +15,7 @@ interface MesGroup {
 @Component({
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TagModule, TooltipModule, WebButtonLabel],
 })
 export class AgendaMesesModal implements OnInit {

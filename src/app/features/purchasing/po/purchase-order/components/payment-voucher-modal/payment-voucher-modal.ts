@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -26,6 +26,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonLabelDelete,
     CustomInputFile,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./payment-voucher-modal.html",
 })
 export class PaymentVoucherModal implements OnInit {

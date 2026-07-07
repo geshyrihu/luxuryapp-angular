@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
@@ -65,6 +65,7 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonLabelItem,
     AvatarModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideFlatpickrDefaults()],
 })
 export class EmployeeExternalList {

@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -19,6 +19,7 @@ import { IEmployeeAddressForm } from "../models/employee-address-form.interface"
 @Component({
   selector: "app-employee-address-form",
   templateUrl: "./employee-address-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

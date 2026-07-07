@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, effect, inject, OnInit } from "@angular/core";
+import { Component, effect, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import {
@@ -36,6 +36,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     WebButtonIcon,
   ],
   templateUrl: "./header-direccion-monitor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./header-direccion-monitor.scss",
 })
 export class HeaderDireccionMonitor implements OnInit {

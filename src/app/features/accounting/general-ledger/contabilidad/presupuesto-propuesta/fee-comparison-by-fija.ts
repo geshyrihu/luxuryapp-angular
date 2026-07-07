@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -37,6 +37,7 @@ export interface IUniformFeeComparisonDTO {
     DividerModule,
     MessageModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fee-comparison-by-fija.html",
 })
 export class FeeComparisonByFija implements OnInit {

@@ -8,6 +8,7 @@ import {
   inject,
   input,
   OnInit,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -71,6 +72,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
       }
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .field {

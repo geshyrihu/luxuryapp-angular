@@ -6,6 +6,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -81,6 +82,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
     WebButtonLabelItem,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PaginationService],
 })
 export class ProductOutputList implements OnInit, OnDestroy {

@@ -6,6 +6,7 @@ import {
   inject,
   output,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
@@ -50,6 +51,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 @Component({
   selector: "app-cronograma-anual-mantenimiento",
   templateUrl: "./cronograma-anual-mantenimiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     TableModule,

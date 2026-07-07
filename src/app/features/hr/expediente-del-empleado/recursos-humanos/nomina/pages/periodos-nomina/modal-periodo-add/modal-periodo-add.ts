@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -25,6 +25,7 @@ import {
     CustomInputDateSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-periodo-add.html",
 })
 export default class ModalPeriodoAdd implements OnInit {

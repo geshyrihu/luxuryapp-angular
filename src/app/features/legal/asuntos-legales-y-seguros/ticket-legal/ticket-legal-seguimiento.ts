@@ -7,6 +7,7 @@ import {
   OnInit,
   signal,
   Signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -27,6 +28,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-ticket-legal-seguimiento",
   templateUrl: "./ticket-legal-seguimiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     FormsModule,

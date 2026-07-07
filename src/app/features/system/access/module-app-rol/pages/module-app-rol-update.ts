@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonList } from "@ionic/angular/standalone";
 import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -26,6 +26,7 @@ import {
     IonInputToggle,
     ProgressSpinnerModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./module-app-rol-update.html",
 })
 export class ModuleAppRolUpdate implements OnInit {

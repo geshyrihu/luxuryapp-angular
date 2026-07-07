@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { debounceTime, filter } from "rxjs/operators";
@@ -10,6 +10,7 @@ import { ROUTES } from "src/app/routing/route-paths";
   selector: "app-offline",
   templateUrl: "./offline.html",
   styleUrls: ["./offline.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [WebButtonLabel],
 })
 export class Offline implements OnInit, OnDestroy {

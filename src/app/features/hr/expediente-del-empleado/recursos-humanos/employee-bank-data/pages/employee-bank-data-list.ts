@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -32,6 +32,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
   selector: "app-employee-bank-data-list",
   templateUrl: "./employee-bank-data-list.html",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,

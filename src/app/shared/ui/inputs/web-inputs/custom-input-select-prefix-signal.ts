@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input, output } from "@angular/core";
+import { Component, computed, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
@@ -80,6 +80,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

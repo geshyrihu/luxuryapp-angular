@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output } from "@angular/core";
+import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
@@ -9,6 +9,7 @@ import { confirmAction } from "../shared/confirm";
   selector: "ili-button-delete",
   standalone: true,
   imports: [CommonModule, IonButton, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button
       [expand]="expand()"

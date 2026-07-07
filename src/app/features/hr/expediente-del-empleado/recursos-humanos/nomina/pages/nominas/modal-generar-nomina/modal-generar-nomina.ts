@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -20,6 +20,7 @@ import { PeriodoNominaDTO } from "../../../interfaces/periodo-nomina.interface";
     CustomInputSwitch,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-generar-nomina.html",
 })
 export default class ModalGenerarNomina implements OnInit {

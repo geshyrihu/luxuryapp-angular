@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -33,6 +33,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 @Component({
   selector: "app-prestamo-herramientas-control",
   templateUrl: "./prestamo-herramientas-control.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,

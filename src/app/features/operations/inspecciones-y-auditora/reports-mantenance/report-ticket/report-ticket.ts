@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -15,6 +15,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-report-ticket",
   templateUrl: "./report-ticket.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     TableModule,

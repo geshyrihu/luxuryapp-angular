@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, signal } from "@angular/core";
+import { Component, inject, OnDestroy, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -13,6 +13,7 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-qr-scanner",
   templateUrl: "./qr-scanner.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [WebButtonLabel],
 })
 export class QrScanner implements OnDestroy {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import {
@@ -53,6 +53,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "app-ordenes-servicio-list",
   templateUrl: "./ordenes-servicio-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     WebButtonIconItem,

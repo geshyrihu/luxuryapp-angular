@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RatingModule } from "primeng/rating";
@@ -98,6 +98,7 @@ import { RatingBase } from "@ui/base/rating.base";
       color: var(--ds-text-muted);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppRating extends RatingBase {}

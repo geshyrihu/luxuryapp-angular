@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -21,6 +21,7 @@ interface ITaskAreaGroup {
 @Component({
   selector: "app-task-pending-board",
   templateUrl: "./task-pending-board.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [WebButtonLabel, WebButtonIcon, ImageModule, TagModule, AppIcon],
 })
 export class TaskPendingBoard implements OnInit {

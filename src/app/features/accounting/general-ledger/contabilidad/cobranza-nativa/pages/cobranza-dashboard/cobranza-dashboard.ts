@@ -6,6 +6,7 @@ import {
   effect,
   inject,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
@@ -49,6 +50,7 @@ export interface TendenciaMensualDTO {
 @Component({
   selector: "app-cobranza-dashboard",
   imports: [CommonModule, DecimalPipe, WebButtonLabel, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-dashboard.html",
 })
 export default class CobranzaDashboard {

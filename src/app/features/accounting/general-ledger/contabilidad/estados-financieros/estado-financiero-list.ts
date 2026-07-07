@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -35,6 +35,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "app-estado-financiero-list",
   templateUrl: "./estado-financiero-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     WebButtonIconConfirm,

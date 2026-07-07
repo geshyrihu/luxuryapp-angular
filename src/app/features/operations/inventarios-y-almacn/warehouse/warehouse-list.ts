@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -45,6 +46,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-warehouse-list",
   templateUrl: "./warehouse-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     WebButtonIconEdit,

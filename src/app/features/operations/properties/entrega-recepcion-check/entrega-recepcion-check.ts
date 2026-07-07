@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 // PrimeNG Modules
@@ -23,6 +23,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSelectButton,
     WebButtonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./entrega-recepcion-check.html",
 })
 export class EntregaRecepcionCheckComponent implements OnInit {

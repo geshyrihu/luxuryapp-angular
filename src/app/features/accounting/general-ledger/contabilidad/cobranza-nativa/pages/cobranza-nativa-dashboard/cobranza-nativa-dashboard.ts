@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   IonItem,
@@ -36,6 +36,7 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
     IonLabel,
   ],
   templateUrl: "./cobranza-nativa-dashboard.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cobranza-nativa-dashboard.scss"],
 })
 export default class CobranzaNativaDashboard {

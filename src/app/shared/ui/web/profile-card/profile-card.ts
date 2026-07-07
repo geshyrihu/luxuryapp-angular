@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
@@ -189,6 +189,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
       align-self: center;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppProfileCard extends ProfileCardBase {}

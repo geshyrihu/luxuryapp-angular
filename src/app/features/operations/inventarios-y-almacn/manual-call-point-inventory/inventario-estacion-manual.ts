@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -51,6 +51,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-inventario-estacion-manual",
   templateUrl: "./inventario-estacion-manual.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     WebButtonIconDownload,

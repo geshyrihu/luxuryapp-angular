@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -24,6 +24,7 @@ import {
     CustomInputDateSignal,
     WebButtonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-dashboard.html",
 })
 export class IncidentDashboardComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
@@ -33,6 +33,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 @Component({
   selector: "app-level-three-account-list",
   templateUrl: "./level-three-account-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconActiveDesactive,
     WebButtonIconEdit,

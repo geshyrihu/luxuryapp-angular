@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -33,6 +33,7 @@ const roleTypeNames: { [key in ERoleType]: string } = {
 @Component({
   selector: "app-update-role",
   templateUrl: "./update-role.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, CardModule, FieldsetModule, AppIcon],
 })
 export class UpdateRole implements OnInit {

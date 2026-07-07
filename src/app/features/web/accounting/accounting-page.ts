@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-accounting-page",
   imports: [CommonModule, RouterModule],
   templateUrl: "./accounting-page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./accounting-page.scss"],
 })
 export class AccountingPage implements AfterViewInit {

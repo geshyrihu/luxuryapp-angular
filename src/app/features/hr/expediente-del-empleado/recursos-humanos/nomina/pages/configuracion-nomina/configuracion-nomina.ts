@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject, signal } from "@angular/core";
+import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
@@ -26,6 +26,7 @@ import {
     CustomInputDecimal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./configuracion-nomina.html",
 })
 export default class ConfiguracionNomina implements OnInit {

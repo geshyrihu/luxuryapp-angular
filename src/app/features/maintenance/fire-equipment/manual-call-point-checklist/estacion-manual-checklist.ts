@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -37,6 +37,7 @@ interface IEstacionManualChecklistForm {
 @Component({
   selector: "app-estacion-manual-checklist",
   templateUrl: "./estacion-manual-checklist.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

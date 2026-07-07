@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -12,6 +12,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-task-read-list",
   templateUrl: "./task-read-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TableModule, CardModule],
 })
 export class TaskReadList implements OnInit {

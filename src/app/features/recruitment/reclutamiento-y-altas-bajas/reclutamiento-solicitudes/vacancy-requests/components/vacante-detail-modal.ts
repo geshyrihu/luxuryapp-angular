@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -21,6 +21,7 @@ interface IJobDescription {
 @Component({
   selector: "app-vacante-detail-modal",
   templateUrl: "./vacante-detail-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, CardModule, DividerModule, TabsModule, TagModule],
 })
 export class VacanteDetailModal implements OnInit {

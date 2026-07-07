@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -29,6 +29,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 @Component({
   selector: "app-elevator-spare-parts-change-list",
   templateUrl: "./elevator-spare-parts-change-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,

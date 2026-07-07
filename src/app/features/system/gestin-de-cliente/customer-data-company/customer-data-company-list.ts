@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -29,6 +29,7 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
 @Component({
   selector: "app-customer-data-company-list",
   templateUrl: "./customer-data-company-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     FormsModule,

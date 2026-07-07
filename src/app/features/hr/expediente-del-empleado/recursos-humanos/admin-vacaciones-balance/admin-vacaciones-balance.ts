@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -44,6 +44,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     ConfirmDialogModule,
   ],
   templateUrl: "./admin-vacaciones-balance.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService, MessageService],
 })
 export class AdminVacacionesBalance {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation, inject } from "@angular/core";
+import { Component, ViewEncapsulation, inject, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
   IonInputCheckbox,
@@ -337,6 +337,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileInputs {

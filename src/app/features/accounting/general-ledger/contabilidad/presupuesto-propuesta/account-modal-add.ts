@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -37,6 +37,7 @@ interface ISearchForm {
     MessageModule,
     RippleModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./account-modal-add.html",
 })
 export class AccountModalAdd implements OnInit {

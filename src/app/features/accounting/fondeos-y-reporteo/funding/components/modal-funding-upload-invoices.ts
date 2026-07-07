@@ -6,6 +6,7 @@ import {
   inject,
   Signal,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
@@ -74,6 +75,7 @@ type ModalStatus =
     WebButtonLabel,
   ],
   templateUrl: "./funding-upload-invoices-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DialogService],
 })
 export class FundingUploadInvoicesModal {

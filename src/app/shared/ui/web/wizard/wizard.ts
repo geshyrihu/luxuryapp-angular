@@ -1,4 +1,4 @@
-import { Component, contentChildren, input, model, output, signal, ViewEncapsulation } from "@angular/core";
+import { Component, contentChildren, input, model, output, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { StepperModule } from "primeng/stepper";
@@ -72,6 +72,7 @@ export interface WizardStep {
     :host { display: block; }
     .wizard-body { min-height: 200px; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class Wizard {

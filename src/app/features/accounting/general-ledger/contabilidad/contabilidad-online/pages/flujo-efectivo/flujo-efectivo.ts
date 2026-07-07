@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 
@@ -13,6 +13,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 @Component({
   selector: "app-flujo-efectivo",
   imports: [CommonModule, FormsModule, TableModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./flujo-efectivo.html",
 })
 export class FlujoEfectivo {

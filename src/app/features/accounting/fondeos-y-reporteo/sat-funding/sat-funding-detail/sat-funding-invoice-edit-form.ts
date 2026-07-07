@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -27,6 +27,7 @@ interface ISatFundingInvoiceEditForm {
 @Component({
   selector: "app-sat-funding-invoice-edit-form",
   templateUrl: "./sat-funding-invoice-edit-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ReactiveFormsModule,

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -8,6 +8,7 @@ import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/
 @Component({
   selector: "app-task-weekly-report-preview",
   templateUrl: "./task-weekly-report-preview.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
 })
 export class TaskWeeklyReportPreview implements OnInit {

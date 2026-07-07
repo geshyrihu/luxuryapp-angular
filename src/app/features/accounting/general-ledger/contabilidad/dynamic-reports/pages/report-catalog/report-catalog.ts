@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
+import { Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ConfirmationService } from "primeng/api";
@@ -50,6 +50,7 @@ import { TooltipModule } from "primeng/tooltip";
     DataViewMobile,
   ],
   providers: [ConfirmationService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-catalog.html",
 })
 export class ReportCatalog implements OnInit {

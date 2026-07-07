@@ -1,4 +1,4 @@
-import { Component, computed, input, ViewEncapsulation } from "@angular/core";
+import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 export interface AvatarItem {
@@ -73,6 +73,7 @@ export interface AvatarItem {
       color: var(--ds-text-muted, #737685);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AvatarGroup {

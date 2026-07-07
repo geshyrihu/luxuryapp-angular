@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormArray,
   FormControl,
@@ -135,6 +135,7 @@ interface IGoogleCalendarEventForm {
 @Component({
   selector: "app-google-calendar-form",
   templateUrl: "./google-calendar-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

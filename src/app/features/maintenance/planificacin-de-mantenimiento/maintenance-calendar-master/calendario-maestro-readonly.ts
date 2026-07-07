@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -9,6 +9,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
 @Component({
   selector: "app-calendario-maestro-readonly",
   templateUrl: "./calendario-maestro-readonly.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DividerModule, TagModule, TooltipModule],
 })
 export class CalendarioMaestroReadonly implements OnInit {

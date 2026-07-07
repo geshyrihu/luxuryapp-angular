@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -41,6 +41,7 @@ import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
     MobileButtonLabelDelete,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService, DialogService],
 })
 export class AiKnowledgeBaseList implements OnInit {

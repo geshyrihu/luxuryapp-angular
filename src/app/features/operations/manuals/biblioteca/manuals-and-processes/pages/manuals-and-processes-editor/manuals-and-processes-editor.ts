@@ -4,7 +4,7 @@ import {
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
-import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
+import { Component, HostListener, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
   FormBuilder,
@@ -75,6 +75,7 @@ import { TooltipModule } from "primeng/tooltip";
   selector: "app-manuals-and-processes-editor",
   templateUrl: "./manuals-and-processes-editor.html",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     TooltipModule,

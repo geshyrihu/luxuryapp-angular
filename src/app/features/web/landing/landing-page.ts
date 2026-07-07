@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 interface IAreaCard {
@@ -15,6 +15,7 @@ interface IAreaCard {
   selector: "app-landing-page",
   imports: [CommonModule, RouterModule],
   templateUrl: "./landing-page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./landing-page.scss"],
 })
 export class LandingPage implements AfterViewInit {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -30,6 +30,7 @@ interface ICatalogoActivoForm {
     CustomInputSelectSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalogo-activo-form.html",
 })
 export class CatalogoActivoForm implements OnInit {

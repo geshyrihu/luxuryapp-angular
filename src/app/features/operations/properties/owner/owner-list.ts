@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { homeOutline } from "ionicons/icons";
@@ -35,6 +35,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 @Component({
   selector: "app-owner-list",
   templateUrl: "./owner-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
     MobileButtonLabelEdit,

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { IonNote } from "@ionic/angular/standalone";
 import { BaseInputSignal } from "./base-input-signal";
@@ -51,6 +51,7 @@ import { BaseInputSignal } from "./base-input-signal";
       }
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       /* El estilo del outline nativo lo maneja el theme global

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -13,6 +13,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 @Component({
   selector: "app-bitacora-filtro-fecha-form",
   templateUrl: "./bitacora-filtro-fecha-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

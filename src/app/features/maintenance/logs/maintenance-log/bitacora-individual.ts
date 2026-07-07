@@ -6,6 +6,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { CardModule } from "primeng/card";
@@ -26,6 +27,7 @@ import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employ
 @Component({
   selector: "app-bitacora-individual",
   templateUrl: "./bitacora-individual.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     TableModule,

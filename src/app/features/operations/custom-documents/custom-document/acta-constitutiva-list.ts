@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
@@ -22,6 +22,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 @Component({
   selector: "app-acta-constitutiva-list",
   templateUrl: "./acta-constitutiva-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconViewPdf,
     PrimeNgCustomTableEmptyMessage,

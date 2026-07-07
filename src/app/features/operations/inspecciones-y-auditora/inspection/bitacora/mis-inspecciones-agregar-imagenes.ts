@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -15,6 +15,7 @@ import { TooltipModule } from "primeng/tooltip";
   imports: [
     WebButtonIcon,
     TooltipModule,WebButtonLabel, NgbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })
 export class MisInspeccionesAgregarImagenes {

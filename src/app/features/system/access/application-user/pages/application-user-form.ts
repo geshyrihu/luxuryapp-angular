@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormControl,
@@ -20,6 +20,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 @Component({
   selector: "app-application-user-form",
   templateUrl: "./application-user-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

@@ -10,6 +10,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -86,6 +87,7 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     AccountTreeSelect,
     CurrencyPipe,
    AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-builder.html",
 })
 export class ReportBuilder implements OnInit, OnDestroy {

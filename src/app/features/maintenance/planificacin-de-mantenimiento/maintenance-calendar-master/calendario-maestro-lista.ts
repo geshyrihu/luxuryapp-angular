@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { MenuItem } from "primeng/api";
 import { DividerModule } from "primeng/divider";
@@ -28,6 +28,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 @Component({
   selector: "app-calendario-maestro-lista",
   templateUrl: "./calendario-maestro-lista.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
     MobileButtonLabelEdit,

@@ -1,4 +1,4 @@
-import { Component, computed, input, ViewEncapsulation } from "@angular/core";
+import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 export interface HeatmapCell {
@@ -108,6 +108,7 @@ export interface HeatmapCell {
       max-width: 180px;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppHeatmap {

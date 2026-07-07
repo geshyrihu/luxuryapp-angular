@@ -1,4 +1,4 @@
-import { Component, computed, input, ViewEncapsulation } from "@angular/core";
+import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -111,6 +111,7 @@ export interface ComparisonItem {
       background: var(--ds-bg-hover, #fafbfe);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class ComparisonTable {

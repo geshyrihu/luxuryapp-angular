@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -43,6 +43,7 @@ interface IModuleAppForm {
     WebButtonLabelSave,
     RouterModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./module-app-form.html",
 })
 export class ModuleAppForm {

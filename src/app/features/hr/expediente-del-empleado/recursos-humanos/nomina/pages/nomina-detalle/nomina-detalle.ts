@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -43,6 +43,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nomina-detalle.html",
 })
 export default class NominaDetalle {

@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { gitMergeOutline } from "ionicons/icons";
@@ -37,6 +37,7 @@ interface UnallocatedPayment {
     DatePipe,
     CurrencyPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reconciliation-dashboard.html",
 })
 export default class ReconciliationDashboard {

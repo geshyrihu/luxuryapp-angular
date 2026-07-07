@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { TagModule } from "primeng/tag";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -7,6 +7,7 @@ import { TarjetaProveedor } from "src/app/features/purchasing/providers/provider
 @Component({
   selector: "app-datos-servicio-addoredit",
   templateUrl: "./datos-servicio-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TagModule],
 })
 export class DatosServicioAddOrEdit implements OnInit {

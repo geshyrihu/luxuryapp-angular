@@ -6,6 +6,7 @@ import {
   inject,
   input,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -35,6 +36,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "employee-bank-data-list",
   templateUrl: "./employee-bank-data-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     WebButtonIconConfirm,

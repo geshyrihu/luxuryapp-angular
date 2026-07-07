@@ -1,4 +1,4 @@
-import { Component, forwardRef, output } from "@angular/core";
+import { Component, forwardRef, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
 
@@ -33,6 +33,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       </div>
     </base-input-signal>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

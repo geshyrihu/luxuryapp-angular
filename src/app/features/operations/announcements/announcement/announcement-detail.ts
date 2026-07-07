@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
@@ -38,6 +38,7 @@ import { IAnnouncement } from "./announcement.model";
     IonLabel,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-detail.html",
 })
 export class announcementDetail implements OnInit {

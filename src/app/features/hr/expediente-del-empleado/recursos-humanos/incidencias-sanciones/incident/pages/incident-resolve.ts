@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -27,6 +27,7 @@ interface IIncidentResolveForm {
 @Component({
   selector: "app-incident-resolve",
   templateUrl: "./incident-resolve.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputSelectSignal,

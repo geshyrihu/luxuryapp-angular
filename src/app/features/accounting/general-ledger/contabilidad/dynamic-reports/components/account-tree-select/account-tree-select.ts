@@ -7,6 +7,7 @@ import {
   input,
   model,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { TreeNode } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
@@ -108,6 +109,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
       }
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host ::ng-deep .p-tree {

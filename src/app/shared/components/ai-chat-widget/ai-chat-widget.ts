@@ -6,6 +6,7 @@ import {
   inject,
   signal,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MarkdownModule } from "ngx-markdown";
@@ -16,6 +17,7 @@ import { AuthService } from "src/app/core/services/auth.service";
   selector: "app-ai-chat-widget",
   imports: [CommonModule, FormsModule, MarkdownModule],
   templateUrl: "./ai-chat-widget.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .chat-bubble {

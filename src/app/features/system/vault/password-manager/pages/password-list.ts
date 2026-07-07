@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableLazyLoadEvent, TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -25,6 +25,7 @@ import { PasswordForm } from "./password-form";
 @Component({
   selector: "app-password-list",
   templateUrl: "./password-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,

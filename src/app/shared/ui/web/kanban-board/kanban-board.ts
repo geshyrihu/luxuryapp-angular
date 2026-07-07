@@ -1,4 +1,4 @@
-import { Component, input, output, signal, ViewEncapsulation } from "@angular/core";
+import { Component, input, output, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -302,6 +302,7 @@ const PRIORITY_COLORS: Record<string, string> = {
       padding: 1rem;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class KanbanBoard {

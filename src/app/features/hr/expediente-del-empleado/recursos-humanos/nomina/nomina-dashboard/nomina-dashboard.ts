@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -580,6 +580,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,WebButtonLabel, TagModule, AppIcon],
   templateUrl: "./nomina-dashboard.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nomina-dashboard.scss"],
 })
 export default class NominaDashboard {

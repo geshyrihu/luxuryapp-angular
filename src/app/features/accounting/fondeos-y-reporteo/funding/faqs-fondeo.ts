@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
@@ -14,6 +14,7 @@ import { HighlightPipe } from "src/app/core/pipes/highlight.pipe";
     CustomSearchInput,
   ],
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./faqs-fondeo.html",
 })
 export class FaqsFondeo {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -48,6 +48,7 @@ interface IServiceOrderForm {
 @Component({
   selector: "app-service-order-form",
   templateUrl: "./service-order-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -17,6 +17,7 @@ import { ICustomerAddressAddOrEditDTO } from "../../models/customer.dto";
 @Component({
   selector: "app-customer-address",
   templateUrl: "./customer-address.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

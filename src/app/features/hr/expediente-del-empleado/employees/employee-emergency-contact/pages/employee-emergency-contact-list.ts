@@ -5,6 +5,7 @@ import {
   input,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -35,6 +36,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "employee-emergency-contact-list",
   templateUrl: "./employee-emergency-contact-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     WebButtonIconConfirm,

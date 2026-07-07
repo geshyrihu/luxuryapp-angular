@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -51,6 +51,7 @@ import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 @Component({
   selector: "app-ticket-legal-lista",
   templateUrl: "./ticket-legal-lista.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CustomInputSelectSignal,
     WebButtonIconDownload,

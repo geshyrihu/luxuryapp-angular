@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -271,6 +271,7 @@ const PATTERNS_LABELS: Record<string, string> = {
       }
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogPatternsItem {

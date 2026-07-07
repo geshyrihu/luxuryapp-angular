@@ -7,6 +7,7 @@ import {
   OnInit,
   signal,
   viewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -50,6 +51,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
       </div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .diagram-wrapper {

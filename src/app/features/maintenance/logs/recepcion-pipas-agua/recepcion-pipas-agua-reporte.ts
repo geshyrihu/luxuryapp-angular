@@ -1,5 +1,5 @@
 import { CommonModule, formatDate } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import FileSaver from "file-saver";
 import { TableModule } from "primeng/table";
@@ -23,6 +23,7 @@ import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",
   templateUrl: "./recepcion-pipas-agua-reporte.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconDownload,
     PrimeNgCustomTableEmptyMessage,

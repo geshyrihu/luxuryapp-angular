@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { Loader } from "@ui/mobile/loader/loader";
 import { FooterDireccionMonitor } from "../components/footer-direccion-monitor/footer-direccion-monitor";
@@ -8,6 +8,7 @@ import { HeaderDireccionMonitor } from "../header-direccion-monitor/header-direc
   selector: "app-view-direccion-monitor",
   imports: [RouterOutlet, HeaderDireccionMonitor, FooterDireccionMonitor, Loader],
   templateUrl: "./view-direccion-monitor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./view-direccion-monitor.scss",
 })
 export class ViewDireccionMonitor {}

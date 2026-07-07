@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { InputOtpModule } from "primeng/inputotp";
@@ -80,6 +80,7 @@ import { OtpInputBase } from "@ui/base/otp-input.base";
       outline: none;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppOtpInput extends OtpInputBase {}

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
@@ -10,6 +10,7 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
 @Component({
   selector: "app-report-bitacora-alberca",
   templateUrl: "./report-bitacora-alberca.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CustomBarChart, PageTitleReport],
 })
 export class ReportBitacoraAlberca {

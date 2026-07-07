@@ -1,4 +1,4 @@
-import { Component, computed, inject } from "@angular/core";
+import { Component, computed, inject, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter, map, startWith } from "rxjs/operators";
@@ -36,6 +36,7 @@ const DEFAULT_CONFIG = ROUTE_FILTER_CONFIG["vacancies"];
     </div>
     <router-outlet />
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FilterRequests, RouterModule],
 })
 export class RecruitmentRequestsShell {

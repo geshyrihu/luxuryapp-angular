@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -15,6 +15,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     IonLabel,
     WebButtonLabelViewPdf,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informe-financiero-list.html",
 })
 export class InformeFinanciero {

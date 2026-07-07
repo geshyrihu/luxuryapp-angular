@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -10,6 +10,7 @@ import { UpdateRole } from "./update-role";
 @Component({
   selector: "app-md-edit-account",
   templateUrl: "./edit-account.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [UpdatePasswordAccount, UpdateRole, AccessCustomer],
 })
 export class MdEditAccount implements OnInit {

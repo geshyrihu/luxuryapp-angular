@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonBackButton,
   IonButton,
@@ -268,6 +268,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
     .fab-demo-label { font-size: 0.7rem; color: var(--ds-text-muted); }
     .fab-demo-area { position: relative; height: 100px; background: var(--ds-bg-elevated); border-radius: 8px; border: 1px dashed var(--ds-border); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileNavigation {

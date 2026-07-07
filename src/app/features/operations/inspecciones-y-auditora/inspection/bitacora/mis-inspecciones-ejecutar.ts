@@ -7,6 +7,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -51,6 +52,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-ejecutar.html",
 })
 export class MisInspeccionesEjecutar implements OnInit {

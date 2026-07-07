@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -10,6 +10,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-update-password-account",
   templateUrl: "./update-password-account.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule, MessageModule, WebButtonLabel, AppIcon],
 })
 export class UpdatePasswordAccount implements OnInit {

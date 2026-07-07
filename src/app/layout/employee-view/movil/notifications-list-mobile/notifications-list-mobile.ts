@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { addIcons } from "ionicons";
@@ -52,6 +52,7 @@ import { SignalRService } from "src/app/core/services/signalr.service";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonicModule],
 })
 export class NotificationsListMobile implements OnInit {

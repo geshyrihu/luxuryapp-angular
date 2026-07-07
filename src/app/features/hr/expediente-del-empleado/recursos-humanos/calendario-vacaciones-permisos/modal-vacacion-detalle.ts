@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -16,6 +16,7 @@ interface VacationRequestCalendarDetailDTO {
 @Component({
   selector: "app-vacacion-detalle-modal",
   templateUrl: "./vacacion-detalle-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TagModule],
 })
 export class VacacionDetalleModal implements OnInit {

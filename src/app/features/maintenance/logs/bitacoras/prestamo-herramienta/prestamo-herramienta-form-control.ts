@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -35,6 +35,7 @@ interface IPrestamoHerramientaForm {
 @Component({
   selector: "app-prestamo-herramienta-form-control",
   templateUrl: "./prestamo-herramienta-form-control.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

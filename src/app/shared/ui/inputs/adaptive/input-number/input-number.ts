@@ -1,4 +1,4 @@
-import { Component, forwardRef, inject, input, output } from "@angular/core";
+import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -20,6 +20,7 @@ import { WebInputNumber } from "../../web/input-number/input-number";
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
       <ion-input-number

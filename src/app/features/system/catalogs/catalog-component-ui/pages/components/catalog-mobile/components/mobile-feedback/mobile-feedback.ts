@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, signal, ViewEncapsulation } from "@angular/core";
+import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonAvatar,
   IonButton,
@@ -219,6 +219,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
     .ds-progress-track { width:120px; height:8px; background:var(--ds-bg-elevated); border-radius:999px; overflow:hidden; }
     .ds-progress-fill { height:100%; background:var(--ds-primary); border-radius:999px; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileFeedback {

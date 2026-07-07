@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TokensColors } from "../../../shared/tokens-colors/tokens-colors";
 import { TokensTypography } from "../../../shared/tokens-typography/tokens-typography";
@@ -18,6 +18,7 @@ import { TokensTypography } from "../../../shared/tokens-typography/tokens-typog
       }
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogTokensItem {

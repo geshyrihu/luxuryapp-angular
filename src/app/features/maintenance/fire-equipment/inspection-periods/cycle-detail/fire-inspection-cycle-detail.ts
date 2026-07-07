@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TagModule } from "primeng/tag";
@@ -19,6 +19,7 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-fire-inspection-cycle-detail",
   templateUrl: "./fire-inspection-cycle-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, WebButtonLabel, TagModule, IonItem, IonLabel],
 })
 export class FireInspectionCycleDetail implements OnInit, OnDestroy {

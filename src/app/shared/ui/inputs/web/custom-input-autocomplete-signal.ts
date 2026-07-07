@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, forwardRef, input, output } from "@angular/core";
+import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import {
     FormsModule,
     NG_VALUE_ACCESSOR,
@@ -62,6 +62,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       </p-autoComplete>
     </base-input-signal>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

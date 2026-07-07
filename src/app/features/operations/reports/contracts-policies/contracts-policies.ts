@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -18,6 +18,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 @Component({
   selector: "app-contracts-policies",
   templateUrl: "./contracts-policies.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconViewPdf,
     CommonModule,

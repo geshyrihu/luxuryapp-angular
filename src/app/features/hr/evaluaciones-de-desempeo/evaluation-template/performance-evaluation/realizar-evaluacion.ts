@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormArray,
@@ -26,6 +26,7 @@ import { DateService } from "src/app/core/services/date.service";
   selector: "app-realizar-evaluacion",
 
   templateUrl: "./realizar-evaluacion.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

@@ -8,6 +8,7 @@ import {
   OnInit,
   signal,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -27,6 +28,7 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-fire-inspection-period-hidrante-detail",
   templateUrl: "./fire-inspection-period-hidrante-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,

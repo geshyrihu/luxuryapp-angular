@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 type FlowNode = {
@@ -14,6 +14,7 @@ type FlowNode = {
   selector: "app-system-flow-map",
   imports: [CommonModule, AppIcon],
   templateUrl: "./system-flow-map.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./system-flow-map.scss"],
 })
 export default class SystemFlowMap {

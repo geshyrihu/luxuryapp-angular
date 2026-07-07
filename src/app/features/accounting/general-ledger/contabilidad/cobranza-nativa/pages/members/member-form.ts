@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -57,6 +57,7 @@ interface IMemberForm {
     CustomInputDateSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./member-form.html",
 })
 export default class MemberForm implements OnInit {

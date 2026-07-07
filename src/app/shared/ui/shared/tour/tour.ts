@@ -6,6 +6,7 @@ import {
   model,
   signal,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -184,6 +185,7 @@ export interface TourStep {
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class Tour {

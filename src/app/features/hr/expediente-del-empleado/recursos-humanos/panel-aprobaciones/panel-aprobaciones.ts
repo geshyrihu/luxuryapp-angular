@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -14,6 +14,7 @@ import { ApprovalStateService } from "./state/approval-state.service";
 @Component({
   selector: "app-panel-aprobaciones",
   templateUrl: "./panel-aprobaciones.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ConfirmDialogModule, GenericApprovalPanel, CardModule],
 })
 export class PanelAprobaciones implements OnInit {

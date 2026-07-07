@@ -3,6 +3,7 @@ import {
   computed,
   input,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
@@ -145,6 +146,7 @@ export type PreviewMode = "desktop" | "mobile";
     .ep-plain-text { padding: 1rem; font-size: var(--ds-font-size-body, 0.9375rem); color: var(--ds-text-primary); white-space: pre-wrap; line-height: 1.6; }
     .ep-empty { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 3rem; color: var(--ds-text-muted); font-size: var(--ds-font-size-help, 0.8125rem); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppEmailPreview {

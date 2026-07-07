@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -32,6 +32,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputTextSignal,
     CustomInputSwitch,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-dias-no-habiles.html",
 })
 export default class ModalDiasNoHabiles implements OnInit {

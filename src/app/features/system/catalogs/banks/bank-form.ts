@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -24,6 +24,7 @@ interface IBankForm {
 @Component({
   selector: "app-bank-form",
   templateUrl: "./bank-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, InputText, WebButtonLabelSave],
 })
 export class BankForm implements OnInit {

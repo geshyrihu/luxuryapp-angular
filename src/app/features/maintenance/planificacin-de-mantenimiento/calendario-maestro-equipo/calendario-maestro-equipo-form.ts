@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -18,6 +18,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-calendario-maestro-equipo-form",
   templateUrl: "./calendario-maestro-equipo-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

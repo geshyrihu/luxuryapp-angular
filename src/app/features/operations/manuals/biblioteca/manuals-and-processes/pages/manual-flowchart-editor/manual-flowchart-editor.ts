@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "primeng/api";
@@ -58,6 +58,7 @@ const CORPORATE_DEFAULT_XML = `<mxGraphModel>
   selector: "app-manual-flowchart-editor",
   imports: [CommonModule, ToastModule, AppIcon],
   providers: [MessageService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./manual-flowchart-editor.html",
 })
 export class ManualFlowchartEditor implements OnInit, OnDestroy {

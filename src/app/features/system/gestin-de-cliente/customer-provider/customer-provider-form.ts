@@ -1,4 +1,4 @@
-import { Component, inject, type OnInit, signal } from "@angular/core";
+import { Component, inject, type OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -33,6 +33,7 @@ interface ICustomerProviderForm {
     WebButtonLabelSave,
     CardModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./customer-provider-form.html",
 })
 export class CustomerProviderForm implements OnInit {

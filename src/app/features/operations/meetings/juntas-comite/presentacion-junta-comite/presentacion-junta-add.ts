@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -18,6 +18,7 @@ import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-presentacion-junta-add",
   templateUrl: "./presentacion-junta-add.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,

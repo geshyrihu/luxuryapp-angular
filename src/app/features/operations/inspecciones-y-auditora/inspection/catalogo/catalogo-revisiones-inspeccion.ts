@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -47,6 +47,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     WebButtonLabelDelete,
     WebButtonLabelEdit,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalogo-revisiones-inspeccion.html",
 })
 export class CatalogoRevisionesInspeccion {

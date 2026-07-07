@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -36,6 +36,7 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
 @Component({
   selector: "app-cont-list-minuta-pendientes",
   templateUrl: "./minuta-pendientes-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     PrimeNgCustomTableEmptyMessage,

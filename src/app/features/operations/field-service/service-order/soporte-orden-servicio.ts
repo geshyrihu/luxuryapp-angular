@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -9,6 +9,7 @@ import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-soporte-orden-servicio",
   templateUrl: "./soporte-orden-servicio.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, SanitizeHtmlPipe],
 })
 export class SoporteOrdenServicio implements OnInit {

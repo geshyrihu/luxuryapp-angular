@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -22,6 +22,7 @@ import { EmployeeBankDataDTO } from "../models/employee-bank-data.interfaces";
   selector: "app-employee-bank-data-form",
   templateUrl: "./employee-bank-data-form.html",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

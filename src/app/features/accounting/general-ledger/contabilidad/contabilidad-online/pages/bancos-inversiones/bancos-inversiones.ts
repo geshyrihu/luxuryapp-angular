@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Endpoints } from 'src/app/core/constants/endpoints';
 import { reportFilterState } from '../../state/financial-report-filter.state';
@@ -13,6 +13,7 @@ import { TableModule } from 'primeng/table';
   selector: 'app-bancos-inversiones',
   standalone: true,
   imports: [CommonModule, SkeletonModule, TableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './bancos-inversiones.html',
 })
 export class BancosInversionesComponent {

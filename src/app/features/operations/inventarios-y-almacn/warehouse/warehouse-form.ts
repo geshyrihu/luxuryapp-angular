@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -50,6 +50,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DragDropModule,
     ReactiveFormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger("dropAnimation", [
       transition(":enter", [

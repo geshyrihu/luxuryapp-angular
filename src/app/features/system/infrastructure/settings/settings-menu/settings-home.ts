@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -36,6 +36,7 @@ interface IMenuTone {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: "./settings-home.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./settings-home.scss"],
 })
 export class SettingsHome {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -14,6 +14,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 @Component({
   selector: 'app-analisis-cobranza-cliente',
   imports: [CommonModule, ChartWrapper, SelectModule, TableModule, TagModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './analisis-cobranza-cliente.html',
 })
 export class AnalisisCobranzaClienteComponent {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -23,6 +23,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 @Component({
   selector: "app-entrega-recepcion-cliente-form",
   templateUrl: "./entrega-recepcion-cliente-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

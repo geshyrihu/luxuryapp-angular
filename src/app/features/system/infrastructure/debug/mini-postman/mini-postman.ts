@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BadgeModule } from "primeng/badge";
 import { InputTextModule } from "primeng/inputtext";
@@ -29,6 +29,7 @@ interface HistoryEntry {
 @Component({
   selector: "app-mini-postman",
   templateUrl: "./mini-postman.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     InputTextModule,

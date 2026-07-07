@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -34,6 +34,7 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 @Component({
   selector: "app-legal-pendientes-minuta",
   templateUrl: "./legal-pendientes-minuta.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
     MobileButtonLabelItem,

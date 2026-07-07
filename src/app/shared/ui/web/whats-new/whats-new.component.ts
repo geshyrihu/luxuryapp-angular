@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
@@ -12,6 +12,7 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
 @Component({
   selector: "app-whats-new",
   imports: [DialogModule, ButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-dialog
       header="Novedades de la versión 5.0.2"

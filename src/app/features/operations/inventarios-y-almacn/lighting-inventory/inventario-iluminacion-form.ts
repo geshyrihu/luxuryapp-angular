@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -32,6 +32,7 @@ interface IInventarioIluminacionForm {
 @Component({
   selector: "app-inventario-iluminacion-form",
   templateUrl: "./inventario-iluminacion-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

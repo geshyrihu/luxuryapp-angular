@@ -1,5 +1,5 @@
 import { DecimalPipe } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgxEchartsDirective } from "ngx-echarts";
 import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
@@ -20,6 +20,7 @@ interface IDatoAgrupado {
 @Component({
   selector: "app-recepcion-pipas-agua-analisis",
   templateUrl: "./recepcion-pipas-agua-analisis.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DecimalPipe,
     NgxEchartsDirective,

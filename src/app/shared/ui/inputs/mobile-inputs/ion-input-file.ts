@@ -5,6 +5,7 @@ import {
   input,
   output,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon } from "@ionic/angular/standalone";
@@ -77,6 +78,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       </div>
     </base-ionic-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

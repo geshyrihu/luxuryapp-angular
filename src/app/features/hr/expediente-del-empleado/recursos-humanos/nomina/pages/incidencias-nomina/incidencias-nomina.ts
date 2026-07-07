@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -39,6 +39,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incidencias-nomina.html",
 })
 export default class IncidenciasNomina {

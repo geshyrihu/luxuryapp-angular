@@ -1,4 +1,4 @@
-import { Component, computed, input } from "@angular/core";
+import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
 import { NgxEchartsDirective } from "ngx-echarts";
 import type { ECharts, EChartsCoreOption } from "echarts/core";
 import { chartJsToRadarOption, ChartJsData } from "./echarts-adapters";
@@ -12,6 +12,7 @@ import { chartJsToRadarOption, ChartJsData } from "./echarts-adapters";
   selector: "app-primeng-radar-chart",
   standalone: true,
   imports: [NgxEchartsDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if ((chartData().datasets?.[0]?.data?.length ?? 0) > 0) {
       <div

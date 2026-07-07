@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -9,6 +9,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-card-employee",
   templateUrl: "./card-employee.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule, TagModule, DividerModule],
 })
 export class CardEmployee implements OnInit {

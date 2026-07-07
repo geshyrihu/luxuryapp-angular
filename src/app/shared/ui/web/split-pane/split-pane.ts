@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SplitterModule } from "primeng/splitter";
 
@@ -36,6 +36,7 @@ import { SplitterModule } from "primeng/splitter";
       border-radius: var(--ds-radius-lg, 8px);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class SplitPane {

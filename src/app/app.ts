@@ -27,7 +27,7 @@
  * En resumen: soy ligero, reactivo y zen. 🧘‍♂️
  * Mi lema: *"Menos responsabilidades, más elegancia."*
  */
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { filter } from "rxjs/operators";
@@ -51,6 +51,7 @@ import { TitleService } from "./core/services/title.service";
     // WhatsNew,
     // AiChatWidget,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./app.html",
 })
 export class App implements OnInit {

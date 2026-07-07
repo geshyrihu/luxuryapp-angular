@@ -1,4 +1,4 @@
-import { Component, forwardRef, signal } from "@angular/core";
+import { Component, forwardRef, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon, IonInput } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -52,6 +52,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       </ion-input>
     </base-ionic-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

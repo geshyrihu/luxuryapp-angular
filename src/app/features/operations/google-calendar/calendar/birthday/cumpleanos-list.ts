@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonAvatar,
   IonList,
@@ -19,6 +19,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 @Component({
   selector: "app-cumpleanos",
   templateUrl: "./cumpleanos-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CardModule,
     WebButtonLabel,

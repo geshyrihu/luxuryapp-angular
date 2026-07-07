@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject, signal } from "@angular/core";
+import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { FieldsetModule } from "primeng/fieldset";
@@ -13,6 +13,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     CustomInputSelectSignal,

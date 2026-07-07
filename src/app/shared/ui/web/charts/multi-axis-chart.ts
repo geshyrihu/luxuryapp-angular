@@ -1,4 +1,4 @@
-import { Component, computed, input } from "@angular/core";
+import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
 import { NgxEchartsDirective } from "ngx-echarts";
 import type { EChartsCoreOption } from "echarts/core";
 import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
@@ -12,6 +12,7 @@ import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
   selector: "app-multi-axis-chart",
   standalone: true,
   imports: [NgxEchartsDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="p-card">
       <div echarts [options]="option()" style="height: 320px"></div>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import {
   IonApp,
@@ -32,6 +32,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
     Loader,
   ],
   templateUrl: "./view-employee-mobile.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

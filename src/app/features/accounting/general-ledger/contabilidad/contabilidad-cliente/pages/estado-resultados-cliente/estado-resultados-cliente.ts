@@ -6,6 +6,7 @@ import {
   inject,
   input,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
@@ -60,6 +61,7 @@ type ClientRow =
 @Component({
   selector: "app-estado-resultados-cliente",
   imports: [CommonModule, TableModule, SkeletonModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-cliente.html",
 })
 export class EstadoResultadosClienteComponent {

@@ -5,6 +5,7 @@ import {
   input,
   signal,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
@@ -38,6 +39,7 @@ interface AiMessage {
     ProgressSpinnerModule,
   ],
   templateUrl: "./ai-agent.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AiAgentComponent {

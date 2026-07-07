@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -28,6 +28,7 @@ import { GroupedAccountingCatalogDTO } from "../models/grouped-accounting-catalo
     DataViewMobile,
     CardModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService],
 })
 export class AccountingCatalog {

@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 export interface DashboardWidget {
@@ -63,6 +63,7 @@ export interface DashboardWidget {
       overflow: auto;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardLayout {

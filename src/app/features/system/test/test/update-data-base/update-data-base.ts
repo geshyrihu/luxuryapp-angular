@@ -1,5 +1,5 @@
 import { CommonModule, JsonPipe } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -8,6 +8,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-update-data-base",
   templateUrl: "./update-data-base.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, CardModule],
 })
 export class UpdateDataBase {

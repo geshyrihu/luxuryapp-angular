@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -39,6 +39,7 @@ import { TooltipModule } from "primeng/tooltip";
     CustomInputSelectSignal,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./invoice-list.html",
 })
 export default class InvoiceList {

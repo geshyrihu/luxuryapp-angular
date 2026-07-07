@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
@@ -27,6 +27,7 @@ interface VacationApprovalDetailDTO {
 @Component({
   selector: "app-vacacion-solicitud-detalle",
   templateUrl: "./vacacion-solicitud-detalle.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule, TagModule, WebButtonLabel],
 })
 export class VacacionSolicitudDetalle implements OnInit {

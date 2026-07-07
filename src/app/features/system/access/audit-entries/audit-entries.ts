@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
@@ -60,6 +60,7 @@ interface AuditEntry {
     AppIcon,
   ],
   templateUrl: "./audit-entries.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./audit-entries.scss"],
 })
 export class AuditEntries implements OnInit {

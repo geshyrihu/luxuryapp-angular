@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -20,6 +20,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 @Component({
   selector: "app-fire-cycle-inspection-hidrante-form",
   templateUrl: "./fire-cycle-inspection-hidrante-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

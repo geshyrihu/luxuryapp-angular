@@ -5,6 +5,7 @@ import {
   model,
   output,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -92,8 +93,7 @@ export interface DataGridColumn {
         [sortField]="sortField()"
         [sortOrder]="sortOrder()"
         [selectionMode]="selectionMode()"
-        [selection]="selection()"
-        (selectionChange)="selectionChange.emit($event)"
+        [(selection)]="selection"
         [scrollable]="scrollable()"
         [scrollHeight]="scrollHeight()"
         [virtualScroll]="virtualScroll()"
@@ -260,6 +260,7 @@ export interface DataGridColumn {
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class DataGrid {
@@ -292,7 +293,7 @@ export class DataGrid {
 
   globalFilterValue: string = "";
 
-  selectionChange = output<any>();
+
   onLazyLoad = output<any>();
   onPage = output<any>();
   onSort = output<any>();

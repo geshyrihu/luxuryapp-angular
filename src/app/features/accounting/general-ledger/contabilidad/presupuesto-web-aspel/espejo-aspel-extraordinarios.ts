@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, input, signal } from "@angular/core";
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
@@ -35,6 +35,7 @@ import { PurchaseHistory } from "./purchase-history";
 @Component({
   selector: "app-espejo-aspel-extraordinarios",
   templateUrl: "./espejo-aspel-extraordinarios.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,

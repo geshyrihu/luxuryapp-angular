@@ -3,7 +3,7 @@ import {
   DragDropModule,
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
@@ -47,6 +47,7 @@ interface ICategoryForm {
 @Component({
   selector: "app-formulario-plantilla-evaluacion",
   templateUrl: "./formulario-plantilla-evaluacion.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     InputGroupModule,
     InputGroupAddonModule,

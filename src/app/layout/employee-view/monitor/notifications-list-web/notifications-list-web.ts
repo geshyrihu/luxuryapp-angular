@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { BadgeModule } from "primeng/badge";
@@ -14,6 +14,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-notifications-list-web",
   templateUrl: "./notifications-list-web.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [BadgeModule, CardModule, ScrollPanelModule, AppIcon, WebButtonIcon],
 })
 export class NotificationsListWeb implements OnInit {

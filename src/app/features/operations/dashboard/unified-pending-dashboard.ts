@@ -6,6 +6,7 @@ import {
   input,
   signal,
   viewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
@@ -68,6 +69,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AppIcon,
   ],
   templateUrl: "./unified-pending-dashboard.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

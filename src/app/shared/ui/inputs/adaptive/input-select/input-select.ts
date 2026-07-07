@@ -1,4 +1,4 @@
-import { Component, forwardRef, inject, input, output } from "@angular/core";
+import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { PlatformService } from "src/app/core/services/platform.service";
@@ -21,6 +21,7 @@ import { WebInputSelect } from "../../web/input-select/input-select";
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
       <ion-input-select

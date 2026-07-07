@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -19,6 +19,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-producto-edit",
   templateUrl: "./producto-edit.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

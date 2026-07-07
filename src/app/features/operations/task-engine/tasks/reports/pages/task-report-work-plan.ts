@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -28,6 +28,7 @@ import { TaskForm } from "../../task-message/pages/task-form";
 @Component({
   selector: "app-task-report-work-plan",
   templateUrl: "./task-report-work-plan.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonLabel,
 

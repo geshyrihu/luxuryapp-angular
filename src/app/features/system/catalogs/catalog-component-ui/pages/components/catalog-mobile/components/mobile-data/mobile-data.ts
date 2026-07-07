@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { IonAccordion, IonAccordionGroup, IonAvatar, IonBadge, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonChip, IonCol, IonGrid, IonIcon, IonItem, IonLabel, IonList, IonNote, IonRow, IonThumbnail } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { calendarOutline, mailOutline, notificationsOutline } from "ionicons/icons";
@@ -324,6 +324,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
     .ds-avatar-mini--secondary { background:var(--ds-primary-100, #b5c8e3); color:var(--ds-primary-dark, var(--ds-primary)); }
     .ds-avatar-mini--more { background:var(--ds-border-strong); color:var(--ds-text-secondary); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileData {

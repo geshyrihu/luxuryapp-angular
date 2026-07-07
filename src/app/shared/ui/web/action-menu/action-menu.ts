@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { addIcons } from "ionicons";
 import { ellipsisVertical } from "ionicons/icons";
 import { ButtonModule } from "primeng/button";
@@ -39,6 +39,7 @@ import { Popover, PopoverModule } from "primeng/popover";
       </p-popover>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`
     .menu-container {
       display: flex;

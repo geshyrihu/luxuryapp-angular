@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -6,6 +6,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-ticket-legal-seguimiento-solicitud-detalle",
   templateUrl: "./ticket-legal-seguimiento-solicitud-detalle.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule],
 })
 export class TicketLegalSeguimientoSolicitudDetalle implements OnInit {

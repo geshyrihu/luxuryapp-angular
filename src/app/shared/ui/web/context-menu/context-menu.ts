@@ -1,4 +1,4 @@
-import { Component, input, ViewChild, ViewEncapsulation } from "@angular/core";
+import { Component, input, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ContextMenuModule } from "primeng/contextmenu";
 import { ContextMenu as PrimeContextMenu } from "primeng/contextmenu";
@@ -23,6 +23,7 @@ import { MenuItem } from "primeng/api";
       display: contents;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class ContextMenu {

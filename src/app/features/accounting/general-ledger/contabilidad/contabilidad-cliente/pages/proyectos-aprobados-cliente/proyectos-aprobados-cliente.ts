@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
@@ -9,6 +9,7 @@ import { IProyectosAprobadosDTO } from '../../../contabilidad-online/models/aspe
 @Component({
   selector: 'app-proyectos-aprobados-cliente',
   imports: [CommonModule, SkeletonModule, TableModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './proyectos-aprobados-cliente.html',
 })
 export class ProyectosAprobadosClienteComponent {

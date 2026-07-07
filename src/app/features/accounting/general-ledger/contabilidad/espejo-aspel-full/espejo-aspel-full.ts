@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "primeng/api";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
@@ -33,6 +33,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     SharedModule,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./espejo-aspel-full.html",
 })
 export class EspejoAspelFull {

@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
@@ -13,6 +13,7 @@ import { EmptyStateBase } from "@ui/base/empty-state.base";
   selector: "lx-empty-state",
   standalone: true,
   imports: [EmptyState, MobileEmptyState],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
       <ili-empty-state

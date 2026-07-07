@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
 import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
@@ -7,6 +7,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-employee-avatar-form",
   templateUrl: "./employee-avatar-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [InputTextModule, CardModule, CustomInputImg],
 })
 export class EmployeeAvatarForm implements OnInit {

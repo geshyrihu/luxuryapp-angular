@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -130,6 +131,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
     MobileButtonLabelItem,

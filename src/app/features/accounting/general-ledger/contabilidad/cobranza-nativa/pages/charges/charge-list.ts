@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from "@angular/common";
-import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
+import { Component, DestroyRef, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -53,6 +53,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     IonItem,
     IonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-list.html",
 })
 export default class ChargeList {

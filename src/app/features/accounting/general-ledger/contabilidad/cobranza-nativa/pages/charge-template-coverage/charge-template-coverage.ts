@@ -1,5 +1,5 @@
 import { CurrencyPipe, NgClass } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -14,6 +14,7 @@ import { ECalculationMethod } from "../../models/enums";
 @Component({
   selector: "app-charge-template-coverage",
   imports: [TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-coverage.html",
 })
 export default class ChargeTemplateCoverage {

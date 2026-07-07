@@ -6,6 +6,7 @@ import {
   effect,
   inject,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
@@ -116,6 +117,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
 @Component({
   selector: "app-juntas-mensuales-session",
   templateUrl: "./juntas-mensuales-session.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     CommonModule,

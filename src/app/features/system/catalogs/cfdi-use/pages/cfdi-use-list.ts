@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
@@ -28,6 +28,7 @@ import { CfdiUseForm } from "./cfdi-use-form";
 @Component({
   selector: "app-cfdi-use-list",
   templateUrl: "./cfdi-use-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,

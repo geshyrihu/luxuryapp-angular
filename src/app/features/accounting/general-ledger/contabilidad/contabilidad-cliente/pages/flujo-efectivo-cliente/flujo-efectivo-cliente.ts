@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import type { IFlujoCajaDto } from '../../../contabilidad-online/models/aspel-budget.interface';
 import { AccountingNumberPipe } from '../../../contabilidad-online/pipes/accounting-number.pipe';
@@ -8,6 +8,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 @Component({
   selector: 'app-flujo-efectivo-cliente',
   imports: [CommonModule, TableModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './flujo-efectivo-cliente.html',
 })
 export class FlujoEfectivoClienteComponent {

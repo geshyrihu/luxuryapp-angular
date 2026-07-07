@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input } from "@angular/core";
+import { Component, DestroyRef, inject, input, ChangeDetectionStrategy } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -22,6 +22,7 @@ import { FilterRequestsService } from "src/app/core/services/filter-requests.ser
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     RouterModule,

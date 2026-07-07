@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, Type } from "@angular/core";
+import { Component, computed, inject, Type, ChangeDetectionStrategy } from "@angular/core";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { MiEdificio } from "src/app/features/operations/properties/mi-edificio/mi-edificio";
@@ -7,6 +7,7 @@ import { DashboardPendingItems } from "./dashboard-pending-items";
 @Component({
   selector: "app-container-dashboard",
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./container-dashboard.html",
 })
 export class ContainerDashboard {

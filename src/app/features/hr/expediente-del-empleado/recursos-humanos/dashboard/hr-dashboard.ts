@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -24,6 +24,7 @@ interface HRModuleGroup {
   selector: "app-hr-dashboard",
   imports: [],
   templateUrl: "./hr-dashboard.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`:host { display: block; padding: 1.5rem; }`],
 })
 export class HRDashboard {

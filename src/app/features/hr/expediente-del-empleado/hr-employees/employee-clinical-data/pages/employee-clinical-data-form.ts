@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -19,6 +19,7 @@ import { IEmployeeClinicalDataForm } from "../models/employee-clinical-data.inte
 @Component({
   selector: "app-employee-clinical-data-form",
   templateUrl: "./employee-clinical-data-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

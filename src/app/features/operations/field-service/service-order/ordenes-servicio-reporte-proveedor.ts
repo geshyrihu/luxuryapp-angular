@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -13,6 +13,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
   templateUrl: "./ordenes-servicio-reporte-proveedor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,TableModule, WebButtonLabelDelete],

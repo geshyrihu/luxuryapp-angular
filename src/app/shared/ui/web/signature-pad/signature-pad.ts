@@ -8,6 +8,7 @@ import {
   signal,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
@@ -102,6 +103,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     .sig-actions { display: flex; gap: 0.5rem; }
     .sig-hint { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppSignaturePad implements AfterViewInit, OnDestroy {

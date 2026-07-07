@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -43,6 +43,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-warehouse-stock-add",
   templateUrl: "./warehouse-stock-add.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     TooltipModule,

@@ -6,6 +6,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import {
@@ -48,6 +49,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 @Component({
   selector: "app-templates-list",
   templateUrl: "./templates-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconViewPdf,
     MobileActionMenu,

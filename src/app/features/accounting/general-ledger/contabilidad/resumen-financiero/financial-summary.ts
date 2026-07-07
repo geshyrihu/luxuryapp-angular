@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -14,6 +14,7 @@ import { PurchaseHistory } from "../presupuesto-web-aspel/purchase-history";
 @Component({
   selector: "app-financial-summary",
   templateUrl: "./financial-summary.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, FormsModule, TableModule],
 })
 export class FinancialSummary {

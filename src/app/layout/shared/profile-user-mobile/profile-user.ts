@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, Signal } from "@angular/core";
+import { Component, computed, effect, inject, Signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -45,6 +45,7 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
     IonSelect,
     IonSelectOption,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./profile-user.html",
 })
 export class ProfileUserMobile {

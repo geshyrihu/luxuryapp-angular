@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -23,6 +23,7 @@ export interface IOrdenCompraDenegadaForm {
 @Component({
   selector: "app-orden-compra-denegada",
   templateUrl: "./orden-compra-denegada.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextAreaSignal,

@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -165,6 +165,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
       }
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     TableModule,

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -7,6 +7,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-report-client",
   templateUrl: "./report-client.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, CardModule],
 })
 export class ReportClient implements OnInit {

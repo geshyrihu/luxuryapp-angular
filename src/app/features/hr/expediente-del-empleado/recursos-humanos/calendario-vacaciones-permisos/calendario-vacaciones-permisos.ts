@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import {
   CalendarOptions,
@@ -23,6 +23,7 @@ interface HolidayCalendarEventDTO {
 @Component({
   selector: "app-calendario-vacaciones-permisos",
   templateUrl: "./calendario-vacaciones-permisos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FullCalendarModule],
 })
 export class CalendarioVacacionesPermisos implements OnInit {

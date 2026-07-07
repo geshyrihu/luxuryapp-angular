@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
 import type {
@@ -28,6 +28,7 @@ type ClientRow =
 @Component({
   selector: 'app-estado-resultados-v2-cliente',
   imports: [CommonModule, TableModule, SkeletonModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './estado-resultados-v2-cliente.html',
 })
 export class EstadoResultadosV2ClienteComponent {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -26,6 +26,7 @@ interface IRescheduleForm {
 @Component({
   selector: "app-junta-mensual-session-reschedule-form",
   templateUrl: "./junta-mensual-session-reschedule-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

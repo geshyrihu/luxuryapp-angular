@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-operation-report-client",
   imports: [],
   templateUrl: "./operation-report-client.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

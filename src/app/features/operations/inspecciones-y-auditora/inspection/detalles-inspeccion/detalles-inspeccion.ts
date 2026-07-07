@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -28,6 +28,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ActionMenu,
     TooltipModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./detalles-inspeccion.html",
 })
 export class DetallesInspeccion implements OnInit {

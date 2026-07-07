@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-operations-page",
   imports: [CommonModule, RouterModule],
   templateUrl: "./operations-page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./operations-page.scss"],
 })
 export class OperationsPage implements AfterViewInit {

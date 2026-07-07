@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
@@ -21,6 +21,7 @@ import { AppIcon } from "../../shared/app-icon/app-icon.component";
     InputIconModule,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-iconfield iconPosition="left" fluid>
       <p-inputicon>

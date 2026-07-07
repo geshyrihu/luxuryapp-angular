@@ -1,4 +1,4 @@
-import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
+import { Component, input, model, output, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 export type TriState = true | false | null;
@@ -105,6 +105,7 @@ export type TriState = true | false | null;
 
     .tri-state-label { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-text-secondary); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppTristateSwitch {

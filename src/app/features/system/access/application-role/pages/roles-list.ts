@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -39,6 +39,7 @@ import { RoleForm } from "./role-form";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./roles-list.html",
 })
 export class RolesList implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
@@ -26,6 +26,7 @@ interface LeaveApprovalDetailDTO {
 @Component({
   selector: "app-leave-request-detail-for-aproved",
   templateUrl: "./permiso-detalle-aprobar.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule, TagModule, WebButtonLabel],
 })
 export class PermisoDetalleAprobar implements OnInit {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import {
@@ -16,6 +16,7 @@ import { ResumenOrdenesServicioGrafico } from "./resumen-ordenes-servicio-grafic
 @Component({
   selector: "app-resumen-ordenes-servicio",
   templateUrl: "./resumen-ordenes-servicio.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TableModule, ResumenOrdenesServicioGrafico, TagModule],
 })
 export class ResumenOrdenesServicio implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -15,6 +15,7 @@ interface PendingMinutesResponse {
 @Component({
   selector: "app-pending-minutes",
   imports: [TableModule, CardModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pending-minutes.html",
 })
 export class PendingMinutes {

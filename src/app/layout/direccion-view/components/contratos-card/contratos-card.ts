@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -12,6 +12,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-contratos-card",
   templateUrl: "./contratos-card.html",
   imports: [CommonModule, AppIcon, WebButtonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`.text-ds-warning{color:var(--ds-warning)}.text-ds-success{color:var(--ds-success)}`],
 })
 export class ContratosCard implements OnInit {

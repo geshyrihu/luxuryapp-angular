@@ -8,6 +8,7 @@ import {
   signal,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -42,7 +43,6 @@ import { TooltipModule } from "primeng/tooltip";
           [disabled]="disabled()"
           class="bi-input"
           (keydown.enter)="search()"
-          (ngModelChange)="valueChange.emit($event)"
         />
         <p-button
           icon="mdi:barcode-scan"
@@ -123,6 +123,7 @@ import { TooltipModule } from "primeng/tooltip";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppBarcodeInput {
@@ -142,7 +143,7 @@ export class AppBarcodeInput {
     "code_39",
   ]);
 
-  valueChange = output<string>();
+
   barcodeFound = output<string>();
   searched = output<string>();
 

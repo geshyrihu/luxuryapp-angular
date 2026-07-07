@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -40,6 +40,7 @@ interface IPolicyContractForm {
 @Component({
   selector: "app-policy-contract-form",
   templateUrl: "./policy-contract-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonLabelSave,
     CustomInputAutoComplete,

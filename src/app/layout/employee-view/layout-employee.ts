@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { map } from "rxjs/operators";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -33,6 +33,7 @@ import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-m
   imports: [ViewEmployeeMonitor, ViewEmployeeMobile],
   // La magia de la carga perezosa de servicios ocurre aquí.
   // Estos servicios solo "viven" mientras este layout esté activo.
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [SignalRService, OneSignalService],
 })
 export class LayoutEmployee implements OnInit {

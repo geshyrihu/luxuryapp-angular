@@ -7,6 +7,7 @@ import {
   OnInit,
   signal,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
@@ -49,6 +50,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-vacantes-list",
   templateUrl: "./vacantes-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconItem,

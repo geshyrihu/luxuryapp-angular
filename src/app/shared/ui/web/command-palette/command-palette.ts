@@ -9,6 +9,7 @@ import {
   signal,
   viewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -228,6 +229,7 @@ export interface PaletteCommand {
       color: var(--ds-text-muted);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CommandPalette {

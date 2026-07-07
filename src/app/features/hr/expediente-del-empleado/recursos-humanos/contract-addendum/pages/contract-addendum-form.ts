@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -34,6 +34,7 @@ interface IContractAddendumForm {
 @Component({
   selector: "app-contract-addendum-form",
   templateUrl: "./contract-addendum-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputSelectSignal,

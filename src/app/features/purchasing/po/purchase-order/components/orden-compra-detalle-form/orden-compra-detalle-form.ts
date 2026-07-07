@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -38,6 +38,7 @@ export interface IOrdenCompraDetalleCompForm {
     CustomInputCurrencySignal,
     CustomInputDecimal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./orden-compra-detalle-form.html",
 })
 export class OrdenCompraDetalleForm implements OnInit {

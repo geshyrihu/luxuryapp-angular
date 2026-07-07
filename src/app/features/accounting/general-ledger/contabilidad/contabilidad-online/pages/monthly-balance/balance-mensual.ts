@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
@@ -21,6 +21,7 @@ import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
     InputTextModule,
     AccountingNumberPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./balance-mensual.html",
 })
 export class BalanceMensual {

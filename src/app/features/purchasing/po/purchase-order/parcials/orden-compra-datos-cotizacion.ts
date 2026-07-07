@@ -1,5 +1,5 @@
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, input, output } from "@angular/core";
+import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { TooltipModule } from "primeng/tooltip";
@@ -7,6 +7,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "app-orden-compra-datos-cotizacion",
   templateUrl: "./orden-compra-datos-cotizacion.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule, ButtonModule, TooltipModule, AppIcon, WebButtonIcon],
 })
 export class OrdenCompraDatosCotizacion {

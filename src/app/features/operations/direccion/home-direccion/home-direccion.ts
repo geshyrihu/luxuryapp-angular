@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { AgendaSemanalCard } from "src/app/layout/direccion-view/components/agenda-semanal-card/agenda-semanal-card";
 import { ReclutamientoCard } from "src/app/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
 import { PersonalAusenteCard } from "src/app/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
@@ -53,6 +53,7 @@ export interface AreaDireccion {
     IonIcon,
     IonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-direccion.html",
 })
 export class HomeDireccion {

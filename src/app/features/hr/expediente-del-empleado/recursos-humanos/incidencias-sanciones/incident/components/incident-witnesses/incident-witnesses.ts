@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -27,6 +27,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     WebButtonLabelEdit,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-witnesses.html",
 })
 export class IncidentWitnessesComponent implements OnInit {

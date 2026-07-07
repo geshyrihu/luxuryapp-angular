@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 import type { IEpfDTO } from '../../../contabilidad-online/models/aspel-budget.interface';
 import { AccountingNumberPipe } from '../../../contabilidad-online/pipes/accounting-number.pipe';
@@ -8,6 +8,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 @Component({
   selector: 'app-epf-cliente',
   imports: [CommonModule, SkeletonModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './epf-cliente.html',
 })
 export class EpfClienteComponent {

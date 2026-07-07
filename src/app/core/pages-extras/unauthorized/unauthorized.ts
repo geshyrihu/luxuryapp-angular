@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { DividerModule } from "primeng/divider";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -7,6 +7,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-unauthorized",
   imports: [DividerModule, AppIcon, WebButtonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./unauthorized.html",
 })
 export class Unauthorized {

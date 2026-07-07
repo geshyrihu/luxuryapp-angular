@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TabsModule } from "primeng/tabs";
 import { EquipmentInspectionDefinitionsList } from "./equipment-inspection-definitions-list";
@@ -9,6 +9,7 @@ import { EquipmentInspectionQrList } from "./equipment-inspection-qr-list";
 @Component({
   selector: "app-equipment-inspections-shell",
   templateUrl: "./equipment-inspections-shell.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     TabsModule,

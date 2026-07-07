@@ -1,4 +1,4 @@
-import { Component, input, output } from "@angular/core";
+import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
@@ -14,6 +14,7 @@ import { AppIcon } from "../../shared/app-icon/app-icon.component";
 @Component({
   selector: "custom-search-input-signal",
   imports: [IconFieldModule, InputIconModule, InputTextModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-iconfield iconPosition="left" fluid>
       <p-inputicon>

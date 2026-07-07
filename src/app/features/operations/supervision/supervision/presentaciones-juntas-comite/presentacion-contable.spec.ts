@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { vi } from 'vitest';
@@ -6,6 +6,7 @@ import { vi } from 'vitest';
 @Component({
   selector: 'app-presentacion-contable',
   template: '<div>Mock</div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class MockPresentacionContable {}

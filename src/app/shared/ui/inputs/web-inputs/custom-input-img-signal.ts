@@ -7,6 +7,7 @@ import {
   output,
   signal,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -55,6 +56,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       </div>
     </base-input-signal>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .image-upload-container {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
@@ -35,6 +35,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomSearchInput,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./autitoria-cuentas-aspel.html",
 })
 export class AutitoriaCuentasAspel {

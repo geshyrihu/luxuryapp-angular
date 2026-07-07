@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -190,6 +190,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
     .comment-form-actions { display: flex; justify-content: space-between; align-items: center; }
     .comment-form-hint { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppCommentThread extends CommentThreadBase {}

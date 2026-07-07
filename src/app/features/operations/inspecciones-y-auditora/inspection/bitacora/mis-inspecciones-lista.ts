@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -34,6 +34,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     TableModule,
     TooltipModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-lista.html",
 })
 export class MisInspeccionesLista {

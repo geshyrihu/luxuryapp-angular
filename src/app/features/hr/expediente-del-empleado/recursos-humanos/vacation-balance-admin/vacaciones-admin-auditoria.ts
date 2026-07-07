@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
@@ -44,6 +44,7 @@ export interface VacationHistoryItemDTO {
 @Component({
   selector: "app-vacaciones-admin-auditoria",
   templateUrl: "./vacaciones-admin-auditoria.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,

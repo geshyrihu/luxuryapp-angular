@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -15,6 +15,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-administration-form-list",
   templateUrl: "./administration-form-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputSelectSignal,

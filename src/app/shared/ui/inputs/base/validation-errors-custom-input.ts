@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
 
 /**
@@ -9,6 +9,7 @@ import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
 @Component({
   selector: "app-validation-errors-custom-input",
   imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (shouldShowErrors()) {
       <div class="text-red-500 mt-1">

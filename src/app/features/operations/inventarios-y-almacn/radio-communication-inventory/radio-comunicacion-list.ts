@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, radioOutline } from "ionicons/icons";
@@ -36,6 +36,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-radio-comunicacion-list",
   templateUrl: "./radio-comunicacion-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconDownload,
     WebButtonIconEdit,

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -14,6 +14,7 @@ import type {
 @Component({
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TableModule, WebButtonLabel, PrimeNgCustomCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {

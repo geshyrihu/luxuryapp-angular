@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -41,6 +41,7 @@ interface ISelectItem {
     WebButtonLabelSave,
     ListboxModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-form.html",
 })
 export class DiagramForm implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 import {
@@ -14,6 +14,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 @Component({
   selector: "app-entrega-recepcion-instalaciones",
   templateUrl: "./entrega-recepcion-instalaciones.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TableModule,
     ReportHeader,

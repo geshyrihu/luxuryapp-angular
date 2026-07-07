@@ -6,6 +6,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -128,6 +129,7 @@ import { SecurityService } from "src/app/core/services/security.service";
       </ion-content>
     </ion-app>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

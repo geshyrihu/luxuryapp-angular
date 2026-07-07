@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
@@ -31,6 +31,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-task-template-list",
   templateUrl: "./task-template-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconActiveDesactive,
     WebButtonIconItem,

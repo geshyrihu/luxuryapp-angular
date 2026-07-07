@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -23,6 +23,7 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
 @Component({
   selector: "app-maintenance-reports",
   templateUrl: "./maintenance-reports-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     RouterModule,

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, output } from "@angular/core";
+import { Component, inject, OnInit, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { InputTextModule } from "primeng/inputtext";
@@ -13,6 +13,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
 @Component({
   selector: "app-mesanio",
   imports: [FormsModule, NgbTooltip, InputTextModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="grid gap-4 mb-4">
       <label

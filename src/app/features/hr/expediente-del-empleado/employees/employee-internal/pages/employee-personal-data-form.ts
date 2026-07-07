@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -37,6 +37,7 @@ import { IEmployeePersonalDataForm } from "../models/employee-personal-data-form
     WebButtonLabelSave,
     CardModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideFlatpickrDefaults()],
 })
 export class EmployeePersonalDataForm implements OnInit {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, signal, ViewEncapsulation } from "@angular/core";
+import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -18,6 +18,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
   ],
   templateUrl: "./catalog-layout.html",
   styleUrls: ["./catalog-layout.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogLayout {

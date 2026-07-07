@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -6,6 +6,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 @Component({
   selector: "app-inspeccion-agregar-revision",
   imports: [CustomInputSelectSignal, WebButtonLabelSave],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./inspeccion-agregar-revision.html",
 })
 export class InspeccionAgregarRevision {

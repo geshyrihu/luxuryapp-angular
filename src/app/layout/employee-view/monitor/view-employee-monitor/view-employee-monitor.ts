@@ -5,6 +5,7 @@ import {
   Component,
   inject,
   OnInit,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { Loader } from "@ui/mobile/loader/loader";
@@ -17,6 +18,7 @@ import { Sidebar } from "../sidebar/sidebar";
   selector: "app-view-employee-monitor",
   imports: [CommonModule, RouterOutlet, Sidebar, HeaderEmployeeMonitor, Loader],
   templateUrl: "./view-employee-monitor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./view-employee-monitor.scss",
 })
 export class ViewEmployeeMonitor implements OnInit, AfterViewInit {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import {
   IonCard,
@@ -26,6 +26,7 @@ import { AuthService } from "src/app/core/services/auth.service";
     IonLabel,
     IonRippleEffect,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-comite.html",
 })
 export class HomeComite implements OnInit {

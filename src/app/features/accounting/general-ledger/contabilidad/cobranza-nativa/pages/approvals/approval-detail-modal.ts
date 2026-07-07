@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -18,6 +18,7 @@ import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dt
     CustomInputTextAreaSignal,
     DatePipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./approval-detail-modal.html",
 })
 export default class ApprovalDetailModal implements OnInit {

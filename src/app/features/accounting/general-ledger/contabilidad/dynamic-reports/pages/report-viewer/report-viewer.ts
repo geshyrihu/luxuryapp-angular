@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
+import { Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
@@ -29,6 +29,7 @@ import {
     CustomInputSelectSignal,
     AiAgentComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-viewer.html",
 })
 export class ReportViewer implements OnInit {

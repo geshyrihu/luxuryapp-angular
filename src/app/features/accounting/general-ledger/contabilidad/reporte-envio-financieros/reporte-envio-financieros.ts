@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -19,6 +19,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",
   styleUrls: ["./reporte-envio-financieros.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,

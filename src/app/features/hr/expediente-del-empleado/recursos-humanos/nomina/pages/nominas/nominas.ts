@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TableModule } from "primeng/table";
@@ -36,6 +36,7 @@ import { TooltipModule } from "primeng/tooltip";
     DataViewMobile,
     PrimeNgCustomCaption,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nominas.html",
 })
 export default class Nominas {

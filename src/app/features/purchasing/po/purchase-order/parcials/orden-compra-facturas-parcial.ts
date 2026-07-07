@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 
-import { Component, inject, input, signal } from "@angular/core";
+import { Component, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
@@ -13,6 +13,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 @Component({
   selector: "app-orden-compra-facturas-parcial",
   templateUrl: "./orden-compra-facturas-parcial.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     TableModule,

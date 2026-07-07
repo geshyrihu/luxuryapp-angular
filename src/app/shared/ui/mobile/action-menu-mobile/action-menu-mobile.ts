@@ -10,6 +10,7 @@ import {
   inject,
   input,
   viewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -116,6 +117,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileActionMenu {

@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
@@ -60,6 +60,7 @@ import { TooltipModule } from "primeng/tooltip";
     IonBadge,
     DatePipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./member-list.html",
 })
 export default class MemberList {

@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 @Component({
   selector: "app-footer-committee-monitor",
   imports: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./footer-committee-monitor.html",
 })
 export class FooterCommitteeMonitor {

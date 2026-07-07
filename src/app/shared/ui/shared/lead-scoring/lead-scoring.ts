@@ -1,4 +1,4 @@
-import { Component, computed, input, ViewEncapsulation } from "@angular/core";
+import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 export interface LeadScoreCategory {
@@ -105,6 +105,7 @@ export interface LeadScoreCategory {
       transition: width 0.4s ease;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class LeadScoring {

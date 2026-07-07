@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
@@ -72,6 +72,7 @@ import { EmptyStateBase } from "@ui/base/empty-state.base";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileEmptyState extends EmptyStateBase {}

@@ -3,11 +3,13 @@ import {
   Component,
   effect,
   input,
+  ChangeDetectionStrategy
 } from "@angular/core";
 
 @Component({
   selector: "app-diagram-preview",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (config) {
       <div

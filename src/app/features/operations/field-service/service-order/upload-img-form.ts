@@ -1,5 +1,5 @@
 import { HttpHeaders } from "@angular/common/http";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { SharedModule } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -8,6 +8,7 @@ import { environment } from "src/environments/environment";
 @Component({
   selector: "app-upload-img-form",
   templateUrl: "./upload-img-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FileUploadModule, SharedModule, CardModule],
 })
 export class UploadImgForm {

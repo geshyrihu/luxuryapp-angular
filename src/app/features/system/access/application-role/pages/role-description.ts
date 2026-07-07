@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -7,6 +7,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-role-description",
   templateUrl: "./role-description.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule],
 })
 export class RoleDescription implements OnInit {

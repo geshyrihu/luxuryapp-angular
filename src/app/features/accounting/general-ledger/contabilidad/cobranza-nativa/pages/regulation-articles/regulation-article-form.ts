@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -37,6 +37,7 @@ interface IRegulationArticleForm {
     CustomInputCheckSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./regulation-article-form.html",
 })
 export class RegulationArticleForm implements OnInit {

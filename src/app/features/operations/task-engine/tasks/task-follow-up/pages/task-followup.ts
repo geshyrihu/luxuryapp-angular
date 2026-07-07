@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -38,6 +39,7 @@ interface ITicketMessageFollowupForm {
 @Component({
   selector: "app-task-followup",
   templateUrl: "./task-followup.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

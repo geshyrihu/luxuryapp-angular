@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -79,6 +79,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     WebButtonLabelItem,
     CustomInputSelectSignal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-admin-list.html",
 })
 export class AnnouncementAdminList implements OnInit {

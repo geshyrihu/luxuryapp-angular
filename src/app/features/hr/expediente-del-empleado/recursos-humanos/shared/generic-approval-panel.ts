@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, input, output } from "@angular/core";
+import { Component, computed, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -29,6 +29,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-table
       [globalFilterFields]="globalFilterFields()"

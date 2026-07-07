@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
@@ -60,6 +60,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomCaption,
     TableModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-list.html",
 })
 export default class ChargeTemplateList {

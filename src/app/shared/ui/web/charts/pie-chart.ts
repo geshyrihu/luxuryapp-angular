@@ -1,4 +1,4 @@
-import { Component, computed, input } from "@angular/core";
+import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
 import { NgxEchartsDirective } from "ngx-echarts";
 import type { EChartsCoreOption } from "echarts/core";
 import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
@@ -11,6 +11,7 @@ import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
   selector: "app-pie-chart",
   standalone: true,
   imports: [NgxEchartsDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<div echarts [options]="option()" [style.height]="chartHeight()"></div>`,
 })
 export class PieChart {

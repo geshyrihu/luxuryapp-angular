@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from "@angular/core";
+import { Component, inject, input, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
@@ -16,6 +16,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
 @Component({
   selector: "app-rango-calendario-yyyymmdd",
   templateUrl: "./rango-calendario-yyyymmdd.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, FlatpickrDirective, InputTextModule],
 })
 export class RangoCalendarioyyyymmdd implements OnInit {

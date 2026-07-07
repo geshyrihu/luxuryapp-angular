@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -11,6 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ImageModule, AppIcon, WebButtonIcon],
 })
 export class CustomerImages implements OnInit {

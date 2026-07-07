@@ -1,4 +1,4 @@
-import { Component, input, computed, ViewEncapsulation } from "@angular/core";
+import { Component, input, computed, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 
@@ -36,6 +36,7 @@ import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
       margin-bottom: 0.75rem;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class FunnelChart {

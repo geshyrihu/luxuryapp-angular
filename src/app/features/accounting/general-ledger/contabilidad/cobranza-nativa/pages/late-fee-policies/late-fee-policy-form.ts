@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -39,6 +39,7 @@ interface ILateFeePolicyForm {
     CustomInputCheckSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./late-fee-policy-form.html",
 })
 export class LateFeePolicyForm implements OnInit {

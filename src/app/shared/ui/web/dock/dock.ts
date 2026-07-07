@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output, ViewEncapsulation } from "@angular/core";
+import { Component, input, output, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import type { MenuItem } from "primeng/api";
 import { DockModule } from "primeng/dock";
 import { TooltipModule } from "primeng/tooltip";
@@ -80,6 +80,7 @@ import { TooltipModule } from "primeng/tooltip";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppDock {

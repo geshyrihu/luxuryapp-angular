@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -39,6 +39,7 @@ interface IRadioComunicacionFormGroup {
 @Component({
   selector: "app-radio-comunicacion-form",
   templateUrl: "./radio-comunicacion-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

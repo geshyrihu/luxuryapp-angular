@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
@@ -30,6 +30,7 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
 @Component({
   selector: "app-presentacion-junta-comite-contador",
   templateUrl: "./presentacion-junta-comite-contador.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     WebButtonLabel,

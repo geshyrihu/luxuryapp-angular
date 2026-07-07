@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit } from "@angular/core";
+import { Component, effect, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import {
@@ -35,6 +35,7 @@ import { HeaderCommitteeMonitor } from "./monitor/header-committee-monitor/heade
     IonContent,
     Loader,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       ion-app {

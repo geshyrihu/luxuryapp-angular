@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
@@ -21,6 +21,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     AppIcon,
     CustomInputTextSignal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">

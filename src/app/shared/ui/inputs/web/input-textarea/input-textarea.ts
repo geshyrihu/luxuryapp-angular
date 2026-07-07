@@ -1,4 +1,4 @@
-import { Component, forwardRef, input } from "@angular/core";
+import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { TextareaModule } from "primeng/textarea";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -40,6 +40,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       ></textarea>
     </base-input-signal>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

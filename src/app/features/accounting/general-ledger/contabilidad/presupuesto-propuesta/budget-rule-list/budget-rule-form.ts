@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -39,6 +39,7 @@ import {
     CustomInputSelectSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-form.html",
 })
 export class BudgetRuleForm implements OnInit {

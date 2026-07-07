@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ViewChild } from "@angular/core";
+import { Component, effect, inject, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { Carousel, CarouselModule } from "primeng/carousel";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
@@ -28,6 +28,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonLabel,
     WebButtonLabelViewPdf,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

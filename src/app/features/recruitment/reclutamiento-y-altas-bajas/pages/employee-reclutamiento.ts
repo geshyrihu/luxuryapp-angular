@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -9,6 +9,7 @@ import { SolicitudAltaForm } from "src/app/features/recruitment/reclutamiento-y-
 @Component({
   selector: "employee-reclutamiento",
   templateUrl: "./employee-reclutamiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule],
 })
 export class EmployeeReclutamiento implements OnInit {

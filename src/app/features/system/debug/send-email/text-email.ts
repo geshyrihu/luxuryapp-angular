@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -6,6 +6,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-text-email",
   templateUrl: "./text-email.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSendEmail],
 })
 export class TextEmail {

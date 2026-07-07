@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -30,6 +30,7 @@ type Opcion = "none" | "vacante" | "alta";
 @Component({
   selector: "app-employee-provider-form",
   templateUrl: "./employee-provider-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     InputTextModule,

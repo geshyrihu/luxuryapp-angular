@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -33,6 +33,7 @@ import { TooltipModule } from "primeng/tooltip";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./evidencias-nomina.html",
 })
 export default class EvidenciasNomina {

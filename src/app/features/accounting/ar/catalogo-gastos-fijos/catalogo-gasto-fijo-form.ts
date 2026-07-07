@@ -6,6 +6,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -53,6 +54,7 @@ interface ICatalogoGastoFijoForm {
 @Component({
   selector: "app-catalogo-gasto-fijo-form",
   templateUrl: "./catalogo-gasto-fijo-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

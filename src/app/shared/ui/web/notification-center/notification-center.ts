@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
@@ -98,6 +98,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
       flex-shrink: 0;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class NotificationCenter extends NotificationCenterBase {}

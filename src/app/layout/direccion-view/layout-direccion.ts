@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { map } from "rxjs/operators";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -12,6 +12,7 @@ import { ViewDireccionMonitor } from "./monitor/view-direccion-monitor/view-dire
   selector: "app-layout-direccion",
   templateUrl: "./layout-direccion.html",
   imports: [ViewDireccionMonitor, ViewDireccionMobile],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [SignalRService, OneSignalService],
 })
 export class LayoutDireccion implements OnInit {

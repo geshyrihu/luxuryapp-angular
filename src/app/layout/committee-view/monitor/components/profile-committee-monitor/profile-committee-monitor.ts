@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -11,6 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-profile-committee-monitor",
   imports: [CommonModule, RouterModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./profile-committee-monitor.html",
 })
 export class ProfileCommitteeMonitor {

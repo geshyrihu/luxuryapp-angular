@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
@@ -26,6 +26,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     CustomInputTextSignal,
     ImageModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./task-report-work-plan-preview.html",
 })
 export class TaskReportWorkPlanPreview {

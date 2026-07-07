@@ -10,6 +10,7 @@ import {
   signal,
   TemplateRef,
   viewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -51,6 +52,7 @@ export interface IMobileBreadcrumbItem {
 @Component({
   selector: "app-data-view-mobile",
   templateUrl: "./data-view-mobile.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     CommonModule,

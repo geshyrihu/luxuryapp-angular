@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input } from "@angular/core";
+import { Component, computed, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -43,6 +43,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       />
     </base-input-signal>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

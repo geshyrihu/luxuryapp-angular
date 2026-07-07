@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type { PersonalAusenteResumenDTO } from "./personal-ausente-card.model";
 
@@ -7,6 +7,7 @@ import type { PersonalAusenteResumenDTO } from "./personal-ausente-card.model";
   selector: "app-personal-ausente-card",
   templateUrl: "./personal-ausente-card.html",
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`.text-ds-warning{color:var(--ds-warning)}.text-ds-info{color:var(--ds-info)}`],
 })
 export class PersonalAusenteCard implements OnInit {

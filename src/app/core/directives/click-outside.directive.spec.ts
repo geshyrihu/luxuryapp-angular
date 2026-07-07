@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClickOutsideDirective } from './click-outside.directive';
 
@@ -10,6 +10,7 @@ import { ClickOutsideDirective } from './click-outside.directive';
     <div id="outside">Outside</div>
   `,
   imports: [ClickOutsideDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class TestHostComponent {

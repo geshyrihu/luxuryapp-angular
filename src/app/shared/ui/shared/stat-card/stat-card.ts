@@ -3,6 +3,7 @@ import {
   computed,
   input,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -133,6 +134,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       margin-top: 0.125rem;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppStatCard {

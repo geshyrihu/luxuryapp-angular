@@ -7,6 +7,7 @@ import {
   Signal,
   signal,
   WritableSignal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";
@@ -51,6 +52,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 @Component({
   selector: "app-orden-compra",
   templateUrl: "./orden-compra.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,

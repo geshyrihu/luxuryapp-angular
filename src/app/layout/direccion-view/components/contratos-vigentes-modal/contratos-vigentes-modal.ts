@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -13,6 +13,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-contratos-vigentes-modal",
   templateUrl: "./contratos-vigentes-modal.html",
   imports: [CommonModule, TagModule, TooltipModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`.text-ds-warning{color:var(--ds-warning)}.text-ds-success{color:var(--ds-success)}`],
 })
 export class ContratosVigentesModal implements OnInit {

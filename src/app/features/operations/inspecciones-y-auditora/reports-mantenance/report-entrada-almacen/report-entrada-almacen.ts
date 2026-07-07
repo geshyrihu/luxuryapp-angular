@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -17,6 +17,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-report-entrada-almacen",
   templateUrl: "./report-entrada-almacen.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TableModule, PageTitleReportMaintenance, PrimeNgCustomCaption],
 })
 export class ReportEntradaAlmacen {

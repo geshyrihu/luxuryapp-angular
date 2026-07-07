@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
@@ -50,6 +50,7 @@ interface BrevoPagedResultDTO {
     CardModule,
     SkeletonModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./brevo-email-logs.html",
 })
 export class BrevoEmailLogs implements OnInit {

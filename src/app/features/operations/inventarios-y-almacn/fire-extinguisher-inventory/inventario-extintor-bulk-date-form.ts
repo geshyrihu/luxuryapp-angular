@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -20,6 +20,7 @@ interface IBulkDateForm {
 @Component({
   selector: "app-inventario-extintor-bulk-date-form",
   templateUrl: "./inventario-extintor-bulk-date-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

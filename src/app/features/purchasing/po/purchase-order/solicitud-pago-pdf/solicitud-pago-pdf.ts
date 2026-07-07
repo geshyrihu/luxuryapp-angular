@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -11,6 +11,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 @Component({
   selector: "app-solicitud-pago-pdf",
   template: "",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule],
 })
 export class SolicitudPagoPdfComponent implements OnInit {

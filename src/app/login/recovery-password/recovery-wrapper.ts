@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { RecoverPassword } from "./recover-password";
 import { RecoveryMobile } from "./recovery-mobile";
@@ -13,6 +13,7 @@ import { RecoveryMobile } from "./recovery-mobile";
       <app-recover-password />
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`:host { display: block; height: 100vh; width: 100vw; }`],
 })
 export class RecoveryWrapper {

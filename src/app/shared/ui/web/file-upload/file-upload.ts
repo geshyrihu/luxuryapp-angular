@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input, output, signal, viewChild, ViewEncapsulation } from "@angular/core";
+import { Component, ElementRef, inject, input, output, signal, viewChild, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { ProgressBarModule } from "primeng/progressbar";
@@ -159,6 +159,7 @@ export interface UploadFile {
       background-color: var(--ds-bg-sunken);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class FileUpload {

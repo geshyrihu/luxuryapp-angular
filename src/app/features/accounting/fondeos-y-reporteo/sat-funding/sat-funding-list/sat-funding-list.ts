@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, effect, inject, signal } from "@angular/core";
+import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -20,6 +20,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-sat-funding-list",
   templateUrl: "./sat-funding-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     TooltipModule,

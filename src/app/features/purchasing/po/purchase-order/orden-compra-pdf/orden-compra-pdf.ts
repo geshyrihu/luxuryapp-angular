@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
@@ -9,6 +9,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 @Component({
   selector: "app-orden-compra-pdf",
   template: "",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule],
 })
 export class OrdenCompraPdf implements OnInit {

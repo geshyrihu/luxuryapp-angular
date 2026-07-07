@@ -1,9 +1,10 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
 @Component({
   selector: "app-resumen-ordenes-servicio-grafico",
   templateUrl: "./resumen-ordenes-servicio-grafico.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AdvancedPieChart],
 })
 export class ResumenOrdenesServicioGrafico {

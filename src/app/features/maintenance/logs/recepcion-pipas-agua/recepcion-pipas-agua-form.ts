@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -22,6 +22,7 @@ import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
 @Component({
   selector: "app-recepcion-pipas-agua-form",
   templateUrl: "./recepcion-pipas-agua-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

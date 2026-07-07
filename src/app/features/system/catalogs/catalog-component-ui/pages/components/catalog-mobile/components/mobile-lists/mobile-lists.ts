@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
+import { Component, computed, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonBadge,
@@ -665,6 +665,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileLists {

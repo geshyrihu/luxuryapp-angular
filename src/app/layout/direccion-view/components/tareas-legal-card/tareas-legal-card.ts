@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type { TareasLegalResumenDTO } from "./tareas-legal-card.model";
@@ -9,6 +9,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-tareas-legal-card",
   templateUrl: "./tareas-legal-card.html",
   imports: [CommonModule, TooltipModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`.text-ds-danger{color:var(--ds-danger)}`],
 })
 export class TareasLegalCard implements OnInit {

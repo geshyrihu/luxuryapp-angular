@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -20,6 +20,7 @@ import { BudgetProposalItemHistoryDTO } from "src/app/features/accounting/genera
 @Component({
   selector: "app-budget-history-dialog",
   imports: [CommonModule, TableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-history-dialog.html",
 })
 export class BudgetHistoryDialog implements OnInit {

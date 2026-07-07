@@ -1,4 +1,4 @@
-import { Component, input, output, ViewEncapsulation } from "@angular/core";
+import { Component, input, output, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
@@ -245,6 +245,7 @@ export interface Customer360Data {
     .c360-deal-stage { display: block; font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
     .c360-deal-value { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-primary); white-space: nowrap; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppCustomer360 {

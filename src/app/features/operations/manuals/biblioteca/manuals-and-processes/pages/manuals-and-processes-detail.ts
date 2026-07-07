@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ImageModule } from "primeng/image";
@@ -22,6 +22,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   templateUrl: "./manuals-and-processes-detail.html",
   styleUrls: [],
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
     CommonModule,

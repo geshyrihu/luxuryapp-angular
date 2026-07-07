@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MenuItem, TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
@@ -1094,6 +1094,7 @@ const CORE_LABELS: Record<string, string> = {
       }
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogCoreItem {

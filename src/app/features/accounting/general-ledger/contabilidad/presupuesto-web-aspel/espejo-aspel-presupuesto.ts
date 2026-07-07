@@ -7,6 +7,7 @@ import {
   signal,
   viewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "primeng/message";
@@ -54,6 +55,7 @@ import { PurchaseHistory } from "./purchase-history";
     TooltipModule,
   ],
   templateUrl: "./espejo-aspel-presupuesto.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class PresupuestoAspelEjercicioFiscal {

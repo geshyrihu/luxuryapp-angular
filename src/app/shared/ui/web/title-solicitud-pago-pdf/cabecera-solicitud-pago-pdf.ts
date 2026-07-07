@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from "@angular/core";
+import { Component, effect, inject, input, ChangeDetectionStrategy } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -13,6 +13,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-cabecera-solicitud-pago-pdf",
 
   templateUrl: "./cabecera-solicitud-pago-pdf.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cabecera-solicitud-pago-pdf.component.scss"],
 })
 export class CabeceraSolicitudPagoPdf {

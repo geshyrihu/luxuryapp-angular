@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DateService } from "src/app/core/services/date.service";
@@ -27,6 +27,7 @@ interface IGoogleCalendarEventListItem {
 @Component({
   selector: "app-google-calendar-detail",
   templateUrl: "./google-calendar-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, WebButtonLabel],
 })
 export class GoogleCalendarDetail {

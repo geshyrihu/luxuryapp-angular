@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -28,6 +28,7 @@ interface ISolicitudBajaUpdateStatusForm {
 @Component({
   selector: "app-solicitud-baja-update-status",
   templateUrl: "./solicitud-baja-update-status.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, CustomInputSelectSignal, WebButtonLabelSave],
 })
 export class SolicitudBajaUpdateStatus implements OnInit {

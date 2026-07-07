@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -24,6 +24,7 @@ import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
 @Component({
   selector: "app-budget-forecast-dialog",
   templateUrl: "./budget-forecast-dialog.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, WebButtonLabel, TableModule, FormsModule],
 })
 export class BudgetForecastDialog implements OnInit {

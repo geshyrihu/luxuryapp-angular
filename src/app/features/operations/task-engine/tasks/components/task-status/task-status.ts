@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, inject, OnInit, output } from "@angular/core";
+import { Component, inject, OnInit, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonLabel,
@@ -20,6 +20,7 @@ import { TaskGroupService } from "../../task.service";
 @Component({
   selector: "app-task-status",
   templateUrl: "./task-status.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, WebButtonLabel, IonSegment, IonSegmentButton, IonLabel],
 })
 export class TaskStatus implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
     globalFilterFields,
     rowsPerPageOptions,
@@ -11,6 +11,7 @@ import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-entrega-recepcion-mantenimientos",
   templateUrl: "./entrega-recepcion-mantenimientos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReportHeader, SanitizeHtmlPipe],
 })
 export class EntregaRecepcionMantenimientos {

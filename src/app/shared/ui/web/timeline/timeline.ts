@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TimelineModule } from "primeng/timeline";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -98,6 +98,7 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
       padding-bottom: 1.5rem;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class Timeline extends TimelineBase {}

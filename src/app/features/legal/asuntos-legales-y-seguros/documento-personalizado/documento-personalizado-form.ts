@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -38,6 +38,7 @@ interface IDocumentoPersonalizadoForm {
     CustomInputFile,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./documento-personalizado-form.html",
 })
 export class DocumentoPersonalizadoForm implements OnInit {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
@@ -18,6 +18,7 @@ import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-minuta-pendientes",
   templateUrl: "./minuta-pendientes.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, ReportHeader, SanitizeHtmlPipe, WebButtonLabelDownload],
 })
 export class MinutaPendientes {

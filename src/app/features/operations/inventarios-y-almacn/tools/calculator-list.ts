@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
@@ -6,6 +6,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 @Component({
   selector: "app-calculator-list",
   templateUrl: "./calculator-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, MessageModule, CardModule, CustomInputNumberSignal],
 })
 export class CalculatorList {

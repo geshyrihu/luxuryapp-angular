@@ -1,5 +1,5 @@
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonAccordion, IonAccordionGroup } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -33,6 +33,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,

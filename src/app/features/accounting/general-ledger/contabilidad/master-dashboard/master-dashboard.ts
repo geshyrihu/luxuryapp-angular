@@ -1,5 +1,5 @@
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { IonItem, IonItemDivider, IonLabel, IonList } from "@ionic/angular/standalone";
@@ -10,6 +10,7 @@ import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
 @Component({
   selector: "app-master-dashboard",
   imports: [CardModule, AppIcon, IonList, IonItem, IonItemDivider, IonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./master-dashboard.html",
 })
 export class MasterDashboard {

@@ -5,6 +5,7 @@ import {
   input,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -15,6 +16,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 @Component({
   selector: "custom-input-date-time-native",
   imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective, InputTextModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <base-input-signal
       [label]="label()"

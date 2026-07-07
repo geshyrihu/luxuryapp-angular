@@ -7,6 +7,7 @@ import {
   inject,
   input,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -55,6 +56,7 @@ interface IRecurrenceForm {
     CustomInputSelectSignal,
   ],
   templateUrl: "./recurrence-input.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

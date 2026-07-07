@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { LoginComponent } from "./login";
 import { LoginMobile } from "./login-mobile";
@@ -17,6 +17,7 @@ import { LoginMobile } from "./login-mobile";
       <app-login-mobile />
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

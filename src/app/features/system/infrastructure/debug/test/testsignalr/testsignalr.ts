@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -17,6 +17,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     CustomInputAutoComplete,
     CustomInputAutoMultiple,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./testsignalr.html",
 })
 export class Testsignalr implements OnInit {

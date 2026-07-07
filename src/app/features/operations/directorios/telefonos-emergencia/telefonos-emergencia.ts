@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
@@ -16,6 +16,7 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
 @Component({
   selector: "app-telefonos-emergencia",
   templateUrl: "./telefonos-emergencia.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,
     AvatarModule,

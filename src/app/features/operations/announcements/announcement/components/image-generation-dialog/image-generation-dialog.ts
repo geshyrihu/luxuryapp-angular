@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TextareaModule } from "primeng/textarea";
@@ -14,6 +14,7 @@ import { SwalService } from "src/app/core/services/swal.service";
   selector: "app-image-generation-dialog",
   templateUrl: "./image-generation-dialog.html",
   styleUrls: ["./image-generation-dialog.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormArray,
   FormControl,
@@ -25,6 +25,7 @@ interface IReviewForm {
 @Component({
   selector: "app-inspeccion-activo-condominio-editar",
   templateUrl: "./inspeccion-activo-condominio-editar.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputAutoComplete,

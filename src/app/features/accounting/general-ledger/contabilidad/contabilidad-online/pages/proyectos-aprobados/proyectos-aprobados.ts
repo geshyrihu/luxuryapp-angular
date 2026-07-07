@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -12,6 +12,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
   selector: "app-proyectos-aprobados",
   standalone: true,
   imports: [CommonModule, SkeletonModule, TableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados.html",
 })
 export class ProyectosAprobadosComponent {

@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { environment } from "src/environments/environment";
@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
   selector: "app-jobs-dashboard",
   templateUrl: "./jobs-dashboard.html",
   imports: [WebButtonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .hangfire-shell {

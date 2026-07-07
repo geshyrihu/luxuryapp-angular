@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import {
@@ -14,6 +14,7 @@ import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/mant
 @Component({
   selector: "app-gastos-mantenimiento",
   templateUrl: "./gastos-mantenimiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TableModule],
 })
 export class GastosMantenimiento {

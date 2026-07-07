@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -42,6 +42,7 @@ function buildTodayInputValue() {
     WebButtonLabel,
     ChartWrapper,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-online-analysis.html",
 })
 export class CobranzaOnlineAnalysis {

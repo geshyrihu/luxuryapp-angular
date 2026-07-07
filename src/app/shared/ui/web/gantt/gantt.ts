@@ -4,6 +4,7 @@ import {
   input,
   output,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TooltipModule } from "primeng/tooltip";
@@ -182,6 +183,7 @@ export interface GanttTask {
     .gantt-bar-label { font-size: 0.65rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position: relative; z-index: 1; }
     .gantt-bar-pct { font-size: 0.6rem; color: rgba(255,255,255,0.8); position: relative; z-index: 1; flex-shrink: 0; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppGantt {

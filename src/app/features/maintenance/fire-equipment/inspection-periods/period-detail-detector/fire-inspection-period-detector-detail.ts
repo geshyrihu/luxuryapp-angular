@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
+import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -18,6 +18,7 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-fire-inspection-period-detector-detail",
   templateUrl: "./fire-inspection-period-detector-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, FormsModule, WebButtonLabel, WebButtonIcon, TagModule],
 })
 export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {

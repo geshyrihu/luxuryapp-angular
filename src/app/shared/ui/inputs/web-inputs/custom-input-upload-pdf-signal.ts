@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { SharedModule } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
@@ -14,6 +14,7 @@ import { environment } from "src/environments/environment";
 @Component({
   selector: "app-custom-input-upload-pdf-signal",
   imports: [FileUploadModule, SharedModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-fileUpload
       name="files"

@@ -11,7 +11,7 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -44,6 +44,7 @@ import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledge
     CardModule,
     ListboxModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-support-dialog.html",
 })
 export class BudgetSupportDialog implements OnInit {

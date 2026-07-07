@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -62,6 +62,7 @@ interface IChargeTemplateForm {
     WebButtonLabelSave,
     ButtonModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-form.html",
 })
 export class ChargeTemplateForm implements OnInit {

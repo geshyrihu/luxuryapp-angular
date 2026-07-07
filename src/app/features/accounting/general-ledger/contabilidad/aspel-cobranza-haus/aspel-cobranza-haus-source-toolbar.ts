@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -20,6 +20,7 @@ import {
     CustomInputSelectSignal,
     WebButtonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
       class="flex flex-column xl:flex-row justify-content-between align-items-start gap-3 p-4 border-round-xl border-1 surface-border bg-white"

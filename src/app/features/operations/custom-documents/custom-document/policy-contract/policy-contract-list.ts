@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -37,6 +37,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-policy-contract-list",
   templateUrl: "./policy-contract-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconActiveDesactive,
     WebButtonIconViewPdf,

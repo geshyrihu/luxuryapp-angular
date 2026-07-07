@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -38,6 +38,7 @@ import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 @Component({
   selector: "app-task-operation-report",
   templateUrl: "./task-operation-report.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconTracking,
     TaskStatus,

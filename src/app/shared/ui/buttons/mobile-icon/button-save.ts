@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, input } from "@angular/core";
+import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
@@ -8,6 +8,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   selector: "ii-button-save",
   standalone: true,
   imports: [CommonModule, IonButton, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button
       [fill]="resolvedFill()"

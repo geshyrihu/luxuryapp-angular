@@ -1,5 +1,5 @@
 import { Location } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IonButton, IonButtons, IonToolbar } from "@ionic/angular/standalone";
@@ -19,6 +19,7 @@ import { ProfileUserMobile } from "../profile-user-mobile/profile-user";
     IonButtons,
     IonButton,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./header-mobile.html",
 })
 export class HeaderMobile {

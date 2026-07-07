@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
@@ -8,6 +8,7 @@ import { IFondoReservaDTO } from '../../../contabilidad-online/models/aspel-budg
 @Component({
   selector: 'app-fondo-reserva-cliente',
   imports: [CommonModule, SkeletonModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './fondo-reserva-cliente.html',
 })
 export class FondoReservaClienteComponent {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
   IonItem,
@@ -29,6 +29,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     IonLabel,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./minutas-reuniones-consejo-directivo.html",
 })
 export class MinutasReunionesConsejoDirectivo implements OnInit {

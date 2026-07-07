@@ -11,6 +11,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -51,6 +52,7 @@ import {
     WebButtonLabel,
   ],
   providers: [DatePipe, CurrencyPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./native-statement.html",
 })
 export class NativeStatement implements OnInit {

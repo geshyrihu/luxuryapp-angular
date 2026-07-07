@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -9,6 +9,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-inventario-extintor-group",
   templateUrl: "./inventario-extintor-group.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
 })
 export class InventarioExtintorGroup {

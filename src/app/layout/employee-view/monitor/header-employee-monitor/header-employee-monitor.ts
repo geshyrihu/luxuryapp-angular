@@ -7,6 +7,7 @@ import {
   input,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -71,6 +72,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     ToolbarModule,
     TooltipModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./header-employee-monitor.html",
 })
 export class HeaderEmployeeMonitor implements OnInit {

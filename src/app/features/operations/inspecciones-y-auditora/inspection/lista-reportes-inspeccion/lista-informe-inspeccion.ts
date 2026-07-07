@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { ImageModule } from "primeng/image";
@@ -27,6 +27,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ImageModule,
     TooltipModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./lista-informe-inspeccion.html",
 })
 export class ListaInformeInspeccion implements OnInit {

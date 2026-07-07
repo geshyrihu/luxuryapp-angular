@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import type {
   IReporteFinancieroDto,
   IReporteFinancieroFilaDto,
@@ -9,6 +9,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 @Component({
   selector: 'app-reporte-financiero-cliente',
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './reporte-financiero-cliente.html',
 })
 export class ReporteFinancieroClienteComponent {

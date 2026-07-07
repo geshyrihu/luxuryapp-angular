@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, signal, ViewEncapsulation } from "@angular/core";
+import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { SelectButtonModule } from "primeng/selectbutton";
@@ -1138,6 +1138,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonCatalog {

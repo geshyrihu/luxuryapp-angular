@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import {
   IonApp,
@@ -21,6 +21,7 @@ import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
     Loader,
   ],
   templateUrl: "./view-direccion-mobile.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

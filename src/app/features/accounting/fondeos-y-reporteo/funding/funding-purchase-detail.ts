@@ -1,11 +1,12 @@
 import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-funding-purchase-detail",
   imports: [CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-purchase-detail.html",
 })
 export class FundingPurchaseDetail {

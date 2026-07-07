@@ -1,4 +1,4 @@
-import { Component, forwardRef, output } from "@angular/core";
+import { Component, forwardRef, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonToggle } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
@@ -32,6 +32,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       </ion-toggle>
     </base-ionic-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

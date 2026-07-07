@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 interface IStep {
@@ -23,6 +23,7 @@ interface IPhase {
   selector: "app-preventive-maintenance",
   imports: [CommonModule, RouterModule],
   templateUrl: "./preventive-maintenance.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./preventive-maintenance.scss"],
 })
 export class PreventiveMaintenance implements AfterViewInit {

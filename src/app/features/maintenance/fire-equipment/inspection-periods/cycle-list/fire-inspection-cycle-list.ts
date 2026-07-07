@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -27,6 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-fire-inspection-cycle-list",
   templateUrl: "./fire-inspection-cycle-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     TooltipModule,

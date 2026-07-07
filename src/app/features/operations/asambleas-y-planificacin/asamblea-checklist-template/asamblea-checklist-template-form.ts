@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -35,6 +35,7 @@ interface IAsambleaChecklistTemplateForm {
 @Component({
   selector: "app-asamblea-checklist-template-form",
   templateUrl: "./asamblea-checklist-template-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

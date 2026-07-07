@@ -1,4 +1,4 @@
-import { Component, computed, inject } from "@angular/core";
+import { Component, computed, inject, ChangeDetectionStrategy } from "@angular/core";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { UnifiedPendingDashboard } from "./unified-pending-dashboard";
@@ -6,6 +6,7 @@ import { UnifiedPendingDashboardMobile } from "./unified-pending-dashboard-mobil
 @Component({
   selector: "app-dashboard-pending-items",
   imports: [UnifiedPendingDashboard, UnifiedPendingDashboardMobile],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <!-- Desktop View -->
     <div class="hidden md:block">

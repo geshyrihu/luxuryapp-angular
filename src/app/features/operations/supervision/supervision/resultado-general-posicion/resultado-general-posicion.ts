@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -9,6 +9,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-resultado-general-posicion",
   templateUrl: "./resultado-general-posicion.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TableModule, PrimeNgCustomCaption],
 })
 export class ResultadoGeneralPosicion {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -35,6 +35,7 @@ interface IModalOrdenCompra {
 @Component({
   selector: "app-orden-compra-modal",
   templateUrl: "./orden-compra-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,

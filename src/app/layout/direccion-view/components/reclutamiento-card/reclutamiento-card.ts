@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type { VacantesResumenDTO } from "./reclutamiento-card.model";
 
@@ -7,6 +7,7 @@ import type { VacantesResumenDTO } from "./reclutamiento-card.model";
   selector: "app-reclutamiento-card",
   templateUrl: "./reclutamiento-card.html",
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`.text-ds-danger{color:var(--ds-danger)}.text-ds-warning{color:var(--ds-warning)}`],
 })
 export class ReclutamientoCard implements OnInit {

@@ -6,6 +6,7 @@ import {
   inject,
   signal,
   untracked,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -54,6 +55,7 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus",
   templateUrl: "./aspel-cobranza-haus.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,

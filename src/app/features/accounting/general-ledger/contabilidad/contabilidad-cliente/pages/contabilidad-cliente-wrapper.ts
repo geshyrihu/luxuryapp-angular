@@ -1,6 +1,6 @@
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
@@ -41,6 +41,7 @@ const MONTH_NAMES = [
     FondoReservaClienteComponent,
     ProyectosAprobadosClienteComponent,
    AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './contabilidad-cliente-wrapper.html',
 })
 export default class ContabilidadClienteWrapper {

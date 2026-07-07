@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -25,6 +25,7 @@ export interface IOrdenCompraPresupuestoForm {
 @Component({
   selector: "app-orden-compra-edit-presupusto-utilizado",
   templateUrl: "./orden-compra-edit-presupusto-utilizado.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     InputTextModule,

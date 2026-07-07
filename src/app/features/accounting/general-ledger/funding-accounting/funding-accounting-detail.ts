@@ -1,5 +1,5 @@
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
-import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
+import { Component, DestroyRef, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -34,6 +34,7 @@ import { FundingExcelExportService } from "src/app/features/accounting/general-l
     WebButtonLabelItem,
   ],
   styleUrls: ["./funding-accounting-detail.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-detail.html",
 })
 export class FundingAccountingDetail {

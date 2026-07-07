@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormsModule,
@@ -35,6 +35,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 @Component({
   selector: "app-sat-funding-detail",
   templateUrl: "./sat-funding-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconConfirm,
     WebButtonIconEdit,

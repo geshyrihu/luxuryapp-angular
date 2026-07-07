@@ -6,6 +6,7 @@ import {
   input,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -36,6 +37,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-equipment-inspection-definitions-list",
   templateUrl: "./equipment-inspection-definitions-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     WebButtonIconEdit,

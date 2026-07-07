@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -28,6 +28,7 @@ interface ITelefonosEmergenciaForm {
 @Component({
   selector: "app-telefonos-emergencia-form",
   templateUrl: "./telefonos-emergencia-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

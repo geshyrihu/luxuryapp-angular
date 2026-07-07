@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-styles";
 import {
@@ -285,6 +285,7 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
     .stiich-login-badge__value { display: block; font-size: 0.65rem; color: #44474c; }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileForms {

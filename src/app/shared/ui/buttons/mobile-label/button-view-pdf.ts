@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
@@ -9,6 +9,7 @@ import { openPdf } from "../shared/pdf";
   selector: "ili-button-view-pdf",
   standalone: true,
   imports: [CommonModule, IonButton, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button
       [expand]="expand()"

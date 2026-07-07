@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
@@ -20,6 +20,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 @Component({
   selector: "app-resultado-evaluacion",
   templateUrl: "./resultado-evaluacion.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     CardModule,

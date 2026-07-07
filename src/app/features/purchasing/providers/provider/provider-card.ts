@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -9,6 +9,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-provider-card",
   templateUrl: "./provider-card.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule, DividerModule, FieldsetModule, TagModule],
 })
 export class TarjetaProveedor implements OnInit {

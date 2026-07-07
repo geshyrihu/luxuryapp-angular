@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -32,6 +32,7 @@ import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 @Component({
   selector: "app-ticket-legal-lista-cliente",
   templateUrl: "./ticket-legal-lista-cliente.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconTracking,
     MobileActionMenu,

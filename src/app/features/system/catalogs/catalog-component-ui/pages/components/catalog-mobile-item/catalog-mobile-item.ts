@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MobileButtons } from "../catalog-mobile/components/mobile-buttons/mobile-buttons";
 import { MobileInputs } from "../catalog-mobile/components/mobile-inputs/mobile-inputs";
@@ -51,6 +51,7 @@ const MOBILE_LABELS: Record<string, string> = {
       }
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogMobileItem {

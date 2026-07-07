@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 
 export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
 
@@ -114,6 +114,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppRealtimeIndicator {

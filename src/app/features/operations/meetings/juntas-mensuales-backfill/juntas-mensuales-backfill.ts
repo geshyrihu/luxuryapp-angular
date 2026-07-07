@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -46,6 +46,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-juntas-mensuales-backfill",
   templateUrl: "./juntas-mensuales-backfill.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconConfirm,
     TooltipModule,

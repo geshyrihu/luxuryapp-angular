@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { TableModule } from "primeng/table";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
@@ -11,6 +11,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-resumen-mantenimientos",
   templateUrl: "./resumen-mantenimientos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TableModule, PageTitleReportMaintenance],
 })
 export class ResumenMantenimientos {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -39,6 +39,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     WebButtonLabelEdit,
     WebButtonLabelDelete,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-occupant-manager.html",
 })
 export class PropertyOccupantManager implements OnInit {

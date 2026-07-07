@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -13,6 +13,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-calificacion-proveedor",
   templateUrl: "./calificacion-proveedor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, NgbRatingModule, WebButtonLabelSave],
 })
 export class CalificacionProveedor implements OnInit {

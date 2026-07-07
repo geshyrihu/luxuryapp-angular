@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
@@ -59,6 +59,7 @@ interface LogEntry {
     AppIcon,
   ],
   templateUrl: "./log-api-report.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./log-api-report.scss"],
 })
 export class LogApiReport implements OnInit {

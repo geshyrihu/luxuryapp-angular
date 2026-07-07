@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
@@ -218,6 +218,7 @@ interface IResetPasswordForm {
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger("slideAnimation", [
       transition(":enter", [

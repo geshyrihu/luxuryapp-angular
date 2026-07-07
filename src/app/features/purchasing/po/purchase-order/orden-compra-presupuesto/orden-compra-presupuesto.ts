@@ -7,6 +7,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { MessageService } from "primeng/api";
@@ -55,6 +56,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableFooter,
     PrimeNgCustomToast,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [MessageService],
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   AbstractControl,
   FormArray,
@@ -44,6 +44,7 @@ interface IInspeccionsForm {
     CustomInputNumberSignal,
     WebButtonLabelSave,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./inspecciones-form.html",
 })
 export class InspeccionesForm implements OnInit {

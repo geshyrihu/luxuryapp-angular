@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -32,6 +32,7 @@ const tipoGastoLabels: { [key: number]: string } = {
 @Component({
   selector: "app-create-orden-compra-fuera-fondeo",
   templateUrl: "./create-orden-compra-fuera-fondeo.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputAutoComplete,

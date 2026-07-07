@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -23,6 +23,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     WebButtonLabelItem,
     WebButtonIconItem,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-group-files.html",
 })
 export class FundingGroupFiles implements OnInit {

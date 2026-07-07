@@ -1,5 +1,5 @@
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
@@ -7,6 +7,7 @@ import { ResultadoGeneralService } from "src/app/core/services/resultado-general
 @Component({
   selector: "app-grafico-resultado-general",
   templateUrl: "./resultado-general-grafico.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, CardModule, AppIcon],
 })
 export class ResultadoGeneralGrafico implements OnInit {

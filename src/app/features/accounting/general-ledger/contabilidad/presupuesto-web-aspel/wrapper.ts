@@ -1,4 +1,4 @@
-import { Component, inject, signal, viewChild } from "@angular/core";
+import { Component, inject, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonLabel,
@@ -38,6 +38,7 @@ import { TooltipModule } from "primeng/tooltip";
     MessageModule,
     CustomInputSelectButton,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PresupuestoWebAspelService, PresupuestoAspelExcelService],
 })
 export class PresupuestoWebAspelWrapper {

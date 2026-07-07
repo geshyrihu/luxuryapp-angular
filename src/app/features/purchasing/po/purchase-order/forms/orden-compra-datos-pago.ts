@@ -4,6 +4,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import {
   FormBuilder,
@@ -46,6 +47,7 @@ export interface IOrdenCompraDatosPagoForm {
 @Component({
   selector: "app-orden-compra-datos-pago",
   templateUrl: "./orden-compra-datos-pago.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     ReactiveFormsModule,

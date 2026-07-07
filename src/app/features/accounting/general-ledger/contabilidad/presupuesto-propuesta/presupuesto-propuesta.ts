@@ -22,6 +22,7 @@ import {
   OnInit,
   signal,
   viewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -84,6 +85,7 @@ import { ExcelExportService } from "./services/excel-export.service";
     CheckboxModule,
     TooltipModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
 })
 export class PresupuestoPropuesta implements OnDestroy, OnInit {

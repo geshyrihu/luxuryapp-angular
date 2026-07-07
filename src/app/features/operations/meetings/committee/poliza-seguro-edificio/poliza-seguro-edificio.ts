@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonItem,
   IonLabel,
@@ -35,6 +35,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     WebButtonLabelViewPdf,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./poliza-seguro-edificio.html",
 })
 export class PolizaSeguroEdificio {

@@ -7,6 +7,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -73,6 +74,7 @@ interface IPaymentForm {
     AppIcon,
   ],
   providers: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./payments.html",
 })
 export class Payments implements OnInit {

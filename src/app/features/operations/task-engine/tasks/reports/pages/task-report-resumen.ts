@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
@@ -12,6 +12,7 @@ import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/
 @Component({
   selector: "app-task-report-resumen",
   templateUrl: "./task-report-resumen.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TaskDateRangeSelector, CommonModule, TableModule],
 })
 export class TaskMessageReportResumen {

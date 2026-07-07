@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -57,6 +57,7 @@ import { TooltipModule } from "primeng/tooltip";
     IonLabel,
   ],
   providers: [DialogService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-list.html",
 })
 export class DiagramList implements OnInit {

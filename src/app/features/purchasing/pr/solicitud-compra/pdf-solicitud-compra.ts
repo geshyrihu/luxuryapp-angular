@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -8,6 +8,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 @Component({
   selector: "app-pdf-solicitud-compra",
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: "",
 })
 export class PdfSolicitudCompra implements OnInit {

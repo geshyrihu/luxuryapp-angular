@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
@@ -44,6 +44,7 @@ import { TooltipModule } from "primeng/tooltip";
     IonLabel,
     DatePipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./approval-inbox.html",
 })
 export default class ApprovalInbox {

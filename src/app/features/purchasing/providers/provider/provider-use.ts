@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import {
   globalFilterFields,
@@ -9,6 +9,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-provider-use",
   templateUrl: "./provider-use.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
 })
 export class ProviderUse implements OnInit {

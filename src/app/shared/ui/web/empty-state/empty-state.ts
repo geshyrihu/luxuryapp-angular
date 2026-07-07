@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -71,6 +71,7 @@ import { EmptyStateBase } from "@ui/base/empty-state.base";
       line-height: 1.5;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class EmptyState extends EmptyStateBase {}

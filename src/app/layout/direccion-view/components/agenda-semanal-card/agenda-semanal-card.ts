@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -11,6 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-agenda-semanal-card",
   templateUrl: "./agenda-semanal-card.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, AppIcon, WebButtonLabel],
 })
 export class AgendaSemanalCard implements OnInit {

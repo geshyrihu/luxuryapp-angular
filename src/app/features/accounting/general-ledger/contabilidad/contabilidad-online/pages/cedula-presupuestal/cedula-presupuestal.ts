@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, input } from "@angular/core";
+import { Component, computed, effect, inject, signal, input, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 
@@ -80,6 +80,7 @@ const GASTOS_EXTRA = ["605-"];
 @Component({
   selector: "app-cedula-presupuestal",
   imports: [CommonModule, FormsModule, TableModule, AccountingNumberPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal.html",
 })
 export class CedulaPresupuestal {

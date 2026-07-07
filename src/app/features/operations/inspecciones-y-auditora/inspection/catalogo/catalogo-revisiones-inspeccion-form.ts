@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -26,6 +26,7 @@ interface ICatalogoRevisionesInspeccionForm {
     WebButtonLabelSave,
     CardModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalogo-revisiones-inspeccion-form.html",
 })
 export class CatalogoRevisionesInspeccionForm implements OnInit {

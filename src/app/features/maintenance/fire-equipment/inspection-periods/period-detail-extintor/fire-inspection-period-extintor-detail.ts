@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
+import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
@@ -18,6 +18,7 @@ declare class BarcodeDetector {
 @Component({
   selector: "app-fire-inspection-period-extintor-detail",
   templateUrl: "./fire-inspection-period-extintor-detail.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, FormsModule, WebButtonLabel, WebButtonIcon, TagModule],
 })
 export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {

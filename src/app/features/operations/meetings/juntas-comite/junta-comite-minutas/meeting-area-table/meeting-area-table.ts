@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output } from "@angular/core";
+import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -45,6 +45,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     WebButtonLabelConfirm,
     SanitizeHtmlPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-area-table.html",
 })
 export class AreaDetailsTable {

@@ -1,4 +1,4 @@
-import { Component, computed, input, ViewEncapsulation } from "@angular/core";
+import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -105,6 +105,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
     .inv-metric-value { display: block; font-size: var(--ds-font-size-label, 0.875rem); font-weight: 700; color: var(--ds-text-primary); }
     .inv-metric-label { font-size: 0.65rem; color: var(--ds-text-muted); text-transform: uppercase; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppInventoryLevel {

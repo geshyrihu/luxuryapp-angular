@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
@@ -29,6 +30,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-resumen-minuta",
   templateUrl: "./resumen-minuta.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     // ResumenMinutaGrafico,
     CommonModule,

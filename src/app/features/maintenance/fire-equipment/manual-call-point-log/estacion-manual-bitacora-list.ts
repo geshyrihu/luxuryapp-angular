@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -34,6 +34,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-estacion-manual-bitacora-list",
   templateUrl: "./estacion-manual-bitacora-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconDownload,
     WebButtonIconEdit,

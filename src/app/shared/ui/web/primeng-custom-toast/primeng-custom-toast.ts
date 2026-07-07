@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { ToastModule } from "primeng/toast";
 
 /**
@@ -10,6 +10,7 @@ import { ToastModule } from "primeng/toast";
 @Component({
   selector: "primeng-custom-toast",
   imports: [ToastModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p-toast
       position="top-left"

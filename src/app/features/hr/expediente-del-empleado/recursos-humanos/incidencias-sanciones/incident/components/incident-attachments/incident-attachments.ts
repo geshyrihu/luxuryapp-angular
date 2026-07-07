@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, input, signal } from "@angular/core";
+import { Component, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { TableModule } from "primeng/table";
@@ -32,6 +32,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     WebButtonLabelDelete,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-attachments.html",
 })
 export class IncidentAttachmentsComponent {

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ColorPickerModule } from "primeng/colorpicker";
@@ -64,6 +64,7 @@ import { ColorPickerBase } from "@ui/base/color-picker.base";
     .cp-clear:hover { background: var(--ds-danger-light, #ffdad6); color: var(--ds-danger); border-color: var(--ds-danger); }
     .cp-hint { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-text-muted); }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppColorPicker extends ColorPickerBase {}

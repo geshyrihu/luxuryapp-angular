@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -21,6 +21,7 @@ import { AiTestResultDTO, IaTestService } from "./ia-test.service";
     AppIcon,
   ],
   templateUrl: "./ia-test.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./ia-test.component.css",
 })
 export default class IaTestComponent {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 @Component({
   selector: "app-maintenance",
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./maintenance.html",
 })
 

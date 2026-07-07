@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -19,6 +19,7 @@ interface LeaveRequestCalendarDetailDTO {
 @Component({
   selector: "app-permiso-detalle-modal",
   templateUrl: "./permiso-detalle-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TagModule],
 })
 export class PermisoDetalleModal implements OnInit {

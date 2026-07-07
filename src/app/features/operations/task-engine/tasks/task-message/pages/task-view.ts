@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
@@ -48,6 +48,7 @@ import { TaskForm } from "./task-form";
 @Component({
   selector: "app-task-view",
   templateUrl: "./task-view.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CardModule,
     AvatarModule,

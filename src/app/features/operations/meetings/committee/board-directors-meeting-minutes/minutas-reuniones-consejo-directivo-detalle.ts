@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
   IonBadge,
@@ -40,6 +40,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     IonBadge,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })
 export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {

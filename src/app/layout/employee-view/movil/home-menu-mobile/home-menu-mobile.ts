@@ -4,6 +4,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   inject,
   output,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
@@ -31,6 +32,7 @@ import { MenuService } from "src/app/core/services/menu.service";
     IonList,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeMenu {

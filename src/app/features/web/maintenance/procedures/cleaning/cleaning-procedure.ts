@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { GraphModule, Orientation } from "@swimlane/ngx-graph";
 
@@ -7,6 +7,7 @@ import { GraphModule, Orientation } from "@swimlane/ngx-graph";
   selector: "app-cleaning-procedure",
   imports: [CommonModule, RouterModule, GraphModule],
   templateUrl: "./cleaning-procedure.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cleaning-procedure.scss"],
 })
 export class CleaningProcedure {

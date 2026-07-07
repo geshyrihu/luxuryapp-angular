@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonNote } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -37,6 +37,7 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
     IonNote,
   ],
   templateUrl: "./module-app-rol-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host ::ng-deep ion-item-divider {

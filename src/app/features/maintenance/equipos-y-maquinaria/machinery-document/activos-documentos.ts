@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
@@ -16,6 +16,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   selector: "app-activos-documentos",
 
   templateUrl: "./activos-documentos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgbTooltipModule, WebButtonLabelConfirm, WebButtonLabel],
 })
 export class ActivosDocumentos implements OnInit {

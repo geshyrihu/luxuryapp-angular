@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TagModule } from "primeng/tag";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -15,6 +15,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 @Component({
   selector: "app-ticket-legal-reportes-internos",
   templateUrl: "./ticket-legal-reportes-internos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     DatePipe,

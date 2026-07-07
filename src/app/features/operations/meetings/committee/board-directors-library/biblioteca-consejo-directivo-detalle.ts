@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
@@ -44,6 +45,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     AppIcon,
   ],
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./biblioteca-consejo-directivo-detalle.html",
 })
 export class BibliotecaConsejoDirectivoDetalle implements OnInit {

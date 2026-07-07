@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { CarouselModule } from "primeng/carousel";
@@ -11,6 +11,7 @@ import { map } from "rxjs/operators";
 @Component({
   selector: "app-comingsoon",
   templateUrl: "./comingsoon.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     RouterModule,

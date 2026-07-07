@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -10,6 +10,7 @@ import { MiEdificioMobile } from "./mi-edificio-mobile";
 @Component({
   selector: "app-mi-edificio",
   templateUrl: "./mi-edificio.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TableModule, CardModule, MiEdificioMobile],
 })
 export class MiEdificio {

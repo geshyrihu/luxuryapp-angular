@@ -1,4 +1,4 @@
-import { Component, signal } from "@angular/core";
+import { Component, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonLabel,
@@ -12,6 +12,7 @@ import { CronogramaAnualMantenimiento } from "./cronograma-anual-mantenimiento";
 @Component({
   selector: "app-calendario-mtto-list",
   templateUrl: "./calendario-mtto-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TabsModule,
     ListadoAnualMantenimiento,

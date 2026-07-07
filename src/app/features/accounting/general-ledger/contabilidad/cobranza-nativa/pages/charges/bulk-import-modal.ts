@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
@@ -22,6 +22,7 @@ interface BulkImportResult {
 @Component({
   selector: "app-bulk-import-modal",
   imports: [CommonModule, WebButtonLabel, MessageModule, CustomInputFile],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })
 export default class BulkImportModal implements OnInit {

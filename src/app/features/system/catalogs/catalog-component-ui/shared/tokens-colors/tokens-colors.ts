@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, ViewEncapsulation } from "@angular/core";
+import { Component, inject, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
@@ -141,6 +141,7 @@ interface TokenGroup {
     }
   `],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [MessageService],
 })
 export class TokensColors {

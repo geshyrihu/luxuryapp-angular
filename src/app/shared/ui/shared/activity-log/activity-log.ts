@@ -1,4 +1,4 @@
-import { Component, input, computed } from "@angular/core";
+import { Component, input, computed, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -106,6 +106,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
       }
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`
     .activity-log-root {
       position: relative;

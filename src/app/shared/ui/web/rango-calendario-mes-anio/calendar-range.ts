@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
@@ -17,6 +17,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
   selector: "app-calendar-range",
 
   templateUrl: "./calendar-range.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     TooltipModule,

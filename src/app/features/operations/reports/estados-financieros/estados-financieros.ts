@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -11,6 +11,7 @@ interface FinancialReportResponse {
 @Component({
   selector: "app-estados-financieros",
   imports: [TableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estados-financieros.html",
 })
 // óCAMBIO! Ya no es necesario implementar OnInit.

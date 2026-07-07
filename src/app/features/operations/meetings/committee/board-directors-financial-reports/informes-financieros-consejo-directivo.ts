@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonItem,
   IonLabel,
@@ -22,6 +22,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
   imports: [TableModule, IonList, IonListHeader, IonItem, IonLabel, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informes-financieros-consejo-directivo.html",
 })
 export class InformesFinancierosConsejoDirectivo implements OnInit {

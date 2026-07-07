@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -8,6 +8,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-add-file-estado-financiero",
   templateUrl: "./add-file-estado-financiero.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, CustomInputFile, WebButtonLabelSave],
 })
 export class AddFileEstadoFinanciero implements OnInit {

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { IonList } from "@ionic/angular/standalone";
@@ -45,6 +45,7 @@ interface CustomerModulListDTO {
     IonInputToggle,
     AppIcon,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./customer-modul-edit.html",
 })
 export class CustomerModulEdit implements OnInit {

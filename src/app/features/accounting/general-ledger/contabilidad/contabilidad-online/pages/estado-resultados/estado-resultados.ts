@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
@@ -54,6 +54,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     DataViewMobile,
     AccountingNumberPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados.html",
 })
 export class EstadoResultados {

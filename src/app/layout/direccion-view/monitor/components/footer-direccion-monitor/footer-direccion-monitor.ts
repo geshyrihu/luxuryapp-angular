@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-footer-direccion-monitor",
   imports: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./footer-direccion-monitor.html",
 })
 export class FooterDireccionMonitor {

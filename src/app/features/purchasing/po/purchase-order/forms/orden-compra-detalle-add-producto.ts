@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import {
   FormArray,
@@ -57,6 +58,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 @Component({
   selector: "app-orden-compra-detalle-add-producto",
   templateUrl: "./orden-compra-detalle-add-producto.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
     CommonModule,

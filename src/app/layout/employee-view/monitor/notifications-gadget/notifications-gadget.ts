@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { DrawerModule } from "primeng/drawer";
@@ -23,6 +23,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     WebButtonLabel,
   ],
   templateUrl: "./notifications-gadget.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./notifications-gadget.scss",
 })
 export class NotificationsGadget implements OnInit {

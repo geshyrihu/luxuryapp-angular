@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import {
   IonBadge,
@@ -34,6 +34,7 @@ interface FooterItem {
 @Component({
   selector: "app-footer-employee-mobile",
   imports: [RouterModule, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./footer-employee-mobile.html",
 })
 export class FooterEmployeeMobile implements OnInit {

@@ -6,6 +6,7 @@ import {
   input,
   output,
   Signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { MessageModule } from "primeng/message";
@@ -14,6 +15,7 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ButtonModule, MessageModule, AppIcon, WebButtonLabel],
 })
 export class OrdenCompraDatosAuthParcial {

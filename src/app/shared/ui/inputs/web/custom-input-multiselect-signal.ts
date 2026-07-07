@@ -1,4 +1,4 @@
-import { Component, forwardRef, input } from "@angular/core";
+import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MultiSelectModule } from "primeng/multiselect";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -39,6 +39,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       ></p-multiSelect>
     </base-input-signal>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

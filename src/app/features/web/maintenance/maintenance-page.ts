@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 interface IProcedure {
@@ -16,6 +16,7 @@ interface IProcedure {
   selector: "app-maintenance-page",
   imports: [CommonModule, RouterModule],
   templateUrl: "./maintenance-page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./maintenance-page.scss"],
 })
 export class MaintenancePage implements AfterViewInit {

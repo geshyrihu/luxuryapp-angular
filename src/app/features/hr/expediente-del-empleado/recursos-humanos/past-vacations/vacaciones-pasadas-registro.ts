@@ -7,6 +7,7 @@ import {
   inject,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -43,6 +44,7 @@ import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/
 @Component({
   selector: "app-registrar-vacaciones-pasadas",
   templateUrl: "./vacaciones-pasadas-registro.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

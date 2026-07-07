@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, signal } from "@angular/core";
+import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -45,6 +45,7 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
     </div>
     <hr />
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       img {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -29,6 +29,7 @@ interface IMedidorLecturaAdminForm {
 @Component({
   selector: "app-medidor-lectura-admin-form",
   templateUrl: "./medidor-lectura-admin-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

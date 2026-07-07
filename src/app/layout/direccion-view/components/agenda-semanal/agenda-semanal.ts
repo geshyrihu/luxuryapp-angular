@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
@@ -18,6 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
   imports: [CommonModule, TagModule, TooltipModule, AppIcon, WebButtonLabel, WebButtonIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`
     .agenda-hoy-badge {
       background: rgba(255, 255, 255, 0.2);

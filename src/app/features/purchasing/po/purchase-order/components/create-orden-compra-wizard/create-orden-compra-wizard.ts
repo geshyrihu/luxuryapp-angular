@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -97,6 +97,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableModule,
     TagModule, // Added
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./create-orden-compra-wizard.html",
 })
 export class CreateOrdenCompraWizard implements OnInit {

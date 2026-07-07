@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -33,6 +33,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     IonLabel,
     WebButtonLabelViewPdf,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./special-document-list.html",
 })
 export class SpecialDocumentList {

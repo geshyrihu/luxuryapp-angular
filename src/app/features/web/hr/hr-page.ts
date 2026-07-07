@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-hr-page",
   imports: [CommonModule, RouterModule],
   templateUrl: "./hr-page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./hr-page.scss"],
 })
 export class HrPage implements AfterViewInit {

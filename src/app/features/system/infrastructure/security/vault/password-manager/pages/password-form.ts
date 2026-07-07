@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
+import { Component, HostListener, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -30,6 +30,7 @@ interface ICredentialForm {
 @Component({
   selector: "app-password-form",
   templateUrl: "./password-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

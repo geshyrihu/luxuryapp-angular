@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
@@ -22,6 +22,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
     CardModule,
     AreaDetailsTable,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
 })
 export class MeetingManagement implements OnInit {

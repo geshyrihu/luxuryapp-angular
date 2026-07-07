@@ -4,6 +4,7 @@ import {
   inject,
   OnInit,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -16,6 +17,7 @@ import { ProfielService } from "src/app/core/services/profiel-service";
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CardModule, CustomInputImg, WebButtonLabel],
 })
 export class UpdateUserPhotoComponent implements OnInit {

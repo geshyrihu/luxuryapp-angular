@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
@@ -59,6 +59,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     IonItem,
     IonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-list.html",
 })
 export class BudgetRuleList implements OnInit {

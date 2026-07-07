@@ -1,5 +1,5 @@
 import { CommonModule, ViewportScroller } from "@angular/common";
-import { Component, HostListener, inject } from "@angular/core";
+import { Component, HostListener, inject, ChangeDetectionStrategy } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /**
@@ -11,6 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-tap-to-top",
   imports: [CommonModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
       class="tap-top text-center"

@@ -6,6 +6,7 @@ import {
   input,
   OnInit,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
@@ -38,6 +39,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     WebButtonLabelAdd,
     WebButtonLabelDelete,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./suspension-days-manager.html",
 })
 export class SuspensionDaysManager implements OnInit {

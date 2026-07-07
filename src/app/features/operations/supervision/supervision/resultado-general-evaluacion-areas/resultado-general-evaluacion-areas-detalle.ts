@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
@@ -12,6 +12,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-resultado-general-evaluacion-areas-detalle",
   templateUrl: "./resultado-general-evaluacion-areas-detalle.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TableModule,
     TagModule,

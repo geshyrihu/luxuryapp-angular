@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -35,6 +35,7 @@ interface IDetectorHumoChecklistForm {
 @Component({
   selector: "app-detector-humo-checklist",
   templateUrl: "./detector-humo-checklist.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { DividerModule } from "primeng/divider";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -7,6 +7,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-page500",
   templateUrl: "./page500.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DividerModule, AppIcon, WebButtonLabel],
 })
 export class Page500 implements OnInit {

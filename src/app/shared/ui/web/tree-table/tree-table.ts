@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -7,10 +8,10 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { TreeTableModule } from "primeng/treetable";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface TreeTableColumn {
   field: string;
@@ -42,8 +43,7 @@ export interface TreeTableColumn {
         [value]="nodesWithIcon()"
         [columns]="cols()"
         [selectionMode]="selectionMode()"
-        [selection]="selection()"
-        (selectionChange)="selectionChange.emit($event)"
+        [(selection)]="selection"
         [dataKey]="dataKey()"
         [loading]="loading()"
         [paginator]="paginator()"
@@ -113,6 +113,7 @@ export interface TreeTableColumn {
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class TreeTable {
@@ -146,7 +147,6 @@ export class TreeTable {
   headerTitle = input<string>("");
   headerTemplate = input<boolean>(false);
 
-  selectionChange = output<any>();
   onNodeExpand = output<any>();
   onNodeCollapse = output<any>();
   onPage = output<any>();

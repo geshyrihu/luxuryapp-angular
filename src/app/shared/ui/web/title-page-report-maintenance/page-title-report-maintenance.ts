@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 
 /**
  * 🛠️ PAGE TITLE MAINTENANCE
@@ -9,6 +9,7 @@ import { Component, input } from "@angular/core";
 @Component({
   selector: "page-title-report-maintenance",
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <!-- breadcrumb item -->
     <div class="grid">

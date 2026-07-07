@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -46,6 +46,7 @@ interface ITaskTemplateItemForm {
     CheckboxModule,
     CustomInputCheckSignal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DatePipe],
 })
 export class TaskTemplateItemForm implements OnInit {

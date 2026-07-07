@@ -5,6 +5,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -66,6 +67,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AvatarModule,
     PrimeNgCustomTableFooter,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PaginationService], // Proveer una instancia fresca de PaginationService para este componente
 })
 export class ProductModalAdd implements OnInit, OnDestroy {

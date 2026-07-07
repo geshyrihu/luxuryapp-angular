@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonAvatar,
   IonCard,
@@ -13,6 +13,7 @@ import { environment } from "src/environments/environment";
 @Component({
   selector: "app-mi-edificio-mobile",
   imports: [IonCard, IonCardContent, IonAvatar, IonList, IonItem, IonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-edificio-mobile.html",
 })
 export class MiEdificioMobile {

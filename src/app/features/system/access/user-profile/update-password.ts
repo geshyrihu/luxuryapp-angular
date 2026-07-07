@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   ReactiveFormsModule,
@@ -17,6 +17,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     ReactiveFormsModule,

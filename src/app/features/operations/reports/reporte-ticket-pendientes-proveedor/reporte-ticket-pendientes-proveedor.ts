@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   globalFilterFields,
@@ -12,6 +12,7 @@ import { ReportService } from "src/app/core/services/report.service";
 @Component({
   selector: "app-reporte-ticket-pendientes-proveedor",
   templateUrl: "./reporte-ticket-pendientes-proveedor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule],
 })
 export class ReporteTicketPendientesProveedor implements OnInit {

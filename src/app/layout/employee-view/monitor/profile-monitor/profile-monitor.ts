@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
 import { PopoverModule } from "primeng/popover";
@@ -16,6 +16,7 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
 @Component({
   selector: "app-profile-monitor",
   imports: [RouterModule, PopoverModule, AvatarModule, AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./profile-monitor.html",
 })
 export class ProfileMonitor {

@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from "@angular/core";
+import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SkeletonModule } from "primeng/skeleton";
 
@@ -116,6 +116,7 @@ export type SkeletonPresetType = "card" | "table" | "chart" | "form" | "avatar" 
     .sk-mt-2 { margin-top: 0.5rem; }
     .sk-mt-3 { margin-top: 0.75rem; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class SkeletonPresets {

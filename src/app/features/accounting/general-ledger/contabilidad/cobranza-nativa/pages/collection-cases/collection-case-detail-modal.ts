@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -18,6 +18,7 @@ import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
     DatePipe,
     CurrencyPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./collection-case-detail-modal.html",
 })
 export default class CollectionCaseDetailModal implements OnInit {

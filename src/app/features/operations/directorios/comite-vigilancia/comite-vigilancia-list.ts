@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -36,6 +36,7 @@ import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
   // Aóadido para Angular 20
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,

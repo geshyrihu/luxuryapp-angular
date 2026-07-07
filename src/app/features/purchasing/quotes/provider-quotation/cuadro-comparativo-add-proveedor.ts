@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -29,6 +29,7 @@ interface ICuadroComparativoAddProveedor {
 @Component({
   selector: "app-cuadro-comparativo-add-proveedor",
   templateUrl: "./cuadro-comparativo-add-proveedor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

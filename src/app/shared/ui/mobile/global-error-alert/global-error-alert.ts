@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import {
   IonButton,
   IonIcon,
@@ -41,6 +41,7 @@ import { GlobalErrorService } from "src/app/core/services/global-error.service";
       </ion-item>
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .global-error-alert {

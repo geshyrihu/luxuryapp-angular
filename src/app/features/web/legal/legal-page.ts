@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-legal-page",
   imports: [CommonModule, RouterModule],
   templateUrl: "./legal-page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./legal-page.scss"],
 })
 export class LegalPage implements AfterViewInit {

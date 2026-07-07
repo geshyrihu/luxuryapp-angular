@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
@@ -43,6 +43,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     IonLabel,
   ],
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-proveedores-list.html",
 })
 export class MisProveedores {

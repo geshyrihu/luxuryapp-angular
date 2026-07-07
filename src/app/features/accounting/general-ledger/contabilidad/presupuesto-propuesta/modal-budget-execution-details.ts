@@ -12,7 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -21,6 +21,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TableModule, TagModule],
 })
 export class BudgetExecutionDetailsModal implements OnInit {

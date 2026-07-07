@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -31,6 +31,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     MessageModule,
     ToggleSwitchModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (loading) {
       <div class="flex justify-center items-center p-5">

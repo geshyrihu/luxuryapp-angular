@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
@@ -14,6 +14,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 @Component({
   selector: "app-pdf-viewer-modal",
   imports: [PdfViewerModule, ProgressSpinnerModule, WebButtonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pdf-viewer-modal.html",
 })
 export class PdfViewerModal implements OnInit, OnDestroy {

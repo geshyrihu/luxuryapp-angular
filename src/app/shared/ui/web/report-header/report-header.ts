@@ -5,6 +5,7 @@ import {
   inject,
   input,
   signal,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -20,6 +21,7 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
 @Component({
   selector: "app-report-header",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="grid">
       <div class="col text-center">

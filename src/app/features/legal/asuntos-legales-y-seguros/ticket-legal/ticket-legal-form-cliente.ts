@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -41,6 +41,7 @@ interface ILegalTaskClienteForm {
 @Component({
   selector: "app-ticket-legal-form-cliente",
   templateUrl: "./ticket-legal-form-cliente.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CardModule,

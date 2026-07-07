@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -10,6 +10,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
 @Component({
   selector: "app-equipment-inspection-qr-entry",
   templateUrl: "./equipment-inspection-qr-entry.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, WebButtonLabel, EquipmentInspectionExecutionForm],
 })
 export class EquipmentInspectionQrEntry implements OnInit {

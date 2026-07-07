@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
@@ -12,6 +12,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   templateUrl: "./ordenes-servicio-fotos.html",
 
   imports: [WebButtonLabelDelete, ImageModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService, MessageService],
 })
 export class OrdenesServicioFotos implements OnInit {

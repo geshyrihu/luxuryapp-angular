@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -36,6 +36,7 @@ interface IWitnessForm {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-witness-form.html",
 })
 export class IncidentWitnessFormComponent implements OnInit {

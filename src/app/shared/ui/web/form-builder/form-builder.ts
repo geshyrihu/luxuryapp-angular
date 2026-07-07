@@ -5,6 +5,7 @@ import {
   output,
   signal,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -251,6 +252,7 @@ export type FormValues = Record<string, unknown>;
     .fb-actions { display: flex; justify-content: flex-end; gap: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--ds-border, #e2e8f0); }
     .w-full { width: 100%; }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppFormBuilder {

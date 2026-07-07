@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "primeng/api";
@@ -14,6 +14,7 @@ import { ROUTES } from "src/app/routing/route-paths";
   imports: [CommonModule, ToastModule],
   providers: [MessageService],
   templateUrl: "./diagram-editor.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .editor-container {

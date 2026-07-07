@@ -4,6 +4,7 @@ import {
   input,
   output,
   ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
@@ -312,6 +313,7 @@ export interface PipelineStage {
       color: var(--ds-primary, #003d9b);
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppPipelineCrm {

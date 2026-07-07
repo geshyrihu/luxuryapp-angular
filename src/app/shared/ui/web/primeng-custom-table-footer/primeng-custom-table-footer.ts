@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 
 /**
  * 🦶 TABLE FOOTER
@@ -8,6 +8,7 @@ import { Component, input } from "@angular/core";
 @Component({
   selector: "primeng-custom-table-footer",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="flex align-items-center justify-content-between">
       En total hay

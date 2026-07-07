@@ -1,4 +1,4 @@
-import { Component, computed, input, ViewEncapsulation } from "@angular/core";
+import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { NgxEchartsDirective } from "ngx-echarts";
 import type { EChartsCoreOption } from "echarts/core";
@@ -46,6 +46,7 @@ export type ChartType = "bar" | "line" | "area" | "pie" | "doughnut" | "radar" |
       margin-bottom: 0.75rem;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class ChartWrapper {

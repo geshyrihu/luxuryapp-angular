@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
@@ -66,6 +66,7 @@ type EstadoResultadosRow =
     DataViewMobile,
     AccountingNumberPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-v2.html",
 })
 export class EstadoResultadosV2 {

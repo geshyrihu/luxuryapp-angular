@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton } from "@ionic/angular/standalone";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -45,6 +45,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 @Component({
   selector: "app-medidores-list",
   templateUrl: "./medidores-list.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
     MobileButtonLabelEdit,

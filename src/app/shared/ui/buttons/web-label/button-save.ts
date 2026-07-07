@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, input } from "@angular/core";
+import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
@@ -8,6 +8,7 @@ import { BaseButton } from "../base/base-button";
   standalone: true,
   imports: [CommonModule, AppIcon],
   styles: [":host { display: block; width: fit-content; margin-left: auto; }"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       [type]="type()"

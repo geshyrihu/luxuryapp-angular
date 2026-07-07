@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -24,6 +24,7 @@ import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-create-orden-compra",
   templateUrl: "./create-orden-compra.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     CustomInputAutoComplete,

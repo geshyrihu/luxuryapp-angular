@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -25,6 +25,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
 @Component({
   selector: "app-medidor-lectura-chart",
   templateUrl: "./medidor-lectura-chart.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     NgxEchartsDirective,
     CalendarRange,

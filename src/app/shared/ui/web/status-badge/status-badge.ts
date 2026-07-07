@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { StatusBadgeBase } from "@ui/base/status-badge.base";
@@ -54,6 +54,7 @@ export {
       display: inline-flex;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class StatusBadge extends StatusBadgeBase {}

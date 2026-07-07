@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
@@ -15,6 +15,7 @@ import { FiltroMinutasArea } from "../filtro-minutas-area/filtro-minutas-area";
 @Component({
   selector: "app-minutas-resumen",
   templateUrl: "./minutas-resumen.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, FormsModule, TableModule, MultiSelectModule, MesAnio],
 })
 export class MinutasResumen implements OnInit {

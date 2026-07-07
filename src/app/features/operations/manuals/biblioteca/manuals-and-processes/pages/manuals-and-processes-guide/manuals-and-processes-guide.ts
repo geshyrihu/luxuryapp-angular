@@ -1,6 +1,6 @@
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
@@ -16,6 +16,7 @@ import { TagModule } from "primeng/tag";
   selector: "app-manuals-and-processes-guide",
   templateUrl: "./manuals-and-processes-guide.html",
 
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     WebButtonLabel,

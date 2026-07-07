@@ -1,6 +1,6 @@
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, input, signal } from "@angular/core";
+import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   IonBadge,
@@ -45,6 +45,7 @@ import { PendingItemDTO } from "./models/pending-item.dto";
     IonChip,
   ],
   templateUrl: "./unified-pending-dashboard-mobile.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       .ai-summary-popup {

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import {
   globalFilterFields,
@@ -28,6 +28,7 @@ interface ActivoGroup {
 @Component({
   selector: "app-reporte-completo-activos",
   templateUrl: "./reporte-completo-activos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SanitizeHtmlPipe, ProgressSpinnerModule],
 })
 // óCAMBIO! Ya no implementamos OnInit.

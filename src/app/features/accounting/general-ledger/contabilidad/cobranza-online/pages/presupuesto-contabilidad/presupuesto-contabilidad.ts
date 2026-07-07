@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
@@ -37,6 +37,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 @Component({
   selector: "app-presupuesto-contabilidad",
   imports: [CommonModule, FormsModule, ButtonModule, CustomInputSelectSignal, DataViewMobile, IonItem, IonLabel, WebButtonLabel],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-contabilidad.html",
 })
 export class PresupuestoContabilidad {

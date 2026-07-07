@@ -1,10 +1,11 @@
-import { Component, input } from "@angular/core";
+import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 
 @Component({
   selector: "primeng-custom-table-emptymessage",
   standalone: true,
   imports: [EmptyState],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <tr>
       <td [attr.colspan]="colspan()">
