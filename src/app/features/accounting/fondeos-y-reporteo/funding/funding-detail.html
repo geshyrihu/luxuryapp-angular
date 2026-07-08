@@ -197,15 +197,11 @@
   </div>
 
   @if (isVerified() && !isAuthorized() && !isConfirmed()) {
-  <p-message severity="warn" class="mt-2 w-full"
-    >Fondeo verificado — las OC vinculadas no se pueden modificar. Para
-    habilitar cambios, revierte la verificacion.</p-message
-  >
+  <lx-message severity="warn" class="mt-2 w-full">Fondeo verificado — las OC vinculadas no se pueden modificar. Para
+    habilitar cambios, revierte la verificacion.</lx-message>
   } @if (isAuthorized() && !isConfirmed()) {
-  <p-message severity="warn" class="mt-2 w-full"
-    >Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
-    habilitar cambios, revierte la autorizacion primero.</p-message
-  >
+  <lx-message severity="warn" class="mt-2 w-full">Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
+    habilitar cambios, revierte la autorizacion primero.</lx-message>
   } @if (isConfirmed()) {
   <div
     class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mt-2 flex align-items-center gap-2 text-green-700"
@@ -240,11 +236,11 @@
         <span class="font-bold text-800 text-lg"
           >{{grupo.tipoGasto | uppercase}}</span
         >
-        <p-badge
+        <lx-badge
           [value]="grupo.ordenes.length"
-          severity="secondary"
+          color="secondary"
           class="font-bold"
-        ></p-badge>
+        />
       </div>
       <div class="flex align-items-center gap-3">
         <span class="font-bold text-900 text-lg"
@@ -354,31 +350,11 @@
               <!-- Invoice Tags -->
               <div class="flex flex-wrap gap-1 align-items-center">
                 @if (orden.listadoFacturas?.length > 1) {
-                <p-tag
-                  severity="warning"
-                  [value]="orden.listadoFacturas.length + ' Docs'"
-                  class="cursor-pointer hover:surface-hover transition-duration-200"
-                  (click)="showInvoices(orden)"
-                  class="text-xs px-2 py-0 border-round-md"
-                ></p-tag>
+                <lx-tag severity="warning" [value]="orden.listadoFacturas.length + ' Docs'" class="cursor-pointer hover:surface-hover transition-duration-200" (click)="showInvoices(orden)" class="text-xs px-2 py-0 rounded-md" />
                 } @else if (orden.pdfFile || orden.factura) {
-                <p-tag
-                  severity="secondary"
-                  value="PDF"
-                  icon="mdi:file-pdf-box"
-                  class="cursor-pointer hover:surface-hover transition-duration-200"
-                  (click)="viewPdf(orden.pdfFile,'Factura')"
-                  class="text-xs px-2 py-0 bg-surface-200 text-700 border-round-md"
-                ></p-tag>
+                <lx-tag severity="secondary" value="PDF" icon="mdi:file-pdf-box" class="cursor-pointer hover:surface-hover transition-duration-200" (click)="viewPdf(orden.pdfFile,'Factura')" class="text-xs px-2 py-0 bg-surface-200 text-700 rounded-md" />
                 } @if (orden.comprobantesPago?.length > 0) {
-                <p-tag
-                  severity="success"
-                  value="Pago"
-                  icon="mdi:check"
-                  class="cursor-pointer hover:surface-hover transition-duration-200"
-                  (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
-                  class="text-xs px-2 py-0 border-round-md"
-                ></p-tag>
+                <lx-tag severity="success" value="Pago" icon="mdi:check" class="cursor-pointer hover:surface-hover transition-duration-200" (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')" class="text-xs px-2 py-0 rounded-md" />
                 }
               </div>
             </div>
@@ -493,11 +469,11 @@
         <span class="font-bold text-orange-800 text-base"
           >ÓRDENES FUERA DE PROCESO DE FONDEO</span
         >
-        <p-badge
+        <lx-badge
           [value]="ordenesFueraProceso().length"
-          severity="warn"
+          color="warning"
           class="font-bold"
-        ></p-badge>
+        />
       </div>
       @if (isRolAdministrador() || isRolSuperUsuario()) {
       <il-button
@@ -567,25 +543,13 @@
     }
   </div>
 
-  <p-dialog
-    header="Generando Solicitudes"
-    [(visible)]="isDownloading"
-    [modal]="true"
-    [style]="{ width: '400px' }"
-    [closable]="false"
-    [draggable]="false"
-    [resizable]="false"
-  >
-    <div class="flex flex-column align-items-center justify-content-center p-4">
-      <p-progressbar
-        [value]="downloadProgress()"
-        [style]="{'width': '100%', 'height': '20px'}"
-        class="mb-3"
-      ></p-progressbar>
+  <lx-modal header="Generando Solicitudes" [(visible)]="isDownloading" [closable]="false">
+<div class="flex flex-column align-items-center justify-content-center p-4">
+      <lx-progress-bar [value]="downloadProgress()" class="mb-3" />
       <span class="text-700 font-medium">{{ downloadStatusText() }}</span>
       <span class="text-500 text-sm mt-2"
         >Por favor no cierre esta ventana.</span
       >
     </div>
-  </p-dialog>
+</lx-modal>
 </div>

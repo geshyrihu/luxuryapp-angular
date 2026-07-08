@@ -9,7 +9,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -42,7 +42,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     CommonModule,
     FormsModule,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputSelectSignal,

@@ -3,9 +3,9 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
-import { ProgressBarModule } from "primeng/progressbar";
+import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -15,22 +15,21 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-sat-reconciliation-dialog",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
     TableModule,
-    TagModule,
     MessageModule,
-    ProgressBarModule,
+    LxProgressBar,
     CurrencyPipe,
     DatePipe,
     CardModule,
-    CustomInputDateSignal,
-  ],
+    CustomInputDateSignal, LxTag, AppIcon],
   templateUrl: "./sat-reconciliation-dialog.html",
 })
 export class SatReconciliationDialog implements OnInit {

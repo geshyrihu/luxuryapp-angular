@@ -16,7 +16,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -38,7 +38,7 @@ import { AuthService } from "src/app/core/services/auth.service";
     CommonModule,
     FormsModule,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputSelectSignal,

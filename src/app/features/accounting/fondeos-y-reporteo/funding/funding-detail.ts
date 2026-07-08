@@ -1,4 +1,4 @@
-﻿import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
+import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
   computed,
@@ -12,14 +12,14 @@ import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MenuItem, SortEvent } from "primeng/api";
-import { BadgeModule } from "primeng/badge";
-import { DialogModule } from "primeng/dialog";
+import { LxBadge } from "@ui/adaptive/badge/badge";
+
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { MessageModule } from "primeng/message";
-import { ProgressBarModule } from "primeng/progressbar"; // Added
+
+import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -76,30 +76,28 @@ const tipoGastoEmojis: { [key: number]: string } = {
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxMessage } from "@ui/adaptive/message/message";
 
 @Component({
   selector: "app-funding-detail",
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     WebButtonIconDelete,
-    BadgeModule,
+    LxBadge,
     WebButtonLabel,
     CommonModule,
 
     ReactiveFormsModule,
     DecimalPipe,
-    DialogModule,
-    MessageModule,
-    ProgressBarModule,
+    LxProgressBar,
     RouterModule,
     SplitButtonModule,
     TableModule,
-    TagModule,
     TooltipModule,
     UpperCasePipe,
     CustomInputCheckSignal,
-    AppIcon,
-  ],
+    AppIcon, LxTag, LxModal, LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-detail.html",
 })
