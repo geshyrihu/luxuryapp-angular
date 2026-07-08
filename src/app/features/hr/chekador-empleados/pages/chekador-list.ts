@@ -13,7 +13,6 @@ import { ImageModule } from "primeng/image";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -29,6 +28,7 @@ import { IRegistroChecador } from "../models/chekador-empleados.models";
 import { ChekadorEmpleadosService } from "../services/chekador-empleados.service";
 
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-chekador-list",
   templateUrl: "./chekador-list.html",
@@ -36,7 +36,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonIcon,
     ImageModule,

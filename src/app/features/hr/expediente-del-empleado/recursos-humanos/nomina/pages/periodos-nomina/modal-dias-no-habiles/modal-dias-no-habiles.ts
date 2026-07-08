@@ -12,7 +12,6 @@ import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -23,6 +22,7 @@ import {
 } from "../../../interfaces/periodo-nomina.interface";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-modal-dias-no-habiles",
@@ -30,7 +30,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     ReactiveFormsModule,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonLabelSave,
     CustomInputDateSignal,
     CustomInputTextSignal,

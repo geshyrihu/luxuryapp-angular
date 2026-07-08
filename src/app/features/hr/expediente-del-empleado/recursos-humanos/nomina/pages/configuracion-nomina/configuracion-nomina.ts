@@ -1,11 +1,11 @@
 import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -19,7 +19,7 @@ import {
   selector: "app-configuracion-nomina",
   imports: [
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     FieldsetModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,

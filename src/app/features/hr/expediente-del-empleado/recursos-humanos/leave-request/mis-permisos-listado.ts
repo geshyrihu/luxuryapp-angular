@@ -16,7 +16,6 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -34,6 +33,7 @@ import { PermisoForm } from "./permiso-form";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -51,7 +51,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

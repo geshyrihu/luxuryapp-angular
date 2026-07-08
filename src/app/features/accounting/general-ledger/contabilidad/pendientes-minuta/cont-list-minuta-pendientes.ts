@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -16,6 +16,8 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -23,7 +25,6 @@ import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { MessageService } from "primeng/api";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import {
   globalFilterFields,
@@ -44,12 +45,14 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
+    AppIcon,
+    LxTag,
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
     TooltipModule,
     CustomInputSelectSignal,
-    TagModule,
 
     WebButtonIconEdit,
     WebButtonIconItem,
@@ -59,8 +62,6 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    IonItem,
-    IonLabel,
   ],
 })
 export class ContListMinutaPendientes implements OnInit {

@@ -1,5 +1,5 @@
 <div class="my-5">
-  <p-card>
+  <lx-card>
     <ng-template #header>
       <div class="p-4">
         <h2 class="text-xl font-bold mb-0">Balance de Vacaciones</h2>
@@ -287,14 +287,14 @@
                     }
                   </td>
                   <td class="text-center">
-                    <p-tag
+                    <lx-tag
                       severity="info"
                       [value]="req.requestedDays.toString()"
                       class="text-base px-3"
                     />
                   </td>
                   <td>
-                    <p-tag
+                    <lx-tag
                       [value]="req.status"
                       [severity]="onGetSeverity(req.status)"
                     />
@@ -318,5 +318,5 @@
       </div>
       }
     </ng-template>
-  </p-card>
+  </lx-card>
 </div>

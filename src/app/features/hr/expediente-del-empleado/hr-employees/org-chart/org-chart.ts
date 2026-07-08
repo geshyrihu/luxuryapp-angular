@@ -11,13 +11,12 @@ import {
 import { GraphModule, Orientation } from "@swimlane/ngx-graph";
 import { MessageService } from "primeng/api";
 import { AvatarModule } from "primeng/avatar";
-import { Drawer } from "primeng/drawer";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TabsModule } from "primeng/tabs";
-import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -52,13 +51,12 @@ import {
     GraphModule,
     AvatarModule,
     WebButtonLabel,
-    Drawer,
+    LxSidebar,
     SelectButtonModule,
     TabsModule,
-    TagModule,
+    LxTag,
     ToastModule,
-    TooltipModule,
-  ],
+    ],
 })
 export class OrgChart {
   readonly apiS = inject(ApiResponseService);

@@ -5,7 +5,6 @@ import { addIcons } from "ionicons";
 import { phonePortraitOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -15,6 +14,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -31,7 +31,7 @@ import { ModuleAppForm } from "./module-app-form";
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileButtonLabelEdit,

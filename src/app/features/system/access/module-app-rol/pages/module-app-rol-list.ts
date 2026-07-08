@@ -3,14 +3,14 @@ import { RouterModule } from "@angular/router";
 import { IonNote } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
-import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -27,11 +27,11 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
   imports: [
     RouterModule,
     TableModule,
-    TagModule,
+    LxTag,
     ProgressSpinnerModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    CardModule,
+    LxCard,
     DataViewMobile,
 
     IonNote,

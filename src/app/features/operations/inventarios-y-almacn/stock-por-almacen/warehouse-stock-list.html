@@ -144,9 +144,9 @@
   "
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -160,12 +160,12 @@
         />
       </div>
 
-      <ion-label>
+      
         <h2 class="font-normal m-0">{{ item.producto }}</h2>
         <p class="text-medium text-500 m-0">{{ item.unidadDeMedida }}</p>
-      </ion-label>
+      
 
-      <div slot="end" class="flex align-items-center">
+      <div end class="flex align-items-center">
         <span
           class="p-2 badge"
           [class.bg-success]="item.existencia > item.stockMin"
@@ -216,7 +216,7 @@
           </ng-container>
         </ili-action-menu>
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
 }

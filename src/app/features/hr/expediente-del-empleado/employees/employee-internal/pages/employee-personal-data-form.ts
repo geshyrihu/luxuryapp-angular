@@ -7,7 +7,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import { CardModule } from "primeng/card";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
@@ -15,6 +14,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ECountry } from "src/app/core/enums/paises.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -35,7 +35,7 @@ import { IEmployeePersonalDataForm } from "../models/employee-personal-data-form
     CustomInputDateSignal,
     CustomInputAutoComplete,
     WebButtonLabelSave,
-    CardModule,
+    LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideFlatpickrDefaults()],

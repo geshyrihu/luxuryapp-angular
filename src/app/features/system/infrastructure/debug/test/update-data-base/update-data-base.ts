@@ -1,6 +1,7 @@
 import { CommonModule, JsonPipe } from "@angular/common";
+
+import { LxCard } from "@ui/adaptive/card/card";
 import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -9,7 +10,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   selector: "app-update-data-base",
   templateUrl: "./update-data-base.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, CardModule],
+  imports: [CommonModule, LxCard],
 })
 export class UpdateDataBase {
   apiResponseS = inject(ApiResponseService);

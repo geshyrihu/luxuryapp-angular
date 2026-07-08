@@ -6,13 +6,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -36,7 +36,7 @@ import { IEmployeeLaboralDataForm } from "../models/employee-laboral-data-form.i
     CustomInputCurrencySignal,
     CustomInputNumberSignal,
     WebButtonLabelSave,
-    CardModule,
+    LxCard,
   ],
 })
 export class EmployeeLaboralDataForm implements OnInit {

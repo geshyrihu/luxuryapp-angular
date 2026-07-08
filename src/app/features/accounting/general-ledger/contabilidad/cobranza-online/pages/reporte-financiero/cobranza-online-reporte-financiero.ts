@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -36,7 +36,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 
 @Component({
   selector: "app-cobranza-online-reporte-financiero",
-  imports: [CommonModule, FormsModule, ButtonModule, CustomInputSelectSignal, DataViewMobile, IonItem, IonLabel, WebButtonLabel],
+  imports: [CommonModule, FormsModule, ButtonModule, CustomInputSelectSignal, DataViewMobile, MobileListItem, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-online-reporte-financiero.html",
 })

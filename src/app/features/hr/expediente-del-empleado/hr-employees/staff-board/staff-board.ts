@@ -9,10 +9,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AvatarModule } from "primeng/avatar";
-import { Dialog } from "primeng/dialog";
-import { Drawer } from "primeng/drawer";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -46,6 +43,9 @@ import { CardEmployee } from "../employees/pages/card-employee";
 
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -59,9 +59,9 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     AvatarModule,
-    TagModule,
-    Drawer,
-    Dialog,
+    LxTag,
+    LxSidebar,
+    LxModal,
     CdkDrag,
     CdkDragHandle,
     CdkDragPreview,
@@ -247,7 +247,7 @@ export class StaffBoard {
       list.filter((e) => e.applicationUserId !== employee.applicationUserId),
     );
     await this.onLoadData();
-    // Mueve al empleado al pool y abre el drawer para asignarle un puesto
+    // Mueve al empleado al pool y abre el LxSidebar para asignarle un puesto
     this.inactivosVisible.set(false);
   }
 
@@ -272,7 +272,7 @@ export class StaffBoard {
 
   onDropBackToPool(_event: CdkDragDrop<IEmployee[]>): void {}
 
-  // --- Drawer ------------------------------------------------------------
+  // --- LxSidebar ------------------------------------------------------------
 
   onOpenDrawer(position: IWorkPosition): void {
     this.selectedPosition.set(position);

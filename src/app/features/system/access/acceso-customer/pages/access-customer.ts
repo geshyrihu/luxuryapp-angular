@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxCard } from "@ui/adaptive/card/card";
 import { IAddCustomerPermisoToUser } from "src/app/core/interfaces/add-customer-permiso-to-user.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -10,7 +10,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   selector: "app-access-customer",
   templateUrl: "./access-customer.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, CardModule, AppIcon],
+  imports: [CommonModule, LxCard, AppIcon],
 })
 export class AccessCustomer implements OnInit {
   customToastService = inject(CustomToastService);
@@ -49,9 +49,6 @@ export class AccessCustomer implements OnInit {
     this.onUpdateAcceso(this.dataSignal());
   }
 }
-
-
-
 
 
 

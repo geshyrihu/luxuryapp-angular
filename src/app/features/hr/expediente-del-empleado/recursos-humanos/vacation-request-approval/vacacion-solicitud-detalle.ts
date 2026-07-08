@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { CardModule } from "primeng/card";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -28,7 +28,7 @@ interface VacationApprovalDetailDTO {
   selector: "app-vacacion-solicitud-detalle",
   templateUrl: "./vacacion-solicitud-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule, TagModule, WebButtonLabel],
+  imports: [LxCard, LxTag, WebButtonLabel],
 })
 export class VacacionSolicitudDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);

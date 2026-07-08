@@ -7,18 +7,19 @@
   signal,
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -40,6 +41,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   templateUrl: "./estado-financiero-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    LxTag,
+    MobileListItem,
     WebButtonIcon,
     WebButtonIconConfirm,
     TooltipModule,
@@ -50,11 +54,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableModule,
 
     NgbTooltipModule,
-    TagModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CardModule,
   ],
 })
 export class EstadoFinancieroList {
@@ -69,7 +71,7 @@ export class EstadoFinancieroList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acciÃ³n
+  // Signals para controlar el estado de procesamiento de cada acción
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -89,7 +91,7 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // FunciÃ³n para verificar si un botÃºn estÃ© procesando
+  // Función para verificar si un botón esté procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -106,7 +108,7 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar el archivo
+  // Función para abrir un cuadro de diálogo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -201,7 +203,7 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // Ã©Ã©â‚¬Ã©Ã‚Â autoMaximize = true
+      true, // autoMaximize = true
     );
   }
 }

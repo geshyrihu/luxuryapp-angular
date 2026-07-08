@@ -8,11 +8,11 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
-import { CardModule } from "primeng/card";
 
 import { IEmployeeAddressForm } from "../models/employee-address-form.interface";
 
@@ -24,7 +24,7 @@ import { IEmployeeAddressForm } from "../models/employee-address-form.interface"
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    CardModule,
+    LxCard,
   ],
 })
 export class EmployeeAddressForm implements OnInit {

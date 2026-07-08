@@ -65,10 +65,10 @@
         <strong>{{ item.currentSystemBalance }}</strong>
       </td>
       <td>
-        <p-tag
+        <lx-tag
           [severity]="getSeverity(item.isDiscrepant)"
           [value]="item.isDiscrepant ? 'Sí' : 'No'"
-        ></p-tag>
+        ></lx-tag>
       </td>
       <td>
         <iw-button-edit (clicked)="openEditModal(item)" />
@@ -124,10 +124,10 @@
 
         @if (item.isDiscrepant) {
         <div class="mt-1">
-          <p-tag
+          <lx-tag
             severity="danger"
             value="DISCREPANCIA (BALANCE NEGATIVO)"
-          ></p-tag>
+          ></lx-tag>
         </div>
         }
       </ion-label>

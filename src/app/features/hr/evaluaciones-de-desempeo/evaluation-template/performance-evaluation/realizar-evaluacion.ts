@@ -10,13 +10,13 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Touchspin } from "@ui/web/touchspin/touchspin";
+import { LxCard } from "@ui/adaptive/card/card";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -29,7 +29,7 @@ import { DateService } from "src/app/core/services/date.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     MessageModule,
     CustomInputSelectSignal,
     DividerModule,

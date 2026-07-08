@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -29,6 +28,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-prestamos-empleado",
@@ -39,7 +39,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
 
     DataViewMobile,
     PrimeNgCustomCaption,

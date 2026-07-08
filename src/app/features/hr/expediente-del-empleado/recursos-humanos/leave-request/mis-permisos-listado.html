@@ -61,10 +61,10 @@
         </div>
       </td>
       <td>
-        <p-tag
+        <lx-tag
           [value]="item.status"
           [severity]="getStatusSeverity(item.status)"
-        ></p-tag>
+        ></lx-tag>
       </td>
       <td>
         {{ item.approverName ? item.approverName : "-" }}
@@ -89,7 +89,6 @@
               onModalDetail({ id: item.id, title: 'Detalle de la Solicitud' })
             "
             pTooltip="??"
-            tooltipPosition="top"
           />
           @if (item.status != "Aprobada") {
           <iw-button-edit

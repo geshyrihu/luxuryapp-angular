@@ -6,9 +6,9 @@ import {
   UntypedFormGroup,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { IChangePassword } from "src/app/core/interfaces/change-password.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -20,7 +20,7 @@ import { AuthService } from "src/app/core/services/auth.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     WebButtonLabelSave,
     CustomInputPassword,
   ],

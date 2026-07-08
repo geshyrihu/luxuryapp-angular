@@ -84,9 +84,9 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -99,7 +99,7 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label class="ion-text-wrap">
+      <div class="flex-1 min-w-0 ion-text-wrap">
         <h6 class="mb-0">{{ item.concept }}</h6>
         <small class="text-color-secondary"
           >{{ item.accountingCatalog }} - {{ item.executionMonthName }}</small
@@ -107,9 +107,9 @@
         <span class="font-bold text-lg"
           >{{ item.budgetedAmount | number: "1.0-0" }}
         </span>
-      </ion-label>
+      </div>
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModal({ id: item.id, title: 'Editar Ejecución' })"
@@ -118,7 +118,7 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
 }

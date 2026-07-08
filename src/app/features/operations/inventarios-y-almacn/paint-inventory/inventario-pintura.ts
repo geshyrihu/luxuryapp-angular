@@ -6,7 +6,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -14,8 +15,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { addIcons } from "ionicons";
-import { colorPaletteOutline, folderOpenOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
@@ -48,10 +47,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     ImageModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile,  ],
 })
 export class InventarioPintura {
   apiResponseS = inject(ApiResponseService);
@@ -70,7 +66,6 @@ export class InventarioPintura {
   ref: DynamicDialogRef;
 
   constructor() {
-    addIcons({ colorPaletteOutline, folderOpenOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();

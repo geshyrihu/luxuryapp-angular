@@ -17,16 +17,16 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -48,7 +48,7 @@ import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     CustomInputSelectSignal,
     CustomInputDatepicker,
     MessageModule,
@@ -57,7 +57,7 @@ import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/
     WebButtonLabel,
     WebButtonLabelSave,
     TableModule,
-    TagModule,
+    LxTag,
   ],
 })
 export class VacacionesPasadasRegistro implements OnInit {

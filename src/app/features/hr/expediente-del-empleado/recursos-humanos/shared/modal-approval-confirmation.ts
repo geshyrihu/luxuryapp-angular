@@ -11,9 +11,9 @@ import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
@@ -32,7 +32,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     ProgressSpinnerModule,
     WebButtonLabel,
     DatePipe,
-    TagModule,
+    LxTag,
     DividerModule,
     MessageModule,
     CustomInputToggleSwitch,

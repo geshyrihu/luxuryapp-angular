@@ -1,6 +1,5 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -574,11 +573,12 @@ interface HeroMetric {
 }
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-nomina-dashboard",
   imports: [
-    WebButtonIcon,WebButtonLabel, TagModule, AppIcon],
+    WebButtonIcon,WebButtonLabel, LxTag, AppIcon],
   templateUrl: "./nomina-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nomina-dashboard.scss"],

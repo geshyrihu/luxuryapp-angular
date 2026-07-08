@@ -1,13 +1,13 @@
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-employee-avatar-form",
   templateUrl: "./employee-avatar-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule, CustomInputImg],
+  imports: [LxCard, CustomInputImg],
 })
 export class EmployeeAvatarForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

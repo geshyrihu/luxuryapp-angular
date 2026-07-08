@@ -87,9 +87,9 @@
     <ili-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         style="
           width: 36px;
           height: 36px;
@@ -107,12 +107,12 @@
           style="font-size: 20px; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.marca }} é {{ item.modelo }}</h3>
         <p>Serie: {{ item.serie }} | Bateróa: {{ item.bateria }}</p>
         <p>{{ item.applicationUser }} é {{ item.departament }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -121,6 +121,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

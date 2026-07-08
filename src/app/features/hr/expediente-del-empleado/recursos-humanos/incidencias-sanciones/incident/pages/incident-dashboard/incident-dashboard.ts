@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -20,7 +20,7 @@ import {
     ReactiveFormsModule,
     ChartWrapper,
     TableModule,
-    CardModule,
+    LxCard,
     CustomInputDateSignal,
     WebButtonLabel,
   ],

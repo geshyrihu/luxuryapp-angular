@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -41,8 +41,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     WebButtonLabel,
   ],
 })

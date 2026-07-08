@@ -7,7 +7,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -16,8 +17,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { addIcons } from "ionicons";
-import { folderOpenOutline, radioOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
@@ -54,10 +53,9 @@ import { TooltipModule } from "primeng/tooltip";
     ImageModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-    DatePipe,
+    DataViewMobile,    DatePipe,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class RadioComunicacionList {
@@ -75,7 +73,6 @@ export class RadioComunicacionList {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
-    addIcons({ radioOutline, folderOpenOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();

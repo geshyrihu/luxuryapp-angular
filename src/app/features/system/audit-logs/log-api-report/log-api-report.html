@@ -1,5 +1,5 @@
 <!-- Panel de Filtros -->
-<p-card>
+<lx-card>
   <!-- VISTA DE ESCRITORIO -->
   <div class="hidden md:block mt-3">
     <p-table
@@ -110,10 +110,10 @@
           </td>
           <td>{{ item.timestamp | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>
-            <p-tag
+            <lx-tag
               [value]="item.level"
               [severity]="getLevelSeverity(item.level)"
-            ></p-tag>
+            ></lx-tag>
           </td>
           <td>{{ item.userName || 'N/A' }}</td>
           <td class="max-w-400 text-wrap">{{ item.message }}</td>
@@ -168,10 +168,10 @@
       <ng-template #listItemTemplate let-item>
         <ion-item lines="full" class="ion-no-padding">
           <div slot="start" class="mr-2">
-            <p-tag
+            <lx-tag
               [value]="item.level.charAt(0).toUpperCase()"
               [severity]="getLevelSeverity(item.level)"
-            ></p-tag>
+            ></lx-tag>
           </div>
           <ion-label>
             <div class="flex justify-content-between align-items-center mb-1">
@@ -232,4 +232,4 @@
     />
     }
   </div>
-</p-card>
+</lx-card>

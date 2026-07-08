@@ -7,14 +7,14 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import {
@@ -37,6 +37,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
   templateUrl: "./projected-expenses-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -48,9 +50,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     DataViewMobile,
-    CardModule,
-    IonItem,
-    IonLabel,
   ],
 })
 export default class ProjectedExpensesList {

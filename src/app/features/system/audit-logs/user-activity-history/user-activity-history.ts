@@ -2,9 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -12,6 +10,8 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -31,8 +31,8 @@ import { DateService } from "src/app/core/services/date.service";
     CommonModule,
     ReactiveFormsModule,
     TableModule,
-    CardModule,
-    TagModule,
+    LxCard,
+    LxTag,
     TooltipModule,
     FlatpickrModule,
     WebButtonLabel,

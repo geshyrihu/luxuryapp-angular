@@ -9,7 +9,7 @@
 
     <div class="org-chart-page__header-actions">
       @if (reassignLoading()) {
-      <p-tag severity="info" value="Reasignando..." />
+      <lx-tag severity="info" value="Reasignando..." />
       }
     </div>
   </div>
@@ -73,7 +73,7 @@
             (clicked)="reorderSelected(1)"
           />
           } @if (selectedOrigin()) {
-          <p-tag
+          <lx-tag
             severity="warn"
             [value]="'Origen: ' + (selectedOrigin()?.folio ?? '')"
           />
@@ -399,11 +399,9 @@
   </div>
 </ng-template>
 
-<p-drawer
-  [visible]="drawerVisible()"
-  (visibleChange)="drawerVisible.set($event)"
+<lx-sidebar
+  [visible]="drawerVisible()" (visibleChange)="drawerVisible.set($event)"
   position="right"
-  [style]="{ width: '380px' }"
   header="Detalles del Puesto"
 >
   @if (selectedNodeForDetails(); as node) {
@@ -440,6 +438,6 @@
     </div>
   </div>
   }
-</p-drawer>
+</lx-sidebar>
 
 <p-toast position="bottom-right" />

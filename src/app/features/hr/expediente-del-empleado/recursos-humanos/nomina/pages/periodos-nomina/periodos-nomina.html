@@ -57,7 +57,7 @@
       </td>
       <td>{{ item.diasHabiles }}</td>
       <td>
-        <p-tag
+        <lx-tag
           [severity]="getEstadoSeverity(item.estado)"
           [value]="item.estado"
         />
@@ -115,7 +115,7 @@
           | date: "dd/MM/yyyy" : "UTC" }}
         </p>
         <div class="flex align-items-center gap-2 mt-1">
-          <p-tag
+          <lx-tag
             [severity]="getEstadoSeverity(item.estado)"
             [value]="item.estado"
           />

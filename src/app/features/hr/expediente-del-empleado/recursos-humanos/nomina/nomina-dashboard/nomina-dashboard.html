@@ -2,7 +2,7 @@
   <!-- ── Hero ──────────────────────────────────────────────── -->
   <div class="nom-hero mb-4">
     <div class="nom-hero__copy">
-      <p-tag value="Recursos Humanos" severity="info" />
+      <lx-tag value="Recursos Humanos" severity="info" />
       <h1>Gestion de Nomina</h1>
       <p>
         Sistema integral de nomina quincenal. Administra periodos, genera
@@ -72,7 +72,7 @@
                 </div>
                 <div class="flex flex-wrap gap-1 mt-1">
                   @for (role of card.roles; track role) {
-                  <p-tag
+                  <lx-tag
                     [value]="role"
                     [severity]="roleTagSeverity(role)"
                     class="text-xs"
@@ -167,7 +167,7 @@
               </div>
               <div class="flex flex-wrap gap-1">
                 @for (s of card.states; track s) {
-                <p-tag
+                <lx-tag
                   [value]="s"
                   severity="secondary"
                   class="text-xs font-mono"

@@ -3,10 +3,10 @@ import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@ang
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,7 +22,7 @@ import {
     CommonModule,
     ReactiveFormsModule,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonLabelSave,
     CustomInputTextAreaSignal,

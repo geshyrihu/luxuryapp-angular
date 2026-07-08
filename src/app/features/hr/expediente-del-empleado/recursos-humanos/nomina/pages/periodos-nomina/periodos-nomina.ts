@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -26,6 +25,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-periodos-nomina",
@@ -37,7 +37,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonLabelEdit,
     WebButtonLabelDelete,

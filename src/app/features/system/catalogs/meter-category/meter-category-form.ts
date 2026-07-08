@@ -6,10 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
@@ -29,7 +29,7 @@ interface IMeterCategoryForm {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    CardModule,
+    LxCard,
     WebButtonLabelSave,
   ],
 })

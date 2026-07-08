@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p-card>
+  <lx-card>
     <div class="card-body mt-2">
       @if (!selectedTemplate) {
 
@@ -102,5 +102,5 @@
     @if (selectedTemplate) {
     <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
     }
-  </p-card>
+  </lx-card>
 </form>

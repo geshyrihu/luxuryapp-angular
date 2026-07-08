@@ -19,7 +19,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 // import { EmployeeAddOrEditService } from './employee-form.service';
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -46,7 +45,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TooltipModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
     WebButtonLabelConfirm,

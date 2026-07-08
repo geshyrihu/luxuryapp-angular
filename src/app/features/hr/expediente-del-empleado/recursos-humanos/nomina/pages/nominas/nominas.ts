@@ -11,7 +11,6 @@ import { Router } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -27,6 +26,7 @@ import ModalGenerarNomina from "./modal-generar-nomina/modal-generar-nomina";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -37,7 +37,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     DataViewMobile,
     PrimeNgCustomCaption,
   ],

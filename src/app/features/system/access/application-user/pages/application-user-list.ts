@@ -11,7 +11,6 @@ import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { AvatarModule } from "primeng/avatar";
-import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
@@ -43,6 +42,7 @@ import { ApplicationUserForm } from "./application-user-form";
 import { MdEditAccount } from "./md-edit-account";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { LxCard } from "@ui/adaptive/card/card";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -67,7 +67,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     AppIcon,
-    CardModule,
+    LxCard,
     CustomInputSelectSignal,
   ],
 })

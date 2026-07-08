@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
@@ -12,6 +11,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -37,8 +37,7 @@ function buildTodayInputValue() {
     TableModule,
     TagModule,
     DataViewMobile,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     WebButtonLabel,
     ChartWrapper,
   ],

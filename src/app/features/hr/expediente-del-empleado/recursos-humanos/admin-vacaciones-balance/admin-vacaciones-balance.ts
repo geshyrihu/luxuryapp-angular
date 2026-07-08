@@ -1,11 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { CardModule } from "primeng/card";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -25,6 +23,8 @@ import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit
 
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-admin-vacaciones-balance",
@@ -32,10 +32,10 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     WebButtonIconEdit,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
-    CardModule,
+    LxCard,
     TableModule,
     WebButtonLabel,
-    TagModule,
+    LxTag,
     DynamicDialogModule,
     PrimeNgCustomCaption,
     WebButtonLabelEdit,

@@ -45,6 +45,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-product-output-list",
@@ -69,6 +71,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     CardModule,
     CustomInputDatepicker,
+    MobileListItem,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PaginationService],

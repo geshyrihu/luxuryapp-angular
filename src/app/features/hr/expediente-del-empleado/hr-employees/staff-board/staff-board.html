@@ -112,7 +112,7 @@
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="flex align-items-center">
-          <p-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
+          <lx-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             pTooltip="Asignar rol al puesto"
@@ -379,11 +379,9 @@
 <!-- ═══════════════════════════════════════════════════════════════════
      DRAWER é ASIGNACIóN RÁPIDA (alternativa al DnD)
      ═══════════════════════════════════════════════════════════════════ -->
-<p-drawer
-  [visible]="drawerVisible()"
-  (visibleChange)="drawerVisible.set($event)"
+<lx-sidebar
+  [visible]="drawerVisible()" (visibleChange)="drawerVisible.set($event)"
   position="right"
-  [style]="{ width: '360px' }"
   header="Asignar Colaborador"
 >
   @if (selectedPosition(); as pos) {
@@ -432,18 +430,14 @@
     } }
   </div>
   }
-</p-drawer>
+</lx-sidebar>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      MODAL é INACTIVOS (Puestos y Colaboradores)
      ═══════════════════════════════════════════════════════════════════ -->
-<p-dialog
-  [visible]="inactivosVisible()"
-  (visibleChange)="inactivosVisible.set($event)"
+<lx-modal
+  [visible]="inactivosVisible()" (visibleChange)="inactivosVisible.set($event)"
   header="Inactivos"
-  [modal]="true"
-  [style]="{ width: '680px' }"
-  [draggable]="false"
 >
   <!-- Tabs de selección -->
   <div class="flex mb-4">
@@ -553,4 +547,4 @@
     }
   </div>
   } }
-</p-dialog>
+</lx-modal>

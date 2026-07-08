@@ -5,13 +5,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
 import { CustomInputPhonePrefix } from "@ui/inputs/web/custom-input-phone-prefix";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -23,7 +23,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     CustomInputTextSignal,
     CustomInputMaskSignal,
     CustomInputPhonePrefix,

@@ -46,30 +46,30 @@
   </div>
 
   <div class="col-12 md:col-4">
-    <p-card header="Sesiones cargadas">
+    <lx-card header="Sesiones cargadas">
       <div class="text-3xl font-bold">{{ items().length }}</div>
       <small class="text-color-secondary">
         Sesiones evaluadas con la ventana actual.
       </small>
-    </p-card>
+    </lx-card>
   </div>
 
   <div class="col-12 md:col-4">
-    <p-card header="Pendientes de relacion">
+    <lx-card header="Pendientes de relacion">
       <div class="text-3xl font-bold">{{ pendingCount() }}</div>
       <small class="text-color-secondary">
         Sesiones sin presentacion o sin minuta ligada.
       </small>
-    </p-card>
+    </lx-card>
   </div>
 
   <div class="col-12 md:col-4">
-    <p-card header="Aplicables">
+    <lx-card header="Aplicables">
       <div class="text-3xl font-bold">{{ autoApplicableCount() }}</div>
       <small class="text-color-secondary">
         Sesiones con al menos una sugerencia disponible para aplicar.
       </small>
-    </p-card>
+    </lx-card>
   </div>
 
   <div class="col-12">
@@ -101,12 +101,12 @@
                 {{ item.scheduledAt | date: "dd/MM/yyyy HH:mm" }}
               </div>
               <div class="flex gap-2 flex-wrap mt-2">
-                <p-tag [value]="item.statusDisplayName" severity="info" />
-                <p-tag
+                <lx-tag [value]="item.statusDisplayName" severity="info" />
+                <lx-tag
                   [value]="item.hasPresentationLinked ? 'Presentacion ligada' : 'Sin presentacion'"
                   [severity]="item.hasPresentationLinked ? 'success' : 'warn'"
                 />
-                <p-tag
+                <lx-tag
                   [value]="item.hasMeetingLinked ? 'Minuta ligada' : 'Sin minuta'"
                   [severity]="item.hasMeetingLinked ? 'success' : 'warn'"
                 />
@@ -120,7 +120,7 @@
                 {{ presentation.relevantDate | date: "dd/MM/yyyy" }}
               </div>
               <div class="flex gap-2 align-items-center mt-2">
-                <p-tag
+                <lx-tag
                   [value]="presentation.confidence"
                   [severity]="confidenceSeverity(presentation.confidence)"
                 />
@@ -143,7 +143,7 @@
                 {{ meeting.relevantDate | date: "dd/MM/yyyy" }}
               </div>
               <div class="flex gap-2 align-items-center mt-2">
-                <p-tag
+                <lx-tag
                   [value]="meeting.confidence"
                   [severity]="confidenceSeverity(meeting.confidence)"
                 />
@@ -182,7 +182,7 @@
                 </label>
 
                 <iw-button-confirm
-                  pTooltip="Aplicar sugerencias" tooltipPosition="top"
+                  pTooltip="Aplicar sugerencias"
                   iconClass="mdi:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
                   swalText="Se vincularan los registros seleccionados a la sesion mensual. Esta accion no elimina historico existente."

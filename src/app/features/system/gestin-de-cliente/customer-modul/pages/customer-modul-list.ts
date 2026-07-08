@@ -15,9 +15,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -30,6 +28,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { CustomerModulEdit } from "./customer-modul-edit";
 
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",
@@ -39,10 +39,10 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     RouterModule,
     TableModule,
     AvatarModule,
-    TagModule,
+    LxTag,
     DataViewMobile,
     PrimeNgCustomTableFooter,
-    CardModule,
+    LxCard,
     PrimeNgCustomCaption,
     WebButtonIconActiveDesactive,
     AppIcon,

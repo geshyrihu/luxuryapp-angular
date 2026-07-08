@@ -6,11 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 // import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -31,7 +31,7 @@ interface ICustomerProviderForm {
     ReactiveFormsModule,
     CustomInputAutoComplete,
     WebButtonLabelSave,
-    CardModule,
+    LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./customer-provider-form.html",

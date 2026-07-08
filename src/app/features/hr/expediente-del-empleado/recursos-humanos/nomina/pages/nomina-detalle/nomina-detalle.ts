@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -27,6 +26,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-nomina-detalle",
@@ -37,7 +37,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonLabelEdit,
     DataViewMobile,

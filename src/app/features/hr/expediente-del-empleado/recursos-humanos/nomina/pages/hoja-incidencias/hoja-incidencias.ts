@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Popover } from "primeng/popover";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,7 +22,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [CommonModule, TagModule, TooltipModule, Popover, WebButtonLabel],
+  imports: [CommonModule, LxTag, TooltipModule, Popover, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })

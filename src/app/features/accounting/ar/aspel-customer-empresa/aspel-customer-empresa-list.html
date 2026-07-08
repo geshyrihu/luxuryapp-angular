@@ -69,9 +69,9 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -84,7 +84,7 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h2>{{ item.customerName }}</h2>
         <div class="flex align-items-center gap-2 mt-1">
           <app-status-badge
@@ -96,8 +96,8 @@
             >- ID Aspel: {{ item.customerIdAspelId }}</span
           >
         </div>
-      </ion-label>
-      <div slot="end">
+      </div>
+      <div end>
         <ili-action-menu>
           <ng-container actions>
             <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
@@ -105,6 +105,6 @@
           </ng-container>
         </ili-action-menu>
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

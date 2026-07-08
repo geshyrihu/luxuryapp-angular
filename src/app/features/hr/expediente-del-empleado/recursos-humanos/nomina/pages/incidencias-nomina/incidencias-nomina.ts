@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -25,6 +24,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 import ModalIncidenciaAdd from "./modal-incidencia-add/modal-incidencia-add";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-incidencias-nomina",
@@ -33,7 +33,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonLabelDelete,
     DataViewMobile,

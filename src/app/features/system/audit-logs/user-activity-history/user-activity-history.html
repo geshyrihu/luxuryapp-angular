@@ -1,5 +1,5 @@
 <!-- Panel de Filtros -->
-<p-card>
+<lx-card>
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="hidden md:block mt-3">
     <p-table
@@ -70,8 +70,7 @@
             </div>
             <div class="flex flex-shrink-0">
               <span
-                [pTooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
-                tooltipPosition="top"
+                [tooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
               >
                 <il-button
                   label="Buscar"
@@ -118,10 +117,10 @@
           <td>{{ item.timestamp | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>{{ item.userName }}</td>
           <td>
-            <p-tag [value]="item.userType"></p-tag>
+            <lx-tag [value]="item.userType"></lx-tag>
           </td>
           <td>
-            <p-tag [value]="item.activityType" severity="info"></p-tag>
+            <lx-tag [value]="item.activityType" severity="info"></lx-tag>
           </td>
           <td>{{ item.module }}</td>
           <td>{{ item.details }}</td>
@@ -165,7 +164,7 @@
           <ion-label>
             <div class="flex justify-content-between align-items-center mb-1">
               <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
-              <p-tag [value]="item.userType"></p-tag>
+              <lx-tag [value]="item.userType"></lx-tag>
             </div>
 
             <p class="text-medium text-500 m-0 text-sm mb-1">
@@ -175,11 +174,11 @@
 
             <div class="flex align-items-center gap-2 mb-1">
               <span class="font-bold text-sm">{{ item.module }}</span>
-              <p-tag
+              <lx-tag
                 [value]="item.activityType"
                 severity="info"
                 class="text-xs"
-              ></p-tag>
+              ></lx-tag>
             </div>
 
             <p class="text-sm text-color-secondary m-0 text-wrap">
@@ -201,4 +200,4 @@
     />
     }
   </div>
-</p-card>
+</lx-card>

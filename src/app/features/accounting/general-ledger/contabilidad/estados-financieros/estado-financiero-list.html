@@ -18,25 +18,25 @@
     <tr>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="1" severity="info" class="mr-2"></p-tag>
+          <lx-tag value="1" severity="info" class="mr-2"></lx-tag>
           <span class="font-semibold">PERIODO</span>
         </div>
       </th>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="2" severity="info" class="mr-2"></p-tag>
+          <lx-tag value="2" severity="info" class="mr-2"></lx-tag>
           <span class="font-semibold">ARCHIVO</span>
         </div>
       </th>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="3" severity="info" class="mr-2"></p-tag>
+          <lx-tag value="3" severity="info" class="mr-2"></lx-tag>
           <span class="font-semibold">AUTORIZACIóN</span>
         </div>
       </th>
       <th>
         <div class="flex align-items-center">
-          <p-tag value="4" severity="info" class="mr-2"></p-tag>
+          <lx-tag value="4" severity="info" class="mr-2"></lx-tag>
           <span class="font-semibold">ENVíO</span>
         </div>
       </th>
@@ -165,9 +165,9 @@
   [viewchildBreadcrumb]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -180,17 +180,17 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <div class="flex justify-content-between mb-1">
           <h2 class="font-bold m-0">{{ item.periodoExistente }}</h2>
-          <p-tag value="1" severity="info" class="text-xs"></p-tag>
+          <lx-tag value="1" severity="info" class="text-xs"></lx-tag>
         </div>
 
         <!-- Status Indicators Stack -->
         <div class="flex flex-column mt-2">
           <!-- Archivo -->
           <div class="flex align-items-center">
-            <p-tag value="2" severity="info" class="text-xs"></p-tag>
+            <lx-tag value="2" severity="info" class="text-xs"></lx-tag>
             <div class="flex flex-column">
               <span class="text-sm font-semibold">
                 {{ item.nameFileEstadoFinanciero ? "Cargado: " + item.uploadDate
@@ -205,7 +205,7 @@
           </div>
           <!-- Autorización -->
           <div class="flex align-items-center">
-            <p-tag value="3" severity="info" class="text-xs"></p-tag>
+            <lx-tag value="3" severity="info" class="text-xs"></lx-tag>
             <div class="flex flex-column">
               <span class="text-sm font-semibold">
                 {{ item.personWhoAuthorized ? "Autorizado: " +
@@ -220,7 +220,7 @@
           </div>
           <!-- ENVíO -->
           <div class="flex align-items-center">
-            <p-tag value="4" severity="info" class="text-xs"></p-tag>
+            <lx-tag value="4" severity="info" class="text-xs"></lx-tag>
             <div class="flex flex-column">
               <span class="text-sm font-semibold">
                 {{ item.personWhoSend ? "Enviado: " + item.sendDate :
@@ -234,9 +234,9 @@
             </div>
           </div>
         </div>
-      </ion-label>
+      </div>
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <!-- 1. Cargar Informe (Si no hay archivo) -->
           @if (!item.nameFileEstadoFinanciero) {
@@ -313,6 +313,6 @@
           } }
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -1,5 +1,5 @@
 <div class="my-5">
-  <p-card>
+  <lx-card>
     <ng-template #header>
       <div class="p-4 flex align-items-center">
         <app-icon [icon]="'mdi:magnify-plus'" class="text-2xl text-primary" />
@@ -303,14 +303,14 @@
               <td>{{ req.startDate | date: 'dd/MM/yyyy' }}</td>
               <td>{{ req.endDate | date: 'dd/MM/yyyy' }}</td>
               <td class="text-center">
-                <p-tag
+                <lx-tag
                   severity="info"
                   [value]="req.requestedDays?.toString()"
                   class="text-base px-3"
                 />
               </td>
               <td>
-                <p-tag
+                <lx-tag
                   [value]="req.statusName"
                   [severity]="onGetSeverity(req.statusName)"
                 />
@@ -343,5 +343,5 @@
       </div>
       }
     </ng-template>
-  </p-card>
+  </lx-card>
 </div>

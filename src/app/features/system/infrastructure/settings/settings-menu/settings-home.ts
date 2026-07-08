@@ -2,8 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { CardModule } from "primeng/card";
-import { DialogModule } from "primeng/dialog";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ISettingsMenuItem } from "src/app/core/interfaces/menu.model";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -13,6 +11,8 @@ import {
 } from "src/app/core/utils/icon-mapping";
 import * as MenuItems from "./index-menu-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxModal } from "@ui/adaptive/modal/modal";
 
 interface IMenuTone {
   card: string;
@@ -27,8 +27,8 @@ interface IMenuTone {
   imports: [
     CommonModule,
     RouterModule,
-    DialogModule,
-    CardModule,
+    LxModal,
+    LxCard,
     DataViewMobile,
     IonItem,
     IonLabel,

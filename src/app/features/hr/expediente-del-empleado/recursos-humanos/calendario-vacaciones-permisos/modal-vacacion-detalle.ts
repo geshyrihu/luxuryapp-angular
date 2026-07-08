@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { getStatusSeverity } from "../helpers/status-severity.helper";
@@ -17,7 +17,7 @@ interface VacationRequestCalendarDetailDTO {
   selector: "app-vacacion-detalle-modal",
   templateUrl: "./vacacion-detalle-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TagModule],
+  imports: [LxTag],
 })
 export class VacacionDetalleModal implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -42,9 +42,6 @@ export class VacacionDetalleModal implements OnInit {
     }
   }
 }
-
-
-
 
 
 

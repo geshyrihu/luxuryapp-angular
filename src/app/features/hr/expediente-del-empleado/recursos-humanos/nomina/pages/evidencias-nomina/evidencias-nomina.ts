@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -18,6 +17,7 @@ import {
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -27,7 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CommonModule,
     ReactiveFormsModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonLabelSave,
     CustomInputSelectSignal,

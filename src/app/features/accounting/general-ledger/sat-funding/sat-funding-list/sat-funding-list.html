@@ -61,9 +61,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         style="
           width: 36px;
           height: 36px;
@@ -81,13 +81,13 @@
           style="font-size: 20px; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.periodDisplayName }}</h3>
         <p>
           Facturas: {{ item.invoiceCount }} ó {{ item.totalAmount |
           number:'1.2-2' }}
         </p>
-      </ion-label>
-    </ion-item>
+      </div>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

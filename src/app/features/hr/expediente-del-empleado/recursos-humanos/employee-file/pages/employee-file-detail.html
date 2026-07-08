@@ -27,11 +27,11 @@
         <h2 class="text-3xl font-black m-0 text-900">
           {{ header()!.fullName }}
         </h2>
-        <p-tag
+        <lx-tag
           [value]="header()!.isActive ? 'Activo' : 'Inactivo'"
           [severity]="header()!.isActive ? 'success' : 'secondary'"
           [rounded]="true"
-        ></p-tag>
+        ></lx-tag>
       </div>
       <p class="text-primary font-bold text-lg m-0 mb-3">
         {{ header()!.puesto }}
@@ -125,7 +125,7 @@
       @if (personalData(); as pd) {
       <div class="flex flex-column gap-4 py-3">
         <!-- Identificación -->
-        <p-card class="shadow-1 border-round-xl overflow-hidden">
+        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -189,11 +189,11 @@
                 >Tipo de Sangre</label
               >
               @if (pd.bloodType) {
-              <p-tag
+              <lx-tag
                 [value]="pd.bloodType"
                 severity="danger"
                 [rounded]="true"
-              ></p-tag>
+              ></lx-tag>
               } @else {
               <p class="m-0 text-500">é</p>
               }
@@ -223,12 +223,12 @@
               </p>
             </div>
           </div>
-        </p-card>
+        </lx-card>
 
         <!-- Contacto + Salario -->
         <div class="grid row-gap-4">
           <div class="col-12 lg:col-8">
-            <p-card class="shadow-1 border-round-xl h-full">
+            <lx-card class="shadow-1 border-round-xl h-full" [elevated]="true">
               <ng-template #header>
                 <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
                   <div
@@ -271,7 +271,7 @@
                   </p>
                 </div>
               </div>
-            </p-card>
+            </lx-card>
           </div>
           <div class="col-12 lg:col-4">
             <div
@@ -292,7 +292,7 @@
         </div>
 
         <!-- Dirección -->
-        <p-card class="shadow-1 border-round-xl overflow-hidden">
+        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -355,7 +355,7 @@
               <p class="font-semibold text-900 m-0">{{ pd.zipCode || 'é' }}</p>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
@@ -395,11 +395,11 @@
             </td>
             <td>{{ item.relation }}</td>
             <td>
-              <p-tag
+              <lx-tag
                 [value]="item.contactOfBeneficiary"
                 severity="secondary"
                 [rounded]="true"
-              ></p-tag>
+              ></lx-tag>
             </td>
           </tr>
         </ng-template>
@@ -562,7 +562,7 @@
     <p-tabpanel [value]="5">
       @if (workPosition(); as wp) {
       <div class="flex flex-column gap-4 py-3">
-        <p-card class="shadow-1 border-round-xl overflow-hidden">
+        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -624,17 +624,17 @@
               <label class="text-xs font-bold text-500 uppercase block mb-1"
                 >Estado de Ocupación</label
               >
-              <p-tag
+              <lx-tag
                 [value]="wp.state || 'é'"
                 severity="info"
                 [rounded]="true"
-              ></p-tag>
+              ></lx-tag>
             </div>
           </div>
-        </p-card>
+        </lx-card>
 
         <!-- Horarios -->
-        <p-card class="shadow-1 border-round-xl overflow-hidden">
+        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -731,7 +731,7 @@
               }
             </div>
           </div>
-        </p-card>
+        </lx-card>
 
         @if (wp.salaryModifications.length > 0) {
         <div>
@@ -813,9 +813,9 @@
       <div class="flex flex-column gap-5 py-3">
         <!-- Balance -->
         @if (vl.balance) {
-        <p-card
+        <lx-card
           class="shadow-1 border-round-xl overflow-hidden bg-primary-reverse"
-        >
+         [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
@@ -870,7 +870,7 @@
               </p>
             </div>
           </div>
-        </p-card>
+        </lx-card>
         }
 
         <!-- Vacaciones -->
@@ -911,11 +911,11 @@
                 <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
                 <td class="text-center">
                   @if (item.paidVacationBonus) {
-                  <p-tag
+                  <lx-tag
                     value="Pagada"
                     severity="success"
                     [rounded]="true"
-                  ></p-tag>
+                  ></lx-tag>
                   } @else {
                   <span class="text-400 text-sm">N/A</span>
                   }
@@ -1055,7 +1055,6 @@
                 <iw-button-item
                   iconClass="mdi:file-pdf-box"
                   pTooltip="Ver Acta"
-                  tooltipPosition="top"
                   [size]="'small'"
                   severity="danger"
                   variant="outlined"
@@ -1192,11 +1191,11 @@
                 <span class="text-xs text-500 uppercase block mb-1"
                   >Estatus</span
                 >
-                <p-tag
+                <lx-tag
                   [value]="r.status"
                   severity="success"
                   [rounded]="true"
-                ></p-tag>
+                ></lx-tag>
               </div>
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block mb-1"
@@ -1265,11 +1264,11 @@
                 <span class="text-xs text-500 uppercase block mb-1"
                   >Estatus</span
                 >
-                <p-tag
+                <lx-tag
                   [value]="d.status"
                   severity="danger"
                   [rounded]="true"
-                ></p-tag>
+                ></lx-tag>
               </div>
 
               <!-- Firmas -->
@@ -1326,11 +1325,11 @@
                 <span class="text-xs text-500 uppercase block mb-1"
                   >Asistencia Legal</span
                 >
-                <p-tag
+                <lx-tag
                   [value]="d.lawyerAssistance ? 'Sí' : 'No'"
                   [severity]="d.lawyerAssistance ? 'warn' : 'secondary'"
                   [rounded]="true"
-                ></p-tag>
+                ></lx-tag>
               </div>
               <div class="col-12">
                 <span class="text-xs text-500 uppercase block mb-1"

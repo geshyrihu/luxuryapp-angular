@@ -46,7 +46,7 @@
         <td>{{ dia.fecha | date: "dd/MM/yyyy" : "UTC" }}</td>
         <td>{{ dia.descripcion }}</td>
         <td>
-          <p-tag
+          <lx-tag
             [severity]="dia.esFestivoOficial ? 'success' : 'secondary'"
             [value]="dia.esFestivoOficial ? 'Si' : 'No'"
           />

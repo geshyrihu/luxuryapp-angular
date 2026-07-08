@@ -62,7 +62,7 @@
         </div>
       </td>
       <td>
-        <p-tag
+        <lx-tag
           [severity]="getEstadoSeverity(item.estado)"
           [value]="item.estado"
         />
@@ -119,7 +119,7 @@
             >{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0"
             }}</span
           >
-          <p-tag
+          <lx-tag
             [severity]="getEstadoSeverity(item.estado)"
             [value]="item.estado"
           />

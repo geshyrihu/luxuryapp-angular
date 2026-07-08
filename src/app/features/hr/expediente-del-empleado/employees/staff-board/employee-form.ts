@@ -3,8 +3,8 @@ import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } fr
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LxCard } from "@ui/adaptive/card/card";
 import { MenuItem } from "primeng/api";
-import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { PanelMenuModule } from "primeng/panelmenu";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -28,7 +28,7 @@ import { EmployeePrincipalDataForm } from "../employee-internal/pages/employee-p
   templateUrl: "./employee-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CardModule,
+    LxCard,
     CommonModule,
     EmployeeAddressForm,
     EmployeeAvatarForm,

@@ -1,8 +1,8 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TagModule } from "primeng/tag";
 import { IUserCard } from "src/app/core/interfaces/user-card.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -10,7 +10,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   selector: "app-card-employee",
   templateUrl: "./card-employee.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule, TagModule, DividerModule],
+  imports: [LxCard, LxTag, DividerModule],
 })
 export class CardEmployee implements OnInit {
   apiResponseS = inject(ApiResponseService);

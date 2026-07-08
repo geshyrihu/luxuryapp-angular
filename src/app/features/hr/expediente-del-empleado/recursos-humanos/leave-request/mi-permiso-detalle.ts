@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { getStatusSeverity } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
@@ -9,7 +9,7 @@ import { LeaveRequestDetailDTO } from "src/app/features/hr/expediente-del-emplea
 
 @Component({
   selector: "app-leave-request-detail-my",
-  imports: [TagModule, WebButtonLabel],
+  imports: [LxTag, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })

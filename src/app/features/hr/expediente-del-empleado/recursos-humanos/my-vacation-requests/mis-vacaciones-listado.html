@@ -70,17 +70,17 @@
           </div>
         </td>
         <td class="text-center">
-          <p-tag
+          <lx-tag
             severity="info"
             [value]="item.requestedDays"
             class="text-base p-2"
           />
         </td>
         <td>
-          <p-tag
+          <lx-tag
             [value]="item.status"
             [severity]="getStatusSeverity(item.status)"
-          ></p-tag>
+          ></lx-tag>
         </td>
         <td>
           {{ item.approverFullName || "-" }}
@@ -96,7 +96,6 @@
             <iw-button-item
               (clicked)="onDetail(item.id)"
               pTooltip="??"
-              tooltipPosition="top"
             />
 
             @if (item.status === "Pendiente") {
@@ -145,7 +144,7 @@
           </p>
           <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
           <p class="text-sm">
-            <p-tag
+            <lx-tag
               [value]="item.status"
               [severity]="getStatusSeverity(item.status)"
             />

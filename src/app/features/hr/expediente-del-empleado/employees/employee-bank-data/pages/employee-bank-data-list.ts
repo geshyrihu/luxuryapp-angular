@@ -13,7 +13,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
@@ -45,8 +44,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     IonItem,
     IonLabel,
-    TooltipModule,
-  ],
+    ],
 })
 export class EmployeeBankDataList {
   private readonly employeeInternalS = inject(EmployeeInternalService);

@@ -10,7 +10,6 @@ import {
 } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -55,8 +54,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonLabelDelete,
     IonItem,
     IonLabel,
-    TooltipModule,
-  ],
+    ],
 })
 export class EmployeeBankDataList {
   private readonly employeeInternalS = inject(EmployeeInternalService);

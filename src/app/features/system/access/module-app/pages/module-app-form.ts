@@ -8,12 +8,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -36,7 +36,7 @@ interface IModuleAppForm {
   selector: "app-module-app-form",
   imports: [
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     CustomInputTextSignal,
     CustomInputCheckSignal,
     CustomInputSelectSignal,

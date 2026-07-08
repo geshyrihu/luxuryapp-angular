@@ -7,8 +7,9 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -39,6 +40,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
   templateUrl: "./aspel-customer-empresa-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -48,8 +51,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     CommonModule,
     DataViewMobile,
     PrimeNgCustomTableEmptyMessage,
-    IonItem,
-    IonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     TableModule,

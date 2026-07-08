@@ -29,6 +29,8 @@ import { ElevatorSparePartsChangeForm } from "./elevator-spare-parts-change-form
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-elevator-spare-parts-change-list",
@@ -47,6 +49,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     CardModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class ElevatorSparePartsChangeList {

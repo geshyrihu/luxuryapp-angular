@@ -23,7 +23,7 @@
         </p>
         <p>
           <strong>Tipo de día:</strong>
-          <p-tag
+          <lx-tag
             [value]="requestData().isPartial ? 'Parcial' : 'Día completo'"
             [severity]="requestData().isPartial ? 'warn' : 'info'"
             class="ml-1"
@@ -39,10 +39,10 @@
       <div class="col-12 md:col-6">
         <p>
           <strong>Estado:</strong>
-          <p-tag
+          <lx-tag
             [value]="requestData().status"
             [severity]="getStatusSeverity(requestData().status)"
-          ></p-tag>
+          ></lx-tag>
         </p>
         <p>
           <strong>Fecha de Solicitud:</strong>

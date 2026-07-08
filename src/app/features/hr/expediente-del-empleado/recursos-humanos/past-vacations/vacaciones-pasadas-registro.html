@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p-card>
+  <lx-card>
     <div class="grid">
       <!-- Employee Selection -->
       <div class="col-12 md:col-4">
@@ -186,7 +186,7 @@
             <td>{{ request.seniorityYearDescription }}</td>
             <td>{{ request.requestedDays }}</td>
             <td>
-              <p-tag
+              <lx-tag
                 [value]="request.statusName"
                 [severity]="request.statusName === 'Aprobada' ? 'success' : (request.statusName === 'Rechazada' ? 'danger' : 'info')"
               />
@@ -236,5 +236,5 @@
         />
       </div>
     </ng-template>
-  </p-card>
+  </lx-card>
 </form>

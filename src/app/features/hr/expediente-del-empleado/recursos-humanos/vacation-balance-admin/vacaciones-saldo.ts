@@ -1,12 +1,12 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
@@ -57,12 +57,12 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule,
+    LxCard,
     ProgressSpinnerModule,
     CustomInputSelectSignal,
     MessageModule,
     TableModule,
-    TagModule,
+    LxTag,
     DatePipe,
   ],
 })

@@ -1,14 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 // --- Modelos -----------------------------------------------------------------
@@ -42,12 +42,12 @@ interface BrevoPagedResultDTO {
     FormsModule,
     ReactiveFormsModule,
     TableModule,
-    TagModule,
+    LxTag,
     AppIcon,
     WebButtonLabel,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    CardModule,
+    LxCard,
     SkeletonModule,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

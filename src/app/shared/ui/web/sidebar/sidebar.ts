@@ -1,14 +1,18 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { SidebarModule } from "primeng/sidebar";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { SidebarBase } from "@ui/base/sidebar.base";
+import { DrawerModule } from "primeng/drawer";
 
 @Component({
   selector: "app-sidebar",
   standalone: true,
-  imports: [CommonModule, SidebarModule],
+  imports: [CommonModule, DrawerModule],
   template: `
-    <p-sidebar
+    <p-drawer
       [(visible)]="visible"
       [position]="position()"
       [closable]="closable()"
@@ -16,11 +20,15 @@ import { SidebarBase } from "@ui/base/sidebar.base";
       (onHide)="onHide()"
     >
       <ng-content />
-    </p-sidebar>
+    </p-drawer>
   `,
-  styles: [`
-    :host { display: contents; }
-  `],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

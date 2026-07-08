@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableModule } from "primeng/table";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -41,8 +41,7 @@ import type {
     PrimeNgCustomTableFooter,
     DataViewMobile,
     PrimeNgCustomTableEmptyMessage,
-    IonItem,
-    IonLabel,
+    MobileListItem,
   ],
 })
 export class CobranzaOnlineExclusions {

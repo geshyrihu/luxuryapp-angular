@@ -254,9 +254,9 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         style="
           width: 36px;
           height: 36px;
@@ -275,7 +275,7 @@
         />
       </div>
 
-      <ion-label>
+      
         <h3 class="font-bold">{{ item.placasCamion }}</h3>
         @if (item.empresa) {
         <p class="text-500">{{ item.empresa }}</p>
@@ -314,9 +314,9 @@
             <strong>Guardia:</strong> {{ item.guardiaSeguridad }}
           </div>
         </div>
-      </ion-label>
+      
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-download
             (clicked)="onDownloadPdf(item)"
@@ -329,6 +329,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

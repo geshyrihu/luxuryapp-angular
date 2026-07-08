@@ -6,13 +6,12 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { SkeletonModule } from "primeng/skeleton";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -29,10 +28,9 @@ import {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
-    CardModule,
+    LxCard,
     TableModule,
     CustomInputSelectButton,
-    TooltipModule,
     SkeletonModule,
     AppIcon,
     WebButtonLabelSave,

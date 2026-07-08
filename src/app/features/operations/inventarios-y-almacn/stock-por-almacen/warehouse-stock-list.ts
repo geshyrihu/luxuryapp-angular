@@ -8,7 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -61,10 +62,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomCaption,
     DataViewMobile,
 
-    CardModule,
-    IonItem,
-    IonLabel,
-  ],
+    CardModule,  ],
 })
 export class WarehouseStockList {
   apiResponseS = inject(ApiResponseService);

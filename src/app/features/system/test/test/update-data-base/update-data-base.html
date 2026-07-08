@@ -1,5 +1,5 @@
 <div class="flex flex-column gap-4">
-  <p-card class="shadow-2">
+  <lx-card class="shadow-2" [elevated]="true">
     <ng-template #header>
       <div class="flex flex-column p-4 border-bottom-1 surface-border">
         <div class="text-xs uppercase font-bold tracking-wider text-500">
@@ -31,7 +31,7 @@
 
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-4">
-        <p-card
+        <lx-card
           class="cursor-pointer h-full block"
           class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runMigrateCoiAspel()"
@@ -49,11 +49,11 @@
               </div>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
 
       <div class="col-12 md:col-6 lg:col-4">
-        <p-card
+        <lx-card
           class="cursor-pointer h-full block"
           class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runImportAsambleaChecklistCatalog()"
@@ -74,11 +74,11 @@
               </div>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
 
       <div class="col-12 md:col-6 lg:col-4">
-        <p-card
+        <lx-card
           class="cursor-pointer h-full block"
           class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runBackfillHistoricalMeetingTimes()"
@@ -100,11 +100,11 @@
               </div>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
 
       <div class="col-12 md:col-6 lg:col-4">
-        <p-card
+        <lx-card
           class="cursor-pointer h-full block"
           class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runBackfillAgendaEventsFromMeetings()"
@@ -125,11 +125,11 @@
               </div>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
 
       <div class="col-12 md:col-6 lg:col-4">
-        <p-card
+        <lx-card
           class="cursor-pointer h-full block"
           class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runSeedNativeCollectionTestData()"
@@ -152,11 +152,11 @@
               </div>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
 
       <div class="col-12 md:col-6 lg:col-4">
-        <p-card
+        <lx-card
           class="cursor-pointer h-full block"
           class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
           (click)="runResyncGoogleCalendarEventTimes()"
@@ -178,8 +178,8 @@
               </div>
             </div>
           </div>
-        </p-card>
+        </lx-card>
       </div>
     </div>
-  </p-card>
+  </lx-card>
 </div>

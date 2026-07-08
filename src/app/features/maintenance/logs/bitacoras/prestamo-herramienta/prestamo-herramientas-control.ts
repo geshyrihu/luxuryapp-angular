@@ -34,6 +34,7 @@ import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-cont
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-prestamo-herramientas-control",
@@ -54,6 +55,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     AppIcon,
+    MobileListItem,
   ],
 })
 export class PrestamoHerramientasControl {

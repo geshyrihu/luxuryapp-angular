@@ -1,17 +1,17 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-testsignalr",
   imports: [
-    CardModule,
+    LxCard,
     WebButtonLabel,
     CustomInputTextSignal,
     CustomInputAutoComplete,

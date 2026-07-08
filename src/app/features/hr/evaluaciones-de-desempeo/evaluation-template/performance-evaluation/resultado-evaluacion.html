@@ -1,7 +1,7 @@
 @if (evaluationResult()) {
 <div class="evaluation-report p-4">
   <!-- SECCIÓN DE ENCABEZADO -->
-  <p-card class="mb-4">
+  <lx-card class="mb-4">
     <ng-template #header>
       <div class="text-center p-3">
         <h3 class="m-0 mb-2">
@@ -47,12 +47,12 @@
         </div>
       </div>
     </ng-template>
-  </p-card>
+  </lx-card>
 
   <!-- SECCIÓN DE GRÁFICO Y RESUMEN -->
   <div class="grid">
     <div class="col-12 lg:col-6">
-      <p-card class="h-full">
+      <lx-card class="h-full">
         <ng-template #content>
           <div class="chart-container">
             <!-- Canvas del gráfico -->
@@ -73,20 +73,20 @@
             }
           </div>
         </ng-template>
-      </p-card>
+      </lx-card>
     </div>
 
     <!-- Puntuación Final -->
     <div class="col-12 lg:col-6">
-      <p-card class="h-full">
+      <lx-card class="h-full">
         <ng-template #content>
           <div class="text-center">
             <div class="flex flex-column align-items-center">
-              <p-tag
+              <lx-tag
                 [value]="evaluationResult()!.finalScoreFormatted"
                 [severity]="finalScoreSeverity()"
                 class="evaluation-score-tag"
-              ></p-tag>
+              ></lx-tag>
               <div class="text-lg mt-3">
                 Promedio: {{ evaluationResult()!.finalScore | number:'1.2-2' }}
                 / 5.00
@@ -113,12 +113,12 @@
             </div>
           </div>
         </ng-template>
-      </p-card>
+      </lx-card>
     </div>
   </div>
 
   <!-- SECCIÓN DE DETALLES POR CATEGORÍA -->
-  <p-card class="mt-4">
+  <lx-card class="mt-4">
     <ng-template #title>
       <div class="bg-primary text-white p-3 border-round-top">
         <h5 class="m-0">Detalle por Categorías</h5>
@@ -134,10 +134,10 @@
           <h6 class="m-0 flex align-items-center">
             <app-icon [icon]="'mdi:folder'" class="mr-2" />{{ category.name }}
           </h6>
-          <p-tag
+          <lx-tag
             value="Puntaje: {{ category.categoryScore | number:'1.1-1' }}"
             severity="info"
-          ></p-tag>
+          ></lx-tag>
         </div>
         <div>
           @for (answer of category.answers; track answer; let j = $index) {
@@ -150,10 +150,10 @@
             <div
               class="flex justify-content-between align-items-center flex-wrap"
             >
-              <p-tag
+              <lx-tag
                 value="Puntaje: {{ answer.score }} / 5"
                 severity="success"
-              ></p-tag>
+              ></lx-tag>
               <div class="mt-2 sm:mt-0">
                 <span class="font-bold mr-2">Comentarios:</span>
                 <span class="text-color-secondary"
@@ -167,7 +167,7 @@
       </div>
       }
     </ng-template>
-  </p-card>
+  </lx-card>
 
   <!-- PIE DE PÁGINA PARA IMPRESIÓN -->
   <div class="print-footer text-center mt-4 pt-3 border-top-1 surface-border">

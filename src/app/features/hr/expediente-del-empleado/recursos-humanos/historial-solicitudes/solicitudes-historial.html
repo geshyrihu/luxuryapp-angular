@@ -150,7 +150,7 @@
             <td>{{ item.startDate | date: "dd/MM/yyyy" }}</td>
             <td>{{ item.endDate | date: "dd/MM/yyyy" }}</td>
             <td>
-              <p-tag
+              <lx-tag
                 [value]="item.status"
                 [severity]="
                   item.status === 'Aprobada'
@@ -161,7 +161,7 @@
                         ? 'info'
                         : 'warn' // default: Pendiente
                 "
-              ></p-tag>
+              ></lx-tag>
             </td>
             <td>{{ item.requestDate | date: "dd/MM/yyyy HH:mm" }}</td>
             <td>{{ item.approverName || '—' }}</td>
@@ -176,14 +176,12 @@
                   (clicked)="onShowDetail(item)"
                   iconClass="mdi:information-outline"
                   pTooltip="Ver Detalle"
-                  tooltipPosition="top"
                 />
                 @if(item.status === 'Aprobada' && canCancel()){
                 <iw-button-item
                   (clicked)="onCancel(item)"
                   iconClass="mdi:ban"
                   pTooltip="Cancelar"
-                  tooltipPosition="top"
                 />
                 }
               </div>
@@ -230,7 +228,7 @@
               </p>
             </ion-label>
             <div slot="end" class="flex align-items-center">
-              <p-tag
+              <lx-tag
                 [value]="item.status"
                 [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
                 class="ml-2"

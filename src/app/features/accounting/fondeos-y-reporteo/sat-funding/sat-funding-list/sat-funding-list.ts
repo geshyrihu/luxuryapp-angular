@@ -1,12 +1,12 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ROUTES } from "src/app/routing/route-paths";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -22,6 +22,8 @@ import { TooltipModule } from "primeng/tooltip";
   templateUrl: "./sat-funding-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     TooltipModule,
     CommonModule,
@@ -30,8 +32,6 @@ import { TooltipModule } from "primeng/tooltip";
 
     DataViewMobile,
     PrimeNgCustomTableEmptyMessage,
-    IonItem,
-    IonLabel,
   ],
 })
 export class SatFundingListComponent implements OnInit {

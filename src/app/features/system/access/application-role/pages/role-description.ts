@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
+import { LxCard } from "@ui/adaptive/card/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

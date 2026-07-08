@@ -6,9 +6,9 @@ import {
   ViewChild,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -18,7 +18,7 @@ import { ProfielService } from "src/app/core/services/profiel-service";
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule, CustomInputImg, WebButtonLabel],
+  imports: [LxCard, CustomInputImg, WebButtonLabel],
 })
 export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);

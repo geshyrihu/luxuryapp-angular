@@ -1,8 +1,6 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -41,6 +39,8 @@ interface IBackfillSelectionState {
 }
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -52,8 +52,8 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CommonModule,
     TableModule,
-    TagModule,
-    CardModule,
+    LxTag,
+    LxCard,
     WebButtonLabel,
     WebButtonLabelConfirm,
     DatePipe,
