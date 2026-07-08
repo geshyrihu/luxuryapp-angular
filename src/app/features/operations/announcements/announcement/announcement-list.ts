@@ -3,6 +3,7 @@ import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } 
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from "@ionic/angular/standalone";
+import { LxImage } from "@ui/adaptive/image/image";
 import { CardModule } from "primeng/card";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";

@@ -3,6 +3,7 @@ import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/cor
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
+import { LxImage } from "@ui/adaptive/image/image";
 import { CardModule } from "primeng/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { IonCard, IonCardContent, IonCol, IonGrid, IonLabel, IonRippleEffect, IonRow } from "@ionic/angular/standalone";
+import { LxImage } from "@ui/adaptive/image/image";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 export interface DocumentCategory {

@@ -1,6 +1,21 @@
-import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { IonCard, IonCardContent, IonCol, IonGrid, IonLabel, IonRippleEffect, IonRow } from "@ionic/angular/standalone";
+import {
+  IonCard,
+  IonCardContent,
+  IonCol,
+  IonGrid,
+  IonLabel,
+  IonRippleEffect,
+  IonRow,
+} from "@ionic/angular/standalone";
+import { LxImage } from "@ui/adaptive/image/image";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -12,7 +27,8 @@ import { AuthService } from "src/app/core/services/auth.service";
     IonRow,
     IonCol,
     IonCard,
-    IonCardContent,    IonLabel,
+    IonCardContent,
+    IonLabel,
     IonRippleEffect,
     LxImage,
   ],
@@ -90,12 +106,3 @@ export class HomeComite implements OnInit {
     this.router.navigate([route], { relativeTo: this.activeRoute });
   }
 }
-
-
-
-
-
-
-
-
-
