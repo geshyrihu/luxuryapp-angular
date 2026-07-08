@@ -40,8 +40,8 @@ import {
   settingsOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
-import { ImageModule } from "primeng/image";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { AppImage } from "@ui/web/image/image";
 import { PopoverModule } from "primeng/popover";
 import { TableModule } from "primeng/table";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
@@ -144,8 +144,8 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     TaskStatus,
     CustomInputSelectSignal,
     WebButtonLabel,
-    AvatarModule,
-    ImageModule,
+    AppAvatar,
+    AppImage,
     CustomInputToggleSwitch,
     FormsModule,
     ReactiveFormsModule,

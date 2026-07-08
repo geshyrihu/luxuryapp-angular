@@ -363,13 +363,13 @@
             tooltipPosition="top"
           />
           }
-          <p-avatar
+          <app-avatar
             (click)="onCardEmployee(item.creatorId)"
             [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
             alt="Creador"
             shape="circle"
             size="normal"
-            class="cursor-pointer flex-shrink-0"
+            styleClass="cursor-pointer flex-shrink-0"
           />
           <div class="min-w-0">
             <p
@@ -439,13 +439,13 @@
 
       <td class="text-center">
         @if (item.assigneeId) {
-        <p-avatar
+        <app-avatar
           (click)="onCardEmployee(item.assigneeId)"
           [image]="item.assigneeImg || 'assets/images/default-avatar.jpg'"
           alt="Responsable"
           shape="circle"
           size="normal"
-          class="cursor-pointer"
+          styleClass="cursor-pointer"
           [pTooltip]="item.assignee"
           tooltipPosition="top"
         />
@@ -470,19 +470,19 @@
       <td>
         <div class="flex align-items-center justify-content-center">
           @if (item.beforeWork) {
-          <p-image
+          <app-image
             [src]="item.beforeWork"
             alt="Antes"
             width="40"
-            class="border-round"
+            styleClass="border-round"
             [preview]="true"
           />
           } @if (item.afterWork) {
-          <p-image
+          <app-image
             [src]="item.afterWork"
             alt="Despues"
             width="40"
-            class="border-round"
+            styleClass="border-round"
             [preview]="true"
           />
           }
@@ -789,7 +789,7 @@
         <!-- Evidencias (Antes y Despuós) -->
         <div class="flex gap-2 mt-2">
           @if (item.beforeWork) {
-          <p-image
+          <app-image
             [src]="item.beforeWork"
             alt="Antes"
             width="45"
@@ -798,7 +798,7 @@
             appendTo="body"
           />
           } @if (item.afterWork) {
-          <p-image
+          <app-image
             [src]="item.afterWork"
             alt="Despuós"
             width="45"

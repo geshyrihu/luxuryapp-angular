@@ -47,11 +47,11 @@
         class="flex align-items-center gap-3 p-3 border-bottom-1 surface-border"
       >
         @if (item.logo) {
-        <p-avatar
+        <app-avatar
           [image]="item.logo"
           shape="circle"
           size="large"
-          class="flex-shrink-0"
+          styleClass="flex-shrink-0"
         />
         } @else {
         <div

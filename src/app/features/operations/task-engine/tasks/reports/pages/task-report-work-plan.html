@@ -83,7 +83,7 @@
       <td class="text-center">
         <div class="flex justify-content-center align-items-center">
           @if (item.beforeWork) {
-          <p-image
+          <app-image
             [src]="
                   item.beforeWork
                     ? item.beforeWork
@@ -91,9 +91,9 @@
                 "
             alt="."
             width="40"
-            class="mr-2 border-1 border-red-500 border-round"
+            styleClass="mr-2 border-1 border-red-500 border-round"
             [preview]="true"
-          ></p-image>
+          ></app-image>
           }
         </div>
       </td>
@@ -114,7 +114,7 @@
       </td>
       <td class="text-center">
         @if (item.assigneeId) {
-        <p-avatar
+        <app-avatar
           (onClick)="onCardEmployee(item.assigneeId)"
           [image]="
                 $any(item.assigneeImg)
@@ -123,7 +123,7 @@
               "
           alt="."
           size="large"
-          class="cursor-pointer"
+          styleClass="cursor-pointer"
         />
         }
       </td>

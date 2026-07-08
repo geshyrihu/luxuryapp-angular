@@ -17,6 +17,7 @@ import { AvatarBase } from "@ui/base/avatar.base";
       [label]="!image() ? (label() || undefined) : undefined"
       [shape]="shape()"
       [size]="size()"
+      [class]="styleClass()"
     >
       @if (icon() && !image() && !label()) {
         <app-icon [icon]="icon()" />

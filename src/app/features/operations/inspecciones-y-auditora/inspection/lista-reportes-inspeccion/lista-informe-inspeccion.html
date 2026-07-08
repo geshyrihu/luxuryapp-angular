@@ -99,16 +99,16 @@
           <div class="grid">
             @for (image of item.images; track image) {
             <div class="col-6 sm:col-3">
-              <p-image
+              <app-image
                 [src]="
                     image.photoPath
                       ? image.photoPath
                       : 'assets/images/default-avatar.png'
                   "
                 alt="photo"
-                class="border-round shadow-1 border-1 surface-border w-full"
+                styleClass="border-round shadow-1 border-1 surface-border w-full"
                 [preview]="true"
-              ></p-image>
+              ></app-image>
             </div>
             }
           </div>

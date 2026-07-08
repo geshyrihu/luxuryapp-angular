@@ -19,6 +19,8 @@ import { ImageBase } from "@ui/base/image.base";
       [height]="heightStr()"
       [imageClass]="imageClass()"
       [imageStyle]="imageStyle() ?? null"
+      [class]="styleClass()"
+      [appendTo]="appendTo() ?? undefined"
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

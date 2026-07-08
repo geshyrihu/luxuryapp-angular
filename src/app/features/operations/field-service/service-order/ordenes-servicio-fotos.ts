@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -11,7 +11,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [WebButtonLabelDelete, ImageModule],
+  imports: [WebButtonLabelDelete, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService, MessageService],
 })

@@ -61,10 +61,10 @@
     <tr>
       <td class="no-print">{{ rowIndex + 1 }}</td>
       <td class="text-center">
-        <p-avatar
+        <app-avatar
           [image]="item.photoPath"
           alt=""
-          class="mr-2"
+          styleClass="mr-2"
           size="large"
           (click)="onCardEmployee(item.applicationUserId)"
         />

@@ -190,12 +190,12 @@
           @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
           <li class="mb-4 flex">
             <div class="flex flex-column align-items-center">
-              <p-avatar
+              <app-avatar
                 [image]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
                 shape="circle"
                 size="large"
-                class="shadow-1"
-              ></p-avatar>
+                styleClass="shadow-1"
+              ></app-avatar>
               @if ($index !== t.ticketMessageFollowUpViewDTO.length - 1) {
               <div class="h-full border-left-2 surface-border w-1 my-2"></div>
               }

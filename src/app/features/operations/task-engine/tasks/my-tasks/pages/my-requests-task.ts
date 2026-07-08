@@ -4,7 +4,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CardModule } from "primeng/card";
 import { ChipModule } from "primeng/chip";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import {
@@ -49,7 +49,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     DataViewMobile,
     ActionMenu,
     TaskStatus,
-    ImageModule,
+    AppImage,
     ChipModule,
     CardModule,
     TooltipModule,    WebButtonLabelEdit,

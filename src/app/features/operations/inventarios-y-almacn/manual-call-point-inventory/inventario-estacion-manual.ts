@@ -21,7 +21,7 @@ import {
   qrCodeOutline,
   timeOutline,
 } from "ionicons/icons";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
@@ -67,7 +67,7 @@ import { TooltipModule } from "primeng/tooltip";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     AppIcon,
-    ImageModule,
+    AppImage,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

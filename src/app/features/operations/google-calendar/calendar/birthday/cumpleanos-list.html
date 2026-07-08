@@ -21,14 +21,14 @@
       <div>
         <p-card class="text-center">
           <ng-template #header>
-            <p-avatar
+            <app-avatar
               [image]="
                 item.photo ? item.photo : 'assets/images/default-avatar.png'
               "
-              class="mx-auto mt-3"
+              styleClass="mx-auto mt-3"
               size="xlarge"
               shape="circle"
-            ></p-avatar>
+            ></app-avatar>
           </ng-template>
 
           <h4 class="m-0">{{ item.title }}</h4>

@@ -132,13 +132,13 @@
       <ng-template #body let-item>
         <tr class="animate__fadeIn">
           <td>
-            <p-image
+            <app-image
               [src]="item.photoPath"
               alt="."
               width="70"
-              class="shadow-4"
+              styleClass="shadow-4"
               [preview]="true"
-            ></p-image>
+            ></app-image>
           </td>
           <td>{{ item.nameMachinery }}</td>
           <td>{{ item.equipoClasificacion }}</td>

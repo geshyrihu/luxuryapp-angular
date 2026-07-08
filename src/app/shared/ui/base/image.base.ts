@@ -17,6 +17,10 @@ export abstract class ImageBase {
   height = input<string | number | undefined>(undefined);
   /** Clase CSS aplicada al elemento `<img>` interno. */
   imageClass = input<string>("");
+  /** Clase CSS aplicada al contenedor (host) del componente. */
+  styleClass = input<string>("");
+  /** Destino de montaje del preview (solo web; ej. `"body"`). */
+  appendTo = input<string | undefined>(undefined);
   /** Estilos inline aplicados al elemento `<img>` interno. */
   imageStyle = input<Record<string, string> | undefined>(undefined);
 

@@ -2,8 +2,8 @@ import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AvatarModule } from "primeng/avatar";
-import { ImageModule } from "primeng/image";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { AppImage } from "@ui/web/image/image";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -33,8 +33,8 @@ import { TaskForm } from "../../task-message/pages/task-form";
     WebButtonLabel,
 
     TableModule,
-    ImageModule,
-    AvatarModule,
+    AppImage,
+    AppAvatar,
     SplitButtonModule,
     CustomInputSelectSignal,
     ReactiveFormsModule,

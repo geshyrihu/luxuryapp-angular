@@ -96,7 +96,7 @@
       <td class="text-center">
         <div class="flex justify-content-center align-items-center">
           @if (item.beforeWork) {
-          <p-image
+          <app-image
             [src]="
                   item.beforeWork
                     ? item.beforeWork
@@ -104,9 +104,9 @@
                 "
             alt="."
             width="40"
-            class="mr-2 border-1 surface-border"
+            styleClass="mr-2 border-1 surface-border"
             [preview]="true"
-          ></p-image>
+          ></app-image>
           }
         </div>
       </td>
@@ -115,7 +115,7 @@
       <td>
         <div class="flex justify-content-center align-items-center">
           @if (item.afterWork) {
-          <p-image
+          <app-image
             [src]="
                   item.afterWork
                     ? item.afterWork
@@ -123,9 +123,9 @@
                 "
             alt="."
             width="40"
-            class="mr-2 border-1 surface-border"
+            styleClass="mr-2 border-1 surface-border"
             [preview]="true"
-          ></p-image>
+          ></app-image>
           }
         </div>
       </td>

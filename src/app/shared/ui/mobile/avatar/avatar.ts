@@ -13,7 +13,7 @@ import { AvatarBase } from "@ui/base/avatar.base";
   imports: [CommonModule, IonAvatar, AppIcon],
   template: `
     <ion-avatar
-      class="ili-avatar"
+      [class]="'ili-avatar ' + styleClass()"
       [class.ili-avatar-square]="shape() === 'square'"
       [style.width.px]="sizePx()"
       [style.height.px]="sizePx()"

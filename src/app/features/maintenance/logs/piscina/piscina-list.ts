@@ -17,7 +17,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -53,7 +53,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    ImageModule,
+    AppImage,
     RouterModule,
 
     DataViewMobile,

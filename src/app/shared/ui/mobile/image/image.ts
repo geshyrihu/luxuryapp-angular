@@ -15,7 +15,7 @@ import { ImageBase } from "@ui/base/image.base";
     <ion-img
       [src]="src()"
       [alt]="alt()"
-      [class]="imageClass()"
+      [class]="(imageClass() + ' ' + styleClass()).trim()"
       [ngStyle]="mobileStyle()"
     />
   `,

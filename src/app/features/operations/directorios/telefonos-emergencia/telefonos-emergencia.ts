@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -19,7 +19,7 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,
-    AvatarModule,
+    AppAvatar,
     WebButtonLabelAdd,
     WebButtonLabelDelete,
     WebButtonLabelEdit,

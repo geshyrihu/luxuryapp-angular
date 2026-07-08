@@ -196,12 +196,12 @@
         <!-- Responsible -->
         <td class="vertical-align-middle">
           <div class="flex align-items-center">
-            <p-avatar
+            <app-avatar
               label="{{item.responsible.charAt(0)}}"
-              class="mr-1 {{ isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700' }}"
+              [styleClass]="'mr-1 ' + (isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700')"
               size="normal"
               shape="circle"
-            ></p-avatar>
+            ></app-avatar>
             <div class="flex flex-column">
               <span class="text-800 font-medium text-sm"
                 >{{ item.responsible }}</span

@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -19,7 +19,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
   imports: [
     CommonModule,
     TableModule,
-    AvatarModule,
+    AppAvatar,
     PageTitleReportMaintenance,
     PrimeNgCustomCaption,
   ],

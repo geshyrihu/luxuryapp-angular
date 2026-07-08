@@ -21,6 +21,7 @@ import { AvatarBase } from "@ui/base/avatar.base";
         [icon]="icon()"
         [shape]="shape()"
         [size]="size()"
+        [styleClass]="styleClass()"
       />
     } @else {
       <app-avatar
@@ -29,6 +30,7 @@ import { AvatarBase } from "@ui/base/avatar.base";
         [icon]="icon()"
         [shape]="shape()"
         [size]="size()"
+        [styleClass]="styleClass()"
       />
     }
   `,

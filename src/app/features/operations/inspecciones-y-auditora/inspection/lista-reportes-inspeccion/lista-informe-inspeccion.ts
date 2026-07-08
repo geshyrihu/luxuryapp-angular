@@ -9,7 +9,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CardModule } from "primeng/card";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -28,7 +28,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CardModule,
-    ImageModule,
+    AppImage,
     TooltipModule,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -76,7 +76,7 @@
           <td class="text-center">
             <div class="flex justify-content-center align-items-center">
               @if (item.beforeWork) {
-              <p-image
+              <app-image
                 [src]="
                       item.beforeWork
                         ? item.beforeWork
@@ -84,9 +84,9 @@
                     "
                 alt="."
                 width="40"
-                class="mr-2 border border-danger"
+                styleClass="mr-2 border border-danger"
                 [preview]="true"
-              ></p-image>
+              ></app-image>
               }
             </div>
           </td>
@@ -110,7 +110,7 @@
           <td class="text-center">
             <div class="flex justify-content-center align-items-center">
               @if (item.afterWork) {
-              <p-image
+              <app-image
                 [src]="
                       item.afterWork
                         ? item.afterWork
@@ -118,9 +118,9 @@
                     "
                 alt="."
                 width="40"
-                class="mr-2 border border-success"
+                styleClass="mr-2 border border-success"
                 [preview]="true"
-              ></p-image>
+              ></app-image>
               }
             </div>
           </td>
@@ -198,20 +198,20 @@
           <div class="flex justify-content-between align-items-center mt-2">
             <div class="flex align-items-center">
               @if (item.beforeWork) {
-              <p-image
+              <app-image
                 [src]="item.beforeWork"
                 alt="Evidencia inicial"
                 width="30"
                 [preview]="true"
-                class="mr-2 border border-danger"
+                styleClass="mr-2 border border-danger"
               />
               } @if (item.afterWork) {
-              <p-image
+              <app-image
                 [src]="item.afterWork"
                 alt="Evidencia final"
                 width="30"
                 [preview]="true"
-                class="border border-success"
+                styleClass="border border-success"
               />
               }
             </div>

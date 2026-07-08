@@ -170,7 +170,7 @@ Eso significa que el problema ya no es "no tenemos design system", sino que en `
 | Familia | Estado | Wrapper o candidato existente | Decision actual |
 |---|---|---|---|
 | `p-tag` | Parcial | `lx-status-badge`, `app-badge`, `app-order-status`, `contact-card`, `profile-card` | Falta wrapper generico tipo `lx-tag` o clasificar casos para migrarlos a wrappers semanticos |
-| `p-card` | Parcial | `app-kpi-card`, `app-stat-card`, `contact-card`, `profile-card` | Falta wrapper contenedor generico tipo `lx-card`; varios casos pueden migrar a cards semanticas |
+| `p-card` | Resuelto | `lx-card`, CSS-only `.card` | Ver `§Estrategia p-card` |
 | `ion-item` | Faltante | solo uso interno en componentes mobile | Falta primitivo publico para fila/list item reusable |
 | `ion-label` | Faltante | solo uso interno en componentes mobile | Falta primitivo publico para label/contenido de item reusable |
 | `p-message` | Parcial | `lx-global-error-alert`, `lx-toast` | Falta wrapper generico de mensaje inline tipo `lx-message` |
@@ -186,6 +186,21 @@ Eso significa que el problema ya no es "no tenemos design system", sino que en `
 
 - `tabs`, `sidebar`, `dialog`, `file-upload` y `checkbox` ya tienen ruta clara de migracion.
 - `p-tag`, `p-card` y `p-message` siguen siendo la principal deuda de abstraccion generica.
+
+### Estrategia `p-card`
+
+Existen 2 formas de reemplazar `<p-card>`, segun el uso:
+
+| Uso | Reemplazo | Ejemplo |
+|-----|-----------|---------|
+| Card con **header/subheader** declarativo | `<lx-card header="..." subheader="...">` | system/hr migrados |
+| Card **estructural** (solo contenedor visual sin header) | CSS-only: `<div class="card">` o `card card-body` | Compra directa, formularios sin titulo |
+
+**Reglas:**
+- Si el template usa `<p-card header="..."` o `<ng-template #header>` → `<lx-card header="...">`
+- Si el template usa `<p-card>` solo como contenedor (sin header/subheader, con `class="p-0 border-none shadow-none"` para quitarle el chrome) → CSS-only `<div class="card">`
+- `<ng-template #content>` (feature PrimeNG interna) no tiene equivalente en `lx-card` — convertir el contenido a proyeccion directa dentro de `<div class="card card-body">`
+- Prohibido mantener `<p-card>` en `features/`
 - `ion-item` e `ion-label` no tienen wrapper publico reusable; hoy aparecen como detalle interno de componentes mobile, no como primitives listas para consumir en `features/`.
 - `p-avatar` y `p-image` tienen piezas parciales, pero todavia no un wrapper generico tan obvio como `lx-tabs` o `lx-sidebar`.
 
@@ -632,6 +647,23 @@ Y puede empezar migracion inmediata en las familias que ya estan cubiertas:
 - [x] `npm run build` OK (128 s)
 - [x] migrador solo cambia tags/imports ASCII → no introduce mojibake
 
+## Sesion 2026-07-08 (Agente 3 — familias p-avatar / p-image)
+
+### Cambios
+
+- wrappers `app-avatar`/`app-image` (+ ili/adaptive) ampliados con input `styleClass` (reenvia clase al elemento interno, no al host) y `app-image` con `appendTo` (preview)
+- migrador `migrate-simple-tag.mjs`: renombra `p-* -> app-*`, convierte `class=` -> `styleClass=` (estatico, `[class]`, e interpolado de una `{{}}`), y cambia el import de modulo por el wrapper
+- **p-avatar -> app-avatar**: 11 pantallas (operations) + 2 imports muertos `AvatarModule` removidos
+- **p-image -> app-image**: 22 pantallas (18 operations + 4 maintenance) + 1 import muerto `ImageModule` removido
+- orphan (no referenciado por ningun `.ts`): `operations/task-engine/tasks/my-tasks/pages/my-tasks-list.html`
+
+### Validaciones
+
+- [x] `tsc` limpio en todo mi lane (0 errores en op/maint/legal)
+- [x] `npm run audit:ui` OK
+- [ ] `npm run build` agregado BLOQUEADO por WIP roto de OTROS agentes (fuera de mi lane): `purchasing/create-orden-compra-wizard.ts`, `purchasing ListProvider` (p-tag), `recruitment JobDescriptionForm` (p-card)
+- commit solo de mis paths para no arrastrar el WIP roto ajeno
+
 ---
 
 ## 7. Formato de control por sesion
@@ -795,3 +827,120 @@ Para iniciar con buen retorno y bajo riesgo:
 - [x] build (solo error pre-existente en purchasing)
 - [x] cero `p-tag`/`p-card`/`p-dialog`/`p-drawer` en HTML de system/ y hr/
 - [x] plan actualizado
+
+## Sesion 2026-07-08 (Agente 2 — limpieza imports Lx* sobrantes)
+
+### Objetivo de la sesion
+
+- eliminar warnings NG8113 por imports de `LxCard`/`LxTag`/`LxModal` en archivos de system/hr cuyo HTML no usa el componente
+
+### Cambios realizados
+
+- se ejecutó script `scratchpad/clean-unused-imports.mjs` que verifica presencia del tag `lx-card`/`lx-tag`/`lx-modal` en el HTML vs. import en el TS
+- se removieron ~40 imports sobrantes distribuidos entre system (27) y hr (23)
+
+### Wrappers creados o ajustados
+
+- ninguno
+
+### Pantallas migradas
+
+- ninguna a nivel HTML (solo limpieza de imports TS)
+
+### Hallazgos o decisiones
+
+- el build previo emitía NG8113 para estos imports sobrantes (Angular detecta el import pero el template no usa el componente)
+- la limpieza es superficial pero necesaria para mantener `ng build` sin warnings en system/hr
+- los archivos que aún importan Lx* después de la limpieza tienen uso real del tag en su HTML
+
+### Pendientes inmediatos
+
+1. migrar `p-tag`/`p-card`/`p-dialog`/`p-drawer` en otros módulos (purchasing, maintenance, inventory, dashboard, etc.)
+2. reparar error pre-existente en `purchasing/pr/solicitud-compra/product-add.html` para destrabar build global
+
+### Validaciones
+
+- [x] build — 0 errores NG8113 en system/hr
+- [x] plan actualizado
+
+## Sesion 2026-07-08 (Agente 2 — definicion estrategia p-card)
+
+### Objetivo de la sesion
+
+- definir criterio para migrar `p-card` que distinga entre card declarativa (header/subheader) y card estructural (solo contenedor)
+- documentar la estrategia en el plan
+
+### Decision tomada
+
+- `p-card` con header/subheader → `<lx-card header="...">` (wrapper adaptive)
+- `p-card` estructural (sin header, sin templates PrimeNG) → CSS-only `<div class="card">` / `card card-body`
+- `ng-template #content` no tiene equivalente en `lx-card` → convertir a proyeccion directa dentro de `.card-body`
+- Prohibido mantener `<p-card>` en `features/`
+- Queda documentado en `§Estrategia p-card`
+
+### Wrappers utilizados
+
+- `lx-card` (`@ui/adaptive/card/card`) — para cards con header
+- `_cards.scss` (`.card`, `.card-body`, `.card-header`) — para cards estructurales CSS-only
+
+### Pantallas migradas
+
+- ninguna (decision de ruta, no ejecucion)
+
+### Pendientes inmediatos
+
+1. migrar `purchasing/` + `recruitment/` + `web/` usando la estrategia definida
+2. reparar error pre-existente en `purchasing/pr/solicitud-compra/product-add.html`
+
+### Validaciones
+
+- [ ] build (no aplica, solo decision)
+- [x] plan actualizado con estrategia p-card
+
+## Sesion 2026-07-08 (Codex, lane accounting cont.)
+
+### Objetivo de la sesion
+
+- seguir cerrando `accounting/general-ledger/contabilidad/cobranza-nativa` con foco en `ion-item` / `ion-label` y `p-tag`
+
+### Cambios realizados
+
+- se migraron a `ili-list-item` + slot default y `MobileListItem` los bloques mobile de:
+  - `initial-balance`
+  - `payments`
+  - `payment-detail-modal`
+  - `property-fines`
+  - `audit/financial-audit-log`
+  - `reconciliation/reconciliation-dashboard`
+  - `period-closures/period-closure-dashboard`
+  - `regulation-articles/regulation-article-list`
+- se reemplazo `p-tag` por `lx-tag` en `property-fines` y `regulation-articles`
+- se corrigio mojibake residual en esos mismos archivos
+- se limpiaron imports muertos de Ionic/ionicons donde el template ya usa `app-icon`
+
+### Wrappers creados o ajustados
+
+- ninguno nuevo en esta pasada
+- se reutilizaron `MobileListItem`, `LxTag` y `AppIcon`
+
+### Pantallas migradas
+
+- 8 bloques/pantallas adicionales dentro de `cobranza-nativa`
+
+### Hallazgos o decisiones
+
+- en `payments/` quedo limpia tambien la vista de detalle (`payment-detail-modal`), no solo el listado
+- el siguiente bloque natural en `cobranza-nativa` es `ledger`, `members`, `cobranza-nativa-dashboard` y `native-statement`
+- `native-statement` ya no es receta simple de `ion-item` porque tambien usa `ion-card` e `ion-list-header`
+
+### Pendientes inmediatos
+
+1. seguir con `ledger` y `members` en `cobranza-nativa`
+2. despues tomar `cobranza-nativa-dashboard` y `native-statement`
+3. barrer remanentes `p-tag` en otros submodulos de `accounting`
+
+### Validaciones
+
+- [x] scan de mojibake limpio en `initial-balance`, `payments`, `property-fines`, `audit`, `reconciliation`, `period-closures` y `regulation-articles`
+- [x] sin `IonItem` / `IonLabel` / `p-tag` directos en esos directorios
+- [ ] build global no corrido en esta pasada

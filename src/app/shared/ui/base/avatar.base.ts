@@ -20,6 +20,8 @@ export abstract class AvatarBase {
   icon = input<string>("");
   shape = input<AvatarShape>("circle");
   size = input<AvatarSize>("normal");
+  /** Clases CSS reenviadas al elemento avatar interno (color, margen, etc.). */
+  styleClass = input<string>("");
 
   /** Diámetro en px según el token de tamaño (para el móvil). */
   sizePx(): number {

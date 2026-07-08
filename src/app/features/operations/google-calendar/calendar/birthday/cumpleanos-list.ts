@@ -6,7 +6,7 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/angular/standalone";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
@@ -23,7 +23,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   imports: [
     CardModule,
     WebButtonLabel,
-    AvatarModule,
+    AppAvatar,
     TagModule,
     IonSegment,
     IonSegmentButton,

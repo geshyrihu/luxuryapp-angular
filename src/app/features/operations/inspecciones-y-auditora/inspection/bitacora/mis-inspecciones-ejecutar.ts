@@ -12,7 +12,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { TooltipModule } from "primeng/tooltip";
@@ -44,7 +44,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     CustomInputToggleSwitch,
     CustomInputTextAreaSignal,
-    ImageModule,
+    AppImage,
     WebButtonLabel,
     TooltipModule,
     TableModule,

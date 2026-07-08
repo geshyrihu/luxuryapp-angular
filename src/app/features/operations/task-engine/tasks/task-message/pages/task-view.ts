@@ -29,7 +29,7 @@ import {
   syncOutline,
   timeOutline,
 } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -51,7 +51,7 @@ import { TaskForm } from "./task-form";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CardModule,
-    AvatarModule,
+    AppAvatar,
     WebButtonLabel,
     IonCard,
     IonCardHeader,

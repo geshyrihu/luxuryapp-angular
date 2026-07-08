@@ -9,7 +9,7 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CardModule } from "primeng/card";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputTextModule } from "primeng/inputtext";
@@ -59,7 +59,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     InputTextModule,
     IconFieldModule,
     CardModule,
-    AvatarModule,
+    AppAvatar,
 
     TooltipModule,
     PrimeNgCustomTableFooter,

@@ -2,7 +2,7 @@
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -49,7 +49,7 @@ import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
     PrimeNgCustomCaption,
     MenuModule,
     PrimeNgCustomCaption,
-    ImageModule,
+    AppImage,
     CustomInputSwitch,
     ReactiveFormsModule,
     TooltipModule,

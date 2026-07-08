@@ -1,6 +1,6 @@
 ﻿import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -24,7 +24,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     ReactiveFormsModule,
 
     CustomInputTextSignal,
-    ImageModule,
+    AppImage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./task-report-work-plan-preview.html",

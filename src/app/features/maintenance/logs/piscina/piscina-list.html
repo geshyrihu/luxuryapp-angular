@@ -30,7 +30,7 @@
         <tr>
           <td class="text-center">
             <div class="flex">
-              <p-image
+              <app-image
                 [src]="
                   item.pathImage
                     ? item.pathImage
@@ -38,9 +38,9 @@
                 "
                 alt="."
                 width="50"
-                class="mr-2"
+                styleClass="mr-2"
                 [preview]="true"
-              ></p-image>
+              ></app-image>
               @if (!item.pathImage) {
               <img src="assets/images/default-avatar.png" alt="" width="50" />
               }

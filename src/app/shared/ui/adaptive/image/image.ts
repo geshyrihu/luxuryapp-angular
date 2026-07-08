@@ -22,6 +22,7 @@ import { ImageBase } from "@ui/base/image.base";
         [height]="height()"
         [imageClass]="imageClass()"
         [imageStyle]="imageStyle()"
+        [styleClass]="styleClass()"
       />
     } @else {
       <app-image
@@ -32,6 +33,8 @@ import { ImageBase } from "@ui/base/image.base";
         [height]="height()"
         [imageClass]="imageClass()"
         [imageStyle]="imageStyle()"
+        [styleClass]="styleClass()"
+        [appendTo]="appendTo()"
       />
     }
   `,

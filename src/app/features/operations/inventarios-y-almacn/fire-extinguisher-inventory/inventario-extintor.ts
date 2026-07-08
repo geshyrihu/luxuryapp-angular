@@ -22,7 +22,7 @@ import {
   listOutline,
   qrCodeOutline,
 } from "ionicons/icons";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
@@ -72,7 +72,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     AppIcon,
-    ImageModule,
+    AppImage,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

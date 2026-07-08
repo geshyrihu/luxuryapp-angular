@@ -18,7 +18,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { IRadioComunicacion } from "src/app/core/interfaces/radio-comunicacion.interface";
@@ -50,7 +50,7 @@ import { TooltipModule } from "primeng/tooltip";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    ImageModule,
+    AppImage,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,    DatePipe,
