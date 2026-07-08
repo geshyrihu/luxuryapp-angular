@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TabsModule } from "primeng/tabs";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { EquipmentInspectionDefinitionsList } from "./equipment-inspection-definitions-list";
 import { EquipmentInspectionExecutionHistoryList } from "./equipment-inspection-execution-history-list";
 import { EquipmentInspectionQrList } from "./equipment-inspection-qr-list";
@@ -12,7 +12,7 @@ import { EquipmentInspectionQrList } from "./equipment-inspection-qr-list";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    TabsModule,
+    LxTabs,
     EquipmentInspectionDefinitionsList,
     EquipmentInspectionExecutionHistoryList,
     EquipmentInspectionQrList,
@@ -22,6 +22,11 @@ export class EquipmentInspectionsShell {
   private config = inject(DynamicDialogConfig);
 
   activeTab = signal("definitions");
+  tabs = [
+    { id: "definitions", label: "Configuradas" },
+    { id: "history", label: "Historial" },
+    { id: "qr", label: "QR" },
+  ];
   machineryId: string = this.config.data.id;
   machineryName: string = this.config.data.nameMachinery || "Equipo";
 }

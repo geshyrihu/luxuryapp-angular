@@ -1,45 +1,26 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
-  <p-tabs
-    [value]="activeTabValue()"
+  <lx-tabs
+    [tabs]="tabs"
+    [(activeId)]="activeTabValue"
     class="nav-tabs justify-content-center sm:justify-content-start"
   >
-    <p-tablist>
-      <p-tab value="tab1">Cronograma</p-tab>
-      <p-tab value="tab2">Listado</p-tab>
-      <p-tab value="tab3">General</p-tab>
-    </p-tablist>
-    <p-tabpanels>
-      <p-tabpanel value="tab1">
-        <app-cronograma-anual-mantenimiento (messageEvent)="message($event)" />
-      </p-tabpanel>
-      <p-tabpanel value="tab2">
-        <app-listado-anual-mantenimiento />
-      </p-tabpanel>
-      <p-tabpanel value="tab3">
-        <app-general-anual-mantenimiento></app-general-anual-mantenimiento>
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+    <div tab="tab1">
+      <app-cronograma-anual-mantenimiento (messageEvent)="message($event)" />
+    </div>
+    <div tab="tab2">
+      <app-listado-anual-mantenimiento />
+    </div>
+    <div tab="tab3">
+      <app-general-anual-mantenimiento />
+    </div>
+  </lx-tabs>
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
-  <ion-segment
-    [ngModel]="activeTabValue()"
-    (ngModelChange)="activeTabValue.set($event)"
-    class="mb-3"
-  >
-    <ion-segment-button value="tab1">
-      <ion-label>Cronograma</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="tab2">
-      <ion-label>Listado</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="tab3">
-      <ion-label>General</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <!-- lx-tabs como selector segmentado (sin paneles); los paneles se conmutan abajo -->
+  <lx-tabs [tabs]="tabs" [(activeId)]="activeTabValue" class="mb-3" />
 
   <div class="mt-2">
     @switch (activeTabValue()) { @case ('tab1') {

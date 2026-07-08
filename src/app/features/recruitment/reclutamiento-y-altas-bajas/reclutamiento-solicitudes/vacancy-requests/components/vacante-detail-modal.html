@@ -1,156 +1,147 @@
 @let wp = workPosition(); @let jd = jobDescription();
 
-<p-tabs value="horarios">
-  <!-- TAB: HORARIOS -->
-  <p-tablist>
-    <p-tab value="horarios">Horarios</p-tab>
-    <p-tab value="descripcion">Descripción del puesto</p-tab>
-    <p-tab value="prestaciones">Prestaciones y observaciones</p-tab>
-  </p-tablist>
+<lx-tabs [tabs]="tabs" [(activeId)]="activeTab">
+  <!-- HORARIOS -->
+  <div tab="horarios">
+    @if (wp) {
+    <div class="flex flex-column gap-2">
+      <div
+        class="flex align-items-center gap-3 p-3 surface-100 border-round-lg mb-2"
+      >
+        <app-icon [icon]="'mdi:clock-outline'" class="text-2xl text-600" />
+        <div>
+          <div class="font-bold text-800">Turno de trabajo</div>
+          <div class="text-sm text-500">{{ wp.turnoTrabajo }}</div>
+        </div>
+      </div>
 
-  <p-tabpanels>
-    <!-- HORARIOS -->
-    <p-tabpanel value="horarios">
-      @if (wp) {
-      <div class="flex flex-column gap-2">
-        <div
-          class="flex align-items-center gap-3 p-3 surface-100 border-round-lg mb-2"
+      @for (dia of dias; track dia.n) { @let entrada = wp[dia.e]; @let salida
+      = wp[dia.s];
+      <div
+        class="flex justify-content-between align-items-center p-2 border-bottom-1 surface-border border-round hover:surface-50"
+      >
+        <span class="font-semibold text-700 w-7rem">{{ dia.n }}</span>
+        @if (entrada && salida) {
+        <span
+          class="flex align-items-center gap-2 text-primary font-semibold"
         >
-          <app-icon [icon]="'mdi:clock-outline'" class="text-2xl text-600" />
-          <div>
-            <div class="font-bold text-800">Turno de trabajo</div>
-            <div class="text-sm text-500">{{ wp.turnoTrabajo }}</div>
-          </div>
-        </div>
-
-        @for (dia of dias; track dia.n) { @let entrada = wp[dia.e]; @let salida
-        = wp[dia.s];
-        <div
-          class="flex justify-content-between align-items-center p-2 border-bottom-1 surface-border border-round hover:surface-50"
-        >
-          <span class="font-semibold text-700 w-7rem">{{ dia.n }}</span>
-          @if (entrada && salida) {
-          <span
-            class="flex align-items-center gap-2 text-primary font-semibold"
-          >
-            <app-icon [icon]="'mdi:login'" class="text-xs" />{{ entrada }}
-            <app-icon [icon]="'mdi:arrow-right'" class="text-xs text-300" />
-            <app-icon [icon]="'mdi:logout'" class="text-xs" />{{ salida }}
-          </span>
-          } @else {
-          <span class="text-400 font-italic text-sm"
-            >Descanso / Sin asignar</span
-          >
-          }
-        </div>
-        } @if (wp.observationsWorkShift) {
-        <div class="p-3 surface-50 border-round mt-2">
-          <div class="font-semibold text-600 mb-1">
-            <app-icon [icon]="'mdi:information'" class="mr-1" />Observaciones de
-            horario
-          </div>
-          <p class="m-0 text-sm text-700">{{ wp.observationsWorkShift }}</p>
-        </div>
-        }
-      </div>
-      } @else {
-      <div class="flex align-items-center justify-content-center p-6 text-400">
-        <app-icon [icon]="'mdi:loading'" class="text-2xl mr-2" /> Cargando...
-      </div>
-      }
-    </p-tabpanel>
-
-    <!-- DESCRIPCION DEL PUESTO -->
-    <p-tabpanel value="descripcion">
-      @if (jd) {
-      <div class="flex flex-column gap-3">
-        @if (jd.summary) {
-        <div>
-          <div class="font-bold text-700 mb-1">Resumen</div>
-          <p class="m-0 text-sm line-height-3 text-800">{{ jd.summary }}</p>
-        </div>
-        <p-divider />
-        } @if (jd.responsibilities) {
-        <div>
-          <div class="font-bold text-700 mb-1">Responsabilidades</div>
-          <p class="m-0 text-sm line-height-3 text-800">
-            {{ jd.responsibilities }}
-          </p>
-        </div>
-        <p-divider />
-        } @if (jd.skills) {
-        <div>
-          <div class="font-bold text-700 mb-1">Habilidades requeridas</div>
-          <p class="m-0 text-sm line-height-3 text-800">{{ jd.skills }}</p>
-        </div>
-        <p-divider />
-        } @if (jd.additionalRequirements) {
-        <div>
-          <div class="font-bold text-700 mb-1">Requisitos adicionales</div>
-          <p class="m-0 text-sm line-height-3 text-800">
-            {{ jd.additionalRequirements }}
-          </p>
-        </div>
-        <p-divider />
-        } @if (jd.workEnvironment) {
-        <div>
-          <div class="font-bold text-700 mb-1">Entorno de trabajo</div>
-          <p class="m-0 text-sm line-height-3 text-800">
-            {{ jd.workEnvironment }}
-          </p>
-        </div>
-        <p-divider />
-        }
-
-        <div class="flex align-items-center gap-2">
-          <span class="font-bold text-700">Requiere fin de semana:</span>
-          <lx-tag [value]="jd.requiresWeekendShift ? 'Sí' : 'No'" [severity]="jd.requiresWeekendShift ? 'warn' : 'success'" />
-        </div>
-      </div>
-      } @else {
-      <div class="flex align-items-center justify-content-center p-6 text-400">
-        <app-icon [icon]="'mdi:file-edit'" class="text-2xl mr-2" />
-        <span>No hay descripción de puesto registrada.</span>
-      </div>
-      }
-    </p-tabpanel>
-
-    <!-- PRESTACIONES Y OBSERVACIONES -->
-    <p-tabpanel value="prestaciones">
-      @if (wp) {
-      <div class="flex flex-column gap-3">
-        <div
-          class="flex align-items-center gap-3 p-3 surface-100 border-round-lg"
-        >
-          <app-icon [icon]="'mdi:dollar'" class="text-2xl text-600" />
-          <div>
-            <div class="text-xs text-500">Sueldo base presupuestado</div>
-            <div class="font-bold text-800 text-lg">
-              {{ wp.sueldoBase | currency:'MXN':'symbol-narrow':'1.0-0' }}
-            </div>
-          </div>
-        </div>
-
-        @if (wp.benefits) {
-        <div>
-          <div class="font-bold text-700 mb-1">
-            <app-icon [icon]="'mdi:gift'" class="mr-1" />Prestaciones
-          </div>
-          <p class="m-0 text-sm line-height-3 text-800 white-space-pre-line">
-            {{ wp.benefits }}
-          </p>
-        </div>
+          <app-icon [icon]="'mdi:login'" class="text-xs" />{{ entrada }}
+          <app-icon [icon]="'mdi:arrow-right'" class="text-xs text-300" />
+          <app-icon [icon]="'mdi:logout'" class="text-xs" />{{ salida }}
+        </span>
         } @else {
-        <p class="text-400 font-italic text-sm">
-          Sin prestaciones registradas.
-        </p>
+        <span class="text-400 font-italic text-sm"
+          >Descanso / Sin asignar</span
+        >
         }
       </div>
-      } @else {
-      <div class="flex align-items-center justify-content-center p-6 text-400">
-        <app-icon [icon]="'mdi:loading'" class="text-2xl mr-2" /> Cargando...
+      } @if (wp.observationsWorkShift) {
+      <div class="p-3 surface-50 border-round mt-2">
+        <div class="font-semibold text-600 mb-1">
+          <app-icon [icon]="'mdi:information'" class="mr-1" />Observaciones de
+          horario
+        </div>
+        <p class="m-0 text-sm text-700">{{ wp.observationsWorkShift }}</p>
       </div>
       }
-    </p-tabpanel>
-  </p-tabpanels>
-</p-tabs>
+    </div>
+    } @else {
+    <div class="flex align-items-center justify-content-center p-6 text-400">
+      <app-icon [icon]="'mdi:loading'" class="text-2xl mr-2" /> Cargando...
+    </div>
+    }
+  </div>
+
+  <!-- DESCRIPCION DEL PUESTO -->
+  <div tab="descripcion">
+    @if (jd) {
+    <div class="flex flex-column gap-3">
+      @if (jd.summary) {
+      <div>
+        <div class="font-bold text-700 mb-1">Resumen</div>
+        <p class="m-0 text-sm line-height-3 text-800">{{ jd.summary }}</p>
+      </div>
+      <p-divider />
+      } @if (jd.responsibilities) {
+      <div>
+        <div class="font-bold text-700 mb-1">Responsabilidades</div>
+        <p class="m-0 text-sm line-height-3 text-800">
+          {{ jd.responsibilities }}
+        </p>
+      </div>
+      <p-divider />
+      } @if (jd.skills) {
+      <div>
+        <div class="font-bold text-700 mb-1">Habilidades requeridas</div>
+        <p class="m-0 text-sm line-height-3 text-800">{{ jd.skills }}</p>
+      </div>
+      <p-divider />
+      } @if (jd.additionalRequirements) {
+      <div>
+        <div class="font-bold text-700 mb-1">Requisitos adicionales</div>
+        <p class="m-0 text-sm line-height-3 text-800">
+          {{ jd.additionalRequirements }}
+        </p>
+      </div>
+      <p-divider />
+      } @if (jd.workEnvironment) {
+      <div>
+        <div class="font-bold text-700 mb-1">Entorno de trabajo</div>
+        <p class="m-0 text-sm line-height-3 text-800">
+          {{ jd.workEnvironment }}
+        </p>
+      </div>
+      <p-divider />
+      }
+
+      <div class="flex align-items-center gap-2">
+        <span class="font-bold text-700">Requiere fin de semana:</span>
+        <lx-tag [value]="jd.requiresWeekendShift ? 'Sí' : 'No'" [severity]="jd.requiresWeekendShift ? 'warn' : 'success'" />
+      </div>
+    </div>
+    } @else {
+    <div class="flex align-items-center justify-content-center p-6 text-400">
+      <app-icon [icon]="'mdi:file-edit'" class="text-2xl mr-2" />
+      <span>No hay descripción de puesto registrada.</span>
+    </div>
+    }
+  </div>
+
+  <!-- PRESTACIONES Y OBSERVACIONES -->
+  <div tab="prestaciones">
+    @if (wp) {
+    <div class="flex flex-column gap-3">
+      <div
+        class="flex align-items-center gap-3 p-3 surface-100 border-round-lg"
+      >
+        <app-icon [icon]="'mdi:dollar'" class="text-2xl text-600" />
+        <div>
+          <div class="text-xs text-500">Sueldo base presupuestado</div>
+          <div class="font-bold text-800 text-lg">
+            {{ wp.sueldoBase | currency:'MXN':'symbol-narrow':'1.0-0' }}
+          </div>
+        </div>
+      </div>
+
+      @if (wp.benefits) {
+      <div>
+        <div class="font-bold text-700 mb-1">
+          <app-icon [icon]="'mdi:gift'" class="mr-1" />Prestaciones
+        </div>
+        <p class="m-0 text-sm line-height-3 text-800 white-space-pre-line">
+          {{ wp.benefits }}
+        </p>
+      </div>
+      } @else {
+      <p class="text-400 font-italic text-sm">
+        Sin prestaciones registradas.
+      </p>
+      }
+    </div>
+    } @else {
+    <div class="flex align-items-center justify-content-center p-6 text-400">
+      <app-icon [icon]="'mdi:loading'" class="text-2xl mr-2" /> Cargando...
+    </div>
+    }
+  </div>
+</lx-tabs>

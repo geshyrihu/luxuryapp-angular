@@ -1,9 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TabsModule } from "primeng/tabs";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -24,10 +23,17 @@ interface IJobDescription {
   selector: "app-vacante-detail-modal",
   templateUrl: "./vacante-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, CardModule, DividerModule, TabsModule, LxTag, AppIcon],
+  imports: [CommonModule, DividerModule, LxTabs, LxTag, AppIcon],
 })
 export class VacanteDetailModal implements OnInit {
   private config = inject(DynamicDialogConfig);
+
+  activeTab = signal("horarios");
+  tabs = [
+    { id: "horarios", label: "Horarios" },
+    { id: "descripcion", label: "Descripción del puesto" },
+    { id: "prestaciones", label: "Prestaciones y observaciones" },
+  ];
   private apiS = inject(ApiResponseService);
 
   workPosition = signal<IWorkPositionForm | null>(null);

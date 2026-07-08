@@ -3,33 +3,23 @@
   <div class="text-sm text-600">{{ machineryName }}</div>
 </div>
 
-<p-tabs [value]="activeTab()" (valueChange)="activeTab.set($event)">
-  <p-tablist>
-    <p-tab value="definitions">Configuradas</p-tab>
-    <p-tab value="history">Historial</p-tab>
-    <p-tab value="qr">QR</p-tab>
-  </p-tablist>
-
-  <p-tabpanels>
-    <p-tabpanel value="definitions">
-      <app-equipment-inspection-definitions-list
-        [machineryIdInput]="machineryId"
-        [machineryNameInput]="machineryName"
-      />
-    </p-tabpanel>
-
-    <p-tabpanel value="history">
-      <app-equipment-inspection-execution-history-list
-        [machineryIdInput]="machineryId"
-        [machineryNameInput]="machineryName"
-      />
-    </p-tabpanel>
-
-    <p-tabpanel value="qr">
-      <app-equipment-inspection-qr-list
-        [machineryIdInput]="machineryId"
-        [machineryNameInput]="machineryName"
-      />
-    </p-tabpanel>
-  </p-tabpanels>
-</p-tabs>
+<lx-tabs [tabs]="tabs" [(activeId)]="activeTab">
+  <div tab="definitions">
+    <app-equipment-inspection-definitions-list
+      [machineryIdInput]="machineryId"
+      [machineryNameInput]="machineryName"
+    />
+  </div>
+  <div tab="history">
+    <app-equipment-inspection-execution-history-list
+      [machineryIdInput]="machineryId"
+      [machineryNameInput]="machineryName"
+    />
+  </div>
+  <div tab="qr">
+    <app-equipment-inspection-qr-list
+      [machineryIdInput]="machineryId"
+      [machineryNameInput]="machineryName"
+    />
+  </div>
+</lx-tabs>
