@@ -17,7 +17,7 @@ import {
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { LxTag } from "@ui/adaptive/tag/tag";
+;
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -27,11 +27,10 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CommonModule,
     ReactiveFormsModule,
-    LxTag,
     WebButtonLabel,
     WebButtonLabelSave,
     CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
+    CustomInputTextAreaSignal
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./evidencias-nomina.html",

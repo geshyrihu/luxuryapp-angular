@@ -12,7 +12,7 @@ import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -35,8 +35,7 @@ import { IEmployeeLaboralDataForm } from "../models/employee-laboral-data-form.i
     CustomInputDateSignal,
     CustomInputCurrencySignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
-    LxCard,
+    WebButtonLabelSave
   ],
 })
 export class EmployeeLaboralDataForm implements OnInit {
@@ -60,7 +59,7 @@ export class EmployeeLaboralDataForm implements OnInit {
     {
       label: "Inactivo",
       value: false,
-    },
+    }
   ];
 
   submitting = signal(false);
@@ -94,7 +93,7 @@ export class EmployeeLaboralDataForm implements OnInit {
     applicationUserId: new FormControl<string | null>(null),
     numberEmployee: new FormControl<number | null>(null, [
       Validators.min(1),
-      Validators.max(9999),
+      Validators.max(9999)
     ]),
   });
 

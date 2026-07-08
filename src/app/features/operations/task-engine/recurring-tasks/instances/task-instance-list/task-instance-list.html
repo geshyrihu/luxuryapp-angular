@@ -90,9 +90,9 @@
     class="block md:hidden"
   >
     <ng-template #listItemTemplate let-task>
-      <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -105,7 +105,7 @@
             style="font-size: 1.1rem; color: var(--ds-primary)"
           />
         </div>
-        <ion-label>
+        
           <h5 class="mb-2">{{ task.title }}</h5>
           <p class="text-sm text-gray-500">
             {{ task.scheduledDate | date : "medium" }}
@@ -114,8 +114,8 @@
             [value]="task.status"
             [status]="task.statusDescription"
           />
-        </ion-label>
-        <ili-action-menu slot="end">
+        
+        <ili-action-menu end>
           <ng-container actions>
             <ili-button-item
               label="Completar"
@@ -130,7 +130,7 @@
             />
           </ng-container>
         </ili-action-menu>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

@@ -1,7 +1,6 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { homeOutline } from "ionicons/icons";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -48,10 +47,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     DataViewMobile,
     ActionMenu,
     WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    IonItem,
-    IonLabel,
-  ],
+    WebButtonLabelDelete,  ],
 })
 export class OwnerList {
   apiResponseS = inject(ApiResponseService);
@@ -72,7 +68,6 @@ export class OwnerList {
   tablePrimeNgRows = tablePrimeNgRows();
 
   constructor() {
-    addIcons({ homeOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();

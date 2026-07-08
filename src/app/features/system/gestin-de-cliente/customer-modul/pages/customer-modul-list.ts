@@ -28,7 +28,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { CustomerModulEdit } from "./customer-modul-edit";
 
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-customer-modul-list",
@@ -42,10 +42,9 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     LxTag,
     DataViewMobile,
     PrimeNgCustomTableFooter,
-    LxCard,
     PrimeNgCustomCaption,
     WebButtonIconActiveDesactive,
-    AppIcon,
+    AppIcon
   ],
 })
 export class CustomerModulList implements OnInit {

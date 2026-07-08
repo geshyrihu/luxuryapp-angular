@@ -6,7 +6,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
@@ -52,10 +53,7 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     TagModule,
     PrimeNgCustomCaption,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile,  ],
 })
 export class PolicyContractList {
   apiResponseS = inject(ApiResponseService);

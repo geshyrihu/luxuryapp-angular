@@ -1,6 +1,7 @@
 ﻿import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -31,6 +32,8 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-approval-inbox",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     TooltipModule,
     PrimeNgCustomTableEmptyMessage,
@@ -40,8 +43,6 @@ import { TooltipModule } from "primeng/tooltip";
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    IonItem,
-    IonLabel,
     DatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

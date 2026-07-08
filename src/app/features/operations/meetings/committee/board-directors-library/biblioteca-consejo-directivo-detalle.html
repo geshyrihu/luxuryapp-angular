@@ -66,15 +66,9 @@
   [viewchildBreadcrumb]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item
-      button
-      detail="true"
-      lines="full"
-      (click)="viewPdf(item.path, item.name)"
-      class="ion-no-padding"
-    >
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -82,7 +76,7 @@
           class="text-xl text-blue-700"
         />
       </div>
-      <ion-label class="ml-2">
+      
         <h3 class="text-wrap font-bold text-900">{{ item.name }}</h3>
         <p class="text-sm text-500">
           {{ item.primaryDetail }} @if (item.date) { | {{ item.date }} }
@@ -91,7 +85,7 @@
         item.policyValidity) {
         <p class="text-sm text-500">{{ item.policyValidity }}</p>
         }
-      </ion-label>
-    </ion-item>
+      
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

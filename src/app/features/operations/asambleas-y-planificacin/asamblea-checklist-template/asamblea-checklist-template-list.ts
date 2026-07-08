@@ -6,7 +6,8 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -49,11 +50,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     TagModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile,  ],
 })
 export class AsambleaChecklistTemplateList implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

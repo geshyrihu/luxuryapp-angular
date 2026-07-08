@@ -84,8 +84,8 @@
 
   <div class="md:hidden">
     @for (item of cycle().items; track item.inspectionId) {
-      <ion-item lines="full" class="ion-no-padding mb-1" (click)="openChecklist(item)">
-        <ion-label>
+      <ili-list-item [noPadding]="true">
+        
           <h3>{{ item.location }} <small class="text-400">{{ item.equipmentType }}</small></h3>
           <p>
             <p-tag [value]="item.status" [severity]="statusSeverity(item.status)" />
@@ -93,8 +93,8 @@
               &nbsp; {{ item.inspectedAt | date:'dd-MMM-yy HH:mm' }}
             }
           </p>
-        </ion-label>
-      </ion-item>
+        
+      </ili-list-item>
     }
   </div>
 } @else {

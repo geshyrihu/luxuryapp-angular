@@ -33,6 +33,8 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-ticket-legal-lista-cliente",
@@ -51,6 +53,8 @@ import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 
     DataViewMobile,
     CardModule,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class TicketLegalListaCliente implements OnInit {

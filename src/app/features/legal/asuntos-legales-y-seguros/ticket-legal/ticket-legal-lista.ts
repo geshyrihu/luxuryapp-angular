@@ -17,12 +17,6 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { addIcons } from "ionicons";
-import {
-  clipboardOutline,
-  createOutline,
-  refreshOutline,
-} from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -48,6 +42,8 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-ticket-legal-lista",
@@ -70,6 +66,8 @@ import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
     WebButtonIconEdit,
     DataViewMobile,
     WebButtonIconTracking,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class TicketLegalLista implements OnInit {
@@ -90,13 +88,7 @@ export class TicketLegalLista implements OnInit {
   inputValue: string = "";
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  constructor() {
-    addIcons({
-      clipboardOutline,
-      createOutline,
-      refreshOutline,
-    });
-  }
+  constructor() {}
 
   ngOnInit() {
     this.apiResponseS

@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -28,10 +29,9 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    TooltipModule,
-    IonItem,
-    IonLabel,
-    WebButtonLabelViewPdf,
+    TooltipModule,    WebButtonLabelViewPdf,
+    MobileListItem,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./special-document-list.html",

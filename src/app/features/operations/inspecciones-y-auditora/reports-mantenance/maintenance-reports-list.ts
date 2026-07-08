@@ -2,10 +2,9 @@ import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@ang
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { addIcons } from "ionicons";
-import { documentTextOutline } from "ionicons/icons";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -34,10 +33,7 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     PageTitleReport,
     CustomInputTextSignal,
     DataViewMobile,
-    PrimeNgCustomTableEmptyMessage,
-    IonItem,
-    IonLabel,
-  ],
+    PrimeNgCustomTableEmptyMessage,  ],
 })
 export class MaintenanceReports {
   apiResponseS = inject(ApiResponseService);
@@ -56,7 +52,6 @@ export class MaintenanceReports {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
-    addIcons({ documentTextOutline });
     // Inicializar periodo desde localStorage
     const savedPeriodo = this.storageS.retrieve(this.storageKey);
     if (savedPeriodo) {

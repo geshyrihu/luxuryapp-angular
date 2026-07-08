@@ -7,9 +7,10 @@ import {
   signal,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
@@ -34,6 +35,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 @Component({
   selector: "app-collection-case-list",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -42,8 +45,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    IonItem,
-    IonLabel,
     DatePipe,
     CurrencyPipe,
     ReactiveFormsModule,

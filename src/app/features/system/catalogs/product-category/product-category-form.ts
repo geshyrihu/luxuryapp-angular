@@ -9,7 +9,7 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -27,8 +27,7 @@ interface IProductCategoryForm {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    WebButtonLabelSave,
-    LxCard,
+    WebButtonLabelSave
   ],
 })
 export class ProductCategoryForm implements OnInit {
@@ -45,7 +44,7 @@ export class ProductCategoryForm implements OnInit {
       validators: [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(30),
+        Validators.maxLength(30)
       ],
       nonNullable: true,
     }),

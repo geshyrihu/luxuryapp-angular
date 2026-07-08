@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -68,10 +68,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    AppIcon,
-    IonItem,
-    IonLabel,
-    CustomInputSelectSignal,
+    AppIcon,    CustomInputSelectSignal,
+    MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-admin-list.html",

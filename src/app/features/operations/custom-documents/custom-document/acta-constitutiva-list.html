@@ -60,9 +60,9 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full" class="ion-no-padding">
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -75,7 +75,7 @@
             style="font-size: 1.1rem; color: var(--ds-warning)"
           />
         </div>
-        <ion-label>
+        
           <div class="flex justify-content-between align-items-center mb-1">
             <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
           </div>
@@ -87,11 +87,11 @@
             <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
             Fecha: {{ item.createAt }}
           </p>
-        </ion-label>
-        <div slot="end" class="flex align-items-center">
+        
+        <div end class="flex align-items-center">
           <il-button-view-pdf [url]="item.path" pdf="Documento" />
         </div>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

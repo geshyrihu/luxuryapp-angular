@@ -604,6 +604,34 @@ Y puede empezar migracion inmediata en las familias que ya estan cubiertas:
 
 - el arbol esta inestable por ediciones concurrentes. Recomendacion: **commitear por lanes** para no perder trabajo y evitar que un reset borre migraciones. Agente 3 no toca hr/system (otros lanes)
 
+## Sesion 2026-07-07 (Agente 3 — barrido de lane completo)
+
+### Objetivo
+
+- barrer `ion-item`/`ion-label` simple en todo el lane (operations/maintenance/legal) tras el commit base `16b9c46d`
+
+### Cambios realizados
+
+- migrador `ili-list-item` corrido sobre todo el lane (auto-salta heterogeneos con ion-card/button/segment):
+  - **operations: 33 pantallas** (announcements, custom-documents, directorios, google-calendar, inspecciones, manuals, meetings/juntas-comite, properties, supervision, task-engine/recurring-tasks + my-tasks, templates, diagrams)
+  - **legal: 8 pantallas** (documento-personalizado, minutas, ticket-legal x5, committee/library-detalle)
+  - **maintenance: 8 pantallas** (fire-equipment logs + inspection-periods, calendario-maestro)
+- total lane esta sesion: **49** (+ 17 previas de inventarios/logs)
+
+### Hallazgos o decisiones
+
+- 2 archivos con `imports` en formato no estandar rompieron el migrador y se arreglaron a mano:
+  - `google-calendar.ts` (entrada de arreglo pegada en una linea)
+  - `fire-inspection-cycle-detail.ts` (arreglo `imports` en una sola linea)
+  - **mejora pendiente del migrador**: soportar arreglos `imports` inline
+- `p-image` NO se migro aun: 25 usos ponen `class=` en `<p-image>` (que `app-image` moveria al host wrapper, no al `<img>` interno) → requiere criterio por uso (`class` → `imageClass`); se hara en pasada dedicada
+
+### Validaciones
+
+- [x] `tsc` limpio en todo mi lane (0 errores; de hecho 0 en toda la app)
+- [x] `npm run build` OK (128 s)
+- [x] migrador solo cambia tags/imports ASCII → no introduce mojibake
+
 ---
 
 ## 7. Formato de control por sesion

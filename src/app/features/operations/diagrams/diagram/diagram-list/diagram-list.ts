@@ -8,14 +8,13 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { addIcons } from "ionicons";
-import { gitBranchOutline } from "ionicons/icons";
 import { DialogService } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -52,10 +51,7 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonLabel,
     NgbTooltipModule,
 
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile,  ],
   providers: [DialogService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-list.html",
@@ -70,7 +66,6 @@ export class DiagramList implements OnInit {
   diagrams = signal<IDiagramDraw[]>([]);
 
   constructor() {
-    addIcons({ gitBranchOutline });
     // Recargar datos si cambia el customerId en contexto
     effect(() => {
       if (this.customerIdService.customerId()) {

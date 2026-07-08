@@ -91,9 +91,9 @@
     [globalFilterFields]="globalFilterFields()"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full">
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -106,12 +106,12 @@
             style="font-size: 1.1rem; color: var(--ds-success)"
           />
         </div>
-        <ion-label>
+        
           <h2>{{ item.nombreEquipo }}</h2>
           <p>{{ item.month }} | {{ item.task }}</p>
           <p>Frecuencia: {{ item.frequency }}</p>
-        </ion-label>
-        <div slot="end">
+        
+        <div end>
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
           <ili-action-menu>
             <ng-container actions>
@@ -127,7 +127,7 @@
           </ili-action-menu>
           }
         </div>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

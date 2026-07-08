@@ -135,27 +135,27 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:receipt" class="text-purple-600 text-xl" />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.name }}</h3>
         <p>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</p>
         <p>
           {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} é {{ item.endDate ?
           (item.endDate | date:'dd/MM/yyyy':'UTC') : 'Indefinido' }}
         </p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      </div>
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

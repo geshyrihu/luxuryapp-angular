@@ -10,7 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -26,10 +26,9 @@ import { AuthService } from "src/app/core/services/auth.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LxCard,
     WebButtonLabelSendEmail,
     CustomInputTextSignal,
-    WebButtonLabelSave,
+    WebButtonLabelSave
   ],
 })
 export class EmailDataForm implements OnInit {

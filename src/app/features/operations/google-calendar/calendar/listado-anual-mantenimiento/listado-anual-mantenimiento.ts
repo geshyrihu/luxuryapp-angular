@@ -41,6 +41,8 @@ const date = new Date();
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-listado-anual-mantenimiento",
@@ -66,6 +68,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     DataViewMobile,
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class ListadoAnualMantenimiento {

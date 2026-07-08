@@ -8,7 +8,7 @@ import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -32,14 +32,13 @@ interface LeaveRequestEditDTO {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    LxCard,
     WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputTime,
     CustomInputTextAreaSignal,
     CustomInputFile,
-    WebButtonLabelSave,
+    WebButtonLabelSave
   ],
 })
 export class PermisoForm implements OnInit {

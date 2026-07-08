@@ -8,7 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { BitacoraFiltroFechaForm } from "@ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -51,10 +52,9 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     DataViewMobile,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-    IonItem,
-    IonLabel,
-    DatePipe,
+    PrimeNgCustomTableFooter,    DatePipe,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class EstacionManualBitacoraList implements OnInit {

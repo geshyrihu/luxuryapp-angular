@@ -8,9 +8,10 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
@@ -41,6 +42,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "app-charge-list",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     WebButtonIconEdit,
     TooltipModule,
@@ -53,8 +56,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DecimalPipe,
     DatePipe,
     DataViewMobile,
-    IonItem,
-    IonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-list.html",

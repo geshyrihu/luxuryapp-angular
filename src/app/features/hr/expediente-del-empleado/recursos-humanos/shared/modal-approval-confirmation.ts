@@ -13,7 +13,7 @@ import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { LxTag } from "@ui/adaptive/tag/tag";
+;
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
@@ -32,10 +32,9 @@ import { ApprovalInfoService } from "./approval-info.service";
     ProgressSpinnerModule,
     WebButtonLabel,
     DatePipe,
-    LxTag,
     DividerModule,
     MessageModule,
-    CustomInputToggleSwitch,
+    CustomInputToggleSwitch
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -240,7 +239,7 @@ export class ApprovalConfirmationModal implements OnInit {
             this.request.startDate,
             this.request.endDate,
             this.request.employeeId,
-          ),
+          )
         ]);
 
         this.leaveHistory = historyResult;
@@ -253,7 +252,7 @@ export class ApprovalConfirmationModal implements OnInit {
             this.request.startDate,
             this.request.endDate,
             this.request.employeeId,
-          ),
+          )
         ]);
 
         this.vacationBalance = balanceResult;

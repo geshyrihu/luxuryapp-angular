@@ -42,7 +42,7 @@ import { ApplicationUserForm } from "./application-user-form";
 import { MdEditAccount } from "./md-edit-account";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -67,8 +67,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     AppIcon,
-    LxCard,
-    CustomInputSelectSignal,
+    CustomInputSelectSignal
   ],
 })
 export class ApplicationUserList implements OnInit {
@@ -138,7 +137,7 @@ export class ApplicationUserList implements OnInit {
 
           // Agrupar customers ónicos para el select
           const uniqueCustomers = [
-            ...new Set(result.map((item: any) => item.customer)),
+            ...new Set(result.map((item: any) => item.customer))
           ];
 
           // Crear opciones para el select
@@ -149,7 +148,7 @@ export class ApplicationUserList implements OnInit {
                 label: customer ? String(customer) : "Sin Cliente",
                 value: customer ? String(customer) : "sin_cliente",
               }),
-            ),
+            )
           ]);
         }
       });

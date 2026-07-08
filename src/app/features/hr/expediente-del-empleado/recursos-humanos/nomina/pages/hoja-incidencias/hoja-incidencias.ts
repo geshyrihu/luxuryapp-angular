@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } 
 import { Popover } from "primeng/popover";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { LxTag } from "@ui/adaptive/tag/tag";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -22,7 +22,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [CommonModule, LxTag, TooltipModule, Popover, WebButtonLabel],
+  imports: [CommonModule, TooltipModule, Popover, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })

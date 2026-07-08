@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CardModule } from "primeng/card";
 import { ChipModule } from "primeng/chip";
 import { ImageModule } from "primeng/image";
@@ -51,11 +52,10 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     ImageModule,
     ChipModule,
     CardModule,
-    TooltipModule,
-    IonItem,
-    IonLabel,
-    WebButtonLabelEdit,
+    TooltipModule,    WebButtonLabelEdit,
     WebButtonLabelItem,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class MyRequestsTask implements OnInit {

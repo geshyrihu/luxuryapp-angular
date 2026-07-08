@@ -11,6 +11,8 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-comites-list",
   templateUrl: "./comites-list.html",
@@ -21,6 +23,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     PrimeNgCustomCaption,
     DataViewMobile,
     PrimeNgCustomTableFooter,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class ComitesList implements OnInit {

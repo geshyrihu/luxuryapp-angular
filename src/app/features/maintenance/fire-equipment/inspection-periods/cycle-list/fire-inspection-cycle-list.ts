@@ -8,7 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -43,10 +44,7 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     DataViewMobile,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-    IonItem,
-    IonLabel,
-  ],
+    PrimeNgCustomTableFooter,  ],
 })
 export class FireInspectionCycleList implements OnInit {
   apiResponseS = inject(ApiResponseService);

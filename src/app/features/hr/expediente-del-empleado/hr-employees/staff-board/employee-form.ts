@@ -3,7 +3,7 @@ import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { MenuItem } from "primeng/api";
 import { MessageModule } from "primeng/message";
 import { PanelMenuModule } from "primeng/panelmenu";
@@ -27,7 +27,6 @@ import { IncidentList } from "src/app/features/hr/expediente-del-empleado/recurs
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",
   imports: [
-    LxCard,
     CommonModule,
     EmployeeAddressForm,
     EmployeeAvatarForm,
@@ -42,7 +41,7 @@ import { IncidentList } from "src/app/features/hr/expediente-del-empleado/recurs
     MessageModule,
     PanelMenuModule,
     UpdatePasswordAccount,
-    UpdateRole,
+    UpdateRole
   ],
 })
 export class EmployeeForm implements OnInit {
@@ -112,7 +111,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
       {
@@ -123,7 +122,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
       {
@@ -134,7 +133,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
       {
@@ -145,7 +144,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
       {
@@ -156,7 +155,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
       {
@@ -167,7 +166,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
       {
@@ -178,7 +177,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
 
@@ -191,7 +190,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
 
@@ -204,7 +203,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.RecursosHumanos,
-          EApplicationRole.Reclutamiento,
+          EApplicationRole.Reclutamiento
         ],
       },
 
@@ -217,7 +216,7 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
       },
 
@@ -230,9 +229,9 @@ export class EmployeeForm implements OnInit {
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,
           EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          EApplicationRole.RecursosHumanos
         ],
-      },
+      }
     ];
 
     this.menuItems = all

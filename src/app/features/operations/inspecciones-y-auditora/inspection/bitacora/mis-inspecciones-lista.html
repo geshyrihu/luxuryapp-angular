@@ -81,9 +81,9 @@
     [globalFilterFields]="['nameInspection', 'departament', 'frequency']"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -96,7 +96,7 @@
             style="font-size: 1.1rem; color: var(--ds-primary)"
           />
         </div>
-        <ion-label>
+        
           <div class="flex align-items-center">
             @if (item.isRealized) {
             <app-icon
@@ -115,8 +115,8 @@
           </div>
           <p class="text-medium text-500 m-0">{{ item.departament }}</p>
           <p class="text-medium text-500 m-0">{{ item.frequency }}</p>
-        </ion-label>
-        <ili-action-menu slot="end">
+        
+        <ili-action-menu end>
           <ng-container actions>
             @if (item.isRealized) {
             <ili-button-item
@@ -132,7 +132,7 @@
             />
           </ng-container>
         </ili-action-menu>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
   }

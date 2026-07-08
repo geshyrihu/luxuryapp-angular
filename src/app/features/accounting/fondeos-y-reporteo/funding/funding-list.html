@@ -104,19 +104,18 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item
-      lines="full"
-      detail="false"
+    <ili-list-item
+      [noPadding]="true"
       class="ion-no-padding"
       (click)="onDetails(item.id)"
     >
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon [icon]="'mdi:wallet'" class="text-green-600 text-xl" />
       </div>
-      <ion-label class="ml-2">
+      <div class="flex-1 min-w-0 ml-2">
         <h3 class="font-bold text-900">{{ item.period | uppercase }}</h3>
         <p class="text-sm text-500">
           Autorizado: {{ item.authorizedByName || '? En espera' }}
@@ -124,7 +123,7 @@
         <p class="text-sm text-500">
           Contabilidad: {{ item.confirmedByName || '? En espera' }}
         </p>
-      </ion-label>
-    </ion-item>
+      </div>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

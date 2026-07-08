@@ -10,7 +10,8 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -18,8 +19,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { addIcons } from "ionicons";
-import { documentOutline } from "ionicons/icons";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -56,10 +55,7 @@ import { TooltipModule } from "primeng/tooltip";
     ReactiveFormsModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile,  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./documento-personalizado-lista.html",
 })
@@ -79,7 +75,6 @@ export class DocumentoPersonalizadoLista implements OnInit {
   private routeDataSignal = toSignal(this.route.data);
 
   constructor() {
-    addIcons({ documentOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId && this.documentType !== undefined) this.onLoadData();

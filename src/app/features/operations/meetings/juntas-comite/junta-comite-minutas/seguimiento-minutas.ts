@@ -28,6 +28,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-seguimiento-minutas",
@@ -48,6 +49,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     DataViewMobile,
     TagModule,
     AppIcon,
+    MobileListItem,
   ],
 })
 export class SeguimientoMinuta {

@@ -26,7 +26,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { LxTag } from "@ui/adaptive/tag/tag";
+;
 
 @Component({
   selector: "app-nomina-detalle",
@@ -37,11 +37,10 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    LxTag,
     WebButtonLabel,
     WebButtonLabelEdit,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    PrimeNgCustomCaption
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nomina-detalle.html",
@@ -84,7 +83,7 @@ export default class NominaDetalle {
       ),
       this.apiResponseS.onGetItem<NominaResumenDTO>(
         Endpoints.HR.Nomina.Encabezado.getResumenEjecutivo(nominaId),
-      ),
+      )
     ]);
     this.encabezado.set(enc ?? null);
     this.data.set(det ?? []);

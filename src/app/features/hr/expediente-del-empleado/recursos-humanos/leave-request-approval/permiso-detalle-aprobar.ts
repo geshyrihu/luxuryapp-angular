@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@ang
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -27,7 +27,7 @@ interface LeaveApprovalDetailDTO {
   selector: "app-leave-request-detail-for-aproved",
   templateUrl: "./permiso-detalle-aprobar.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, LxTag, WebButtonLabel],
+  imports: [LxTag, WebButtonLabel],
 })
 export class PermisoDetalleAprobar implements OnInit {
   apiResponseS = inject(ApiResponseService);

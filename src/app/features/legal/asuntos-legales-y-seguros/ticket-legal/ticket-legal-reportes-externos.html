@@ -151,9 +151,9 @@
     </h5>
     <app-data-view-mobile [data]="[reportData()]" [showAdd]="false">
       <ng-template #listItemTemplate let-d>
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -166,7 +166,7 @@
               style="font-size: 1.1rem; color: var(--ds-primary)"
             />
           </div>
-          <ion-label class="ion-text-wrap">
+          
             <div class="flex justify-content-between align-items-center mb-2">
               <span>TICKET INICIAL</span>
               <p-tag [value]="d.ticketsAlInicio" severity="info"></p-tag>
@@ -197,8 +197,8 @@
               <span>PENDIENTES ACUMULADAS</span>
               <p-tag [value]="d.pendientesAlFinal" severity="danger"></p-tag>
             </div>
-          </ion-label>
-        </ion-item>
+          
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>
@@ -217,9 +217,9 @@
     </h5>
     <app-data-view-mobile [data]="requestsAttended()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -232,13 +232,13 @@
               style="font-size: 1.1rem; color: var(--ds-success, #006837)"
             />
           </div>
-          <ion-label class="ion-text-wrap">
+          
             <div class="flex justify-content-between align-items-center">
               <h6 class="mb-1">#{{ rowIndex + 1 }} — {{ ticket.concepto }}</h6>
               <p-tag [value]="ticket.solicitudes" severity="success"></p-tag>
             </div>
-          </ion-label>
-        </ion-item>
+          
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>
@@ -257,9 +257,9 @@
     </h5>
     <app-data-view-mobile [data]="requestsPending()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -272,7 +272,7 @@
               style="font-size: 1.1rem; color: var(--ds-danger, #ba1a1a)"
             />
           </div>
-          <ion-label class="ion-text-wrap">
+          
             <div class="flex justify-content-between align-items-center">
               <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
               <p-tag [value]="ticket.dias + ' días'" severity="danger"></p-tag>
@@ -287,8 +287,8 @@
             <p class="text-sm mt-0 mb-2">{{ ticket.descripcion }}</p>
             <p class="mt-0 mb-1"><strong>Último Seguimiento:</strong></p>
             <p class="text-sm mt-0 mb-1">{{ ticket.ultimoSeguimiento }}</p>
-          </ion-label>
-        </ion-item>
+          
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>

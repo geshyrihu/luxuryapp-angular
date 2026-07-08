@@ -30,6 +30,8 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-legal-pendientes-minuta",
@@ -54,6 +56,8 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
     SanitizeHtmlPipe,
 
     WebButtonLabelItem,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class LegalPendientesMinuta implements OnInit {

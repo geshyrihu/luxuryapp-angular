@@ -14,7 +14,8 @@ import { CalendarOptions, EventClickArg, EventInput } from "@fullcalendar/core";
 import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -90,9 +91,8 @@ import { TooltipModule } from "primeng/tooltip";
     TagModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-
-    IonItem,
-    IonLabel
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class GoogleCalendar {

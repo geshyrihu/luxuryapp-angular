@@ -194,9 +194,9 @@
   </ng-container>
 
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" [class.border-left-orange]="item.hasServiceOrder">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -209,7 +209,7 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label class="ion-text-wrap">
+      
         <h2 class="text-base font-bold mb-1">{{ item.nombre }}</h2>
 
         <div
@@ -237,11 +237,11 @@
             </p>
           </div>
         </div>
-      </ion-label>
+      
 
       @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario])) {
-      <div slot="end">
+      <div end>
         <ili-action-menu>
           <ng-container actions>
             <ili-button-edit
@@ -276,6 +276,6 @@
         </ili-action-menu>
       </div>
       }
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

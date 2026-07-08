@@ -6,7 +6,8 @@
   OnInit,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
@@ -42,11 +43,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     TooltipModule,
     MenuModule,
     TagModule,
-    DataViewMobile,
-
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile,  ],
 })
 export class CalendarioMaestroLista implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -109,6 +106,8 @@ export class CalendarioMaestroLista implements OnInit {
             icon: "mdi:delete",
             command: () => this.onDelete(item.id),
           },
+    MobileListItem,
+    AppIcon,
         ],
       },
     ]);

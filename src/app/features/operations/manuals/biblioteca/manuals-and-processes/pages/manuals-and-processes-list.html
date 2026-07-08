@@ -204,13 +204,9 @@
     [showAdd]="isAdmin()"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item
-        lines="full"
-        class="ion-no-padding"
-        (click)="onViewTemplate(item.id)"
-      >
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -223,7 +219,7 @@
             style="font-size: 1.1rem; color: var(--ds-primary)"
           />
         </div>
-        <ion-label>
+        
           <div class="flex align-items-center gap-2 mb-1">
             <span class="font-mono text-xs font-bold text-primary"
               >{{ item.folio }}</span
@@ -242,9 +238,9 @@
             {{ item.description }}
           </h2>
           <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
-        </ion-label>
+        
         <div
-          slot="end"
+          end
           class="flex align-items-center gap-1"
           (click)="$event.stopPropagation()"
         >
@@ -253,7 +249,7 @@
           <il-button-delete (confirmed)="onDelete(item)" />
           }
         </div>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

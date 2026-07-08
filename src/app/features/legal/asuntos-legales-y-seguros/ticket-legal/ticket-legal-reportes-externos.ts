@@ -11,7 +11,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "src/app/features/operations/task-engine/tasks/components/task-date-range-selector/task-date-range-selector";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-ticket-legal-reportes-externos",
   templateUrl: "./ticket-legal-reportes-externos.html",
@@ -24,11 +24,10 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
     AppIcon,
     DataViewMobile,
     LxEmptyState,
-    IonItem,
-    IonLabel,
     PageTitleReport,
     PrimeNgCustomCaption,
     TaskDateRangeSelector,
+    MobileListItem,
   ],
 })
 export class TicketLegalReportesExternos implements OnInit {

@@ -64,9 +64,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         style="
           width: 36px;
           height: 36px;
@@ -84,9 +84,9 @@
           style="font-size: 20px; color: var(--ds-warning)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.name }}</h3>
-      </ion-label>
-    </ion-item>
+      
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

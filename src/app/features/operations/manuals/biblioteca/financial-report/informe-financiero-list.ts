@@ -1,5 +1,6 @@
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -10,10 +11,9 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   imports: [
     TableModule,
     WebButtonLabelViewPdf,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-    WebButtonLabelViewPdf,
+    DataViewMobile,    WebButtonLabelViewPdf,
+    MobileListItem,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informe-financiero-list.html",

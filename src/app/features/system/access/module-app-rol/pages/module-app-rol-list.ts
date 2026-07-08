@@ -9,7 +9,7 @@ import { TableModule } from "primeng/table";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -31,10 +31,9 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
     ProgressSpinnerModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    LxCard,
     DataViewMobile,
 
-    IonNote,
+    IonNote
   ],
   templateUrl: "./module-app-rol-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -46,7 +45,7 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
         font-weight: bold;
         border-bottom: 1px solid var(--blue-100);
       }
-    `,
+    `
   ],
 })
 export class ModuleAppRol {

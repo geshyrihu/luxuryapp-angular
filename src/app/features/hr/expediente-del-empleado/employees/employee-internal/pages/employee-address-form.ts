@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -23,8 +23,7 @@ import { IEmployeeAddressForm } from "../models/employee-address-form.interface"
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    WebButtonLabelSave,
-    LxCard,
+    WebButtonLabelSave
   ],
 })
 export class EmployeeAddressForm implements OnInit {

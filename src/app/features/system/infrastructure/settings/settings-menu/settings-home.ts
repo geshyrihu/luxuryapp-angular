@@ -11,8 +11,8 @@ import {
 } from "src/app/core/utils/icon-mapping";
 import * as MenuItems from "./index-menu-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxModal } from "@ui/adaptive/modal/modal";
+;
+;
 
 interface IMenuTone {
   card: string;
@@ -27,12 +27,10 @@ interface IMenuTone {
   imports: [
     CommonModule,
     RouterModule,
-    LxModal,
-    LxCard,
     DataViewMobile,
     IonItem,
     IonLabel,
-    AppIcon,
+    AppIcon
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: "./settings-home.html",
@@ -151,7 +149,7 @@ export class SettingsHome {
     return [
       "h-full border-1 shadow-1 overflow-hidden transition-all transition-duration-300 relative",
       "hover:shadow-3 hover:border-primary cursor-pointer",
-      this.menuTone(group).card,
+      this.menuTone(group).card
     ].join(" ");
   }
 
@@ -164,7 +162,7 @@ export class SettingsHome {
     return [
       "flex align-items-center justify-content-center flex-shrink-0",
       sizeClasses,
-      isMobile ? tone.mobileShell : tone.desktopShell,
+      isMobile ? tone.mobileShell : tone.desktopShell
     ].join(" ");
   }
 
@@ -177,7 +175,7 @@ export class SettingsHome {
     return [
       this.menuIconClass(icon),
       sizeClass,
-      this.menuTone(group).glyph,
+      this.menuTone(group).glyph
     ].join(" ");
   }
 

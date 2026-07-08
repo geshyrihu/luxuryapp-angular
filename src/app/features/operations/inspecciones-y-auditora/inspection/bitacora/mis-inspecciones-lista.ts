@@ -17,6 +17,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-mis-inspecciones-lista",
@@ -33,6 +35,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     RouterModule,
     TableModule,
     TooltipModule,
+    MobileListItem,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-lista.html",

@@ -8,7 +8,8 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import {
   NgbDropdownModule,
   NgbTooltipModule,
@@ -22,8 +23,6 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { addIcons } from "ionicons";
-import { documentOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
@@ -63,10 +62,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     PrimeNgCustomTableFooter,
     ActionMenu,
     DataViewMobile,
-    WebButtonLabelEdit,
-    IonItem,
-    IonLabel,
-  ],
+    WebButtonLabelEdit,  ],
 })
 export class TemplatesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -94,7 +90,6 @@ export class TemplatesList implements OnInit {
   ref: DynamicDialogRef;
 
   constructor() {
-    addIcons({ documentOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();

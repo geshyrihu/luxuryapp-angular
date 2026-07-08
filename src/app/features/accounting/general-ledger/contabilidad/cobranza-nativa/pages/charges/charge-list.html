@@ -111,9 +111,9 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -121,7 +121,7 @@
           class="text-orange-600 text-xl"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
         <p>{{ item.chargeTypeName || 'Sin tipo' }} · {{ item.concept }}</p>
         <p>
@@ -129,8 +129,8 @@
           }}
         </p>
         <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      </div>
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           @if (item.status !== EChargeStatus.Cancelado) {
@@ -145,6 +145,6 @@
           }
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -1,7 +1,8 @@
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
@@ -78,13 +79,12 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     AreaDetailsTable,
     RouterModule,
-    CardModule,
-    IonItem,
-    IonLabel,
-    WebButtonLabelConfirm,
+    CardModule,    WebButtonLabelConfirm,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class MinutasList {

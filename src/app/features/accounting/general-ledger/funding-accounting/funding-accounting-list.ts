@@ -1,6 +1,5 @@
 ﻿import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -8,6 +7,8 @@ import { TooltipModule } from "primeng/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -25,6 +26,8 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-funding-accounting-list",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconItem,
     TooltipModule,
     PrimeNgCustomTableEmptyMessage,
@@ -33,8 +36,6 @@ import { ROUTES } from "src/app/routing/route-paths";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    IonItem,
-    IonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-list.html",

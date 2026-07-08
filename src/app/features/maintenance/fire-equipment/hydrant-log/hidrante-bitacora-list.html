@@ -125,9 +125,9 @@
   (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -140,7 +140,7 @@
           style="font-size: 1.1rem; color: var(--ds-info)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
         <p>{{ item.cabinetState }}</p>
         <div class="flex gap-2 mt-1">
@@ -162,8 +162,8 @@
             >Vólvula</small
           >
         </div>
-      </ion-label>
-      <div slot="end">
+      
+      <div end>
         <ili-action-menu>
           <ng-container actions>
             <ili-button-edit
@@ -177,6 +177,6 @@
           </ng-container>
         </ili-action-menu>
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

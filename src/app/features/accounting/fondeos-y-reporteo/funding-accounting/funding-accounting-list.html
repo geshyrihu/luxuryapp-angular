@@ -109,14 +109,13 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item
-      lines="full"
-      detail="false"
+    <ili-list-item
+      [noPadding]="true"
       class="ion-no-padding"
       (click)="onDetails(item.id)"
     >
       <div
-        slot="start"
+        start
         style="
           width: 36px;
           height: 36px;
@@ -134,11 +133,11 @@
           style="font-size: 20px; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.period }}</h3>
         <p>Verificó: {{ item.verifiedByName || '? En espera' }}</p>
         <p>Autorizó: {{ item.authorizedByName || '? En espera' }}</p>
-      </ion-label>
-    </ion-item>
+      </div>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

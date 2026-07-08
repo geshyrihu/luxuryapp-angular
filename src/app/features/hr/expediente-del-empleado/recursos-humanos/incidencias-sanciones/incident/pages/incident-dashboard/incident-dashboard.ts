@@ -5,7 +5,7 @@ import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -20,9 +20,8 @@ import {
     ReactiveFormsModule,
     ChartWrapper,
     TableModule,
-    LxCard,
     CustomInputDateSignal,
-    WebButtonLabel,
+    WebButtonLabel
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-dashboard.html",
@@ -125,7 +124,7 @@ export class IncidentDashboardComponent implements OnInit {
             data: data.byMonth.map((m) => m.count),
             backgroundColor: "rgba(59, 130, 246, 0.8)",
             borderRadius: 8,
-          },
+          }
         ],
       });
     }
@@ -142,7 +141,7 @@ export class IncidentDashboardComponent implements OnInit {
               "#F59E0B",
               "#EF4444",
               "#8B5CF6",
-              "#EC4899",
+              "#EC4899"
             ],
             hoverBackgroundColor: [
               "#2563EB",
@@ -150,9 +149,9 @@ export class IncidentDashboardComponent implements OnInit {
               "#D97706",
               "#DC2626",
               "#7C3AED",
-              "#DB2777",
+              "#DB2777"
             ],
-          },
+          }
         ],
       });
     }

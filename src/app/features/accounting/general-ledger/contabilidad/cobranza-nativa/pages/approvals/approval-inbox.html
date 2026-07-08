@@ -72,9 +72,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -82,21 +82,21 @@
           class="text-purple-600 text-xl"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ operationLabel(item.operationType) }}</h3>
         <p>{{ item.summary }}</p>
         <p>
           Por: {{ item.requestedBy }} &middot; {{ item.requestedAt |
           date:'dd/MM/yyyy' }}
         </p>
-      </ion-label>
+      </div>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
         </ng-container>
       </ili-action-menu>
       }
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

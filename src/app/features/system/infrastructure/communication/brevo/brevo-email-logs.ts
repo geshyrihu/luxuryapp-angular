@@ -7,7 +7,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -47,8 +47,7 @@ interface BrevoPagedResultDTO {
     WebButtonLabel,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    LxCard,
-    SkeletonModule,
+    SkeletonModule
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./brevo-email-logs.html",

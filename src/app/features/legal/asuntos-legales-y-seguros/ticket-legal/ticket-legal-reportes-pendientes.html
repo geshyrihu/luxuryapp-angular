@@ -170,9 +170,9 @@ unassignedData().length > 0) {
     </h5>
     <app-data-view-mobile [data]="dataExternal()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket>
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -185,7 +185,7 @@ unassignedData().length > 0) {
               style="font-size: 1.1rem; color: var(--ds-primary)"
             />
           </div>
-          <ion-label class="ion-text-wrap">
+          
             <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
             <p class="mt-0 mb-1">
               <strong>Fecha:</strong> {{ ticket.requestDate | date: "dd/MM/yyyy"
@@ -213,8 +213,8 @@ unassignedData().length > 0) {
             <p class="text-justify text-sm mt-0 mb-1">
               {{ ticket.seguimiento }}
             </p>
-          </ion-label>
-        </ion-item>
+          
+        </ili-list-item>
       </ng-template>
       <ng-template #footer>
         <div
@@ -236,9 +236,9 @@ unassignedData().length > 0) {
     </h5>
     <app-data-view-mobile [data]="dataInternal()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket>
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -251,7 +251,7 @@ unassignedData().length > 0) {
               style="font-size: 1.1rem; color: var(--ds-primary)"
             />
           </div>
-          <ion-label class="ion-text-wrap">
+          
             <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
             <p class="mt-0 mb-1">
               <strong>Fecha:</strong> {{ ticket.requestDate | date: "dd/MM/yyyy"
@@ -279,8 +279,8 @@ unassignedData().length > 0) {
             <p class="text-justify text-sm mt-0 mb-1">
               {{ ticket.seguimiento }}
             </p>
-          </ion-label>
-        </ion-item>
+          
+        </ili-list-item>
       </ng-template>
       <ng-template #footer>
         <div
@@ -302,9 +302,9 @@ unassignedData().length > 0) {
     </h5>
     <app-data-view-mobile [data]="unassignedData()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket>
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -317,7 +317,7 @@ unassignedData().length > 0) {
               style="font-size: 1.1rem; color: var(--ds-warning, #b45309)"
             />
           </div>
-          <ion-label class="ion-text-wrap">
+          
             <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
             <p class="mt-0 mb-1">
               <strong>Fecha:</strong> {{ ticket.requestDate | date: "dd/MM/yyyy"
@@ -345,8 +345,8 @@ unassignedData().length > 0) {
             <p class="text-justify text-sm mt-0 mb-1">
               {{ ticket.seguimiento }}
             </p>
-          </ion-label>
-        </ion-item>
+          
+        </ili-list-item>
       </ng-template>
       <ng-template #footer>
         <div

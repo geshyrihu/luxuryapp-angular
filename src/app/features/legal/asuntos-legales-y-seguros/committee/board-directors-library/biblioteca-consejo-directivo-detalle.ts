@@ -8,9 +8,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { documentTextOutline } from "ionicons/icons";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
@@ -37,9 +35,8 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     WebButtonLabelViewPdf,
     DataViewMobile,
     CustomSearchInput,
-    IonItem,
-    IonLabel,
     AppIcon,
+    MobileListItem,
   ],
 
   templateUrl: "./biblioteca-consejo-directivo-detalle.html",
@@ -57,7 +54,6 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
   routeData = toSignal(this.route.data);
 
   constructor() {
-    addIcons({ documentTextOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId && this.documentType !== undefined) this.onLoadData();

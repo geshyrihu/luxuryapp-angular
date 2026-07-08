@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -30,11 +31,10 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     DataViewModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
+    DataViewMobile,    WebButtonLabelViewPdf,
     WebButtonLabelViewPdf,
-    WebButtonLabelViewPdf,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class ActaConstitutivaList {

@@ -1,6 +1,5 @@
 ﻿import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgClass } from "@angular/common";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { layersOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -11,6 +10,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -34,6 +34,7 @@ import { ChargeTypeForm } from "./charge-type-form";
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     DataViewMobile,
+    MobileListItem,
 
     MobileActionMenu,
     AppIcon,
@@ -41,8 +42,6 @@ import { ChargeTypeForm } from "./charge-type-form";
     WebButtonIconDelete,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    IonItem,
-    IonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-type-list.html",

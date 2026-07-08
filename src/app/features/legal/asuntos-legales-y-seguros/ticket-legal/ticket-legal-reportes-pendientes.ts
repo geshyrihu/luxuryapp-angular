@@ -10,7 +10,7 @@ import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-ticket-legal-reportes-pendientes",
   templateUrl: "./ticket-legal-reportes-pendientes.html",
@@ -23,10 +23,9 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
     AppIcon,
     DataViewMobile,
     LxEmptyState,
-    IonItem,
-    IonLabel,
     PageTitleReport,
     PrimeNgCustomCaption,
+    MobileListItem,
   ],
 })
 export class TicketLegalReportesPendientes implements OnInit {

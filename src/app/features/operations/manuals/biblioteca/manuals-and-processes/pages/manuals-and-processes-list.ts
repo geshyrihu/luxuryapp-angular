@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import {
@@ -45,10 +45,8 @@ interface DeptGroup {
     WebButtonLabel,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-    AppIcon,
+    DataViewMobile,    AppIcon,
+    MobileListItem,
   ],
 })
 export class ManualsAndProcessesList implements OnInit {

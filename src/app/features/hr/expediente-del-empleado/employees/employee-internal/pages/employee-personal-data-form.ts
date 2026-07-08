@@ -14,7 +14,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ECountry } from "src/app/core/enums/paises.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -34,8 +34,7 @@ import { IEmployeePersonalDataForm } from "../models/employee-personal-data-form
     CustomInputMaskSignal,
     CustomInputDateSignal,
     CustomInputAutoComplete,
-    WebButtonLabelSave,
-    LxCard,
+    WebButtonLabelSave
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideFlatpickrDefaults()],

@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -28,10 +29,9 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    WebButtonLabelViewPdf,
-    IonItem,
-    IonLabel,
-    WebButtonLabelViewPdf,
+    WebButtonLabelViewPdf,    WebButtonLabelViewPdf,
+    MobileListItem,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./asambleas-list.html",

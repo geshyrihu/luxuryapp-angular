@@ -5,7 +5,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -19,12 +19,11 @@ import {
   selector: "app-configuracion-nomina",
   imports: [
     ReactiveFormsModule,
-    LxCard,
     FieldsetModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputDecimal,
-    WebButtonLabelSave,
+    WebButtonLabelSave
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./configuracion-nomina.html",
@@ -42,11 +41,11 @@ export default class ConfiguracionNomina implements OnInit {
     frecuenciaPago: [0, Validators.required],
     diaPago1: [
       15,
-      [Validators.required, Validators.min(1), Validators.max(31)],
+      [Validators.required, Validators.min(1), Validators.max(31)]
     ],
     diaPago2: [
       30,
-      [Validators.required, Validators.min(1), Validators.max(31)],
+      [Validators.required, Validators.min(1), Validators.max(31)]
     ],
     diasAguinaldo: [15, [Validators.required, Validators.min(15)]],
     factorPrimaVacacional: [0.25, [Validators.required, Validators.min(0.25)]],
@@ -54,12 +53,12 @@ export default class ConfiguracionNomina implements OnInit {
     retardosPorFalta: [3, [Validators.required, Validators.min(1)]],
     porcentajeEnfermedadMaternidad: [
       0.00625,
-      [Validators.required, Validators.min(0)],
+      [Validators.required, Validators.min(0)]
     ],
     porcentajeIvcm: [0.00625, [Validators.required, Validators.min(0)]],
     porcentajeCesantiaVejez: [
       0.01125,
-      [Validators.required, Validators.min(0)],
+      [Validators.required, Validators.min(0)]
     ],
   });
 

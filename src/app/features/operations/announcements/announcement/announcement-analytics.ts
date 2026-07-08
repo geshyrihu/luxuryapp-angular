@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -17,10 +17,8 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
     RouterModule,
     CardModule,
     TableModule,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-    AppIcon,
+    DataViewMobile,    AppIcon,
+    MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-analytics.html",

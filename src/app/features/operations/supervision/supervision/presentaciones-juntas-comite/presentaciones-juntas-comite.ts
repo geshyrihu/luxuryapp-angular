@@ -18,6 +18,8 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-presentaciones-juntas-comite",
@@ -35,6 +37,8 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     CustomInputTextSignal,
 
     WebButtonLabelViewPdf,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class PresentacionesJuntasComite implements OnInit {

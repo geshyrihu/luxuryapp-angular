@@ -13,7 +13,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
@@ -43,8 +43,7 @@ interface IRoleForm {
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
-    LxCard,
+    WebButtonLabelSave
   ],
 })
 export class RoleForm implements OnInit {

@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -43,10 +44,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     DataViewMobile,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
-    IonItem,
-    IonLabel,
-    // Tabla web (acciones directas → solo icono)
+    PrimeNgCustomTableFooter,    // Tabla web (acciones directas → solo icono)
     WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonIconItem,
@@ -56,6 +54,8 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class PropiedadesList {

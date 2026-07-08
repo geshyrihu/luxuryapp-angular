@@ -9,7 +9,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ICustomerAddressAddOrEditDTO } from "../../models/customer.dto";
@@ -20,10 +20,9 @@ import { ICustomerAddressAddOrEditDTO } from "../../models/customer.dto";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    LxCard,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    WebButtonLabelSave
   ],
 })
 export class CustomerAddress implements OnInit {

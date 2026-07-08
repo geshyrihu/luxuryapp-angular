@@ -91,9 +91,9 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -106,7 +106,7 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label class="ion-text-wrap">
+      
         <h3 class="font-semibold m-0 text-color">{{ item.title }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
           {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
@@ -121,9 +121,9 @@
             {{ item.isActive ? "Activo" : "Inactivo" }}
           </span>
         </p>
-      </ion-label>
+      
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar item de checklist' })"
@@ -134,6 +134,6 @@
           }
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

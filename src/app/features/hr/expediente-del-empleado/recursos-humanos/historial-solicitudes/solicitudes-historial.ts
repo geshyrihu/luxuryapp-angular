@@ -85,7 +85,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
@@ -104,8 +104,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     CustomInputDateSignal,
     CustomInputSelectSignal,
     DataViewMobile,
-    PrimeNgCustomCaption,
-    LxCard,
+    PrimeNgCustomCaption
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DatePipe],
@@ -123,7 +122,7 @@ export class SolicitudesHistorial implements OnInit {
 
   allowedCancellerRoles: EApplicationRole[] = [
     EApplicationRole.SuperUsuario,
-    EApplicationRole.RecursosHumanos,
+    EApplicationRole.RecursosHumanos
   ];
   canCancel = computed(() => this.aspRoleS.hasAny(this.allowedCancellerRoles));
   data = signal<IHistorialSolicitud[]>([]);
@@ -216,7 +215,7 @@ export class SolicitudesHistorial implements OnInit {
     this.requestTypes.set([
       { label: "Todos", value: null },
       { label: "Permisos", value: "leave" },
-      { label: "Vacaciones", value: "vacation" },
+      { label: "Vacaciones", value: "vacation" }
     ]);
 
     firstValueFrom(this.enumSelectS.requestStatus(false)).then((response) => {
@@ -318,7 +317,7 @@ export class SolicitudesHistorial implements OnInit {
 
         const combinedData: IHistorialSolicitud[] = [
           ...mappedLeaves,
-          ...mappedVacations,
+          ...mappedVacations
         ];
         combinedData.sort(
           (a, b) =>

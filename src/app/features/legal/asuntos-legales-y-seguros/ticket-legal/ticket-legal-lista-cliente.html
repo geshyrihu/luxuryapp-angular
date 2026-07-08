@@ -99,9 +99,9 @@
       [globalFilterFields]="globalFilterFields()"
     >
       <ng-template #listItemTemplate let-item>
-        <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ili-list-item [noPadding]="true">
           <div
-            slot="start"
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -114,7 +114,7 @@
               style="font-size: 1.1rem; color: var(--ds-primary)"
             />
           </div>
-          <ion-label>
+          
             <div class="flex justify-content-between align-items-start mb-2">
               <div class="flex flex-column">
                 <h6 class="mb-0 text-wrap">{{ item.title }}</h6>
@@ -150,9 +150,9 @@
                 <p class="m-0 font-bold">Días: {{ item.diferenciaDias }}</p>
               </div>
             </div>
-          </ion-label>
+          
 
-          <ili-action-menu slot="end">
+          <ili-action-menu end>
             <ng-container actions>
               <ili-button-item
                 iconName="book-outline"
@@ -170,7 +170,7 @@
               </ili-button-item>
             </ng-container>
           </ili-action-menu>
-        </ion-item>
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>

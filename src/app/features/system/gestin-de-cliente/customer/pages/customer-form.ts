@@ -14,7 +14,7 @@ import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ICustomerForm } from "src/app/core/interfaces/customer-form.interface";
@@ -46,14 +46,13 @@ interface ICustomerFormGroup {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    LxCard,
     CustomInputTextSignal,
     CustomInputMaskSignal,
     CustomInputDateSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputImg,
-    WebButtonLabelSave,
+    WebButtonLabelSave
   ],
 })
 export class CustomerForm implements OnInit {
@@ -67,7 +66,7 @@ export class CustomerForm implements OnInit {
   id: string = "";
   optionActive: ISelectItem[] = [
     { value: true, label: "Activo" },
-    { value: false, label: "Inactivo" },
+    { value: false, label: "Inactivo" }
   ];
 
   model: ICustomerForm;

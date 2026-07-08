@@ -23,7 +23,7 @@ import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit
 
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { LxCard } from "@ui/adaptive/card/card";
+;
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
@@ -32,7 +32,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     WebButtonIconEdit,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
-    LxCard,
     TableModule,
     WebButtonLabel,
     LxTag,
@@ -41,7 +40,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     WebButtonLabelEdit,
     DataViewMobile,
     ToastModule,
-    ConfirmDialogModule,
+    ConfirmDialogModule
   ],
   templateUrl: "./admin-vacaciones-balance.html",
   changeDetection: ChangeDetectionStrategy.Eager,

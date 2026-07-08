@@ -28,6 +28,8 @@ import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confir
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-task-instance-list",
@@ -56,6 +58,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
     WebButtonLabelConfirm,
     WebButtonLabelItem,
+    MobileListItem,
+    AppIcon,
   ],
 })
 export class TaskInstanceList implements OnInit {
