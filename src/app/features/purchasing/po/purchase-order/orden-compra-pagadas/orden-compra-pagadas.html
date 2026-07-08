@@ -103,9 +103,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         style="
           width: 36px;
           height: 36px;
@@ -123,19 +123,19 @@
           style="font-size: 20px; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.proveedor }}</h3>
         <p>Folio: {{ item.folio }} é Factura: {{ item.factura }}</p>
         <p>
           Total: {{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
           date:'dd/MM/yyyy':'UTC' }}
         </p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onAddOrEdit(item.id)" label="Editar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

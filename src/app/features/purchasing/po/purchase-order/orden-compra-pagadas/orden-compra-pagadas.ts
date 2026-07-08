@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -34,13 +34,14 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "../orden-compra";
 
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-orden-compra-pagadas",
   templateUrl: "./orden-compra-pagadas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     MobileActionMenu,
     MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
@@ -51,10 +52,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     SelectModule,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile, MobileListItem, AppIcon],
 })
 export class OrdenCompraPagadas {
   apiResponseS = inject(ApiResponseService);

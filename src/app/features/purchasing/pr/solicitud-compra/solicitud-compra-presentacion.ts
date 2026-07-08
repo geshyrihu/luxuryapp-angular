@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { Carousel, CarouselModule } from "primeng/carousel";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -23,7 +23,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     CarouselModule,
-    ImageModule,
+    AppImage,
     TableModule,
     WebButtonLabel,
     WebButtonLabelViewPdf,

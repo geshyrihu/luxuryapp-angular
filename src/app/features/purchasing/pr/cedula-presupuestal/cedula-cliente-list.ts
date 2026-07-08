@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
@@ -34,12 +34,14 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-cedula-cliente-list",
   templateUrl: "./cedula-cliente-list.html",
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     WebButtonIconConfirm,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -49,16 +51,12 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     TableModule,
     CustomInputSelectSignal,
-    TagModule,
     TooltipModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
     WebButtonLabelConfirm,
     DataViewMobile,
-    ActionMenu,
-    IonItem,
-    IonLabel,
-  ],
+    ActionMenu, MobileListItem, AppIcon, LxTag],
 })
 export class CedulaClienteList implements OnInit {
   apiResponseS = inject(ApiResponseService);

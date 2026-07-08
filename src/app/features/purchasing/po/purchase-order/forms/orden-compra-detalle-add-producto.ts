@@ -15,10 +15,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputNumberModule } from "primeng/inputnumber";
-import { MessageModule } from "primeng/message";
+
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
@@ -53,24 +53,22 @@ interface IOrdenCompraDetalleRowForm {
 }
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { LxMessage } from "@ui/adaptive/message/message";
 
 @Component({
   selector: "app-orden-compra-detalle-add-producto",
   templateUrl: "./orden-compra-detalle-add-producto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconItem,
+  imports: [WebButtonIconItem,
     CommonModule,
     ReactiveFormsModule,
     TableModule,
-    AvatarModule,
+    AppAvatar,
     InputNumberModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-    MessageModule,
-  ],
+    PrimeNgCustomTableFooter, LxMessage],
 })
 export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);

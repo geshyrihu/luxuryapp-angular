@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { CardModule } from "primeng/card";
+
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -10,7 +10,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
   selector: "app-orden-compra-pdf",
   template: "",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule],
+  imports: [],
 })
 export class OrdenCompraPdf implements OnInit {
   apiResponseS = inject(ApiResponseService);

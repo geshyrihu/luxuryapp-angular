@@ -4,10 +4,12 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TabsModule } from "primeng/tabs";
-import { TagModule } from "primeng/tag";
+
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IWorkPositionForm } from "src/app/features/recruitment/estructura-organizacional/work-position/models/work-position.model";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface IJobDescription {
   summary: string;
@@ -22,7 +24,7 @@ interface IJobDescription {
   selector: "app-vacante-detail-modal",
   templateUrl: "./vacante-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, CardModule, DividerModule, TabsModule, TagModule],
+  imports: [CommonModule, CardModule, DividerModule, TabsModule, LxTag, AppIcon],
 })
 export class VacanteDetailModal implements OnInit {
   private config = inject(DynamicDialogConfig);
@@ -38,7 +40,7 @@ export class VacanteDetailModal implements OnInit {
     { n: "Jueves", e: "juevesEntrada" as const, s: "juevesSalida" as const },
     { n: "Viernes", e: "viernesEntrada" as const, s: "viernesSalida" as const },
     { n: "Sóbado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
-    { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const },
+    { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const }
   ];
 
   ngOnInit() {

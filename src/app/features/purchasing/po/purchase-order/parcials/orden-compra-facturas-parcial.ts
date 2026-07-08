@@ -1,27 +1,26 @@
 import { CommonModule } from "@angular/common";
 
 import { Component, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
-import { MessageModule } from "primeng/message";
+
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-orden-compra-facturas-parcial",
   templateUrl: "./orden-compra-facturas-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     TableModule,
-    TagModule,
-    MessageModule,
     SkeletonModule,
-    WebButtonLabel,
-  ],
+    WebButtonLabel, LxMessage, AppIcon, LxTag],
 })
 export class OrdenCompraFacturasParcial {
   facturas = input.required<any[]>();

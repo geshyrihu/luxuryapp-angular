@@ -138,9 +138,9 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         style="
           width: 36px;
           height: 36px;
@@ -158,18 +158,18 @@
           style="font-size: 20px; color: var(--ds-warning)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.requestedBy }}</h3>
         <p>{{ item.area }} é Folio: {{ item.folio }}</p>
         <p>{{ item.requestDate | date }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
         />
         <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -21,7 +21,7 @@ import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Table, TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -37,13 +37,15 @@ import { SolicitudAltaStatusForm } from "../components/solicitud-alta-status-for
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-solicitud-alta-list",
   templateUrl: "./solicitud-alta-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -51,12 +53,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    TagModule,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile, LxTag, MobileListItem, AppIcon],
 })
 export class SolicitudAltaList implements OnInit {
   apiResponseS = inject(ApiResponseService);

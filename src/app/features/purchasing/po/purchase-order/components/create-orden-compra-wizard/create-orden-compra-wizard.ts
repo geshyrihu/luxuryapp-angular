@@ -12,14 +12,14 @@ import {
 import { Endpoints } from "src/app/core/constants/endpoints";
 // PrimeNG Modules
 import { MenuItem } from "primeng/api";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; // Added DynamicDialogConfig
-import { FileUploadModule } from "primeng/fileupload"; // Added
+ // Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { MessageModule } from "primeng/message"; // Added
+ // Added
 import { StepsModule } from "primeng/steps";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag"; // Added
+ // Added
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
@@ -72,26 +72,25 @@ interface IStep3Form {
 }
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { FileUpload } from "@ui/web/file-upload/file-upload";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-create-orden-compra-wizard",
-  imports: [
-    WebButtonIcon,
-    AvatarModule,
+  imports: [WebButtonIcon,
+    AppAvatar,
     WebButtonLabel,
     CommonModule,
     CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    FileUploadModule,
     FormsModule,
-    CustomInputCurrencySignal,
-    MessageModule, // Added
+    CustomInputCurrencySignal, // Added
     ReactiveFormsModule,
     StepsModule,
-    TableModule,
-    TagModule, // Added
-  ],
+    TableModule, LxMessage, FileUpload, AppIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./create-orden-compra-wizard.html",
 })
@@ -156,7 +155,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       { label: "Aóadir Productos" },
       { label: "Asignar Presupuesto" },
       { label: "Facturas" },
-      { label: "Resumen" },
+      { label: "Resumen" }
     ];
 
     this.step1Form = new FormGroup<IStep1Form>({
@@ -233,7 +232,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     return [
       { label: (currentYear - 1).toString(), value: currentYear - 1 },
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 },
+      { label: (currentYear + 1).toString(), value: currentYear + 1 }
     ];
   }
 
@@ -415,7 +414,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       ),
       amount: new FormControl(initialAmount, [
         Validators.required,
-        Validators.min(0.01),
+        Validators.min(0.01)
       ]),
     });
   }

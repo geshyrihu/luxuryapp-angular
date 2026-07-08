@@ -14,8 +14,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { TagModule } from "primeng/tag";
+
+
 import { lastValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
@@ -27,6 +27,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 // ... (Interface IOrdenCompraDatosPagoForm remains the same)
 export interface IOrdenCompraDatosPagoForm {
@@ -48,16 +50,12 @@ export interface IOrdenCompraDatosPagoForm {
   selector: "app-orden-compra-datos-pago",
   templateUrl: "./orden-compra-datos-pago.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ReactiveFormsModule,
     ReactiveFormsModule,
-    ReactiveFormsModule,
-    MessageModule,
-    TagModule,
     CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    WebButtonLabelSave,
-  ],
+    WebButtonLabelSave, LxMessage, LxTag],
 })
 export class OrdenCompraDatosPago implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -150,7 +148,7 @@ export class OrdenCompraDatosPago implements OnInit {
         Endpoints.SelectItems.wayToPay,
       ),
       lastValueFrom(this.enumSelectS.onLoadEnumList("ETipoGasto")),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false)),
+      lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false))
     ];
 
     const [
@@ -159,7 +157,7 @@ export class OrdenCompraDatosPago implements OnInit {
       useCfdi,
       wayToPay,
       tipoGasto,
-      fundingPeriods,
+      fundingPeriods
     ] = await Promise.all(promises);
 
     this.cb_providers.set((providers as ISelectItem[]) || []);
@@ -182,7 +180,7 @@ export class OrdenCompraDatosPago implements OnInit {
     return [
       { label: (currentYear - 1).toString(), value: currentYear - 1 },
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 },
+      { label: (currentYear + 1).toString(), value: currentYear + 1 }
     ];
   }
 

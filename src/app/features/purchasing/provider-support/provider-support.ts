@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { personOutline } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -26,12 +26,13 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-provider-support",
   templateUrl: "./provider-support.html",
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -39,17 +40,14 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
-    AvatarModule,
+    AppAvatar,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
     WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    IonItem,
-    IonLabel,
-  ],
+    WebButtonLabelDelete, MobileListItem, AppIcon],
 })
 export class ProviderSupport implements OnInit {
   authS = inject(AuthService);

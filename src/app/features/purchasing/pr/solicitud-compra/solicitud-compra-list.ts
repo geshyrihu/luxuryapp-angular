@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -47,13 +47,13 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-solicitud-compra-list",
   templateUrl: "./solicitud-compra-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -68,10 +68,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    IonItem,
-    IonLabel,
-    AppIcon,
-  ],
+    AppIcon, MobileListItem],
 })
 export class SolicitudCompraList {
   apiResponseS = inject(ApiResponseService);
@@ -91,7 +88,7 @@ export class SolicitudCompraList {
     "solicita",
     "equipoOInstalacion",
     "justificacionGasto",
-    "ordenesRelacionadas.folio",
+    "ordenesRelacionadas.folio"
   ];
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();

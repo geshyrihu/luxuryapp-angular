@@ -5,7 +5,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
@@ -14,6 +14,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { LxCard } from "@ui/adaptive/card/card";
 export interface IOrdenCompraStatusForm {
   id: FormControl<string | null>;
   ordenCompraId: FormControl<string | null>;
@@ -31,15 +32,12 @@ export interface IOrdenCompraStatusForm {
   selector: "app-orden-compra-status",
   templateUrl: "./orden-compra-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CardModule,
+  imports: [ReactiveFormsModule,
     InputTextModule,
     CustomInputCheckSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    TableModule,
-  ],
+    TableModule, LxCard],
 })
 export class OrdenCompraStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -1,7 +1,6 @@
 @if(!bloqueada()) { @if (ordenCompra().ordenCompraAuth.statusOrdenCompra ===
 'Pendiente') {
-<p-message severity="warn" class="w-full mt-1">
-  <div class="flex align-items-center justify-content-between w-full gap-3">
+<lx-message severity="warn" class="w-full mt-1"><div class="flex align-items-center justify-content-between w-full gap-3">
     <div class="flex align-items-center gap-2">
       <app-icon [icon]="'mdi:clock-outline'" />
       <span class="text-sm font-semibold">Pendiente de autorización</span>
@@ -22,11 +21,9 @@
       >
     </div>
     }
-  </div>
-</p-message>
+  </div></lx-message>
 } @if (ordenCompra().ordenCompraAuth.statusOrdenCompra === 'Autorizado') {
-<p-message severity="success" class="w-full mt-1">
-  <div class="flex align-items-center justify-content-between w-full gap-3">
+<lx-message severity="success" class="w-full mt-1"><div class="flex align-items-center justify-content-between w-full gap-3">
     <div class="flex align-items-center gap-2">
       <app-icon [icon]="'mdi:check-circle'" />
       <div class="flex flex-column">
@@ -46,12 +43,10 @@
       iconClass="mdi:undo"
     />
     }
-  </div>
-</p-message>
+  </div></lx-message>
 } @if ( ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente' &&
 ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
-<p-message severity="info" class="w-full mt-1">
-  <div class="flex align-items-center gap-2">
+<lx-message severity="info" class="w-full mt-1"><div class="flex align-items-center gap-2">
     <app-icon [icon]="'mdi:information'" />
     <div class="flex flex-column">
       <span class="font-semibold"
@@ -61,11 +56,9 @@ ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
         >{{ ordenCompra().ordenCompraAuth.revisadoPorResidente }}</span
       >
     </div>
-  </div>
-</p-message>
+  </div></lx-message>
 } } @if(bloqueada()) {
-<p-message severity="secondary" class="w-full mt-1">
-  <div class="flex align-items-center gap-2">
+<lx-message severity="secondary" class="w-full mt-1"><div class="flex align-items-center gap-2">
     <app-icon [icon]="'mdi:lock'" />
     <div class="flex flex-column gap-1">
       <span class="font-semibold"
@@ -77,6 +70,5 @@ ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
       >
       }
     </div>
-  </div>
-</p-message>
+  </div></lx-message>
 }

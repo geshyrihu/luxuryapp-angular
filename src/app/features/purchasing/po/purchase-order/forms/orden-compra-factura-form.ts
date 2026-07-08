@@ -17,7 +17,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importac
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
@@ -31,24 +31,23 @@ export interface IOrdenCompraFacturaForm {
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-orden-compra-factura-form",
   templateUrl: "./orden-compra-factura-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
-    CardModule,
     TableModule,
     CustomInputFile,
     WebButtonLabel,
     CustomInputSelectSignal,
-    TooltipModule,
-  ],
+    TooltipModule, LxCard, AppIcon],
 })
 export class OrdenCompraFacturaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -64,7 +63,7 @@ export class OrdenCompraFacturaForm implements OnInit {
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
-    { label: "Ingreso (Nota de Cródito)", value: "E" },
+    { label: "Ingreso (Nota de Cródito)", value: "E" }
   ];
 
   form: FormGroup<IOrdenCompraFacturaForm> =

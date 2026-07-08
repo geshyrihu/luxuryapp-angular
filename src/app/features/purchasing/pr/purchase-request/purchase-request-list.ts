@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -32,12 +32,13 @@ import { PurchaseRequestForm } from "./purchase-request-form";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-purchase-request-list",
   templateUrl: "./purchase-request-list.html",
-  imports: [
-    MobileActionMenu,
+  imports: [MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
@@ -52,10 +53,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     WebButtonLabelEdit,
     WebButtonLabelDelete,
     WebButtonLabelItem,
-    IonItem,
-    IonLabel,
-    IonIcon,
-  ],
+    IonIcon, MobileListItem, AppIcon],
 })
 export class PurchaseRequestList {
   apiResponseS = inject(ApiResponseService);

@@ -11,7 +11,7 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { debounceTime } from "rxjs";
@@ -24,20 +24,18 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CreateOrdenCompra } from "src/app/features/purchasing/pr/purchase-order/create-orden-compra";
+import { LxCard } from "@ui/adaptive/card/card";
 
 @Component({
   selector: "app-cuadro-comparativo-cotizacion",
   templateUrl: "./cuadro-comparativo-cotizacion.html",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule,
-    CardModule,
     TableModule,
     CustomInputTextSignal,
     CustomInputNumberSignal,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
-  ],
+    WebButtonLabelViewPdf, LxCard],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CuadroComparativoCotizacion implements OnInit, OnDestroy {

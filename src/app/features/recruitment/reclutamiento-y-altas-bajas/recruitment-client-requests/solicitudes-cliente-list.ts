@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -18,7 +18,7 @@ import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -35,23 +35,21 @@ import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-
 import { SolicitudModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-solicitudes-cliente-list",
   templateUrl: "./solicitudes-cliente-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     WebButtonIconItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    TagModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile, LxTag, MobileListItem, AppIcon],
 })
 export class SolicitudesClienteList {
   apiResponseS = inject(ApiResponseService);

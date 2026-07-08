@@ -1,12 +1,12 @@
-<div class="card shadow-1 border-round p-4 surface-card">
+﻿<div class="card shadow-1 border-round p-4 surface-card">
   <!-- BARRA DE ESTADO VISUAL -->
   <div class="mb-4">
-    <p-progressbar
+    <app-progress-bar
       [value]="100"
       [showValue]="false"
       [style]="{ height: '6px' }"
-      [class]="'p-progressbar-' + type"
-    ></p-progressbar>
+      [customClass]="'p-progressbar-' + type"
+    ></app-progress-bar>
   </div>
 
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
@@ -14,13 +14,9 @@
     <div class="flex flex-wrap align-items-center justify-content-between mb-4">
       <div class="flex align-items-center">
         @if (id && id !== "" && id !== "0") {
-        <p-tag
-          [value]="form.controls.folio.value"
-          severity="info"
-          class="text-lg"
-        />
+        <lx-tag [value]="form.controls.folio.value" color="info" class="text-lg" />
         } @else {
-        <p-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
+        <lx-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
         }
         <h3 class="m-0 font-bold text-900 ml-2">Solicitud de Compra</h3>
       </div>
@@ -40,7 +36,7 @@
           iconClass="mdi:email-outline"
           label="Enviar Correo"
           (clicked)="onSendEmail()"
-          severity="info"
+          color="info"
           variant="outlined"
           class="mr-2"
           size="small"
@@ -61,7 +57,7 @@
           iconClass="mdi:table"
           label="Cuadro Comparativo"
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
-          severity="info"
+          color="info"
           variant="outlined"
           class="mr-2"
           size="small"
@@ -99,7 +95,7 @@
       <div class="col-12 md:col-4">
         <custom-input-textarea-signal
           [control]="form.controls.equipoOInstalacion"
-          label="Área / Equipo / Instalación"
+          label="Ãrea / Equipo / InstalaciÃ³n"
           placeholder="Ej: Aire Acondicionado Piso 5, Lobby, etc."
           [horizontal]="false"
           [rows]="1"
@@ -108,7 +104,7 @@
       <div class="col-12 md:col-4">
         <custom-input-textarea-signal
           [control]="form.controls.justificacionGasto"
-          label="Justificación del Gasto"
+          label="JustificaciÃ³n del Gasto"
           placeholder="Explica brevemente la necesidad de esta compra..."
           [horizontal]="false"
           [rows]="2"
@@ -122,10 +118,10 @@
     <div class="flex align-items-center">
       <app-icon [icon]="'mdi:cart'" class="text-xl text-primary mr-2" />
       <h4 class="m-0 font-bold text-800 mr-2">Productos Solicitados</h4>
-      <p-badge
+      <app-badge
         [value]="SolicitudCompraDetalle.length.toString()"
-        severity="info"
-      ></p-badge>
+        color="info"
+      ></app-badge>
     </div>
   </div>
 
@@ -145,11 +141,11 @@
     (updateData)="onLoadData()"
   />
 
-  <!-- Órdenes Relacionadas (Solo si existen) -->
+  <!-- Ã“rdenes Relacionadas (Solo si existen) -->
   <div class="mt-5 p-3 surface-100 border-round">
     <div class="flex align-items-center justify-content-between mb-2">
       <span class="text-sm font-bold text-600 uppercase"
-        >Órdenes de Compra Relacionadas:</span
+        >Ã“rdenes de Compra Relacionadas:</span
       >
       <il-button
         iconClass="mdi:link"
@@ -163,16 +159,10 @@
     <div class="flex flex-wrap">
       @if (cotizacionesRelacionadas.length > 0) { @for (item of
       cotizacionesRelacionadas; track item.id) {
-      <p-tag
-        (click)="onAddOrEdit(item.id)"
-        [value]="item.folio"
-        severity="warning"
-        class="cursor-pointer"
-        [pTooltip]="'Ver Orden de Compra'"
-      />
+      <lx-tag (click)="onAddOrEdit(item.id)" [value]="item.folio" severity="warning" class="cursor-pointer" [tooltip]="'Ver Orden de Compra'" />
       } } @else {
       <span class="text-sm italic text-500"
-        >No hay órdenes de compra vinculadas formalmente.</span
+        >No hay Ã³rdenes de compra vinculadas formalmente.</span
       >
       }
     </div>

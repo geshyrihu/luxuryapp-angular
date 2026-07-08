@@ -1,5 +1,5 @@
 @if (mensajeError) {
-<p-message severity="error">Seleccione producto y unidad</p-message>
+<lx-message severity="error">Seleccione producto y unidad</lx-message>
 } @if (dataSignal()) {
 <p-table
   (onLazyLoad)="loadDataLazy($event)"
@@ -55,11 +55,11 @@
           class="table-col-10 pointer"
           (click)="onModalTarjetaProducto(row.value.productoId)"
         >
-          <p-avatar
+          <app-avatar
             [image]="row.value.urlImagen
                       ? row.value.urlImagen
                       : 'assets/images/default-avatar.png'"
-            class="mr-2"
+            styleClass="mr-2"
             size="large"
           />
         </td>

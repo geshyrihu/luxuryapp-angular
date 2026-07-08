@@ -1,16 +1,18 @@
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
+
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SolicitudModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
 import { SolicitudAltaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/components/solicitud-alta-form";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "employee-reclutamiento",
   templateUrl: "./employee-reclutamiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule],
+  imports: [LxCard, AppIcon],
 })
 export class EmployeeReclutamiento implements OnInit {
   apiResponseS = inject(ApiResponseService);

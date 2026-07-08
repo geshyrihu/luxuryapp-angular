@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
+
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
-import { MessageModule } from "primeng/message";
+
 import { lastValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
@@ -20,14 +20,15 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxMessage } from "@ui/adaptive/message/message";
 
 @Component({
   selector: "app-work-position-form",
   templateUrl: "./work-position-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CardModule,
+  imports: [ReactiveFormsModule,
     InputTextModule,
     CustomInputTextSignal,
     CustomInputAutoComplete,
@@ -35,9 +36,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
-    MessageModule,
-    DividerModule,
-  ],
+    DividerModule, LxCard, AppIcon, LxMessage],
 })
 export class WorkPositionForm implements OnInit {
   // --- INYECCIóN DE DEPENDENCIAS ---
@@ -116,7 +115,7 @@ export class WorkPositionForm implements OnInit {
         this.apiS.onGetSelectItem<ISelectItem[]>(
           `application-roles-to-administrator`,
         ),
-        this.apiS.onGetSelectItem<ISelectItem[]>(`Employee/${customerId}`),
+        this.apiS.onGetSelectItem<ISelectItem[]>(`Employee/${customerId}`)
       ]);
 
     this.cb_turnoTrabajo.set(turnoTrabajo);

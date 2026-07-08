@@ -1,6 +1,6 @@
 @if (model) {
-<p-card>
-  <!-- Cabecera -->
+<lx-card>
+<!-- Cabecera -->
   <div class="flex align-items-center gap-3 p-3 mb-4 bg-blue-50 border-round">
     <img
       [src]="urlLogo"
@@ -51,9 +51,9 @@
             <span class="text-500 text-sm">Alcances</span>
             <div class="flex gap-1">
               @if (model.sales) {
-              <p-tag value="Ventas" severity="success" />
+              <lx-tag value="Ventas" severity="success" />
               } @if (model.repair) {
-              <p-tag value="Reparaciones" severity="success" />
+              <lx-tag value="Reparaciones" severity="success" />
               }
             </div>
           </div>
@@ -122,5 +122,5 @@
       </p-fieldset>
     </div>
   </div>
-</p-card>
+</lx-card>
 }

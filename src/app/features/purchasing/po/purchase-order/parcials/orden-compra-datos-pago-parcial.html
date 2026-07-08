@@ -63,10 +63,7 @@
         SE FONDEA
       </div>
       <div class="flex-grow-1">
-        <p-tag
-          [severity]="ordenCompra().sendToFunding ? 'success' : 'secondary'"
-          [value]="ordenCompra().sendToFunding ? 'Sí' : 'No'"
-        />
+        <lx-tag [severity]="ordenCompra().sendToFunding ? 'success' : 'secondary'" [value]="ordenCompra().sendToFunding ? 'Sí' : 'No'" />
       </div>
     </div>
 

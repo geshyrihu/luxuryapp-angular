@@ -133,12 +133,7 @@
                   >ÓRDENES VINCULADAS:</span
                 >
                 @for (orden of sc.ordenesRelacionadas; track orden.id) {
-                <p-tag
-                  severity="warning"
-                  [border-round]="true"
-                  class="px-3 py-1 shadow-2 border-1 border-orange-200"
-                >
-                  <div class="flex align-items-center">
+                <lx-tag severity="warning" [rounded]="true" class="px-3 py-1 shadow-2 border-1 border-orange-200"><div class="flex align-items-center">
                     <app-icon [icon]="'mdi:cart'" class="text-xs" />
                     <span class="text-xs font-bold">{{ orden.folio }}</span>
                     <app-icon
@@ -147,8 +142,7 @@
                       (click)="onUnlink(orden.id)"
                       pTooltip="Desvincular Orden"
                     />
-                  </div>
-                </p-tag>
+                  </div></lx-tag>
                 } @empty {
                 <span class="text-xs text-400 italic"
                   >No hay órdenes enlazadas</span
@@ -261,12 +255,7 @@
                   >VINCULADA A:</span
                 >
                 @if (oc.solicitudCompraId) {
-                <p-tag
-                  severity="success"
-                  [border-round]="true"
-                  class="px-3 py-1 shadow-2 border-1 border-green-200"
-                >
-                  <div class="flex align-items-center">
+                <lx-tag severity="success" [rounded]="true" class="px-3 py-1 shadow-2 border-1 border-green-200"><div class="flex align-items-center">
                     <app-icon
                       [icon]="'mdi:file-document-outline'"
                       class="text-xs"
@@ -280,8 +269,7 @@
                       (click)="onUnlink(oc.id)"
                       pTooltip="Eliminar vínculo"
                     />
-                  </div>
-                </p-tag>
+                  </div></lx-tag>
                 } @else {
                 <span class="text-xs text-400 italic"
                   >Orden sin solicitud vinculada</span

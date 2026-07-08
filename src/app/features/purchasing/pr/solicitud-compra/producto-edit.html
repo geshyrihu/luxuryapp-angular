@@ -1,6 +1,6 @@
 @if (data) {
-<p-card>
-  <div class="card-body">
+<lx-card>
+<div class="card-body">
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-text-signal
         [control]="form.controls.nombreProducto"
@@ -28,5 +28,5 @@
       />
     </form>
   </div>
-</p-card>
+</lx-card>
 }

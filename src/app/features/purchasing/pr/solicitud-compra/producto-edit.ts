@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -15,19 +15,17 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { LxCard } from "@ui/adaptive/card/card";
 
 @Component({
   selector: "app-producto-edit",
   templateUrl: "./producto-edit.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CardModule,
+  imports: [ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
-  ],
+    WebButtonLabelSave, LxCard],
 })
 export class ProductoEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);

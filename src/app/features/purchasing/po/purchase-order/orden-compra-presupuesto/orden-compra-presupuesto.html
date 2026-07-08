@@ -20,10 +20,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   <ng-template #caption>
     <div class="grid align-items-center">
       <div class="col-12 md:col-3">
-        <p-tag
-          severity="danger"
-          [value]="'Total a cubrir: ' + (ordenCompraService.totalPorCubrir() | number: '1.2-2')"
-        ></p-tag>
+        <lx-tag severity="danger" [value]="'Total a cubrir: ' + (ordenCompraService.totalPorCubrir() | number: '1.2-2')" />
       </div>
       <div class="col-12 md:col-7">
         <primeng-custom-caption
@@ -130,12 +127,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
           tooltipPosition="top"
         />
         } @if (submitting()) {
-        <p-progressspinner
-          class="w-2rem h-2rem"
-          strokeWidth="8"
-          fill="var(--surface-ground)"
-          animationDuration=".5s"
-        ></p-progressspinner>
+        <app-spinner [size]="32" [strokeWidth]="8" />
         }
       </td>
     </tr>

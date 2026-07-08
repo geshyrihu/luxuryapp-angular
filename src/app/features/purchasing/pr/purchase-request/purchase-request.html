@@ -72,12 +72,7 @@
           />
           <div>
             @for (item of purchaseOrders; track item) {
-            <p-tag
-              (click)="onModalForm({ id: item.id, title: 'Editar Orden de Compra' })"
-              severity="warn"
-              [value]="item.folio"
-              class="m-1 cursor-pointer"
-            ></p-tag>
+            <lx-tag (click)="onModalForm({ id: item.id, title: 'Editar Orden de Compra' })" severity="warn" [value]="item.folio" class="m-1 cursor-pointer" />
             }
           </div>
         </ng-container>

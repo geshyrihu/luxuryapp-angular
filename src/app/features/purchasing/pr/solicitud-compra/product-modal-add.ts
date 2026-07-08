@@ -20,7 +20,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -62,7 +62,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    AvatarModule,
+    AppAvatar,
     PrimeNgCustomTableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

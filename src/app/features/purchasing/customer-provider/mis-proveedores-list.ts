@@ -1,8 +1,8 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -24,25 +24,23 @@ import { CustomerProviderForm } from "./customer-provider-form";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-mis-proveedores",
-  imports: [
-    MobileActionMenu,
+  imports: [MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    AvatarModule,
+    AppAvatar,
     PrimeNgCustomCaption,
     ActionMenu,
     DataViewMobile,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    IonItem,
-    IonLabel,
-    IonIcon,
-  ],
+    IonIcon, MobileListItem, AppIcon],
 
   templateUrl: "./mis-proveedores-list.html",
 })

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -12,19 +12,17 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { LxCard } from "@ui/adaptive/card/card";
 @Component({
   selector: "app-vacante-form",
   templateUrl: "./vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CardModule,
+  imports: [ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
-  ],
+    WebButtonLabelSave, LxCard],
 })
 export class VacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -9,14 +9,15 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
-import { MessageModule } from "primeng/message";
+
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
+import { LxMessage } from "@ui/adaptive/message/message";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonModule, MessageModule, AppIcon, WebButtonLabel],
+  imports: [ButtonModule, AppIcon, WebButtonLabel, LxMessage],
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);

@@ -1,14 +1,16 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IWorkPositionHours } from "../models/work-position.model";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-work-position-hours",
   templateUrl: "./work-position-hours.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule],
+  imports: [LxCard, AppIcon],
 })
 export class WorkPositionHours implements OnInit {
   // --- INYECCIóN DE DEPENDENCIAS ---

@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonBadge } from "@ionic/angular/standalone";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -23,9 +23,9 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import {
@@ -57,13 +57,15 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-work-position-list",
   templateUrl: "./work-position-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconActiveDesactive,
+  imports: [WebButtonIconActiveDesactive,
     WebButtonIconEdit,
     WebButtonIconItem,
     WebButtonIconDelete,
@@ -75,14 +77,10 @@ import { TooltipModule } from "primeng/tooltip";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    AvatarModule,
-    TagModule,
+    AppAvatar,
     PrimeNgCustomCaption,
     DataViewMobile,
-    IonBadge,
-    IonItem,
-    IonLabel,
-  ],
+    IonBadge, LxTag, MobileListItem, AppIcon],
 })
 export class WorkPositionList {
   // --- INYECCIóN DE DEPENDENCIAS ---

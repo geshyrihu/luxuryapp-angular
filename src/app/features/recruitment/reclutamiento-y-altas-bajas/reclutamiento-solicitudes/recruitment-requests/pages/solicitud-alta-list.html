@@ -53,10 +53,7 @@
         {{ item.applicationRole }}
       </td>
       <td class="text-center">
-        <p-tag
-          [value]="item.status"
-          [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
-        />
+        <lx-tag [value]="item.status" [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'" />
       </td>
       <td class="no-print">
         <div class="flex gap-1">
@@ -80,9 +77,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
         <app-icon
@@ -90,17 +87,17 @@
           class="text-xl text-green-600"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.nameEmployee }}</h3>
         <p>{{ item.nameCustomer }} é {{ item.applicationRole }}</p>
         <p>{{ item.executionDate }} é {{ item.status }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

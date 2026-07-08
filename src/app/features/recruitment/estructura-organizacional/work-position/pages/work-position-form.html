@@ -1,6 +1,5 @@
-<p-card class="p-0 border-none shadow-none">
-  <ng-template #content>
-    <form
+<lx-card [padded]="false">
+<form
       autocomplete="off"
       (ngSubmit)="onSubmit()"
       [formGroup]="form"
@@ -19,10 +18,7 @@
           />
           }
 
-          <p-message severity="info"
-            ><app-icon [icon]="'mdi:receipt'" class="mr-2" />Datos de
-            puesto</p-message
-          >
+          <lx-message severity="info"><app-icon [icon]="'mdi:receipt'" class="mr-2" />Datos de puesto</lx-message>
           <p-divider />
           <!-- Puesto/Rol -->
           <custom-input-autocomplete-signal
@@ -85,10 +81,7 @@
           <!-- <h3 class="text-lg font-semibold mb-1 flex align-items-center">
             <app-icon [icon]="'mdi:clock-outline'" class="mr-2"/> Horario de Trabajo
           </h3> -->
-          <p-message severity="info"
-            ><app-icon [icon]="'mdi:clock-outline'" class="mr-2" /> Horario de
-            Trabajo</p-message
-          >
+          <lx-message severity="info"><app-icon [icon]="'mdi:clock-outline'" class="mr-2" /> Horario de Trabajo</lx-message>
           <p-divider />
           @for (dia of ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
           'Sábado', 'Domingo']; track dia) {
@@ -127,5 +120,4 @@
         />
       </div>
     </form>
-  </ng-template>
-</p-card>
+</lx-card>

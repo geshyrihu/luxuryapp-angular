@@ -170,9 +170,9 @@
       </td>
       <td class="text-sm">
         @if (item.isFueraFondeo) {
-        <p-tag severity="warn" value="Fuera de proceso" />
+        <lx-tag severity="warn" value="Fuera de proceso" />
         } @else if (item.isFunded) {
-        <p-tag severity="success" [value]="item.fundingPeriodName" />
+        <lx-tag severity="success" [value]="item.fundingPeriodName" />
         } @else {
         <span class="text-500 italic">Sin Asignar</span>
         }
@@ -333,9 +333,9 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         style="
           width: 36px;
           height: 36px;
@@ -350,20 +350,20 @@
       >
         <app-icon [icon]="'mdi:shopping'" class="text-xl text-yellow-700" />
       </div>
-      <ion-label>
+      
         <h3>{{ item.equipoOInstalacion }}</h3>
         <p>{{ item.proveedor }} é Folio: {{ item.folio }}</p>
         <p>
           Total: ${{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
           date:'d MMM yyyy':'UTC' }}
         </p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onAddOrEdit(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

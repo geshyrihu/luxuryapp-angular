@@ -64,7 +64,7 @@
         <td>
           @if (necesitaActualizacion(item)) {
           <div class="flex align-items-center">
-            <p-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
+            <lx-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
             <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
               pTooltip="Este puesto requiere que se le asigne un rol"
@@ -81,15 +81,15 @@
         <td>
           <div class="flex align-items-center">
             @if (item.applicationUserPhoto) {
-            <p-avatar
+            <app-avatar
               [image]="item.applicationUserPhoto"
               shape="circle"
               size="large"
               (click)="onCardEmployee(item.applicationUserId)"
-              class="cursor-pointer"
+              styleClass="cursor-pointer"
             />
             } @else {
-            <p-avatar icon="mdi:account" shape="circle" size="large" />
+            <app-avatar icon="mdi:account" shape="circle" size="large" />
             }
             <span>{{ item.applicationUser || 'Vacante' }}</span>
           </div>
@@ -156,9 +156,9 @@
     </div>
 
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full" class="ion-no-padding">
-        <div
-          slot="start"
+      <ili-list-item class="ion-no-padding">
+<div
+          start
           class="mobile-avatar-slot"
           (click)="item.applicationUserPhoto ? onCardEmployee(item.applicationUserId) : null"
         >
@@ -176,7 +176,7 @@
           }
         </div>
 
-        <ion-label>
+        
           <div class="flex justify-content-between align-items-center mb-1">
             <span class="text-xs font-bold text-500">{{ item.folio }}</span>
             <ion-badge color="light" class="text-xs"
@@ -201,9 +201,9 @@
             Proceso' }}
           </ion-badge>
           }
-        </ion-label>
+        
 
-        <ili-action-menu slot="end">
+        <ili-action-menu end>
           <ng-container actions>
             @if (shouldShowVacancyRequest(item)) {
             <ili-button-item
@@ -234,7 +234,7 @@
             }
           </ng-container>
         </ili-action-menu>
-      </ion-item>
+</ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

@@ -28,12 +28,12 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <p-avatar
+        <app-avatar
           [image]="item.pathPhoto"
           alt="noImg"
           shape="square"
           size="large"
-          class="b-r-8 img-70"
+          styleClass="b-r-8 img-70"
         />
       </td>
       <td>
@@ -69,9 +69,9 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         class="w-3rem h-3rem border-round-md bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -79,17 +79,17 @@
           style="font-size: 20px; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.nameComercial }}</h3>
         <p>{{ item.service }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"
         />
         <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -1,6 +1,5 @@
-<p-card class="p-0 border-none shadow-none">
-  <ng-template #content>
-    @if (data()) {
+<lx-card [padded]="false">
+@if (data()) {
     <div class="flex flex-column">
       <div class="flex align-items-center p-3 surface-100 border-round-lg">
         <app-icon [icon]="'mdi:clock-outline'" class="text-2xl text-600" />
@@ -44,5 +43,4 @@
       <span>Cargando horarios...</span>
     </div>
     }
-  </ng-template>
-</p-card>
+</lx-card>

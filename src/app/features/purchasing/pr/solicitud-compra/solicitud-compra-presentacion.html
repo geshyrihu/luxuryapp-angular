@@ -282,10 +282,10 @@
               @for (evidencia of solicitud.evidencias; track evidencia.id) {
               <div class="col-12 md:col-3 px-2">
                 <div class="evidence-frame p-2">
-                  <p-image
+                  <app-image
                     [src]="evidencia.fileUrl"
                     [alt]="evidencia.fileName || 'Evidencia'"
-                    class="block w-full"
+                    styleClass="block w-full"
                     [imageStyle]="{
                       width: '100%',
                       height: '220px',

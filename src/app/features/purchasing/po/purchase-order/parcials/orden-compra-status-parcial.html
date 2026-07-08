@@ -26,17 +26,7 @@
         PAGADO
       </div>
       <div class="flex-grow-1">
-        <p-tag
-          [severity]="
-            ordenCompra().ordenCompraStatus.sePago ? 'success' : 'secondary'
-          "
-          [icon]="
-            ordenCompra().ordenCompraStatus.sePago
-              ? 'mdi:check'
-              : 'mdi:minus'
-          "
-          [value]="ordenCompra().ordenCompraStatus.sePago ? 'Pagado' : 'Pendiente'"
-        />
+        <lx-tag [severity]=" ordenCompra().ordenCompraStatus.sePago ? 'success' : 'secondary' " [icon]=" ordenCompra().ordenCompraStatus.sePago ? 'mdi:check' : 'mdi:minus' " [value]="ordenCompra().ordenCompraStatus.sePago ? 'Pagado' : 'Pendiente'" />
       </div>
     </div>
 
@@ -45,19 +35,7 @@
         ENTREGADO
       </div>
       <div class="flex-grow-1">
-        <p-tag
-          [severity]="
-            ordenCompra().ordenCompraStatus.seRecibio ? 'success' : 'secondary'
-          "
-          [icon]="
-            ordenCompra().ordenCompraStatus.seRecibio
-              ? 'mdi:check'
-              : 'mdi:minus'
-          "
-          [value]="
-            ordenCompra().ordenCompraStatus.seRecibio ? 'Recibido' : 'Pendiente'
-          "
-        />
+        <lx-tag [severity]=" ordenCompra().ordenCompraStatus.seRecibio ? 'success' : 'secondary' " [icon]=" ordenCompra().ordenCompraStatus.seRecibio ? 'mdi:check' : 'mdi:minus' " [value]=" ordenCompra().ordenCompraStatus.seRecibio ? 'Recibido' : 'Pendiente' " />
       </div>
     </div>
 

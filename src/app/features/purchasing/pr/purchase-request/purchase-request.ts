@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { TagModule } from "primeng/tag";
+
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -13,17 +13,16 @@ import { PurchaseRequestAddProduct } from "./purchase-request-add-product";
 import { PurchaseRequestAddProductForm } from "./purchase-request-add-product-form";
 import { PurchaseRequestForm } from "./purchase-request-form";
 import { PurchaseRequestProducts } from "./purchase-request-products";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-purchase-request",
   templateUrl: "./purchase-request.html",
-  imports: [
-    WebButtonLabelItem,
+  imports: [WebButtonLabelItem,
     CommonModule,
-    TagModule,
     ActionMenu,
     PurchaseRequestAddProduct,
-    PurchaseRequestProducts,
-  ],
+    PurchaseRequestProducts, AppIcon, LxTag],
 })
 export class PurchaseRequest implements OnInit {
   activatedRoute = inject(ActivatedRoute);

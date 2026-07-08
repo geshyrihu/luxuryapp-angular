@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -59,6 +59,9 @@ const tipoGastoIcons: { [key: number]: string } = {
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-orden-compra-list",
@@ -143,18 +146,16 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
         margin: 0;
         padding-left: 1rem;
       }
-    `,
+    `
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    MobileActionMenu,
+  imports: [MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     RouterModule,
     TableModule,
-    TagModule,
     WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -164,10 +165,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     DataViewMobile,
     ActionMenu,
     WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    IonItem,
-    IonLabel,
-  ],
+    WebButtonLabelDelete, LxTag, MobileListItem, AppIcon],
 })
 export class OrdenCompraList {
   apiResponseS = inject(ApiResponseService);

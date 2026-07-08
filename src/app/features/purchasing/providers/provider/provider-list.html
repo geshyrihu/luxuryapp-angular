@@ -152,13 +152,8 @@
               }
               <div class="flex flex-wrap gap-1 mt-1">
                 @if (item.sales) {
-                <p-tag value="Ventas" severity="secondary" class="text-xs" />
-                } @if (item.repair) {
-                <p-tag
-                  value="Reparación"
-                  severity="secondary"
-                  class="text-xs"
-                />
+                <lx-tag value="Ventas" severity="secondary" class="text-xs" />} @if (item.repair) {
+                <lx-tag value="Reparación" severity="secondary" class="text-xs" />
                 }
               </div>
             </div>
@@ -171,22 +166,7 @@
             >
               <div class="flex flex-wrap gap-1">
                 @for (categoria of item.categorias; track $index) {
-                <p-tag
-                  value="{{ categoria.nombreCategoria | uppercase }}"
-                  severity="info"
-                  class="text-xs"
-                ></p-tag>
-                }
-              </div>
-
-              <div class="flex align-items-center gap-1">
-                @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento,
-                roles.Administrador, roles.SuperUsuario,
-                roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 )
-                {
-                <iw-button-edit
-                  (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
-                />
+                <lx-tag value="{{ categoria.nombreCategoria | uppercase }}" severity="info" class="text-xs" ></lx-tag> } </div> <div class="flex align-items-center gap-1"> @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento, roles.Administrador, roles.SuperUsuario, roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 ) { <iw-button-edit (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })" />
                 } @if (item.activo) {
                 <iw-button-item
                   iconClass="mdi:chart-bar"
@@ -241,21 +221,21 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:store-outline" class="text-green-600 text-xl" />
       </div>
-      <ion-label>
+      
         <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
         <p class="text-sm text-600">
           {{ item.nameProvider }} é {{ item.tipoServicio }}
         </p>
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
@@ -267,6 +247,6 @@
           />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

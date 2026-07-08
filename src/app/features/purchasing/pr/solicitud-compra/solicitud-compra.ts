@@ -17,11 +17,11 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { BadgeModule } from "primeng/badge";
+import { AppBadge } from "@ui/web/badge/badge";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { ProgressBarModule } from "primeng/progressbar";
-import { TagModule } from "primeng/tag";
+import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
+
 import { TooltipModule } from "primeng/tooltip";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -45,6 +45,7 @@ import { SolicitudCompraDetalle } from "src/app/features/purchasing/pr/solicitud
 import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-link-manager";
 import { ProductAdd } from "./product-add";
 import { ProductModalAdd } from "./product-modal-add";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;
@@ -61,12 +62,10 @@ export interface ISolicitudCompraForm {
 @Component({
   selector: "app-solicitud-compra",
   templateUrl: "./solicitud-compra.html",
-  imports: [
-    ReactiveFormsModule,
+  imports: [ReactiveFormsModule,
     RouterModule,
-    ProgressBarModule,
+    AppProgressBar,
     TooltipModule,
-    TagModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
     // CustomInputSelectSignal,
@@ -76,9 +75,8 @@ export interface ISolicitudCompraForm {
     SolicitudCompraDetalle,
     WebButtonLabel,
     DividerModule,
-    BadgeModule,
-    AppIcon,
-  ],
+    AppBadge,
+    AppIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SolicitudCompra implements OnInit {

@@ -13,10 +13,10 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DialogModule } from "primeng/dialog";
+
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { ImageModule } from "primeng/image";
+import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
@@ -34,23 +34,21 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxModal } from "@ui/adaptive/modal/modal";
 
 @Component({
   selector: "app-cuadro-comparativo-list",
   templateUrl: "./cuadro-comparativo-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     WebButtonIconViewPdf,
     CommonModule,
     ReactiveFormsModule,
     TableModule,
     DividerModule,
-    ImageModule,
+    AppImage,
     WebButtonLabel,
-    CustomInputSelectSignal,
-    DialogModule,
-  ],
+    CustomInputSelectSignal, LxModal],
 })
 export class CuadroComparativoList implements OnInit, OnDestroy {
   tooltipPlacement = TooltipPlacement;
@@ -107,7 +105,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       value: EAutorizacionCuadroComparativo.Administrador,
     },
     { label: "Supervisor", value: EAutorizacionCuadroComparativo.Supervisor },
-    { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion },
+    { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion }
   ];
   comiteEventsSignal = signal<any[]>([]);
   selectedEvidenceFiles: File[] = [];
@@ -241,7 +239,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       const preciosValidos = [
         { total: n.total, index: 1 },
         { total: n.total2, index: 2 },
-        { total: n.total3, index: 3 },
+        { total: n.total3, index: 3 }
       ].filter((p) => p.total > 0);
 
       if (preciosValidos.length === 0) continue;
@@ -505,7 +503,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         total: this.total1,
         total2: this.total2,
         total3: this.total3,
-      },
+      }
     ];
   }
 

@@ -88,26 +88,11 @@
           <div class="grid">
             @for (month of fundingPeriodsByMonth(); track month.monthName) {
             <div class="col-12 md:col-6 lg:col-4">
-              <p-message
-                [text]="month.monthName"
-                class="w-full justify-content-start"
-              >
-                <div class="flex-flex-grow-1-1 text-right">
+              <lx-message [text]="month.monthName" class="w-full justify-content-start"><div class="flex-flex-grow-1-1 text-right">
                   @for ( quincena of month.quincenas; track quincena.value ) {
-                  <p-tag
-                    (click)="selectFundingPeriod(quincena)"
-                    [value]="quincena.label.split(' ')[0]"
-                    [severity]="
-                              step1Form.get('fundingPeriod')?.value ===
-                              quincena.value
-                                ? 'success'
-                                : 'secondary'
-                            "
-                    class="ml-2 cursor-pointer"
-                  ></p-tag>
+                  <lx-tag (click)="selectFundingPeriod(quincena)" [value]="quincena.label.split(' ')[0]" [severity]=" step1Form.get('fundingPeriod')?.value === quincena.value ? 'success' : 'secondary' " class="ml-2 cursor-pointer" />
                   }
-                </div>
-              </p-message>
+                </div></lx-message>
             </div>
             }
           </div>
@@ -145,18 +130,18 @@
             <ng-template let-product #item>
               <div class="flex flex-wrap p-1 align-items-center w-full">
                 @if (product.image) {
-                <p-avatar
+                <app-avatar
                   [src]="product.image"
                   [alt]=""
-                  class="mr-2"
+                  styleClass="mr-2"
                   size="large"
                 />
                 } @else {
-                <p-avatar
+                <app-avatar
                   icon="mdi:package"
                   size="xlarge"
                   shape="square"
-                ></p-avatar>
+                ></app-avatar>
                 }
                 <div class="flex-1 flex flex-column">
                   <span class="font-bold">{{ product.label }}</span>
@@ -315,8 +300,7 @@
       </p>
 
       <div class="mt-4">
-        <p-fileupload
-          #fileUpload
+        <app-file-upload #fileUpload
           name="invoices[]"
           [multiple]="true"
           accept=".pdf,.xml"
@@ -350,7 +334,7 @@
             </div>
             }
           </ng-template>
-        </p-fileupload>
+        </app-file-upload>
       </div>
     </div>
     }

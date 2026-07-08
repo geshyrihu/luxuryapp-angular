@@ -104,10 +104,7 @@
 
         <div class="flex align-items-center gap-2">
           <span class="font-bold text-700">Requiere fin de semana:</span>
-          <p-tag
-            [value]="jd.requiresWeekendShift ? 'Sí' : 'No'"
-            [severity]="jd.requiresWeekendShift ? 'warn' : 'success'"
-          />
+          <lx-tag [value]="jd.requiresWeekendShift ? 'Sí' : 'No'" [severity]="jd.requiresWeekendShift ? 'warn' : 'success'" />
         </div>
       </div>
       } @else {

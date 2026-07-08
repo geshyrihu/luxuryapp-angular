@@ -1,16 +1,18 @@
 import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
+
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { FieldsetModule } from "primeng/fieldset";
-import { TagModule } from "primeng/tag";
+
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxCard } from "@ui/adaptive/card/card";
 @Component({
   selector: "app-provider-card",
   templateUrl: "./provider-card.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule, DividerModule, FieldsetModule, TagModule],
+  imports: [DividerModule, FieldsetModule, LxTag, LxCard],
 })
 export class TarjetaProveedor implements OnInit {
   apiResponseS = inject(ApiResponseService);

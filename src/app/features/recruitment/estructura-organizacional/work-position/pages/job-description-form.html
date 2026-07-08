@@ -1,150 +1,74 @@
-<p-card class="p-0 border-none shadow-none">
-  <ng-template #content>
-    <form
-      autocomplete="off"
-      (ngSubmit)="onSubmit()"
-      [formGroup]="form"
-      class="flex flex-column"
+<div class="card">
+  <form
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    class="flex flex-column"
+  >
+    <div class="hidden">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        hidden
+        label="Id"
+        [readonly]="true"
+      />
+    </div>
+
+    <div class="flex justify-content-end mb-4">
+      <il-button
+        label="Criticar con IA"
+        iconClass="mdi:lightning-bolt"
+        variant="ghost-text"
+        severity="help"
+        (clicked)="analyzeDescription()"
+        [loading]="analyzingDescription()"
+        [disabled]="!applicationRoleName()"
+      />
+      <il-button
+        label="Generar con IA"
+        iconClass="mdi:sparkles"
+        variant="ghost-text"
+        severity="help"
+        (clicked)="openInstructionsDialog()"
+        [loading]="generatingProposal()"
+        [disabled]="!applicationRoleName()"
+      />
+    </div>
+
+    <lx-modal
+      header="Instrucciones para la IA (Opcional)"
+      [visible]="showInstructionsDialog()"
+      (visibleChange)="showInstructionsDialog.set($event)"
     >
-      <div class="hidden">
-        <custom-input-text-signal
-          [control]="form.controls.id"
-          hidden
-          label="Id"
-          [readonly]="true"
-        />
-      </div>
+      <p class="mb-3 text-600 text-sm">
+        Agrega contexto adicional para que la IA genere una mejor propuesta.
+      </p>
+      <custom-input-textarea-signal
+        [rows]="5"
+        [(ngModel)]="customInstructions"
+        [ngModelOptions]="{standalone: true}"
+        placeholder="Ej: Enfocarse en atenciÃ³n de lujo, requiere nivel bilingÃ¼e..."
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="w-full"
+      />
 
-      <div class="flex justify-content-end mb-4">
+      <div class="flex justify-content-end gap-2 mt-3">
         <il-button
-          label="Criticar con IA"
-          iconClass="mdi:lightning-bolt"
+          label="Cancelar"
+          iconClass="mdi:close"
           variant="ghost-text"
-          severity="help"
-          (clicked)="analyzeDescription()"
-          [loading]="analyzingDescription()"
-          [disabled]="!applicationRoleName()"
-          ngbTooltip="Analiza la descripciÃ³n actual en busca de mejoras"
+          severity="secondary"
+          (clicked)="showInstructionsDialog.set(false)"
         />
         <il-button
-          label="Generar con IA"
-          iconClass="mdi:sparkles"
-          variant="ghost-text"
+          label="Generar"
+          iconClass="mdi:check"
           severity="help"
-          (clicked)="openInstructionsDialog()"
           [loading]="generatingProposal()"
-          [disabled]="!applicationRoleName()"
+          (clicked)="generateProposal()"
         />
       </div>
-
-      <p-dialog
-        header="Instrucciones para la IA (Opcional)"
-        [(visible)]="showInstructionsDialog"
-        [modal]="true"
-        class="max-w-30rem w-full"
-        [draggable]="false"
-        [resizable]="false"
-      >
-        <p class="mb-3 text-600 text-sm">
-          Agrega contexto adicional para que la IA genere una mejor propuesta.
-        </p>
-        <custom-input-textarea-signal
-          [rows]="5"
-          [(ngModel)]="customInstructions"
-          [ngModelOptions]="{standalone: true}"
-          placeholder="Ej: Enfocarse en atenciÃ³n de lujo, requiere nivel bilingÃ¼e..."
-          [onlyInput]="true"
-          [noMargin]="true"
-          customClass="w-full"
-        />
-
-        <ng-template #footer>
-          <il-button
-            label="Cancelar"
-            iconClass="mdi:close"
-            variant="ghost-text"
-            severity="secondary"
-            (clicked)="showInstructionsDialog.set(false)"
-          />
-          <il-button
-            label="Generar"
-            iconClass="mdi:check"
-            severity="help"
-            [loading]="generatingProposal()"
-            (clicked)="generateProposal()"
-          />
-        </ng-template>
-      </p-dialog>
-
-      <p-dialog
-        header="AnÃ¡lisis de la IA"
-        [(visible)]="showAnalysisDialog"
-        [modal]="true"
-        class="max-w-40rem w-full"
-        [maximizable]="true"
-        [draggable]="false"
-        [resizable]="false"
-      >
-        <div [innerHTML]="analysisResult()" class="line-height-3"></div>
-        <ng-template #footer>
-          <il-button
-            iconClass="mdi:check"
-            label="Entendido"
-            variant="ghost-text"
-            (clicked)="showAnalysisDialog.set(false)"
-          />
-        </ng-template>
-      </p-dialog>
-
-      <div class="flex flex-column">
-        <custom-input-textarea-signal
-          [control]="form.controls.summary"
-          label="Objetivo General"
-          placeholder="Â¿CuÃ¡l es el propÃ³sito principal de este puesto?"
-          [rows]="3"
-        />
-
-        <custom-input-textarea-signal
-          [control]="form.controls.responsibilities"
-          label="Responsabilidades"
-          placeholder="Liste las tareas y responsabilidades clave..."
-          [rows]="4"
-        />
-
-        <custom-input-textarea-signal
-          [control]="form.controls.skills"
-          label="Habilidades y Conocimientos"
-          placeholder="Habilidades tÃ©cnicas, blandas, idiomas, etc."
-          [rows]="3"
-        />
-
-        <custom-input-textarea-signal
-          [control]="form.controls.additionalRequirements"
-          label="Requisitos Adicionales"
-          placeholder="Escolaridad, edad, certificaciones especÃ­ficas..."
-          [rows]="2"
-        />
-
-        <custom-input-textarea-signal
-          [control]="form.controls.workEnvironment"
-          label="Entorno y Equipo"
-          placeholder="DescripciÃ³n del lugar, uniforme, equipo proporcionado..."
-          [rows]="2"
-        />
-
-        <custom-input-check-signal
-          [control]="form.controls.requiresWeekendShift"
-          label="Â¿Requiere cobertura de Fin de Semana (Sab/Dom)?"
-        />
-      </div>
-
-      <div class="flex justify-content-end pt-4">
-        <il-button-save
-          [propertyId]="id() || ''"
-          [disabled]="form.invalid"
-          [submitting]="submitting()"
-        />
-      </div>
-    </form>
-  </ng-template>
-</p-card>
+    </lx-modal>
+  </form>
+</div>

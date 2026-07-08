@@ -20,7 +20,7 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 
-import { AvatarModule } from "primeng/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -53,7 +53,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputTextSignal,
     CustomInputNumberSignal,
     PrimeNgCustomTableFooter,
-    AvatarModule,
+    AppAvatar,
   ],
   providers: [PaginationService], // Proveer una instancia fresca de PaginationService para este componente
 })

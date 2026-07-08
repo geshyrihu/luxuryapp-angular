@@ -13,7 +13,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -21,23 +21,21 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-purchase-link-manager",
   templateUrl: "./purchase-link-manager.html",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule,
     TableModule,
     CardModule,
     WebButtonLabel,
     CustomInputTextSignal,
-    TagModule,
     TooltipModule,
     DragDropModule,
     CustomInputSelectButton,
-    AppIcon,
-  ],
+    AppIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PurchaseLinkManager implements OnInit {
@@ -56,7 +54,7 @@ export class PurchaseLinkManager implements OnInit {
   statusOptions = [
     { label: "Pendientes", value: 2 },
     { label: "Autorizadas", value: 0 },
-    { label: "Denegadas", value: 1 },
+    { label: "Denegadas", value: 1 }
   ];
 
   statusSCControl = new FormControl<number>(2);
