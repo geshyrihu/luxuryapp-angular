@@ -120,10 +120,7 @@
             />
             <h2 class="m-0 text-primary-900">Ejemplos de Configuración</h2>
           </div>
-          <p-tag
-            value="Usa el botón 'Ver Ejemplos' en el constructor"
-            severity="info"
-          />
+          <lx-tag value="Usa el botón 'Ver Ejemplos' en el constructor" severity="info" />
         </div>
 
         <div class="grid">
@@ -161,13 +158,8 @@
   </div>
 
   <!-- SECCIÓN AVANZADA / TÉCNICA -->
-  <p-accordion class="mt-4">
-    <p-accordion-panel value="technical">
-      <p-accordion-header>
-        <app-icon [icon]="'mdi:cog'" class="mr-2" /> Detalles Técnicos y Tipos
-        de Datos (Solo Expertos)
-      </p-accordion-header>
-      <p-accordion-content>
+  <lx-accordion class="mt-4 block" [items]="technicalAccordion">
+      <div accordion="technical">
         <div class="grid text-sm">
           <div class="col-12 md:col-6">
             <h5 class="mt-0">Tipos de Renglón</h5>
@@ -197,9 +189,8 @@
             </ul>
           </div>
         </div>
-      </p-accordion-content>
-    </p-accordion-panel>
-  </p-accordion>
+      </div>
+  </lx-accordion>
 
   <div class="flex justify-content-center mt-6">
     <il-button

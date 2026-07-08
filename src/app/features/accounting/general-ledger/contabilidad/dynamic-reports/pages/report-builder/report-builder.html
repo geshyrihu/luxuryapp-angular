@@ -135,9 +135,9 @@
               >{{ customerIdS.customerName() || customerIdS.nombreCorto() ||
               'Cliente activo' }}</span
             >
-            <span class="text-xs text-400">â€¢</span>
+            <span class="text-xs text-400">•</span>
             <span class="text-xs text-700">{{ empresaAspel() }}</span>
-            <span class="text-xs text-400">â€¢</span>
+            <span class="text-xs text-400">•</span>
             <span class="text-xs text-700">{{ previewYear() }}</span>
           </div>
           <div
@@ -278,11 +278,7 @@
 
                   <!-- Badge de Tipo -->
                   <div class="w-3rem flex justify-content-center">
-                    <p-tag
-                      [value]="row.rowType === 'account' ? 'CTA' : 'FX'"
-                      [severity]="row.rowType === 'account' ? 'info' : 'help'"
-                      class="text-xs font-bold"
-                    />
+                    <lx-tag [value]="row.rowType === 'account' ? 'CTA' : 'FX'" [severity]="row.rowType === 'account' ? 'info' : 'help'" class="text-xs font-bold" />
                   </div>
 
                   <!-- Etiqueta Editable -->
@@ -327,12 +323,13 @@
                       class="flex flex-wrap gap-1 max-h-4rem overflow-y-auto"
                     >
                       @for (code of row.accountNumbers; track code) {
-                      <p-chip
+                      <lx-chip
                         [label]="code"
                         icon="mdi:check"
-                        class="text-xs py-0 px-2 bg-primary-100 text-primary-900"
+                        color="primary"
+                        class="text-xs"
                         [removable]="true"
-                        (onRemove)="eliminarCuenta(sec.sectionId, row.rowId, code)"
+                        (removed)="eliminarCuenta(sec.sectionId, row.rowId, code)"
                       />
                       }
                     </div>
@@ -414,11 +411,7 @@
                     </span>
                   </div>
 
-                  <p-tag
-                    [value]="row.rowId"
-                    severity="secondary"
-                    class="text-xs opacity-60 font-mono flex-shrink-0"
-                  />
+                  <lx-tag [value]="row.rowId" severity="secondary" class="text-xs opacity-60 font-mono flex-shrink-0" />
 
                   <iw-button
                     iconClass="mdi:delete"
@@ -625,7 +618,7 @@
             <ul class="m-0 p-0 pl-3 list-none flex flex-column gap-1">
               @for (warn of livePreviewS.warnings(); track $index) {
               <li class="text-xs text-orange-700 line-height-2">
-                â€¢ {{ warn }}
+                • {{ warn }}
               </li>
               }
             </ul>
@@ -683,16 +676,8 @@
 </p-popover>
 
 <!-- DIALOGO: Ejemplos -->
-<p-dialog
-  header="Aplicar Plantilla Predefinida"
-  [(visible)]="showExamples"
-  [modal]="true"
-  [style]="{ width: '400px' }"
-  [draggable]="false"
-  [resizable]="false"
-  class="premium-dialog"
->
-  <div class="flex flex-column gap-3 p-2">
+<lx-modal header="Aplicar Plantilla Predefinida" [(visible)]="showExamples" class="premium-dialog">
+<div class="flex flex-column gap-3 p-2">
     <div
       class="surface-card border-1 surface-border border-round-xl p-3 hover:surface-100 cursor-pointer flex align-items-center gap-3 transition-all hover:border-primary shadow-1"
       (click)="aplicarEjemplo('egp')"
@@ -721,7 +706,7 @@
       </div>
     </div>
   </div>
-</p-dialog>
+</lx-modal>
 
 <style>
   .bg-dots {

@@ -25,9 +25,9 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import { BadgeModule } from "primeng/badge";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { ChipModule } from "primeng/chip";
+import { LxChip } from "@ui/adaptive/chip/chip";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { DialogModule } from "primeng/dialog";
+
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { MultiSelectModule } from "primeng/multiselect";
@@ -35,7 +35,7 @@ import { PopoverModule } from "primeng/popover";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TabsModule } from "primeng/tabs";
-import { TagModule } from "primeng/tag";
+
 import { TooltipModule } from "primeng/tooltip";
 import { startWith } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -57,22 +57,22 @@ import {
   IReportSection,
 } from "../../models/report-definition.interface";
 import { livePreviewState } from "../../state/live-preview.state";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 
 const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
 
 @Component({
   selector: "app-report-builder",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
     AccordionModule,
     AutoCompleteModule,
     TooltipModule,
-    DialogModule,
     TabsModule,
-    TagModule,
     CustomInputSelectSignal,
     MultiSelectModule,
     CustomInputCheckSignal,
@@ -81,12 +81,12 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     PopoverModule,
     WebButtonLabel,
     WebButtonIcon,
-    ChipModule,
+    LxChip,
     InputGroupModule,
     InputGroupAddonModule,
     AccountTreeSelect,
     CurrencyPipe,
-   AppIcon],
+   AppIcon, LxTag, LxModal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-builder.html",
 })
@@ -145,12 +145,12 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Dos columnas", value: "table-twoColumn" },
     { label: "Comparativo", value: "table-comparative" },
     { label: "Presupuesto vs Real", value: "table-budgetVsActual" },
-    { label: "Tarjetas KPI", value: "summary-cards" },
+    { label: "Tarjetas KPI", value: "summary-cards" }
   ];
 
   fuentesAspel = [
     { label: "Contabilidad", value: "contabilidad" },
-    { label: "Cobranza", value: "cobranza" },
+    { label: "Cobranza", value: "cobranza" }
   ];
 
   empresaAspel = computed(() => this.toEmpresaAspel(this.dataSourceValue()));
@@ -168,7 +168,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 },
+    { label: "Diciembre", value: 12 }
   ];
 
   aniosPreview = Array.from({ length: 7 }, (_, idx) => {
@@ -498,7 +498,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R1} + {R2}",
               multiplier: 1,
-            },
+            }
           ],
         },
         {
@@ -526,7 +526,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R3} + {R4}",
               multiplier: 1,
-            },
+            }
           ],
         },
         {
@@ -540,9 +540,9 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{S1_TOTAL} + {S2_TOTAL}",
               multiplier: 1,
-            },
+            }
           ],
-        },
+        }
       ];
       this.livePreviewS.sections.set(exampleSections);
       this.livePreviewS.triggerCompute();
@@ -581,7 +581,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "contabilidad",
           year,
           month: period,
-        },
+        }
       ]);
       return;
     }
@@ -603,7 +603,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "budget",
           year,
           month: period,
-        },
+        }
       ]);
       return;
     }
@@ -616,7 +616,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
         dataSource: "contabilidad",
         year,
         month: period,
-      },
+      }
     ]);
   }
 

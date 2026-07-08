@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from 
 import { CommonModule } from "@angular/common";
 import { AccordionModule } from "primeng/accordion";
 import { AccordionBase } from "@ui/base/accordion.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /**
  * AppAccordion — Wrapper sobre p-accordion. PrimeNG 22 reemplazo la API por
@@ -13,7 +14,7 @@ import { AccordionBase } from "@ui/base/accordion.base";
 @Component({
   selector: "app-accordion",
   standalone: true,
-  imports: [CommonModule, AccordionModule],
+  imports: [CommonModule, AccordionModule, AppIcon],
   template: `
     <p-accordion
       [value]="accordionValue()"
@@ -22,7 +23,12 @@ import { AccordionBase } from "@ui/base/accordion.base";
     >
       @for (item of items(); track item.id) {
         <p-accordion-panel [value]="item.id" [disabled]="item.disabled ?? false">
-          <p-accordion-header>{{ item.title }}</p-accordion-header>
+          <p-accordion-header>
+            @if (item.icon) {
+              <app-icon [icon]="item.icon" class="mr-2" />
+            }
+            {{ item.title }}
+          </p-accordion-header>
           <p-accordion-content>
             <ng-content [select]="'[accordion=' + item.id + ']'" />
           </p-accordion-content>
