@@ -106,16 +106,20 @@
         <div class="budget-nav-divider"></div>
 
         <!-- Tabs de navegación usando p-selectButton -->
-        <custom-input-select-button-signal
-          [options]="[
-            { label: 'Presupuesto', value: 'presupuesto' },
-            { label: 'Extraordinarios (605) y Proyectos (606)', value: 'especiales' }
-          ]"
-          [ngModel]="activeTabValue()"
-          (ngModelChange)="activeTabValue.set($event)"
-          optionLabel="label"
-          optionValue="value"
-        />
+        <div class="flex align-items-center" style="flex-shrink: 0">
+          <custom-input-select-button-signal
+            [options]="[
+              { label: 'Presupuesto', value: 'presupuesto' },
+              { label: 'Extraordinarios (605) y Proyectos (606)', value: 'especiales' }
+            ]"
+            [ngModel]="activeTabValue()"
+            (ngModelChange)="activeTabValue.set($event)"
+            optionLabel="label"
+            optionValue="value"
+            [horizontal]="false"
+            [noMargin]="true"
+          />
+        </div>
       </div>
 
       <!-- Lado Derecho: Búsqueda y botones -->
@@ -188,11 +192,7 @@
 
     <!-- Mensaje de error -->
     @if (sharedS.errorMensaje()) {
-    <p-message
-      severity="error"
-      [text]="sharedS.errorMensaje()!"
-      class="w-full"
-    />
+    <lx-message severity="error" [text]="sharedS.errorMensaje()!" class="w-full" />
     }
 
     <!-- Contenido del tab activo -->
@@ -231,18 +231,12 @@
       />
     </div>
 
-    <ion-segment
-      [ngModel]="activeTabValue()"
-      (ngModelChange)="activeTabValue.set($event)"
-      class="mb-3"
-    >
-      <ion-segment-button value="presupuesto">
-        <ion-label>Presupuesto</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="especiales">
-        <ion-label>Esp. 605/606</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+    <lx-tabs
+      [tabs]="budgetTabs"
+      [activeId]="activeTabValue()"
+      (tabChange)="activeTabValue.set($event.id)"
+      class="mb-3 block"
+    />
 
     <div class="mt-2">
       @switch (activeTabValue()) { @case ('presupuesto') {
