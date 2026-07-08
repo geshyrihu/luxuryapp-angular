@@ -1,8 +1,8 @@
 <div class="rf-shell">
   @if (loading()) {
   <div class="rf-card p-4">
-    <p-skeleton height="2rem" class="mb-2" />
-    <p-skeleton height="10rem" />
+    <lx-skeleton height="2rem" styleClass="mb-2" />
+    <lx-skeleton height="10rem" />
   </div>
   } @else if (!rows().length) {
   <div class="surface-card p-6 border-round shadow-1 text-center">

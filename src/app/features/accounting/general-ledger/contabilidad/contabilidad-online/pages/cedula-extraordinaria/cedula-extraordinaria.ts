@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, untracked, ChangeDetectionStrategy } from "@angular/core";
-import { SkeletonModule } from "primeng/skeleton";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EspejoAspelExtraordinarios } from "../../../presupuesto-web-aspel/espejo-aspel-extraordinarios";
 import { PresupuestoWebAspelService } from "../../../presupuesto-web-aspel/presupuesto-web-aspel.service";
@@ -8,7 +8,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-cedula-extraordinaria",
-  imports: [CommonModule, EspejoAspelExtraordinarios, SkeletonModule],
+  imports: [CommonModule, EspejoAspelExtraordinarios, LxSkeleton],
   providers: [PresupuestoWebAspelService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-extraordinaria.html",

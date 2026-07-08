@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Endpoints } from 'src/app/core/constants/endpoints';
 import { reportFilterState } from '../../state/financial-report-filter.state';
 import { IBancosInversionesDto } from '../../models/aspel-budget.interface';
-import { SkeletonModule } from 'primeng/skeleton';
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { ApiResponseService } from 'src/app/core/services/api-response.service';
 
@@ -12,7 +12,7 @@ import { TableModule } from 'primeng/table';
 @Component({
   selector: 'app-bancos-inversiones',
   standalone: true,
-  imports: [CommonModule, SkeletonModule, TableModule],
+  imports: [CommonModule, LxSkeleton, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './bancos-inversiones.html',
 })

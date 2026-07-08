@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Endpoints } from 'src/app/core/constants/endpoints';
 import { reportFilterState } from '../../state/financial-report-filter.state';
 import { IFondoReservaDTO } from '../../models/aspel-budget.interface';
-import { SkeletonModule } from 'primeng/skeleton';
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { ApiResponseService } from 'src/app/core/services/api-response.service';
 
 @Component({
   selector: 'app-fondo-reserva',
   standalone: true,
-  imports: [CommonModule, SkeletonModule],
+  imports: [CommonModule, LxSkeleton],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './fondo-reserva.html',
 })

@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject, input, untracked, signal, ChangeDetectionStrategy } from '@angular/core';
-import { SkeletonModule } from 'primeng/skeleton';
 import { EspejoAspelExtraordinarios } from '../../../presupuesto-web-aspel/espejo-aspel-extraordinarios';
 import { PresupuestoWebAspelService } from '../../../presupuesto-web-aspel/presupuesto-web-aspel.service';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 
 @Component({
   selector: 'app-cedula-extraordinaria-cliente',
-  imports: [CommonModule, EspejoAspelExtraordinarios, SkeletonModule],
+  imports: [CommonModule, EspejoAspelExtraordinarios],
   providers: [PresupuestoWebAspelService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './cedula-extraordinaria-cliente.html',

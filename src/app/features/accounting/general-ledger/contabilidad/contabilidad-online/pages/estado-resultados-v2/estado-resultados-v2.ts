@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SkeletonModule } from "primeng/skeleton";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from "primeng/table";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -62,7 +62,7 @@ type EstadoResultadosRow =
     CommonModule,
     FormsModule,
     TableModule,
-    SkeletonModule,
+    LxSkeleton,
     DataViewMobile,
     AccountingNumberPipe,
   ],

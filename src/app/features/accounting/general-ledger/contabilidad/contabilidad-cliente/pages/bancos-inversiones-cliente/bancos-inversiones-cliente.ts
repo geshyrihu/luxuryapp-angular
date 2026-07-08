@@ -1,6 +1,6 @@
 import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkeletonModule } from 'primeng/skeleton';
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from 'primeng/table';
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
@@ -8,7 +8,7 @@ import { IBancosInversionesDto } from '../../../contabilidad-online/models/aspel
 
 @Component({
   selector: 'app-bancos-inversiones-cliente',
-  imports: [CommonModule, SkeletonModule, TableModule, AppIcon],
+  imports: [CommonModule, LxSkeleton, TableModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './bancos-inversiones-cliente.html',
 })

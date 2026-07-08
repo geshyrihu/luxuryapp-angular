@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SkeletonModule } from "primeng/skeleton";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -12,7 +12,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-estado-posicion-financiera",
-  imports: [CommonModule, FormsModule, SkeletonModule, AccountingNumberPipe],
+  imports: [CommonModule, FormsModule, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-posicion-financiera.html",
 })

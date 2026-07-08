@@ -1,13 +1,13 @@
 import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkeletonModule } from 'primeng/skeleton';
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
 import { IFondoReservaDTO } from '../../../contabilidad-online/models/aspel-budget.interface';
 
 @Component({
   selector: 'app-fondo-reserva-cliente',
-  imports: [CommonModule, SkeletonModule, AppIcon],
+  imports: [CommonModule, LxSkeleton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './fondo-reserva-cliente.html',
 })
