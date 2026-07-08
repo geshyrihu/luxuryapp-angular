@@ -3,24 +3,30 @@ import { CommonModule } from "@angular/common";
 import { AccordionModule } from "primeng/accordion";
 import { AccordionBase } from "@ui/base/accordion.base";
 
+/**
+ * AppAccordion — Wrapper sobre p-accordion. PrimeNG 22 reemplazo la API por
+ * indice (`[activeIndex]`, `p-accordionTab`, onOpen/onClose) por la API por
+ * `value` (p-accordion / p-accordion-panel / p-accordion-header /
+ * p-accordion-content). Se conserva el selector `app-accordion`, la API de
+ * AccordionBase (`items`, `multiple`, `expandedIds`) y los slots `[accordion=<id>]`.
+ */
 @Component({
   selector: "app-accordion",
   standalone: true,
   imports: [CommonModule, AccordionModule],
   template: `
     <p-accordion
+      [value]="accordionValue()"
       [multiple]="multiple()"
-      [activeIndex]="activeIndexes()"
-      (onClose)="onClose($event)"
-      (onOpen)="onOpen($event)"
+      (valueChange)="onValueChange($event)"
     >
       @for (item of items(); track item.id) {
-        <p-accordionTab
-          [header]="item.title"
-          [disabled]="item.disabled"
-        >
-          <ng-content [select]="'[accordion=' + item.id + ']'" />
-        </p-accordionTab>
+        <p-accordion-panel [value]="item.id" [disabled]="item.disabled ?? false">
+          <p-accordion-header>{{ item.title }}</p-accordion-header>
+          <p-accordion-content>
+            <ng-content [select]="'[accordion=' + item.id + ']'" />
+          </p-accordion-content>
+        </p-accordion-panel>
       }
     </p-accordion>
   `,
@@ -31,23 +37,18 @@ import { AccordionBase } from "@ui/base/accordion.base";
   encapsulation: ViewEncapsulation.None,
 })
 export class Accordion extends AccordionBase {
-  activeIndexes = computed<number[]>(() =>
-    this.expandedIds()
-      .map((id) => this.items().findIndex((i) => i.id === id))
-      .filter((i) => i >= 0)
+  /** Valor activo para p-accordion: array si multiple, escalar si no. */
+  accordionValue = computed<string | string[] | null>(() =>
+    this.multiple() ? this.expandedIds() : (this.expandedIds()[0] ?? null),
   );
 
-  onOpen(event: { index: number }): void {
-    const item = this.items()[event.index];
-    if (item) {
-      this.toggle(item.id);
-    }
-  }
-
-  onClose(event: { index: number }): void {
-    const item = this.items()[event.index];
-    if (item) {
-      this.toggle(item.id);
+  onValueChange(value: string | number | (string | number)[] | null | undefined): void {
+    if (Array.isArray(value)) {
+      this.expandedIds.set(value.map(String));
+    } else if (value === null || value === undefined) {
+      this.expandedIds.set([]);
+    } else {
+      this.expandedIds.set([String(value)]);
     }
   }
 }
