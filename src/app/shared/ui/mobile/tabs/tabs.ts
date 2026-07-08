@@ -1,4 +1,10 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  ElementRef,
+  effect,
+  viewChild,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TabsBase } from "@ui/base/tabs.base";
@@ -29,7 +35,7 @@ import { TabsBase } from "@ui/base/tabs.base";
         </button>
       }
     </div>
-    <div class="ili-tab-panels">
+    <div class="ili-tab-panels" #panels>
       <ng-content />
     </div>
   `,
@@ -90,4 +96,22 @@ import { TabsBase } from "@ui/base/tabs.base";
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class MobileTabs extends TabsBase {}
+export class MobileTabs extends TabsBase {
+  private panelsRef = viewChild<ElementRef<HTMLElement>>("panels");
+
+  constructor() {
+    super();
+    // Conmuta la visibilidad de los paneles proyectados `[tab=<id>]` segun la
+    // tab activa. Si no hay paneles proyectados (uso como selector + @switch del
+    // feature), no hace nada.
+    effect(() => {
+      const active = this.activeId();
+      const host = this.panelsRef()?.nativeElement;
+      if (!host) return;
+      const panels = host.querySelectorAll<HTMLElement>(":scope > [tab]");
+      panels.forEach((p) => {
+        p.hidden = p.getAttribute("tab") !== active;
+      });
+    });
+  }
+}

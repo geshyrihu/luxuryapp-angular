@@ -18,14 +18,9 @@
     </div>
   </div>
 
-  <p-tabs value="0">
-    <p-tablist>
-      <p-tab value="0">Mis reportes</p-tab>
-      <p-tab value="1">Plantillas</p-tab>
-    </p-tablist>
-
-    <p-tabpanels>
-      <p-tabpanel value="0">
+  <lx-tabs [tabs]="catalogTabs()" [activeId]="activeTab()" (tabChange)="onTabChange($event)" class="block" />
+  @switch (activeTab()) {
+    @case ("0") {
         <p-table
           #table
           [value]="propios()"
@@ -106,9 +101,8 @@
             </div>
           </ng-template>
         </app-data-view-mobile>
-      </p-tabpanel>
-
-      <p-tabpanel value="1">
+    }
+    @case ("1") {
         <p-table
           [value]="plantillas()"
           [rows]="rows"
@@ -172,7 +166,6 @@
             </div>
           </ng-template>
         </app-data-view-mobile>
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+    }
+  }
 </div>

@@ -15,13 +15,14 @@ import {
 } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { Table, TableModule } from "primeng/table";
-import { TabsModule } from "primeng/tabs";
-
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import type { TabItem } from "@ui/base/tabs.base";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -33,7 +34,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 import { TooltipModule } from "primeng/tooltip";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-report-catalog",
@@ -44,7 +44,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     CommonModule,
     RouterModule,
     TableModule,
-    TabsModule,
+    LxTabs,
     WebButtonLabelAdd,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
@@ -71,6 +71,16 @@ export class ReportCatalog implements OnInit {
     "visualizationType",
     "dataSource"
   ];
+
+  catalogTabs = signal<TabItem[]>([
+    { id: "0", label: "Mis reportes" },
+    { id: "1", label: "Plantillas" },
+  ]);
+  activeTab = signal<string>("0");
+
+  onTabChange(tab: TabItem) {
+    this.activeTab.set(tab.id);
+  }
 
   ngOnInit() {
     this.cargar();

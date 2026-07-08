@@ -1,35 +1,45 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ElementRef,
+  effect,
+  viewChild,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TabsModule } from "primeng/tabs";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TabsBase } from "@ui/base/tabs.base";
 
 /**
- * AppTabs — Wrapper sobre p-tabs. PrimeNG 22 reemplazo TabView (`primeng/tabview`,
- * `p-tabView`/`p-tabPanel`, API por indice) por Tabs (`primeng/tabs`, API por
- * `value`: p-tabs / p-tablist / p-tab / p-tabpanels / p-tabpanel).
- * Se conserva el selector `app-tabs`, la API de TabsBase y los slots `[tab=<id>]`.
+ * AppTabs — Wrapper sobre p-tabs (PrimeNG 22, API por `value`). Usa PrimeNG solo
+ * para la BARRA de tabs (p-tabs/p-tablist/p-tab); el contenido se proyecta en un
+ * contenedor propio y se conmuta por `activeId` ocultando los `[tab=<id>]` que no
+ * coinciden. Esto evita el `<ng-content [select]>` dinamico (no soportado de forma
+ * fiable) y funciona igual que la pata movil `ili-tabs`.
+ * Slots: `<div tab="<id>">...</div>` por panel. Si no hay paneles proyectados,
+ * `lx-tabs` funciona como selector puro (el feature conmuta con `@switch`).
  */
 @Component({
   selector: "app-tabs",
   standalone: true,
-  imports: [CommonModule, TabsModule],
+  imports: [CommonModule, TabsModule, AppIcon],
   template: `
     <p-tabs [value]="activeId()" (valueChange)="onValueChange($event)">
       <p-tablist>
         @for (tab of tabs(); track tab.id) {
           <p-tab [value]="tab.id" [disabled]="tab.disabled ?? false">
+            @if (tab.icon) {
+              <app-icon [icon]="tab.icon" class="mr-2" />
+            }
             {{ tab.label }}
           </p-tab>
         }
       </p-tablist>
-      <p-tabpanels>
-        @for (tab of tabs(); track tab.id) {
-          <p-tabpanel [value]="tab.id">
-            <ng-content [select]="'[tab=' + tab.id + ']'" />
-          </p-tabpanel>
-        }
-      </p-tabpanels>
     </p-tabs>
+    <div class="app-tabs-panels" #panels>
+      <ng-content />
+    </div>
   `,
   styles: [`
     :host { display: block; }
@@ -38,6 +48,23 @@ import { TabsBase } from "@ui/base/tabs.base";
   encapsulation: ViewEncapsulation.None,
 })
 export class Tabs extends TabsBase {
+  private panelsRef = viewChild<ElementRef<HTMLElement>>("panels");
+
+  constructor() {
+    super();
+    // Conmuta la visibilidad de los paneles proyectados `[tab=<id>]` segun la
+    // tab activa. Si no hay paneles proyectados no hace nada (uso como selector).
+    effect(() => {
+      const active = this.activeId();
+      const host = this.panelsRef()?.nativeElement;
+      if (!host) return;
+      const panels = host.querySelectorAll<HTMLElement>(":scope > [tab]");
+      panels.forEach((p) => {
+        p.hidden = p.getAttribute("tab") !== active;
+      });
+    });
+  }
+
   onValueChange(value: string | number): void {
     const tab = this.tabs().find((t) => t.id === value);
     if (tab) {
