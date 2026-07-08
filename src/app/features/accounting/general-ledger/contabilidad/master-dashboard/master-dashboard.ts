@@ -1,15 +1,16 @@
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { CardModule } from "primeng/card";
-import { IonItem, IonItemDivider, IonLabel, IonList } from "@ionic/angular/standalone";
+
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
+import { LxCard } from "@ui/adaptive/card/card";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-master-dashboard",
-  imports: [CardModule, AppIcon, IonList, IonItem, IonItemDivider, IonLabel],
+  imports: [AppIcon, LxCard, MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./master-dashboard.html",
 })
