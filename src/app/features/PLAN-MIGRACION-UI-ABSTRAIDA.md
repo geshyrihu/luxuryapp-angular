@@ -1,6 +1,6 @@
 ﻿# Plan de Migracion a UI Abstraida en `features/`
 
-> Ultima actualizacion: 2026-07-07 (Agente 3)
+> Ultima actualizacion: 2026-07-08 (Agente 1 — accounting cerrado salvo p-tabs + wrappers faltantes)
 > Alcance: `client/angular/src/app/features/`
 > Objetivo: eliminar el uso directo de componentes PrimeNG e Ionic dentro de `features/`, migrando a componentes custom compartidos en `shared/`.
 > Excepcion temporal permitida: `p-table` y sus templates/directivas autorizados.
@@ -1260,3 +1260,48 @@ g-template, p-table, div sin cerrar) provenian del script original de migracion 
 - [x] scan de mojibake limpio tras detectar y limpiar 127 ocurrencias en 39 archivos.
 - [x] CERO mojibake verificado al final del escaneo.
 - [x] plan actualizado.
+
+## Sesion 2026-07-08 (Agente 1 — accounting: cierre del barrido con wrapper)
+
+### Objetivo de la sesion
+
+- cerrar `accounting/**` (lane Agente 1) migrando todo lo que tiene wrapper existente
+- verificar SIEMPRE con `ng build --configuration development` (no solo tsc)
+
+### Cambios realizados (16 commits, build verde en cada verificacion)
+
+- **Ionic crudo: 0 en accounting.** cobranza-nativa (batch ledger/members/dashboard/native-statement), master-dashboard, catalogo-gastos-fijos x2, presupuesto-web-aspel/wrapper: `ion-badge/list/card/divider/segment/button/accordion` -> wrappers (`ili-badge`, `div`, `lx-tabs`, `ili-button`, `lx-accordion`) + limpieza de `moduls.ts` (quita imports `@ionic/angular/standalone` ya sin uso).
+- **Familias display**: `p-progressspinner`->`lx-spinner` (9), `p-avatar`->`lx-avatar` (2), `p-badge`->`lx-badge` (2), `p-progressbar`->`lx-progress-bar` (3), `p-skeleton`->`lx-skeleton` (37 en 13 archivos).
+- **Componentes**: `p-accordion`->`lx-accordion` (report-guide), `p-chip`->`lx-chip` (report-builder), `p-checkbox`->`lx-checkbox` (catalogo x2 binario + funding-group-files grupo), `p-dropdown`->`custom-input-select-signal` (sat-funding-detail x2), `p-confirmdialog` eliminado x2 (report-catalog usa `(confirmed)` de los botones delete; payment-list usa `window.confirm`).
+
+### Wrappers creados o ajustados (shared/ui — excepcion documentada)
+
+- **`web/accordion/accordion.ts`**: estaba roto contra PrimeNG 22 (`[activeIndex]`, `p-accordionTab`, `onOpen/onClose`) y **tumbaba `ng build` de TODO el repo** (NG8002). Migrado a API v22 (`p-accordion [value]/(valueChange)` + `p-accordion-panel/-header/-content`) + render de `item.icon` en header (paridad con `ili-accordion`). Build global destrabado.
+
+### Hallazgos clave (para todos los agentes)
+
+1. **ripgrep NO soporta lookahead `(?!...)`**: los scans tipo `<p-(?!table...)` devuelven **falso negativo** (0 matches) silenciosamente. Usar scan plano `<p-`/`<ion-` + exclusion manual del family `p-table`.
+2. **`ion-input-select` / `ion-input-checkbox` son componentes PROPIOS** (`shared/ui/inputs/mobile`), NO Ionic crudo -> permitidos; no migrar.
+3. El patron `<ng-content [select]="...">` de `app-tabs`/`app-accordion` **compila** (no era el bloqueo del build), pero su correctitud en runtime multi-panel esta **sin verificar visualmente**.
+4. **`p-tabs` ya es EXCLUSIVO de accounting** (3 archivos): el resto de modulos ya lo migro. Ver reparto abajo.
+5. Divergencia con la sesion de Codex: reporto `app-table-checkbox` + migracion de `p-checkbox` en catalogo, pero el arbol tenia `p-checkbox` crudo (yo lo migre a `lx-checkbox`). El wrapper `web/table-checkbox` puede estar **huerfano/no commiteado** -> Agente 2 debe reconciliar.
+
+### Pendiente en accounting y REPARTO propuesto entre 3 agentes
+
+**Lo que TOMO yo (Agente 1) para cerrar accounting al 100%:**
+
+1. **`lx-tabs` multi-panel (shared/ui)** + los 3 usos de accounting (`report-catalog`, `financial-reports-wrapper`, `contabilidad-cliente-wrapper`). Bloqueo real: `ili-tabs` movil proyecta TODOS los panels con un solo `<ng-content/>` (no conmuta por tab). Como `p-tabs` ya es accounting-only, NO hay colision -> yo arreglo el wrapper y migro los 3, idealmente con verificacion visual (app corriendo). **Requiere tu ayuda para ver la app en movil.**
+2. **`p-iconfield`/`p-inputicon`** (cobranza-online-dashboard, 1 uso c/u): lo resuelvo inline (icono + input), no amerita wrapper.
+
+**Lo que DEJO (necesita dueno de shared/ui o el agente del modulo):**
+
+3. **Wrappers faltantes de uso disperso** — decidir si crearlos (yo puedo, soy quien ha tocado shared/ui): `p-listbox` (7 usos / 4 archivos: 1 accounting + 3 otros) es el mas justificable; `p-popover` (3 archivos: 1 accounting + 2), `p-splitbutton` (2 archivos: 1 accounting + 1). Como cruzan modulos, propongo que **1 solo agente cree estos wrappers** (evita colisiones en shared/ui) y luego cada modulo migre sus usos.
+4. **Agente 2 (system+hr)**: re-auditar con scan plano (sin lookahead) por posible "deuda fantasma"; reconciliar `web/table-checkbox` huerfano.
+5. **Agente 3 (operations/maintenance/legal/purchasing/recruitment/web)**: residuales de su lane (p-avatar/p-image/heterogeneo) + migrar sus usos de listbox/popover/splitbutton una vez existan los wrappers.
+
+### Validaciones
+
+- [x] build (`ng build --configuration development`) EXIT=0 en cada familia
+- [x] scan de encoding (`node scripts/audit-encoding.mjs`) — CERO BOM/mojibake en archivos que toque
+- [x] cero `ion-*` crudo y cero `p-*` no permitido en accounting salvo: `p-tabs` x3 (pendiente wrapper), `p-splitbutton`/`p-popover`/`p-listbox`/`p-iconfield`/`p-inputicon` (pendiente wrapper/inline)
+- [x] plan actualizado
