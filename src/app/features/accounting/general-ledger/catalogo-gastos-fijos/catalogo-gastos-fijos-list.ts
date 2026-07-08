@@ -34,6 +34,7 @@ import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { MobileBadge } from "@ui/mobile/badge/badge";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
@@ -47,6 +48,7 @@ import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
     PrimeNgCustomTableEmptyMessage,
     LxAccordion,
     LxTabs,
+    LxCheckbox,
     MobileBadge,
     MobileButtonLabel,
     ...CATALOGO_GASTOS_FIJOS_LIST_MODULES, LxMessage, InputSelect, MobileListItem, AppIcon],

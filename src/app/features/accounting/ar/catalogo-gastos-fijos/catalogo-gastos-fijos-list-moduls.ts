@@ -1,18 +1,6 @@
 import { CommonModule, UpperCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonBadge,
-  IonButton,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
-} from "@ionic/angular/standalone";
-import { CheckboxModule } from "primeng/checkbox";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
@@ -34,25 +22,15 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   ActionMenu,
   DataViewMobile,
   PrimeNgCustomTableEmptyMessage,
-  CheckboxModule,
   CommonModule,
   WebButtonLabel,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   CustomInputSelectSignal,
   FormsModule,
-  InputTextModule,
-  IonAccordion,
-  IonAccordionGroup,
-  IonBadge,
-  IonButton,
-  IonIcon,
+  InputTextModule,
   IonInputCheckbox,
-  IonInputSelect,
-  IonItem,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
+  IonInputSelect,
   MessageModule,
   PrimeNgCustomCaption,
   PrimeNgCustomTableFooter,

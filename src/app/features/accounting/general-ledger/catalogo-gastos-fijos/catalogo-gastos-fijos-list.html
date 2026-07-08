@@ -166,10 +166,9 @@
     <tr>
       <th class="table-col-10">
         <div class="flex align-items-center justify-content-center">
-          <p-checkbox
-            [binary]="true"
-            [ngModel]="isAllSelected()"
-            (ngModelChange)="toggleSelectAll($event)"
+          <lx-checkbox
+            [checked]="isAllSelected()"
+            (checkedChange)="toggleSelectAll($event)"
           />
         </div>
       </th>
@@ -204,10 +203,9 @@
   <ng-template #body let-item>
     <tr>
       <td class="text-center">
-        <p-checkbox
-          [binary]="true"
-          [ngModel]="item.crearOrdenCompra"
-          (ngModelChange)="onItemCheckChange(item, $event)"
+        <lx-checkbox
+          [checked]="item.crearOrdenCompra"
+          (checkedChange)="onItemCheckChange(item, $event)"
         />
       </td>
       <td>{{ item.idFondeo }}</td>
