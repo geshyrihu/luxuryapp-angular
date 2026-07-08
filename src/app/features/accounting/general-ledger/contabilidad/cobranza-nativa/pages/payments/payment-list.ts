@@ -1,18 +1,22 @@
 import { DatePipe, DecimalPipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { cashOutline } from "ionicons/icons";
-import { ConfirmationService } from "primeng/api";
-import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { TableModule } from "primeng/table";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { addIcons } from "ionicons";
+import { cashOutline } from "ionicons/icons";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -30,14 +34,6 @@ import CreditNoteModalComponent from "./credit-note-modal";
 import { PaymentDetailModal } from "./payment-detail-modal";
 import { PaymentForm } from "./payment-form";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { TooltipModule } from "primeng/tooltip";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-
 @Component({
   selector: "app-payment-list",
   imports: [
@@ -51,15 +47,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomCaption,
     WebButtonLabel,
     WebButtonLabelEdit,
-    ConfirmDialogModule,
     DecimalPipe,
     DatePipe,
     DataViewMobile,
+    MobileListItem,
+    AppIcon,
     ActionMenu,
-    IonItem,
-    IonLabel,
   ],
-  providers: [ConfirmationService],
   templateUrl: "./payment-list.html",
 })
 export default class PaymentList {
@@ -67,7 +61,6 @@ export default class PaymentList {
   private toastService = inject(CustomToastService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private confirmationS = inject(ConfirmationService);
   private destroyRef = inject(DestroyRef);
   private signalRService = inject(SignalRService);
 
@@ -183,36 +176,31 @@ export default class PaymentList {
       });
   }
 
-  onCancelPayment(item: CobranzaPaymentResponseDTO) {
-    this.confirmationS.confirm({
-      message: `¿Deseas cancelar el pago de <strong>${item.propertyFullName}</strong> por <strong>$${item.amount.toFixed(2)}</strong>?<br/><span class="text-sm text-gray-500">Esta acción revertirá los cargos aplicados a este pago.</span>`,
-      header: "Cancelar Pago",
-      icon: "mdi:alert",
-      acceptLabel: "Sí, cancelar pago",
-      rejectLabel: "No",
-      acceptButtonclass: "p-button-danger",
-      accept: async () => {
-        const reason = window.prompt(
-          "Ingresa el motivo formal de cancelación del pago (mínimo 10 caracteres):",
-          "Pago cancelado por aclaración operativa",
-        );
+  async onCancelPayment(item: CobranzaPaymentResponseDTO) {
+    const confirmed = window.confirm(
+      `¿Deseas cancelar el pago de ${item.propertyFullName} por $${item.amount.toFixed(2)}?\n\nEsta acción revertirá los cargos aplicados a este pago.`,
+    );
+    if (!confirmed) return;
 
-        if (!reason) return;
-        if (reason.trim().length < 10) {
-          this.toastService.showError(
-            "Error",
-            "El motivo de cancelación debe tener al menos 10 caracteres.",
-          );
-          return;
-        }
+    const reason = window.prompt(
+      "Ingresa el motivo formal de cancelación del pago (mínimo 10 caracteres):",
+      "Pago cancelado por aclaración operativa",
+    );
 
-        const success = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.Payments.cancel(item.id),
-          { reason: reason.trim() },
-        );
+    if (!reason) return;
+    if (reason.trim().length < 10) {
+      this.toastService.showError(
+        "Error",
+        "El motivo de cancelación debe tener al menos 10 caracteres.",
+      );
+      return;
+    }
 
-        if (success !== false) this.onLoadData();
-      },
-    });
+    const success = await this.apiResponseS.onPost(
+      Endpoints.AccountingCoi.NativeCollection.Payments.cancel(item.id),
+      { reason: reason.trim() },
+    );
+
+    if (success !== false) this.onLoadData();
   }
 }

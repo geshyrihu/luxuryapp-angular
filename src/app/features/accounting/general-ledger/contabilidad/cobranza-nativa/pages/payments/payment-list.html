@@ -1,5 +1,3 @@
-<p-confirmdialog />
-
 <div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
@@ -138,14 +136,14 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:cash" class="text-green-600 text-xl" />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
         <p>
           {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} · {{ item.amount |
@@ -156,8 +154,8 @@
           {{ item.unappliedAmount | number:'1.2-2' }}
         </p>
         <p>{{ item.reference || '-' }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      </div>
+      <ili-action-menu end>
         <ng-container actions>
           <il-button
             label="Detalle"
@@ -182,6 +180,6 @@
           }
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

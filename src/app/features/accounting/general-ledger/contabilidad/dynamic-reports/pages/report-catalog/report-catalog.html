@@ -1,5 +1,3 @@
-<p-confirmdialog />
-
 <div class="card">
   <div class="flex align-items-center justify-content-between mb-3">
     <div>
@@ -54,7 +52,7 @@
             <tr>
               <td class="font-semibold">{{ r.name }}</td>
               <td class="text-500 text-sm">{{ r.description }}</td>
-              <td><p-tag [value]="r.visualizationType" severity="info" /></td>
+              <td><lx-tag [value]="r.visualizationType" severity="info" /></td>
               <td>{{ r.dataSource }}</td>
               <td>{{ r.createdAt | date: 'dd/MM/yyyy' }}</td>
               <td>
@@ -66,7 +64,8 @@
                   />
                   <iw-button-edit (clicked)="editar(r.id)" />
                   <iw-button-delete
-                    (clicked)="confirmarEliminar(r.id, r.name)"
+                    [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'"
+                    (confirmed)="eliminar(r.id)"
                   />
                 </div>
               </td>
@@ -93,7 +92,7 @@
             <div class="flex flex-column gap-1">
               <div class="flex justify-content-between align-items-center">
                 <span class="font-bold text-lg">{{ r.name }}</span>
-                <p-tag [value]="r.visualizationType" severity="info" />
+                <lx-tag [value]="r.visualizationType" severity="info" />
               </div>
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500"
@@ -102,7 +101,7 @@
               <div class="flex mt-2 justify-content-end gap-1">
                 <iw-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
                 <il-button-edit (clicked)="editar(r.id)" />
-                <il-button-delete (clicked)="confirmarEliminar(r.id, r.name)" />
+                <il-button-delete [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'" (confirmed)="eliminar(r.id)" />
               </div>
             </div>
           </ng-template>
@@ -132,7 +131,7 @@
               <td class="font-semibold">{{ r.name }}</td>
               <td class="text-500 text-sm">{{ r.description }}</td>
               <td>
-                <p-tag [value]="r.visualizationType" severity="success" />
+                <lx-tag [value]="r.visualizationType" severity="success" />
               </td>
               <td>{{ r.createdBy }}</td>
               <td>
@@ -163,7 +162,7 @@
             <div class="flex flex-column gap-1">
               <div class="flex justify-content-between align-items-center">
                 <span class="font-bold text-lg">{{ r.name }}</span>
-                <p-tag [value]="r.visualizationType" severity="success" />
+                <lx-tag [value]="r.visualizationType" severity="success" />
               </div>
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">Por: {{ r.createdBy }}</span>
