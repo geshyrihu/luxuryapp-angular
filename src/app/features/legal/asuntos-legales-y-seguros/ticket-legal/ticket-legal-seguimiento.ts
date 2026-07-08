@@ -1,4 +1,6 @@
+﻿import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -7,7 +9,6 @@ import {
   OnInit,
   signal,
   Signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -16,10 +17,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -30,6 +31,7 @@ import { AuthService } from "src/app/core/services/auth.service";
   templateUrl: "./ticket-legal-seguimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     CardModule,

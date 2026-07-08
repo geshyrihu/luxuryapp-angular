@@ -8,7 +8,7 @@
     <div class="grid">
       <!-- Columna: Resumen de Días -->
       <div class="col-12 md:col-6">
-        <p-panel header="Resumen de Días">
+        <lx-panel header="Resumen de Días">
           <ul class="list-none p-0 m-0">
             <li class="flex justify-content-between mb-2">
               <span>Días Totales (Base Legal):</span>
@@ -60,17 +60,17 @@
               >
             </li>
           </ul>
-          <p-message
+          <lx-message
             severity="info"
             text="Nota: Domingos y días festivos no se descuentan de tu balance."
             class="mt-3 w-full"
-          ></p-message>
-        </p-panel>
+          ></lx-message>
+        </lx-panel>
       </div>
 
       <!-- Columna: Información Laboral -->
       <div class="col-12 md:col-6">
-        <p-panel header="Información Laboral">
+        <lx-panel header="Información Laboral">
           <ul class="list-none p-0 m-0">
             <li class="flex justify-content-between mb-2">
               <span>Fecha de Ingreso:</span>
@@ -92,12 +92,12 @@
               <strong>{{ balance.vacationBonusPercentage }}%</strong>
             </li>
           </ul>
-        </p-panel>
+        </lx-panel>
       </div>
     </div>
     @if (balance.isEligibleForAdvance) {
     <div class="mt-3">
-      <p-message severity="info">
+      <lx-message severity="info">
         <div class="text-lg font-semibold">
           Información de Adelanto de Vacaciones
         </div>
@@ -111,10 +111,10 @@
           <strong>{{ balance.availableAdvanceDays }} días</strong>
           disponibles para adelantar.
         </p>
-      </p-message>
+      </lx-message>
     </div>
     } } @else {
-    <p-message
+    <lx-message
       severity="error"
       text="No se pudo cargar el saldo de vacaciones."
     />
@@ -155,25 +155,25 @@
       <!-- Validation Errors -->
       <!-- Validation Errors -->
       @if (form.hasError('dateRangeInvalid')) {
-      <p-message
+      <lx-message
         severity="error"
         text="La fecha de fin no puede ser anterior a la fecha de inicio."
         class="mt-2 w-full"
       />
       } @if (form.hasError('beforeAdmission')) {
-      <p-message
+      <lx-message
         severity="error"
         text="No puedes solicitar vacaciones en fechas previas a tu ingreso a la empresa."
         class="mt-2 w-full"
       />
       } @if (form.hasError('overlapDates')) {
-      <p-message
+      <lx-message
         severity="error"
         text="El rango de fechas se empalma con otra solicitud en proceso o vacaciones ya tomadas."
         class="mt-2 w-full"
       />
       } @if (form.hasError('advanceLimitExceeded')) {
-      <p-message
+      <lx-message
         severity="error"
         [text]="'Excedes tu lómite de adelanto. Solicitas ' +
             form.getError('advanceLimitExceeded').requestedDays +
@@ -183,7 +183,7 @@
         class="mt-2 w-full"
       />
       } @if (form.hasError('notEnoughDays')) {
-      <p-message
+      <lx-message
         severity="error"
         [text]="'No tienes suficientes días disponibles. Solicitas ' +
             form.getError('notEnoughDays').requestedDays +
@@ -196,7 +196,7 @@
 
       <!-- Server Error -->
       @if (serverError()) {
-      <p-message severity="error" [text]="serverError()" class="mt-2 w-full" />
+      <lx-message severity="error" [text]="serverError()" class="mt-2 w-full" />
       }
 
       <!-- Botones -->

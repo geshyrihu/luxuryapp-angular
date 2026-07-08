@@ -1,12 +1,17 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { gitMergeOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -32,8 +37,8 @@ interface UnallocatedPayment {
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    IonItem,
-    IonLabel,
+    MobileListItem,
+    AppIcon,
     DatePipe,
     CurrencyPipe,
   ],
@@ -53,7 +58,6 @@ export default class ReconciliationDashboard {
   lastResult = signal<number | null>(null);
 
   constructor() {
-    addIcons({ gitMergeOutline });
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData();

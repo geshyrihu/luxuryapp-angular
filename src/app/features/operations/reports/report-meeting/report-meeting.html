@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Diseóo ejecutivo y responsivo por Gemini - Usando PrimeNG y TailwindCSS
   - Corrección de layout para que las tarjetas de asistentes se muestren una al lado de la otra.
 -->
@@ -46,18 +46,16 @@
         <!-- Comité de Vigilancia -->
         @if (data.comite && data.comite.length > 0) {
         <div>
-          <p-card class="h-full">
-            <ng-template #title
-              ><span class="text-lg">Comité de Vigilancia</span></ng-template
-            >
-            <ng-template #content>
+          <div class="card" class="h-full">
+            <div class="text-xl font-bold mb-2"><span class="text-lg">Comité de Vigilancia</span></div>
+            
               <p-table
                 [value]="data.comite"
                 [scrollable]="true"
                 [scrollHeight]="scrollHeight"
                 class="p-datatable-sm"
               >
-                <ng-template #header>
+                <ng-template pTemplate="header">
                   <tr>
                     <th>Cargo</th>
                     <th>Nombre</th>
@@ -69,27 +67,22 @@
                     <td>{{ item.nombre }}</td>
                   </tr>
                 </ng-template>
-              </p-table>
-            </ng-template>
-          </p-card>
-        </div>
+              </p-table></div></div>
         }
 
         <!-- Administración -->
         @if (data.administracion && data.administracion.length > 0) {
         <div>
-          <p-card class="h-full">
-            <ng-template #title
-              ><span class="text-lg">Administración</span></ng-template
-            >
-            <ng-template #content>
+          <div class="card" class="h-full">
+            <div class="text-xl font-bold mb-2"><span class="text-lg">Administración</span></div>
+            
               <p-table
                 [value]="data.administracion"
                 [scrollable]="true"
                 [scrollHeight]="scrollHeight"
                 class="p-datatable-sm"
               >
-                <ng-template #header>
+                <ng-template pTemplate="header">
                   <tr>
                     <th>Cargo</th>
                     <th>Nombre</th>
@@ -101,20 +94,15 @@
                     <td>{{ item.nombre }}</td>
                   </tr>
                 </ng-template>
-              </p-table>
-            </ng-template>
-          </p-card>
-        </div>
+              </p-table></div></div>
         }
 
         <!-- Invitados -->
         @if (data.externos && data.externos.length > 0) {
         <div class="col-12 md:col-2 mt-4">
-          <p-card>
-            <ng-template #title
-              ><span class="text-lg">Invitados</span></ng-template
-            >
-            <ng-template #content>
+          <div class="card">
+            <div class="text-xl font-bold mb-2"><span class="text-lg">Invitados</span></div>
+            
               <p-table
                 [value]="data.externos"
                 [scrollable]="true"
@@ -126,9 +114,7 @@
                     <td>{{ item.invitado }}</td>
                   </tr>
                 </ng-template>
-              </p-table>
-            </ng-template>
-          </p-card>
+              </p-table></div>
         </div>
         }
       </div>
@@ -142,11 +128,11 @@
       <h3 class="text-2xl font-semibold text-700 mb-4">Detalles de la Junta</h3>
       <div class="flex flex-column">
         @for (item of data.asuntos; track item) {
-        <p-card>
-          <ng-template #title>
+        <div class="card">
+          <div class="text-xl font-bold mb-2">
             <span class="text-xl text-primary">{{ item.responsibleArea }}</span>
-          </ng-template>
-          <ng-template #content>
+          </div>
+          
             <ul class="list-none p-0 m-0">
               @for (asunto of item.items; track asunto; let i = $index) {
               <li
@@ -162,8 +148,8 @@
               </li>
               }
             </ul>
-          </ng-template>
-        </p-card>
+          
+        </div>
         }
       </div>
     </div>
@@ -179,3 +165,7 @@
   <app-spinner />
 </div>
 }
+
+
+
+

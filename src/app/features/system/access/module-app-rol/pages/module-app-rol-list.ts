@@ -1,8 +1,6 @@
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonNote } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { chevronForwardOutline } from "ionicons/icons";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
@@ -33,7 +31,7 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
     PrimeNgCustomTableFooter,
     DataViewMobile,
 
-    IonNote
+    MobileListItem
   ],
   templateUrl: "./module-app-rol-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -72,7 +70,7 @@ export class ModuleAppRol {
     }, {});
   });
   constructor() {
-    addIcons({ chevronForwardOutline });
+    
   }
 
   ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal

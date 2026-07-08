@@ -2,12 +2,12 @@ import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonButton, IonTextarea } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-comment-thread",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, IonButton, IonTextarea, AppIcon],
   template: `
     <div class="ili-ct">
@@ -32,7 +32,11 @@ import { CommentThreadBase } from "@ui/base/comment-thread.base";
             <div class="ili-ct-item">
               <div class="ili-ct-avatar" [style.background]="avatarBg(c)">
                 @if (c.avatarUrl) {
-                  <img [src]="c.avatarUrl" [alt]="c.authorName" class="ili-ct-avatar-img" />
+                  <img
+                    [src]="c.avatarUrl"
+                    [alt]="c.authorName"
+                    class="ili-ct-avatar-img"
+                  />
                 } @else {
                   {{ c.authorInitials ?? initials(c.authorName) }}
                 }
@@ -52,7 +56,9 @@ import { CommentThreadBase } from "@ui/base/comment-thread.base";
                       <button
                         type="button"
                         class="ili-ct-reaction"
-                        (click)="react.emit({ commentId: c.id, emoji: r.emoji })"
+                        (click)="
+                          react.emit({ commentId: c.id, emoji: r.emoji })
+                        "
                       >
                         {{ r.emoji }} {{ r.count }}
                       </button>

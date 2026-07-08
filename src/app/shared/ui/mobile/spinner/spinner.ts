@@ -8,7 +8,7 @@ import { SpinnerBase } from "@ui/base/spinner.base";
  */
 @Component({
   selector: "ili-spinner",
-  standalone: true,
+
   imports: [CommonModule, IonSpinner],
   template: `
     <ion-spinner

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { ProfileCardBase } from "./profile-card.base";
 
-@Component({ selector: "test-profile-card", standalone: true, template: "" })
+@Component({ selector: "test-profile-card", template: "" })
 class Host extends ProfileCardBase {}
 
 describe("ProfileCardBase", () => {

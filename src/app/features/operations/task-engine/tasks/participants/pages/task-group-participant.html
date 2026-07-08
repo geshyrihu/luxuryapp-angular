@@ -1,5 +1,5 @@
-<p-card>
-  <ng-template #content>
+<div class="card">
+  
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="flex flex-column">
         <div class="w-full">
@@ -30,8 +30,8 @@
         </div>
       </div>
     </form>
-  </ng-template>
-</p-card>
+  
+</div>
 @if (loading_existing_participant()) {
 <div class="flex justify-content-center mt-3">
   <app-spinner />

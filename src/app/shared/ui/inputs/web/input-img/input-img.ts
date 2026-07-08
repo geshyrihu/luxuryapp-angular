@@ -1,11 +1,17 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputImg } from "../custom-input-img-signal";
 import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputImg } from "../custom-input-img-signal";
 
 @Component({
   selector: "web-input-img",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputImg],
   template: `
     <base-input-signal

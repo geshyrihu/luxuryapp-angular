@@ -1,5 +1,12 @@
-import { Component, input, model, output, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from "@angular/core";
 
 export type TriState = true | false | null;
 
@@ -10,7 +17,7 @@ export type TriState = true | false | null;
  */
 @Component({
   selector: "app-tristate-switch",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div
@@ -51,93 +58,135 @@ export type TriState = true | false | null;
       }
     </div>
   `,
-  styles: [`
-    .tri-root { display: flex; flex-direction: column; gap: 0.3rem; }
-    .tri-disabled { opacity: 0.55; pointer-events: none; }
-    .tri-label { font-size: var(--ds-font-size-label, 0.875rem); color: var(--ds-text-secondary); font-weight: 500; }
-    .tri-row { display: flex; align-items: center; gap: 0.625rem; }
-    .tri-hint { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-text-muted); }
+  styles: [
+    `
+      .tri-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .tri-disabled {
+        opacity: 0.55;
+        pointer-events: none;
+      }
+      .tri-label {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        color: var(--ds-text-secondary);
+        font-weight: 500;
+      }
+      .tri-row {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+      .tri-hint {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-muted);
+      }
 
-    .tri-track {
-      width: 48px;
-      height: 26px;
-      border-radius: var(--ds-radius-full, 9999px);
-      border: 1.5px solid var(--ds-border, #e2e8f0);
-      background: var(--ds-bg-sunken, #e8edff);
-      cursor: pointer;
-      padding: 2px;
-      display: flex;
-      align-items: center;
-      transition: background 0.2s, border-color 0.2s;
-      position: relative;
-    }
+      .tri-track {
+        width: 48px;
+        height: 26px;
+        border-radius: var(--ds-radius-full, 9999px);
+        border: 1.5px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-sunken, #e8edff);
+        cursor: pointer;
+        padding: 2px;
+        display: flex;
+        align-items: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        position: relative;
+      }
 
-    /* ON state */
-    .tri-track:has(.tri-thumb-on) {
-      background: var(--ds-primary, #003d9b);
-      border-color: var(--ds-primary, #003d9b);
-    }
-    /* Indeterminate state */
-    .tri-track:has(.tri-thumb-indeterminate) {
-      background: var(--ds-warning, #b45309);
-      border-color: var(--ds-warning, #b45309);
-    }
+      /* ON state */
+      .tri-track:has(.tri-thumb-on) {
+        background: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary, #003d9b);
+      }
+      /* Indeterminate state */
+      .tri-track:has(.tri-thumb-indeterminate) {
+        background: var(--ds-warning, #b45309);
+        border-color: var(--ds-warning, #b45309);
+      }
 
-    .tri-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-    .tri-thumb-on          { transform: translateX(22px); }
-    .tri-thumb-indeterminate { transform: translateX(11px); }
-    .tri-thumb-off         { transform: translateX(0); }
+      .tri-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      }
+      .tri-thumb-on {
+        transform: translateX(22px);
+      }
+      .tri-thumb-indeterminate {
+        transform: translateX(11px);
+      }
+      .tri-thumb-off {
+        transform: translateX(0);
+      }
 
-    .tri-icon { font-size: 0.625rem; font-weight: 700; line-height: 1; }
-    .tri-icon-dash { color: var(--ds-warning, #b45309); }
-    .tri-icon-off  { color: var(--ds-text-muted); }
-    .tri-thumb-on .tri-icon { color: var(--ds-primary, #003d9b); }
+      .tri-icon {
+        font-size: 0.625rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .tri-icon-dash {
+        color: var(--ds-warning, #b45309);
+      }
+      .tri-icon-off {
+        color: var(--ds-text-muted);
+      }
+      .tri-thumb-on .tri-icon {
+        color: var(--ds-primary, #003d9b);
+      }
 
-    .tri-state-label { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-text-secondary); }
-  `],
+      .tri-state-label {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-secondary);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppTristateSwitch {
-  value    = model<TriState>(false);
-  label    = input<string>("");
-  hint     = input<string>("");
+  value = model<TriState>(false);
+  label = input<string>("");
+  hint = input<string>("");
   disabled = input<boolean>(false);
 
   changed = output<TriState>();
 
   /** Cicla: false → true → null → false */
   cycle(): void {
-    const next: TriState = this.value() === false ? true : this.value() === true ? null : false;
+    const next: TriState =
+      this.value() === false ? true : this.value() === true ? null : false;
     this.value.set(next);
     this.changed.emit(next);
   }
 
   thumbClass(): string {
-    if (this.value() === true)  return "tri-thumb tri-thumb-on";
-    if (this.value() === null)  return "tri-thumb tri-thumb-indeterminate";
+    if (this.value() === true) return "tri-thumb tri-thumb-on";
+    if (this.value() === null) return "tri-thumb tri-thumb-indeterminate";
     return "tri-thumb tri-thumb-off";
   }
 
   stateLabel(): string {
-    if (this.value() === true)  return "Activado";
-    if (this.value() === null)  return "Heredado";
+    if (this.value() === true) return "Activado";
+    if (this.value() === null) return "Heredado";
     return "Desactivado";
   }
 
   ariaChecked(): string {
-    if (this.value() === true)  return "true";
-    if (this.value() === null)  return "mixed";
+    if (this.value() === true) return "true";
+    if (this.value() === null) return "mixed";
     return "false";
   }
 }

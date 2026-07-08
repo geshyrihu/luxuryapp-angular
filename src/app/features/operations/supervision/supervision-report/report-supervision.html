@@ -15,14 +15,14 @@
 </div>
 
 <!-- Minutas Pendientes -->
-<p-card class="mb-4 shadow-1">
-  <ng-template #header>
+<div class="card" class="mb-4 shadow-1">
+  <div class="card-header">
     <div
       class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Minutas Pendientes</span>
     </div>
-  </ng-template>
+  </div>
 
   @if (loadingMinutas()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
@@ -70,17 +70,17 @@
     No hay minutas pendientes.
   </div>
   }
-</p-card>
+</div>
 
 <!-- Tickets Pendientes -->
-<p-card class="mb-4 shadow-1">
-  <ng-template #header>
+<div class="card" class="mb-4 shadow-1">
+  <div class="card-header">
     <div
       class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Tickets Pendientes</span>
     </div>
-  </ng-template>
+  </div>
 
   @if (loadingTickets()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
@@ -126,17 +126,17 @@
     No hay solicitudes pendientes.
   </div>
   }
-</p-card>
+</div>
 
 <!-- Pendientes Legales -->
-<p-card class="mb-4 shadow-1">
-  <ng-template #header>
+<div class="card" class="mb-4 shadow-1">
+  <div class="card-header">
     <div
       class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Pendientes Legales</span>
     </div>
-  </ng-template>
+  </div>
 
   @if (loadingPendingLegal()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
@@ -180,17 +180,17 @@
     No hay pendientes legales.
   </div>
   }
-</p-card>
+</div>
 
 <!-- Estados Financieros -->
-<p-card class="mb-4 shadow-1">
-  <ng-template #header>
+<div class="card" class="mb-4 shadow-1">
+  <div class="card-header">
     <div
       class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Estados Financieros</span>
     </div>
-  </ng-template>
+  </div>
 
   @if (loadingEnvioFinancieros()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
@@ -234,4 +234,4 @@
     No hay estados financieros pendientes.
   </div>
   }
-</p-card>
+</div>

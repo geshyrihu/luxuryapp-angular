@@ -86,7 +86,7 @@
 
 <ng-container>
   <ng-container>
-    <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+    <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
     <div class="hidden md:block">
       <p-table
         [value]="dataSignal()"
@@ -207,7 +207,7 @@
       </p-table>
     </div>
 
-    <!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+    <!-- 📱 INICIO: Componente adaptado para versión móvil -->
     <div class="block md:hidden">
       <div class="px-2 mb-3 flex flex-column gap-2">
         <il-button
@@ -227,48 +227,31 @@
       <!-- Category Filters (Chips) -->
       <div class="flex overflow-x-auto pb-2 mb-2 px-1">
         @for (filtro of filtroEquipos; track filtro.id) {
-        <ion-chip
-          [color]="filtroEquiposValue === filtro.nombre ? 'primary' : 'medium'"
-          [outline]="filtroEquiposValue !== filtro.nombre"
-          (click)="clickButton(filtro)"
-        >
+        <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
           <app-icon [icon]="getFiltroIconClass(filtro.emoji)" class="mr-1" />
-          <ion-label>{{ filtro.nombre | titlecase }}</ion-label>
-        </ion-chip>
+          <span class="">{{ filtro.nombre | titlecase }}</span>
+        </div>
         }
       </div>
 
       <!-- Month Selector -->
-      <ion-segment
-        scrollable="true"
-        [value]="selectedMobileMonth()"
-        (ionChange)="onMobileMonthChange($event)"
-        class="mb-3"
-      >
+      <div class="flex gap-2 mb-3 bg-surface-100 p-1 border-round">
         @for (mes of meses; track mes; let i = $index) {
-        <ion-segment-button [value]="i + 1">
-          <ion-label>{{ mes }}</ion-label>
-        </ion-segment-button>
+        <button class="p-button p-button-text p-button-sm flex-1">
+          <span class="">{{ mes }}</span>
+        </button>
         }
-      </ion-segment>
+      </div>
 
       <!-- Results List -->
-      <ion-list lines="none">
+      <div class="surface-card mb-3 border-round">
         @for (group of mobileData(); track group.system) {
-        <ion-list-header mode="ios">
-          <ion-label class="font-bold text-lg text-primary"
-            >{{ group.system }}</ion-label
-          >
-        </ion-list-header>
+        <div class="surface-card mb-3 border-round">
+          <span class="font-bold text-lg text-primary">{{ group.system }}</span>
+        </div>
 
         @for (item of group.items; track item.id) {
-        <ion-item
-          lines="full"
-          class="mb-1"
-          button
-          detail="false"
-          (click)="onModalForm(item.serviceId)"
-        >
+        <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
           <app-icon
             icon="mdi:checkbox-marked-outline"
@@ -276,12 +259,12 @@
             color="success"
             class="text-xl"
           />
-          <ion-label class="ion-text-wrap">
+          <span class="ion-text-wrap">
             <h3 class="text-base font-semibold">{{ item.nameMachinery }}</h3>
             <p class="text-xs text-color-secondary">Mantenimiento Preventivo</p>
-          </ion-label>
+          </span>
           <app-icon icon="mdi:pencil-outline" slot="end" color="medium" />
-        </ion-item>
+        </div>
         } } @empty {
         <div
           class="flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
@@ -297,7 +280,9 @@
           </p>
         </div>
         }
-      </ion-list>
+      </div>
     </div>
   </ng-container>
 </ng-container>
+
+

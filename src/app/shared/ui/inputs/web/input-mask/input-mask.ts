@@ -1,11 +1,16 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputMaskSignal } from "../custom-input-mask-signal";
 import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputMaskSignal } from "../custom-input-mask-signal";
 
 @Component({
   selector: "web-input-mask",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputMaskSignal],
   template: `
     <custom-input-mask-signal

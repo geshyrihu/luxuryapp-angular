@@ -1,5 +1,11 @@
-import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
@@ -10,7 +16,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
  */
 @Component({
   selector: "app-inventory-level",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div class="inv-root">
@@ -20,7 +26,9 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
         }
         <div class="inv-info">
           <span class="inv-name">{{ name() }}</span>
-          @if (sku()) { <span class="inv-sku">{{ sku() }}</span> }
+          @if (sku()) {
+            <span class="inv-sku">{{ sku() }}</span>
+          }
         </div>
         <div class="inv-badge" [class]="'inv-badge-' + status()">
           <app-icon [icon]="statusIcon()" class="text-xs" />
@@ -33,7 +41,11 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
         <div class="inv-bar-bg">
           <!-- Zone markers -->
           @for (zone of zones; track zone.pct) {
-            <div class="inv-zone-marker" [style.left.%]="zone.pct" [title]="zone.label"></div>
+            <div
+              class="inv-zone-marker"
+              [style.left.%]="zone.pct"
+              [title]="zone.label"
+            ></div>
           }
           <!-- Fill -->
           <div
@@ -73,49 +85,158 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
       </div>
     </div>
   `,
-  styles: [`
-    .inv-root { display: flex; flex-direction: column; gap: 0.625rem; padding: 0.75rem; background: var(--ds-bg-surface, #fff); border: 1px solid var(--ds-border, #e2e8f0); border-radius: var(--ds-radius-md, 6px); }
-    .inv-header { display: flex; align-items: center; gap: 0.625rem; }
-    .inv-product-icon { font-size: 1.25rem; color: var(--ds-text-secondary); flex-shrink: 0; }
-    .inv-info { flex: 1; min-width: 0; }
-    .inv-name { display: block; font-size: var(--ds-font-size-label, 0.875rem); font-weight: 600; color: var(--ds-text-primary); }
-    .inv-sku  { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
-    /* Badge */
-    .inv-badge { display: flex; align-items: center; gap: 0.2rem; padding: 0.15rem 0.5rem; border-radius: var(--ds-radius-full, 9999px); font-size: var(--ds-font-size-micro, 0.75rem); font-weight: 600; }
-    .inv-badge-critical { background: #ffdad6; color: #ba1a1a; }
-    .inv-badge-low      { background: #fef3c7; color: #b45309; }
-    .inv-badge-medium   { background: #dae2ff; color: #003d9b; }
-    .inv-badge-high     { background: #d1fae5; color: #006837; }
-    .inv-badge-overstock{ background: #e8edff; color: #737685; }
-    /* Bar */
-    .inv-bar-wrap { display: flex; flex-direction: column; gap: 0.2rem; }
-    .inv-bar-bg { position: relative; height: 14px; background: var(--ds-bg-elevated, #f1f3ff); border-radius: var(--ds-radius-full, 9999px); overflow: visible; }
-    .inv-zone-marker { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ds-bg-surface, #fff); opacity: 0.8; border-radius: 1px; z-index: 1; }
-    .inv-bar-fill { height: 100%; border-radius: var(--ds-radius-full, 9999px); transition: width 0.4s ease; }
-    .inv-fill-critical { background: var(--ds-danger, #ba1a1a); }
-    .inv-fill-low      { background: var(--ds-warning, #b45309); }
-    .inv-fill-medium   { background: var(--ds-primary, #003d9b); }
-    .inv-fill-high     { background: var(--ds-success, #006837); }
-    .inv-fill-overstock{ background: var(--ds-text-muted, #737685); }
-    .inv-bar-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--ds-text-muted); }
-    /* Metrics */
-    .inv-metrics { display: flex; gap: 0; }
-    .inv-metric { flex: 1; text-align: center; padding: 0.25rem; border-right: 1px solid var(--ds-border); }
-    .inv-metric:last-child { border-right: none; }
-    .inv-metric-value { display: block; font-size: var(--ds-font-size-label, 0.875rem); font-weight: 700; color: var(--ds-text-primary); }
-    .inv-metric-label { font-size: 0.65rem; color: var(--ds-text-muted); text-transform: uppercase; }
-  `],
+  styles: [
+    `
+      .inv-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+        padding: 0.75rem;
+        background: var(--ds-bg-surface, #fff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-md, 6px);
+      }
+      .inv-header {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+      .inv-product-icon {
+        font-size: 1.25rem;
+        color: var(--ds-text-secondary);
+        flex-shrink: 0;
+      }
+      .inv-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .inv-name {
+        display: block;
+        font-size: var(--ds-font-size-label, 0.875rem);
+        font-weight: 600;
+        color: var(--ds-text-primary);
+      }
+      .inv-sku {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+      }
+      /* Badge */
+      .inv-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: var(--ds-radius-full, 9999px);
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-weight: 600;
+      }
+      .inv-badge-critical {
+        background: #ffdad6;
+        color: #ba1a1a;
+      }
+      .inv-badge-low {
+        background: #fef3c7;
+        color: #b45309;
+      }
+      .inv-badge-medium {
+        background: #dae2ff;
+        color: #003d9b;
+      }
+      .inv-badge-high {
+        background: #d1fae5;
+        color: #006837;
+      }
+      .inv-badge-overstock {
+        background: #e8edff;
+        color: #737685;
+      }
+      /* Bar */
+      .inv-bar-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .inv-bar-bg {
+        position: relative;
+        height: 14px;
+        background: var(--ds-bg-elevated, #f1f3ff);
+        border-radius: var(--ds-radius-full, 9999px);
+        overflow: visible;
+      }
+      .inv-zone-marker {
+        position: absolute;
+        top: -3px;
+        bottom: -3px;
+        width: 2px;
+        background: var(--ds-bg-surface, #fff);
+        opacity: 0.8;
+        border-radius: 1px;
+        z-index: 1;
+      }
+      .inv-bar-fill {
+        height: 100%;
+        border-radius: var(--ds-radius-full, 9999px);
+        transition: width 0.4s ease;
+      }
+      .inv-fill-critical {
+        background: var(--ds-danger, #ba1a1a);
+      }
+      .inv-fill-low {
+        background: var(--ds-warning, #b45309);
+      }
+      .inv-fill-medium {
+        background: var(--ds-primary, #003d9b);
+      }
+      .inv-fill-high {
+        background: var(--ds-success, #006837);
+      }
+      .inv-fill-overstock {
+        background: var(--ds-text-muted, #737685);
+      }
+      .inv-bar-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        color: var(--ds-text-muted);
+      }
+      /* Metrics */
+      .inv-metrics {
+        display: flex;
+        gap: 0;
+      }
+      .inv-metric {
+        flex: 1;
+        text-align: center;
+        padding: 0.25rem;
+        border-right: 1px solid var(--ds-border);
+      }
+      .inv-metric:last-child {
+        border-right: none;
+      }
+      .inv-metric-value {
+        display: block;
+        font-size: var(--ds-font-size-label, 0.875rem);
+        font-weight: 700;
+        color: var(--ds-text-primary);
+      }
+      .inv-metric-label {
+        font-size: 0.65rem;
+        color: var(--ds-text-muted);
+        text-transform: uppercase;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppInventoryLevel {
-  name         = input.required<string>();
-  current      = input.required<number>();
-  max          = input.required<number>();
-  sku          = input<string>("");
-  icon         = input<string>("mdi:package-variant-closed");
+  name = input.required<string>();
+  current = input.required<number>();
+  max = input.required<number>();
+  sku = input<string>("");
+  icon = input<string>("mdi:package-variant-closed");
   reorderPoint = input<number | undefined>(undefined);
-  maxCapacity  = input<number | undefined>(undefined);
+  maxCapacity = input<number | undefined>(undefined);
 
   readonly zones = [
     { pct: 15, label: "Crítico" },
@@ -124,7 +245,9 @@ export class AppInventoryLevel {
     { pct: 90, label: "Máximo" },
   ];
 
-  clampedPct = computed(() => Math.min(100, Math.max(0, (this.current() / this.max()) * 100)));
+  clampedPct = computed(() =>
+    Math.min(100, Math.max(0, (this.current() / this.max()) * 100)),
+  );
 
   status = computed<StockStatus>(() => {
     const p = this.clampedPct();
@@ -136,12 +259,24 @@ export class AppInventoryLevel {
   });
 
   statusLabel(): string {
-    const map: Record<StockStatus, string> = { critical: "Crítico", low: "Bajo", medium: "Normal", high: "Óptimo", overstock: "Exceso" };
+    const map: Record<StockStatus, string> = {
+      critical: "Crítico",
+      low: "Bajo",
+      medium: "Normal",
+      high: "Óptimo",
+      overstock: "Exceso",
+    };
     return map[this.status()];
   }
 
   statusIcon(): string {
-    const map: Record<StockStatus, string> = { critical: "mdi:alert-circle", low: "mdi:alert", medium: "mdi:check-circle", high: "mdi:check-circle", overstock: "mdi:information" };
+    const map: Record<StockStatus, string> = {
+      critical: "mdi:alert-circle",
+      low: "mdi:alert",
+      medium: "mdi:check-circle",
+      high: "mdi:check-circle",
+      overstock: "mdi:information",
+    };
     return map[this.status()];
   }
 }

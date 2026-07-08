@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
@@ -43,8 +43,8 @@ export class TaskReportWorkPlanPreview {
   loading = signal(true);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  year: number = 0; // Almacena el AÃ³o seleccionado
-  numeroSemana: number = 0; // Almacena el nÃºmero de semana seleccionado
+  year: number = 0; // Almacena el Aóo seleccionado
+  numeroSemana: number = 0; // Almacena el número de semana seleccionado
   weekInputValueControl = new FormControl<string>("");
 
   ngOnInit(): void {
@@ -63,7 +63,7 @@ export class TaskReportWorkPlanPreview {
     );
   }
   onLoadData() {
-    // No sobreescribimos el AÃ³o y la semana seleccionados con los valores actuales
+    // No sobreescribimos el Aóo y la semana seleccionados con los valores actuales
     this.apiResponseS
       .onGetList(
         Endpoints.TaskWorkPlans.preview(

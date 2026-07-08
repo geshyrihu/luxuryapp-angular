@@ -1,7 +1,12 @@
-import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from "@angular/core";
 import type { ECharts, EChartsCoreOption } from "echarts/core";
-import { chartJsToRadarOption, ChartJsData } from "./echarts-adapters";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { ChartJsData, chartJsToRadarOption } from "./echarts-adapters";
 
 /**
  * PrimengRadarChart — radar / araña. Motor: ECharts (ngx-echarts).
@@ -10,7 +15,7 @@ import { chartJsToRadarOption, ChartJsData } from "./echarts-adapters";
  */
 @Component({
   selector: "app-primeng-radar-chart",
-  standalone: true,
+
   imports: [NgxEchartsDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

@@ -1,16 +1,21 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { OrgChartBase, OrgChartNode } from "@ui/base/org-chart.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-org-chart",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div class="ili-org-chart">
       @for (node of value(); track $index) {
-        <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node, depth: 0 }" />
+        <ng-container
+          *ngTemplateOutlet="
+            nodeTemplate;
+            context: { $implicit: node, depth: 0 }
+          "
+        />
       }
     </div>
 
@@ -22,8 +27,15 @@ import { OrgChartBase, OrgChartNode } from "@ui/base/org-chart.base";
           (click)="selectNode(node)"
         >
           @if (node.children?.length) {
-            <button class="ili-org-node-toggle" (click)="toggleNode(node); $event.stopPropagation()">
-              <app-icon [icon]="isExpanded(node) ? 'mdi:chevron-down' : 'mdi:chevron-right'" />
+            <button
+              class="ili-org-node-toggle"
+              (click)="toggleNode(node); $event.stopPropagation()"
+            >
+              <app-icon
+                [icon]="
+                  isExpanded(node) ? 'mdi:chevron-down' : 'mdi:chevron-right'
+                "
+              />
             </button>
           } @else {
             <span class="ili-org-node-toggle-spacer"></span>
@@ -38,68 +50,81 @@ import { OrgChartBase, OrgChartNode } from "@ui/base/org-chart.base";
         @if (isExpanded(node) && node.children?.length) {
           <div class="ili-org-node-children">
             @for (child of node.children; track $index) {
-              <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: child, depth: depth + 1 }" />
+              <ng-container
+                *ngTemplateOutlet="
+                  nodeTemplate;
+                  context: { $implicit: child, depth: depth + 1 }
+                "
+              />
             }
           </div>
         }
       </div>
     </ng-template>
   `,
-  styles: [`
-    .ili-org-chart { width: 100%; }
-    .ili-org-node { padding: 0.25rem 0; }
-    .ili-org-node-row {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      padding: 0.625rem 0.75rem;
-      border-radius: var(--ds-radius-md, 8px);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      background: var(--ds-bg-primary, #ffffff);
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-    }
-    .ili-org-node-row:active {
-      background: var(--ds-bg-muted, #f1f5f9);
-    }
-    .ili-org-node-selected {
-      border-color: var(--ds-primary, #003d9b);
-      background: var(--ds-bg-elevated, #f1f3ff);
-    }
-    .ili-org-node-toggle {
-      display: flex;
-      align-items: center;
-      border: none;
-      background: none;
-      cursor: pointer;
-      padding: 0;
-      color: var(--ds-text-secondary);
-      font-size: 1.125rem;
-    }
-    .ili-org-node-toggle-spacer {
-      display: inline-block;
-      width: 1.25rem;
-    }
-    .ili-org-node-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.125rem;
-    }
-    .ili-org-node-label {
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      font-weight: 500;
-      color: var(--ds-text-primary);
-    }
-    .ili-org-node-type {
-      font-size: var(--ds-font-size-small, 0.8125rem);
-      color: var(--ds-text-secondary);
-    }
-    .ili-org-node-children {
-      border-left: 1px solid var(--ds-border, #e2e8f0);
-      margin-left: 0.75rem;
-      padding-left: 1rem;
-    }
-  `],
+  styles: [
+    `
+      .ili-org-chart {
+        width: 100%;
+      }
+      .ili-org-node {
+        padding: 0.25rem 0;
+      }
+      .ili-org-node-row {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.625rem 0.75rem;
+        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-primary, #ffffff);
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .ili-org-node-row:active {
+        background: var(--ds-bg-muted, #f1f5f9);
+      }
+      .ili-org-node-selected {
+        border-color: var(--ds-primary, #003d9b);
+        background: var(--ds-bg-elevated, #f1f3ff);
+      }
+      .ili-org-node-toggle {
+        display: flex;
+        align-items: center;
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 0;
+        color: var(--ds-text-secondary);
+        font-size: 1.125rem;
+      }
+      .ili-org-node-toggle-spacer {
+        display: inline-block;
+        width: 1.25rem;
+      }
+      .ili-org-node-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+      }
+      .ili-org-node-label {
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-weight: 500;
+        color: var(--ds-text-primary);
+      }
+      .ili-org-node-type {
+        font-size: var(--ds-font-size-small, 0.8125rem);
+        color: var(--ds-text-secondary);
+      }
+      .ili-org-node-children {
+        border-left: 1px solid var(--ds-border, #e2e8f0);
+        margin-left: 0.75rem;
+        padding-left: 1rem;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileOrgChart extends OrgChartBase {

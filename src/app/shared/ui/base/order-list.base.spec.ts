@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { OrderListBase } from "./order-list.base";
 
-@Component({ selector: "test-order-list", standalone: true, template: "" })
+@Component({ selector: "test-order-list", template: "" })
 class Host extends OrderListBase {}
 
 describe("OrderListBase", () => {

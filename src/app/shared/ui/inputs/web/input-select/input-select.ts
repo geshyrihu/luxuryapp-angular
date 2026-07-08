@@ -1,10 +1,17 @@
-import { Component, forwardRef, input, output, TemplateRef, ChangeDetectionStrategy } from "@angular/core";
+import { CommonModule, NgTemplateOutlet } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+  TemplateRef,
+} from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import { SelectModule } from "primeng/select";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -14,8 +21,14 @@ import { BaseInputSignal } from "../../base/base-input-signal";
  */
 @Component({
   selector: "web-input-select",
-  standalone: true,
-  imports: [CommonModule, NgTemplateOutlet, BaseInputSignal, ReactiveFormsModule, SelectModule],
+
+  imports: [
+    CommonModule,
+    NgTemplateOutlet,
+    BaseInputSignal,
+    ReactiveFormsModule,
+    SelectModule,
+  ],
   template: `
     <base-input-signal
       [control]="control()"

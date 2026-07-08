@@ -1,22 +1,21 @@
-import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { vi } from 'vitest';
-import { Loader } from './loader';
-import { LoaderService } from 'src/app/core/services/loader.service';
+import { CUSTOM_ELEMENTS_SCHEMA, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { LoaderService } from "src/app/core/services/loader.service";
+import { vi } from "vitest";
+import { Loader } from "./loader";
 
 // Mock de Ionic para evitar errores de Stencil en tests
-vi.mock('@ionic/angular/standalone', async () => {
-  const { Component } = await import('@angular/core');
+vi.mock("@ionic/angular/standalone", async () => {
+  const { Component } = await import("@angular/core");
   @Component({
-    selector: 'ion-spinner',
-    template: '',
-    standalone: true,
+    selector: "ion-spinner",
+    template: "",
   })
   class IonSpinnerMock {}
   return { IonSpinner: IonSpinnerMock };
 });
 
-describe('Loader Component', () => {
+describe("Loader Component", () => {
   let component: Loader;
   let fixture: ComponentFixture<Loader>;
   let loaderServiceMock: any;
@@ -32,9 +31,7 @@ describe('Loader Component', () => {
 
     await TestBed.configureTestingModule({
       imports: [Loader],
-      providers: [
-        { provide: LoaderService, useValue: loaderServiceMock }
-      ],
+      providers: [{ provide: LoaderService, useValue: loaderServiceMock }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
@@ -43,26 +40,32 @@ describe('Loader Component', () => {
     fixture.detectChanges();
   });
 
-  it('debe crearse correctamente', () => {
+  it("debe crearse correctamente", () => {
     expect(component).toBeTruthy();
   });
 
-  it('no debe mostrar nada si isLoading es false', () => {
-    const loaderContainer = fixture.nativeElement.querySelector('.loader-container');
-    const mobileContainer = fixture.nativeElement.querySelector('.mobile-loader-container');
-    
+  it("no debe mostrar nada si isLoading es false", () => {
+    const loaderContainer =
+      fixture.nativeElement.querySelector(".loader-container");
+    const mobileContainer = fixture.nativeElement.querySelector(
+      ".mobile-loader-container",
+    );
+
     expect(loaderContainer).toBeNull();
     expect(mobileContainer).toBeNull();
   });
 
-  it('debe mostrar el loader cuando isLoading es true', () => {
+  it("debe mostrar el loader cuando isLoading es true", () => {
     // Activar el loading a través del mock
     loaderServiceMock.show();
     fixture.detectChanges();
 
-    const loaderContainer = fixture.nativeElement.querySelector('.loader-container');
-    const mobileContainer = fixture.nativeElement.querySelector('.mobile-loader-container');
-    
+    const loaderContainer =
+      fixture.nativeElement.querySelector(".loader-container");
+    const mobileContainer = fixture.nativeElement.querySelector(
+      ".mobile-loader-container",
+    );
+
     expect(loaderContainer).not.toBeNull();
     expect(mobileContainer).not.toBeNull();
   });
@@ -71,7 +74,7 @@ describe('Loader Component', () => {
     loaderServiceMock.show();
     fixture.detectChanges();
 
-    const text = fixture.nativeElement.querySelector('.loading-text');
-    expect(text.textContent).toContain('Cargando...');
+    const text = fixture.nativeElement.querySelector(".loading-text");
+    expect(text.textContent).toContain("Cargando...");
   });
 });

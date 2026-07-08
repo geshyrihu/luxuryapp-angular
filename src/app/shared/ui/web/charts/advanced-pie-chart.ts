@@ -1,7 +1,12 @@
-import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
-import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { NgxChartsDatum, ngxToPieOption } from "./echarts-adapters";
 
 /**
  * AdvancedPieChart — pastel con leyenda/detalle. Motor: ECharts (ngx-echarts).
@@ -9,7 +14,7 @@ import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
  */
 @Component({
   selector: "app-advanced-pie-chart",
-  standalone: true,
+
   imports: [NgxEchartsDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `<div echarts [options]="option()" style="height: 400px"></div>`,
@@ -21,6 +26,8 @@ export class AdvancedPieChart {
   });
 
   option = computed<EChartsCoreOption>(() =>
-    ngxToPieOption(this.dataGrafico(), this.colorScheme(), { showLegend: true }),
+    ngxToPieOption(this.dataGrafico(), this.colorScheme(), {
+      showLegend: true,
+    }),
   );
 }

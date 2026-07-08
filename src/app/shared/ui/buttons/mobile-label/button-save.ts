@@ -1,12 +1,17 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({
   selector: "ili-button-save",
-  standalone: true,
+
   imports: [CommonModule, IonButton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -41,4 +46,3 @@ export class MobileButtonLabelSave extends MobileButtonBase {
     return this.propertyId() ? "Actualizar" : "Guardar";
   });
 }
-

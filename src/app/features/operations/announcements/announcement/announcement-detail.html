@@ -79,17 +79,12 @@
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden pb-5">
   <div class="p-2">
-    <ion-button
-      (click)="navigateBack()"
-      fill="clear"
-      color="medium"
-      class="mb-2"
-    >
+    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary" (click)="navigateBack()">
       <app-icon icon="mdi:arrow-left" slot="start" />
       Volver
-    </ion-button>
+    </button>
 
-    <ion-card class="m-0">
+    <div class="m-0">
       @if (announcement.imagePath) {
       <lx-image
         [src]="announcement.imagePath"
@@ -97,14 +92,14 @@
       ></lx-image>
       }
 
-      <ion-card-header>
-        <ion-card-title>{{ announcement.title }}</ion-card-title>
-        <ion-card-subtitle>
+      <div class="border-1 surface-border shadow-1 border-round-xl">
+        <div class="border-1 surface-border shadow-1 border-round-xl">{{ announcement.title }}</div>
+        <div class="border-1 surface-border shadow-1 border-round-xl">
           {{ announcement.publishedAt | date: 'mediumDate' }}
-        </ion-card-subtitle>
-      </ion-card-header>
+        </div>
+      </div>
 
-      <ion-card-content>
+      <div class="border-1 surface-border shadow-1 border-round-xl">
         <div
           class="announcement-content"
           [innerHTML]="announcement.content"
@@ -112,31 +107,27 @@
 
         @if (announcement.externalLink) {
         <div class="ion-margin-top">
-          <ion-button
-            [href]="announcement.externalLink"
-            expand="block"
-            fill="outline"
-          >
+          <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary">
             Visitar Enlace <app-icon icon="mdi:open-in-new" slot="end" />
-          </ion-button>
+          </button>
         </div>
         } @if (announcement.attachments && announcement.attachments.length > 0)
         {
-        <ion-list class="ion-margin-top">
-          <ion-list-header>
-            <ion-label>Adjuntos</ion-label>
-          </ion-list-header>
+        <div class="surface-card mb-3 border-round">
+          <div class="surface-card mb-3 border-round">
+            <span class="">Adjuntos</span>
+          </div>
           @for (item of announcement.attachments; track item.id) {
-          <ion-item [href]="item.filePath" target="_blank" detail="false">
+          <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
             <app-icon icon="mdi:file-document-outline" slot="start" />
-            <ion-label>{{ item.fileName }}</ion-label>
+            <span class="">{{ item.fileName }}</span>
             <app-icon icon="mdi:download-outline" slot="end" color="primary" />
-          </ion-item>
+          </div>
           }
-        </ion-list>
+        </div>
         }
-      </ion-card-content>
-    </ion-card>
+      </div>
+    </div>
   </div>
 </div>
 }

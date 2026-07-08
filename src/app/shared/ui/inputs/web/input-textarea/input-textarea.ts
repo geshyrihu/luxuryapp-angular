@@ -1,4 +1,9 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { TextareaModule } from "primeng/textarea";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -8,7 +13,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
  */
 @Component({
   selector: "web-input-textarea",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, TextareaModule],
   template: `
     <base-input-signal

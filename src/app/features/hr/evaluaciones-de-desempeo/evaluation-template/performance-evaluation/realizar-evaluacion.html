@@ -3,8 +3,8 @@
     <div class="card-body mt-2">
       @if (!selectedTemplate) {
 
-      <p-message severity="info"
-        >Seleccione un empleado y una plantilla para comenzar.</p-message
+      <lx-message severity="info"
+        >Seleccione un empleado y una plantilla para comenzar.</lx-message
       >
       <!-- Fila para los selectores de Empleado y Plantilla -->
       <div class="grid mb-4">
@@ -32,7 +32,7 @@
           />
         </div>
       </div>
-      <p-divider />
+      <lx-divider />
 
       }
 
@@ -42,11 +42,11 @@
       -->
       @if (selectedTemplate) {
       <div class="mb-4">
-        <p-message severity="secondary" class="flex justify-content-center">
+        <lx-message severity="secondary">
           <span class="text-xl font-bold">
             {{ evaluatedEmployeeName }} | {{ selectedTemplate.name }}</span
           >
-        </p-message>
+        </lx-message>
 
         <!--
           Contenedor para el FormArray de respuestas.

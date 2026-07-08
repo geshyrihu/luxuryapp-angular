@@ -9,7 +9,6 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CardModule } from "primeng/card";
 import { CheckboxModule } from "primeng/checkbox";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
@@ -49,7 +48,6 @@ const GUIA_LABELS: Record<string, string> = {
     CommonModule,
     FormsModule,
     WebButtonLabel,
-    CardModule,
     CheckboxModule,
     InputText,
     InputTextarea,
@@ -82,7 +80,7 @@ const GUIA_LABELS: Record<string, string> = {
           <div class="grid mb-5">
             @for (m of metrics; track m.label) {
               <div class="col-12 md:col-4">
-                <p-card class="h-full">
+                <div class="card h-full">
                   <div class="flex align-items-center gap-3">
                     <app-icon [icon]="m.icon" class="text-primary text-3xl" />
                     <div>
@@ -91,7 +89,7 @@ const GUIA_LABELS: Record<string, string> = {
                       <small class="text-color-secondary">{{ m.detail }}</small>
                     </div>
                   </div>
-                </p-card>
+                </div>
               </div>
             }
           </div>
@@ -100,7 +98,7 @@ const GUIA_LABELS: Record<string, string> = {
           <div class="grid mb-5">
             @for (s of businessScenarios; track s.title) {
               <div class="col-12 lg:col-4">
-                <p-card class="h-full border-top-3 border-primary surface-card">
+                <div class="card h-full border-top-3 border-primary surface-card">
                   <div class="flex align-items-center gap-3 mb-3">
                     <app-icon [icon]="s.icon" class="text-primary text-2xl" />
                     <strong class="text-xl">{{ s.title }}</strong>
@@ -113,7 +111,7 @@ const GUIA_LABELS: Record<string, string> = {
                   >
                     <strong>Regla:</strong> {{ s.rule }}
                   </div>
-                </p-card>
+                </div>
               </div>
             }
           </div>
@@ -127,9 +125,9 @@ const GUIA_LABELS: Record<string, string> = {
           <div class="grid mb-4">
             @for (p of identityPillars; track p.title) {
               <div class="col-12 lg:col-4">
-                <p-card
+                <div
                   class="h-full border-left-3 border-primary surface-card shadow-1"
-                >
+                 class="card">
                   <div class="flex align-items-start gap-3">
                     <app-icon [icon]="p.icon" class="text-primary text-2xl" />
                     <div>
@@ -145,7 +143,7 @@ const GUIA_LABELS: Record<string, string> = {
                       }}</small>
                     </div>
                   </div>
-                </p-card>
+                </div>
               </div>
             }
           </div>
@@ -157,7 +155,7 @@ const GUIA_LABELS: Record<string, string> = {
             class="mb-4 block"
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
           />
-          <p-card>
+          <div class="card">
             <p-table [value]="colorAssessment" class="p-datatable-sm">
               <ng-template #header
                 ><tr>
@@ -182,7 +180,7 @@ const GUIA_LABELS: Record<string, string> = {
                 </tr>
               </ng-template>
             </p-table>
-          </p-card>
+          </div>
         }
 
         @case ("componentcatalog") {
@@ -191,7 +189,7 @@ const GUIA_LABELS: Record<string, string> = {
             text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
             class="mb-3 block"
           />
-          <p-card>
+          <div class="card">
             <p-table
               [value]="componentCatalog"
               [paginator]="true"
@@ -234,14 +232,14 @@ const GUIA_LABELS: Record<string, string> = {
                 </tr>
               </ng-template>
             </p-table>
-          </p-card>
+          </div>
         }
 
         @case ("buttonrules") {
           <div class="grid">
             @for (r of buttonRules; track r.variant) {
               <div class="col-12 md:col-6 xl:col-3">
-                <p-card [class]="r.cardClass">
+                <div [class]="'card ' + r.cardClass">
                   <div class="flex align-items-start gap-3">
                     <app-icon [icon]="r.iconClass" />
                     <div>
@@ -257,7 +255,7 @@ const GUIA_LABELS: Record<string, string> = {
                       }}</small>
                     </div>
                   </div>
-                </p-card>
+                </div>
               </div>
             }
           </div>
@@ -268,7 +266,7 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("referenceform") {
-          <p-card class="mb-5">
+          <div class="card mb-5">
             <div class="grid formgrid">
               <div class="field col-12 md:col-6 xl:col-4">
                 <custom-input-text-signal
@@ -403,7 +401,7 @@ const GUIA_LABELS: Record<string, string> = {
                 iconClass="icon.content-save"
               />
             </div>
-          </p-card>
+          </div>
           <p-message
             severity="warn"
             text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."

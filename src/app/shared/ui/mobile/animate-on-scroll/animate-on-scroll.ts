@@ -1,11 +1,19 @@
-import { Directive, ElementRef, inject, AfterViewInit, DestroyRef } from "@angular/core";
+import {
+  AfterViewInit,
+  DestroyRef,
+  Directive,
+  ElementRef,
+  inject,
+} from "@angular/core";
 import { AnimateOnScrollBase } from "@ui/base/animate-on-scroll.base";
 
 @Directive({
   selector: "[iliAnimateOnScroll]",
-  standalone: true,
 })
-export class MobileAnimateOnScroll extends AnimateOnScrollBase implements AfterViewInit {
+export class MobileAnimateOnScroll
+  extends AnimateOnScrollBase
+  implements AfterViewInit
+{
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -19,7 +27,7 @@ export class MobileAnimateOnScroll extends AnimateOnScrollBase implements AfterV
           observer.unobserve(el);
         }
       },
-      { threshold: this.threshold() }
+      { threshold: this.threshold() },
     );
     observer.observe(this.el.nativeElement);
     this.destroyRef.onDestroy(() => observer.disconnect());

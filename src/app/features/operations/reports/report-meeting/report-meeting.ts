@@ -1,9 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { CardModule } from "primeng/card";
 import { AppSpinner } from "@ui/web/spinner/spinner";
+import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -129,12 +135,3 @@ export class ReportMeeting {
     });
   }
 }
-
-
-
-
-
-
-
-
-

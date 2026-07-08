@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 import { openPdf } from "../shared/pdf";
 
 @Component({
   selector: "iw-button-view-pdf",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

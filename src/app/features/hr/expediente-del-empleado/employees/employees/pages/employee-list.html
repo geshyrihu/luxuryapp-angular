@@ -75,7 +75,7 @@
     <tr>
       <td class="no-print">{{ rowIndex + 1 }}</td>
       <td class="text-center">
-        <p-avatar
+        <lx-avatar
           [image]="item.photoPath"
           alt=""
           class="mr-2"
@@ -129,8 +129,8 @@
   trackByProperty="employeeId"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
-      <div slot="start" class="mobile-avatar-slot">
+    <ili-list-item>
+      <div start class="mobile-avatar-slot">
         @if (item.photoPath) {
         <img
           [src]="item.photoPath"
@@ -144,7 +144,7 @@
         />
         }
       </div>
-      <ion-label class="ion-text-wrap">
+      
         <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
           {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
@@ -153,9 +153,9 @@
         <p class="text-xs m-0 text-color-secondary">
           {{ item.correoPersonal }}
         </p>
-      </ion-label>
+      
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-item
             (clicked)="onShowEditEmpleado(item.applicationUserId, item.employeeId, item.fullName)"
@@ -164,6 +164,6 @@
           />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { ProgressBarBase } from "./progress-bar.base";
 
-@Component({ selector: "test-progress-bar", standalone: true, template: "" })
+@Component({ selector: "test-progress-bar", template: "" })
 class TestProgressBar extends ProgressBarBase {}
 
 describe("ProgressBarBase", () => {

@@ -41,22 +41,21 @@
   </div>
   }
 
-  <ion-list-header>
-    <ion-label class="font-bold text-900">Reuniones mensuales</ion-label>
+  <div class="">
+    Reuniones mensuales
   </ion-list-header>
 
-  <ion-list [inset]="true" class="m-0">
+  <div class="m-0">
     @for (item of dataSignal(); track item.id) {
-    <ion-item button detail="true" lines="full"
-      (click)="viewPdf(item.filePath, item.documentName)" class="ion-no-padding">
-      <div slot="start" class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
+    <ili-list-item>
+      <div start class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
         <app-icon [icon]="'mdi:video'" class="text-xl text-green-600" />
       </div>
-      <ion-label class="ml-2">
+      
         <h3 class="font-bold text-900">{{ item.documentName }}</h3>
         <p class="text-sm text-500">Archivo .{{ item.fileExtension }}</p>
-      </ion-label>
-    </ion-item>
+      
+    </ili-list-item>
     }
-  </ion-list>
+  </div>
 </div>

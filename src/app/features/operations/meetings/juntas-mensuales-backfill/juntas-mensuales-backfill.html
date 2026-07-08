@@ -1,4 +1,4 @@
-<div class="grid">
+﻿<div class="grid">
   <div class="col-12">
     <div class="card">
       <div
@@ -46,30 +46,30 @@
   </div>
 
   <div class="col-12 md:col-4">
-    <p-card header="Sesiones cargadas">
+    <div class="card" header="Sesiones cargadas">
       <div class="text-3xl font-bold">{{ items().length }}</div>
       <small class="text-color-secondary">
         Sesiones evaluadas con la ventana actual.
       </small>
-    </p-card>
+    </div>
   </div>
 
   <div class="col-12 md:col-4">
-    <p-card header="Pendientes de relacion">
+    <div class="card" header="Pendientes de relacion">
       <div class="text-3xl font-bold">{{ pendingCount() }}</div>
       <small class="text-color-secondary">
         Sesiones sin presentacion o sin minuta ligada.
       </small>
-    </p-card>
+    </div>
   </div>
 
   <div class="col-12 md:col-4">
-    <p-card header="Aplicables">
+    <div class="card" header="Aplicables">
       <div class="text-3xl font-bold">{{ autoApplicableCount() }}</div>
       <small class="text-color-secondary">
         Sesiones con al menos una sugerencia disponible para aplicar.
       </small>
-    </p-card>
+    </div>
   </div>
 
   <div class="col-12">
@@ -80,7 +80,7 @@
         [scrollable]="true"
         scrollHeight="620px"
       >
-        <ng-template #header>
+        <ng-template pTemplate="header">
           <tr>
             <th>Sesion</th>
             <th>Presentacion sugerida</th>
@@ -205,3 +205,4 @@
     </div>
   </div>
 </div>
+

@@ -47,17 +47,13 @@
   [globalFilterFields]="[]"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item
-      [routerLink]="item.routerLink"
-      class="ion-no-padding"
-      detail="false"
-    >
-      <span slot="start" [class]="menuShellClass(item.group, true)">
+    <ili-list-item [divider]="false" [noPadding]="true">
+      <span start [class]="menuShellClass(item.group, true)">
         <span [class]="menuTone(item.group).glyph" class="flex align-items-center justify-content-center w-full h-full">
           <app-icon [icon]="item.icon" class="text-base" />
         </span>
       </span>
-      <ion-label class="ds-mobile-label">{{ item.label }}</ion-label>
-    </ion-item>
+      <a [routerLink]="item.routerLink" class="ds-mobile-label flex align-items-center w-full h-full">{{ item.label }}</a>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

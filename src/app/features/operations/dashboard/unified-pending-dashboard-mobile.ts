@@ -3,12 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import {
-  IonBadge,
-  IonChip,
-  IonIcon,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -38,11 +33,6 @@ import { PendingItemDTO } from "./models/pending-item.dto";
   imports: [AppIcon, 
     CommonModule,
     DataViewMobile,
-    IonItem,
-    IonLabel,
-    IonIcon,
-    IonBadge,
-    IonChip,
   ],
   templateUrl: "./unified-pending-dashboard-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,

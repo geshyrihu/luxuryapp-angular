@@ -46,7 +46,6 @@ import { AccordionModule } from "primeng/accordion";
 import { BadgeModule } from "primeng/badge";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import { CheckboxModule } from "primeng/checkbox";
 import { DatePickerModule } from "primeng/datepicker";
 import { DialogModule } from "primeng/dialog";
@@ -124,7 +123,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     BadgeModule,
     BreadcrumbModule,
     ButtonModule,
-    CardModule,
     CheckboxModule,
     DatePickerModule,
     DialogModule,
@@ -172,7 +170,11 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 
       @switch (item()) {
         @case ("accordion") {
-          <p-card header="Accordion - p-accordion">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Accordion - p-accordion</h3>
+            </div>
+            <div class="card-body">
             <p-accordion>
               <p-accordion-panel value="0">
                 <p-accordion-header>Sección 1</p-accordion-header>
@@ -199,10 +201,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 >
               </p-accordion-panel>
             </p-accordion>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("badge") {
-          <p-card header="Badge - p-badge">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Badge - p-badge</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-wrap gap-3 align-items-center">
               <p-badge value="3" severity="danger" />
               <p-badge value="12" severity="warn" />
@@ -211,10 +218,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <p-badge severity="danger" />
               <p-badge severity="warn" />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("breadcrumb") {
-          <p-card header="Breadcrumb - p-breadcrumb">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Breadcrumb - p-breadcrumb</h3>
+            </div>
+            <div class="card-body">
             <p-breadcrumb
               [model]="[
                 { label: 'Inicio' },
@@ -224,10 +236,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               ]"
               [home]="{ icon: 'mdi:home' }"
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("button") {
-          <p-card header="Button - p-button">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Button - p-button</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-wrap gap-2">
               <p-button label="Primary" />
               <p-button label="Secondary" severity="secondary" />
@@ -246,9 +263,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <p-button label="Disabled" [disabled]="true" />
               <p-button label="Loading" [loading]="true" />
             </div>
-          </p-card>
+            </div>
+  </div>
           <div class="mt-3">
-            <p-card header="Action Buttons - il-button-* / iw-button-*">
+            <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Action Buttons - il-button-* / iw-button-*</h3>
+            </div>
+            <div class="card-body">
               <p class="text-sm text-secondary m-0 mb-3">
                 Botones ERP: <code>il-*</code> con label, <code>iw-*</code> solo
                 icono.
@@ -264,11 +286,16 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <iw-button-view-pdf />
                 <iw-button-send-email />
               </div>
-            </p-card>
+              </div>
+  </div>
           </div>
 
           <div class="mt-3">
-            <p-card header="Icon Button con borde - patron shell/layout">
+            <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Icon Button con borde - patron shell/layout</h3>
+            </div>
+            <div class="card-body">
               <p class="text-sm text-secondary m-0 mb-3">
                 Para botones de shell (sidebar toggle, header actions) que
                 requieren un aspecto específico con borde y tamaóo fijo, usa
@@ -356,29 +383,41 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   </div>
                 </div>
               </div>
-            </p-card>
+              </div>
+  </div>
           </div>
         }
         @case ("card") {
           <div class="grid">
             <div class="col-12 md:col-6">
-              <p-card header="Card Simple">
+              <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Card Simple</h3>
+            </div>
+            <div class="card-body">
                 <p class="m-0">
                   Contenido de la card. Usa este componente para agrupar
                   informacion relacionada.
                 </p>
-              </p-card>
+                </div>
+  </div>
             </div>
             <div class="col-12 md:col-6">
-              <p-card header="Con Subheader" subheader="Subtitulo">
+              <div class="card">
+            <div class="card-body">header="Con Subheader" subheader="Subtitulo">
                 <p class="m-0">Card con subheader y footer opcional.</p>
                 <ng-template #footer><p-button label="Accion" /></ng-template>
-              </p-card>
+                </div>
+  </div>
             </div>
           </div>
         }
         @case ("checkbox") {
-          <p-card header="Checkbox - p-checkbox">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Checkbox - p-checkbox</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-column gap-3">
               <div class="flex align-items-center gap-2">
                 <p-checkbox [binary]="true" inputId="chk1" /><label for="chk1"
@@ -396,19 +435,29 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 >
               </div>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("datepicker") {
-          <p-card header="DatePicker - p-datepicker">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">DatePicker - p-datepicker</h3>
+            </div>
+            <div class="card-body">
             <p-datepicker
               [(ngModel)]="dateVal"
               dateFormat="dd/mm/yy"
               appendTo="body"
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("dialog") {
-          <p-card header="Dialog - p-dialog">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Dialog - p-dialog</h3>
+            </div>
+            <div class="card-body">
             <p-button
               label="Abrir Dialog"
               (onClick)="dialogVisible.set(true)"
@@ -424,19 +473,29 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 ><p-button label="Cerrar" (onClick)="dialogVisible.set(false)"
               /></ng-template>
             </p-dialog>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("divider") {
-          <p-card header="Divider - p-divider">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Divider - p-divider</h3>
+            </div>
+            <div class="card-body">
             <p>Contenido superior</p>
             <p-divider />
             <p>Contenido inferior</p>
             <p-divider align="left"><b>Izquierda</b></p-divider>
             <p>Texto con divider alineado.</p>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("inputnumber") {
-          <p-card header="InputNumber - p-inputnumber">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">InputNumber - p-inputnumber</h3>
+            </div>
+            <div class="card-body">
             <div class="grid">
               <div class="col-6">
                 <p-inputnumber
@@ -457,10 +516,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 />
               </div>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("inputtext") {
-          <p-card header="InputText - p-inputtext">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">InputText - p-inputtext</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-column gap-3">
               <input
                 pInputText
@@ -472,10 +536,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 ><input pInputText placeholder="Fluid (ancho completo)"
               /></span>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("message") {
-          <p-card header="Message - p-message">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Message - p-message</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-column gap-2">
               <p-message severity="info" text="Mensaje informativo" />
               <p-message severity="success" text="Operacion exitosa" />
@@ -484,10 +553,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <p-message severity="secondary" text="Mensaje secundario" />
               <p-message severity="contrast" text="Contraste" />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("multiselect") {
-          <p-card header="MultiSelect - p-multiselect">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">MultiSelect - p-multiselect</h3>
+            </div>
+            <div class="card-body">
             <p-multiselect
               [options]="selectOptions"
               [(ngModel)]="multiVal"
@@ -496,10 +570,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               appendTo="body"
               class="w-full"
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("popover") {
-          <p-card header="Popover - p-popover">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Popover - p-popover</h3>
+            </div>
+            <div class="card-body">
             <p-button
               label="Abrir Popover"
               #popoverBtn
@@ -510,26 +589,41 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 Contenido del popover. Ideal para menus contextuales rapidos.
               </div></p-popover
             >
-          </p-card>
+            </div>
+  </div>
         }
         @case ("progressbar") {
-          <p-card header="ProgressBar - p-progressbar">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ProgressBar - p-progressbar</h3>
+            </div>
+            <div class="card-body">
             <p-progressbar [value]="75" />
             <p class="mt-3">
               <p-progressbar [value]="50" [showValue]="false" />
             </p>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("progressspinner") {
-          <p-card header="ProgressSpinner - p-progressspinner">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ProgressSpinner - p-progressspinner</h3>
+            </div>
+            <div class="card-body">
             <div class="flex gap-3">
               <p-progressspinner strokeWidth="4" />
               <p-progressspinner strokeWidth="8" />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("radiobutton") {
-          <p-card header="RadioButton - p-radiobutton">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">RadioButton - p-radiobutton</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-column gap-2">
               <div class="flex align-items-center gap-2">
                 <p-radiobutton
@@ -553,10 +647,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 /><label>Opcion 3</label>
               </div>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("select") {
-          <p-card header="Select - p-select">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Select - p-select</h3>
+            </div>
+            <div class="card-body">
             <p-select
               [options]="selectOptions"
               [(ngModel)]="selectVal"
@@ -565,19 +664,29 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               appendTo="body"
               class="w-full"
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("selectbutton") {
-          <p-card header="SelectButton - p-selectbutton">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">SelectButton - p-selectbutton</h3>
+            </div>
+            <div class="card-body">
             <p-selectbutton
               [options]="selectOptions"
               [(ngModel)]="selectBtnVal"
               optionLabel="label"
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("skeleton") {
-          <p-card header="Skeleton - p-skeleton">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Skeleton - p-skeleton</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-column gap-2">
               <p-skeleton width="100%" height="1rem" />
               <p-skeleton width="75%" height="1rem" />
@@ -590,10 +699,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("table") {
-          <p-card header="Table - p-table">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Table - p-table</h3>
+            </div>
+            <div class="card-body">
             <p-table [value]="tableData" class="p-datatable-sm">
               <ng-template #header
                 ><tr>
@@ -612,10 +726,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </tr>
               </ng-template>
             </p-table>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("tabs") {
-          <p-card header="Tabs - p-tabs">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tabs - p-tabs</h3>
+            </div>
+            <div class="card-body">
             <p-tabs value="0">
               <p-tablist>
                 <p-tab value="0">General</p-tab>
@@ -634,10 +753,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 >
               </p-tabpanels>
             </p-tabs>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("tag") {
-          <p-card header="Tag - p-tag">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tag - p-tag</h3>
+            </div>
+            <div class="card-body">
             <div class="flex flex-wrap gap-2">
               <p-tag value="Success" severity="success" />
               <p-tag value="Info" severity="info" />
@@ -646,10 +770,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <p-tag value="Secondary" severity="secondary" />
               <p-tag value="Contrast" severity="contrast" [rounded]="true" />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("textarea") {
-          <p-card header="Textarea - p-textarea">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Textarea - p-textarea</h3>
+            </div>
+            <div class="card-body">
             <custom-input-textarea-signal
               [onlyInput]="true"
               [noMargin]="true"
@@ -660,26 +789,41 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               placeholder="Escribe aqué..."
               customClass="w-full"
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("toast") {
-          <p-card header="Toast - p-toast">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Toast - p-toast</h3>
+            </div>
+            <div class="card-body">
             <p-message
               severity="info"
               text="Las notificaciones Toast se muestran globalmente mediante MessageService. Inyecta MessageService y llama a add() con severity, summary y detail."
             />
-          </p-card>
+            </div>
+  </div>
         }
         @case ("toggleswitch") {
-          <p-card header="ToggleSwitch - p-toggleswitch">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ToggleSwitch - p-toggleswitch</h3>
+            </div>
+            <div class="card-body">
             <div class="flex align-items-center gap-3">
               <p-toggleswitch [(ngModel)]="toggleVal" />
               <span>{{ toggleVal() ? "Activado" : "Desactivado" }}</span>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("toolbar") {
-          <p-card header="Toolbar - p-toolbar">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Toolbar - p-toolbar</h3>
+            </div>
+            <div class="card-body">
             <p-toolbar>
               <ng-template #start><strong>Toolbar Title</strong></ng-template>
               <ng-template #end>
@@ -693,10 +837,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
               </ng-template>
             </p-toolbar>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("tooltip") {
-          <p-card header="Tooltip - p-tooltip">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tooltip - p-tooltip</h3>
+            </div>
+            <div class="card-body">
             <div class="flex gap-3">
               <p-button
                 label="Hover me"
@@ -716,10 +865,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 tooltipPosition="bottom"
               />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("custominputs") {
-          <p-card header="Custom Inputs - Wrappers ERP (horizontal layout)">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Custom Inputs - Wrappers ERP (horizontal layout)</h3>
+            </div>
+            <div class="card-body">
             <p class="text-sm text-secondary mb-4 m-0">
               Wrappers sobre PrimeNG con deteccion automatica de plataforma
               (web/mobile), validacion integrada y layout horizontal/vertical.
@@ -784,9 +938,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 placeholder="Escribe aqui..."
               />
             </form>
-          </p-card>
-          <p-card
-            header="Custom Inputs - Vertical layout (onlyInput)"
+            </div>
+  </div>
+          <div class="card">
+            <div class="card-body">header="Custom Inputs - Vertical layout (onlyInput)"
             class="mt-3"
           >
             <div class="grid">
@@ -813,12 +968,17 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 />
               </div>
             </div>
-          </p-card>
+            </div>
+  </div>
         }
 
         @case ("calendar") {
           <div class="flex flex-column gap-4">
-            <p-card header="FullCalendar - Integracion Google Calendar">
+            <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">FullCalendar - Integracion Google Calendar</h3>
+            </div>
+            <div class="card-body">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Usa <code>&#64;fullcalendar/angular</code> v6 con plugins
                 <code>dayGridPlugin</code> + <code>timeGridPlugin</code>.
@@ -833,9 +993,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   [events]="CATALOG_DEMO_EVENTS"
                 />
               </div>
-            </p-card>
+              </div>
+  </div>
 
-            <p-card header="Estados de sincronizacion - p-tag severity">
+            <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Estados de sincronizacion - p-tag severity</h3>
+            </div>
+            <div class="card-body">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Usar <code>p-tag [severity]</code> con la funcion
                 <code>getStatusSeverity()</code>
@@ -862,9 +1027,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <span class="catalog-helper-text text-sm">secondary</span>
                 </div>
               </div>
-            </p-card>
+              </div>
+  </div>
 
-            <p-card header="Tabla de eventos - patron ERP">
+            <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tabla de eventos - patron ERP</h3>
+            </div>
+            <div class="card-body">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Debajo del calendario:
                 <code>p-table class="custom-table "</code>
@@ -899,7 +1069,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   </tr>
                 </ng-template>
               </p-table>
-            </p-card>
+              </div>
+  </div>
           </div>
         }
       }

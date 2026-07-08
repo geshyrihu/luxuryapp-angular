@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ISettingsMenuItem } from "src/app/core/interfaces/menu.model";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -30,8 +30,7 @@ interface IMenuTone {
     CommonModule,
     RouterModule,
     DataViewMobile,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     AppIcon
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

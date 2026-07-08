@@ -1,4 +1,11 @@
-import { Component, computed, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -8,7 +15,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
  */
 @Component({
   selector: "web-input-number",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
   template: `
     <base-input-signal

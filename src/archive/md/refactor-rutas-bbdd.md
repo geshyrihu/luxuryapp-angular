@@ -1,4 +1,4 @@
-﻿# Rutas de Base de Datos — Ordenadas por Código
+# Rutas de Base de Datos — Ordenadas por Código
 
 | UUID | Code | Name | Description | Order | Route | Icon | ParentId | Active |
 |------|------|------|-------------|-------|-------|------|----------|--------|

@@ -1,10 +1,14 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
+import { ProfileCardBase } from "@ui/base/profile-card.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ProfileCardBase } from "@ui/base/profile-card.base";
 
 export { type ProfileAction } from "@ui/base/profile-card.base";
 
@@ -14,7 +18,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
  */
 @Component({
   selector: "app-profile-card",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
   template: `
     <div class="profile-card" [class.profile-card-compact]="compact()">
@@ -84,111 +88,117 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
       }
     </div>
   `,
-  styles: [`
-    .profile-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem;
-      background: var(--ds-bg-surface, #fff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-lg, 8px);
-      transition: box-shadow 0.15s;
-    }
-    .profile-card:hover {
-      box-shadow: var(--ds-shadow-sm);
-    }
-    .profile-card-compact {
-      padding: 0.625rem;
-      gap: 0.75rem;
-    }
-    /* Avatar */
-    .profile-avatar {
-      position: relative;
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: visible;
-    }
-    .profile-avatar-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .profile-avatar-initials {
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: #fff;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    .profile-status-dot {
-      position: absolute;
-      bottom: 1px;
-      right: 1px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 2px solid var(--ds-bg-surface, #fff);
-    }
-    .profile-status-online  { background: var(--ds-success, #006837); }
-    .profile-status-offline { background: var(--ds-text-muted, #737685); }
-    /* Info */
-    .profile-info {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-    .profile-name-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .profile-name {
-      font-size: var(--ds-font-size-card-title, 1rem);
-      color: var(--ds-text-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .profile-role {
-      font-size: var(--ds-font-size-help, 0.8125rem);
-      color: var(--ds-text-secondary);
-    }
-    .profile-email,
-    .profile-phone,
-    .profile-company {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: var(--ds-font-size-help, 0.8125rem);
-      color: var(--ds-text-muted);
-      text-decoration: none;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .profile-email:hover,
-    .profile-phone:hover {
-      color: var(--ds-primary, #003d9b);
-      text-decoration: underline;
-    }
-    /* Actions */
-    .profile-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      align-self: center;
-    }
-  `],
+  styles: [
+    `
+      .profile-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--ds-bg-surface, #fff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-lg, 8px);
+        transition: box-shadow 0.15s;
+      }
+      .profile-card:hover {
+        box-shadow: var(--ds-shadow-sm);
+      }
+      .profile-card-compact {
+        padding: 0.625rem;
+        gap: 0.75rem;
+      }
+      /* Avatar */
+      .profile-avatar {
+        position: relative;
+        flex-shrink: 0;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+      }
+      .profile-avatar-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .profile-avatar-initials {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .profile-status-dot {
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid var(--ds-bg-surface, #fff);
+      }
+      .profile-status-online {
+        background: var(--ds-success, #006837);
+      }
+      .profile-status-offline {
+        background: var(--ds-text-muted, #737685);
+      }
+      /* Info */
+      .profile-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .profile-name-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .profile-name {
+        font-size: var(--ds-font-size-card-title, 1rem);
+        color: var(--ds-text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .profile-role {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-secondary);
+      }
+      .profile-email,
+      .profile-phone,
+      .profile-company {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-muted);
+        text-decoration: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .profile-email:hover,
+      .profile-phone:hover {
+        color: var(--ds-primary, #003d9b);
+        text-decoration: underline;
+      }
+      /* Actions */
+      .profile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        align-self: center;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -65,7 +65,7 @@
     >
       @for (categoryGroup of categories.controls; track categoryGroup; let i =
       $index) {
-      <p-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
+      <lx-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
         <ng-template #header>
           <div class="flex align-items-center gap-3 px-2 w-full">
             <!-- Drag Handle Categoría -->
@@ -145,7 +145,7 @@
           </div>
           }
         </div>
-      </p-fieldset>
+      </lx-fieldset>
       } @if (categories.controls.length === 0) {
       <div
         class="text-center p-8 border-2 border-dashed surface-border border-round bg-white"

@@ -1,10 +1,6 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -21,7 +17,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
-  imports: [TableModule, IonList, IonListHeader, IonItem, IonLabel, AppIcon],
+  imports: [TableModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reuniones-mensuales-consejo-directivo.html",
 })

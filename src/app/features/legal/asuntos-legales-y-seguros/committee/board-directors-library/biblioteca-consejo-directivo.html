@@ -33,14 +33,11 @@
 
 <!-- Mobile View -->
 <div class="block md:hidden">
-  <ion-grid class="p-0">
-    <ion-row>
+  <div class="grid p-0">
+    <div class="flex flex-wrap w-full">
       @for (category of documentCategories; track category.routeParam) {
-      <ion-col size="6" class="p-0">
-        <ion-card
-          class="m-1 h-full animate__animated animate__fadeIn border-1 surface-border shadow-1"
-          (click)="navigateTo(category.routeParam)"
-        >
+      <div class="col-6 p-0">
+        <div class="m-1 h-full animate__animated animate__fadeIn border-1 surface-border shadow-1" (click)="navigateTo(category.routeParam)">
           <div class="relative overflow-hidden h-9rem">
             <lx-image
               [src]="category.image"
@@ -48,15 +45,14 @@
               styleClass="w-full h-full cover-image"
             ></lx-image>
           </div>
-          <ion-card-content class="text-center p-2">
-            <ion-label class="text-sm font-bold text-900"
-              >{{ category.title }}</ion-label
+          <div class="text-center p-2">
+            <span class="text-sm font-bold text-900">{{ category.title }}</ion-label
             >
-          </ion-card-content>
+          </div>
           <ion-ripple-effect></ion-ripple-effect>
-        </ion-card>
-      </ion-col>
+        </div>
+      </div>
       }
-    </ion-row>
-  </ion-grid>
+    </div>
+  </div>
 </div>

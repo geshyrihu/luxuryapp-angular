@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonBadge } from "@ionic/angular/standalone";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -80,7 +79,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     AppAvatar,
     PrimeNgCustomCaption,
     DataViewMobile,
-    IonBadge, LxTag, MobileListItem, AppIcon],
+    LxTag, MobileListItem, AppIcon],
 })
 export class WorkPositionList {
   // --- INYECCIóN DE DEPENDENCIAS ---
@@ -228,3 +227,4 @@ export class WorkPositionList {
     return !isBlockingStatus;
   }
 }
+

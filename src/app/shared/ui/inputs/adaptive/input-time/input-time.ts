@@ -1,4 +1,9 @@
-import { Component, forwardRef, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -7,7 +12,7 @@ import { WebInputTime } from "../../web/input-time/input-time";
 
 @Component({
   selector: "custom-input-time-signal",
-  standalone: true,
+
   imports: [WebInputTime, IonInputTime],
   providers: [
     {

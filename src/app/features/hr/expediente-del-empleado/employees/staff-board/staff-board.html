@@ -197,7 +197,7 @@
           <!-- -- Puesto ocupado -- -->
           <div class="flex align-items-center">
             @if (item.applicationUserPhoto) {
-            <p-avatar
+            <lx-avatar
               [image]="item.applicationUserPhoto"
               shape="circle"
               size="large"
@@ -206,7 +206,7 @@
               pTooltip="Ver tarjeta"
             />
             } @else {
-            <p-avatar
+            <lx-avatar
               icon="mdi:account"
               shape="circle"
               size="large"
@@ -352,7 +352,7 @@
     </p>
     } @for (emp of unassignedEmployees(); track emp.applicationUserId) {
     <div cdkDrag [cdkDragData]="emp" class="employee-chip">
-      <p-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="chip-info">
         <span class="chip-name">{{ emp.fullName }}</span>
         <span class="chip-sub">{{ emp.userName }}</span>
@@ -366,7 +366,7 @@
 
       <ng-template cdkDragPreview>
         <div class="chip-preview">
-          <p-avatar [image]="emp.photoPath" shape="circle" />
+          <lx-avatar [image]="emp.photoPath" shape="circle" />
           <span>{{ emp.fullName }}</span>
         </div>
       </ng-template>
@@ -420,7 +420,7 @@
       "
       (click)="onAssignFromDrawer(emp)"
     >
-      <p-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="flex flex-column min-w-0 flex-grow-1">
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
@@ -519,7 +519,7 @@
         padding: 10px 14px;
       "
     >
-      <p-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="flex flex-column min-w-0 flex-grow-1">
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>

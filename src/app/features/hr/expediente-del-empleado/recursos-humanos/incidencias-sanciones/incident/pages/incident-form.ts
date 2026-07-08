@@ -1,13 +1,11 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, inject, model, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TabsModule } from "primeng/tabs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -23,6 +21,8 @@ import {
   IncidentTypeListDTO,
   SanctionTypeListDTO,
 } from "src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/models/hr-catalog.interfaces";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { TabItem } from "@ui/base/tabs.base";
 import { IncidentAttachmentsComponent } from "../components/incident-attachments/incident-attachments";
 import { IncidentWitnessesComponent } from "../components/incident-witnesses/incident-witnesses";
 import { SuspensionDaysManager } from "../components/suspension-days-manager/suspension-days-manager";
@@ -46,8 +46,7 @@ interface IIncidentForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    TabsModule,
-    DividerModule,
+    LxTabs,
     CustomInputSelectSignal,
     CustomInputDateTimeSignal,
     CustomInputTextAreaSignal,
@@ -67,7 +66,13 @@ export class IncidentFormComponent implements OnInit {
 
   id = signal<string>("");
   submitting = signal(false);
-  activeTab = signal("datos");
+  activeTab = model<string>("datos");
+  tabs = computed<TabItem[]>(() => [
+    { id: "datos", label: "📋 Datos" },
+    { id: "adjuntos", label: "📎 Adjuntos", disabled: !this.id() },
+    { id: "testigos", label: "👤 Testigos", disabled: !this.id() },
+    { id: "suspension", label: "📅 Días de Suspensión", disabled: !this.id() },
+  ]);
   incidentTypes = signal<ISelectItem[]>([]);
   sanctionTypes = signal<ISelectItem[]>([]);
   cb_severity = signal<ISelectItem[]>([]);

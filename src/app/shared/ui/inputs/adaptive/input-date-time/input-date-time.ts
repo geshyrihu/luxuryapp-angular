@@ -1,16 +1,26 @@
-import { Component, forwardRef, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
-import { WebInputDateTime } from "../../web/input-date-time/input-date-time";
 import { IonInputDateTime } from "../../mobile/ion-input-date-time";
+import { WebInputDateTime } from "../../web/input-date-time/input-date-time";
 
 @Component({
   selector: "custom-input-date-time-signal",
-  standalone: true,
+
   imports: [WebInputDateTime, IonInputDateTime],
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputDateTime), multi: true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputDateTime),
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

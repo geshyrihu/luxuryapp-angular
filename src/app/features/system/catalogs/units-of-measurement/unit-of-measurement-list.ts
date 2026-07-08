@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -37,8 +37,8 @@ import { UnitOfMeasurementForm } from "./unit-of-measurement-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     MobileActionMenu,
-    IonItem,
-    IonLabel,
+    
+    
   ],
 })
 export class UnitOfMeasurementList implements OnInit {
@@ -94,3 +94,4 @@ export class UnitOfMeasurementList implements OnInit {
       });
   }
 }
+

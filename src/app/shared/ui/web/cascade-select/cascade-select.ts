@@ -1,12 +1,16 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CascadeSelectModule } from "primeng/cascadeselect";
 import { CascadeSelectBase } from "@ui/base/cascade-select.base";
+import { CascadeSelectModule } from "primeng/cascadeselect";
 
 @Component({
   selector: "app-cascade-select",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, CascadeSelectModule],
   template: `
     <p-cascadeSelect
@@ -17,11 +21,13 @@ import { CascadeSelectBase } from "@ui/base/cascade-select.base";
       styleClass="app-cascade-select"
     />
   `,
-  styles: [`
-    .app-cascade-select {
-      width: 100%;
-    }
-  `],
+  styles: [
+    `
+      .app-cascade-select {
+        width: 100%;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

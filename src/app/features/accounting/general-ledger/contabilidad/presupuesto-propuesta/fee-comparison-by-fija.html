@@ -12,8 +12,8 @@
   ============================================================================
 -->
 @if (comparisonData(); as data) {
-<p-card>
-  <ng-template #content>
+<lx-card>
+<ng-template #content>
     <p class="text-600">
       Cólculo basado en la división del presupuesto total entre
       <strong>{{ data.propertyCount }} propiedades</strong> y 12 meses.
@@ -206,7 +206,7 @@
       }
     </div>
   </ng-template>
-</p-card>
+</lx-card>
 } @else if (!loading()) {
-<p-message severity="info">No hay datos de comparación disponibles.</p-message>
+<lx-message severity="info">No hay datos de comparación disponibles.</lx-message>
 }

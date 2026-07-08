@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -40,8 +40,8 @@ import { CfdiUseForm } from "./cfdi-use-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     MobileActionMenu,
-    IonItem,
-    IonLabel,
+    
+    
   ],
 })
 export class CfdiUseList implements OnInit {
@@ -94,3 +94,4 @@ export class CfdiUseList implements OnInit {
       });
   }
 }
+

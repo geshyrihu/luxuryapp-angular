@@ -1,8 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
-  IonItem,
-  IonLabel,
-  IonList,
   IonListHeader,
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -21,7 +18,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
-  imports: [TableModule, IonList, IonListHeader, IonItem, IonLabel, AppIcon],
+  imports: [TableModule, IonListHeader, AppIcon],
   templateUrl: "./reuniones-mensuales-consejo-directivo.html",
 })
 export class ReunionesMensualesConsejoDirectivo implements OnInit {

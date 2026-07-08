@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
 import { IonBadge, IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
@@ -7,7 +12,7 @@ import { TrackingEvent } from "../shared/tracking";
 
 @Component({
   selector: "ii-button-tracking",
-  standalone: true,
+
   imports: [CommonModule, IonButton, IonBadge, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -43,4 +48,3 @@ export class MobileButtonIconTracking extends MobileButtonBase {
     });
   }
 }
-

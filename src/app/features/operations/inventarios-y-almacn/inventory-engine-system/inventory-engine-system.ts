@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -36,7 +36,7 @@ export class InventoryEngineSystem {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -48,7 +48,7 @@ export class InventoryEngineSystem {
     return [{ system: "Mostrar todos" }, ...this.dataSignal()];
   });
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ³logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
 
   constructor() {
     effect(() => {
@@ -70,7 +70,7 @@ export class InventoryEngineSystem {
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha TÃºcnica",
+        "Ficha Túcnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
@@ -115,7 +115,7 @@ export class InventoryEngineSystem {
       });
   }
 
-  // MÃ©todo para filtrar los datos por sistema
+  // Método para filtrar los datos por sistema
   onFilterForSystem(system: string) {
     if (!system || system === "Mostrar todos") {
       this.showAll();

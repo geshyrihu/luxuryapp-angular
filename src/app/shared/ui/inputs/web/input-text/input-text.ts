@@ -1,4 +1,10 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -16,7 +22,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
  */
 @Component({
   selector: "web-input-text",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
   template: `
     <base-input-signal

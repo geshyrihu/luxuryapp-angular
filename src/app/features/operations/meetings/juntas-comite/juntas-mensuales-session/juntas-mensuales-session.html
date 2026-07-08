@@ -1,4 +1,4 @@
-<div class="grid">
+﻿<div class="grid">
   <div class="col-12">
     <div class="card">
       <div
@@ -37,7 +37,7 @@
       <h3 class="mt-0">Listado de sesiones</h3>
 
       <p-table [value]="items()" [loading]="loading()" selectionMode="single">
-        <ng-template #header>
+        <ng-template pTemplate="header">
           <tr>
             <th>Sesion</th>
             <th>Fecha</th>
@@ -160,7 +160,7 @@
 
       <div class="grid mt-3">
         <div class="col-12 md:col-4">
-          <p-card header="Agenda">
+          <div class="card" header="Agenda">
             <p class="m-0">
               {{ detail.agenda ? "Ligada" : "Sin agenda ligada" }}
             </p>
@@ -169,11 +169,11 @@
               Estado Google: {{ detail.agenda?.googleStatus }}
             </small>
             }
-          </p-card>
+          </div>
         </div>
 
         <div class="col-12 md:col-4">
-          <p-card header="Presentacion">
+          <div class="card" header="Presentacion">
             <p class="m-0">
               {{ detail.presentation ? "Ligada" : "Sin presentacion ligada" }}
             </p>
@@ -182,11 +182,11 @@
               Junta: {{ detail.presentation.fechaJunta | date: "dd/MM/yyyy" }}
             </small>
             }
-          </p-card>
+          </div>
         </div>
 
         <div class="col-12 md:col-4">
-          <p-card header="Minuta">
+          <div class="card" header="Minuta">
             <p class="m-0">
               {{ detail.meeting ? "Ligada" : "Sin minuta ligada" }}
             </p>
@@ -195,12 +195,12 @@
               {{ detail.meeting.meetingTypeDisplayName }}
             </small>
             }
-          </p-card>
+          </div>
         </div>
 
         @if (detail.assembly) {
         <div class="col-12">
-          <p-card header="Asamblea">
+          <div class="card" header="Asamblea">
             <div class="grid">
               <div class="col-12 md:col-3">
                 <p class="m-0 text-color-secondary">Invitados</p>
@@ -227,7 +227,7 @@
                 </p>
               </div>
             </div>
-          </p-card>
+          </div>
         </div>
         }
       </div>
@@ -239,3 +239,4 @@
     </div>
   </div>
 </div>
+

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { StyleClassBase } from "./style-class.base";
 
-@Component({ selector: "test-style-class", standalone: true, template: "" })
+@Component({ selector: "test-style-class", template: "" })
 class Host extends StyleClassBase {}
 
 describe("StyleClassBase", () => {

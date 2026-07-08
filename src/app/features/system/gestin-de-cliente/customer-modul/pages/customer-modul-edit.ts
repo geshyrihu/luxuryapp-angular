@@ -2,13 +2,13 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { IonList } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
 import { addIcons } from "ionicons";
 import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -37,11 +37,11 @@ interface CustomerModulListDTO {
   selector: "app-customer-modul-edit",
   imports: [
     CommonModule,
-    MessageModule,
-    ProgressSpinnerModule,
+    LxMessage,
+    LxSpinner,
     CustomSearchInput,
     FormsModule,
-    IonList,
+    MobileListItem,
     IonInputToggle,
     AppIcon,
   ],
@@ -114,3 +114,4 @@ export class CustomerModulEdit implements OnInit {
     this.dataConnectorS.post(urlApi, data).subscribe();
   }
 }
+

@@ -67,17 +67,17 @@ export class ImageGenerationDialog {
     {
       label: "Luminoso",
       value: "bright, sunny, natural lighting",
-      emoji: "â˜€ï¸",
+      emoji: "☀️",
     },
     {
       label: "Elegante",
       value: "elegant, luxury, golden hour, warm tones",
-      emoji: "âœ¨",
+      emoji: "✨",
     },
     {
       label: "Profesional",
       value: "corporate, clean, white background, office",
-      emoji: "ðŸ¢",
+      emoji: "🏢",
     },
     { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" },
   ];

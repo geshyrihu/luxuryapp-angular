@@ -3,9 +3,10 @@ import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/cor
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-funding-purchase-detail",
-  imports: [CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe],
+  imports: [CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-purchase-detail.html",
 })

@@ -1,7 +1,11 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ButtonModule } from "primeng/button";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { DateRangeBase } from "@ui/base/date-range.base";
+import { ButtonModule } from "primeng/button";
 
 export {
   type DateRangeValue,
@@ -10,7 +14,7 @@ export {
 
 @Component({
   selector: "app-date-range",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule],
   template: `
     <div class="date-range-root flex flex-column gap-2">
@@ -51,31 +55,33 @@ export {
       }
     </div>
   `,
-  styles: [`
-    .date-input {
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--ds-border);
-      border-radius: var(--ds-radius-input);
-      background: var(--ds-bg-surface);
-      color: var(--ds-text-primary);
-      font-family: var(--ds-font-family-base);
-      font-size: var(--ds-font-size-body);
-      outline: none;
-      transition: border-color 0.15s;
-      box-sizing: border-box;
-    }
-    .date-input:focus {
-      border-color: var(--ds-border-focus);
-      box-shadow: var(--ds-shadow-focus);
-    }
-    .date-input:disabled {
-      font-style: italic;
-      cursor: not-allowed;
-      opacity: 0.55;
-      background: var(--ds-bg-sunken);
-    }
-  `],
+  styles: [
+    `
+      .date-input {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-input);
+        background: var(--ds-bg-surface);
+        color: var(--ds-text-primary);
+        font-family: var(--ds-font-family-base);
+        font-size: var(--ds-font-size-body);
+        outline: none;
+        transition: border-color 0.15s;
+        box-sizing: border-box;
+      }
+      .date-input:focus {
+        border-color: var(--ds-border-focus);
+        box-shadow: var(--ds-shadow-focus);
+      }
+      .date-input:disabled {
+        font-style: italic;
+        cursor: not-allowed;
+        opacity: 0.55;
+        background: var(--ds-bg-sunken);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

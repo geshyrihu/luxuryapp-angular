@@ -5,16 +5,7 @@ import { PersonalAusenteCard } from "src/app/layout/direccion-view/components/pe
 import { ContratosCard } from "src/app/layout/direccion-view/components/contratos-card/contratos-card";
 import { TareasLegalCard } from "src/app/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
 import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonCol,
-  IonGrid,
-  IonIcon,
-  IonLabel,
-  IonRow,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   briefcaseOutline,
@@ -43,15 +34,6 @@ export interface AreaDireccion {
     PersonalAusenteCard,
     ContratosCard,
     TareasLegalCard,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
-    IonIcon,
-    IonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-direccion.html",

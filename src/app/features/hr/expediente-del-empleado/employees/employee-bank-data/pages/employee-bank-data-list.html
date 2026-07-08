@@ -65,9 +65,9 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario y Beneficiario' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -80,13 +80,13 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.bankName }}</h3>
         <p>{{ item.bankAccount }} | {{ item.bankKey }}</p>
         <p>Beneficiario: {{ item.nameContact }}</p>
         <p>{{ item.relacionName }} | {{ item.phoneNumber }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario y Beneficiario' })"
@@ -95,6 +95,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

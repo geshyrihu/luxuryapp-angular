@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { TapToTopBase } from "./tap-to-top.base";
 
-@Component({ selector: "test-tap-to-top", standalone: true, template: "" })
+@Component({ selector: "test-tap-to-top", template: "" })
 class Host extends TapToTopBase {}
 
 describe("TapToTopBase", () => {

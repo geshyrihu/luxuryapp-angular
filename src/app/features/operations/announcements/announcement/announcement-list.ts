@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from "@ionic/angular/standalone";
 import { LxImage } from "@ui/adaptive/image/image";
 import { CardModule } from "primeng/card";
 import { TooltipModule } from "primeng/tooltip";
@@ -16,11 +15,7 @@ import { IAnnouncementList } from "./announcement.model";
     RouterModule,
     CardModule,
     TooltipModule,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,    AppIcon,
+    AppIcon,
     LxImage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -65,3 +60,7 @@ export class AnnouncementList implements OnInit {
     this.router.navigate(ROUTES.ANUNCIOS.DETALLE(id));
   }
 }
+
+
+
+

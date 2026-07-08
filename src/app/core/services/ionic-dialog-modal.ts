@@ -33,7 +33,7 @@ import { Subject } from "rxjs";
  */
 @Component({
   selector: "lx-ionic-dialog-modal",
-  standalone: true,
+
   imports: [
     NgComponentOutlet,
     IonHeader,

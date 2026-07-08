@@ -37,11 +37,7 @@
     Consultando Aspel y armando el análisis de cobranza...
   </div>
   } @else if (data(); as d) {
-  <p-message
-    class="block mb-4"
-    [severity]="messageSeverity()"
-    [text]="d.syncMetadata.syncMessage"
-  />
+  <lx-message class="block mb-4" [severity]="messageSeverity()" [text]="d.syncMetadata.syncMessage" />
 
   <div class="grid mb-4">
     <div class="col-12 md:col-6 xl:col-3">
@@ -279,11 +275,7 @@
             {{ row.saldo === 0 ? '—' : (row.saldo | number:'1.0-0') }}
           </td>
           <td>
-            <p-tag
-              [value]="row.clasificacion"
-              [severity]="getSeverity(row.clasificacion)"
-              class="text-xs"
-            />
+            <lx-tag [value]="row.clasificacion" [severity]="getSeverity(row.clasificacion)" class="text-xs" />
           </td>
         </tr>
       </ng-template>

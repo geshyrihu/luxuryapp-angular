@@ -2,15 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
-  IonBadge,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
   IonCardSubtitle,
-  IonCardTitle,
-  IonItem,
-  IonLabel,
-  IonList,
   IonListHeader,
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -28,17 +20,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
   imports: [
     CommonModule,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
     IonCardSubtitle,
-    IonList,
     IonListHeader,
-    IonItem,
-    IonLabel,
-
-    IonBadge,
     AppIcon,
   ],
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",

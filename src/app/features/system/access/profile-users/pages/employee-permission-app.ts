@@ -1,6 +1,6 @@
 import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
+import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { PermissionDTO } from "src/app/core/interfaces/permission.dto";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -11,7 +11,7 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: "employee-permission-app",
   templateUrl: "./employee-permission-app.html",
-  imports: [CommonModule, FormsModule, CheckboxModule],
+  imports: [CommonModule, FormsModule, LxCheckbox],
 })
 export class EmployeePermissionApp implements OnInit {
   apiResponseS = inject(ApiResponseService);

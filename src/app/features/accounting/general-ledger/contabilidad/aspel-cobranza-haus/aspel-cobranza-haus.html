@@ -9,23 +9,13 @@
       </p>
     </div>
     <div class="flex flex-wrap gap-2">
-      <p-tag
-        [value]="customerId()"
-        severity="secondary"
-        class="max-w-16rem overflow-hidden text-overflow-ellipsis"
-      />
-      <p-tag
-        [value]="dataSource() === 'local' ? 'Local' : 'Live'"
-        [severity]="dataSource() === 'local' ? 'info' : 'contrast'"
-      />
+      <lx-tag [value]="customerId()" severity="secondary" class="max-w-16rem overflow-hidden text-overflow-ellipsis" />
+      <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" />
     </div>
   </div>
 
   @if (!hasCustomerContext()) {
-  <p-message
-    severity="warn"
-    text="No hay customer activo en contexto. Abre esta pantalla desde un condominio con CustomerId cargado."
-  />
+  <lx-message severity="warn" text="No hay customer activo en contexto. Abre esta pantalla desde un condominio con CustomerId cargado." />
   } @else {
   <app-aspel-cobranza-haus-source-toolbar
     [customerId]="customerId()"
@@ -87,10 +77,8 @@
     }
   </div>
   } @if (loading()) {
-  <p-card
-    class="shadow-none border-1 surface-border border-dashed border-round-xl"
-  >
-    <div
+  <lx-card class="shadow-none border-1 surface-border border-dashed border-round-xl">
+<div
       class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
     >
       <app-icon [icon]="'mdi:loading'" class="text-2xl" />
@@ -99,41 +87,41 @@
         local" : "Aspel live" }}...
       </span>
     </div>
-  </p-card>
+</lx-card>
   } @else if (mode() === "accounts" && accountRows().length) {
   <div class="grid">
     <div class="col-12 md:col-4">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
         <strong class="block text-xl">{{ customerId() }}</strong>
         <small class="text-500">Contexto actual</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-4">
-      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Ejercicio</span
         >
         <strong class="block text-xl">{{ yearLabel() }}</strong>
         <small class="text-500"
           >Usado para cargar el catalogo seleccionado</small
         >
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-4">
-      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Total cuentas</span
         >
         <strong class="block text-xl">{{ accountRows().length }}</strong>
         <small class="text-500"
           >Cuentas devueltas por la fuente seleccionada</small
         >
-      </p-card>
+</lx-card>
     </div>
   </div>
 
@@ -184,7 +172,7 @@
           >
         </td>
         <td>{{ item.nombre }}</td>
-        <td><p-tag [value]="item.estatus" severity="secondary" /></td>
+        <td><lx-tag [value]="item.estatus" severity="secondary" /></td>
       </tr>
     </ng-template>
 
@@ -195,18 +183,18 @@
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta</span
         >
         <strong class="block text-xl">{{ estadoCuenta()?.numCta }}</strong>
         <small class="text-500">{{ estadoCuenta()?.departamento }}</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
         <strong class="block text-xl"
@@ -216,12 +204,12 @@
         <small class="text-500"
           >{{ estadoMovimientos().length }} movimientos</small
         >
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial</span
         >
         <strong class="block text-xl"
@@ -229,12 +217,12 @@
           "1.2-2" }}</strong
         >
         <small class="text-500">Al corte de apertura</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final</span
         >
         <strong class="block text-xl"
@@ -242,7 +230,7 @@
           }}</strong
         >
         <small class="text-500">Al cierre del rango</small>
-      </p-card>
+</lx-card>
     </div>
   </div>
 
@@ -301,10 +289,7 @@
       <tr>
         <td>{{ item.fecha }}</td>
         <td>
-          <p-tag
-            [value]="item.tipo"
-            [severity]="item.tipo === 'cargo' ? 'warn' : 'success'"
-          />
+          <lx-tag [value]="item.tipo" [severity]="item.tipo === 'cargo' ? 'warn' : 'success'" />
         </td>
         <td>{{ item.concepto }}</td>
         <td class="text-right font-mono">
@@ -326,20 +311,20 @@
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta base</span
         >
         <strong class="block text-xl"
           >{{ detalleCobranza()?.numCtaBase }}</strong
         >
         <small class="text-500">{{ detalleCobranza()?.departamento }}</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
         <strong class="block text-xl"
@@ -349,12 +334,12 @@
         <small class="text-500"
           >{{ detalleConceptRows().length }} conceptos</small
         >
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial total</span
         >
         <strong class="block text-xl"
@@ -362,12 +347,12 @@
           : "1.2-2" }}</strong
         >
         <small class="text-500">Arrastre al inicio del rango</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cargos / Abonos</span
         >
         <strong class="block text-xl">
@@ -378,12 +363,12 @@
         <small class="text-500"
           >{{ detalleCobranza()?.totalConceptos }} conceptos en deuda</small
         >
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Adelantos</span
         >
         <strong class="block text-xl"
@@ -391,12 +376,12 @@
           "1.2-2" }}</strong
         >
         <small class="text-500">Pagos a favor o sobrepagos</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
-      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final total</span
         >
         <strong class="block text-xl"
@@ -404,12 +389,12 @@
           "1.2-2" }}</strong
         >
         <small class="text-500">Deuda compuesta al cierre</small>
-      </p-card>
+</lx-card>
     </div>
   </div>
 
-  <p-card class="shadow-none border-1 surface-border border-dashed">
-    <div class="flex flex-column gap-3">
+  <lx-card class="shadow-none border-1 surface-border border-dashed">
+<div class="flex flex-column gap-3">
       <div class="flex justify-content-between align-items-start gap-3">
         <div>
           <h3 class="m-0 mb-1 text-lg font-bold text-900">
@@ -446,10 +431,7 @@
         <ng-template #body let-item>
           <tr>
             <td>
-              <p-tag
-                [value]="item.concepto"
-                [severity]="getConceptSeverity(item.concepto)"
-              />
+              <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
             </td>
             <td>
               <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
@@ -494,40 +476,40 @@
         </ng-template>
       </p-table>
     </div>
-  </p-card>
+</lx-card>
 
   <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card class="shadow-none border-1 surface-border h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
+          <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
             <strong class="block text-xl">{{ contrapartidas()?.numCtaBase }}</strong>
             <small class="text-500">{{ contrapartidas()?.departamento }}</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card class="shadow-none border-1 surface-border h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
+          <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
             <strong class="block text-xl">{{ contrapartidas()?.fechaInicio }} - {{ contrapartidas()?.fechaFin }}</strong>
             <small class="text-500">{{ contrapartidas()?.totalMovimientos }} movimientos</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
+          <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
             <strong class="block text-xl">{{ contrapartidas()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Cuenta base</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo final</span>
+          <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo final</span>
             <strong class="block text-xl">{{ contrapartidas()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Cuenta base</small>
-          </p-card>
+</lx-card>
         </div>
       </div>
 
@@ -590,42 +572,42 @@
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
         <strong class="block text-xl">{{ customerId() }}</strong>
         <small class="text-500">Contexto actual</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Fecha corte</span
         >
         <strong class="block text-xl"
           >{{ deudasActuales()?.fechaCorte }}</strong
         >
         <small class="text-500">Saldo al corte consultado</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Propiedades con deuda</span
         >
         <strong class="block text-xl"
           >{{ deudasActuales()?.totalPropiedadesConDeuda }}</strong
         >
         <small class="text-500">Solo saldos positivos</small>
-      </p-card>
+</lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
-      <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+      <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Deuda total</span
         >
         <strong class="block text-xl"
@@ -633,7 +615,7 @@
           }}</strong
         >
         <small class="text-500">Saldo vigente acumulado</small>
-      </p-card>
+</lx-card>
     </div>
   </div>
 
@@ -697,10 +679,7 @@
         </td>
         <td>{{ item.departamento }}</td>
         <td>
-          <p-tag
-            [value]="item.tieneDesgloseConceptos ? 'Desglosado' : 'Global'"
-            [severity]="item.tieneDesgloseConceptos ? 'info' : 'secondary'"
-          />
+          <lx-tag [value]="item.tieneDesgloseConceptos ? 'Desglosado' : 'Global'" [severity]="item.tieneDesgloseConceptos ? 'info' : 'secondary'" />
         </td>
         <td class="text-right font-mono">{{ item.totalConceptos }}</td>
         <td class="text-right font-mono font-semibold text-red-600">
@@ -727,43 +706,43 @@
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-2">
-          <p-card class="shadow-none border-1 surface-border h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
+          <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
             <strong class="block text-xl">{{ pendientes()?.numCtaBase }}</strong>
             <small class="text-500">{{ pendientes()?.departamento || "Sin nombre de departamento" }}</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-6 lg:col-3">
-          <p-card class="shadow-none border-1 surface-border h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Rango consultado</span>
+          <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Rango consultado</span>
             <strong class="block text-xl">{{ pendientes()?.fechaInicio }} - {{ pendientes()?.fechaFin }}</strong>
             <small class="text-500">Customer actual en contexto</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-6 lg:col-2">
-          <p-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Conceptos encontrados</span>
+          <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Conceptos encontrados</span>
             <strong class="block text-xl">{{ pendientes()?.totalConceptos }}</strong>
             <small class="text-500">Conceptos disponibles en la cuenta</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-6 lg:col-2">
-          <p-card class="shadow-none border-1 surface-border h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial total</span>
+          <lx-card class="shadow-none border-1 surface-border h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial total</span>
             <strong class="block text-xl">{{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Suma inicial del rango consultado</small>
-          </p-card>
+</lx-card>
         </div>
 
         <div class="col-12 md:col-12 lg:col-3">
-          <p-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-            <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente total</span>
+          <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
+<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente total</span>
             <strong class="block text-xl">{{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Saldo vigente acumulado por concepto</small>
-          </p-card>
+</lx-card>
         </div>
       </div>
 
@@ -825,10 +804,7 @@
         <ng-template #body let-item>
           <tr>
             <td>
-              <p-tag
-                [value]="item.concepto"
-                [severity]="getConceptSeverity(item.concepto)"
-              />
+              <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
             </td>
             <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.numCta }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
@@ -870,14 +846,8 @@
         </ng-template>
       </p-table> -->
   } @else if (searched()) {
-  <p-message
-    severity="info"
-    text="La consulta no devolvio registros con los filtros actuales."
-  />
+  <lx-message severity="info" text="La consulta no devolvio registros con los filtros actuales." />
   } @else {
-  <p-message
-    severity="info"
-    text="Selecciona un endpoint, ajusta los filtros y ejecuta la consulta."
-  />
+  <lx-message severity="info" text="Selecciona un endpoint, ajusta los filtros y ejecuta la consulta." />
   } }
 </div>

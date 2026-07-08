@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";

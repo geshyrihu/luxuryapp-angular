@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { RatingBase } from "@ui/base/rating.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-rating",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div class="ili-rating-root">

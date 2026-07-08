@@ -1,9 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
-  IonItem,
-  IonLabel,
-  IonList,
   IonListHeader,
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -23,10 +20,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   imports: [
     TableModule,
     RouterModule,
-    IonList,
     IonListHeader,
-    IonItem,
-    IonLabel,
     AppIcon,
   ],
   templateUrl: "./minutas-reuniones-consejo-directivo.html",

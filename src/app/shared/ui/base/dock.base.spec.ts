@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import type { MenuItem } from "primeng/api";
 import { DockBase } from "./dock.base";
 
-@Component({ selector: "test-dock", standalone: true, template: "" })
+@Component({ selector: "test-dock", template: "" })
 class TestDock extends DockBase {
   run(item: MenuItem) {
     this.runCommand(item);

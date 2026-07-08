@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { SwipeActionsBase } from "./swipe-actions.base";
 
-@Component({ selector: "test-swipe-actions", standalone: true, template: "" })
+@Component({ selector: "test-swipe-actions", template: "" })
 class Host extends SwipeActionsBase {}
 
 describe("SwipeActionsBase", () => {

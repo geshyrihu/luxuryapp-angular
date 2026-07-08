@@ -166,58 +166,56 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ion-item lines="full" class="ion-no-padding">
-          <div slot="start" class="mr-2">
+        <ili-list-item>
+          <div start class="mr-2">
             <lx-tag
               [value]="item.level.charAt(0).toUpperCase()"
               [severity]="getLevelSeverity(item.level)"
             ></lx-tag>
           </div>
-          <ion-label>
-            <div class="flex justify-content-between align-items-center mb-1">
-              <h2 class="font-bold m-0 text-base text-wrap">
-                {{ item.level }}
-              </h2>
-              <p class="text-medium text-500 m-0 text-sm">
-                <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
-                {{ item.timestamp | date: "dd/MM/yyyy h:mm a" }}
-              </p>
-            </div>
-
-            @if (item.userName) {
-            <p class="text-sm text-color-secondary m-0 mb-1">
-              <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" /> {{
-              item.userName }}
+          <div class="flex justify-content-between align-items-center mb-1">
+            <h2 class="font-bold m-0 text-base text-wrap">
+              {{ item.level }}
+            </h2>
+            <p class="text-medium text-500 m-0 text-sm">
+              <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
+              {{ item.timestamp | date: "dd/MM/yyyy h:mm a" }}
             </p>
-            }
+          </div>
 
-            <p class="text-sm m-0 text-wrap mb-2">{{ item.message }}</p>
+          @if (item.userName) {
+          <p class="text-sm text-color-secondary m-0 mb-1">
+            <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" /> {{
+            item.userName }}
+          </p>
+          }
 
-            @if (item.properties) {
-            <div class="mb-2">
-              <ion-note class="text-xs flex align-items-center gap-1 mb-1">
-                <app-icon [icon]="'mdi:information'" /> Propiedades:
-              </ion-note>
-              <pre class="text-xs bg-light p-2 border-radius overflow-auto">
+          <p class="text-sm m-0 text-wrap mb-2">{{ item.message }}</p>
+
+          @if (item.properties) {
+          <div class="mb-2">
+            <span class="text-xs flex align-items-center gap-1 mb-1">
+              <app-icon [icon]="'mdi:information'" /> Propiedades:
+            </span>
+            <pre class="text-xs bg-light p-2 border-radius overflow-auto">
 {{ item.properties }}</pre
-              >
-            </div>
-            } @if (item.exception) {
-            <div>
-              <ion-note
-                class="text-xs text-danger flex align-items-center gap-1 mb-1"
-              >
-                <app-icon [icon]="'mdi:alert'" /> Excepción:
-              </ion-note>
-              <pre
-                class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
-              >
+            >
+          </div>
+          } @if (item.exception) {
+          <div>
+            <span
+              class="text-xs text-danger flex align-items-center gap-1 mb-1"
+            >
+              <app-icon [icon]="'mdi:alert'" /> Excepción:
+            </span>
+            <pre
+              class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
+            >
 {{ item.exception }}</pre
-              >
-            </div>
-            }
-          </ion-label>
-        </ion-item>
+            >
+          </div>
+          }
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
 

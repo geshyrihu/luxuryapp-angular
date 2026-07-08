@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { SidebarBase } from "./sidebar.base";
 
-@Component({ selector: "test-sidebar", standalone: true, template: "" })
+@Component({ selector: "test-sidebar", template: "" })
 class TestSidebar extends SidebarBase {}
 
 describe("SidebarBase", () => {

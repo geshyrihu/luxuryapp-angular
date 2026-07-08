@@ -1,8 +1,6 @@
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { phonePortraitOutline } from "ionicons/icons";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -41,8 +39,7 @@ import { ModuleAppForm } from "./module-app-form";
     DataViewMobile,
     MobileActionMenu,
     RouterModule,
-    IonItem,
-    IonLabel,
+    MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./module-app-list.html",
@@ -53,7 +50,7 @@ export class ModuleAppList {
   tableScrollHeightS = inject(TableScrollHeightService);
 
   constructor() {
-    addIcons({ phonePortraitOutline });
+    
   }
 
   // Declaración e inicialización de variables

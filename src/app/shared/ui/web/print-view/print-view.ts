@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ButtonModule } from "primeng/button";
 
 /**
@@ -9,7 +14,7 @@ import { ButtonModule } from "primeng/button";
  */
 @Component({
   selector: "app-print-view",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule],
   template: `
     <div class="print-view-root">

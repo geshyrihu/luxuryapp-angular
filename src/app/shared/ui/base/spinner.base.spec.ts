@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { SpinnerBase } from "./spinner.base";
 
-@Component({ selector: "test-spinner", standalone: true, template: "" })
+@Component({ selector: "test-spinner", template: "" })
 class TestSpinner extends SpinnerBase {}
 
 describe("SpinnerBase", () => {

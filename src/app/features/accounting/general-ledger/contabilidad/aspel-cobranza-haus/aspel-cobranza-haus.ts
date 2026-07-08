@@ -9,10 +9,10 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { MessageModule } from "primeng/message";
+
+
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -32,6 +32,9 @@ import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-det
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
 import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";
 import { AspelCobranzaHausSourceToolbar } from "./aspel-cobranza-haus-source-toolbar";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
 import {
   AspelAccount,
   AspelAccountsByCustomerResponse,
@@ -56,13 +59,9 @@ import {
   selector: "app-aspel-cobranza-haus",
   templateUrl: "./aspel-cobranza-haus.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
     TableModule,
-    CardModule,
-    MessageModule,
-    TagModule,
     AppIcon,
     WebButtonLabelDownload,
     PrimeNgCustomCaption,
@@ -70,8 +69,7 @@ import {
     AspelCobranzaHausSourceToolbar,
     AspelCobranzaHausQueryPanel,
     CurrencyPipe,
-    NgClass,
-  ],
+    NgClass, LxTag, LxCard, LxMessage],
 })
 export class AspelCobranzaHaus {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -97,7 +95,7 @@ export class AspelCobranzaHaus {
     {
       label: "Deudas actuales",
       value: "deudas-actuales",
-    },
+    }
   ];
 
   readonly dataSourceOptions: SelectItem<AspelDataSource>[] = [
@@ -108,7 +106,7 @@ export class AspelCobranzaHaus {
     {
       label: "Local",
       value: "local",
-    },
+    }
   ];
 
   customerId = signal<string>("");

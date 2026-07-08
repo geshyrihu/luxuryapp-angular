@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import { CheckboxModule } from "primeng/checkbox";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
@@ -29,7 +28,6 @@ interface BloqueVisual {
     CommonModule,
     FormsModule,
     ButtonModule,
-    CardModule,
     CheckboxModule,
     DividerModule,
     MessageModule,
@@ -84,12 +82,12 @@ interface BloqueVisual {
           <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
             Checklist de Auditoróa Rápida
           </h3>
-          <p-card
-            [class]="
+          <div
+            [class]="'card ' + (
               puntajeAprobatorio()
                 ? 'border-left-3 border-green-500 mb-4'
                 : 'border-left-3 border-red-500 mb-4'
-            "
+            )"
           >
             <div class="flex align-items-center gap-3">
               <div
@@ -110,7 +108,7 @@ interface BloqueVisual {
                 </p>
               </div>
             </div>
-          </p-card>
+          </div>
 
           <div class="grid">
             @for (item of checklist(); track item.numero) {

@@ -13,12 +13,14 @@
  */
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
+
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
+
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
 // Definimos la interfaz del DTO aqué mismo para simplicidad
 export interface IUniformFeeComparisonDTO {
   currentTotalBudget: number;
@@ -30,13 +32,9 @@ export interface IUniformFeeComparisonDTO {
 
 @Component({
   selector: "app-fee-comparison-by-fija",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     TableModule,
-    CardModule,
-    DividerModule,
-    MessageModule,
-  ],
+    DividerModule, LxCard, LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fee-comparison-by-fija.html",
 })

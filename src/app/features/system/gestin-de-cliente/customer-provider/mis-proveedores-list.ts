@@ -1,8 +1,8 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -33,14 +33,14 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     PrimeNgCustomCaption,
     ActionMenu,
     DataViewMobile,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    IonItem,
-    IonLabel,
+    
+    
   ],
 
   changeDetection: ChangeDetectionStrategy.Eager,

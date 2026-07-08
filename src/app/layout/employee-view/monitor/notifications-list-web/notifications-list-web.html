@@ -1,6 +1,6 @@
 <div class="p-4">
-  <p-card>
-    <ng-template #header>
+  <div class="card">
+    <div class="card-header">
       <div class="flex align-items-center justify-content-between px-4 pt-4">
         <span class="text-xl font-bold">Notificaciones</span>
         <iw-button
@@ -12,7 +12,7 @@
           [loading]="loading()"
         />
       </div>
-    </ng-template>
+    </div>
 
     <p-scrollpanel [style]="{ width: '100%', height: 'calc(100vh - 220px)' }">
       <div class="list-none p-0 m-0">
@@ -56,5 +56,5 @@
         }
       </div>
     </p-scrollpanel>
-  </p-card>
+  </div>
 </div>

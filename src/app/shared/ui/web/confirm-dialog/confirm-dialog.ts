@@ -1,15 +1,19 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
+import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
 
 export type { ConfirmType } from "@ui/base/confirm-dialog.base";
 
 @Component({
   selector: "app-confirm-dialog",
-  standalone: true,
+
   imports: [CommonModule, DialogModule, ButtonModule, AppIcon],
   template: `
     <p-dialog
@@ -22,7 +26,11 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
       [breakpoints]="{ '480px': '90vw' }"
     >
       <div class="flex flex-column align-items-center text-center gap-3 py-3">
-        <app-icon [icon]="config.icon" class="text-4xl" [style.color]="config.color" />
+        <app-icon
+          [icon]="config.icon"
+          class="text-4xl"
+          [style.color]="config.color"
+        />
         <p class="m-0 text-color-secondary line-height-3">{{ message() }}</p>
       </div>
       <ng-template #footer>
@@ -42,9 +50,13 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
       </ng-template>
     </p-dialog>
   `,
-  styles: [`
-    :host { display: contents; }
-  `],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

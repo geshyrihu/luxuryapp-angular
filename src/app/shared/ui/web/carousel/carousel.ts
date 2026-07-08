@@ -1,11 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { CarouselModule } from "primeng/carousel";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { CarouselBase } from "@ui/base/carousel.base";
+import { CarouselModule } from "primeng/carousel";
 
 @Component({
   selector: "app-carousel",
-  standalone: true,
+
   imports: [CommonModule, CarouselModule],
   template: `
     <p-carousel
@@ -16,16 +20,23 @@ import { CarouselBase } from "@ui/base/carousel.base";
       styleClass="w-full"
     >
       <ng-template let-item pTemplate="item">
-        <ng-container *ngTemplateOutlet="contentTemplate; context: { $implicit: item }" />
+        <ng-container
+          *ngTemplateOutlet="contentTemplate; context: { $implicit: item }"
+        />
       </ng-template>
     </p-carousel>
     <ng-template #contentTemplate let-item>
       <ng-content [select]="'[carouselItem]'" />
     </ng-template>
   `,
-  styles: [`
-    :host { display: block; width: 100%; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+        width: 100%;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

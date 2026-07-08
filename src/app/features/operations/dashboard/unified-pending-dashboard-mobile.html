@@ -4,37 +4,23 @@
 >
   <div class="flex overflow-x-auto align-items-center no-scrollbar pb-1">
     <!-- AI Report Action -->
-    <ion-chip
-      class="flex-shrink-0"
-      color="tertiary"
-      (click)="generateDailyReport()"
-    >
+    <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
       <app-icon icon="mdi:creation" color="dark" />
-      <ion-label class="font-bold text-dark">Informe IA</ion-label>
-    </ion-chip>
+      <span class="font-bold text-dark">Informe IA</span>
+    </div>
 
     <div class="h-2rem border-right-1 surface-border mx-1 flex-shrink-0"></div>
 
     <!-- 'All' Filter -->
-    <ion-chip
-      class="flex-shrink-0"
-      [color]="selectedModule() === null ? 'dark' : 'medium'"
-      [outline]="selectedModule() !== null"
-      (click)="onModuleFilterChange(null)"
-    >
-      <ion-label>Todos</ion-label>
-    </ion-chip>
+    <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
+      <span class="">Todos</span>
+    </div>
 
     <!-- Dynamic Module Filters -->
     @for (mod of uniqueModules(); track mod) {
-    <ion-chip
-      class="flex-shrink-0"
-      [color]="selectedModule() === mod ? 'primary' : 'medium'"
-      [outline]="selectedModule() !== mod"
-      (click)="onModuleFilterChange(mod)"
-    >
-      <ion-label>{{ mod }}</ion-label>
-    </ion-chip>
+    <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
+      <span class="">{{ mod }}</span>
+    </div>
     }
   </div>
 </div>
@@ -49,41 +35,30 @@
   (add)="onModalForm($event)"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item
-      (click)="onNavigate(item)"
-      button
-      detail="true"
-      lines="full"
-      class="ion-no-padding executive-item"
-    >
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <!-- Module Strip/Icon -->
       <div
         slot="start"
         class="flex flex-column align-items-center justify-content-start pt-3 gap-1 min-w-3rem h-full border-right-1 surface-border ml-0 pl-2 pr-2"
       >
-        <ion-icon
-          [name]="getModuleIcon(item.module)"
+        <app-icon
+          [icon]="'mdi:' + getModuleIcon(item.module)"
           [color]="getModuleColor(item.module)"
           class="text-2xl"
-        ></ion-icon>
+        ></app-icon>
         <span class="text-xs font-bold uppercase text-500"
           >{{ item.module | slice:0:3 }}</span
         >
       </div>
 
-      <ion-label class="py-2 pl-1">
+      <span class="py-2 pl-1">
         <!-- Top Row: Date & Status -->
         <div class="flex justify-content-between align-items-center mb-1">
           <span
             class="text-xs font-medium text-600 bg-surface-100 px-2 border-round"
             >{{ item.formattedDate }}</span
           >
-          <ion-badge
-            [color]="getSeverityColor(item.status)"
-            mode="ios"
-            class="text-xs py-0 px-2 font-normal"
-            >{{ item.status }}</ion-badge
-          >
+          <lx-tag>{{ item.status }}</lx-tag>
         </div>
 
         <!-- Title -->
@@ -124,7 +99,11 @@
           </div>
           }
         </div>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
   </ng-template>
 </app-data-view-mobile>
+
+
+
+

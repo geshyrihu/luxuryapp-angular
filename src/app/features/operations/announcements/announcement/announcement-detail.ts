@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
 import { LxImage } from "@ui/adaptive/image/image";
 import { CardModule } from "primeng/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -15,15 +14,6 @@ import { IAnnouncement } from "./announcement.model";
     CommonModule,
     RouterModule,
     CardModule,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,    IonButton,
-
-    IonList,
-    IonItem,
-    IonLabel,
     AppIcon,
     LxImage,
   ],
@@ -56,3 +46,5 @@ export class announcementDetail implements OnInit {
     }
   }
 }
+
+

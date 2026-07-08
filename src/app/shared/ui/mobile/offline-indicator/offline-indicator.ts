@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-offline-indicator",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     @if (showBanner()) {
@@ -18,30 +18,32 @@ import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
       </div>
     }
   `,
-  styles: [`
-    .offline-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--ds-danger, #ba1a1a);
-      color: #fff;
-      font-size: var(--ds-font-size-table, 0.875rem);
-      z-index: 9999;
-      transition: transform 0.3s;
-    }
-    .offline-banner-online {
-      background: var(--ds-success, #006837);
-    }
-    .offline-icon {
-      font-size: 1rem;
-    }
-  `],
+  styles: [
+    `
+      .offline-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--ds-danger, #ba1a1a);
+        color: #fff;
+        font-size: var(--ds-font-size-table, 0.875rem);
+        z-index: 9999;
+        transition: transform 0.3s;
+      }
+      .offline-banner-online {
+        background: var(--ds-success, #006837);
+      }
+      .offline-icon {
+        font-size: 1rem;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileOfflineIndicator extends OfflineIndicatorBase {}

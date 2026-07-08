@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonList } from "@ionic/angular/standalone";
+
 import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -21,10 +21,9 @@ import {
   selector: "app-module-app-rol-update",
   imports: [
     CommonModule,
-    MessageModule,
-    IonList,
+    LxMessage,
     IonInputToggle,
-    ProgressSpinnerModule,
+    LxSpinner,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./module-app-rol-update.html",

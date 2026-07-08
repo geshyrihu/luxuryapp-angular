@@ -9,10 +9,10 @@
 
   @if (loading()) {
   <div class="flex justify-content-center my-5">
-    <p-progressspinner ariaLabel="Cargando módulos"></p-progressspinner>
+    <lx-spinner size="40" ariaLabel="Cargando módulos"></lx-spinner>
   </div>
   } @if (!loading() && groupedData().length === 0) {
-  <p-message severity="warn" text="No se encontraron módulos."></p-message>
+  <lx-message severity="warn" text="No se encontraron módulos." />
   }
 
   <!-- Grupos en filas -->
@@ -87,33 +87,31 @@
 
     @if (loading()) {
     <div class="flex justify-content-center my-5">
-      <p-progressspinner ariaLabel="Cargando módulos"></p-progressspinner>
+      <lx-spinner size="40" ariaLabel="Cargando módulos"></lx-spinner>
     </div>
     } @if (!loading() && groupedData().length === 0) {
-    <p-message severity="warn" text="No se encontraron módulos."></p-message>
+    <lx-message severity="warn" text="No se encontraron módulos." />
     } @for (group of groupedData(); track group.groupTitle) {
     <div class="mb-3">
       <h3 class="text-sm text-500 font-bold px-3 uppercase m-0 mb-2">
         {{ group.groupTitle }}
       </h3>
-      <ion-list inset="true" class="m-0">
+      <div class="m-0">
         @for (item of group.items; track item.moduleAppId) {
-        <ion-item>
-          <ion-label class="ion-text-wrap">
-            <h2
-              [class.font-bold]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
-              [class.underline]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
-            >
-              {{ item.moduleAppName | uppercase }}
-            </h2>
-          </ion-label>
+        <div class="flex align-items-center justify-content-between p-3 border-bottom-1 surface-border">
+          <h2
+            [class.font-bold]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
+            [class.underline]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
+          >
+            {{ item.moduleAppName | uppercase }}
+          </h2>
           <ion-input-toggle
             [ngModel]="item.isAssigned"
             (toggleChange)="toggleModuleActivation(item)"
           ></ion-input-toggle>
-        </ion-item>
+        </div>
         }
-      </ion-list>
+      </div>
     </div>
     }
   </div>

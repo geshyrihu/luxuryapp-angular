@@ -1,14 +1,18 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ProgressBarModule } from "primeng/progressbar";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
+import { ProgressBarModule } from "primeng/progressbar";
 
 /**
  * AppProgressBar — Wrapper sobre p-progressbar. `value` en 0..100.
  */
 @Component({
   selector: "app-progress-bar",
-  standalone: true,
+
   imports: [CommonModule, ProgressBarModule],
   template: `
     <p-progressbar

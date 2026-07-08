@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { AnimateOnScrollBase } from "./animate-on-scroll.base";
 
-@Component({ selector: "test-animate-on-scroll", standalone: true, template: "" })
+@Component({ selector: "test-animate-on-scroll", template: "" })
 class Host extends AnimateOnScrollBase {}
 
 describe("AnimateOnScrollBase", () => {

@@ -1,5 +1,11 @@
-import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 
 export interface HeatmapCell {
   row: string;
@@ -13,7 +19,7 @@ export interface HeatmapCell {
  */
 @Component({
   selector: "app-heatmap",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div class="hm-root">
@@ -42,10 +48,15 @@ export interface HeatmapCell {
                     class="hm-cell"
                     [style.background]="cellColor(row, col)"
                     [title]="cellTitle(row, col)"
-                    [attr.aria-label]="row + ' ' + col + ': ' + cellValue(row, col)"
+                    [attr.aria-label]="
+                      row + ' ' + col + ': ' + cellValue(row, col)
+                    "
                   >
                     @if (showValues()) {
-                      <span class="hm-value" [style.color]="cellTextColor(row, col)">
+                      <span
+                        class="hm-value"
+                        [style.color]="cellTextColor(row, col)"
+                      >
                         {{ cellValue(row, col) }}
                       </span>
                     }
@@ -65,59 +76,94 @@ export interface HeatmapCell {
       </div>
     </div>
   `,
-  styles: [`
-    .hm-root { display: flex; flex-direction: column; gap: 0.75rem; }
-    .hm-title { font-size: var(--ds-font-size-label, 0.875rem); font-weight: 600; color: var(--ds-text-primary); margin: 0; }
-    .hm-scroll { overflow-x: auto; }
-    .hm-table { border-collapse: collapse; min-width: 100%; }
-    .hm-corner { width: 60px; }
-    .hm-col-header {
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      font-weight: 600;
-      color: var(--ds-text-secondary);
-      padding: 0 4px 4px;
-      text-align: center;
-      min-width: 32px;
-    }
-    .hm-row-header {
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      font-weight: 600;
-      color: var(--ds-text-secondary);
-      padding: 2px 8px 2px 0;
-      text-align: right;
-      white-space: nowrap;
-    }
-    .hm-cell {
-      width: 32px;
-      height: 24px;
-      border-radius: 3px;
-      border: 1px solid rgba(255,255,255,0.1);
-      cursor: default;
-      transition: opacity 0.15s;
-    }
-    .hm-cell:hover { opacity: 0.85; outline: 2px solid var(--ds-primary, #003d9b); }
-    .hm-value { font-size: 0.6rem; font-weight: 600; display: flex; align-items: center; justify-content: center; height: 100%; }
-    /* Legend */
-    .hm-legend { display: flex; align-items: center; gap: 0.5rem; }
-    .hm-legend-label { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
-    .hm-legend-bar {
-      flex: 1;
-      height: 10px;
-      border-radius: 5px;
-      background: linear-gradient(to right, #edf1ff, #003d9b);
-      max-width: 180px;
-    }
-  `],
+  styles: [
+    `
+      .hm-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .hm-title {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        font-weight: 600;
+        color: var(--ds-text-primary);
+        margin: 0;
+      }
+      .hm-scroll {
+        overflow-x: auto;
+      }
+      .hm-table {
+        border-collapse: collapse;
+        min-width: 100%;
+      }
+      .hm-corner {
+        width: 60px;
+      }
+      .hm-col-header {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-weight: 600;
+        color: var(--ds-text-secondary);
+        padding: 0 4px 4px;
+        text-align: center;
+        min-width: 32px;
+      }
+      .hm-row-header {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-weight: 600;
+        color: var(--ds-text-secondary);
+        padding: 2px 8px 2px 0;
+        text-align: right;
+        white-space: nowrap;
+      }
+      .hm-cell {
+        width: 32px;
+        height: 24px;
+        border-radius: 3px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: default;
+        transition: opacity 0.15s;
+      }
+      .hm-cell:hover {
+        opacity: 0.85;
+        outline: 2px solid var(--ds-primary, #003d9b);
+      }
+      .hm-value {
+        font-size: 0.6rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      /* Legend */
+      .hm-legend {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .hm-legend-label {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+      }
+      .hm-legend-bar {
+        flex: 1;
+        height: 10px;
+        border-radius: 5px;
+        background: linear-gradient(to right, #edf1ff, #003d9b);
+        max-width: 180px;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppHeatmap {
-  data      = input<HeatmapCell[]>([]);
-  title     = input<string>("");
+  data = input<HeatmapCell[]>([]);
+  title = input<string>("");
   showValues = input<boolean>(false);
-  minLabel  = input<string>("Bajo");
-  maxLabel  = input<string>("Alto");
-  colorLow  = input<string>("#edf1ff");
+  minLabel = input<string>("Bajo");
+  maxLabel = input<string>("Alto");
+  colorLow = input<string>("#edf1ff");
   colorHigh = input<string>("#003d9b");
 
   rows = computed(() => [...new Set(this.data().map((d) => d.row))]);
@@ -167,6 +213,10 @@ export class AppHeatmap {
   private hexToRgb(hex: string): { r: number; g: number; b: number } | null {
     const m = hex.replace("#", "").match(/.{2}/g);
     if (!m || m.length < 3) return null;
-    return { r: parseInt(m[0], 16), g: parseInt(m[1], 16), b: parseInt(m[2], 16) };
+    return {
+      r: parseInt(m[0], 16),
+      g: parseInt(m[1], 16),
+      b: parseInt(m[2], 16),
+    };
   }
 }

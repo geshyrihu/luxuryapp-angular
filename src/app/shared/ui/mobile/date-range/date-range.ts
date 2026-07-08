@@ -5,7 +5,7 @@ import { DateRangeBase } from "@ui/base/date-range.base";
 
 @Component({
   selector: "ili-date-range",
-  standalone: true,
+
   imports: [CommonModule, IonButton],
   template: `
     <div class="ili-date-range">

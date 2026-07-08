@@ -16,18 +16,18 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { AccountingCatalogDTO } from "../models/accounting-catalog.model";
 import { AccountingCatalogWithParent } from "../models/AccountingCatalogWithParent";
 import { GroupedAccountingCatalogDTO } from "../models/grouped-accounting-catalog.model";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-accounting-catalog",
   templateUrl: "./accounting-catalog.html",
-  imports: [
-    WebButtonLabel,
+  imports: [WebButtonLabel,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CardModule,
-  ],
+    CardModule, MobileListItem, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService],
 })
@@ -76,7 +76,7 @@ export class AccountingCatalog {
     "codigoCuenta",
     "descripcionCuenta",
     "cuentaPadre",
-    "cuentaPadreDescripcion",
+    "cuentaPadreDescripcion"
   ]);
 
   constructor() {
@@ -121,7 +121,7 @@ export class AccountingCatalog {
     const columns = [
       { header: "Cuenta Padre", key: "cuentaPadre", width: 25 },
       { header: "Código", key: "codigoCuenta", width: 25 },
-      { header: "Descripción", key: "descripcionCuenta", width: 50 },
+      { header: "Descripción", key: "descripcionCuenta", width: 50 }
     ];
     this.excelService.exportToExcel(
       dataToExport,

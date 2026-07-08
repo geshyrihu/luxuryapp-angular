@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SkeletonModule } from "primeng/skeleton";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -47,7 +47,7 @@ interface BrevoPagedResultDTO {
     WebButtonLabel,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    SkeletonModule
+    LxSkeleton
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./brevo-email-logs.html",

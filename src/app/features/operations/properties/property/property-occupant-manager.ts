@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -58,7 +58,7 @@ export class PropertyOccupantManager implements OnInit {
   propertyId: any = this.config.data.propertyId;
   propertyName: string = this.config.data.propertyName;
 
-  // DefiniciÃ³n estricta del formulario
+  // Definición estricta del formulario
   occupantForm = new FormGroup({
     id: new FormControl<string | null>(null),
     fullName: new FormControl<string>("", {
@@ -145,7 +145,7 @@ export class PropertyOccupantManager implements OnInit {
         })
         .finally(() => this.loading.set(false));
     } else {
-      // AÃ³adir
+      // Aóadir
       this.apiResponseS
         .onPost<IPropertyOccupant>("PropertyOccupant", occupantData)
         .then((response) => {
@@ -153,12 +153,12 @@ export class PropertyOccupantManager implements OnInit {
             this.occupants.update((current) => [...current, response]);
             this.resetForm();
           } else {
-            this.errorMensaje = "Error al AÃ³adir el ocupante.";
+            this.errorMensaje = "Error al Aóadir el ocupante.";
           }
         })
         .catch((error) => {
           this.errorMensaje =
-            error.error?.message || "Error al AÃ³adir el ocupante.";
+            error.error?.message || "Error al Aóadir el ocupante.";
           console.error("Error adding occupant:", error);
         })
         .finally(() => this.loading.set(false));

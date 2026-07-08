@@ -1,4 +1,4 @@
-<div class="grid">
+﻿<div class="grid">
   <div class="col-12 md:col-3">
     <div class="mb-3">
       <label for="systemSelect">Sistema</label>
@@ -20,14 +20,14 @@
   <div class="grid">
     @for (itemUbication of system.ubications; track itemUbication) {
     <div class="col-12 md:col-12">
-      <p-card class="p-2 mb-3">
+      <div class="card" class="p-2 mb-3">
         <ng-template #header #headerUbication>
           <div class="text-xl font-bold">{{ itemUbication.ubication }}</div>
         </ng-template>
         <div class="grid">
           @for (item of itemUbication.items; track item) {
           <div class="col-12">
-            <p-card class="h-full">
+            <div class="card" class="h-full">
               <ng-template #header #headerItem>
                 <div class="card-img-container">
                   <img class="w-full" [src]="item.photoPath" alt="image" />
@@ -74,14 +74,16 @@
                   />
                 </div>
               </div>
-            </p-card>
+            </div>
           </div>
           }
         </div>
-      </p-card>
+      </div>
     </div>
     }
   </div>
 </div>
 }
 <!-- ? Cerrar @for de systems -->
+
+

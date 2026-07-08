@@ -14,7 +14,7 @@
           size="small"
         />
       </div>
-      <p-divider />
+      <lx-divider />
     </ng-template>
     <ng-template #content>
       <div class="grid text-center md:text-left">
@@ -92,23 +92,21 @@
                 / 5.00
               </div>
             </div>
-            <p-divider layout="horizontal" class="my-3" />
+            <lx-divider layout="horizontal" class="my-3" />
             <div class="final-comments">
               <h4 class="mb-1">Comentarios</h4>
               @if (evaluationResult()!.finalComments &&
               evaluationResult()!.finalComments.length > 0) { @for (comment of
               evaluationResult()!.finalComments; track comment.categoryName) {
-              <p-message
+              <lx-message
                 [severity]="comment.severity"
                 [text]="comment.categoryName + ': ' + comment.comment"
-                class="mb-2 w-full"
-              ></p-message>
+              ></lx-message>
               } } @else {
-              <p-message
+              <lx-message
                 severity="info"
                 text="Sin comentarios finales."
-                class="w-full"
-              ></p-message>
+              ></lx-message>
               }
             </div>
           </div>

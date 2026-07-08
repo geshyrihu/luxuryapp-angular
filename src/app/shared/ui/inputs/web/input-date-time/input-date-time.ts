@@ -1,11 +1,16 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
 import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
 
 @Component({
   selector: "web-input-date-time",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputDateTimeSignal],
   template: `
     <custom-input-date-time-signal

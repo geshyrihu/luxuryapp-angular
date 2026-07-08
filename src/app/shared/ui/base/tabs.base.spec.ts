@@ -1,11 +1,15 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { TabsBase, TabItem } from "./tabs.base";
+import { TabItem, TabsBase } from "./tabs.base";
 
-@Component({ selector: "test-tabs", standalone: true, template: "" })
+@Component({ selector: "test-tabs", template: "" })
 class TestTabs extends TabsBase {}
 
-const tab = (id: string, disabled = false): TabItem => ({ id, label: id, disabled });
+const tab = (id: string, disabled = false): TabItem => ({
+  id,
+  label: id,
+  disabled,
+});
 
 describe("TabsBase", () => {
   function make() {

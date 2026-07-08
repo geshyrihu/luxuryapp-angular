@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
+
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -77,9 +77,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    IonButton,
-    IonItem,
-    IonLabel,
   ],
 })
 export class InventarioExtintor {

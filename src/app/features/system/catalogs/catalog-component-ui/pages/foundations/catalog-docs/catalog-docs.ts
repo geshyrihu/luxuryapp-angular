@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -33,7 +32,7 @@ interface NomenclaturaCampo {
 
 @Component({
   selector: "app-catalog-docs",
-  imports: [CommonModule, CardModule, TableModule, TagModule, AppIcon],
+  imports: [CommonModule, TableModule, TagModule, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -52,8 +51,8 @@ interface NomenclaturaCampo {
           <div class="grid">
             @for (doc of tiposDocumento; track doc.codigo) {
               <div class="col-12 md:col-6 xl:col-4">
-                <p-card
-                  class="h-full overflow-hidden shadow-1 transition-all hover:shadow-3"
+                <div
+                  class="card h-full overflow-hidden shadow-1 transition-all hover:shadow-3"
                 >
                   <div
                     class="flex align-items-center justify-content-between text-white -mt-4 -mx-4 mb-3 px-4 py-3"
@@ -76,14 +75,16 @@ interface NomenclaturaCampo {
                       {{ getNomenclaturaEjemplo(doc) }}
                     </code>
                   </div>
-                </p-card>
+                </div>
               </div>
             }
           </div>
         </div>
 
         <div class="col-12 lg:col-6 mt-4">
-          <p-card header="Nomenclatura Inteligente">
+          <div class="card">
+            <div class="card-header"><span class="card-title">Nomenclatura Inteligente</span></div>
+            <div class="card-body">
             <div class="bg-primary text-white border-round-lg p-3 mb-3">
               <small class="text-yellow-500 font-bold block mb-1"
                 >FORMATO OBLIGATORIO</small
@@ -108,11 +109,14 @@ interface NomenclaturaCampo {
                 </tr></ng-template
               >
             </p-table>
-          </p-card>
+            </div>
+          </div>
         </div>
 
         <div class="col-12 lg:col-6 mt-4">
-          <p-card header="Matriz de Acceso por Rol">
+          <div class="card">
+            <div class="card-header"><span class="card-title">Matriz de Acceso por Rol</span></div>
+            <div class="card-body">
             <p-table
               [value]="matrizAcceso"
               [scrollable]="true"
@@ -165,7 +169,8 @@ interface NomenclaturaCampo {
                 </tr>
               </ng-template>
             </p-table>
-          </p-card>
+            </div>
+          </div>
         </div>
       </div>
     </section>

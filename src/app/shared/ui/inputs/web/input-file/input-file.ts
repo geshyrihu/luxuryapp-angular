@@ -1,4 +1,10 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
@@ -7,7 +13,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-file",
-  standalone: true,
+
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
@@ -58,11 +64,38 @@ import { BaseInputSignal } from "../../base/base-input-signal";
   `,
   styles: [
     `
-      :host { display: block; width: 100%; }
-      :host ::ng-deep .p-fileupload-basic { width: 100%; display: block; }
-      :host ::ng-deep .p-fileupload-basic .p-button { width: 100%; display: flex; justify-content: center; }
-      .file-info { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.75rem; padding: 0.75rem; background-color: var(--ds-bg-sunken); border-radius: var(--ds-radius-card); width: 100%; }
-      .file-details { font-size: 0.875rem; color: var(--ds-text-primary); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      :host {
+        display: block;
+        width: 100%;
+      }
+      :host ::ng-deep .p-fileupload-basic {
+        width: 100%;
+        display: block;
+      }
+      :host ::ng-deep .p-fileupload-basic .p-button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .file-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+        background-color: var(--ds-bg-sunken);
+        border-radius: var(--ds-radius-card);
+        width: 100%;
+      }
+      .file-details {
+        font-size: 0.875rem;
+        color: var(--ds-text-primary);
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

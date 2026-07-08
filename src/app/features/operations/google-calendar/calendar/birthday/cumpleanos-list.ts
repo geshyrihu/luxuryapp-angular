@@ -1,11 +1,6 @@
 import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
-  IonAvatar,
-  IonList,
-  IonNote,
-  IonSegment,
-  IonSegmentButton,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -25,13 +20,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     WebButtonLabel,
     AppAvatar,
     TagModule,
-    IonSegment,
-    IonSegmentButton,
-    IonList,
-
-    IonAvatar,
-
-    IonNote,
     AppIcon,
   ],
 })

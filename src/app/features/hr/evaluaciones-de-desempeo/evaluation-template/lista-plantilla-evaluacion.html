@@ -64,9 +64,9 @@
   (add)="onCreate()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
         <app-icon
@@ -74,20 +74,20 @@
           class="text-xl text-yellow-600"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.name }}</h3>
         <p>{{ item.description }}</p>
         <p>
           {{ item.isActive ? 'Activa' : 'Inactiva' }} é {{ item.categoryCount }}
           categoróas é {{ item.questionCount }} preguntas
         </p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onEdit(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

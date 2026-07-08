@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
@@ -13,19 +13,18 @@ import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-catalog-replica",
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     TooltipModule,
     CommonModule,
     FormsModule,
     TableModule,
     WebButtonLabel,
-    CustomInputTextSignal,
-    TagModule,
-  ],
+    CustomInputTextSignal, LxTag, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalog-replica.html",
 })

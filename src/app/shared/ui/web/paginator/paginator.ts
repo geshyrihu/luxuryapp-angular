@@ -1,10 +1,14 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
-import { PaginatorModule } from "primeng/paginator";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { PaginatorBase } from "@ui/base/paginator.base";
+import { PaginatorModule } from "primeng/paginator";
 
 @Component({
   selector: "app-paginator",
-  standalone: true,
+
   imports: [PaginatorModule],
   template: `
     <p-paginator
@@ -18,9 +22,13 @@ import { PaginatorBase } from "@ui/base/paginator.base";
       (onPageChange)="onPrimePageChange($event)"
     />
   `,
-  styles: [`
-    :host { display: block; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -31,6 +39,10 @@ export class AppPaginator extends PaginatorBase {
     if (event.rows !== this.rows()) {
       this.rows.set(event.rows);
     }
-    this.pageChange.emit({ page: newPage, rows: event.rows, totalRecords: event.totalRecords });
+    this.pageChange.emit({
+      page: newPage,
+      rows: event.rows,
+      totalRecords: event.totalRecords,
+    });
   }
 }

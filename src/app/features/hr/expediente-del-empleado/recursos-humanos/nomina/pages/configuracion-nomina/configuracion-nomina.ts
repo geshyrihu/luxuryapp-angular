@@ -1,6 +1,6 @@
 import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { FieldsetModule } from "primeng/fieldset";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -19,7 +19,7 @@ import {
   selector: "app-configuracion-nomina",
   imports: [
     ReactiveFormsModule,
-    FieldsetModule,
+    LxFieldset,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputDecimal,

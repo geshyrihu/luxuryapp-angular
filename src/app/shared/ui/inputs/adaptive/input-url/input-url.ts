@@ -1,16 +1,25 @@
-import { Component, forwardRef, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
-import { WebInputUrl } from "../../web/input-url/input-url";
 import { IonInputUrl } from "../../mobile/ion-input-url";
+import { WebInputUrl } from "../../web/input-url/input-url";
 
 @Component({
   selector: "custom-input-url",
-  standalone: true,
+
   imports: [WebInputUrl, IonInputUrl],
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputUrl), multi: true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputUrl),
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

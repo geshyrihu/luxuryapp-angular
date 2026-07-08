@@ -18,7 +18,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
-import { MessageModule } from "primeng/message";
+
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -34,6 +34,8 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { GastoFijoPresupuesto } from "src/app/features/accounting/budgeting/expense-catalog-budget/gasto-fijo-presupuesto";
 import { GastoFijoServicios } from "src/app/features/accounting/budgeting/expense-catalog-detail/gasto-fijo-servicios";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { LxMessage } from "@ui/adaptive/message/message";
 
 interface ICatalogoGastoFijoForm {
   id: FormControl<string>;
@@ -55,8 +57,7 @@ interface ICatalogoGastoFijoForm {
   selector: "app-catalogo-gasto-fijo-form",
   templateUrl: "./catalogo-gasto-fijo-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule,
     TableModule,
     CustomInputTextSignal,
@@ -65,9 +66,7 @@ interface ICatalogoGastoFijoForm {
     CustomInputSelectSignal,
     WebButtonLabel,
     WebButtonLabelSave,
-    CardModule,
-    MessageModule,
-  ],
+    CardModule, LxMessage],
 })
 export class CatalogoGastoFijoForm implements OnInit {
   // Inyección de dependencias
@@ -93,7 +92,7 @@ export class CatalogoGastoFijoForm implements OnInit {
   cb_formaDePago = signal<ISelectItem[]>([]);
   cb_quincena = signal<ISelectItem[]>([
     { label: "Primera Quincena", value: 0 },
-    { label: "Segunda Quincena", value: 1 },
+    { label: "Segunda Quincena", value: 1 }
   ]);
 
   // Formulario reactivo tipado
@@ -192,7 +191,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       this.apiResponseS.onGetSelectItem<ISelectItem[]>("WayToPay"),
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
         `providers/${this.customerIdS.customerId()}`,
-      ),
+      )
     ]);
 
     this.cb_usoCFDI.set((usoCFDI as ISelectItem[]) || []);

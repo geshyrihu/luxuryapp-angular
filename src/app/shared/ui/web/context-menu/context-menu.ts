@@ -1,12 +1,19 @@
-import { Component, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ContextMenuModule } from "primeng/contextmenu";
-import { ContextMenu as PrimeContextMenu } from "primeng/contextmenu";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewChild,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ContextMenuBase } from "@ui/base/context-menu.base";
+import {
+  ContextMenuModule,
+  ContextMenu as PrimeContextMenu,
+} from "primeng/contextmenu";
 
 @Component({
   selector: "app-context-menu",
-  standalone: true,
+
   imports: [CommonModule, ContextMenuModule],
   template: `
     <div
@@ -18,11 +25,13 @@ import { ContextMenuBase } from "@ui/base/context-menu.base";
     </div>
     <p-contextmenu #cm [model]="items()" />
   `,
-  styles: [`
-    .context-menu-host {
-      display: contents;
-    }
-  `],
+  styles: [
+    `
+      .context-menu-host {
+        display: contents;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

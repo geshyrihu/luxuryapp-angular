@@ -8,7 +8,7 @@ import {
   signal,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
@@ -16,6 +16,7 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -52,8 +53,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ActionMenu,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    IonItem,
-    IonLabel,
     ],
 })
 export class EmployeeBankDataList {

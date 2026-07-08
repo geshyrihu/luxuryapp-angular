@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { AccordionBase } from "./accordion.base";
 
-@Component({ selector: "test-accordion", standalone: true, template: "" })
+@Component({ selector: "test-accordion", template: "" })
 class TestAccordion extends AccordionBase {}
 
 describe("AccordionBase", () => {

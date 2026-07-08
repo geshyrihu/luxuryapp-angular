@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";

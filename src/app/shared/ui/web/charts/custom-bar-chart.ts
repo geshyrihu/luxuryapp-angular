@@ -1,7 +1,12 @@
-import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
-import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { ChartJsData, chartJsToCartesianOption } from "./echarts-adapters";
 
 /**
  * CustomBarChart — barras / líneas. Motor: ECharts (ngx-echarts).
@@ -9,7 +14,7 @@ import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
  */
 @Component({
   selector: "app-custom-bar-chart",
-  standalone: true,
+
   imports: [NgxEchartsDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

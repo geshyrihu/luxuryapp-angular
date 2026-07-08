@@ -1,16 +1,26 @@
-import { Component, forwardRef, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
-import { WebInputPhonePrefix } from "../../web/input-phone-prefix/input-phone-prefix";
 import { IonInputPhonePrefix } from "../../mobile/ion-input-phone-prefix";
+import { WebInputPhonePrefix } from "../../web/input-phone-prefix/input-phone-prefix";
 
 @Component({
   selector: "custom-input-phone-prefix",
-  standalone: true,
+
   imports: [WebInputPhonePrefix, IonInputPhonePrefix],
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputPhonePrefix), multi: true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputPhonePrefix),
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

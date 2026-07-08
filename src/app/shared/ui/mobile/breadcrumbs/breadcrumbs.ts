@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-breadcrumbs",
-  standalone: true,
+
   imports: [CommonModule, RouterModule, AppIcon],
   template: `
     <nav class="ili-bc">

@@ -585,7 +585,7 @@ export const settingsRoutes: Routes = [
     canActivate: [authGuard],
     data: {
       title: "Base de Conocimiento IA",
-      breadcrumb: "ðŸ§  Base de Conocimiento IA",
+      breadcrumb: "🧠 Base de Conocimiento IA",
     },
   },
 

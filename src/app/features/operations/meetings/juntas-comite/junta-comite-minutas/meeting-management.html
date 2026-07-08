@@ -1,6 +1,6 @@
 @if (meetingData()) {
 <div class="p-4">
-  <p-card [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
+  <div class="card" [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
     <div class="mb-3 flex align-items-center justify-content-between">
       <a routerLink="/junta-comite/list-minutas" class="no-underline">
         <il-button
@@ -75,7 +75,7 @@
       (editSeguimiento)="onModalFormSeguimiento($event)"
       (deleteSeguimiento)="onDeleteSeguimiento($event)"
     />
-  </p-card>
+  </div>
 </div>
 } @else {
 <div class="flex align-items-center justify-content-center h-screen">

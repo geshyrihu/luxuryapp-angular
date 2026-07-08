@@ -3,12 +3,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import {
-  IonCard,
-  IonCardContent,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { NgxEchartsDirective } from "ngx-echarts";
 import type { EChartsCoreOption } from "echarts/core";
 import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
@@ -32,11 +27,6 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
     RangoCalendarioyyyymmdd,
     RadioButtonModule,
     FormsModule,
-    IonSegment,
-    IonSegmentButton,
-    IonLabel,
-    IonCard,
-    IonCardContent,
   ],
 })
 export class MedidorLecturaChart implements OnInit {
@@ -68,8 +58,8 @@ export class MedidorLecturaChart implements OnInit {
     this.onLoadData();
   }
 
-  onSegmentChange(event: any) {
-    const value = event.detail.value;
+  onSegmentChange(value: string) {
+    
     if (value === "month") {
       this.ViewMonth = true;
       this.ViewDay = false;

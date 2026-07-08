@@ -1,4 +1,10 @@
-import { Component, forwardRef, inject, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -11,7 +17,7 @@ import { WebInputCheck } from "../../web/input-check/input-check";
  */
 @Component({
   selector: "custom-input-check-signal",
-  standalone: true,
+
   imports: [WebInputCheck, IonInputCheckbox],
   providers: [
     {

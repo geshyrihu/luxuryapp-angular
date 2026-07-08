@@ -1,9 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import {
-  IonItem,
-  IonLabel,
-  IonList,
   IonListHeader,
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -28,10 +25,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     CommonModule,
     CardModule,
     WebButtonLabelViewPdf,
-    IonList,
     IonListHeader,
-    IonItem,
-    IonLabel,
     WebButtonLabelViewPdf,
     AppIcon,
   ],

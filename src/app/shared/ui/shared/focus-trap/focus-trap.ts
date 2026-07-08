@@ -1,8 +1,14 @@
-import { Directive, input, effect, ElementRef, inject, afterNextRender } from "@angular/core";
+import {
+  afterNextRender,
+  Directive,
+  effect,
+  ElementRef,
+  inject,
+  input,
+} from "@angular/core";
 
 @Directive({
   selector: "[appFocusTrap]",
-  standalone: true,
 })
 export class FocusTrap {
   active = input(true);

@@ -1,5 +1,5 @@
-<p-card>
-  <ng-template #content>
+<div class="card">
+  
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <!-- Campo: Nombre del almacén -->
       <custom-input-text-signal
@@ -90,8 +90,8 @@
         [submitting]="submitting()"
       />
     </form>
-  </ng-template>
-</p-card>
+  
+</div>
 
 
 

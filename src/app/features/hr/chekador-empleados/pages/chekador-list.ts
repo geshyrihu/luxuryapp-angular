@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { ImageModule } from "primeng/image";
+import { LxImage } from "@ui/adaptive/image/image";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { TableModule } from "primeng/table";
@@ -39,7 +39,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     LxTag,
     WebButtonLabel,
     WebButtonIcon,
-    ImageModule,
+    LxImage,
     TooltipModule,
     CustomInputCheckSignal,
     IonInputCheckbox,

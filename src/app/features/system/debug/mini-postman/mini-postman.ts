@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { BadgeModule } from "primeng/badge";
-import { TabsModule } from "primeng/tabs";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -32,11 +31,10 @@ interface HistoryEntry {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
-    TabsModule,
+    LxTabs,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     InputText,
-    BadgeModule,
     WebButtonLabel,
     WebButtonIcon,
     AppIcon,
@@ -62,6 +60,26 @@ export class MiniPostman {
   bodyRaw = signal("");
   headers = signal<KeyValuePair[]>([{ key: "", value: "", enabled: true }]);
   params = signal<KeyValuePair[]>([{ key: "", value: "", enabled: true }]);
+
+  // --- Tabs state ---
+  activeTabReq = signal("params");
+  activeTabRes = signal("body-res");
+
+  readonly reqTabs = computed(() => {
+    const tabs = [
+      { id: "params", label: "Params" },
+      { id: "headers", label: "Headers" },
+    ];
+    if (this.hasBody()) {
+      tabs.push({ id: "body", label: "Body" });
+    }
+    return tabs;
+  });
+
+  readonly resTabs = [
+    { id: "body-res", label: "Body" },
+    { id: "headers-res", label: "Headers" }
+  ];
 
   // --- Response state ---
   loading = signal(false);

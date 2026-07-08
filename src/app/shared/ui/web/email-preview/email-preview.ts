@@ -1,14 +1,14 @@
+import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   input,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export type PreviewMode = "desktop" | "mobile";
 
@@ -19,7 +19,7 @@ export type PreviewMode = "desktop" | "mobile";
  */
 @Component({
   selector: "app-email-preview",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule, TagModule, AppIcon],
   template: `
     <div class="ep-root">
@@ -71,7 +71,11 @@ export type PreviewMode = "desktop" | "mobile";
           @if (tags().length > 0) {
             <div class="ep-tags">
               @for (tag of tags(); track tag) {
-                <p-tag [value]="tag" severity="secondary" styleClass="text-xs" />
+                <p-tag
+                  [value]="tag"
+                  severity="secondary"
+                  styleClass="text-xs"
+                />
               }
             </div>
           }
@@ -98,65 +102,146 @@ export type PreviewMode = "desktop" | "mobile";
       </div>
     </div>
   `,
-  styles: [`
-    .ep-root { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--ds-border, #e2e8f0); border-radius: var(--ds-radius-lg, 8px); overflow: hidden; }
-    /* Toolbar */
-    .ep-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 0.875rem;
-      background: var(--ds-bg-elevated, #f1f3ff);
-      border-bottom: 1px solid var(--ds-border, #e2e8f0);
-    }
-    .ep-toolbar-title { font-size: var(--ds-font-size-help, 0.8125rem); font-weight: 600; color: var(--ds-text-secondary); }
-    .ep-toolbar-actions { display: flex; gap: 0.25rem; }
-    .ep-mode-btn {
-      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-      border: 1px solid transparent; border-radius: var(--ds-radius-sm, 4px); background: none;
-      cursor: pointer; color: var(--ds-text-muted); font-size: 1rem; transition: all 0.15s;
-    }
-    .ep-mode-btn:hover { background: var(--ds-bg-surface); color: var(--ds-primary); }
-    .ep-mode-active { background: var(--ds-bg-surface); color: var(--ds-primary); border-color: var(--ds-primary); }
-    /* Frame */
-    .ep-frame {
-      background: var(--ds-bg-surface, #fff);
-      transition: max-width 0.3s ease;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .ep-frame-mobile { max-width: 375px; border-left: 1px solid var(--ds-border); border-right: 1px solid var(--ds-border); }
-    /* Email header */
-    .ep-email-header {
-      padding: 1rem;
-      border-bottom: 1px solid var(--ds-border, #e2e8f0);
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .ep-field { display: flex; gap: 0.5rem; align-items: baseline; }
-    .ep-subject { display: flex; gap: 0.5rem; align-items: baseline; margin-top: 0.25rem; }
-    .ep-field-label { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); width: 42px; flex-shrink: 0; }
-    .ep-field-value { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-text-primary); }
-    .ep-subject .ep-field-value { font-size: var(--ds-font-size-label, 0.875rem); }
-    .ep-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; padding-top: 0.25rem; }
-    /* Body */
-    .ep-body { min-height: 300px; }
-    .ep-iframe { width: 100%; height: 400px; border: none; display: block; }
-    .ep-plain-text { padding: 1rem; font-size: var(--ds-font-size-body, 0.9375rem); color: var(--ds-text-primary); white-space: pre-wrap; line-height: 1.6; }
-    .ep-empty { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 3rem; color: var(--ds-text-muted); font-size: var(--ds-font-size-help, 0.8125rem); }
-  `],
+  styles: [
+    `
+      .ep-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-lg, 8px);
+        overflow: hidden;
+      }
+      /* Toolbar */
+      .ep-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0.875rem;
+        background: var(--ds-bg-elevated, #f1f3ff);
+        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+      }
+      .ep-toolbar-title {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-weight: 600;
+        color: var(--ds-text-secondary);
+      }
+      .ep-toolbar-actions {
+        display: flex;
+        gap: 0.25rem;
+      }
+      .ep-mode-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: var(--ds-radius-sm, 4px);
+        background: none;
+        cursor: pointer;
+        color: var(--ds-text-muted);
+        font-size: 1rem;
+        transition: all 0.15s;
+      }
+      .ep-mode-btn:hover {
+        background: var(--ds-bg-surface);
+        color: var(--ds-primary);
+      }
+      .ep-mode-active {
+        background: var(--ds-bg-surface);
+        color: var(--ds-primary);
+        border-color: var(--ds-primary);
+      }
+      /* Frame */
+      .ep-frame {
+        background: var(--ds-bg-surface, #fff);
+        transition: max-width 0.3s ease;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .ep-frame-mobile {
+        max-width: 375px;
+        border-left: 1px solid var(--ds-border);
+        border-right: 1px solid var(--ds-border);
+      }
+      /* Email header */
+      .ep-email-header {
+        padding: 1rem;
+        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .ep-field {
+        display: flex;
+        gap: 0.5rem;
+        align-items: baseline;
+      }
+      .ep-subject {
+        display: flex;
+        gap: 0.5rem;
+        align-items: baseline;
+        margin-top: 0.25rem;
+      }
+      .ep-field-label {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+        width: 42px;
+        flex-shrink: 0;
+      }
+      .ep-field-value {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-primary);
+      }
+      .ep-subject .ep-field-value {
+        font-size: var(--ds-font-size-label, 0.875rem);
+      }
+      .ep-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        padding-top: 0.25rem;
+      }
+      /* Body */
+      .ep-body {
+        min-height: 300px;
+      }
+      .ep-iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+        display: block;
+      }
+      .ep-plain-text {
+        padding: 1rem;
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        color: var(--ds-text-primary);
+        white-space: pre-wrap;
+        line-height: 1.6;
+      }
+      .ep-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 3rem;
+        color: var(--ds-text-muted);
+        font-size: var(--ds-font-size-help, 0.8125rem);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppEmailPreview {
-  from        = input<string>("");
-  to          = input<string>("");
-  cc          = input<string>("");
-  subject     = input<string>("(Sin asunto)");
+  from = input<string>("");
+  to = input<string>("");
+  cc = input<string>("");
+  subject = input<string>("(Sin asunto)");
   htmlContent = input<string>("");
-  plainText   = input<string>("");
-  tags        = input<string[]>([]);
+  plainText = input<string>("");
+  tags = input<string[]>([]);
 
   mode: PreviewMode = "desktop";
 

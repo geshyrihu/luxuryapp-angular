@@ -1,9 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
-import type { MenuItem } from "primeng/api";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
+import { DockBase } from "@ui/base/dock.base";
 import { DockModule } from "primeng/dock";
 import { TooltipModule } from "primeng/tooltip";
-import { DockBase } from "@ui/base/dock.base";
 
 /**
  * AppDock — Wrapper sobre p-dock para barra de herramientas tipo macOS.
@@ -12,7 +16,7 @@ import { DockBase } from "@ui/base/dock.base";
  */
 @Component({
   selector: "app-dock",
-  standalone: true,
+
   imports: [CommonModule, DockModule, TooltipModule],
   template: `
     <div class="app-dock-root">

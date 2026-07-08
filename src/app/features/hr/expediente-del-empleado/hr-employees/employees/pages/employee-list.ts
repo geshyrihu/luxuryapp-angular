@@ -1,14 +1,14 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { IonAvatar } from "@ionic/angular/standalone";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelItem } from "@ui/buttons/web-label";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -47,8 +47,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    AvatarModule,
-    IonAvatar,
+    LxAvatar,
   ],
 })
 export class EmployeeList {

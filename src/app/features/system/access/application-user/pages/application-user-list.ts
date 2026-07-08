@@ -7,10 +7,11 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
+import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
+import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
@@ -21,6 +22,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -59,10 +61,11 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    WebButtonIconActiveDesactive,
+    WebButtonLabelActiveDesactive,
+    MobileButtonLabelActiveDesactive,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

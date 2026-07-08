@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,11 +10,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import {
-  IonItem,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { WebButtonLabelItem } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -70,7 +66,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     WebButtonLabel,
-    // AÃ³adir WebButtonLabel a imports
+    // Aóadir WebButtonLabel a imports
 
     DataViewMobile,
     ReactiveFormsModule,
@@ -81,10 +77,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableModule,
     TagModule,
     TooltipModule,
-    IonSegment,
-    IonSegmentButton,
-    IonItem,
-    IonLabel,
     AppIcon,
   ],
 })
@@ -96,7 +88,7 @@ export class OrdenesServicio {
   reporteOrdenesServicioService = inject(ReporteOrdenesServicioService);
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
-  periodMonthService = inject(PeriodMonthService); // Asegurarse de que estÃ© inyectado
+  periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
   pdfService = inject(OrdenesServicioListPdfService);
 
   mm: number;
@@ -139,7 +131,7 @@ export class OrdenesServicio {
   onReloadOrdenes(id: any, filtroEquiposValue: any) {
     this.filtroEquiposValue = filtroEquiposValue;
     this.filtroId = id;
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el mÃ©todo correcto
+    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el método correcto
 
     if (this.filtroId === 10) {
       this.onLoadPintura();
@@ -158,7 +150,7 @@ export class OrdenesServicio {
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);
-    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el mÃ©todo correcto
+    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el método correcto
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {

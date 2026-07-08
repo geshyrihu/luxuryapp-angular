@@ -17,14 +17,14 @@
 
   @if (loading()) {
   <div class="flex justify-content-center my-5">
-    <p-progressspinner ariaLabel="Cargando módulos"></p-progressspinner>
+    <lx-spinner ariaLabel="Cargando módulos"></lx-spinner>
   </div>
   } @if (!loading() && filteredGroupedData().length === 0) {
-  <p-message
+  <lx-message
     severity="warn"
     text="No se encontraron módulos."
     class="w-full"
-  ></p-message>
+  ></lx-message>
   }
 
   <!-- Grupos en filas -->
@@ -107,21 +107,21 @@
 
     @if (loading()) {
     <div class="flex justify-content-center my-5">
-      <p-progressspinner ariaLabel="Cargando módulos"></p-progressspinner>
+      <lx-spinner ariaLabel="Cargando módulos"></lx-spinner>
     </div>
     } @if (!loading() && filteredGroupedData().length === 0) {
-    <p-message severity="warn" text="No se encontraron módulos."></p-message>
+    <lx-message severity="warn" text="No se encontraron módulos."></lx-message>
     } @for (group of filteredGroupedData(); track group.groupTitle) {
     <div class="mb-3">
       <h3 class="text-xs text-500 font-bold px-3 uppercase m-0 mb-1">
         {{ group.groupTitle }}
       </h3>
-      <ion-list
+      <div class="flex flex-column" 
         inset="true"
         class="m-0 border-round-lg overflow-hidden shadow-1"
       >
         @for (item of group.items; track item.moduleAppId) {
-        <ion-item class="ion-no-padding">
+        <ili-list-item class="ion-no-padding" [noPadding]="true">
           <div slot="start" class="pl-3 py-2 flex align-items-center">
             <app-icon
               [icon]="item.isAssigned ? 'mdi:check-circle' : 'mdi:circle-outline'"
@@ -129,7 +129,7 @@
               [class.text-400]="!item.isAssigned"
             />
           </div>
-          <ion-label class="ion-text-wrap py-2">
+          <div class="ion-text-wrap py-2">
             <h2
               class="text-sm font-medium"
               [class.text-900]="item.isAssigned"
@@ -137,15 +137,16 @@
             >
               {{ item.moduleAppName }}
             </h2>
-          </ion-label>
+          </div>
           <ion-input-toggle
             [ngModel]="item.isAssigned"
             (toggleChange)="toggleModuleActivation(item)"
           ></ion-input-toggle>
-        </ion-item>
+        </ili-list-item>
         }
-      </ion-list>
+      </div>
     </div>
     }
   </div>
 </div>
+

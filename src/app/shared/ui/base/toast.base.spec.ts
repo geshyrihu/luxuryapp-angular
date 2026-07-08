@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { ToastBase } from "./toast.base";
 
-@Component({ selector: "test-toast", standalone: true, template: "" })
+@Component({ selector: "test-toast", template: "" })
 class Host extends ToastBase {}
 
 describe("ToastBase", () => {

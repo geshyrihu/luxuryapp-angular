@@ -57,7 +57,7 @@
               />
             </div>
             <div style="width: 150px">
-              <iw-button-active-desactive
+              <il-button-active-desactive
                 [state]="applicationUserState"
                 (stateChange)="onSelectActive($event)"
               />
@@ -90,7 +90,7 @@
       <ng-template #body let-item>
         <tr>
           <td>
-            <p-avatar
+            <lx-avatar
               [image]="item.photoPath
                     ? item.photoPath
                     : 'assets/images/default-avatar.png'"
@@ -187,7 +187,7 @@
         />
       </div>
       <div class="col-2 m-0">
-        <iw-button-active-desactive
+        <ili-button-active-desactive
           fluid
           [state]="applicationUserState"
           (stateChange)="onSelectActive($event)"
@@ -197,9 +197,9 @@
   </div>
   <!-- End Este bloque necesito agregarlo a data-view -->
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="mobile-avatar-slot"
         (click)="onCardEmployee(item.id)"
       >
@@ -216,31 +216,29 @@
         />
         }
       </div>
-      <ion-label class="ion-text-wrap">
-        <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
-        <p class="text-xs m-0 mt-1">
-          <span style="color: var(--ds-primary)" class="font-medium"
-            >{{ item.userName }}</span
-          >
-          <span class="mx-1 text-color-secondary">é</span>
-          <span class="text-color-secondary uppercase">{{ item.role }}</span>
-        </p>
-        <p class="text-xs m-0 text-color-secondary">
-          {{ item.customer || 'Sin Cliente' }}
-        </p>
-        <p class="text-xs m-0 text-500">
-          <app-icon [icon]="'mdi:email-outline'" class="text-xs mr-1" />{{
-          item.email }}
-        </p>
-        @if (item.phoneNumber) {
-        <p class="text-xs m-0 text-500">
-          <app-icon [icon]="'mdi:phone'" class="text-xs mr-1" />{{
-          item.phoneNumber }}
-        </p>
-        }
-      </ion-label>
+      <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
+      <p class="text-xs m-0 mt-1">
+        <span style="color: var(--ds-primary)" class="font-medium"
+          >{{ item.userName }}</span
+        >
+        <span class="mx-1 text-color-secondary">é</span>
+        <span class="text-color-secondary uppercase">{{ item.role }}</span>
+      </p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.customer || 'Sin Cliente' }}
+      </p>
+      <p class="text-xs m-0 text-500">
+        <app-icon [icon]="'mdi:email-outline'" class="text-xs mr-1" />{{
+        item.email }}
+      </p>
+      @if (item.phoneNumber) {
+      <p class="text-xs m-0 text-500">
+        <app-icon [icon]="'mdi:phone'" class="text-xs mr-1" />{{
+        item.phoneNumber }}
+      </p>
+      }
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           @if (item.active) {
           <ili-button-item
@@ -270,7 +268,7 @@
           />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
 }

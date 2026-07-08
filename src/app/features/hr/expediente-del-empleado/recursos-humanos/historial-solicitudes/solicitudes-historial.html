@@ -202,9 +202,9 @@
         [globalFilterFields]="['employeeFullName', 'solicitud', 'status']"
       >
         <ng-template #listItemTemplate let-item>
-          <ion-item lines="full" class="ion-no-padding">
+          <ili-list-item>
             <div
-              slot="start"
+              start
               class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
               style="
                 width: 38px;
@@ -217,7 +217,7 @@
                 style="font-size: 1.1rem; color: var(--ds-primary)"
               />
             </div>
-            <ion-label>
+            
               <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
               <p class="text-color-secondary text-sm m-0">
                 {{ item.solicitud }} | {{ item.startDate | date: "dd/MM/yy" }} -
@@ -226,15 +226,15 @@
               <p class="text-color-secondary text-sm m-0">
                 {{ item.daysRequested }}
               </p>
-            </ion-label>
-            <div slot="end" class="flex align-items-center">
+            
+            <div end class="flex align-items-center">
               <lx-tag
                 [value]="item.status"
                 [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
                 class="ml-2"
               />
             </div>
-          </ion-item>
+          </ili-list-item>
         </ng-template>
       </app-data-view-mobile>
     </div>

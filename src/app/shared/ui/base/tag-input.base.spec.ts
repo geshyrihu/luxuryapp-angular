@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { TagInputBase } from "./tag-input.base";
 
-@Component({ selector: "test-tag-input", standalone: true, template: "" })
+@Component({ selector: "test-tag-input", template: "" })
 class Host extends TagInputBase {}
 
 describe("TagInputBase", () => {

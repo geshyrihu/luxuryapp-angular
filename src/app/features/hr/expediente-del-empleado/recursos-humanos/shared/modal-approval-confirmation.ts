@@ -7,9 +7,10 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { DividerModule } from "primeng/divider";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
@@ -32,8 +33,9 @@ import { ApprovalInfoService } from "./approval-info.service";
     ProgressSpinnerModule,
     WebButtonLabel,
     DatePipe,
-    DividerModule,
-    MessageModule,
+    LxDivider,
+    LxMessage,
+    LxTag,
     CustomInputToggleSwitch
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -50,7 +52,7 @@ import { ApprovalInfoService } from "./approval-info.service";
       <div class="p-fluid p-3">
         <div class="mb-4 text-center">
           <h4 class="mb-1">{{ request.employeeFullName }}</h4>
-          <p-tag [value]="request.requestType" [rounded]="true"></p-tag>
+          <lx-tag [value]="request.requestType" [rounded]="true"></lx-tag>
         </div>
 
         @if (request.requestType === "Permiso") {
@@ -84,7 +86,7 @@ import { ApprovalInfoService } from "./approval-info.service";
             </div>
             <p class="text-600">
               El empleado ha solicitado
-              <p-tag
+              <lx-tag
                 [value]="leaveHistory?.recentRequests ?? 0"
                 severity="info"
               />
@@ -101,7 +103,7 @@ import { ApprovalInfoService } from "./approval-info.service";
             </div>
             <p class="text-600">
               Días disponibles:
-              <p-tag
+              <lx-tag
                 [value]="vacationBalance?.availableDays ?? 0"
                 severity="success"
               />
@@ -109,7 +111,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           </div>
         }
 
-        <p-divider />
+        <lx-divider />
 
         <div class="mt-4">
           <div class="flex items-center mb-3">
@@ -135,7 +137,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                         />
                         {{ req.fullName }}
                       </span>
-                      <p-tag
+                      <lx-tag
                         [value]="
                           (req.startDate | date: 'dd MMM') +
                           ' - ' +
@@ -148,10 +150,9 @@ import { ApprovalInfoService } from "./approval-info.service";
                 </ul>
               </div>
             } @else {
-              <p-message
+              <lx-message
                 severity="info"
                 text="No hay otras solicitudes de permiso que se solapen en estas fechas."
-                class="w-full"
               />
             }
           }
@@ -169,7 +170,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                         />
                         {{ req.fullName }}
                       </span>
-                      <p-tag
+                      <lx-tag
                         [value]="
                           (req.startDate | date: 'dd MMM') +
                           ' - ' +
@@ -182,10 +183,9 @@ import { ApprovalInfoService } from "./approval-info.service";
                 </ul>
               </div>
             } @else {
-              <p-message
+              <lx-message
                 severity="info"
                 text="No hay otras solicitudes de vacaciones que se solapen en estas fechas."
-                class="w-full"
               />
             }
           }

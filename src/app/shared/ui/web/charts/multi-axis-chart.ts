@@ -1,7 +1,12 @@
-import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
-import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { ChartJsData, chartJsToCartesianOption } from "./echarts-adapters";
 
 /**
  * MultiAxisChart — barras con doble eje Y. Motor: ECharts (ngx-echarts).
@@ -10,7 +15,7 @@ import { chartJsToCartesianOption, ChartJsData } from "./echarts-adapters";
  */
 @Component({
   selector: "app-multi-axis-chart",
-  standalone: true,
+
   imports: [NgxEchartsDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -25,6 +30,8 @@ export class MultiAxisChart {
 
   option = computed<EChartsCoreOption>(() => {
     if (this.optionsSignal()) return this.optionsSignal() as EChartsCoreOption;
-    return chartJsToCartesianOption(this.dataSignal(), "bar", { dualAxis: true });
+    return chartJsToCartesianOption(this.dataSignal(), "bar", {
+      dualAxis: true,
+    });
   });
 }

@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-notification-center",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <button type="button" class="ili-nc-bell" (click)="open.set(true)">
@@ -21,7 +21,11 @@ import { NotificationCenterBase } from "@ui/base/notification-center.base";
           <div class="ili-nc-header">
             <strong>Notificaciones</strong>
             @if (unreadCount() > 0) {
-              <button type="button" class="ili-nc-markall" (click)="markAllRead.emit()">
+              <button
+                type="button"
+                class="ili-nc-markall"
+                (click)="markAllRead.emit()"
+              >
                 Marcar todo leído
               </button>
             }
@@ -107,7 +111,8 @@ import { NotificationCenterBase } from "@ui/base/notification-center.base";
         display: flex;
         flex-direction: column;
         background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-radius-modal, 12px) var(--ds-radius-modal, 12px) 0 0;
+        border-radius: var(--ds-radius-modal, 12px) var(--ds-radius-modal, 12px)
+          0 0;
         padding-bottom: env(safe-area-inset-bottom);
       }
       .ili-nc-header {

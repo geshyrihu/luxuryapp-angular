@@ -1,11 +1,17 @@
-import { Component, computed, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { PasswordModule } from "primeng/password";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-password",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, PasswordModule],
   template: `
     <base-input-signal

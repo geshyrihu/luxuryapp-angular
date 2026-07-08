@@ -1,17 +1,17 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
 } from "@angular/core";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 
 @Component({
   selector: "app-tokens-typography",
-  standalone: true,
+
   imports: [CommonModule, TableModule, TagModule, CardModule, MessageModule],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->

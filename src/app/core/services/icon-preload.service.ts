@@ -2,16 +2,13 @@
 export function preloadIconifyIcons(): () => Promise<void> {
   const icons = [
     "fluent-color:alert-16",
-    "fluent-color:save-16",
-    "fluent-color:delete-16",
-    "fluent-color:cloud-download-16",
     "fluent-color:document-16",
     "fluent-color:mail-16",
-    "fluent-color:add-16",
-    "fluent-color:checkmark-16",
-    "fluent-color:lock-16",
-    "fluent-color:unlock-16",
     "fluent-color:alert-24",
+    "fluent-color:lock-closed-16",
+    "fluent-color:checkmark-circle-16",
+    "fluent-color:add-circle-16",
+    "fluent:lock-open-16-regular",
   ];
 
   return async () => {

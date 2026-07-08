@@ -1,37 +1,30 @@
-import { Component, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { MobileSkeletonPresets } from "../../mobile/skeleton-presets/skeleton-presets";
-import { WebSkeletonPresets } from "../../web/skeleton-presets/skeleton-presets";
-import type { SkeletonPresetType } from "../../web/skeleton-presets/skeleton-presets";
+import { AppSkeleton } from "@ui/web/skeleton/skeleton";
+import { MobileSkeleton } from "@ui/mobile/skeleton/skeleton";
+import { SkeletonBase } from "@ui/base/skeleton.base";
 
 @Component({
-  selector: "app-skeleton-presets",
+  selector: "lx-skeleton",
   standalone: true,
-  imports: [WebSkeletonPresets, MobileSkeletonPresets],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [AppSkeleton, MobileSkeleton],
   template: `
     @if (platform.isMobile()) {
-      <ili-skeleton-presets
-        [variant]="variant()"
-        [rows]="rows()"
-        [fields]="fields()"
-        [chartHeight]="chartHeight()"
+      <ili-skeleton
+        [width]="width()"
+        [height]="height()"
+        [borderRadius]="borderRadius()"
       />
     } @else {
-      <web-skeleton-presets
-        [variant]="variant()"
-        [rows]="rows()"
-        [fields]="fields()"
-        [chartHeight]="chartHeight()"
+      <app-skeleton
+        [width]="width()"
+        [height]="height()"
+        [borderRadius]="borderRadius()"
+        [styleClass]="styleClass()"
       />
     }
   `,
 })
-export class SkeletonPresets {
+export class LxSkeleton extends SkeletonBase {
   protected platform = inject(PlatformService);
-
-  variant = input.required<SkeletonPresetType>();
-  rows = input<number>(4);
-  fields = input<number>(3);
-  chartHeight = input<string>("250px");
 }

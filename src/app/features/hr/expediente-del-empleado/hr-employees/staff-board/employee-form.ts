@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 ;
 import { MenuItem } from "primeng/api";
-import { MessageModule } from "primeng/message";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { PanelMenuModule } from "primeng/panelmenu";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -38,7 +38,7 @@ import { IncidentList } from "src/app/features/hr/expediente-del-empleado/recurs
     EmployeePrincipalDataForm,
     EmployeeReclutamiento,
     IncidentList,
-    MessageModule,
+    LxMessage,
     PanelMenuModule,
     UpdatePasswordAccount,
     UpdateRole

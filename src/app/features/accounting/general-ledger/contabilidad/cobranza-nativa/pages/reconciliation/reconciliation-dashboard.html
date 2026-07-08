@@ -1,5 +1,4 @@
 <div class="card p-0 md:p-4">
-  <!-- Panel de accion -->
   <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
     <div class="flex align-items-start justify-content-between flex-wrap gap-3">
       <div>
@@ -26,7 +25,6 @@
     </div>
   </div>
 
-  <!-- Tabla desktop -->
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -82,28 +80,27 @@
     </ng-template>
   </p-table>
 
-  <!-- Vista mobile -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [globalFilterFields]="['reference', 'status']"
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-pay>
-      <ion-item lines="full" detail="false" class="ion-no-padding">
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
           <app-icon icon="mdi:source-merge" class="text-orange-600 text-xl" />
         </div>
-        <ion-label>
+        <div class="flex-1 min-w-0">
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>
           <p>
             {{ pay.paymentDate | date:'dd/MM/yyyy' }} &middot; {{ pay.status }}
           </p>
           <p>{{ pay.reference || 'Sin referencia' }}</p>
-        </ion-label>
-      </ion-item>
+        </div>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

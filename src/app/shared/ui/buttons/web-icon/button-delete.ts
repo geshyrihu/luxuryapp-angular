@@ -1,12 +1,17 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 import { confirmAction } from "../shared/confirm";
 
 @Component({
   selector: "iw-button-delete",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

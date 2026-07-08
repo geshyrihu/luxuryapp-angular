@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "il-button",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -29,4 +29,3 @@ import { BaseButton } from "../base/base-button";
   `,
 })
 export class WebButtonLabel extends BaseButton {}
-

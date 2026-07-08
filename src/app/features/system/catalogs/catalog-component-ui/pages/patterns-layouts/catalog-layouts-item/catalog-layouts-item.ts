@@ -1,8 +1,13 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 
@@ -16,13 +21,13 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [CommonModule, ButtonModule, CardModule, DividerModule, TagModule],
+  imports: [CommonModule, ButtonModule, DividerModule, TagModule],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
       </div>
-      <p-card>
+      <div class="card">
         <p class="text-color-secondary">
           Layout <strong>{{ label }}</strong> é consulta la sección completa de
           Layouts para ver todas las variantes con ejemplos visuales.
@@ -37,7 +42,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
             "
           />
         </div>
-      </p-card>
+      </div>
     </section>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -1,4 +1,4 @@
-﻿import {
+import {
   Component,
   computed,
   effect,
@@ -68,7 +68,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
         this.pageTitle = data["title"];
         this.documentType = data["documentType"];
         console.log("Tipo de documento:", this.documentType);
-        console.log("TÃºtulo de la pÃ¡gina:", this.pageTitle);
+        console.log("Tútulo de la página:", this.pageTitle);
         this.onLoadData();
       }
     });

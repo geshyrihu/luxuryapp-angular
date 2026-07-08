@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SkeletonModule } from "primeng/skeleton";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -31,7 +31,7 @@ import {
     LxCard,
     TableModule,
     CustomInputSelectButton,
-    SkeletonModule,
+    LxSkeleton,
     AppIcon,
     WebButtonLabelSave,
   ],

@@ -80,48 +80,9 @@
 }
 
 <!-- -- Pestaóas --------------------------------------------------------------- -->
-<p-tabs [value]="0" (valueChange)="onTabChange($event)">
-  <p-tablist>
-    <p-tab [value]="0"
-      ><app-icon [icon]="'mdi:account'" class="mr-2"></app-icon
-      >Personales</p-tab
-    >
-    <p-tab [value]="1"
-      ><app-icon [icon]="'mdi:phone'" class="mr-2" />Emergencia</p-tab
-    >
-    <p-tab [value]="2"
-      ><app-icon [icon]="'mdi:heart-outline'" class="mr-2"></app-icon
-      >Clónicos</p-tab
-    >
-    <p-tab [value]="3"
-      ><app-icon [icon]="'mdi:wallet'" class="mr-2" />Bancarios</p-tab
-    >
-    <p-tab [value]="4"
-      ><app-icon [icon]="'mdi:file-document-outline'" class="mr-2"></app-icon
-      >Contratos</p-tab
-    >
-    <p-tab [value]="5"
-      ><app-icon [icon]="'mdi:briefcase'" class="mr-2" />Puesto</p-tab
-    >
-    <p-tab [value]="6"
-      ><app-icon [icon]="'mdi:calendar-plus'" class="mr-2"></app-icon
-      >Vacaciones</p-tab
-    >
-    <p-tab [value]="7"
-      ><app-icon [icon]="'mdi:alert'" class="mr-2" />Incidencias</p-tab
-    >
-    <p-tab [value]="8"
-      ><app-icon [icon]="'mdi:chart-line'" class="mr-2"></app-icon
-      >Evaluaciones</p-tab
-    >
-    <p-tab [value]="9"
-      ><app-icon [icon]="'mdi:send'" class="mr-2" />Solicitudes</p-tab
-    >
-  </p-tablist>
-
-  <p-tabpanels>
+<lx-tabs [tabs]="tabs" [(activeId)]="activeTab" (tabChange)="onTabChange($event.id)">
     <!-- Tab 1: Datos personales -->
-    <p-tabpanel [value]="0">
+    <div tab="0">
       @if (personalData(); as pd) {
       <div class="flex flex-column gap-4 py-3">
         <!-- Identificación -->
@@ -367,10 +328,10 @@
         <p class="text-500 m-0">Sin datos personales registrados.</p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 2: Contacto de emergencia -->
-    <p-tabpanel [value]="1">
+    <div tab="1">
       @if (emergencyContacts().length > 0) {
       <p-table
         [value]="emergencyContacts()"
@@ -414,10 +375,10 @@
         <p class="text-500 m-0">Sin contactos de emergencia registrados.</p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 3: Datos clónicos -->
-    <p-tabpanel [value]="2">
+    <div tab="2">
       @if (clinicalData().length > 0) {
       <p-table
         [value]="clinicalData()"
@@ -451,10 +412,10 @@
         <p class="text-500 m-0">Sin condiciones clónicas registradas.</p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 4: Datos bancarios -->
-    <p-tabpanel [value]="3">
+    <div tab="3">
       @if (bankData().length > 0) {
       <p-table
         [value]="bankData()"
@@ -494,10 +455,10 @@
         <p class="text-500 m-0">Sin datos bancarios registrados.</p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 5: Contratos -->
-    <p-tabpanel [value]="4">
+    <div tab="4">
       @if (contracts().length > 0) {
       <p-table
         [value]="contracts()"
@@ -556,10 +517,10 @@
         <p class="text-500 m-0">Sin contratos registrados en el sistema.</p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 6: Puesto y salario -->
-    <p-tabpanel [value]="5">
+    <div tab="5">
       @if (workPosition(); as wp) {
       <div class="flex flex-column gap-4 py-3">
         <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
@@ -805,10 +766,10 @@
         <p class="text-500 m-0">Sin información de posición laboral activa.</p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 7: Vacaciones y permisos -->
-    <p-tabpanel [value]="6">
+    <div tab="6">
       @if (vacationsLeaves(); as vl) {
       <div class="flex flex-column gap-5 py-3">
         <!-- Balance -->
@@ -991,10 +952,10 @@
         </div>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 8: Incidencias -->
-    <p-tabpanel [value]="7">
+    <div tab="7">
       @if (incidents().length > 0) {
       <p-table
         [value]="incidents()"
@@ -1081,10 +1042,10 @@
         </p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 9: Evaluaciones -->
-    <p-tabpanel [value]="8">
+    <div tab="8">
       @if (evaluations().length > 0) {
       <div class="flex flex-column gap-3 mt-3">
         @for (eval of evaluations(); track eval.id) {
@@ -1162,10 +1123,10 @@
         </p>
       </div>
       }
-    </p-tabpanel>
+    </div>
 
     <!-- Tab 10: Solicitudes -->
-    <p-tabpanel [value]="9">
+    <div tab="9">
       @if (requests(); as req) {
       <div class="grid py-3">
         <!-- Alta -->
@@ -1436,6 +1397,5 @@
         </div>
       </div>
       }
-    </p-tabpanel>
-  </p-tabpanels>
-</p-tabs>
+    </div>
+</lx-tabs>

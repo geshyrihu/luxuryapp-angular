@@ -2,10 +2,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Component, inject, OnInit, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   checkmarkCircleOutline,
@@ -21,7 +18,7 @@ import { TaskGroupService } from "../../task.service";
   selector: "app-task-status",
   templateUrl: "./task-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, WebButtonLabel, IonSegment, IonSegmentButton, IonLabel],
+  imports: [FormsModule, WebButtonLabel],
 })
 export class TaskStatus implements OnInit {
   TaskGroupService = inject(TaskGroupService);

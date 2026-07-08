@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { ConfirmDialogBase } from "./confirm-dialog.base";
 
-@Component({ selector: "test-confirm-dialog", standalone: true, template: "" })
+@Component({ selector: "test-confirm-dialog", template: "" })
 class Host extends ConfirmDialogBase {}
 
 describe("ConfirmDialogBase", () => {

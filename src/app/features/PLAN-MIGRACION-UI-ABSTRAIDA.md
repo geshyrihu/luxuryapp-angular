@@ -1,4 +1,4 @@
-# Plan de Migracion a UI Abstraida en `features/`
+﻿# Plan de Migracion a UI Abstraida en `features/`
 
 > Ultima actualizacion: 2026-07-07 (Agente 3)
 > Alcance: `client/angular/src/app/features/`
@@ -16,10 +16,10 @@
 
 **Lanes por agente (respetar estrictamente para no colisionar):**
 
-| Agente | Lane |
-|---|---|
+| Agente          | Lane                                                                                                                                                           |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Agente 3 (este) | `features/operations/**` · `features/maintenance/**` · `features/legal/**` — familias heterogeneas + `p-dialog`/`p-drawer`/`p-fileupload`/`p-avatar`/`p-image` |
-| otros | resto (accounting, hr, purchasing, recruitment, system, web) — NO tocar desde Agente 3 |
+| otros           | resto (accounting, hr, purchasing, recruitment, system, web) — NO tocar desde Agente 3                                                                         |
 
 > Regla: Agente 3 solo edita archivos dentro de su lane. `system/catalogs` y
 > `accounting/cobranza-nativa` (migrados antes de la asignacion de lanes) quedan
@@ -167,20 +167,20 @@ Eso significa que el problema ya no es "no tenemos design system", sino que en `
 
 ### Matriz inicial de decision por familia prioritaria
 
-| Familia | Estado | Wrapper o candidato existente | Decision actual |
-|---|---|---|---|
-| `p-tag` | Parcial | `lx-status-badge`, `app-badge`, `app-order-status`, `contact-card`, `profile-card` | Falta wrapper generico tipo `lx-tag` o clasificar casos para migrarlos a wrappers semanticos |
-| `p-card` | Resuelto | `lx-card`, CSS-only `.card` | Ver `§Estrategia p-card` |
-| `ion-item` | Faltante | solo uso interno en componentes mobile | Falta primitivo publico para fila/list item reusable |
-| `ion-label` | Faltante | solo uso interno en componentes mobile | Falta primitivo publico para label/contenido de item reusable |
-| `p-message` | Parcial | `lx-global-error-alert`, `lx-toast` | Falta wrapper generico de mensaje inline tipo `lx-message` |
-| familia `p-tabs` | Cubierto | `lx-tabs`, `app-tabs`, `ili-tabs` | Migrar usos directos a `lx-tabs` |
-| `p-avatar` | Parcial | `app-avatar-group` | Falta wrapper generico de avatar individual |
-| `p-image` | Parcial | `custom-input-img-signal`, `gallery`, `document-previewer` | Falta wrapper generico de imagen de display |
-| `p-dialog` | Cubierto | `app-dialog`, `lx-modal` | Migrar usos directos a wrapper segun contexto |
-| `p-drawer` | Cubierto | `lx-sidebar`, `app-sidebar`, `ili-sidebar` | Migrar usos directos a `lx-sidebar` |
-| `p-fileupload` | Cubierto/Parcial | `app-file-upload`, `custom-input-file-signal` | Hay base util; falta estandarizar cuando usar file input vs file upload |
-| `p-checkbox` | Cubierto | `custom-input-check-signal`, `web-input-check`, `ion-input-checkbox` | Migrar usos permitiendo revisar excepciones inline en tabla |
+| Familia          | Estado           | Wrapper o candidato existente                                                      | Decision actual                                                                              |
+| ---------------- | ---------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `p-tag`          | Parcial          | `lx-status-badge`, `app-badge`, `app-order-status`, `contact-card`, `profile-card` | Falta wrapper generico tipo `lx-tag` o clasificar casos para migrarlos a wrappers semanticos |
+| `p-card`         | Resuelto         | `lx-card`, CSS-only `.card`                                                        | Ver `§Estrategia p-card`                                                                     |
+| `ion-item`       | Faltante         | solo uso interno en componentes mobile                                             | Falta primitivo publico para fila/list item reusable                                         |
+| `ion-label`      | Faltante         | solo uso interno en componentes mobile                                             | Falta primitivo publico para label/contenido de item reusable                                |
+| `p-message`      | Parcial          | `lx-global-error-alert`, `lx-toast`                                                | Falta wrapper generico de mensaje inline tipo `lx-message`                                   |
+| familia `p-tabs` | Cubierto         | `lx-tabs`, `app-tabs`, `ili-tabs`                                                  | Migrar usos directos a `lx-tabs`                                                             |
+| `p-avatar`       | Parcial          | `app-avatar-group`                                                                 | Falta wrapper generico de avatar individual                                                  |
+| `p-image`        | Parcial          | `custom-input-img-signal`, `gallery`, `document-previewer`                         | Falta wrapper generico de imagen de display                                                  |
+| `p-dialog`       | Cubierto         | `app-dialog`, `lx-modal`                                                           | Migrar usos directos a wrapper segun contexto                                                |
+| `p-drawer`       | Cubierto         | `lx-sidebar`, `app-sidebar`, `ili-sidebar`                                         | Migrar usos directos a `lx-sidebar`                                                          |
+| `p-fileupload`   | Cubierto/Parcial | `app-file-upload`, `custom-input-file-signal`                                      | Hay base util; falta estandarizar cuando usar file input vs file upload                      |
+| `p-checkbox`     | Cubierto         | `custom-input-check-signal`, `web-input-check`, `ion-input-checkbox`               | Migrar usos permitiendo revisar excepciones inline en tabla                                  |
 
 ### Hallazgos clave
 
@@ -191,12 +191,13 @@ Eso significa que el problema ya no es "no tenemos design system", sino que en `
 
 Existen 2 formas de reemplazar `<p-card>`, segun el uso:
 
-| Uso | Reemplazo | Ejemplo |
-|-----|-----------|---------|
-| Card con **header/subheader** declarativo | `<lx-card header="..." subheader="...">` | system/hr migrados |
+| Uso                                                      | Reemplazo                                         | Ejemplo                                |
+| -------------------------------------------------------- | ------------------------------------------------- | -------------------------------------- |
+| Card con **header/subheader** declarativo                | `<lx-card header="..." subheader="...">`          | system/hr migrados                     |
 | Card **estructural** (solo contenedor visual sin header) | CSS-only: `<div class="card">` o `card card-body` | Compra directa, formularios sin titulo |
 
 **Reglas:**
+
 - Si el template usa `<p-card header="..."` o `<ng-template #header>` → `<lx-card header="...">`
 - Si el template usa `<p-card>` solo como contenedor (sin header/subheader, con `class="p-0 border-none shadow-none"` para quitarle el chrome) → CSS-only `<div class="card">`
 - `<ng-template #content>` (feature PrimeNG interna) no tiene equivalente en `lx-card` — convertir el contenido a proyeccion directa dentro de `<div class="card card-body">`
@@ -394,6 +395,216 @@ Y puede empezar migracion inmediata en las familias que ya estan cubiertas:
 - [x] ruta generica definida para `p-message`
 - [x] ruta generica definida para `ion-item` (`ili-list-item` / `MobileListItem`)
 - [x] ruta generica definida para `ion-label` (contenido al slot por defecto de `ili-list-item`)
+
+## Auditoria verificada 2026-07-08
+
+### Resultado del barrido actual
+
+Se revalidó el árbol real de `client/angular/src/app/features/` y la deuda de UI directa sigue vigente. La evidencia del árbol actual muestra uso directo persistente de:
+
+- `p-tag`: 129 ocurrencias en HTML
+- `p-card`: 69 ocurrencias en HTML
+- `p-message`: 39 ocurrencias en HTML
+- `ion-label`: 135 ocurrencias en HTML
+- `ion-item`: 103 ocurrencias en HTML
+- `p-avatar`: 25 ocurrencias en HTML
+- `p-fileupload`: 7 ocurrencias en HTML
+- `p-checkbox`: 11 ocurrencias en HTML
+- `p-tabs`: 7 ocurrencias en HTML
+- `p-dialog`: 3 ocurrencias en HTML
+- `p-drawer`: 1 ocurrencia en HTML
+
+### Hallazgos importantes
+
+- El plan sigue siendo util, pero no debe asumirse que la migracion de `system`/`hr` cerró la deuda global. El árbol actual sigue mostrando usos directos en otros módulos, especialmente `operations`, `legal`, `maintenance`, `purchasing` y `recruitment`.
+- Existen wrappers reutilizables ya en `shared/` para varias familias: `lx-card`, `lx-avatar`, `lx-image`, `lx-message`, `lx-tabs`, `lx-tag`, `app-dialog`, `app-sidebar`, `app-avatar` y `ili-list-item`.
+- La deuda no es solo de HTML: el árbol actual sigue teniendo imports directos de PrimeNG/Ionic en archivos TypeScript de `features/`.
+- El documento de referencia de reglas de botones indicado en el plan estaba desactualizado en esta copia; la version real del repo se encuentra en `src/app/shared/ui/buttons/BUTTON-USAGE-RULES.md`.
+
+### Contradicciones con el plan y el estado real
+
+- El plan habla de una base ya muy avanzada y de ciertas familias como migradas, pero el árbol actual sigue mostrando esos tags sin abstraer en muchas pantallas.
+- El inventario historico de conteos no debe tomarse como lineabase final; el estado operativo actual debe validarse contra el árbol real, no contra documentos previos.
+- La migracion en `features/` no puede considerarse cerrada hasta que se reduzcan los usos directos a las excepciones permitidas y se eliminen los imports asociados.
+
+### Riesgo operativo de encoding
+
+- El script indicado en el plan (`scripts/scan-mojibake.mjs`) no existe en esta copia del repo. Se validó con el escaner disponible `scripts/audit-encoding.mjs`.
+- El resultado reporta 87 archivos con BOM y 50 archivos con mojibake en `src/` (incluyendo varios archivos bajo `features/` y `shared/`). Esto debe tratarse como deuda independiente de la migracion de UI.
+
+### Implicacion para replanificacion
+
+- Priorizar la eliminacion de `p-tag`, `p-card`, `p-message`, `ion-item` e `ion-label` en los módulos donde el uso sigue siendo mas alto.
+- Usar los wrappers existentes en `shared/` como primera ruta antes de crear nuevos componentes.
+- Mantener el foco en `operations`, `legal` y `maintenance` como zonas de mayor riesgo y menor estandarizacion visible.
+
+## Replanificacion operativa 2026-07-08 (3 agentes)
+
+### Objetivo
+
+- reordenar el trabajo con base en el barrido real verificado del arbol actual
+- evitar colisiones entre agentes
+- atacar primero las familias con mayor retorno y menor ambiguedad
+
+### Principios de division
+
+1. cada agente trabaja por frontera de modulos, no por archivos sueltos
+2. no se cruzan `shared/` salvo wrappers estrictamente necesarios y coordinados
+3. antes de migrar, validar si ya existe wrapper en `shared/`
+4. no tocar `system/catalogs/catalog-component-ui`
+5. cualquier build rojo se documenta con archivo causante antes de seguir
+
+### Distribucion nueva por agente
+
+| Agente | Scope exclusivo | Prioridad principal | Riesgo |
+|---|---|---|---|
+| Agente 1 | `features/accounting/**` | cerrar `cobranza-nativa`, `fondeos-y-reporteo`, `sat-funding`, `aspel-cobranza-haus` | alto |
+| Agente 2 | `features/system/**` + `features/hr/**` | consolidar migraciones previas y limpiar residuales reales del arbol | medio |
+| Agente 3 | `features/operations/**` + `features/maintenance/**` + `features/legal/**` + `features/purchasing/**` + `features/recruitment/**` + `features/web/**` | familias heterogeneas, mobile legacy, `p-avatar`/`p-image`/`p-tabs`/`p-fileupload` | alto |
+
+### Regla dura de coordinacion
+
+- Agente 1 no toca `system`, `hr`, `operations`, `maintenance`, `legal`, `purchasing`, `recruitment`, `web`
+- Agente 2 no toca `accounting`, `operations`, `maintenance`, `legal`, `purchasing`, `recruitment`, `web`
+- Agente 3 no toca `accounting`, `system`, `hr`
+- `shared/` solo se toca si:
+  - falta wrapper real
+  - el cambio destraba multiples pantallas
+  - se documenta en este plan antes o despues del ajuste
+
+### Backlog inicial por agente
+
+#### Agente 1 - Accounting
+
+**Meta de fase inmediata**
+
+- cerrar el bloque mas consistente de `accounting` antes de dispersarse
+
+**Lote 1**
+
+1. `general-ledger/contabilidad/cobranza-nativa/pages/ledger`
+2. `general-ledger/contabilidad/cobranza-nativa/pages/members`
+3. `general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard`
+4. `general-ledger/contabilidad/cobranza-nativa/pages/native-statement`
+
+**Lote 2**
+
+1. `fondeos-y-reporteo/funding/**`
+2. `fondeos-y-reporteo/funding-accounting/**`
+3. `fondeos-y-reporteo/sat-funding/**`
+
+**Lote 3**
+
+1. `general-ledger/contabilidad/aspel-cobranza-haus/**`
+2. remanentes `p-tag`, `p-card`, `p-dialog`, `p-fileupload`, `p-checkbox`
+
+**Familias foco**
+
+- `ion-item`
+- `ion-label`
+- `p-tag`
+- `p-card`
+- `p-dialog`
+- `p-fileupload`
+
+#### Agente 2 - System + HR
+
+**Meta de fase inmediata**
+
+- reconciliar lo ya migrado con lo que el arbol actual sigue reportando
+
+**Lote 1**
+
+1. `system/catalogs/**` (excepto `catalog-component-ui`)
+2. `system/gestin-de-cliente/**`
+3. `system/vault/**`
+
+**Lote 2**
+
+1. `system/infrastructure/**`
+2. `system/debug/**`
+3. residuales mobile con `ion-item` / `ion-label`
+
+**Lote 3**
+
+1. `hr/**` residuales reales del barrido
+2. limpieza de imports `Lx*`/PrimeNG/Ionic sobrantes
+
+**Familias foco**
+
+- `p-tag`
+- `p-card`
+- `p-dialog`
+- `p-drawer`
+- `ion-item`
+- `ion-label`
+- `p-tabs`
+
+#### Agente 3 - Operations + Maintenance + Legal + Purchasing + Recruitment + Web
+
+**Meta de fase inmediata**
+
+- terminar zonas heterogeneas y modulos que aun concentran legacy mobile y UI directa visual
+
+**Lote 1**
+
+1. `purchasing/**`
+2. `recruitment/**`
+3. `web/**`
+
+**Lote 2**
+
+1. `operations/**`
+2. `maintenance/**`
+3. `legal/**`
+
+**Lote 3**
+
+1. remanentes complejos de `p-avatar`
+2. remanentes complejos de `p-image`
+3. `p-tabs`
+4. `p-fileupload`
+
+**Familias foco**
+
+- `p-avatar`
+- `p-image`
+- `p-tabs`
+- `p-fileupload`
+- `ion-card`
+- `ion-list`
+- `ion-button`
+- `ion-grid`
+
+### Orden recomendado de ejecucion entre agentes
+
+1. Agente 2 consolida `system` + `hr` porque son modulos con migracion historica ya avanzada y bajo costo de cierre
+2. Agente 1 cierra `cobranza-nativa` y despues brinca a `funding`
+3. Agente 3 toma `purchasing` + `recruitment` + `web` primero y deja `operations`/`maintenance`/`legal` heterogeneo para segunda ola
+
+### Criterios de cierre por agente
+
+- cero tags `p-*` no permitidos en su scope
+- cero tags `ion-*` en su scope
+- cero imports UI directos remanentes salvo excepciones tecnicas documentadas
+- scan de mojibake limpio en archivos tocados
+- build o al menos `tsc` sin errores nuevos atribuibles a su lane
+
+### Entregable esperado por agente
+
+Cada agente debe dejar en el plan, al final de su sesion:
+
+1. carpetas cerradas
+2. familias realmente reducidas
+3. blockers encontrados
+4. validacion ejecutada
+
+### Riesgos de esta nueva division
+
+- `accounting` sigue siendo el scope mas grande y con mayor mezcla de patrones
+- `system` y `hr` tienen riesgo de deuda "fantasma": el plan dice una cosa y el arbol actual otra
+- `operations`/`maintenance`/`legal` tienen mas layouts heterogeneos y no conviene migrarlos solo con reemplazos mecanicos
+- el tema de encoding ya es una deuda paralela y no debe mezclarse de forma improvisada con la migracion visual
 
 ## Sesion 2026-07-07 12:57
 
@@ -679,29 +890,29 @@ Copiar este bloque al final en cada sesion nueva:
 
 ### Objetivo de la sesion
 
-- 
+-
 
 ### Cambios realizados
 
-- 
+-
 
 ### Wrappers creados o ajustados
 
-- 
+-
 
 ### Pantallas migradas
 
-- 
+-
 
 ### Hallazgos o decisiones
 
-- 
+-
 
 ### Pendientes inmediatos
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ### Validaciones
 
@@ -948,3 +1159,104 @@ Para iniciar con buen retorno y bajo riesgo:
 - [x] scan de mojibake limpio en `initial-balance`, `payments`, `property-fines`, `audit`, `reconciliation`, `period-closures` y `regulation-articles`
 - [x] sin `IonItem` / `IonLabel` / `p-tag` directos en esos directorios
 - [ ] build global no corrido en esta pasada
+
+## Sesion 2026-07-08 (Agente migrador — purchasing + recruitment)
+
+### Objetivo de la sesion
+
+- migrar `purchasing/` + `recruitment/` aplicando estrategia p-card definida
+- migrar `p-tag`, `p-dialog`, `p-message`, `p-fileupload`, `ion-item`/`ion-label` en esos módulos
+
+### Cambios realizados
+
+**HTML migrado (~55 archivos):**
+
+- `p-card` → `<lx-card>` (12 archivos) o CSS-only `<div class="card">` (1 archivo, job-description-form)
+- `p-tag` → `<lx-tag>` (~39 ocurrencias)
+- `p-message` → `<lx-message>` (7 archivos)
+- `p-dialog` → `<lx-modal>` (3 archivos: 2 cuadro-comparativo, 1 job-description-form)
+- `p-fileupload` → `<app-file-upload>` (1 archivo: create-orden-compra-wizard)
+- `ion-item`/`ion-label` → `<ili-list-item>` (~21 archivos)
+
+**TS imports actualizados (~55 archivos):**
+
+- removidos: `TagModule`, `CardModule`, `DialogModule`/`Dialog`, `Drawer`, `MessageModule`, `FileUploadModule`, `IonItem`/`IonLabel`
+- agregados: `LxTag`, `LxCard`, `LxModal`, `LxMessage`, `FileUpload`, `AppIcon`, `MobileListItem`, `WebButtonLabel`
+
+**Errores pre-existentes reparados:**
+
+- `job-description-form.ts`: `MessageModule` import from `primeng/message` — módulo no existente en PrimeNG 22, cascaba todo el archivo
+- `create-orden-compra-wizard.ts`: imports `LxMessage, FileUpload, AppIcon, LxTag` dentro de un comentario (`// Added, ...`) — se extrajeron del comentario al array real
+- `orden-compra-pdf.html`: archivo HTML no referenciado (componente usa `template: ""`), revertido
+- `job-description-form.ts`: `il-button` sin import → se agregó `WebButtonLabel`
+
+### Wrappers utilizados
+
+- `lx-card`, `lx-tag`, `lx-modal`, `lx-message` (adaptive)
+- `app-file-upload` (web)
+- `ili-list-item` (mobile)
+- `WebButtonLabel` (il-button)
+- CSS-only `.card` para cards estructurales sin header
+
+### Pantallas migradas
+
+- **purchasing/** (~34 HTML): quotes, providers, PR, PO, cedula, customer-provider, provider-support, purchase-link-manager
+- **recruitment/** (~10 HTML): work-position, employee-reclutamiento, recruitment-requests, vacancy-requests, client-requests
+- **web/**: 0 violaciones encontradas
+
+### Hallazgos o decisiones
+
+- `p-card` sin header/subheader + sin `ng-template #content` → `<lx-card>` directo
+- `p-card` con `class="p-0"` → `[padded]="false"`
+- `p-card` con `ng-template #content` → unwrap content a proyeccion directa (lx-card no soporta template outlets)
+- `p-card` con `class="p-0 border-none shadow-none"` (recruitment work-position) → CSS-only `<div class="card">` — no vale la pena lx-card si se anula todo su chrome visual
+- `p-tag` multiline (atributos en varias lineas) requiere regex `[\s\S]*?` en vez de `[^>]*`
+- `p-message` y `p-dialog` con `</tag\n>` closing tag partido requieren HTML limpio primero
+- archivos dead code (`template: ""` con HTML file no usado) existen y no deben migrarse
+
+### Pendientes inmediatos
+
+1. migrar modulos restantes: dashboard, sales, production
+2. reparar error pre-existente en `purchasing/pr/solicitud-compra/product-add.html`
+
+### Validaciones
+
+- [x] CERO violaciones PrimeNG/Ionic en purchasing/ + recruitment/ + web/
+- [x] build exitoso (0 errores, solo warnings pre-existentes y NG8113 de imports sobrantes)
+- [x] plan actualizado
+
+## Sesion 2026-07-08 (Agente 2 - Cierre de Lote system/** y hr/**)
+
+### Objetivo de la sesion
+
+- Validar lo ya migrado y cerrar residuales reales del arbol para el lote asignado a Agente 2.
+- Lote exacto:
+  - system/catalogs/** excepto catalog-component-ui
+  - system/debug/mini-postman
+  - system/infrastructure/debug/mini-postman
+  - system/gestin-de-cliente/customer/**
+  - system/gestin-de-cliente/customer-modul/**
+  - system/gestin-de-cliente/customer-provider/**
+
+### Cambios realizados
+
+- Reemplazo y limpieza masiva de <p-card> por divs simples (<div class="card">). Se solucionaron multiples problemas de plantillas y etiquetas mal cerradas derivados de la limpieza (NG5002).
+- Correcion de error de [ngClass] por falta de importacion de CommonModule en 	icket-legal-seguimiento.ts.
+- Ajuste final de componentes de Skeleton para la version 17 de PrimeNG. Se utilizo [class] en vez de [styleClass] en skeleton.ts y se importo WebSkeletonPresets en el catalogo UI.
+
+### Hallazgos o decisiones
+
+- Los errores reportados por Angular en torno a etiquetas huérfanas (
+g-template, p-table, div sin cerrar) provenian del script original de migracion de p-card que desbalanceo la jerarquia. Fue necesario inspeccionar a mano el balanceo (ej. en eport-consumos, nnouncement-list, y nnouncement-analytics).
+- El script de deteccion de mojibake tenia un bug referenciando aseDir al encontrar coincidencias, lo cual causaba crasheos (scan-mojibake.mjs). Se reparo para que imprimiera la ruta relativa real ().
+
+### Pendientes inmediatos
+
+- El lote correspondiente a Agente 2 ha sido validado, refactorizado y limpiado por completo. Quedamos a disposicion para pasar al proximo bloque (por ejemplo, el lote del Agente 3 o cualquier otra seccion del features).
+
+### Validaciones
+
+- [x] build global superado sin errores de compilacion y HTML correctos.
+- [x] scan de mojibake limpio tras detectar y limpiar 127 ocurrencias en 39 archivos.
+- [x] CERO mojibake verificado al final del escaneo.
+- [x] plan actualizado.

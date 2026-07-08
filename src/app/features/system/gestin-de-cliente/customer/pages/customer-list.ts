@@ -26,7 +26,7 @@ import {
   locationOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -59,7 +59,7 @@ import { TooltipModule } from "primeng/tooltip";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     NgbTooltipModule,
     WebButtonIconEdit,
     WebButtonIconDelete,

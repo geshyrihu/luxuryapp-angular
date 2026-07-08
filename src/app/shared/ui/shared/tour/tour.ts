@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   input,
   model,
   signal,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -20,7 +20,7 @@ export interface TourStep {
 
 @Component({
   selector: "app-tour",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     @if (visible()) {

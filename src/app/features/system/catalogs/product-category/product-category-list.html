@@ -61,7 +61,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full">
+    <ili-list-item lines="full" [noPadding]="true">
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -76,9 +76,9 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
+      <div>
         <h2>{{ item.nameCotegory }}</h2>
-      </ion-label>
+      </div>
       <div slot="end">
         <ili-action-menu>
           <ng-container actions>
@@ -93,6 +93,7 @@
           </ng-container>
         </ili-action-menu>
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
+

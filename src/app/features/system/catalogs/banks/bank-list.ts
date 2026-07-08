@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -39,8 +39,8 @@ import { IBankDTO } from "./bank.dto";
     WebButtonIconDelete,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    IonItem,
-    IonLabel,
+    
+    
   ],
 })
 export class BankList implements OnInit {
@@ -110,3 +110,4 @@ export class BankList implements OnInit {
       });
   }
 }
+

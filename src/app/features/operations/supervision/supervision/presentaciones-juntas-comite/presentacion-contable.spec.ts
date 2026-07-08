@@ -1,17 +1,18 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { vi } from 'vitest';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  NO_ERRORS_SCHEMA,
+} from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 @Component({
-  selector: 'app-presentacion-contable',
-  template: '<div>Mock</div>',
+  selector: "app-presentacion-contable",
+  template: "<div>Mock</div>",
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 class MockPresentacionContable {}
 
-describe('PresentacionContable', () => {
+describe("PresentacionContable", () => {
   let component: MockPresentacionContable;
   let fixture: ComponentFixture<MockPresentacionContable>;
 
@@ -26,7 +27,7 @@ describe('PresentacionContable', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

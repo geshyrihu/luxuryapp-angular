@@ -1,53 +1,55 @@
-<!-- 1. Contenedor Principal y Estado de Carga -->
+﻿<!-- 1. Contenedor Principal y Estado de Carga -->
 <div class="p-4 hidden md:block">
-  <p-card>
-    <ng-template #title>
+  <div class="card">
+    <div class="text-xl font-bold mb-2">
       <h2 class="text-2xl font-bold">Comunicados</h2>
-    </ng-template>
-    <ng-template #content>
-      <!-- Spinner de carga -->
+    </div>
 
-      <!-- Mensaje si no hay anuncios vigentes -->
-      @if (!loading() && announcements().length === 0) {
-      <div class="text-center p-4">
-        <app-icon [icon]="'mdi:inbox'" class="text-4xl" />
-        <p class="mt-2">No hay comunicados para mostrar.</p>
-      </div>
-      }
+    <!-- Spinner de carga -->
 
-      <!-- Rejilla de Anuncios -->
-      @if (!loading() && announcements().length > 0) {
-      <div class="grid">
-        @for (anuncio of announcements(); track anuncio.id) {
-        <div class="col-12">
-          <p-card
-            (click)="navigateToDetail(anuncio.id)"
-            [style]="{ height: '100%' }"
-            class="cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column"
-          >
-            <ng-template #header>
-              @if(anuncio.imagePath) {
-              <img
-                [src]="anuncio.imagePath"
-                alt="Imagen del anuncio"
-                class="w-full h-10rem object-cover"
-              />
-              }
-            </ng-template>
-            <ng-template #title>
+    <!-- Mensaje si no hay anuncios vigentes -->
+    @if (!loading() && announcements().length === 0) {
+    <div class="text-center p-4">
+      <app-icon [icon]="'mdi:inbox'" class="text-4xl" />
+      <p class="mt-2">No hay comunicados para mostrar.</p>
+    </div>
+    }
+
+    <!-- Rejilla de Anuncios -->
+    @if (!loading() && announcements().length > 0) {
+    <div class="grid">
+      @for (anuncio of announcements(); track anuncio.id) {
+      <div class="col-12">
+        <div
+          class="card cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column"
+          (click)="navigateToDetail(anuncio.id)"
+          [style]="{ height: '100%' }"
+        >
+          <div class="card-header">
+            @if(anuncio.imagePath) {
+            <img
+              [src]="anuncio.imagePath"
+              alt="Imagen del anuncio"
+              class="w-full h-10rem object-cover"
+            />
+            }
+          </div>
+
+          <div class="card-body">
+            <div class="text-xl font-bold mb-2">
               <span class="text-lg font-semibold">{{ anuncio.title }}</span>
-            </ng-template>
-            <ng-template #subtitle>
+            </div>
+            <div class="text-color-secondary mb-3">
               <div class="text-sm text-color-secondary mb-2">
                 <span>{{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}</span>
               </div>
-            </ng-template>
-            <ng-template #content>
-              <p class="m-0 text-sm">
-                {{ stripHtml(anuncio.content) | slice:0:120 }}...
-              </p>
-            </ng-template>
-            <ng-template #footer>
+            </div>
+
+            <p class="m-0 text-sm">
+              {{ stripHtml(anuncio.content) | slice:0:120 }}...
+            </p>
+
+            <div class="mt-3 flex justify-content-end gap-2">
               <div class="flex justify-content-end align-items-center">
                 @if (anuncio.attachmentCount > 0) {
                 <app-icon
@@ -57,17 +59,17 @@
                 />
                 }
               </div>
-            </ng-template>
-          </p-card>
+            </div>
+          </div>
         </div>
-        }
       </div>
       }
-    </ng-template>
-  </p-card>
+    </div>
+    }
+  </div>
 </div>
 
-<!-- ðŸâ€œ± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden pb-5">
   @if (!loading() && announcements().length === 0) {
   <div class="ion-text-center ion-padding mt-5">
@@ -80,19 +82,17 @@
   } @if (!loading() && announcements().length > 0) {
   <div class="flex flex-column p-2">
     @for (anuncio of announcements(); track anuncio.id) {
-    <ion-card (click)="navigateToDetail(anuncio.id)" class="m-0 cursor-pointer">
+    <div class="m-0 cursor-pointer">
       @if(anuncio.imagePath) {
       <lx-image [src]="anuncio.imagePath" [alt]="anuncio.title"></lx-image>
       }
-      <ion-card-header>
-        <ion-card-title class="text-base font-bold"
-          >{{ anuncio.title }}</ion-card-title
-        >
-        <ion-card-subtitle>
+      <div class="border-1 surface-border shadow-1 border-round-xl mb-2">
+        <div class="text-base font-bold p-2">{{ anuncio.title }}</div>
+        <div class="border-top-1 surface-border p-2">
           {{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
+        </div>
+      </div>
+      <div class="border-1 surface-border shadow-1 border-round-xl p-2 mb-3">
         <p class="text-sm m-0">
           {{ stripHtml(anuncio.content) | slice:0:100 }}...
         </p>
@@ -102,8 +102,8 @@
           <app-icon icon="mdi:paperclip" class="text-lg text-color-secondary" />
         </div>
         }
-      </ion-card-content>
-    </ion-card>
+      </div>
+    </div>
     }
   </div>
   }

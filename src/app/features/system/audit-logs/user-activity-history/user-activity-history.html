@@ -151,9 +151,9 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ion-item lines="full" class="ion-no-padding">
+        <ili-list-item>
           <div
-            slot="start"
+            start
             class="mobile-avatar-slot"
             style="background: var(--ds-primary); border-radius: 50%"
           >
@@ -161,31 +161,29 @@
               >{{ item.userName.charAt(0).toUpperCase() }}</span
             >
           </div>
-          <ion-label>
-            <div class="flex justify-content-between align-items-center mb-1">
-              <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
-              <lx-tag [value]="item.userType"></lx-tag>
-            </div>
+          <div class="flex justify-content-between align-items-center mb-1">
+            <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
+            <lx-tag [value]="item.userType"></lx-tag>
+          </div>
 
-            <p class="text-medium text-500 m-0 text-sm mb-1">
-              <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" /> {{
-              item.timestamp | date: "dd/MM/yyyy h:mm a" }}
-            </p>
+          <p class="text-medium text-500 m-0 text-sm mb-1">
+            <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" /> {{
+            item.timestamp | date: "dd/MM/yyyy h:mm a" }}
+          </p>
 
-            <div class="flex align-items-center gap-2 mb-1">
-              <span class="font-bold text-sm">{{ item.module }}</span>
-              <lx-tag
-                [value]="item.activityType"
-                severity="info"
-                class="text-xs"
-              ></lx-tag>
-            </div>
+          <div class="flex align-items-center gap-2 mb-1">
+            <span class="font-bold text-sm">{{ item.module }}</span>
+            <lx-tag
+              [value]="item.activityType"
+              severity="info"
+              class="text-xs"
+            ></lx-tag>
+          </div>
 
-            <p class="text-sm text-color-secondary m-0 text-wrap">
-              {{ item.details }}
-            </p>
-          </ion-label>
-        </ion-item>
+          <p class="text-sm text-color-secondary m-0 text-wrap">
+            {{ item.details }}
+          </p>
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
 

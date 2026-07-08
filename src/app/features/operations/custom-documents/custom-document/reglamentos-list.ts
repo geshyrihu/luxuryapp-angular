@@ -115,7 +115,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "OcurriÃ³ un error al consultar el documento. Por favor intenta de nuevo.",
+        "Ocurrió un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);

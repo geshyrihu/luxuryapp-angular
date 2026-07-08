@@ -2,11 +2,7 @@
   @if (!result) {
   <!-- Upload View -->
   <div class="mb-4">
-    <p-message
-      severity="info"
-      text="El archivo debe ser formato CSV con las siguientes columnas, separadas por coma (,): PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD), Concepto (Opcional)."
-      class="mb-3 w-full"
-    ></p-message>
+    <lx-message severity="info" text="El archivo debe ser formato CSV con las siguientes columnas, separadas por coma (,): PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD), Concepto (Opcional)." class="mb-3 w-full" />
 
     <div class="flex justify-content-end mb-3">
       <il-button

@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";

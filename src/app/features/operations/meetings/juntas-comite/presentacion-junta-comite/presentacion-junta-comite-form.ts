@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,7 +8,7 @@ import {
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importaciÃ³n
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -65,15 +65,15 @@ export class PresentacionJuntaComiteForm implements OnInit {
     const file = event.files[0];
     this.selectedFile = file;
     this.selectedFileName.set(file.name);
-    // Aunque guardamos en selectedFile, tambiÃ³n podemos ponerlo en el form si queremos validar required
+    // Aunque guardamos en selectedFile, tambión podemos ponerlo en el form si queremos validar required
     this.form.patchValue({ archivo: file });
   }
 
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
-    // ValidaciÃ³n extra si archivo es requerido y no estÃ© en form validators
-    // El HTML usa !selectedFileName() para deshabilitar botÃºn.
+    // Validación extra si archivo es requerido y no esté en form validators
+    // El HTML usa !selectedFileName() para deshabilitar botún.
 
     this.id = this.config.data.id;
     const formValue = this.form.getRawValue();

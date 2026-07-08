@@ -20,7 +20,7 @@
     <ng-template #header>
       <tr>
         <th>Propiedad</th>
-        <th class="w-12rem">Artúculo</th>
+        <th class="w-12rem">Artículo</th>
         <th>Descripción</th>
         <th class="w-8rem text-center">Fecha Infracción</th>
         <th class="w-8rem text-right">Importe</th>
@@ -41,7 +41,7 @@
           <br />
           <span>{{ item.regulationArticleTitle }}</span>
           } @else {
-          <span class="text-400">é</span>
+          <span class="text-400">-</span>
           }
         </td>
         <td class="text-xs text-700">{{ item.description }}</td>
@@ -52,7 +52,7 @@
           {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}
         </td>
         <td class="text-center">
-          <p-tag
+          <lx-tag
             [value]="fineStatusLabel(item.status)"
             [severity]="fineStatusSeverity(item.status)"
           />
@@ -92,9 +92,9 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -102,15 +102,15 @@
           class="text-orange-600 text-xl"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.propertyFullName }}</h3>
         <p>{{ item.description }}</p>
         <p>
-          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} é {{
+          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} · {{
           fineStatusLabel(item.status) }}
         </p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      </div>
+      <ili-action-menu end>
         <ng-container actions>
           @if (canIssueCharge(item.status)) {
           <ili-button-edit (clicked)="onIssueCharge(item)" label="Editar" />
@@ -121,6 +121,6 @@
           }
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

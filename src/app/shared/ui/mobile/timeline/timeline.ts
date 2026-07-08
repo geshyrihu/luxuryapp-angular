@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TimelineBase } from "@ui/base/timeline.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-timeline",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div class="ili-tl">
@@ -38,7 +38,9 @@ import { TimelineBase } from "@ui/base/timeline.base";
             @if (event.badge) {
               <span
                 class="ili-tl-badge"
-                [style.background]="event.badgeColor || 'var(--ds-primary-light)'"
+                [style.background]="
+                  event.badgeColor || 'var(--ds-primary-light)'
+                "
               >
                 {{ event.badge }}
               </span>

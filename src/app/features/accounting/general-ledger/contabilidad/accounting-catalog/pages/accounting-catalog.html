@@ -1,4 +1,4 @@
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -76,7 +76,7 @@
   </div>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -85,9 +85,9 @@
       [globalFilterFields]="globalFilterFields()"
     >
       <ng-template #listItemTemplate let-item>
-        <ion-item lines="full" class="ion-no-padding">
-          <div
-            slot="start"
+        <ili-list-item class="ion-no-padding">
+<div
+            start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             style="
               width: 38px;
@@ -100,7 +100,7 @@
               style="font-size: 1.1rem; color: var(--ds-primary)"
             />
           </div>
-          <ion-label>
+          
             <div class="flex flex-column">
               <small class="text-color-secondary">
                 📂 {{ item.cuentaPadre }}</small
@@ -110,8 +110,7 @@
                 >{{ item.codigoCuenta }}</small
               >
             </div>
-          </ion-label>
-        </ion-item>
+</ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>

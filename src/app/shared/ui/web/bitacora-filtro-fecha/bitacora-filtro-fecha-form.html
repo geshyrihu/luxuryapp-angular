@@ -1,4 +1,4 @@
-<p-card>
+<div class="card">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <p class="text-600 text-sm m-0 mb-3">
       Selecciona el rango de fechas para el reporte PDF.
@@ -7,4 +7,4 @@
     <custom-input-date-signal label="Hasta" [control]="form.controls.to" [required]="true" />
     <il-button-save label="Generar PDF" [submitting]="submitting()" />
   </form>
-</p-card>
+</div>

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -183,7 +183,7 @@ export class TicketLegalLista implements OnInit {
       2: "CONCLUIDO",
       4: "CANCELADO",
     };
-    // Paleta Office Ã© discreta, bien en PowerPoint
+    // Paleta Office é discreta, bien en PowerPoint
     const STATUS_COLOR: Record<number, string> = {
       0: "FFED7D31", // naranja suave
       1: "FF4472C4", // azul medio
@@ -212,8 +212,8 @@ export class TicketLegalLista implements OnInit {
       { header: "ASUNTO", key: "title", width: 40 },
       { header: "RESPONSABLE", key: "assignee", width: 24 },
       { header: "ESTATUS", key: "status", width: 14 },
-      { header: "FECHA CONCLUSIÃ³N", key: "completionDate", width: 18 },
-      { header: "DÃAS", key: "dias", width: 8 },
+      { header: "FECHA CONCLUSIóN", key: "completionDate", width: 18 },
+      { header: "DÍAS", key: "dias", width: 8 },
     ];
 
     // Encabezado
@@ -243,7 +243,7 @@ export class TicketLegalLista implements OnInit {
         customer: item.customer,
         title: `${item.title ?? ""}${item.description ? "\n" + item.description : ""}`,
         assignee: item.assignee,
-        status: STATUS_LABEL[status] ?? "Ã©",
+        status: STATUS_LABEL[status] ?? "é",
         completionDate: item.completionDate ?? "",
         dias: item.diferenciaDias ?? "",
       });
@@ -269,7 +269,7 @@ export class TicketLegalLista implements OnInit {
       };
       statusCell.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
 
-      // DÃAS en rojo si supera 10
+      // DÍAS en rojo si supera 10
       const diasVal = item.diferenciaDias ?? 0;
       if (diasVal > 10) {
         row.getCell("dias").font = {

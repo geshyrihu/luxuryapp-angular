@@ -7,8 +7,9 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
@@ -46,8 +47,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomCaption,
 
     DataViewMobile,
-    IonItem,
-    IonLabel,
   ],
 })
 export class EmployeeEmergencyContactList implements OnInit {

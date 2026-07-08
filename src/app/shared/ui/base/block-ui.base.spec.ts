@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { BlockUIBase } from "./block-ui.base";
 
-@Component({ selector: "test-block-ui", standalone: true, template: "" })
+@Component({ selector: "test-block-ui", template: "" })
 class Host extends BlockUIBase {}
 
 describe("BlockUIBase", () => {

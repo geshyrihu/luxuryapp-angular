@@ -14,7 +14,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -38,7 +38,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     PrimeNgCustomTableEmptyMessage,
     RouterModule,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     LxTag,
     DataViewMobile,
     PrimeNgCustomTableFooter,

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { OtpInputBase } from "./otp-input.base";
 
-@Component({ selector: "test-otp-input", standalone: true, template: "" })
+@Component({ selector: "test-otp-input", template: "" })
 class Host extends OtpInputBase {}
 
 describe("OtpInputBase", () => {

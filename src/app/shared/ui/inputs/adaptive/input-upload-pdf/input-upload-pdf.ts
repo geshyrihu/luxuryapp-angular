@@ -1,15 +1,26 @@
-import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+  output,
+} from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { WebInputUploadPdf } from "../../web/input-upload-pdf/input-upload-pdf";
 import { IonInputUploadPdf } from "../../mobile/ion-input-upload-pdf";
+import { WebInputUploadPdf } from "../../web/input-upload-pdf/input-upload-pdf";
 
 @Component({
   selector: "app-custom-input-upload-pdf-signal",
-  standalone: true,
+
   imports: [WebInputUploadPdf, IonInputUploadPdf],
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputUploadPdf), multi: true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputUploadPdf),
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -50,7 +61,11 @@ export class InputUploadPdf implements ControlValueAccessor {
   onTouch: any = () => {};
 
   writeValue(obj: any): void {}
-  registerOnChange(fn: any): void { this.onChange = fn; }
-  registerOnTouched(fn: any): void { this.onTouch = fn; }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
   setDisabledState?(isDisabled: boolean): void {}
 }

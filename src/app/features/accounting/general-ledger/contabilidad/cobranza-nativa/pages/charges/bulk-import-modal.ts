@@ -4,13 +4,15 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 // PrimeNG
-import { MessageModule } from "primeng/message";
+
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 
 // Services
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface BulkImportResult {
   processedCount: number;
@@ -21,7 +23,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [CommonModule, WebButtonLabel, MessageModule, CustomInputFile],
+  imports: [CommonModule, WebButtonLabel, CustomInputFile, LxMessage, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })

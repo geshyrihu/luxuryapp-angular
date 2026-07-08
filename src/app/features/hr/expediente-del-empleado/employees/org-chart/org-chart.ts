@@ -10,9 +10,10 @@ import {
 } from "@angular/core";
 import { GraphModule, Orientation } from "@swimlane/ngx-graph";
 import { MessageService } from "primeng/api";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { SelectButtonModule } from "primeng/selectbutton";
-import { TabsModule } from "primeng/tabs";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { TabItem } from "@ui/base/tabs.base";
 import { ToastModule } from "primeng/toast";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
@@ -49,11 +50,11 @@ import {
   imports: [
     CommonModule,
     GraphModule,
-    AvatarModule,
+    LxAvatar,
     WebButtonLabel,
     LxSidebar,
     SelectButtonModule,
-    TabsModule,
+    LxTabs,
     LxTag,
     ToastModule,
     ],
@@ -67,6 +68,10 @@ export class OrgChart {
   readonly tree = signal<IWorkPositionOrgChartNode[]>([]);
   readonly loading = signal(false);
   readonly reassignLoading = signal(false);
+  readonly tabs = computed<TabItem[]>(() => [
+    { id: "view", label: "Visualizar" },
+    { id: "edit", label: "Editar", disabled: !this.canEdit() },
+  ]);
   readonly activeTab = signal<"view" | "edit">("edit");
   readonly editMode = signal(true);
   readonly selectedOrigin = signal<IWorkPositionOrgChartNode | null>(null);

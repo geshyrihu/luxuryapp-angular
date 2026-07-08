@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -118,7 +118,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "InformaciÃ³n de servicio",
+      "Información de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }

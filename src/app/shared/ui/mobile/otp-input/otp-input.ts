@@ -10,7 +10,7 @@ import { OtpInputBase } from "@ui/base/otp-input.base";
 
 @Component({
   selector: "ili-otp-input",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div class="ili-otp-root">

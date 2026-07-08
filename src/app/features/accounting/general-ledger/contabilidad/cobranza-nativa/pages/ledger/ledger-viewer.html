@@ -126,9 +126,9 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-entry>
-      <ion-item lines="full" detail="false" class="ion-no-padding">
-        <div
-          slot="start"
+      <ili-list-item class="ion-no-padding">
+<div
+          start
           class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
           <app-icon
@@ -136,15 +136,15 @@
             class="text-blue-600 text-xl"
           />
         </div>
-        <ion-label>
+        
           <h3>{{ eventTypeLabel(entry.eventType) }}</h3>
           <p>{{ entry.description }}</p>
           <p>
             {{ entry.effectiveDate | date:'dd/MM/yyyy' }} &middot; {{
             entry.createdBy }}
           </p>
-        </ion-label>
-        <div slot="end" class="pr-3 text-right">
+        
+        <div end class="pr-3 text-right">
           @if (entry.debitAmount > 0) {
           <div class="text-red-700 text-sm font-medium">
             -{{ entry.debitAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
@@ -155,7 +155,7 @@
           </div>
           }
         </div>
-      </ion-item>
+</ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

@@ -2,8 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { DividerModule } from "primeng/divider";
-import { MessageModule } from "primeng/message";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -24,9 +24,9 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
   imports: [
     CommonModule,
     LxCard,
-    DividerModule,
+    LxDivider,
     LxTag,
-    MessageModule,
+    LxMessage,
     PrimengRadarChart,
     WebButtonLabel,
   ],

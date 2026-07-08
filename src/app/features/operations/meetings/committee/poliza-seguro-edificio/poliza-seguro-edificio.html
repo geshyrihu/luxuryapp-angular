@@ -37,51 +37,51 @@
 <!-- ?? MOBILE: visible solo sm -->
 <div class="block md:hidden">
   @if (data(); as policy) {
-  <ion-list-header>
-    <ion-label class="font-bold text-900">Póliza de Seguro del Edificio</ion-label>
-  </ion-list-header>
+  <div class="surface-card mb-3 border-round">
+    <span class="font-bold text-900">Póliza de Seguro del Edificio</span>
+  </div>
 
-  <ion-list [inset]="true" class="m-0">
-    <ion-item lines="full" class="ion-no-padding">
+  <div class="surface-card mb-3 border-round">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div slot="start" class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
         <app-icon [icon]="'mdi:office-building'" class="text-xl text-blue-700" />
       </div>
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">Proveedor</h3>
         <p class="text-wrap text-sm text-500">{{ policy.providerName }}</p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
 
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div slot="start" class="w-2rem h-2rem border-round bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
         <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-purple-700" />
       </div>
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">Descripción</h3>
         <p class="text-wrap text-sm text-500">{{ policy.description }}</p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
 
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div slot="start" class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
         <app-icon [icon]="'mdi:calendar'" class="text-xl text-green-600" />
       </div>
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">Fecha de Inicio</h3>
         <p class="text-sm text-500">{{ policy.startDate | date: 'dd/MM/yyyy' }}</p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
 
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div slot="start" class="w-2rem h-2rem border-round bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
         <app-icon [icon]="'mdi:calendar-remove'" class="text-xl text-red-600" />
       </div>
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">Fecha de Fin</h3>
         <p class="text-sm text-500">{{ policy.endDate | date: 'dd/MM/yyyy' }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+      </span>
+    </div>
+  </div>
 
   @if (policy.pathDocument) {
   <div class="p-3">

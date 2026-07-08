@@ -1,10 +1,14 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
-import { DialogModule } from "primeng/dialog";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ModalBase } from "@ui/base/modal.base";
+import { DialogModule } from "primeng/dialog";
 
 @Component({
   selector: "app-dialog",
-  standalone: true,
+
   imports: [DialogModule],
   template: `
     <p-dialog
@@ -21,9 +25,13 @@ import { ModalBase } from "@ui/base/modal.base";
       <ng-content />
     </p-dialog>
   `,
-  styles: [`
-    :host { display: contents; }
-  `],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

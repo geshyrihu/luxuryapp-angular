@@ -9,7 +9,7 @@ import { LayoutCommittee } from "./layout/committee-view/layout-committee";
 import { LayoutDireccion } from "./layout/direccion-view/layout-direccion";
 import { LayoutEmployee } from "./layout/employee-view/layout-employee";
 /**
- * Rutas Principales de la Aplicación: El Gran Distribuidor ðŸš¦
+ * Rutas Principales de la Aplicación: El Gran Distribuidor 🚦
  *
  * Este es el mapa maestro de la aplicación. Aquí se decide a dónde va el usuario
  * basándose en la URL y su estado de autenticación.
@@ -78,7 +78,7 @@ export const appRoutes: Routes = [
     pathMatch: "full",
     canActivate: [authGuard, roleRedirectGuard],
     // Este componente nunca se renderiza, porque el guardián SIEMPRE redirige.
-    // Es solo un peón en el juego del enrutamiento. â™Ÿï¸
+    // Es solo un peón en el juego del enrutamiento. ♟️
     component: Loader, // Un componente cualquiera y ligero
   },
 

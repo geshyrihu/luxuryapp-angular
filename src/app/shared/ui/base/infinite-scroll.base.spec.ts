@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { InfiniteScrollBase } from "./infinite-scroll.base";
 
-@Component({ selector: "test-infinite-scroll", standalone: true, template: "" })
+@Component({ selector: "test-infinite-scroll", template: "" })
 class Host extends InfiniteScrollBase {}
 
 describe("InfiniteScrollBase", () => {

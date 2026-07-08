@@ -1,16 +1,25 @@
-import { Component, forwardRef, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
-import { WebInputMonth } from "../../web/input-month/input-month";
 import { IonInputMonth } from "../../mobile/ion-input-month";
+import { WebInputMonth } from "../../web/input-month/input-month";
 
 @Component({
   selector: "custom-input-month",
-  standalone: true,
+
   imports: [WebInputMonth, IonInputMonth],
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputMonth), multi: true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputMonth),
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

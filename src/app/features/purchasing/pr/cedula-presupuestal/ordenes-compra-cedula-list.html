@@ -59,7 +59,7 @@
   </p-table>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- ðŸâ€œ± INICIO: Componente adaptado para versión móvil -->
 <div class="flex md:hidden flex-column h-screen">
   <app-data-view-mobile
     [data]="dataSignal()"
@@ -88,7 +88,7 @@
               >Folio: {{item.folio}}</span
             >
             <ion-badge
-              [color]="item.statuspago == 'Pagada' ? 'success' : 'danger'"
+              [severity]="item.statuspago == 'Pagada' ? 'success' : 'danger'"
               >{{ item.statuspago }}</ion-badge
             >
           </div>
@@ -126,3 +126,4 @@
   <h2>Pagos registrados: {{ pagadas() | currency }}</h2>
   <h2>Pagos no registrados: {{ noPagadas() | currency }}</h2>
 </div>
+

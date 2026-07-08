@@ -86,11 +86,7 @@
       <div
         class="flex align-items-center surface-card border-round p-2 border-1 border-orange-300 gap-2"
       >
-        <p-tag
-          [value]="faltante.clasificacion"
-          [severity]="getSeverity(faltante.clasificacion)"
-          class="text-xs"
-        ></p-tag>
+        <lx-tag [value]="faltante.clasificacion" [severity]="getSeverity(faltante.clasificacion)" class="text-xs" />
         <span class="font-mono text-xs font-bold"
           >{{ faltante.numeroCuenta }}</span
         >
@@ -142,10 +138,10 @@
       >
         <td>
           <div class="flex align-items-center">
-            <!-- â¬†ï¸ â¬‡ï¸ âž¡ï¸ â¬…ï¸ -->
+            <!-- ⬆️ ⬇️ âž¡️ ⬅️ -->
             @if (account.nivel === 1) {
             <iw-button
-              [pTooltip]="account.expanded ? 'â¬‡ï¸' : 'âž¡ï¸'"
+              [pTooltip]="account.expanded ? '⬇️' : 'âž¡️'"
               tooltipPosition="top"
               variant="ghost-text"
               size="sm"
@@ -170,18 +166,18 @@
           {{ account.descripcion }}
         </td>
         <td class="text-xs text-500">{{ account.origenDatos }}</td>
-        <td class="text-center">{{ account.esCuentaMadre ? "âŒ" : "" }}</td>
+        <td class="text-center">{{ account.esCuentaMadre ? "❌" : "" }}</td>
         <td class="text-xs">
           {{ account.naturaleza === "Deudora" ? "Deudora" : "" }}
         </td>
         <td class="text-xs">
           {{ account.naturaleza === "Acreedora" ? "Acreedora" : "" }}
         </td>
-        <td class="text-center">@if (account.epf) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.er) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.cedP) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.fe) { âœ”ï¸ }</td>
-        <td class="text-center">@if (account.aCob) { âœ”ï¸ }</td>
+        <td class="text-center">@if (account.epf) { ✔️ }</td>
+        <td class="text-center">@if (account.er) { ✔️ }</td>
+        <td class="text-center">@if (account.cedP) { ✔️ }</td>
+        <td class="text-center">@if (account.fe) { ✔️ }</td>
+        <td class="text-center">@if (account.aCob) { ✔️ }</td>
       </tr>
       }
     </ng-template>

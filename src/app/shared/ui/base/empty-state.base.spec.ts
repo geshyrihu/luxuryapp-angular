@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { EmptyStateBase } from "./empty-state.base";
 
-@Component({ selector: "test-empty-state", standalone: true, template: "" })
+@Component({ selector: "test-empty-state", template: "" })
 class Host extends EmptyStateBase {}
 
 describe("EmptyStateBase", () => {

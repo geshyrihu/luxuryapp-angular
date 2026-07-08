@@ -129,7 +129,7 @@
   </div>
 
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -144,10 +144,10 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
+      <span class="">
         <div class="text-base font-medium">{{ item.name }}</div>
-        <ion-text color="medium" class="text-sm">{{ item.frequency }}</ion-text>
-      </ion-label>
+        <span class="text-sm">{{ item.frequency }}</span>
+      </span>
       <div slot="end">
         <ili-action-menu>
           <ili-button-edit
@@ -162,6 +162,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ili-action-menu>
       </div>
-    </ion-item>
+    </div>
   </ng-template>
 </app-data-view-mobile>

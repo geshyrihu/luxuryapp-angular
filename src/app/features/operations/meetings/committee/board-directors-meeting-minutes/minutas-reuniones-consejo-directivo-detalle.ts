@@ -1,18 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import {
-  IonBadge,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-} from "@ionic/angular/standalone";
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -21,25 +16,11 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
-  imports: [
-    CommonModule,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonList,
-    IonListHeader,
-    IonItem,
-    IonLabel,
-    IonBadge,
-    AppIcon,
-  ],
+  imports: [CommonModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })

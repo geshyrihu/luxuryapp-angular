@@ -1,5 +1,5 @@
-<p-card>
-  <ng-template #content>
+<div class="card">
+  
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-autocomplete-signal
         (propagar)="saveLegalMatter($event)"
@@ -32,5 +32,5 @@
         [submitting]="submitting()"
       />
     </form>
-  </ng-template>
-</p-card>
+  
+</div>

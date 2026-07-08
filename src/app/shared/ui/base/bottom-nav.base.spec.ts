@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { BottomNavBase } from "./bottom-nav.base";
 
-@Component({ selector: "test-bottom-nav", standalone: true, template: "" })
+@Component({ selector: "test-bottom-nav", template: "" })
 class Host extends BottomNavBase {}
 
 describe("BottomNavBase", () => {

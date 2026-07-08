@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagInputBase } from "@ui/base/tag-input.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-tag-input",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div class="ili-tag-root">
@@ -17,7 +17,11 @@ import { TagInputBase } from "@ui/base/tag-input.base";
         @for (tag of value(); track tag) {
           <span class="ili-tag-chip">
             {{ tag }}
-            <button type="button" class="ili-tag-chip-x" (click)="removeTag(tag)">
+            <button
+              type="button"
+              class="ili-tag-chip-x"
+              (click)="removeTag(tag)"
+            >
               <app-icon icon="mdi:close" />
             </button>
           </span>

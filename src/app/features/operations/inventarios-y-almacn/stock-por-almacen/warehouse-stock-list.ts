@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -72,7 +72,7 @@ export class WarehouseStockList {
   route = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // SeÃ³ales
+  // Seóales
   dataSignal = signal<any[]>([]);
   almacenIdFromRoute: string | null = null;
 

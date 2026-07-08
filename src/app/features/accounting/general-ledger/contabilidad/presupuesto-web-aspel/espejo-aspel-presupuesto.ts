@@ -12,7 +12,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "primeng/message";
 import { Table, TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { TooltipModule } from "primeng/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import {
@@ -42,18 +42,16 @@ import {
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
 import { PurchaseHistory } from "./purchase-history";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-presupuesto-aspel-ejercicio-fiscal",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
     TableModule,
     MessageModule,
-    TagModule,
     DataViewMobile,
-    TooltipModule,
-  ],
+    TooltipModule, LxTag],
   templateUrl: "./espejo-aspel-presupuesto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,

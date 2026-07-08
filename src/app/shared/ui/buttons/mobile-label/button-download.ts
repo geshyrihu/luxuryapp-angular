@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({
   selector: "ili-button-download",
-  standalone: true,
+
   imports: [CommonModule, IonButton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -25,4 +25,3 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonLabelDownload extends MobileButtonBase {}
-

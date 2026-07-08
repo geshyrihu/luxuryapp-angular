@@ -75,9 +75,9 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -90,14 +90,12 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-label>
-        <p class="mt-0 mb-0">{{ item.email }}</p>
-        <p class="text-color-secondary font-size-12 mt-0 mb-0">
-          {{ item.applicationUser }}
-        </p>
-      </ion-label>
+      <p class="mt-0 mb-0">{{ item.email }}</p>
+      <p class="text-color-secondary font-size-12 mt-0 mb-0">
+        {{ item.applicationUser }}
+      </p>
 
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -110,6 +108,6 @@
           />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

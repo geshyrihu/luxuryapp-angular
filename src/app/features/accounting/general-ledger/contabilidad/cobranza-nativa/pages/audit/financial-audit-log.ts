@@ -1,17 +1,21 @@
 import { DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { documentTextOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -29,8 +33,7 @@ import { FinancialAuditLogDTO } from "../../models/financial-audit.dto";
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     DatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
@@ -57,7 +60,6 @@ export default class FinancialAuditLog {
   loading = signal(false);
 
   constructor() {
-    addIcons({ documentTextOutline });
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.loadProperties(customerId);
@@ -93,8 +95,7 @@ export default class FinancialAuditLog {
             customerId,
           ) + qs;
 
-      const res =
-        await this.apiResponseS.onGetItem<FinancialAuditLogDTO[]>(url);
+      const res = await this.apiResponseS.onGetItem<FinancialAuditLogDTO[]>(url);
       this.dataSignal.set(res ?? []);
     } finally {
       this.loading.set(false);

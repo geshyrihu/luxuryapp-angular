@@ -136,13 +136,12 @@
     </div>
     } @else { @for (item of payment()!.allocations || []; track
     item.allocationId) {
-    <ion-item
-      lines="full"
-      detail="false"
-      class="ion-no-padding mb-2 border-round-xl border-1 surface-border"
+    <ili-list-item
+      [noPadding]="true"
+      class="mb-2 border-round-xl border-1 surface-border"
     >
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -150,23 +149,23 @@
           class="text-blue-700 text-xl"
         />
       </div>
-      <ion-label>
+      <div class="flex-1 min-w-0">
         <h3>{{ item.chargeTypeName || "Sin tipo" }}</h3>
         <p>{{ item.chargeConcept }}</p>
         <p>
           {{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }} · {{
           item.appliedBy || "Sistema" }}
         </p>
-      </ion-label>
+      </div>
       <iw-button
-        slot="end"
+        end
         iconClass="mdi:open-in-new"
         severity="info"
         variant="outlined"
         size="small"
         (clicked)="openCharge(item)"
       />
-    </ion-item>
+    </ili-list-item>
     } }
   </div>
 </div>

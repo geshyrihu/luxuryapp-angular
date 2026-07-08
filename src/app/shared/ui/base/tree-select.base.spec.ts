@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { TreeSelectBase } from "./tree-select.base";
 
-@Component({ selector: "test-tree-select", standalone: true, template: "" })
+@Component({ selector: "test-tree-select", template: "" })
 class Host extends TreeSelectBase {}
 
 describe("TreeSelectBase", () => {

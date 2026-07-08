@@ -16,12 +16,14 @@ import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } fr
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
+
 import { RippleModule } from "primeng/ripple";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAvailableAccountDTO } from "./models/IAvailableAccountDto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxMessage } from "@ui/adaptive/message/message";
 
 interface ISearchForm {
   searchTerm: FormControl<string>;
@@ -29,14 +31,11 @@ interface ISearchForm {
 
 @Component({
   selector: "app-account-modal-add",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabel,
-    MessageModule,
-    RippleModule,
-  ],
+    RippleModule, AppIcon, LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./account-modal-add.html",
 })

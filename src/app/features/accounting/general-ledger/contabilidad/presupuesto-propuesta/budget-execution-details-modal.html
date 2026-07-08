@@ -1,6 +1,6 @@
 <!--
   ============================================================================
-  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
   Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
   FUNCIONAL y ESTABLE.
@@ -34,7 +34,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <p-tag [value]="item.executionMonthName" severity="info" />
+        <lx-tag [value]="item.executionMonthName" severity="info" />
       </td>
       <td>{{ item.concept }}</td>
       <td>{{ item.budgetedAmount | number: "1.0-0" }}</td>

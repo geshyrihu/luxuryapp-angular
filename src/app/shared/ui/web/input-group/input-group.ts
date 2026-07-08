@@ -1,12 +1,16 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
+import { InputGroupBase } from "@ui/base/input-group.base";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { InputGroupBase } from "@ui/base/input-group.base";
 
 @Component({
   selector: "app-input-group",
-  standalone: true,
+
   imports: [CommonModule, InputGroupModule, InputGroupAddonModule],
   template: `
     <p-inputgroup>
@@ -19,9 +23,13 @@ import { InputGroupBase } from "@ui/base/input-group.base";
       }
     </p-inputgroup>
   `,
-  styles: [`
-    :host { display: block; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

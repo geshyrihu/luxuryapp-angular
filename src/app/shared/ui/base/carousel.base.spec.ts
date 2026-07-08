@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { CarouselBase } from "./carousel.base";
 
-@Component({ selector: "test-carousel", standalone: true, template: "" })
+@Component({ selector: "test-carousel", template: "" })
 class Host extends CarouselBase {}
 
 describe("CarouselBase", () => {

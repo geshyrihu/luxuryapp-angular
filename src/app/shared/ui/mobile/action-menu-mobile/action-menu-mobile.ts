@@ -2,6 +2,7 @@ import { Overlay, OverlayRef } from "@angular/cdk/overlay";
 import { TemplatePortal } from "@angular/cdk/portal";
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   TemplateRef,
@@ -10,7 +11,6 @@ import {
   inject,
   input,
   viewChild,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -35,7 +35,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
  */
 @Component({
   selector: "ili-action-menu",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <button
@@ -88,7 +88,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
         width: 100%;
         max-width: 480px;
         background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-m-radius-sheet, 16px) var(--ds-m-radius-sheet, 16px) 0 0;
+        border-radius: var(--ds-m-radius-sheet, 16px)
+          var(--ds-m-radius-sheet, 16px) 0 0;
         padding: 0.5rem 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
         box-shadow: var(--ds-shadow-2xl, 0 -4px 24px rgba(0, 0, 0, 0.15));
         animation: ili-am-slide-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);

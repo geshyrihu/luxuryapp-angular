@@ -1,11 +1,29 @@
-import { Component, ViewEncapsulation, inject, DestroyRef } from "@angular/core";
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonIcon } from "@ionic/angular/standalone";
+import { Component, ViewEncapsulation } from "@angular/core";
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonModal,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/angular/standalone";
 import { ModalBase } from "@ui/base/modal.base";
 
 @Component({
   selector: "ili-modal",
-  standalone: true,
-  imports: [IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonIcon],
+
+  imports: [
+    IonModal,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
+    IonContent,
+    IonIcon,
+  ],
   template: `
     <ion-modal
       [isOpen]="visible()"

@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -29,9 +30,9 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     CustomInputCurrencySignal,
     WebButtonLabel,
     DataViewMobile,
+    MobileListItem,
+    AppIcon,
     PrimeNgCustomCaption,
-    IonItem,
-    IonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./initial-balance.html",

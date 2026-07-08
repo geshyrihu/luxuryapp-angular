@@ -1,11 +1,7 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
 import { TableModule } from "primeng/table";
@@ -23,10 +19,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   imports: [
     TableModule,
     RouterModule,
-    IonList,
-    IonListHeader,
-    IonItem,
-    IonLabel,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

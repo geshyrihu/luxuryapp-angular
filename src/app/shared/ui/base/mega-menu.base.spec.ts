@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import type { MegaMenuItem } from "primeng/api";
 import { MegaMenuBase } from "./mega-menu.base";
 
-@Component({ selector: "test-mega-menu", standalone: true, template: "" })
+@Component({ selector: "test-mega-menu", template: "" })
 class TestMegaMenu extends MegaMenuBase {
   run(item: MegaMenuItem, event?: Event) {
     this.runCommand(item, event);

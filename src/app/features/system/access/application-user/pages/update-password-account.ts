@@ -1,8 +1,7 @@
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { MessageModule } from "primeng/message";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-;
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { UpdatePasswordDTO } from "src/app/core/interfaces/user-info.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -11,7 +10,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   selector: "app-update-password-account",
   templateUrl: "./update-password-account.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [MessageModule, WebButtonLabel, AppIcon],
+  imports: [LxMessage, WebButtonLabel, AppIcon],
 })
 export class UpdatePasswordAccount implements OnInit {
   apiResponseS = inject(ApiResponseService);

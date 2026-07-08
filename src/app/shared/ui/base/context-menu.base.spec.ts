@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import type { MenuItem } from "primeng/api";
 import { ContextMenuBase } from "./context-menu.base";
 
-@Component({ selector: "test-context-menu", standalone: true, template: "" })
+@Component({ selector: "test-context-menu", template: "" })
 class TestContextMenu extends ContextMenuBase {
   run(item: MenuItem, event?: Event) {
     this.runCommand(item, event);

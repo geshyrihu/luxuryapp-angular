@@ -1,11 +1,17 @@
-import { Component, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  output,
+} from "@angular/core";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { IonInputSearch } from "../../mobile/ion-input-search";
 import { WebInputSearch } from "../../web/input-search/input-search";
 
 @Component({
   selector: "custom-search-input-signal",
-  standalone: true,
+
   imports: [WebInputSearch, IonInputSearch],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

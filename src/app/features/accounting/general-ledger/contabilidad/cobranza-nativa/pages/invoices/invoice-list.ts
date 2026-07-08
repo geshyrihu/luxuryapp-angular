@@ -1,7 +1,7 @@
 import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -22,23 +22,21 @@ import { InvoiceResponseDTO } from "../../models/invoice.dto";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-invoice-list",
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     TooltipModule,
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    IonItem,
-    IonLabel,
     DatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    AppIcon,
-  ],
+    AppIcon, MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./invoice-list.html",
 })

@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
 import { OverlayBadgeModule } from "primeng/overlaybadge";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
@@ -7,7 +12,7 @@ import { TrackingEvent } from "../shared/tracking";
 
 @Component({
   selector: "iw-button-tracking",
-  standalone: true,
+
   imports: [CommonModule, AppIcon, OverlayBadgeModule],
   template: `
     <button

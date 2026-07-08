@@ -6,14 +6,18 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { addIcons } from "ionicons";
-import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -26,16 +30,11 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { RegulationArticleResponseDTO } from "../../models/property-fine.dto";
 import { RegulationArticleForm } from "./regulation-article-form";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
 @Component({
   selector: "app-regulation-article-list",
   imports: [
+    AppIcon,
+    LxTag,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -43,12 +42,10 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    TagModule,
     PrimeNgCustomCaption,
     CurrencyPipe,
     DataViewMobile,
-    IonItem,
-    IonLabel,
+    MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./regulation-article-list.html",
@@ -65,7 +62,6 @@ export default class RegulationArticleList {
   dataSignal = signal<RegulationArticleResponseDTO[]>([]);
 
   constructor() {
-    addIcons({ documentTextOutline });
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData();

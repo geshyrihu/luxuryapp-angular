@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
-import { CardModule } from "primeng/card";
+import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { PieChart } from "@ui/web/charts/pie-chart";
-import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
 import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
+import { CardModule } from "primeng/card";
 
 /**
  * Catálogo de gráficos — ejemplos renderizados de los 6 componentes de charts
@@ -14,7 +14,7 @@ import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
  */
 @Component({
   selector: "app-catalog-charts",
-  standalone: true,
+
   imports: [
     CommonModule,
     CardModule,
@@ -49,8 +49,16 @@ export class CatalogCharts {
   lineChartData = computed(() => ({
     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
     datasets: [
-      { label: "Gastos", data: [65, 59, 80, 81, 56, 55, 40], borderColor: "#003d9b" },
-      { label: "Ingresos", data: [28, 48, 40, 19, 86, 27, 90], borderColor: "#006477" },
+      {
+        label: "Gastos",
+        data: [65, 59, 80, 81, 56, 55, 40],
+        borderColor: "#003d9b",
+      },
+      {
+        label: "Ingresos",
+        data: [28, 48, 40, 19, 86, 27, 90],
+        borderColor: "#006477",
+      },
     ],
   }));
 
@@ -87,8 +95,17 @@ export class CatalogCharts {
   multiAxisData = computed(() => ({
     labels: ["Ene", "Feb", "Mar", "Abr", "May"],
     datasets: [
-      { label: "Ingresos ($)", data: [12000, 15000, 9000, 18000, 14000], backgroundColor: "#003d9b" },
-      { label: "Tickets", data: [40, 55, 30, 70, 50], yAxisID: "y1", backgroundColor: "#c9a74d" },
+      {
+        label: "Ingresos ($)",
+        data: [12000, 15000, 9000, 18000, 14000],
+        backgroundColor: "#003d9b",
+      },
+      {
+        label: "Tickets",
+        data: [40, 55, 30, 70, 50],
+        yAxisID: "y1",
+        backgroundColor: "#c9a74d",
+      },
     ],
   }));
 

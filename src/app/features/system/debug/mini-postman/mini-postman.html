@@ -57,18 +57,11 @@
       class="surface-card border-round shadow-1 flex flex-column"
       style="flex: 1; min-width: 0"
     >
-      <p-tabs value="params" class="flex flex-column h-full">
-        <p-tablist>
-          <p-tab value="params">Params</p-tab>
-          <p-tab value="headers">Headers</p-tab>
-          @if (hasBody()) {
-          <p-tab value="body">Body</p-tab>
-          }
-        </p-tablist>
-
-        <p-tabpanels class="flex-1 overflow-auto">
+      <lx-tabs [tabs]="reqTabs()" [(activeId)]="activeTabReq" class="flex flex-column h-full">
+        <div class="flex-1 overflow-auto">
+          @switch (activeTabReq()) {
           <!-- PARAMS -->
-          <p-tabpanel value="params">
+          @case ('params') {
             <div class="flex flex-column gap-2 p-2">
               @for (p of params(); track trackByIndex($index); let i = $index) {
               <div class="flex align-items-center gap-2">
@@ -110,10 +103,10 @@
                 (clicked)="addParam()"
               />
             </div>
-          </p-tabpanel>
+          }
 
           <!-- HEADERS -->
-          <p-tabpanel value="headers">
+          @case ('headers') {
             <div class="flex flex-column gap-2 p-2">
               @for (h of headers(); track trackByIndex($index); let i = $index)
               {
@@ -156,11 +149,10 @@
                 (clicked)="addHeader()"
               />
             </div>
-          </p-tabpanel>
+          }
 
           <!-- BODY -->
-          @if (hasBody()) {
-          <p-tabpanel value="body">
+          @case ('body') {
             <custom-input-textarea-signal
               [ngModel]="bodyRaw()"
               (ngModelChange)="bodyRaw.set($event)"
@@ -169,10 +161,10 @@
               [customClass]="'font-mono text-sm'"
               [disableResize]="false"
             ></custom-input-textarea-signal>
-          </p-tabpanel>
+            }
           }
-        </p-tabpanels>
-      </p-tabs>
+        </div>
+      </lx-tabs>
     </div>
 
     <!-- Panel derecho: Response -->
@@ -208,15 +200,11 @@
         }
       </div>
 
-      <p-tabs value="body-res" class="flex flex-column flex-1 min-h-0">
-        <p-tablist>
-          <p-tab value="body-res">Body</p-tab>
-          <p-tab value="headers-res">Headers</p-tab>
-        </p-tablist>
-
-        <p-tabpanels class="flex-1 overflow-auto">
+      <lx-tabs [tabs]="resTabs" [(activeId)]="activeTabRes" class="flex flex-column flex-1 min-h-0">
+        <div class="flex-1 overflow-auto">
+          @switch (activeTabRes()) {
           <!-- Body response -->
-          <p-tabpanel value="body-res">
+          @case ('body-res') {
             @if (responseError()) {
             <pre
               class="m-0 p-3 text-red-600 text-sm overflow-auto h-full font-mono white-space-pre-wrap"
@@ -234,10 +222,10 @@
               Envia una peticion para ver la respuesta
             </div>
             }
-          </p-tabpanel>
+          }
 
           <!-- Headers response -->
-          <p-tabpanel value="headers-res">
+          @case ('headers-res') {
             <div class="p-2">
               @for (entry of responseHeaderEntries(); track entry[0]) {
               <div
@@ -252,9 +240,10 @@
               <span class="text-400 text-sm">Sin headers</span>
               }
             </div>
-          </p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
+            }
+          }
+        </div>
+      </lx-tabs>
     </div>
   </div>
 

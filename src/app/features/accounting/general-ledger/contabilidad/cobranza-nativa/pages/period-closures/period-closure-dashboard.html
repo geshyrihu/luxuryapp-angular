@@ -1,5 +1,4 @@
 <div class="card p-0 md:p-4">
-  <!-- Panel de accion: cerrar periodo -->
   <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
     <div class="font-semibold mb-3 flex align-items-center gap-2">
       <app-icon [icon]="'mdi:lock'" class="text-primary" />
@@ -56,7 +55,6 @@
     </div>
   </div>
 
-  <!-- Tabla desktop: historial de cierres -->
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -83,7 +81,7 @@
         <th class="w-9rem text-center">Fecha de Cierre</th>
         <th class="w-8rem">Cerrado por</th>
         <th>Notas</th>
-        <th class="w-7rem text-center">Accion</th>
+        <th class="w-7rem text-center">Acción</th>
       </tr>
     </ng-template>
 
@@ -132,25 +130,24 @@
     </ng-template>
   </p-table>
 
-  <!-- Vista mobile -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [globalFilterFields]="['closedBy', 'closureNotes']"
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full" detail="false" class="ion-no-padding">
+      <ili-list-item [noPadding]="true">
         <div
-          slot="start"
+          start
           class="w-2rem h-2rem border-round-lg flex align-items-center justify-content-center flex-shrink-0 ml-3"
           [class]="item.isClosed ? 'bg-red-100' : 'bg-green-100'"
         >
-          <ion-icon
-            [name]="item.isClosed ? 'lock-closed-outline' : 'lock-open-outline'"
+          <app-icon
+            [icon]="item.isClosed ? 'mdi:lock' : 'mdi:lock-open'"
             [class]="item.isClosed ? 'text-red-600 text-xl' : 'text-green-600 text-xl'"
-          ></ion-icon>
+          />
         </div>
-        <ion-label>
+        <div class="flex-1 min-w-0">
           <h3>{{ monthName(item.month) }} {{ item.year }}</h3>
           <p>
             {{ item.isClosed ? 'Cerrado' : 'Abierto' }}{{ item.closedBy ? ' por
@@ -159,10 +156,10 @@
           @if (item.closedAt) {
           <p>{{ item.closedAt | date:'dd/MM/yyyy HH:mm' }}</p>
           }
-        </ion-label>
+        </div>
         @if (item.isClosed) {
         <il-button
-          slot="end"
+          end
           label="Reabrir"
           iconClass="mdi:lock-open"
           size="small"
@@ -171,7 +168,7 @@
           (clicked)="onReopenPeriod(item)"
         />
         }
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

@@ -1,11 +1,15 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { InplaceModule } from "primeng/inplace";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { InplaceBase } from "@ui/base/inplace.base";
+import { InplaceModule } from "primeng/inplace";
 
 @Component({
   selector: "app-inplace",
-  standalone: true,
+
   imports: [CommonModule, InplaceModule],
   template: `
     <p-inplace
@@ -21,9 +25,13 @@ import { InplaceBase } from "@ui/base/inplace.base";
       </p-inplace-content>
     </p-inplace>
   `,
-  styles: [`
-    :host { display: block; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

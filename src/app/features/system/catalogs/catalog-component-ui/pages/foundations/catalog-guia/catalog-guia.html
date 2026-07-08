@@ -10,7 +10,7 @@
   <div class="grid mb-5">
     @for (m of metrics; track m.label) {
     <div class="col-12 md:col-4">
-      <p-card class="h-full">
+      <div class="card" class="h-full">
         <div class="flex align-items-center gap-3">
           <app-icon [icon]="m.icon" class="text-primary text-3xl" />
           <div>
@@ -19,7 +19,7 @@
             <small class="text-color-secondary">{{ m.detail }}</small>
           </div>
         </div>
-      </p-card>
+      </div>
     </div>
     }
   </div>
@@ -28,7 +28,7 @@
   <div class="grid mb-5">
     @for (s of businessScenarios; track s.title) {
     <div class="col-12 lg:col-4">
-      <p-card class="h-full border-top-3 border-primary surface-card">
+      <div class="card" class="h-full border-top-3 border-primary surface-card">
         <div class="flex align-items-center gap-3 mb-3">
           <app-icon [icon]="s.icon" class="text-primary text-2xl" />
           <strong class="text-xl">{{ s.title }}</strong>
@@ -39,7 +39,7 @@
         <div class="p-3 border-round bg-primary-50 text-primary-900 text-sm">
           <strong>Regla:</strong> {{ s.rule }}
         </div>
-      </p-card>
+      </div>
     </div>
     }
   </div>
@@ -53,7 +53,7 @@
   <div class="grid mb-4">
     @for (p of identityPillars; track p.title) {
     <div class="col-12 lg:col-4">
-      <p-card class="h-full border-left-3 border-primary surface-card shadow-1">
+      <div class="card" class="h-full border-left-3 border-primary surface-card shadow-1">
         <div class="flex align-items-start gap-3">
           <app-icon [icon]="p.icon" class="text-primary text-2xl" />
           <div>
@@ -69,7 +69,7 @@
             >
           </div>
         </div>
-      </p-card>
+      </div>
     </div>
     }
   </div>
@@ -81,10 +81,9 @@
   />
 
   <h3 class="text-xl font-bold mb-3">Validación de Color</h3>
-  <p-card class="mb-5">
+  <div class="card" class="mb-5">
     <p-table [value]="colorAssessment" class="p-datatable-sm">
-      <ng-template #header
-        ><tr>
+      <div class="card-header"><tr>
           <th>Rol</th>
           <th>Actual</th>
           <th>Veredicto</th>
@@ -100,7 +99,7 @@
         </tr>
       </ng-template>
     </p-table>
-  </p-card>
+  </div>
 
   <h3 class="text-xl font-bold mb-3">Catálogo de Componentes Core</h3>
   <p-message
@@ -108,14 +107,14 @@
     text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
     class="mb-3 block"
   />
-  <p-card class="mb-5">
+  <div class="card" class="mb-5">
     <p-table
       [value]="componentCatalog"
       [paginator]="true"
       [rows]="8"
       class="p-datatable-sm"
     >
-      <ng-template #header>
+      <div class="card-header">
         <tr>
           <th>Familia</th>
           <th>Selector</th>
@@ -125,7 +124,7 @@
           <th>Evitar cuando</th>
           <th>Estado</th>
         </tr>
-      </ng-template>
+      </div>
       <ng-template #body let-item>
         <tr>
           <td><strong>{{ item.family }}</strong></td>
@@ -145,13 +144,13 @@
         </tr>
       </ng-template>
     </p-table>
-  </p-card>
+  </div>
 
   <h3 class="text-xl font-bold mb-3">Reglas de Botones</h3>
   <div class="grid mb-5">
     @for (r of buttonRules; track r.variant) {
     <div class="col-12 md:col-6 xl:col-3">
-      <p-card [class]="r.cardClass">
+      <div class="card" [class]="r.cardClass">
         <div class="flex align-items-start gap-3">
           <app-icon [icon]="r.iconClass" />
           <div>
@@ -163,7 +162,7 @@
             <small class="block mt-2 text-color-secondary">{{ r.avoid }}</small>
           </div>
         </div>
-      </p-card>
+      </div>
     </div>
     }
   </div>
@@ -171,7 +170,7 @@
   <h3 class="text-xl font-bold mb-3">
     Formulario de Referencia (Custom* inputs)
   </h3>
-  <p-card class="mb-5">
+  <div class="card" class="mb-5">
     <div class="grid formgrid">
       <div class="field col-12 md:col-6 xl:col-4">
         <custom-input-text-signal
@@ -298,7 +297,7 @@
         variant="outline"
       />
     </div>
-  </p-card>
+  </div>
   <p-message
     severity="warn"
     text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
@@ -306,7 +305,7 @@
   />
 
   <h3 class="text-xl font-bold mb-3">Tabla ERP y Estados del Sistema</h3>
-  <p-card class="mb-5">
+  <div class="card" class="mb-5">
     <p-table
       [value]="tableRows"
       [paginator]="true"
@@ -322,12 +321,11 @@
             ><span class="block text-sm text-color-secondary"
               >Acciones visibles maximas: 2 + menu contextual.</span
             >
-          </div>
+          </ng-template>
           <il-button label="Nuevo registro" iconClass="icon.plus" size="sm" />
         </div>
-      </ng-template>
-      <ng-template #header
-        ><tr>
+      </div>
+      <div class="card-header"><tr>
           <th>Folio</th>
           <th>Area</th>
           <th>Responsable</th>
@@ -359,12 +357,12 @@
                 variant="text"
                 severity="secondary"
               />
-            </div>
+            </ng-template>
           </td>
         </tr>
-      </ng-template>
+      </div>
     </p-table>
-  </p-card>
+  </div>
   <div class="grid mb-5">
     <div class="col-12 md:col-6 xl:col-3">
       <div class="surface-card p-3 border-round text-center">
@@ -417,7 +415,7 @@
         ><span class="block text-sm text-color-secondary"
           >Filtros, acciones y estado de pantalla.</span
         >
-      </div></ng-template
+      </ng-template></ng-template
     >
     <ng-template #end>
       <div class="flex gap-2 flex-wrap justify-content-end">
@@ -433,43 +431,43 @@
           iconClass="icon.download"
         />
         <il-button label="Nuevo" iconClass="icon.plus" />
-      </div>
-    </ng-template>
+      </ng-template>
+    </div>
   </p-toolbar>
 
   <h3 class="text-xl font-bold mb-3">Reglas Globales del ERP</h3>
   <div class="grid mb-4">
     @for (r of globalRules; track r.title) {
     <div class="col-12 md:col-6 xl:col-4">
-      <p-card class="h-full border-left-3 border-primary surface-card shadow-1">
+      <div class="card" class="h-full border-left-3 border-primary surface-card shadow-1">
         <strong>{{ r.title }}</strong>
         <p class="m-0 mt-3 text-color-secondary line-height-3">
           {{ r.description }}
         </p>
-      </p-card>
+      </div>
     </div>
     }
   </div>
   <div class="grid mb-5">
     <div class="col-12 md:col-6">
-      <p-card header="Layout y espaciado">
+      <div class="card" header="Layout y espaciado">
         @for (r of spacingRules; track r.title) {
         <div class="mb-3">
           <strong>{{ r.title }}</strong>
           <p class="m-0 text-color-secondary">{{ r.description }}</p>
         </div>
         }
-      </p-card>
+      </div>
     </div>
     <div class="col-12 md:col-6">
-      <p-card header="Estados obligatorios">
+      <div class="card" header="Estados obligatorios">
         @for (s of systemStates; track s.title) {
         <div class="mb-3">
           <strong>{{ s.title }}</strong>
           <p class="m-0 text-color-secondary">{{ s.description }}</p>
         </div>
         }
-      </p-card>
+      </div>
     </div>
   </div>
 
@@ -484,7 +482,7 @@
       Los dialogs deben resolver decisiones breves. Si el usuario necesita
       capturar informacion extensa, navega a una pantalla dedicada.
     </p>
-    <ng-template #footer>
+    <div class="mt-3 flex justify-content-end gap-2">
       <il-button
         label="Cancelar"
         severity="secondary"
@@ -496,6 +494,6 @@
         iconClass="icon.check"
         (clicked)="dialogVisible = false"
       />
-    </ng-template>
+    </div>
   </p-dialog>
 </section>

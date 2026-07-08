@@ -9,7 +9,7 @@ import { ProgressBarBase } from "@ui/base/progress-bar.base";
  */
 @Component({
   selector: "ili-progress-bar",
-  standalone: true,
+
   imports: [CommonModule, IonProgressBar],
   template: `
     <div class="ili-progress-bar-root">
@@ -18,25 +18,31 @@ import { ProgressBarBase } from "@ui/base/progress-bar.base";
         [value]="fraction()"
         [color]="ionColor()"
       />
-      @if (showValue() && mode() === 'determinate') {
-        <span class="ili-progress-bar-value">{{ clampedValue() }}{{ unit() }}</span>
+      @if (showValue() && mode() === "determinate") {
+        <span class="ili-progress-bar-value"
+          >{{ clampedValue() }}{{ unit() }}</span
+        >
       }
     </div>
   `,
-  styles: [`
-    .ili-progress-bar-root {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .ili-progress-bar-root ion-progress-bar { flex: 1; }
-    .ili-progress-bar-value {
-      font-size: 0.8125rem;
-      color: var(--ds-text-secondary);
-      min-width: 2.5rem;
-      text-align: right;
-    }
-  `],
+  styles: [
+    `
+      .ili-progress-bar-root {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .ili-progress-bar-root ion-progress-bar {
+        flex: 1;
+      }
+      .ili-progress-bar-value {
+        font-size: 0.8125rem;
+        color: var(--ds-text-secondary);
+        min-width: 2.5rem;
+        text-align: right;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileProgressBar extends ProgressBarBase {

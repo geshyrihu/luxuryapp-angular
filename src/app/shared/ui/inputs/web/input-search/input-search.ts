@@ -1,4 +1,9 @@
-import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
@@ -6,7 +11,7 @@ import { AppIcon } from "../../../shared/app-icon/app-icon.component";
 
 @Component({
   selector: "web-input-search",
-  standalone: true,
+
   imports: [IconFieldModule, InputIconModule, InputTextModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

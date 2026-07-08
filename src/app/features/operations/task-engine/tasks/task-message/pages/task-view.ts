@@ -2,19 +2,7 @@ import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@ang
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
-  IonAvatar,
-  IonBadge,
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCol,
-  IonGrid,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonRow,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   addCircleOutline,
@@ -53,18 +41,6 @@ import { TaskForm } from "./task-form";
     CardModule,
     AppAvatar,
     WebButtonLabel,
-    IonCard,
-    IonCardHeader,
-    IonCardContent,
-    IonItem,
-    IonLabel,
-    IonAvatar,
-    IonBadge,
-    IonButton,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonList,
     AppIcon,
   ],
 })

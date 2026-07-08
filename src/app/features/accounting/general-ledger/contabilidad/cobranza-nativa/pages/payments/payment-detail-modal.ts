@@ -1,12 +1,12 @@
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -24,8 +24,7 @@ import { ChargeForm } from "../charges/charge-form";
     TableModule,
     CurrencyPipe,
     DatePipe,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     AppIcon,
     PrimeNgCustomTableEmptyMessage,
     WebButtonIcon,
@@ -76,7 +75,10 @@ export class PaymentDetailModal implements OnInit {
 
   getStatusLabel(payment: CobranzaPaymentResponseDTO): string {
     if (payment.status === EPaymentStatus.Registrado) {
-      if ((payment.unappliedAmount ?? 0) > 0.009 && (payment.allocatedAmount ?? 0) > 0.009) {
+      if (
+        (payment.unappliedAmount ?? 0) > 0.009 &&
+        (payment.allocatedAmount ?? 0) > 0.009
+      ) {
         return "Parcialmente aplicado";
       }
       if ((payment.unappliedAmount ?? 0) > 0.009) {

@@ -1,13 +1,12 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
   Output,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -19,18 +18,17 @@ import {
 
 @Component({
   selector: "app-aspel-cobranza-haus-query-panel",
-  standalone: true,
+
   imports: [
     CommonModule,
     FormsModule,
-    CardModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     WebButtonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <p-card class="shadow-none border-1 surface-border">
+    <div class="card shadow-none border-1 surface-border">
       <div class="grid formgrid align-items-start">
         <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
           <custom-input-select-signal
@@ -129,7 +127,7 @@ import {
           </div>
         </div>
       </div>
-    </p-card>
+    </div>
   `,
 })
 export class AspelCobranzaHausQueryPanel {

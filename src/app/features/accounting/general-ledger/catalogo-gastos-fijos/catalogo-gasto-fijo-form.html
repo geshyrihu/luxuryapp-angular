@@ -25,7 +25,7 @@
         <div class="col-12 md:col-6">
           <custom-input-text-signal
             [control]="form.controls.idFondeo"
-            label="Ãndice de Fondeo"
+            label="Índice de Fondeo"
             [horizontal]="false"
           />
           <custom-input-select-signal
@@ -69,12 +69,10 @@
         </div>
       </div>
 
-      <!-- SECCIóN 4: BOTóN DE ENVÃO -->
+      <!-- SECCIóN 4: BOTóN DE ENVÍO -->
       <div class="flex justify-content-end">
         @if (!id()) {
-        <p-message severity="info" class="mr-2"
-          >Guarda primero para poder agregar Productos y Presupuesto.</p-message
-        >
+        <lx-message severity="info" class="mr-2">Guarda primero para poder agregar Productos y Presupuesto.</lx-message>
         } @if (id()) {
         <il-button
           iconClass="mdi:dollar"

@@ -1,6 +1,6 @@
 <!--
   ============================================================================
-  âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
+  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
   Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
   FUNCIONAL y ESTABLE.
@@ -12,11 +12,11 @@
   ============================================================================
 -->
 @if (errorMensaje) {
-<p-message severity="error" [text]="errorMensaje" class="mt-3"></p-message>
+<lx-message severity="error" [text]="errorMensaje" class="mt-3" />
 } @else {
 <!-- Formulario -->
-<p-card class="mb-4 shadow-1 border-none">
-  <form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
+<lx-card class="mb-4 shadow-1 border-none">
+<form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
     <div class="flex flex-column gap-3">
       <div>
         <custom-input-text-signal
@@ -46,7 +46,7 @@
         <div class="mt-2 flex flex-wrap gap-2 align-items-center">
           @if (supportForm.get("files")?.value?.length > 0) { @for (file of
           supportForm.get("files")?.value; track file.name) {
-          <p-tag value="{{ file.name }}" severity="info"></p-tag>
+          <lx-tag value="{{ file.name }}" severity="info" />
           }
           <app-icon
             [icon]="'mdi:close-circle'"
@@ -69,12 +69,12 @@
       </div>
     </div>
   </form>
-</p-card>
+</lx-card>
 
 <!-- Lista de soportes existentes -->
 @if (budgetProposalItem()?.files && budgetProposalItem()!.files.length > 0) {
-<p-card class="shadow-1 border-none">
-  <ng-template #header>
+<lx-card class="shadow-1 border-none">
+<ng-template #header>
     <div class="px-4 pt-4 font-bold text-lg text-700">Archivos Adjuntos</div>
   </ng-template>
   <p-listbox
@@ -108,7 +108,7 @@
       </div>
     </ng-template>
   </p-listbox>
-</p-card>
+</lx-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 border-round p-4 text-center mt-3">
   <app-icon [icon]="'mdi:information'" class="text-4xl text-info mb-2" />

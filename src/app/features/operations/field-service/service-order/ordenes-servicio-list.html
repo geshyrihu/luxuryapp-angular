@@ -212,14 +212,10 @@
     <div class="card-body p-0">
       <!-- Sección Tútulo y Fecha -->
       <div class="flex flex-column mb-3">
-        <ion-item lines="none" class="ion-no-padding transparent-item">
-          <ion-label
-            position="stacked"
-            color="primary"
-            class="font-bold text-lg mb-1"
-          >
+        <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+          <span class="font-bold text-lg mb-1">
             {{ filtroEquiposValue | titlecase }}
-          </ion-label>
+          </span>
           <custom-input-text-signal
             [control]="fechaControl"
             name="fecha"
@@ -230,23 +226,18 @@
             tooltipPosition="top"
             [horizontal]="false"
           />
-        </ion-item>
+        </div>
       </div>
 
       <!-- Segmento de Filtros (Scrollable) -->
-      <ion-segment
-        scrollable="true"
-        [value]="filtroEquiposValue"
-        (ionChange)="onSegmentFilterChange($event)"
-        class="mb-3"
-      >
+      <div class="flex gap-2 mb-3 bg-surface-100 p-1 border-round">
         @for (item of filtroEquipos; track item) {
-        <ion-segment-button [value]="item.nombre">
+        <button class="p-button p-button-text p-button-sm flex-1">
           <app-icon [icon]="item.icon" class="text-xl mb-1" />
-          <ion-label class="text-xs">{{ item.nombre | titlecase }}</ion-label>
-        </ion-segment-button>
+          <span class="text-xs">{{ item.nombre | titlecase }}</span>
+        </button>
         }
-      </ion-segment>
+      </div>
 
       <!-- Botún Reporte -->
       <div class="mb-2">
@@ -280,7 +271,7 @@
 
   <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -295,7 +286,7 @@
           style="font-size: 1.1rem; color: var(--ds-warning)"
         />
       </div>
-      <ion-label>
+      <span class="">
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base text-wrap">
             {{ item.machineryId }}- {{ item.machinery }}
@@ -332,7 +323,7 @@
             [value]="item.serviceOrderDocument.length + ' Reportes'"
           />
         </div>
-      </ion-label>
+      </span>
 
       <div slot="end">
         <ili-action-menu>
@@ -371,7 +362,7 @@
           </ng-container>
         </ili-action-menu>
       </div>
-    </ion-item>
+    </div>
   </ng-template>
 </app-data-view-mobile>
 
@@ -450,3 +441,4 @@
     }
   }
 </style>
+

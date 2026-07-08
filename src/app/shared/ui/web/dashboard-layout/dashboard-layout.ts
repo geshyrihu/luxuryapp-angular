@@ -1,5 +1,10 @@
-import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 
 export interface DashboardWidget {
   id: string;
@@ -10,7 +15,7 @@ export interface DashboardWidget {
 
 @Component({
   selector: "app-dashboard-layout",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div
@@ -33,36 +38,38 @@ export interface DashboardWidget {
       }
     </div>
   `,
-  styles: [`
-    .dashboard-grid {
-      display: grid;
-      gap: 1rem;
-      grid-auto-rows: minmax(200px, auto);
-    }
-    .dashboard-widget {
-      background: var(--ds-bg-surface, #ffffff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-lg, 8px);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .dashboard-widget-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.625rem 1rem;
-      background: var(--ds-bg-elevated, #f4f5f8);
-      border-bottom: 1px solid var(--ds-border, #e2e8f0);
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      color: var(--ds-text-primary);
-    }
-    .dashboard-widget-body {
-      flex: 1;
-      padding: 1rem;
-      overflow: auto;
-    }
-  `],
+  styles: [
+    `
+      .dashboard-grid {
+        display: grid;
+        gap: 1rem;
+        grid-auto-rows: minmax(200px, auto);
+      }
+      .dashboard-widget {
+        background: var(--ds-bg-surface, #ffffff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-lg, 8px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .dashboard-widget-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.625rem 1rem;
+        background: var(--ds-bg-elevated, #f4f5f8);
+        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        color: var(--ds-text-primary);
+      }
+      .dashboard-widget-body {
+        flex: 1;
+        padding: 1rem;
+        overflow: auto;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

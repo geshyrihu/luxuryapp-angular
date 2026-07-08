@@ -1,4 +1,4 @@
-﻿import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { NgClass } from "@angular/common";
 import { addIcons } from "ionicons";
 import { layersOutline } from "ionicons/icons";

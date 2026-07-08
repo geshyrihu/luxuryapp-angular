@@ -63,9 +63,9 @@
     (add)="onModalForm({ id: '', title: 'Nuevo Machote de Adenda' })"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full">
+      <ili-list-item>
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -78,7 +78,7 @@
             style="font-size: 1.1rem; color: var(--ds-info)"
           />
         </div>
-        <ion-label>
+        
           <h2 class="font-bold">{{ item.name }}</h2>
           <p class="text-sm text-500">
             {{ item.addendumType }} é v{{ item.version }}
@@ -93,8 +93,8 @@
             <span class="badge badge-danger">Inactivo</span>
             }
           </p>
-        </ion-label>
-        <ili-action-menu slot="end">
+        
+        <ili-action-menu end>
           <ng-container actions>
             <ili-button-item
               label="Editar"
@@ -108,7 +108,7 @@
             />
           </ng-container>
         </ili-action-menu>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

@@ -1,10 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
+import { ContactCardBase, ContactSeverity } from "@ui/base/contact-card.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import {
-  ContactCardBase,
-  ContactSeverity,
-} from "@ui/base/contact-card.base";
 
 const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
   success: { bg: "var(--ds-success-light)", text: "var(--ds-success)" },
@@ -15,7 +12,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
 
 @Component({
   selector: "ili-contact-card",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div
@@ -25,7 +22,11 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
     >
       <div class="ili-contact-avatar" [style.background]="avatarBg()">
         @if (avatarUrl()) {
-          <img [src]="avatarUrl()" [alt]="name()" class="ili-contact-avatar-img" />
+          <img
+            [src]="avatarUrl()"
+            [alt]="name()"
+            class="ili-contact-avatar-img"
+          />
         } @else {
           <span>{{ initials() }}</span>
         }

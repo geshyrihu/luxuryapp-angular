@@ -1,10 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import * as FileSaver from "file-saver";
-import { CardModule } from "primeng/card";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
@@ -12,6 +15,9 @@ import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
+import * as FileSaver from "file-saver";
+import { CardModule } from "primeng/card";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";

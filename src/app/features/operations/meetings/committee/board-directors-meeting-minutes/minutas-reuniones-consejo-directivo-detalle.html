@@ -157,98 +157,92 @@
   @if (!loading() && data(); as meeting) {
 
   <!-- Header -->
-  <ion-card class="m-3 border-1 surface-border shadow-1 border-round-xl">
-    <ion-card-header>
-      <ion-card-title class="text-lg font-bold text-900"
-        >Minuta de Junta</ion-card-title
-      >
-      <ion-card-subtitle class="flex align-items-center">
+  <div class="m-3 border-1 surface-border shadow-1 border-round-xl">
+    <div class="border-1 surface-border shadow-1 border-round-xl">
+      <div class="text-lg font-bold text-900">Minuta de Junta</div>
+      <div class="flex align-items-center">
         <app-icon
           icon="mdi:calendar-blank"
           class="mr-1 vertical-align-middle"
         />
         {{ meeting.date }}
-      </ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
+      </div>
+    </div>
+  </div>
 
   <!-- Administración -->
-  <ion-list-header>
-    <ion-label class="font-bold text-900">Administración</ion-label>
-  </ion-list-header>
-  <ion-list [inset]="true" class="m-0">
+  <div class="surface-card mb-3 border-round">
+    <span class="font-bold text-900">Administración</span>
+  </div>
+  <div class="surface-card mb-3 border-round">
     @for (admin of meeting.administracion; track admin) {
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <app-icon
         icon="mdi:account-outline"
         slot="start"
         class="text-blue-600 ml-3"
       />
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">{{ admin.applicationUser }}</h3>
         <p class="text-sm text-500">{{ admin.cargo }}</p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
     } @if (!meeting.administracion || meeting.administracion.length === 0) {
-    <ion-item lines="none" class="ion-no-padding">
-      <ion-label class="ml-3"><p class="text-500">Sin registros</p></ion-label>
-    </ion-item>
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+      <span class="ml-3"><p class="text-500">Sin registros</p></span>
+    </div>
     }
-  </ion-list>
+  </div>
 
   <!-- Comité -->
-  <ion-list-header>
-    <ion-label class="font-bold text-900">Comité</ion-label>
-  </ion-list-header>
-  <ion-list [inset]="true" class="m-0">
+  <div class="surface-card mb-3 border-round">
+    <span class="font-bold text-900">Comité</span>
+  </div>
+  <div class="surface-card mb-3 border-round">
     @for (member of meeting.comite; track member) {
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <app-icon
         icon="mdi:account-group-outline"
         slot="start"
         class="text-blue-600 ml-3"
       />
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">{{ member.applicationUser }}</h3>
         <p class="text-sm text-500">{{ member.cargo }}</p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
     } @if (!meeting.comite || meeting.comite.length === 0) {
-    <ion-item lines="none" class="ion-no-padding">
-      <ion-label class="ml-3"><p class="text-500">Sin registros</p></ion-label>
-    </ion-item>
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+      <span class="ml-3"><p class="text-500">Sin registros</p></span>
+    </div>
     }
-  </ion-list>
+  </div>
 
   <!-- Externos -->
-  <ion-list-header>
-    <ion-label class="font-bold text-900">Invitados Externos</ion-label>
-  </ion-list-header>
-  <ion-list [inset]="true" class="m-0">
+  <div class="surface-card mb-3 border-round">
+    <span class="font-bold text-900">Invitados Externos</span>
+  </div>
+  <div class="surface-card mb-3 border-round">
     @for (guest of meeting.externos; track guest) {
-    <ion-item lines="full" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <app-icon
         icon="mdi:account-plus-outline"
         slot="start"
         class="text-blue-600 ml-3"
       />
-      <ion-label class="ml-2"
-        ><h3 class="font-bold text-900">{{ guest.invitado }}</h3></ion-label
-      >
-    </ion-item>
+      <span class="ml-2"><h3 class="font-bold text-900">{{ guest.invitado }}</h3></span>
+    </div>
     } @if (!meeting.externos || meeting.externos.length === 0) {
-    <ion-item lines="none" class="ion-no-padding">
-      <ion-label class="ml-3"><p class="text-500">Sin registros</p></ion-label>
-    </ion-item>
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+      <span class="ml-3"><p class="text-500">Sin registros</p></span>
+    </div>
     }
-  </ion-list>
+  </div>
 
   <!-- Acuerdos -->
-  <ion-list-header>
-    <ion-label class="font-bold text-900"
-      >Acuerdos y Asuntos Tratados</ion-label
-    >
-  </ion-list-header>
+  <div class="surface-card mb-3 border-round">
+    <span class="font-bold text-900">Acuerdos y Asuntos Tratados</span>
+  </div>
 
   @for (group of meeting.groupedDetails; track group) {
   <div class="px-3 pt-1">
@@ -257,12 +251,10 @@
     </p>
   </div>
   @for (detail of group.details; track detail) {
-  <ion-card class="mx-3 mb-2 border-1 surface-border shadow-1 border-round-xl">
-    <ion-card-content class="p-3">
+  <div class="mx-3 mb-2 border-1 surface-border shadow-1 border-round-xl">
+    <div class="p-3">
       <div class="flex justify-content-between align-items-center mb-2">
-        <ion-badge [color]="getStatusBadgeColor(detail.status)"
-          >{{ detail.status }}</ion-badge
-        >
+        <lx-tag>{{ detail.status }}</lx-tag>
         <span class="text-sm font-bold text-900">{{ detail.title }}</span>
       </div>
       <p class="text-600 text-sm mb-2">{{ detail.requestService }}</p>
@@ -279,16 +271,16 @@
         Sin seguimientos registrados.
       </p>
       }
-    </ion-card-content>
-  </ion-card>
+    </div>
+  </div>
   } } @if (!meeting.groupedDetails || meeting.groupedDetails.length === 0) {
-  <ion-card class="mx-3 mb-3 border-1 surface-border shadow-1 border-round-xl">
-    <ion-card-content class="text-center p-4">
+  <div class="mx-3 mb-3 border-1 surface-border shadow-1 border-round-xl">
+    <div class="text-center p-4">
       <p class="text-500 m-0">
         No se registraron asuntos o acuerdos en esta junta.
       </p>
-    </ion-card-content>
-  </ion-card>
+    </div>
+  </div>
   } } @if (!loading() && !data()) {
   <div class="text-center p-6">
     <app-icon [icon]="'mdi:alert'" class="text-5xl text-orange-500 mb-3" />
@@ -296,3 +288,5 @@
   </div>
   }
 </div>
+
+

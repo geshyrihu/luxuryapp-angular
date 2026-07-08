@@ -1,11 +1,17 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputSelectPrefix } from "../custom-input-select-prefix-signal";
 import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputSelectPrefix } from "../custom-input-select-prefix-signal";
 
 @Component({
   selector: "web-input-select-prefix",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputSelectPrefix],
   template: `
     <custom-input-select-signal-prefix

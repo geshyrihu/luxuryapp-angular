@@ -1,14 +1,14 @@
+import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, output } from "@angular/core";
 import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
 } from "@ionic/angular/standalone";
-import { CommonModule } from "@angular/common";
 import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
 
 @Component({
   selector: "ili-infinite-scroll",
-  standalone: true,
+
   imports: [CommonModule, IonInfiniteScroll, IonInfiniteScrollContent],
   template: `
     <ion-infinite-scroll
@@ -22,9 +22,13 @@ import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
       />
     </ion-infinite-scroll>
   `,
-  styles: [`
-    :host { display: contents; }
-  `],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileInfiniteScroll extends InfiniteScrollBase {

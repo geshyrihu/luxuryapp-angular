@@ -1,6 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableLazyLoadEvent, TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -37,8 +37,7 @@ import { PasswordForm } from "./password-form";
     WebButtonIconDelete,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     DatePipe,
   ],
 })

@@ -10,8 +10,8 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { DividerModule } from "primeng/divider";
-import { MessageModule } from "primeng/message";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -30,10 +30,9 @@ import { DateService } from "src/app/core/services/date.service";
   imports: [
     ReactiveFormsModule,
     LxCard,
-    MessageModule,
+    LxMessage,
     CustomInputSelectSignal,
-    DividerModule,
-    DividerModule,
+    LxDivider,
     CustomInputTextAreaSignal,
     Touchspin,
     WebButtonLabelSave,

@@ -1,6 +1,6 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { SelectButtonModule } from "primeng/selectbutton";
@@ -46,8 +46,7 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
     MobileActionMenu,
     SelectModule,
     CustomInputSelectSignal,
-    IonItem,
-    IonLabel,
+    MobileListItem,
     AppIcon,
   ],
 })

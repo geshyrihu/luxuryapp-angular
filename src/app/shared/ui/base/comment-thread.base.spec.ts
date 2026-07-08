@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { CommentThreadBase } from "./comment-thread.base";
 
-@Component({ selector: "test-comment-thread", standalone: true, template: "" })
+@Component({ selector: "test-comment-thread", template: "" })
 class Host extends CommentThreadBase {}
 
 describe("CommentThreadBase", () => {

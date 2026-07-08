@@ -1,7 +1,14 @@
-import { Component, input, output, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ButtonModule } from "primeng/button";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  signal,
+  ViewEncapsulation,
+} from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ButtonModule } from "primeng/button";
 
 export interface KanbanCard {
   id: string;
@@ -41,16 +48,22 @@ const PRIORITY_COLORS: Record<string, string> = {
 
 @Component({
   selector: "app-kanban-board",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule, AppIcon],
   template: `
     <div class="kanban-root">
       <div class="kanban-columns">
         @for (stage of stages(); track stage.id) {
           <div class="kanban-column" [style.border-top-color]="stage.color">
-            <div class="kanban-column-header" [style.background]="stage.color + '15'">
+            <div
+              class="kanban-column-header"
+              [style.background]="stage.color + '15'"
+            >
               <div class="flex align-items-center gap-2 flex-1">
-                <div class="kanban-stage-dot" [style.background]="stage.color"></div>
+                <div
+                  class="kanban-stage-dot"
+                  [style.background]="stage.color"
+                ></div>
                 <strong class="kanban-stage-title">{{ stage.title }}</strong>
                 <span class="kanban-card-count">{{ stage.cards.length }}</span>
               </div>
@@ -116,7 +129,11 @@ const PRIORITY_COLORS: Record<string, string> = {
                     @if (card.assignee) {
                       <div class="kanban-assignee" [title]="card.assignee">
                         @if (card.assigneeAvatar) {
-                          <img [src]="card.assigneeAvatar" [alt]="card.assignee" class="kanban-avatar" />
+                          <img
+                            [src]="card.assigneeAvatar"
+                            [alt]="card.assignee"
+                            class="kanban-avatar"
+                          />
                         } @else {
                           <div class="kanban-avatar-text">
                             {{ card.assignee.charAt(0).toUpperCase() }}
@@ -127,7 +144,10 @@ const PRIORITY_COLORS: Record<string, string> = {
                   </div>
 
                   @if (card.dueDate) {
-                    <div class="kanban-duedate" [class.kanban-overdue]="isOverdue(card.dueDate)">
+                    <div
+                      class="kanban-duedate"
+                      [class.kanban-overdue]="isOverdue(card.dueDate)"
+                    >
                       <app-icon icon="mdi:calendar-clock" class="text-xs" />
                       {{ formatDate(card.dueDate) }}
                     </div>
@@ -135,7 +155,10 @@ const PRIORITY_COLORS: Record<string, string> = {
                 </div>
               } @empty {
                 <div class="kanban-empty">
-                  <app-icon icon="mdi:inbox-outline" class="text-xl text-color-muted" />
+                  <app-icon
+                    icon="mdi:inbox-outline"
+                    class="text-xl text-color-muted"
+                  />
                   <span class="text-xs text-color-muted">Sin elementos</span>
                 </div>
               }
@@ -145,163 +168,167 @@ const PRIORITY_COLORS: Record<string, string> = {
       </div>
     </div>
   `,
-  styles: [`
-    .kanban-root {
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-    }
-    .kanban-columns {
-      display: flex;
-      gap: 1rem;
-      min-height: 400px;
-    }
-    .kanban-column {
-      flex: 1;
-      min-width: 280px;
-      max-width: 360px;
-      background: var(--ds-bg-elevated, #f1f3ff);
-      border-radius: var(--ds-radius-lg, 8px);
-      border-top: 3px solid;
-      display: flex;
-      flex-direction: column;
-    }
-    .kanban-column-header {
-      display: flex;
-      align-items: center;
-      padding: 0.75rem;
-      border-radius: var(--ds-radius-lg, 8px) var(--ds-radius-lg, 8px) 0 0;
-    }
-    .kanban-stage-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .kanban-stage-title {
-      font-size: var(--ds-font-size-table, 0.875rem);
-      color: var(--ds-text-primary);
-    }
-    .kanban-card-count {
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      color: var(--ds-text-muted);
-      background: var(--ds-bg-surface);
-      padding: 0.1rem 0.4rem;
-      border-radius: var(--ds-radius-full, 9999px);
-      min-width: 1.2rem;
-      text-align: center;
-    }
-    .kanban-cards {
-      padding: 0.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      min-height: 100px;
-      transition: background 0.15s;
-    }
-    .kanban-drop-target {
-      background: var(--ds-bg-sunken, #e8edff);
-      border-radius: var(--ds-radius-sm, 4px);
-    }
-    .kanban-card {
-      background: var(--ds-bg-surface, #ffffff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-md, 6px);
-      padding: 0.75rem;
-      cursor: pointer;
-      transition: box-shadow 0.15s, transform 0.15s;
-    }
-    .kanban-card:hover {
-      box-shadow: var(--ds-shadow-sm);
-      transform: translateY(-1px);
-    }
-    .kanban-card-dragging {
-      opacity: 0.5;
-      transform: rotate(3deg);
-    }
-    .kanban-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-    .kanban-card-title {
-      font-size: var(--ds-font-size-table, 0.875rem);
-      color: var(--ds-text-primary);
-      line-height: 1.3;
-    }
-    .kanban-priority {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .kanban-card-desc {
-      font-size: var(--ds-font-size-help, 0.8125rem);
-      color: var(--ds-text-secondary);
-      margin: 0.25rem 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .kanban-tag {
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      padding: 0.1rem 0.4rem;
-      background: var(--ds-primary-50, #edf1ff);
-      color: var(--ds-primary);
-      border-radius: var(--ds-radius-xs, 2px);
-    }
-    .kanban-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.5rem;
-    }
-    .kanban-value {
-      font-size: var(--ds-font-size-table, 0.875rem);
-      font-weight: 600;
-      color: var(--ds-text-primary);
-    }
-    .kanban-assignee {
-      flex-shrink: 0;
-    }
-    .kanban-avatar {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .kanban-avatar-text {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--ds-primary);
-      color: var(--ds-text-inverse);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      font-weight: 600;
-    }
-    .kanban-duedate {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      color: var(--ds-text-muted);
-      margin-top: 0.25rem;
-    }
-    .kanban-overdue {
-      color: var(--ds-danger);
-    }
-    .kanban-empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 1rem;
-    }
-  `],
+  styles: [
+    `
+      .kanban-root {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+      }
+      .kanban-columns {
+        display: flex;
+        gap: 1rem;
+        min-height: 400px;
+      }
+      .kanban-column {
+        flex: 1;
+        min-width: 280px;
+        max-width: 360px;
+        background: var(--ds-bg-elevated, #f1f3ff);
+        border-radius: var(--ds-radius-lg, 8px);
+        border-top: 3px solid;
+        display: flex;
+        flex-direction: column;
+      }
+      .kanban-column-header {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        border-radius: var(--ds-radius-lg, 8px) var(--ds-radius-lg, 8px) 0 0;
+      }
+      .kanban-stage-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .kanban-stage-title {
+        font-size: var(--ds-font-size-table, 0.875rem);
+        color: var(--ds-text-primary);
+      }
+      .kanban-card-count {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+        background: var(--ds-bg-surface);
+        padding: 0.1rem 0.4rem;
+        border-radius: var(--ds-radius-full, 9999px);
+        min-width: 1.2rem;
+        text-align: center;
+      }
+      .kanban-cards {
+        padding: 0.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-height: 100px;
+        transition: background 0.15s;
+      }
+      .kanban-drop-target {
+        background: var(--ds-bg-sunken, #e8edff);
+        border-radius: var(--ds-radius-sm, 4px);
+      }
+      .kanban-card {
+        background: var(--ds-bg-surface, #ffffff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-md, 6px);
+        padding: 0.75rem;
+        cursor: pointer;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s;
+      }
+      .kanban-card:hover {
+        box-shadow: var(--ds-shadow-sm);
+        transform: translateY(-1px);
+      }
+      .kanban-card-dragging {
+        opacity: 0.5;
+        transform: rotate(3deg);
+      }
+      .kanban-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .kanban-card-title {
+        font-size: var(--ds-font-size-table, 0.875rem);
+        color: var(--ds-text-primary);
+        line-height: 1.3;
+      }
+      .kanban-priority {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .kanban-card-desc {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-secondary);
+        margin: 0.25rem 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .kanban-tag {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        padding: 0.1rem 0.4rem;
+        background: var(--ds-primary-50, #edf1ff);
+        color: var(--ds-primary);
+        border-radius: var(--ds-radius-xs, 2px);
+      }
+      .kanban-card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5rem;
+      }
+      .kanban-value {
+        font-size: var(--ds-font-size-table, 0.875rem);
+        font-weight: 600;
+        color: var(--ds-text-primary);
+      }
+      .kanban-assignee {
+        flex-shrink: 0;
+      }
+      .kanban-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .kanban-avatar-text {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--ds-primary);
+        color: var(--ds-text-inverse);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-weight: 600;
+      }
+      .kanban-duedate {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+        margin-top: 0.25rem;
+      }
+      .kanban-overdue {
+        color: var(--ds-danger);
+      }
+      .kanban-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 1rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -320,7 +347,10 @@ export class KanbanBoard {
   onDragStart(event: DragEvent, card: KanbanCard, stageId: string): void {
     this.dragCard.set(card.id);
     this.dragSource.set(stageId);
-    event.dataTransfer?.setData("text/plain", JSON.stringify({ cardId: card.id, fromStage: stageId }));
+    event.dataTransfer?.setData(
+      "text/plain",
+      JSON.stringify({ cardId: card.id, fromStage: stageId }),
+    );
     if (event.dataTransfer) {
       event.dataTransfer.effectAllowed = "move";
     }
@@ -345,7 +375,11 @@ export class KanbanBoard {
     const cardId = this.dragCard();
 
     if (sourceStage && cardId && sourceStage !== targetStage) {
-      this.cardMoved.emit({ cardId, fromStage: sourceStage, toStage: targetStage });
+      this.cardMoved.emit({
+        cardId,
+        fromStage: sourceStage,
+        toStage: targetStage,
+      });
     }
 
     this.dragCard.set(null);

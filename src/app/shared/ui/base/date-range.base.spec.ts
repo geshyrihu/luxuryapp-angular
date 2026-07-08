@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { DateRangeBase } from "./date-range.base";
 
-@Component({ selector: "test-date-range", standalone: true, template: "" })
+@Component({ selector: "test-date-range", template: "" })
 class Host extends DateRangeBase {}
 
 describe("DateRangeBase", () => {

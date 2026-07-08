@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { TerminalBase } from "./terminal.base";
 
-@Component({ selector: "test-terminal", standalone: true, template: "" })
+@Component({ selector: "test-terminal", template: "" })
 class Host extends TerminalBase {}
 
 describe("TerminalBase", () => {

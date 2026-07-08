@@ -1,17 +1,33 @@
-import { Component, computed, input, output, contentChild, signal, TemplateRef, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DataViewModule } from "primeng/dataview";
-import { InputTextModule } from "primeng/inputtext";
-import { ButtonModule } from "primeng/button";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  contentChild,
+  input,
+  output,
+  signal,
+  TemplateRef,
+} from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
+import { ButtonModule } from "primeng/button";
+import { DataViewModule } from "primeng/dataview";
+import { InputTextModule } from "primeng/inputtext";
 
 export type DataViewLayout = "list" | "grid";
 
 @Component({
   selector: "app-data-view",
-  standalone: true,
-  imports: [CommonModule, DataViewModule, InputTextModule, ButtonModule, AppIcon, EmptyState],
+
+  imports: [
+    CommonModule,
+    DataViewModule,
+    InputTextModule,
+    ButtonModule,
+    AppIcon,
+    EmptyState,
+  ],
   template: `
     <div class="flex align-items-center gap-2 mb-3 flex-wrap">
       @if (globalFilterFields().length) {
@@ -63,7 +79,10 @@ export type DataViewLayout = "list" | "grid";
           <div class="grid grid-nogutter">
             @for (item of items; track trackByFn($index, item)) {
               <ng-container
-                *ngTemplateOutlet="itemTemplate() || defaultItem; context: { $implicit: item, item, layout: 'list' }"
+                *ngTemplateOutlet="
+                  itemTemplate() || defaultItem;
+                  context: { $implicit: item, item, layout: 'list' }
+                "
               />
             }
           </div>
@@ -72,7 +91,10 @@ export type DataViewLayout = "list" | "grid";
           <div class="grid">
             @for (item of items; track trackByFn($index, item)) {
               <ng-container
-                *ngTemplateOutlet="itemTemplate() || defaultItem; context: { $implicit: item, item, layout: 'grid' }"
+                *ngTemplateOutlet="
+                  itemTemplate() || defaultItem;
+                  context: { $implicit: item, item, layout: 'grid' }
+                "
               />
             }
           </div>
@@ -82,7 +104,9 @@ export type DataViewLayout = "list" | "grid";
       <app-empty-state
         icon="pi pi-search"
         title="Sin resultados"
-        [message]="'No se encontraron resultados para &quot;' + $filterValue() + '&quot;'"
+        [message]="
+          'No se encontraron resultados para &quot;' + $filterValue() + '&quot;'
+        "
       />
     } @else {
       <app-empty-state
@@ -98,9 +122,13 @@ export type DataViewLayout = "list" | "grid";
       </div>
     </ng-template>
   `,
-  styles: [`
-    :host { display: block; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class DataView {
@@ -133,8 +161,12 @@ export class DataView {
     const fields = this.globalFilterFields();
     const val = this.$filterValue().trim().toLowerCase();
     if (!val || !fields.length) return data;
-    return data.filter(item =>
-      fields.some(f => String(item[f] ?? "").toLowerCase().includes(val))
+    return data.filter((item) =>
+      fields.some((f) =>
+        String(item[f] ?? "")
+          .toLowerCase()
+          .includes(val),
+      ),
     );
   });
 

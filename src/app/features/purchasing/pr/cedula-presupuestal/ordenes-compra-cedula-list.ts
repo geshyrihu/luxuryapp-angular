@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { IonBadge } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -18,7 +17,7 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LxTag } from "@ui/adaptive/tag/tag";`nimport { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-ordenes-compra-cedula-list",
@@ -30,7 +29,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    IonBadge, MobileListItem, AppIcon],
+    LxTag, MobileListItem, AppIcon],
 })
 export class OrdenesCompraCedulaListComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -90,3 +89,4 @@ export class OrdenesCompraCedulaListComponent implements OnInit {
     );
   }
 }
+

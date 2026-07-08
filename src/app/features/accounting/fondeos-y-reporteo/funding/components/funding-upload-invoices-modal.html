@@ -1,13 +1,11 @@
 <div class="p-4" style="min-height: 400px">
   @switch (status()) { @case ('initial') {
-  <p-fileupload
-    name="files[]"
+  <app-file-upload name="files[]"
     (onSelect)="onFileSelect($event)"
     [multiple]="true"
     accept=".xml,.pdf"
     [maxFileSize]="10000000"
-    chooseLabel="Seleccionar Facturas (XML y PDF)"
-  >
+    chooseLabel="Seleccionar Facturas (XML y PDF)">
     <ng-template #content>
       <div class="text-center p-5 border-2 border-dashed border-round-md">
         <app-icon [icon]="'mdi:cloud-upload'" class="text-4xl text-primary" />
@@ -16,7 +14,7 @@
         </p>
       </div>
     </ng-template>
-  </p-fileupload>
+  </app-file-upload>
   } @case ('analyzing') {
   <div
     class="flex flex-column justify-content-center align-items-center"
@@ -66,37 +64,16 @@
         </td>
         <td>
           @switch(item.status) { @case(0) {
-          <p-tag severity="success" value="Listo"></p-tag> } @case(1) {
-          <p-tag
-            severity="danger"
-            value="Sin Proveedor"
-            [pTooltip]="item.statusMessage"
-          ></p-tag>
+          <lx-tag severity="success" value="Listo" /> } @case(1) {
+          <lx-tag severity="danger" value="Sin Proveedor" [tooltip]="item.statusMessage" />
           } @case(2) {
-          <p-tag
-            severity="danger"
-            value="XML Invólido"
-            [pTooltip]="item.statusMessage"
-          ></p-tag>
+          <lx-tag severity="danger" value="XML Invólido" [tooltip]="item.statusMessage" />
           } @case(3) {
-          <p-tag
-            severity="warning"
-            value="Sin XML"
-            [pTooltip]="item.statusMessage"
-          ></p-tag>
+          <lx-tag severity="warning" value="Sin XML" [tooltip]="item.statusMessage" />
           } @case(4) {
-          <p-tag
-            severity="warning"
-            value="Ya Existe"
-            [pTooltip]="item.statusMessage"
-          ></p-tag>
+          <lx-tag severity="warning" value="Ya Existe" [tooltip]="item.statusMessage" />
           } @case(5) {
-          <p-tag
-            severity="warning"
-            value="Advertencia"
-            [pTooltip]="item.statusMessage"
-            icon="mdi:alert"
-          ></p-tag>
+          <lx-tag severity="warning" value="Advertencia" [tooltip]="item.statusMessage" icon="mdi:alert" />
           } }
         </td>
         <td>

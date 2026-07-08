@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-confirm-dialog",
-  standalone: true,
+
   imports: [CommonModule, IonButton, AppIcon],
   template: `
     @if (visible()) {
@@ -62,7 +62,8 @@ import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
         gap: 0.75rem;
         padding: 1.5rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
         background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-radius-modal, 12px) var(--ds-radius-modal, 12px) 0 0;
+        border-radius: var(--ds-radius-modal, 12px) var(--ds-radius-modal, 12px)
+          0 0;
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
       }
       .ili-confirm-icon {

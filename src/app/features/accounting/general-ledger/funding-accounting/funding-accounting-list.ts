@@ -1,4 +1,4 @@
-﻿import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";

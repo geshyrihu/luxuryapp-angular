@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonChip, IonLabel } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ChipBase } from "@ui/base/chip.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /**
  * MobileChip — Chip táctil sobre `ion-chip`. Icono/imagen opcional al inicio,
@@ -10,7 +10,7 @@ import { ChipBase } from "@ui/base/chip.base";
  */
 @Component({
   selector: "ili-chip",
-  standalone: true,
+
   imports: [CommonModule, IonChip, IonLabel, AppIcon],
   template: `
     <ion-chip
@@ -28,39 +28,50 @@ import { ChipBase } from "@ui/base/chip.base";
       <ion-label>{{ label() }}</ion-label>
 
       @if (removable() && !disabled()) {
-        <button type="button" class="ili-chip-remove" aria-label="Quitar" (click)="onRemove(); $event.stopPropagation()">
+        <button
+          type="button"
+          class="ili-chip-remove"
+          aria-label="Quitar"
+          (click)="onRemove(); $event.stopPropagation()"
+        >
           <app-icon icon="mdi:close-circle" />
         </button>
       }
     </ion-chip>
   `,
-  styles: [`
-    ili-chip ion-chip.ili-chip-clickable { cursor: pointer; }
-    .ili-chip-img {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 0.35rem;
-    }
-    .ili-chip-icon {
-      display: inline-flex;
-      margin-right: 0.35rem;
-      font-size: 1.05rem;
-    }
-    .ili-chip-remove {
-      background: none;
-      border: none;
-      padding: 0;
-      margin-left: 0.35rem;
-      display: inline-flex;
-      align-items: center;
-      color: inherit;
-      opacity: 0.7;
-      cursor: pointer;
-    }
-    .ili-chip-remove:hover { opacity: 1; }
-  `],
+  styles: [
+    `
+      ili-chip ion-chip.ili-chip-clickable {
+        cursor: pointer;
+      }
+      .ili-chip-img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.35rem;
+      }
+      .ili-chip-icon {
+        display: inline-flex;
+        margin-right: 0.35rem;
+        font-size: 1.05rem;
+      }
+      .ili-chip-remove {
+        background: none;
+        border: none;
+        padding: 0;
+        margin-left: 0.35rem;
+        display: inline-flex;
+        align-items: center;
+        color: inherit;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .ili-chip-remove:hover {
+        opacity: 1;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileChip extends ChipBase {

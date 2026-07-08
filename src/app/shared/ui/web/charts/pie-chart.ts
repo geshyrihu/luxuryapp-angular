@@ -1,7 +1,12 @@
-import { Component, computed, input, ChangeDetectionStrategy } from "@angular/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
-import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { NgxChartsDatum, ngxToPieOption } from "./echarts-adapters";
 
 /**
  * PieChart — pastel / dona. Motor: ECharts (ngx-echarts).
@@ -9,10 +14,14 @@ import { ngxToPieOption, NgxChartsDatum } from "./echarts-adapters";
  */
 @Component({
   selector: "app-pie-chart",
-  standalone: true,
+
   imports: [NgxEchartsDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
-  template: `<div echarts [options]="option()" [style.height]="chartHeight()"></div>`,
+  template: `<div
+    echarts
+    [options]="option()"
+    [style.height]="chartHeight()"
+  ></div>`,
 })
 export class PieChart {
   dataGrafico = input<NgxChartsDatum[]>([
@@ -20,7 +29,9 @@ export class PieChart {
     { name: "USA", value: 5000000 },
   ]);
 
-  colorScheme = input<{ domain?: string[] }>({ domain: ["#5AA454", "#A10A28"] });
+  colorScheme = input<{ domain?: string[] }>({
+    domain: ["#5AA454", "#A10A28"],
+  });
 
   view = input<[number, number] | undefined>(undefined);
 

@@ -11,7 +11,7 @@
   >
     <ng-template #caption>
       <primeng-custom-caption
-        title="Artúculos del Reglamento"
+        title="Artículos del Reglamento"
         (add)="onModalForm()"
         [dt]="dt"
       />
@@ -19,8 +19,8 @@
 
     <ng-template #header>
       <tr>
-        <th class="w-8rem">Artúculo</th>
-        <th>Tútulo</th>
+        <th class="w-8rem">Artículo</th>
+        <th>Título</th>
         <th class="w-10rem text-right">Multa Default</th>
         <th class="w-8rem text-center">Estado</th>
         <th class="w-8rem text-center">Opciones</th>
@@ -34,14 +34,14 @@
         <td class="text-right">
           @if (item.defaultFineAmount) { {{ item.defaultFineAmount | currency:
           'MXN' : 'symbol' : '1.2-2' }} } @else {
-          <span class="text-400 text-xs">é</span>
+          <span class="text-400 text-xs">-</span>
           }
         </td>
         <td class="text-center">
           @if (item.isActive) {
-          <p-tag value="Activo" severity="success" />
+          <lx-tag value="Activo" severity="success" />
           } @else {
-          <p-tag value="Inactivo" severity="secondary" />
+          <lx-tag value="Inactivo" severity="secondary" />
           }
         </td>
         <td class="text-center">
@@ -65,9 +65,9 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item [noPadding]="true">
       <div
-        slot="start"
+        start
         class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -75,20 +75,20 @@
           class="text-blue-600 text-xl"
         />
       </div>
-      <ion-label>
-        <h3>{{ item.articleNumber }} é {{ item.title }}</h3>
+      <div class="flex-1 min-w-0">
+        <h3>{{ item.articleNumber }} · {{ item.title }}</h3>
         <p>
           @if (item.defaultFineAmount) { Multa default: {{
           item.defaultFineAmount | currency: 'MXN' : 'symbol' : '1.2-2' }} }
           @else { Sin monto default }
         </p>
-      </ion-label>
-      <ili-action-menu slot="end">
+      </div>
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

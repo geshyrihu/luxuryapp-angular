@@ -9,7 +9,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
@@ -32,7 +31,6 @@ const PATTERNS_LABELS: Record<string, string> = {
     CommonModule,
     FormsModule,
     ButtonModule,
-    CardModule,
     DividerModule,
     InputTextModule,
     MessageModule,
@@ -48,7 +46,11 @@ const PATTERNS_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("complexcard") {
-          <p-card header="Complex Card Item">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Complex Card Item</h3>
+            </div>
+            <div class="card-body">
             <div
               class="surface-card shadow-1 border-round-lg border-left-3 border-primary p-3"
             >
@@ -62,10 +64,15 @@ const PATTERNS_LABELS: Record<string, string> = {
               </div>
               <app-status-badge [status]="EStatus.Concluido" />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("datatablehybrid") {
-          <p-card header="Data Table Hybrid">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Data Table Hybrid</h3>
+            </div>
+            <div class="card-body">
             <p-table [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
               <ng-template #header
                 ><tr>
@@ -79,10 +86,15 @@ const PATTERNS_LABELS: Record<string, string> = {
                   <td><app-status-badge [status]="EStatus.Proceso" /></td></tr
               ></ng-template>
             </p-table>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("loginreference") {
-          <p-card header="Login de Referencia">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Login de Referencia</h3>
+            </div>
+            <div class="card-body">
             <div
               class="surface-ground border-round p-4"
               style="max-width:400px"
@@ -103,10 +115,15 @@ const PATTERNS_LABELS: Record<string, string> = {
               />
               <p-button label="Iniciar Sesión" class="w-full" class="w-full" />
             </div>
-          </p-card>
+            </div>
+  </div>
         }
         @case ("navigationreference") {
-          <p-card header="Navegación de Referencia">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Navegación de Referencia</h3>
+            </div>
+            <div class="card-body">
             <p-tabs value="0">
               <p-tablist>
                 <p-tab value="0">Dashboard</p-tab>
@@ -117,7 +134,8 @@ const PATTERNS_LABELS: Record<string, string> = {
                 <p-tabpanel value="1"><p>Reportes.</p></p-tabpanel>
               </p-tabpanels>
             </p-tabs>
-          </p-card>
+            </div>
+  </div>
         }
 
         @case ("navhub") {
@@ -126,7 +144,11 @@ const PATTERNS_LABELS: Record<string, string> = {
           <!-- Aplica a: settings-home, master-dashboard, cobranza-nativa  -->
           <!-- ------------------------------------------------------------ -->
 
-          <p-card header="Navigation Hub Page é Esténdar DS">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Navigation Hub Page é Esténdar DS</h3>
+            </div>
+            <div class="card-body">
             <p class="text-sm text-secondary m-0 mb-4">
               Patrón para páginas de entrada a módulos del ERP. Consolida grupos
               de navegación en cards visuales uniformes para web y lista
@@ -194,7 +216,11 @@ const PATTERNS_LABELS: Record<string, string> = {
             <h3 class="text-base font-bold mb-2">3. Reglas del esténdar</h3>
             <div class="grid text-sm">
               <div class="col-12 md:col-6">
-                <p-card class="border-round-lg p-2" header="? Web (= md)">
+                <div class="card border-round-lg p-2">
+            <div class="card-header">
+              <h3 class="card-title">? Web (= md)</h3>
+            </div>
+            <div class="card-body">
                   <ul class="m-0 pl-3 text-xs line-height-3">
                     <li>
                       <code>border-top: 3px solid card.color</code> (acento del
@@ -219,10 +245,15 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </li>
                     <li>Header de grupo: barra vertical + uppercase + lónea</li>
                   </ul>
-                </p-card>
+                  </div>
+  </div>
               </div>
               <div class="col-12 md:col-6">
-                <p-card class="border-round-lg p-2" header="?? Mobile (< md)">
+                <div class="card border-round-lg p-2">
+            <div class="card-header">
+              <h3 class="card-title">?? Mobile (< md)</h3>
+            </div>
+            <div class="card-body">
                   <ul class="m-0 pl-3 text-xs line-height-3">
                     <li>
                       <code>ion-list</code> con
@@ -243,7 +274,8 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </li>
                     <li>Grupos agrupados con <code>ion-item-divider</code></li>
                   </ul>
-                </p-card>
+                  </div>
+  </div>
               </div>
             </div>
 
@@ -262,7 +294,8 @@ const PATTERNS_LABELS: Record<string, string> = {
                 </div>
               }
             </div>
-          </p-card>
+            </div>
+  </div>
         }
       }
     </section>

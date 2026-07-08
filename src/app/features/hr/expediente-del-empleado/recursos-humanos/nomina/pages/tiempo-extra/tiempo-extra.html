@@ -93,9 +93,9 @@
   (add)="openAdd()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -108,7 +108,7 @@
           style="font-size: 1.1rem; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      
         <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
         <p class="text-xs m-0">
           {{ item.fecha | date: "dd/MM/yyyy" : "UTC" }} | {{ item.horasSimples +
@@ -124,11 +124,11 @@
             [value]="item.aprobado ? 'Aprobado' : 'Pendiente'"
           />
         </div>
-      </ion-label>
-      <div slot="end" class="flex gap-1">
+      
+      <div end class="flex gap-1">
         <il-button-edit (clicked)="openEdit(item)" />
         <il-button-delete (confirmed)="onDelete(item)" />
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

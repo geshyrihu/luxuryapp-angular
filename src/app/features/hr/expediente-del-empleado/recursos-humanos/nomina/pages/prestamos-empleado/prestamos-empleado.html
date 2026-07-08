@@ -96,9 +96,9 @@
   (add)="openAdd()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -111,7 +111,7 @@
           style="font-size: 1.1rem; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      
         <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
         <p class="text-xs m-0">{{ item.motivo }}</p>
         <div class="flex align-items-center gap-2 mt-1">
@@ -136,8 +136,8 @@
             ></div>
           </div>
         </div>
-      </ion-label>
-      <div slot="end">
+      
+      <div end>
         <iw-button
           iconClass="mdi:eye-outline"
           severity="info"
@@ -145,6 +145,6 @@
           (clicked)="openDetalle(item)"
         />
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

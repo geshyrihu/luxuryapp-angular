@@ -8,50 +8,50 @@
 
   <!-- Bar (custom-bar-chart, tipo bar) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Bar Chart — app-custom-bar-chart">
+    <div class="card" header="Bar Chart — app-custom-bar-chart">
       <app-custom-bar-chart [data]="barChartData()" chartType="bar" />
-    </p-card>
+    </div>
   </div>
 
   <!-- Line (chart-wrapper, tipo line) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Line Chart — app-chart-wrapper">
+    <div class="card" header="Line Chart — app-chart-wrapper">
       <app-chart-wrapper type="line" [data]="lineChartData()" height="300px" />
-    </p-card>
+    </div>
   </div>
 
   <!-- Pie (pie-chart, formato ngx-charts) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Pie Chart — app-pie-chart">
+    <div class="card" header="Pie Chart — app-pie-chart">
       <app-pie-chart [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
-    </p-card>
+    </div>
   </div>
 
   <!-- Doughnut (chart-wrapper, tipo doughnut) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Doughnut — app-chart-wrapper">
+    <div class="card" header="Doughnut — app-chart-wrapper">
       <app-chart-wrapper type="doughnut" [data]="doughnutChartData()" height="300px" />
-    </p-card>
+    </div>
   </div>
 
   <!-- Radar (primeng-radar-chart) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Radar Chart — app-primeng-radar-chart">
+    <div class="card" header="Radar Chart — app-primeng-radar-chart">
       <app-primeng-radar-chart [chartData]="radarChartData()" />
-    </p-card>
+    </div>
   </div>
 
   <!-- Multi-axis (multi-axis-chart, doble eje Y) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Multi-Axis — app-multi-axis-chart">
+    <div class="card" header="Multi-Axis — app-multi-axis-chart">
       <app-multi-axis-chart [data]="multiAxisData()" />
-    </p-card>
+    </div>
   </div>
 
   <!-- Advanced Pie (advanced-pie-chart) -->
   <div class="col-12 lg:col-6">
-    <p-card header="Advanced Pie — app-advanced-pie-chart">
+    <div class="card" header="Advanced Pie — app-advanced-pie-chart">
       <app-advanced-pie-chart [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
-    </p-card>
+    </div>
   </div>
 </div>

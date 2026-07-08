@@ -3,7 +3,14 @@ import {
   DragDropModule,
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
@@ -15,12 +22,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { FieldsetModule } from "primeng/fieldset";
-import { InputGroupModule } from "primeng/inputgroup";
-import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { MessageModule } from "primeng/message";
-import { TooltipModule } from "primeng/tooltip";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -28,8 +30,12 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { InputGroupModule } from "primeng/inputgroup";
+import { InputGroupAddonModule } from "primeng/inputgroupaddon";
+import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ROUTES } from "src/app/routing/route-paths";
 
 interface IQuestionForm {
   id: FormControl<string | null>;
@@ -51,9 +57,8 @@ interface ICategoryForm {
   imports: [
     InputGroupModule,
     InputGroupAddonModule,
-    MessageModule,
     TooltipModule,
-    FieldsetModule,
+    LxFieldset,
     WebButtonLabel,
     WebButtonLabelDelete,
     WebButtonLabelSave,
@@ -212,7 +217,9 @@ export class FormularioPlantillaEvaluacion implements OnInit {
           if (result) {
             console.log("Template creado exitosamente");
             this.submitting.set(false);
-            this.route.navigate(ROUTES.EVALUACION_EMPLEADOS.PLANTILLA_EDITAR(result.id));
+            this.route.navigate(
+              ROUTES.EVALUACION_EMPLEADOS.PLANTILLA_EDITAR(result.id),
+            );
           } else {
             this.submitting.set(false);
           }

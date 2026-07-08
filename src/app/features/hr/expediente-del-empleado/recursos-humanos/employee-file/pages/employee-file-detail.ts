@@ -3,13 +3,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  model,
   OnInit,
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { TabItem } from "@ui/base/tabs.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "primeng/table";
-import { TabsModule } from "primeng/tabs";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -35,12 +37,12 @@ import { TooltipModule } from "primeng/tooltip";
   templateUrl: "./employee-file-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    LxTabs,
     WebButtonIconItem,
     TooltipModule,
     DatePipe,
     CurrencyPipe,
     TableModule,
-    TabsModule,
     AppIcon,
   ],
 })
@@ -50,6 +52,20 @@ export class EmployeeFileDetail implements OnInit {
   router = inject(Router);
 
   employeeId = signal<string>("");
+
+  tabs: TabItem[] = [
+    { id: "0", label: "Personales", icon: "mdi:account" },
+    { id: "1", label: "Emergencia", icon: "mdi:phone" },
+    { id: "2", label: "Clínicos", icon: "mdi:heart-outline" },
+    { id: "3", label: "Bancarios", icon: "mdi:wallet" },
+    { id: "4", label: "Contratos", icon: "mdi:file-document-outline" },
+    { id: "5", label: "Puesto", icon: "mdi:briefcase" },
+    { id: "6", label: "Vacaciones", icon: "mdi:calendar-plus" },
+    { id: "7", label: "Incidencias", icon: "mdi:alert" },
+    { id: "8", label: "Evaluaciones", icon: "mdi:chart-line" },
+    { id: "9", label: "Solicitudes", icon: "mdi:send" },
+  ];
+  activeTab = model<string>("0");
 
   // Cabecera
   header = signal<EmployeeFileHeaderDTO | null>(null);
@@ -73,7 +89,7 @@ export class EmployeeFileDetail implements OnInit {
     const id = this.route.snapshot.paramMap.get("employeeId") ?? "";
     this.employeeId.set(id);
     this.loadHeader();
-    this.onTabChange(0); // Carga Tab 1 al iniciar
+    this.onTabChange("0"); // Carga Tab 1 al iniciar
   }
 
   private loadHeader(): void {
@@ -86,7 +102,8 @@ export class EmployeeFileDetail implements OnInit {
       });
   }
 
-  onTabChange(index: number): void {
+  onTabChange(tabId: string): void {
+    const index = parseInt(tabId, 10);
     if (this.loadedTabs.has(index)) return;
     this.loadedTabs.add(index);
     const id = this.employeeId();

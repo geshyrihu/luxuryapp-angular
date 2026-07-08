@@ -1,31 +1,25 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   input,
   model,
   output,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { DatePickerModule } from "primeng/datepicker";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface DataGridColumn {
   field: string;
   header: string;
   type?:
-    | "text"
-    | "number"
-    | "select"
-    | "date"
-    | "boolean"
-    | "currency"
-    | "icon";
+    "text" | "number" | "select" | "date" | "boolean" | "currency" | "icon";
   editable?: boolean;
   sortable?: boolean;
   filterable?: boolean;
@@ -38,7 +32,7 @@ export interface DataGridColumn {
 
 @Component({
   selector: "app-data-grid",
-  standalone: true,
+
   imports: [
     CommonModule,
     TableModule,
@@ -153,11 +147,7 @@ export interface DataGridColumn {
           </tr>
         </ng-template>
 
-        <ng-template #body
-          let-row
-          let-columns="columns"
-          let-index="rowIndex"
-        >
+        <ng-template #body let-row let-columns="columns" let-index="rowIndex">
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
@@ -291,7 +281,6 @@ export class DataGrid {
   emptyMessage = input<string>("Sin registros disponibles");
 
   globalFilterValue: string = "";
-
 
   onLazyLoad = output<any>();
   onPage = output<any>();

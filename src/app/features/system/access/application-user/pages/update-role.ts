@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { FieldsetModule } from "primeng/fieldset";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 ;
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -34,7 +33,7 @@ const roleTypeNames: { [key in ERoleType]: string } = {
   selector: "app-update-role",
   templateUrl: "./update-role.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FieldsetModule, AppIcon],
+  imports: [CommonModule, AppIcon],
 })
 export class UpdateRole implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -1,11 +1,17 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
 import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
 
 @Component({
   selector: "web-input-autocomplete",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputAutoComplete],
   template: `
     <custom-input-autocomplete-signal

@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -34,8 +34,7 @@ import { CatalogoDescripcionForm } from "src/app/features/system/entrega-recepci
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableFooter,
-    IonItem,
-    IonLabel,
+    MobileListItem,
   ],
 })
 export class CatalogoDescripcionList implements OnInit {

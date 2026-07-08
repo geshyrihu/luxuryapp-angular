@@ -1,12 +1,18 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ToastController } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { alertCircle, checkmarkCircle, close, informationCircle, warning } from "ionicons/icons";
+import {
+  alertCircle,
+  checkmarkCircle,
+  close,
+  informationCircle,
+  warning,
+} from "ionicons/icons";
 import { ToastBase } from "../../base/toast.base";
 
 @Component({
   selector: "ili-toast",
-  standalone: true,
+
   template: ``,
   changeDetection: ChangeDetectionStrategy.Eager,
 })
@@ -15,7 +21,13 @@ export class MobileToast extends ToastBase {
 
   constructor() {
     super();
-    addIcons({ checkmarkCircle, alertCircle, warning, informationCircle, close });
+    addIcons({
+      checkmarkCircle,
+      alertCircle,
+      warning,
+      informationCircle,
+      close,
+    });
   }
 
   async show(): Promise<void> {
@@ -27,9 +39,7 @@ export class MobileToast extends ToastBase {
       color: this.ionColor(),
       position: "top",
       icon: this.ionIcon(),
-      buttons: [
-        { side: "end", icon: "close", role: "cancel" },
-      ],
+      buttons: [{ side: "end", icon: "close", role: "cancel" }],
       cssClass: "custom-mobile-toast",
     });
     await ionToast.present();

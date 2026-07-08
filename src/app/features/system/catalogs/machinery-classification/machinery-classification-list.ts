@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -36,8 +36,8 @@ import { MachineryClassificationForm } from "./machinery-classification-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     MobileActionMenu,
-    IonItem,
-    IonLabel,
+    
+    
   ],
 })
 export class MachineryClassificationList implements OnInit {
@@ -90,3 +90,4 @@ export class MachineryClassificationList implements OnInit {
       });
   }
 }
+

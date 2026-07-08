@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { ContextMenuBase } from "@ui/base/context-menu.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-context-menu",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div
@@ -18,7 +18,11 @@ import { ContextMenuBase } from "@ui/base/context-menu.base";
     </div>
     @if (isOpen()) {
       <div class="ili-ctx-backdrop" (click)="close()"></div>
-      <div class="ili-ctx-popover" [style.top.px]="posY()" [style.left.px]="posX()">
+      <div
+        class="ili-ctx-popover"
+        [style.top.px]="posY()"
+        [style.left.px]="posX()"
+      >
         @for (item of items(); track $index) {
           @if (item.separator) {
             <hr class="ili-ctx-separator" />
@@ -39,56 +43,58 @@ import { ContextMenuBase } from "@ui/base/context-menu.base";
       </div>
     }
   `,
-  styles: [`
-    .ili-ctx-host {
-      display: contents;
-    }
-    .ili-ctx-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 990;
-      background: transparent;
-    }
-    .ili-ctx-popover {
-      position: fixed;
-      z-index: 991;
-      min-width: 180px;
-      background: var(--ds-bg-surface, #ffffff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-md, 8px);
-      box-shadow: var(--ds-shadow-lg);
-      padding: 0.375rem 0;
-    }
-    .ili-ctx-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.5rem 0.875rem;
-      background: none;
-      border: none;
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      color: var(--ds-text-primary);
-      cursor: pointer;
-      text-align: left;
-    }
-    .ili-ctx-item:active {
-      background: var(--ds-bg-elevated, #f1f3ff);
-    }
-    .ili-ctx-item-disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-    .ili-ctx-item-icon {
-      font-size: 1.125rem;
-      color: var(--ds-text-secondary);
-    }
-    .ili-ctx-separator {
-      margin: 0.25rem 0;
-      border: none;
-      border-top: 1px solid var(--ds-border, #e2e8f0);
-    }
-  `],
+  styles: [
+    `
+      .ili-ctx-host {
+        display: contents;
+      }
+      .ili-ctx-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 990;
+        background: transparent;
+      }
+      .ili-ctx-popover {
+        position: fixed;
+        z-index: 991;
+        min-width: 180px;
+        background: var(--ds-bg-surface, #ffffff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-md, 8px);
+        box-shadow: var(--ds-shadow-lg);
+        padding: 0.375rem 0;
+      }
+      .ili-ctx-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.5rem 0.875rem;
+        background: none;
+        border: none;
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        color: var(--ds-text-primary);
+        cursor: pointer;
+        text-align: left;
+      }
+      .ili-ctx-item:active {
+        background: var(--ds-bg-elevated, #f1f3ff);
+      }
+      .ili-ctx-item-disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .ili-ctx-item-icon {
+        font-size: 1.125rem;
+        color: var(--ds-text-secondary);
+      }
+      .ili-ctx-separator {
+        margin: 0.25rem 0;
+        border: none;
+        border-top: 1px solid var(--ds-border, #e2e8f0);
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileContextMenu extends ContextMenuBase {

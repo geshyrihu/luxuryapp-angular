@@ -1,16 +1,26 @@
-import { Component, forwardRef, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
-import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker";
 import { IonInputDatepicker } from "../../mobile/ion-input-datepicker";
+import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker";
 
 @Component({
   selector: "custom-input-datepicker-signal",
-  standalone: true,
+
   imports: [WebInputDatepicker, IonInputDatepicker],
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputDatepicker), multi: true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputDatepicker),
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

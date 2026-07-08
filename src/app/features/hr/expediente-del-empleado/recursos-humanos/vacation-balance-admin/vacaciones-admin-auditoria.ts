@@ -1,9 +1,8 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DividerModule } from "primeng/divider";
-import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { TableModule } from "primeng/table";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -49,10 +48,9 @@ export interface VacationHistoryItemDTO {
     CommonModule,
     FormsModule,
     LxCard,
-    DividerModule,
-    ProgressSpinnerModule,
+    LxSpinner,
     CustomInputSelectSignal,
-    MessageModule,
+    LxMessage,
     TableModule,
     LxTag,
     DatePipe,

@@ -19,7 +19,6 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
@@ -31,8 +30,8 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
   template: `
     <div class="flex flex-col ">
       @if (comparisonData(); as data) {
-        <p-card>
-          <ng-template #content>
+        <div class="card">
+          <div class="card-body">
             <p class="text-600 flex items-center ">
               Cólculo basado en el porcentaje de indiviso de cada propiedad.
               <span
@@ -162,8 +161,8 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                 </tr>
               </ng-template>
             </p-table>
-          </ng-template>
-        </p-card>
+          </div>
+        </div>
       } @else if (!loading()) {
         <p-message severity="info">
           No hay datos de comparación disponibles.
@@ -175,7 +174,6 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
   imports: [
     CommonModule,
     TableModule,
-    CardModule,
     DividerModule,
     MessageModule,
   ],

@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -119,9 +119,9 @@
   </ng-container>
 
   <ng-template #listItemTemplate let-category>
-    <ion-item-group>
+    <div class="surface-card mb-3 border-round">
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -134,8 +134,8 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <ion-item-divider sticky>
-        <ion-label>
+      <div class="p-3 border-bottom-1 surface-border">
+        
           <div class="flex justify-content-between align-items-center w-full">
             <span class="font-bold text-lg">{{ category.name }}</span>
             <div class="flex">
@@ -147,18 +147,18 @@
               <ili-button-delete (confirmed)="onDeleteCategorie(category.id)" />
             </div>
           </div>
-        </ion-label>
-      </ion-item-divider>
+        
+      </div>
 
       @for (legalMatter of category.legalMatters; track legalMatter) {
-      <ion-item lines="full" class="ion-no-padding" detail="false">
-        <ion-label>
+      <ili-list-item>
+        
           <h3 class="font-bold text-wrap">{{ legalMatter.title }}</h3>
           <p class="text-small text-color-secondary">
             {{ legalMatter.isInternal ? "Interno" : "Externo" }}
           </p>
-        </ion-label>
-        <div slot="end">
+        
+        <div end>
           <ili-action-menu>
             <ng-container actions>
               <ili-button-edit
@@ -174,9 +174,9 @@
             </ng-container>
           </ili-action-menu>
         </div>
-      </ion-item>
+      </ili-list-item>
       }
-    </ion-item-group>
+    </div>
   </ng-template>
 </app-data-view-mobile>
 }

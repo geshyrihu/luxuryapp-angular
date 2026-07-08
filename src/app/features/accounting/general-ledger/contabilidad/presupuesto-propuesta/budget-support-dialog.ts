@@ -13,12 +13,12 @@
  */
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
+
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { ListboxModule } from "primeng/listbox";
-import { MessageModule } from "primeng/message";
-import { TagModule } from "primeng/tag";
+
+
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -27,21 +27,19 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-budget-support-dialog",
-  imports: [
-    ReactiveFormsModule,
+  imports: [ReactiveFormsModule,
     InputTextModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputFile,
     WebButtonLabel,
-    TagModule,
-    CardModule,
-    MessageModule,
-    CardModule,
-    ListboxModule,
-  ],
+    ListboxModule, LxTag, LxCard, LxMessage, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-support-dialog.html",
 })

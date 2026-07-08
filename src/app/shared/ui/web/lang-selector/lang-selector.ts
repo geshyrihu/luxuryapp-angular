@@ -1,13 +1,14 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SelectModule } from "primeng/select";
 import { LangSelectorBase } from "@ui/base/lang-selector.base";
+import { SelectModule } from "primeng/select";
 
-export {
-  type Language,
-  DEFAULT_LANGUAGES,
-} from "@ui/base/lang-selector.base";
+export { DEFAULT_LANGUAGES, type Language } from "@ui/base/lang-selector.base";
 
 /**
  * AppLangSelector — Dropdown de selección de idioma/locale.
@@ -15,7 +16,7 @@ export {
  */
 @Component({
   selector: "app-lang-selector",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, SelectModule],
   template: `
     <div class="lang-selector-root">
@@ -49,28 +50,30 @@ export {
       </p-select>
     </div>
   `,
-  styles: [`
-    .lang-selector-root {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-    .lang-selector-label {
-      font-size: var(--ds-font-size-label, 0.875rem);
-      color: var(--ds-text-secondary);
-      font-weight: 500;
-    }
-    .lang-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: var(--ds-font-size-label, 0.875rem);
-    }
-    .lang-flag {
-      font-size: 1.125rem;
-      line-height: 1;
-    }
-  `],
+  styles: [
+    `
+      .lang-selector-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .lang-selector-label {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        color: var(--ds-text-secondary);
+        font-weight: 500;
+      }
+      .lang-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: var(--ds-font-size-label, 0.875rem);
+      }
+      .lang-flag {
+        font-size: 1.125rem;
+        line-height: 1;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

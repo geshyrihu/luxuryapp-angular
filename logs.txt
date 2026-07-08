@@ -1,79 +1,11 @@
-X [ERROR] TS2724: '"src/app/core/components/shared/empty-state/empty-state"' has no exported member named 'LxEmptyState'. Did you mean 'EmptyState'? [plugin angular-compiler]
+Application bundle generation failed. [49.045 seconds] - 2026-07-08T20:43:12.871Z
 
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos.ts:7:9:
-      7 │ import { LxEmptyState } from "src/app/core/components/shared/empty-...
-        ╵          ~~~~~~~~~~~~
+X [ERROR] NG8002: Can't bind to 'activeIndex' since it isn't a known property of 'p-accordion'.
+1. If 'p-accordion' is an Angular component and it has 'activeIndex' input, then verify that it is included in the '@Component.imports' of this component.
+2. If 'p-accordion' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@Component.schemas' of this component to suppress this message.
+3. To allow any property add 'NO_ERRORS_SCHEMA' to the '@Component.schemas' of this component. [plugin angular-compiler]
 
-  'EmptyState' is declared here.
+    src/app/shared/ui/web/accordion/accordion.ts:13:6:
+      13 │       [activeIndex]="activeIndexes()"
+         ╵       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    src/app/core/components/shared/empty-state/empty-state.ts:75:13:
-      75 │ export class EmptyState {
-         ╵              ~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos.ts:25:4:
-      25 │     LxEmptyState,
-         ╵     ~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos.ts:25:4:
-      25 │     LxEmptyState,
-         ╵     ~~~~~~~~~~~~
-
-
-X [ERROR] TS2724: '"src/app/core/components/shared/empty-state/empty-state"' has no exported member named 'LxEmptyState'. Did you mean 'EmptyState'? [plugin angular-compiler]
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos.ts:7:9:
-      7 │ import { LxEmptyState } from "src/app/core/components/shared/empty-...
-        ╵          ~~~~~~~~~~~~
-
-  'EmptyState' is declared here.
-
-    src/app/core/components/shared/empty-state/empty-state.ts:75:13:
-      75 │ export class EmptyState {
-         ╵              ~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos.ts:25:4:
-      25 │     LxEmptyState,
-         ╵     ~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos.ts:25:4:
-      25 │     LxEmptyState,
-         ╵     ~~~~~~~~~~~~
-
-
-X [ERROR] TS2724: '"src/app/core/components/shared/empty-state/empty-state"' has no exported member named 'LxEmptyState'. Did you mean 'EmptyState'? [plugin angular-compiler]
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes.ts:7:9:
-      7 │ import { LxEmptyState } from "src/app/core/components/shared/empty-...
-        ╵          ~~~~~~~~~~~~
-
-  'EmptyState' is declared here.
-
-    src/app/core/components/shared/empty-state/empty-state.ts:75:13:
-      75 │ export class EmptyState {
-         ╵              ~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes.ts:24:4:
-      24 │     LxEmptyState,
-         ╵     ~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes.ts:24:4:
-      24 │     LxEmptyState,
-         ╵     ~~~~~~~~~~~~

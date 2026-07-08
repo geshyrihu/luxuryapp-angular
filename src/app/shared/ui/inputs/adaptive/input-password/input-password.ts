@@ -1,4 +1,10 @@
-import { Component, forwardRef, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -7,7 +13,7 @@ import { WebInputPassword } from "../../web/input-password/input-password";
 
 @Component({
   selector: "custom-input-password-signal",
-  standalone: true,
+
   imports: [WebInputPassword, IonInputPassword],
   providers: [
     {

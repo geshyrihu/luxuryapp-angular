@@ -139,10 +139,7 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <p-tag
-            [value]="item.concepto"
-            [severity]="getConceptSeverity(item.concepto)"
-          />
+          <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
         </td>
         <td>
           <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
@@ -169,9 +166,6 @@
     </ng-template>
   </p-table>
   } @else {
-  <p-message
-    severity="info"
-    text="No fue posible obtener el detalle de la deuda para esta propiedad."
-  />
+  <lx-message severity="info" text="No fue posible obtener el detalle de la deuda para esta propiedad." />
   }
 </section>

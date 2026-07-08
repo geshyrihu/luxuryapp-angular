@@ -87,9 +87,7 @@
 <div>
   <p-table [value]="grupo.ordenes" class="custom-table card hidden md:block">
     <ng-template #caption>
-      <p-message severity="secondary"
-        >{{grupo.tipoGasto | uppercase}}</p-message
-      >
+      <lx-message severity="secondary">{{grupo.tipoGasto | uppercase}}</lx-message>
     </ng-template>
     <ng-template #header>
       <tr>
@@ -140,41 +138,17 @@
           </span>
           }  -->
           @if (orden.factura || orden.pdfFile) {
-          <p-tag
-            class="tag-sm cursor-pointer w-fluid text-xs"
-            [style]="{ width: '100%' }"
-            severity="danger"
-            [value]="orden.folioFiscal"
-            (click)="viewPDF(orden.pdfFile)"
-          />
+          <lx-tag class="tag-sm cursor-pointer w-text-xs" [style]="{ width: '100%' }" severity="danger" [value]="orden.folioFiscal" (click)="viewPDF(orden.pdfFile)" />
           }
         </td>
         <!-- Columna de Validación XML -->
         <td class="text-center">
           @if (orden.validationStatus === true) {
-          <p-tag
-            class="cursor-pointer text-xs"
-            pTooltip="{{ orden.validationMessage }}"
-            tooltipPosition="left"
-            icon="mdi:check-circle"
-            severity="success"
-          ></p-tag>
+          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="mdi:check-circle" severity="success" />
           } @else if (orden.validationStatus === false) {
-          <p-tag
-            class="cursor-pointer text-xs"
-            pTooltip="{{ orden.validationMessage }}"
-            tooltipPosition="left"
-            icon="mdi:close-circle"
-            severity="danger"
-          ></p-tag>
+          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="mdi:close-circle" severity="danger" />
           } @else {
-          <p-tag
-            class="cursor-pointer text-xs"
-            pTooltip="No hay XML para validar"
-            tooltipPosition="left"
-            icon="mdi:help-circle"
-            severity="secondary"
-          ></p-tag>
+          <lx-tag class="cursor-pointer text-xs" tooltip="No hay XML para validar" tooltipPosition="left" icon="mdi:help-circle" severity="secondary" />
           }
         </td>
         <td class="text-start">{{ orden.nameProvider | uppercase }}</td>

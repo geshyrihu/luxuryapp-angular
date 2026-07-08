@@ -1,7 +1,11 @@
-import { CommonModule } from "@angular/common";
-import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
@@ -363,7 +367,6 @@ const ILI_SEMANTIC: SemanticEntry[] = [
   imports: [
     CommonModule,
     FormsModule,
-    CardModule,
     TableModule,
     SelectButtonModule,
     ToggleSwitchModule,
@@ -413,7 +416,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
   template: `
     <section class="fadein">
       <!-- ── Controls ─────────────────────────────────────────────── -->
-      <p-card class="mb-5">
+      <div class="card mb-5">
         <div class="flex gap-5 flex-wrap align-items-center">
           <div>
             <label class="text-xs font-semibold text-color-secondary block mb-2"
@@ -456,7 +459,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label for="btn-load" class="font-semibold text-sm">Loading</label>
           </div>
         </div>
-      </p-card>
+      </div>
 
       <!-- ══════════════════════════════════════════════════════════════
        1. buttons-icon-label  (il-*)  —  Icon + Label  Web
@@ -471,7 +474,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           >
         </div>
 
-        <p-card class="mb-4" header="Paleta completa de colores">
+        <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
           <div class="flex flex-column gap-3">
             @for (variant of webVariants; track variant; let first = $first) {
               <div class="flex align-items-start gap-3">
@@ -497,7 +500,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               </div>
             }
           </div>
-        </p-card>
+        </div>
 
         <p-table [value]="ilSemantic" dataKey="id">
           <ng-template #caption>
@@ -506,15 +509,12 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               >(sin overrides de color/variante)</small
             >
           </ng-template>
-          <ng-template #header>
-            <tr>
+          <ng-template pTemplate="header"><tr>
               <th style="width:160px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th style="width:200px">severity / variant</th>
               <th>Ejemplo de uso</th>
-            </tr>
-          </ng-template>
-          <ng-template #body let-r>
+            </tr></ng-template><ng-template #body let-r>
             <tr>
               <td>
                 @switch (r.id) {
@@ -625,9 +625,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr>
-          </ng-template>
-        </p-table>
+            </tr></ng-template></p-table>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════════
@@ -641,7 +639,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           <small class="text-color-secondary">Solo icono · Web (PrimeNG)</small>
         </div>
 
-        <p-card class="mb-4" header="Paleta completa de colores">
+        <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
           <div class="flex flex-column gap-3">
             @for (variant of webVariants; track variant; let first = $first) {
               <div class="flex align-items-start gap-3">
@@ -667,12 +665,11 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               </div>
             }
           </div>
-        </p-card>
+        </div>
 
         <p-table [value]="iwSemantic" dataKey="id">
           <ng-template #caption>Semántica por defecto</ng-template>
-          <ng-template #header>
-            <tr>
+          <ng-template pTemplate="header"><tr>
               <th style="width:100px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th style="width:200px">severity / variant</th>
@@ -783,9 +780,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr>
-          </ng-template>
-        </p-table>
+            </tr></ng-template></p-table>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════════
@@ -799,7 +794,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           <small class="text-color-secondary">Solo icono · Ionic</small>
         </div>
 
-        <p-card class="mb-4" header="Paleta completa de colores">
+        <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
           <div class="flex flex-column gap-3">
             @for (fill of ionicFills; track fill; let first = $first) {
               <div class="flex align-items-start gap-3">
@@ -825,12 +820,11 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               </div>
             }
           </div>
-        </p-card>
+        </div>
 
         <p-table [value]="iiSemantic" dataKey="id">
           <ng-template #caption>Semántica por defecto</ng-template>
-          <ng-template #header>
-            <tr>
+          <ng-template pTemplate="header"><tr>
               <th style="width:100px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th>Ejemplo de uso</th>
@@ -930,9 +924,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr>
-          </ng-template>
-        </p-table>
+            </tr></ng-template></p-table>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════════
@@ -947,7 +939,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           <small class="text-color-secondary">Icon + Label · Ionic</small>
         </div>
 
-        <p-card class="mb-4" header="Paleta completa de colores">
+        <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
           <div class="flex flex-column gap-3">
             @for (fill of ionicFills; track fill; let first = $first) {
               <div class="flex align-items-start gap-3">
@@ -973,12 +965,11 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               </div>
             }
           </div>
-        </p-card>
+        </div>
 
         <p-table [value]="iliSemantic" dataKey="id">
           <ng-template #caption>Semántica por defecto</ng-template>
-          <ng-template #header>
-            <tr>
+          <ng-template pTemplate="header"><tr>
               <th style="width:160px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th>Ejemplo de uso</th>
@@ -1085,9 +1076,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr>
-          </ng-template>
-        </p-table>
+            </tr></ng-template></p-table>
       </div>
     </section>
   `,
@@ -1174,3 +1163,4 @@ export class ButtonCatalog {
   protected readonly iiSemantic = II_SEMANTIC;
   protected readonly iliSemantic = ILI_SEMANTIC;
 }
+

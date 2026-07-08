@@ -19,7 +19,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
@@ -40,11 +40,12 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-budget-rule-list",
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -53,10 +54,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     TableModule,
     ToastModule,
     PrimeNgCustomCaption,
-    DataViewMobile,
-    IonItem,
-    IonLabel,
-  ],
+    DataViewMobile, MobileListItem, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-list.html",
 })

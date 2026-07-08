@@ -1,17 +1,21 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ProfileCardBase } from "@ui/base/profile-card.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-profile-card",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   template: `
     <div class="ili-profile-card" [class.ili-profile-compact]="compact()">
       <div class="ili-profile-avatar" [style.background]="avatarBg()">
         @if (avatarUrl()) {
-          <img [src]="avatarUrl()" [alt]="name()" class="ili-profile-avatar-img" />
+          <img
+            [src]="avatarUrl()"
+            [alt]="name()"
+            class="ili-profile-avatar-img"
+          />
         } @else {
           <span class="ili-profile-initials">{{ initials() }}</span>
         }

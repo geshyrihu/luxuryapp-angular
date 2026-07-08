@@ -1,20 +1,27 @@
-import { Component, ViewEncapsulation, inject, DestroyRef } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ConfirmPopupModule } from "primeng/confirmpopup";
+import {
+  Component,
+  DestroyRef,
+  ViewEncapsulation,
+  inject,
+} from "@angular/core";
+import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
-import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
+import { ConfirmPopupModule } from "primeng/confirmpopup";
 
 @Component({
   selector: "app-confirm-popup",
-  standalone: true,
+
   imports: [CommonModule, ConfirmPopupModule, ButtonModule],
-  template: `
-    <p-confirmPopup [key]="key()" />
-  `,
-  styles: [`
-    :host { display: contents; }
-  `],
+  template: ` <p-confirmPopup [key]="key()" /> `,
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class ConfirmPopup extends ConfirmPopupBase {

@@ -14,14 +14,8 @@
     </div>
   </div>
 
-  <p-tabs [value]="activeTab()" (valueChange)="onActiveTabChange($event)">
-    <p-tablist>
-      <p-tab value="view">Visualizar</p-tab>
-      <p-tab value="edit" [disabled]="editTabDisabled()"> Editar </p-tab>
-    </p-tablist>
-
-    <p-tabpanels>
-      <p-tabpanel value="view">
+  <lx-tabs [tabs]="tabs()" [activeId]="activeTab()" (activeIdChange)="onActiveTabChange($event)">
+      <div tab="view">
         @if (loading()) {
         <div class="org-chart-state">
           <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl" />
@@ -33,9 +27,9 @@
         } @else {
         <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
         }
-      </p-tabpanel>
+      </div>
 
-      <p-tabpanel value="edit">
+      <div tab="edit">
         @if (editTabDisabled()) {
         <div class="org-chart-state org-chart-state--empty">
           <p>Solo SuperUsuario puede editar.</p>
@@ -212,9 +206,8 @@
           </table>
         </div>
         }
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+      </div>
+  </lx-tabs>
 </div>
 
 <ng-template #graphCanvas>
@@ -408,9 +401,9 @@
   <div class="org-detail">
     <div class="org-detail__header">
       @if (node.hasEmployee && node.employeePhoto) {
-      <p-avatar [image]="node.employeePhoto" shape="circle" size="large" />
+      <lx-avatar [image]="node.employeePhoto" shape="circle" size="large" />
       } @else {
-      <p-avatar
+      <lx-avatar
         icon="mdi:briefcase"
         shape="circle"
         size="large"

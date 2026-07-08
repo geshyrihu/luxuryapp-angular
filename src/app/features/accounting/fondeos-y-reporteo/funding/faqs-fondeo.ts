@@ -1,18 +1,17 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { MessageModule } from "primeng/message";
+
+
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { HighlightPipe } from "src/app/core/pipes/highlight.pipe";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-faqs-fondeo",
-  imports: [
-    FormsModule,
+  imports: [FormsModule,
     HighlightPipe,
-    CardModule,
-    MessageModule,
-    CustomSearchInput,
-  ],
+    CustomSearchInput, LxCard, LxMessage, AppIcon],
 
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./faqs-fondeo.html",
@@ -98,6 +97,6 @@ export class FaqsFondeo {
         El sistema permite subir el <strong>archivo PDF y XML</strong> de cada factura, almacenóndolo en el servidor.<br />
         Las facturas se pueden consultar directamente desde LuxuryApp.
       `,
-    },
+    }
   ];
 }

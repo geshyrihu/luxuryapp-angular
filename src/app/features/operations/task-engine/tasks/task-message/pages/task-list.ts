@@ -11,15 +11,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
-  IonAvatar,
-  IonBadge,
-  IonButton,
-  IonCol,
-  IonGrid,
-  IonItem,
-  IonLabel,
-  IonRow,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -153,18 +145,10 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     DataViewMobile,
     TooltipModule,
     PopoverModule,
-    IonItem,
-    IonLabel,
-    IonAvatar,
-    IonBadge,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,
     CommonModule,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonButton,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     InitialsAbbrPipe,
@@ -682,7 +666,7 @@ export class TaskList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
-    // PrimeNG mutates the value array before emitting ââ‚¬ââ‚¬Â array already has new order.
+    // PrimeNG mutates the value array before emitting — array already has new order.
     // items[dropIndex] is the item the user dragged.
     let items = [...this.dataSignal().items];
 
@@ -696,7 +680,7 @@ export class TaskList implements OnInit {
       return;
     }
 
-    // BFS: collect ALL transitive dependents ââ‚¬ââ‚¬Â
+    // BFS: collect ALL transitive dependents —
     //   ââ‚¬¢ parentTaskId === currentId  (true child tasks)
     //   ââ‚¬¢ dependsOnTaskId === currentId  (successor in predecessor chain)
     const dependentIds = new Set<string>();
@@ -731,7 +715,7 @@ export class TaskList implements OnInit {
     );
   }
 
-  // âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬ Chain step computation (visual Gantt-style ordering) âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬
+  // âââ‚¬Ââ‚¬ââ€€ Chain step computation (visual Gantt-style ordering) âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬ââ€€
 
   readonly chainStepMap = computed(() => {
     const items = this.dataSignal().items;
@@ -770,7 +754,7 @@ export class TaskList implements OnInit {
     );
   });
 
-  // âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬ Drag-to-link (asignación de predecesora por arrastre) âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬
+  // âââ‚¬Ââ‚¬ââ€€ Drag-to-link (asignación de predecesora por arrastre) âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬ââ€€
 
   readonly linkDragSourceId = signal<string | null>(null);
   readonly linkDragTargetId = signal<string | null>(null);

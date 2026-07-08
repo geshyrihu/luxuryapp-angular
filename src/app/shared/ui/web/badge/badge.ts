@@ -1,8 +1,12 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BadgeModule } from "primeng/badge";
-import type { BadgeSeverity, BadgeSize } from "primeng/badge";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { BadgeBase } from "@ui/base/badge.base";
+import { BadgeModule } from "primeng/badge";
+import { BadgeSeverity, BadgeSize } from "primeng/types/badge";
 
 /**
  * AppBadge — Wrapper sobre p-badge con color semántico y tamaño.
@@ -19,10 +23,18 @@ import { BadgeBase } from "@ui/base/badge.base";
       [class]="'app-badge-' + color()"
     />
   `,
-  styles: [`
-    app-badge .p-badge.app-badge-primary { background: var(--ds-primary, #2563eb); color: #fff; }
-    app-badge .p-badge.app-badge-neutral { background: var(--ds-bg-muted, #64748b); color: #fff; }
-  `],
+  styles: [
+    `
+      app-badge .p-badge.app-badge-primary {
+        background: var(--ds-primary, #2563eb);
+        color: #fff;
+      }
+      app-badge .p-badge.app-badge-neutral {
+        background: var(--ds-bg-muted, #64748b);
+        color: #fff;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

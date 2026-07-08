@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, input, computed } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+  input,
+} from "@angular/core";
 import { resolveIconifyIcon } from "src/app/core/utils/icon-mapping";
 
 @Component({
   selector: "app-icon",
-  standalone: true,
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `<iconify-icon [attr.icon]="resolvedIcon()"></iconify-icon>`,
   styles: [

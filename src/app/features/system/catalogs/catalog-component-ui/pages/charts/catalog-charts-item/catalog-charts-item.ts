@@ -1,7 +1,6 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { CardModule } from "primeng/card";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ChartBar } from "../catalog-charts/components/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/components/chart-pie/chart-pie";
@@ -16,13 +15,13 @@ const CHARTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-charts-item",
-  imports: [CommonModule, CardModule, ChartWrapper, ChartBar, ChartPie],
+  imports: [CommonModule, ChartWrapper, ChartBar, ChartPie],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
       </div>
-      <p-card>
+      <div class="card">
         @switch (item()) {
           @case ('bar') { <app-chart-bar [data]="barData" /> }
           @case ('pie') { <app-chart-pie [data]="pieData" /> }
@@ -30,7 +29,7 @@ const CHARTS_LABELS: Record<string, string> = {
           @case ('doughnut') { <app-chart-wrapper type="doughnut" [data]="doughnutData" [options]="circularOptions" height="300px" /> }
           @case ('radar') { <app-chart-wrapper type="radar" [data]="radarData" [options]="circularOptions" height="300px" /> }
         }
-      </p-card>
+      </div>
     </section>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -104,3 +103,4 @@ export class CatalogChartsItem {
     plugins: { legend: { labels: { color: this.textColor } } },
   };
 }
+

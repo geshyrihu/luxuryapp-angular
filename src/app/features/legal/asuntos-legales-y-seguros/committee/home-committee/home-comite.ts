@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { IonCard, IonCardContent, IonCol, IonGrid, IonLabel, IonRippleEffect, IonRow } from "@ionic/angular/standalone";
 import { LxImage } from "@ui/adaptive/image/image";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -9,11 +8,6 @@ import { AuthService } from "src/app/core/services/auth.service";
   selector: "app-home-comite",
   imports: [
     RouterModule,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonCard,
-    IonCardContent,    IonLabel,
     IonRippleEffect,
     LxImage,
   ],

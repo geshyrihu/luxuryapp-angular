@@ -1,4 +1,13 @@
-import { Component, forwardRef, inject, input, output, contentChild, TemplateRef, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  contentChild,
+  forwardRef,
+  inject,
+  input,
+  output,
+  TemplateRef,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { PlatformService } from "src/app/core/services/platform.service";
@@ -12,7 +21,7 @@ import { WebInputSelect } from "../../web/input-select/input-select";
  */
 @Component({
   selector: "custom-input-select-signal",
-  standalone: true,
+
   imports: [WebInputSelect, IonInputSelect],
   providers: [
     {

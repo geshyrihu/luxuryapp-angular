@@ -1,12 +1,16 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { KnobModule } from "primeng/knob";
 import { KnobBase } from "@ui/base/knob.base";
+import { KnobModule } from "primeng/knob";
 
 @Component({
   selector: "app-knob",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, KnobModule],
   template: `
     <p-knob
@@ -19,15 +23,17 @@ import { KnobBase } from "@ui/base/knob.base";
       [rangeColor]="rangeColor()"
     />
   `,
-  styles: [`
-    .p-knob {
-      outline: none;
-    }
-    .p-knob:focus-visible {
-      box-shadow: var(--ds-shadow-focus, 0 0 0 3px rgba(37, 99, 235, 0.3));
-      border-radius: 50%;
-    }
-  `],
+  styles: [
+    `
+      .p-knob {
+        outline: none;
+      }
+      .p-knob:focus-visible {
+        box-shadow: var(--ds-shadow-focus, 0 0 0 3px rgba(37, 99, 235, 0.3));
+        border-radius: 50%;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

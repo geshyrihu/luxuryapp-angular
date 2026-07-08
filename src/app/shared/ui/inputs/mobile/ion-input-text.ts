@@ -4,9 +4,9 @@ import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
 /**
- * âœï¸ ION INPUT TEXT - Mobile (Ionic)
+ * ✍️ ION INPUT TEXT - Mobile (Ionic)
  * -------------------------------------------------------------------------
- * Input de texto nativo para vistas mÃ³viles. Equivalente a custom-input-text-signal.
+ * Input de texto nativo para vistas móviles. Equivalente a custom-input-text-signal.
  */
 @Component({
   selector: "ion-input-text",

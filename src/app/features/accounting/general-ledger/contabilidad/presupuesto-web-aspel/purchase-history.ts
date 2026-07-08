@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -22,21 +22,20 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-purchase-history",
   templateUrl: "./purchase-history.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     AppIcon,
     CommonModule,
     TableModule,
 
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,
-  ],
+    DataViewMobile, MobileListItem],
 })
 export class PurchaseHistory implements OnInit {
   apiResponseS = inject(ApiResponseService);

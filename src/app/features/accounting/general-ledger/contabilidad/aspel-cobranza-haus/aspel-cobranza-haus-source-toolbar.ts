@@ -1,9 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TagModule } from "primeng/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { TagModule } from "primeng/tag";
 import {
   AspelDataSource,
   AspelLocalStatusResponse,
@@ -12,7 +18,7 @@ import {
 
 @Component({
   selector: "app-aspel-cobranza-haus-source-toolbar",
-  standalone: true,
+
   imports: [
     CommonModule,
     FormsModule,

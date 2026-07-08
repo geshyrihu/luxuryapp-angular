@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-;
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -8,7 +7,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   selector: "app-role-description",
   templateUrl: "./role-description.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule],
+  imports: [],
 })
 export class RoleDescription implements OnInit {
   private config = inject(DynamicDialogConfig);

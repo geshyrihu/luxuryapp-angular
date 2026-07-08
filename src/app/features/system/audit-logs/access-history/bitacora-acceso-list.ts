@@ -2,14 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonAvatar,
-  IonBadge,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
-import { AvatarModule } from "primeng/avatar";
+  } from "@ionic/angular/standalone";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { LxBadge } from "@ui/adaptive/badge/badge";
 import { TableModule } from "primeng/table";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -31,16 +26,11 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
   imports: [
     CommonModule,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     CalendarRange,
     WebButtonIcon,
     PrimeNgCustomCaption,
-    IonItem,
-    IonLabel,
-    IonAvatar,
-    IonBadge,
-    IonAccordion,
-    IonAccordionGroup,
+    LxBadge,
   ],
 })
 // óCAMBIO! Ya no implementamos OnInit

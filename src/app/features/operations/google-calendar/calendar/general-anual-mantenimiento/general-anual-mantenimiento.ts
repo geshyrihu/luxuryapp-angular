@@ -1,12 +1,7 @@
 import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {
-  IonAvatar,
-
-
-  IonList,
-  IonListHeader,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TooltipModule } from "primeng/tooltip";
@@ -25,11 +20,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     CardModule,
 
     TooltipModule,
-
-    IonList,
-    IonListHeader,
-
-    IonAvatar,
     AppIcon,
     SanitizeHtmlPipe,
   ],

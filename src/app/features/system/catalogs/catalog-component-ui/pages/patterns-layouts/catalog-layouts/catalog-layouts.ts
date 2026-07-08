@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -9,13 +8,17 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-catalog-layouts",
   standalone: true,
-  imports: [CommonModule, CardModule, ButtonModule, DividerModule, TagModule, AppIcon],
+  imports: [CommonModule, ButtonModule, DividerModule, TagModule, AppIcon],
   template: `
     <div class="grid">
 
       <!-- -- Layouts de Página --------------------------------------- -->
       <div class="col-12">
-        <p-card header="Layouts de Página é Patrones ERP">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Layouts de Página é Patrones ERP</h3>
+            </div>
+            <div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Los 5 layouts base del ERP. Cada uno resuelve una clase distinta de tarea operativa.
             Selecciona el layout segón la <strong>densidad de información</strong> y el
@@ -52,7 +55,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
               </div>
             }
           </div>
-        </p-card>
+          </div>
+  </div>
       </div>
 
       <!-- -- Templates de mockup -------------------------------------- -->
@@ -66,7 +70,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
       <!-- -- Form Layouts --------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Form Layouts é Organización de Campos">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Form Layouts é Organización de Campos</h3>
+            </div>
+            <div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Elige la densidad del formulario segón el contexto: mís columnas = mís densidad
             pero mayor riesgo de errores de captura. En mobile siempre usa una columna.
@@ -158,12 +166,17 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
             </div>
 
           </div>
-        </p-card>
+          </div>
+  </div>
       </div>
 
       <!-- -- Dashboard Grid ------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Dashboard Grid é Composición esténdar ERP">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Dashboard Grid é Composición esténdar ERP</h3>
+            </div>
+            <div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Patrón de dashboard para módulos analóticos. Combina KPIs, gróficas y listados
             en una sola vista de alto nivel.
@@ -260,12 +273,17 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
             </div>
           </div>
-        </p-card>
+          </div>
+  </div>
       </div>
 
       <!-- -- Reglas de Layout ---------------------------------------- -->
       <div class="col-12">
-        <p-card header="Reglas Generales de Layout ERP">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Reglas Generales de Layout ERP</h3>
+            </div>
+            <div class="card-body">
           <div class="grid">
             @for (r of layoutRules; track r.titulo) {
               <div class="col-12 md:col-6 xl:col-4">
@@ -279,7 +297,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
               </div>
             }
           </div>
-        </p-card>
+          </div>
+  </div>
       </div>
 
     </div>

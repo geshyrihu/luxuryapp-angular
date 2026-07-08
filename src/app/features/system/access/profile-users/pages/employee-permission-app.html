@@ -14,12 +14,9 @@
             "
           >
             <div class="flex align-items-center justify-content-center">
-              <p-checkbox
-                [binary]="true"
-                [ngModel]="permission.canRead"
-                (onChange)="
-                  onCheckboxChange(permission, 'canRead', $event.checked)
-                "
+              <lx-checkbox
+                [(checked)]="permission.canRead"
+                (checkedChange)="onCheckboxChange(permission, 'canRead', $event)"
                 label="Leer"
               />
             </div>
@@ -31,12 +28,9 @@
             "
           >
             <div class="flex align-items-center justify-content-center">
-              <p-checkbox
-                [binary]="true"
-                [ngModel]="permission.canCreate"
-                (onChange)="
-                  onCheckboxChange(permission, 'canCreate', $event.checked)
-                "
+              <lx-checkbox
+                [(checked)]="permission.canCreate"
+                (checkedChange)="onCheckboxChange(permission, 'canCreate', $event)"
                 label="Crear"
               />
             </div>
@@ -48,12 +42,9 @@
             "
           >
             <div class="flex align-items-center justify-content-center">
-              <p-checkbox
-                [binary]="true"
-                [ngModel]="permission.canUpdate"
-                (onChange)="
-                  onCheckboxChange(permission, 'canUpdate', $event.checked)
-                "
+              <lx-checkbox
+                [(checked)]="permission.canUpdate"
+                (checkedChange)="onCheckboxChange(permission, 'canUpdate', $event)"
                 label="Actualizar"
               />
             </div>
@@ -65,12 +56,9 @@
             "
           >
             <div class="flex align-items-center justify-content-center">
-              <p-checkbox
-                [binary]="true"
-                [ngModel]="permission.canDelete"
-                (onChange)="
-                  onCheckboxChange(permission, 'canDelete', $event.checked)
-                "
+              <lx-checkbox
+                [(checked)]="permission.canDelete"
+                (checkedChange)="onCheckboxChange(permission, 'canDelete', $event)"
                 label="Eliminar"
               />
             </div>

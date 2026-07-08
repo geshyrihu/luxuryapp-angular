@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";

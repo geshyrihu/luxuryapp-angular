@@ -91,9 +91,9 @@
   (add)="openAdd()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" detail="false">
+    <ili-list-item>
       <div
-        slot="start"
+        start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
         style="
           width: 38px;
@@ -106,7 +106,7 @@
           style="font-size: 1.1rem; color: var(--ds-success)"
         />
       </div>
-      <ion-label>
+      
         <h2 class="font-normal m-0">
           {{ item.quincenaDisplay }} {{ item.anio }}
         </h2>
@@ -121,11 +121,11 @@
           />
           <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
         </div>
-      </ion-label>
-      <div slot="end" class="flex align-items-center gap-1">
+      
+      <div end class="flex align-items-center gap-1">
         <il-button-edit (clicked)="openEdit(item)" />
         <il-button-delete (clicked)="onDelete(item)" />
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

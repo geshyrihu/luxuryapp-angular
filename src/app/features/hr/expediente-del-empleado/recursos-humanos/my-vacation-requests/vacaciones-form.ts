@@ -17,8 +17,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { PanelModule } from "primeng/panel";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxPanel } from "@ui/adaptive/panel/panel";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -47,8 +47,8 @@ interface VacationRequestEditDTO {
     CommonModule,
     ReactiveFormsModule,
     LxCard,
-    PanelModule,
-    MessageModule,
+    LxPanel,
+    LxMessage,
     CustomInputDateSignal,
     // CustomInputTextAreaSignal,
     WebButtonLabelSave,

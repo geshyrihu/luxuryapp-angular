@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -122,7 +122,7 @@ export class TaskMessageOperationReport {
     this.startDate = startDateFormatted;
     this.endDate = endDateFormatted;
 
-    // AquÃ© puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // Aqué puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData();
   }
 
@@ -193,11 +193,11 @@ export class TaskMessageOperationReport {
   }
 
   onPreviewClicked(): void {
-    // LÃ­gica para la vista previa
+    // Lígica para la vista previa
     this.router.navigate(ROUTES.TICKETS.REPORTE_SEMANAL_VISTA);
   }
   onSendReportClicked(): void {
-    // LÃ­gica para enviar el reporte
+    // Lígica para enviar el reporte
     this.dialogHandlerS
       .openDialog(
         SendOperationReport,

@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
+
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
@@ -48,9 +48,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     RouterModule,
     TooltipModule,
     DataViewMobile,
-    IonItem,
-    IonLabel,
-    IonText,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
     WebButtonLabelItem,
@@ -155,3 +152,4 @@ export class ListaInspecciones {
       });
   }
 }
+

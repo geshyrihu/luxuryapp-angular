@@ -1,9 +1,15 @@
-import { Component, computed, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 
 @Component({
   selector: "app-gauge",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div class="gauge-root">
@@ -36,37 +42,41 @@ import { CommonModule } from "@angular/common";
         />
       </svg>
       <div class="gauge-overlay">
-        <strong class="gauge-value">{{ prefix() }}{{ displayValue() }}{{ suffix() }}</strong>
+        <strong class="gauge-value"
+          >{{ prefix() }}{{ displayValue() }}{{ suffix() }}</strong
+        >
         @if (label()) {
           <span class="gauge-label">{{ label() }}</span>
         }
       </div>
     </div>
   `,
-  styles: [`
-    .gauge-root {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .gauge-overlay {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.125rem;
-    }
-    .gauge-value {
-      font-size: var(--ds-font-size-metric, 1.5rem);
-      color: var(--ds-text-primary);
-      line-height: 1;
-    }
-    .gauge-label {
-      font-size: var(--ds-font-size-help, 0.8125rem);
-      color: var(--ds-text-muted);
-    }
-  `],
+  styles: [
+    `
+      .gauge-root {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gauge-overlay {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.125rem;
+      }
+      .gauge-value {
+        font-size: var(--ds-font-size-metric, 1.5rem);
+        color: var(--ds-text-primary);
+        line-height: 1;
+      }
+      .gauge-label {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-muted);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

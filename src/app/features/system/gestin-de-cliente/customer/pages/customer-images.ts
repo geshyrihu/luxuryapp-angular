@@ -1,18 +1,25 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { ImageModule } from "primeng/image";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { LxImage } from "@ui/adaptive/image/image";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ICustomerImageDTO } from "../models/customer.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, ImageModule, AppIcon, WebButtonIcon],
+  imports: [CommonModule, LxImage, AppIcon, WebButtonIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -26,24 +33,22 @@ export class CustomerImages implements OnInit {
 
   hasImages = computed(() => this.images().length > 0);
 
-  ngOnInit(): void {
-    const id = this.config.data?.customerId;
-    if (id) {
-      this.customerId.set(id);
+  ngOnInit() {
+    if (this.config.data?.id) {
+      this.customerId.set(this.config.data.id);
       this.onLoadData();
     }
   }
 
-  onLoadData() {
+  async onLoadData() {
     this.loading.set(true);
-    this.apiResponseS
-      .onGetItem<ICustomerImageDTO[]>(
-        Endpoints.CustomerImages.getByCustomerId(this.customerId())
-      )
-      .then((result) => {
-        this.images.set(result ?? []);
-        this.loading.set(false);
-      });
+    const resp = await this.apiResponseS.onGetList<ICustomerImageDTO[]>(
+      Endpoints.CustomerImages.getByCustomerId(this.customerId()),
+    );
+    if (resp) {
+      this.images.set(resp);
+    }
+    this.loading.set(false);
   }
 
   onDragOver(event: DragEvent) {
@@ -62,6 +67,7 @@ export class CustomerImages implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.isDragOver.set(false);
+
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       this.uploadFiles(Array.from(files));
@@ -72,36 +78,38 @@ export class CustomerImages implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.uploadFiles(Array.from(input.files));
-      input.value = "";
     }
   }
 
-  uploadFiles(files: File[]) {
-    const imageFiles = files.filter((f) => f.type.startsWith("image/"));
-    if (imageFiles.length === 0) return;
-
+  async uploadFiles(files: File[]) {
     this.uploading.set(true);
     const formData = new FormData();
     formData.append("customerId", this.customerId());
-    imageFiles.forEach((file) => formData.append("images", file));
 
-    this.apiResponseS
-      .onPost<ICustomerImageDTO[]>(Endpoints.CustomerImages.createBulk, formData)
-      .then((result) => {
-        if (result) {
-          this.images.update((prev) => [...prev, ...result]);
-        }
-        this.uploading.set(false);
-      });
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
+
+    const resp = await this.apiResponseS.onPostFile(
+      Endpoints.CustomerImages.create,
+      formData,
+    );
+    if (resp) {
+      this.onLoadData();
+    }
+    this.uploading.set(false);
   }
 
-  onDelete(id: string) {
-    this.apiResponseS
-      .onDelete(Endpoints.CustomerImages.delete(id))
-      .then((result) => {
-        if (result) {
-          this.images.update((prev) => prev.filter((img) => img.id !== id));
-        }
-      });
+  async onDelete(id: string) {
+    this.loading.set(true);
+    const success = await this.apiResponseS.onDelete(
+      Endpoints.CustomerImages.delete(id),
+    );
+    if (success) {
+      this.onLoadData();
+    } else {
+      this.loading.set(false);
+    }
   }
 }
+

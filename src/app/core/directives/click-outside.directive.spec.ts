@@ -1,6 +1,6 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ClickOutsideDirective } from './click-outside.directive';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ClickOutsideDirective } from "./click-outside.directive";
 
 @Component({
   template: `
@@ -11,7 +11,6 @@ import { ClickOutsideDirective } from './click-outside.directive';
   `,
   imports: [ClickOutsideDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: true,
 })
 class TestHostComponent {
   clicked = false;
@@ -21,7 +20,7 @@ class TestHostComponent {
   }
 }
 
-describe('ClickOutsideDirective', () => {
+describe("ClickOutsideDirective", () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let component: TestHostComponent;
 
@@ -34,19 +33,25 @@ describe('ClickOutsideDirective', () => {
     fixture.detectChanges();
   });
 
-  it('should create an instance', () => {
-    const directive = fixture.debugElement.children[0].injector.get(ClickOutsideDirective);
+  it("should create an instance", () => {
+    const directive = fixture.debugElement.children[0].injector.get(
+      ClickOutsideDirective,
+    );
     expect(directive).toBeTruthy();
   });
 
-  it('should emit clickOutside when clicking outside the element', () => {
-    const outsideEl = fixture.nativeElement.querySelector('#outside') as HTMLElement;
+  it("should emit clickOutside when clicking outside the element", () => {
+    const outsideEl = fixture.nativeElement.querySelector(
+      "#outside",
+    ) as HTMLElement;
     outsideEl.click();
     expect(component.clicked).toBe(true);
   });
 
-  it('should not emit clickOutside when clicking inside the element', () => {
-    const insideEl = fixture.nativeElement.querySelector('#inside') as HTMLElement;
+  it("should not emit clickOutside when clicking inside the element", () => {
+    const insideEl = fixture.nativeElement.querySelector(
+      "#inside",
+    ) as HTMLElement;
     insideEl.click();
     expect(component.clicked).toBe(false);
   });

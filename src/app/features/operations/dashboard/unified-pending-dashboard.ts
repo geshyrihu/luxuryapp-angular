@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   effect,
@@ -282,26 +282,26 @@ export class UnifiedPendingDashboard {
   getModuleEmoji(module: string): string {
     switch (module.toLowerCase()) {
       case "tickets":
-        return "ðŸŽ«";
+        return "🎫";
       case "minutas":
-        return "ðŸ“";
+        return "📝";
       case "mantenimiento":
-        return "ðŸ”§";
+        return "🔧";
       case "legal":
-        return "âš–ï¸";
+        return "⚖️";
       case "polizas":
-        return "ðŸ“„";
+        return "📄";
       // Recruitment
       case "bajas":
-        return "ðŸ“‰";
+        return "📉";
       case "altas":
-        return "ðŸš€";
+        return "🚀";
       case "vacantes":
-        return "ðŸª‘";
+        return "🪑";
       case "modificaciones":
-        return "ðŸ’°";
+        return "💰";
       default:
-        return "ðŸ“Œ";
+        return "📌";
     }
   }
 
@@ -375,7 +375,7 @@ export class UnifiedPendingDashboard {
           .openDialog(
             ModificacionSalarioForm,
             { id: item.id },
-            "ModificaciÃ³n Salarial",
+            "Modificación Salarial",
             this.dialogHandlerS.sizeLg,
           )
           .then((res) => {
@@ -461,14 +461,14 @@ export class UnifiedPendingDashboard {
     try {
       const currentCustomerId = this.customerIdS.customerId();
 
-      // Validar si el cliente ha cambiado o si aÃºn estamos cargando datos
+      // Validar si el cliente ha cambiado o si aún estamos cargando datos
       if (
         this.loading() ||
         this.loadedCustomerId() !== currentCustomerId ||
         this.data().length === 0
       ) {
         this.swalService.fire({
-          title: "Dashboard en actualizaciÃ³n",
+          title: "Dashboard en actualización",
           text: "Estamos sincronizando los datos del cliente. Por favor intenta de nuevo en unos segundos.",
           icon: "info",
         });
@@ -494,7 +494,7 @@ export class UnifiedPendingDashboard {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "ðŸ“„ Informe Ejecutivo Diario",
+        title: "📄 Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%",
@@ -507,8 +507,8 @@ export class UnifiedPendingDashboard {
     } catch (error) {
       console.error(error);
       this.swalService.error(
-        "Error de AnÃ¡lisis",
-        "No se pudo generar el informe. Por favor intenta mÃ¡s tarde.",
+        "Error de Análisis",
+        "No se pudo generar el informe. Por favor intenta más tarde.",
       );
     }
   }
@@ -530,7 +530,7 @@ export class UnifiedPendingDashboard {
       .catch((error) => {
         console.error(error);
         this.swalService.error(
-          "Error de EnvÃ­o",
+          "Error de Envío",
           "No se pudo enviar el reporte. Intenta nuevamente.",
         );
       });
@@ -543,7 +543,7 @@ export class UnifiedPendingDashboard {
   onVisionResult(analysis: string) {
     // En el dashboard solo mostramos el resultado
     Swal.fire({
-      title: "ðŸ” DiagnÃ³stico Visual",
+      title: "🔍 Diagnóstico Visual",
       text: analysis,
       icon: "info",
       width: "600px",

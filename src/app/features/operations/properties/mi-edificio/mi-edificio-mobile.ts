@@ -1,18 +1,12 @@
 import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 import {
-  IonAvatar,
-  IonCard,
-  IonCardContent,
-  IonItem,
-  IonLabel,
-  IonList,
-} from "@ionic/angular/standalone";
+  } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { callOutline, locationOutline, mailOutline } from "ionicons/icons";
 import { environment } from "src/environments/environment";
 @Component({
   selector: "app-mi-edificio-mobile",
-  imports: [IonCard, IonCardContent, IonAvatar, IonList, IonItem, IonLabel],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-edificio-mobile.html",
 })

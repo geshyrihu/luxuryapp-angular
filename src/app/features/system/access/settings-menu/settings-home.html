@@ -56,23 +56,16 @@
   [globalFilterFields]="[]"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item
-      [routerLink]="item.routerLink"
-      lines="full"
-      detail="true"
-      class="ion-no-padding"
-    >
-      <!-- Icono — div slot="start" con márgenes DS (patrón estándar mobile) -->
-      <div slot="start"
+    <ili-list-item [divider]="false" [noPadding]="true">
+      <div start
            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2"
            [ngClass]="menuTone(item.group).mobileShell"
            style="width:36px;height:36px;">
-        <!-- [ngClass] es aditivo al class="" estático → ícono queda centrado + con color -->
         <app-icon [icon]="item.icon"
                   class="text-base"
                   [ngClass]="menuTone(item.group).glyph" />
       </div>
-      <ion-label class="ion-text-wrap">{{ item.label }}</ion-label>
-    </ion-item>
+      <a [routerLink]="item.routerLink" class="flex align-items-center w-full h-full">{{ item.label }}</a>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -3,7 +3,7 @@
     <app-calendar-range></app-calendar-range>
   </div>
 </div>
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="hidden md:block">
   <p-table
     [value]="data()"
@@ -36,7 +36,7 @@
           />
         </td>
         <td>
-          <p-avatar
+          <lx-avatar
             [image]="item.photoPath"
             alt=""
             shape="square"
@@ -93,23 +93,23 @@
   </p-table>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
   @if(data().length > 0) {
-  <ion-accordion-group>
+  <div>
     @for(item of data(); track item.employeeId) {
-    <ion-accordion>
-      <ion-item slot="header" color="light">
-        <ion-avatar slot="start">
+    <div>
+      <ili-list-item>
+        <div start>
           <img [src]="item.photoPath" alt="Avatar" />
-        </ion-avatar>
-        <ion-label class="ion-text-wrap">
+        </div>
+        
           <h2>{{ item.fullName }}</h2>
           <p class="text-xs text-medium">
             {{ item.historial.length }} registro(s) y
           </p>
-        </ion-label>
-      </ion-item>
+        
+      </ili-list-item>
       <div slot="content" class="ion-padding p-0">
         @if(item.historial.length > 0) {
         <div class="flex flex-column p-2 surface-card">
@@ -120,11 +120,10 @@
             <span class="font-medium text-sm"
               >{{ registro.fechaRegistro }}</span
             >
-            <ion-badge
+            <lx-badge
               [color]="registro.evento === 'Ingreso' ? 'success' : 'danger'"
-            >
-              {{ registro.evento }}
-            </ion-badge>
+              [value]="registro.evento"
+            />
           </div>
           }
         </div>
@@ -132,9 +131,9 @@
         <div class="p-3 text-center text-medium">Sin ingresos al sistema.</div>
         }
       </div>
-    </ion-accordion>
+    </div>
     }
-  </ion-accordion-group>
+  </div>
   } @else {
   <div class="text-center p-4">
     <app-icon

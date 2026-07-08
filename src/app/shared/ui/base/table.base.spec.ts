@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { TableBase } from "./table.base";
 
-@Component({ selector: "test-table", standalone: true, template: "" })
+@Component({ selector: "test-table", template: "" })
 class TestTable extends TableBase {}
 
 describe("TableBase", () => {

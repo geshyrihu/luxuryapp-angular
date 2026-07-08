@@ -43,22 +43,21 @@
   </div>
   }
 
-  <ion-list-header>
-    <ion-label class="font-bold text-900">Informes financieros</ion-label>
-  </ion-list-header>
+  <div class="surface-card mb-3 border-round">
+    <span class="font-bold text-900">Informes financieros</span>
+  </div>
 
-  <ion-list [inset]="true" class="m-0">
+  <div class="surface-card mb-3 border-round">
     @for (item of dataSignal(); track item.id) {
-    <ion-item button detail="true" lines="full"
-      (click)="viewPdf(item.filePath, item.documentName)" class="ion-no-padding">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
       <div slot="start" class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
         <app-icon [icon]="'mdi:file-pdf-box'" class="text-xl text-blue-700" />
       </div>
-      <ion-label class="ml-2">
+      <span class="ml-2">
         <h3 class="font-bold text-900">{{ item.documentName }}</h3>
         <p class="text-sm text-500">Archivo .{{ item.fileExtension }}</p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
     }
-  </ion-list>
+  </div>
 </div>

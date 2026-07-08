@@ -2,7 +2,7 @@ import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -21,22 +21,21 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EFinancialEventType } from "../../models/enums";
 import { FinancialLedgerEntryDTO } from "../../models/ledger.dto";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ledger-viewer",
-  imports: [
-    TableModule,
+  imports: [TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    IonItem,
-    IonLabel,
     DatePipe,
     CurrencyPipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    CustomInputDateSignal,
-  ],
+    CustomInputDateSignal, MobileListItem, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./ledger-viewer.html",
 })
@@ -70,7 +69,7 @@ export default class LedgerViewer {
     { label: "Cancelacion Pago", value: EFinancialEventType.CancelacionPago },
     { label: "Reverso Pago", value: EFinancialEventType.ReversoPago },
     { label: "Nota Credito", value: EFinancialEventType.EmisionNotaCredito },
-    { label: "Cierre Periodo", value: EFinancialEventType.CierrePeriodo },
+    { label: "Cierre Periodo", value: EFinancialEventType.CierrePeriodo }
   ];
 
   constructor() {
@@ -154,7 +153,7 @@ export default class LedgerViewer {
       [
         EFinancialEventType.RecepcionPago,
         EFinancialEventType.AplicacionPago,
-        EFinancialEventType.EmisionNotaCredito,
+        EFinancialEventType.EmisionNotaCredito
       ].includes(type)
     ) {
       return "bg-green-100 text-green-800";
@@ -163,7 +162,7 @@ export default class LedgerViewer {
       [
         EFinancialEventType.ReversoPago,
         EFinancialEventType.RechazoPago,
-        EFinancialEventType.CancelacionPago,
+        EFinancialEventType.CancelacionPago
       ].includes(type)
     ) {
       return "bg-red-100 text-red-800";

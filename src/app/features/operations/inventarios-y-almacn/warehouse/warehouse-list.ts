@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -69,7 +69,7 @@ export class WarehouseList implements OnInit {
   aspRoleService = inject(AspRoleService);
   htmlPrintS = inject(HtmlPrintService);
 
-  // DeclaraciÃ³n e inicializaciÃ³n de signals
+  // Declaración e inicialización de signals
   dataSignal = signal<any[]>([]);
   loading = signal(false); // ? Added loading state
 
@@ -80,7 +80,7 @@ export class WarehouseList implements OnInit {
     EApplicationRole.Administrador,
     EApplicationRole.SuperUsuario,
   ]);
-  // El computed se mantiene, es genÃ³rico y funcionarÃ³ perfectamente
+  // El computed se mantiene, es genórico y funcionaró perfectamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -115,11 +115,11 @@ export class WarehouseList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // CAMBIO: El ID de un almacÃ³n es 'string', no 'number'
+  // CAMBIO: El ID de un almacón es 'string', no 'number'
   onDelete(id: string) {
-    // Usamos el servicio genÃ³rico para la peticiÃ³n DELETE
+    // Usamos el servicio genórico para la petición DELETE
     this.apiResponseS.onDelete(Endpoints.Almacen.delete(id)).then(() => {
-      // Actualizamos el signal localmente para una UI mÃ³s rÃ³pida
+      // Actualizamos el signal localmente para una UI mós rópida
       this.dataSignal.update((currentData) =>
         currentData.filter((item) => item.id !== id),
       );
@@ -127,16 +127,16 @@ export class WarehouseList implements OnInit {
   }
 
   onModalForm(data: any) {
-    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diÃ¡logo
+    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diálogo
     this.dialogHandlerS
       .openDialog(
         WarehouseForm,
         data,
-        data.title, // El TÃ­tulo se pasa en el objeto 'data'
+        data.title, // El Título se pasa en el objeto 'data'
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
-        // Si el diÃ¡logo se cerrÃ³ con un resultado exitoso, recargamos los datos
+        // Si el diálogo se cerró con un resultado exitoso, recargamos los datos
         if (result) {
           this.onLoadData();
         }
@@ -144,7 +144,7 @@ export class WarehouseList implements OnInit {
   }
   onViewProducts(almacenId: string) {
     this.router.navigate(ROUTES.ALMACEN.PRODUCTOS(almacenId));
-    // AsegÃ³rate de que '/ruta-a-tu-inventario/stock' coincida con tu configuraciÃ³n de rutas
+    // Asegórate de que '/ruta-a-tu-inventario/stock' coincida con tu configuración de rutas
   }
 
   async onDownloadInventory(almacenId: string, warehouseName: string) {
@@ -173,7 +173,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORÃA";
+          const category = item.category || "SIN CATEGORÍA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -226,7 +226,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `AlmacÃ©n: ${warehouseName}`, generatedAt, "ALMACÃ‰N")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacén: ${warehouseName}`, generatedAt, "ALMACÉN")}
 
   <div class="body-doc">
     <table class="data-table">

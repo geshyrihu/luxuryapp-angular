@@ -1,9 +1,9 @@
-import { Component, input, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 
 @Component({
   selector: "primeng-custom-table-emptymessage",
-  standalone: true,
+
   imports: [EmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -32,5 +32,7 @@ export class PrimeNgCustomTableEmptyMessage {
   tag = input<string>("");
   actionLabel = input<string>("");
   actionIcon = input<string>("mdi:plus");
-  actionSeverity = input<"primary" | "secondary" | "success" | "info" | "warn" | "danger">("primary");
+  actionSeverity = input<
+    "primary" | "secondary" | "success" | "info" | "warn" | "danger"
+  >("primary");
 }

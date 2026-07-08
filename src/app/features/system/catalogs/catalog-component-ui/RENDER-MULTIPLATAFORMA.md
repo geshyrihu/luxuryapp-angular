@@ -48,7 +48,6 @@ Crear el archivo:
 ```ts
 import { Component, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CardModule } from "primeng/card";
 import { ButtonModule } from "primeng/button";
 import { DividerModule } from "primeng/divider";
 
@@ -80,7 +79,6 @@ import { MenuItem } from "primeng/api";
   standalone: true,
   imports: [
     CommonModule,
-    CardModule,
     ButtonModule,
     DividerModule,
     LxEmptyState,
@@ -102,7 +100,9 @@ import { MenuItem } from "primeng/api";
     LxCommentThread,
   ],
   template: `
-    <p-card header="Componentes Multiplataforma (web / Ionic)">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Componentes Multiplataforma (web / Ionic)</span></div>
+      <div class="card-body">
       <p class="text-sm mb-4" style="color: var(--ds-text-secondary)">
         Cada bloque usa el wrapper <code>lx-*</code>. Redimensiona el navegador a
         menos de <strong>768 px</strong> para ver la versión Ionic (<code>ili-*</code>);
@@ -254,7 +254,8 @@ import { MenuItem } from "primeng/api";
           <small class="ml-2">{{ lastAction() }}</small>
         </div>
       </div>
-    </p-card>
+      </div>
+    </div>
   `,
 })
 export class WebMultiplatform {

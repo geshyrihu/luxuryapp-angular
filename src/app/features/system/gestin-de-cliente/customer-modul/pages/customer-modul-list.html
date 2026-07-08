@@ -55,7 +55,7 @@
         >
           <td>
             <div class="flex align-items-center">
-              <p-avatar
+              <lx-avatar
                 [image]="item.photoPath"
                 [alt]="item.nameCustomer"
                 size="normal"
@@ -110,7 +110,7 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-customer>
-    <ion-item
+    <ili-list-item
       button
       (click)="onModalForm({ customerId: customer.customerId, nameCustomer:  customer.nameCustomer })"
       lines="full"
@@ -131,14 +131,14 @@
         />
         }
       </div>
-      <ion-label class="ion-text-wrap">
+      <div class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">
           {{ customer.nameCustomer }}
         </h3>
         <p class="text-xs m-0 mt-1 text-color-secondary">
           #{{ customer.numeroCliente }}
         </p>
-      </ion-label>
+      </div>
       <div slot="end" class="flex align-items-center mr-2">
         @if (customer.isAssigned) {
         <lx-tag severity="success" value="Asignado"></lx-tag>
@@ -146,6 +146,6 @@
         <lx-tag severity="danger" value="No Asignado"></lx-tag>
         }
       </div>
-    </ion-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

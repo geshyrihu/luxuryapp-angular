@@ -260,7 +260,7 @@
           <tr class="animate__fadeIn">
             <td>
               <span
-                [innerHTML]="order.hasServiceOrder ? 'ðŸ› ï¸' : 'âšª'"
+                [innerHTML]="order.hasServiceOrder ? '🛠️' : '⚪'"
               ></span>
             </td>
             <td>
@@ -326,17 +326,12 @@
     <!-- Selector de categorías móvil -->
     <div class="flex overflow-x-auto pb-2 no-scrollbar mb-2">
       @for (category of categories; track category.id) {
-      <ion-chip
-        class="flex-shrink-0"
-        [color]="inventoryCategoryId() === category.id ? 'primary' : 'medium'"
-        [outline]="inventoryCategoryId() !== category.id"
-        (click)="onSelectCategory(category.id)"
-      >
-        <ion-label class="flex align-items-center">
+      <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
+        <span class="flex align-items-center">
           <app-icon [icon]="category.emoji" />
           {{ category.name }}
-        </ion-label>
-      </ion-chip>
+        </span>
+      </div>
       }
     </div>
 
@@ -369,7 +364,7 @@
         </div>
       </ng-template>
       <ng-template #listItemTemplate let-item>
-        <ion-item lines="full" class="ion-no-padding">
+        <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
           <div slot="start" class="mobile-avatar-slot">
             @if (item.photoPath) {
             <img
@@ -384,55 +379,30 @@
             />
             }
           </div>
-          <ion-label>
+          <span class="">
             <h2>{{ item.nameMachinery }}</h2>
             <h3>{{ item.equipoClasificacion }}</h3>
             <p>{{ item.ubication }}</p>
 
             <div class="flex flex-wrap mt-2">
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="onDocumentos(item.id)"
-              >
+              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onDocumentos(item.id)">
                 <app-icon icon="mdi:file-document-outline" slot="icon-only" />
-              </ion-button>
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="onServiceHistory(item.id)"
-              >
+              </button>
+              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onServiceHistory(item.id)">
                 <app-icon icon="mdi:clock-outline" slot="icon-only" />
-              </ion-button>
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="onBitacoraIndividual(item.id)"
-              >
+              </button>
+              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onBitacoraIndividual(item.id)">
                 <app-icon icon="mdi:book-open-outline" slot="icon-only" />
-              </ion-button>
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="showModalFichatecnica(item.id)"
-              >
+              </button>
+              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="showModalFichatecnica(item.id)">
                 <app-icon icon="mdi:clipboard-text-outline" slot="icon-only" />
-              </ion-button>
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="onEquipmentInspections(item)"
-              >
+              </button>
+              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onEquipmentInspections(item)">
                 <app-icon icon="mdi:clipboard-text-outline" slot="icon-only" />
-              </ion-button>
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="item.expanded = !item.expanded"
-                [color]="item.expanded ? 'primary' : 'medium'"
-              >
+              </button>
+              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="item.expanded = !item.expanded">
                 <app-icon icon="mdi:hammer-wrench" slot="icon-only" />
-              </ion-button>
+              </button>
             </div>
 
             @if (item.expanded) {
@@ -443,14 +413,10 @@
                 <span class="text-primary font-bold"
                   >Servicios Programados</span
                 >
-                <ion-button
-                  fill="clear"
-                  size="small"
-                  (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
-                >
+                <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })">
                   <app-icon icon="mdi:plus-circle-outline" slot="start" />
                   Agregar
-                </ion-button>
+                </button>
               </div>
 
               @if (item.maintenanceCalendar?.length > 0) {
@@ -463,7 +429,7 @@
                       [innerHTML]="service.activity | sanitizeHtml"
                     ></span>
                     <span
-                      [innerHTML]="service.hasServiceOrder ? 'ðŸ› ï¸' : 'âšª'"
+                      [innerHTML]="service.hasServiceOrder ? '🛠️' : '⚪'"
                     ></span>
                   </div>
                   <div class="grid text-sm text-600 mt-1">
@@ -490,30 +456,15 @@
                   <div
                     class="flex justify-content-end gap-1 mt-2 border-top-1 surface-border pt-1"
                   >
-                    <ion-button
-                      fill="clear"
-                      size="small"
-                      color="medium"
-                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
-                    >
+                    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary" (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })">
                       <app-icon icon="mdi:content-copy" slot="icon-only" />
-                    </ion-button>
-                    <ion-button
-                      fill="clear"
-                      size="small"
-                      color="primary"
-                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
-                    >
+                    </button>
+                    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })">
                       <app-icon icon="mdi:pencil-outline" slot="icon-only" />
-                    </ion-button>
-                    <ion-button
-                      fill="clear"
-                      size="small"
-                      color="danger"
-                      (click)="onDeleteOrder(service.id)"
-                    >
+                    </button>
+                    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onDeleteOrder(service.id)">
                       <app-icon icon="mdi:trash-can-outline" slot="icon-only" />
-                    </ion-button>
+                    </button>
                   </div>
                   }
                 </div>
@@ -528,24 +479,20 @@
               }
             </div>
             }
-          </ion-label>
+          </span>
 
           <div slot="end" class="flex flex-column gap-1">
             @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
             AspRole.Administrador, AspRole.SuperUsuario])) {
-            <ion-button
-              fill="clear"
-              color="primary"
-              (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
-            >
+            <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })">
               <app-icon icon="mdi:pencil-outline" slot="icon-only" />
-            </ion-button>
-            <ion-button fill="clear" color="danger" (click)="onDelete(item.id)">
+            </button>
+            <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onDelete(item.id)">
               <app-icon icon="mdi:trash-can-outline" slot="icon-only" />
-            </ion-button>
+            </button>
             }
           </div>
-        </ion-item>
+        </div>
       </ng-template>
     </app-data-view-mobile>
     }

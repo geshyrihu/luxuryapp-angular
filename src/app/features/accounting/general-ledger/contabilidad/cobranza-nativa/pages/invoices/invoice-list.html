@@ -121,14 +121,14 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-inv>
-      <ion-item lines="full" detail="false" class="ion-no-padding">
-        <div
-          slot="start"
+      <ili-list-item class="ion-no-padding">
+<div
+          start
           class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
           <app-icon icon="mdi:receipt" class="text-blue-600 text-xl" />
         </div>
-        <ion-label>
+        
           <h3>{{ inv.uuid | slice:0:18 }}...</h3>
           <p>
             {{ inv.status }} &middot; {{ inv.timbreAt | date:'dd/MM/yyyy' }}
@@ -136,8 +136,7 @@
           <p>
             Serie: {{ inv.serie || '—' }} &middot; Folio: {{ inv.folio || '—' }}
           </p>
-        </ion-label>
-      </ion-item>
+</ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

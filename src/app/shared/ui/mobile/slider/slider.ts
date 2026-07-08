@@ -5,7 +5,7 @@ import { SliderBase } from "@ui/base/slider.base";
 
 @Component({
   selector: "ili-slider",
-  standalone: true,
+
   imports: [CommonModule, IonRange],
   template: `
     <div class="ili-slider-root">

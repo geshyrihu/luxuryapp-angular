@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import type { MenuItem } from "primeng/api";
 import { MenubarBase } from "./menubar.base";
 
-@Component({ selector: "test-menubar", standalone: true, template: "" })
+@Component({ selector: "test-menubar", template: "" })
 class TestMenubar extends MenubarBase {
   run(item: MenuItem, event?: Event) {
     this.runCommand(item, event);

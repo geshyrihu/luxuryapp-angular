@@ -1,29 +1,26 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   signal,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MenuItem, TreeNode } from "primeng/api";
-import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
-import { CheckboxModule } from "primeng/checkbox";
-import { DividerModule } from "primeng/divider";
-import { TagModule } from "primeng/tag";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
 } from "@ui/buttons/web-label";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { Loader } from "@ui/mobile/loader/loader";
 import {
   ActivityEntry,
   ActivityLog,
 } from "@ui/shared/activity-log/activity-log";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Gauge } from "@ui/shared/gauge/gauge";
+import { Tour, TourStep } from "@ui/shared/tour/tour";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import {
   CommandPalette,
   PaletteCommand,
@@ -38,25 +35,41 @@ import { DateRange } from "@ui/web/date-range/date-range";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
-import { Gauge } from "@ui/shared/gauge/gauge";
 import { KanbanBoard, KanbanStage } from "@ui/web/kanban-board/kanban-board";
-import { Loader } from "@ui/mobile/loader/loader";
 import {
   NotificationCenter,
   NotificationItem,
 } from "@ui/web/notification-center/notification-center";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { SplitPane } from "@ui/web/split-pane/split-pane";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { Tour, TourStep } from "@ui/shared/tour/tour";
 import { TreeTable, TreeTableColumn } from "@ui/web/tree-table/tree-table";
 import { Wizard, WizardStep } from "@ui/web/wizard/wizard";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { MenuItem, TreeNode } from "primeng/api";
+import { ButtonModule } from "primeng/button";
+import { CheckboxModule } from "primeng/checkbox";
+import { DividerModule } from "primeng/divider";
+import { TagModule } from "primeng/tag";
 // 13.3.3 demos de prioridad baja
+import { WebSkeletonPresets as SkeletonPresets } from "@ui/web/skeleton-presets/skeleton-presets";
 import {
   ApprovalNode,
   ApprovalWorkflow,
 } from "@ui/shared/approval-workflow/approval-workflow";
-import { AvatarGroup, AvatarItem } from "@ui/shared/avatar-group/avatar-group";
+import { AvatarGroup } from "@ui/shared/avatar-group/avatar-group";
+import { AppInventoryLevel } from "@ui/shared/inventory-level/inventory-level";
+import { KpiCard } from "@ui/shared/kpi-card/kpi-card";
+import {
+  LeadScoreCategory,
+  LeadScoring,
+} from "@ui/shared/lead-scoring/lead-scoring";
+import {
+  OrderStatus,
+  OrderStatusStep,
+} from "@ui/shared/order-status/order-status";
+import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { AppTristateSwitch } from "@ui/shared/tristate-switch/tristate-switch";
 import { AppBarcodeInput } from "@ui/web/barcode-input/barcode-input";
 import { AppColorPicker } from "@ui/web/color-picker/color-picker";
 import { AppCommentThread } from "@ui/web/comment-thread/comment-thread";
@@ -75,17 +88,7 @@ import { AppEmailPreview } from "@ui/web/email-preview/email-preview";
 import { AppFormBuilder, FormField } from "@ui/web/form-builder/form-builder";
 import { AppGantt, GanttTask } from "@ui/web/gantt/gantt";
 import { AppHeatmap, HeatmapCell } from "@ui/web/heatmap/heatmap";
-import { AppInventoryLevel } from "@ui/shared/inventory-level/inventory-level";
-import { KpiCard } from "@ui/shared/kpi-card/kpi-card";
 import { AppLangSelector } from "@ui/web/lang-selector/lang-selector";
-import {
-  LeadScoreCategory,
-  LeadScoring,
-} from "@ui/shared/lead-scoring/lead-scoring";
-import {
-  OrderStatus,
-  OrderStatusStep,
-} from "@ui/shared/order-status/order-status";
 import { AppOtpInput } from "@ui/web/otp-input/otp-input";
 import {
   AppPipelineCrm,
@@ -100,16 +103,11 @@ import { AppPrintView } from "@ui/web/print-view/print-view";
 import { AppProfileCard } from "@ui/web/profile-card/profile-card";
 import { AppQrCode } from "@ui/web/qr-code/qr-code";
 import { AppRating } from "@ui/web/rating/rating";
-import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
 import { AppSignaturePad } from "@ui/web/signature-pad/signature-pad";
-import { SkeletonPresets } from "@ui/adaptive/skeleton/skeleton";
 import { AppSlider } from "@ui/web/slider/slider";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { AppTagInput } from "@ui/web/tag-input/tag-input";
 import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
 import { Timeline, TimelineEvent } from "@ui/web/timeline/timeline";
-import { AppTristateSwitch } from "@ui/shared/tristate-switch/tristate-switch";
-import { CATALOG_DEMO_AVATARS } from "../../../shared/catalog-demo-data";
 
 const CORE_LABELS: Record<string, string> = {
   actionmenu: "Action Menu",
@@ -179,7 +177,6 @@ const CORE_LABELS: Record<string, string> = {
   imports: [
     CommonModule,
     ButtonModule,
-    CardModule,
     CheckboxModule,
     DividerModule,
     TagModule,
@@ -253,162 +250,240 @@ const CORE_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("actionmenu") {
-          <p-card header="Action Menu - uso correcto en web">
-            <p class="text-sm text-secondary m-0 mb-3">
-              Dentro de <code>app-action-menu</code> los botones muestran
-              <strong>icono + label alineados</strong>. Siempre agrega
-              <code>[showLabelOnDesktop]="true"</code> y un
-              <code>label</code> explócito.
-            </p>
-            <div class="flex gap-4">
-              <div>
-                <p class="text-xs font-bold text-secondary mb-2">Correcto</p>
-                <app-action-menu>
-                  <ng-container actions>
-                    <il-button-edit label="Editar" />
-                    <il-button-delete label="Eliminar" />
-                  </ng-container>
-                </app-action-menu>
-              </div>
-              <div>
-                <p class="text-xs font-bold text-secondary mb-2">
-                  Incorrecto (sin label)
-                </p>
-                <app-action-menu>
-                  <ng-container actions>
-                    <il-button-edit />
-                    <il-button-delete />
-                  </ng-container>
-                </app-action-menu>
-              </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Action Menu - uso correcto en web</h3>
             </div>
-            <p-divider />
-            <p class="text-xs text-secondary m-0">
-              <strong>Regla DS:</strong> Todos los
-              <code>il-button-*</code> dentro de
-              <code>&lt;app-action-menu&gt;</code> deben tener
-              <code>label="..."</code> para mostrar texto.
-            </p>
-          </p-card>
+
+            <div class="card-body">
+              <p class="text-sm text-secondary m-0 mb-3">
+                Dentro de <code>app-action-menu</code> los botones muestran
+                <strong>icono + label alineados</strong>. Siempre agrega
+                <code>[showLabelOnDesktop]="true"</code> y un
+                <code>label</code> explócito.
+              </p>
+              <div class="flex gap-4">
+                <div>
+                  <p class="text-xs font-bold text-secondary mb-2">Correcto</p>
+                  <app-action-menu>
+                    <ng-container actions>
+                      <il-button-edit label="Editar" />
+                      <il-button-delete label="Eliminar" />
+                    </ng-container>
+                  </app-action-menu>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-secondary mb-2">
+                    Incorrecto (sin label)
+                  </p>
+                  <app-action-menu>
+                    <ng-container actions>
+                      <il-button-edit />
+                      <il-button-delete />
+                    </ng-container>
+                  </app-action-menu>
+                </div>
+              </div>
+              <p-divider />
+              <p class="text-xs text-secondary m-0">
+                <strong>Regla DS:</strong> Todos los
+                <code>il-button-*</code> dentro de
+                <code>&lt;app-action-menu&gt;</code> deben tener
+                <code>label="..."</code> para mostrar texto.
+              </p>
+            </div>
+          </div>
         }
         @case ("appicon") {
-          <p-card header="App Icon">
-            <div class="flex gap-3 text-2xl text-primary">
-              <app-icon icon="mdi:account" />
-              <app-icon icon="mdi:cog" />
-              <app-icon icon="mdi:bell" />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">App Icon</h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex gap-3 text-2xl text-primary">
+                <app-icon icon="mdi:account" />
+                <app-icon icon="mdi:cog" />
+                <app-icon icon="mdi:bell" />
+              </div>
+            </div>
+          </div>
         }
         @case ("dataviewmobile") {
-          <p-card header="Data View Mobile">
-            <app-data-view-mobile [data]="groupedData" groupKey="section">
-              <ng-template #header let-group
-                ><strong>{{ group.section }}</strong></ng-template
-              >
-              <ng-template #body let-item>{{ item.title }}</ng-template>
-            </app-data-view-mobile>
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Data View Mobile</h3>
+            </div>
+
+            <div class="card-body">
+              <app-data-view-mobile [data]="groupedData" groupKey="section">
+                <ng-template #header let-group
+                  ><strong>{{ group.section }}</strong></ng-template
+                >
+                <ng-template #body let-item>{{ item.title }}</ng-template>
+              </app-data-view-mobile>
+            </div>
+          </div>
         }
         @case ("loader") {
-          <p-card header="Loader">
-            <app-loader />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Loader</h3>
+            </div>
+
+            <div class="card-body">
+              <app-loader />
+            </div>
+          </div>
         }
         @case ("notificationcenter") {
-          <p-card header="Notification Center">
-            <app-notification-center
-              [notifications]="sampleNotifications"
-              [unreadCount]="2"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Notification Center</h3>
+            </div>
+
+            <div class="card-body">
+              <app-notification-center
+                [notifications]="sampleNotifications"
+                [unreadCount]="2"
+              />
+            </div>
+          </div>
         }
         @case ("primengcustomcaption") {
-          <p-card header="PrimeNg Custom Caption">
-            <primeng-custom-caption
-              label="Agregar Insumo"
-              [rolAuth]="true"
-              [showSearch]="true"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">PrimeNg Custom Caption</h3>
+            </div>
+
+            <div class="card-body">
+              <primeng-custom-caption
+                label="Agregar Insumo"
+                [rolAuth]="true"
+                [showSearch]="true"
+              />
+            </div>
+          </div>
         }
         @case ("statusbadge") {
-          <p-card header="Status Badge">
-            <div class="flex gap-2 flex-wrap">
-              <app-status-badge [status]="EStatus.Concluido" />
-              <app-status-badge [status]="EStatus.Pendiente" />
-              <app-status-badge [status]="EStatus.Proceso" />
-              <app-status-badge [status]="EStatus.Cancelado" />
-              <app-status-badge [status]="EStatus.noAutorizado" />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Status Badge</h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex gap-2 flex-wrap">
+                <app-status-badge [status]="EStatus.Concluido" />
+                <app-status-badge [status]="EStatus.Pendiente" />
+                <app-status-badge [status]="EStatus.Proceso" />
+                <app-status-badge [status]="EStatus.Cancelado" />
+                <app-status-badge [status]="EStatus.noAutorizado" />
+              </div>
+            </div>
+          </div>
         }
         @case ("wizard") {
-          <p-card header="Wizard">
-            <app-wizard
-              [steps]="wizardSteps"
-              [linear]="true"
-              finishLabel="Finalizar"
-              [(activeStep)]="wizardActiveStep"
-            >
-              <div step="1"><strong>Paso 1</strong></div>
-              <div step="2"><strong>Paso 2</strong></div>
-              <div step="3"><strong>Paso 3</strong></div>
-            </app-wizard>
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Wizard</h3>
+            </div>
+
+            <div class="card-body">
+              <app-wizard
+                [steps]="wizardSteps"
+                [linear]="true"
+                finishLabel="Finalizar"
+                [(activeStep)]="wizardActiveStep"
+              >
+                <div step="1"><strong>Paso 1</strong></div>
+                <div step="2"><strong>Paso 2</strong></div>
+                <div step="3"><strong>Paso 3</strong></div>
+              </app-wizard>
+            </div>
+          </div>
         }
         @case ("emptystate") {
-          <p-card header="Empty State">
-            <app-empty-state
-              icon="mdi:inbox-outline"
-              title="Sin resultados"
-              message="No se encontraron registros."
-              actionLabel="Nuevo registro"
-              actionIcon="mdi:plus"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Empty State</h3>
+            </div>
+
+            <div class="card-body">
+              <app-empty-state
+                icon="mdi:inbox-outline"
+                title="Sin resultados"
+                message="No se encontraron registros."
+                actionLabel="Nuevo registro"
+                actionIcon="mdi:plus"
+              />
+            </div>
+          </div>
         }
         @case ("confirmdialog") {
-          <p-card header="Confirm Dialog">
-            <p-button
-              label="Abrir confirmación"
-              severity="danger"
-              (onClick)="confirmVisible.set(true)"
-            />
-            <app-confirm-dialog
-              [(visible)]="confirmVisible"
-              title="Eliminar registro"
-              message="óEstés seguro?"
-              type="danger"
-              confirmLabel="Eliminar"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Confirm Dialog</h3>
+            </div>
+
+            <div class="card-body">
+              <p-button
+                label="Abrir confirmación"
+                severity="danger"
+                (onClick)="confirmVisible.set(true)"
+              />
+              <app-confirm-dialog
+                [(visible)]="confirmVisible"
+                title="Eliminar registro"
+                message="óEstés seguro?"
+                type="danger"
+                confirmLabel="Eliminar"
+              />
+            </div>
+          </div>
         }
         @case ("daterange") {
-          <p-card header="Date Range"><app-date-range /></p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Date Range</h3>
+            </div>
+
+            <div class="card-body"><app-date-range /></div>
+          </div>
         }
         @case ("fileupload") {
-          <p-card header="File Upload">
-            <app-file-upload
-              chooseLabel="Subir archivos"
-              accept="image/*,.pdf"
-              [maxFileSize]="5000000"
-              [multiple]="true"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">File Upload</h3>
+            </div>
+
+            <div class="card-body">
+              <app-file-upload
+                chooseLabel="Subir archivos"
+                accept="image/*,.pdf"
+                [maxFileSize]="5000000"
+                [multiple]="true"
+              />
+            </div>
+          </div>
         }
 
         <!-- Fase 6-10 -->
         @case ("datagrid") {
-          <p-card header="Data Grid - Editable + Sort + Filter">
-            <app-data-grid
-              [data]="gridData"
-              [columns]="gridColumns"
-              dataKey="id"
-              [paginator]="true"
-              [rows]="5"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Data Grid - Editable + Sort + Filter</h3>
+            </div>
+
+            <div class="card-body">
+              <app-data-grid
+                [data]="gridData"
+                [columns]="gridColumns"
+                dataKey="id"
+                [paginator]="true"
+                [rows]="5"
+              />
+            </div>
+          </div>
         }
         @case ("kpicard") {
           <div class="grid">
@@ -452,110 +527,146 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("avatargroup") {
-          <p-card header="Avatar Group - Stacked con overflow">
-            <div class="flex flex-column gap-4">
-              <div>
-                <p class="text-sm font-bold mb-2">Mx. 4 visibles:</p>
-                <app-avatar-group
-                  [avatars]="CATALOG_DEMO_AVATARS"
-                  [maxVisible]="4"
-                />
-              </div>
-              <div>
-                <p class="text-sm font-bold mb-2">Mx. 3 visibles:</p>
-                <app-avatar-group
-                  [avatars]="CATALOG_DEMO_AVATARS"
-                  [maxVisible]="3"
-                />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Avatar Group - Stacked con overflow</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-4">
+                <div>
+                  <p class="text-sm font-bold mb-2">Mx. 4 visibles:</p>
+                  <app-avatar-group
+                    [avatars]="CATALOG_DEMO_AVATARS"
+                    [maxVisible]="4"
+                  />
+                </div>
+                <div>
+                  <p class="text-sm font-bold mb-2">Mx. 3 visibles:</p>
+                  <app-avatar-group
+                    [avatars]="CATALOG_DEMO_AVATARS"
+                    [maxVisible]="3"
+                  />
+                </div>
               </div>
             </div>
-          </p-card>
+          </div>
         }
         @case ("timeline") {
-          <p-card header="Timeline - Eventos verticales">
-            <app-timeline
-              [events]="timelineEvents"
-              align="left"
-              layout="vertical"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Timeline - Eventos verticales</h3>
+            </div>
+
+            <div class="card-body">
+              <app-timeline
+                [events]="timelineEvents"
+                align="left"
+                layout="vertical"
+              />
+            </div>
+          </div>
         }
         @case ("slider") {
-          <p-card header="Slider - Rango simple y doble">
-            <div class="flex flex-column gap-4">
-              <div>
-                <p class="text-sm font-bold mb-2">Simple:</p>
-                <app-slider
-                  label="Presupuesto"
-                  [min]="0"
-                  [max]="100000"
-                  [step]="1000"
-                  prefix="$"
-                  [(value)]="sliderValue"
-                />
-              </div>
-              <div>
-                <p class="text-sm font-bold mb-2">Rango:</p>
-                <app-slider
-                  label="Rango de precio"
-                  [min]="0"
-                  [max]="500"
-                  [step]="10"
-                  prefix="$"
-                  [range]="true"
-                  [(value)]="sliderRangeValue"
-                />
-              </div>
-              <div>
-                <p class="text-sm font-bold mb-2">Deshabilitado:</p>
-                <app-slider
-                  label="Solo lectura"
-                  [min]="0"
-                  [max]="100"
-                  [disabled]="true"
-                  [(value)]="sliderDisabledValue"
-                />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Slider - Rango simple y doble</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-4">
+                <div>
+                  <p class="text-sm font-bold mb-2">Simple:</p>
+                  <app-slider
+                    label="Presupuesto"
+                    [min]="0"
+                    [max]="100000"
+                    [step]="1000"
+                    prefix="$"
+                    [(value)]="sliderValue"
+                  />
+                </div>
+                <div>
+                  <p class="text-sm font-bold mb-2">Rango:</p>
+                  <app-slider
+                    label="Rango de precio"
+                    [min]="0"
+                    [max]="500"
+                    [step]="10"
+                    prefix="$"
+                    [range]="true"
+                    [(value)]="sliderRangeValue"
+                  />
+                </div>
+                <div>
+                  <p class="text-sm font-bold mb-2">Deshabilitado:</p>
+                  <app-slider
+                    label="Solo lectura"
+                    [min]="0"
+                    [max]="100"
+                    [disabled]="true"
+                    [(value)]="sliderDisabledValue"
+                  />
+                </div>
               </div>
             </div>
-          </p-card>
+          </div>
         }
         @case ("rating") {
-          <p-card header="Rating / Stars">
-            <div class="flex flex-column gap-3">
-              <app-rating
-                label="Calidad del servicio"
-                [(value)]="ratingValue"
-                [stars]="5"
-              />
-              <app-rating
-                label="Solo lectura (4/5)"
-                [(value)]="ratingReadonly"
-                [readonly]="true"
-              />
-              <app-rating
-                label="Sin cancelar"
-                [(value)]="ratingNoCanel"
-                [allowCancel]="false"
-              />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Rating / Stars</h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-3">
+                <app-rating
+                  label="Calidad del servicio"
+                  [(value)]="ratingValue"
+                  [stars]="5"
+                />
+                <app-rating
+                  label="Solo lectura (4/5)"
+                  [(value)]="ratingReadonly"
+                  [readonly]="true"
+                />
+                <app-rating
+                  label="Sin cancelar"
+                  [(value)]="ratingNoCanel"
+                  [allowCancel]="false"
+                />
+              </div>
+            </div>
+          </div>
         }
         @case ("pipelinecrm") {
-          <p-card header="Pipeline CRM - Stages visuales">
-            <app-pipeline-crm
-              title="Pipeline de Ventas Q3"
-              [stages]="pipelineStages"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pipeline CRM - Stages visuales</h3>
+            </div>
+
+            <div class="card-body">
+              <app-pipeline-crm
+                title="Pipeline de Ventas Q3"
+                [stages]="pipelineStages"
+              />
+            </div>
+          </div>
         }
         @case ("taginput") {
-          <p-card header="Tag Input - Autocomplete con chips">
-            <app-tag-input
-              label="Etiquetas del proyecto"
-              placeholder="Escribe para buscar..."
-              [suggestions]="tagSuggestions"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tag Input - Autocomplete con chips</h3>
+            </div>
+
+            <div class="card-body">
+              <app-tag-input
+                label="Etiquetas del proyecto"
+                placeholder="Escribe para buscar..."
+                [suggestions]="tagSuggestions"
+              />
+            </div>
+          </div>
         }
         @case ("statcard") {
           <div class="grid">
@@ -584,19 +695,19 @@ const CORE_LABELS: Record<string, string> = {
         @case ("skeletonpresets") {
           <div class="grid">
             <div class="col-12 md:col-6">
-              <app-skeleton-presets variant="card" />
+              <web-skeleton-presets variant="card" />
               <p class="text-xs text-secondary mt-1 text-center">card</p>
             </div>
             <div class="col-12 md:col-6">
-              <app-skeleton-presets variant="table" [rows]="3" />
+              <web-skeleton-presets variant="table" [rows]="3" />
               <p class="text-xs text-secondary mt-1 text-center">table</p>
             </div>
             <div class="col-12 md:col-6">
-              <app-skeleton-presets variant="form" [fields]="2" />
+              <web-skeleton-presets variant="form" [fields]="2" />
               <p class="text-xs text-secondary mt-1 text-center">form</p>
             </div>
             <div class="col-12 md:col-6">
-              <app-skeleton-presets variant="avatar" />
+              <web-skeleton-presets variant="avatar" />
               <p class="text-xs text-secondary mt-1 text-center">avatar</p>
             </div>
           </div>
@@ -604,178 +715,275 @@ const CORE_LABELS: Record<string, string> = {
 
         <!-- 13.3.2 -->
         @case ("comparisontable") {
-          <p-card header="Comparison Table - Comparativa de features">
-            <app-comparison-table
-              [items]="comparisonItems"
-              highlightColumn="Pro"
-              [showCheckmark]="true"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Comparison Table - Comparativa de features
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <app-comparison-table
+                [items]="comparisonItems"
+                highlightColumn="Pro"
+                [showCheckmark]="true"
+              />
+            </div>
+          </div>
         }
         @case ("activitylog") {
-          <p-card header="Activity Log - Historial CRM">
-            <app-activity-log
-              title="Actividad del cliente"
-              [entries]="activityEntries"
-              [groupByDate]="true"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Activity Log - Historial CRM</h3>
+            </div>
+
+            <div class="card-body">
+              <app-activity-log
+                title="Actividad del cliente"
+                [entries]="activityEntries"
+                [groupByDate]="true"
+              />
+            </div>
+          </div>
         }
         @case ("kanbanboard") {
-          <p-card header="Kanban Board - Tablero drag & drop">
-            <app-kanban-board [stages]="kanbanStages" [showAddCard]="false" />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Kanban Board - Tablero drag & drop</h3>
+            </div>
+
+            <div class="card-body">
+              <app-kanban-board [stages]="kanbanStages" [showAddCard]="false" />
+            </div>
+          </div>
         }
         @case ("treetable") {
-          <p-card header="Tree Table - Tabla jerrquica">
-            <app-tree-table [nodes]="treeNodes" [columns]="treeColumns" />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tree Table - Tabla jerrquica</h3>
+            </div>
+
+            <div class="card-body">
+              <app-tree-table [nodes]="treeNodes" [columns]="treeColumns" />
+            </div>
+          </div>
         }
         @case ("contextmenu") {
-          <p-card header="Context Menu - Click derecho">
-            <div class="flex flex-column gap-3">
-              <p class="text-sm text-secondary m-0">
-                Haz clic derecho sobre el siguiente elemento:
-              </p>
-              <app-context-menu [items]="contextMenuItems">
-                <div
-                  class="border-round-lg p-4 text-center cursor-pointer"
-                  style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
-                >
-                  <p class="m-0 font-bold">Área de contexto</p>
-                  <p class="m-0 text-xs text-secondary mt-1">
-                    Clic derecho aqu
-                  </p>
-                </div>
-              </app-context-menu>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Context Menu - Click derecho</h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-3">
+                <p class="text-sm text-secondary m-0">
+                  Haz clic derecho sobre el siguiente elemento:
+                </p>
+                <app-context-menu [items]="contextMenuItems">
+                  <div
+                    class="border-round-lg p-4 text-center cursor-pointer"
+                    style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
+                  >
+                    <p class="m-0 font-bold">Área de contexto</p>
+                    <p class="m-0 text-xs text-secondary mt-1">
+                      Clic derecho aqu
+                    </p>
+                  </div>
+                </app-context-menu>
+              </div>
+            </div>
+          </div>
         }
         @case ("splitpane") {
-          <p-card header="Split Pane - Paneles redimensionables">
-            <app-split-pane
-              direction="horizontal"
-              height="280px"
-              [sizes]="[40, 60]"
-              [minSizes]="[20, 20]"
-            >
-              <div
-                left-panel
-                class="h-full"
-                style="background:var(--ds-bg-elevated);padding:0.75rem;"
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Split Pane - Paneles redimensionables</h3>
+            </div>
+
+            <div class="card-body">
+              <app-split-pane
+                direction="horizontal"
+                height="280px"
+                [sizes]="[40, 60]"
+                [minSizes]="[20, 20]"
               >
-                <p class="font-bold text-sm m-0 mb-2">Panel izquierdo</p>
-                <ul class="text-sm m-0" style="padding-left:1rem;">
-                  <li>Registro A</li>
-                  <li>Registro B</li>
-                  <li>Registro C</li>
-                </ul>
-              </div>
-              <div
-                right-panel
-                class="h-full"
-                style="background:var(--ds-bg-surface);padding:0.75rem;"
-              >
-                <p class="font-bold text-sm m-0">Panel derecho (detalle)</p>
-                <p class="text-sm text-secondary mt-2">
-                  Selecciona un elemento para ver su detalle aqu.
-                </p>
-              </div>
-            </app-split-pane>
-          </p-card>
+                <div
+                  left-panel
+                  class="h-full"
+                  style="background:var(--ds-bg-elevated);padding:0.75rem;"
+                >
+                  <p class="font-bold text-sm m-0 mb-2">Panel izquierdo</p>
+                  <ul class="text-sm m-0" style="padding-left:1rem;">
+                    <li>Registro A</li>
+                    <li>Registro B</li>
+                    <li>Registro C</li>
+                  </ul>
+                </div>
+                <div
+                  right-panel
+                  class="h-full"
+                  style="background:var(--ds-bg-surface);padding:0.75rem;"
+                >
+                  <p class="font-bold text-sm m-0">Panel derecho (detalle)</p>
+                  <p class="text-sm text-secondary mt-2">
+                    Selecciona un elemento para ver su detalle aqu.
+                  </p>
+                </div>
+              </app-split-pane>
+            </div>
+          </div>
         }
         @case ("commandpalette") {
-          <p-card header="Command Palette - Ctrl+K">
-            <div class="flex flex-column gap-3">
-              <p class="text-sm text-secondary m-0">
-                El Command Palette es un dilogo global. Haz clic para abrirlo:
-              </p>
-              <p-button
-                label="Abrir Command Palette (Ctrl+K)"
-                icon="mdi:magnify"
-                (onClick)="cmdPaletteVisible.set(true)"
-              />
-              <p class="text-xs text-secondary m-0">
-                Tambin puedes presionar <kbd>Ctrl+K</kbd> cuando el dilogo est
-                registrado.
-              </p>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Command Palette - Ctrl+K</h3>
             </div>
-            <app-command-palette
-              [(visible)]="cmdPaletteVisible"
-              [commands]="paletteCommands"
-            />
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-3">
+                <p class="text-sm text-secondary m-0">
+                  El Command Palette es un dilogo global. Haz clic para abrirlo:
+                </p>
+                <p-button
+                  label="Abrir Command Palette (Ctrl+K)"
+                  icon="mdi:magnify"
+                  (onClick)="cmdPaletteVisible.set(true)"
+                />
+                <p class="text-xs text-secondary m-0">
+                  Tambin puedes presionar <kbd>Ctrl+K</kbd> cuando el dilogo est
+                  registrado.
+                </p>
+              </div>
+              <app-command-palette
+                [(visible)]="cmdPaletteVisible"
+                [commands]="paletteCommands"
+              />
+            </div>
+          </div>
         }
         @case ("tour") {
-          <p-card header="Tour / Onboarding - Paso a paso">
-            <div class="flex flex-column gap-3">
-              <p class="text-sm text-secondary m-0">
-                Inicia el tour para ver el componente de onboarding en accin:
-              </p>
-              <p-button
-                label="Iniciar Tour"
-                icon="mdi:map-marker-path"
-                (onClick)="tourVisible.set(true)"
-              />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tour / Onboarding - Paso a paso</h3>
             </div>
-            <app-tour [(visible)]="tourVisible" [steps]="tourSteps" />
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-3">
+                <p class="text-sm text-secondary m-0">
+                  Inicia el tour para ver el componente de onboarding en accin:
+                </p>
+                <p-button
+                  label="Iniciar Tour"
+                  icon="mdi:map-marker-path"
+                  (onClick)="tourVisible.set(true)"
+                />
+              </div>
+              <app-tour [(visible)]="tourVisible" [steps]="tourSteps" />
+            </div>
+          </div>
         }
         @case ("gauge") {
           <div class="grid">
             <div class="col-12 md:col-4">
-              <p-card header="CPU - 72%">
-                <div class="flex justify-content-center">
-                  <app-gauge [value]="72" [min]="0" [max]="100" [size]="140" />
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">CPU - 72%</h3>
                 </div>
-              </p-card>
+
+                <div class="card-body">
+                  <div class="flex justify-content-center">
+                    <app-gauge
+                      [value]="72"
+                      [min]="0"
+                      [max]="100"
+                      [size]="140"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-12 md:col-4">
-              <p-card header="Ocupacin - 45%">
-                <div class="flex justify-content-center">
-                  <app-gauge [value]="45" [min]="0" [max]="100" [size]="140" />
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Ocupacin - 45%</h3>
                 </div>
-              </p-card>
+
+                <div class="card-body">
+                  <div class="flex justify-content-center">
+                    <app-gauge
+                      [value]="45"
+                      [min]="0"
+                      [max]="100"
+                      [size]="140"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-12 md:col-4">
-              <p-card header="Temperatura - 88%">
-                <div class="flex justify-content-center">
-                  <app-gauge [value]="88" [min]="0" [max]="100" [size]="140" />
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Temperatura - 88%</h3>
                 </div>
-              </p-card>
+
+                <div class="card-body">
+                  <div class="flex justify-content-center">
+                    <app-gauge
+                      [value]="88"
+                      [min]="0"
+                      [max]="100"
+                      [size]="140"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         }
         @case ("funnelchart") {
-          <p-card header="Funnel Chart - Pipeline de ventas">
-            <app-funnel-chart
-              title="Embudo de Ventas Q3"
-              [labels]="[
-                'Leads',
-                'Contactados',
-                'Propuesta',
-                'Negociacin',
-                'Cerrados',
-              ]"
-              [values]="[1200, 820, 430, 210, 95]"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Funnel Chart - Pipeline de ventas</h3>
+            </div>
+
+            <div class="card-body">
+              <app-funnel-chart
+                title="Embudo de Ventas Q3"
+                [labels]="[
+                  'Leads',
+                  'Contactados',
+                  'Propuesta',
+                  'Negociacin',
+                  'Cerrados',
+                ]"
+                [values]="[1200, 820, 430, 210, 95]"
+              />
+            </div>
+          </div>
         }
 
         <!-- 13.3.3 -->
         @case ("otpinput") {
-          <p-card header="OTP Input - 2FA / Verificacin">
-            <div class="flex flex-column gap-4">
-              <div>
-                <p class="text-sm font-bold mb-2">6 dgitos (predeterminado):</p>
-                <app-otp-input [(value)]="otpValue" />
-                <p class="text-xs text-secondary mt-1">
-                  Valor:
-                  <strong>{{ otpValue() || "-" }}</strong>
-                </p>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">OTP Input - 2FA / Verificacin</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-4">
+                <div>
+                  <p class="text-sm font-bold mb-2">
+                    6 dgitos (predeterminado):
+                  </p>
+                  <app-otp-input [(value)]="otpValue" />
+                  <p class="text-xs text-secondary mt-1">
+                    Valor:
+                    <strong>{{ otpValue() || "-" }}</strong>
+                  </p>
+                </div>
               </div>
             </div>
-          </p-card>
+          </div>
         }
         @case ("profilecard") {
           <div class="grid">
@@ -799,121 +1007,178 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("themeswitcher") {
-          <p-card header="Theme Switcher - Light / Dark / High Contrast">
-            <app-theme-switcher />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Theme Switcher - Light / Dark / High Contrast
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <app-theme-switcher />
+            </div>
+          </div>
         }
         @case ("langselector") {
-          <p-card header="Language / Region Selector">
-            <app-lang-selector [(selectedCode)]="langCode" />
-            <p class="text-xs text-secondary mt-2">
-              Seleccionado: <strong>{{ langCode() }}</strong>
-            </p>
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Language / Region Selector</h3>
+            </div>
+
+            <div class="card-body">
+              <app-lang-selector [(selectedCode)]="langCode" />
+              <p class="text-xs text-secondary mt-2">
+                Seleccionado: <strong>{{ langCode() }}</strong>
+              </p>
+            </div>
+          </div>
         }
         @case ("colorpicker") {
-          <p-card header="Color Picker - Hex / RGB / HSB">
-            <div class="flex flex-column gap-4">
-              <div>
-                <p class="text-sm font-bold mb-2">Inline:</p>
-                <app-color-picker
-                  [(value)]="colorValue"
-                  [inline]="true"
-                  label="Color de etiqueta"
-                />
-              </div>
-              <div>
-                <p class="text-sm font-bold mb-2">Popover:</p>
-                <app-color-picker
-                  [(value)]="colorValue"
-                  label="Color (popover)"
-                />
-                <p class="text-xs text-secondary mt-1">
-                  Valor: <strong>{{ colorValue() }}</strong>
-                </p>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Color Picker - Hex / RGB / HSB</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-4">
+                <div>
+                  <p class="text-sm font-bold mb-2">Inline:</p>
+                  <app-color-picker
+                    [(value)]="colorValue"
+                    [inline]="true"
+                    label="Color de etiqueta"
+                  />
+                </div>
+                <div>
+                  <p class="text-sm font-bold mb-2">Popover:</p>
+                  <app-color-picker
+                    [(value)]="colorValue"
+                    label="Color (popover)"
+                  />
+                  <p class="text-xs text-secondary mt-1">
+                    Valor: <strong>{{ colorValue() }}</strong>
+                  </p>
+                </div>
               </div>
             </div>
-          </p-card>
+          </div>
         }
         @case ("tristateswitch") {
-          <p-card header="Tristate Switch - S / No / Indeterminado">
-            <div class="flex flex-column gap-3">
-              <app-tristate-switch
-                [(value)]="tristateValue"
-                label="Autorizacin del cliente"
-              />
-              <p class="text-xs text-secondary">
-                Estado:
-                <strong>{{
-                  tristateValue() === null
-                    ? "Indeterminado"
-                    : tristateValue()
-                      ? "S"
-                      : "No"
-                }}</strong>
-              </p>
-              <app-tristate-switch
-                [(value)]="tristateValue2"
-                label="Revisin completada"
-                hint="Null = pendiente"
-              />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Tristate Switch - S / No / Indeterminado
+              </h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-3">
+                <app-tristate-switch
+                  [(value)]="tristateValue"
+                  label="Autorizacin del cliente"
+                />
+                <p class="text-xs text-secondary">
+                  Estado:
+                  <strong>{{
+                    tristateValue() === null
+                      ? "Indeterminado"
+                      : tristateValue()
+                        ? "S"
+                        : "No"
+                  }}</strong>
+                </p>
+                <app-tristate-switch
+                  [(value)]="tristateValue2"
+                  label="Revisin completada"
+                  hint="Null = pendiente"
+                />
+              </div>
+            </div>
+          </div>
         }
         @case ("signaturepad") {
-          <p-card header="Signature Pad - Firma digital">
-            <app-signature-pad
-              label="Firma del cliente"
-              hint="Dibuja tu firma con el mouse o dedo"
-              placeholder="Firma aqu"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Signature Pad - Firma digital</h3>
+            </div>
+
+            <div class="card-body">
+              <app-signature-pad
+                label="Firma del cliente"
+                hint="Dibuja tu firma con el mouse o dedo"
+                placeholder="Firma aqu"
+              />
+            </div>
+          </div>
         }
         @case ("qrcode") {
-          <p-card header="QR Code Generator">
-            <div class="grid">
-              <div class="col-12 md:col-4">
-                <app-qr-code
-                  data="https://luxuryapp.mx"
-                  label="Sitio web"
-                  [allowDownload]="true"
-                  [showData]="true"
-                />
-              </div>
-              <div class="col-12 md:col-4">
-                <app-qr-code
-                  data="OC-2026-0892"
-                  label="Orden de compra"
-                  [size]="120"
-                />
-              </div>
-              <div class="col-12 md:col-4">
-                <app-qr-code
-                  data="CURP-MARI800101HDFRZN09"
-                  label="CURP del empleado"
-                  [size]="120"
-                />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">QR Code Generator</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="grid">
+                <div class="col-12 md:col-4">
+                  <app-qr-code
+                    data="https://luxuryapp.mx"
+                    label="Sitio web"
+                    [allowDownload]="true"
+                    [showData]="true"
+                  />
+                </div>
+                <div class="col-12 md:col-4">
+                  <app-qr-code
+                    data="OC-2026-0892"
+                    label="Orden de compra"
+                    [size]="120"
+                  />
+                </div>
+                <div class="col-12 md:col-4">
+                  <app-qr-code
+                    data="CURP-MARI800101HDFRZN09"
+                    label="CURP del empleado"
+                    [size]="120"
+                  />
+                </div>
               </div>
             </div>
-          </p-card>
+          </div>
         }
         @case ("barcodeinput") {
-          <p-card header="Barcode / QR Input - Escaneo + teclado">
-            <app-barcode-input />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Barcode / QR Input - Escaneo + teclado</h3>
+            </div>
+
+            <div class="card-body">
+              <app-barcode-input />
+            </div>
+          </div>
         }
         @case ("realtimeindicator") {
-          <p-card header="Realtime Indicator - Estado de conexin live">
-            <div class="flex flex-column gap-3">
-              <app-realtime-indicator
-                status="live"
-                lastUpdate="hace 2s"
-                [latencyMs]="45"
-              />
-              <app-realtime-indicator status="stale" lastUpdate="hace 5 min" />
-              <app-realtime-indicator status="offline" />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Realtime Indicator - Estado de conexin live
+              </h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div class="flex flex-column gap-3">
+                <app-realtime-indicator
+                  status="live"
+                  lastUpdate="hace 2s"
+                  [latencyMs]="45"
+                />
+                <app-realtime-indicator
+                  status="stale"
+                  lastUpdate="hace 5 min"
+                />
+                <app-realtime-indicator status="offline" />
+              </div>
+            </div>
+          </div>
         }
         @case ("inventorylevel") {
           <div class="grid">
@@ -947,125 +1212,219 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("leadscoring") {
-          <p-card header="Lead Scoring - Puntuacin visual de lead CRM">
-            <app-lead-scoring [categories]="leadCategories" />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Lead Scoring - Puntuacin visual de lead CRM
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <app-lead-scoring [categories]="leadCategories" />
+            </div>
+          </div>
         }
         @case ("approvalworkflow") {
-          <p-card header="Approval Workflow - Flujo de aprobacin">
-            <app-approval-workflow [nodes]="approvalNodes" />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Approval Workflow - Flujo de aprobacin</h3>
+            </div>
+
+            <div class="card-body">
+              <app-approval-workflow [nodes]="approvalNodes" />
+            </div>
+          </div>
         }
         @case ("orderstatus") {
           <div class="grid">
             <div class="col-12 md:col-6">
-              <p-card header="Horizontal">
-                <app-order-status [steps]="orderSteps" />
-              </p-card>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Horizontal</h3>
+                </div>
+
+                <div class="card-body">
+                  <app-order-status [steps]="orderSteps" />
+                </div>
+              </div>
             </div>
             <div class="col-12 md:col-6">
-              <p-card header="Vertical">
-                <app-order-status [steps]="orderSteps" [vertical]="true" />
-              </p-card>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Vertical</h3>
+                </div>
+
+                <div class="card-body">
+                  <app-order-status [steps]="orderSteps" [vertical]="true" />
+                </div>
+              </div>
             </div>
           </div>
         }
         @case ("documentpreviewer") {
-          <p-card header="Document Previewer - PDF inline">
-            <app-document-previewer
-              src="https://www.w3.org/WAI/WCAG21/wcag21.pdf"
-              fileName="WCAG-2.1.pdf"
-              [printable]="true"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Document Previewer - PDF inline</h3>
+            </div>
+
+            <div class="card-body">
+              <app-document-previewer
+                src="https://www.w3.org/WAI/WCAG21/wcag21.pdf"
+                fileName="WCAG-2.1.pdf"
+                [printable]="true"
+              />
+            </div>
+          </div>
         }
         @case ("dashboardlayout") {
-          <p-card header="Dashboard Layout - Grid de widgets">
-            <app-dashboard-layout [widgets]="dashWidgets" [columns]="3">
-            </app-dashboard-layout>
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Dashboard Layout - Grid de widgets</h3>
+            </div>
+
+            <div class="card-body">
+              <app-dashboard-layout [widgets]="dashWidgets" [columns]="3">
+              </app-dashboard-layout>
+            </div>
+          </div>
         }
         @case ("commentthread") {
-          <p-card header="Comment Thread - Notas colaborativas">
-            <app-comment-thread
-              title="Notas del expediente"
-              [comments]="sampleComments"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Comment Thread - Notas colaborativas</h3>
+            </div>
+
+            <div class="card-body">
+              <app-comment-thread
+                title="Notas del expediente"
+                [comments]="sampleComments"
+              />
+            </div>
+          </div>
         }
         @case ("emailpreview") {
-          <p-card header="Email Template Previewer">
-            <app-email-preview
-              from="sistema@luxuryapp.mx"
-              to="cliente@empresa.com"
-              subject="Confirmacin de orden OC-2026-0892"
-              [htmlContent]="emailHtml"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Email Template Previewer</h3>
+            </div>
+
+            <div class="card-body">
+              <app-email-preview
+                from="sistema@luxuryapp.mx"
+                to="cliente@empresa.com"
+                subject="Confirmacin de orden OC-2026-0892"
+                [htmlContent]="emailHtml"
+              />
+            </div>
+          </div>
         }
         @case ("formbuilder") {
-          <p-card header="Form Builder - JSON Schema dinmico">
-            <app-form-builder
-              title="Formulario generado desde schema"
-              [schema]="formSchema"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Form Builder - JSON Schema dinmico</h3>
+            </div>
+
+            <div class="card-body">
+              <app-form-builder
+                title="Formulario generado desde schema"
+                [schema]="formSchema"
+              />
+            </div>
+          </div>
         }
         @case ("printview") {
-          <p-card header="Print View - Vista de impresin">
-            <app-print-view
-              title="Reporte de Gastos - Junio 2026"
-              subtitle="Departamento de Operaciones"
-            >
-              <p>
-                Contenido del reporte que se optimiza para impresin con CSS
-                @media print.
-              </p>
-              <p>
-                Las reas de navegaciól y el sidebar quedan ocultos
-                automticamente.
-              </p>
-            </app-print-view>
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Print View - Vista de impresin</h3>
+            </div>
+
+            <div class="card-body">
+              <app-print-view
+                title="Reporte de Gastos - Junio 2026"
+                subtitle="Departamento de Operaciones"
+              >
+                <p>
+                  Contenido del reporte que se optimiza para impresin con CSS
+                  @media print.
+                </p>
+                <p>
+                  Las reas de navegaciól y el sidebar quedan ocultos
+                  automticamente.
+                </p>
+              </app-print-view>
+            </div>
+          </div>
         }
         @case ("customer360") {
-          <p-card header="Customer 360 - Vista completa de cliente CRM">
-            <app-customer-360 [data]="customer360Data" />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Customer 360 - Vista completa de cliente CRM
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <app-customer-360 [data]="customer360Data" />
+            </div>
+          </div>
         }
         @case ("dock") {
-          <p-card header="Dock - macOS-style app dock">
-            <div
-              style="position:relative;height:140px;background:var(--ds-bg-elevated);border-radius:var(--ds-radius-lg,8px);overflow:hidden;"
-            >
-              <app-dock [items]="dockItems" position="bottom" />
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Dock - macOS-style app dock</h3>
             </div>
-          </p-card>
+
+            <div class="card-body">
+              <div
+                style="position:relative;height:140px;background:var(--ds-bg-elevated);border-radius:var(--ds-radius-lg,8px);overflow:hidden;"
+              >
+                <app-dock [items]="dockItems" position="bottom" />
+              </div>
+            </div>
+          </div>
         }
         @case ("heatmap") {
-          <p-card header="Heatmap - Actividad por hora/da">
-            <app-heatmap
-              title="Actividad semanal"
-              [data]="heatmapData"
-              [showValues]="true"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Heatmap - Actividad por hora/da</h3>
+            </div>
+
+            <div class="card-body">
+              <app-heatmap
+                title="Actividad semanal"
+                [data]="heatmapData"
+                [showValues]="true"
+              />
+            </div>
+          </div>
         }
         @case ("gantt") {
-          <p-card header="Gantt Chart - Cronograma de proyecto">
-            <app-gantt title="Proyecto ERP Q3" [tasks]="ganttTasks" />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Gantt Chart - Cronograma de proyecto</h3>
+            </div>
+
+            <div class="card-body">
+              <app-gantt title="Proyecto ERP Q3" [tasks]="ganttTasks" />
+            </div>
+          </div>
         }
         @case ("pivottable") {
-          <p-card header="Pivot Table - Anlisis multidimensional">
-            <app-pivot-table
-              title="Ventas por rea y mes"
-              [data]="pivotData"
-              [rows]="pivotRows"
-              [columns]="pivotColumns"
-              [values]="pivotValues"
-            />
-          </p-card>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pivot Table - Anlisis multidimensional</h3>
+            </div>
+
+            <div class="card-body">
+              <app-pivot-table
+                title="Ventas por rea y mes"
+                [data]="pivotData"
+                [rows]="pivotRows"
+                [columns]="pivotColumns"
+                [values]="pivotValues"
+              />
+            </div>
+          </div>
         }
       }
     </section>
@@ -1937,3 +2296,4 @@ export class CatalogCoreItem {
     },
   ];
 }
+

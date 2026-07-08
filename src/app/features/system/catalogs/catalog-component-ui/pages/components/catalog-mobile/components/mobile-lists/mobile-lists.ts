@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonBadge,
@@ -38,7 +44,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../../shared/mobile-showcase-st
 
 @Component({
   selector: "app-mobile-lists",
-  standalone: true,
+
   imports: [
     CommonModule,
     FormsModule,
@@ -831,4 +837,3 @@ interface Task {
   due: string;
   completed: boolean;
 }
-

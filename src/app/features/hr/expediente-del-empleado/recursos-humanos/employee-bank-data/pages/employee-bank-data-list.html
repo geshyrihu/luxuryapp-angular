@@ -76,9 +76,9 @@
     (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
   >
     <ng-template #listItemTemplate let-item>
-      <ion-item lines="full">
+      <ili-list-item>
         <div
-          slot="start"
+          start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
           style="
             width: 38px;
@@ -91,7 +91,7 @@
             style="font-size: 1.1rem; color: var(--ds-primary)"
           />
         </div>
-        <ion-label>
+        
           <h2 class="font-bold">{{ item.employeeName }}</h2>
           <p class="text-sm text-500">
             ?? {{ item.bankName }} | {{ item.bankAccount }}
@@ -99,8 +99,8 @@
           <p class="text-sm text-500">
             ?? {{ item.relacionName }}: {{ item.nameContact }}
           </p>
-        </ion-label>
-        <ili-action-menu slot="end">
+        
+        <ili-action-menu end>
           <ng-container actions>
             <ili-button-item
               (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
@@ -109,7 +109,7 @@
             />
           </ng-container>
         </ili-action-menu>
-      </ion-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

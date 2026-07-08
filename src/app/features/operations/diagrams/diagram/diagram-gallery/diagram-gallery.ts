@@ -8,7 +8,6 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -23,7 +22,6 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
   imports: [
     CommonModule,
     DataViewModule,
-    CardModule,
     WebButtonLabel,
     AppIcon,
     CustomInputTextSignal,
@@ -61,15 +59,14 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         <ng-template #grid let-items>
           <div class="grid grid-nogutter">
             <div class="col-12 md:col-4 p-2" *ngFor="let diagram of items">
-              <p-card
-                [header]="diagram.name"
-                [subheader]="
-                  'Actualizado: ' + (diagram.updateAt | date: 'dd/MM/yyyy')
-                "
-                class="h-full shadow-2 hover:shadow-4 transition-duration-150"
+              <div
+                class="card h-full shadow-2 hover:shadow-4 transition-duration-150"
               >
-                <div
-                  class="flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
+                <div class="card-header flex-column gap-1">
+                  <span class="card-title">{{ diagram.name }}</span>
+                  <span class="card-subtitle">Actualizado: {{ diagram.updateAt | date: 'dd/MM/yyyy' }}</span>
+                </div>
+                <div class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
                   style="min-height: 150px"
                 >
                   <app-icon
@@ -77,7 +74,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                     class="text-6xl text-primary-400"
                   />
                 </div>
-                <ng-template #footer>
+                <div class="card-footer">
                   <div class="flex ">
                     <il-button
                       label="Visualizar"
@@ -87,8 +84,8 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                       (clicked)="onView(diagram.id)"
                     />
                   </div>
-                </ng-template>
-              </p-card>
+                </div>
+              </div>
             </div>
           </div>
         </ng-template>

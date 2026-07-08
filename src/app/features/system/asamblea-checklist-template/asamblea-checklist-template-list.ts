@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableModule } from "primeng/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -41,8 +41,7 @@ import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto
     WebButtonIconDelete,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    IonItem,
-    IonLabel,
+    MobileListItem,
   ],
 })
 export class AsambleaChecklistTemplateList implements OnInit {

@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

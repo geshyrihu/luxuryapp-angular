@@ -1,9 +1,14 @@
-import { Directive, ElementRef, inject, HostListener, Renderer2 } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  inject,
+  Renderer2,
+} from "@angular/core";
 import { StyleClassBase } from "@ui/base/style-class.base";
 
 @Directive({
   selector: "[iliStyleClass]",
-  standalone: true,
 })
 export class MobileStyleClass extends StyleClassBase {
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);

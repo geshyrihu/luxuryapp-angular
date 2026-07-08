@@ -8,7 +8,7 @@ import {
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -58,7 +58,7 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    AvatarModule,
+    LxAvatar,
     LxTag,
     LxSidebar,
     LxModal,

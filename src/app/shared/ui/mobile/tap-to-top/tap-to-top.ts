@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TapToTopBase } from "@ui/base/tap-to-top.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-tap-to-top",
-  standalone: true,
+
   imports: [CommonModule, AppIcon],
   encapsulation: ViewEncapsulation.None,
   template: `
@@ -17,27 +17,31 @@ import { TapToTopBase } from "@ui/base/tap-to-top.base";
       <app-icon icon="mdi:arrow-up" class="m-0 icon icon-" />
     </div>
   `,
-  styles: [`
-    .tap-top {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: 9999;
-      cursor: pointer;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: var(--ds-primary, #003d9b);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--ds-shadow-lg, 0 4px 12px rgba(0,0,0,0.15));
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .tap-top:hover {
-      transform: scale(1.1);
-    }
-  `],
+  styles: [
+    `
+      .tap-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 9999;
+        cursor: pointer;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: var(--ds-primary, #003d9b);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--ds-shadow-lg, 0 4px 12px rgba(0, 0, 0, 0.15));
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .tap-top:hover {
+        transform: scale(1.1);
+      }
+    `,
+  ],
 })
 export class MobileTapToTop extends TapToTopBase {}

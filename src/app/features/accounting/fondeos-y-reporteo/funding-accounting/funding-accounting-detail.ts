@@ -3,10 +3,10 @@ import { Component, DestroyRef, effect, inject, signal, ChangeDetectionStrategy 
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { MessageModule } from "primeng/message";
+
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
@@ -18,21 +18,19 @@ import { SignalRService } from "src/app/core/services/signalr.service";
 import { FundingPurchaseDetail } from "src/app/features/accounting/fondeos-y-reporteo/funding/funding-purchase-detail";
 import { FundingDetailDTO } from "src/app/features/accounting/fondeos-y-reporteo/funding/model/funding-detail-dto";
 import { FundingExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/services/funding-excel-export.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxMessage } from "@ui/adaptive/message/message";
 @Component({
   selector: "app-funding-accounting-detail",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule,
     TableModule,
     CustomInputCheckSignal,
-    MessageModule,
-    TagModule,
     TooltipModule,
     UpperCasePipe,
     DecimalPipe,
     WebButtonLabel,
-    WebButtonLabelItem,
-  ],
+    WebButtonLabelItem, LxTag, LxMessage],
   styleUrls: ["./funding-accounting-detail.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-detail.html",

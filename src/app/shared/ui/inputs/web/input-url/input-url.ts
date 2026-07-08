@@ -1,11 +1,16 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputUrl } from "../custom-input-url-signal";
 import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputUrl } from "../custom-input-url-signal";
 
 @Component({
   selector: "web-input-url",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputUrl],
   template: `
     <custom-input-url

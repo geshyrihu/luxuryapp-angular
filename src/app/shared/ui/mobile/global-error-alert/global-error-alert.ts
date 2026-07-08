@@ -1,18 +1,22 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import {
   IonButton,
   IonIcon,
   IonItem,
   IonLabel,
 } from "@ionic/angular/standalone";
+import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
 import { addIcons } from "ionicons";
 import { alertCircleOutline, closeOutline } from "ionicons/icons";
-import { CommonModule } from "@angular/common";
-import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
 
 @Component({
   selector: "ili-global-error-alert",
-  standalone: true,
+
   imports: [CommonModule, IonItem, IonLabel, IonButton, IonIcon],
   template: `
     @if (error) {
@@ -72,4 +76,3 @@ export class MobileGlobalErrorAlert extends GlobalErrorAlertBase {
     addIcons({ alertCircleOutline, closeOutline });
   }
 }
-

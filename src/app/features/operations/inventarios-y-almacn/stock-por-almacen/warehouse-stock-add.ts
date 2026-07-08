@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -79,10 +79,10 @@ export class WarehouseStockAdd implements OnInit {
   loading = signal(true);
   totalRecords: number = 0; // Total de registros para paginador
 
-  // ConfiguraciÃ³n de paginaciÃ³n y filtro
-  rows: number = 30; // Registros por pÃ¡gina
-  first: number = 0; // Ãndice del primer registro
-  page: number = 1; // PÃ¡gina actual
+  // Configuración de paginación y filtro
+  rows: number = 30; // Registros por página
+  first: number = 0; // Índice del primer registro
+  page: number = 1; // Página actual
   searchTerm: string = ""; // Filtro global
 
   tablePrimeNgRows: number = tablePrimeNgRows();
@@ -99,7 +99,7 @@ export class WarehouseStockAdd implements OnInit {
 
   ngOnInit(): void {
     this.onLoadSelectItem();
-    // La primera carga es disparada automÃ­ticamente por el (onLazyLoad) de p-table
+    // La primera carga es disparada automíticamente por el (onLazyLoad) de p-table
   }
 
   onModalTarjetaProducto(productoId: any): void {
@@ -200,10 +200,10 @@ export class WarehouseStockAdd implements OnInit {
 
     const value = rowGroup.getRawValue();
 
-    // Validar que Stock MÃ­nimo < Stock MÃ¡ximo
+    // Validar que Stock Mínimo < Stock Máximo
     if (value.stockMax && value.stockMin && value.stockMin >= value.stockMax) {
       rowGroup.controls.errorMessage.setValue(
-        "El 'Stock MÃ­nimo' no puede ser mayor o igual al 'Stock MÃ¡ximo'.",
+        "El 'Stock Mínimo' no puede ser mayor o igual al 'Stock Máximo'.",
       );
       return;
     }

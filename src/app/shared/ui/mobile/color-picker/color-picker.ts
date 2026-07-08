@@ -4,7 +4,7 @@ import { ColorPickerBase } from "@ui/base/color-picker.base";
 
 @Component({
   selector: "ili-color-picker",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div class="ili-cp-root" [class.ili-cp-disabled]="disabled()">
@@ -26,7 +26,12 @@ import { ColorPickerBase } from "@ui/base/color-picker.base";
         }
 
         @if (allowClear() && value()) {
-          <button type="button" class="ili-cp-clear" (click)="clear()" title="Limpiar">
+          <button
+            type="button"
+            class="ili-cp-clear"
+            (click)="clear()"
+            title="Limpiar"
+          >
             ✕
           </button>
         }

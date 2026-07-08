@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 
 export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
 
@@ -10,7 +15,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
  */
 @Component({
   selector: "app-realtime-indicator",
-  standalone: true,
+
   imports: [CommonModule],
   template: `
     <div class="rt-root" [attr.aria-label]="statusLabel()">

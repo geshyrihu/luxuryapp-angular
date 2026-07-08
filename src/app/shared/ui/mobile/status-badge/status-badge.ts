@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { StatusBadgeBase } from "@ui/base/status-badge.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-status-badge",
-  standalone: true,
+
   imports: [AppIcon],
   template: `
     <span

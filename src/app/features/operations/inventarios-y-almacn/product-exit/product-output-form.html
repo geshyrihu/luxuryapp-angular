@@ -1,5 +1,5 @@
-<p-card>
-  <ng-template #content>
+﻿<div class="card">
+  
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
       <custom-input-text-signal
         [control]="form.controls.id"
@@ -25,11 +25,7 @@
             [hidden]="true"
             [horizontal]="false"
           />
-          <custom-input-text-signal
-            [readonly]="true"
-            [value]="nombreProducto()"
-            [horizontal]="false"
-          />
+          <input pInputText [readonly]="true" [value]="nombreProducto()" class="w-full" />
         </div>
       </div>
       <div class="grid mb-4 align-items-center">
@@ -64,5 +60,6 @@
       />
       <il-button-save [disabled]="form.invalid || submitting()" />
     </form>
-  </ng-template>
-</p-card>
+  
+</div>
+

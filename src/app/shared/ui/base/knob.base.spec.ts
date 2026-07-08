@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { KnobBase } from "./knob.base";
 
-@Component({ selector: "test-knob", standalone: true, template: "" })
+@Component({ selector: "test-knob", template: "" })
 class Host extends KnobBase {}
 
 describe("KnobBase", () => {

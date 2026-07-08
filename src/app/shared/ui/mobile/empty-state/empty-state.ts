@@ -1,12 +1,16 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-empty-state",
-  standalone: true,
+
   imports: [CommonModule, IonButton, AppIcon],
   template: `
     <div class="ili-empty-state">

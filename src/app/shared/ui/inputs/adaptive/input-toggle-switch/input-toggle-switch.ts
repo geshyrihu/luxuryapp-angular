@@ -1,4 +1,11 @@
-import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
@@ -7,7 +14,7 @@ import { WebInputToggleSwitch } from "../../web/input-toggle-switch/input-toggle
 
 @Component({
   selector: "custom-input-toggle-switch-signal",
-  standalone: true,
+
   imports: [WebInputToggleSwitch, IonInputToggle],
   providers: [
     {

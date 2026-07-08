@@ -256,7 +256,7 @@
     <div class="grid">
       @for (card of group.cards; track card.title) {
       <div class="col-12 sm:col-6 lg:col-3">
-        <lx-card class="card card--interactive card--elevated h-full">
+        <lx-card class="card card--interactive card--elevated h-full" (click)="navigateTo(card.route)">
 <div class="flex flex-column gap-3">
             <div class="flex align-items-center justify-content-between">
               <div

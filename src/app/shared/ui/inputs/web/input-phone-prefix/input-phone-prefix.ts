@@ -1,12 +1,17 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
-import { BaseInputSignal } from "../../base/base-input-signal";
 import { PhonePrefix } from "src/app/core/data/phone-prefixes.data";
+import { BaseInputSignal } from "../../base/base-input-signal";
+import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
 
 @Component({
   selector: "web-input-phone-prefix",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputPhonePrefix],
   template: `
     <custom-input-phone-prefix

@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonToggle } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-theme-switcher",
-  standalone: true,
+
   imports: [CommonModule, IonToggle, AppIcon],
   template: `
     <div class="ili-theme">

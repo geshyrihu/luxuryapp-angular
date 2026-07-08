@@ -17,8 +17,8 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { MessageModule } from "primeng/message";
-import { SkeletonModule } from "primeng/skeleton";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -51,8 +51,8 @@ import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/
     LxCard,
     CustomInputSelectSignal,
     CustomInputDatepicker,
-    MessageModule,
-    SkeletonModule,
+    LxMessage,
+    LxSkeleton,
     CustomInputTextAreaSignal,
     WebButtonLabel,
     WebButtonLabelSave,

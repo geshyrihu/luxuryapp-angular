@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { BadgeBase } from "./badge.base";
 
-@Component({ selector: "test-badge", standalone: true, template: "" })
+@Component({ selector: "test-badge", template: "" })
 class TestBadge extends BadgeBase {}
 
 describe("BadgeBase", () => {

@@ -179,15 +179,11 @@
         
           <div class="flex justify-content-between align-items-center mb-1">
             <span class="text-xs font-bold text-500">{{ item.folio }}</span>
-            <ion-badge color="light" class="text-xs"
-              >{{ item.turno }}</ion-badge
-            >
+            <lx-tag severity="secondary" [value]="item.turno" />
           </div>
           <h2 class="text-base font-bold m-0 text-900">
             @if (necesitaActualizacion(item)) {
-            <ion-badge color="warning">
-              <app-icon [icon]="'mdi:alert'" class="mr-1" />Actualizar puesto
-            </ion-badge>
+            <lx-tag severity="warning" value="Actualizar puesto" icon="mdi:alert" />
             } @else { {{ item.applicationRoleName }} }
           </h2>
           <p class="text-sm text-600">
@@ -196,10 +192,7 @@
 
           @if (item.positionRequest?.status === 0 ||
           item.positionRequest?.status === 3) {
-          <ion-badge color="danger" class="mt-1">
-            Pendiente: {{ item.positionRequest.status === 0 ? 'Nueva' : 'En
-            Proceso' }}
-          </ion-badge>
+          <lx-tag severity="danger" class="mt-1" [value]="'Pendiente: ' + (item.positionRequest.status === 0 ? 'Nueva' : 'En Proceso')" />
           }
         
 

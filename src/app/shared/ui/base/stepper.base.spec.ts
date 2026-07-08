@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { StepperBase, StepperStep } from "./stepper.base";
 
-@Component({ selector: "test-stepper", standalone: true, template: "" })
+@Component({ selector: "test-stepper", template: "" })
 class TestStepper extends StepperBase {}
 
 const steps: StepperStep[] = [

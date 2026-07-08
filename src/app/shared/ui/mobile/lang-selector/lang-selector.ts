@@ -5,7 +5,7 @@ import { LangSelectorBase } from "@ui/base/lang-selector.base";
 
 @Component({
   selector: "ili-lang-selector",
-  standalone: true,
+
   imports: [CommonModule, IonSelect, IonSelectOption],
   template: `
     <div class="ili-lang-root">

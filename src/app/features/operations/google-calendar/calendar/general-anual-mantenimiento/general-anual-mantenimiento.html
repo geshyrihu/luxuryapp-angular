@@ -24,7 +24,7 @@
     </div>
     @for (servicio of item.servicios; track servicio) {
     <div class="mb-3">
-      <p-card class="h-full shadow-1">
+      <div class="card" class="h-full shadow-1">
         <div class="card-body">
           <div class="flex flex-column">
             <div class="mb-3 border-bottom-1 surface-border pb-2">
@@ -78,7 +78,7 @@
             </div>
           </div>
         </div>
-      </p-card>
+      </div>
     </div>
     }
   </div>
@@ -102,23 +102,21 @@
   </div>
 
   <!-- List -->
-  <ion-list>
+  <div class="surface-card mb-3 border-round">
     @for (item of dataSignal(); track item) {
-    <ion-list-header color="light">
-      <ion-label class="font-bold text-lg text-primary"
-        >{{ item.mes.month }}</ion-label
-      >
-    </ion-list-header>
+    <div class="surface-card mb-3 border-round">
+      <span class="font-bold text-lg text-primary">{{ item.mes.month }}</span>
+    </div>
 
     @for (servicio of item.servicios; track servicio) {
-    <ion-item lines="full">
-      <ion-avatar slot="start" class="mt-2" style="width: 50px; height: 50px">
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+      <div class="mr-3">
         <img
           [src]="servicio.img || 'assets/images/no-image.png'"
           alt="Equipo"
         />
-      </ion-avatar>
-      <ion-label class="ion-text-wrap my-2">
+      </div>
+      <span class="ion-text-wrap my-2">
         <h2 class="text-base font-bold">{{ servicio.equipo }}</h2>
         <div
           class="text-sm text-700 mb-2"
@@ -140,13 +138,14 @@
           <app-icon [icon]="'mdi:briefcase'" class="mr-1" /> {{
           servicio.proveedor }}
         </p>
-      </ion-label>
-    </ion-item>
+      </span>
+    </div>
     } } @empty {
     <div class="p-4 text-center">
       <app-icon [icon]="'mdi:magnify'" class="text-4xl text-gray-400 mb-2" />
       <p>No hay mantenimientos programados para este criterio.</p>
     </div>
     }
-  </ion-list>
+  </div>
 </div>
+

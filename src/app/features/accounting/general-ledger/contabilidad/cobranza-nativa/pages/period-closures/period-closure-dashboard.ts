@@ -1,17 +1,24 @@
 import { DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { lockClosedOutline, lockOpenOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -23,9 +30,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { PeriodClosureResponseDTO } from "../../models/period-closure.dto";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
-
 @Component({
   selector: "app-period-closure-dashboard",
   imports: [
@@ -35,9 +39,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    IonItem,
-    IonLabel,
-    IonIcon,
+    MobileListItem,
     DatePipe,
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -101,7 +103,6 @@ export default class PeriodClosureDashboard {
   }
 
   constructor() {
-    addIcons({ lockClosedOutline, lockOpenOutline });
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData(customerId);

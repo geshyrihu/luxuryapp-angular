@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -99,7 +99,7 @@ export class ListadoAnualMantenimiento {
   groupedData = computed(() => {
     const data = this.dataSignal();
     return data.reduce((acc: any, item: any) => {
-      const key = item.inventoryCategory || "Sin CategorÃ³a";
+      const key = item.inventoryCategory || "Sin Categoróa";
       if (!acc[key]) {
         acc[key] = [];
       }
