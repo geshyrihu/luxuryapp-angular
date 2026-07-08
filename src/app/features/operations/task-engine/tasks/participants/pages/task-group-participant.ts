@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -26,7 +26,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     ReactiveFormsModule,
     CardModule,
     TableModule,
-    ProgressSpinnerModule,
+    AppSpinner,
     MessageModule,
     CustomInputSelectSignal,
     WebButtonLabelEdit,

@@ -655,14 +655,18 @@ Y puede empezar migracion inmediata en las familias que ya estan cubiertas:
 - migrador `migrate-simple-tag.mjs`: renombra `p-* -> app-*`, convierte `class=` -> `styleClass=` (estatico, `[class]`, e interpolado de una `{{}}`), y cambia el import de modulo por el wrapper
 - **p-avatar -> app-avatar**: 11 pantallas (operations) + 2 imports muertos `AvatarModule` removidos
 - **p-image -> app-image**: 22 pantallas (18 operations + 4 maintenance) + 1 import muerto `ImageModule` removido
+- **p-progressspinner -> app-spinner**: 6 pantallas (mapeo `class="w-Nrem h-Nrem"` -> `[size]="N*16"`, `strokeWidth`)
 - orphan (no referenciado por ningun `.ts`): `operations/task-engine/tasks/my-tasks/pages/my-tasks-list.html`
+
+### Diferido (alto riesgo de colision / semantica compleja)
+
+- **p-tag (123)** y **p-card (51)**: los migra otro agente globalmente (rompio ListProvider/JobDescriptionForm). `app-tag` es un componente custom con color por `severity` (no envuelve p-tag); reconciliar los 56 `class=` custom requiere criterio. Se deja para coordinar con el agente dueño de esa familia.
 
 ### Validaciones
 
-- [x] `tsc` limpio en todo mi lane (0 errores en op/maint/legal)
+- [x] `tsc` 0 errores en toda la app
 - [x] `npm run audit:ui` OK
-- [ ] `npm run build` agregado BLOQUEADO por WIP roto de OTROS agentes (fuera de mi lane): `purchasing/create-orden-compra-wizard.ts`, `purchasing ListProvider` (p-tag), `recruitment JobDescriptionForm` (p-card)
-- commit solo de mis paths para no arrastrar el WIP roto ajeno
+- [x] `npm run build` OK (159 s) — verde tras que otros agentes arreglaran su WIP
 
 ---
 

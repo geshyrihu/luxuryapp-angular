@@ -34,7 +34,7 @@
 </p-card>
 @if (loading_existing_participant()) {
 <div class="flex justify-content-center mt-3">
-  <p-progressspinner />
+  <app-spinner />
 </div>
 } @else if (cb_existing_Participant().length === 0) {
 <p-message severity="info" text="No hay integrantes."></p-message>

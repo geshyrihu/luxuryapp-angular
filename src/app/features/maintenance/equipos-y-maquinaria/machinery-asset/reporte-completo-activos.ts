@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -29,7 +29,7 @@ interface ActivoGroup {
   selector: "app-reporte-completo-activos",
   templateUrl: "./reporte-completo-activos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [SanitizeHtmlPipe, ProgressSpinnerModule],
+  imports: [SanitizeHtmlPipe, AppSpinner],
 })
 // óCAMBIO! Ya no implementamos OnInit.
 export class ReporteCompletoActivos {

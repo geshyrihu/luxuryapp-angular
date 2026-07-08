@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TagModule } from "primeng/tag";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-report-supervision",
-  imports: [CommonModule, CardModule, TagModule, ProgressSpinnerModule],
+  imports: [CommonModule, CardModule, TagModule, AppSpinner],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-supervision.html",
 })

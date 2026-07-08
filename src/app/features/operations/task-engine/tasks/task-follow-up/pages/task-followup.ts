@@ -19,7 +19,7 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -47,7 +47,7 @@ interface ITicketMessageFollowupForm {
     CardModule,
     WebButtonLabelSave,
     WebButtonLabelDelete,
-    ProgressSpinnerModule,
+    AppSpinner,
     CustomInputTextAreaSignal,
   ],
 })

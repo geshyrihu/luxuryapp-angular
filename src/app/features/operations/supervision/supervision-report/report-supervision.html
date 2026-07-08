@@ -26,7 +26,7 @@
 
   @if (loadingMinutas()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
-    <p-progressspinner class="w-3rem h-3rem" strokeWidth="4" />
+    <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando minutas...</span>
   </div>
   } @if (!loadingMinutas() && minutas() && minutas().length > 0) { @for (area of
@@ -84,7 +84,7 @@
 
   @if (loadingTickets()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
-    <p-progressspinner class="w-3rem h-3rem" strokeWidth="4" />
+    <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando tickets...</span>
   </div>
   } @if (!loadingTickets() && tickets() && tickets().length > 0) { @for (item of
@@ -140,7 +140,7 @@
 
   @if (loadingPendingLegal()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
-    <p-progressspinner class="w-3rem h-3rem" strokeWidth="4" />
+    <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando pendientes legales...</span>
   </div>
   } @if (!loadingPendingLegal() && pendingLegal() && pendingLegal().length > 0)
@@ -194,7 +194,7 @@
 
   @if (loadingEnvioFinancieros()) {
   <div class="flex align-items-center justify-content-center gap-3 py-4">
-    <p-progressspinner class="w-3rem h-3rem" strokeWidth="4" />
+    <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando estados financieros...</span>
   </div>
   } @if (!loadingEnvioFinancieros() && envioFinancieros() &&

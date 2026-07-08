@@ -2,10 +2,7 @@
   <!-- Loading Spinner -->
   @if (loading()) {
   <div class="flex justify-content-center">
-    <p-progressspinner
-      class="w-3rem h-3rem"
-      strokeWidth="4"
-    ></p-progressspinner>
+    <app-spinner [size]="48" [strokeWidth]="4" />
   </div>
   }
 

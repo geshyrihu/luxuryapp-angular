@@ -3,7 +3,7 @@ import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@ang
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TableModule } from "primeng/table";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -17,7 +17,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     SanitizeHtmlPipe,
     CardModule,
     TableModule,
-    ProgressSpinnerModule,
+    AppSpinner,
   ],
 })
 export class ReportMeeting {
