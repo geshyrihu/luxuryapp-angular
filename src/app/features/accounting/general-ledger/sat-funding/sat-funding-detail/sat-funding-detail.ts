@@ -10,9 +10,9 @@ import { ActivatedRoute } from "@angular/router";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // PrimeNG Modules
-import { CardModule } from "primeng/card";
+
 import { DialogModule } from "primeng/dialog";
-import { SelectModule } from "primeng/select";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
@@ -31,12 +31,13 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-sat-funding-detail",
   templateUrl: "./sat-funding-detail.html",
-  imports: [
-    WebButtonIconConfirm,
+  imports: [WebButtonIconConfirm,
     WebButtonIconEdit,
     CommonModule,
     FormsModule,
@@ -44,14 +45,12 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     TableModule,
     CustomInputTextSignal,
     DialogModule,
-    SelectModule,
+    InputSelect,
     CustomInputDateSignal,
     TooltipModule,
-    CardModule,
     WebButtonLabelSave,
     WebButtonLabelConfirm,
-    WebButtonLabelEdit,
-  ],
+    WebButtonLabelEdit, LxCard, AppIcon],
 })
 export class SatFundingDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -65,6 +64,7 @@ export class SatFundingDetailComponent implements OnInit {
   data = signal<SatFundingDetailDTO | null>(null);
   invoices = signal<SatCfdiDTO[]>([]);
   selection: SatCfdiDTO[] = [];
+  bulkTipoGasto = signal<number | null>(null);
   submitting = signal(false);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -77,7 +77,7 @@ export class SatFundingDetailComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" },
+    { value: 9, label: "Impuestos y contribuciones" }
   ];
 
   form = this.formBuilder.nonNullable.group({

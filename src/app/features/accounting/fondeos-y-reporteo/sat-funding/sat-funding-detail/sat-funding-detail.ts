@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,9 +22,9 @@ import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CardModule } from "primeng/card";
+
 import { DialogModule } from "primeng/dialog";
-import { SelectModule } from "primeng/select";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import {
@@ -36,13 +36,14 @@ import {
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-sat-funding-detail",
   templateUrl: "./sat-funding-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconConfirm,
+  imports: [WebButtonIconConfirm,
     WebButtonIconEdit,
     CommonModule,
     FormsModule,
@@ -50,13 +51,10 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     TableModule,
     CustomInputTextSignal,
     DialogModule,
-    SelectModule,
+    InputSelect,
     CustomInputDateSignal,
     TooltipModule,
-    CardModule,
-    WebButtonLabelSave,
-
-  ],
+    WebButtonLabelSave, LxCard, AppIcon],
 })
 export class SatFundingDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -70,6 +68,7 @@ export class SatFundingDetailComponent implements OnInit {
   data = signal<SatFundingDetailDTO | null>(null);
   invoices = signal<SatCfdiDTO[]>([]);
   selection: SatCfdiDTO[] = [];
+  bulkTipoGasto = signal<number | null>(null);
   submitting = signal(false);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -82,7 +81,7 @@ export class SatFundingDetailComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" },
+    { value: 9, label: "Impuestos y contribuciones" }
   ];
 
   form = this.formBuilder.nonNullable.group({
