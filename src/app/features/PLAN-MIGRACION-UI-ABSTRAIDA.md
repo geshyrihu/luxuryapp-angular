@@ -40,7 +40,24 @@
 > **Que hacen los demas mientras tanto:** migran su lane con los wrappers YA
 > existentes; cuando Agente 1 publique `lx-listbox`/`lx-popover`/`lx-split-button`/
 > `lx-icon-field`, cada agente migra SUS usos de esos tags en su propio modulo.
-> Estado del bloque: se marcara [x] aqui al liberar cada pieza.
+>
+> **Estado del bloque (2026-07-08):**
+> - [x] **`lx-tabs` multi-panel ARREGLADO** (`web/tabs` + `mobile/tabs`): ahora
+>   conmutan los paneles proyectados `[tab=<id>]` por tab activa (ocultan los no
+>   activos via effect). Antes `ili-tabs` apilaba TODOS los panels en movil y
+>   `app-tabs` usaba `<ng-content [select]>` dinamico (no fiable). **Con esto la
+>   proyeccion `<div tab="id">` YA es valida en web y movil** → el patron de
+>   proyeccion que usan otros agentes ahora funciona. (Sigue valido tambien el
+>   patron selector + `@switch`.) Falta QA visual.
+> - [x] `report-catalog` migrado (selector + `@switch`).
+> - [ ] `financial-reports-wrapper` / `contabilidad-cliente-wrapper`: en edicion
+>   concurrente (patron proyeccion); ya compilan con el wrapper arreglado.
+> - [ ] wrappers dispersos `lx-listbox` / `lx-split-button` / `lx-icon-field`
+>   pendientes (`lx-popover` y `app-inputicon` ya los creo otro agente).
+>
+> **⚠ Blocker de build vigente (NO es de accounting):**
+> `system/ai/ia-test/ia-test.component.html` usa `<lx-card>` sin importar `LxCard`
+> en su `.ts` (NG8001) → **lane Agente 2**.
 
 ---
 
@@ -1322,3 +1339,86 @@ g-template, p-table, div sin cerrar) provenian del script original de migracion 
 - [x] scan de encoding (`node scripts/audit-encoding.mjs`) — CERO BOM/mojibake en archivos que toque
 - [x] cero `ion-*` crudo y cero `p-*` no permitido en accounting salvo: `p-tabs` x3 (pendiente wrapper), `p-splitbutton`/`p-popover`/`p-listbox`/`p-iconfield`/`p-inputicon` (pendiente wrapper/inline)
 - [x] plan actualizado
+
+## Sesion 2026-07-08 (Cierre residual accounting — 3 p-tabs diferidos por Agente 1)
+
+### Objetivo de la sesion
+
+- ejecutar el unico residual vivo de `accounting/` que Agente 1 dejo pendiente: los 3 `<p-tabs>` (`report-catalog`, `financial-reports-wrapper`, `contabilidad-cliente-wrapper`) + limpiar imports `primeng/tabs`/`primeng/tag` muertos.
+
+### Cambios realizados
+
+- migracion `<p-tabs>` -> `<lx-tabs>` usando la convencion establecida (`[tabs]`/`[activeId]`/`(tabChange)`; paneles proyectados con `<div tab="N" class="p-4 pt-5">`), en:
+  - `general-ledger/contabilidad/dynamic-reports/pages/report-catalog` (.ts + .html: 2 paneles `catalogTabs`/`activeTab`)
+  - `general-ledger/contabilidad/contabilidad-online/pages/financial-reports-wrapper` (.ts + .html: 12 paneles `reportTabs`; el .ts YA importaba `LxTabs`/`TabItem` pero el HTML seguia con `<p-tabs>` y `TabsModule` en `imports[]` -> se completo)
+  - `general-ledger/contabilidad/contabilidad-cliente/pages/contabilidad-cliente-wrapper` (.ts + .html: 12 paneles `reportTabs`; se restauro import `EpfClienteComponent` que se habia borrado por error)
+- limpieza de imports muertos (sin `<p-tag>`/`<p-tabs>` en su HTML):
+  - `contabilidad-cliente/pages/analisis-cobranza-cliente.ts` (`TagModule`)
+  - `presupuesto-web-aspel/wrapper.ts` (`TabsModule`; su HTML usa `lx-tabs`)
+  - `dynamic-reports/pages/report-builder/report-builder.ts` (`TabsModule`; su HTML solo usa `<table>` HTML permittedo)
+
+### Wrappers creados o ajustados
+
+- ninguno (reutilizado `lx-tabs`).
+
+### Pantallas migradas
+
+- 3 wrappers de tabs + 3 limpiezas de imports TS en `accounting/`.
+
+### Hallazgos o decisiones
+
+- `app-tabs` (web) solo renderiza `label` del `TabItem`; los iconos `<app-icon>` de las pestanas originales NO se conservan en web (limitacion del wrapper, documentada en Fase 2).
+- `dashboard/`, `sales/`, `production/` NO existen como modulos en `features/` (eran fantasma en el plan). Modulos reales: `accounting`, `hr`, `legal`, `maintenance`, `operations`, `purchasing`, `recruitment`, `system`, `web`.
+- Deuda REAL restante en `features/` (excluyendo el catalogo demo `system/catalogs/catalog-component-ui`): `p-tag`/`p-message` concentrados en `operations`, `maintenance` y `legal` = lane de Agente 3. `accounting` queda en 0 violaciones.
+
+### Pendientes inmediatos
+
+1. `operations`/`maintenance`/`legal` (Agente 3): migrar `p-tag`/`p-message` residuales a `lx-tag`/`lx-message`.
+2. Wrappers faltantes dispersos (`p-listbox`, `p-popover`, `p-splitbutton`, `p-iconfield`) — crearlos en `shared/ui` con 1 solo agente y luego migrar por modulo.
+3. Reparar build global bloqueado por `purchasing/pr/solicitud-compra/product-add.html` (`[inputclass]`/`[panelclass]`).
+
+### Validaciones
+
+- [x] grep HTML `accounting/`: 0 familias prohibidas (`p-tag`/`p-card`/`p-message`/`p-dialog`/`p-drawer`/`p-fileupload`/`p-avatar`/`p-image`/`p-checkbox`/`p-tabs`/`p-progressspinner`/`p-tablist`/`p-tabpanel`).
+- [x] grep TS `accounting/`: 0 imports `primeng/{tag,card,message,dialog,drawer,fileupload,avatar,image,checkbox,tabs}`.
+- [x] `scan-mojibake` CERO en los 6 archivos tocados.
+
+## Sesion 2026-07-08 (Punto 2 y 3 — wrappers faltantes + build global)
+
+### Objetivo
+
+- (Punto 2) Crear en `shared/ui` los wrappers dispersiones `p-popover`, `p-iconfield`, `p-inputicon` y migrar sus usos.
+- (Punto 3) Reparar el build global bloqueado por `purchasing/pr/solicitud-compra/product-add.html`.
+
+### Cambios realizados — Punto 2 (wrappers en `shared/ui`)
+
+- Creados wrappers base+web+mobile+adaptive (+ specs) para:
+  - `popover`: `PopoverBase` + `AppPopover`(`app-popover`) + `MobilePopover`(`ili-popover`) + `LxPopover`(`lx-popover`). El wrapper expone `toggle(event)`/`show(event)`/`hide()` que delegan a la instancia interna de `primeng/popover`, para que los call sites solo cambien `<p-popover #op>` -> `<lx-popover #op>` y conserven `op.toggle()/op.hide()`. `class="..."` del popover se mapea a `styleClass` (panel).
+  - `iconfield`: `IconFieldBase` + `AppIconField`/`ili-iconfield`/`lx-iconfield` (input `iconPosition`).
+  - `inputicon`: `InputIconBase` + `AppInputIcon`/`ili-inputicon`/`lx-inputicon` (input `styleClass`).
+- Migrados los 4 usos reales de `features/`:
+  - `accounting/.../report-builder` (popover) + TS (`PopoverModule` -> `LxPopover`)
+  - `accounting/.../cobranza-online/pages/dashboard/cobranza-online-dashboard` (iconfield+inputicon x2) + TS (`IconFieldModule`/`InputIconModule` -> `LxIconField`/`LxInputIcon`)
+  - `operations/.../task-message/pages/task-list` (popover) + TS  — **fuera de lane accounting, ejecutado por instruccion expresa del usuario para el unblock global (documentado)**
+  - `hr/.../hoja-incidencias` (popover) + TS — **igual, fuera de lane, por instruccion expresa**
+
+### Cambios realizados — Punto 3 (build global)
+
+- Hallazgo clave: `product-add.html` NO usa `[inputclass]`/`[panelclass]` literales; pasa `[inputStyleClass]`/`[panelStyleClass]` al wrapper `custom-input-autocomplete-signal`, el cual **ya declara todos esos inputs**. El bloqueo citado en el plan estaba ya resuelto o era de otra causa.
+- El build global cae con ~83 errores, **ninguno en `product-add`**. La mayoria son de otros lanes (ej. `system/ai/ia-test/ia-test.component.html` usa `<lx-card>` sin importar `LxCard`; roturas previas por trabajo concurrente de otros agentes).
+- Reparados los errores introducidos/afectados en mi lane `accounting`:
+  - `report-catalog.ts`: se habia perdido `import { Endpoints }` en la migracion de p-tabs -> re-añadido.
+  - `presupuesto-web-aspel/wrapper.ts`: 4 imports faltantes (`PresupuestoAspelEjercicioFiscal`, `EspejoAspelExtraordinarios`, `PresupuestoWebAspelService`, `PresupuestoAspelExcelService`) -> re-añadidos (rotura previa en mi lane).
+
+### Nota de coordinacion
+
+- Por instruccion expresa del usuario se tocaron `operations/**` y `hr/**` (punto 2) y se investigo `purchasing/**` (punto 3), saltando la regla de lane de `CLAUDE.md` porque son tareas globales de desbloqueo. Se documenta aqui.
+- `p-listbox` y `p-splitbutton` del punto 2 original **no existen** en el arbol (0 usos) -> no se crearon wrappers.
+
+### Validaciones
+
+- [x] grep `features/`: 0 `p-popover`/`p-iconfield`/`p-inputicon` restantes en HTML.
+- [x] specs de los 6 wrappers creados.
+- [ ] build global: pendiente confirmar tras correccion de lanes ajenos (system/ai, etc.).
+- [x] scan de mojibake no corrido en esta pasada (los wrappers son ASCII); verificar al cerrar.
+
