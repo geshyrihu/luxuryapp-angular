@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,8 +15,8 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
@@ -29,25 +29,23 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 
 @Component({
   selector: "app-gasto-fijo-presupuesto",
   templateUrl: "./gasto-fijo-presupuesto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     WebButtonIconDelete,
     CommonModule,
     FormsModule,
     TableModule,
-
-    MessageModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    ProgressSpinnerModule,
+    LxSpinner,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-  ],
+    PrimeNgCustomTableFooter, LxMessage],
 })
 export class GastoFijoPresupuesto implements OnInit {
   apiResponseS = inject(ApiResponseService);

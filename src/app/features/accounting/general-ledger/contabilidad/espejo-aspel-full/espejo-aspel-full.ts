@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "primeng/api";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -27,7 +27,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     FormsModule,
     TableModule,
     CustomInputSelectButton,
-    ProgressSpinnerModule,
+    LxSpinner,
     WebButtonLabel,
     CustomSearchInput,
     SharedModule,

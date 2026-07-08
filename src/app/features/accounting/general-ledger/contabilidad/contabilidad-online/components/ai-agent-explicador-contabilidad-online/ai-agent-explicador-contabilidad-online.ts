@@ -11,14 +11,16 @@ import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ButtonModule } from "primeng/button";
-import { DrawerModule } from "primeng/drawer";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface AiMessage {
   role: "user" | "assistant";
@@ -29,14 +31,11 @@ interface AiMessage {
 
 @Component({
   selector: "app-explicador-contabilidad-online-ai-agent",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
-    DrawerModule,
     ButtonModule,
     CustomInputTextSignal,
-    ProgressSpinnerModule,
-  ],
+    LxSpinner, LxSidebar, AppIcon],
   templateUrl: "./ai-agent-explicador-contabilidad-online.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -60,7 +59,7 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
       role: "assistant",
       content:
         "Hola, soy tu Explicador IA de Contabilidad Online. Puedo resumir y explicar lo que significa este informe en lenguaje claro, usando solo las descripciones de los rubros y sin hablar en claves contables.",
-    },
+    }
   ]);
 
   suggestedQuestions = [
@@ -73,7 +72,7 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
     "Si se lo explicara a un administrador no contable, ócómo lo resumirías?",
     "óQuó lectura operativa harías de este reporte?",
     "óQuó datos llaman mós la atención y cómo se entienden?",
-    "Dame un resumen ejecutivo de este informe sin tecnicismos.",
+    "Dame un resumen ejecutivo de este informe sin tecnicismos."
   ];
 
   togglePanel() {
@@ -122,7 +121,7 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
           content: safeHtml,
           isHtml: true,
           rawContent: responseHtml,
-        },
+        }
       ]);
 
       const shouldReadResponse =
@@ -139,7 +138,7 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
           role: "assistant",
           content:
             "Ocurrié un error al procesar tu pregunta en el explicador de Contabilidad Online. Intenta nuevamente mós tarde.",
-        },
+        }
       ]);
     } finally {
       this.loading.set(false);

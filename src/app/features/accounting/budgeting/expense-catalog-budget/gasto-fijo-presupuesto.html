@@ -1,11 +1,9 @@
 <!-- Aviso cuando no hay partidas agregadas -->
 @if (presupuestoAgregados().length === 0) {
-<p-message severity="info">
-  <p>
+<lx-message severity="info"><p>
     No hay partidas agregadas. Seleccione una cuenta del católogo de cuentas
     para agregarla al presupuesto.
-  </p>
-</p-message>
+  </p></lx-message>
 } @if (presupuestoAgregados().length > 0) {
 <p-table #dtt class="card hidden md:block" [value]="presupuestoAgregados()">
   <ng-template #caption>
@@ -99,12 +97,7 @@
       <td>
         <div class="flex justify-content-center">
           @if (submitting()) {
-          <p-progressspinner
-            class="w-2rem h-2rem"
-            strokeWidth="8"
-            fill="var(--surface-ground)"
-            animationDuration=".5s"
-          ></p-progressspinner>
+          <lx-spinner [size]="32" [strokeWidth]="8" />
           } @else {
           <iw-button iconClass="mdi:content-save" (clicked)="onSubmit(item)" />
           }

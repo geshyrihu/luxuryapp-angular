@@ -1,11 +1,5 @@
-<p-drawer
-  [visible]="visible()"
-  (visibleChange)="visible.set($event)"
-  position="right"
-  class="w-full lg:w-8 xl:w-7 p-0"
-  [blockScroll]="false"
->
-  <ng-template #header>
+<lx-sidebar [visible]="visible()" (visibleChange)="visible.set($event)" position="right" class="w-full lg:w-8 xl:w-7 p-0" >
+<ng-template #header>
     <div class="flex align-items-center gap-2">
       <app-icon
         [icon]="'mdi:sparkles'"
@@ -68,11 +62,7 @@
               <div
                 class="p-3 surface-200 border-round-xl border-noround-left flex align-items-center gap-2"
               >
-                <p-progressspinner
-                  class="w-1rem h-1rem"
-                  strokeWidth="6"
-                  animationDuration=".5s"
-                ></p-progressspinner>
+                <lx-spinner [size]="16" [strokeWidth]="6" />
                 <span class="text-sm">Analizando datos...</span>
               </div>
             </div>
@@ -163,7 +153,7 @@
       </div>
     </div>
   </ng-template>
-</p-drawer>
+</lx-sidebar>
 
 <!-- Global Styles for AI HTML generation -->
 <style>

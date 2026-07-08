@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -23,7 +23,7 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ProgressSpinnerModule,
+    LxSpinner,
     WebButtonLabel,
     CustomInputNumberSignal,
     CustomInputSelectSignal,

@@ -11,14 +11,16 @@ import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ButtonModule } from "primeng/button";
-import { DrawerModule } from "primeng/drawer";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface AiMessage {
   role: "user" | "assistant";
@@ -29,14 +31,11 @@ interface AiMessage {
 
 @Component({
   selector: "app-contabilidad-online-ai-agent",
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
-    DrawerModule,
     ButtonModule,
     CustomInputTextSignal,
-    ProgressSpinnerModule,
-  ],
+    LxSpinner, LxSidebar, AppIcon],
   templateUrl: "./ai-agent-contabilidad-online.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -60,7 +59,7 @@ export class AiAgentContabilidadOnlineComponent {
       role: "assistant",
       content:
         "Hola, soy tu Auditor IA de Contabilidad Online. Puedo ayudarte a interpretar EPF, resultados, presupuesto, extraordinarias, flujo y cobranza con las reglas reales de este módulo.",
-    },
+    }
   ]);
 
   suggestedQuestions = [
@@ -73,7 +72,7 @@ export class AiAgentContabilidadOnlineComponent {
     "Si este es EPF, ócómo impactan 104, 302, 303 o 205/206?",
     "Si este es Estado de Resultados, óquó cuentas dominan ingresos o gastos?",
     "Si este es P vs R, ócuól es la desviación mós importante?",
-    "Si este es Cobranza, óquó lectura operativa harías del corte?",
+    "Si este es Cobranza, óquó lectura operativa harías del corte?"
   ];
 
   togglePanel() {
@@ -122,7 +121,7 @@ export class AiAgentContabilidadOnlineComponent {
           content: safeHtml,
           isHtml: true,
           rawContent: responseHtml,
-        },
+        }
       ]);
 
       const shouldReadResponse =
@@ -139,7 +138,7 @@ export class AiAgentContabilidadOnlineComponent {
           role: "assistant",
           content:
             "Ocurrié un error al procesar tu pregunta en el agente de Contabilidad Online. Intenta nuevamente mós tarde.",
-        },
+        }
       ]);
     } finally {
       this.loading.set(false);

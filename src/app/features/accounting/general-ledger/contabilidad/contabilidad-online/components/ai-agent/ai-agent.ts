@@ -11,14 +11,16 @@ import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ButtonModule } from "primeng/button";
-import { DrawerModule } from "primeng/drawer";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface AiMessage {
   role: "user" | "assistant";
@@ -30,14 +32,11 @@ interface AiMessage {
 @Component({
   selector: "app-contabilidad-ai-agent",
 
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
-    DrawerModule,
     ButtonModule,
     CustomInputTextSignal,
-    ProgressSpinnerModule,
-  ],
+    LxSpinner, LxSidebar, AppIcon],
   templateUrl: "./ai-agent.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -61,7 +60,7 @@ export class AiAgentComponent {
       role: "assistant",
       content:
         "Hola, soy tu Auditor Contable IA. Estoy analizando el reporte actual. óEn quó te puedo ayudar?",
-    },
+    }
   ]);
 
   suggestedQuestions = [
@@ -74,7 +73,7 @@ export class AiAgentComponent {
     "óQuó desviaciones presupuestales se presentaron y justificaciones?",
     "óExisten pagos duplicados o anticipos pendientes?",
     "óLas conciliaciones bancarias estén actualizadas?",
-    "óExisten partidas en trónsito mayores a 30 días?",
+    "óExisten partidas en trónsito mayores a 30 días?"
   ];
 
   togglePanel() {
@@ -123,7 +122,7 @@ export class AiAgentComponent {
           content: safeHtml,
           isHtml: true,
           rawContent: responseHtml,
-        },
+        }
       ]);
 
       const shouldReadResponse =
@@ -140,7 +139,7 @@ export class AiAgentComponent {
           role: "assistant",
           content:
             "Ocurrié un error al procesar tu pregunta. Por favor, intenta de nuevo mós tarde.",
-        },
+        }
       ]);
     } finally {
       this.loading.set(false);

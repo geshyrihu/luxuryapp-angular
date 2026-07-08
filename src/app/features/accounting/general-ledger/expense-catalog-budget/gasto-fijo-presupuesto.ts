@@ -2,9 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
+
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -23,25 +23,24 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 
 @Component({
   selector: "app-gasto-fijo-presupuesto",
   templateUrl: "./gasto-fijo-presupuesto.html",
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     WebButtonIconDelete,
     CommonModule,
     FormsModule,
     TableModule,
     WebButtonLabel,
-    MessageModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    ProgressSpinnerModule,
+    LxSpinner,
     WebButtonLabelDelete,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-  ],
+    PrimeNgCustomTableFooter, LxMessage],
 })
 export class GastoFijoPresupuesto implements OnInit {
   apiResponseS = inject(ApiResponseService);

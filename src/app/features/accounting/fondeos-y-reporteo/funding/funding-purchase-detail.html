@@ -1,7 +1,7 @@
 <!-- Spinner de carga que se muestra mientras se obtienen los datos -->
 @if (!data() && submitting()) {
 <div class="text-center my-5">
-  <p-progressspinner class="w-3rem h-3rem" strokeWidth="4" />
+  <lx-spinner [size]="48" [strokeWidth]="4" />
   <p class="mt-2">Cargando detalle de la orden...</p>
 </div>
 }
@@ -109,34 +109,19 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           >Estado General</label
         >
         <p>
-          <p-tag
-            class="text-base"
-            [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' :
-                        data().statusOrdenCompra === 'Pendiente' ? 'warning' :
-                        data().statusOrdenCompra === 'Rechazada' ? 'danger' :
-                        data().statusOrdenCompra === 'Pagada' ? 'info' : 'secondary'"
-            [value]="data().statusOrdenCompra"
-          />
+          <lx-tag class="text-base" [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' : data().statusOrdenCompra === 'Pendiente' ? 'warning' : data().statusOrdenCompra === 'Rechazada' ? 'danger' : data().statusOrdenCompra === 'Pagada' ? 'info' : 'secondary'" [value]="data().statusOrdenCompra" />
         </p>
       </div>
       <div class="col-12 md:col-3">
         <label class="block text-color-secondary font-medium">Recibido</label>
         <p>
-          <p-tag
-            class="text-base"
-            [severity]="data().seRecibio ? 'success' : 'secondary'"
-            [value]="data().seRecibio ? 'Só' : 'No'"
-          />
+          <lx-tag class="text-base" [severity]="data().seRecibio ? 'success' : 'secondary'" [value]="data().seRecibio ? 'Só' : 'No'" />
         </p>
       </div>
       <div class="col-12 md:col-3">
         <label class="block text-color-secondary font-medium">Pagado</label>
         <p>
-          <p-tag
-            class="text-base"
-            [severity]="data().sePago ? 'success' : 'secondary'"
-            [value]="data().sePago ? 'Só' : 'No'"
-          />
+          <lx-tag class="text-base" [severity]="data().sePago ? 'success' : 'secondary'" [value]="data().sePago ? 'Só' : 'No'" />
         </p>
       </div>
       <div class="col-12 md:col-3">
@@ -144,11 +129,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           >Trómite de Pago</label
         >
         <p>
-          <p-tag
-            class="text-base"
-            [severity]="data().tramitarPago ? 'info' : 'secondary'"
-            [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'"
-          />
+          <lx-tag class="text-base" [severity]="data().tramitarPago ? 'info' : 'secondary'" [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'" />
         </p>
       </div>
       <div class="col-12 md:col-6">
