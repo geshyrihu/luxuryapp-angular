@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
+import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
@@ -16,7 +16,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   imports: [
     ReactiveFormsModule,
     CustomInputSelectButton,
-    CheckboxModule,
+    LxCheckbox,
     TableModule,
     TooltipModule,
     WebButtonLabel,
@@ -108,6 +108,18 @@ export class FundingGroupFiles implements OnInit {
     });
 
     this.selectedGroupFiles.set(files);
+  }
+
+  isFileSelected(file: any): boolean {
+    return (this.selectedFilesControl.value ?? []).includes(file);
+  }
+
+  toggleFileSelection(file: any, checked: boolean): void {
+    const current = this.selectedFilesControl.value ?? [];
+    const next = checked
+      ? [...current, file]
+      : current.filter((f) => f !== file);
+    this.selectedFilesControl.setValue(next);
   }
 
   getShortName(text: string): string {

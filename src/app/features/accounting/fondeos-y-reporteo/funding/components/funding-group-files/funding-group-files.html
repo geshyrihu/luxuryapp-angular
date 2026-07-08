@@ -40,10 +40,10 @@
           class="surface-card border-1 surface-border border-round p-3 flex flex-column align-items-center justify-content-between hover:surface-100 transition-colors transition-duration-200 h-full text-center shadow-1 relative"
         >
           <div class="absolute top-0 right-0 p-2 z-1">
-            <p-checkbox
-              [value]="file"
-              [formControl]="selectedFilesControl"
-            ></p-checkbox>
+            <lx-checkbox
+              [checked]="isFileSelected(file)"
+              (checkedChange)="toggleFileSelection(file, $event)"
+            />
           </div>
 
           <div
