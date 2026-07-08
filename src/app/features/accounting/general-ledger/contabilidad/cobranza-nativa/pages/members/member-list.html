@@ -138,9 +138,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
+    <ili-list-item class="ion-no-padding">
+<div
+        start
         class="w-2rem h-2rem border-round-lg bg-indigo-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
@@ -148,16 +148,16 @@
           class="text-indigo-600 text-xl"
         />
       </div>
-      <ion-label>
+      
         <h3>{{ item.userName }}</h3>
         <p>{{ item.propertyName }} &middot; {{ item.accountNumber }}</p>
         <p>{{ rolLabel(item.memberRole) }} &middot; {{ item.email }}</p>
         <p>Desde: {{ item.startDate | date:'dd/MM/yyyy':'UTC' }}</p>
-      </ion-label>
+      
       @if (item.isFinancialResponsible) {
-      <ion-badge slot="end" color="success">Responsable</ion-badge>
+      <ili-badge end value="Responsable" color="success" />
       }
-      <ili-action-menu slot="end">
+      <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm(item.id, item.propertyId)"
@@ -175,6 +175,6 @@
           />
         </ng-container>
       </ili-action-menu>
-    </ion-item>
+</ili-list-item>
   </ng-template>
 </app-data-view-mobile>

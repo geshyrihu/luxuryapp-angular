@@ -6,12 +6,10 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { addIcons } from "ionicons";
-import { peopleOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -36,11 +34,12 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-member-list",
-  imports: [
-    WebButtonIcon,
+  imports: [WebButtonIcon,
     TooltipModule,
     WebButtonIconEdit,
     WebButtonIconDelete,
@@ -51,11 +50,8 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    IonItem,
-    IonLabel,
-    IonBadge,
-    DatePipe,
-  ],
+    MobileBadge,
+    DatePipe, MobileListItem, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./member-list.html",
 })
@@ -74,7 +70,6 @@ export default class MemberList {
   dataSignal = signal<PropertyMemberResponseDTO[]>([]);
 
   constructor() {
-    addIcons({ peopleOutline });
     this.enumSelectS
       .memberRole()
       .subscribe((opts) => this.roleOptions.set(opts));

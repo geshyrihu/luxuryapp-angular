@@ -222,8 +222,8 @@
       </div>
 
       <div class="block md:hidden flex flex-column gap-1">
-        <ion-card class="m-0 border-round-2xl shadow-1 border-1 border-100">
-          <ion-card-content class="flex align-items-center py-3">
+        <div class="m-0 border-round-2xl shadow-1 border-1 border-100 surface-card">
+          <div class="flex align-items-center py-3 px-3">
             <div
               class="w-2rem h-2rem border-round-circle surface-900 text-white flex align-items-center justify-content-center flex-shrink-0"
             >
@@ -257,21 +257,19 @@
               [disabled]="exportingPdf()"
               (clicked)="downloadPdf()"
             />
-          </ion-card-content>
-        </ion-card>
+          </div>
+        </div>
 
-        <ion-list-header class="px-0 pb-1 pt-3">
-          <ion-label class="text-sm font-bold text-700 uppercase tracking-wide">
-            Movimientos ({{ statement()!.ledger.length }})
-          </ion-label>
-        </ion-list-header>
+        <div class="px-0 pb-1 pt-3 font-semibold text-600 text-sm">
+          Movimientos ({{ statement()!.ledger.length }})
+        </div>
 
         @for (entry of statement()!.ledger; track entry.id) {
-        <ion-card
-          class="m-0 border-round-xl shadow-none border-1 mb-2"
+        <div
+          class="m-0 border-round-xl shadow-none border-1 mb-2 surface-card"
           [class]="entry.type === 'Cargo' ? 'border-red-100' : 'border-green-100'"
         >
-          <ion-card-content class="py-3 px-4">
+          <div class="py-3 px-4">
             <div class="flex align-items-start justify-content-between gap-3">
               <div
                 class="w-2rem h-2rem border-round-circle flex align-items-center justify-content-center flex-shrink-0 mt-1"
@@ -310,8 +308,8 @@
                 </p>
               </div>
             </div>
-          </ion-card-content>
-        </ion-card>
+          </div>
+        </div>
         } @if (statement()!.ledger.length === 0) {
         <div class="text-center py-8 text-400">
           <app-icon [icon]="'mdi:inbox'" class="text-4xl mb-2 block" />

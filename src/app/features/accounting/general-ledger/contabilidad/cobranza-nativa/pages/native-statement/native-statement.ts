@@ -5,27 +5,23 @@ import {
   UpperCasePipe,
 } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   effect,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import {
-  IonCard,
-  IonCardContent,
-  IonListHeader,
-} from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {
@@ -46,10 +42,8 @@ import {
     CustomInputSelectSignal,
     CustomInputDateSignal,
     UpperCasePipe,
-    IonCard,
-    IonCardContent,
-    IonListHeader,
     WebButtonLabel,
+    AppIcon,
   ],
   providers: [DatePipe, CurrencyPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -196,8 +190,8 @@ export class NativeStatement implements OnInit {
 
   private getStatementPdfFileName(): string {
     const propertyName =
-      this.statement()?.propertyInfo.propertyName
-        ?.trim()
+      this.statement()
+        ?.propertyInfo.propertyName?.trim()
         .replace(/\s+/g, "-")
         .toLowerCase() || "propiedad";
     const cutoffDate = this.getAsOfValue()?.slice(0, 10) || "actual";
@@ -265,7 +259,8 @@ export class NativeStatement implements OnInit {
     this.sendingBatchStatements.set(true);
     try {
       await this.apiResponseS.onPost<SendNativeStatementBatchResponseDTO>(
-        Endpoints.AccountingCoi.NativeCollection.Notifications.sendStatementBatch,
+        Endpoints.AccountingCoi.NativeCollection.Notifications
+          .sendStatementBatch,
         {
           customerId: this.customerId(),
           asOf: this.asOfCtrl.value

@@ -1,14 +1,8 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-  IonItem,
-  IonItemDivider,
-  IonLabel,
-  IonList,
-} from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
-import { TagModule } from "primeng/tag";
+
+
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DialogSize } from "src/app/core/enums/dialog-size";
@@ -21,20 +15,15 @@ import {
 } from "../../models/cobranza-nativa.model";
 import BillingConfigModal from "../billing-config/billing-config-modal";
 import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxCard } from "@ui/adaptive/card/card";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [
-    WebButtonLabel,
-    TagModule,
-    CardModule,
+  imports: [WebButtonLabel,
     AppIcon,
-    ButtonModule,
-    IonList,
-    IonItem,
-    IonItemDivider,
-    IonLabel,
-  ],
+    ButtonModule, LxTag, LxCard, MobileListItem],
   templateUrl: "./cobranza-nativa-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cobranza-nativa-dashboard.scss"],
@@ -73,7 +62,7 @@ export default class CobranzaNativaDashboard {
       detail: "Rutas del API por funcionalidad",
       icon: "mdi:server",
       tone: "success",
-    },
+    }
   ];
 
   navigateTo(route: string) {
