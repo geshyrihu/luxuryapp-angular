@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
+import { AppCard } from "@ui/web/card/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
@@ -57,7 +57,7 @@ interface DefinitionFormGroup {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule,
+    AppCard,
     WebButtonLabel,
     WebButtonLabelItem,
     WebButtonLabelSave,
