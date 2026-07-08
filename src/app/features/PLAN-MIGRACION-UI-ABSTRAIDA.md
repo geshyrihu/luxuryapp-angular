@@ -25,6 +25,23 @@
 > `accounting/cobranza-nativa` (migrados antes de la asignacion de lanes) quedan
 > para su agente dueño.
 
+> [!WARNING]
+> ## 🔒 BLOQUE RESERVADO — Agente 1 (accounting) — NO TOCAR desde otros agentes
+> Reservado el **2026-07-08**. Este bloque cruza `shared/ui`, que es la causa
+> historica de los reverts por colision. Lo centraliza **un solo dueño (Agente 1)**.
+> Los demas agentes **migran features pero NO editan estos paths** hasta que se
+> libere aqui.
+>
+> **Paths bloqueados (solo Agente 1 edita):**
+> - `shared/ui/base/tabs.base.ts`, `shared/ui/web/tabs/**`, `shared/ui/mobile/tabs/**`, `shared/ui/adaptive/tabs/**` (fix multi-panel de `lx-tabs`)
+> - wrappers NUEVOS a crear (base+web+mobile+adaptive): `list-box`, `popover`, `split-button`, `icon-field` (para `p-listbox`/`p-popover`/`p-splitbutton`/`p-iconfield`+`p-inputicon`)
+> - `accounting/**/*p-tabs*` (los 3 usos: report-catalog, financial-reports-wrapper, contabilidad-cliente-wrapper)
+>
+> **Que hacen los demas mientras tanto:** migran su lane con los wrappers YA
+> existentes; cuando Agente 1 publique `lx-listbox`/`lx-popover`/`lx-split-button`/
+> `lx-icon-field`, cada agente migra SUS usos de esos tags en su propio modulo.
+> Estado del bloque: se marcara [x] aqui al liberar cada pieza.
+
 ---
 
 ## 1. Objetivo operativo
