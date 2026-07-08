@@ -82,7 +82,7 @@
     @for (anuncio of announcements(); track anuncio.id) {
     <ion-card (click)="navigateToDetail(anuncio.id)" class="m-0 cursor-pointer">
       @if(anuncio.imagePath) {
-      <ion-img [src]="anuncio.imagePath" [alt]="anuncio.title"></ion-img>
+      <lx-image [src]="anuncio.imagePath" [alt]="anuncio.title"></lx-image>
       }
       <ion-card-header>
         <ion-card-title class="text-base font-bold"

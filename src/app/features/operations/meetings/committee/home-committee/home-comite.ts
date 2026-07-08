@@ -1,15 +1,6 @@
 import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import {
-  IonCard,
-  IonCardContent,
-  IonCol,
-  IonGrid,
-  IonImg,
-  IonLabel,
-  IonRippleEffect,
-  IonRow,
-} from "@ionic/angular/standalone";
+import { IonCard, IonCardContent, IonCol, IonGrid, IonLabel, IonRippleEffect, IonRow } from "@ionic/angular/standalone";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -21,10 +12,9 @@ import { AuthService } from "src/app/core/services/auth.service";
     IonRow,
     IonCol,
     IonCard,
-    IonCardContent,
-    IonImg,
-    IonLabel,
+    IonCardContent,    IonLabel,
     IonRippleEffect,
+    LxImage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-comite.html",

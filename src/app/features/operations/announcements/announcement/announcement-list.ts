@@ -2,14 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonImg,
-} from "@ionic/angular/standalone";
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -26,9 +19,8 @@ import { IAnnouncementList } from "./announcement.model";
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonCardSubtitle,
-    IonImg,
-    AppIcon,
+    IonCardSubtitle,    AppIcon,
+    LxImage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-list.html",

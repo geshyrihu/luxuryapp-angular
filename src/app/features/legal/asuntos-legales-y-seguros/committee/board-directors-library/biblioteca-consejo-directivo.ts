@@ -1,15 +1,6 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import {
-  IonCard,
-  IonCardContent,
-  IonCol,
-  IonGrid,
-  IonImg,
-  IonLabel,
-  IonRippleEffect,
-  IonRow,
-} from "@ionic/angular/standalone";
+import { IonCard, IonCardContent, IonCol, IonGrid, IonLabel, IonRippleEffect, IonRow } from "@ionic/angular/standalone";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 export interface DocumentCategory {
@@ -27,10 +18,9 @@ export interface DocumentCategory {
     IonRow,
     IonCol,
     IonCard,
-    IonCardContent,
-    IonImg,
-    IonLabel,
+    IonCardContent,    IonLabel,
     IonRippleEffect,
+    LxImage,
   ],
   templateUrl: "./biblioteca-consejo-directivo.html",
 })
