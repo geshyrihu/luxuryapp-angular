@@ -98,31 +98,19 @@
     <!-- Indicador de estado del fondeo para el mes seleccionado -->
     @if (selectedMonthName() && selectedFundingStatus()) { @if
     (selectedFundingStatus()!.firstQNA?.isVerified) {
-    <p-message severity="warn" class="mb-1">
-      1ra Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
-      generar órdenes de compra.
-    </p-message>
+    <lx-message severity="warn" class="mb-1">1ra Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
+      generar órdenes de compra.</lx-message>
     } @else if (selectedFundingStatus()!.firstQNA?.isConfirmed) {
-    <p-message severity="success" class="mb-1">
-      1ra Quincena de {{ selectedMonthName() }} esté confirmada.
-    </p-message>
+    <lx-message severity="success" class="mb-1">1ra Quincena de {{ selectedMonthName() }} esté confirmada.</lx-message>
     } @else if (selectedFundingStatus()!.firstQNA?.isAuthorized) {
-    <p-message severity="info" class="mb-1">
-      1ra Quincena de {{ selectedMonthName() }} esté autorizada.
-    </p-message>
+    <lx-message severity="info" class="mb-1">1ra Quincena de {{ selectedMonthName() }} esté autorizada.</lx-message>
     } @if (selectedFundingStatus()!.secondQNA?.isVerified) {
-    <p-message severity="warn" class="mb-1">
-      2da Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
-      generar órdenes de compra.
-    </p-message>
+    <lx-message severity="warn" class="mb-1">2da Quincena de {{ selectedMonthName() }} ya fue verificada é no se pueden
+      generar órdenes de compra.</lx-message>
     } @else if (selectedFundingStatus()!.secondQNA?.isConfirmed) {
-    <p-message severity="success" class="mb-1">
-      2da Quincena de {{ selectedMonthName() }} esté confirmada.
-    </p-message>
+    <lx-message severity="success" class="mb-1">2da Quincena de {{ selectedMonthName() }} esté confirmada.</lx-message>
     } @else if (selectedFundingStatus()!.secondQNA?.isAuthorized) {
-    <p-message severity="info" class="mb-1">
-      2da Quincena de {{ selectedMonthName() }} esté autorizada.
-    </p-message>
+    <lx-message severity="info" class="mb-1">2da Quincena de {{ selectedMonthName() }} esté autorizada.</lx-message>
     } }
 
     <!-- Guóa de generación -->
@@ -271,12 +259,8 @@
 <!-- ?? INICIO: Componente adaptado para versión mívil -->
 <div class="flex md:hidden flex-column h-screen overflow-hidden">
   <div class="px-2 pt-2 flex-none">
-    <ion-accordion-group class="mb-2">
-      <ion-accordion value="generation">
-        <ion-item slot="header" color="light">
-          <ion-label>Generar órdenes de Compra</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">
+    <lx-accordion [items]="genAccordionItems" [(expandedIds)]="genExpanded" class="mb-2 block">
+        <div class="ion-padding" accordion="generation">
           <!-- Year and Month -->
           <ion-input-select
             [ngModel]="fundingYear()"
@@ -290,68 +274,55 @@
           ></ion-input-select>
 
           <p class="mb-1 text-sm font-bold ml-1">Mes de Fondeo</p>
-          <ion-segment
-            scrollable="true"
-            [value]="selectedMonthName()"
-            (ionChange)="selectMonth($event.detail.value)"
-            class="mb-3"
-          >
-            @for (month of fundingPeriodsByMonth(); track month.monthName) {
-            <ion-segment-button [value]="month.monthName">
-              <ion-label
-                >{{ month.monthName | slice:0:3 | uppercase }}</ion-label
-              >
-            </ion-segment-button>
-            }
-          </ion-segment>
+          <lx-tabs
+            [tabs]="monthTabs()"
+            [activeId]="selectedMonthName() ?? ''"
+            (tabChange)="selectMonth($event.id)"
+            class="mb-3 block"
+          />
 
           <!-- Generate Buttons -->
           <div class="flex flex-column">
             <div>
-              <ion-button
+              <ili-button
                 expand="block"
                 color="success"
-                (click)="generateOrdenesPorQuincena(0)"
+                iconClass="mdi:calendar-blank"
+                label="Gen. 1ra Q"
                 [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
-              >
-                <app-icon icon="mdi:calendar-blank" slot="start" />
-                Gen. 1ra Q
-              </ion-button>
+                (clicked)="generateOrdenesPorQuincena(0)"
+              />
             </div>
             <div>
-              <ion-button
+              <ili-button
                 expand="block"
                 color="tertiary"
-                (click)="generateOrdenesPorQuincena(1)"
+                iconClass="mdi:calendar-blank"
+                label="Gen. 2da Q"
                 [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
-              >
-                <app-icon icon="mdi:calendar-blank" slot="start" />
-                Gen. 2da Q
-              </ion-button>
+                (clicked)="generateOrdenesPorQuincena(1)"
+              />
             </div>
           </div>
         </div>
-      </ion-accordion>
-    </ion-accordion-group>
+    </lx-accordion>
 
     <!-- Quick Selection Actions -->
     <div class="flex justify-content-between mb-2">
-      <ion-button
+      <ili-button
         size="small"
         fill="outline"
-        (click)="selectByQuincena(0)"
-        class="flex-1"
-      >
-        Marcar 1ra Q
-      </ion-button>
-      <ion-button
+        label="Marcar 1ra Q"
+        styleClass="flex-1"
+        (clicked)="selectByQuincena(0)"
+      />
+      <ili-button
         size="small"
         fill="outline"
-        (click)="selectByQuincena(1)"
-        class="flex-1"
-      >
-        Marcar 2da Q
-      </ion-button>
+        label="Marcar 2da Q"
+        styleClass="flex-1"
+        (clicked)="selectByQuincena(1)"
+      />
     </div>
   </div>
 
@@ -365,17 +336,15 @@
       (onRefresh)="onLoadData()"
     >
       <ng-template #listItemTemplate let-item>
-        <ion-item lines="full" class="ion-no-padding">
-          <ion-input-checkbox
+        <ili-list-item class="ion-no-padding">
+<ion-input-checkbox
             [ngModel]="item.crearOrdenCompra"
             (checkChange)="crearOrder(item.id, $event)"
           ></ion-input-checkbox>
 
-          <ion-label class="ion-text-wrap my-2">
+          
             <div class="flex justify-content-between align-items-center mb-1">
-              <ion-badge [color]="item.quincena === 0 ? 'success' : 'tertiary'"
-                >{{ item.quincena === 0 ? '1ra Q' : '2da Q' }}</ion-badge
-              >
+              <ili-badge [color]="item.quincena === 0 ? 'success' : 'info'" [value]="item.quincena === 0 ? '1ra Q' : '2da Q'" />
               <span class="text-xs text-color-secondary"
                 >Folio: {{item.idFondeo}}</span
               >
@@ -386,12 +355,12 @@
               <app-icon icon="mdi:briefcase-outline" class="mr-1" />
               {{ item.provider }}
             </p>
-          </ion-label>
+          
 
           <!-- Actions Slide/Popover -->
           @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.Administrador,
           AspRole.SuperUsuario, ])() ) {
-          <div slot="end">
+          <div end>
             <ili-action-menu>
               <ng-container actions>
                 <ili-button-edit
@@ -405,7 +374,7 @@
             </ili-action-menu>
           </div>
           }
-        </ion-item>
+</ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>

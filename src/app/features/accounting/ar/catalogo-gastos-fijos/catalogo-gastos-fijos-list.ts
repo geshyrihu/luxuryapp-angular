@@ -1,9 +1,6 @@
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonAccordion, IonAccordionGroup } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { add, briefcaseOutline, calendarOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -29,24 +26,29 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TooltipModule } from "primeng/tooltip";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LxAccordion } from "@ui/adaptive/accordion/accordion";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { MobileBadge } from "@ui/mobile/badge/badge";
+import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
+  imports: [WebButtonIconEdit,
     WebButtonIconDelete,
     TooltipModule,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    MobileButtonLabelDelete,AppIcon, 
-    IonAccordion,
-    IonAccordionGroup,
-    ...CATALOGO_GASTOS_FIJOS_LIST_MODULES,
-
-
-  ],
+    MobileButtonLabelDelete,AppIcon,
+    LxAccordion,
+    LxTabs,
+    MobileBadge,
+    MobileButtonLabel,
+    ...CATALOGO_GASTOS_FIJOS_LIST_MODULES, LxMessage, InputSelect, MobileListItem],
 })
 export class CatalogoGastosFijosList {
   apiResponseS = inject(ApiResponseService);
@@ -73,11 +75,23 @@ export class CatalogoGastosFijosList {
   cb_fundingPeriod: ISelectItem[] = [];
   fundingPeriodsByMonth = signal<any[]>([]);
 
+  /** Accordion móvil (una sola sección colapsable). */
+  genAccordionItems = [{ id: "generation", title: "Generar órdenes de Compra" }];
+  genExpanded = signal<string[]>([]);
+
+  /** Selector de mes como tabs (id = monthName, label = abreviatura). */
+  monthTabs = computed(() =>
+    this.fundingPeriodsByMonth().map((m: any) => ({
+      id: m.monthName as string,
+      label: (m.monthName as string).slice(0, 3).toUpperCase(),
+    })),
+  );
+
   allFundingsForYear = signal<any[]>([]);
 
   private readonly SPANISH_MONTHS = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
 
   selectedFundingStatus = computed(() => {
@@ -140,7 +154,6 @@ export class CatalogoGastosFijosList {
   );
 
   constructor() {
-    addIcons({ add, briefcaseOutline, calendarOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
@@ -155,7 +168,7 @@ export class CatalogoGastosFijosList {
     const currentYear = new Date().getFullYear();
     return [
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 },
+      { label: (currentYear + 1).toString(), value: currentYear + 1 }
     ];
   }
 
