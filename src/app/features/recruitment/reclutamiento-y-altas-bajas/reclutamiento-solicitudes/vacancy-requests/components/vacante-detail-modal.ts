@@ -31,7 +31,7 @@ export class VacanteDetailModal implements OnInit {
   activeTab = signal("horarios");
   tabs = [
     { id: "horarios", label: "Horarios" },
-    { id: "descripcion", label: "Descripción del puesto" },
+    { id: "descripcion", label: "DescripciÃ³n del puesto" },
     { id: "prestaciones", label: "Prestaciones y observaciones" },
   ];
   private apiS = inject(ApiResponseService);
@@ -42,10 +42,10 @@ export class VacanteDetailModal implements OnInit {
   dias = [
     { n: "Lunes", e: "lunesEntrada" as const, s: "lunesSalida" as const },
     { n: "Martes", e: "martesEntrada" as const, s: "martesSalida" as const },
-    { n: "Miórcoles", e: "miercolesEntrada" as const, s: "miercolesSalida" as const },
+    { n: "MiÃ³rcoles", e: "miercolesEntrada" as const, s: "miercolesSalida" as const },
     { n: "Jueves", e: "juevesEntrada" as const, s: "juevesSalida" as const },
     { n: "Viernes", e: "viernesEntrada" as const, s: "viernesSalida" as const },
-    { n: "Sóbado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
+    { n: "SÃ³bado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
     { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const }
   ];
 
@@ -69,4 +69,5 @@ export class VacanteDetailModal implements OnInit {
     this.jobDescription.set(result);
   }
 }
+
 
