@@ -7,9 +7,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { CardModule } from "primeng/card";
-import { DividerModule } from "primeng/divider";
-import { FieldsetModule } from "primeng/fieldset";
-import { PanelModule } from "primeng/panel";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { LxPanel } from "@ui/adaptive/panel/panel";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
@@ -23,10 +23,10 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     WebButtonIcon,
     RouterLink,
     CardModule,
-    PanelModule,
-    DividerModule,
+    LxPanel,
+    LxDivider,
     LxTag,
-    FieldsetModule,
+    LxFieldset,
    AppIcon],
 })
 export class ManualsAndProcessesGuide {

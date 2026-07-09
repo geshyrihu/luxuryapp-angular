@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DividerModule } from "primeng/divider";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -10,7 +10,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
   selector: "app-calendario-maestro-readonly",
   templateUrl: "./calendario-maestro-readonly.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [DividerModule, LxTag, TooltipModule],
+  imports: [LxDivider, LxTag, TooltipModule],
 })
 export class CalendarioMaestroReadonly implements OnInit {
   private apiResponseS = inject(ApiResponseService);

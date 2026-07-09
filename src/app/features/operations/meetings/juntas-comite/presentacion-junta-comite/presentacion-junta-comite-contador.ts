@@ -4,7 +4,7 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { FieldsetModule } from "primeng/fieldset";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   WebButtonLabelConfirm,
@@ -36,7 +36,7 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
     WebButtonLabel,
     NgbTooltipModule,
     LxTag,
-    FieldsetModule,
+    LxFieldset,
     DataViewMobile,
     WebButtonLabelEdit,
     WebButtonLabelDelete,

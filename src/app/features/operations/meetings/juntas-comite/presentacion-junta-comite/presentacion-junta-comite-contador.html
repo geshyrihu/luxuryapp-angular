@@ -295,7 +295,7 @@
         <div class="grid">
           <!-- Portada -->
           <div class="col-12 sm:col-6">
-            <p-fieldset
+            <lx-fieldset
               legend="Portada"
               [toggleable]="true"
               [collapsed]="true"
@@ -332,12 +332,12 @@
               } @else {
               <p class="text-500 text-sm italic m-0">Sin archivo</p>
               }
-            </p-fieldset>
+            </lx-fieldset>
           </div>
 
           <!-- Contable -->
           <div class="col-12 sm:col-6">
-            <p-fieldset
+            <lx-fieldset
               legend="Contable"
               [toggleable]="true"
               [collapsed]="true"
@@ -378,12 +378,12 @@
               } @else {
               <p class="text-500 text-sm italic m-0">Sin archivo</p>
               }
-            </p-fieldset>
+            </lx-fieldset>
           </div>
 
           <!-- Operaciones -->
           <div class="col-12 sm:col-6">
-            <p-fieldset
+            <lx-fieldset
               legend="Operaciones"
               [toggleable]="true"
               [collapsed]="true"
@@ -422,12 +422,12 @@
               } @else {
               <p class="text-500 text-sm italic m-0">Sin archivo</p>
               }
-            </p-fieldset>
+            </lx-fieldset>
           </div>
 
           <!-- Final -->
           <div class="col-12 sm:col-6">
-            <p-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
+            <lx-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
               @if ( !item.archivoFinal && aspRoleS.anyOf([
               AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
               item.archivoPortada && item.archivoContable && item.archivoJunta )
@@ -472,7 +472,7 @@
                 Sin archivo o faltan documentos
               </p>
               }
-            </p-fieldset>
+            </lx-fieldset>
           </div>
         </div>
       </div>

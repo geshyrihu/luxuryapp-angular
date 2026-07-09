@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { FileUploadModule } from "@iplab/ngx-file-upload";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { DividerModule } from "primeng/divider";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { ListboxModule } from "primeng/listbox";
@@ -55,7 +55,7 @@ import { ImageGenerationDialog } from "./components/image-generation-dialog/imag
     WebButtonLabelSave,
     CustomInputToggleSwitch,
     EditorModule,
-    DividerModule,
+    LxDivider,
     ListboxModule,
     WebButtonLabel,
     AppIcon,

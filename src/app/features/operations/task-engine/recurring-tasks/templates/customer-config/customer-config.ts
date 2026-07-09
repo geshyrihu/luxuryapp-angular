@@ -1,7 +1,7 @@
 import { Component, OnInit, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { FieldsetModule } from "primeng/fieldset";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -17,7 +17,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   imports: [
     FormsModule,
     CustomInputSelectSignal,
-    FieldsetModule,
+    LxFieldset,
     CustomInputCheckSignal,
     WebButtonLabelSave,
   ],

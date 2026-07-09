@@ -16,7 +16,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MenuItem } from "primeng/api";
-import { DividerModule } from "primeng/divider";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu, MenuModule } from "primeng/menu";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -37,7 +37,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    DividerModule,
+    LxDivider,
     WebButtonLabelAdd,
     WebButtonLabelItem,
     TooltipModule,
