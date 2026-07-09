@@ -1,10 +1,21 @@
-import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { PdfViewerModule } from "ng2-pdf-viewer";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { environment } from "src/environments/environment";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { PdfViewerModule } from "ng2-pdf-viewer";
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "primeng/dynamicdialog";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { environment } from "src/environments/environment";
 
 /**
  * 📄 PDF VIEWER MODAL
@@ -20,6 +31,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 export class PdfViewerModal implements OnInit, OnDestroy {
   private dialogConfig = inject(DynamicDialogConfig);
   private dialogRef = inject(DynamicDialogRef);
+  private dialogService = inject(DialogService);
   private apiResponseS = inject(ApiResponseService);
 
   pdfSrc = signal<Uint8Array | null>(null);
@@ -27,6 +39,8 @@ export class PdfViewerModal implements OnInit, OnDestroy {
   private rawUrl: string = "";
 
   ngOnInit(): void {
+    this.maximizeSelf();
+
     if (this.dialogConfig.data && this.dialogConfig.data.pdfSrc) {
       let pdfUrl = this.dialogConfig.data.pdfSrc;
       this.fileName = this.dialogConfig.data.fileName || this.fileName;
@@ -69,5 +83,17 @@ export class PdfViewerModal implements OnInit, OnDestroy {
   close(): void {
     this.dialogRef.close();
   }
-}
 
+  /**
+   * Maximiza el modal al abrirse (una vez renderizado el diálogo), para que el
+   * visor de PDF ocupe toda la pantalla por defecto sin depender del llamador.
+   */
+  private maximizeSelf(): void {
+    setTimeout(() => {
+      const instance = this.dialogService.getInstance(this.dialogRef);
+      if (instance && !instance.maximized) {
+        instance.maximize();
+      }
+    });
+  }
+}
