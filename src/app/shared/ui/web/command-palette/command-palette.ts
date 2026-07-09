@@ -1,4 +1,6 @@
+import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -9,12 +11,10 @@ import {
   signal,
   viewChild,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { DialogModule } from "primeng/dialog";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DialogModule } from "primeng/dialog";
 
 export interface PaletteCommand {
   id: string;
@@ -28,7 +28,7 @@ export interface PaletteCommand {
 
 @Component({
   selector: "app-command-palette",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, DialogModule, AppIcon],
   template: `
     <p-dialog
@@ -72,11 +72,15 @@ export interface PaletteCommand {
 
           @for (group of grouped(); track group.category) {
             @if (group.commands.length) {
-              <div class="palette-category">{{ group.category || "General" }}</div>
+              <div class="palette-category">
+                {{ group.category || "General" }}
+              </div>
               @for (cmd of group.commands; track cmd.id; let i = $index) {
                 <button
                   class="palette-item"
-                  [class.palette-item-active]="selectedIndex() === globalIndex(grouped(), cmd.id)"
+                  [class.palette-item-active]="
+                    selectedIndex() === globalIndex(grouped(), cmd.id)
+                  "
                   (click)="execute(cmd)"
                   (mouseenter)="setHover(cmd.id)"
                 >
@@ -86,7 +90,9 @@ export interface PaletteCommand {
                   <div class="palette-item-text">
                     <strong>{{ cmd.label }}</strong>
                     @if (cmd.description) {
-                      <span class="palette-item-desc">{{ cmd.description }}</span>
+                      <span class="palette-item-desc">{{
+                        cmd.description
+                      }}</span>
                     }
                   </div>
                   @if (cmd.shortcut) {
@@ -100,135 +106,137 @@ export interface PaletteCommand {
 
         <div class="palette-footer">
           <span><kbd>↑↓</kbd> Navegar</span>
-          <span><kbd>↵</kbd> Seleccionar</span>
+          <span><kbd>â†µ</kbd> Seleccionar</span>
           <span><kbd>Esc</kbd> Cerrar</span>
         </div>
       </div>
     </p-dialog>
   `,
-  styles: [`
-    .palette-root {
-      display: flex;
-      flex-direction: column;
-      max-height: 70vh;
-    }
-    .palette-search {
-      position: relative;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--ds-border, #e2e8f0);
-      padding: 0.75rem;
-    }
-    .palette-search-icon {
-      font-size: 1.25rem;
-      color: var(--ds-text-muted);
-      margin-right: 0.5rem;
-      flex-shrink: 0;
-    }
-    .palette-input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      background: transparent;
-      color: var(--ds-text-primary);
-    }
-    .palette-clear {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--ds-text-muted);
-      padding: 0.25rem;
-    }
-    .palette-results {
-      flex: 1;
-      overflow-y: auto;
-      padding: 0.25rem 0;
-    }
-    .palette-empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1.5rem;
-      color: var(--ds-text-muted);
-    }
-    .palette-category {
-      padding: 0.5rem 0.75rem 0.25rem;
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ds-text-muted);
-    }
-    .palette-item {
-      display: flex;
-      align-items: center;
-      gap: 0.625rem;
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      border: none;
-      background: none;
-      cursor: pointer;
-      text-align: left;
-      color: var(--ds-text-primary);
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      transition: background 0.1s;
-    }
-    .palette-item:hover,
-    .palette-item-active {
-      background: var(--ds-bg-hover, #f0f4ff);
-    }
-    .palette-item-icon {
-      font-size: 1.125rem;
-      color: var(--ds-text-secondary);
-      flex-shrink: 0;
-      width: 20px;
-      text-align: center;
-    }
-    .palette-item-text {
-      flex: 1;
-      min-width: 0;
-    }
-    .palette-item-text strong {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .palette-item-desc {
-      display: block;
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      color: var(--ds-text-muted);
-      margin-top: 0.125rem;
-    }
-    .palette-shortcut {
-      flex-shrink: 0;
-    }
-    .palette-footer {
-      display: flex;
-      gap: 0.75rem;
-      padding: 0.5rem 0.75rem;
-      border-top: 1px solid var(--ds-border, #e2e8f0);
-      font-size: var(--ds-font-size-micro, 0.75rem);
-      color: var(--ds-text-muted);
-    }
-    .palette-footer kbd,
-    .palette-shortcut {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 4px;
-      background: var(--ds-bg-elevated, #f4f5f8);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-family: inherit;
-      color: var(--ds-text-muted);
-    }
-  `],
+  styles: [
+    `
+      .palette-root {
+        display: flex;
+        flex-direction: column;
+        max-height: 70vh;
+      }
+      .palette-search {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        padding: 0.75rem;
+      }
+      .palette-search-icon {
+        font-size: 1.25rem;
+        color: var(--ds-text-muted);
+        margin-right: 0.5rem;
+        flex-shrink: 0;
+      }
+      .palette-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        background: transparent;
+        color: var(--ds-text-primary);
+      }
+      .palette-clear {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--ds-text-muted);
+        padding: 0.25rem;
+      }
+      .palette-results {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0.25rem 0;
+      }
+      .palette-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.5rem;
+        color: var(--ds-text-muted);
+      }
+      .palette-category {
+        padding: 0.5rem 0.75rem 0.25rem;
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ds-text-muted);
+      }
+      .palette-item {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        text-align: left;
+        color: var(--ds-text-primary);
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        transition: background 0.1s;
+      }
+      .palette-item:hover,
+      .palette-item-active {
+        background: var(--ds-bg-hover, #f0f4ff);
+      }
+      .palette-item-icon {
+        font-size: 1.125rem;
+        color: var(--ds-text-secondary);
+        flex-shrink: 0;
+        width: 20px;
+        text-align: center;
+      }
+      .palette-item-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .palette-item-text strong {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .palette-item-desc {
+        display: block;
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+        margin-top: 0.125rem;
+      }
+      .palette-shortcut {
+        flex-shrink: 0;
+      }
+      .palette-footer {
+        display: flex;
+        gap: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        border-top: 1px solid var(--ds-border, #e2e8f0);
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+      }
+      .palette-footer kbd,
+      .palette-shortcut {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 4px;
+        background: var(--ds-bg-elevated, #f4f5f8);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-family: inherit;
+        color: var(--ds-text-muted);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -248,7 +256,7 @@ export class CommandPalette {
       (c) =>
         c.label.toLowerCase().includes(q) ||
         c.description?.toLowerCase().includes(q) ||
-        c.category?.toLowerCase().includes(q)
+        c.category?.toLowerCase().includes(q),
     );
   });
 
@@ -289,7 +297,10 @@ export class CommandPalette {
     this.visible.update((v) => !v);
   }
 
-  globalIndex(groups: { category: string; commands: PaletteCommand[] }[], cmdId: string): number {
+  globalIndex(
+    groups: { category: string; commands: PaletteCommand[] }[],
+    cmdId: string,
+  ): number {
     let idx = 0;
     for (const g of groups) {
       for (const c of g.commands) {
@@ -316,7 +327,9 @@ export class CommandPalette {
   onKeydown(event: KeyboardEvent): void {
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      this.selectedIndex.update((i) => Math.min(i + 1, this.filtered().length - 1));
+      this.selectedIndex.update((i) =>
+        Math.min(i + 1, this.filtered().length - 1),
+      );
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
       this.selectedIndex.update((i) => Math.max(i - 1, 0));

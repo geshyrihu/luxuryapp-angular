@@ -1,10 +1,12 @@
 import { Routes } from "@angular/router";
-import { RecruitmentRequestsShell } from "./recruitment-requests-shell";
 
 export const recruitmentRequestsRoutes: Routes = [
   {
     path: "",
-    component: RecruitmentRequestsShell,
+    loadComponent: () =>
+      import("./recruitment-requests-shell").then(
+        (m) => m.RecruitmentRequestsShell,
+      ),
     children: [
       {
         path: "",

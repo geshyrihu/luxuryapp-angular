@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { PaginatorBase } from "./paginator.base";
 
-@Component({ selector: "test-paginator", standalone: true, template: "" })
+@Component({ selector: "test-paginator", template: "" })
 class TestPaginator extends PaginatorBase {}
 
 describe("PaginatorBase", () => {
@@ -27,7 +27,7 @@ describe("PaginatorBase", () => {
 
   it("detects first page", () => {
     const f = make();
-    expect(f.componentInstance.isFirstPage()).toBeTrue();
+    expect(f.componentInstance.isFirstPage()).toBe(true);
   });
 
   it("detects last page", () => {
@@ -35,7 +35,7 @@ describe("PaginatorBase", () => {
     f.componentRef.setInput("totalRecords", 100);
     f.componentRef.setInput("rows", 20);
     f.componentInstance.page.set(4);
-    expect(f.componentInstance.isLastPage()).toBeTrue();
+    expect(f.componentInstance.isLastPage()).toBe(true);
   });
 
   it("clamps page on page change", () => {

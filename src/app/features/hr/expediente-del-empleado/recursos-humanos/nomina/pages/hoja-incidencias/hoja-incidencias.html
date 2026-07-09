@@ -197,7 +197,7 @@
           }
         </td>
         <!-- Context menu overlay para selección directa -->
-        <p-popover #op class="p-0">
+        <lx-popover #op styleClass="p-0">
           <div class="flex flex-wrap gap-1 p-2" style="max-width: 200px">
             @for (s of statusOrden; track s) {
             <il-button
@@ -210,7 +210,7 @@
             />
             }
           </div>
-        </p-popover>
+        </lx-popover>
         }
       </tr>
       }

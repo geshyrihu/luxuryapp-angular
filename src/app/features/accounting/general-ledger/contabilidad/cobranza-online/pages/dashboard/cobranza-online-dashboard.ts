@@ -6,8 +6,8 @@ import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonModule } from "primeng/button";
-import { IconFieldModule } from "primeng/iconfield";
-import { InputIconModule } from "primeng/inputicon";
+import { LxIconField } from "@ui/adaptive/iconfield/iconfield";
+import { LxInputIcon } from "@ui/adaptive/inputicon/inputicon";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -38,8 +38,8 @@ import type {
     MessageModule,
     ButtonModule,
     TableModule,
-    IconFieldModule,
-    InputIconModule,
+    LxIconField,
+    LxInputIcon,
     CustomInputTextSignal,
     PieChart,
     AppIcon,

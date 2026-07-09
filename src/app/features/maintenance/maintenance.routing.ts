@@ -1,9 +1,11 @@
 import { Routes } from "@angular/router";
-import { maintenanceRoutes as legacyMaintenanceRoutes } from "src/app/routing/maintenance.routing";
 
 export const maintenanceRoutes: Routes = [
   {
     path: "",
-    children: legacyMaintenanceRoutes,
+    loadChildren: () =>
+      import("src/app/routing/maintenance.routing").then(
+        (m) => m.maintenanceRoutes,
+      ),
   },
 ];

@@ -12,13 +12,11 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { TabsModule } from "primeng/tabs";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { EspejoAspelExtraordinarios } from "./espejo-aspel-extraordinarios";
 import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
-
-import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
@@ -28,7 +26,6 @@ import { TooltipModule } from "primeng/tooltip";
   imports: [
     WebButtonIcon,
     TooltipModule,
-    TabsModule,
     FormsModule,
     LxTabs,
     PresupuestoAspelEjercicioFiscal,

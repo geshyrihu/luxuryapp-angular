@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TabsModule } from "primeng/tabs";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import type { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -86,7 +87,7 @@ const REPORT_META = [
   imports: [
     CommonModule,
     FormsModule,
-    TabsModule,
+    LxTabs,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     EstadoPosicionFinanciera,
@@ -117,6 +118,21 @@ export default class FinancialReportsWrapper {
   reportIndex = signal<number>(0);
   printMode = signal(false);
   isPreparing = signal(false);
+
+  reportTabs = signal<TabItem[]>([
+    { id: "0", label: "EPF" },
+    { id: "1", label: "E. Resultados" },
+    { id: "2", label: "E. Resultados V2" },
+    { id: "3", label: "C. Extraordinaria" },
+    { id: "4", label: "P vs R" },
+    { id: "5", label: "R. Financiero" },
+    { id: "6", label: "Flujo Efectivo" },
+    { id: "7", label: "Dashboard Cobranza" },
+    { id: "8", label: "Presupuesto" },
+    { id: "9", label: "Bancos e Inv." },
+    { id: "10", label: "Fondo Reserva" },
+    { id: "11", label: "Proyectos" },
+  ]);
 
   readonly customerName = computed(
     () => this.customerIdS.customerName() || "Cliente activo",
@@ -221,7 +237,7 @@ export default class FinancialReportsWrapper {
     if (url) window.open(url, "_blank");
   }
 
-  onTabChange(value: number) {
-    this.reportIndex.set(value);
+  onTabChange(tab: TabItem) {
+    this.reportIndex.set(Number(tab.id));
   }
 }

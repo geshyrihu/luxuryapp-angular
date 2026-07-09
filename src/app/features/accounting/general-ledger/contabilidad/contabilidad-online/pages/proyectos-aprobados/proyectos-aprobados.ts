@@ -1,6 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -10,8 +16,8 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-proyectos-aprobados",
-  standalone: true,
-  imports: [CommonModule, LxSkeleton, TableModule],
+
+  imports: [CommonModule, SkeletonModule, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados.html",
 })

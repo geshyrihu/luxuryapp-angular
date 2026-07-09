@@ -34,7 +34,7 @@ import {
 } from "ionicons/icons";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
-import { PopoverModule } from "primeng/popover";
+import { LxPopover } from "@ui/adaptive/popover/popover";
 import { TableModule } from "primeng/table";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { TooltipModule } from "primeng/tooltip";
@@ -144,7 +144,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
     PrimeNgCustomCaption,
     DataViewMobile,
     TooltipModule,
-    PopoverModule,
+    LxPopover,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,

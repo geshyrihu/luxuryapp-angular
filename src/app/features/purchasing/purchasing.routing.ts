@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
-import { comprasRoutes } from "src/app/routing/compras.routing";
 
 export const purchasingRoutes: Routes = [
   {
     path: "",
-    children: comprasRoutes,
+    loadChildren: () =>
+      import("src/app/routing/compras.routing").then((m) => m.comprasRoutes),
   },
 ];

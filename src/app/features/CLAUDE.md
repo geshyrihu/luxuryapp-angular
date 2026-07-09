@@ -1,77 +1,92 @@
+# OpenCode Lane — Plan de Migración UI Abstraída
+
 Trabaja SOLO en este scope:
 
-- `D:\repos\luxuryapp-api\client\angular\src\app\features\accounting\**`
+- `legal/**`
+- `purchasing/**`
+- `recruitment/**`
+- `system/**`
+- `hr/**`
 
-No toques nada fuera de `accounting/**`.
-No edites `system/**`, `hr/**`, `operations/**`, `maintenance/**`, `legal/**`, `purchasing/**`, `recruitment/**`, `web/**`.
-No toques `shared/**` salvo que sea estrictamente necesario para destrabar un wrapper faltante y lo documentes.
+No toques nada fuera de estos módulos.
+No edites `operations/**`, `maintenance/**`, `accounting/**`.
 No toques `system/catalogs/catalog-component-ui`.
 
-Objetivo:
-Eliminar uso directo de PrimeNG/Ionic en `accounting/**`, usando wrappers de `shared/`.
-La única excepción permitida sigue siendo:
+## Volumen
 
-- `<p-table>`
-- `<p-sorticon>`
-- `<p-columnfilter>`
-- `<p-tablecheckbox>`
-- `<p-tableheadercheckbox>`
-- `#caption`
-- `#header`
-- `#body`
-- `#emptymessage`
-- `#paginatorleft`
+| Módulo | p-* | ion-* reales |
+|--------|-----|-------------|
+| legal | 22 | 3 (`ion-badge`, `ion-ripple-effect`×2) |
+| purchasing | 20 | 1 (`ion-badge`) |
+| recruitment | 7 | 0 |
+| system | 6 | 2 (`ion-input-toggle`×2) |
+| hr | 6 | 0 |
+| **Total** | **61** | **6** |
 
-Prioridad actual según plan:
+## Quick wins (wrapper ya existe — migrar primero)
 
-1. cerrar `cobranza-nativa`
-2. seguir con `fondeos-y-reporteo`
-3. después `aspel-cobranza-haus`
-4. barrer remanentes `p-tag`, `p-card`, `p-dialog`, `p-fileupload`, `p-checkbox`
+```
+p-tag            → lx-tag
+p-badge          → lx-badge
+p-skeleton       → lx-skeleton
+p-rating         → lx-rating
+p-carousel       → lx-carousel
+p-confirmdialog  → lx-confirm-dialog
+p-toast          → lx-toast
+p-fieldset       → lx-fieldset
+p-divider        → lx-divider
+```
 
-Lote inicial obligatorio:
+## Bloqueado por wrappers (esperar a KiloCode)
 
-1. `general-ledger/contabilidad/cobranza-nativa/pages/ledger`
-2. `general-ledger/contabilidad/cobranza-nativa/pages/members`
-3. `general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard`
-4. `general-ledger/contabilidad/cobranza-nativa/pages/native-statement`
+```
+p-panelmenu  (hr 2)      → lx-panelmenu
+p-inputnumber (purch 1)  → lx-inputnumber
+p-steps      (purch 1)   → lx-steps
+p-fluid      (purch 1)   → clase utilitaria, revisar antes
+```
 
-Después continuar con:
+## Ionic real (mapear después de política definida)
 
-- `fondeos-y-reporteo/funding/**`
-- `fondeos-y-reporteo/funding-accounting/**`
-- `fondeos-y-reporteo/sat-funding/**`
+- `legal`: `ion-badge` → `ili-badge`
+- `legal`: `ion-ripple-effect`×2 → wrapper móvil
+- `system`: `ion-input-toggle`×2 → `ili-input-toggle` o equivalente
 
-Familias foco:
+## Excepciones permitidas
 
-- `ion-item`
-- `ion-label`
-- `p-tag`
-- `p-card`
-- `p-dialog`
-- `p-fileupload`
-- `p-checkbox`
+- `<p-table>`, `<p-sorticon>`, `<p-columnfilter>`, `<p-tablecheckbox>`, `<p-tableheadercheckbox>`
+- Templates: `#caption`, `#header`, `#body`, `#emptymessage`, `#paginatorleft`
+- `system/catalogs/catalog-component-ui` (demo excluido)
 
-Reglas:
+## Reglas
 
-- usar wrappers existentes antes de crear nuevos
-- si falta wrapper real, documentarlo y créalo solo si desbloquea varias pantallas
-- no hacer cambios fuera de tu lane
-- usar `apply_patch` para edits manuales
-- correr scan de encoding sobre archivos tocados
-- no confiar en el plan histórico si contradice el árbol actual
+- Usar wrappers existentes antes de crear nuevos
+- Si falta wrapper real, documentarlo — NO crearlo (le corresponde a KiloCode)
+- No hacer cambios fuera de tu lane
+- Preferir `lx-*` (web) sobre `ili-*` (mobile) fuera de `<app-data-view-mobile>`
+- No tocar `shared/**` — reportar blockers solamente
 
-Validaciones mínimas al cerrar cada lote:
+## Validaciones mínimas por lote
 
-- escaneo de UI residual en el directorio tocado
-- `node scripts/audit-encoding.mjs` o script vigente sobre archivos tocados
-- reportar si quedan violaciones
-- reportar blockers reales
+- `rg <p-(?!(?:table|sorticon|columnfilter|tablecheckbox|tableheadercheckbox)\b)` = 0 en el directorio tocado
+- `node scripts/audit-encoding.mjs` o script vigente sobre archivos tocados = 0
+- Reportar si quedan violaciones
+- Reportar blockers reales
 
-Entregable esperado:
+## Orden sugerido
 
-- archivos migrados
-- familias reducidas
-- validación ejecutada
-- blockers
-- actualización breve para agregar luego al `PLAN-MIGRACION-UI-ABSTRAIDA.md`
+1. `legal/` — quick wins (`p-tag`×21, `p-badge`×1)
+2. `purchasing/` — quick wins (`p-rating`×6, `p-fieldset`×6, `p-divider`×3, `p-skeleton`×1, `p-carousel`×1)
+3. `hr/` — quick wins (`p-confirmdialog`×2, `p-toast`×2)
+4. `recruitment/` — quick wins (`p-divider`×7)
+5. `system/` — quick wins (`p-skeleton`×6)
+6. Tras wrappers de KiloCode: `p-panelmenu` (hr), `p-inputnumber`/`p-steps` (purchasing)
+7. Ionic real: `legal` y `system` (al final, política pendiente)
+
+## Entregable esperado
+
+- Archivos migrados por módulo
+- Familias reducidas
+- Validación ejecutada
+- Blockers reportados
+- Actualización breve para agregar al `PLAN-MIGRACION-UI-ABSTRAIDA.md`

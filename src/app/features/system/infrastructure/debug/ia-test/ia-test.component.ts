@@ -1,20 +1,25 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxCard } from "@ui/adaptive/card/card";
+import { CardModule } from "primeng/card";
 import { AiTestResultDTO, IaTestService } from "./ia-test.service";
 
 @Component({
   selector: "app-ia-test",
-  standalone: true,
+
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LxCard,
+    CardModule,
     WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,

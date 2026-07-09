@@ -1,18 +1,24 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Endpoints } from 'src/app/core/constants/endpoints';
-import { reportFilterState } from '../../state/financial-report-filter.state';
-import { IFondoReservaDTO } from '../../models/aspel-budget.interface';
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { SkeletonModule } from "primeng/skeleton";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { IFondoReservaDTO } from "../../models/aspel-budget.interface";
+import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
-  selector: 'app-fondo-reserva',
-  standalone: true,
-  imports: [CommonModule, LxSkeleton],
+  selector: "app-fondo-reserva",
+
+  imports: [CommonModule, SkeletonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './fondo-reserva.html',
+  templateUrl: "./fondo-reserva.html",
 })
 export class FondoReservaComponent {
   private apiS = inject(ApiResponseService);
@@ -34,7 +40,7 @@ export class FondoReservaComponent {
           this.loadData(customerId, year, mesIdx + 1);
         }
       },
-      { allowSignalWrites: true }
+      { allowSignalWrites: true },
     );
   }
 
@@ -45,16 +51,16 @@ export class FondoReservaComponent {
     const url = Endpoints.ContabilidadOnline.FinancialStatements.fondoReserva(
       customerId,
       year,
-      mes
+      mes,
     );
-    
+
     const result = await this.apiS.onGetItem<IFondoReservaDTO>(url);
     if (result) {
       this.data.set(result);
       this.filters.currentReportName.set("Fondo de Reserva");
       this.filters.currentReportContext.set(JSON.stringify(result));
     }
-    
+
     this.loading.set(false);
   }
 }

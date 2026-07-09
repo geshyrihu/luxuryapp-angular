@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -10,7 +15,7 @@ import { AiTestResultDTO, IaTestService } from "./ia-test.service";
 
 @Component({
   selector: "app-ia-test",
-  standalone: true,
+
   imports: [
     CommonModule,
     ReactiveFormsModule,

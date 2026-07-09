@@ -1,4 +1,9 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MultiSelectModule } from "primeng/multiselect";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -6,7 +11,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-multiselect",
-  standalone: true,
+
   imports: [BaseInputSignal, ReactiveFormsModule, MultiSelectModule],
   template: `
     <base-input-signal

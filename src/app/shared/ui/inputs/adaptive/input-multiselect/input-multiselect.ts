@@ -1,14 +1,21 @@
-import { Component, forwardRef, inject, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
 import { IonInputMultiselect } from "../../mobile/ion-input-multiselect";
 import { WebInputMultiselect } from "../../web/input-multiselect/input-multiselect";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 
 @Component({
   selector: "custom-input-multiselect-signal",
-  standalone: true,
+
   imports: [WebInputMultiselect, IonInputMultiselect],
   providers: [
     {

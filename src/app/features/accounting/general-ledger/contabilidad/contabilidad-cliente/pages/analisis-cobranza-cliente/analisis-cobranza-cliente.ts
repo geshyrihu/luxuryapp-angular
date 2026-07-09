@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
-import { TagModule } from 'primeng/tag';
 import { ChartWrapper } from '@ui/web/charts/chart-wrapper';
 import { CustomInputSelectSignal } from '@ui/inputs/web/custom-input-select-signal';
 import type {
@@ -14,7 +13,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 
 @Component({
   selector: 'app-analisis-cobranza-cliente',
-  imports: [CommonModule, FormsModule, ChartWrapper, CustomInputSelectSignal, TableModule, TagModule, AccountingNumberPipe],
+  imports: [CommonModule, FormsModule, ChartWrapper, CustomInputSelectSignal, TableModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './analisis-cobranza-cliente.html',
 })

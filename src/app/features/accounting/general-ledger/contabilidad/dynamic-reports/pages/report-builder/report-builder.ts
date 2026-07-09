@@ -31,10 +31,9 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { MultiSelectModule } from "primeng/multiselect";
-import { PopoverModule } from "primeng/popover";
+import { LxPopover } from "@ui/adaptive/popover/popover";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TabsModule } from "primeng/tabs";
 
 import { TooltipModule } from "primeng/tooltip";
 import { startWith } from "rxjs";
@@ -72,13 +71,12 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     AccordionModule,
     AutoCompleteModule,
     TooltipModule,
-    TabsModule,
     CustomInputSelectSignal,
     MultiSelectModule,
     CustomInputCheckSignal,
     ProgressSpinnerModule,
     BadgeModule,
-    PopoverModule,
+    LxPopover,
     WebButtonLabel,
     WebButtonIcon,
     LxChip,

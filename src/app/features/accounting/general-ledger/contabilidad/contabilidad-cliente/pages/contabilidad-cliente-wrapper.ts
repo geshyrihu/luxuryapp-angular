@@ -4,7 +4,8 @@ import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@a
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { TabsModule } from 'primeng/tabs';
+import { LxTabs } from '@ui/adaptive/tabs/tabs';
+import type { TabItem } from '@ui/base/tabs.base';
 import { EpfClienteComponent } from './epf-cliente/epf-cliente';
 import { EstadoResultadosClienteComponent } from './estado-resultados-cliente/estado-resultados-cliente';
 import { EstadoResultadosV2ClienteComponent } from './estado-resultados-v2-cliente/estado-resultados-v2-cliente';
@@ -27,7 +28,7 @@ const MONTH_NAMES = [
   selector: 'app-contabilidad-cliente-wrapper',
   imports: [
     CommonModule,
-    TabsModule,
+    LxTabs,
     EpfClienteComponent,
     EstadoResultadosClienteComponent,
     EstadoResultadosV2ClienteComponent,
@@ -71,7 +72,22 @@ export default class ContabilidadClienteWrapper {
 
   readonly tabIndex = signal(0);
 
-  onTabChange(idx: number) {
-    this.tabIndex.set(idx);
+  reportTabs = signal<TabItem[]>([
+    { id: "0", label: "EPF" },
+    { id: "1", label: "E. Resultados" },
+    { id: "2", label: "E. Resultados V2" },
+    { id: "3", label: "C. Extraordinaria" },
+    { id: "4", label: "P vs R" },
+    { id: "5", label: "R. Financiero" },
+    { id: "6", label: "Flujo Efectivo" },
+    { id: "7", label: "Cobranza" },
+    { id: "8", label: "Presupuesto" },
+    { id: "9", label: "Bancos Inversiones" },
+    { id: "10", label: "Fondo Reserva" },
+    { id: "11", label: "Proyectos" },
+  ]);
+
+  onTabChange(tab: TabItem) {
+    this.tabIndex.set(Number(tab.id));
   }
 }

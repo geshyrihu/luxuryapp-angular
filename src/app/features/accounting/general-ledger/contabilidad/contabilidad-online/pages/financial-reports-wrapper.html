@@ -257,90 +257,44 @@
     <div
       class="surface-card border-round-xl border-1 surface-border shadow-1 print-hide-on-print"
     >
-      <p-tabs [value]="reportIndex()" (valueChange)="onTabChange($event)">
-        <p-tablist class="print-hide-on-print">
-          <p-tab [value]="0"
-            ><app-icon [icon]="'mdi:scale-balance'" class="mr-2" />EPF</p-tab
-          >
-          <p-tab [value]="1"
-            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2" />E.
-            Resultados</p-tab
-          >
-          <!-- <p-tab [value]="2"
-            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"/>E. Resultados V2</p-tab
-          > -->
-          <p-tab [value]="3"
-            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2" />C.
-            Extraordinaria</p-tab
-          >
-          <p-tab [value]="4"
-            ><app-icon [icon]="'mdi:percent'" class="mr-2" />P vs R</p-tab
-          >
-          <p-tab [value]="5"
-            ><app-icon [icon]="'mdi:table'" class="mr-2" />R. Financiero</p-tab
-          >
-          <p-tab [value]="6"
-            ><app-icon [icon]="'mdi:currency-usd'" class="mr-2" />Flujo
-            Efectivo</p-tab
-          >
-          <p-tab [value]="7"
-            ><app-icon [icon]="'mdi:account-group'" class="mr-2" />Dashboard
-            Cobranza</p-tab
-          >
-          <p-tab [value]="8"
-            ><app-icon [icon]="'mdi:wallet'" class="mr-2" />Presupuesto</p-tab
-          >
-          <p-tab [value]="9"
-            ><app-icon [icon]="'mdi:office-building'" class="mr-2" />Bancos e
-            Inv.</p-tab
-          >
-          <p-tab [value]="10"
-            ><app-icon [icon]="'mdi:shield'" class="mr-2" />Fondo Reserva</p-tab
-          >
-          <p-tab [value]="11"
-            ><app-icon [icon]="'mdi:briefcase'" class="mr-2" />Proyectos</p-tab
-          >
-        </p-tablist>
-
-        <p-tabpanels>
-          <p-tabpanel [value]="0" class="p-4 pt-5">
+      <lx-tabs [tabs]="reportTabs" [activeId]="reportIndex().toString()" (tabChange)="onTabChange($event)">
+        <div tab="0" class="p-4 pt-5">
             <app-estado-posicion-financiera />
-          </p-tabpanel>
-          <p-tabpanel [value]="1" class="p-4 pt-5">
+          </div>
+          <div tab="1" class="p-4 pt-5">
             <app-estado-resultados />
-          </p-tabpanel>
-          <p-tabpanel [value]="2" class="p-4 pt-5">
+          </div>
+          <div tab="2" class="p-4 pt-5">
             <app-estado-resultados-v2 />
-          </p-tabpanel>
-          <p-tabpanel [value]="3" class="p-4 pt-5">
+          </div>
+          <div tab="3" class="p-4 pt-5">
             <app-cedula-extraordinaria />
-          </p-tabpanel>
-          <p-tabpanel [value]="4" class="p-4 pt-5">
+          </div>
+          <div tab="4" class="p-4 pt-5">
             <app-cedula-presupuestal />
-          </p-tabpanel>
-          <p-tabpanel [value]="5" class="p-4 pt-5">
+          </div>
+          <div tab="5" class="p-4 pt-5">
             <app-reporte-financiero />
-          </p-tabpanel>
-          <p-tabpanel [value]="6" class="p-4 pt-5">
+          </div>
+          <div tab="6" class="p-4 pt-5">
             <app-flujo-efectivo />
-          </p-tabpanel>
-          <p-tabpanel [value]="7" class="p-4 pt-5">
+          </div>
+          <div tab="7" class="p-4 pt-5">
             <app-cobranza-online-dashboard />
-          </p-tabpanel>
-          <p-tabpanel [value]="8" class="p-4 pt-5">
+          </div>
+          <div tab="8" class="p-4 pt-5">
             <app-presupuesto-contabilidad />
-          </p-tabpanel>
-          <p-tabpanel [value]="9" class="p-4 pt-5">
+          </div>
+          <div tab="9" class="p-4 pt-5">
             <app-bancos-inversiones />
-          </p-tabpanel>
-          <p-tabpanel [value]="10" class="p-4 pt-5">
+          </div>
+          <div tab="10" class="p-4 pt-5">
             <app-fondo-reserva />
-          </p-tabpanel>
-          <p-tabpanel [value]="11" class="p-4 pt-5">
+          </div>
+          <div tab="11" class="p-4 pt-5">
             <app-proyectos-aprobados />
-          </p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
+          </div>
+      </lx-tabs>
     </div>
 
     <app-contabilidad-ai-agent

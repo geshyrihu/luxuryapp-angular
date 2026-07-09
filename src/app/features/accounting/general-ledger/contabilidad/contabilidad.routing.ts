@@ -1,12 +1,14 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
-import { MasterDashboard } from "./master-dashboard/master-dashboard";
 
 export const CONTABILIDAD_ROUTES: Routes = [
   // Ruta: /contabilidad
   {
     path: "",
-    component: MasterDashboard,
+    loadComponent: () =>
+      import("./master-dashboard/master-dashboard").then(
+        (m) => m.MasterDashboard,
+      ),
   },
 
   // ============================================================================
