@@ -19,7 +19,7 @@
           }
 
           <lx-message severity="info"><app-icon [icon]="'mdi:receipt'" class="mr-2" />Datos de puesto</lx-message>
-          <p-divider />
+          <lx-divider />
           <!-- Puesto/Rol -->
           <custom-input-autocomplete-signal
             (propagar)="saveApplicationRole($event)"
@@ -82,7 +82,7 @@
             <app-icon [icon]="'mdi:clock-outline'" class="mr-2"/> Horario de Trabajo
           </h3> -->
           <lx-message severity="info"><app-icon [icon]="'mdi:clock-outline'" class="mr-2" /> Horario de Trabajo</lx-message>
-          <p-divider />
+          <lx-divider />
           @for (dia of ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
           'Sábado', 'Domingo']; track dia) {
           <div class="grid align-items-center">

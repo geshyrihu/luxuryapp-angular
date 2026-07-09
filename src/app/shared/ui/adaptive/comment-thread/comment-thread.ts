@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppCommentThread } from "@ui/web/comment-thread/comment-thread";
-import { MobileCommentThread } from "@ui/mobile/comment-thread/comment-thread";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
+import { MobileCommentThread } from "@ui/mobile/comment-thread/comment-thread";
+import { AppCommentThread } from "@ui/web/comment-thread/comment-thread";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de CommentThread. Renderiza `app-comment-thread`
@@ -11,7 +11,7 @@ import { CommentThreadBase } from "@ui/base/comment-thread.base";
  */
 @Component({
   selector: "lx-comment-thread",
-  standalone: true,
+
   imports: [AppCommentThread, MobileCommentThread],
   template: `
     @if (platform.isMobile()) {

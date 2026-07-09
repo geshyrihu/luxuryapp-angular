@@ -1,20 +1,24 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AvatarModule } from "primeng/avatar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { AvatarBase } from "@ui/base/avatar.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AvatarModule } from "primeng/avatar";
 
 /**
  * AppAvatar — Wrapper sobre p-avatar. Prioridad image > label > icono (`app-icon`).
  */
 @Component({
   selector: "app-avatar",
-  standalone: true,
+
   imports: [CommonModule, AvatarModule, AppIcon],
   template: `
     <p-avatar
       [image]="image() || undefined"
-      [label]="!image() ? (label() || undefined) : undefined"
+      [label]="!image() ? label() || undefined : undefined"
       [shape]="shape()"
       [size]="size()"
       [class]="styleClass()"

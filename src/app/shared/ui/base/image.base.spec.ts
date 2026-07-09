@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { ImageBase } from "./image.base";
 
-@Component({ selector: "test-image", standalone: true, template: "" })
+@Component({ selector: "test-image", template: "" })
 class TestImage extends ImageBase {}
 
 describe("ImageBase", () => {

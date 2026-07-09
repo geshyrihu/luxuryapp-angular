@@ -1,10 +1,10 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TagModule } from "primeng/tag";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -20,7 +20,6 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     CommonModule,
     DatePipe,
     TableModule,
-    TagModule,
     AppIcon,
     DataViewMobile,
     LxEmptyState,
@@ -28,6 +27,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     PrimeNgCustomCaption,
     TaskDateRangeSelector,
     MobileListItem,
+    LxTag,
   ],
 })
 export class TicketLegalReportesInternos implements OnInit {

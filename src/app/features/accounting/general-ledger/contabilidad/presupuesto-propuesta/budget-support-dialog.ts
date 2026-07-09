@@ -16,7 +16,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
-import { ListboxModule } from "primeng/listbox";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
 
 
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -39,7 +39,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     CustomInputTextAreaSignal,
     CustomInputFile,
     WebButtonLabel,
-    ListboxModule, LxTag, LxCard, LxMessage, AppIcon],
+    LxListbox, LxTag, LxCard, LxMessage, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-support-dialog.html",
 })

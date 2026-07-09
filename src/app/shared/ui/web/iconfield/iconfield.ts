@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { IconFieldModule } from "primeng/iconfield";
 import { IconFieldBase } from "@ui/base/iconfield.base";
+import { IconFieldModule } from "primeng/iconfield";
 
 @Component({
   selector: "app-iconfield",
-  standalone: true,
+
   imports: [IconFieldModule],
   template: `
     <p-iconfield [iconPosition]="iconPosition()">

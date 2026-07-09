@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppTagInput } from "@ui/web/tag-input/tag-input";
-import { MobileTagInput } from "@ui/mobile/tag-input/tag-input";
 import { TagInputBase } from "@ui/base/tag-input.base";
+import { MobileTagInput } from "@ui/mobile/tag-input/tag-input";
+import { AppTagInput } from "@ui/web/tag-input/tag-input";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de TagInput. Renderiza `app-tag-input` (PrimeNG) o
@@ -11,7 +11,7 @@ import { TagInputBase } from "@ui/base/tag-input.base";
  */
 @Component({
   selector: "lx-tag-input",
-  standalone: true,
+
   imports: [AppTagInput, MobileTagInput],
   template: `
     @if (platform.isMobile()) {

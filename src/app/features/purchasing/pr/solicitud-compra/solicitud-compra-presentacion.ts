@@ -1,10 +1,17 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
-import { Carousel, CarouselModule } from "primeng/carousel";
-import { AppImage } from "@ui/web/image/image";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+  ViewChild,
+} from "@angular/core";
+import { LxCarousel } from "@ui/adaptive/carousel/carousel";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { AppImage } from "@ui/web/image/image";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -15,6 +22,7 @@ import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { Carousel } from "primeng/carousel";
 
 @Component({
   selector: "app-solicitud-compra-presentacion",
@@ -22,7 +30,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     CommonModule,
-    CarouselModule,
+    LxCarousel,
     AppImage,
     TableModule,
     WebButtonLabel,

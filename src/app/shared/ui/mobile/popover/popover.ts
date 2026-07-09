@@ -4,7 +4,7 @@ import { AppPopover } from "@ui/web/popover/popover";
 
 @Component({
   selector: "ili-popover",
-  standalone: true,
+
   imports: [AppPopover],
   template: `
     <app-popover

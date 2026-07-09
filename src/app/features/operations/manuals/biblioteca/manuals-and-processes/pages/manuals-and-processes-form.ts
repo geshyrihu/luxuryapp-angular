@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ListboxModule } from "primeng/listbox";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -47,9 +47,9 @@ interface IManualTemplateForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
+    LxListbox,
     CustomInputSelectSignal,
     WebButtonLabelSave,
-    ListboxModule,
     CustomInputMultiselectSignal,
     AppIcon,
   ],

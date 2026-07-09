@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { NotificationCenter } from "@ui/web/notification-center/notification-center";
-import { MobileNotificationCenter } from "@ui/mobile/notification-center/notification-center";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
+import { MobileNotificationCenter } from "@ui/mobile/notification-center/notification-center";
+import { NotificationCenter } from "@ui/web/notification-center/notification-center";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de NotificationCenter. Renderiza
@@ -12,7 +12,7 @@ import { NotificationCenterBase } from "@ui/base/notification-center.base";
  */
 @Component({
   selector: "lx-notification-center",
-  standalone: true,
+
   imports: [NotificationCenter, MobileNotificationCenter],
   template: `
     @if (platform.isMobile()) {

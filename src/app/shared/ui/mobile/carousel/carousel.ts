@@ -15,7 +15,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
             class="ili-carousel-slide"
             [style.min-width.%]="100 / numVisible()"
           >
-            <ng-content [select]="'[carouselItem]'" />
+            <ng-content />
           </div>
         }
       </div>

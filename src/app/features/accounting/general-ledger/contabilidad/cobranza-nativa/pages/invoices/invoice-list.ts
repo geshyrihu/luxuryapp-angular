@@ -1,7 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";

@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppContactCard } from "@ui/web/contact-card/contact-card";
-import { MobileContactCard } from "@ui/mobile/contact-card/contact-card";
 import { ContactCardBase } from "@ui/base/contact-card.base";
+import { MobileContactCard } from "@ui/mobile/contact-card/contact-card";
+import { AppContactCard } from "@ui/web/contact-card/contact-card";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ContactCard. Renderiza `app-contact-card` (PrimeNG)
@@ -11,7 +11,7 @@ import { ContactCardBase } from "@ui/base/contact-card.base";
  */
 @Component({
   selector: "lx-contact-card",
-  standalone: true,
+
   imports: [AppContactCard, MobileContactCard],
   template: `
     @if (platform.isMobile()) {

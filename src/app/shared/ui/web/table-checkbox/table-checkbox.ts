@@ -1,11 +1,20 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
-import { AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 
 @Component({
   selector: "app-table-checkbox",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

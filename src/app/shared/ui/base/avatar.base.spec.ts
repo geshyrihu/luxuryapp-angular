@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { AvatarBase } from "./avatar.base";
 
-@Component({ selector: "test-avatar", standalone: true, template: "" })
+@Component({ selector: "test-avatar", template: "" })
 class TestAvatar extends AvatarBase {}
 
 describe("AvatarBase", () => {

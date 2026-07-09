@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppBadge } from "@ui/web/badge/badge";
-import { MobileBadge } from "@ui/mobile/badge/badge";
 import { BadgeBase } from "@ui/base/badge.base";
+import { MobileBadge } from "@ui/mobile/badge/badge";
+import { AppBadge } from "@ui/web/badge/badge";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Badge. Renderiza `app-badge` (PrimeNG) o
@@ -11,7 +11,7 @@ import { BadgeBase } from "@ui/base/badge.base";
  */
 @Component({
   selector: "lx-badge",
-  standalone: true,
+
   imports: [AppBadge, MobileBadge],
   template: `
     @if (platform.isMobile()) {

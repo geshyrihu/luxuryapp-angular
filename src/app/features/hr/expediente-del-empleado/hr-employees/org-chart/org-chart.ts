@@ -14,7 +14,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
-import { ToastModule } from "primeng/toast";
+import { LxToast } from "@ui/adaptive/toast/toast";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -56,7 +56,7 @@ import {
     SelectButtonModule,
     LxTabs,
     LxTag,
-    ToastModule,
+    LxToast,
     ],
 })
 export class OrgChart {

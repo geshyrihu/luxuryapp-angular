@@ -1,36 +1,37 @@
-import { HttpHeaders } from "@angular/common/http";
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { SharedModule } from "primeng/api";
-import { CardModule } from "primeng/card";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { FileUploadModule } from "primeng/fileupload";
-import { environment } from "src/environments/environment";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-upload-img-form",
   templateUrl: "./upload-img-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FileUploadModule, SharedModule, CardModule],
+  imports: [LxFileUpload],
 })
 export class UploadImgForm {
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
-  uploadedFiles: HttpHeaders[] | any = [];
+  apiS = inject(ApiResponseService);
   maxFileSize: number = 30000000;
-  url: string = `${environment.API_BASE_URL}ServiceOrders/SubirImg/${this.config.data.serviceOrderId}`;
+  url: string = `ServiceOrders/SubirImg/${this.config.data.serviceOrderId}`;
+  uploading = signal(false);
 
-  onUpload(event) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
+  onFilesSelected(event: any): void {
+    const files: File[] = event.files ?? [];
+    if (!files.length) return;
+    this.uploading.set(true);
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append("files", file);
     }
-    this.ref.close(true);
+    this.apiS.onPostFile(this.url, formData).finally(() => {
+      this.uploading.set(false);
+      this.ref.close(true);
+    });
   }
 }
-
-
-
-
-
-
-
-
-

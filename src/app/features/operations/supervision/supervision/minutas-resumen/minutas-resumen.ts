@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { MultiSelectModule } from "primeng/multiselect";
+import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { TableModule } from "primeng/table";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -16,7 +16,7 @@ import { FiltroMinutasArea } from "../filtro-minutas-area/filtro-minutas-area";
   selector: "app-minutas-resumen",
   templateUrl: "./minutas-resumen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FormsModule, TableModule, MultiSelectModule, MesAnio],
+  imports: [CommonModule, FormsModule, TableModule, LxMultiSelect, MesAnio],
 })
 export class MinutasResumen implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -17,7 +17,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; /
  // Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
  // Added
-import { StepsModule } from "primeng/steps";
+import { LxSteps } from "@ui/adaptive/steps/steps";
 import { TableModule } from "primeng/table";
  // Added
 import { firstValueFrom } from "rxjs";
@@ -89,7 +89,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     FormsModule,
     CustomInputCurrencySignal, // Added
     ReactiveFormsModule,
-    StepsModule,
+    LxSteps,
     TableModule, LxMessage, FileUpload, AppIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./create-orden-compra-wizard.html",

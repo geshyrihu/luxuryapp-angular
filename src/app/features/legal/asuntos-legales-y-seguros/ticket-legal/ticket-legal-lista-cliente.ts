@@ -8,12 +8,13 @@ import {
 } from "@angular/core";
 import { WebButtonLabelTracking } from "@ui/buttons/web-label/button-tracking";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxBadge } from "@ui/adaptive/badge/badge";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -46,8 +47,9 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    TagModule,
     TooltipModule,
+    LxTag,
+    LxBadge,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
 

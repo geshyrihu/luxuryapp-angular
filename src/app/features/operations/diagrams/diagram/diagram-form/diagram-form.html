@@ -10,7 +10,7 @@
   <div class="grid">
     <div class="col-12 md:col-6">
       <label class="font-bold mb-2 block text-sm">Customers Objetivo</label>
-      <p-listbox
+      <lx-listbox
         [options]="allCustomers()"
         formControlName="targetCustomerIds"
         [multiple]="true"
@@ -21,12 +21,12 @@
         [style]="{ width: '100%' }"
         [listStyle]="{ 'max-height': '200px' }"
         emptyFilterMessage="No se encontraron clientes"
-      ></p-listbox>
+      ></lx-listbox>
     </div>
 
     <div class="col-12 md:col-6">
       <label class="font-bold mb-2 block text-sm">Roles Objetivo</label>
-      <p-listbox
+      <lx-listbox
         [options]="allRoles()"
         formControlName="targetRoleIds"
         [multiple]="true"
@@ -37,7 +37,7 @@
         [style]="{ width: '100%' }"
         [listStyle]="{ 'max-height': '200px' }"
         emptyFilterMessage="No se encontraron roles"
-      ></p-listbox>
+      ></lx-listbox>
     </div>
   </div>
 

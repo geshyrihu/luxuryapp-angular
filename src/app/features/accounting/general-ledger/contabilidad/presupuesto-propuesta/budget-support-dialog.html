@@ -77,11 +77,11 @@
 <ng-template #header>
     <div class="px-4 pt-4 font-bold text-lg text-700">Archivos Adjuntos</div>
   </ng-template>
-  <p-listbox
+  <lx-listbox
     [options]="budgetProposalItem()!.files"
     optionLabel="fileName"
     [style]="{ width: '100%' }"
-    class="compact-listbox border-none"
+    styleClass="compact-listbox border-none"
   >
     <ng-template let-file #item>
       <div class="flex justify-content-between align-items-center w-full py-1">
@@ -107,7 +107,7 @@
         </div>
       </div>
     </ng-template>
-  </p-listbox>
+  </lx-listbox>
 </lx-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 border-round p-4 text-center mt-3">

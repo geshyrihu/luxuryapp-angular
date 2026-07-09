@@ -289,22 +289,15 @@
             <h4 class="text-base font-bold text-700 m-0">Imagenes del Paso</h4>
             <div class="flex align-items-center gap-2">
               <span class="text-xs text-400">o Ctrl+V para pegar</span>
-              <p-fileupload
-                #imgUploader
-                mode="basic"
-                chooseLabel="Subir Imagen"
-                chooseIcon="mdi:image"
+              <lx-file-upload
                 accept="image/*"
-                [auto]="true"
-                [customUpload]="true"
-                (uploadHandler)="onSubirImagen($event, imgUploader)"
-                class="p-button-sm p-button-outlined"
-                [disabled]="uploadingImagen()"
-              >
-                <ng-template #content>
-                  <app-icon [icon]="'mdi:image'" class="mr-2" />
-                </ng-template>
-              </p-fileupload>
+                [maxFileSize]="10000000"
+                [multiple]="false"
+                [chooseLabel]="'Subir Imagen'"
+                [autoUpload]="false"
+                (onSelect)="onSubirImagen($event)"
+                [styleClass]="'p-button-sm p-button-outlined'"
+              />
             </div>
           </div>
 
@@ -594,22 +587,15 @@
             />
           </div>
           <div class="flex align-items-center gap-3">
-            <p-fileupload
-              #adjuntoUploader
-              mode="basic"
-              chooseLabel="Seleccionar Archivo"
-              chooseIcon="mdi:upload"
+            <lx-file-upload
               accept=".pdf,.doc,.docx,.xls,.xlsx"
-              [auto]="true"
-              [customUpload]="true"
-              (uploadHandler)="onSubirAdjunto($event, adjuntoUploader, adjuntoNombreInput)"
-              class="p-button-sm p-button-outlined"
-              [disabled]="uploadingAdjunto()"
-            >
-              <ng-template #content>
-                <app-icon [icon]="'mdi:upload'" class="mr-2" />
-              </ng-template>
-            </p-fileupload>
+              [maxFileSize]="10000000"
+              [multiple]="false"
+              [chooseLabel]="'Seleccionar Archivo'"
+              [autoUpload]="false"
+              (onSelect)="onSubirAdjunto($event)"
+              [styleClass]="'p-button-sm p-button-outlined'"
+            />
             @if (uploadingAdjunto()) {
             <span class="text-500 text-sm flex align-items-center gap-1">
               <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />

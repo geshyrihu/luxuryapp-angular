@@ -1,27 +1,35 @@
+import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
-  computed,
   input,
   output,
   signal,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
-import { InputTextModule } from "primeng/inputtext";
-import { InputNumberModule } from "primeng/inputnumber";
-import { TextareaModule } from "primeng/textarea";
-import { SelectModule } from "primeng/select";
 import { CheckboxModule } from "primeng/checkbox";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { DatePickerModule } from "primeng/datepicker";
 import { DividerModule } from "primeng/divider";
+import { InputNumberModule } from "primeng/inputnumber";
+import { InputTextModule } from "primeng/inputtext";
+import { SelectModule } from "primeng/select";
+import { TextareaModule } from "primeng/textarea";
+import { ToggleSwitchModule } from "primeng/toggleswitch";
 
 export type FieldType =
-  | "text" | "email" | "password" | "number" | "currency"
-  | "textarea" | "select" | "multiselect" | "date" | "checkbox" | "switch";
+  | "text"
+  | "email"
+  | "password"
+  | "number"
+  | "currency"
+  | "textarea"
+  | "select"
+  | "multiselect"
+  | "date"
+  | "checkbox"
+  | "switch";
 
 export interface FormField {
   key: string;
@@ -46,7 +54,7 @@ export type FormValues = Record<string, unknown>;
  */
 @Component({
   selector: "app-form-builder",
-  standalone: true,
+
   imports: [
     CommonModule,
     FormsModule,
@@ -72,11 +80,13 @@ export type FormValues = Record<string, unknown>;
           <div class="fb-field" [class.fb-col-2]="field.colspan === 2">
             <label class="fb-label" [for]="field.key">
               {{ field.label }}
-              @if (field.required) { <span class="fb-required">*</span> }
+              @if (field.required) {
+                <span class="fb-required">*</span>
+              }
             </label>
 
             @switch (field.type) {
-              @case ('text') {
+              @case ("text") {
                 <input
                   pInputText
                   [id]="field.key"
@@ -88,7 +98,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('email') {
+              @case ("email") {
                 <input
                   pInputText
                   type="email"
@@ -100,7 +110,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('password') {
+              @case ("password") {
                 <input
                   pInputText
                   type="password"
@@ -112,7 +122,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('number') {
+              @case ("number") {
                 <p-inputnumber
                   [inputId]="field.key"
                   [(ngModel)]="values()[field.key]"
@@ -125,7 +135,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('currency') {
+              @case ("currency") {
                 <p-inputnumber
                   [inputId]="field.key"
                   [(ngModel)]="values()[field.key]"
@@ -138,7 +148,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('textarea') {
+              @case ("textarea") {
                 <textarea
                   pTextarea
                   [id]="field.key"
@@ -151,7 +161,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 ></textarea>
               }
-              @case ('select') {
+              @case ("select") {
                 <p-select
                   [inputId]="field.key"
                   [(ngModel)]="values()[field.key]"
@@ -165,7 +175,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('date') {
+              @case ("date") {
                 <p-datepicker
                   [inputId]="field.key"
                   [(ngModel)]="values()[field.key]"
@@ -177,7 +187,7 @@ export type FormValues = Record<string, unknown>;
                   (ngModelChange)="onchange()"
                 />
               }
-              @case ('checkbox') {
+              @case ("checkbox") {
                 <div class="fb-checkbox-row">
                   <p-checkbox
                     [inputId]="field.key"
@@ -192,7 +202,7 @@ export type FormValues = Record<string, unknown>;
                   </label>
                 </div>
               }
-              @case ('switch') {
+              @case ("switch") {
                 <div class="fb-switch-row">
                   <p-toggleswitch
                     [inputId]="field.key"
@@ -202,7 +212,7 @@ export type FormValues = Record<string, unknown>;
                     (ngModelChange)="onchange()"
                   />
                   <label [for]="field.key" class="fb-switch-label">
-                    {{ values()[field.key] ? 'Activado' : 'Desactivado' }}
+                    {{ values()[field.key] ? "Activado" : "Desactivado" }}
                   </label>
                 </div>
               }
@@ -236,37 +246,95 @@ export type FormValues = Record<string, unknown>;
       }
     </form>
   `,
-  styles: [`
-    .fb-root { display: flex; flex-direction: column; gap: 1rem; }
-    .fb-title { font-size: var(--ds-font-size-section-title, 1.25rem); font-weight: 600; color: var(--ds-text-primary); margin: 0; }
-    .fb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 640px) { .fb-grid { grid-template-columns: 1fr; } }
-    .fb-field { display: flex; flex-direction: column; gap: 0.3rem; }
-    .fb-col-2 { grid-column: span 2; }
-    @media (max-width: 640px) { .fb-col-2 { grid-column: span 1; } }
-    .fb-label { font-size: var(--ds-font-size-label, 0.875rem); color: var(--ds-text-secondary); font-weight: 500; }
-    .fb-required { color: var(--ds-danger, #ba1a1a); margin-left: 2px; }
-    .fb-hint { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
-    .fb-checkbox-row, .fb-switch-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem; }
-    .fb-checkbox-label, .fb-switch-label { font-size: var(--ds-font-size-label, 0.875rem); color: var(--ds-text-primary); cursor: pointer; }
-    .fb-actions { display: flex; justify-content: flex-end; gap: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--ds-border, #e2e8f0); }
-    .w-full { width: 100%; }
-  `],
+  styles: [
+    `
+      .fb-root {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .fb-title {
+        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-weight: 600;
+        color: var(--ds-text-primary);
+        margin: 0;
+      }
+      .fb-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      @media (max-width: 640px) {
+        .fb-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .fb-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .fb-col-2 {
+        grid-column: span 2;
+      }
+      @media (max-width: 640px) {
+        .fb-col-2 {
+          grid-column: span 1;
+        }
+      }
+      .fb-label {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        color: var(--ds-text-secondary);
+        font-weight: 500;
+      }
+      .fb-required {
+        color: var(--ds-danger, #ba1a1a);
+        margin-left: 2px;
+      }
+      .fb-hint {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+      }
+      .fb-checkbox-row,
+      .fb-switch-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.25rem;
+      }
+      .fb-checkbox-label,
+      .fb-switch-label {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        color: var(--ds-text-primary);
+        cursor: pointer;
+      }
+      .fb-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--ds-border, #e2e8f0);
+      }
+      .w-full {
+        width: 100%;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppFormBuilder {
-  schema      = input<FormField[]>([]);
-  title       = input<string>("");
-  initial     = input<FormValues>({});
+  schema = input<FormField[]>([]);
+  title = input<string>("");
+  initial = input<FormValues>({});
   showActions = input<boolean>(true);
-  showReset   = input<boolean>(true);
+  showReset = input<boolean>(true);
   submitLabel = input<string>("Guardar");
-  resetLabel  = input<string>("Restablecer");
-  loading     = input<boolean>(false);
+  resetLabel = input<string>("Restablecer");
+  loading = input<boolean>(false);
 
-  formChange  = output<FormValues>();
-  formSubmit  = output<FormValues>();
+  formChange = output<FormValues>();
+  formSubmit = output<FormValues>();
 
   values = signal<FormValues>({});
 
@@ -279,9 +347,12 @@ export class AppFormBuilder {
     const init: FormValues = { ...this.initial() };
     this.schema().forEach((f) => {
       if (!(f.key in init)) {
-        init[f.key] = f.type === "checkbox" || f.type === "switch" ? false
-          : f.type === "number" || f.type === "currency" ? null
-          : "";
+        init[f.key] =
+          f.type === "checkbox" || f.type === "switch"
+            ? false
+            : f.type === "number" || f.type === "currency"
+              ? null
+              : "";
       }
     });
     this.values.set(init);

@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
-import { MobilePullToRefresh } from "@ui/mobile/pull-to-refresh/pull-to-refresh";
 import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
+import { MobilePullToRefresh } from "@ui/mobile/pull-to-refresh/pull-to-refresh";
+import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-pull-to-refresh",
-  standalone: true,
+
   imports: [PullToRefresh, MobilePullToRefresh],
   template: `
     @if (platform.isMobile()) {

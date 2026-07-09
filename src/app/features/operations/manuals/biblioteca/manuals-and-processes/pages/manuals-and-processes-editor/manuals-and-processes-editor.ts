@@ -4,7 +4,7 @@ import {
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
-import { Component, HostListener, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import { Component, HostListener, inject, OnInit, signal, ViewChild, ElementRef, ChangeDetectionStrategy } from "@angular/core";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
   FormBuilder,
@@ -16,7 +16,7 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
-import { FileUploadModule } from "primeng/fileupload";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import {
@@ -86,7 +86,7 @@ import { TooltipModule } from "primeng/tooltip";
     LxTag,
     CustomInputSelectButton,
     CustomInputSwitch,
-    FileUploadModule,
+    LxFileUpload,
     WebButtonLabel,
     WebButtonLabelDelete,
     WebButtonLabelSave,
@@ -126,6 +126,9 @@ export class ManualsAndProcessesEditor implements OnInit {
   // Adjuntos
   adjuntos = signal<IManualAdjuntoSimpleDTO[]>([]);
   uploadingAdjunto = signal(false);
+
+  @ViewChild('adjuntoNombreInput', { static: false })
+  adjuntoNombreInputRef?: ElementRef<HTMLInputElement>;
 
   roles = signal<ISelectItem[]>([]);
 
@@ -376,11 +379,10 @@ export class ManualsAndProcessesEditor implements OnInit {
   // IMAGENES
   // ----------------------------------------------------------------
 
-  onSubirImagen(event: any, uploader: any): void {
+  onSubirImagen(event: any): void {
     const file = event.files?.[0];
     if (!file) return;
     this.uploadImageFile(file);
-    uploader.clear();
   }
 
   @HostListener("window:paste", ["$event"])
@@ -542,17 +544,10 @@ export class ManualsAndProcessesEditor implements OnInit {
   // ADJUNTOS
   // ----------------------------------------------------------------
 
-  onSubirAdjunto(
-    event: any,
-    uploader: any,
-    nombreInput: HTMLInputElement,
-  ): void {
+  onSubirAdjunto(event: any): void {
     const file = event.files?.[0];
-    const nombre = nombreInput.value?.trim();
-    if (!file || !nombre) {
-      uploader.clear();
-      return;
-    }
+    const nombre = this.adjuntoNombreInputRef?.nativeElement?.value?.trim();
+    if (!file || !nombre) return;
 
     this.uploadingAdjunto.set(true);
     const formData = new FormData();
@@ -567,14 +562,12 @@ export class ManualsAndProcessesEditor implements OnInit {
       .then((res) => {
         if (res) {
           this.adjuntos.update((list) => [...list, res]);
-          nombreInput.value = "";
-          uploader.clear();
+          if (this.adjuntoNombreInputRef?.nativeElement) this.adjuntoNombreInputRef.nativeElement.value = "";
         }
         this.uploadingAdjunto.set(false);
       })
       .catch(() => {
         this.uploadingAdjunto.set(false);
-        uploader.clear();
       });
   }
 

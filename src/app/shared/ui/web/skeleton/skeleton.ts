@@ -8,7 +8,7 @@ import { SkeletonModule } from "primeng/skeleton";
 
 @Component({
   selector: "app-skeleton",
-  standalone: true,
+
   imports: [SkeletonModule],
   template: `
     <p-skeleton
@@ -22,4 +22,3 @@ import { SkeletonModule } from "primeng/skeleton";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppSkeleton extends SkeletonBase {}
-

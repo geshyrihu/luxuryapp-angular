@@ -10,8 +10,8 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { TreeNode } from "primeng/api";
-import { BadgeModule } from "primeng/badge";
-import { TreeModule } from "primeng/tree";
+import { LxTree } from "@ui/adaptive/tree/tree";
+import { LxBadge } from "@ui/adaptive/badge/badge";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -25,8 +25,8 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
   selector: "app-account-tree-select",
 
   imports: [
-    TreeModule,
-    BadgeModule,
+    LxTree,
+    LxBadge,
     DragDropModule,
     AppIcon,
     CustomInputTextSignal,
@@ -61,7 +61,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
           cdkDropList
           cdkDropListSortingDisabled="true"
         >
-          <p-tree
+          <lx-tree
             [value]="filteredNodes()"
             selectionMode="checkbox"
             [(selection)]="selectedNodes"
@@ -92,7 +92,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
                   }}</span>
                 </div>
 
-                <p-badge
+                <lx-badge
                   [value]="'N' + node.data.level"
                   [severity]="getBadgeSeverity(node.data.level)"
                   class="text-xs"
@@ -110,7 +110,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
                 </div>
               </div>
             </ng-template>
-          </p-tree>
+          </lx-tree>
         </div>
       }
     </div>

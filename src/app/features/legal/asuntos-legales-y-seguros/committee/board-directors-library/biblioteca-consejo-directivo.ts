@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxImage } from "@ui/adaptive/image/image";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { IonRippleEffect } from "@ionic/angular/standalone";
 export interface DocumentCategory {
   title: string;
   image: string;

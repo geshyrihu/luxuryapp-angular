@@ -4,6 +4,7 @@ import { LxImage } from "@ui/adaptive/image/image";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { IonRippleEffect } from "@ionic/angular/standalone";
 @Component({
   selector: "app-home-comite",
   imports: [

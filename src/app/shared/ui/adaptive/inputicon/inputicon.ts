@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
 import { InputIconBase } from "@ui/base/inputicon.base";
-import { AppInputIcon } from "@ui/web/inputicon/inputicon";
 import { MobileInputIcon } from "@ui/mobile/inputicon/inputicon";
+import { AppInputIcon } from "@ui/web/inputicon/inputicon";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-inputicon",
-  standalone: true,
+
   imports: [AppInputIcon, MobileInputIcon],
   template: `
     @if (platform.isMobile()) {

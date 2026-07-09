@@ -2,7 +2,6 @@ import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";

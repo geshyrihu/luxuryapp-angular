@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ScrollTopModule } from "primeng/scrolltop";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { TapToTopBase } from "@ui/base/tap-to-top.base";
+import { ScrollTopModule } from "primeng/scrolltop";
 
 @Component({
   selector: "app-scroll-top",
-  standalone: true,
+
   imports: [CommonModule, ScrollTopModule],
   template: `
     <p-scrolltop
@@ -14,10 +14,13 @@ import { TapToTopBase } from "@ui/base/tap-to-top.base";
       [style]="{ background: 'var(--ds-primary)', color: '#fff' }"
     />
   `,
-  styles: [`
-    :host { display: contents; }
-  `],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
-export class ScrollTop extends TapToTopBase {
-}
+export class ScrollTop extends TapToTopBase {}

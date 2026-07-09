@@ -15,6 +15,11 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [autoplayInterval]="autoplayInterval()"
         [numVisible]="numVisible()"
         [circular]="circular()"
+        [page]="page()"
+        [numScroll]="numScroll()"
+        [showIndicators]="showIndicators()"
+        [showNavigators]="showNavigators()"
+        (onPage)="onPage.emit($event)"
       >
         <ng-content />
       </ili-carousel>
@@ -24,6 +29,11 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [autoplayInterval]="autoplayInterval()"
         [numVisible]="numVisible()"
         [circular]="circular()"
+        [page]="page()"
+        [numScroll]="numScroll()"
+        [showIndicators]="showIndicators()"
+        [showNavigators]="showNavigators()"
+        (onPage)="onPage.emit($event)"
       >
         <ng-content />
       </app-carousel>

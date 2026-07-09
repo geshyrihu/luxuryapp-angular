@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { GlobalErrorAlert } from "@ui/web/global-error-alert/global-error-alert";
-import { MobileGlobalErrorAlert } from "@ui/mobile/global-error-alert/global-error-alert";
 import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
+import { MobileGlobalErrorAlert } from "@ui/mobile/global-error-alert/global-error-alert";
+import { GlobalErrorAlert } from "@ui/web/global-error-alert/global-error-alert";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-global-error-alert",
-  standalone: true,
+
   imports: [GlobalErrorAlert, MobileGlobalErrorAlert],
   template: `
     @if (platform.isMobile()) {

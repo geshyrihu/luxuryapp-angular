@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { MobileAvatar } from "@ui/mobile/avatar/avatar";
 import { AvatarBase } from "@ui/base/avatar.base";
+import { MobileAvatar } from "@ui/mobile/avatar/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Avatar. Renderiza `app-avatar` (PrimeNG) o
@@ -11,7 +11,7 @@ import { AvatarBase } from "@ui/base/avatar.base";
  */
 @Component({
   selector: "lx-avatar",
-  standalone: true,
+
   imports: [AppAvatar, MobileAvatar],
   template: `
     @if (platform.isMobile()) {

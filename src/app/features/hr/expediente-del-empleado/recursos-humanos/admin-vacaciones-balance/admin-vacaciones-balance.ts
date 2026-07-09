@@ -1,10 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ToastModule } from "primeng/toast";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -40,8 +39,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     PrimeNgCustomCaption,
     WebButtonLabelEdit,
     DataViewMobile,
-    ToastModule,
-    ConfirmDialogModule
+    LxConfirmDialog
   ],
   templateUrl: "./admin-vacaciones-balance.html",
   changeDetection: ChangeDetectionStrategy.Eager,

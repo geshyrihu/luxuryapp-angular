@@ -14,7 +14,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
-import { FileUploadModule } from "primeng/fileupload";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -65,7 +65,7 @@ type ModalStatus =
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
+    LxFileUpload,
     TableModule,
     TagModule,
     TooltipModule,

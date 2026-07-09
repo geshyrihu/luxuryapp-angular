@@ -21,8 +21,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { RatingModule } from "primeng/rating";
 import { TableModule } from "primeng/table";
+import { LxRating } from "@ui/adaptive/rating/rating";
 
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -67,8 +67,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     TableModule,
     CustomInputSelectSignal,
     CustomSearchInput,
-    RatingModule,
     TooltipModule,
+    LxRating,
     WebButtonLabel,
     DataViewMobile, LxTag, MobileListItem, AppIcon],
 })

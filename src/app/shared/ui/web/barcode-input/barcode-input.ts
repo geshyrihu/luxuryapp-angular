@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
@@ -8,7 +9,6 @@ import {
   signal,
   ViewChild,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -21,7 +21,7 @@ import { TooltipModule } from "primeng/tooltip";
  */
 @Component({
   selector: "app-barcode-input",
-  standalone: true,
+
   imports: [
     CommonModule,
     FormsModule,
@@ -142,7 +142,6 @@ export class AppBarcodeInput {
     "code_128",
     "code_39",
   ]);
-
 
   barcodeFound = output<string>();
   searched = output<string>();

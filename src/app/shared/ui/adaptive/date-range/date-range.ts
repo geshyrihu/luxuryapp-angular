@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { DateRange } from "@ui/web/date-range/date-range";
-import { MobileDateRange } from "@ui/mobile/date-range/date-range";
 import { DateRangeBase } from "@ui/base/date-range.base";
+import { MobileDateRange } from "@ui/mobile/date-range/date-range";
+import { DateRange } from "@ui/web/date-range/date-range";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de DateRange. Renderiza `app-date-range` (presets
@@ -11,7 +11,7 @@ import { DateRangeBase } from "@ui/base/date-range.base";
  */
 @Component({
   selector: "lx-date-range",
-  standalone: true,
+
   imports: [DateRange, MobileDateRange],
   template: `
     @if (platform.isMobile()) {

@@ -51,7 +51,7 @@
             }
           </td>
           <td class="text-center">
-            <p-tag
+            <lx-tag
               class="p-2 cursor-pointer"
               pTooltip="Actualizar estatus"
               (click)="onModalUpdateStatus({ id: item.id })"
@@ -127,7 +127,7 @@
               Solicita: {{ item.creator }}
             </p>
             <div class="flex justify-content-between align-items-center mt-2">
-              <p-tag
+              <lx-tag
                 (click)="onModalUpdateStatus({ id: item.id })"
                 class="p-2 cursor-pointer"
                 [severity]="
@@ -166,7 +166,7 @@
                 label="Seguimiento"
                 (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
               >
-                <p-badge [value]="item.tracking" severity="danger" []="true" />
+                <lx-badge [value]="item.tracking" color="danger" />
               </ili-button-item>
             </ng-container>
           </ili-action-menu>

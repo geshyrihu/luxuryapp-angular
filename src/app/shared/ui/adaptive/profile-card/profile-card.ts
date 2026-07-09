@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppProfileCard } from "@ui/web/profile-card/profile-card";
-import { MobileProfileCard } from "@ui/mobile/profile-card/profile-card";
 import { ProfileCardBase } from "@ui/base/profile-card.base";
+import { MobileProfileCard } from "@ui/mobile/profile-card/profile-card";
+import { AppProfileCard } from "@ui/web/profile-card/profile-card";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ProfileCard. Renderiza `app-profile-card` (PrimeNG)
@@ -11,7 +11,7 @@ import { ProfileCardBase } from "@ui/base/profile-card.base";
  */
 @Component({
   selector: "lx-profile-card",
-  standalone: true,
+
   imports: [AppProfileCard, MobileProfileCard],
   template: `
     @if (platform.isMobile()) {

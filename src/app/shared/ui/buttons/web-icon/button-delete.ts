@@ -2,12 +2,13 @@ import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
 } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
-import { confirmAction } from "../shared/confirm";
+import { ConfirmService } from "../shared/confirm.service";
 
 @Component({
   selector: "iw-button-delete",
@@ -35,9 +36,11 @@ export class WebButtonIconDelete extends BaseButton {
   );
   override severity = input<any>("danger");
 
-  protected confirmDelete(event: Event): void {
+  private readonly confirmSvc = inject(ConfirmService);
+
+  protected async confirmDelete(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.confirmMessage())) {
+    if (await this.confirmSvc.confirm(this.confirmMessage(), this.confirmHeader())) {
       this.confirmed.emit();
     }
   }

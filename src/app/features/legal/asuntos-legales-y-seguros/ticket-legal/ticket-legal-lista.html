@@ -91,7 +91,7 @@
         <app-icon [icon]="'mdi:account'" class="mr-2" />{{ item.assignee }}
       </td>
       <td class="text-center">
-        <p-tag
+        <lx-tag
           (click)="onModalUpdateStatus({ id: item.id })"
           class="p-2 cursor-pointer"
           pTooltip="Actualizar estatus"

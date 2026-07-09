@@ -1,12 +1,12 @@
 import { Component, inject, viewChild } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
 import { PopoverBase } from "@ui/base/popover.base";
-import { AppPopover } from "@ui/web/popover/popover";
 import { MobilePopover } from "@ui/mobile/popover/popover";
+import { AppPopover } from "@ui/web/popover/popover";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-popover",
-  standalone: true,
+
   imports: [AppPopover, MobilePopover],
   template: `
     @if (platform.isMobile()) {

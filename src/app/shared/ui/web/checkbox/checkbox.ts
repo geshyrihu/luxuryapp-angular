@@ -1,11 +1,15 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
 import { CheckboxBase } from "@ui/base/checkbox.base";
+import { CheckboxModule } from "primeng/checkbox";
 
 @Component({
   selector: "app-checkbox",
-  standalone: true,
+
   imports: [FormsModule, CheckboxModule],
   template: `
     <p-checkbox

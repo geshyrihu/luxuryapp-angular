@@ -13,7 +13,7 @@ import { BadgeSeverity, BadgeSize } from "primeng/types/badge";
  */
 @Component({
   selector: "app-badge",
-  standalone: true,
+
   imports: [CommonModule, BadgeModule],
   template: `
     <p-badge

@@ -16,8 +16,12 @@ import { TreeModule } from "primeng/tree";
       [value]="value()"
       [(selection)]="selection"
       [selectionMode]="selectionMode()"
+      [scrollHeight]="scrollHeight()"
+      [metaKeySelection]="metaKeySelection()"
       styleClass="w-full"
-    />
+    >
+      <ng-content />
+    </p-tree>
   `,
   styles: [
     `

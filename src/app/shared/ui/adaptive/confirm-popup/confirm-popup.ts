@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { ConfirmPopup } from "@ui/web/confirm-popup/confirm-popup";
-import { MobileConfirmPopup } from "@ui/mobile/confirm-popup/confirm-popup";
 import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
+import { MobileConfirmPopup } from "@ui/mobile/confirm-popup/confirm-popup";
+import { ConfirmPopup } from "@ui/web/confirm-popup/confirm-popup";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-confirm-popup",
-  standalone: true,
+
   imports: [ConfirmPopup, MobileConfirmPopup],
   template: `
     @if (platform.isMobile()) {
@@ -33,6 +33,5 @@ import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
 export class LxConfirmPopup extends ConfirmPopupBase {
   protected platform = inject(PlatformService);
 
-  confirm(event: Event): void {
-  }
+  confirm(event: Event): void {}
 }

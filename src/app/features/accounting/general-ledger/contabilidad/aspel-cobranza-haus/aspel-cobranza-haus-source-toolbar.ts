@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   AspelDataSource,
   AspelLocalStatusResponse,
@@ -22,7 +22,7 @@ import {
   imports: [
     CommonModule,
     FormsModule,
-    TagModule,
+    LxTag,
     CustomInputSelectSignal,
     WebButtonLabel,
   ],
@@ -78,13 +78,13 @@ import {
 
             <div class="flex flex-wrap align-items-center gap-2 text-sm">
               <span class="text-600">Customer:</span>
-              <p-tag
+              <lx-tag
                 [value]="customerId || 'Sin contexto'"
                 severity="secondary"
               />
-              <p-tag [value]="'Año sync: ' + syncYear" severity="info" />
+              <lx-tag [value]="'Año sync: ' + syncYear" severity="info" />
               @if (localStatus) {
-                <p-tag
+                <lx-tag
                   [value]="
                     localStatus.snapshotReady
                       ? 'Snapshot listo'

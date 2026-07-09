@@ -7,23 +7,12 @@
 
   <div class="mt-3">
     <label for="attachments">Adjuntar Evidencia (Opcional)</label>
-    <p-fileupload
-      name="attachments"
-      formControlName="attachments"
-      multiple="multiple"
+    <lx-file-upload
       accept="image/*"
-      maxFileSize="1000000"
-    >
-      <ng-template #content>
-        @if (form.get('attachments')?.value.length) {
-        <ul>
-          @for (file of form.get('attachments')?.value; track file) {
-          <li>{{file.name}} - {{file.size}} bytes</li>
-          }
-        </ul>
-        }
-      </ng-template>
-    </p-fileupload>
+      [maxFileSize]="1000000"
+      [multiple]="true"
+      (onSelect)="onFileSelected($event)"
+    />
   </div>
 
   <il-button-save

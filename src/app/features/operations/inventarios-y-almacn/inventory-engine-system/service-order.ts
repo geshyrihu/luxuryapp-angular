@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { EditorModule } from "primeng/editor";
+import { LxEditor } from "@ui/adaptive/editor/editor";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -20,7 +20,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
-    EditorModule,
+    LxEditor,
     TooltipModule,
     WebButtonLabel,
   ],

@@ -1,12 +1,12 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { Dialog } from "@ui/web/dialog/dialog";
-import { MobileModal } from "@ui/mobile/modal/modal";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ModalBase } from "@ui/base/modal.base";
+import { MobileModal } from "@ui/mobile/modal/modal";
+import { Dialog } from "@ui/web/dialog/dialog";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-modal",
-  standalone: true,
+
   imports: [Dialog, MobileModal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

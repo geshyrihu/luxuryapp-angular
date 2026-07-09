@@ -19,9 +19,9 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { DividerModule } from "primeng/divider";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model";
@@ -56,7 +56,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <p-divider class="my-3"></p-divider>
+                <lx-divider class="my-3"></lx-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -80,7 +80,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <p-divider class="my-3"></p-divider>
+                <lx-divider class="my-3"></lx-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -107,7 +107,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <p-divider class="my-3"></p-divider>
+                <lx-divider class="my-3"></lx-divider>
                 <div class="text-600">
                   <div>
                     Cambio:
@@ -117,11 +117,11 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
               </div>
             </div>
 
-            <p-divider layout="horizontal" align="center" class="my-4">
+            <lx-divider class="my-4">
               <h6 class="text-uppercase font-semibold">
                 Detalle por Propiedad
               </h6>
-            </p-divider>
+            </lx-divider>
 
             <p-table
               [value]="data.propertyIndivisoDetails"
@@ -164,9 +164,9 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
           </div>
         </div>
       } @else if (!loading()) {
-        <p-message severity="info">
+        <lx-message severity="info">
           No hay datos de comparación disponibles.
-        </p-message>
+        </lx-message>
       }
     </div>
   `,
@@ -174,8 +174,8 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
   imports: [
     CommonModule,
     TableModule,
-    DividerModule,
-    MessageModule,
+    LxDivider,
+    LxMessage,
   ],
 })
 export class FeeComparisonByIndivisoModal implements OnInit {

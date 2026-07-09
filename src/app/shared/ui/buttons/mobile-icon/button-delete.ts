@@ -2,13 +2,14 @@ import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
 } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { MobileButtonBase } from "../mobile-button-base";
-import { confirmAction } from "../shared/confirm";
+import { ConfirmService } from "../shared/confirm.service";
 
 @Component({
   selector: "ii-button-delete",
@@ -34,9 +35,11 @@ export class MobileButtonIconDelete extends MobileButtonBase {
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");
   confirmed = output<void>();
 
-  protected confirmDelete(event: Event): void {
+  private readonly confirmSvc = inject(ConfirmService);
+
+  protected async confirmDelete(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.confirmMessage())) {
+    if (await this.confirmSvc.confirm(this.confirmMessage(), this.confirmHeader())) {
       this.confirmed.emit();
     }
   }

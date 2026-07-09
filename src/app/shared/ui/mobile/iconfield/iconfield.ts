@@ -4,7 +4,7 @@ import { AppIconField } from "@ui/web/iconfield/iconfield";
 
 @Component({
   selector: "ili-iconfield",
-  standalone: true,
+
   imports: [AppIconField],
   template: `
     <app-iconfield [iconPosition]="iconPosition()">

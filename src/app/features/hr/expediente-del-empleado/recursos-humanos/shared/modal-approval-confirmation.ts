@@ -11,7 +11,7 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 ;
@@ -30,7 +30,7 @@ import { ApprovalInfoService } from "./approval-info.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ProgressSpinnerModule,
+    LxSpinner,
     WebButtonLabel,
     DatePipe,
     LxDivider,
@@ -42,11 +42,10 @@ import { ApprovalInfoService } from "./approval-info.service";
   template: `
     @if (loading) {
       <div class="flex justify-center items-center p-5">
-        <p-progressspinner
-          class="w-4rem h-4rem"
-          strokeWidth="6"
-          ariaLabel="loading"
-        ></p-progressspinner>
+        <lx-spinner
+          [strokeWidth]="6"
+          [ariaLabel]="'loading'"
+        ></lx-spinner>
       </div>
     } @else {
       <div class="p-fluid p-3">

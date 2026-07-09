@@ -1,15 +1,15 @@
+import { CommonModule } from "@angular/common";
 import {
-  Component,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
+  Component,
   ElementRef,
+  ViewEncapsulation,
   effect,
   viewChild,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { TabsModule } from "primeng/tabs";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TabsBase } from "@ui/base/tabs.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TabsModule } from "primeng/tabs";
 
 /**
  * AppTabs — Wrapper sobre p-tabs (PrimeNG 22, API por `value`). Usa PrimeNG solo
@@ -22,7 +22,7 @@ import { TabsBase } from "@ui/base/tabs.base";
  */
 @Component({
   selector: "app-tabs",
-  standalone: true,
+
   imports: [CommonModule, TabsModule, AppIcon],
   template: `
     <p-tabs [value]="activeId()" (valueChange)="onValueChange($event)">
@@ -41,9 +41,13 @@ import { TabsBase } from "@ui/base/tabs.base";
       <ng-content />
     </div>
   `,
-  styles: [`
-    :host { display: block; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

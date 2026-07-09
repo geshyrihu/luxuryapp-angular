@@ -1,5 +1,7 @@
+import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
@@ -8,11 +10,9 @@ import {
   signal,
   ViewChild,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ButtonModule } from "primeng/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ButtonModule } from "primeng/button";
 
 /**
  * AppSignaturePad — Canvas interactivo para captura de firma digital.
@@ -20,7 +20,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
  */
 @Component({
   selector: "app-signature-pad",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule, AppIcon],
   template: `
     <div class="sig-root">
@@ -75,53 +75,75 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       }
     </div>
   `,
-  styles: [`
-    .sig-root { display: flex; flex-direction: column; gap: 0.5rem; }
-    .sig-label { font-size: var(--ds-font-size-label, 0.875rem); color: var(--ds-text-secondary); font-weight: 500; }
-    .sig-canvas-wrap {
-      position: relative;
-      border: 1.5px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-md, 6px);
-      overflow: hidden;
-      background: var(--ds-bg-surface, #fff);
-      cursor: crosshair;
-    }
-    .sig-disabled { opacity: 0.55; pointer-events: none; }
-    .sig-canvas { display: block; touch-action: none; }
-    .sig-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--ds-text-muted);
-      font-size: var(--ds-font-size-help, 0.8125rem);
-      pointer-events: none;
-    }
-    .sig-actions { display: flex; gap: 0.5rem; }
-    .sig-hint { font-size: var(--ds-font-size-micro, 0.75rem); color: var(--ds-text-muted); }
-  `],
+  styles: [
+    `
+      .sig-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .sig-label {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        color: var(--ds-text-secondary);
+        font-weight: 500;
+      }
+      .sig-canvas-wrap {
+        position: relative;
+        border: 1.5px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-md, 6px);
+        overflow: hidden;
+        background: var(--ds-bg-surface, #fff);
+        cursor: crosshair;
+      }
+      .sig-disabled {
+        opacity: 0.55;
+        pointer-events: none;
+      }
+      .sig-canvas {
+        display: block;
+        touch-action: none;
+      }
+      .sig-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: var(--ds-text-muted);
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        pointer-events: none;
+      }
+      .sig-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .sig-hint {
+        font-size: var(--ds-font-size-micro, 0.75rem);
+        color: var(--ds-text-muted);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppSignaturePad implements AfterViewInit, OnDestroy {
   @ViewChild("canvas") canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  label       = input<string>("");
-  hint        = input<string>("");
+  label = input<string>("");
+  hint = input<string>("");
   placeholder = input<string>("Firma aquí");
-  width       = input<number>(400);
-  height      = input<number>(160);
-  lineWidth   = input<number>(2);
-  lineColor   = input<string>("#041b3c");
-  disabled    = input<boolean>(false);
+  width = input<number>(400);
+  height = input<number>(160);
+  lineWidth = input<number>(2);
+  lineColor = input<string>("#041b3c");
+  disabled = input<boolean>(false);
 
-  signed   = output<string>();
-  cleared  = output<void>();
+  signed = output<string>();
+  cleared = output<void>();
 
-  isEmpty  = signal(true);
+  isEmpty = signal(true);
 
   private ctx!: CanvasRenderingContext2D;
   private drawing = false;
@@ -130,12 +152,14 @@ export class AppSignaturePad implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext("2d")!;
     this.ctx.strokeStyle = this.lineColor();
-    this.ctx.lineWidth   = this.lineWidth();
-    this.ctx.lineCap     = "round";
-    this.ctx.lineJoin    = "round";
+    this.ctx.lineWidth = this.lineWidth();
+    this.ctx.lineCap = "round";
+    this.ctx.lineJoin = "round";
   }
 
-  ngOnDestroy(): void { /* nothing to clean */ }
+  ngOnDestroy(): void {
+    /* nothing to clean */
+  }
 
   startDraw(e: MouseEvent): void {
     this.drawing = true;
@@ -171,7 +195,9 @@ export class AppSignaturePad implements AfterViewInit, OnDestroy {
     this.isEmpty.set(false);
   }
 
-  stopDraw(): void { this.drawing = false; }
+  stopDraw(): void {
+    this.drawing = false;
+  }
 
   clear(): void {
     const c = this.canvasRef.nativeElement;
@@ -189,7 +215,10 @@ export class AppSignaturePad implements AfterViewInit, OnDestroy {
     return this.canvasRef.nativeElement.toDataURL("image/png");
   }
 
-  private relativePos(clientX: number, clientY: number): { x: number; y: number } {
+  private relativePos(
+    clientX: number,
+    clientY: number,
+  ): { x: number; y: number } {
     const rect = this.canvasRef.nativeElement.getBoundingClientRect();
     return { x: clientX - rect.left, y: clientY - rect.top };
   }

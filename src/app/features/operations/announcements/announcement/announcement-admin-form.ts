@@ -10,8 +10,8 @@ import { FileUploadModule } from "@iplab/ngx-file-upload";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { EditorModule } from "primeng/editor";
-import { ListboxModule } from "primeng/listbox";
+import { LxEditor } from "@ui/adaptive/editor/editor";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -54,9 +54,9 @@ import { ImageGenerationDialog } from "./components/image-generation-dialog/imag
     WebButtonLabelDelete,
     WebButtonLabelSave,
     CustomInputToggleSwitch,
-    EditorModule,
     LxDivider,
-    ListboxModule,
+    LxEditor,
+    LxListbox,
     WebButtonLabel,
     AppIcon,
   ],

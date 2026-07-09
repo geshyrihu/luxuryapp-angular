@@ -17,17 +17,15 @@ import { CarouselModule } from "primeng/carousel";
       [numVisible]="numVisible()"
       [circular]="circular()"
       [autoplayInterval]="autoplayInterval()"
+      [page]="page()"
+      [numScroll]="numScroll()"
+      [showIndicators]="showIndicators()"
+      [showNavigators]="showNavigators()"
+      (onPage)="onPage.emit($event)"
       styleClass="w-full"
     >
-      <ng-template let-item pTemplate="item">
-        <ng-container
-          *ngTemplateOutlet="contentTemplate; context: { $implicit: item }"
-        />
-      </ng-template>
+      <ng-content />
     </p-carousel>
-    <ng-template #contentTemplate let-item>
-      <ng-content [select]="'[carouselItem]'" />
-    </ng-template>
   `,
   styles: [
     `

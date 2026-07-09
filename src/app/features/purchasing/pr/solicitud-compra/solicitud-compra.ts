@@ -18,7 +18,7 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppBadge } from "@ui/web/badge/badge";
-import { DividerModule } from "primeng/divider";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 
@@ -74,8 +74,8 @@ export interface ISolicitudCompraForm {
     ProductAdd,
     SolicitudCompraDetalle,
     WebButtonLabel,
-    DividerModule,
     AppBadge,
+    LxDivider,
     AppIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

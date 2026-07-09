@@ -1,18 +1,30 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppSteps } from "@ui/web/steps/steps";
-import { MobileSteps } from "@ui/mobile/steps/steps";
 import { StepsBase } from "@ui/base/steps.base";
+import { MobileSteps } from "@ui/mobile/steps/steps";
+import { AppSteps } from "@ui/web/steps/steps";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-steps",
-  standalone: true,
+
   imports: [AppSteps, MobileSteps],
   template: `
     @if (platform.isMobile()) {
-      <ili-steps [model]="model()" [readonly]="readonly()" [activeIndex]="activeIndex()" (activeIndexChange)="activeIndex.set($event)" [styleClass]="styleClass()"></ili-${c.folder}>
+      <ili-steps
+        [model]="model()"
+        [readonly]="readonly()"
+        [activeIndex]="activeIndex()"
+        (activeIndexChange)="activeIndex.set($event)"
+        [styleClass]="styleClass()"
+      ></ili-steps>
     } @else {
-      <app-steps [model]="model()" [readonly]="readonly()" [activeIndex]="activeIndex()" (activeIndexChange)="activeIndex.set($event)" [styleClass]="styleClass()"></app-${c.folder}>
+      <app-steps
+        [model]="model()"
+        [readonly]="readonly()"
+        [activeIndex]="activeIndex()"
+        (activeIndexChange)="activeIndex.set($event)"
+        [styleClass]="styleClass()"
+      ></app-steps>
     }
   `,
 })

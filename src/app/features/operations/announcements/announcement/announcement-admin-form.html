@@ -151,11 +151,11 @@
         />
       </div>
       <div class="editor-container">
-        <p-editor
+        <lx-editor
           formControlName="content"
           [style]="{ height: '350px', 'min-height': '350px' }"
           [placeholder]="'Ingrese el contenido del anuncio aquó...'"
-        ></p-editor>
+        ></lx-editor>
       </div>
     </div>
 
@@ -242,7 +242,7 @@
         <div class="col-12">
           <div class="mb-4">
             <label>Clientes Objetivo</label>
-            <p-listbox
+            <lx-listbox
               [options]="allCustomers()"
               formControlName="targetedCustomerIds"
               [multiple]="true"
@@ -268,7 +268,7 @@
                   }
                 </div>
               </ng-template>
-            </p-listbox>
+            </lx-listbox>
             <small class="text-color-secondary block mt-2 text-right">
               {{ form.controls.targetedCustomerIds.value.length }} seleccionados
             </small>
@@ -279,7 +279,7 @@
         <div class="col-12">
           <div class="mb-4">
             <label>Roles Objetivo</label>
-            <p-listbox
+            <lx-listbox
               [options]="allRoles()"
               formControlName="recipientRoleIds"
               [multiple]="true"
@@ -305,7 +305,7 @@
                   }
                 </div>
               </ng-template>
-            </p-listbox>
+            </lx-listbox>
             <small class="text-color-secondary block mt-2 text-right">
               {{ form.controls.recipientRoleIds.value.length }} seleccionados
             </small>

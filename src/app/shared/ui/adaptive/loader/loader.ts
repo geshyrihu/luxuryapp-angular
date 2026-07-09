@@ -1,12 +1,12 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppLoader } from "@ui/web/loader/loader";
-import { MobileLoader } from "@ui/mobile/loader/mobile-loader";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LoaderBase } from "@ui/base/loader.base";
+import { MobileLoader } from "@ui/mobile/loader/mobile-loader";
+import { AppLoader } from "@ui/web/loader/loader";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-loader",
-  standalone: true,
+
   imports: [AppLoader, MobileLoader],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

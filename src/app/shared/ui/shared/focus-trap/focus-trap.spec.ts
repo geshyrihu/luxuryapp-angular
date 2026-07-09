@@ -4,7 +4,7 @@ import { FocusTrap } from "./focus-trap";
 
 @Component({
   selector: "host-focus-trap",
-  standalone: true,
+
   imports: [FocusTrap],
   template: `<div appFocusTrap tabindex="0"></div>`,
 })

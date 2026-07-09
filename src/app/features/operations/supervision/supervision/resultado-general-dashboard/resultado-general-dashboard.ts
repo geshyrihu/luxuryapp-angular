@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { MultiSelectModule } from "primeng/multiselect";
+import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -28,7 +28,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     FormsModule,
     TableModule,
     WebButtonLabel,
-    MultiSelectModule,
+    LxMultiSelect,
     CustomInputTextSignal,
     LxTag,
     LxProgressBar,

@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppOtpInput } from "@ui/web/otp-input/otp-input";
-import { MobileOtpInput } from "@ui/mobile/otp-input/otp-input";
 import { OtpInputBase } from "@ui/base/otp-input.base";
+import { MobileOtpInput } from "@ui/mobile/otp-input/otp-input";
+import { AppOtpInput } from "@ui/web/otp-input/otp-input";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de OtpInput. Renderiza `app-otp-input` (PrimeNG) o
@@ -11,7 +11,7 @@ import { OtpInputBase } from "@ui/base/otp-input.base";
  */
 @Component({
   selector: "lx-otp-input",
-  standalone: true,
+
   imports: [AppOtpInput, MobileOtpInput],
   template: `
     @if (platform.isMobile()) {

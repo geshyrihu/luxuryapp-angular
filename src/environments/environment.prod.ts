@@ -1,12 +1,17 @@
 export const environment = {
   production: true,
-  API_BASE_URL: "https://luxurybuildingapp.com/api/",
-  API_DOMONIO: "https://luxurybuildingapp.com",
+  API_BASE_URL: "https://luxury-app.com/api/",
+  API_DOMONIO: "https://luxury-app.com",
+  API_BASE_SIGNALR: "https://luxury-app.com/ws/notificationHub",
+  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxury-app.com"], // Corregida también la doble coma
+  // production: true,
+  // API_BASE_URL: "https://luxurybuildingapp.com/api/",
+  // API_DOMONIO: "https://luxurybuildingapp.com",
+  // API_BASE_SIGNALR: "https://luxurybuildingapp.com/ws/notificationHub", // ✅ Nombre corregido
+  // ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
   HANGFIRE_DASHBOARD_URL: "/api/hangfire/",
-  API_BASE_SIGNALR: "https://luxurybuildingapp.com/ws/notificationHub", // ✅ Nombre corregido
   API_FIREBIRD_URL: "http://localhost:5212/api/",
   ONESIGNAL_APPID: "deeb5e28-6ebc-4260-967e-1b64331122fc",
-  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
 
   firebase: {
     projectId: "onesignalwebproduction",
@@ -18,14 +23,3 @@ export const environment = {
     measurementId: "G-3X95EL36J5",
   },
 };
-
-
-
-
-
-
-
-
-
-
-

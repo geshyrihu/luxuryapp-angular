@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { OfflineIndicator } from "@ui/web/offline-indicator/offline-indicator";
-import { MobileOfflineIndicator } from "@ui/mobile/offline-indicator/offline-indicator";
 import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
+import { MobileOfflineIndicator } from "@ui/mobile/offline-indicator/offline-indicator";
+import { OfflineIndicator } from "@ui/web/offline-indicator/offline-indicator";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-offline-indicator",
-  standalone: true,
+
   imports: [OfflineIndicator, MobileOfflineIndicator],
   template: `
     @if (platform.isMobile()) {

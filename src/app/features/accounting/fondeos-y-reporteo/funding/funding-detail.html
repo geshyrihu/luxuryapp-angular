@@ -86,15 +86,15 @@
 
       <!-- Creation & Tools -->
       <div class="flex gap-1 align-items-center">
-        <p-splitbutton
+        <lx-split-button
           label="Crear OC"
           (onClick)="openCreateOrdenCompraWizard()"
           [model]="createOrderItems"
           size="small"
           severity="primary"
-          class="p-button-sm"
+          styleClass="p-button-sm"
           [disabled]="!canEdit()"
-        ></p-splitbutton>
+        ></lx-split-button>
 
         <!-- Tools Group -->
         <div class="hidden md:flex gap-1 bg-surface-100 border-round p-1">

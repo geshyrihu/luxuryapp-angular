@@ -1,20 +1,12 @@
 <div class="p-4" style="min-height: 400px">
   @switch (status()) { @case ('initial') {
-  <app-file-upload name="files[]"
+  <lx-file-upload
     (onSelect)="onFileSelect($event)"
     [multiple]="true"
     accept=".xml,.pdf"
     [maxFileSize]="10000000"
     chooseLabel="Seleccionar Facturas (XML y PDF)">
-    <ng-template #content>
-      <div class="text-center p-5 border-2 border-dashed border-round-md">
-        <app-icon [icon]="'mdi:cloud-upload'" class="text-4xl text-primary" />
-        <p class="mt-3 text-lg">
-          Arrastra y suelta archivos aqué para subirlos.
-        </p>
-      </div>
-    </ng-template>
-  </app-file-upload>
+  </lx-file-upload>
   } @case ('analyzing') {
   <div
     class="flex flex-column justify-content-center align-items-center"

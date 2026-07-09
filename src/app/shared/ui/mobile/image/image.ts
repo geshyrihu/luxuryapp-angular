@@ -9,7 +9,7 @@ import { ImageBase } from "@ui/base/image.base";
  */
 @Component({
   selector: "ili-image",
-  standalone: true,
+
   imports: [CommonModule, IonImg],
   template: `
     <ion-img
@@ -19,9 +19,13 @@ import { ImageBase } from "@ui/base/image.base";
       [ngStyle]="mobileStyle()"
     />
   `,
-  styles: [`
-    ili-image ion-img::part(image) { object-fit: contain; }
-  `],
+  styles: [
+    `
+      ili-image ion-img::part(image) {
+        object-fit: contain;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileImage extends ImageBase {}

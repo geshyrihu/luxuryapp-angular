@@ -20,7 +20,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AccordionModule } from "primeng/accordion";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { BadgeModule } from "primeng/badge";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -30,7 +29,6 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { MultiSelectModule } from "primeng/multiselect";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -68,11 +66,9 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    AccordionModule,
     AutoCompleteModule,
     TooltipModule,
     CustomInputSelectSignal,
-    MultiSelectModule,
     CustomInputCheckSignal,
     ProgressSpinnerModule,
     BadgeModule,

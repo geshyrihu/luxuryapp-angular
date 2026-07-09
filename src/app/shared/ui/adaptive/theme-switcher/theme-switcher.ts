@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
 import { MobileThemeSwitcher } from "@ui/mobile/theme-switcher/theme-switcher";
+import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ThemeSwitcher. Renderiza `app-theme-switcher`
@@ -12,7 +12,7 @@ import { MobileThemeSwitcher } from "@ui/mobile/theme-switcher/theme-switcher";
  */
 @Component({
   selector: "lx-theme-switcher",
-  standalone: true,
+
   imports: [AppThemeSwitcher, MobileThemeSwitcher],
   template: `
     @if (platform.isMobile()) {

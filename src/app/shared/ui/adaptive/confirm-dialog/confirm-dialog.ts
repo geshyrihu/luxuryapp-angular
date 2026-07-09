@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
-import { MobileConfirmDialog } from "@ui/mobile/confirm-dialog/confirm-dialog";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
+import { MobileConfirmDialog } from "@ui/mobile/confirm-dialog/confirm-dialog";
+import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ConfirmDialog. Renderiza `app-confirm-dialog`
@@ -11,7 +11,7 @@ import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
  */
 @Component({
   selector: "lx-confirm-dialog",
-  standalone: true,
+
   imports: [ConfirmDialog, MobileConfirmDialog],
   template: `
     @if (platform.isMobile()) {

@@ -1,9 +1,13 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
+import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
 
 /**
  * AppThemeSwitcher — Toggle que aplica/remueve `body.theme-dark`.
@@ -11,18 +15,22 @@ import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
  */
 @Component({
   selector: "app-theme-switcher",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule, TooltipModule, AppIcon],
   template: `
     <p-button
-      [pTooltip]="theme() === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
+      [pTooltip]="
+        theme() === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
+      "
       tooltipPosition="bottom"
       [rounded]="true"
       [text]="true"
       severity="secondary"
       (onClick)="toggle()"
       styleClass="app-theme-btn"
-      [attr.aria-label]="theme() === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'"
+      [attr.aria-label]="
+        theme() === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'
+      "
       [attr.aria-pressed]="theme() === 'dark'"
     >
       <app-icon
@@ -31,11 +39,13 @@ import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
       />
     </p-button>
   `,
-  styles: [`
-    .app-theme-btn {
-      transition: color 0.2s;
-    }
-  `],
+  styles: [
+    `
+      .app-theme-btn {
+        transition: color 0.2s;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

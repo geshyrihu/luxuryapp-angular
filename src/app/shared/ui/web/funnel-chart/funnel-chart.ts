@@ -1,10 +1,16 @@
-import { Component, input, computed, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 
 @Component({
   selector: "app-funnel-chart",
-  standalone: true,
+
   imports: [CommonModule, ChartWrapper],
   template: `
     <div class="funnel-root">
@@ -22,20 +28,22 @@ import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
       />
     </div>
   `,
-  styles: [`
-    .funnel-root {
-      background: var(--ds-bg-surface, #ffffff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-lg, 8px);
-      padding: 1rem;
-    }
-    .funnel-title {
-      display: block;
-      font-size: var(--ds-font-size-card-title, 1rem);
-      color: var(--ds-text-primary);
-      margin-bottom: 0.75rem;
-    }
-  `],
+  styles: [
+    `
+      .funnel-root {
+        background: var(--ds-bg-surface, #ffffff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-lg, 8px);
+        padding: 1rem;
+      }
+      .funnel-title {
+        display: block;
+        font-size: var(--ds-font-size-card-title, 1rem);
+        color: var(--ds-text-primary);
+        margin-bottom: 0.75rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -44,18 +52,22 @@ export class FunnelChart {
   values = input.required<number[]>();
   title = input<string>("");
   colors = input<string[]>([
-    "rgba(0,61,155,0.85)", "rgba(0,61,155,0.7)",
-    "rgba(0,61,155,0.55)", "rgba(0,61,155,0.4)",
+    "rgba(0,61,155,0.85)",
+    "rgba(0,61,155,0.7)",
+    "rgba(0,61,155,0.55)",
+    "rgba(0,61,155,0.4)",
     "rgba(0,61,155,0.25)",
   ]);
 
   chartData = computed(() => ({
     labels: this.labels(),
-    datasets: [{
-      data: this.values(),
-      backgroundColor: this.colors().slice(0, this.labels().length),
-      borderRadius: 4,
-    }],
+    datasets: [
+      {
+        data: this.values(),
+        backgroundColor: this.colors().slice(0, this.labels().length),
+        borderRadius: 4,
+      },
+    ],
   }));
 
   chartOptions = computed(() => ({
@@ -66,7 +78,8 @@ export class FunnelChart {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: (ctx: any) => `${ctx.parsed.x} (${this.percentOfTotal(ctx.parsed.x)})`,
+          label: (ctx: any) =>
+            `${ctx.parsed.x} (${this.percentOfTotal(ctx.parsed.x)})`,
         },
       },
     },

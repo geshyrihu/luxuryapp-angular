@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { ScrollTop } from "@ui/web/tap-to-top/tap-to-top";
-import { MobileTapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
 import { TapToTopBase } from "@ui/base/tap-to-top.base";
+import { MobileTapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
+import { ScrollTop } from "@ui/web/tap-to-top/tap-to-top";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-scroll-top",
-  standalone: true,
+
   imports: [ScrollTop, MobileTapToTop],
   template: `
     @if (platform.isMobile()) {

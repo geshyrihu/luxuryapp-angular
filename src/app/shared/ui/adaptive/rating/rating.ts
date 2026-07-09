@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppRating } from "@ui/web/rating/rating";
-import { MobileRating } from "@ui/mobile/rating/rating";
 import { RatingBase } from "@ui/base/rating.base";
+import { MobileRating } from "@ui/mobile/rating/rating";
+import { AppRating } from "@ui/web/rating/rating";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Rating. Renderiza `app-rating` (PrimeNG) o
@@ -11,7 +11,7 @@ import { RatingBase } from "@ui/base/rating.base";
  */
 @Component({
   selector: "lx-rating",
-  standalone: true,
+
   imports: [AppRating, MobileRating],
   template: `
     @if (platform.isMobile()) {

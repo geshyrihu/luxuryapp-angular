@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { Sidebar } from "@ui/web/sidebar/sidebar";
-import { MobileSidebar } from "@ui/mobile/sidebar/sidebar";
 import { SidebarBase } from "@ui/base/sidebar.base";
+import { MobileSidebar } from "@ui/mobile/sidebar/sidebar";
+import { Sidebar } from "@ui/web/sidebar/sidebar";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-sidebar",
-  standalone: true,
+
   imports: [Sidebar, MobileSidebar],
   template: `
     @if (platform.isMobile()) {

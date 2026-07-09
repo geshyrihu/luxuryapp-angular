@@ -19,14 +19,12 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { } from "@ionic/angular/standalone";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ToastModule } from "primeng/toast";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -52,7 +50,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileButtonLabelDelete,
     CommonModule,
     TableModule,
-    ToastModule,
     PrimeNgCustomCaption,
     DataViewMobile, MobileListItem, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { MobileTreeTable } from "@ui/mobile/tree-table/tree-table";
 import { TreeTableBase } from "@ui/base/tree-table.base";
+import { MobileTreeTable } from "@ui/mobile/tree-table/tree-table";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-tree-table",
-  standalone: true,
+
   imports: [MobileTreeTable],
   template: `
     @if (platform.isMobile()) {

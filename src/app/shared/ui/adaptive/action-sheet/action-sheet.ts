@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-action-sheet",
-  standalone: true,
+
   imports: [ActionMenu, MobileActionMenu],
   template: `
     @if (platform.isMobile()) {

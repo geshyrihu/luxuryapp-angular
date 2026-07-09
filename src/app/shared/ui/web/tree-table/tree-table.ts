@@ -26,7 +26,7 @@ export interface TreeTableColumn {
 
 @Component({
   selector: "app-tree-table",
-  standalone: true,
+
   imports: [CommonModule, TreeTableModule, ButtonModule, AppIcon],
   template: `
     <div class="tree-table-root">

@@ -48,7 +48,7 @@
         <tr>
           <td>{{ item.folio }}</td>
           <td class="text-center hidden md:table-cell">
-            <p-avatar
+            <app-avatar
               (click)="onCardEmployee(item.creatorId)"
               [image]="
                   item.creatorImg
@@ -70,7 +70,7 @@
           </td>
           <td class="text-center hidden md:table-cell">
             @if (item.beforeWork) {
-            <p-image
+            <app-image
               [src]="
                     item.beforeWork
                       ? item.beforeWork
@@ -80,7 +80,7 @@
               width="40"
               class="mr-2 border border-danger"
               [preview]="true"
-            ></p-image>
+            ></app-image>
             }
           </td>
           <td class="text-center">
@@ -249,7 +249,7 @@
             <!-- Foto de la evidencia -->
             <div class="mr-3">
               @if (item.beforeWork) {
-              <p-image
+              <app-image
                 [src]="
               item.beforeWork
                 ? item.beforeWork
@@ -259,7 +259,7 @@
                 width="50"
                 class="border-round border-1 border-200"
                 [preview]="true"
-              ></p-image>
+              ></app-image>
               }
             </div>
             <!-- Detalles del Ticket -->

@@ -8,7 +8,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ListboxModule } from "primeng/listbox";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
 
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -39,7 +39,7 @@ interface ISelectItem {
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    ListboxModule,
+    LxListbox,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-form.html",

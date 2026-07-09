@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppSlider } from "@ui/web/slider/slider";
-import { MobileSlider } from "@ui/mobile/slider/slider";
 import { SliderBase } from "@ui/base/slider.base";
+import { MobileSlider } from "@ui/mobile/slider/slider";
+import { AppSlider } from "@ui/web/slider/slider";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Slider. Renderiza `app-slider` (PrimeNG) o
@@ -11,7 +11,7 @@ import { SliderBase } from "@ui/base/slider.base";
  */
 @Component({
   selector: "lx-slider",
-  standalone: true,
+
   imports: [AppSlider, MobileSlider],
   template: `
     @if (platform.isMobile()) {

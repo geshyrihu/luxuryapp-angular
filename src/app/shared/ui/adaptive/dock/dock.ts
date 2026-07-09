@@ -1,18 +1,26 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppDock } from "@ui/web/dock/dock";
-import { MobileDock } from "@ui/mobile/dock/dock";
 import { DockBase } from "@ui/base/dock.base";
+import { MobileDock } from "@ui/mobile/dock/dock";
+import { AppDock } from "@ui/web/dock/dock";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-dock",
-  standalone: true,
+
   imports: [AppDock, MobileDock],
   template: `
     @if (platform.isMobile()) {
-      <ili-dock [items]="items()" [position]="position()" (itemClick)="itemClick.emit($event)" />
+      <ili-dock
+        [items]="items()"
+        [position]="position()"
+        (itemClick)="itemClick.emit($event)"
+      />
     } @else {
-      <app-dock [items]="items()" [position]="position()" (itemClick)="itemClick.emit($event)" />
+      <app-dock
+        [items]="items()"
+        [position]="position()"
+        (itemClick)="itemClick.emit($event)"
+      />
     }
   `,
 })

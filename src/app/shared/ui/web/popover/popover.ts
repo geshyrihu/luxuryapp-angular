@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, viewChild } from "@angular/core";
-import { Popover, PopoverModule } from "primeng/popover";
 import { PopoverBase } from "@ui/base/popover.base";
+import { Popover, PopoverModule } from "primeng/popover";
 
 @Component({
   selector: "app-popover",
-  standalone: true,
+
   imports: [PopoverModule],
   template: `
     <p-popover

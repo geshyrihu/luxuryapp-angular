@@ -1,12 +1,12 @@
-import { Component, OnDestroy, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DialogModule } from "primeng/dialog";
+import { Component, OnDestroy, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
+import { DialogModule } from "primeng/dialog";
 import { Subject, Subscription, interval, takeWhile, tap } from "rxjs";
 
 @Component({
   selector: "app-session-timeout",
-  standalone: true,
+
   imports: [CommonModule, DialogModule, ButtonModule],
   template: `
     <p-dialog
@@ -19,26 +19,39 @@ import { Subject, Subscription, interval, takeWhile, tap } from "rxjs";
       [style]="{ width: '400px', maxWidth: '90vw' }"
     >
       <p class="session-timeout-msg">
-        Tu sesión expirará en <strong>{{ countdown }}</strong> segundos por inactividad.
+        Tu sesión expirará en <strong>{{ countdown }}</strong> segundos por
+        inactividad.
       </p>
       <div class="session-timeout-actions">
-        <button pButton label="Cerrar sesión" severity="danger" (click)="logout()" />
-        <button pButton label="Continuar sesión" severity="primary" (click)="extend()" />
+        <button
+          pButton
+          label="Cerrar sesión"
+          severity="danger"
+          (click)="logout()"
+        />
+        <button
+          pButton
+          label="Continuar sesión"
+          severity="primary"
+          (click)="extend()"
+        />
       </div>
     </p-dialog>
   `,
-  styles: [`
-    .session-timeout-msg {
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      color: var(--ds-text-secondary);
-      margin: 0.5rem 0 1.25rem;
-    }
-    .session-timeout-actions {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: flex-end;
-    }
-  `],
+  styles: [
+    `
+      .session-timeout-msg {
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        color: var(--ds-text-secondary);
+        margin: 0.5rem 0 1.25rem;
+      }
+      .session-timeout-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class SessionTimeout implements OnDestroy {
@@ -60,7 +73,7 @@ export class SessionTimeout implements OnDestroy {
     this.sub = interval(1000)
       .pipe(
         takeWhile(() => this.countdown > 0),
-        tap(() => this.countdown--)
+        tap(() => this.countdown--),
       )
       .subscribe({
         complete: () => {

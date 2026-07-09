@@ -7,6 +7,7 @@
 ## Cómo funciona el auto-switch
 
 Cada componente tiene un **wrapper `lx-*`** que usa `PlatformService.isMobile()`:
+
 - **≥ 768 px de ancho** (o no híbrido) → renderiza la versión **web** `app-*` (PrimeNG).
 - **< 768 px** (o Capacitor/Ionic nativo) → renderiza la versión **mobile** `ili-*`.
 
@@ -16,25 +17,25 @@ es la forma de verificar sin compilar para móvil.
 
 ## Componentes listos para renderizar
 
-| Componente | Wrapper (usar este) | Clase / import |
-|---|---|---|
-| Empty State | `<lx-empty-state>` | `LxEmptyState` — `src/app/core/components/shared/empty-state/empty-state` |
-| Confirm Dialog | `<lx-confirm-dialog>` | `LxConfirmDialog` — `src/app/core/components/shared/confirm-dialog/confirm-dialog` |
-| Status Badge | `<lx-status-badge>` | `LxStatusBadge` — `src/app/core/components/shared/status-badge/status-badge` |
-| Rating | `<lx-rating>` | `LxRating` — `src/app/core/components/shared/rating/rating` |
-| OTP Input | `<lx-otp-input>` | `LxOtpInput` — `src/app/core/components/shared/otp-input/otp-input` |
-| Tag Input | `<lx-tag-input>` | `LxTagInput` — `src/app/core/components/shared/tag-input/tag-input` |
-| Date Range | `<lx-date-range>` | `LxDateRange` — `src/app/core/components/shared/date-range/date-range` |
-| Contact Card | `<lx-contact-card>` | `LxContactCard` — `src/app/core/components/shared/contact-card/contact-card` |
-| Profile Card | `<lx-profile-card>` | `LxProfileCard` — `src/app/core/components/shared/profile-card/profile-card` |
-| Color Picker | `<lx-color-picker>` | `LxColorPicker` — `src/app/core/components/shared/color-picker/color-picker` |
-| Slider | `<lx-slider>` | `LxSlider` — `src/app/core/components/shared/slider/slider` |
+| Componente          | Wrapper (usar este)        | Clase / import                                                                                    |
+| ------------------- | -------------------------- | ------------------------------------------------------------------------------------------------- |
+| Empty State         | `<lx-empty-state>`         | `LxEmptyState` — `src/app/core/components/shared/empty-state/empty-state`                         |
+| Confirm Dialog      | `<lx-confirm-dialog>`      | `LxConfirmDialog` — `src/app/core/components/shared/confirm-dialog/confirm-dialog`                |
+| Status Badge        | `<lx-status-badge>`        | `LxStatusBadge` — `src/app/core/components/shared/status-badge/status-badge`                      |
+| Rating              | `<lx-rating>`              | `LxRating` — `src/app/core/components/shared/rating/rating`                                       |
+| OTP Input           | `<lx-otp-input>`           | `LxOtpInput` — `src/app/core/components/shared/otp-input/otp-input`                               |
+| Tag Input           | `<lx-tag-input>`           | `LxTagInput` — `src/app/core/components/shared/tag-input/tag-input`                               |
+| Date Range          | `<lx-date-range>`          | `LxDateRange` — `src/app/core/components/shared/date-range/date-range`                            |
+| Contact Card        | `<lx-contact-card>`        | `LxContactCard` — `src/app/core/components/shared/contact-card/contact-card`                      |
+| Profile Card        | `<lx-profile-card>`        | `LxProfileCard` — `src/app/core/components/shared/profile-card/profile-card`                      |
+| Color Picker        | `<lx-color-picker>`        | `LxColorPicker` — `src/app/core/components/shared/color-picker/color-picker`                      |
+| Slider              | `<lx-slider>`              | `LxSlider` — `src/app/core/components/shared/slider/slider`                                       |
 | Notification Center | `<lx-notification-center>` | `LxNotificationCenter` — `src/app/core/components/shared/notification-center/notification-center` |
-| Breadcrumbs | `<lx-breadcrumbs>` | `LxBreadcrumbs` — `src/app/core/components/shared/breadcrumbs/breadcrumbs` |
-| Timeline | `<lx-timeline>` | `LxTimeline` — `src/app/core/components/shared/timeline/timeline` |
-| Theme Switcher | `<lx-theme-switcher>` | `LxThemeSwitcher` — `src/app/core/components/shared/theme-switcher/theme-switcher` |
-| Lang Selector | `<lx-lang-selector>` | `LxLangSelector` — `src/app/core/components/shared/lang-selector/lang-selector` |
-| Comment Thread | `<lx-comment-thread>` | `LxCommentThread` — `src/app/core/components/shared/comment-thread/comment-thread` |
+| Breadcrumbs         | `<lx-breadcrumbs>`         | `LxBreadcrumbs` — `src/app/core/components/shared/breadcrumbs/breadcrumbs`                        |
+| Timeline            | `<lx-timeline>`            | `LxTimeline` — `src/app/core/components/shared/timeline/timeline`                                 |
+| Theme Switcher      | `<lx-theme-switcher>`      | `LxThemeSwitcher` — `src/app/core/components/shared/theme-switcher/theme-switcher`                |
+| Lang Selector       | `<lx-lang-selector>`       | `LxLangSelector` — `src/app/core/components/shared/lang-selector/lang-selector`                   |
+| Comment Thread      | `<lx-comment-thread>`      | `LxCommentThread` — `src/app/core/components/shared/comment-thread/comment-thread`                |
 
 > Esta lista crece. Al completarse nuevos componentes de categoría C (ver
 > `core/components/PLAN-WEB-MOBILE-SPLIT.md` → checklist), agregar su `lx-*` al
@@ -76,7 +77,7 @@ import { MenuItem } from "primeng/api";
 
 @Component({
   selector: "app-web-multiplatform",
-  standalone: true,
+
   imports: [
     CommonModule,
     ButtonModule,
@@ -101,159 +102,180 @@ import { MenuItem } from "primeng/api";
   ],
   template: `
     <div class="card">
-      <div class="card-header"><span class="card-title">Componentes Multiplataforma (web / Ionic)</span></div>
+      <div class="card-header">
+        <span class="card-title"
+          >Componentes Multiplataforma (web / Ionic)</span
+        >
+      </div>
       <div class="card-body">
-      <p class="text-sm mb-4" style="color: var(--ds-text-secondary)">
-        Cada bloque usa el wrapper <code>lx-*</code>. Redimensiona el navegador a
-        menos de <strong>768 px</strong> para ver la versión Ionic (<code>ili-*</code>);
-        arriba de 768 px se ve la versión web (<code>app-*</code>).
-      </p>
+        <p class="text-sm mb-4" style="color: var(--ds-text-secondary)">
+          Cada bloque usa el wrapper <code>lx-*</code>. Redimensiona el
+          navegador a menos de <strong>768 px</strong> para ver la versión Ionic
+          (<code>ili-*</code>); arriba de 768 px se ve la versión web
+          (<code>app-*</code>).
+        </p>
 
-      <div class="grid">
-        <!-- Empty State -->
-        <div class="col-12 md:col-6">
-          <h5>lx-empty-state</h5>
-          <lx-empty-state
-            icon="mdi:database-off-outline"
-            title="Sin registros"
-            message="No hay datos disponibles."
-            actionLabel="Agregar"
-            actionIcon="mdi:plus"
-          />
-        </div>
+        <div class="grid">
+          <!-- Empty State -->
+          <div class="col-12 md:col-6">
+            <h5>lx-empty-state</h5>
+            <lx-empty-state
+              icon="mdi:database-off-outline"
+              title="Sin registros"
+              message="No hay datos disponibles."
+              actionLabel="Agregar"
+              actionIcon="mdi:plus"
+            />
+          </div>
 
-        <!-- Status Badge -->
-        <div class="col-12 md:col-6">
-          <h5>lx-status-badge</h5>
-          <div class="flex flex-wrap gap-2 align-items-center">
-            <lx-status-badge [status]="0" />
-            <lx-status-badge [status]="1" />
-            <lx-status-badge [status]="3" />
-            <lx-status-badge [status]="4" />
+          <!-- Status Badge -->
+          <div class="col-12 md:col-6">
+            <h5>lx-status-badge</h5>
+            <div class="flex flex-wrap gap-2 align-items-center">
+              <lx-status-badge [status]="0" />
+              <lx-status-badge [status]="1" />
+              <lx-status-badge [status]="3" />
+              <lx-status-badge [status]="4" />
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="col-12 md:col-6">
+            <h5>lx-rating</h5>
+            <lx-rating [(value)]="ratingValue" label="Calificación" />
+            <small>valor: {{ ratingValue() }}</small>
+          </div>
+
+          <!-- OTP -->
+          <div class="col-12 md:col-6">
+            <h5>lx-otp-input</h5>
+            <lx-otp-input
+              [(value)]="otpValue"
+              label="Código de verificación"
+              [length]="6"
+            />
+            <small>valor: {{ otpValue() }}</small>
+          </div>
+
+          <!-- Tag Input -->
+          <div class="col-12 md:col-6">
+            <h5>lx-tag-input</h5>
+            <lx-tag-input
+              [(value)]="tags"
+              label="Etiquetas"
+              [suggestions]="[
+                'Angular',
+                'Ionic',
+                'PrimeNG',
+                'Capacitor',
+                'RxJS',
+              ]"
+            />
+            <small>tags: {{ tags().join(", ") }}</small>
+          </div>
+
+          <!-- Date Range -->
+          <div class="col-12 md:col-6">
+            <h5>lx-date-range</h5>
+            <lx-date-range [(value)]="range" />
+          </div>
+
+          <!-- Color Picker -->
+          <div class="col-12 md:col-6">
+            <h5>lx-color-picker</h5>
+            <lx-color-picker [(value)]="color" label="Color" />
+          </div>
+
+          <!-- Slider -->
+          <div class="col-12 md:col-6">
+            <h5>lx-slider</h5>
+            <lx-slider [(value)]="sliderValue" label="Umbral" suffix="%" />
+          </div>
+
+          <!-- Contact Card -->
+          <div class="col-12 md:col-6">
+            <h5>lx-contact-card</h5>
+            <lx-contact-card
+              name="Ana García"
+              role="Gerente de Ventas"
+              company="Luxury BG"
+              email="ana@example.com"
+              phone="5551234567"
+              status="vip"
+            />
+          </div>
+
+          <!-- Profile Card -->
+          <div class="col-12 md:col-6">
+            <h5>lx-profile-card</h5>
+            <lx-profile-card
+              name="Carlos Ruiz"
+              role="Administrador"
+              email="carlos@example.com"
+              phone="5559876543"
+              company="Luxury BG"
+              badge="Admin"
+              [online]="true"
+            />
+          </div>
+
+          <!-- Notification Center -->
+          <div class="col-12 md:col-6">
+            <h5>lx-notification-center</h5>
+            <lx-notification-center
+              [notifications]="notifs"
+              [unreadCount]="2"
+            />
+          </div>
+
+          <!-- Theme Switcher -->
+          <div class="col-12 md:col-6">
+            <h5>lx-theme-switcher</h5>
+            <lx-theme-switcher />
+          </div>
+
+          <!-- Lang Selector -->
+          <div class="col-12 md:col-6">
+            <h5>lx-lang-selector</h5>
+            <lx-lang-selector />
+          </div>
+
+          <!-- Breadcrumbs -->
+          <div class="col-12">
+            <h5>lx-breadcrumbs</h5>
+            <lx-breadcrumbs [items]="crumbs" [home]="{ icon: 'mdi:home' }" />
+          </div>
+
+          <!-- Timeline -->
+          <div class="col-12 md:col-6">
+            <h5>lx-timeline</h5>
+            <lx-timeline [events]="timelineEvents" />
+          </div>
+
+          <!-- Comment Thread -->
+          <div class="col-12 md:col-6">
+            <h5>lx-comment-thread</h5>
+            <lx-comment-thread [comments]="comments" />
+          </div>
+
+          <!-- Confirm Dialog -->
+          <div class="col-12">
+            <p-divider />
+            <h5>lx-confirm-dialog</h5>
+            <p-button
+              label="Abrir confirmación"
+              (onClick)="showConfirm.set(true)"
+            />
+            <lx-confirm-dialog
+              [(visible)]="showConfirm"
+              type="danger"
+              title="Eliminar registro"
+              message="¿Seguro que deseas eliminar este registro? Esta acción no se puede deshacer."
+              (confirm)="onConfirmed()"
+            />
+            <small class="ml-2">{{ lastAction() }}</small>
           </div>
         </div>
-
-        <!-- Rating -->
-        <div class="col-12 md:col-6">
-          <h5>lx-rating</h5>
-          <lx-rating [(value)]="ratingValue" label="Calificación" />
-          <small>valor: {{ ratingValue() }}</small>
-        </div>
-
-        <!-- OTP -->
-        <div class="col-12 md:col-6">
-          <h5>lx-otp-input</h5>
-          <lx-otp-input [(value)]="otpValue" label="Código de verificación" [length]="6" />
-          <small>valor: {{ otpValue() }}</small>
-        </div>
-
-        <!-- Tag Input -->
-        <div class="col-12 md:col-6">
-          <h5>lx-tag-input</h5>
-          <lx-tag-input
-            [(value)]="tags"
-            label="Etiquetas"
-            [suggestions]="['Angular','Ionic','PrimeNG','Capacitor','RxJS']"
-          />
-          <small>tags: {{ tags().join(', ') }}</small>
-        </div>
-
-        <!-- Date Range -->
-        <div class="col-12 md:col-6">
-          <h5>lx-date-range</h5>
-          <lx-date-range [(value)]="range" />
-        </div>
-
-        <!-- Color Picker -->
-        <div class="col-12 md:col-6">
-          <h5>lx-color-picker</h5>
-          <lx-color-picker [(value)]="color" label="Color" />
-        </div>
-
-        <!-- Slider -->
-        <div class="col-12 md:col-6">
-          <h5>lx-slider</h5>
-          <lx-slider [(value)]="sliderValue" label="Umbral" suffix="%" />
-        </div>
-
-        <!-- Contact Card -->
-        <div class="col-12 md:col-6">
-          <h5>lx-contact-card</h5>
-          <lx-contact-card
-            name="Ana García"
-            role="Gerente de Ventas"
-            company="Luxury BG"
-            email="ana@example.com"
-            phone="5551234567"
-            status="vip"
-          />
-        </div>
-
-        <!-- Profile Card -->
-        <div class="col-12 md:col-6">
-          <h5>lx-profile-card</h5>
-          <lx-profile-card
-            name="Carlos Ruiz"
-            role="Administrador"
-            email="carlos@example.com"
-            phone="5559876543"
-            company="Luxury BG"
-            badge="Admin"
-            [online]="true"
-          />
-        </div>
-
-        <!-- Notification Center -->
-        <div class="col-12 md:col-6">
-          <h5>lx-notification-center</h5>
-          <lx-notification-center [notifications]="notifs" [unreadCount]="2" />
-        </div>
-
-        <!-- Theme Switcher -->
-        <div class="col-12 md:col-6">
-          <h5>lx-theme-switcher</h5>
-          <lx-theme-switcher />
-        </div>
-
-        <!-- Lang Selector -->
-        <div class="col-12 md:col-6">
-          <h5>lx-lang-selector</h5>
-          <lx-lang-selector />
-        </div>
-
-        <!-- Breadcrumbs -->
-        <div class="col-12">
-          <h5>lx-breadcrumbs</h5>
-          <lx-breadcrumbs [items]="crumbs" [home]="{ icon: 'mdi:home' }" />
-        </div>
-
-        <!-- Timeline -->
-        <div class="col-12 md:col-6">
-          <h5>lx-timeline</h5>
-          <lx-timeline [events]="timelineEvents" />
-        </div>
-
-        <!-- Comment Thread -->
-        <div class="col-12 md:col-6">
-          <h5>lx-comment-thread</h5>
-          <lx-comment-thread [comments]="comments" />
-        </div>
-
-        <!-- Confirm Dialog -->
-        <div class="col-12">
-          <p-divider />
-          <h5>lx-confirm-dialog</h5>
-          <p-button label="Abrir confirmación" (onClick)="showConfirm.set(true)" />
-          <lx-confirm-dialog
-            [(visible)]="showConfirm"
-            type="danger"
-            title="Eliminar registro"
-            message="¿Seguro que deseas eliminar este registro? Esta acción no se puede deshacer."
-            (confirm)="onConfirmed()"
-          />
-          <small class="ml-2">{{ lastAction() }}</small>
-        </div>
-      </div>
       </div>
     </div>
   `,
@@ -269,9 +291,33 @@ export class WebMultiplatform {
   lastAction = signal("");
 
   notifs: NotificationItem[] = [
-    { id: "1", icon: "mdi:information", title: "Nuevo comentario", description: "Ana respondió tu ticket.", time: "hace 5 min", read: false, severity: "info" },
-    { id: "2", icon: "mdi:alert", title: "Pago vencido", description: "La factura #123 venció ayer.", time: "hace 2 h", read: false, severity: "warn" },
-    { id: "3", icon: "mdi:check-circle", title: "Tarea completada", description: "Mantenimiento preventivo cerrado.", time: "ayer", read: true, severity: "success" },
+    {
+      id: "1",
+      icon: "mdi:information",
+      title: "Nuevo comentario",
+      description: "Ana respondió tu ticket.",
+      time: "hace 5 min",
+      read: false,
+      severity: "info",
+    },
+    {
+      id: "2",
+      icon: "mdi:alert",
+      title: "Pago vencido",
+      description: "La factura #123 venció ayer.",
+      time: "hace 2 h",
+      read: false,
+      severity: "warn",
+    },
+    {
+      id: "3",
+      icon: "mdi:check-circle",
+      title: "Tarea completada",
+      description: "Mantenimiento preventivo cerrado.",
+      time: "ayer",
+      read: true,
+      severity: "success",
+    },
   ];
 
   crumbs: MenuItem[] = [
@@ -281,18 +327,51 @@ export class WebMultiplatform {
   ];
 
   timelineEvents: TimelineEvent[] = [
-    { title: "Ticket creado", description: "Se registró el ticket #4821.", date: "10:30", icon: "mdi:plus", color: "var(--ds-primary)" },
-    { title: "Asignado a técnico", description: "Juan Pérez tomó el caso.", date: "11:15", icon: "mdi:account", color: "var(--ds-info)" },
-    { title: "Resuelto", description: "Cierre confirmado por el residente.", date: "14:40", icon: "mdi:check", color: "var(--ds-success)", badge: "SLA cumplido" },
+    {
+      title: "Ticket creado",
+      description: "Se registró el ticket #4821.",
+      date: "10:30",
+      icon: "mdi:plus",
+      color: "var(--ds-primary)",
+    },
+    {
+      title: "Asignado a técnico",
+      description: "Juan Pérez tomó el caso.",
+      date: "11:15",
+      icon: "mdi:account",
+      color: "var(--ds-info)",
+    },
+    {
+      title: "Resuelto",
+      description: "Cierre confirmado por el residente.",
+      date: "14:40",
+      icon: "mdi:check",
+      color: "var(--ds-success)",
+      badge: "SLA cumplido",
+    },
   ];
 
   comments: Comment[] = [
-    { id: "1", authorName: "Ana García", text: "¿Ya revisaron el presupuesto?", timestamp: "hace 1 h", reactions: [{ emoji: "👍", count: 2 }] },
-    { id: "2", authorName: "Carlos Ruiz", text: "Sí, lo aprobé esta mañana.", timestamp: "hace 30 min", edited: true },
+    {
+      id: "1",
+      authorName: "Ana García",
+      text: "¿Ya revisaron el presupuesto?",
+      timestamp: "hace 1 h",
+      reactions: [{ emoji: "👍", count: 2 }],
+    },
+    {
+      id: "2",
+      authorName: "Carlos Ruiz",
+      text: "Sí, lo aprobé esta mañana.",
+      timestamp: "hace 30 min",
+      edited: true,
+    },
   ];
 
   onConfirmed(): void {
-    this.lastAction.set("✔ Confirmado a las " + new Date().toLocaleTimeString());
+    this.lastAction.set(
+      "✔ Confirmado a las " + new Date().toLocaleTimeString(),
+    );
   }
 }
 ```
@@ -308,6 +387,7 @@ En `pages/components/catalog-web/catalog-web.ts`:
 2. Agregarlo al array `imports` del `@Component` (junto a `WebIcons`, etc.).
 
 En `pages/components/catalog-web/catalog-web.html`, agregar dentro del `<div class="grid">`:
+
 ```html
 <div class="col-12"><app-web-multiplatform /></div>
 ```
@@ -343,6 +423,7 @@ En `pages/components/catalog-web/catalog-web.html`, agregar dentro del `<div cla
 
 Validados caso por caso — se renderizan igual en ambas plataformas o ya se
 auto-adaptan; usar su `app-*` normal:
+
 - **Agnósticos puros** (idénticos web/mobile): `kpi-card`, `stat-card`,
   `avatar-group`, `activity-log`, `order-status`, `gauge`.
 - **Ya híbridos** (auto-adaptan internamente vía `PlatformService`): `file-upload`.

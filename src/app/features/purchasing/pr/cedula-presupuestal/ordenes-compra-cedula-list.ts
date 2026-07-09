@@ -17,7 +17,9 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxTag } from "@ui/adaptive/tag/tag";`nimport { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxBadge } from "@ui/adaptive/badge/badge";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-ordenes-compra-cedula-list",
@@ -29,7 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    LxTag, MobileListItem, AppIcon],
+    LxTag, LxBadge, MobileListItem, AppIcon],
 })
 export class OrdenesCompraCedulaListComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);

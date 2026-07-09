@@ -2,8 +2,8 @@ import { CommonModule } from "@angular/common";
 
 import { Component, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
 
-import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
@@ -19,8 +19,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule,
     TableModule,
-    SkeletonModule,
-    WebButtonLabel, LxMessage, AppIcon, LxTag],
+    WebButtonLabel, LxMessage, AppIcon, LxTag, LxSkeleton],
 })
 export class OrdenCompraFacturasParcial {
   facturas = input.required<any[]>();

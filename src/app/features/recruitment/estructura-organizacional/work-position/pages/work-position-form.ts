@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { InputTextModule } from "primeng/inputtext";
 
 import { lastValueFrom } from "rxjs";
@@ -36,7 +36,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
-    DividerModule, LxCard, AppIcon, LxMessage],
+    LxCard, AppIcon, LxMessage, LxDivider],
 })
 export class WorkPositionForm implements OnInit {
   // --- INYECCIóN DE DEPENDENCIAS ---

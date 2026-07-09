@@ -1,16 +1,20 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
+import type { StepperStep } from "@ui/base/stepper.base";
+import { StepperBase } from "@ui/base/stepper.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { StepperModule } from "primeng/stepper";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { StepperBase } from "@ui/base/stepper.base";
-import type { StepperStep } from "@ui/base/stepper.base";
 
 export type WizardStep = StepperStep;
 
 @Component({
   selector: "app-wizard",
-  standalone: true,
+
   imports: [CommonModule, ButtonModule, StepperModule, AppIcon],
   template: `
     <p-stepper [(value)]="activeStep" [linear]="linear()">
@@ -66,10 +70,16 @@ export type WizardStep = StepperStep;
       </p-step-panels>
     </p-stepper>
   `,
-  styles: [`
-    :host { display: block; }
-    .wizard-body { min-height: 200px; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+      .wizard-body {
+        min-height: 200px;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

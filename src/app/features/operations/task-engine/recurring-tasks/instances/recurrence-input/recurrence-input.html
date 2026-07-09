@@ -70,11 +70,11 @@
       [class.border-primary]="monthlyType === 'dayOfMonth'"
     >
       <div class="flex align-items-center mb-2">
-        <p-radiobutton
+        <lx-radio-button
           value="dayOfMonth"
           [formControl]="recurrenceForm.controls.monthlyType"
           inputId="dayOfMonth"
-        ></p-radiobutton>
+        />
         <label for="dayOfMonth" class="font-medium cursor-pointer flex-1 ml-2">
           Dóa especófico del mes
         </label>
@@ -103,11 +103,11 @@
       [class.border-primary]="monthlyType === 'dayOfWeek'"
     >
       <div class="flex align-items-center mb-2">
-        <p-radiobutton
+        <lx-radio-button
           value="dayOfWeek"
           [formControl]="recurrenceForm.controls.monthlyType"
           inputId="dayOfWeek"
-        ></p-radiobutton>
+        />
         <label for="dayOfWeek" class="font-medium cursor-pointer flex-1 ml-2">
           Posición en el mes
         </label>

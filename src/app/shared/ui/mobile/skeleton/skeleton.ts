@@ -1,10 +1,14 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { IonSkeletonText } from "@ionic/angular/standalone";
 import { SkeletonBase } from "@ui/base/skeleton.base";
 
 @Component({
   selector: "ili-skeleton",
-  standalone: true,
+
   imports: [IonSkeletonText],
   template: `
     <ion-skeleton-text

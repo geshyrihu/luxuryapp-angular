@@ -1,10 +1,15 @@
-import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 import { SplitterModule } from "primeng/splitter";
 
 @Component({
   selector: "app-split-pane",
-  standalone: true,
+
   imports: [CommonModule, SplitterModule],
   template: `
     <p-splitter
@@ -25,17 +30,19 @@ import { SplitterModule } from "primeng/splitter";
       </ng-template>
     </p-splitter>
   `,
-  styles: [`
-    .split-pane-panel {
-      padding: 0.75rem;
-      height: 100%;
-      overflow: auto;
-    }
-    .p-splitter {
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-lg, 8px);
-    }
-  `],
+  styles: [
+    `
+      .split-pane-panel {
+        padding: 0.75rem;
+        height: 100%;
+        overflow: auto;
+      }
+      .p-splitter {
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-lg, 8px);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

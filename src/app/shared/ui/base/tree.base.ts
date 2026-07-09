@@ -24,4 +24,6 @@ export abstract class TreeBase {
   value = input<TreeNode[]>([]);
   selection = model<any>(null);
   selectionMode = input<"single" | "multiple" | "checkbox">("single");
+  scrollHeight = input<string | undefined>(undefined);
+  metaKeySelection = input<boolean>(true);
 }

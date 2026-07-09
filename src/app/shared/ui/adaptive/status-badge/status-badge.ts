@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { MobileStatusBadge } from "@ui/mobile/status-badge/status-badge";
 import { StatusBadgeBase } from "@ui/base/status-badge.base";
+import { MobileStatusBadge } from "@ui/mobile/status-badge/status-badge";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de StatusBadge. Renderiza `app-status-badge` (web,
@@ -11,7 +11,7 @@ import { StatusBadgeBase } from "@ui/base/status-badge.base";
  */
 @Component({
   selector: "lx-status-badge",
-  standalone: true,
+
   imports: [StatusBadge, MobileStatusBadge],
   template: `
     @if (platform.isMobile()) {

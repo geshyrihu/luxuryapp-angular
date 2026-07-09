@@ -126,7 +126,7 @@
               item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
-           />
+          />
         </div>
       </td>
       <td>{{ item.provider }}</td>
@@ -134,21 +134,21 @@
         <lx-tag
           [value]="getStatusLabel(item.status)"
           [severity]="getBadgeSeverity(item.status)"
-         />
+        />
       </td>
       <td class="text-center">
         <lx-tag
           (click)="onModalFotos(item.id)"
           [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderImg.length"
-         />
+        />
       </td>
       <td class="text-center">
         <lx-tag
           (click)="onModalRpeorteProveedor(item.id)"
           [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderDocument.length"
-         />
+        />
       </td>
       <td class="no-print">
         <div class="flex">
@@ -212,7 +212,9 @@
     <div class="card-body p-0">
       <!-- Sección Tútulo y Fecha -->
       <div class="flex flex-column mb-3">
-        <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+        <div
+          class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+        >
           <span class="font-bold text-lg mb-1">
             {{ filtroEquiposValue | titlecase }}
           </span>
@@ -271,7 +273,9 @@
 
   <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
-    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+    <div
+      class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+    >
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -303,7 +307,7 @@
               item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
-           />
+          />
           <span class="ml-2 text-500">({{ item.provider }})</span>
         </p>
 
@@ -311,17 +315,17 @@
           <lx-tag
             [value]="getStatusLabel(item.status)"
             [severity]="getBadgeSeverity(item.status)"
-           />
+          />
           <lx-tag
             (click)="onModalFotos(item.id)"
             [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderImg.length + ' Fotos'"
-           />
+          />
           <lx-tag
             (click)="onModalRpeorteProveedor(item.id)"
             [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderDocument.length + ' Reportes'"
-           />
+          />
         </div>
       </span>
 
@@ -441,4 +445,3 @@
     }
   }
 </style>
-

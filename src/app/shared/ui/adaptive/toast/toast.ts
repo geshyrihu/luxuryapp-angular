@@ -1,12 +1,12 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
-import { MobileToast } from "@ui/mobile/toast/toast";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ToastBase } from "@ui/base/toast.base";
+import { MobileToast } from "@ui/mobile/toast/toast";
+import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-toast",
-  standalone: true,
+
   imports: [PrimeNgCustomToast, MobileToast],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

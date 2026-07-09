@@ -17,7 +17,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { MultiSelectModule } from "primeng/multiselect";
+import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -50,7 +50,7 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     CommonModule,
     FormsModule,
     TableModule,
-    MultiSelectModule,
+    LxMultiSelect,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
 

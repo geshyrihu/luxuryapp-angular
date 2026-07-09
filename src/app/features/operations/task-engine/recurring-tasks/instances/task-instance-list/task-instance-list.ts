@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { ToolbarModule } from "primeng/toolbar";
+import { LxToolbar } from "@ui/adaptive/toolbar/toolbar";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelItem,
@@ -52,7 +52,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     ReactiveFormsModule,
     StatusBadge,
     TableModule,
-    ToolbarModule,
+    LxToolbar,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
 

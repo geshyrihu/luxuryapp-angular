@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppImage } from "@ui/web/image/image";
-import { MobileImage } from "@ui/mobile/image/image";
 import { ImageBase } from "@ui/base/image.base";
+import { MobileImage } from "@ui/mobile/image/image";
+import { AppImage } from "@ui/web/image/image";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Image. Renderiza `app-image` (PrimeNG, con preview) o
@@ -11,7 +11,7 @@ import { ImageBase } from "@ui/base/image.base";
  */
 @Component({
   selector: "lx-image",
-  standalone: true,
+
   imports: [AppImage, MobileImage],
   template: `
     @if (platform.isMobile()) {

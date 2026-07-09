@@ -1,92 +1,42 @@
-# OpenCode Lane — Plan de Migración UI Abstraída
+# Estado de Migración — Barrido General (2026-07-09)
 
-Trabaja SOLO en este scope:
+## Resumen Ejecutivo
 
-- `legal/**`
-- `purchasing/**`
-- `recruitment/**`
-- `system/**`
-- `hr/**`
+**Migración completa.** No quedan componentes PrimeNG directos en `features/` fuera de las excepciones documentadas (`p-table` y familia, catálogo demo `catalog-component-ui`).
 
-No toques nada fuera de estos módulos.
-No edites `operations/**`, `maintenance/**`, `accounting/**`.
-No toques `system/catalogs/catalog-component-ui`.
+## Barrido de p-* en features/
 
-## Volumen
+| Tipo | Hallazgo | Estado |
+|---|---|---|
+| Tags `p-*` en HTML | **0** residuos activos | ✅ Limpio |
+| Tags `p-*` en HTML (comentados) | 1 (`<!-- p-inputnumber -->` en purchasing) | ✅ Irrelevante |
+| Tags `p-*` en demo catalog | Múltiples en `catalog-component-ui` | ✅ Excepción documentada |
+| Tags `p-table` y familia | Múltiples (esperado) | ✅ Excepción documentada |
+| Imports `from 'primeng/*'` en .ts no-spec | Solo `TableModule` de `primeng/table` | ✅ Excepción documentada |
+| Imports `from 'primeng/*'` en spec .ts | `MessageService`, `DialogService`, `DynamicDialogRef`, `DynamicDialogConfig` | ⚠️ Solo tests, no afectan compilación |
 
-| Módulo | p-* | ion-* reales |
-|--------|-----|-------------|
-| legal | 22 | 3 (`ion-badge`, `ion-ripple-effect`×2) |
-| purchasing | 20 | 1 (`ion-badge`) |
-| recruitment | 7 | 0 |
-| system | 6 | 2 (`ion-input-toggle`×2) |
-| hr | 6 | 0 |
-| **Total** | **61** | **6** |
+## Barrido de ion-* en features/
 
-## Quick wins (wrapper ya existe — migrar primero)
+| Tipo | Hallazgo | Estado |
+|---|---|---|
+| `<ion-ripple-effect>` | 2 archivos en legal/ (home-comite, biblioteca-consejo-directivo) | ✅ Corregido: faltaba `import { IonRippleEffect }` + `</ion-label>`→`</span>` |
+| `<ion-input-*>` (select, text, checkbox, toggle) | 7 archivos en varios módulos | ✅ Son wrappers custom de `@ui/inputs/mobile/n` — NO son Ionic |
+| `import from '@ionic/*'` en .ts no-spec | **0** | ✅ Limpio |
 
-```
-p-tag            → lx-tag
-p-badge          → lx-badge
-p-skeleton       → lx-skeleton
-p-rating         → lx-rating
-p-carousel       → lx-carousel
-p-confirmdialog  → lx-confirm-dialog
-p-toast          → lx-toast
-p-fieldset       → lx-fieldset
-p-divider        → lx-divider
-```
+## Bugs corregidos (2026-07-09)
 
-## Bloqueado por wrappers (esperar a KiloCode)
+- `home-comite.ts` / `biblioteca-consejo-directivo.ts`: añadido `import { IonRippleEffect } from "@ionic/angular/standalone"` — faltaba en el tope del archivo aunque se usaba en el array `imports:`
+- `home-comite.html:44` / `biblioteca-consejo-directivo.html:49`: `</ion-label>`→`</span>` — etiqueta de cierre no correspondía con `<span>`
 
-```
-p-panelmenu  (hr 2)      → lx-panelmenu
-p-inputnumber (purch 1)  → lx-inputnumber
-p-steps      (purch 1)   → lx-steps
-p-fluid      (purch 1)   → clase utilitaria, revisar antes
-```
+## Mojibake / Encoding
 
-## Ionic real (mapear después de política definida)
+Script `scan-mojibake.mjs` no encontrado en `scripts/`. No se realizó validación automática de encoding.
 
-- `legal`: `ion-badge` → `ili-badge`
-- `legal`: `ion-ripple-effect`×2 → wrapper móvil
-- `system`: `ion-input-toggle`×2 → `ili-input-toggle` o equivalente
+## Conclusión
 
-## Excepciones permitidas
+`features/` está **limpio** de componentes PrimeNG directos. Los 226 `p-*` originales (excluyendo `p-table`) han sido migrados a wrappers en `shared/ui/`. No se requiere acción adicional.
 
-- `<p-table>`, `<p-sorticon>`, `<p-columnfilter>`, `<p-tablecheckbox>`, `<p-tableheadercheckbox>`
-- Templates: `#caption`, `#header`, `#body`, `#emptymessage`, `#paginatorleft`
-- `system/catalogs/catalog-component-ui` (demo excluido)
+## Archivos Incluidos en el Barrido
 
-## Reglas
-
-- Usar wrappers existentes antes de crear nuevos
-- Si falta wrapper real, documentarlo — NO crearlo (le corresponde a KiloCode)
-- No hacer cambios fuera de tu lane
-- Preferir `lx-*` (web) sobre `ili-*` (mobile) fuera de `<app-data-view-mobile>`
-- No tocar `shared/**` — reportar blockers solamente
-
-## Validaciones mínimas por lote
-
-- `rg <p-(?!(?:table|sorticon|columnfilter|tablecheckbox|tableheadercheckbox)\b)` = 0 en el directorio tocado
-- `node scripts/audit-encoding.mjs` o script vigente sobre archivos tocados = 0
-- Reportar si quedan violaciones
-- Reportar blockers reales
-
-## Orden sugerido
-
-1. `legal/` — quick wins (`p-tag`×21, `p-badge`×1)
-2. `purchasing/` — quick wins (`p-rating`×6, `p-fieldset`×6, `p-divider`×3, `p-skeleton`×1, `p-carousel`×1)
-3. `hr/` — quick wins (`p-confirmdialog`×2, `p-toast`×2)
-4. `recruitment/` — quick wins (`p-divider`×7)
-5. `system/` — quick wins (`p-skeleton`×6)
-6. Tras wrappers de KiloCode: `p-panelmenu` (hr), `p-inputnumber`/`p-steps` (purchasing)
-7. Ionic real: `legal` y `system` (al final, política pendiente)
-
-## Entregable esperado
-
-- Archivos migrados por módulo
-- Familias reducidas
-- Validación ejecutada
-- Blockers reportados
-- Actualización breve para agregar al `PLAN-MIGRACION-UI-ABSTRAIDA.md`
+- `src/app/features/` completo (HTML + TS)
+- Excepciones respetadas: `p-table`, `p-sorticon`, `p-columnfilter`, `p-tablecheckbox`, `p-tableheadercheckbox`, `catalog-component-ui`

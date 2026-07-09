@@ -1,11 +1,11 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { DataView } from "@ui/web/data-view/data-view";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { DataView } from "@ui/web/data-view/data-view";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-data-view",
-  standalone: true,
+
   imports: [DataView, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

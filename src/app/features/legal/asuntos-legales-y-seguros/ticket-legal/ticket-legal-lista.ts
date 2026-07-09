@@ -18,7 +18,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -58,8 +58,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     CommonModule,
     FormsModule,
     TableModule,
-    TagModule,
     TooltipModule,
+    LxTag,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
 

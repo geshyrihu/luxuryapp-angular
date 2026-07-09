@@ -1,10 +1,14 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { TagBase } from "@ui/base/tag.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-tag",
-  standalone: true,
+
   imports: [AppIcon],
   template: `
     <span
@@ -21,32 +25,34 @@ import { TagBase } from "@ui/base/tag.base";
       {{ displayValue() }}
     </span>
   `,
-  styles: [`
-    :host {
-      display: inline-block;
-    }
-    .ili-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      min-height: 1.6rem;
-      padding: 0.15rem 0.6rem;
-      border-radius: var(--ds-radius-sm, 4px);
-      border: 1px solid transparent;
-      font-size: 0.75rem;
-      font-weight: 700;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-    .ili-tag-rounded {
-      border-radius: var(--ds-radius-full, 9999px);
-    }
-    .ili-tag-icon {
-      display: inline-flex;
-      font-size: 0.85rem;
-      line-height: 1;
-    }
-  `],
+  styles: [
+    `
+      :host {
+        display: inline-block;
+      }
+      .ili-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        min-height: 1.6rem;
+        padding: 0.15rem 0.6rem;
+        border-radius: var(--ds-radius-sm, 4px);
+        border: 1px solid transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+      .ili-tag-rounded {
+        border-radius: var(--ds-radius-full, 9999px);
+      }
+      .ili-tag-icon {
+        display: inline-flex;
+        font-size: 0.85rem;
+        line-height: 1;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

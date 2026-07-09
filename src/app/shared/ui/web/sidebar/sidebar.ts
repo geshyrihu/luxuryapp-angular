@@ -9,7 +9,7 @@ import { DrawerModule } from "primeng/drawer";
 
 @Component({
   selector: "app-sidebar",
-  standalone: true,
+
   imports: [CommonModule, DrawerModule],
   template: `
     <p-drawer

@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -23,7 +23,7 @@ interface IJobDescription {
   selector: "app-vacante-detail-modal",
   templateUrl: "./vacante-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, DividerModule, LxTabs, LxTag, AppIcon],
+  imports: [CommonModule, LxTabs, LxTag, AppIcon, LxDivider],
 })
 export class VacanteDetailModal implements OnInit {
   private config = inject(DynamicDialogConfig);

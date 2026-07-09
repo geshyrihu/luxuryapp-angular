@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
-import { MobileBreadcrumbs } from "@ui/mobile/breadcrumbs/breadcrumbs";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
+import { MobileBreadcrumbs } from "@ui/mobile/breadcrumbs/breadcrumbs";
+import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Breadcrumbs. Renderiza `app-breadcrumbs` (PrimeNG)
@@ -11,7 +11,7 @@ import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
  */
 @Component({
   selector: "lx-breadcrumbs",
-  standalone: true,
+
   imports: [Breadcrumbs, MobileBreadcrumbs],
   template: `
     @if (platform.isMobile()) {

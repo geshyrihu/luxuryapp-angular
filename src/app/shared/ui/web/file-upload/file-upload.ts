@@ -27,7 +27,7 @@ export interface UploadFile {
 
 @Component({
   selector: "app-file-upload",
-  standalone: true,
+
   imports: [
     CommonModule,
     ButtonModule,
@@ -211,6 +211,7 @@ export class FileUpload {
 
   filesChange = output<UploadFile[]>();
   upload = output<FileUploadHandlerEvent>();
+  onSelect = output<any>();
 
   files = signal<UploadFile[]>([]);
   isDragOver = signal(false);
@@ -245,6 +246,7 @@ export class FileUpload {
   onFilesSelected(event: any): void {
     if (event.files?.length) {
       this.addFiles(Array.from(event.files));
+      this.onSelect.emit(event);
     }
   }
 

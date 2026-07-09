@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { Timeline } from "@ui/web/timeline/timeline";
-import { MobileTimeline } from "@ui/mobile/timeline/timeline";
 import { TimelineBase } from "@ui/base/timeline.base";
+import { MobileTimeline } from "@ui/mobile/timeline/timeline";
+import { Timeline } from "@ui/web/timeline/timeline";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Timeline. Renderiza `app-timeline` (PrimeNG) o
@@ -11,7 +11,7 @@ import { TimelineBase } from "@ui/base/timeline.base";
  */
 @Component({
   selector: "lx-timeline",
-  standalone: true,
+
   imports: [Timeline, MobileTimeline],
   template: `
     @if (platform.isMobile()) {

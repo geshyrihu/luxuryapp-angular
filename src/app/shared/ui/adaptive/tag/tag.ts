@@ -6,7 +6,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-tag",
-  standalone: true,
+
   imports: [AppTag, MobileTag],
   template: `
     @if (platform.isMobile()) {

@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { FileUploadModule } from "primeng/fileupload";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
@@ -24,7 +24,7 @@ interface ICompleteTaskForm {
   imports: [
     ReactiveFormsModule,
     CustomInputTextAreaSignal,
-    FileUploadModule,
+    LxFileUpload,
     WebButtonLabelSave,
   ],
 })
@@ -37,13 +37,18 @@ export class CompleteTaskForm implements OnInit {
   submitting = signal(false);
   form: FormGroup<ICompleteTaskForm>;
   task: TaskInstance;
+  selectedFiles = signal<File[]>([]);
 
   ngOnInit(): void {
     this.task = this.config.data?.task;
     this.form = this.formBuilder.group({
       comments: new FormControl("", { nonNullable: true }),
-      attachments: new FormControl<any[]>([], { nonNullable: true }), // For handling file uploads
+      attachments: new FormControl<any[]>([], { nonNullable: true }),
     });
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFiles.set(event.files ?? []);
   }
 
   onSubmit() {
@@ -51,18 +56,18 @@ export class CompleteTaskForm implements OnInit {
 
     this.submitting.set(true);
 
-    const dto = {
-      comments: this.form.value.comments,
-    };
+    const formData = new FormData();
+    formData.append("comments", this.form.value.comments ?? "");
+    for (const file of this.selectedFiles()) {
+      formData.append("attachments", file);
+    }
 
     this.apiResponseS
-      .onPost<any>(`recurring-tasks/instances/${this.task.id}/complete`, dto)
+      .onPostFile<any>(`recurring-tasks/instances/${this.task.id}/complete`, formData)
       .then((result) => {
         if (result) {
-          // result is T | false, so true means success
           this.ref.close(true);
         }
-        // No else needed, error handling and toasts are done by ApiResponseService
       })
       .finally(() => this.submitting.set(false));
   }

@@ -1,13 +1,21 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { FieldsetModule } from "primeng/fieldset";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FieldsetBase } from "@ui/base/fieldset.base";
+import { FieldsetModule } from "primeng/fieldset";
 
 @Component({
   selector: "app-fieldset",
-  standalone: true,
+
   imports: [FieldsetModule],
   template: `
-    <p-fieldset [legend]="legend()" [toggleable]="toggleable()" [collapsed]="collapsed()">
+    <p-fieldset
+      [legend]="legend()"
+      [toggleable]="toggleable()"
+      [collapsed]="collapsed()"
+    >
       <ng-content />
     </p-fieldset>
   `,

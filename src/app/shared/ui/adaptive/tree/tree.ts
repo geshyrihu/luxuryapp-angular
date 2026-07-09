@@ -14,13 +14,21 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [value]="value()"
         [(selection)]="selection"
         [selectionMode]="selectionMode()"
-      />
+        [scrollHeight]="scrollHeight()"
+        [metaKeySelection]="metaKeySelection()"
+      >
+        <ng-content />
+      </ili-tree>
     } @else {
       <app-tree
         [value]="value()"
         [(selection)]="selection"
         [selectionMode]="selectionMode()"
-      />
+        [scrollHeight]="scrollHeight()"
+        [metaKeySelection]="metaKeySelection()"
+      >
+        <ng-content />
+      </app-tree>
     }
   `,
 })

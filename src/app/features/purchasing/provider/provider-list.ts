@@ -13,8 +13,8 @@ import { } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { RatingModule } from "primeng/rating";
 import { TableModule } from "primeng/table";
+import { LxRating } from "@ui/adaptive/rating/rating";
 
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -71,8 +71,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     TableModule,
     CustomInputSelectSignal,
     CustomSearchInput,
-    RatingModule,
     TooltipModule,
+    LxRating,
     WebButtonLabel,
     WebButtonLabelEdit,
     WebButtonLabelDelete,

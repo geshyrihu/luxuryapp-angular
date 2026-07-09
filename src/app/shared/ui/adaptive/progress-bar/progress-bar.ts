@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { MobileProgressBar } from "@ui/mobile/progress-bar/progress-bar";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
+import { MobileProgressBar } from "@ui/mobile/progress-bar/progress-bar";
+import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ProgressBar. Renderiza `app-progress-bar` (PrimeNG)
@@ -11,7 +11,7 @@ import { ProgressBarBase } from "@ui/base/progress-bar.base";
  */
 @Component({
   selector: "lx-progress-bar",
-  standalone: true,
+
   imports: [AppProgressBar, MobileProgressBar],
   template: `
     @if (platform.isMobile()) {

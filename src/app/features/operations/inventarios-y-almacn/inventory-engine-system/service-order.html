@@ -34,10 +34,10 @@
     @for (item of maintenanceCalendars; track item) {
     <tr>
       <td>
-        <p-editor
+        <lx-editor
           [formControl]="item.activityControl"
           [style]="{ height: '320px' }"
-        ></p-editor>
+        ></lx-editor>
       </td>
       <td>
         <small>{{ item.recurrence }} </small>

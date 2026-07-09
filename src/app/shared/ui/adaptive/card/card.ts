@@ -6,7 +6,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-card",
-  standalone: true,
+
   imports: [AppCard, MobileCard],
   template: `
     @if (platform.isMobile()) {

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 ;
-import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
   ApprovalConfirmationResult,
@@ -15,7 +15,7 @@ import { ApprovalStateService } from "./state/approval-state.service";
   selector: "app-panel-aprobaciones",
   templateUrl: "./panel-aprobaciones.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ConfirmDialogModule, GenericApprovalPanel],
+  imports: [LxConfirmDialog, GenericApprovalPanel],
 })
 export class PanelAprobaciones implements OnInit {
   private state = inject(ApprovalStateService);

@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppColorPicker } from "@ui/web/color-picker/color-picker";
-import { MobileColorPicker } from "@ui/mobile/color-picker/color-picker";
 import { ColorPickerBase } from "@ui/base/color-picker.base";
+import { MobileColorPicker } from "@ui/mobile/color-picker/color-picker";
+import { AppColorPicker } from "@ui/web/color-picker/color-picker";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ColorPicker. Renderiza `app-color-picker` (PrimeNG)
@@ -11,7 +11,7 @@ import { ColorPickerBase } from "@ui/base/color-picker.base";
  */
 @Component({
   selector: "lx-color-picker",
-  standalone: true,
+
   imports: [AppColorPicker, MobileColorPicker],
   template: `
     @if (platform.isMobile()) {

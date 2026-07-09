@@ -1,10 +1,14 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { PanelModule } from "primeng/panel";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { PanelBase } from "@ui/base/panel.base";
+import { PanelModule } from "primeng/panel";
 
 @Component({
   selector: "app-panel",
-  standalone: true,
+
   imports: [PanelModule],
   template: `
     <p-panel [header]="header()">

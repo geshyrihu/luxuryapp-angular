@@ -1,8 +1,8 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { EmptyState } from "@ui/web/empty-state/empty-state";
-import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
+import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma. Renderiza la versión web (`app-empty-state`) o la
@@ -11,7 +11,7 @@ import { EmptyStateBase } from "@ui/base/empty-state.base";
  */
 @Component({
   selector: "lx-empty-state",
-  standalone: true,
+
   imports: [EmptyState, MobileEmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

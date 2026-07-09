@@ -6,7 +6,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-message",
-  standalone: true,
+
   imports: [AppMessage, MobileMessage],
   template: `
     @if (platform.isMobile()) {

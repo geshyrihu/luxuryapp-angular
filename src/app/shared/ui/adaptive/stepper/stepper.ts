@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { Wizard } from "@ui/web/wizard/wizard";
-import { MobileStepper } from "@ui/mobile/stepper/stepper";
 import { StepperBase } from "@ui/base/stepper.base";
+import { MobileStepper } from "@ui/mobile/stepper/stepper";
+import { Wizard } from "@ui/web/wizard/wizard";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-stepper",
-  standalone: true,
+
   imports: [Wizard, MobileStepper],
   template: `
     @if (platform.isMobile()) {

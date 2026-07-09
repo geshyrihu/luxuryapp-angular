@@ -6,7 +6,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 ;
 import { MenuItem } from "primeng/api";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { PanelMenuModule } from "primeng/panelmenu";
+import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -40,7 +40,7 @@ import { EmployeePrincipalDataForm } from "../employee-internal/pages/employee-p
     EmployeeReclutamiento,
     IncidentList,
     LxMessage,
-    PanelMenuModule,
+    LxPanelMenu,
     UpdatePasswordAccount,
     UpdateRole
   ],

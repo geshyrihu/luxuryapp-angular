@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, input } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  input,
+} from "@angular/core";
 
 @Component({
   selector: "ili-list-item",
-  standalone: true,
+
   template: `
     <article
       class="ili-list-item"
@@ -22,50 +27,52 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation, input } from "@a
       </div>
     </article>
   `,
-  styles: [`
-    :host {
-      display: block;
-    }
+  styles: [
+    `
+      :host {
+        display: block;
+      }
 
-    .ili-list-item {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 0.75rem;
-      min-height: 4.25rem;
-      padding: 0.75rem 1rem;
-      background: var(--ds-bg-surface, #ffffff);
-      border-bottom: 1px solid var(--ds-border, #e2e8f0);
-    }
+      .ili-list-item {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 0.75rem;
+        min-height: 4.25rem;
+        padding: 0.75rem 1rem;
+        background: var(--ds-bg-surface, #ffffff);
+        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+      }
 
-    .ili-list-item-no-padding {
-      padding-inline: 0;
-    }
+      .ili-list-item-no-padding {
+        padding-inline: 0;
+      }
 
-    .ili-list-item-no-divider {
-      border-bottom: 0;
-    }
+      .ili-list-item-no-divider {
+        border-bottom: 0;
+      }
 
-    .ili-list-item__start,
-    .ili-list-item__end {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
+      .ili-list-item__start,
+      .ili-list-item__end {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
 
-    .ili-list-item__content {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
+      .ili-list-item__content {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
 
-    .ili-list-item__content:empty,
-    .ili-list-item__start:empty,
-    .ili-list-item__end:empty {
-      display: none;
-    }
-  `],
+      .ili-list-item__content:empty,
+      .ili-list-item__start:empty,
+      .ili-list-item__end:empty {
+        display: none;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

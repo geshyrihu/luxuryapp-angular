@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppSpinner } from "@ui/web/spinner/spinner";
-import { MobileSpinner } from "@ui/mobile/spinner/spinner";
 import { SpinnerBase } from "@ui/base/spinner.base";
+import { MobileSpinner } from "@ui/mobile/spinner/spinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Spinner. Renderiza `app-spinner` (PrimeNG) o
@@ -11,7 +11,7 @@ import { SpinnerBase } from "@ui/base/spinner.base";
  */
 @Component({
   selector: "lx-spinner",
-  standalone: true,
+
   imports: [AppSpinner, MobileSpinner],
   template: `
     @if (platform.isMobile()) {

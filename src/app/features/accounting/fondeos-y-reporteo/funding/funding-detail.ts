@@ -17,7 +17,7 @@ import { LxBadge } from "@ui/adaptive/badge/badge";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
-import { SplitButtonModule } from "primeng/splitbutton";
+import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
 import { TableModule } from "primeng/table";
 
 import { TooltipModule } from "primeng/tooltip";
@@ -92,7 +92,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
     DecimalPipe,
     LxProgressBar,
     RouterModule,
-    SplitButtonModule,
+    LxSplitButton,
     TableModule,
     TooltipModule,
     UpperCasePipe,

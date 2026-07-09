@@ -10,7 +10,7 @@ import {
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { FileUploadModule } from "primeng/fileupload";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { firstValueFrom } from "rxjs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -64,7 +64,7 @@ import { DateService } from "src/app/core/services/date.service";
     FormsModule,
     ReactiveFormsModule,
     CardModule,
-    FileUploadModule,
+    LxFileUpload,
     WebButtonIcon,
     CustomInputTextSignal,
     CustomInputSelectSignal,
@@ -266,16 +266,23 @@ export class TaskForm implements OnInit {
   processingBeforeWork = signal(false);
   processingAfterWork = signal(false);
 
-  async onFileChange(
-    file: File | null,
-    fieldName: "beforeWork" | "afterWork",
-  ): Promise<void> {
-    if (!file) {
+  async onFileSelect(event: any, fieldName: "beforeWork" | "afterWork"): Promise<void> {
+    const file = event.files?.[0];
+    if (file) await this.onFileChange(file, fieldName);
+  }
+
+  onFilesChange(files: any[], fieldName: "beforeWork" | "afterWork"): void {
+    if (!files.length) {
       this.form.get(fieldName)?.setValue(null);
       if (fieldName === "beforeWork") this.beforeWorkPreview.set(null);
       else this.afterWorkPreview.set(null);
-      return;
     }
+  }
+
+  async onFileChange(
+    file: File,
+    fieldName: "beforeWork" | "afterWork",
+  ): Promise<void> {
 
     const allowed = ["image/jpeg", "image/png", "image/webp"];
     const isHeic =
@@ -406,16 +413,6 @@ export class TaskForm implements OnInit {
       };
       img.src = url;
     });
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-  }
-
-  onFileDrop(event: DragEvent, fieldName: "beforeWork" | "afterWork") {
-    event.preventDefault();
-    const file = event.dataTransfer?.files[0] ?? null;
-    this.onFileChange(file, fieldName);
   }
 
   onTicketGroupChange(newValue: string) {

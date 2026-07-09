@@ -14,6 +14,8 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxBadge } from "@ui/adaptive/badge/badge";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 @Component({
@@ -23,6 +25,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     IonCardSubtitle,
     IonListHeader,
     AppIcon,
+    LxTag,
+    LxBadge,
   ],
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })

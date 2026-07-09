@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelItem } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
@@ -48,7 +48,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     CommonModule,
     TableModule,
     WebButtonLabel,
-    TagModule,
+    LxTag,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     ActionMenu,

@@ -20,7 +20,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
-import { RadioButtonModule } from "primeng/radiobutton";
+import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 
 
@@ -52,7 +52,7 @@ interface IRecurrenceForm {
     FormsModule,
     CustomInputNumberSignal,
     LxCheckbox,
-    RadioButtonModule,
+    LxRadioButton,
     CustomInputSelectSignal,
   ],
   templateUrl: "./recurrence-input.html",

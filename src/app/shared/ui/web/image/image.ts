@@ -1,14 +1,18 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ImageModule } from "primeng/image";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ImageBase } from "@ui/base/image.base";
+import { ImageModule } from "primeng/image";
 
 /**
  * AppImage — Wrapper sobre p-image (display con preview/lightbox).
  */
 @Component({
   selector: "app-image",
-  standalone: true,
+
   imports: [CommonModule, ImageModule],
   template: `
     <p-image

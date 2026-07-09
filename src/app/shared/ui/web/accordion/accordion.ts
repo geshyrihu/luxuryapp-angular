@@ -1,8 +1,13 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AccordionModule } from "primeng/accordion";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ViewEncapsulation,
+} from "@angular/core";
 import { AccordionBase } from "@ui/base/accordion.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AccordionModule } from "primeng/accordion";
 
 /**
  * AppAccordion — Wrapper sobre p-accordion. PrimeNG 22 reemplazo la API por
@@ -13,7 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
  */
 @Component({
   selector: "app-accordion",
-  standalone: true,
+
   imports: [CommonModule, AccordionModule, AppIcon],
   template: `
     <p-accordion
@@ -22,7 +27,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       (valueChange)="onValueChange($event)"
     >
       @for (item of items(); track item.id) {
-        <p-accordion-panel [value]="item.id" [disabled]="item.disabled ?? false">
+        <p-accordion-panel
+          [value]="item.id"
+          [disabled]="item.disabled ?? false"
+        >
           <p-accordion-header>
             @if (item.icon) {
               <app-icon [icon]="item.icon" class="mr-2" />
@@ -36,9 +44,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       }
     </p-accordion>
   `,
-  styles: [`
-    :host { display: block; }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -48,7 +60,9 @@ export class Accordion extends AccordionBase {
     this.multiple() ? this.expandedIds() : (this.expandedIds()[0] ?? null),
   );
 
-  onValueChange(value: string | number | (string | number)[] | null | undefined): void {
+  onValueChange(
+    value: string | number | (string | number)[] | null | undefined,
+  ): void {
     if (Array.isArray(value)) {
       this.expandedIds.set(value.map(String));
     } else if (value === null || value === undefined) {

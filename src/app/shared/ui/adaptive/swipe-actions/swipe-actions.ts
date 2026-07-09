@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { SwipeActions } from "@ui/web/swipe-actions/swipe-actions";
-import { MobileSwipeActions } from "@ui/mobile/swipe-actions/swipe-actions";
 import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
+import { MobileSwipeActions } from "@ui/mobile/swipe-actions/swipe-actions";
+import { SwipeActions } from "@ui/web/swipe-actions/swipe-actions";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-swipe-actions",
-  standalone: true,
+
   imports: [SwipeActions, MobileSwipeActions],
   template: `
     @if (platform.isMobile()) {

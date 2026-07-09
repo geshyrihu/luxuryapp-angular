@@ -166,169 +166,29 @@
     </div>
     <div class="col-12 md:col-6">
       <div class="mb-4">
-        <p-fileupload
-          #fub
-          mode="advanced"
-          name="beforeWork"
-          (onSelect)="onFileChange($event.files[0], 'beforeWork')"
+        <label class="font-bold text-xs uppercase text-700 block mb-2">Foto del antes</label>
+        <lx-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
-          [showUploadButton]="false"
-          [showCancelButton]="false"
-          class="w-full"
-        >
-          <ng-template #header>
-            <span class="font-bold text-xs uppercase text-700"
-              >Foto del antes</span
-            >
-          </ng-template>
-          <ng-template #content>
-            <div
-              class="flex flex-column gap-3"
-              (dragover)="onDragOver($event)"
-              (drop)="onFileDrop($event, 'beforeWork')"
-            >
-              @if (processingBeforeWork()) {
-              <div
-                class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
-              >
-                <app-icon [icon]="'mdi:loading'" />
-                <span class="text-sm">Procesando imagen...</span>
-              </div>
-              } @else if (!beforeWorkPreview()) {
-              <div
-                class="flex align-items-center justify-content-center gap-3 p-3 border-2 border-dashed surface-border border-round-xl bg-gray-50 hover:surface-100 transition-colors cursor-pointer"
-                (click)="fub.choose()"
-              >
-                <il-button
-                  label="Seleccionar"
-                  iconClass="mdi:plus"
-                  (clicked)="$event.stopPropagation(); fub.choose()"
-                  severity="secondary"
-                  size="small"
-                />
-                <span class="text-500 font-medium text-sm"
-                  >Arrastra aqué la foto</span
-                >
-              </div>
-              } @else {
-              <div class="relative mx-auto" style="max-width: fit-content">
-                <img
-                  [src]="beforeWorkPreview()"
-                  class="border-round shadow-2"
-                  style="
-                    max-width: 100%;
-                    max-height: 200px;
-                    object-fit: contain;
-                  "
-                  alt="Before Work Preview"
-                />
-                <div class="absolute top-0 right-0 m-2">
-                  <iw-button
-                    iconClass="mdi:close"
-                    severity="danger"
-                    size="small"
-                    (clicked)="$event.stopPropagation(); onFileChange(null, 'beforeWork'); fub.clear()"
-                  />
-                </div>
-              </div>
-              <div class="flex justify-content-center">
-                <il-button
-                  label="Cambiar foto"
-                  iconClass="mdi:refresh"
-                  variant="text"
-                  size="small"
-                  (clicked)="fub.choose()"
-                />
-              </div>
-              }
-            </div>
-          </ng-template>
-        </p-fileupload>
+          [multiple]="false"
+          [chooseLabel]="'Seleccionar foto'"
+          (onSelect)="onFileSelect($event, 'beforeWork')"
+          (filesChange)="onFilesChange($event, 'beforeWork')"
+        />
       </div>
     </div>
 
     <div class="col-12 md:col-6">
       <div class="mb-4">
-        <p-fileupload
-          #fua
-          mode="advanced"
-          name="afterWork"
-          (onSelect)="onFileChange($event.files[0], 'afterWork')"
+        <label class="font-bold text-xs uppercase text-700 block mb-2">Foto del despu&eacute;s</label>
+        <lx-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
-          [showUploadButton]="false"
-          [showCancelButton]="false"
-          class="w-full"
-        >
-          <ng-template #header>
-            <span class="font-bold text-xs uppercase text-700"
-              >Foto del despuós</span
-            >
-          </ng-template>
-          <ng-template #content>
-            <div
-              class="flex flex-column gap-3"
-              (dragover)="onDragOver($event)"
-              (drop)="onFileDrop($event, 'afterWork')"
-            >
-              @if (processingAfterWork()) {
-              <div
-                class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
-              >
-                <app-icon [icon]="'mdi:loading'" />
-                <span class="text-sm">Procesando imagen...</span>
-              </div>
-              } @else if (!afterWorkPreview()) {
-              <div
-                class="flex align-items-center justify-content-center gap-3 p-3 border-2 border-dashed surface-border border-round-xl bg-gray-50 hover:surface-100 transition-colors cursor-pointer"
-                (click)="fua.choose()"
-              >
-                <il-button
-                  label="Seleccionar"
-                  iconClass="mdi:plus"
-                  (clicked)="$event.stopPropagation(); fua.choose()"
-                  severity="secondary"
-                  size="small"
-                />
-                <span class="text-500 font-medium text-sm"
-                  >Arrastra aqué la foto</span
-                >
-              </div>
-              } @else {
-              <div class="relative mx-auto" style="max-width: fit-content">
-                <img
-                  [src]="afterWorkPreview()"
-                  class="border-round shadow-2"
-                  style="
-                    max-width: 100%;
-                    max-height: 200px;
-                    object-fit: contain;
-                  "
-                  alt="After Work Preview"
-                />
-                <div class="absolute top-0 right-0 m-2">
-                  <iw-button
-                    iconClass="mdi:close"
-                    severity="danger"
-                    size="small"
-                    (clicked)="$event.stopPropagation(); onFileChange(null, 'afterWork'); fua.clear()"
-                  />
-                </div>
-              </div>
-              <div class="flex justify-content-center">
-                <il-button
-                  label="Cambiar foto"
-                  iconClass="mdi:refresh"
-                  variant="text"
-                  size="small"
-                  (clicked)="fua.choose()"
-                />
-              </div>
-              }
-            </div>
-          </ng-template>
-        </p-fileupload>
+          [multiple]="false"
+          [chooseLabel]="'Seleccionar foto'"
+          (onSelect)="onFileSelect($event, 'afterWork')"
+          (filesChange)="onFilesChange($event, 'afterWork')"
+        />
       </div>
     </div>
   </div>

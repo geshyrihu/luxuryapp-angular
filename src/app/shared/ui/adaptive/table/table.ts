@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { MobileTable } from "@ui/mobile/table/table";
 import { TableBase } from "@ui/base/table.base";
+import { MobileTable } from "@ui/mobile/table/table";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-table",
-  standalone: true,
+
   imports: [MobileTable],
   template: `
     @if (platform.isMobile()) {
@@ -33,7 +33,10 @@ import { TableBase } from "@ui/base/table.base";
       />
     } @else {
       <!-- Web uses PrimeNG p-table directly in feature components -->
-      <p class="lx-table-web-fallback" style="color: var(--ds-text-secondary); font-size: 0.875rem; padding: 1rem;">
+      <p
+        class="lx-table-web-fallback"
+        style="color: var(--ds-text-secondary); font-size: 0.875rem; padding: 1rem;"
+      >
         Usa &lt;p-table&gt; de PrimeNG directamente en web.
       </p>
     }

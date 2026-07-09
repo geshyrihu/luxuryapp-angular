@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { AppChip } from "@ui/web/chip/chip";
-import { MobileChip } from "@ui/mobile/chip/chip";
 import { ChipBase } from "@ui/base/chip.base";
+import { MobileChip } from "@ui/mobile/chip/chip";
+import { AppChip } from "@ui/web/chip/chip";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Chip. Renderiza `app-chip` (PrimeNG) o `ili-chip`
@@ -11,7 +11,7 @@ import { ChipBase } from "@ui/base/chip.base";
  */
 @Component({
   selector: "lx-chip",
-  standalone: true,
+
   imports: [AppChip, MobileChip],
   template: `
     @if (platform.isMobile()) {
