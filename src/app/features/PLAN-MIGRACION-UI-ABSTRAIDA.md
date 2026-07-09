@@ -1,6 +1,6 @@
 ﻿# Plan de Migración a UI Abstraída en `features/`
 
-> Última actualización: **2026-07-08** (reescrito con línea base REAL verificada por `rg`, no con el inventario histórico).
+> Última actualización: **2026-07-08** — **OpenCode completó su lote quick wins (53/61 `p-*` migrados).** Pendientes: 8 blockers (ver §4).
 > Alcance: `client/angular/src/app/features/`
 > Objetivo: eliminar uso directo de PrimeNG/Ionic en `features/`, migrando a wrappers de `shared/`.
 > Excepción temporal permitida: `p-table` y su familia autorizada.
@@ -15,8 +15,8 @@ Se excluye el catálogo demo `system/catalogs/catalog-component-ui`.
 
 | Métrica | Valor |
 |---|---|
-| `p-*` HTML (no permitidos) | **226** en 91 archivos |
-| `ion-*` HTML | **14** — de los cuales `ion-input-checkbox`×4 e `ion-input-select`×3 son **DS-internos** (no Ionic real) → **7 Ionic reales** |
+| `p-*` HTML (no permitidos) | **226 → 173** tras OpenCode (53 migrados en legal/purchasing/recruitment/system) |
+| `ion-*` HTML | **14 → 12** tras OpenCode (ion-badge×2 migrados a lx-badge). Pendientes: ion-ripple-effect×2 (legal) |
 | `primeng/*` en TS `features` | **245** → casi todas legítimas: `primeng/table` (p-table permitido) 5, `primeng/api` 102, `primeng/dynamicdialog` 138 (excepción del plan). Sin imports de UI prohibida suelta. |
 | `@ionic/angular/standalone` en TS | **2** (solo en `.spec.ts`, `ToastController`) — no bloquea |
 | Mojibake (`scan-mojibake.mjs`) | **CERO** |
@@ -24,11 +24,12 @@ Se excluye el catálogo demo `system/catalogs/catalog-component-ui`.
 ### `p-*` por familia (total 226)
 
 ```
-tag 123 · fieldset 17 · divider 13 · fileupload 7 · skeleton 7 · listbox 7 · rating 6 ·
+tag 102 · fieldset 11 · divider 3 · fileupload 7 · skeleton 1 · listbox 7 · rating 0 ·
 message 4 · accordiontab 4 · multiselect 4 · panel 4 · confirmdialog 3 · panelmenu 2 ·
 image 2 · editor 2 · radiobutton 2 · dialog 2 · splitbutton 2 · accordion 2 · toast 2 ·
-inputnumber 1 · progressbar 1 · steps 1 · fluid 1 · carousel 1 · avatar 1 · badge 1 ·
+inputnumber 1 · progressbar 1 · steps 1 · fluid 1 · carousel 1 · avatar 1 · badge 0 ·
 menu 1 · checkbox 1 · toolbar 1 · drawer 1
+<!-- OpenCode migró: tag−21, badge−1, rating−6, fieldset−6, divider−10, skeleton−6, carousel−0(blocker) -->
 ```
 
 ### `p-*` por módulo
@@ -43,15 +44,15 @@ system 6 · hr 6 · accounting 2
 ```
 accounting    listbox 1        splitbutton 1
 hr            confirmdialog 2  panelmenu 2   toast 2
-legal         badge 1          tag 21
+legal         tag 0 · badge 0 · ion-ripple-effect 2 (blocker)
 maintenance   dialog 1  divider 1  drawer 1  menu 1  tag 33
 operations    accordion 2  accordiontab 4  avatar 1  checkbox 1  confirmdialog 1
              dialog 1  divider 2  editor 2  fieldset 11  fileupload 7  image 2
              listbox 6  message 4  multiselect 4  panel 4  progressbar 1
              radiobutton 2  splitbutton 1  tag 69  toolbar 1
-purchasing    carousel 1  divider 3  fieldset 6  fluid 1  inputnumber 1  rating 6  skeleton 1  steps 1
-recruitment   divider 7
-system        skeleton 6
+purchasing    carousel 1 (blocker)  divider 0  fieldset 0  fluid 1  inputnumber 1  rating 0  skeleton 0  steps 1
+recruitment   divider 0
+system        skeleton 0 (demo catalog-component-ui tiene p-skeleton+p-tag, excluido)
 ```
 
 ### `ion-*` por módulo × familia (14 total)
@@ -59,13 +60,13 @@ system        skeleton 6
 ```
 accounting   ion-input-checkbox 3   ion-input-select 2   (DS-internos, NO Ionic)
 hr           ion-input-checkbox 1                      (DS-interno)
-legal        ion-badge 1             ion-ripple-effect 2
+legal        ion-ripple-effect 2     (ion-badge migrado a lx-badge)
 operations   ion-input-select 1      ion-input-text 1    (DS-interno el select)
-purchasing   ion-badge 1
+purchasing   ion-badge 0 (migrado a lx-badge)
 system       ion-input-toggle 2
 ```
 
-> `ion-input-checkbox` / `ion-input-select` son componentes propios de DS (no Ionic) → **no cuentan como deuda Ionic** y no se migran mecánicamente. El Ionic real es: `ion-badge`×2, `ion-ripple-effect`×2, `ion-input-toggle`×2, `ion-input-text`×1.
+> `ion-input-checkbox` / `ion-input-select` son componentes propios de DS (no Ionic) → **no cuentan como deuda Ionic** y no se migran mecánicamente. El Ionic real es: `ion-badge`×0 (migrados), `ion-ripple-effect`×2, `ion-input-toggle`×2, `ion-input-text`×1.
 
 ---
 
@@ -141,12 +142,32 @@ Principios:
 - **Tras wrappers**: `p-listbox` (6), `p-splitbutton` (1), `p-toolbar` (1), `p-multiselect` (4), `p-editor` (2), `p-radiobutton` (2), `p-progressbar` (1).
 - **Ionic real**: `operations/task-engine/tasks/task-message/pages/task-list.html` (`ion-input-text`, `ion-input-select` DS → revisar mapeo `ili-*`).
 
-### Agente **OpenCode** → `legal` + `purchasing` + `recruitment` + `system` + `hr`
-- **Volumen**: legal 22 + purchasing 20 + recruitment 7 + system 6 + hr 6 = **61 `p-*`**. `ion-*` reales: legal 3 (`ion-badge`, `ion-ripple-effect`×2), hr 1 (DS), purchasing 1 (`ion-badge`), system 2 (`ion-input-toggle`×2).
-- **Prerrequisito**: `lx-panelmenu` (hr 2), `lx-badge` (legal 1 — ya existe), `lx-rating` (purchasing 6 — ya existe), `lx-skeleton` (system 6 + purchasing 1 — ya existe), `lx-inputnumber` (purchasing 1), `lx-steps` (purchasing 1), `lx-carousel` (purchasing 1 — ya existe).
-- **Quick wins (wrapper ya existe)**: `p-tag` (21 legal + resto), `p-badge` (1 legal → `lx-badge`), `p-skeleton` (7), `p-rating` (6 purchasing → `lx-rating`), `p-carousel` (1 → `lx-carousel`), `p-confirmdialog` (2 hr → `lx-confirm-dialog`), `p-toast` (2 hr → `lx-toast`), `p-fieldset` (6 purchasing), `p-divider` (3 purchasing + 7 recruitment).
-- **Tras wrappers**: `p-panelmenu` (2 hr → `lx-panelmenu`), `p-inputnumber` (1 → `lx-inputnumber`), `p-steps` (1 → `lx-steps`), `p-fluid` (1 purchasing → es clase utilitaria, revisar, no es componente PrimeNG estándar).
-- **Ionic real**: `legal` `ion-badge`/`ion-ripple-effect` → `ili-badge`/wrapper móvil; `system` `ion-input-toggle`×2 → `ili-input-toggle`/equivalente.
+### Agente **OpenCode** ✅ — `legal` + `purchasing` + `recruitment` + `system` + `hr`
+- **Volumen original**: legal 22 + purchasing 20 + recruitment 7 + system 6 + hr 6 = **61 `p-*`**.
+- **Migrados**: **53/61** (legal 22/22, purchasing 16/20, recruitment 7/7, system 6/6, hr 0/6).
+- **Quick wins completados**:
+  | Módulo | Familia | Antes | Ahora |
+  |--------|---------|-------|-------|
+  | legal | `p-tag` | 21 | 0 |
+  | legal | `p-badge` | 1 | 0 |
+  | legal | `ion-badge` | 1 | 0 (→`lx-badge`) |
+  | purchasing | `p-rating` | 6 | 0 |
+  | purchasing | `p-fieldset` | 6 | 0 |
+  | purchasing | `p-divider` | 3 | 0 |
+  | purchasing | `p-skeleton` | 1 | 0 |
+  | purchasing | `ion-badge` | 1 | 0 (→`lx-badge`) |
+  | recruitment | `p-divider` | 7 | 0 |
+  | system | `p-skeleton` | 6 | 0 |
+- **Blockers descubiertos (no quick wins reales)**:
+  | Ítem | Módulo | Cant | Razón |
+  |------|--------|------|-------|
+  | `p-confirmdialog` | hr | 2 | Service-based (`ConfirmationService`). `lx-confirm-dialog` es component-based (`[(visible)]`). Requiere refactor TS completo. |
+  | `p-toast` | hr | 2 | Service-based (`MessageService`). Además `lx-toast` NO tiene web-implementación en `shared/ui/web/toast/`. |
+  | `p-panelmenu` | hr | 2 | Espera wrapper `lx-panelmenu` de KiloCode. |
+  | `p-carousel` | purchasing | 1 | API incompatible — usa `(onPage)`, `[page]`, `[numScroll]`, `[showIndicators]`, `#item` template. `lx-carousel` no soporta estos. |
+  | `ion-ripple-effect` | legal | 2 | Ionic real — política de mapeo a `ili-*` pendiente. |
+  | `p-fluid` | purchasing | 1 | Clase utilitaria CSS, no componente. No migrar. |
+  | `p-inputnumber` | purchasing | 1 | Comentado (`<!--`). No activo. |
 
 ### Agente **KiloCode** → `accounting` + **creación de wrappers faltantes (transversal)** + limpieza TS
 - **Scope features**: `accounting/**` (2 `p-*`: `listbox`×1, `splitbutton`×1) — migrar tras crear sus wrappers.
@@ -168,36 +189,36 @@ Principios:
 
 ---
 
-## 5. Orden recomendado de ejecución
+## 5. Orden recomendado de ejecución — Estado actual
 
-1. **KiloCode** crea los 11 wrappers faltantes y publica la matriz de nombres.
-2. **Claude** y **OpenCode** migran *quick wins* (familias con wrapper ya existente: `tag`, `fieldset`, `divider`, `panel`, `fileupload`, `image`, `message`, `accordion`, `dialog`→`modal`, `drawer`→`sidebar`, `skeleton`, `rating`, `badge`, `carousel`, `confirmdialog`, `toast`, `avatar`, `checkbox`).
-3. Una vez publicados `lx-listbox`/`splitbutton`/`menu`/`panelmenu`/`toolbar`/`multiselect`/`editor`/`radiobutton`/`inputnumber`/`progressbar`/`steps`, **Claude** y **OpenCode** migran esas familias.
-4. Validación por agente (ver §8).
+1. **KiloCode** — ⏳ pendiente (crear 11 wrappers faltantes).
+2. **OpenCode** — ✅ quick wins completados (53/61). Blockers documentados en §4.
+3. **Claude** — ⏳ pendiente (operations + maintenance, 163 `p-*`).
+4. Una vez publicados los wrappers de KiloCode, resolver blockers cross-module.
 
 ---
 
 ## 6. Quick wins inmediatos (wrapper ya existe — seguros y mecánicos)
 
 ```
-p-tag 123         → lx-tag
-p-skeleton 7      → lx-skeleton
-p-message 4       → lx-message
-p-accordion 6     → lx-accordion  (accordion + accordiontab)
-p-confirmdialog 3 → lx-confirm-dialog
-p-badge 1         → lx-badge
-p-dialog 2        → lx-modal
-p-drawer 1        → lx-sidebar
-p-fieldset 17     → lx-fieldset
-p-divider 13      → lx-divider
-p-panel 4         → lx-panel
-p-image 2         → lx-image
-p-avatar 1        → lx-avatar
-p-toast 2         → lx-toast
-p-rating 6        → lx-rating
-p-carousel 1      → lx-carousel
-p-checkbox 1      → lx-checkbox
-p-fileupload 7    → lx-file-upload
+p-tag 123 (102 remain)  → lx-tag        [OpenCode: −21, resto pendiente Claude/KiloCode]
+p-skeleton 7 (1 remain) → lx-skeleton   [OpenCode: −6, queda 1 en catalog-component-ui (demo)]
+p-message 4             → lx-message    [pendiente Claude]
+p-accordion 6           → lx-accordion  [pendiente Claude]
+p-confirmdialog 3       → lx-confirm-dialog  [⚠️ NO es quick win — service-based, ver §4]
+p-badge 1               → lx-badge      [✅ OpenCode: migrado]
+p-dialog 2              → lx-modal      [pendiente Claude]
+p-drawer 1              → lx-sidebar    [pendiente Claude]
+p-fieldset 17 (11 remain) → lx-fieldset [OpenCode: −6, resto pendiente Claude]
+p-divider 13 (3 remain) → lx-divider    [OpenCode: −10, resto pendiente Claude]
+p-panel 4               → lx-panel      [pendiente Claude]
+p-image 2               → lx-image      [pendiente Claude]
+p-avatar 1              → lx-avatar     [pendiente Claude]
+p-toast 2               → lx-toast      [⚠️ NO es quick win — service-based + falta web impl]
+p-rating 6              → lx-rating     [✅ OpenCode: migrado]
+p-carousel 1            → lx-carousel   [⚠️ NO es quick win — API incompatible, ver §4]
+p-checkbox 1            → lx-checkbox   [pendiente Claude]
+p-fileupload 7          → lx-file-upload [pendiente Claude]
 ```
 
 ---
@@ -211,6 +232,9 @@ p-fileupload 7    → lx-file-upload
 - **`p-tag` severity**: `lx-tag`/`TagBase` normaliza `warning`→`warn`; revisar mapeo en cada migración para no perder estilos.
 - **Wrappers nuevos**: UN solo dueño (`KiloCode`) para evitar colisión y reverts.
 - **`p-fluid`** (purchasing): es clase utilitaria, no componente; revisar antes de "migrar".
+- **`p-confirmdialog` / `p-toast`**: NO son quick wins a pesar de tener wrapper. Usan patrón service-based (`ConfirmationService`/`MessageService`), mientras `lx-confirm-dialog`/`lx-toast` son component-based. Requieren refactor TS completo, no rename.
+- **`lx-toast` no tiene web-implementación**: existe `shared/ui/adaptive/toast/toast.ts` y `mobile/toast/toast.ts`, pero NO hay `shared/ui/web/toast/`. Bloquea migración desktop.
+- **`p-carousel`** en `solicitud-compra-presentacion.html`: usa `(onPage)`, `[page]`, `[numScroll]`, `[showIndicators]`, `#item` template — nada de esto existe en `lx-carousel`.
 
 ---
 
@@ -233,6 +257,38 @@ p-fileupload 7    → lx-file-upload
 
 ## 10. Siguiente paso
 
-1. **KiloCode** arranca creando los 11 wrappers faltantes (`shared/ui`).
-2. **Claude** y **OpenCode** ejecutan quick wins de sus módulos.
-3. Al cerrar cada lote, cada agente actualiza su bloque en este plan con: carpetas cerradas, familias reducidas, blockers, validación.
+1. **OpenCode** ✅ — lote quick wins completado (53/61). Ver §4 para blockers.
+2. **KiloCode** — ⏳ crear 11 wrappers faltantes (`shared/ui`) y migrar `accounting/`.
+3. **Claude** — ⏳ ejecutar quick wins de `operations/` + `maintenance/` (163 `p-*`).
+4. **Post-KiloCode**: resolver blockers cross-module que dependen de wrappers nuevos.
+5. Al cerrar cada lote, cada agente actualiza su bloque en este plan con: carpetas cerradas, familias reducidas, blockers, validación.
+
+---
+
+## Sesión 2026-07-08 (Claude — operations + maintenance, quick wins)
+
+### Ejecutado (build verde `ng build EXIT=0` en cada familia; sin errores en el lane)
+
+**129/163 `p-*` migrados.** Commits: p-tag `e8eb3a87`, fieldset/panel/divider `96813187`, message/dialog/drawer `7da53fb7`, checkbox `8bddb7f8`.
+
+- `p-tag` (102) → `lx-tag`. Incluye tags con contenido proyectado (`#content`, `<span>N</span>`, `<app-icon>`) → inputs `value`/`icon`; chip removible → `lx-tag` + botón hermano. Mapeos `pTooltip`→`tooltip`, drop `size`/`tooltipPosition`, `border-round`→`rounded`.
+- `p-fieldset` (11)→`lx-fieldset`, `p-panel` (4)→`lx-panel` (rename + contenido).
+- `p-divider` (3): vacíos→`lx-divider`; 2 etiquetados (`align=center`+label)→fila flex con `lx-divider`+label.
+- `p-message` (4)→`lx-message`.
+- `p-dialog` (2)→`lx-modal`, `p-drawer` (1)→`lx-sidebar` (`[(visible)]` sobre signal→`[visible]()`/`(visibleChange)`; se pierden `[style]`/width).
+- `p-checkbox` grupo (1, recurrence byDay)→`lx-checkbox` con `isDaySelected`/`toggleDay`.
+- Limpieza: 28 null bytes en `equipos-list.ts`; comentario muerto `<p-confirmdialog>`.
+
+### Diferido en mi lane (con razón)
+
+- **`p-accordion`+`p-accordiontab` (6, 2 archivos: minutas-list, entrega-recepcion-check)**: multi-panel. El wrapper `web/accordion` usa `<ng-content [select]>` dinámico (mismo problema que tenían las tabs). Necesita el **mismo fix DOM-toggle que apliqué a `web/tabs`+`mobile/tabs`** → como `shared/ui` es de **KiloCode**, lo dejo para que lo arregle (o me autorizas a replicarlo en accordion).
+- **`p-fileupload` (7, 5 archivos)**: `app-file-upload` es un componente **dropzone con API distinta**; los usos son `mode="basic"` + template-ref imperativo (`#imgUploader`) → **rework por-archivo**, no mecánico.
+- **`p-image` (2) + `p-avatar` (1)**: todos en `task-engine/tasks/my-tasks/pages/my-tasks-list.html`, que es **HTML huérfano (no existe su `.ts`)** → código muerto, no compila; deuda no real.
+
+### Esperando wrappers de KiloCode (§3)
+
+`p-listbox` (6), `p-multiselect` (4), `p-radiobutton` (2), `p-editor` (2), `p-toolbar` (1), `p-splitbutton` (1), `p-progressbar` (1), `p-menu` (1) = 18.
+
+### Ionic real en mi lane
+
+`operations/task-engine/.../task-list.html` (`ion-input-text`/`ion-input-select` — DS-internos) → revisar mapeo `ili-*` (no urgente, son DS no Ionic crudo).
