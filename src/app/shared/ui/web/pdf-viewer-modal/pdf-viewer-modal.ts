@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { PdfViewerModule } from "ng2-pdf-viewer";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { environment } from "src/environments/environment";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -19,6 +19,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 })
 export class PdfViewerModal implements OnInit, OnDestroy {
   private dialogConfig = inject(DynamicDialogConfig);
+  private dialogRef = inject(DynamicDialogRef);
   private apiResponseS = inject(ApiResponseService);
 
   pdfSrc = signal<Uint8Array | null>(null);
@@ -63,6 +64,10 @@ export class PdfViewerModal implements OnInit, OnDestroy {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 }
 
