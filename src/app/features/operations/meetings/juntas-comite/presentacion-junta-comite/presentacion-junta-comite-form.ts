@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { FileUploadModule } from "primeng/fileupload";
+import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -28,7 +28,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     ReactiveFormsModule,
-    FileUploadModule,
+    InputFile,
     ButtonModule,
     WebButtonLabelSave,
 
@@ -61,11 +61,10 @@ export class PresentacionJuntaComiteForm implements OnInit {
     this.form.controls.id.setValue(this.id);
   }
 
-  onFileSelect(event: any) {
-    const file = event.files[0];
+  onFileSelect(file: File | null) {
+    if (!file) return;
     this.selectedFile = file;
     this.selectedFileName.set(file.name);
-    // Aunque guardamos en selectedFile, tambión podemos ponerlo en el form si queremos validar required
     this.form.patchValue({ archivo: file });
   }
 

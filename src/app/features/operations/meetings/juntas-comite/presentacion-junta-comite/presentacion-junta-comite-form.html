@@ -1,17 +1,12 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <!-- img -->
   <div class="mb-3">
-    <p-fileupload
-      mode="basic"
+    <custom-input-file-signal
       chooseLabel="Seleccionar Archivo"
-      [auto]="false"
-      [multiple]="false"
       accept="application/pdf"
-      (onSelect)="onFileSelect($event)"
-      [fileLimit]="1"
-      [showUploadButton]="false"
-      [showCancelButton]="false"
-    ></p-fileupload>
+      [noMargin]="true"
+      (fileSelected)="onFileSelect($event)"
+    />
 
     <!-- Mostrar nombre del archivo seleccionado -->
     @if (selectedFileName()) {
