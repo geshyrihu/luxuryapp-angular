@@ -145,14 +145,13 @@
           <td>{{ item.ubication }}</td>
           @if (mostrarPreventivos()) {
           <td class="text-center">
-            <p-tag
+            <lx-tag
               [value]="item.maintenanceCalendars?.toString()"
               severity="info"
               class="cursor-pointer"
               (click)="openMantenimientosDialog(item)"
-              pTooltip="Ver Mantenimientos"
-              tooltipPosition="top"
-            />
+              tooltip="Ver Mantenimientos"
+             />
           </td>
           }
           <td class="no-print">

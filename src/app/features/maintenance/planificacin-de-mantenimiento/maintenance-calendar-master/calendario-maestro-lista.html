@@ -12,11 +12,11 @@
         <div class="flex align-items-center gap-2">
           <span>{{ item.month }}</span>
           @if (item.items?.length > 0) {
-          <p-tag
+          <lx-tag
             [value]="item.items.length"
             severity="secondary"
             class="text-xs"
-          />
+           />
           }
         </div>
         @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
@@ -61,12 +61,12 @@
                 {{ evento.task }}
               </div>
               } @if (evento.frequency) {
-              <p-tag
+              <lx-tag
                 [value]="evento.frequency"
                 severity="info"
                 icon="mdi:clock-outline"
                 class="text-xs"
-              />
+               />
               }
             </div>
             <app-icon

@@ -3,9 +3,9 @@
     <iw-button iconClass="pi pi-arrow-left" [text]="true" (clicked)="location.back()" />
     <h2 class="m-0">{{ period()?.name ?? 'Periodo de Estaciones Manuales' }}</h2>
     @if (period()?.isActive) {
-      <p-tag value="Activo" severity="success" />
+      <lx-tag value="Activo" severity="success"  />
     } @else {
-      <p-tag value="Inactivo" severity="danger" />
+      <lx-tag value="Inactivo" severity="danger"  />
     }
   </div>
 
@@ -17,7 +17,7 @@
     <h4 class="mt-0 mb-2">Ciclo Activo</h4>
     @if (activeCycle()) {
       <div class="flex align-items-center gap-3">
-        <p-tag [value]="activeCycle().status" [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'" />
+        <lx-tag [value]="activeCycle().status" [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'"  />
         <span class="text-600">{{ activeCycle().periodStart | date:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | date:'dd/MM/yyyy' }}</span>
         <span class="text-600">{{ activeCycle().items?.length ?? 0 }} equipos</span>
       </div>
@@ -76,7 +76,7 @@
               <td class="p-2"><small>{{ item.location }}</small></td>
               <td class="p-2"><small>{{ item.typeDescription }}</small></td>
               <td class="p-2 text-center">
-                <p-tag [value]="statusLabel(item.cycleStatus)" [severity]="statusSeverity(item.cycleStatus)" />
+                <lx-tag [value]="statusLabel(item.cycleStatus)" [severity]="statusSeverity(item.cycleStatus)"  />
               </td>
               <td class="p-2">
                 <div class="flex gap-1 justify-content-end">

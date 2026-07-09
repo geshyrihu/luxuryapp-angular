@@ -84,10 +84,10 @@
           </td>
           <td>
             <div class="flex flex-column gap-2">
-              <p-tag
+              <lx-tag
                 [value]="item.statusDisplayName"
                 [severity]="getSeverity(item.status)"
-              />
+               />
               <custom-input-select-signal
                 [data]="statusOptions"
                 optionLabel="label"

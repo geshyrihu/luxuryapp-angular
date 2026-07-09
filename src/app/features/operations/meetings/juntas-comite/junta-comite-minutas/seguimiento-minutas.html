@@ -110,7 +110,7 @@
         }
       </td>
       <td style="width: 6%" class="text-center">
-        <p-tag
+        <lx-tag
           [severity]="
             item.status == 0
               ? 'danger'
@@ -118,21 +118,15 @@
               ? 'success'
               : 'secondary'
           "
-          [border-round]="true"
-        >
-          <ng-template #content>
-            <app-icon
-              [icon]="
-                item.status == 0
-                  ? 'mdi:close'
-                  : item.status == 1
-                  ? 'mdi:check'
-                  : 'mdi:ban'
-              "
-              class="text-base"
-            />
-          </ng-template>
-        </p-tag>
+          [rounded]="true"
+          [icon]="
+            item.status == 0
+              ? 'mdi:close'
+              : item.status == 1
+              ? 'mdi:check'
+              : 'mdi:ban'
+          "
+        />
       </td>
       <td style="width: 3%" class="no-print">
         <app-action-menu>
@@ -232,7 +226,7 @@
           [innerHTML]="item.pendiente | sanitizeHtml"
         ></div>
         <p class="text-sm">
-          <p-tag
+          <lx-tag
             [severity]="
               item.status == 0
                 ? 'danger'
@@ -248,7 +242,7 @@
                 : 'Cancelado'
             "
             class="text-xs"
-          />
+           />
         </p>
       
       <ili-action-menu end>

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { Tag } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -27,7 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CommonModule,
     TableModule,
-    Tag,
+    LxTag,
 
     PrimeNgCustomCaption,
   ],

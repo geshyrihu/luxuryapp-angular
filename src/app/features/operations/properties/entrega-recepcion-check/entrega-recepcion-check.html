@@ -15,11 +15,11 @@
         <h5 class="mr-3 text-lg font-semibold">
           Riesgo General del Condominio:
         </h5>
-        <p-tag
+        <lx-tag
           severity="warning"
           value="Medio (Placeholder)"
           class="text-lg"
-        ></p-tag>
+         />
       </div>
     </div>
   </div>
@@ -34,11 +34,11 @@
             <app-icon [icon]="module.icon" class="mr-2" />
             <span class="font-bold">{{ module.name }}</span>
             <!-- Placeholder para semáforo por módulo -->
-            <p-tag
+            <lx-tag
               severity="success"
               value="Completo (Placeholder)"
               class="ml-auto"
-            ></p-tag>
+             />
           </div>
         </ng-template>
 
@@ -57,10 +57,10 @@
               <tr>
                 <td>{{ item.control }}</td>
                 <td>
-                  <p-tag
+                  <lx-tag
                     [severity]="item.type === 'Obligatorio' ? 'danger' : 'info'"
                     [value]="item.type"
-                  ></p-tag>
+                   />
                 </td>
                 <td>
                   <custom-input-select-button-signal

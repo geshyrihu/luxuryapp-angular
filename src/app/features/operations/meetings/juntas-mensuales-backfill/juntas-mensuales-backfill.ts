@@ -2,7 +2,7 @@ import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -52,7 +52,7 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     CardModule,
     WebButtonLabel,
 

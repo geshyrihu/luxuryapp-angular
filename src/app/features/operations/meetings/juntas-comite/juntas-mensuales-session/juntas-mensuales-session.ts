@@ -13,7 +13,7 @@ import { Router, RouterModule } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -124,7 +124,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
     RouterModule,
     TableModule,
     CardModule,
-    TagModule,
+    LxTag,
     WebButtonLabel,
     WebButtonLabelDelete,
     DatePipe,

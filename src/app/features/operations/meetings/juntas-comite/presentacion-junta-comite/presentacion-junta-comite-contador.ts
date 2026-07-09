@@ -5,7 +5,7 @@ import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { FieldsetModule } from "primeng/fieldset";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelViewPdf,
@@ -35,7 +35,7 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
     CommonModule,
     WebButtonLabel,
     NgbTooltipModule,
-    TagModule,
+    LxTag,
     FieldsetModule,
     DataViewMobile,
     WebButtonLabelEdit,

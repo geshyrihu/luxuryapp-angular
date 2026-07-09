@@ -148,12 +148,12 @@
           <!-- Columna: Estatus -->
           <td class="text-center vertical-align-top py-4 pr-4">
             <div class="flex flex-column align-items-center gap-3">
-              <p-tag
+              <lx-tag
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
                 class="px-3 py-1 font-bold text-xs shadow-1"
-              ></p-tag>
+               />
 
               @if (item.status === 0) {
               <div

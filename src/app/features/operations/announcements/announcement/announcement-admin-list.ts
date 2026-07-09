@@ -24,7 +24,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -63,7 +63,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     SelectModule,
     WebButtonLabel,
 
-    TagModule,
+    LxTag,
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

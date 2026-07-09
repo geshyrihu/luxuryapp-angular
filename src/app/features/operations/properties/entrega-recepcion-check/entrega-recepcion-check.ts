@@ -6,7 +6,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { AccordionModule } from "primeng/accordion";
 import { TableModule } from "primeng/table";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -19,7 +19,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     AccordionModule,
     TableModule,
-    TagModule,
+    LxTag,
     CustomInputSelectButton,
     WebButtonLabel,
   ],

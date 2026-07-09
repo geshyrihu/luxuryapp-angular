@@ -214,11 +214,11 @@
         <tr>
           <td>{{ i + 1 }}</td>
           <td>
-            <p-tag
+            <lx-tag
               [severity]="item.fullName ? 'success' : 'danger'"
               [value]="item.period | uppercase"
               class="w-full text-base p-2"
-            />
+             />
           </td>
           <td>{{ item.fullName | uppercase }}</td>
           <td>{{ item.sendDate | uppercase }}</td>

@@ -142,7 +142,7 @@
           <div class="flex flex-column gap-4 pt-3">
             <div class="flex">
               <div class="flex flex-column align-items-center mr-3">
-                <p-tag
+                <lx-tag
                   severity="info"
                   [rounded]="true"
                   class="w-2rem h-2rem text-lg"
@@ -162,12 +162,12 @@
 
             <div class="flex">
               <div class="flex flex-column align-items-center mr-3">
-                <p-tag
+                <lx-tag
                   severity="info"
                   [rounded]="true"
-                  class="w-2rem h-2rem text-lg"
-                  ><span class="font-bold">2</span></p-tag
-                >
+                  class="w-2rem h-2rem text-lg font-bold"
+                  value="2"
+                />
                 <div
                   class="h-full border-left-2 border-300 border-dashed my-2"
                 ></div>
@@ -185,12 +185,12 @@
 
             <div class="flex">
               <div class="flex flex-column align-items-center mr-3">
-                <p-tag
+                <lx-tag
                   severity="warn"
                   [rounded]="true"
-                  class="w-2rem h-2rem text-lg"
-                  ><span class="font-bold">3</span></p-tag
-                >
+                  class="w-2rem h-2rem text-lg font-bold"
+                  value="3"
+                />
                 <div
                   class="h-full border-left-2 border-300 border-dashed my-2"
                 ></div>
@@ -206,12 +206,12 @@
 
             <div class="flex">
               <div class="flex flex-column align-items-center mr-3">
-                <p-tag
+                <lx-tag
                   severity="success"
                   [rounded]="true"
                   class="w-2rem h-2rem text-lg"
-                  ><app-icon [icon]="'mdi:check'" class="font-bold" />
-                </p-tag>
+                  icon="mdi:check"
+                />
               </div>
               <div>
                 <h4 class="m-0 mb-2 text-lg text-green-700">Subir PDF Final</h4>

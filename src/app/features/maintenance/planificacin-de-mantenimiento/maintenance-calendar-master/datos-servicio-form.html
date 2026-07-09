@@ -35,11 +35,11 @@
       class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
     >
       Proveedores @if (proveedores?.length > 0) {
-      <p-tag
+      <lx-tag
         [value]="proveedores.length"
         severity="secondary"
         class="ml-2 text-xs"
-      />
+       />
       }
     </label>
     @if (proveedores?.length > 0) {

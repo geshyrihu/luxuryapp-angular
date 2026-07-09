@@ -38,10 +38,10 @@
       <td>{{ item.code }}</td>
       <td class="text-sm">{{ item.deepLink }}</td>
       <td class="text-center">
-        <p-tag
+        <lx-tag
           [value]="item.isActive ? 'Activa' : 'Inactiva'"
           [severity]="item.isActive ? 'success' : 'danger'"
-        />
+         />
       </td>
       <td>{{ item.printedAt || "Sin impresion" }}</td>
       <td>

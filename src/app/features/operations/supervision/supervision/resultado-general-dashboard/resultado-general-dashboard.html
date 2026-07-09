@@ -139,27 +139,27 @@
       <td>{{ item.customer.label }}</td>
       @if (mostrar) {
       <td class="text-center">
-        <p-tag
+        <lx-tag
           class="w-full text-lg p-1 cursor-pointer"
           severity="info"
           [value]="item.solicitudesTotal"
-        />
+         />
       </td>
       } @if (mostrar) {
       <td class="text-center">
-        <p-tag
+        <lx-tag
           class="w-full text-lg p-1 cursor-pointer"
           severity="success"
           [value]="item.solicitudesAtendidas"
-        />
+         />
       </td>
       } @if (mostrar) {
       <td class="text-center">
-        <p-tag
+        <lx-tag
           class="w-full text-lg p-1 cursor-pointer"
           severity="danger"
           [value]="item.solicitudesPendientes"
-        />
+         />
       </td>
       }
       <td class="text-center">

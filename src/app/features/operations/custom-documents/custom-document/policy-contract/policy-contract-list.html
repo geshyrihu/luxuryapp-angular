@@ -98,11 +98,11 @@
         <!-- Usa las propiedades formateadas -->
       </td>
       <td>
-        <p-tag
+        <lx-tag
           [severity]="getTagSeverity(item.tagLabel)"
           fluid
           [value]="item.tagLabel"
-        />
+         />
       </td>
       <td>{{ item.validity }}</td>
       <td class="text-center">
@@ -168,11 +168,11 @@
       
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
-          <p-tag
+          <lx-tag
             [severity]="getTagSeverity(item.tagLabel)"
             [value]="item.tagLabel"
             class="text-sm"
-          />
+           />
         </div>
         <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
         <p class="text-xs text-500 m-0">

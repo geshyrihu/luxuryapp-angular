@@ -86,16 +86,16 @@
         <td>{{ occupant.phoneNumber }}</td>
         <td>
           @if (occupant.isOwner) {
-          <p-tag value="Propietario" severity="success" class="mr-1"></p-tag>
+          <lx-tag value="Propietario" severity="success" class="mr-1" />
           } @if (occupant.isResident) {
-          <p-tag value="Residente" severity="info"></p-tag>
+          <lx-tag value="Residente" severity="info" />
           }
         </td>
         <td>
           @if (occupant.isActive) {
-          <p-tag value="Só" severity="success"></p-tag>
+          <lx-tag value="Só" severity="success" />
           } @else {
-          <p-tag value="No" severity="danger"></p-tag>
+          <lx-tag value="No" severity="danger" />
           }
         </td>
         <td>

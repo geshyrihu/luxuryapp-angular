@@ -2,7 +2,7 @@ import { CommonModule, Location } from "@angular/common";
 import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -19,7 +19,7 @@ declare class BarcodeDetector {
   selector: "app-fire-inspection-period-estacion-detail",
   templateUrl: "./fire-inspection-period-estacion-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FormsModule, WebButtonLabel, WebButtonIcon, TagModule],
+  imports: [CommonModule, FormsModule, WebButtonLabel, WebButtonIcon, LxTag],
 })
 export class FireInspectionPeriodEstacionDetail implements OnInit, OnDestroy {
   apiResponseS = inject(ApiResponseService);

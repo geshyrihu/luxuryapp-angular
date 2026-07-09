@@ -14,7 +14,7 @@ import { CardModule } from "primeng/card";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
@@ -55,7 +55,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     TableModule,
-    TagModule,
+    LxTag,
     InputTextModule,
     IconFieldModule,
     CardModule,

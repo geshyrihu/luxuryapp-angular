@@ -11,21 +11,21 @@
         />
       </a>
       <div class="flex gap-2">
-        <p-tag
+        <lx-tag
           severity="info"
           [value]="'Total: ' + meetingData()?.issues"
           class="p-2"
-        />
-        <p-tag
+         />
+        <lx-tag
           severity="success"
           [value]="'Concluidos: ' + meetingData()?.concluidos"
           class="p-2"
-        />
-        <p-tag
+         />
+        <lx-tag
           severity="danger"
           [value]="'Pendientes: ' + meetingData()?.pending"
           class="p-2"
-        />
+         />
       </div>
     </div>
 

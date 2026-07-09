@@ -117,7 +117,7 @@
       <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
       <td>
         <div class="cursor-pointer font-center">
-          <p-tag
+          <lx-tag
             [value]="item.typeMaintanceFilter"
             class="ml-auto"
             (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
@@ -126,29 +126,29 @@
               item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
-          />
+           />
         </div>
       </td>
       <td>{{ item.provider }}</td>
       <td>
-        <p-tag
+        <lx-tag
           [value]="getStatusLabel(item.status)"
           [severity]="getBadgeSeverity(item.status)"
-        />
+         />
       </td>
       <td class="text-center">
-        <p-tag
+        <lx-tag
           (click)="onModalFotos(item.id)"
           [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderImg.length"
-        />
+         />
       </td>
       <td class="text-center">
-        <p-tag
+        <lx-tag
           (click)="onModalRpeorteProveedor(item.id)"
           [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderDocument.length"
-        />
+         />
       </td>
       <td class="no-print">
         <div class="flex">
@@ -296,32 +296,32 @@
           CL-ID: {{ item.maintenanceCalendarId }}
         </p>
         <p class="mb-1 text-sm">
-          <p-tag
+          <lx-tag
             [value]="item.typeMaintanceFilter"
             [severity]="
               item.typeMaintanceFilter == 'Preventivo' ? 'success' :
               item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
-          />
+           />
           <span class="ml-2 text-500">({{ item.provider }})</span>
         </p>
 
         <div class="flex flex-wrap mt-2">
-          <p-tag
+          <lx-tag
             [value]="getStatusLabel(item.status)"
             [severity]="getBadgeSeverity(item.status)"
-          />
-          <p-tag
+           />
+          <lx-tag
             (click)="onModalFotos(item.id)"
             [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderImg.length + ' Fotos'"
-          />
-          <p-tag
+           />
+          <lx-tag
             (click)="onModalRpeorteProveedor(item.id)"
             [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderDocument.length + ' Reportes'"
-          />
+           />
         </div>
       </span>
 

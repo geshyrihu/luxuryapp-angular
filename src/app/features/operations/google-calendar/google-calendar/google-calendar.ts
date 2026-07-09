@@ -22,7 +22,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -88,7 +88,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     FullCalendarModule,
     TableModule,
-    TagModule,
+    LxTag,
     PrimeNgCustomCaption,
     DataViewMobile,
     MobileListItem,

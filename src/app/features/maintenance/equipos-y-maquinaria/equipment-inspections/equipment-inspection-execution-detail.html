@@ -6,15 +6,15 @@
       <div class="text-sm text-600">{{ execution.machineryName }}</div>
     </div>
     <div class="col-12 md:col-6 text-left md:text-right">
-      <p-tag
+      <lx-tag
         [value]="statusLabel(execution.status)"
         [severity]="statusTag(execution.status)"
-      />
+       />
       <span class="inline-block ml-2"></span>
-      <p-tag
+      <lx-tag
         [value]="severityLabel(execution.severity)"
         [severity]="severityTag(execution.severity)"
-      />
+       />
     </div>
   </div>
 
@@ -74,10 +74,10 @@
             <div class="text-sm text-600">{{ item.criterionDescription }}</div>
           </td>
           <td class="text-center">
-            <p-tag
+            <lx-tag
               [value]="item.isCompliant ? 'Cumple' : 'No cumple'"
               [severity]="item.isCompliant ? 'success' : 'danger'"
-            />
+             />
           </td>
           <td>{{ item.observation || "-" }}</td>
         </tr>
@@ -111,7 +111,7 @@
     <div class="font-semibold mb-2">Ordenes de servicio relacionadas</div>
     <div class="flex flex-wrap gap-2">
       @for (serviceOrderId of execution.serviceOrderIds; track serviceOrderId) {
-      <p-tag [value]="serviceOrderId" severity="info" />
+      <lx-tag [value]="serviceOrderId" severity="info"  />
       }
     </div>
   </div>

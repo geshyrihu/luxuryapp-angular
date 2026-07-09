@@ -5,7 +5,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppImage } from "@ui/web/image/image";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { firstValueFrom } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -22,7 +22,7 @@ interface ITaskAreaGroup {
   selector: "app-task-pending-board",
   templateUrl: "./task-pending-board.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel, WebButtonIcon, AppImage, TagModule, AppIcon],
+  imports: [WebButtonLabel, WebButtonIcon, AppImage, LxTag, AppIcon],
 })
 export class TaskPendingBoard implements OnInit {
   private readonly route = inject(ActivatedRoute);

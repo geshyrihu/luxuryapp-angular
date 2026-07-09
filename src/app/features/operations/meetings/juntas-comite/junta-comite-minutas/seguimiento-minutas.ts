@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -47,7 +47,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     ActionMenu,
     SanitizeHtmlPipe,
     DataViewMobile,
-    TagModule,
+    LxTag,
     AppIcon,
     MobileListItem,
   ],

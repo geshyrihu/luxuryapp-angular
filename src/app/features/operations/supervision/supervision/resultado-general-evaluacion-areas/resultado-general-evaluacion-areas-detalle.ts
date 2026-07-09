@@ -3,7 +3,7 @@ import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } 
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
@@ -15,7 +15,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TableModule,
-    TagModule,
+    LxTag,
     MultiSelectModule,
     PrimeNgCustomCaption,
     CommonModule,

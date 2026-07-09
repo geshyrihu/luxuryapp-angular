@@ -101,15 +101,15 @@
                 {{ item.scheduledAt | date: "dd/MM/yyyy HH:mm" }}
               </div>
               <div class="flex gap-2 flex-wrap mt-2">
-                <p-tag [value]="item.statusDisplayName" severity="info" />
-                <p-tag
+                <lx-tag [value]="item.statusDisplayName" severity="info"  />
+                <lx-tag
                   [value]="item.hasPresentationLinked ? 'Presentacion ligada' : 'Sin presentacion'"
                   [severity]="item.hasPresentationLinked ? 'success' : 'warn'"
-                />
-                <p-tag
+                 />
+                <lx-tag
                   [value]="item.hasMeetingLinked ? 'Minuta ligada' : 'Sin minuta'"
                   [severity]="item.hasMeetingLinked ? 'success' : 'warn'"
-                />
+                 />
               </div>
             </td>
 
@@ -120,10 +120,10 @@
                 {{ presentation.relevantDate | date: "dd/MM/yyyy" }}
               </div>
               <div class="flex gap-2 align-items-center mt-2">
-                <p-tag
+                <lx-tag
                   [value]="presentation.confidence"
                   [severity]="confidenceSeverity(presentation.confidence)"
-                />
+                 />
                 <span class="text-sm">Score {{ presentation.score }}</span>
               </div>
               <ul class="mt-2 pl-3 text-sm text-color-secondary">
@@ -143,10 +143,10 @@
                 {{ meeting.relevantDate | date: "dd/MM/yyyy" }}
               </div>
               <div class="flex gap-2 align-items-center mt-2">
-                <p-tag
+                <lx-tag
                   [value]="meeting.confidence"
                   [severity]="confidenceSeverity(meeting.confidence)"
-                />
+                 />
                 <span class="text-sm">Score {{ meeting.score }}</span>
               </div>
               <ul class="mt-2 pl-3 text-sm text-color-secondary">

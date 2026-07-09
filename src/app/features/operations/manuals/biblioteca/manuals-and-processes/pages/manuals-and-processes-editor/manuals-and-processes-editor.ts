@@ -18,7 +18,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   WebButtonLabelDelete,
   WebButtonLabelSave,
@@ -83,7 +83,7 @@ import { TooltipModule } from "primeng/tooltip";
     ReactiveFormsModule,
     DragDropModule,
     ButtonModule,
-    TagModule,
+    LxTag,
     CustomInputSelectButton,
     CustomInputSwitch,
     FileUploadModule,

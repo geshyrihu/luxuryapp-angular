@@ -5,7 +5,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
@@ -30,7 +30,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     WebButtonLabel,
     MultiSelectModule,
     CustomInputTextSignal,
-    TagModule,
+    LxTag,
     ProgressBarModule,
     Mesanio,
   ],

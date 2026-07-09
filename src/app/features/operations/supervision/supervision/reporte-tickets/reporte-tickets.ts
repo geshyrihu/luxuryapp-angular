@@ -1,7 +1,7 @@
 import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
 import {
@@ -24,7 +24,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     AppAvatar,
-    TagModule,
+    LxTag,
     CustomInputTextSignal,
     Mesanio,
   ],

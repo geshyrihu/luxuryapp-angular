@@ -67,11 +67,11 @@
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Estado Archivo</span
               >
-              <p-tag
+              <lx-tag
                 [value]="item.archivoContable ? 'CARGADO' : 'PENDIENTE'"
                 [severity]="item.archivoContable ? 'success' : 'danger'"
                 class="text-xs"
-              ></p-tag>
+               />
             </div>
           </div>
 
@@ -187,11 +187,11 @@
                       >Documento de Portada</span
                     >
                   </div>
-                  <p-tag
+                  <lx-tag
                     [severity]="item.archivoPortada ? 'success' : 'warning'"
                     [value]="item.archivoPortada ? 'LISTO' : 'PENDIENTE'"
                     class="text-xs"
-                  ></p-tag>
+                   />
                 </div>
 
                 <!-- Status Row: Operaciones -->
@@ -204,11 +204,11 @@
                       >Reporte de Operaciones</span
                     >
                   </div>
-                  <p-tag
+                  <lx-tag
                     [severity]="item.archivoJunta ? 'success' : 'warning'"
                     [value]="item.archivoJunta ? 'LISTO' : 'PENDIENTE'"
                     class="text-xs"
-                  ></p-tag>
+                   />
                 </div>
               </div>
 
@@ -284,11 +284,11 @@
             </div>
             }
           </div>
-          <p-tag
+          <lx-tag
             [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             class="text-xs"
-          ></p-tag>
+           />
         </div>
 
         <!-- Body -->

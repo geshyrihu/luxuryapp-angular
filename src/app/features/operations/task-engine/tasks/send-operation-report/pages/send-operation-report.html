@@ -109,23 +109,24 @@
 <div class="mt-2">
   <div>
     @for (item of destinatariosAdicionales; track item; let i = $index) {
-    <p-tag
-      value="{{ item.nivelPrivacidad }}/{{ item.email }}"
-      severity="info"
-      class="ml-1 p-2 relative"
-    >
+    <span class="ml-1 relative inline-block">
+      <lx-tag
+        value="{{ item.nivelPrivacidad }}/{{ item.email }}"
+        severity="info"
+        class="p-2"
+      />
       <span
         class="absolute top-0 right-0 -mt-2 -mr-2 p-badge p-badge-success p-badge-border-round"
       >
         <app-icon
           [icon]="'mdi:close'"
           class="cursor-pointer"
-          pTooltip="Descartar correo"
+          tooltip="Descartar correo"
           placement="top"
           (click)="onDeleteDestinatariosAdicionales(i)"
         />
       </span>
-    </p-tag>
+    </span>
     }
   </div>
 </div>

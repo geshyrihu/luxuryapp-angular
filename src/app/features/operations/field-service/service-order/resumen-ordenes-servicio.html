@@ -24,10 +24,10 @@
             <td>{{ item.nameMachinery }}</td>
             <td>{{ item.executionDate | date:'dd/MM/yyyy':'UTC' }}</td>
             <td>
-              <p-tag
+              <lx-tag
                 [value]="item.status"
                 [severity]="getBadgeSeverity(item.status)"
-              />
+               />
             </td>
           </tr>
         </ng-template>

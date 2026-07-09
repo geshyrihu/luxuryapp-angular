@@ -41,11 +41,11 @@
               >
                 <app-icon [icon]="'mdi:grid'" class="text-primary" />
                 <span class="font-bold text-sm">Todos</span>
-                <p-tag
+                <lx-tag
                   [value]="allData.length"
                   severity="secondary"
                   class="text-xs py-0"
-                ></p-tag>
+                 />
               </div>
 
               @for (mod of uniqueModules(); track mod.name) {
@@ -159,11 +159,11 @@
       >
         <!-- Module -->
         <td class="pl-3 vertical-align-middle">
-          <p-tag
+          <lx-tag
             [value]="item.module"
             [severity]="getModuleSeverity(item.module)"
             class="text-xs uppercase font-bold px-2 py-1"
-          ></p-tag>
+           />
         </td>
 
         <!-- Date -->
@@ -230,12 +230,12 @@
 
         <!-- Status -->
         <td class="text-center vertical-align-middle">
-          <p-tag
+          <lx-tag
             [value]="item.status"
             [severity]="getSeverity(item.status)"
-            [border-round]="true"
+            [rounded]="true"
             class="text-xs font-bold px-2"
-          ></p-tag>
+           />
         </td>
 
         <!-- Days -->

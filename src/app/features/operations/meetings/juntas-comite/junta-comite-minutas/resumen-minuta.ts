@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { CardModule } from "primeng/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -36,7 +36,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     CommonModule,
     TableModule,
     SanitizeHtmlPipe,
-    TagModule,
+    LxTag,
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

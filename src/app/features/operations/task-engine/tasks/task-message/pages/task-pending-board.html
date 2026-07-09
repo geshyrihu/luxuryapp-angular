@@ -95,10 +95,10 @@
             </p>
           </div>
         </div>
-        <p-tag
+        <lx-tag
           [value]="group.tasks.length + ' tarea(s)'"
           severity="secondary"
-        />
+         />
       </div>
 
       <!-- Tareas del area -->
@@ -122,10 +122,10 @@
                   <span class="text-xs font-bold text-color-secondary"
                     >{{ task.folio }}</span
                   >
-                  <p-tag
+                  <lx-tag
                     [value]="statusLabel(task.status)"
                     [severity]="statusSeverity(task.status)"
-                  />
+                   />
                   @if (task.assignee) {
                   <span class="text-xs text-color-secondary"
                     ><app-icon [icon]="'mdi:account'" class="mr-1" />{{

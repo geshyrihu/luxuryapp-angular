@@ -19,7 +19,7 @@ import { MenuItem } from "primeng/api";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu, MenuModule } from "primeng/menu";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -42,7 +42,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     WebButtonLabelItem,
     TooltipModule,
     MenuModule,
-    TagModule,
+    LxTag,
     DataViewMobile,  ],
 })
 export class CalendarioMaestroLista implements OnInit {

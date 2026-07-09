@@ -10,7 +10,7 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { FieldsetModule } from "primeng/fieldset";
 import { PanelModule } from "primeng/panel";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-manuals-and-processes-guide",
@@ -25,7 +25,7 @@ import { TagModule } from "primeng/tag";
     CardModule,
     PanelModule,
     DividerModule,
-    TagModule,
+    LxTag,
     FieldsetModule,
    AppIcon],
 })

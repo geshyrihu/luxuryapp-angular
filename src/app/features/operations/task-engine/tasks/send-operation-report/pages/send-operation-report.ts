@@ -10,7 +10,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
@@ -35,7 +35,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     CardModule,
     TableModule,
     CustomInputTextSignal,
-    TagModule,
+    LxTag,
     TooltipModule,
     CustomInputCheckSignal,
     WebButtonLabel,

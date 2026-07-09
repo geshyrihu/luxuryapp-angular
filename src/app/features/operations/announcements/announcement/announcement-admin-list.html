@@ -93,7 +93,7 @@
       <td>{{ item.folio }}</td>
       <td>{{ item.title }}</td>
       <td>
-        <p-tag
+        <lx-tag
           [value]="item.announcementType"
           [severity]="
             item.announcementType === 'Urgente'
@@ -104,10 +104,10 @@
                   ? 'primary'
                   : 'secondary'
           "
-        ></p-tag>
+         />
       </td>
       <td>
-        <p-tag
+        <lx-tag
           [value]="item.status"
           [severity]="
             item.status === 'Publicado'
@@ -118,7 +118,7 @@
                   ? 'warning'
                   : 'secondary'
           "
-        ></p-tag>
+         />
       </td>
       <td>{{ item.customerName }}</td>
       <td>{{ item.publishedAt | date: "dd/MM/yyyy" }}</td>
@@ -211,7 +211,7 @@
       
         <div class="flex justify-content-between align-items-center mb-2">
           <h2 class="font-bold m-0 text-base">{{ item.title }}</h2>
-          <p-tag
+          <lx-tag
             [value]="item.status"
             [severity]="
               item.status === 'Publicado'
@@ -222,7 +222,7 @@
                     ? 'warning'
                     : 'secondary'
             "
-          ></p-tag>
+           />
         </div>
         <p class="text-medium text-500 m-0 text-sm mb-1">
           <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Publicado: {{
@@ -232,7 +232,7 @@
           <app-icon [icon]="'mdi:office-building'" class="mr-1" /> Cliente: {{
           item.customerName }}
         </p>
-        <p-tag
+        <lx-tag
           [value]="item.announcementType"
           class="mt-2 block"
           [severity]="
@@ -244,7 +244,7 @@
                   ? 'primary'
                   : 'secondary'
           "
-        ></p-tag>
+         />
       
 
       <div end>

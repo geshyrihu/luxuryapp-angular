@@ -20,7 +20,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -39,7 +39,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     WebButtonLabel,
     CustomInputTextSignal,
     CustomInputCheckSignal,
-    TagModule,
+    LxTag,
     MessageModule,
 
   ],

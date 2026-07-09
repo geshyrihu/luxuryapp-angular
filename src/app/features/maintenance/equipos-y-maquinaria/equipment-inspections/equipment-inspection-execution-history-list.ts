@@ -12,7 +12,7 @@ import {
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { Tag } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -36,7 +36,7 @@ import { TooltipModule } from "primeng/tooltip";
     TooltipModule,
     CommonModule,
     TableModule,
-    Tag,
+    LxTag,
     PrimeNgCustomCaption,
   ],
 })

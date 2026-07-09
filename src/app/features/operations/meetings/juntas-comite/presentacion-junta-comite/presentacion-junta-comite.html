@@ -66,11 +66,11 @@
                 >Enviado Comité</span
               >
               <div class="flex align-items-center gap-2">
-                <p-tag
+                <lx-tag
                   [value]="item.enviadoComite ? 'Sí' : 'NO'"
                   [severity]="item.enviadoComite ? 'success' : 'warning'"
                   class="text-xs"
-                ></p-tag>
+                 />
                 @if (item.enviadoComite) {
                 <app-icon icon="mdi:check-circle" class="text-green-500" />
                 }
@@ -390,11 +390,11 @@
             </div>
             }
           </div>
-          <p-tag
+          <lx-tag
             [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             class="text-xs"
-          ></p-tag>
+           />
         </div>
 
         <!-- Body -->

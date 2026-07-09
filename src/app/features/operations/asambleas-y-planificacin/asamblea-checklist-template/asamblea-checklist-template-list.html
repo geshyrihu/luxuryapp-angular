@@ -58,10 +58,10 @@
       <td>{{ item.offsetDaysFromMeeting }}</td>
       <td>{{ item.version }}</td>
       <td>
-        <p-tag
+        <lx-tag
           [severity]="severity(item.isActive)"
           [value]="item.isActive ? 'Activo' : 'Inactivo'"
-        />
+         />
       </td>
       <td class="no-print">
         <div class="flex">

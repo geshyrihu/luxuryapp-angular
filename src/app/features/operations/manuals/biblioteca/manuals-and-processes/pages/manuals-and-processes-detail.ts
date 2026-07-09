@@ -3,7 +3,7 @@ import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } 
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppImage } from "@ui/web/image/image";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -27,7 +27,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     AppImage,
-    TagModule,
+    LxTag,
     DiagramPreviewComponent,
     AppIcon,
     WebButtonLabel,

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TarjetaProveedor } from "src/app/features/purchasing/providers/provider/provider-card";
@@ -8,7 +8,7 @@ import { TarjetaProveedor } from "src/app/features/purchasing/providers/provider
   selector: "app-datos-servicio-addoredit",
   templateUrl: "./datos-servicio-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TagModule],
+  imports: [LxTag],
 })
 export class DatosServicioAddOrEdit implements OnInit {
   config = inject(DynamicDialogConfig);

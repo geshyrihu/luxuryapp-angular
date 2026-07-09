@@ -48,11 +48,11 @@
         ></p>
       </td>
       <td class="text-sm text-center">
-        <p-tag
+        <lx-tag
           [value]="detalle.status | uppercase"
           [severity]="detalle.status == 0 ? 'danger' : detalle.status == 1 ? 'success' : 'secondary'"
           class="p-2 text-sm"
-        />
+         />
       </td>
       <td class="text-sm">{{ detalle.deliveryDate }}</td>
       <td class="text-sm">

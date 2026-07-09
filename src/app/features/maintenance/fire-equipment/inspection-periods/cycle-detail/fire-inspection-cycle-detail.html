@@ -8,7 +8,7 @@
             {{ cycle().periodStart | date:'dd-MMM-yy' }} &mdash; {{ cycle().periodEnd | date:'dd-MMM-yy' }}
           </small>
         </div>
-        <p-tag [value]="cycle().status" [severity]="cycleSeverity(cycle().status)" />
+        <lx-tag [value]="cycle().status" [severity]="cycleSeverity(cycle().status)"  />
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@
             <td class="p-2">{{ item.location }}</td>
             <td class="p-2"><small>{{ item.localCode }}</small></td>
             <td class="p-2">
-              <p-tag [value]="item.status" [severity]="statusSeverity(item.status)" />
+              <lx-tag [value]="item.status" [severity]="statusSeverity(item.status)"  />
             </td>
             <td class="p-2">
               <small>{{ item.inspectedAt | date:'dd-MMM-yy HH:mm' }}</small>
@@ -88,7 +88,7 @@
         
           <h3>{{ item.location }} <small class="text-400">{{ item.equipmentType }}</small></h3>
           <p>
-            <p-tag [value]="item.status" [severity]="statusSeverity(item.status)" />
+            <lx-tag [value]="item.status" [severity]="statusSeverity(item.status)"  />
             @if (item.inspectedAt) {
               &nbsp; {{ item.inspectedAt | date:'dd-MMM-yy HH:mm' }}
             }

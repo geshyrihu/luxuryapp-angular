@@ -4,7 +4,7 @@ import {
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -19,7 +19,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     CardModule,
     WebButtonLabel,
     AppAvatar,
-    TagModule,
+    LxTag,
     AppIcon,
   ],
 })

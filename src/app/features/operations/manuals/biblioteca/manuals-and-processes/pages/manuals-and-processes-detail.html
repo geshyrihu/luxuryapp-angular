@@ -229,10 +229,10 @@
             </p>
           </div>
         </div>
-        <p-tag
+        <lx-tag
           [value]="(manual()!.pasos?.length || 0) + ' pasos'"
           severity="secondary"
-        ></p-tag>
+         />
       </div>
 
       @if (manual()!.pasos?.length) {
@@ -259,7 +259,7 @@
               <div class="flex align-items-center gap-2 flex-wrap mb-2">
                 <h4 class="text-base text-900 m-0">{{ paso.titulo }}</h4>
                 @for (nombre of paso.responsableRoleNombres; track nombre) {
-                <p-tag [value]="nombre" severity="secondary"></p-tag>
+                <lx-tag [value]="nombre" severity="secondary" />
                 }
               </div>
               @if (paso.descripcion) {

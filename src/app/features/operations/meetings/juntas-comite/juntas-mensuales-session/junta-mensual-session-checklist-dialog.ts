@@ -5,7 +5,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -60,7 +60,7 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     CustomInputSelectSignal,
     WebButtonLabel,
-    TagModule,
+    LxTag,
     DatePipe,
   ],
 })

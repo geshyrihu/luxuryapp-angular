@@ -113,11 +113,11 @@
               {{ paso.responsableRoleNombre }}
             </div>
             } @if (paso.tipoNota !== 0) {
-            <p-tag
+            <lx-tag
               [value]="tipoNotaLabel(paso.tipoNota)"
               [severity]="tipoNotaSeverity(paso.tipoNota)"
               class="text-xs mt-1"
-            />
+             />
             }
           </div>
 
