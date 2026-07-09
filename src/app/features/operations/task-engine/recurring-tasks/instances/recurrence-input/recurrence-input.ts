@@ -19,7 +19,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
+import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { RadioButtonModule } from "primeng/radiobutton";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 
@@ -51,7 +51,7 @@ interface IRecurrenceForm {
     ReactiveFormsModule,
     FormsModule,
     CustomInputNumberSignal,
-    CheckboxModule,
+    LxCheckbox,
     RadioButtonModule,
     CustomInputSelectSignal,
   ],
@@ -190,6 +190,18 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
     } else {
       this.recurrenceForm.enable();
     }
+  }
+
+  isDaySelected(value: string): boolean {
+    return (this.recurrenceForm.controls.byDay.value ?? []).includes(value);
+  }
+
+  toggleDay(value: string, checked: boolean): void {
+    const current = this.recurrenceForm.controls.byDay.value ?? [];
+    const next = checked
+      ? [...current, value]
+      : current.filter((v) => v !== value);
+    this.recurrenceForm.controls.byDay.setValue(next);
   }
 
   onFrequencyChange(event: any): void {

@@ -40,12 +40,11 @@
       <div class="flex flex-wrap gap-3">
         @for (day of weekDays; track day.value) {
         <div class="flex align-items-center">
-          <p-checkbox
-            [formControl]="recurrenceForm.controls.byDay"
-            [value]="day.value"
+          <lx-checkbox
+            [checked]="isDaySelected(day.value)"
+            (checkedChange)="toggleDay(day.value, $event)"
             [inputId]="day.value"
-            name="weekDaysGroup"
-          ></p-checkbox>
+          />
           <label [for]="day.value" class="ml-2 cursor-pointer"
             >{{ day.label }}</label
           >
