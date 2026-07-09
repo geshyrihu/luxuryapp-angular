@@ -6,7 +6,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
-import { AccordionModule } from "primeng/accordion";
+import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -72,7 +72,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ButtonModule,
     NgbTooltipModule,
     TooltipModule,
-    AccordionModule,
+    LxAccordion,
     ActionMenu,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

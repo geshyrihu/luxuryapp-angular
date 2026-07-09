@@ -18,7 +18,8 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MenuItem } from "primeng/api";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { Menu, MenuModule } from "primeng/menu";
+import { Menu } from "primeng/menu";
+import { LxMenu } from "@ui/adaptive/menu/menu";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -41,7 +42,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     WebButtonLabelAdd,
     WebButtonLabelItem,
     TooltipModule,
-    MenuModule,
+    LxMenu,
     LxTag,
     DataViewMobile,  ],
 })

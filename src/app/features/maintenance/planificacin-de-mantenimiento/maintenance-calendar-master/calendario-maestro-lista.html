@@ -32,7 +32,7 @@
           <div class="flex align-items-start gap-2">
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
             <div class="flex-shrink-0">
-              <p-menu #menu [model]="menuItems()" [popup]="true"></p-menu>
+              <lx-menu #menu [model]="menuItems()" [popup]="true"></lx-menu>
               <il-button-item
                 iconClass="mdi:menu"
                 (clicked)="onSelectItem(evento, menu, $event)"

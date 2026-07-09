@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 // PrimeNG Modules
-import { AccordionModule } from "primeng/accordion";
+import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { TableModule } from "primeng/table";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -17,7 +17,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
-    AccordionModule,
+    LxAccordion,
     TableModule,
     LxTag,
     CustomInputSelectButton,

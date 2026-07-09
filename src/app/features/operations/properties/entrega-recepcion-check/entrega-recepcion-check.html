@@ -26,23 +26,12 @@
 
   <!-- Acordeón con los Módulos de Auditoría -->
   <div class="card">
-    <p-accordion [multiple]="true">
-      @for (module of auditModules; track module.name) {
-      <p-accordiontab>
-        <ng-template #header>
-          <div class="flex align-items-center w-full">
-            <app-icon [icon]="module.icon" class="mr-2" />
-            <span class="font-bold">{{ module.name }}</span>
-            <!-- Placeholder para semáforo por módulo -->
-            <lx-tag
-              severity="success"
-              value="Completo (Placeholder)"
-              class="ml-auto"
-             />
-          </div>
-        </ng-template>
-
-        <div>
+    @for (module of auditModules; track module.name) {
+    <lx-accordion
+      class="block mb-2"
+      [items]="[{ id: module.name, title: module.name, icon: module.icon }]"
+    >
+        <div [attr.accordion]="module.name">
           <p-table [value]="module.items" class="p-datatable-sm">
             <ng-template #header>
               <tr>
@@ -102,9 +91,8 @@
             </ng-template>
           </p-table>
         </div>
-      </p-accordiontab>
-      }
-    </p-accordion>
+    </lx-accordion>
+    }
   </div>
 
   <!-- Botones de Acción -->
