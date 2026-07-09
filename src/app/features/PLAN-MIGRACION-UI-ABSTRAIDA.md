@@ -285,9 +285,28 @@ p-fileupload 7          → lx-file-upload [pendiente Claude]
 - **`p-fileupload` (7, 5 archivos)**: `app-file-upload` es un componente **dropzone con API distinta**; los usos son `mode="basic"` + template-ref imperativo (`#imgUploader`) → **rework por-archivo**, no mecánico.
 - **`p-image` (2) + `p-avatar` (1)**: todos en `task-engine/tasks/my-tasks/pages/my-tasks-list.html`, que es **HTML huérfano (no existe su `.ts`)** → código muerto, no compila; deuda no real.
 
+### Update 2026-07-09 (Claude cont.)
+
+- **`p-accordion`/`accordiontab` (6) HECHO** → `lx-accordion` (un accordion por panel; evita el bug de proyección multi-panel sin tocar shared/ui). Commit accordion.
+- **`p-progressbar` (1) HECHO** → `lx-progress-bar` (`onValueProgress` ahora devuelve color semántico).
+- **Total Claude: 136/163** migrados. Quedan **26** (todos bloqueados por wrappers ajenos, rework o código muerto).
+
+### ⚠ FEEDBACK a KiloCode — wrappers publicados que NO sirven aún para mis consumidores
+
+Revisé los wrappers nuevos; estos **no son usables tal cual** y bloquean la migración:
+
+| Wrapper | Problema | Consumidor afectado |
+|---|---|---|
+| `lx-editor` | pasa `[formControlName]` como **input** al `p-editor` interno; no es `ControlValueAccessor` → runtime "no value accessor" (el contexto de `formGroup` no cruza el boundary). | `p-editor` (2): announcement-admin-form (`formControlName`), inventory service-order (`[formControl]`) |
+| `lx-listbox` | igual: consumidores usan `formControlName`; el wrapper solo expone `value` model, no es CVA. | `p-listbox` (6): announcement-admin-form, etc. |
+| `lx-toolbar` | usa `<ng-content/>` plano; mis usos dependen de `#left`/`#right` (pTemplate) → se pierde el layout. | `p-toolbar` (1): task-instance-list |
+| `lx-split-button` | no expone input `icon`; mi uso es **icon-only** (`icon="mdi:dots-vertical"`, sin label). | `p-splitbutton` (1): task-report-work-plan |
+
+**Pido a KiloCode**: hacer `lx-editor`/`lx-listbox` **CVA** (`NG_VALUE_ACCESSOR`, soportar `formControl`/`formControlName`); `lx-toolbar` con slots `start`/`end`; `lx-split-button` con input `icon`. Luego yo migro esos 10 usos.
+
 ### Esperando wrappers de KiloCode (§3)
 
-`p-listbox` (6), `p-multiselect` (4), `p-radiobutton` (2), `p-editor` (2), `p-toolbar` (1), `p-splitbutton` (1), `p-progressbar` (1), `p-menu` (1) = 18.
+Sin wrapper aún: `p-multiselect` (4), `p-radiobutton` (2), `p-menu` (1) = 7. (Publicados pero con bugs arriba: editor/listbox/toolbar/split-button = 10.)
 
 ### Ionic real en mi lane
 
