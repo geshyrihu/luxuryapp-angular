@@ -109,14 +109,10 @@
   </app-data-view-mobile>
 </div>
 
-<p-dialog
+<lx-modal
   header="?? Asistente Legal Virtual"
-  [(visible)]="showConsultationDialog"
-  [modal]="true"
-  [style]="{width: '50vw'}"
-  [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-  [draggable]="false"
-  [resizable]="false"
+  [visible]="showConsultationDialog()"
+  (visibleChange)="showConsultationDialog.set($event)"
 >
   <div class="flex flex-column">
     <div class="p-message p-message-info border-none m-0 shadow-none">
@@ -173,4 +169,4 @@
       (clicked)="consultAi()"
     />
   </ng-template>
-</p-dialog>
+</lx-modal>

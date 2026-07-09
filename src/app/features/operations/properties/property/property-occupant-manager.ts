@@ -18,7 +18,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
@@ -40,7 +40,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     CustomInputTextSignal,
     CustomInputCheckSignal,
     LxTag,
-    MessageModule,
+    LxMessage,
 
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

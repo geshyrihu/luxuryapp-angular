@@ -28,8 +28,8 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
-import { Dialog } from "primeng/dialog";
-import { DrawerModule } from "primeng/drawer";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
@@ -118,8 +118,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     SanitizeHtmlPipe,
     CurrencyMexicoPipe,
     DataViewMobile,
-    Dialog,
-    DrawerModule,
+    LxModal,
+    LxSidebar,
     LxTag,
     CalendarioMaestroReadonly,
   ],

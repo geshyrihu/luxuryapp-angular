@@ -37,7 +37,7 @@
   <app-spinner />
 </div>
 } @else if (cb_existing_Participant().length === 0) {
-<p-message severity="info" text="No hay integrantes."></p-message>
+<lx-message severity="info" text="No hay integrantes."></lx-message>
 } @else {
 <div class="flex flex-column mt-3">
   @for (item of cb_existing_Participant(); track item.id) {

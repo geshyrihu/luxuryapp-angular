@@ -3,7 +3,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { DialogModule } from "primeng/dialog";
+import { LxModal } from "@ui/adaptive/modal/modal";
 import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
@@ -42,7 +42,7 @@ import { TooltipModule } from "primeng/tooltip";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     WebButtonLabelViewPdf,
-    DialogModule,
+    LxModal,
     CustomInputTextAreaSignal,
     ReactiveFormsModule,    WebButtonLabelViewPdf,
     MobileListItem,

@@ -218,14 +218,10 @@
     }
 
     <!-- Modal: Mantenimientos Calendarizados -->
-    <p-dialog
+    <lx-modal
       [visible]="mantenimientosVisible()"
       (visibleChange)="mantenimientosVisible.set($event)"
       [header]="(selectedEquipo()?.nameMachinery ?? '') + ' — Mantenimientos'"
-      [modal]="true"
-      [style]="{ width: '95vw', maxWidth: '1400px', minHeight: '60vh' }"
-      [draggable]="false"
-      [resizable]="false"
     >
       @if (selectedEquipo(); as equipo) {
       <div class="flex justify-content-end mb-3">
@@ -302,21 +298,20 @@
         Sin servicios de Mantenimiento registrados.
       </div>
       } }
-    </p-dialog>
+    </lx-modal>
   </div>
 
   <!-- ================================================================== -->
   <!-- DRAWER: Calendario General de Mantenimiento (solo consulta)        -->
   <!-- ================================================================== -->
-  <p-drawer
+  <lx-sidebar
     [visible]="calendarioGuiaVisible()"
     (visibleChange)="calendarioGuiaVisible.set($event)"
     header="Calendario General de Mantenimiento"
     position="right"
-    [style]="{ width: '90vw', maxWidth: '1200px' }"
   >
     <app-calendario-maestro-readonly />
-  </p-drawer>
+  </lx-sidebar>
 
   <!-- ================================================================== -->
   <!-- VISTA MÓVIL                                                          -->

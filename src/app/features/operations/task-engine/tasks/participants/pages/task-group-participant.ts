@@ -3,7 +3,7 @@ import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy }
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -27,7 +27,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     CardModule,
     TableModule,
     AppSpinner,
-    MessageModule,
+    LxMessage,
     CustomInputSelectSignal,
     WebButtonLabelEdit,
     CustomInputAutoComplete,

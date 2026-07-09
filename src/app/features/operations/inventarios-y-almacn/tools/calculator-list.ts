@@ -1,13 +1,13 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { MessageModule } from "primeng/message";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 @Component({
   selector: "app-calculator-list",
   templateUrl: "./calculator-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, MessageModule, CardModule, CustomInputNumberSignal],
+  imports: [FormsModule, LxMessage, CardModule, CustomInputNumberSignal],
 })
 export class CalculatorList {
   precio: number = 0;
