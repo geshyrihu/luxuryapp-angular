@@ -170,13 +170,11 @@
         } @if (item.porcentajeEjecucionValue > 0) {
         <div>
           <div>
-            <p-progressbar
+            <lx-progress-bar
               [value]="item.porcentajeEjecucionValue"
-              [style]="{'height': '24px'}"
               [showValue]="true"
               [color]="onValueProgress(item.porcentajeEjecucionValue)"
-            >
-            </p-progressbar>
+            />
           </div>
         </div>
         }

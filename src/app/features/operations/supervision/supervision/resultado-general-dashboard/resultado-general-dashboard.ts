@@ -3,7 +3,7 @@ import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } 
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
-import { ProgressBarModule } from "primeng/progressbar";
+import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -31,7 +31,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     MultiSelectModule,
     CustomInputTextSignal,
     LxTag,
-    ProgressBarModule,
+    LxProgressBar,
     Mesanio,
   ],
 })
@@ -128,13 +128,13 @@ export class ResultadoGeneralDashboard implements OnInit {
   onValueProgress(value: number) {
     let color = "";
     if (value <= 94) {
-      color = "#EF4444"; // red-500
+      color = "danger"; // rojo
     }
     if (value >= 100) {
-      color = "#22C55E"; // green-500
+      color = "success"; // verde
     }
     if (value >= 95 && value <= 99) {
-      color = "#F59E0B"; // orange-500
+      color = "warning"; // naranja
     }
     return color;
   }
