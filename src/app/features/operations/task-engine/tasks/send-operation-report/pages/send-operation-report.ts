@@ -1,32 +1,38 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ConfirmationService } from "primeng/api";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { ConfirmationService } from "primeng/api";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IDestinatariosMailReporte } from "src/app/core/interfaces/destinatarios-mail-reporte.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-send-operation-report",
   imports: [
@@ -92,9 +98,11 @@ export class SendOperationReport {
 
   onLoadSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<
-        ISelectItem[]
-      >(Endpoints.ResidentesEdificio.selectByCustomer(this.customerIdS.customerId()))
+      .onGetSelectItem<ISelectItem[]>(
+        Endpoints.ResidentesEdificio.selectByCustomer(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((response: any) => {
         const items = response.map((item: any) => ({
           ...item,

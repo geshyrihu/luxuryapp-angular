@@ -1,7 +1,12 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-tarjeta-producto",
   templateUrl: "./tarjeta-producto.html",
@@ -21,12 +26,3 @@ export class TarjetaProducto implements OnInit {
     });
   }
 }
-
-
-
-
-
-
-
-
-

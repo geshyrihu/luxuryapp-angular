@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskMessageOperationReport } from './task-operation-report';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CustomToastService } from 'src/app/core/services/custom-toast.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
-import { TaskGroupService } from 'src/app/features/operations/task-engine/tasks/task.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { EITaskMessageDTOStatus } from '../../task-message-status.enum';
+import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { vi } from "vitest";
+import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
+import { TaskMessageOperationReport } from "./task-operation-report";
 
-describe('TaskMessageOperationReport', () => {
+describe("TaskMessageOperationReport", () => {
   let component: TaskMessageOperationReport;
   let fixture: ComponentFixture<TaskMessageOperationReport>;
   let mockApiResponseS: any;
@@ -30,25 +30,25 @@ describe('TaskMessageOperationReport', () => {
       onGetList: vi.fn().mockResolvedValue([]),
       onGetItem: vi.fn().mockResolvedValue(true),
     };
-    mockAuthS = { applicationUserId: 'user-001' };
+    mockAuthS = { applicationUserId: "user-001" };
     mockCustomToastS = {};
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeLg: '1200px',
-      sizeFull: '100%',
+      sizeLg: "1200px",
+      sizeFull: "100%",
     };
-    mockTableScrollHeightS = { scrollHeight: signal('600px') };
+    mockTableScrollHeightS = { scrollHeight: signal("600px") };
     mockTaskGroupService = {
       taskGroupMessageStatus: 2,
       setStatus: vi.fn(),
     };
-    mockActivatedRoute = { snapshot: { params: { ticketGroupId: 'group-1' } } };
+    mockActivatedRoute = { snapshot: { params: { ticketGroupId: "group-1" } } };
     mockRouter = { navigate: vi.fn() };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskMessageOperationReport, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskMessageOperationReport],
@@ -70,36 +70,37 @@ describe('TaskMessageOperationReport', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default values', () => {
+  it("should have default values", () => {
     expect(component.status).toBe(EITaskMessageDTOStatus.Cerrado);
     expect(component.dataSignal()).toEqual([]);
     expect(component.loading()).toBe(true);
-    expect(component.ticketGroupId).toBe('group-1');
+    expect(component.ticketGroupId).toBe("group-1");
   });
 
-  it('onLoadData should call api and set data', async () => {
-    const mockData = [{ id: '1', isRelevant: true }];
+  it("onLoadData should call api and set data", async () => {
+    const mockData = [{ id: "1", isRelevant: true }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].isRelevantControl).toBeDefined();
   });
 
-  it('onPreviewClicked should navigate to preview', () => {
+  it("onPreviewClicked should navigate to preview", () => {
     component.onPreviewClicked();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/tickets/weekly-report-preview']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith([
+      "/tickets/weekly-report-preview",
+    ]);
   });
 
-  it('onChangeStatus should update status and load data', () => {
+  it("onChangeStatus should update status and load data", () => {
     component.onChangeStatus(1);
     expect(component.status).toBe(1);
   });
 });
-

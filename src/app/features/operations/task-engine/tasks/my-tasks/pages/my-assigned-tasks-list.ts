@@ -1,34 +1,41 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
-import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/card-employee";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PrintService } from "src/app/core/services/print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { InitialsAbbrPipe } from "src/app/shared/pipes/initials-abbr.pipe";
 import Swal from "sweetalert2";
 import { TaskClose } from "../../components/task-close";
 import { TaskReopen } from "../../components/task-reopen";

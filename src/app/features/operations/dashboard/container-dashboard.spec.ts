@@ -1,31 +1,35 @@
-import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
+import { IonicMocks } from "src/app/core/testing/ionic-mocks";
 
-vi.mock('@ionic/angular/standalone', () => ({ ...IonicMocks }));
-vi.mock('@ionic/core', () => ({}));
-vi.mock('@ionic/core/components', () => ({}));
+vi.mock("@ionic/angular/standalone", () => ({ ...IonicMocks }));
+vi.mock("@ionic/core", () => ({}));
+vi.mock("@ionic/core/components", () => ({}));
 vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class {},
 }));
 vi.mock("heic2any", () => ({ default: vi.fn() }));
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { computed, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
-import { ToastController } from '@ionic/angular/standalone';
-import { EApplicationRole } from 'src/app/core/enums/asp-net-roles.enum';
-import { AspRoleService } from 'src/app/core/services/asp-role.service';
-import { ContainerDashboard } from './container-dashboard';
-import { DashboardPendingItems } from './dashboard-pending-items';
+import { computed, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute } from "@angular/router";
+import { ToastController } from "@ionic/angular/standalone";
+import { MessageService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ContainerDashboard } from "./container-dashboard";
+import { DashboardPendingItems } from "./dashboard-pending-items";
 
-describe('ContainerDashboard', () => {
+describe("ContainerDashboard", () => {
   let component: ContainerDashboard;
   let fixture: ComponentFixture<ContainerDashboard>;
   let mockAspRoleS: any;
 
   beforeEach(async () => {
-    mockAspRoleS = { hasAny: vi.fn(), anyOf: vi.fn(() => computed(() => false)), roleSignal: vi.fn(() => signal(null)) };
+    mockAspRoleS = {
+      hasAny: vi.fn(),
+      anyOf: vi.fn(() => computed(() => false)),
+      roleSignal: vi.fn(() => signal(null)),
+    };
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -44,30 +48,29 @@ describe('ContainerDashboard', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render MiEdificio when user is Condomino', () => {
+  it("should render MiEdificio when user is Condomino", () => {
     mockAspRoleS.hasAny.mockImplementation((roles: EApplicationRole[]) => {
       return roles.includes(EApplicationRole.Condomino);
     });
     fixture.detectChanges();
-    expect(component.componentToRender().name).toContain('MiEdificio');
+    expect(component.componentToRender().name).toContain("MiEdificio");
   });
 
-  it('should render MiEdificio when user is Comite', () => {
+  it("should render MiEdificio when user is Comite", () => {
     mockAspRoleS.hasAny.mockImplementation((roles: EApplicationRole[]) => {
       return roles.includes(EApplicationRole.Comite);
     });
     fixture.detectChanges();
-    expect(component.componentToRender().name).toContain('MiEdificio');
+    expect(component.componentToRender().name).toContain("MiEdificio");
   });
 
-  it('should render DashboardPendingItems when user is neither Condomino nor Comite', () => {
+  it("should render DashboardPendingItems when user is neither Condomino nor Comite", () => {
     mockAspRoleS.hasAny.mockReturnValue(false);
     fixture.detectChanges();
     expect(component.componentToRender()).toBe(DashboardPendingItems);
   });
 });
-

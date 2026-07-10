@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -6,7 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
@@ -14,10 +19,11 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 
 interface IManualTemplateForm {

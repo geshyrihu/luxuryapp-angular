@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -7,11 +13,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { firstValueFrom } from "rxjs";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -20,13 +23,16 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
@@ -266,7 +272,10 @@ export class TaskForm implements OnInit {
   processingBeforeWork = signal(false);
   processingAfterWork = signal(false);
 
-  async onFileSelect(event: any, fieldName: "beforeWork" | "afterWork"): Promise<void> {
+  async onFileSelect(
+    event: any,
+    fieldName: "beforeWork" | "afterWork",
+  ): Promise<void> {
     const file = event.files?.[0];
     if (file) await this.onFileChange(file, fieldName);
   }
@@ -283,7 +292,6 @@ export class TaskForm implements OnInit {
     file: File,
     fieldName: "beforeWork" | "afterWork",
   ): Promise<void> {
-
     const allowed = ["image/jpeg", "image/png", "image/webp"];
     const isHeic =
       /\.(heic|heif)$/i.test(file.name) ||

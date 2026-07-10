@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -6,13 +12,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 
 interface ICuadroComparativoAddProveedor {

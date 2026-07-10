@@ -87,11 +87,11 @@ client/angular/src/app/
 │       (directives/ models/ se conservan; FUSIONAR shared/components → shared/ui)
 │
 ├── 📦 apps/               # 🚀 EL CORAZÓN: Portales de Negocio (Vertical Slices)
-│   ├── admin.luxuryapp/      # 🛠️ Portal ADMINISTRATIVO (configuración global / back-office)
-│   ├── system.luxuryapp/      # 💼 SYSTEM (módulo para USUARIO FINAL / usuario de sistemas; NO es "sistema de la app")
-│   ├── superusuario.luxuryapp/ # 🔱 SUPERUSUARIO (SEPARADO; roles/permisos)
+│   ├── admin.luxuryapp/      # 🛠️ Portal del ADMINISTRADOR del sistema (área de administración; un superusuario es solo un ROL con acceso a este portal, NO otro portal)
+│   ├── system.luxuryapp/      # 💼 SYSTEM — portal de dominio para el USUARIO FINAL (usuario de sistemas); es SOLO OTRO portal de negocio (como cobranza / mantenimiento), SIN relación con admin ni "superusuario"
 │   ├── auth.luxuryapp/       # 🔐 Autenticación y Recuperación (de login/)
-│   ├── operations.luxuryapp/ # 💰 Operaciones + Compras + Comité/Dirección
+│   ├── operations.luxuryapp/ # 💰 Operaciones + Compras + Comité (Dirección se independiza en su portal)
+│   ├── direccion.luxuryapp/  # 🏢 Dirección (de `features/operations/direccion`)
 │   ├── mantenimiento.luxuryapp/ # 🛠️ Mantenimiento operativo (de maintenance/)
 │   ├── contabilidad.luxuryapp/  # 📊 Contabilidad (de accounting/)
 │   ├── recursos-humanos.luxuryapp/ # 👥 RRHH (de hr/)
@@ -109,11 +109,15 @@ client/angular/src/app/
 
 ### Anatomía Interna de un Portal (ej. `apps/admin.luxuryapp/`)
 
+> [!IMPORTANT]
+> **REGLA DE ORO DE ESTRUCTURA INTERNA:**
+> Está **estrictamente prohibido** dejar carpetas de features, módulos o dominios "sueltas" en la raíz del portal. Todas las vistas enrutables deben ir forzosamente dentro de `pages/`. Esto garantiza una arquitectura plana dentro del portal y evita subdirectorios profundos e interminables.
+
 ```text
 apps/admin.luxuryapp/
 ├── 📄 admin.routes.ts        # Rutas exclusivas del portal (lazy loaded)
 ├── 📂 components/            # UI exclusiva del portal (ej. admin-employee-card)
-├── 📂 pages/                 # Vistas enrutables (ej. hr-dashboard.ts)
+├── 📂 pages/                 # Vistas enrutables (ej. hr-dashboard, login, user-profile)
 ├── 📂 services/              # Servicios de API del portal (ej. api/hr/employees)
 ├── 📂 models/                # DTOs e Interfaces (EmployeeDTO)
 └── 📄 INDEX.ts               # Punto de entrada estricto (Public API)
@@ -127,11 +131,10 @@ Esta es la tabla explícita que resuelve la propuesta original. Mapea los 9 domi
 
 | Portal (`apps/`) | Dominios `features/` origen | Layouts / extras | Estado |
 | :--- | :--- | :--- | :--- |
-| **admin.luxuryapp** | (configuración global / back-office de la app) | 🛠️ **Portal ADMINISTRATIVO** — NO es el módulo "system", NO es superusuario | 🔄 Migrar |
-| **system.luxuryapp** | `system/` | 💼 **SYSTEM** = módulo de negocio para el **USUARIO FINAL** (usuario de sistemas). ⚠️ NO es "sistema de la app" (infra) | 🔄 Migrar |
-| **superusuario.luxuryapp** | (roles/permisos: `asp-role.service`, `module-permission.service`) | 🔱 **SUPERUSUARIO** — SEPARADO de admin y de system | 🔄 Migrar |
-| **auth.luxuryapp** | — | `login/` (top-level) | 🔄 Mover |
-| **operations.luxuryapp** | `operations/`, `purchasing/` | `layout/committee-view`, `layout/direccion-view` (re-asignados de `corporate` eliminado) | 🔄 Migrar |
+| **admin.luxuryapp** | `features/system/` ✅ | 🛠️ **Portal del ADMINISTRADOR del sistema** (área de administración). Un **superusuario** es solo un **ROL** con acceso a este portal — NO existe portal `superusuario.luxuryapp` aparte | 🔄 Migrar |
+| **system.luxuryapp** | (módulo de usuario final — PENDIENTE de confirmar `features/`) | 💼 **SYSTEM** = portal de dominio para el **USUARIO FINAL** (usuario de sistemas). Es SOLO OTRO portal de negocio (como cobranza / mantenimiento), **SIN relación con `admin` ni con "superusuario"** | 🔄 Migrar |
+| **operations.luxuryapp** | `operations/`, `purchasing/` | `layout/committee-view` (Comité se queda en operations; Dirección se independiza en `direccion.luxuryapp`) | 🔄 Migrar |
+| **direccion.luxuryapp** | `operations/direccion/` ✅ | 🏢 **Dirección** (de `features/operations/direccion`) — portal propio, independiente de operations | 🔄 Migrar |
 | **mantenimiento.luxuryapp** | `maintenance/` | — | 🔄 Migrar |
 | **contabilidad.luxuryapp** | `accounting/` | — | 🔄 Migrar |
 | **recursos-humanos.luxuryapp** | `hr/` | — | 🔄 Migrar |
@@ -146,10 +149,12 @@ Esta es la tabla explícita que resuelve la propuesta original. Mapea los 9 domi
 
 > [!NOTE]
 > **`corporate.luxuryapp` ELIMINADO (decisión 09-Jul-2026).** Su contenido se reasigna:
-> `committee`/`direccion` (antes bajo `operations/`) y los layouts `committee-view`/`direccion-view`
-> ahora viven en **`operations.luxuryapp`**. No existe portal `corporate`.
+> `committee`/`direccion` (antes bajo `operations/`) y los layouts `committee-view`/`direccion-view`.
+> - **`committee`** → se queda en **`operations.luxuryapp`** (+ layout `committee-view`).
+> - **`direccion`** → ahora tiene su **portal propio `direccion.luxuryapp`** (+ layout `direccion-view`).
+> No existe portal `corporate`.
 >
-> **`admin.luxuryapp`** = Portal ADMINISTRATIVO (configuración global / back-office). **NO** es el módulo "system" (ese es `system.luxuryapp`, para usuario final) ni superusuario (ese es `superusuario.luxuryapp`). Véase §9 para la distinción exacta.
+> **`admin.luxuryapp`** = Portal del ADMINISTRADOR del sistema (área de administración, origen CONFIRMADO `features/system/`). **NO** es el módulo "system" (`system.luxuryapp`, portal de usuario final) ni un portal "superusuario" — un superusuario es solo un **ROL** con acceso a este portal. Véase §9.
 > **`recursos-humanos.luxuryapp`** = RRHH (de `hr/`), independiente de los anteriores.
 >
 > [!NOTE]
@@ -157,6 +162,10 @@ Esta es la tabla explícita que resuelve la propuesta original. Mapea los 9 domi
 > - `public.luxuryapp` = **área pública DENTRO de la app** (rutas de acceso libre, `routing/public.routing.ts`).
 > - `web.luxuryapp` = **sitio web publicitario / marketing EXTERNO** (cotizadores, ejemplos, landing corporativo).
 > Son portales distintos con propósitos distintos.
+
+> [!NOTE]
+> **Orígenes CONFIRMADOS (revisión 09-Jul-2026):** ✅ `auth.luxuryapp` ← `login/` y ✅ `admin.luxuryapp` ← `features/system/`.
+> **El resto de orígenes en la tabla están PENDIENTES de revisar y confirmar** (no se han validado contra `features/` aún). No mover archivos hasta confirmar.
 
 ---
 
@@ -184,7 +193,7 @@ flowchart TD
 > - ❌ NO se importa ni declara `p-button`, `p-table`, `p-dialog`, `ButtonModule`, `TableModule`, `IonButton`, `ion-button`, `IonInput`, etc. directamente.
 > - ✅ SIEMPRE se usa el wrapper custom de `shared/ui/` (ej. `iw-button-*`, `il-button-*`, `ii-button-*`, `ili-button-*`, `lx-*`, tablas, modales, etc.).
 >
-> **Razón (el beneficio real):** `shared/ui/` es la **ÚNICA capa de presentación**. Si mañana se elimina PrimeNG, se cambia a otra librería, o se ajusta el botón `X`, el cambio se aplica **UNA sola vez** en `shared/ui/` y se propaga a **todo el sistema** — en lugar de editar componente por componente en los 15 portales.
+> **Razón (el beneficio real):** `shared/ui/` es la **ÚNICA capa de presentación**. Si mañana se elimina PrimeNG, se cambia a otra librería, o se ajusta el botón `X`, el cambio se aplica **UNA sola vez** en `shared/ui/` y se propaga a **todo el sistema** — en lugar de editar componente por componente en los 16 portales.
 >
 > **Excepción (solo `shared/ui/`):** Únicamente `shared/ui/` puede importar librerías externas (PrimeNG/Ionic). `core/` puede usarlas solo si es infra transversal justificada (ej. toast/loading global vía `custom-toast.service`), y `apps/` **nunca** lo hace.
 
@@ -222,7 +231,7 @@ La propuesta original omitió la capa de estado. El proyecto **YA usa Angular Si
 
 | # | Criterio | Estado Hoy | Acción |
 | :--- | :--- | :--- | :--- |
-| 1 | `features/` desaparece y se reubica en `apps/` | ❌ 0% (9 dominios → 16 portals en el plan) | Migración incremental portal-por-portal |
+| 1 | `features/` desaparece y se reubica en `apps/` | ❌ 0% (9 dominios → 16 portales en el plan) | Migración incremental portal-por-portal |
 | 2 | UI reutilizable de vistas extraída a `shared/ui/` | ✅ ~Hecho (391 componentes) | Auditoría final de `features/` tras migrar |
 | 3 | `core/services` se reduce ~80% | ❌ 95+ servicios | Mover servicios de dominio a `apps/{portal}/services/` |
 | 4 | Lazy loading por portal en `app.routes.ts` | ✅ Parcial (ya existe por feature) | Re-enlazar `loadChildren` a `apps/{portal}/{portal}.routes.ts` |
@@ -253,9 +262,9 @@ La propuesta original omitió la capa de estado. El proyecto **YA usa Angular Si
 
 - **Doble documento de arquitectura:** `arquitectura-organizacion-monolito.md` (este, usa `apps/`) vs `architecture-axample.md` (usa `features/` anidado con `web/`+`mobile/`). **Resolución:** este documento es el estándar; `architecture-axample.md` pasa a referencia histórica y no debe seguirse.
 - **`login/` y `layout/` top-level:** No cumplen la propuesta; deben moverse a `apps/auth.luxuryapp/` y `core/layout/` respectivamente (Fase 1/4).
-- **`corporate.luxuryapp` ELIMINADO (09-Jul-2026):** No existe en el plan. Su contenido (`committee`/`direccion` + layouts) se reasignó a `operations.luxuryapp`.
-- **`admin.luxuryapp` = Portal ADMINISTRATIVO:** configuración global / back-office de la app. NO es el módulo "system" ni superusuario.
-- **`system.luxuryapp` = módulo para USUARIO FINAL (usuario de sistemas):** viene de `features/system/`. ⚠️ NO es "sistema de la app" (infraestructura/core). Es un dominio de negocio de cara al usuario final.
-- **`superusuario.luxuryapp` SEPARADO:** Superusuario es su propio portal (roles/permisos), independiente de `admin.luxuryapp` y de `system.luxuryapp`. No se mezclan.
+- **`corporate.luxuryapp` ELIMINADO (09-Jul-2026):** No existe en el plan. Su contenido se reasignó: `committee` → se queda en `operations.luxuryapp`; `direccion` → ahora tiene su **portal propio `direccion.luxuryapp`** (con layout `direccion-view`). No existe portal `corporate`.
+- **`direccion.luxuryapp` = portal propio de Dirección:** de `features/operations/direccion/` (origen clario). Independiente de `operations.luxuryapp`.
+- **`admin.luxuryapp` = Portal del ADMINISTRADOR del sistema:** área de administración (origen CONFIRMADO: `features/system/`). Un **superusuario** es solo un **ROL** que tiene acceso a este portal — **NO existe portal `superusuario.luxuryapp` aparte**.
+- **`system.luxuryapp` = portal de dominio para el USUARIO FINAL (usuario de sistemas):** es SOLO OTRO portal de negocio, igual que `cobranza` / `mantenimiento` / `contabilidad`. ⚠️ NO tiene relación con `admin` ni con "superusuario"; tampoco es "sistema de la app" (infra/core). Su origen `features/` está PENDIENTE de confirmar.
 - **`shared/components` vs `shared/ui`:** Redundancia; fusionar en Fase 2.
 - **`migrate.ps1` / `migrate-buttons.ps1` existentes:** Útiles como base de re-importación de rutas en la migración.

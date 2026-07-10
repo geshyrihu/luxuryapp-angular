@@ -8,22 +8,18 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DialogService } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { DiagramForm } from "../diagram-form/diagram-form";
-import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -34,6 +30,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-list",
@@ -51,7 +48,8 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonLabel,
     NgbTooltipModule,
 
-    DataViewMobile,  ],
+    DataViewMobile,
+  ],
   providers: [DialogService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-list.html",

@@ -8,9 +8,9 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { BitacoraFiltroFechaForm } from "@ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -21,7 +21,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HidranteChecklist } from "../hydrant-checklist/hidrante-checklist";
 import { HidranteBitacoraPdfService } from "./hidrante-bitacora-pdf.service";
@@ -52,7 +52,8 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     DataViewMobile,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,    DatePipe,
+    PrimeNgCustomTableFooter,
+    DatePipe,
     MobileListItem,
     AppIcon,
   ],

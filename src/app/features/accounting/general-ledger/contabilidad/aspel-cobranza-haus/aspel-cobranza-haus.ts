@@ -1,30 +1,32 @@
 import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   signal,
   untracked,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
-
 import { TableModule } from "primeng/table";
 
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AspelSyncService } from "src/app/features/accounting/ar/aspel-sync/aspel-sync.service";
@@ -32,9 +34,6 @@ import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-det
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
 import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";
 import { AspelCobranzaHausSourceToolbar } from "./aspel-cobranza-haus-source-toolbar";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxMessage } from "@ui/adaptive/message/message";
 import {
   AspelAccount,
   AspelAccountsByCustomerResponse,
@@ -59,7 +58,8 @@ import {
   selector: "app-aspel-cobranza-haus",
   templateUrl: "./aspel-cobranza-haus.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     TableModule,
     AppIcon,
@@ -69,7 +69,11 @@ import {
     AspelCobranzaHausSourceToolbar,
     AspelCobranzaHausQueryPanel,
     CurrencyPipe,
-    NgClass, LxTag, LxCard, LxMessage],
+    NgClass,
+    LxTag,
+    LxCard,
+    LxMessage,
+  ],
 })
 export class AspelCobranzaHaus {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -95,7 +99,7 @@ export class AspelCobranzaHaus {
     {
       label: "Deudas actuales",
       value: "deudas-actuales",
-    }
+    },
   ];
 
   readonly dataSourceOptions: SelectItem<AspelDataSource>[] = [
@@ -106,7 +110,7 @@ export class AspelCobranzaHaus {
     {
       label: "Local",
       value: "local",
-    }
+    },
   ];
 
   customerId = signal<string>("");

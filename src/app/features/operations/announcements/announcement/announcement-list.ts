@@ -1,12 +1,19 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { LxImage } from "@ui/adaptive/image/image";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CardModule } from "primeng/card";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IAnnouncementList } from "./announcement.model";
 @Component({
   selector: "app-announcement-list",
@@ -60,7 +67,3 @@ export class AnnouncementList implements OnInit {
     this.router.navigate(ROUTES.ANUNCIOS.DETALLE(id));
   }
 }
-
-
-
-

@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -8,7 +14,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-task-read-list",
   templateUrl: "./task-read-list.html",
@@ -32,9 +38,9 @@ export class TaskReadList implements OnInit {
     this.apiResponseS
       .onGetList(Endpoints.TaskReads.listByTicketMessage(this.ticketMessageId))
       .then((result: any) => {
-      this.data = result;
+        this.data = result;
 
-      this.globalFilterFields = globalFilterFields(this.data);
-    });
+        this.globalFilterFields = globalFilterFields(this.data);
+      });
   }
 }

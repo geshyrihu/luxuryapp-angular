@@ -2,20 +2,26 @@
  * ============================================================================
  * ?? ADVERTENCIA CRóTICA / CRITICAL WARNING ??
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
  * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
  * sin antes consultar y obtener autorización explócita del Ing. Ricardo Marques.
- * 
+ *
  * Por favor, NO rompan el código.
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { BudgetProposalItemHistoryDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
 @Component({
   selector: "app-budget-history-dialog",
@@ -63,13 +69,3 @@ export class BudgetHistoryDialog implements OnInit {
     this.ref.close();
   }
 }
-
-
-
-
-
-
-
-
-
-

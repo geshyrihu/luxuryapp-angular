@@ -1,11 +1,17 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-soporte-orden-servicio",
   templateUrl: "./soporte-orden-servicio.html",
@@ -48,7 +54,9 @@ export class SoporteOrdenServicio implements OnInit {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.Customers.getByIdLegacy(this.customerIdS.customerId());
+    const urlApi = Endpoints.Customers.getByIdLegacy(
+      this.customerIdS.customerId(),
+    );
     // Customers/{id} returns ApiResponseDTO<CustomerDTO> (single item).
     // Should use onGetItem.
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
@@ -59,12 +67,3 @@ export class SoporteOrdenServicio implements OnInit {
     });
   }
 }
-
-
-
-
-
-
-
-
-

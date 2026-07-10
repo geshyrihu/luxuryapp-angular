@@ -1,23 +1,30 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableModule } from "primeng/table";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { ButtonModule } from "primeng/button";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineExcludedAccountListResponse,
@@ -53,7 +60,9 @@ export class CobranzaOnlineExclusions {
   readonly loading = signal(true);
   readonly savingAccountNumber = signal<string | null>(null);
   readonly onlyWithoutPropertyMatch = signal(false);
-  readonly data = signal<CobranzaOnlineExcludedAccountListResponse | null>(null);
+  readonly data = signal<CobranzaOnlineExcludedAccountListResponse | null>(
+    null,
+  );
 
   readonly tablePrimeNgRows = tablePrimeNgRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
@@ -79,8 +88,8 @@ export class CobranzaOnlineExclusions {
       : this.rows(),
   );
   readonly excludedCount = computed(() => this.data()?.totalExcluded ?? 0);
-  readonly rowsWithoutPropertyMatch = computed(() =>
-    this.rows().filter((row) => !row.hasPropertyMatch).length,
+  readonly rowsWithoutPropertyMatch = computed(
+    () => this.rows().filter((row) => !row.hasPropertyMatch).length,
   );
   readonly globalFilterFields = computed(() => [
     "accountNumber",
@@ -116,19 +125,25 @@ export class CobranzaOnlineExclusions {
     if (!customerId) return;
 
     this.loading.set(true);
-    const response = await this.apiResponseS.onGetItem<CobranzaOnlineExcludedAccountListResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.excludedAccounts(
-        customerId,
-        this.currentYear(),
-      ),
-      false,
-    );
+    const response =
+      await this.apiResponseS.onGetItem<CobranzaOnlineExcludedAccountListResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.excludedAccounts(
+          customerId,
+          this.currentYear(),
+        ),
+        false,
+      );
 
-    this.data.set((response as CobranzaOnlineExcludedAccountListResponse | null) ?? null);
+    this.data.set(
+      (response as CobranzaOnlineExcludedAccountListResponse | null) ?? null,
+    );
     this.loading.set(false);
   }
 
-  async onToggleExcluded(row: CobranzaOnlineExcludedAccountRow, checked: boolean) {
+  async onToggleExcluded(
+    row: CobranzaOnlineExcludedAccountRow,
+    checked: boolean,
+  ) {
     const customerId = this.customerIdS.customerId();
     if (!customerId || this.savingAccountNumber() === row.accountNumber) {
       return;

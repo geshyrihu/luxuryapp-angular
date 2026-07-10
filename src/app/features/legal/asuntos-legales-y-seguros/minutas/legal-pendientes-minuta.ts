@@ -1,37 +1,44 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabelItem } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-legal-pendientes-minuta",

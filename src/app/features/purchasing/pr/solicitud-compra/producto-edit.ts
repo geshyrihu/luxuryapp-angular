@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,26 +12,29 @@ import {
   Validators,
 } from "@angular/forms";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { LxCard } from "@ui/adaptive/card/card";
 
 @Component({
   selector: "app-producto-edit",
   templateUrl: "./producto-edit.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave, LxCard],
+    WebButtonLabelSave,
+    LxCard,
+  ],
 })
 export class ProductoEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);

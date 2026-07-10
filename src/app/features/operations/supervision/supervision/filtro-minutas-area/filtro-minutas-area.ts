@@ -1,20 +1,27 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { EAreaMinutasDetallesPipe } from "src/app/core/pipes/area-minuta-detalles.pipe";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { EAreaMinutasDetallesPipe } from "src/app/shared/pipes/area-minuta-detalles.pipe";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-filtro-minutas-area",
   templateUrl: "./filtro-minutas-area.html",
@@ -74,12 +81,3 @@ export class FiltroMinutasArea implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-
-
-
-
-
-
-
-
-

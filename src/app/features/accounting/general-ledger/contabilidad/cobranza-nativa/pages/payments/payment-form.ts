@@ -8,7 +8,7 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import {
   CreateCobranzaPaymentDTO,
@@ -134,7 +134,10 @@ export class PaymentForm implements OnInit {
       if (!this.statusOptions().some((o) => o.value === res.status)) {
         this.statusOptions.update((opts) => [
           ...opts,
-          { label: lockedStatuses[res.status] ?? String(res.status), value: res.status },
+          {
+            label: lockedStatuses[res.status] ?? String(res.status),
+            value: res.status,
+          },
         ]);
       }
     }

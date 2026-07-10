@@ -22,16 +22,15 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service";
 import { ExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/services/excel-export.service";
@@ -45,8 +44,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-product-output-list",

@@ -18,13 +18,13 @@ import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FaqsFondeo } from "src/app/features/accounting/fondeos-y-reporteo/funding/faqs-fondeo";
 import { ROUTES } from "src/app/routing/route-paths";

@@ -22,7 +22,7 @@ Contexto importante:
   - `#paginatorleft`
 - Todo lo demás debe pasar por wrappers/custom components en `shared/`.
 - El único catálogo demo permitido es:
-  - `client/angular/src/app/features/system/catalogs/catalog-component-ui`
+  - `client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui`
 - Hay que excluir ese catálogo demo del diagnóstico operativo.
 - No confíes ciegamente en los `.md`; el árbol actual manda.
 - También respeta reglas de encoding UTF-8 y revisa si hay mojibake en archivos relevantes tocados por el análisis.

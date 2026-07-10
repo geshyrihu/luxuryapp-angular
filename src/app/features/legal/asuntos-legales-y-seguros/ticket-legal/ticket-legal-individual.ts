@@ -1,9 +1,15 @@
-import { Component, effect, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-ticket-legal-individual",
   templateUrl: "./ticket-legal-individual.html",
@@ -38,12 +44,3 @@ export class TicketLegalIndividual implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,9 +1,16 @@
-import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
-import { Router } from "@angular/router";
 import {
-  } from "@ionic/angular/standalone";
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import {} from "@ionic/angular/standalone";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -16,24 +23,20 @@ import {
   sparkles,
   ticketOutline,
 } from "ionicons/icons";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AiService } from "src/app/core/services/ai.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
-import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { ServiceOrderForm } from "src/app/features/operations/field-service/service-order/service-order-form";
+import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { TaskForm } from "src/app/features/operations/task-engine/tasks/task-message/pages/task-form";
 import Swal from "sweetalert2";
 import { TicketLegalForm } from "../../legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { PendingItemDTO } from "./models/pending-item.dto";
 @Component({
   selector: "app-unified-pending-dashboard-mobile",
-  imports: [AppIcon, 
-    CommonModule,
-    DataViewMobile,
-  ],
+  imports: [AppIcon, CommonModule, DataViewMobile],
   templateUrl: "./unified-pending-dashboard-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -350,4 +353,3 @@ export class UnifiedPendingDashboardMobile {
     return "medium";
   }
 }
-

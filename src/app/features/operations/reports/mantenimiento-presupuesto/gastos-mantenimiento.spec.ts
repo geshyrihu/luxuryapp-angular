@@ -1,15 +1,15 @@
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { GastosMantenimiento } from './gastos-mantenimiento';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
-import { MantenimientoPreventivoForm } from '../../google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form';
+import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { GastosMantenimiento } from "./gastos-mantenimiento";
 
-describe('GastosMantenimiento', () => {
+describe("GastosMantenimiento", () => {
   let component: GastosMantenimiento;
   let fixture: ComponentFixture<GastosMantenimiento>;
   let mockApiResponseS: any;
@@ -25,11 +25,13 @@ describe('GastosMantenimiento', () => {
     mockCustomerIdS = { customerId: signal(null) };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeFull: 'full',
+      sizeFull: "full",
     };
-    mockTableScrollHeightS = { scrollHeight: signal('600px') };
+    mockTableScrollHeightS = { scrollHeight: signal("600px") };
 
-    TestBed.overrideComponent(GastosMantenimiento, { set: { template: '<div>Mock</div>', imports: [] } });
+    TestBed.overrideComponent(GastosMantenimiento, {
+      set: { template: "<div>Mock</div>", imports: [] },
+    });
     TestBed.configureTestingModule({
       imports: [GastosMantenimiento],
       providers: [
@@ -50,11 +52,11 @@ describe('GastosMantenimiento', () => {
     vi.restoreAllMocks();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signal values', () => {
+  it("should have default signal values", () => {
     expect(component.data()).toEqual([]);
     expect(component.loading()).toBe(true);
     expect(component.resumenGastos()).toEqual([]);
@@ -63,20 +65,27 @@ describe('GastosMantenimiento', () => {
     expect(component.rowsPerPageOptions).toEqual([30, 50, 75, 100, 150, 200]);
   });
 
-  it('should call onLoadData when customerId is set via effect', async () => {
-    mockCustomerIdS.customerId.set('cust-123');
-    
+  it("should call onLoadData when customerId is set via effect", async () => {
+    mockCustomerIdS.customerId.set("cust-123");
+
     // Esperar a que el effect se ejecute
-    await new Promise(resolve => setTimeout(resolve));
-    
+    await new Promise((resolve) => setTimeout(resolve));
+
     expect(mockApiResponseS.onGetList).toHaveBeenCalledTimes(2);
-    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith('BudgetMaintenance/SummaryOfExpenses/cust-123');
-    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith('BudgetMaintenance/Resumengastos/cust-123');
+    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
+      "BudgetMaintenance/SummaryOfExpenses/cust-123",
+    );
+    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
+      "BudgetMaintenance/Resumengastos/cust-123",
+    );
   });
 
-  it('onLoadData should set data, totalGasto, and resumenGastos from API', async () => {
-    const result1 = { items: [{ id: 1, concepto: 'Mantenimiento' }], totalGastos: 15000 };
-    const result2 = [{ categoria: 'General', monto: 10000 }];
+  it("onLoadData should set data, totalGasto, and resumenGastos from API", async () => {
+    const result1 = {
+      items: [{ id: 1, concepto: "Mantenimiento" }],
+      totalGastos: 15000,
+    };
+    const result2 = [{ categoria: "General", monto: 10000 }];
 
     let callCount = 0;
     mockApiResponseS.onGetList.mockImplementation(() => {
@@ -87,7 +96,7 @@ describe('GastosMantenimiento', () => {
     });
 
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.data()).toEqual(result1.items);
     expect(component.totalGasto()).toBe(15000);
@@ -95,32 +104,32 @@ describe('GastosMantenimiento', () => {
     expect(component.loading()).toBe(false);
   });
 
-  it('onLoadData should set loading to false when API fails', async () => {
+  it("onLoadData should set loading to false when API fails", async () => {
     // Simular un error de API de forma controlada:
-    mockApiResponseS.onGetList.mockRejectedValueOnce(new Error('API Error'));
+    mockApiResponseS.onGetList.mockRejectedValueOnce(new Error("API Error"));
 
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     // Verificar que loading se haya puesto a false gracias al finally
     expect(component.loading()).toBe(false);
   });
 
-  it('onModalItem should open dialog with MantenimientoPreventivoForm', () => {
-    const item = { id: 5, idEquipo: 10, concepto: 'Reparacion' };
+  it("onModalItem should open dialog with MantenimientoPreventivoForm", () => {
+    const item = { id: 5, idEquipo: 10, concepto: "Reparacion" };
     component.onModalItem(item);
     expect(mockDialogHandlerS.openDialog).toHaveBeenCalledWith(
       MantenimientoPreventivoForm,
-      { id: 5, task: 'edit', idMachinery: 10 },
-      'Editar regitro',
-      'full',
+      { id: 5, task: "edit", idMachinery: 10 },
+      "Editar regitro",
+      "full",
     );
   });
 
-  it('onModalItem should reload data on dialog close with true', async () => {
+  it("onModalItem should reload data on dialog close with true", async () => {
     mockDialogHandlerS.openDialog.mockResolvedValue(true);
     component.onModalItem({ id: 1, idEquipo: 2 });
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
     expect(mockApiResponseS.onGetList).toHaveBeenCalled();
   });
 });

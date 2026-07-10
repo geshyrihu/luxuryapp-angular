@@ -1,26 +1,37 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "primeng/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFechasFiltro } from "src/app/core/interfaces/fechas-filtro.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-evaluacion-areas-detalle";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-evaluacion-areas",
   templateUrl: "./resultado-general-evaluacion-areas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    PrimeNgCustomTableEmptyMessage,CommonModule, TableModule, PrimeNgCustomCaption],
+    PrimeNgCustomTableEmptyMessage,
+    CommonModule,
+    TableModule,
+    PrimeNgCustomCaption,
+  ],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -72,12 +83,3 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
     );
   }
 }
-
-
-
-
-
-
-
-
-

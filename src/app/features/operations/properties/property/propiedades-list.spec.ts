@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { vi } from "vitest";
+import { PropiedadesList } from "./propiedades-list";
 
-vi.mock('ng2-pdf-viewer', () => ({ PdfViewerModule: class {} }));
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { AspRoleService } from 'src/app/core/services/asp-role.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { PropiedadesList } from './propiedades-list';
+vi.mock("ng2-pdf-viewer", () => ({ PdfViewerModule: class {} }));
 
-describe('PropiedadesList', () => {
+describe("PropiedadesList", () => {
   let component: PropiedadesList;
   let fixture: ComponentFixture<PropiedadesList>;
   let mockApiResponseS: any;
@@ -28,15 +28,15 @@ describe('PropiedadesList', () => {
     };
     mockAuthS = { userToken: null };
     mockAspRoleS = { hasRole: vi.fn().mockReturnValue(false) };
-    mockCustomerIdS = { customerId: signal('cust-123') };
+    mockCustomerIdS = { customerId: signal("cust-123") };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeLg: '1200px',
+      sizeLg: "1200px",
     };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(PropiedadesList, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [PropiedadesList],
@@ -54,34 +54,34 @@ describe('PropiedadesList', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.dataSignal()).toEqual([]);
     expect(component.loading()).toBe(true);
     expect(component.tablePrimeNgRows).toBe(30);
     expect(component.AspRole).toBeDefined();
   });
 
-  it('onLoadData should call api with customerId', () => {
+  it("onLoadData should call api with customerId", () => {
     component.onLoadData();
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      'Property/list/cust-123',
+      "Property/list/cust-123",
     );
   });
 
-  it('onDelete should remove item from dataSignal', async () => {
+  it("onDelete should remove item from dataSignal", async () => {
     component.dataSignal.set([
-      { id: '1', fullName: 'Prop A' },
-      { id: '2', fullName: 'Prop B' },
+      { id: "1", fullName: "Prop A" },
+      { id: "2", fullName: "Prop B" },
     ]);
 
-    await component.onDelete('1');
+    await component.onDelete("1");
 
-    expect(mockApiResponseS.onDelete).toHaveBeenCalledWith('Property/1');
+    expect(mockApiResponseS.onDelete).toHaveBeenCalledWith("Property/1");
     expect(component.dataSignal().length).toBe(1);
-    expect(component.dataSignal()[0].id).toBe('2');
+    expect(component.dataSignal()[0].id).toBe("2");
   });
 });

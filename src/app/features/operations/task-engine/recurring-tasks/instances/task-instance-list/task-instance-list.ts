@@ -1,35 +1,41 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { TableModule } from "primeng/table";
 import { LxToolbar } from "@ui/adaptive/toolbar/toolbar";
+import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { TableModule } from "primeng/table";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-task-instance-list",

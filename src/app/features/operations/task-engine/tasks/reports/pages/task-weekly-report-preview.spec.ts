@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskWeeklyReportPreview } from './task-weekly-report-preview';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DateRangeStorageService } from 'src/app/features/operations/task-engine/tasks/services/date-range-storage.service';
-import { TaskGroupService } from 'src/app/features/operations/task-engine/tasks/task.service';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DateRangeStorageService } from "src/app/features/operations/task-engine/tasks/services/date-range-storage.service";
+import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { vi } from "vitest";
+import { TaskWeeklyReportPreview } from "./task-weekly-report-preview";
 
-describe('TaskWeeklyReportPreview', () => {
+describe("TaskWeeklyReportPreview", () => {
   let component: TaskWeeklyReportPreview;
   let fixture: ComponentFixture<TaskWeeklyReportPreview>;
   let mockApiResponseS: any;
@@ -19,7 +19,7 @@ describe('TaskWeeklyReportPreview', () => {
     mockApiResponseS = {
       onGetList: vi.fn().mockResolvedValue([]),
     };
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
     mockDateRangeStorageS = {
       getDateRange: vi.fn().mockReturnValue({ from: null, to: null }),
       saveDateRange: vi.fn(),
@@ -31,7 +31,7 @@ describe('TaskWeeklyReportPreview', () => {
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskWeeklyReportPreview, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskWeeklyReportPreview],
@@ -48,24 +48,23 @@ describe('TaskWeeklyReportPreview', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.data()).toBeNull();
     expect(component.year).toBe(2024);
     expect(component.numeroSemana).toBe(42);
   });
 
-  it('onLoadData should call api and set data signal', async () => {
-    const mockData = [{ id: '1', title: 'Weekly Report' }];
+  it("onLoadData should call api and set data signal", async () => {
+    const mockData = [{ id: "1", title: "Weekly Report" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.data()).toEqual(mockData);
   });
 });
-

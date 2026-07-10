@@ -1,14 +1,20 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-asunto-legal-form",
   imports: [

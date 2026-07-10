@@ -1,30 +1,30 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   Signal,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
-import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 // Definición de un ótem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {
@@ -53,11 +53,7 @@ interface AnalyzedInvoiceItem {
 }
 
 type ModalStatus =
-  | "initial"
-  | "uploading"
-  | "analyzing"
-  | "preview"
-  | "creating";
+  "initial" | "uploading" | "analyzing" | "preview" | "creating";
 
 @Component({
   selector: "app-funding-upload-invoices-modal",

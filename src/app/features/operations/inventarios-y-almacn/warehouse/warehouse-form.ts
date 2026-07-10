@@ -1,6 +1,12 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,12 +14,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 export interface IWarehouseForm {
   id: FormControl<string>;
@@ -29,10 +35,9 @@ export interface IWarehouseForm {
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { ReactiveFormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CardModule } from "primeng/card";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 

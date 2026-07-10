@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const inventoriesRoutes: Routes = [
   {
     path: "inventory-engine-system",
@@ -145,7 +145,10 @@ export const inventoriesRoutes: Routes = [
         (m) => m.InventarioHidrante,
       ),
     canActivate: [authGuard],
-    data: { title: "Inventario de Hidrantes", breadcrumb: "Inventario de Hidrantes" },
+    data: {
+      title: "Inventario de Hidrantes",
+      breadcrumb: "Inventario de Hidrantes",
+    },
   },
   {
     path: "manual-call-points",
@@ -154,7 +157,10 @@ export const inventoriesRoutes: Routes = [
         (m) => m.InventarioEstacionManual,
       ),
     canActivate: [authGuard],
-    data: { title: "Inventario de Estaciones Manuales", breadcrumb: "Inventario de Estaciones Manuales" },
+    data: {
+      title: "Inventario de Estaciones Manuales",
+      breadcrumb: "Inventario de Estaciones Manuales",
+    },
   },
   {
     path: "smoke-detectors",
@@ -163,19 +169,9 @@ export const inventoriesRoutes: Routes = [
         (m) => m.InventarioDetectorHumo,
       ),
     canActivate: [authGuard],
-    data: { title: "Inventario de Detectores de Humo", breadcrumb: "Inventario de Detectores de Humo" },
+    data: {
+      title: "Inventario de Detectores de Humo",
+      breadcrumb: "Inventario de Detectores de Humo",
+    },
   },
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-

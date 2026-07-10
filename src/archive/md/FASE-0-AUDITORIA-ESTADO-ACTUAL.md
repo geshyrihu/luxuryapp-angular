@@ -1,8 +1,8 @@
 # Fase 0 - Auditoría Técnica y de Diseño
 
-**Fecha:** 2026-06-27  
-**Ruta auditada:** `client/angular/src/app/features/system/catalogs/catalog-component-ui/`  
-**Fuentes contrastadas:** `src/styles/`, `src/app/core/`, `src/app/layout/employee-view/monitor/sidebar/sidebar.ts`, `src/app/routing/settings.routing.ts`, `src/app/mypreset.ts`
+**Fecha:** 2026-06-27
+**Ruta auditada:** `client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/`
+**Fuentes contrastadas:** `src/styles/`, `src/app/core/`, `src/app/core/layout/employee-view/monitor/sidebar/sidebar.ts`, `src/app/routing/settings.routing.ts`, `src/app/mypreset.ts`
 
 ## 1. Diagnóstico Ejecutivo
 
@@ -26,40 +26,40 @@ El siguiente paso correcto no es rehacer tokens. El paso correcto es **consolida
 
 ### 2.1 Clasificación de archivos
 
-| Archivo | Clasificación | Acción | Motivo |
-|---|---|---|---|
-| `ANALISIS-PROMPT-V2.md` | Servible y reutilizable | Conservar | Define el objetivo de auditoría Fase 0. |
-| `AUDITORIA-COMPLETA.md` | A migrar | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | Tiene hallazgos históricos útiles, pero mezcla estado resuelto con backlog viejo. |
-| `INVENTARIO-DS-REVISION.md` | A migrar | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | Útil como referencia histórica, no como fuente actual. |
-| `PLAN-AUDITORIA-GENERAL.md` | Obsoleto o redundante | Archivar | Parte de un contexto previo; ya no refleja el estado real del repositorio. |
-| `PLAN-DE-ACCION-ARCHIVO.md` | Obsoleto o redundante | Archivar | El propio nombre y contenido lo declaran histórico. |
-| `PLAN-DE-ACCION.md` | Servible y reutilizable | Conservar | Sigue siendo útil como backlog operativo DS. |
-| `PROPUESTA-APP-TABLE.md` | A migrar | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | El concepto es valioso, pero no debe vivir aislado del catálogo. |
-| `SESION-PROGRESO.md` | Servible y reutilizable | Conservar | Es útil como bitácora de continuidad. |
-| `pages/catalog-charts/DESIGN-SYSTEM.md` | A migrar | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | Aporta contexto temático, pero no debe fragmentar el estándar. |
-| `src/styles/AUDIT-STYLES.md` | Servible y reutilizable | Conservar | Es la mejor guía actual para auditar la capa de estilos. |
-| `src/styles/estandar-hoja-estilos.md` | Servible y reutilizable | Conservar | Documenta la arquitectura real de `src/styles/`. |
-| `AGENTS.md` | Servible y reutilizable | Conservar | Define restricciones operativas del repo. |
-| `CLAUDE.md` | Obsoleto o redundante | Archivar | No aporta valor directo al Design System. |
-| `GEMINI.md` | Obsoleto o redundante | Archivar | No aporta valor directo al Design System. |
+| Archivo                                 | Clasificación           | Acción                                  | Motivo                                                                            |
+| --------------------------------------- | ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------- |
+| `ANALISIS-PROMPT-V2.md`                 | Servible y reutilizable | Conservar                               | Define el objetivo de auditoría Fase 0.                                           |
+| `AUDITORIA-COMPLETA.md`                 | A migrar                | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | Tiene hallazgos históricos útiles, pero mezcla estado resuelto con backlog viejo. |
+| `INVENTARIO-DS-REVISION.md`             | A migrar                | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | Útil como referencia histórica, no como fuente actual.                            |
+| `PLAN-AUDITORIA-GENERAL.md`             | Obsoleto o redundante   | Archivar                                | Parte de un contexto previo; ya no refleja el estado real del repositorio.        |
+| `PLAN-DE-ACCION-ARCHIVO.md`             | Obsoleto o redundante   | Archivar                                | El propio nombre y contenido lo declaran histórico.                               |
+| `PLAN-DE-ACCION.md`                     | Servible y reutilizable | Conservar                               | Sigue siendo útil como backlog operativo DS.                                      |
+| `PROPUESTA-APP-TABLE.md`                | A migrar                | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | El concepto es valioso, pero no debe vivir aislado del catálogo.                  |
+| `SESION-PROGRESO.md`                    | Servible y reutilizable | Conservar                               | Es útil como bitácora de continuidad.                                             |
+| `pages/catalog-charts/DESIGN-SYSTEM.md` | A migrar                | Consolidar en `DESIGN_SYSTEM_LEGACY.md` | Aporta contexto temático, pero no debe fragmentar el estándar.                    |
+| `src/styles/AUDIT-STYLES.md`            | Servible y reutilizable | Conservar                               | Es la mejor guía actual para auditar la capa de estilos.                          |
+| `src/styles/estandar-hoja-estilos.md`   | Servible y reutilizable | Conservar                               | Documenta la arquitectura real de `src/styles/`.                                  |
+| `AGENTS.md`                             | Servible y reutilizable | Conservar                               | Define restricciones operativas del repo.                                         |
+| `CLAUDE.md`                             | Obsoleto o redundante   | Archivar                                | No aporta valor directo al Design System.                                         |
+| `GEMINI.md`                             | Obsoleto o redundante   | Archivar                                | No aporta valor directo al Design System.                                         |
 
 ### 2.2 Comandos sugeridos para limpieza / archivo
 
 No recomiendo borrar todavía. Recomiendo **archivar** primero.
 
 ```powershell
-New-Item -ItemType Directory -Force client/angular/src/app/features/system/catalogs/catalog-component-ui/archive/md
-Move-Item client/angular/src/app/features/system/catalogs/catalog-component-ui/PLAN-AUDITORIA-GENERAL.md client/angular/src/app/features/system/catalogs/catalog-component-ui/archive/md/
-Move-Item client/angular/src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION-ARCHIVO.md client/angular/src/app/features/system/catalogs/catalog-component-ui/archive/md/
-Move-Item CLAUDE.md client/angular/src/app/features/system/catalogs/catalog-component-ui/archive/md/
-Move-Item GEMINI.md client/angular/src/app/features/system/catalogs/catalog-component-ui/archive/md/
+New-Item -ItemType Directory -Force client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/archive/md
+Move-Item client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/PLAN-AUDITORIA-GENERAL.md client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/archive/md/
+Move-Item client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/PLAN-DE-ACCION-ARCHIVO.md client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/archive/md/
+Move-Item CLAUDE.md client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/archive/md/
+Move-Item GEMINI.md client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/archive/md/
 ```
 
 ### 2.3 Archivo legado consolidado
 
 Se creó:
 
-- `client/angular/src/app/features/system/catalogs/catalog-component-ui/DESIGN_SYSTEM_LEGACY.md`
+- `client/angular/src/app/apps/admin.luxuryapp/catalogs/catalog-component-ui/DESIGN_SYSTEM_LEGACY.md`
 
 Su propósito es concentrar los insumos históricos rescatables y quitar presión documental al árbol principal.
 
@@ -111,16 +111,16 @@ $font-family-mono: "JetBrains Mono", "Roboto Mono", "Courier New", monospace;
 
 ## 4. Matriz de Inconsistencias de Marca
 
-| # | Token / criterio | Documentado | Implementado | Severidad | Recomendación |
-|---|---|---|---|---|---|
-| 1 | Fuente de verdad DS | Varios `.md` compiten entre sí | `src/styles/core/*` + `theme/_variables.scss` | Alta | Declarar una única fuente de verdad implementada. |
-| 2 | Estructura del catálogo | Catálogo dual por componente | Navegación segmentada por dominio (`web`, `mobile`, `core`, `charts`) | Alta | Separar catálogo oficial de sandbox. |
-| 3 | Encoding | UTF-8 sin BOM exigido | Hay mojibake visible en `.md`, `sidebar.ts`, `settings.routing.ts`, `mypreset.ts` y demos | Crítica | Corregir encoding antes de seguir expandiendo documentación. |
-| 4 | Color warning como texto | Uso semántico amplio | `#f59e0b` sobre blanco da `2.15:1` | Crítica | No usar `warning` como texto normal; solo badge, borde o fondo. |
-| 5 | Success / info como texto | Se usan como acento general | `#16a34a` = `3.3:1`, `#0891b2` = `3.68:1` sobre blanco | Alta | Restringirlos a texto grande, iconografía o fondos suaves. |
-| 6 | Hardcodes en demos | El catálogo debería ser token-driven | Persisten hex en `catalog-web-item.ts` y `catalog-core-item.ts` | Alta | Sustituir por `var(--ds-*)` o documentar excepción. |
-| 7 | Catálogo de color | Tokens estructurales y operativos ya existen | Algunos demos aún muestran valores embebidos | Media | Centralizar cualquier muestra cromática en `tokens-colors.ts`. |
-| 8 | Sidebar como arquitectura | Debería ser índice oficial | Hoy mezcla guías, docs, auditoría, core, charts y layouts | Alta | Reducirlo a Foundations / Atoms / Molecules / Organisms / Templates / Legacy. |
+| #   | Token / criterio          | Documentado                                  | Implementado                                                                              | Severidad | Recomendación                                                                 |
+| --- | ------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------- |
+| 1   | Fuente de verdad DS       | Varios `.md` compiten entre sí               | `src/styles/core/*` + `theme/_variables.scss`                                             | Alta      | Declarar una única fuente de verdad implementada.                             |
+| 2   | Estructura del catálogo   | Catálogo dual por componente                 | Navegación segmentada por dominio (`web`, `mobile`, `core`, `charts`)                     | Alta      | Separar catálogo oficial de sandbox.                                          |
+| 3   | Encoding                  | UTF-8 sin BOM exigido                        | Hay mojibake visible en `.md`, `sidebar.ts`, `settings.routing.ts`, `mypreset.ts` y demos | Crítica   | Corregir encoding antes de seguir expandiendo documentación.                  |
+| 4   | Color warning como texto  | Uso semántico amplio                         | `#f59e0b` sobre blanco da `2.15:1`                                                        | Crítica   | No usar `warning` como texto normal; solo badge, borde o fondo.               |
+| 5   | Success / info como texto | Se usan como acento general                  | `#16a34a` = `3.3:1`, `#0891b2` = `3.68:1` sobre blanco                                    | Alta      | Restringirlos a texto grande, iconografía o fondos suaves.                    |
+| 6   | Hardcodes en demos        | El catálogo debería ser token-driven         | Persisten hex en `catalog-web-item.ts` y `catalog-core-item.ts`                           | Alta      | Sustituir por `var(--ds-*)` o documentar excepción.                           |
+| 7   | Catálogo de color         | Tokens estructurales y operativos ya existen | Algunos demos aún muestran valores embebidos                                              | Media     | Centralizar cualquier muestra cromática en `tokens-colors.ts`.                |
+| 8   | Sidebar como arquitectura | Debería ser índice oficial                   | Hoy mezcla guías, docs, auditoría, core, charts y layouts                                 | Alta      | Reducirlo a Foundations / Atoms / Molecules / Organisms / Templates / Legacy. |
 
 ---
 
@@ -128,18 +128,18 @@ $font-family-mono: "JetBrains Mono", "Roboto Mono", "Courier New", monospace;
 
 ## 5.1 `catalog-component-ui` - inventario funcional
 
-| Área | Tipo | Estado | Hallazgo | Acción |
-|---|---|---|---|---|
-| `catalog-tokens-item` | Ambos | Apto | Usa `tokens-colors` y `tokens-typography` como punto único de exhibición. | Mantener como base del catálogo. |
-| `catalog-web-item` | Web | Candidato a refactor | Un solo archivo muy grande con showcase + reglas + ejemplos + hardcodes. | Partir por componente o por patrón. |
-| `catalog-mobile-item` | Mobile | Candidato a refactor | Está segregado por familias mobile, no por paridad con Web. | Reorganizar por componente dual. |
-| `catalog-core-item` | Ambos | Candidato a refactor | Mezcla componentes genéricos con widgets de negocio y demos muy extensos. | Separar `core reusable` vs `business showcase`. |
-| `catalog-charts-item` | Web | Candidato a refactor | Útil, pero charts deben quedar como organismo, no como isla documental. | Reubicar bajo `organisms/data-visualization`. |
-| `catalog-docs-item` | Ambos | Candidato a refactor | Más guía de dominio que componente reusable. | Mover a documentación, no al catálogo atómico. |
-| `catalog-guia-item` | Ambos | A migrar | Es estándar/gobernanza, no componente. | Reubicar como documentación del sistema. |
-| `catalog-audit-item` | Ambos | A migrar | Auditoría interna, no parte del escaparate final. | Archivar o mover a `legacy`. |
-| `catalog-patterns-item` | Ambos | Apto con refactor | Tiene valor como patrones de composición. | Mantener, pero fuera de átomos/moléculas. |
-| `catalog-layouts-item` | Ambos | Apto con refactor | Encaja como templates/layouts. | Mantener como capa superior del catálogo. |
+| Área                    | Tipo   | Estado               | Hallazgo                                                                  | Acción                                          |
+| ----------------------- | ------ | -------------------- | ------------------------------------------------------------------------- | ----------------------------------------------- |
+| `catalog-tokens-item`   | Ambos  | Apto                 | Usa `tokens-colors` y `tokens-typography` como punto único de exhibición. | Mantener como base del catálogo.                |
+| `catalog-web-item`      | Web    | Candidato a refactor | Un solo archivo muy grande con showcase + reglas + ejemplos + hardcodes.  | Partir por componente o por patrón.             |
+| `catalog-mobile-item`   | Mobile | Candidato a refactor | Está segregado por familias mobile, no por paridad con Web.               | Reorganizar por componente dual.                |
+| `catalog-core-item`     | Ambos  | Candidato a refactor | Mezcla componentes genéricos con widgets de negocio y demos muy extensos. | Separar `core reusable` vs `business showcase`. |
+| `catalog-charts-item`   | Web    | Candidato a refactor | Útil, pero charts deben quedar como organismo, no como isla documental.   | Reubicar bajo `organisms/data-visualization`.   |
+| `catalog-docs-item`     | Ambos  | Candidato a refactor | Más guía de dominio que componente reusable.                              | Mover a documentación, no al catálogo atómico.  |
+| `catalog-guia-item`     | Ambos  | A migrar             | Es estándar/gobernanza, no componente.                                    | Reubicar como documentación del sistema.        |
+| `catalog-audit-item`    | Ambos  | A migrar             | Auditoría interna, no parte del escaparate final.                         | Archivar o mover a `legacy`.                    |
+| `catalog-patterns-item` | Ambos  | Apto con refactor    | Tiene valor como patrones de composición.                                 | Mantener, pero fuera de átomos/moléculas.       |
+| `catalog-layouts-item`  | Ambos  | Apto con refactor    | Encaja como templates/layouts.                                            | Mantener como capa superior del catálogo.       |
 
 ## 5.2 `core/components` - clasificación estratégica
 
@@ -235,50 +235,125 @@ export const catalogMenuItems: MenuItem[] = [
   {
     label: "FOUNDATIONS",
     items: [
-      { label: "Colores", routerLink: ["/", "settings", "ui-catalog", "tokens", "colors"] },
-      { label: "Tipografía", routerLink: ["/", "settings", "ui-catalog", "tokens", "typography"] },
-      { label: "Espaciado y Elevación", routerLink: ["/", "settings", "ui-catalog", "tokens", "spacing"] },
+      {
+        label: "Colores",
+        routerLink: ["/", "settings", "ui-catalog", "tokens", "colors"],
+      },
+      {
+        label: "Tipografía",
+        routerLink: ["/", "settings", "ui-catalog", "tokens", "typography"],
+      },
+      {
+        label: "Espaciado y Elevación",
+        routerLink: ["/", "settings", "ui-catalog", "tokens", "spacing"],
+      },
     ],
   },
   {
     label: "ATOMS",
     items: [
-      { label: "Button", routerLink: ["/", "settings", "ui-catalog", "components", "button"] },
-      { label: "Input", routerLink: ["/", "settings", "ui-catalog", "components", "input"] },
-      { label: "Badge / Tag / Status", routerLink: ["/", "settings", "ui-catalog", "components", "status"] },
-      { label: "Icon", routerLink: ["/", "settings", "ui-catalog", "components", "icon"] },
+      {
+        label: "Button",
+        routerLink: ["/", "settings", "ui-catalog", "components", "button"],
+      },
+      {
+        label: "Input",
+        routerLink: ["/", "settings", "ui-catalog", "components", "input"],
+      },
+      {
+        label: "Badge / Tag / Status",
+        routerLink: ["/", "settings", "ui-catalog", "components", "status"],
+      },
+      {
+        label: "Icon",
+        routerLink: ["/", "settings", "ui-catalog", "components", "icon"],
+      },
     ],
   },
   {
     label: "MOLECULES",
     items: [
-      { label: "Empty State", routerLink: ["/", "settings", "ui-catalog", "components", "empty-state"] },
-      { label: "Date Range", routerLink: ["/", "settings", "ui-catalog", "components", "date-range"] },
-      { label: "Action Menu", routerLink: ["/", "settings", "ui-catalog", "components", "action-menu"] },
-      { label: "File Upload", routerLink: ["/", "settings", "ui-catalog", "components", "file-upload"] },
+      {
+        label: "Empty State",
+        routerLink: [
+          "/",
+          "settings",
+          "ui-catalog",
+          "components",
+          "empty-state",
+        ],
+      },
+      {
+        label: "Date Range",
+        routerLink: ["/", "settings", "ui-catalog", "components", "date-range"],
+      },
+      {
+        label: "Action Menu",
+        routerLink: [
+          "/",
+          "settings",
+          "ui-catalog",
+          "components",
+          "action-menu",
+        ],
+      },
+      {
+        label: "File Upload",
+        routerLink: [
+          "/",
+          "settings",
+          "ui-catalog",
+          "components",
+          "file-upload",
+        ],
+      },
     ],
   },
   {
     label: "ORGANISMS",
     items: [
-      { label: "Table", routerLink: ["/", "settings", "ui-catalog", "components", "table"] },
-      { label: "Kanban", routerLink: ["/", "settings", "ui-catalog", "components", "kanban"] },
-      { label: "Timeline", routerLink: ["/", "settings", "ui-catalog", "components", "timeline"] },
-      { label: "Charts", routerLink: ["/", "settings", "ui-catalog", "components", "charts"] },
+      {
+        label: "Table",
+        routerLink: ["/", "settings", "ui-catalog", "components", "table"],
+      },
+      {
+        label: "Kanban",
+        routerLink: ["/", "settings", "ui-catalog", "components", "kanban"],
+      },
+      {
+        label: "Timeline",
+        routerLink: ["/", "settings", "ui-catalog", "components", "timeline"],
+      },
+      {
+        label: "Charts",
+        routerLink: ["/", "settings", "ui-catalog", "components", "charts"],
+      },
     ],
   },
   {
     label: "TEMPLATES",
     items: [
-      { label: "Layouts", routerLink: ["/", "settings", "ui-catalog", "layouts"] },
-      { label: "Patterns", routerLink: ["/", "settings", "ui-catalog", "patterns"] },
+      {
+        label: "Layouts",
+        routerLink: ["/", "settings", "ui-catalog", "layouts"],
+      },
+      {
+        label: "Patterns",
+        routerLink: ["/", "settings", "ui-catalog", "patterns"],
+      },
     ],
   },
   {
     label: "LEGACY",
     items: [
-      { label: "Auditoría Histórica", routerLink: ["/", "settings", "ui-catalog", "legacy", "audit"] },
-      { label: "Guías Anteriores", routerLink: ["/", "settings", "ui-catalog", "legacy", "docs"] },
+      {
+        label: "Auditoría Histórica",
+        routerLink: ["/", "settings", "ui-catalog", "legacy", "audit"],
+      },
+      {
+        label: "Guías Anteriores",
+        routerLink: ["/", "settings", "ui-catalog", "legacy", "docs"],
+      },
     ],
   },
 ];
@@ -299,18 +374,18 @@ Faltantes frente al prompt:
 
 ## 7. Accesibilidad - matriz de contraste
 
-| Combinación | Texto | Fondo | Ratio | AA texto normal | AA texto grande | ¿Pasa? |
-|---|---|---|---|---|---|---|
-| Texto primario sobre surface | `#0f172a` | `#ffffff` | `17.85:1` | Sí | Sí | Sí |
-| Texto secundario sobre surface | `#475569` | `#ffffff` | `7.58:1` | Sí | Sí | Sí |
-| Primary 500 sobre surface | `#003d9b` | `#ffffff` | `9.81:1` | Sí | Sí | Sí |
-| Primary 600 sobre surface | `#0040a2` | `#ffffff` | `9.31:1` | Sí | Sí | Sí |
-| Danger 600 sobre surface | `#dc2626` | `#ffffff` | `4.83:1` | Sí | Sí | Sí |
-| Warning 500 sobre surface | `#f59e0b` | `#ffffff` | `2.15:1` | No | No | No |
-| Success 600 sobre surface | `#16a34a` | `#ffffff` | `3.30:1` | No | Sí | Parcial |
-| Info 600 sobre surface | `#0891b2` | `#ffffff` | `3.68:1` | No | Sí | Parcial |
-| Texto inverso sobre primary 500 | `#ffffff` | `#003d9b` | `9.81:1` | Sí | Sí | Sí |
-| Texto inverso sobre warning 500 | `#ffffff` | `#f59e0b` | `2.15:1` | No | No | No |
+| Combinación                     | Texto     | Fondo     | Ratio     | AA texto normal | AA texto grande | ¿Pasa?  |
+| ------------------------------- | --------- | --------- | --------- | --------------- | --------------- | ------- |
+| Texto primario sobre surface    | `#0f172a` | `#ffffff` | `17.85:1` | Sí              | Sí              | Sí      |
+| Texto secundario sobre surface  | `#475569` | `#ffffff` | `7.58:1`  | Sí              | Sí              | Sí      |
+| Primary 500 sobre surface       | `#003d9b` | `#ffffff` | `9.81:1`  | Sí              | Sí              | Sí      |
+| Primary 600 sobre surface       | `#0040a2` | `#ffffff` | `9.31:1`  | Sí              | Sí              | Sí      |
+| Danger 600 sobre surface        | `#dc2626` | `#ffffff` | `4.83:1`  | Sí              | Sí              | Sí      |
+| Warning 500 sobre surface       | `#f59e0b` | `#ffffff` | `2.15:1`  | No              | No              | No      |
+| Success 600 sobre surface       | `#16a34a` | `#ffffff` | `3.30:1`  | No              | Sí              | Parcial |
+| Info 600 sobre surface          | `#0891b2` | `#ffffff` | `3.68:1`  | No              | Sí              | Parcial |
+| Texto inverso sobre primary 500 | `#ffffff` | `#003d9b` | `9.81:1`  | Sí              | Sí              | Sí      |
+| Texto inverso sobre warning 500 | `#ffffff` | `#f59e0b` | `2.15:1`  | No              | No              | No      |
 
 ### Regla de decisión
 

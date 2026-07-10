@@ -8,13 +8,13 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CardModule } from "primeng/card";
 import { AppImage } from "@ui/web/image/image";
+import { CardModule } from "primeng/card";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
@@ -71,9 +71,11 @@ export class ListaInformeInspeccion implements OnInit {
 
   onLoadInspectionReport(): void {
     this.apiResponseS
-      .onGetSelectItem<
-        ISelectItem[]
-      >(Endpoints.CustomerInspections.selectByCustomer(this.customerIdS.customerId()))
+      .onGetSelectItem<ISelectItem[]>(
+        Endpoints.CustomerInspections.selectByCustomer(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: any) => this.inspectionResultSignal.set(result));
   }
 

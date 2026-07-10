@@ -1,9 +1,9 @@
 import { inject } from "@angular/core";
 import { of } from "rxjs";
 import { catchError, filter, switchMap, take, timeout } from "rxjs/operators";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 /** Tiempo máximo (ms) que el inicializador espera antes de continuar sin bloquear la app. */
 const INIT_TIMEOUT_MS = 10_000;
@@ -85,13 +85,3 @@ export function initializeAppState(): Promise<any> {
       });
   });
 }
-
-
-
-
-
-
-
-
-
-

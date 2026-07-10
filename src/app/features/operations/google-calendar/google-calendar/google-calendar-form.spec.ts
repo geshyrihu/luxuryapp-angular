@@ -1,20 +1,19 @@
-import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { of } from "rxjs";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { vi } from "vitest";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { of } from "rxjs";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { vi } from "vitest";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
-vi.mock("src/app/core/services/api-response.service", () => ({
+vi.mock("src/app/core/http/services/api-response.service", () => ({
   ApiResponseService: class ApiResponseService {},
 }));
 
-vi.mock("src/app/core/services/asp-role.service", () => ({
+vi.mock("src/app/core/auth/services/asp-role.service", () => ({
   AspRoleService: class AspRoleService {},
 }));
 

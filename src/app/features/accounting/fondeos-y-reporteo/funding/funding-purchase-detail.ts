@@ -1,9 +1,14 @@
 import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-funding-purchase-detail",
   imports: [CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe, LxTag],

@@ -12,17 +12,17 @@ import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TooltipModule } from "primeng/tooltip";
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/card-employee";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { PhoneFormatPipe } from "src/app/core/pipes/phone-format.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
-import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
 import { ROUTES } from "src/app/routing/route-paths";
+import { PhoneFormatPipe } from "src/app/shared/pipes/phone-format.pipe";
 import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
 
 @Component({

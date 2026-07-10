@@ -1,12 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
-import { AsambleaChecklistTemplateForm } from './asamblea-checklist-template-form';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute } from "@angular/router";
+import { MessageService } from "primeng/api";
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "primeng/dynamicdialog";
+import { of } from "rxjs";
+import { AsambleaChecklistTemplateForm } from "./asamblea-checklist-template-form";
 
-describe('AsambleaChecklistTemplateForm', () => {
+describe("AsambleaChecklistTemplateForm", () => {
   let component: AsambleaChecklistTemplateForm;
   let fixture: ComponentFixture<AsambleaChecklistTemplateForm>;
 
@@ -16,11 +20,26 @@ describe('AsambleaChecklistTemplateForm', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
-        { provide: DialogService, useValue: { open: vi.fn().mockReturnValue({ onClose: { subscribe: vi.fn() } }) } },
+        {
+          provide: DialogService,
+          useValue: {
+            open: vi.fn().mockReturnValue({ onClose: { subscribe: vi.fn() } }),
+          },
+        },
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { data: {}, params: {}, queryParams: {} },
+            params: of({}),
+            queryParams: of({}),
+          },
+        },
+        {
+          provide: "HttpClientWithoutInterceptors",
+          useValue: (globalThis as any).__mockHttpClient,
+        },
       ],
     }).compileComponents();
 
@@ -29,7 +48,7 @@ describe('AsambleaChecklistTemplateForm', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

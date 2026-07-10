@@ -1,8 +1,15 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import {
-  } from "@ionic/angular/standalone";
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import {} from "@ionic/angular/standalone";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { addIcons } from "ionicons";
 import {
   addCircleOutline,
@@ -17,16 +24,14 @@ import {
   syncOutline,
   timeOutline,
 } from "ionicons/icons";
-import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import Swal from "sweetalert2";
 import { TaskClose } from "../../components/task-close";
 import { TaskProgram } from "../../components/task-program";
@@ -37,12 +42,7 @@ import { TaskForm } from "./task-form";
   selector: "app-task-view",
   templateUrl: "./task-view.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CardModule,
-    AppAvatar,
-    WebButtonLabel,
-    AppIcon,
-  ],
+  imports: [CardModule, AppAvatar, WebButtonLabel, AppIcon],
 })
 export class TaskView implements OnInit {
   apiResponseS = inject(ApiResponseService);

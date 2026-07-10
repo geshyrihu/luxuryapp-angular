@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const directoryRoutes: Routes = [
   {
     path: "provider", // Ruta anterior: 'proveedor'
@@ -16,7 +16,9 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("src/app/features/operations/properties/owner/owner-list").then((m) => m.OwnerList),
+      import("src/app/features/operations/properties/owner/owner-list").then(
+        (m) => m.OwnerList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Condominos",
@@ -50,7 +52,7 @@ export const directoryRoutes: Routes = [
   {
     path: "staff",
     loadComponent: () =>
-      import("src/app/features/hr/expediente-del-empleado/employees/staff-board/staff-board").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board").then(
         (m) => m.StaffBoard,
       ),
     canActivate: [authGuard],
@@ -62,7 +64,7 @@ export const directoryRoutes: Routes = [
   {
     path: "work-position-org-chart",
     loadComponent: () =>
-      import("src/app/features/hr/expediente-del-empleado/employees/org-chart/org-chart").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/org-chart/org-chart").then(
         (m) => m.OrgChart,
       ),
     canActivate: [authGuard],
@@ -74,7 +76,7 @@ export const directoryRoutes: Routes = [
   {
     path: "internal-staff", // Ruta anterior: 'personal-interno'
     loadComponent: () =>
-      import("src/app/features/hr/expediente-del-empleado/employees/employees/pages/employee-list").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/employee-list").then(
         (m) => m.EmployeeList,
       ),
     canActivate: [authGuard],
@@ -99,7 +101,7 @@ export const directoryRoutes: Routes = [
     // Suggested path: 'employee/:employeeId/:applicationUserId'
     path: "empleado/:employeeId/:applicationUserId",
     loadComponent: () =>
-      import("src/app/features/hr/expediente-del-empleado/employees/staff-board/employee-form").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form").then(
         (m) => m.EmployeeForm,
       ),
     canActivate: [authGuard],
@@ -124,7 +126,7 @@ export const directoryRoutes: Routes = [
     // Suggested path: 'my-providers'
     path: "mis-proveedores",
     loadComponent: () =>
-      import("src/app/features/system/gestin-de-cliente/customer-provider/mis-proveedores-list").then(
+      import("src/app/apps/admin.luxuryapp/reportes/customer-provider/mis-proveedores-list").then(
         (m) => m.MisProveedores,
       ),
     canActivate: [authGuard],
@@ -134,4 +136,3 @@ export const directoryRoutes: Routes = [
     },
   },
 ];
-

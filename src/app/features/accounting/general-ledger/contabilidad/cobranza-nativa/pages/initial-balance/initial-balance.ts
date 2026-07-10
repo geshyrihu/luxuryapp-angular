@@ -1,17 +1,23 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   BulkSetInitialBalanceDTO,
   PropertyInitialBalanceDTO,

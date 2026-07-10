@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import {
-  IonCardSubtitle,
-  IonListHeader,
-} from "@ionic/angular/standalone";
+import { IonCardSubtitle, IonListHeader } from "@ionic/angular/standalone";
+import { LxBadge } from "@ui/adaptive/badge/badge";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -13,10 +13,7 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxBadge } from "@ui/adaptive/badge/badge";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",

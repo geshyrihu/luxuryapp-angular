@@ -1,39 +1,44 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { AppImage } from "@ui/web/image/image";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelTracking } from "@ui/buttons/web-label/button-tracking";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "src/app/features/operations/task-engine/tasks/components/task-date-range-selector/task-date-range-selector";
 import { TaskReportActions } from "src/app/features/operations/task-engine/tasks/components/task-report-actions/task-report-actions";
 import { TaskStatus } from "src/app/features/operations/task-engine/tasks/components/task-status/task-status";
 import { SendOperationReport } from "src/app/features/operations/task-engine/tasks/send-operation-report/pages/send-operation-report";
+import { ROUTES } from "src/app/routing/route-paths";
 
+import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { TaskClose } from "../../components/task-close";
 import { TaskReadList } from "../../components/task-read-list";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
 import { TaskForm } from "../../task-message/pages/task-form";
-import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 
 @Component({
   selector: "app-task-operation-report",

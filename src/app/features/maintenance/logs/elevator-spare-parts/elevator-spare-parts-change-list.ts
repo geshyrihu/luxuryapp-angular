@@ -17,20 +17,20 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ElevatorSparePartsChangeForm } from "./elevator-spare-parts-change-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-elevator-spare-parts-change-list",

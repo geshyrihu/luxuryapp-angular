@@ -13,6 +13,7 @@
  */
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -22,29 +23,29 @@ import {
   OnInit,
   signal,
   viewChild,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 
+import { LxModal } from "@ui/adaptive/modal/modal";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import {
@@ -64,8 +65,6 @@ import { FeeComparisonByFija } from "./fee-comparison-by-fija";
 import { BudgetExecutionDetailsModal } from "./modal-budget-execution-details";
 import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso";
 import { ExcelExportService } from "./services/excel-export.service";
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 /**
  * Componente principal para la gestión de la propuesta de presupuesto.
  * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.
@@ -74,7 +73,8 @@ import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 
 @Component({
   selector: "app-presupuesto-propuesta",
-  imports: [AppIcon,
+  imports: [
+    AppIcon,
     CommonModule,
     CustomSearchInput,
     FormsModule,
@@ -84,7 +84,9 @@ import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CheckboxModule,
-    TooltipModule, LxModal],
+    TooltipModule,
+    LxModal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
 })
@@ -728,7 +730,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         item.gastoSeptiembre,
         item.gastoOctubre,
         item.gastoNoviembre,
-        item.gastoDiciembre
+        item.gastoDiciembre,
       ].filter((expense) => typeof expense === "number") as number[];
     }
 
@@ -793,7 +795,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         item.presupuestoSeptiembre,
         item.presupuestoOctubre,
         item.presupuestoNoviembre,
-        item.presupuestoDiciembre
+        item.presupuestoDiciembre,
       ].filter((budget) => typeof budget === "number") as number[];
     }
 
@@ -1038,7 +1040,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       charIndex: 12,
       gastoKey: "gastoDiciembre",
       pptKey: "presupuestoDiciembre",
-    }
+    },
   ] as const;
 
   /** Lista de meses para iterar en la plantilla (mantenido para reportes y utilidades) */

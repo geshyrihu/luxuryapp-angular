@@ -1,14 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { vi } from 'vitest';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { DateService } from 'src/app/core/services/date.service';
-import { AgendaSupervisionForm } from './agenda-supervision-form';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormBuilder } from "@angular/forms";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
+import { vi } from "vitest";
+import { AgendaSupervisionForm } from "./agenda-supervision-form";
 
-describe('AgendaSupervisionForm', () => {
+describe("AgendaSupervisionForm", () => {
   let component: AgendaSupervisionForm;
   let fixture: ComponentFixture<AgendaSupervisionForm>;
   let mockApiResponseS: any;
@@ -19,12 +19,12 @@ describe('AgendaSupervisionForm', () => {
 
   beforeEach(() => {
     mockDateS = {
-      getDateNow: vi.fn(() => '2025-01-15'),
-      getDateFormat: vi.fn(() => '2025-01-15'),
+      getDateNow: vi.fn(() => "2025-01-15"),
+      getDateFormat: vi.fn(() => "2025-01-15"),
     };
     mockAuthS = {
-      applicationUserId: 'user-123',
-      userToken: { infoUserAuthDTO: { customerId: 'cust-456' } },
+      applicationUserId: "user-123",
+      userToken: { infoUserAuthDTO: { customerId: "cust-456" } },
     };
     mockApiResponseS = {
       onGetItem: vi.fn().mockResolvedValue(null),
@@ -33,12 +33,12 @@ describe('AgendaSupervisionForm', () => {
       onPost: vi.fn().mockResolvedValue(true),
       onPut: vi.fn().mockResolvedValue(true),
     };
-    mockConfig = { data: { id: '' } };
+    mockConfig = { data: { id: "" } };
     mockRef = { close: vi.fn() };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(AgendaSupervisionForm, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [AgendaSupervisionForm],
@@ -57,53 +57,57 @@ describe('AgendaSupervisionForm', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.submitting()).toBe(false);
     expect(component.cb_customer()).toEqual([]);
-    expect(component.id).toBe('');
+    expect(component.id).toBe("");
   });
 
-  it('should initialize form with default values', () => {
+  it("should initialize form with default values", () => {
     expect(component.form).toBeDefined();
-    expect(component.form.get('problema')).toBeTruthy();
-    expect(component.form.get('solucion')).toBeTruthy();
+    expect(component.form.get("problema")).toBeTruthy();
+    expect(component.form.get("solucion")).toBeTruthy();
   });
 
-  it('onLoadSelectItem should fetch customers', async () => {
-    const customers = [{ label: 'Cust A' }, { label: 'Cust B' }];
+  it("onLoadSelectItem should fetch customers", async () => {
+    const customers = [{ label: "Cust A" }, { label: "Cust B" }];
     mockApiResponseS.onGetSelectItem.mockResolvedValue(customers);
 
     component.onLoadSelectItem();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
-    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith('customers-active');
+    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
+      "customers-active",
+    );
     expect(component.cb_customer()).toEqual(customers);
   });
 
-  it('submit should call api', () => {
+  it("submit should call api", () => {
     component.ngOnInit();
     component.submit();
     expect(mockApiResponseS.validateForm).toHaveBeenCalled();
   });
 
-  it('onLoadData should fetch and patch form when id exists', async () => {
-    mockConfig.data = { id: 'item-1' };
+  it("onLoadData should fetch and patch form when id exists", async () => {
+    mockConfig.data = { id: "item-1" };
     mockApiResponseS.onGetItem.mockResolvedValue({
-      problema: 'Test problem',
-      solucion: 'Test solution',
-      fechaConclusion: '2025-01-20',
-      fechaSolicitud: '2025-01-10',
+      problema: "Test problem",
+      solucion: "Test solution",
+      fechaConclusion: "2025-01-20",
+      fechaSolicitud: "2025-01-10",
     });
 
     fixture = TestBed.createComponent(AgendaSupervisionForm);
     component = fixture.componentInstance;
     component.ngOnInit();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith('AgendaSupervision/item-1');
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
+      "AgendaSupervision/item-1",
+    );
   });
 });

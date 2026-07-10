@@ -1,24 +1,30 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder } from "@angular/forms";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "src/app/features/purchasing/po/purchase-order/orden-compra";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -28,14 +34,17 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
   selector: "app-purchase-history",
   templateUrl: "./purchase-history.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     AppIcon,
     CommonModule,
     TableModule,
 
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile, MobileListItem],
+    DataViewMobile,
+    MobileListItem,
+  ],
 })
 export class PurchaseHistory implements OnInit {
   apiResponseS = inject(ApiResponseService);

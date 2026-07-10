@@ -7,8 +7,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -19,16 +17,16 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ProductEntryForm } from "./product-entry-form";
 
@@ -51,7 +49,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CardModule,  ],
+    CardModule,
+  ],
 })
 export class ProductEntryList {
   apiResponseS = inject(ApiResponseService);

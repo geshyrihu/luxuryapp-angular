@@ -1,9 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { ConfirmationService } from "primeng/api";
-import { CardModule } from "primeng/card";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import {
@@ -15,14 +19,17 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ConfirmationService } from "primeng/api";
+import { CardModule } from "primeng/card";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";

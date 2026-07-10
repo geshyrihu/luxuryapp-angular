@@ -61,7 +61,7 @@
         <lx-tag
           [severity]="severity(item.isActive)"
           [value]="item.isActive ? 'Activo' : 'Inactivo'"
-        />
+         />
       </td>
       <td class="no-print">
         <div class="flex">
@@ -91,7 +91,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <ili-list-item [noPadding]="true">
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -106,20 +106,22 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      <h3 class="font-semibold m-0 text-color">{{ item.title }}</h3>
-      <p class="text-xs m-0 mt-1 text-color-secondary">
-        {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
-        }}
-      </p>
-      <p class="text-xs m-0 mt-1 text-color-secondary">
-        Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} |
-        V{{ item.version }}
-      </p>
-      <p class="text-xs m-0 mt-1">
-        <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
-          {{ item.isActive ? "Activo" : "Inactivo" }}
-        </span>
-      </p>
+      
+        <h3 class="font-semibold m-0 text-color">{{ item.title }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
+          }}
+        </p>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} |
+          V{{ item.version }}
+        </p>
+        <p class="text-xs m-0 mt-1">
+          <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
+            {{ item.isActive ? "Activo" : "Inactivo" }}
+          </span>
+        </p>
+      
 
       <ili-action-menu end>
         <ng-container actions>

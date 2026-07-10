@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -9,7 +15,7 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { ChargeTypeCatalogResponseDTO } from "../../models/charge-type-catalog.dto";
 import { CreateChargeDTO, UpdateChargeDTO } from "../../models/charge.dto";
@@ -133,8 +139,12 @@ export class ChargeForm implements OnInit {
   }
 
   async loadChargeTypes() {
-    const res = await this.apiResponseS.onGetItem<ChargeTypeCatalogResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(this.customerId),
+    const res = await this.apiResponseS.onGetItem<
+      ChargeTypeCatalogResponseDTO[]
+    >(
+      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(
+        this.customerId,
+      ),
     );
 
     this.chargeTypeOptions.set(
@@ -146,8 +156,14 @@ export class ChargeForm implements OnInit {
         })),
     );
 
-    if (!this.id && this.chargeTypeOptions().length > 0 && !this.form.controls.chargeTypeId.value) {
-      this.form.controls.chargeTypeId.setValue(this.chargeTypeOptions()[0].value);
+    if (
+      !this.id &&
+      this.chargeTypeOptions().length > 0 &&
+      !this.form.controls.chargeTypeId.value
+    ) {
+      this.form.controls.chargeTypeId.setValue(
+        this.chargeTypeOptions()[0].value,
+      );
     }
   }
 

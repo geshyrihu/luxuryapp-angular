@@ -1,9 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
@@ -11,11 +15,14 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ButtonModule } from "primeng/button";
+import { CardModule } from "primeng/card";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IManualTemplateSimpleDTO } from "../models/manuals-and-processes.dto";
@@ -45,7 +52,8 @@ interface DeptGroup {
     WebButtonLabel,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
-    DataViewMobile,    AppIcon,
+    DataViewMobile,
+    AppIcon,
     MobileListItem,
   ],
 })

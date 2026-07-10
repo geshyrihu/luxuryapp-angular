@@ -1,10 +1,10 @@
 import { Component, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service"; // Assuming this service exists
 @Component({
   selector: "app-register-employe-to-vacancy",

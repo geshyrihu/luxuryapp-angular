@@ -1,40 +1,44 @@
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabelEdit, WebButtonLabelItem } from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppImage } from "@ui/web/image/image";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { CardModule } from "primeng/card";
 import { ChipModule } from "primeng/chip";
-import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import {
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { TaskStatus } from "../../components/task-status/task-status";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { TaskForm } from "../../task-message/pages/task-form";
 import { TaskGroupService } from "../../task.service";
 import { MyTaskForm } from "./my-task-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
 @Component({
   selector: "app-my-requests-task",
@@ -52,7 +56,8 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     AppImage,
     ChipModule,
     CardModule,
-    TooltipModule,    WebButtonLabelEdit,
+    TooltipModule,
+    WebButtonLabelEdit,
     WebButtonLabelItem,
     MobileListItem,
     AppIcon,

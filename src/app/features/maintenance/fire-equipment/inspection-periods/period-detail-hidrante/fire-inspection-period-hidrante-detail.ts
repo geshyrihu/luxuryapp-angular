@@ -1,5 +1,6 @@
 import { CommonModule, Location } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -8,15 +9,14 @@ import {
   OnInit,
   signal,
   ViewChild,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionHidranteForm } from "../cycle-checklist-hidrante/fire-cycle-inspection-hidrante-form";
 

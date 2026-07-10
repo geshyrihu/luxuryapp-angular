@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
   inject,
   input,
   output,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import {
   FormControl,
@@ -19,10 +19,10 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ProductModalAdd } from "./product-modal-add";
 
@@ -152,7 +152,9 @@ export class ProductAdd implements OnInit {
     this.products.set([]);
   }
 
-  onProductSelected(event: IProductSuggestion | { value: IProductSuggestion }): void {
+  onProductSelected(
+    event: IProductSuggestion | { value: IProductSuggestion },
+  ): void {
     const selected = "value" in event ? event.value : event;
     this.form.patchValue({
       productName: selected.displayName,

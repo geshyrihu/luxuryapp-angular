@@ -1,15 +1,20 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { AppImage } from "@ui/web/image/image";
-import { TableModule } from "primeng/table";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 

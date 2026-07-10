@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "src/app/features/operations/task-engine/tasks/components/task-date-range-selector/task-date-range-selector";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
@@ -37,8 +37,8 @@ export class TaskMessageReportResumen {
         ),
       )
       .then((result: any) => {
-      this.data = result;
-    });
+        this.data = result;
+      });
   }
 
   onDateRangeSelected(event: { startDate: Date; endDate: Date }) {
@@ -50,4 +50,3 @@ export class TaskMessageReportResumen {
     this.onLoadData(startDateFormatted, endDateFormatted);
   }
 }
-

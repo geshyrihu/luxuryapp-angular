@@ -1,13 +1,19 @@
-import { ChangeDetectorRef, Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
 
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-provider-card",
   templateUrl: "./provider-card.html",
@@ -42,12 +48,3 @@ export class TarjetaProveedor implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

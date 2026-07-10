@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskReadList } from './task-read-list';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { vi } from "vitest";
+import { TaskReadList } from "./task-read-list";
 
-describe('TaskReadList', () => {
+describe("TaskReadList", () => {
   let component: TaskReadList;
   let fixture: ComponentFixture<TaskReadList>;
   let mockApiResponseS: any;
@@ -15,11 +15,11 @@ describe('TaskReadList', () => {
     mockApiResponseS = {
       onGetList: vi.fn().mockResolvedValue([]),
     };
-    mockConfig = { data: { id: 'ticket-123' } };
+    mockConfig = { data: { id: "ticket-123" } };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskReadList, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskReadList],
@@ -34,22 +34,22 @@ describe('TaskReadList', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default values', () => {
-    expect(component.ticketMessageId).toBe('ticket-123');
+  it("should have default values", () => {
+    expect(component.ticketMessageId).toBe("ticket-123");
     expect(component.data).toEqual([]);
     expect(component.loading()).toBe(true);
   });
 
-  it('onLoadData should call api and set data', async () => {
-    const mockData = [{ id: '1', userName: 'User A' }];
+  it("onLoadData should call api and set data", async () => {
+    const mockData = [{ id: "1", userName: "User A" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.data).toEqual(mockData);
   });

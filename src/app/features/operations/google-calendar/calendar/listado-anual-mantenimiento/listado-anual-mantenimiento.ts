@@ -11,7 +11,6 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -21,28 +20,28 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { CurrencyMexicoPipe } from "src/app/core/pipes/currencyMexico.pipe";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { CurrencyMexicoPipe } from "src/app/shared/pipes/currencyMexico.pipe";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { MantenimientoPreventivoForm } from "../mantenimiento-preventivo/mantenimiento-preventivo-form";
 const date = new Date();
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-listado-anual-mantenimiento",

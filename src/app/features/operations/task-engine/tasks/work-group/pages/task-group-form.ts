@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -7,21 +13,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
   FormHelper,
 } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 interface ITaskGroupForm {
@@ -91,9 +97,11 @@ export class TaskGroupForm implements OnInit {
 
   onLoadTaskGroupCategory() {
     this.apiS
-      .onGetSelectItem<
-        ISelectItem[]
-      >(Endpoints.TaskGroupCategories.selectByCustomer(this.customerIdS.customerId()))
+      .onGetSelectItem<ISelectItem[]>(
+        Endpoints.TaskGroupCategories.selectByCustomer(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result) => {
         this.cb_TaskGroupCategory.set(result ?? []);
       });

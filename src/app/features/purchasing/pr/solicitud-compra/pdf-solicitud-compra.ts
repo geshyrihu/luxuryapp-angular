@@ -1,11 +1,16 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-pdf-solicitud-compra",
   changeDetection: ChangeDetectionStrategy.Eager,

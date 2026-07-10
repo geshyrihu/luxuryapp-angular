@@ -1,11 +1,5 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { AgendaSemanalCard } from "src/app/layout/direccion-view/components/agenda-semanal-card/agenda-semanal-card";
-import { ReclutamientoCard } from "src/app/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
-import { PersonalAusenteCard } from "src/app/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
-import { ContratosCard } from "src/app/layout/direccion-view/components/contratos-card/contratos-card";
-import { TareasLegalCard } from "src/app/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
-import {
-  } from "@ionic/angular/standalone";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import {} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   briefcaseOutline,
@@ -16,6 +10,11 @@ import {
   personAddOutline,
   settingsOutline,
 } from "ionicons/icons";
+import { AgendaSemanalCard } from "src/app/core/layout/direccion-view/components/agenda-semanal-card/agenda-semanal-card";
+import { ContratosCard } from "src/app/core/layout/direccion-view/components/contratos-card/contratos-card";
+import { PersonalAusenteCard } from "src/app/core/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
+import { ReclutamientoCard } from "src/app/core/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
+import { TareasLegalCard } from "src/app/core/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
 
 export interface AreaDireccion {
   key: string;

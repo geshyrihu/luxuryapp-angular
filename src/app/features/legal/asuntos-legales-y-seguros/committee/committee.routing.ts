@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { documentTypeRoutesConfig } from "../legal/models/documentTypeRoutesConfig";
 // Definición del componente de detalle para reutilizar
 const CustomDocumentList = () =>
@@ -116,13 +116,3 @@ export const committeeRoutes: Routes = [
     ],
   },
 ];
-
-
-
-
-
-
-
-
-
-

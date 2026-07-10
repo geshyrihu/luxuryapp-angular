@@ -9,22 +9,21 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -32,8 +31,8 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
@@ -68,7 +67,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    AppIcon,    CustomInputSelectSignal,
+    AppIcon,
+    CustomInputSelectSignal,
     MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

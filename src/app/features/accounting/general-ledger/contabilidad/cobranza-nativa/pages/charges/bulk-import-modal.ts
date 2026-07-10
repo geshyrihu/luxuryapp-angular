@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
@@ -9,10 +14,10 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 
 // Services
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 
 interface BulkImportResult {
   processedCount: number;

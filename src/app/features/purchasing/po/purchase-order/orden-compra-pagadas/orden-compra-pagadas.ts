@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -22,13 +22,13 @@ import { checkmarkCircleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "../orden-compra";
@@ -41,7 +41,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-orden-compra-pagadas",
   templateUrl: "./orden-compra-pagadas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     MobileActionMenu,
     MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
@@ -52,7 +53,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     SelectModule,
-    DataViewMobile, MobileListItem, AppIcon],
+    DataViewMobile,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class OrdenCompraPagadas {
   apiResponseS = inject(ApiResponseService);

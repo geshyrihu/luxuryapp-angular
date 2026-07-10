@@ -1,20 +1,20 @@
 import { CommonModule, DecimalPipe } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   computed,
   effect,
   inject,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
@@ -94,7 +94,9 @@ export default class CobranzaDashboard {
     if (this.realtimeCustomerId === customerId) return;
 
     if (this.realtimeCustomerId) {
-      void this.signalRService.leaveNativeCollectionGroup(this.realtimeCustomerId);
+      void this.signalRService.leaveNativeCollectionGroup(
+        this.realtimeCustomerId,
+      );
     }
 
     this.realtimeCustomerId = customerId;

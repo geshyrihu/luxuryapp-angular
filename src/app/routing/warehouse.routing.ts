@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const warehouseRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
       import("src/app/features/operations/inventarios-y-almacn/warehouse/warehouse-list").then(
-        (m) => m.WarehouseList
+        (m) => m.WarehouseList,
       ),
     canActivate: [authGuard],
     data: {
@@ -16,9 +16,9 @@ export const warehouseRoutes: Routes = [
   {
     path: "products/:almacenId",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list"
-      ).then((m) => m.WarehouseStockList),
+      import("src/app/features/operations/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
+        (m) => m.WarehouseStockList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Inventario de Productos", // Ajustado para mayor claridad
@@ -28,9 +28,9 @@ export const warehouseRoutes: Routes = [
   {
     path: "product-output", // Ruta anterior: 'salida-productos'
     loadComponent: () =>
-      import(
-        "src/app/features/operations/inventarios-y-almacn/product-exit/product-output-list"
-      ).then((m) => m.ProductOutputList),
+      import("src/app/features/operations/inventarios-y-almacn/product-exit/product-output-list").then(
+        (m) => m.ProductOutputList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Salida de Productos", // Ajustado para mayor claridad
@@ -41,7 +41,7 @@ export const warehouseRoutes: Routes = [
     path: "product-entry", // Ruta anterior: 'entrada-productos'
     loadComponent: () =>
       import("src/app/features/operations/inventarios-y-almacn/product-entry/product-entry-list").then(
-        (m) => m.ProductEntryList
+        (m) => m.ProductEntryList,
       ),
     canActivate: [authGuard],
     data: {
@@ -52,9 +52,9 @@ export const warehouseRoutes: Routes = [
   {
     path: "tool-loan", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import(
-        "src/app/features/maintenance/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control"
-      ).then((m) => m.PrestamoHerramientasControl),
+      import("src/app/features/maintenance/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control").then(
+        (m) => m.PrestamoHerramientasControl,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Préstamo de Herramientas", // Corregido acento y mayúscula
@@ -62,14 +62,3 @@ export const warehouseRoutes: Routes = [
     },
   },
 ];
-
-
-
-
-
-
-
-
-
-
-

@@ -2,13 +2,13 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { of } from "rxjs";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/services/employee-internal.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { beforeEach, describe } from "vitest";
-import { EmployeeInternalService } from "src/app/features/hr/expediente-del-empleado/employees/employee-internal/services/employee-internal.service";
 import { EmployeeProviderForm } from "./employee-provider-form";
 
 describe("EmployeeProviderForm", () => {

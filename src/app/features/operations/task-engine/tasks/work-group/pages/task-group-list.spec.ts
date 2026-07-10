@@ -1,17 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskGroupList } from './task-group-list';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AspRoleService } from 'src/app/core/services/asp-role.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
-import { TaskGroupService } from 'src/app/features/operations/task-engine/tasks/task.service';
-import { Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { Router } from "@angular/router";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { vi } from "vitest";
+import { TaskGroupList } from "./task-group-list";
 
-describe('TaskGroupList', () => {
+describe("TaskGroupList", () => {
   let component: TaskGroupList;
   let fixture: ComponentFixture<TaskGroupList>;
   let mockApiResponseS: any;
@@ -31,13 +31,13 @@ describe('TaskGroupList', () => {
       onDelete: vi.fn().mockResolvedValue(true),
     };
     mockAspRoleS = { roleSignal: vi.fn().mockReturnValue(signal(false)) };
-    mockAuthS = { applicationUserId: 'user-001' };
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
+    mockAuthS = { applicationUserId: "user-001" };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeLg: '1200px',
+      sizeLg: "1200px",
     };
-    mockTableScrollHeightS = { scrollHeight: signal('600px') };
+    mockTableScrollHeightS = { scrollHeight: signal("600px") };
     mockTaskGroupService = {
       taskGroupMessageStatus: 0,
       setStatus: vi.fn(),
@@ -46,7 +46,7 @@ describe('TaskGroupList', () => {
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskGroupList, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskGroupList],
@@ -67,51 +67,52 @@ describe('TaskGroupList', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.dataSignal()).toEqual([]);
     expect(component.loading()).toBe(true);
     expect(component.value()).toBe(true);
   });
 
-  it('onLoadData should call api and set signals', async () => {
-    const mockData = [{ id: '1', nameGroup: 'Group A' }];
+  it("onLoadData should call api and set signals", async () => {
+    const mockData = [{ id: "1", nameGroup: "Group A" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.dataSignal()).toEqual(mockData);
     expect(component.loading()).toBe(false);
   });
 
-  it('onChange should toggle value and reload', () => {
-    const spy = vi.spyOn(component, 'onLoadData');
+  it("onChange should toggle value and reload", () => {
+    const spy = vi.spyOn(component, "onLoadData");
     component.onChange(false);
     expect(component.value()).toBe(false);
     expect(spy).toHaveBeenCalled();
   });
 
-  it('onDelete should remove item from signal', async () => {
-    await new Promise(resolve => setTimeout(resolve));
-    component.dataSignal.set([{ id: '1' }, { id: '2' }]);
+  it("onDelete should remove item from signal", async () => {
+    await new Promise((resolve) => setTimeout(resolve));
+    component.dataSignal.set([{ id: "1" }, { id: "2" }]);
     mockApiResponseS.onDelete.mockResolvedValue(true);
 
-    component.onDelete('1');
-    await new Promise(resolve => setTimeout(resolve));
+    component.onDelete("1");
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.dataSignal().length).toBe(1);
-    expect(component.dataSignal()[0].id).toBe('2');
+    expect(component.dataSignal()[0].id).toBe("2");
   });
 
-  it('onNavigateMessage should navigate and set status', () => {
-    component.onNavigateMessage('group-1', 0 as any);
+  it("onNavigateMessage should navigate and set status", () => {
+    component.onNavigateMessage("group-1", 0 as any);
     expect(mockTaskGroupService.taskGroupMessageStatus).toBe(0);
     expect(mockTaskGroupService.setStatus).toHaveBeenCalledWith(0);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/tickets/messages/group-1']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith([
+      "/tickets/messages/group-1",
+    ]);
   });
 });
-

@@ -11,12 +11,11 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -26,9 +25,9 @@ import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-task-template-list",

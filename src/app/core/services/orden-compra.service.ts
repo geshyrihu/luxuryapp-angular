@@ -9,7 +9,7 @@ import {
   WritableSignal,
 } from "@angular/core";
 import { Subject } from "rxjs";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 // Asumiendo la ruta correcta
 
 @Injectable({
@@ -94,12 +94,3 @@ export class OrdenCompraService implements OnDestroy {
     this.destroy$.complete();
   }
 }
-
-
-
-
-
-
-
-
-

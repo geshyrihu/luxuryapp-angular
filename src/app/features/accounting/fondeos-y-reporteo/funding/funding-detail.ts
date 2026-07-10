@@ -1,18 +1,18 @@
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
   effect,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { MenuItem, SortEvent } from "primeng/api";
 import { LxBadge } from "@ui/adaptive/badge/badge";
+import { MenuItem, SortEvent } from "primeng/api";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
@@ -20,19 +20,18 @@ import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
 import { TableModule } from "primeng/table";
 
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -75,14 +74,15 @@ const tipoGastoEmojis: { [key: number]: string } = {
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxMessage } from "@ui/adaptive/message/message";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-funding-detail",
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     WebButtonIconDelete,
     LxBadge,
     WebButtonLabel,
@@ -97,7 +97,11 @@ import { LxMessage } from "@ui/adaptive/message/message";
     TooltipModule,
     UpperCasePipe,
     CustomInputCheckSignal,
-    AppIcon, LxTag, LxModal, LxMessage],
+    AppIcon,
+    LxTag,
+    LxModal,
+    LxMessage,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-detail.html",
 })

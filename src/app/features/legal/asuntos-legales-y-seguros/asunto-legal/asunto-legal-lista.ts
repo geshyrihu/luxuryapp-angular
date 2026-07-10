@@ -1,32 +1,36 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
-  } from "@ionic/angular/standalone";
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
+import {} from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AsuntoLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
 import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-asunto-legal-lista",

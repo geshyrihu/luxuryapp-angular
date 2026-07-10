@@ -1,13 +1,20 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { IDiagramDraw } from "../interfaces/diagram-draw";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-editor",
@@ -120,14 +127,16 @@ export class DiagramEditor implements OnInit, OnDestroy {
       content: xml,
     };
 
-    this.apiResponseS.onPut(Endpoints.DiagramDraw.update(this.id), body).then(() => {
-      this.messageS.add({
-        severity: "success",
-        summary: "Guardado",
-        detail: "El diagrama ha sido guardado correctamente",
+    this.apiResponseS
+      .onPut(Endpoints.DiagramDraw.update(this.id), body)
+      .then(() => {
+        this.messageS.add({
+          severity: "success",
+          summary: "Guardado",
+          detail: "El diagrama ha sido guardado correctamente",
+        });
+        // Actualizamos el signal local
+        this.diagram.set({ ...currentDiagram, content: xml });
       });
-      // Actualizamos el signal local
-      this.diagram.set({ ...currentDiagram, content: xml });
-    });
   }
 }

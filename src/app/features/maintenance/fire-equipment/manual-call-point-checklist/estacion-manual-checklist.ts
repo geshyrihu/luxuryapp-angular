@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,17 +12,17 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ROUTES } from "src/app/routing/route-paths";
 // D:\repos\luxuryapp-api\client\angular\src\app\core\components\inputs\web\custom-input-autocomplete-multiple-signal.ts
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 
 interface IEstacionManualChecklistForm {
@@ -119,7 +125,9 @@ export class EstacionManualChecklist implements OnInit {
     });
 
     if (result !== false && !this.ref) {
-      this.router.navigate(ROUTES.BITACORAS.ESTACION_MANUAL_BITACORA(this.stationId));
+      this.router.navigate(
+        ROUTES.BITACORAS.ESTACION_MANUAL_BITACORA(this.stationId),
+      );
     }
   }
 }

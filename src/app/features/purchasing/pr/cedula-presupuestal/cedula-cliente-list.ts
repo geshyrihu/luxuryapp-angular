@@ -1,47 +1,48 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 
-import { TooltipModule } from "primeng/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenesCompraCedulaListComponent } from "./ordenes-compra-cedula-list";
 import { PeriodoCedulaForm } from "./periodo-cedula-form";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-cedula-cliente-list",
   templateUrl: "./cedula-cliente-list.html",
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     WebButtonIconConfirm,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -56,7 +57,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     WebButtonLabel,
     WebButtonLabelConfirm,
     DataViewMobile,
-    ActionMenu, MobileListItem, AppIcon, LxTag],
+    ActionMenu,
+    MobileListItem,
+    AppIcon,
+    LxTag,
+  ],
 })
 export class CedulaClienteList implements OnInit {
   apiResponseS = inject(ApiResponseService);

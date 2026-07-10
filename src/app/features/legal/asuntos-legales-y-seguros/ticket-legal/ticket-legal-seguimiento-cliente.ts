@@ -1,8 +1,14 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Component({
   selector: "app-ticket-legal-seguimiento-cliente",

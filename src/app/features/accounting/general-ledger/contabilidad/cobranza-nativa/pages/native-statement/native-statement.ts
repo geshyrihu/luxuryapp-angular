@@ -22,8 +22,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   NativeCollectionRealTimeUpdateDTO,
   SignalRService,

@@ -1,14 +1,14 @@
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
   CobranzaPaymentAllocationDetailDTO,

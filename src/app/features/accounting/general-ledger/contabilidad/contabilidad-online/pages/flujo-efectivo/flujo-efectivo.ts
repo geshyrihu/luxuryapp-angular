@@ -1,11 +1,18 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFlujoCajaDto } from "../../models/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
@@ -46,7 +53,9 @@ export class FlujoEfectivo {
         filas: (g.filas || []).map((f) => ({
           ...f,
           montos: f.montos?.length ? f.montos.slice(0, maxIdx + 1) : [],
-          montosMtto: f.montosMtto?.length ? f.montosMtto.slice(0, maxIdx + 1) : [],
+          montosMtto: f.montosMtto?.length
+            ? f.montosMtto.slice(0, maxIdx + 1)
+            : [],
           montosObrasMejoras: f.montosObrasMejoras?.length
             ? f.montosObrasMejoras.slice(0, maxIdx + 1)
             : [],
@@ -118,7 +127,10 @@ export class FlujoEfectivo {
 
     const rSaldoBancos = getRow(gContable, "SALDO INICIAL BANCOS");
     const rSaldoInversiones = getRow(gContable, "SALDO INICIAL INVERSIONES");
-    const rSaldoFondoReserva = getRow(gContable, "SALDO INICIAL FONDO DE RESERVA");
+    const rSaldoFondoReserva = getRow(
+      gContable,
+      "SALDO INICIAL FONDO DE RESERVA",
+    );
     const rCuotasMtto = getRow(gContable, "CUOTAS COBRADAS MANTTO");
     const rCuotasExtra = getRow(gContable, "CUOTAS COBRADAS EXTRA");
     const rOtrosIngresos = getRow(gContable, "OTROS INGRESOS");
@@ -181,7 +193,8 @@ export class FlujoEfectivo {
       rTotalCxp.montos[i] = totalCxp;
 
       rDispCxp.montos[i] = rSaldoFinal.montos[i] - totalCxp;
-      rCxcCortoPlazo.montos[i] = rCxcCierre.montos[i] - rCobranzaJudicial.montos[i];
+      rCxcCortoPlazo.montos[i] =
+        rCxcCierre.montos[i] - rCobranzaJudicial.montos[i];
       rDispCxc.montos[i] = rDispCxp.montos[i] + rCxcCortoPlazo.montos[i];
     }
   }

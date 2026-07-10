@@ -1,25 +1,30 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-
+import { ButtonModule } from "primeng/button";
 
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "primeng/table";
 
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import type { CobranzaOnlineAnalysisResponse } from "../../models/cobranza-online-analysis.model";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxMessage } from "@ui/adaptive/message/message";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import type { CobranzaOnlineAnalysisResponse } from "../../models/cobranza-online-analysis.model";
 
 function buildTodayInputValue() {
   const now = new Date();
@@ -31,7 +36,8 @@ function buildTodayInputValue() {
 
 @Component({
   selector: "app-cobranza-online-analysis",
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     RouterModule,
     ButtonModule,
@@ -40,7 +46,11 @@ function buildTodayInputValue() {
     DataViewMobile,
     MobileListItem,
     WebButtonLabel,
-    ChartWrapper, LxTag, AppIcon, LxMessage],
+    ChartWrapper,
+    LxTag,
+    AppIcon,
+    LxMessage,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-online-analysis.html",
 })
@@ -62,13 +72,13 @@ export class CobranzaOnlineAnalysis {
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
-    "ANTICIPOS"
+    "ANTICIPOS",
   ];
 
   readonly globalFilterFields = computed(() => [
     "numeroCuenta",
     "condomino",
-    "clasificacion"
+    "clasificacion",
   ]);
 
   readonly messageSeverity = computed(() =>
@@ -89,12 +99,12 @@ export class CobranzaOnlineAnalysis {
             data: [
               analysis.totalMorosos,
               analysis.totalDeudaCorriente,
-              analysis.totalCobrado
+              analysis.totalCobrado,
             ],
             backgroundColor: ["#b91c1c", "#2563eb", "#166534"],
             hoverBackgroundColor: ["#b91c1c", "#2563eb", "#166534"],
             borderWidth: 0,
-          }
+          },
         ],
       };
     }
@@ -106,12 +116,12 @@ export class CobranzaOnlineAnalysis {
           data: [
             analysis.totalJudicial,
             analysis.totalMorosos,
-            analysis.totalDeudaCorriente
+            analysis.totalDeudaCorriente,
           ],
           backgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
           hoverBackgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
           borderWidth: 0,
-        }
+        },
       ],
     };
   });
@@ -145,7 +155,7 @@ export class CobranzaOnlineAnalysis {
           ...analysis.morosos,
           ...analysis.deudaCorriente,
           ...analysis.sinAdeudo,
-          ...analysis.anticipos
+          ...analysis.anticipos,
         ];
     }
   });

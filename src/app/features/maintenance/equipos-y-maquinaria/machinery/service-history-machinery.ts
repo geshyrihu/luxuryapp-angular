@@ -1,19 +1,25 @@
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ServiceOrderForm } from "src/app/features/operations/field-service/service-order/service-order-form";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-service-history-machinery",
@@ -21,7 +27,11 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    PrimeNgCustomTableEmptyMessage,TableModule, NgbTooltipModule,  PrimeNgCustomCaption],
+    PrimeNgCustomTableEmptyMessage,
+    TableModule,
+    NgbTooltipModule,
+    PrimeNgCustomCaption,
+  ],
 })
 export class ServiceHistoryMachinery implements OnInit {
   apiResponseS = inject(ApiResponseService);

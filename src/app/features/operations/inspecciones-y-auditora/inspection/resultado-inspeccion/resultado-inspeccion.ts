@@ -9,7 +9,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

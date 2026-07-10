@@ -14,24 +14,22 @@ import { CalendarOptions, EventClickArg, EventInput } from "@fullcalendar/core";
 import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";

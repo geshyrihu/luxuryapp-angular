@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -6,15 +12,15 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
-import { TableModule } from "primeng/table";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { InputTextModule } from "primeng/inputtext";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { LxCard } from "@ui/adaptive/card/card";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface IOrdenCompraStatusForm {
   id: FormControl<string | null>;
   ordenCompraId: FormControl<string | null>;
@@ -32,12 +38,15 @@ export interface IOrdenCompraStatusForm {
   selector: "app-orden-compra-status",
   templateUrl: "./orden-compra-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     InputTextModule,
     CustomInputCheckSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    TableModule, LxCard],
+    TableModule,
+    LxCard,
+  ],
 })
 export class OrdenCompraStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);

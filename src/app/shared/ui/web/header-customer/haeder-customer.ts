@@ -1,8 +1,15 @@
-import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TicketFilterService } from "src/app/core/services/ticket-filter.service";
 
 /**
@@ -15,7 +22,9 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
   selector: "app-header-customer",
   imports: [AvatarModule],
   template: `
-    <div class="header-customer flex align-items-center justify-content-between">
+    <div
+      class="header-customer flex align-items-center justify-content-between"
+    >
       <p-avatar
         [image]="
           logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'

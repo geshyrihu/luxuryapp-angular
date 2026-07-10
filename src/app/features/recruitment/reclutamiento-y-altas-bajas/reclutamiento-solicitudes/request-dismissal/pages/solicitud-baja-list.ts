@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -22,21 +22,21 @@ import { personRemoveOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Table, TableModule } from "primeng/table";
 
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { FilterRequestsService } from "src/app/core/services/filter-requests.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SolicitudBajaUpdateStatus } from "../components/solicitud-baja-update-status";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -44,7 +44,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-solicitud-baja-list",
   templateUrl: "./solicitud-baja-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -53,7 +54,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     CommonModule,
     TableModule,
     PrimeNgCustomTableFooter,
-    DataViewMobile, LxTag, MobileListItem, AppIcon],
+    DataViewMobile,
+    LxTag,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class SolicitudBajaList implements OnInit {
   authS = inject(AuthService);

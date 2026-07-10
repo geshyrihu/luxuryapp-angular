@@ -1,32 +1,38 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { addIcons } from "ionicons";
-import { listOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { addIcons } from "ionicons";
+import { listOutline } from "ionicons/icons";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EFinancialEventType } from "../../models/enums";
 import { FinancialLedgerEntryDTO } from "../../models/ledger.dto";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ledger-viewer",
-  imports: [TableModule,
+  imports: [
+    TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
@@ -34,7 +40,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     CurrencyPipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    CustomInputDateSignal, MobileListItem, AppIcon],
+    CustomInputDateSignal,
+    MobileListItem,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./ledger-viewer.html",
 })
@@ -68,7 +77,7 @@ export default class LedgerViewer {
     { label: "Cancelacion Pago", value: EFinancialEventType.CancelacionPago },
     { label: "Reverso Pago", value: EFinancialEventType.ReversoPago },
     { label: "Nota Credito", value: EFinancialEventType.EmisionNotaCredito },
-    { label: "Cierre Periodo", value: EFinancialEventType.CierrePeriodo }
+    { label: "Cierre Periodo", value: EFinancialEventType.CierrePeriodo },
   ];
 
   constructor() {
@@ -152,7 +161,7 @@ export default class LedgerViewer {
       [
         EFinancialEventType.RecepcionPago,
         EFinancialEventType.AplicacionPago,
-        EFinancialEventType.EmisionNotaCredito
+        EFinancialEventType.EmisionNotaCredito,
       ].includes(type)
     ) {
       return "bg-green-100 text-green-800";
@@ -161,7 +170,7 @@ export default class LedgerViewer {
       [
         EFinancialEventType.ReversoPago,
         EFinancialEventType.RechazoPago,
-        EFinancialEventType.CancelacionPago
+        EFinancialEventType.CancelacionPago,
       ].includes(type)
     ) {
       return "bg-red-100 text-red-800";

@@ -1,19 +1,23 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { InputTextModule } from "primeng/inputtext";
-import { TableModule } from "primeng/table";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { InputTextModule } from "primeng/inputtext";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { StorageService } from "src/app/core/services/storage.service";
@@ -33,7 +37,8 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     PageTitleReport,
     CustomInputTextSignal,
     DataViewMobile,
-    PrimeNgCustomTableEmptyMessage,  ],
+    PrimeNgCustomTableEmptyMessage,
+  ],
 })
 export class MaintenanceReports {
   apiResponseS = inject(ApiResponseService);

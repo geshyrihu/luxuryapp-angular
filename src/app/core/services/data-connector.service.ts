@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable, Injector, OnDestroy, inject } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { SignalRService } from "src/app/core/services/signalr.service";
 import { environment } from "src/environments/environment";
-import { SignalRService } from "./signalr.service";
 
 const urlBase = environment.API_BASE_URL;
 

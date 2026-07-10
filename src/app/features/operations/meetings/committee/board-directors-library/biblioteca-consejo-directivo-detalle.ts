@@ -1,33 +1,32 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
 @Component({
   selector: "app-biblioteca-consejo-directivo-detalle",
@@ -37,7 +36,8 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     TableModule,
 
     DataViewMobile,
-    CustomSearchInput,    AppIcon,
+    CustomSearchInput,
+    AppIcon,
     MobileListItem,
   ],
 

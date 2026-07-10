@@ -1,17 +1,22 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
-import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
+import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelDelete,
@@ -19,22 +24,28 @@ import {
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { ButtonModule } from "primeng/button";
+import { CardModule } from "primeng/card";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ReportService } from "src/app/core/services/report.service";
 import {
@@ -47,11 +58,6 @@ import { MeetingForm } from "./meeting-form";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
 import { MinutaPdfService } from "./minuta-pdf.service";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -79,7 +85,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     AreaDetailsTable,
     RouterModule,
-    CardModule,    WebButtonLabelConfirm,
+    CardModule,
+    WebButtonLabelConfirm,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,
@@ -160,7 +167,9 @@ export class MinutasList {
   }
 
   navigateToSeguimiento() {
-    this.route.navigate(ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS('operaciones'));
+    this.route.navigate(
+      ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS("operaciones"),
+    );
   }
 
   navigateToGestionMinuta(id: string) {

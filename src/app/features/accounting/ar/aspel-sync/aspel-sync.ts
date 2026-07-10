@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -7,13 +12,13 @@ import {
   Validators,
 } from "@angular/forms";
 
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { AspelSyncService } from "./aspel-sync.service";
-import { LxCard } from "@ui/adaptive/card/card";
 
 interface IAspelSyncForm {
   year: FormControl<number>;
@@ -23,11 +28,14 @@ interface IAspelSyncForm {
   selector: "app-aspel-sync",
   templateUrl: "./aspel-sync.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     AppIcon,
     WebButtonLabel,
-    CustomInputNumberSignal, LxCard],
+    CustomInputNumberSignal,
+    LxCard,
+  ],
 })
 export class AspelSyncComponent {
   private formB = inject(FormBuilder);
@@ -51,7 +59,7 @@ export class AspelSyncComponent {
       validators: [
         Validators.required,
         Validators.min(2000),
-        Validators.max(2100)
+        Validators.max(2100),
       ],
     }),
   });

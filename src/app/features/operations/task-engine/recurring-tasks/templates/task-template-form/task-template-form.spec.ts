@@ -1,12 +1,12 @@
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { TaskTemplateForm } from './task-template-form';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { TaskTemplateForm } from "./task-template-form";
 
-describe('TaskTemplateForm', () => {
+describe("TaskTemplateForm", () => {
   let component: TaskTemplateForm;
   let fixture: ComponentFixture<TaskTemplateForm>;
   let mockApiResponseS: any;
@@ -24,7 +24,7 @@ describe('TaskTemplateForm', () => {
     mockConfig = { data: {} };
 
     TestBed.overrideComponent(TaskTemplateForm, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
 
     TestBed.configureTestingModule({
@@ -41,28 +41,28 @@ describe('TaskTemplateForm', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signal values', () => {
+  it("should have default signal values", () => {
     expect(component.submitting()).toBe(false);
     expect(component.roles()).toEqual([]);
     expect(component.availableCustomers()).toEqual([]);
     expect(component.templateId()).toBeNull();
   });
 
-  it('should have form with default values', () => {
-    expect(component.form.controls.name.value).toBe('');
+  it("should have form with default values", () => {
+    expect(component.form.controls.name.value).toBe("");
     expect(component.form.controls.isActive.value).toBe(true);
     expect(component.form.controls.customerIds.value).toEqual([]);
   });
 
-  it('should load roles and customers on init', async () => {
-    const fakeRoles = [{ value: 'r1', label: 'Admin' }];
-    const fakeCustomers = [{ value: 'c1', label: 'Customer 1' }];
+  it("should load roles and customers on init", async () => {
+    const fakeRoles = [{ value: "r1", label: "Admin" }];
+    const fakeCustomers = [{ value: "c1", label: "Customer 1" }];
 
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
     mockApiResponseS.onGetSelectItem
       .mockReset()
       .mockResolvedValueOnce(fakeRoles)
@@ -70,34 +70,38 @@ describe('TaskTemplateForm', () => {
       .mockResolvedValue([]);
 
     component.ngOnInit();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
-    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith('ApplicationRoles');
-    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith('customers-active');
+    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
+      "ApplicationRoles",
+    );
+    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
+      "customers-active",
+    );
     expect(component.roles()).toEqual(fakeRoles);
     expect(component.availableCustomers()).toEqual(fakeCustomers);
   });
 
-  it('should patch form values when editing existing template', () => {
+  it("should patch form values when editing existing template", () => {
     mockConfig.data = {
       template: {
-        id: 'tmpl-1',
-        name: 'Template 1',
-        description: 'Desc',
-        roleId: 'r1',
+        id: "tmpl-1",
+        name: "Template 1",
+        description: "Desc",
+        roleId: "r1",
         isActive: true,
-        customerIds: ['c1', 'c2'],
+        customerIds: ["c1", "c2"],
       },
     };
 
     component.ngOnInit();
 
-    expect(component.templateId()).toBe('tmpl-1');
-    expect(component.form.controls.name.value).toBe('Template 1');
-    expect(component.form.controls.customerIds.value).toEqual(['c1', 'c2']);
+    expect(component.templateId()).toBe("tmpl-1");
+    expect(component.form.controls.name.value).toBe("Template 1");
+    expect(component.form.controls.customerIds.value).toEqual(["c1", "c2"]);
   });
 
-  it('should call validateForm on onSubmit', () => {
+  it("should call validateForm on onSubmit", () => {
     component.onSubmit();
 
     expect(mockApiResponseS.validateForm).toHaveBeenCalled();

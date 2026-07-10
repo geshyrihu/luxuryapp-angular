@@ -1,22 +1,21 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { LxImage } from "@ui/adaptive/image/image";
-import { CardModule } from "primeng/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IAnnouncement } from "./announcement.model";
 @Component({
   selector: "app-announcement-detail",
-  imports: [
-    CommonModule,
-    RouterModule,
-    CardModule,
-    AppIcon,
-    LxImage,
-  ],
+  imports: [CommonModule, RouterModule, CardModule, AppIcon, LxImage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-detail.html",
 })
@@ -46,5 +45,3 @@ export class announcementDetail implements OnInit {
     }
   }
 }
-
-

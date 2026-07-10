@@ -25,9 +25,9 @@ import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { BudgetAccountRuleDataDTO } from "../../presupuesto-web-aspel/presupuestos.interfaces";
 import { BudgetRuleForm } from "./budget-rule-form";
@@ -43,7 +43,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-budget-rule-list",
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -51,7 +52,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,
-    DataViewMobile, MobileListItem, AppIcon],
+    DataViewMobile,
+    MobileListItem,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-list.html",
 })

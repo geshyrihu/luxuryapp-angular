@@ -7,11 +7,13 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import {
-  } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -28,13 +30,12 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -42,12 +43,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CurrencyMexicoPipe } from "src/app/core/pipes/currencyMexico.pipe";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { EquipmentInspectionQrPrintService } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
@@ -60,6 +56,8 @@ import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "src/app/features/maintenance/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
 import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { CurrencyMexicoPipe } from "src/app/shared/pipes/currencyMexico.pipe";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 // ... el resto de las importaciones de componentes y mdulos ...
 // ...
 

@@ -12,12 +12,12 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
 

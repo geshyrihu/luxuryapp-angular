@@ -1,45 +1,43 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   output,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {
-  } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CronogramaMantenimientoService } from "src/app/core/services/cronograma-mantenimiento.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import {
   resolveIconifyIcon,
   resolvePrimeIcon,
-} from "src/app/core/utils/icon-mapping";
+} from "src/app/shared/utils/icon-mapping";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
   selector: "app-cronograma-anual-mantenimiento",

@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -18,25 +17,25 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-gasto-fijo-presupuesto",
   templateUrl: "./gasto-fijo-presupuesto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     WebButtonIconDelete,
     CommonModule,
     FormsModule,
@@ -45,7 +44,9 @@ import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
     CustomInputNumberSignal,
     LxSpinner,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter, LxMessage],
+    PrimeNgCustomTableFooter,
+    LxMessage,
+  ],
 })
 export class GastoFijoPresupuesto implements OnInit {
   apiResponseS = inject(ApiResponseService);

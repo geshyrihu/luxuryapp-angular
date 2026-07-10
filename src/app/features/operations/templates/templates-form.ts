@@ -1,13 +1,19 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 
 @Component({

@@ -1,8 +1,13 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFichaTecnicaActivo } from "src/app/core/interfaces/ficha-tecnica-activo.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-ficha-tecnica-activo",
   templateUrl: "./ficha-tecnica-activo.html",

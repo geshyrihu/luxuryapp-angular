@@ -1,33 +1,44 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AccountingCatalogDTO } from "../models/accounting-catalog.model";
 import { AccountingCatalogWithParent } from "../models/AccountingCatalogWithParent";
 import { GroupedAccountingCatalogDTO } from "../models/grouped-accounting-catalog.model";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-accounting-catalog",
   templateUrl: "./accounting-catalog.html",
-  imports: [WebButtonLabel,
+  imports: [
+    WebButtonLabel,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    CardModule, MobileListItem, AppIcon],
+    CardModule,
+    MobileListItem,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService],
 })
@@ -76,7 +87,7 @@ export class AccountingCatalog {
     "codigoCuenta",
     "descripcionCuenta",
     "cuentaPadre",
-    "cuentaPadreDescripcion"
+    "cuentaPadreDescripcion",
   ]);
 
   constructor() {

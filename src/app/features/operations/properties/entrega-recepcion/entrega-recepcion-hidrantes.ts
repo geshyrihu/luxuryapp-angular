@@ -1,15 +1,22 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { ReportHeader } from "@ui/web/report-header/report-header";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { ReportHeader } from "@ui/web/report-header/report-header";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-entrega-recepcion-hidrantes",
   templateUrl: "./entrega-recepcion-hidrantes.html",

@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -6,15 +12,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 
 interface IModalOrdenCompra {

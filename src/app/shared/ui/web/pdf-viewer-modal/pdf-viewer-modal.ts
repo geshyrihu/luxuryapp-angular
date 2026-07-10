@@ -14,7 +14,7 @@ import {
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { environment } from "src/environments/environment";
 
 /**

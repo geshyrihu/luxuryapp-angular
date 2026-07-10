@@ -30,7 +30,7 @@ import {
 } from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
 import { provideIonicAngular } from "@ionic/angular/standalone";
-import { GlobalErrorHandler } from "src/app/core/services/global-error-handler.service";
+import { GlobalErrorHandler } from "src/app/core/http/services/global-error-handler.service";
 // Importaciones de Firebase
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
@@ -50,10 +50,10 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
+import { jwtInterceptor } from "src/app/core/http/interceptors/jwt.interceptor.fn";
+import { offlineInterceptorFn } from "src/app/core/http/interceptors/offline.interceptor.fn";
 import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
-import { jwtInterceptor } from "src/app/core/services/jwt.interceptor.fn";
 import { MessagingService } from "src/app/core/services/notification-messaging.service";
-import { offlineInterceptorFn } from "src/app/core/services/offline.interceptor.fn";
 import MyPreset, { PrimeNgSpanishLocale } from "src/app/mypreset";
 import { initializeAppState } from "./app-initializer";
 import { appRoutes } from "./app.routes";

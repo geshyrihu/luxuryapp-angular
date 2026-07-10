@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { ConsoleLoggerService } from "./console-logger.service";
+import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 @Injectable({
   providedIn: "root",
 })
@@ -104,12 +104,3 @@ export class StorageService {
     }
   }
 }
-
-
-
-
-
-
-
-
-

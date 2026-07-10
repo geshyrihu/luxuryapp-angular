@@ -1,4 +1,9 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -14,8 +19,8 @@ import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraDetalleCompForm {
   productoId: FormControl<string | null>;
   productName: FormControl<string | null>;

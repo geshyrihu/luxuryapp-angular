@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -11,15 +17,15 @@ import {
 } from "@angular/forms";
 import { Endpoints } from "src/app/core/constants/endpoints";
 // PrimeNG Modules
-import { MenuItem } from "primeng/api";
 import { AppAvatar } from "@ui/web/avatar/avatar";
+import { MenuItem } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; // Added DynamicDialogConfig
- // Added
+// Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
- // Added
+// Added
 import { LxSteps } from "@ui/adaptive/steps/steps";
 import { TableModule } from "primeng/table";
- // Added
+// Added
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
@@ -27,11 +33,11 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service"; // Added
 import { OrdenCompraDetalleForm } from "../orden-compra-detalle-form/orden-compra-detalle-form";
@@ -71,15 +77,16 @@ interface IStep3Form {
   budgets: FormArray<FormGroup<IBudgetForm>>;
 }
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { FileUpload } from "@ui/web/file-upload/file-upload";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { FileUpload } from "@ui/web/file-upload/file-upload";
 
 @Component({
   selector: "app-create-orden-compra-wizard",
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     AppAvatar,
     WebButtonLabel,
     CommonModule,
@@ -90,7 +97,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     CustomInputCurrencySignal, // Added
     ReactiveFormsModule,
     LxSteps,
-    TableModule, LxMessage, FileUpload, AppIcon, LxTag],
+    TableModule,
+    LxMessage,
+    FileUpload,
+    AppIcon,
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./create-orden-compra-wizard.html",
 })
@@ -155,7 +167,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       { label: "Aóadir Productos" },
       { label: "Asignar Presupuesto" },
       { label: "Facturas" },
-      { label: "Resumen" }
+      { label: "Resumen" },
     ];
 
     this.step1Form = new FormGroup<IStep1Form>({
@@ -232,7 +244,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     return [
       { label: (currentYear - 1).toString(), value: currentYear - 1 },
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 }
+      { label: (currentYear + 1).toString(), value: currentYear + 1 },
     ];
   }
 
@@ -265,9 +277,9 @@ export class CreateOrdenCompraWizard implements OnInit {
     if (customerId) {
       // Changed from !== 0 to truthy check (non-empty string)
       this.apiResponseS
-        .onGetSelectItem<
-          ISelectItem[]
-        >(Endpoints.SelectItems.providers(customerId))
+        .onGetSelectItem<ISelectItem[]>(
+          Endpoints.SelectItems.providers(customerId),
+        )
         .then((data) => this.cb_providers.set(data));
     }
     this.apiResponseS
@@ -280,9 +292,12 @@ export class CreateOrdenCompraWizard implements OnInit {
     if (customerId && fiscalYear) {
       // Changed from !== 0 to truthy check (non-empty string)
       this.apiResponseS
-        .onGetSelectItem<
-          ISelectItem[]
-        >(Endpoints.SelectItems.accountingCatalogsByCustomerAndYear(customerId, fiscalYear))
+        .onGetSelectItem<ISelectItem[]>(
+          Endpoints.SelectItems.accountingCatalogsByCustomerAndYear(
+            customerId,
+            fiscalYear,
+          ),
+        )
         .then((data) => this.cb_accounts.set(data));
     }
   }
@@ -414,7 +429,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       ),
       amount: new FormControl(initialAmount, [
         Validators.required,
-        Validators.min(0.01)
+        Validators.min(0.01),
       ]),
     });
   }

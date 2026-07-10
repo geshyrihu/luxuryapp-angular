@@ -1,14 +1,21 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IAnnouncementAnalyticsDTO } from "./announcement.model";
 @Component({
   selector: "app-announcement-analytics",
@@ -17,7 +24,8 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
     RouterModule,
     CardModule,
     TableModule,
-    DataViewMobile,    AppIcon,
+    DataViewMobile,
+    AppIcon,
     MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

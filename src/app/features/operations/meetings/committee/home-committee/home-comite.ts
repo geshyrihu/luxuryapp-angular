@@ -6,18 +6,14 @@ import {
   OnInit,
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import {
-  } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { LxImage } from "@ui/adaptive/image/image";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-home-comite",
-  imports: [
-    RouterModule,
-    LxImage,
-  ],
+  imports: [RouterModule, LxImage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-comite.html",
 })

@@ -1,8 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { AlertController } from "@ionic/angular/standalone";
+import { SweetAlertIcon } from "src/app/core/enums/SweetAlertIcon";
+import { PlatformService } from "src/app/core/services/platform.service";
 import Swal from "sweetalert2";
-import { PlatformService } from "../../../../core/services/platform.service";
-import { SweetAlertIcon } from "../../../../core/enums/SweetAlertIcon";
 
 @Injectable({ providedIn: "root" })
 export class ConfirmService {
@@ -18,10 +18,7 @@ export class ConfirmService {
       : this.confirmWeb(message, header);
   }
 
-  private async confirmWeb(
-    message: string,
-    header: string,
-  ): Promise<boolean> {
+  private async confirmWeb(message: string, header: string): Promise<boolean> {
     const result = await Swal.fire({
       title: header,
       text: message,
@@ -35,10 +32,7 @@ export class ConfirmService {
     return result.isConfirmed;
   }
 
-  private confirmMobile(
-    message: string,
-    header: string,
-  ): Promise<boolean> {
+  private confirmMobile(message: string, header: string): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       this.alertCtrl
         .create({

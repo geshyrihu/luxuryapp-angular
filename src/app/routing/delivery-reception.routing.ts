@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const deliveryReceptionRoutes: Routes = [
   {
     path: "general",
@@ -124,14 +124,3 @@ export const deliveryReceptionRoutes: Routes = [
     },
   },
 ];
-
-
-
-
-
-
-
-
-
-
-

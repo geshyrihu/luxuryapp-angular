@@ -1,29 +1,29 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/card-employee";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
-import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 @Component({
   selector: "app-bitacora-individual",
   templateUrl: "./bitacora-individual.html",
@@ -109,13 +109,3 @@ export class BitacoraIndividual implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-
-
-
-
-
-
-
-
-
-

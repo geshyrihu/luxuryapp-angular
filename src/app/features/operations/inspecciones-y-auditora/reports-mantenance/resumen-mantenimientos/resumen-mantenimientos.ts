@@ -1,10 +1,16 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { TableModule } from "primeng/table";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -57,12 +63,3 @@ export class ResumenMantenimientos {
     });
   }
 }
-
-
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@
 import { Injectable, inject } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { globalFilterFields as calculateglobalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 /**
  * Interfaz para la respuesta esperada de la API cuando se solicitan datos paginados.
  * @template T El tipo de los items en la lista.
@@ -196,12 +196,3 @@ export class PaginationService<T> {
     return this.currentPageSize;
   }
 }
-
-
-
-
-
-
-
-
-

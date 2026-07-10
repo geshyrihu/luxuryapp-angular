@@ -1,11 +1,17 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { AppImage } from "@ui/web/image/image";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { AppImage } from "@ui/web/image/image";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Component({
   selector: "app-ordenes-servicio-fotos",

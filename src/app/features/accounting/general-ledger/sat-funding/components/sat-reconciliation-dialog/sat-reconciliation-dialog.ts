@@ -1,26 +1,27 @@
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
-import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { TableModule } from "primeng/table";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ReconciledItemDTO } from "../../interfaces/sat-reconciliation.dtos";
 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { DateService } from "src/app/core/services/date.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 
 @Component({
   selector: "app-sat-reconciliation-dialog",
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
     TableModule,
@@ -29,7 +30,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     CurrencyPipe,
     DatePipe,
     CardModule,
-    CustomInputDateSignal, LxTag, AppIcon],
+    CustomInputDateSignal,
+    LxTag,
+    AppIcon,
+  ],
   templateUrl: "./sat-reconciliation-dialog.html",
 })
 export class SatReconciliationDialog implements OnInit {

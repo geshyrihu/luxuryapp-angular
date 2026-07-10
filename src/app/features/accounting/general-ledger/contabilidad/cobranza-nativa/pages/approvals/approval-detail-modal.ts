@@ -1,12 +1,18 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { EFinancialApprovalOperationType } from "../../models/enums";
 import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dto";
 

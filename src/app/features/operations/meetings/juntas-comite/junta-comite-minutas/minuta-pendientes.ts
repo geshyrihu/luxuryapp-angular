@@ -1,25 +1,36 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import * as ExcelJS from "exceljs";
-import { saveAs } from "file-saver";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { ReportHeader } from "@ui/web/report-header/report-header";
+import * as ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 
 @Component({
   selector: "app-minuta-pendientes",
   templateUrl: "./minuta-pendientes.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, ReportHeader, SanitizeHtmlPipe, WebButtonLabelDownload],
+  imports: [
+    CommonModule,
+    ReportHeader,
+    SanitizeHtmlPipe,
+    WebButtonLabelDownload,
+  ],
 })
 export class MinutaPendientes {
   apiResponseS = inject(ApiResponseService);

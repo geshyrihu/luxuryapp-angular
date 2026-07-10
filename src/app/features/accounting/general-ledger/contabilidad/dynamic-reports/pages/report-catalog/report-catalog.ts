@@ -8,6 +8,9 @@ import {
   viewChild,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import type { TabItem } from "@ui/base/tabs.base";
 import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,
@@ -15,16 +18,13 @@ import {
 } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { Table, TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import type { TabItem } from "@ui/base/tabs.base";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IReportDefinitionList } from "../../models/report-definition.interface";
 
@@ -37,7 +37,8 @@ import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-report-catalog",
-  imports: [TooltipModule,
+  imports: [
+    TooltipModule,
     WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,
@@ -48,7 +49,9 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonLabelAdd,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    DataViewMobile, LxTag],
+    DataViewMobile,
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-catalog.html",
 })
@@ -69,7 +72,7 @@ export class ReportCatalog implements OnInit {
     "name",
     "description",
     "visualizationType",
-    "dataSource"
+    "dataSource",
   ];
 
   catalogTabs = signal<TabItem[]>([
@@ -95,7 +98,7 @@ export class ReportCatalog implements OnInit {
       ),
       this.api.onGetItem<IReportDefinitionList[]>(
         Endpoints.DynamicReports.getTemplates,
-      )
+      ),
     ]);
     if (propios) this.propios.set(propios);
     if (plantillas) this.plantillas.set(plantillas);

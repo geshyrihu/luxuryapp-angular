@@ -1,12 +1,19 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IManualDiagramSimpleDTO } from "../../models/manuals-and-processes.dto";
 
 // Draw.io requiere hexadecimales en el XML/config. Mantener estos valores

@@ -1,37 +1,42 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { LxBadge } from "@ui/adaptive/badge/badge";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxBadge } from "@ui/adaptive/badge/badge";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-ordenes-compra-cedula-list",
   templateUrl: "./ordenes-compra-cedula-list.html",
-  imports: [PrimeNgCustomTableEmptyMessage,
+  imports: [
+    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    LxTag, LxBadge, MobileListItem, AppIcon],
+    LxTag,
+    LxBadge,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class OrdenesCompraCedulaListComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -91,4 +96,3 @@ export class OrdenesCompraCedulaListComponent implements OnInit {
     );
   }
 }
-

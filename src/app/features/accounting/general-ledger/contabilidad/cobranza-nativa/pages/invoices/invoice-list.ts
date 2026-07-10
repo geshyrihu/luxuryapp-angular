@@ -1,32 +1,38 @@
 import { DatePipe } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { addIcons } from "ionicons";
-import { receiptOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { addIcons } from "ionicons";
+import { receiptOutline } from "ionicons/icons";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { InvoiceResponseDTO } from "../../models/invoice.dto";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-invoice-list",
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     TooltipModule,
     TableModule,
     PrimeNgCustomCaption,
@@ -35,7 +41,9 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     DatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    AppIcon, MobileListItem],
+    AppIcon,
+    MobileListItem,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./invoice-list.html",
 })

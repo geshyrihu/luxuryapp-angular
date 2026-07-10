@@ -6,8 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -19,16 +17,16 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IComiteVigilancia } from "src/app/core/interfaces/comite-vigilancia.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
 
@@ -54,7 +52,8 @@ import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
     NgbTooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,  ],
+    DataViewMobile,
+  ],
 })
 export class ComiteVigilanciaList {
   apiResponseS = inject(ApiResponseService);

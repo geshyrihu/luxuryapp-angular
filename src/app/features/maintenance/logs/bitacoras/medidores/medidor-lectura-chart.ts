@@ -1,21 +1,27 @@
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import {
-  } from "@ionic/angular/standalone";
-import { NgxEchartsDirective } from "ngx-echarts";
-import type { EChartsCoreOption } from "echarts/core";
+import {} from "@ionic/angular/standalone";
 import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { RadioButtonModule } from "primeng/radiobutton";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import type { EChartsCoreOption } from "echarts/core";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { RadioButtonModule } from "primeng/radiobutton";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IChartType } from "src/app/core/interfaces/chart-type.interface";
 import { IDataSet } from "src/app/core/interfaces/data-set.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 @Component({
   selector: "app-medidor-lectura-chart",
@@ -59,7 +65,6 @@ export class MedidorLecturaChart implements OnInit {
   }
 
   onSegmentChange(value: string) {
-    
     if (value === "month") {
       this.ViewMonth = true;
       this.ViewDay = false;

@@ -1,12 +1,12 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const recurringTasksRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/task-engine/recurring-tasks/templates/task-template-list/task-template-list"
-      ).then((m) => m.TaskTemplateList),
+      import("src/app/features/operations/task-engine/recurring-tasks/templates/task-template-list/task-template-list").then(
+        (m) => m.TaskTemplateList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Plantillas de Tareas Recurrentes",
@@ -16,9 +16,9 @@ export const recurringTasksRoutes: Routes = [
   {
     path: ":id/items",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/task-engine/recurring-tasks/templates/task-template-items/task-template-items"
-      ).then((m) => m.TaskTemplateItems),
+      import("src/app/features/operations/task-engine/recurring-tasks/templates/task-template-items/task-template-items").then(
+        (m) => m.TaskTemplateItems,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Items de Plantilla",
@@ -28,9 +28,9 @@ export const recurringTasksRoutes: Routes = [
   {
     path: "customer-config",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/task-engine/recurring-tasks/templates/customer-config/customer-config"
-      ).then((m) => m.CustomerConfig),
+      import("src/app/features/operations/task-engine/recurring-tasks/templates/customer-config/customer-config").then(
+        (m) => m.CustomerConfig,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Configuración por Cliente",
@@ -40,9 +40,9 @@ export const recurringTasksRoutes: Routes = [
   {
     path: "my-tasks",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/task-engine/recurring-tasks/instances/daily-task-list/daily-task-list"
-      ).then((m) => m.DailyTaskList),
+      import("src/app/features/operations/task-engine/recurring-tasks/instances/daily-task-list/daily-task-list").then(
+        (m) => m.DailyTaskList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Mis Tareas Diarias",
@@ -50,14 +50,3 @@ export const recurringTasksRoutes: Routes = [
     },
   },
 ];
-
-
-
-
-
-
-
-
-
-
-

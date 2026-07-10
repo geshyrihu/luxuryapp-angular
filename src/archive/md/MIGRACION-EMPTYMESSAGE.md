@@ -7,6 +7,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 ## Cambios requeridos por archivo
 
 ### HTML
+
 ```diff
 -<ng-template #emptymessage>
 -  <tr>
@@ -21,6 +22,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 ```
 
 ### TS
+
 1. Agregar import: `import { PrimeNgCustomTableEmptyMessage } from "src/app/core/components/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";`
 2. Agregar a `imports: [ ..., PrimeNgCustomTableEmptyMessage ]`
 3. Remover `EmptyState` de imports si ya no se usa en el template
@@ -32,16 +34,19 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 ### 📁 ACCOUNTING
 
 #### AR (3)
+
 - [x] `src/app/features/accounting/ar/aspel-customer-empresa/aspel-customer-empresa-list.html` — colspan: 4
 - [x] `src/app/features/accounting/ar/catalogo-gastos-fijos/catalogo-gastos-fijos-list.html` — colspan: 8
 - [x] `src/app/features/accounting/ar/espejo-aspel/projected-expenses-list.html` — colspan: 7
 
 #### Fondeos y Reporteo (3)
+
 - [x] `src/app/features/accounting/fondeos-y-reporteo/funding/funding-list.html` — colspan: 5
 - [x] `src/app/features/accounting/fondeos-y-reporteo/funding-accounting/funding-accounting-list.html` — colspan: 6
 - [x] `src/app/features/accounting/fondeos-y-reporteo/sat-funding/sat-funding-list/sat-funding-list.html` — colspan: 4
 
 #### General Ledger (23)
+
 - [x] `src/app/features/accounting/general-ledger/accounting-accounts/level-three-account-list.html` — colspan: 5
 - [x] `src/app/features/accounting/general-ledger/aspel-customer-empresa/aspel-customer-empresa-list.html` — colspan: 4
 - [x] `src/app/features/accounting/general-ledger/catalogo-gastos-fijos/catalogo-gastos-fijos-list.html` — colspan: 8
@@ -60,7 +65,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `src/app/features/accounting/general-ledger/contabilidad/pendientes-minuta/minuta-pendientes-list.html` — colspan: 8
 - [x] `src/app/features/accounting/general-ledger/contabilidad/reporte-envio-financieros/reporte-envio-financieros.html` — colspan: 13
 - [x] `src/app/features/accounting/general-ledger/espejo-aspel/projected-expenses-list.html` — colspan: 7
-- [x] `src/app/features/accounting/general-ledger/expense-catalog-detail/gasto-fijo-servicios.html` — colspan: 6 *(2 emptymessage blocks)*
+- [x] `src/app/features/accounting/general-ledger/expense-catalog-detail/gasto-fijo-servicios.html` — colspan: 6 _(2 emptymessage blocks)_
 - [x] `src/app/features/accounting/general-ledger/funding/funding-list.html` — colspan: 5
 - [x] `src/app/features/accounting/general-ledger/funding/components/funding-order-invoices/funding-order-invoices.html` — colspan: 3
 - [x] `src/app/features/accounting/general-ledger/funding-accounting/funding-accounting-list.html` — colspan: 7
@@ -71,54 +76,60 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 ### 📁 HR
 
 #### Chekador (1)
-- [x] `src/app/features/hr/chekador-empleados/pages/chekador-list.html` — colspan: 10
+
+- [x] `src/app/apps/recursos-humanos.luxuryapp/chekador-empleados/pages/chekador-list.html` — colspan: 10
 
 #### Evaluaciones de Desempeño (4)
-- [x] `src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/lista-plantilla-evaluacion.html` — colspan: 6
-- [x] `src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/lista-evaluacion-realizada.html` — colspan: 7
-- [x] `src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/incident-type-list.html` — colspan: 5
-- [x] `src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/sanction-type-list.html` — colspan: 6
+
+- [x] `src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/lista-plantilla-evaluacion.html` — colspan: 6
+- [x] `src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/lista-evaluacion-realizada.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/hr-catalog/pages/incident-type-list.html` — colspan: 5
+- [x] `src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/hr-catalog/pages/sanction-type-list.html` — colspan: 6
 
 #### Employees (5)
-- [x] `src/app/features/hr/expediente-del-empleado/employees/employee-bank-data/pages/employee-bank-data-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/employees/employee-clinical-data/pages/employee-clinical-data-list.html` — colspan: 3
-- [x] `src/app/features/hr/expediente-del-empleado/employees/employee-emergency-contact/pages/employee-emergency-contact-list.html` — colspan: 8
-- [x] `src/app/features/hr/expediente-del-empleado/employees/employees/pages/employee-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/employees/staff-board/staff-board.html` — colspan: 7
+
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-bank-data/pages/employee-bank-data-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-clinical-data/pages/employee-clinical-data-list.html` — colspan: 3
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-emergency-contact/pages/employee-emergency-contact-list.html` — colspan: 8
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/employee-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html` — colspan: 7
 
 #### hr-employees (5)
-- [x] `src/app/features/hr/expediente-del-empleado/hr-employees/employee-bank-data/pages/employee-bank-data-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/hr-employees/employee-clinical-data/pages/employee-clinical-data-list.html` — colspan: 3
-- [x] `src/app/features/hr/expediente-del-empleado/hr-employees/employee-emergency-contact/pages/employee-emergency-contact-list.html` — colspan: 8
-- [x] `src/app/features/hr/expediente-del-empleado/hr-employees/employees/pages/employee-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/hr-employees/staff-board/staff-board.html` — colspan: 7
+
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employee-bank-data/pages/employee-bank-data-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employee-clinical-data/pages/employee-clinical-data-list.html` — colspan: 3
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employee-emergency-contact/pages/employee-emergency-contact-list.html` — colspan: 8
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employees/pages/employee-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html` — colspan: 7
 
 #### Recursos Humanos (21)
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/addendum-template/pages/addendum-template-list.html` — colspan: 6
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.html` — colspan: 11
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/contract-addendum/pages/contract-addendum-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/contract-template/pages/contract-template-list.html` — colspan: 6
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/employee-bank-data/pages/employee-bank-data-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/employee-file/pages/employee-file-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/historial-solicitudes/solicitudes-historial.html` — colspan: 8
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/components/incident-attachments/incident-attachments.html` — colspan: 5
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/components/incident-witnesses/incident-witnesses.html` — colspan: 5
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/components/suspension-days-manager/suspension-days-manager.html` — colspan: 3
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/pages/incident-list.html` — colspan: 9
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/sanction/pages/sanction-list.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/leave-request/mis-permisos-listado.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/my-vacation-requests/mis-vacaciones-listado.html` — colspan: 6
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/incidencias-nomina/incidencias-nomina.html` — colspan: 8
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/nomina-detalle/nomina-detalle.html` — colspan: 8
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/nominas/nominas.html` — colspan: 8
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/periodos-nomina/periodos-nomina.html` — colspan: 9
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/prestamos-empleado/prestamos-empleado.html` — colspan: 7
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/tiempo-extra/tiempo-extra.html` — colspan: 9
-- [x] `src/app/features/hr/expediente-del-empleado/recursos-humanos/work-contract/pages/work-contract-list.html` — colspan: 7
+
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/addendum-template/pages/addendum-template-list.html` — colspan: 6
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.html` — colspan: 11
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/contract-addendum/pages/contract-addendum-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/contract-template/pages/contract-template-list.html` — colspan: 6
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/employee-bank-data/pages/employee-bank-data-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/pages/employee-file-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/historial-solicitudes/solicitudes-historial.html` — colspan: 8
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/components/incident-attachments/incident-attachments.html` — colspan: 5
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/components/incident-witnesses/incident-witnesses.html` — colspan: 5
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/components/suspension-days-manager/suspension-days-manager.html` — colspan: 3
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/pages/incident-list.html` — colspan: 9
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/sanction/pages/sanction-list.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/leave-request/mis-permisos-listado.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/my-vacation-requests/mis-vacaciones-listado.html` — colspan: 6
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/nomina/pages/incidencias-nomina/incidencias-nomina.html` — colspan: 8
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/nomina/pages/nomina-detalle/nomina-detalle.html` — colspan: 8
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/nomina/pages/nominas/nominas.html` — colspan: 8
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/nomina/pages/periodos-nomina/periodos-nomina.html` — colspan: 9
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/nomina/pages/prestamos-empleado/prestamos-empleado.html` — colspan: 7
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/nomina/pages/tiempo-extra/tiempo-extra.html` — colspan: 9
+- [x] `src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/work-contract/pages/work-contract-list.html` — colspan: 7
 
 ---
 
 ### 📁 LEGAL (5)
+
 - [x] `src/app/features/legal/asuntos-legales-y-seguros/asunto-legal/asunto-legal-lista.html` — colspan: 4
 - [x] `src/app/features/legal/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-lista.html` — colspan: 5
 - [x] `src/app/features/legal/asuntos-legales-y-seguros/minutas/legal-pendientes-minuta.html` — colspan: 6
@@ -130,11 +141,13 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 ### 📁 MAINTENANCE (20)
 
 #### Equipos y Maquinaria (3)
+
 - [x] `src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-definitions-list.html` — colspan: 4
 - [x] `src/app/features/maintenance/equipos-y-maquinaria/machinery/equipos-list.html` — colspan: 7
 - [x] `src/app/features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery.html` — colspan: 6
 
 #### Fire Equipment (6)
+
 - [x] `src/app/features/maintenance/fire-equipment/extinguisher-log/extintor-bitacora-list.html` — colspan: 8
 - [x] `src/app/features/maintenance/fire-equipment/hydrant-log/hidrante-bitacora-list.html` — colspan: 5
 - [x] `src/app/features/maintenance/fire-equipment/inspection-periods/cycle-list/fire-inspection-cycle-list.html` — colspan: 6
@@ -143,6 +156,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `src/app/features/maintenance/fire-equipment/smoke-detector-log/detector-humo-bitacora-list.html` — colspan: 7
 
 #### Logs (8)
+
 - [x] `src/app/features/maintenance/logs/bitacoras/medidores/medidor-lectura-list.html` — colspan: 8
 - [x] `src/app/features/maintenance/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control.html` — colspan: 6
 - [x] `src/app/features/maintenance/logs/elevator-emergency-call/elevators-emergency-call-list.html` — colspan: 5
@@ -155,11 +169,13 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `src/app/features/maintenance/logs/tool-loan/tool-list.html` — colspan: 4
 
 #### Planificación (1)
+
 - [x] `src/app/features/maintenance/planificacin-de-mantenimiento/calendario-maestro-equipo/calendario-maestro-equipo.html` — colspan: 3
 
 ---
 
 ### 📁 OPERATIONS (53)
+
 - [x] `operations/announcements/announcement/announcement-admin-list.html` — colspan: 6
 - [x] `operations/asambleas-y-planificacin/asamblea-checklist-template/asamblea-checklist-template-list.html` — colspan: 9
 - [x] `operations/custom-documents/custom-document/acta-constitutiva-list.html` — colspan: 4
@@ -217,6 +233,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `operations/templates/templates-list.html` — colspan: 4
 
 ### 📁 PURCHASING (29)
+
 - [x] `purchasing/customer-provider/mis-proveedores-list.html` — colspan: 3
 - [x] `purchasing/po/purchase-order/components/payment-voucher-modal/payment-voucher-modal.html` — colspan: 3
 - [x] `purchasing/po/purchase-order/forms/orden-compra-factura-form.html` — colspan: 7
@@ -248,6 +265,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `purchasing/purchases/solicitud-compra/solicitud-compra-list.html` — colspan: 9
 
 ### 📁 RECRUITMENT (6)
+
 - [x] `recruitment/estructura-organizacional/work-position/pages/work-position-list.html` — colspan: 7
 - [x] `recruitment/reclutamiento-y-altas-bajas/recruitment-client-requests/solicitudes-cliente-list.html` — colspan: 6
 - [x] `recruitment/reclutamiento-y-altas-bajas/recruitment-requests/pages/solicitud-alta-list.html` — colspan: 8
@@ -256,6 +274,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `recruitment/reclutamiento-y-altas-bajas/vacancy-requests/pages/vacantes-list.html` — colspan: 9
 
 ### 📁 SYSTEM (26)
+
 - [x] `system/access/application-role/pages/roles-list.html` — colspan: 6
 - [x] `system/access/application-user/pages/application-user-list.html` — colspan: 6
 - [x] `system/access/audit-entries/audit-entries.html` — colspan: 6
@@ -265,7 +284,7 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 - [x] `system/ai/knowledge-base/ai-knowledge-base-list.html` — colspan: 6
 - [x] `system/asamblea-checklist-template/asamblea-checklist-template-list.html` — colspan: 9
 - [x] `system/audit-logs/log-api-report/log-api-report.html` — colspan: 5
-- [x] `system/catalogs/banks/bank-list.html` — colspan: 4 ✅ *(ya migrado)*
+- [x] `system/catalogs/banks/bank-list.html` — colspan: 4 ✅ _(ya migrado)_
 - [x] `system/catalogs/cfdi-use/pages/cfdi-use-list.html` — colspan: 3
 - [x] `system/catalogs/machinery-classification/machinery-classification-list.html` — colspan: 3
 - [x] `system/catalogs/meter-category/meter-category-list.html` — colspan: 3
@@ -288,23 +307,23 @@ Reemplazar todas las ocurrencias de `<app-empty-state>` dentro de `<ng-template 
 
 ## Progreso
 
-| Área | Total | ✅ Migrado | ⬜ Pendiente |
-|------|-------|-----------|-------------|
-| accounting/ar | 3 | 3 | — |
-| accounting/fondeos | 3 | 3 | — |
-| accounting/general-ledger | 23 | 23 | — |
-| hr/chekador | 1 | 1 | — |
-| hr/evaluaciones | 4 | 4 | — |
-| hr/expediente/employees | 5 | 5 | — |
-| hr/expediente/hr-employees | 5 | 5 | — |
-| hr/expediente/recursos-humanos | 21 | 21 | — |
-| legal | 5 | 5 | — |
-| maintenance | 20 | 20 | — |
-| operations | 53 | 53 | — |
-| purchasing | 29 | 29 | — |
-| recruitment | 6 | 6 | — |
-| system | 27 | 27 | — |
-| **Total** | **~205** | **~205** | **0** |
+| Área                           | Total    | ✅ Migrado | ⬜ Pendiente |
+| ------------------------------ | -------- | ---------- | ------------ |
+| accounting/ar                  | 3        | 3          | —            |
+| accounting/fondeos             | 3        | 3          | —            |
+| accounting/general-ledger      | 23       | 23         | —            |
+| hr/chekador                    | 1        | 1          | —            |
+| hr/evaluaciones                | 4        | 4          | —            |
+| hr/expediente/employees        | 5        | 5          | —            |
+| hr/expediente/hr-employees     | 5        | 5          | —            |
+| hr/expediente/recursos-humanos | 21       | 21         | —            |
+| legal                          | 5        | 5          | —            |
+| maintenance                    | 20       | 20         | —            |
+| operations                     | 53       | 53         | —            |
+| purchasing                     | 29       | 29         | —            |
+| recruitment                    | 6        | 6          | —            |
+| system                         | 27       | 27         | —            |
+| **Total**                      | **~205** | **~205**   | **0**        |
 
 ## Cierre de la migración (2026-07-01)
 

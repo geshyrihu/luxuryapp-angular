@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const employeeEvaluationRoutes: Routes = [
   // 1. Ruta para la creación de plantillas de evaluación
   {
     path: "templates/list",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/lista-plantilla-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/lista-plantilla-evaluacion").then(
         (m) => m.ListaPlantillaEvaluacion,
       ),
     canActivate: [authGuard],
@@ -18,7 +18,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "templates/create",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/formulario-plantilla-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/formulario-plantilla-evaluacion").then(
         (m) => m.FormularioPlantillaEvaluacion,
       ),
     canActivate: [authGuard],
@@ -31,7 +31,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "templates/edit/:id",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/formulario-plantilla-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/formulario-plantilla-evaluacion").then(
         (m) => m.FormularioPlantillaEvaluacion,
       ),
     canActivate: [authGuard],
@@ -44,7 +44,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "conduct/create",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/realizar-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/realizar-evaluacion").then(
         (m) => m.RealizarEvaluacion,
       ),
     canActivate: [authGuard],
@@ -56,7 +56,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "conduct/edit/:id",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/realizar-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/realizar-evaluacion").then(
         (m) => m.RealizarEvaluacion,
       ),
     canActivate: [authGuard],
@@ -68,7 +68,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "conduct/list",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/lista-evaluacion-realizada").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/lista-evaluacion-realizada").then(
         (m) => m.ListaEvaluacionRealizada,
       ),
     canActivate: [authGuard],
@@ -81,7 +81,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "employee/:employeeId/history",
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/historial-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/historial-evaluacion").then(
         (m) => m.HistorialEvaluacion,
       ),
     canActivate: [authGuard],
@@ -94,7 +94,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "result/:id", // El :id es el PerformanceEvaluationId
     loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/resultado-evaluacion").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/evaluation-template/performance-evaluation/resultado-evaluacion").then(
         (m) => m.ResultadoEvaluacion,
       ),
     canActivate: [authGuard],
@@ -104,4 +104,3 @@ export const employeeEvaluationRoutes: Routes = [
     },
   },
 ];
-

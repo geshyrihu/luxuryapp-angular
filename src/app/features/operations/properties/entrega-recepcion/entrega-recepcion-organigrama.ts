@@ -1,8 +1,14 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { TreeNode } from "primeng/api";
 import { TableModule } from "primeng/table";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-entrega-recepcion-organigrama",
   templateUrl: "./entrega-recepcion-organigrama.html",
@@ -27,12 +33,3 @@ export class EntregaRecepcionOrganigrama {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-
-
-
-
-
-
-
-
-

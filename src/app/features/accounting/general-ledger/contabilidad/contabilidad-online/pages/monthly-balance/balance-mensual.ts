@@ -1,13 +1,20 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "primeng/table";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { TableModule } from "primeng/table";
 
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 

@@ -1,6 +1,12 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-operation-report-client",
   imports: [],
@@ -41,12 +47,3 @@ export class OperationReportClient implements OnInit {
     });
   }
 }
-
-
-
-
-
-
-
-
-

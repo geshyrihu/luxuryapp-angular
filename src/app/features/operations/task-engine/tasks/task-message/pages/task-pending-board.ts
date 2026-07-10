@@ -1,16 +1,23 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ROUTES } from "src/app/routing/route-paths";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppImage } from "@ui/web/image/image";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppImage } from "@ui/web/image/image";
 import { firstValueFrom } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { ITaskMessageDTO, ITaskResultDTO } from "../models/task-message.dto";
 
 interface ITaskAreaGroup {

@@ -1,19 +1,19 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   effect,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { DataViewModule } from "primeng/dataview";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DataViewModule } from "primeng/dataview";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
@@ -64,9 +64,13 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
               >
                 <div class="card-header flex-column gap-1">
                   <span class="card-title">{{ diagram.name }}</span>
-                  <span class="card-subtitle">Actualizado: {{ diagram.updateAt | date: 'dd/MM/yyyy' }}</span>
+                  <span class="card-subtitle"
+                    >Actualizado:
+                    {{ diagram.updateAt | date: "dd/MM/yyyy" }}</span
+                  >
                 </div>
-                <div class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
+                <div
+                  class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
                   style="min-height: 150px"
                 >
                   <app-icon

@@ -1,17 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { MyAssignedTasksList } from './my-assigned-tasks-list';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
-import { PrintService } from 'src/app/core/services/print.service';
-import { TaskGroupService } from 'src/app/features/operations/task-engine/tasks/task.service';
-import { ActivatedRoute } from '@angular/router';
+import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { PrintService } from "src/app/core/services/print.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { vi } from "vitest";
+import { MyAssignedTasksList } from "./my-assigned-tasks-list";
 
-describe('MyAssignedTasksList', () => {
+describe("MyAssignedTasksList", () => {
   let component: MyAssignedTasksList;
   let fixture: ComponentFixture<MyAssignedTasksList>;
   let mockApiResponseS: any;
@@ -28,16 +28,16 @@ describe('MyAssignedTasksList', () => {
       onGetList: vi.fn().mockResolvedValue([]),
       onGetItem: vi.fn().mockResolvedValue(true),
     };
-    mockAuthS = { applicationUserId: 'user-001' };
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
+    mockAuthS = { applicationUserId: "user-001" };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeLg: '1200px',
+      sizeLg: "1200px",
     };
-    mockTableScrollHeightS = { scrollHeight: signal('600px') };
+    mockTableScrollHeightS = { scrollHeight: signal("600px") };
     mockPrintS = { printElement: vi.fn() };
     mockTaskGroupService = {
-      taskGroupMessageStatus: 'NotStarted',
+      taskGroupMessageStatus: "NotStarted",
       setStatus: vi.fn(),
       year: 2024,
       numeroSemana: 42,
@@ -46,7 +46,7 @@ describe('MyAssignedTasksList', () => {
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(MyAssignedTasksList, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [MyAssignedTasksList],
@@ -67,44 +67,43 @@ describe('MyAssignedTasksList', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.dataSignal()).toEqual([]);
     expect(component.loading()).toBe(true);
-    expect(component.status).toBe('NotStarted');
+    expect(component.status).toBe("NotStarted");
   });
 
-  it('statusLabel should return correct labels', () => {
-    expect(component.statusLabel('NotStarted')).toBe('No iniciado');
-    expect(component.statusLabel('InProgress')).toBe('En proceso');
-    expect(component.statusLabel('Reopened')).toBe('Reabierto');
-    expect(component.statusLabel('Unknown')).toBe('Unknown');
+  it("statusLabel should return correct labels", () => {
+    expect(component.statusLabel("NotStarted")).toBe("No iniciado");
+    expect(component.statusLabel("InProgress")).toBe("En proceso");
+    expect(component.statusLabel("Reopened")).toBe("Reabierto");
+    expect(component.statusLabel("Unknown")).toBe("Unknown");
   });
 
-  it('onLoadData should call api and set data', async () => {
-    const mockData = [{ id: '1', description: 'Task 1' }];
+  it("onLoadData should call api and set data", async () => {
+    const mockData = [{ id: "1", description: "Task 1" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
-    component.onLoadData('NotStarted');
-    await new Promise(resolve => setTimeout(resolve));
+    component.onLoadData("NotStarted");
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.dataSignal()).toEqual(mockData);
-    expect(component.status).toBe('NotStarted');
+    expect(component.status).toBe("NotStarted");
   });
 
-  it('getTruncatedDescription should truncate long descriptions', () => {
-    const long = 'a'.repeat(200);
+  it("getTruncatedDescription should truncate long descriptions", () => {
+    const long = "a".repeat(200);
     expect(component.getTruncatedDescription(long).length).toBe(103);
-    const short = 'short';
-    expect(component.getTruncatedDescription(short)).toBe('short');
+    const short = "short";
+    expect(component.getTruncatedDescription(short)).toBe("short");
   });
 
-  it('printReport should call printService', () => {
+  it("printReport should call printService", () => {
     component.printReport();
     expect(mockPrintS.printElement).toHaveBeenCalled();
   });
 });
-

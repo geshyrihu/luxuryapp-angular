@@ -1,34 +1,46 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableModule } from "primeng/table";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AsambleaChecklistTemplateForm } from "./asamblea-checklist-template-form";
 import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto";
+
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-asamblea-checklist-template-list",
   templateUrl: "./asamblea-checklist-template-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
@@ -36,12 +48,6 @@ import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    MobileActionMenu,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileListItem,
   ],
 })
 export class AsambleaChecklistTemplateList implements OnInit {
@@ -66,9 +72,9 @@ export class AsambleaChecklistTemplateList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<
-        IAsambleaChecklistTemplateDTO[]
-      >(Endpoints.AsambleaChecklistTemplate.getAll)
+      .onGetList<IAsambleaChecklistTemplateDTO[]>(
+        Endpoints.AsambleaChecklistTemplate.getAll,
+      )
       .then((result) => {
         if (result) {
           this.dataSignal.set(result);

@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { LxImage } from "@ui/adaptive/image/image";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IonRippleEffect } from "@ionic/angular/standalone";
+import { LxImage } from "@ui/adaptive/image/image";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface DocumentCategory {
   title: string;
   image: string;
@@ -13,11 +13,7 @@ export interface DocumentCategory {
 
 @Component({
   selector: "app-biblioteca-consejo-directivo",
-  imports: [
-    RouterModule,
-    IonRippleEffect,
-    LxImage,
-  ],
+  imports: [RouterModule, IonRippleEffect, LxImage],
   templateUrl: "./biblioteca-consejo-directivo.html",
 })
 export class BibliotecaConsejoDirectivo implements OnInit {
@@ -112,12 +108,3 @@ export class BibliotecaConsejoDirectivo implements OnInit {
     this.router.navigate([route], { relativeTo: this.activeRoute });
   }
 }
-
-
-
-
-
-
-
-
-

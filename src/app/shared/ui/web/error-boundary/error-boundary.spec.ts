@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ErrorBoundary } from './error-boundary';
-import { GlobalErrorService } from 'src/app/core/services/global-error-handler.service';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { GlobalErrorService } from "src/app/core/http/services/global-error-handler.service";
+import { ErrorBoundary } from "./error-boundary";
 
-describe('ErrorBoundary', () => {
+describe("ErrorBoundary", () => {
   let component: ErrorBoundary;
   let fixture: ComponentFixture<ErrorBoundary>;
 
@@ -27,7 +27,7 @@ describe('ErrorBoundary', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

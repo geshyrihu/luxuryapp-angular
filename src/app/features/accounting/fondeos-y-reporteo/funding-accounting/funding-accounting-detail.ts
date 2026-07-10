@@ -1,5 +1,12 @@
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
-import { Component, DestroyRef, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -7,22 +14,23 @@ import { ActivatedRoute } from "@angular/router";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
 
-import { TooltipModule } from "primeng/tooltip";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { FundingPurchaseDetail } from "src/app/features/accounting/fondeos-y-reporteo/funding/funding-purchase-detail";
 import { FundingDetailDTO } from "src/app/features/accounting/fondeos-y-reporteo/funding/model/funding-detail-dto";
 import { FundingExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/services/funding-excel-export.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxMessage } from "@ui/adaptive/message/message";
 @Component({
   selector: "app-funding-accounting-detail",
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     TableModule,
     CustomInputCheckSignal,
@@ -30,7 +38,10 @@ import { LxMessage } from "@ui/adaptive/message/message";
     UpperCasePipe,
     DecimalPipe,
     WebButtonLabel,
-    WebButtonLabelItem, LxTag, LxMessage],
+    WebButtonLabelItem,
+    LxTag,
+    LxMessage,
+  ],
   styleUrls: ["./funding-accounting-detail.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-detail.html",

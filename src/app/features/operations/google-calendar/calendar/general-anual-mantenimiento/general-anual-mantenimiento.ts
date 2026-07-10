@@ -1,15 +1,20 @@
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {
-  } from "@ionic/angular/standalone";
-import { CardModule } from "primeng/card";
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import {} from "@ionic/angular/standalone";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CardModule } from "primeng/card";
+import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-general-anual-mantenimiento",
   templateUrl: "./general-anual-mantenimiento.html",
@@ -44,7 +49,10 @@ export class GeneralAnualMantenimiento {
   onLoadProveedores() {
     const url = `MaintenanceCalendars/ProveedoresCalendario/${this.customerIdS.customerId()}`;
     this.apiResponseS.onGetList(url).then((result: any) => {
-      this.cb_providers.set([{ label: "Todos", value: "" } as any, ...(result || [])]);
+      this.cb_providers.set([
+        { label: "Todos", value: "" } as any,
+        ...(result || []),
+      ]);
     });
   }
 
@@ -58,12 +66,3 @@ export class GeneralAnualMantenimiento {
     });
   }
 }
-
-
-
-
-
-
-
-
-

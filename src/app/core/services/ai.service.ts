@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { ApiResponseService } from "./api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Injectable({
   providedIn: "root",
 })
@@ -32,7 +32,12 @@ export class AiService {
   async generateOfficialAnnouncementDraft(
     idea: string,
     buildingName: string,
-  ): Promise<{ title: string; greeting: string; body: string; callToAction: string }> {
+  ): Promise<{
+    title: string;
+    greeting: string;
+    body: string;
+    callToAction: string;
+  }> {
     try {
       const response = await this.apiResponseService.onPostNotLoading<any>(
         "Announcements/generate-official-draft",

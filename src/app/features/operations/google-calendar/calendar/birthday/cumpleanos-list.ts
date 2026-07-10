@@ -1,27 +1,27 @@
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
-  } from "@ionic/angular/standalone";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { CardModule } from "primeng/card";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {} from "@ionic/angular/standalone";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { CardModule } from "primeng/card";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-cumpleanos",
   templateUrl: "./cumpleanos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CardModule,
-    WebButtonLabel,
-    AppAvatar,
-    LxTag,
-    AppIcon,
-  ],
+  imports: [CardModule, WebButtonLabel, AppAvatar, LxTag, AppIcon],
 })
 export class Cumpleanos implements OnInit {
   apiResponseS = inject(ApiResponseService);

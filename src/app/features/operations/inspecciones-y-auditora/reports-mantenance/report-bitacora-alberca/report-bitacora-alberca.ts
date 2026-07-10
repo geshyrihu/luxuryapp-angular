@@ -1,10 +1,16 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 @Component({
@@ -44,12 +50,3 @@ export class ReportBitacoraAlberca {
     });
   }
 }
-
-
-
-
-
-
-
-
-

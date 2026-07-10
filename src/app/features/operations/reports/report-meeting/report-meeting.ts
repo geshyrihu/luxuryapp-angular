@@ -11,9 +11,9 @@ import { ActivatedRoute } from "@angular/router";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-report-meeting",
   templateUrl: "./report-meeting.html",

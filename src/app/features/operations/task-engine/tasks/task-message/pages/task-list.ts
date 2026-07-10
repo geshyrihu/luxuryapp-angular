@@ -1,17 +1,27 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
+import { LxPopover } from "@ui/adaptive/popover/popover";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { AppImage } from "@ui/web/image/image";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -32,37 +42,26 @@ import {
   settingsOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
-import { LxPopover } from "@ui/adaptive/popover/popover";
 import { TableModule } from "primeng/table";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ROUTES } from "src/app/routing/route-paths";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/card-employee";
 import { PrintService } from "src/app/core/services/print.service";
-import { CardEmployee } from "src/app/features/hr/expediente-del-empleado/employees/employees/pages/card-employee";
 
 import Swal from "sweetalert2";
 
@@ -73,8 +72,8 @@ import {
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { InitialsAbbrPipe } from "src/app/shared/pipes/initials-abbr.pipe";
 import { TaskClose } from "../../components/task-close";
 import { TaskProgram } from "../../components/task-program";
 import { TaskReadList } from "../../components/task-read-list";
@@ -85,10 +84,10 @@ import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { ITaskResultDTO } from "../models/task-message.dto";
 import { TaskForm } from "./task-form";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 @Component({
   selector: "app-task-list",
@@ -485,7 +484,9 @@ export class TaskList implements OnInit {
   }
 
   onNavigateEdit(ticketMessageId: string, ticketGroupId: string) {
-    this.router.navigate(ROUTES.TICKETS.MENSAJE(ticketMessageId, ticketGroupId));
+    this.router.navigate(
+      ROUTES.TICKETS.MENSAJE(ticketMessageId, ticketGroupId),
+    );
   }
 
   onClosed(id: string) {

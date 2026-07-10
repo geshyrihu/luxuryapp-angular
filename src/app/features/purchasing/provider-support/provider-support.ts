@@ -1,38 +1,39 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { personOutline } from "ionicons/icons";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import {} from "@ionic/angular/standalone";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { addIcons } from "ionicons";
+import { personOutline } from "ionicons/icons";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IProviderSupportList } from "src/app/core/interfaces/provider-support-list.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ProviderSupportForm } from "./provider-support-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-provider-support",
   templateUrl: "./provider-support.html",
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -47,7 +48,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     DataViewMobile,
     ActionMenu,
     WebButtonLabelEdit,
-    WebButtonLabelDelete, MobileListItem, AppIcon],
+    WebButtonLabelDelete,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class ProviderSupport implements OnInit {
   authS = inject(AuthService);

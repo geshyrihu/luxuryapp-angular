@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from "@angular/core";
-import { ApiResponseService } from "./api-response.service";
-import { CustomerIdService } from "./customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomerIdService } from "../auth/services/customer-id.service";
 
 export interface ChatSessionDTO {
   id: string;
@@ -120,12 +120,3 @@ export class AiChatService {
     this.isLoading.set(false);
   }
 }
-
-
-
-
-
-
-
-
-

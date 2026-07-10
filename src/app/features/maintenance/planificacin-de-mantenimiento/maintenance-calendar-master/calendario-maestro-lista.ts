@@ -6,26 +6,25 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMenu } from "@ui/adaptive/menu/menu";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
-import { LxDivider } from "@ui/adaptive/divider/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu } from "primeng/menu";
-import { LxMenu } from "@ui/adaptive/menu/menu";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CalendarioMaestroForm } from "./calendario-maestro-form";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
@@ -44,7 +43,8 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     TooltipModule,
     LxMenu,
     LxTag,
-    DataViewMobile,  ],
+    DataViewMobile,
+  ],
 })
 export class CalendarioMaestroLista implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -107,8 +107,8 @@ export class CalendarioMaestroLista implements OnInit {
             icon: "mdi:delete",
             command: () => this.onDelete(item.id),
           },
-    MobileListItem,
-    AppIcon,
+          MobileListItem,
+          AppIcon,
         ],
       },
     ]);

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, input, signal } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
-import { GlobalErrorService } from "src/app/core/services/global-error-handler.service";
+import { GlobalErrorService } from "src/app/core/http/services/global-error-handler.service";
 
 @Component({
   selector: "app-error-boundary",

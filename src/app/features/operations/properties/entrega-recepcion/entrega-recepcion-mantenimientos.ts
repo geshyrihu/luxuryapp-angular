@@ -1,13 +1,20 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
-    globalFilterFields,
-    rowsPerPageOptions,
-    tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { ReportHeader } from "@ui/web/report-header/report-header";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-entrega-recepcion-mantenimientos",
   templateUrl: "./entrega-recepcion-mantenimientos.html",
@@ -55,12 +62,3 @@ export class EntregaRecepcionMantenimientos {
     return total;
   }
 }
-
-
-
-
-
-
-
-
-

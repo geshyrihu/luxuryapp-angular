@@ -1,28 +1,37 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { firstValueFrom } from "rxjs";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { LxCard } from "@ui/adaptive/card/card";
 @Component({
   selector: "app-vacante-form",
   templateUrl: "./vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave, LxCard],
+    WebButtonLabelSave,
+    LxCard,
+  ],
 })
 export class VacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

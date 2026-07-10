@@ -1,11 +1,18 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type {
   CobranzaOnlineInspectionHistoryResponse,
   CobranzaOnlineInspectionRelated401Summary,
@@ -23,7 +30,9 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private ref = inject(DynamicDialogRef);
 
   readonly loading = signal(true);
-  readonly history = signal<CobranzaOnlineInspectionHistoryResponse | null>(null);
+  readonly history = signal<CobranzaOnlineInspectionHistoryResponse | null>(
+    null,
+  );
 
   readonly movementFilterFields = computed(() => [
     "policyType",
@@ -37,7 +46,10 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   readonly selected401Summary = computed<
     CobranzaOnlineInspectionRelated401Summary[]
   >(() => {
-    const summaryMap = new Map<string, CobranzaOnlineInspectionRelated401Summary>();
+    const summaryMap = new Map<
+      string,
+      CobranzaOnlineInspectionRelated401Summary
+    >();
 
     for (const movement of this.history()?.movements ?? []) {
       const related401Accounts = movement.related401Accounts?.trim();
@@ -116,16 +128,19 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
     }
 
     this.loading.set(true);
-    const response = await this.apiResponseS.onGetItem<CobranzaOnlineInspectionHistoryResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspectionHistory(
-        this.customerId,
-        this.year,
-        this.row.accountNumber,
-      ),
-      false,
-    );
+    const response =
+      await this.apiResponseS.onGetItem<CobranzaOnlineInspectionHistoryResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspectionHistory(
+          this.customerId,
+          this.year,
+          this.row.accountNumber,
+        ),
+        false,
+      );
 
-    this.history.set(response as CobranzaOnlineInspectionHistoryResponse | null);
+    this.history.set(
+      response as CobranzaOnlineInspectionHistoryResponse | null,
+    );
     this.loading.set(false);
   }
 }

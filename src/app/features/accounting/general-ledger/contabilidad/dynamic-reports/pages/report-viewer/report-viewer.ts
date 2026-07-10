@@ -1,15 +1,22 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  viewChild,
+} from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { AiAgentComponent } from "src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/components/ai-agent/ai-agent";
 import { reportFilterState } from "src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/state/financial-report-filter.state";
 import {

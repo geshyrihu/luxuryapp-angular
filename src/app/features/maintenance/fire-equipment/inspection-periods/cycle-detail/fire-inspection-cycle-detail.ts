@@ -1,15 +1,22 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { FireCycleInspectionDetectorForm } from "../cycle-checklist-detector/fire-cycle-inspection-detector-form";
+import { FireCycleInspectionEstacionForm } from "../cycle-checklist-estacion/fire-cycle-inspection-estacion-form";
 import { FireCycleInspectionExtintorForm } from "../cycle-checklist-extintor/fire-cycle-inspection-extintor-form";
 import { FireCycleInspectionHidranteForm } from "../cycle-checklist-hidrante/fire-cycle-inspection-hidrante-form";
-import { FireCycleInspectionEstacionForm } from "../cycle-checklist-estacion/fire-cycle-inspection-estacion-form";
-import { FireCycleInspectionDetectorForm } from "../cycle-checklist-detector/fire-cycle-inspection-detector-form";
 
 declare class BarcodeDetector {
   constructor(options: { formats: string[] });
@@ -47,7 +54,9 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
       .then((result: any) => this.cycle.set(result));
   }
 
-  statusSeverity(status: string): "success" | "info" | "warn" | "danger" | "secondary" {
+  statusSeverity(
+    status: string,
+  ): "success" | "info" | "warn" | "danger" | "secondary" {
     const map: Record<string, any> = {
       Realizada: "success",
       Pendiente: "info",
@@ -56,7 +65,9 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     return map[status] ?? "secondary";
   }
 
-  cycleSeverity(status: string): "success" | "info" | "warn" | "danger" | "secondary" {
+  cycleSeverity(
+    status: string,
+  ): "success" | "info" | "warn" | "danger" | "secondary" {
     const map: Record<string, any> = {
       Completado: "success",
       EnCurso: "warn",
@@ -67,12 +78,25 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
   }
 
   async openChecklist(item: any) {
-    await this.openChecklistForEquipment(item.equipmentType, item.equipmentId, item.status);
+    await this.openChecklistForEquipment(
+      item.equipmentType,
+      item.equipmentId,
+      item.status,
+    );
   }
 
-  private async openChecklistForEquipment(type: string, equipmentId: string, currentStatus: string) {
+  private async openChecklistForEquipment(
+    type: string,
+    equipmentId: string,
+    currentStatus: string,
+  ) {
     if (currentStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. óDeseas actualizar los datos?")) return;
+      if (
+        !window.confirm(
+          "Este equipo ya fue inspeccionado. óDeseas actualizar los datos?",
+        )
+      )
+        return;
     }
 
     const dialogs: Record<string, any> = {
@@ -105,14 +129,18 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     this.scanError.set("");
     this.scanStatus.set("Iniciando cómara...");
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" },
+      });
       video.srcObject = this.stream;
       await video.play();
       this.scanning.set(true);
       this.scanStatus.set("Apunta la cómara al código QR del equipo.");
       this.scanLoop(video);
     } catch {
-      this.scanError.set("No se pudo acceder a la cómara. Verifica los permisos.");
+      this.scanError.set(
+        "No se pudo acceder a la cómara. Verifica los permisos.",
+      );
       this.scanStatus.set("");
     }
   }
@@ -123,7 +151,9 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
       this.animationId = requestAnimationFrame(async () => {
         if (!this.scanning()) return;
         const barcodes = await detector.detect(video).catch(() => []);
-        const qr = barcodes.find((b) => b.rawValue.startsWith("luxuryapp://inspect/"));
+        const qr = barcodes.find((b) =>
+          b.rawValue.startsWith("luxuryapp://inspect/"),
+        );
         if (qr) {
           this.stopScan();
           await this.resolveQr(qr.rawValue);
@@ -166,11 +196,17 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     const items: any[] = this.cycle()?.items ?? [];
     const match = items.find((i) => i.equipmentId === id);
     if (!match) {
-      this.scanError.set("Este equipo no pertenece al ciclo de inspección actual.");
+      this.scanError.set(
+        "Este equipo no pertenece al ciclo de inspección actual.",
+      );
       return;
     }
 
-    await this.openChecklistForEquipment(match.equipmentType, match.equipmentId, match.status);
+    await this.openChecklistForEquipment(
+      match.equipmentType,
+      match.equipmentId,
+      match.status,
+    );
   }
 
   stopScan() {

@@ -1,5 +1,6 @@
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -7,7 +8,6 @@ import {
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -17,15 +17,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { TableModule } from "primeng/table";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TableModule } from "primeng/table";
 
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
@@ -143,9 +143,10 @@ export class Payments implements OnInit {
   }
 
   getChargeTypeMeta(charge: PendingChargeDTO): string {
-    const parts = [charge.chargeTypeAccountNumber, charge.chargeTypeCode].filter(
-      (value): value is string => !!value,
-    );
+    const parts = [
+      charge.chargeTypeAccountNumber,
+      charge.chargeTypeCode,
+    ].filter((value): value is string => !!value);
     return parts.join(" · ");
   }
 

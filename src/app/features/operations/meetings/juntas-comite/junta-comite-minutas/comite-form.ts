@@ -1,4 +1,11 @@
-import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -8,10 +15,10 @@ import {
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-comite-form",
   templateUrl: "./comite-form.html",

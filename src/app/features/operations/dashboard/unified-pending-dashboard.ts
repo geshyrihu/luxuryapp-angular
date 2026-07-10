@@ -1,39 +1,38 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   effect,
   inject,
   input,
   signal,
   viewChild,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CardModule } from "primeng/card";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AiService } from "src/app/core/services/ai.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { TaskForm } from "src/app/features/operations/task-engine/tasks/task-message/pages/task-form";
-import { ImageAnalysisDialogComponent } from "src/app/shared/components/image-analysis-dialog/image-analysis-dialog.component";
+import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./models/pending-item.dto";
 

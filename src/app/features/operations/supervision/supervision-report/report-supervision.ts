@@ -1,10 +1,16 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { CardModule } from "primeng/card";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-report-supervision",
   imports: [CommonModule, CardModule, LxTag, AppSpinner],
@@ -107,12 +113,3 @@ export class ReportSupervision {
       });
   }
 }
-
-
-
-
-
-
-
-
-

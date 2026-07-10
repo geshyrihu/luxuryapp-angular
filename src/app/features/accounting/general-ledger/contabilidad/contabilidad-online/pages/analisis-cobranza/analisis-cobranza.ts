@@ -1,14 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   IAnalisisCobranzaOnlineDto,
   ICobranzaOnlineAnalysisCondominoDto,
@@ -76,31 +76,31 @@ export class AnalisisCobranza {
     maintainAspectRatio: false,
   };
 
-  readonly filteredRows = computed<
-    ICobranzaOnlineAnalysisCondominoDto[]
-  >(() => {
-    const analysis = this.data();
-    if (!analysis) {
-      return [];
-    }
+  readonly filteredRows = computed<ICobranzaOnlineAnalysisCondominoDto[]>(
+    () => {
+      const analysis = this.data();
+      if (!analysis) {
+        return [];
+      }
 
-    switch (this.selectedClassification()) {
-      case "COBRANZA JUDICIAL":
-        return analysis.cobranzaJudicial;
-      case "MOROSOS":
-        return analysis.morosos;
-      case "DEUDA CORRIENTE":
-        return analysis.deudaCorriente;
-      case "SIN ADEUDO":
-        return analysis.sinAdeudo;
-      default:
-        return [
-          ...analysis.cobranzaJudicial,
-          ...analysis.morosos,
-          ...analysis.deudaCorriente,
-        ];
-    }
-  });
+      switch (this.selectedClassification()) {
+        case "COBRANZA JUDICIAL":
+          return analysis.cobranzaJudicial;
+        case "MOROSOS":
+          return analysis.morosos;
+        case "DEUDA CORRIENTE":
+          return analysis.deudaCorriente;
+        case "SIN ADEUDO":
+          return analysis.sinAdeudo;
+        default:
+          return [
+            ...analysis.cobranzaJudicial,
+            ...analysis.morosos,
+            ...analysis.deudaCorriente,
+          ];
+      }
+    },
+  );
 
   constructor() {
     effect(() => {
@@ -164,9 +164,12 @@ export class AnalisisCobranza {
     return [...this.filteredRows()].sort((a, b) => b.saldo - a.saldo);
   }
 
-  getConceptBalance(row: ICobranzaOnlineAnalysisCondominoDto, concepto: string) {
+  getConceptBalance(
+    row: ICobranzaOnlineAnalysisCondominoDto,
+    concepto: string,
+  ) {
     if (!row.desglose) return 0;
-    const item = row.desglose.find(d => d.concepto === concepto);
+    const item = row.desglose.find((d) => d.concepto === concepto);
     return item ? item.saldoFinal : 0;
   }
 

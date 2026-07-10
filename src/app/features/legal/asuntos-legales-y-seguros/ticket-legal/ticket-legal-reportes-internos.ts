@@ -1,17 +1,24 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "src/app/features/operations/task-engine/tasks/components/task-date-range-selector/task-date-range-selector";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-ticket-legal-reportes-internos",
   templateUrl: "./ticket-legal-reportes-internos.html",
@@ -56,12 +63,42 @@ export class TicketLegalReportesInternos implements OnInit {
     const d = this.reportData();
     if (!d) return [];
     return [
-      { icon: null,             iconColor: null,                   value: d.ticketsAlInicio,           label: "TICKET INICIAL" },
-      { icon: null,             iconColor: null,                   value: d.ticketsAlFinal,             label: "TICKET FINAL" },
-      { icon: "mdi:plus",       iconColor: "var(--ds-primary)",    value: d.ticketsEnRango,             label: "SOLICITUDES NUEVAS" },
-      { icon: "mdi:minus",      iconColor: "var(--ds-success)",    value: d.solicitudesAtendidas,       label: "SOLICITUDES ATENDIDAS" },
-      { icon: "mdi:equal",      iconColor: "var(--ds-warning)",    value: d.pendientesSoloDelPeriodo,   label: "SOLICITUDES PENDIENTES DEL PERIODO" },
-      { icon: "mdi:equal",      iconColor: "var(--ds-danger)",     value: d.pendientesAlFinal,          label: "SOLICITUDES PENDIENTES ACUMULADAS" },
+      {
+        icon: null,
+        iconColor: null,
+        value: d.ticketsAlInicio,
+        label: "TICKET INICIAL",
+      },
+      {
+        icon: null,
+        iconColor: null,
+        value: d.ticketsAlFinal,
+        label: "TICKET FINAL",
+      },
+      {
+        icon: "mdi:plus",
+        iconColor: "var(--ds-primary)",
+        value: d.ticketsEnRango,
+        label: "SOLICITUDES NUEVAS",
+      },
+      {
+        icon: "mdi:minus",
+        iconColor: "var(--ds-success)",
+        value: d.solicitudesAtendidas,
+        label: "SOLICITUDES ATENDIDAS",
+      },
+      {
+        icon: "mdi:equal",
+        iconColor: "var(--ds-warning)",
+        value: d.pendientesSoloDelPeriodo,
+        label: "SOLICITUDES PENDIENTES DEL PERIODO",
+      },
+      {
+        icon: "mdi:equal",
+        iconColor: "var(--ds-danger)",
+        value: d.pendientesAlFinal,
+        label: "SOLICITUDES PENDIENTES ACUMULADAS",
+      },
     ];
   });
 
@@ -100,8 +137,8 @@ export class TicketLegalReportesInternos implements OnInit {
     return this.apiResponseS
       .onGetList(Endpoints.LegalReports.results(startDate, endDate, true))
       .then((result: any) => {
-      this.reportData.set(result);
-    });
+        this.reportData.set(result);
+      });
   }
   onRequestsAttended(startDate: string, endDate: string) {
     return this.apiResponseS
@@ -109,46 +146,46 @@ export class TicketLegalReportesInternos implements OnInit {
         Endpoints.LegalReports.requestsAttended(startDate, endDate, true),
       )
       .then((result: any) => {
-      this.requestsAttended.set(this.mapResults(result, "fecha"));
-    });
+        this.requestsAttended.set(this.mapResults(result, "fecha"));
+      });
   }
   onRequestsPending() {
     return this.apiResponseS
       .onGetList(Endpoints.LegalReports.requestsPending(true))
       .then((result: any) => {
-      this.requestsPending.set(this.mapResults(result, "fecha"));
-    });
+        this.requestsPending.set(this.mapResults(result, "fecha"));
+      });
   }
 
   onLoadData(startDate: string, endDate: string) {
     return this.apiResponseS
       .onGetList(Endpoints.LegalReports.summary(startDate, endDate))
       .then((result: any) => {
-      this.data.set(result);
-    });
+        this.data.set(result);
+      });
   }
 
   onLoadSummaryCustomer(startDate: string, endDate: string) {
     return this.apiResponseS
       .onGetList(Endpoints.LegalReports.summaryCustomer(startDate, endDate))
       .then((result: any) => {
-      this.summaryCustomer.set(result);
-    });
+        this.summaryCustomer.set(result);
+      });
   }
 
   onLoadDataSummaryIndividual(startDate: string, endDate: string) {
     return this.apiResponseS
       .onGetList(Endpoints.LegalReports.summaryIndividual(startDate, endDate))
       .then((result: any) => {
-      this.summaryIndividual.set(result);
-    });
+        this.summaryIndividual.set(result);
+      });
   }
   onLoadDataTotalRequests(startDate: string, endDate: string) {
     return this.apiResponseS
       .onGetList(Endpoints.LegalReports.totalRequests(startDate, endDate))
       .then((result: any) => {
-      this.totalRequests.set(result);
-    });
+        this.totalRequests.set(result);
+      });
   }
 
   private mapResults(results: any[], dateField: string): any[] {
@@ -226,4 +263,3 @@ export class TicketLegalReportesInternos implements OnInit {
     );
   }
 }
-

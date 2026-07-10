@@ -1,14 +1,20 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
 
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { IWorkPositionForm } from "src/app/features/recruitment/estructura-organizacional/work-position/models/work-position.model";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { IWorkPositionForm } from "src/app/features/recruitment/estructura-organizacional/work-position/models/work-position.model";
 
 interface IJobDescription {
   summary: string;
@@ -42,11 +48,15 @@ export class VacanteDetailModal implements OnInit {
   dias = [
     { n: "Lunes", e: "lunesEntrada" as const, s: "lunesSalida" as const },
     { n: "Martes", e: "martesEntrada" as const, s: "martesSalida" as const },
-    { n: "Miórcoles", e: "miercolesEntrada" as const, s: "miercolesSalida" as const },
+    {
+      n: "Miórcoles",
+      e: "miercolesEntrada" as const,
+      s: "miercolesSalida" as const,
+    },
     { n: "Jueves", e: "juevesEntrada" as const, s: "juevesSalida" as const },
     { n: "Viernes", e: "viernesEntrada" as const, s: "viernesSalida" as const },
     { n: "Sóbado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
-    { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const }
+    { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const },
   ];
 
   ngOnInit() {
@@ -58,7 +68,9 @@ export class VacanteDetailModal implements OnInit {
   }
 
   async loadWorkPosition(id: string) {
-    const result = await this.apiS.onGetItem<IWorkPositionForm>(`work-positions/${id}`);
+    const result = await this.apiS.onGetItem<IWorkPositionForm>(
+      `work-positions/${id}`,
+    );
     this.workPosition.set(result);
   }
 
@@ -69,5 +81,3 @@ export class VacanteDetailModal implements OnInit {
     this.jobDescription.set(result);
   }
 }
-
-

@@ -3,8 +3,8 @@ export const permissionsRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/login/login/login").then(
-        (m) => m.LoginComponent
+      import("src/app/apps/auth.luxuryapp/login/login").then(
+        (m) => m.LoginComponent,
       ),
     data: {
       title: "Login",
@@ -12,13 +12,3 @@ export const permissionsRoutes: Routes = [
     },
   },
 ];
-
-
-
-
-
-
-
-
-
-

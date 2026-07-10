@@ -1,15 +1,15 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   input,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TicketFilterService } from "src/app/core/services/ticket-filter.service";
 
 /**
@@ -85,12 +85,3 @@ export class ReportHeader {
     });
   }
 }
-
-
-
-
-
-
-
-
-

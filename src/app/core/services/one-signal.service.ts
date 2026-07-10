@@ -1,9 +1,8 @@
 import { inject, Injectable, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { environment } from "src/environments/environment";
-import { ConsoleLoggerService } from "./console-logger.service";
-
 declare global {
   interface Window {
     OneSignalDeferred?: any[];
@@ -166,17 +165,14 @@ export class OneSignalService {
       }
     });
 
-    oneSignal.User.PushSubscription.addEventListener(
-      "change",
-      (event: any) => {
-        this.consoleLogger.custom(
-          "mail",
-          "mediumseagreen",
-          "[OneSignal] Cambio de suscripcion:",
-          event,
-        );
-      },
-    );
+    oneSignal.User.PushSubscription.addEventListener("change", (event: any) => {
+      this.consoleLogger.custom(
+        "mail",
+        "mediumseagreen",
+        "[OneSignal] Cambio de suscripcion:",
+        event,
+      );
+    });
 
     this.listenersRegistered = true;
     this.consoleLogger.custom(

@@ -17,10 +17,10 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-form";
@@ -152,4 +152,3 @@ export class ListaInspecciones {
       });
   }
 }
-

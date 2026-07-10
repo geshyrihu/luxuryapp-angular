@@ -1,15 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component, effect, inject, input, untracked, signal, ChangeDetectionStrategy } from '@angular/core';
-import { EspejoAspelExtraordinarios } from '../../../presupuesto-web-aspel/espejo-aspel-extraordinarios';
-import { PresupuestoWebAspelService } from '../../../presupuesto-web-aspel/presupuesto-web-aspel.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  input,
+  signal,
+  untracked,
+} from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { EspejoAspelExtraordinarios } from "../../../presupuesto-web-aspel/espejo-aspel-extraordinarios";
+import { PresupuestoWebAspelService } from "../../../presupuesto-web-aspel/presupuesto-web-aspel.service";
 
 @Component({
-  selector: 'app-cedula-extraordinaria-cliente',
+  selector: "app-cedula-extraordinaria-cliente",
   imports: [CommonModule, EspejoAspelExtraordinarios],
   providers: [PresupuestoWebAspelService],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './cedula-extraordinaria-cliente.html',
+  templateUrl: "./cedula-extraordinaria-cliente.html",
 })
 export class CedulaExtraordinariaClienteComponent {
   private aspelSharedS = inject(PresupuestoWebAspelService);

@@ -8,9 +8,9 @@ import {
 } from "@angular/core";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IProyectosAprobadosDTO } from "../../models/aspel-budget.interface";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 

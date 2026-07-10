@@ -18,11 +18,11 @@ import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenanc
 import * as FileSaver from "file-saver";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 

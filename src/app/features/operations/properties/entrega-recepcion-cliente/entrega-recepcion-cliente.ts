@@ -12,12 +12,14 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -25,10 +27,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EntregaRecepcionClienteForm } from "src/app/features/operations/properties/entrega-recepcion/entrega-recepcion-cliente-form";
 

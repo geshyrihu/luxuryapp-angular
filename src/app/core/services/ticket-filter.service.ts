@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { IFilterTicket } from "src/app/core/interfaces/filter-ticket.interface";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Injectable({
   providedIn: "root",
 })
@@ -38,12 +38,3 @@ export class TicketFilterService {
     this.filterTicket = filterTicket;
   }
 }
-
-
-
-
-
-
-
-
-

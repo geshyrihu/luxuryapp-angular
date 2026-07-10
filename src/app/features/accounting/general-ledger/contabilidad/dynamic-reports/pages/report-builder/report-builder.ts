@@ -1,8 +1,7 @@
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule, CurrencyPipe } from "@angular/common";
-import { ROUTES } from "src/app/routing/route-paths";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -10,7 +9,6 @@ import {
   OnDestroy,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -20,25 +18,29 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { LxChip } from "@ui/adaptive/chip/chip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { BadgeModule } from "primeng/badge";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { LxChip } from "@ui/adaptive/chip/chip";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { ROUTES } from "src/app/routing/route-paths";
 
+import { LxPopover } from "@ui/adaptive/popover/popover";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { LxPopover } from "@ui/adaptive/popover/popover";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { startWith } from "rxjs";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { AccountTreeSelect } from "../../components/account-tree-select/account-tree-select";
 import {
   ICanvasRow,
@@ -54,15 +56,13 @@ import {
   IReportSection,
 } from "../../models/report-definition.interface";
 import { livePreviewState } from "../../state/live-preview.state";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 
 const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
 
 @Component({
   selector: "app-report-builder",
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
@@ -80,7 +80,10 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     InputGroupAddonModule,
     AccountTreeSelect,
     CurrencyPipe,
-   AppIcon, LxTag, LxModal],
+    AppIcon,
+    LxTag,
+    LxModal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-builder.html",
 })
@@ -106,7 +109,6 @@ export class ReportBuilder implements OnInit, OnDestroy {
   selectedCatalogCodes = signal<string[]>([]);
   previewYear = signal(new Date().getFullYear());
   private lastContextKey = "";
-
 
   form = this.fb.group({
     name: this.fb.control("", [Validators.required]),
@@ -139,12 +141,12 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Dos columnas", value: "table-twoColumn" },
     { label: "Comparativo", value: "table-comparative" },
     { label: "Presupuesto vs Real", value: "table-budgetVsActual" },
-    { label: "Tarjetas KPI", value: "summary-cards" }
+    { label: "Tarjetas KPI", value: "summary-cards" },
   ];
 
   fuentesAspel = [
     { label: "Contabilidad", value: "contabilidad" },
-    { label: "Cobranza", value: "cobranza" }
+    { label: "Cobranza", value: "cobranza" },
   ];
 
   empresaAspel = computed(() => this.toEmpresaAspel(this.dataSourceValue()));
@@ -162,7 +164,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 }
+    { label: "Diciembre", value: 12 },
   ];
 
   aniosPreview = Array.from({ length: 7 }, (_, idx) => {
@@ -296,7 +298,11 @@ export class ReportBuilder implements OnInit, OnDestroy {
 
   onRowReorder(sectionId: string, event: CdkDragDrop<any>) {
     if (event.previousIndex === event.currentIndex) return;
-    this.livePreviewS.moveRow(sectionId, event.previousIndex, event.currentIndex);
+    this.livePreviewS.moveRow(
+      sectionId,
+      event.previousIndex,
+      event.currentIndex,
+    );
   }
 
   onAccountCdkDropToRow(
@@ -307,9 +313,14 @@ export class ReportBuilder implements OnInit, OnDestroy {
     const data = event.item.data;
     const accountCode = typeof data === "object" ? data?.code : data;
     const accountName = typeof data === "object" ? data?.name : undefined;
-    
+
     if (typeof accountCode === "string" && accountCode.trim()) {
-      this.livePreviewS.dropAccountOnRow(sectionId, rowId, accountCode.trim(), accountName);
+      this.livePreviewS.dropAccountOnRow(
+        sectionId,
+        rowId,
+        accountCode.trim(),
+        accountName,
+      );
     }
   }
 
@@ -317,9 +328,13 @@ export class ReportBuilder implements OnInit, OnDestroy {
     const data = event.item.data;
     const accountCode = typeof data === "object" ? data?.code : data;
     const accountName = typeof data === "object" ? data?.name : undefined;
-    
+
     if (typeof accountCode === "string" && accountCode.trim()) {
-      this.livePreviewS.dropAccountOnSection(sectionId, accountCode.trim(), accountName);
+      this.livePreviewS.dropAccountOnSection(
+        sectionId,
+        accountCode.trim(),
+        accountName,
+      );
     }
   }
 
@@ -492,7 +507,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R1} + {R2}",
               multiplier: 1,
-            }
+            },
           ],
         },
         {
@@ -520,7 +535,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R3} + {R4}",
               multiplier: 1,
-            }
+            },
           ],
         },
         {
@@ -534,9 +549,9 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{S1_TOTAL} + {S2_TOTAL}",
               multiplier: 1,
-            }
+            },
           ],
-        }
+        },
       ];
       this.livePreviewS.sections.set(exampleSections);
       this.livePreviewS.triggerCompute();
@@ -575,7 +590,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "contabilidad",
           year,
           month: period,
-        }
+        },
       ]);
       return;
     }
@@ -597,7 +612,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "budget",
           year,
           month: period,
-        }
+        },
       ]);
       return;
     }
@@ -610,7 +625,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
         dataSource: "contabilidad",
         year,
         month: period,
-      }
+      },
     ]);
   }
 

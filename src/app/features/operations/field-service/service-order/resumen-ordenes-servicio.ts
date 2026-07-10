@@ -1,15 +1,22 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
 import { ResumenOrdenesServicioGrafico } from "./resumen-ordenes-servicio-grafico";
@@ -49,13 +56,21 @@ export class ResumenOrdenesServicio implements OnInit {
   }
 
   onLoadData() {
-    const fecha = this.dateS.getDateFormat(this.reporteOrdenesServicioService.getDate());
-    const urlApi = Endpoints.MeetingDetailsTracking.resumenPreventivos(this.customerId, fecha);
+    const fecha = this.dateS.getDateFormat(
+      this.reporteOrdenesServicioService.getDate(),
+    );
+    const urlApi = Endpoints.MeetingDetailsTracking.resumenPreventivos(
+      this.customerId,
+      fecha,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = Endpoints.MeetingDetailsTracking.resumenGrafico(this.customerId, fecha);
+    const urlApi2 = Endpoints.MeetingDetailsTracking.resumenGrafico(
+      this.customerId,
+      fecha,
+    );
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataGraficos = result;
       this.reporteOrdenesServicioService.setDateGrafico(this.dataGraficos);
@@ -75,12 +90,3 @@ export class ResumenOrdenesServicio implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-

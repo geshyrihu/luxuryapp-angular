@@ -1,19 +1,25 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
-import { TableModule } from "primeng/table";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
 @Component({
   selector: "app-contracts-policies",

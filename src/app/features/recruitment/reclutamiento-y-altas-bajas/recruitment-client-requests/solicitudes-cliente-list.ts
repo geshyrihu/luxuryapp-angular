@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -19,14 +19,17 @@ import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -35,21 +38,23 @@ import { SolicitudBajaForm } from "src/app/features/recruitment/reclutamiento-y-
 import { SolicitudModificacionSalarioForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
 import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-solicitudes-cliente-list",
   templateUrl: "./solicitudes-cliente-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile, LxTag, MobileListItem, AppIcon],
+    DataViewMobile,
+    LxTag,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class SolicitudesClienteList {
   apiResponseS = inject(ApiResponseService);

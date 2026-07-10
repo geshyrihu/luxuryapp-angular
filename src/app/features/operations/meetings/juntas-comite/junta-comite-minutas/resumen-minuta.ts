@@ -1,31 +1,31 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TooltipModule } from "primeng/tooltip";
-import { CardModule } from "primeng/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CardModule } from "primeng/card";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { ReportService } from "src/app/core/services/report.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 
 @Component({
   selector: "app-resumen-minuta",
@@ -66,9 +66,11 @@ export class ResumenMinuta implements OnInit {
   onLoadData() {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList(Endpoints.MeetingDetailsTracking.resumenPresentacion(
-        this.activatedRoute.snapshot.params.meetingId,
-      ))
+      .onGetList(
+        Endpoints.MeetingDetailsTracking.resumenPresentacion(
+          this.activatedRoute.snapshot.params.meetingId,
+        ),
+      )
       .then((result: any[]) => {
         const transformedData = result.map((item) => {
           // Transform deliveryDate
@@ -97,14 +99,16 @@ export class ResumenMinuta implements OnInit {
         this.loading.set(false);
       });
 
-    this.apiResponseS.onGetList(
-      Endpoints.MeetingDetailsTracking.resumenGraficoPresentacion(
-        this.activatedRoute.snapshot.params.meetingId,
-      ),
-    ).then((result: any) => {
-      this.dataGrafico = result;
-      this.reportService.setDataGrafico(result);
-    });
+    this.apiResponseS
+      .onGetList(
+        Endpoints.MeetingDetailsTracking.resumenGraficoPresentacion(
+          this.activatedRoute.snapshot.params.meetingId,
+        ),
+      )
+      .then((result: any) => {
+        this.dataGrafico = result;
+        this.reportService.setDataGrafico(result);
+      });
   }
 
   getSeverity(

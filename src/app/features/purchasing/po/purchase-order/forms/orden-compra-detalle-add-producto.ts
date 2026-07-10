@@ -27,13 +27,13 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ProductosForm } from "src/app/features/operations/inventarios-y-almacn/product/productos-form";
 import { TarjetaProducto } from "src/app/features/operations/inventarios-y-almacn/product/tarjeta-producto";
@@ -52,14 +52,15 @@ interface IOrdenCompraDetalleRowForm {
   retencionISRPorcentaje: FormControl<number | null>;
 }
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxMessage } from "@ui/adaptive/message/message";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
   selector: "app-orden-compra-detalle-add-producto",
   templateUrl: "./orden-compra-detalle-add-producto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconItem,
+  imports: [
+    WebButtonIconItem,
     CommonModule,
     ReactiveFormsModule,
     TableModule,
@@ -68,7 +69,9 @@ import { LxMessage } from "@ui/adaptive/message/message";
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter, LxMessage],
+    PrimeNgCustomTableFooter,
+    LxMessage,
+  ],
 })
 export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);

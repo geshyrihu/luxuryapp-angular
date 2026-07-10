@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-upload-img-form",
   templateUrl: "./upload-img-form.html",

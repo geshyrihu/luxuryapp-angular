@@ -1,8 +1,14 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { TableModule } from "primeng/table";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -55,12 +61,3 @@ export class ResultadoGeneralPosicion {
     });
   }
 }
-
-
-
-
-
-
-
-
-

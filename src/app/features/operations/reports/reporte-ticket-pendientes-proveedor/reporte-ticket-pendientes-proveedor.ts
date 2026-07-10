@@ -1,13 +1,19 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ReportService } from "src/app/core/services/report.service";
 @Component({
   selector: "app-reporte-ticket-pendientes-proveedor",
@@ -49,12 +55,3 @@ export class ReporteTicketPendientesProveedor implements OnInit {
     });
   }
 }
-
-
-
-
-
-
-
-
-

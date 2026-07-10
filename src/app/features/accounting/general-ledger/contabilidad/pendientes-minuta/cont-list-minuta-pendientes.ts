@@ -12,7 +12,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -26,18 +25,18 @@ import { alertCircleOutline } from "ionicons/icons";
 import { MessageService } from "primeng/api";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { MeetingSeguimientoEdit } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
 @Component({
   selector: "app-cont-list-minuta-pendientes",

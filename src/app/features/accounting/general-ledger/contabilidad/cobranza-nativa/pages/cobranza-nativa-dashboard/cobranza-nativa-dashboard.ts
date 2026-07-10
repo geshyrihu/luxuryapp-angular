@@ -1,12 +1,19 @@
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 
-
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogSize } from "src/app/core/enums/dialog-size";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
   HeroMetric,
@@ -15,15 +22,17 @@ import {
 } from "../../models/cobranza-nativa.model";
 import BillingConfigModal from "../billing-config/billing-config-modal";
 import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxCard } from "@ui/adaptive/card/card";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [WebButtonLabel,
+  imports: [
+    WebButtonLabel,
     AppIcon,
-    ButtonModule, LxTag, LxCard, MobileListItem],
+    ButtonModule,
+    LxTag,
+    LxCard,
+    MobileListItem,
+  ],
   templateUrl: "./cobranza-nativa-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cobranza-nativa-dashboard.scss"],
@@ -62,7 +71,7 @@ export default class CobranzaNativaDashboard {
       detail: "Rutas del API por funcionalidad",
       icon: "mdi:server",
       tone: "success",
-    }
+    },
   ];
 
   navigateTo(route: string) {
@@ -82,7 +91,9 @@ export default class CobranzaNativaDashboard {
   }
 
   toggleExpand(cardTitle: string) {
-    this.expandedCard.update((value) => (value === cardTitle ? null : cardTitle));
+    this.expandedCard.update((value) =>
+      value === cardTitle ? null : cardTitle,
+    );
   }
 
   isExpanded(cardTitle: string): boolean {

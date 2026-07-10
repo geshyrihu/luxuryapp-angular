@@ -1,16 +1,23 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";

@@ -12,30 +12,33 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { debounceTime } from "rxjs";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { debounceTime } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CreateOrdenCompra } from "src/app/features/purchasing/po/purchase-order/create-orden-compra";
-import { LxCard } from "@ui/adaptive/card/card";
 
 @Component({
   selector: "app-cuadro-comparativo-cotizacion",
   templateUrl: "./cuadro-comparativo-cotizacion.html",
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     TableModule,
     CustomInputTextSignal,
     CustomInputNumberSignal,
     WebButtonLabel,
-    WebButtonLabelViewPdf, LxCard],
+    WebButtonLabelViewPdf,
+    LxCard,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CuadroComparativoCotizacion implements OnInit, OnDestroy {

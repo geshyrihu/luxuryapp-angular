@@ -1,7 +1,13 @@
-import { Component, inject, OnDestroy, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
 declare class BarcodeDetector {
@@ -48,7 +54,9 @@ export class QrScanner implements OnDestroy {
       this.statusMsg.set("Apunta la cómara al código QR del equipo.");
       this.scanLoop(video);
     } catch {
-      this.errorMsg.set("No se pudo acceder a la cómara. Verifica los permisos.");
+      this.errorMsg.set(
+        "No se pudo acceder a la cómara. Verifica los permisos.",
+      );
       this.statusMsg.set("");
     }
   }
@@ -84,7 +92,8 @@ export class QrScanner implements OnDestroy {
   private readonly checklistRoutes: Record<string, (id: string) => string[]> = {
     Extintor: (id: string) => ROUTES.BITACORAS.EXTINTOR_CHECKLIST(id),
     Hydrant: (id: string) => ROUTES.BITACORAS.HIDRANTE_CHECKLIST(id),
-    ManualCallPoint: (id: string) => ROUTES.BITACORAS.ESTACION_MANUAL_CHECKLIST(id),
+    ManualCallPoint: (id: string) =>
+      ROUTES.BITACORAS.ESTACION_MANUAL_CHECKLIST(id),
     SmokeDetector: (id: string) => ROUTES.BITACORAS.DETECTOR_HUMO_CHECKLIST(id),
   };
 

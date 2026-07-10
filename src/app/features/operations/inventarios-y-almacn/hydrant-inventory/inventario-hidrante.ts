@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -21,17 +22,16 @@ import {
   timeOutline,
   waterOutline,
 } from "ionicons/icons";
-import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IInventarioHidrante } from "src/app/core/interfaces/inventario-hidrante.interface";
 import { AccountingCatalogExcelService } from "src/app/core/services/accounting-catalog-excel.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";

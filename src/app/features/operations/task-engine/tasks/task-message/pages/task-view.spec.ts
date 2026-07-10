@@ -1,14 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskView } from './task-view';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { vi } from "vitest";
+import { TaskView } from "./task-view";
 
-describe('TaskView', () => {
+describe("TaskView", () => {
   let component: TaskView;
   let fixture: ComponentFixture<TaskView>;
   let mockApiResponseS: any;
@@ -20,20 +20,20 @@ describe('TaskView', () => {
 
   beforeEach(() => {
     mockApiResponseS = {
-      onGetItem: vi.fn().mockResolvedValue({ id: '1', title: 'Test Ticket' }),
+      onGetItem: vi.fn().mockResolvedValue({ id: "1", title: "Test Ticket" }),
     };
-    mockAuthS = { applicationUserId: 'user-001' };
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
+    mockAuthS = { applicationUserId: "user-001" };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeLg: '1200px',
+      sizeLg: "1200px",
     };
     mockActivatedRoute = { params: { subscribe: vi.fn() } };
     mockRouter = { navigate: vi.fn() };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskView, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskView],
@@ -52,33 +52,36 @@ describe('TaskView', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.submitting()).toBe(false);
     expect(component.notTicket()).toBe(false);
     expect(component.ticket()).toBeNull();
-    expect(component.applicationUserId).toBe('user-001');
+    expect(component.applicationUserId).toBe("user-001");
   });
 
-  it('onLoadData should call api and set ticket', async () => {
-    const mockTicket = { id: '1', title: 'Test' };
+  it("onLoadData should call api and set ticket", async () => {
+    const mockTicket = { id: "1", title: "Test" };
     mockApiResponseS.onGetItem.mockResolvedValue(mockTicket);
 
-    component.id = '1';
+    component.id = "1";
     component.onLoadData();
-    await new Promise(resolve => setTimeout(resolve));
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetItem).toHaveBeenCalled();
     expect(component.ticket()).toBe(mockTicket);
   });
 
-  it('goBack should navigate back', () => {
-    component.ticketGroupId = 'group-1';
+  it("goBack should navigate back", () => {
+    component.ticketGroupId = "group-1";
     component.goBack();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/Tasks/messages', 'group-1']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith([
+      "/Tasks/messages",
+      "group-1",
+    ]);
   });
 });

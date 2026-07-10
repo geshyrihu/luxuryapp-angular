@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
@@ -9,10 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { firstValueFrom } from "rxjs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -20,12 +24,15 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-solicitud-baja",

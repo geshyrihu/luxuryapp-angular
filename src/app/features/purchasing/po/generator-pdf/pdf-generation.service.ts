@@ -1,9 +1,9 @@
 import { DatePipe } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Injectable({
@@ -38,10 +38,7 @@ export class PdfGenerationService {
             orderData,
             customerData,
           );
-          this.htmlPrintS.printHtml(
-            html,
-            `SolicitudPago-${orderData.folio}`,
-          );
+          this.htmlPrintS.printHtml(html, `SolicitudPago-${orderData.folio}`);
         } else {
           this.customToastS.showError(
             "Error",
@@ -136,7 +133,12 @@ export class PdfGenerationService {
   }
 
   private getSolicitanteDisplayName(model: any): string {
-    return model.solicitanteNombreCompleto || model.fullName || model.solicitante || "N/A";
+    return (
+      model.solicitanteNombreCompleto ||
+      model.fullName ||
+      model.solicitante ||
+      "N/A"
+    );
   }
 
   private async buildPaymentRequestHtmlContent(
@@ -224,30 +226,30 @@ ${this.htmlPrintS.getStandardCss()}
 <style>
   @page { margin: 10mm; }
   .container { max-width: 1000px; margin: auto; }
-  
+
   .bank-card { border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin-top: 10px; margin-bottom: 20px; }
   .bank-card-header { background-color: #f2f2f2; padding: 5px 10px; font-weight: bold; font-size: 11px; }
   .bank-card-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 10px; }
-  
+
   .label { color: gray; font-size: 10px; }
   .value { font-weight: bold; font-size: 11px; margin-bottom: 5px; }
   .beneficiary { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
   .clabe { font-weight: bold; font-size: 13px; margin-bottom: 5px; }
   .total-amount { font-weight: bold; font-size: 16px; color: #003A62; }
-  
+
   .subheader { font-size: 14px; font-weight: bold; color: #003A62; margin-top: 15px; margin-bottom: 5px; }
   .justificacion { font-size: 10px; margin-bottom: 20px; }
-  
+
   .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
   .info-text { font-size: 10px; margin-bottom: 2px; }
-  
+
   .budget-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 20px; }
   .budget-table th { color: #003A62; font-weight: bold; text-align: left; padding: 5px; border-bottom: 1px solid #ccc; }
   .budget-table td { padding: 5px; border-bottom: 1px solid #eee; }
-  
+
   .totals-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
   .totals-table td { padding: 4px 0; }
-  
+
   .signatures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-top: 40px; justify-items: center; }
   .signature-box { text-align: center; width: 180px; }
   .signature-line { border-top: 1px solid #333; width: 100%; margin-bottom: 5px; }
@@ -422,7 +424,7 @@ ${this.htmlPrintS.getStandardCss()}
   <div class="body-doc">
     <div style="text-align: right; font-size: 11px; margin-bottom: 15px;">
       <span style="font-weight: bold;">Fecha:</span> ${requestDateStr}
-      <br><span style="font-weight: bold;">RFC:</span> ${this.htmlPrintS.esc(data.rfc || '')}
+      <br><span style="font-weight: bold;">RFC:</span> ${this.htmlPrintS.esc(data.rfc || "")}
     </div>
 
     <div class="info-boxes">
@@ -459,11 +461,11 @@ ${this.htmlPrintS.getStandardCss()}
       <div class="obs-section">
         <div class="obs-title">Observaciones:</div>
         <div class="obs-text">${this.htmlPrintS.esc(data.observaciones || "Sin observaciones.")}</div>
-        
+
         <div class="obs-title">Datos Fiscales / Pago:</div>
         <div class="obs-text">
-          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "é")} | 
-          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "é")} | 
+          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "é")} |
+          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "é")} |
           Método: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.metodoDePago || "é")}
         </div>
 
@@ -471,7 +473,7 @@ ${this.htmlPrintS.getStandardCss()}
           Firma y Nombre de Autorización
         </div>
       </div>
-      
+
       <div>
         <table class="totals-table">
           <tbody>

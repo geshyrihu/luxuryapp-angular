@@ -1,8 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { from, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Injectable({
   providedIn: "root",
 })
@@ -62,19 +62,23 @@ export class EnumSelectService {
 
   educationLevel = (d?: boolean) => this.onLoadEnumList("EEducationLevel", d);
 
-  extinguisherType = (d?: boolean) => this.onLoadEnumList("EExtinguisherType", d);
+  extinguisherType = (d?: boolean) =>
+    this.onLoadEnumList("EExtinguisherType", d);
 
   hydrantType = (d?: boolean) => this.onLoadEnumList("EHydrantType", d);
 
   cabinetState = (d?: boolean) => this.onLoadEnumList("ECabinetState", d);
 
-  manualStationType = (d?: boolean) => this.onLoadEnumList("EManualStationType", d);
+  manualStationType = (d?: boolean) =>
+    this.onLoadEnumList("EManualStationType", d);
 
-  smokeDetectorType = (d?: boolean) => this.onLoadEnumList("ESmokeDetectorType", d);
+  smokeDetectorType = (d?: boolean) =>
+    this.onLoadEnumList("ESmokeDetectorType", d);
 
   severityLevel = (d?: boolean) => this.onLoadEnumList("ESeverityLevel", d);
 
-  incidentCategory = (d?: boolean) => this.onLoadEnumList("EIncidentCategory", d);
+  incidentCategory = (d?: boolean) =>
+    this.onLoadEnumList("EIncidentCategory", d);
 
   frequencyType = (d?: boolean) => this.onLoadEnumList("EFrequencyType", d);
 
@@ -152,7 +156,8 @@ export class EnumSelectService {
 
   expenseType = (d?: boolean) => this.onLoadEnumList("EExpenseType", d);
 
-  investigationStatus = (d?: boolean) => this.onLoadEnumList("EInvestigationStatus", d);
+  investigationStatus = (d?: boolean) =>
+    this.onLoadEnumList("EInvestigationStatus", d);
 
   memberRole = (d?: boolean) => this.onLoadEnumList("EMemberRole", d);
 

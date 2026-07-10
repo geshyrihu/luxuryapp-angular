@@ -1,32 +1,39 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { TableModule } from "primeng/table";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AiService } from "src/app/core/services/ai.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-reglamentos",
@@ -44,7 +51,8 @@ import { TooltipModule } from "primeng/tooltip";
     WebButtonLabelViewPdf,
     LxModal,
     CustomInputTextAreaSignal,
-    ReactiveFormsModule,    WebButtonLabelViewPdf,
+    ReactiveFormsModule,
+    WebButtonLabelViewPdf,
     MobileListItem,
     AppIcon,
   ],
@@ -126,9 +134,7 @@ export class Reglamentos {
     const documentIds = this.dataSignal().map((item) => item.id);
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
-      .then((result) => {
-      })
-      .catch((error) => {
-      });
+      .then((result) => {})
+      .catch((error) => {});
   }
 }

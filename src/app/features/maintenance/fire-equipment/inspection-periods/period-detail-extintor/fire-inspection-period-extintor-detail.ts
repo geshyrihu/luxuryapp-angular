@@ -1,12 +1,22 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  ViewChild,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionExtintorForm } from "../cycle-checklist-extintor/fire-cycle-inspection-extintor-form";
 
@@ -48,7 +58,9 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
   mergedItems = computed(() => {
     const cycleItems: any[] = this.activeCycle()?.items ?? [];
     return this.periodItems().map((p) => {
-      const cycleItem = cycleItems.find((c) => c.equipmentId === p.extinguisherId);
+      const cycleItem = cycleItems.find(
+        (c) => c.equipmentId === p.extinguisherId,
+      );
       return {
         ...p,
         cycleStatus: cycleItem?.status ?? null,
@@ -70,9 +82,15 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
   onLoadData() {
     Promise.all([
       this.apiResponseS.onGetItem(`FireInspectionPeriod/${this.periodId}`),
-      this.apiResponseS.onGetList(`FireInspectionPeriodItems/extintor/list/${this.periodId}`),
-      this.apiResponseS.onGetItem(`FireInspectionCycle/active/${this.periodId}`),
-      this.apiResponseS.onGetList(`InventarioExtintor/list/${this.customerIdS.customerId()}`),
+      this.apiResponseS.onGetList(
+        `FireInspectionPeriodItems/extintor/list/${this.periodId}`,
+      ),
+      this.apiResponseS.onGetItem(
+        `FireInspectionCycle/active/${this.periodId}`,
+      ),
+      this.apiResponseS.onGetList(
+        `InventarioExtintor/list/${this.customerIdS.customerId()}`,
+      ),
     ]).then(([period, items, cycle, inventory]: any) => {
       this.period.set(period);
       this.periodItems.set(items ?? []);
@@ -95,12 +113,17 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
   }
 
   async onGenerateCycle() {
-    await this.apiResponseS.onPost(`FireInspectionCycle/generate/${this.periodId}`, {});
+    await this.apiResponseS.onPost(
+      `FireInspectionCycle/generate/${this.periodId}`,
+      {},
+    );
     this.onLoadData();
   }
 
   async onRemoveItem(id: string) {
-    const ok = await this.apiResponseS.onDelete(`FireInspectionPeriodItems/extintor/${id}`);
+    const ok = await this.apiResponseS.onDelete(
+      `FireInspectionPeriodItems/extintor/${id}`,
+    );
     if (ok) this.onLoadData();
   }
 
@@ -110,7 +133,12 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
       return;
     }
     if (item.cycleStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. óDeseas actualizar los datos?")) return;
+      if (
+        !window.confirm(
+          "Este equipo ya fue inspeccionado. óDeseas actualizar los datos?",
+        )
+      )
+        return;
     }
     await this.dialogHandlerS.openDialog(
       FireCycleInspectionExtintorForm,
@@ -121,7 +149,9 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
     this.onLoadData();
   }
 
-  statusSeverity(status: string | null): "success" | "info" | "warn" | "danger" | "secondary" {
+  statusSeverity(
+    status: string | null,
+  ): "success" | "info" | "warn" | "danger" | "secondary" {
     if (!status) return "secondary";
     const map: Record<string, any> = {
       Realizada: "success",
@@ -146,7 +176,9 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
     this.scanStatus.set("Iniciando cómara...");
     this.scanning.set(true);
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" },
+      });
       const video = this.videoEl.nativeElement;
       video.srcObject = this.stream;
       await video.play();
@@ -154,7 +186,9 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
       this.scanLoop(video);
     } catch {
       this.scanning.set(false);
-      this.scanError.set("No se pudo acceder a la cómara. Verifica los permisos.");
+      this.scanError.set(
+        "No se pudo acceder a la cómara. Verifica los permisos.",
+      );
       this.scanStatus.set("");
     }
   }
@@ -165,7 +199,9 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
       this.animationId = requestAnimationFrame(async () => {
         if (!this.scanning()) return;
         const barcodes = await detector.detect(video).catch(() => []);
-        const qr = barcodes.find((b) => b.rawValue.startsWith("luxuryapp://inspect/"));
+        const qr = barcodes.find((b) =>
+          b.rawValue.startsWith("luxuryapp://inspect/"),
+        );
         if (qr) {
           this.stopScan();
           await this.resolveQr(qr.rawValue);
@@ -182,15 +218,24 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
     const segments = path.split("/");
     let equipmentId = segments.length >= 2 ? segments[1] : segments[0];
 
-    const match = this.periodItems().find((p) => p.extinguisherId === equipmentId);
+    const match = this.periodItems().find(
+      (p) => p.extinguisherId === equipmentId,
+    );
     if (!match) {
-      this.scanError.set("Este equipo no pertenece al periodo de inspección actual.");
+      this.scanError.set(
+        "Este equipo no pertenece al periodo de inspección actual.",
+      );
       return;
     }
 
     const cycleItems: any[] = this.activeCycle()?.items ?? [];
-    const cycleItem = cycleItems.find((c) => c.equipmentId === match.extinguisherId);
-    await this.openChecklist({ ...match, cycleStatus: cycleItem?.status ?? null });
+    const cycleItem = cycleItems.find(
+      (c) => c.equipmentId === match.extinguisherId,
+    );
+    await this.openChecklist({
+      ...match,
+      cycleStatus: cycleItem?.status ?? null,
+    });
   }
 
   stopScan() {

@@ -1,4 +1,4 @@
-<div class="grid">
+﻿<div class="grid">
   <div class="col-12">
     <div class="card">
       <div
@@ -36,7 +36,7 @@
 
           <il-button
             label="Actualizar vista previa"
-            iconClass="mdi:refresh"
+            icon="mdi:refresh"
             [loading]="loading()"
             (clicked)="onLoadData()"
           />
@@ -46,30 +46,30 @@
   </div>
 
   <div class="col-12 md:col-4">
-    <lx-card header="Sesiones cargadas">
+    <div class="card" header="Sesiones cargadas">
       <div class="text-3xl font-bold">{{ items().length }}</div>
       <small class="text-color-secondary">
         Sesiones evaluadas con la ventana actual.
       </small>
-    </lx-card>
+    </div>
   </div>
 
   <div class="col-12 md:col-4">
-    <lx-card header="Pendientes de relacion">
+    <div class="card" header="Pendientes de relacion">
       <div class="text-3xl font-bold">{{ pendingCount() }}</div>
       <small class="text-color-secondary">
         Sesiones sin presentacion o sin minuta ligada.
       </small>
-    </lx-card>
+    </div>
   </div>
 
   <div class="col-12 md:col-4">
-    <lx-card header="Aplicables">
+    <div class="card" header="Aplicables">
       <div class="text-3xl font-bold">{{ autoApplicableCount() }}</div>
       <small class="text-color-secondary">
         Sesiones con al menos una sugerencia disponible para aplicar.
       </small>
-    </lx-card>
+    </div>
   </div>
 
   <div class="col-12">
@@ -80,7 +80,7 @@
         [scrollable]="true"
         scrollHeight="620px"
       >
-        <ng-template #header>
+        <ng-template pTemplate="header">
           <tr>
             <th>Sesion</th>
             <th>Presentacion sugerida</th>
@@ -101,15 +101,15 @@
                 {{ item.scheduledAt | date: "dd/MM/yyyy HH:mm" }}
               </div>
               <div class="flex gap-2 flex-wrap mt-2">
-                <lx-tag [value]="item.statusDisplayName" severity="info" />
+                <lx-tag [value]="item.statusDisplayName" severity="info"  />
                 <lx-tag
                   [value]="item.hasPresentationLinked ? 'Presentacion ligada' : 'Sin presentacion'"
                   [severity]="item.hasPresentationLinked ? 'success' : 'warn'"
-                />
+                 />
                 <lx-tag
                   [value]="item.hasMeetingLinked ? 'Minuta ligada' : 'Sin minuta'"
                   [severity]="item.hasMeetingLinked ? 'success' : 'warn'"
-                />
+                 />
               </div>
             </td>
 
@@ -123,7 +123,7 @@
                 <lx-tag
                   [value]="presentation.confidence"
                   [severity]="confidenceSeverity(presentation.confidence)"
-                />
+                 />
                 <span class="text-sm">Score {{ presentation.score }}</span>
               </div>
               <ul class="mt-2 pl-3 text-sm text-color-secondary">
@@ -146,7 +146,7 @@
                 <lx-tag
                   [value]="meeting.confidence"
                   [severity]="confidenceSeverity(meeting.confidence)"
-                />
+                 />
                 <span class="text-sm">Score {{ meeting.score }}</span>
               </div>
               <ul class="mt-2 pl-3 text-sm text-color-secondary">
@@ -182,10 +182,13 @@
                 </label>
 
                 <iw-button-confirm
-                  pTooltip="Aplicar sugerencias"
-                  iconClass="mdi:link"
+                  pTooltip="Aplicar sugerencias" tooltipPosition="top"
+                  icon="mdi:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
+                  swalTitle="Aplicar conciliacion"
                   swalText="Se vincularan los registros seleccionados a la sesion mensual. Esta accion no elimina historico existente."
+                  swalConfirmButtonText="Si, aplicar"
+                  swalCancelButtonText="Cancelar"
                   (confirmed)="onApply(item)"
                 />
               </div>
@@ -202,3 +205,4 @@
     </div>
   </div>
 </div>
+

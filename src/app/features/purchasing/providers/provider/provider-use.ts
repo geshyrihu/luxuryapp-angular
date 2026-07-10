@@ -1,11 +1,17 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-provider-use",
   templateUrl: "./provider-use.html",
@@ -37,12 +43,3 @@ export class ProviderUse implements OnInit {
     });
   }
 }
-
-
-
-
-
-
-
-
-

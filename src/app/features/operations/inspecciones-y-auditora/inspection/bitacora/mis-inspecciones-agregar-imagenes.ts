@@ -1,20 +1,23 @@
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-mis-inspecciones-agregar-imagenes",
-  imports: [
-    WebButtonIcon,
-    TooltipModule,WebButtonLabel, NgbTooltipModule],
+  imports: [WebButtonIcon, TooltipModule, WebButtonLabel, NgbTooltipModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })

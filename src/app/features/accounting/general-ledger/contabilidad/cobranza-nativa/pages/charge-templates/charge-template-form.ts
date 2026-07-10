@@ -1,4 +1,11 @@
-import { Component, effect, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -9,13 +16,13 @@ import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
-import { ChargeTypeCatalogResponseDTO } from "../../models/charge-type-catalog.dto";
 import {
   CreateChargeTemplateDTO,
   UpdateChargeTemplateDTO,
 } from "../../models/charge-template.dto";
+import { ChargeTypeCatalogResponseDTO } from "../../models/charge-type-catalog.dto";
 import {
   ECalculationMethod,
   EDiscountType,
@@ -172,8 +179,12 @@ export class ChargeTemplateForm implements OnInit {
   }
 
   async loadChargeTypes() {
-    const res = await this.apiResponseS.onGetItem<ChargeTypeCatalogResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(this.customerId),
+    const res = await this.apiResponseS.onGetItem<
+      ChargeTypeCatalogResponseDTO[]
+    >(
+      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(
+        this.customerId,
+      ),
     );
 
     this.chargeTypes.set(
@@ -185,7 +196,11 @@ export class ChargeTemplateForm implements OnInit {
         })),
     );
 
-    if (!this.id && this.chargeTypes().length > 0 && !this.form.controls.chargeTypeId.value) {
+    if (
+      !this.id &&
+      this.chargeTypes().length > 0 &&
+      !this.form.controls.chargeTypeId.value
+    ) {
       this.form.controls.chargeTypeId.setValue(this.chargeTypes()[0].value);
     }
   }

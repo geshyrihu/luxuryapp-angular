@@ -1,7 +1,14 @@
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -10,7 +17,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 
@@ -86,12 +93,3 @@ export class ReporteEnvioFinancieros implements OnInit {
     this.onLoadData();
   }
 }
-
-
-
-
-
-
-
-
-

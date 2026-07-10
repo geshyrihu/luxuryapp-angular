@@ -1,13 +1,19 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface IChecklistItem {
   id: string;
@@ -112,9 +118,10 @@ export class JuntaMensualSessionChecklistDialog {
       const result = await this.apiResponseS.onGetList<IChecklistItem[]>(
         Endpoints.AsambleaChecklist.bySession(this.sessionId),
       );
-      const sessionDetail = await this.apiResponseS.onGetItem<IJuntaMensualSessionDetail>(
-        Endpoints.JuntaMensualSession.detail(this.sessionId),
-      );
+      const sessionDetail =
+        await this.apiResponseS.onGetItem<IJuntaMensualSessionDetail>(
+          Endpoints.JuntaMensualSession.detail(this.sessionId),
+        );
 
       this.sessionDetail.set(sessionDetail ?? null);
       this.items.set(result ?? []);

@@ -1,13 +1,19 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { IRequestEmployeeRegisterBasicInfo } from "../dtos/request-employee-register-basic-info.dto";
 import { IRequestEmployeeRegisterUpdateStatus } from "../dtos/request-employee-register-update-status.dto";

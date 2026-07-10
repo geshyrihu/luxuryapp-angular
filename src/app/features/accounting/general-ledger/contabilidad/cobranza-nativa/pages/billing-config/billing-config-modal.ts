@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -17,12 +23,12 @@ import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 
 // Services
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { UpsertBillingConfigDTO } from "../../models/billing-config.dto";
-import { SaveNativeCollectionNotificationSettingsDTO } from "../../models/notification-settings.dto";
 import { EBillingMode } from "../../models/enums";
+import { SaveNativeCollectionNotificationSettingsDTO } from "../../models/notification-settings.dto";
 
 @Component({
   selector: "app-billing-config-modal",
@@ -102,7 +108,8 @@ export default class BillingConfigModal implements OnInit {
     if (notificationSettings) {
       this.form.patchValue({
         isEmailEnabled: notificationSettings.isEmailEnabled,
-        isPushNotificationEnabled: notificationSettings.isPushNotificationEnabled,
+        isPushNotificationEnabled:
+          notificationSettings.isPushNotificationEnabled,
       });
     }
   }

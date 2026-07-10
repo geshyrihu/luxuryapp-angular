@@ -1,11 +1,10 @@
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
+import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
 import { environment } from "src/environments/environment";
-import { AuthService } from "./auth.service";
-import { ConsoleLoggerService } from "./console-logger.service";
-
+import { AuthService } from "../auth/services/auth.service";
 export interface GoogleCalendarEventRealTimeUpdateDTO {
   customerId: string;
   eventId: string | null;
@@ -98,7 +97,11 @@ export class SignalRService {
     this.addConnectionLifecycleListeners();
     this.registerListeners();
 
-    this.consoleLogger.custom("LINK", "blue", "[SignalR] Iniciando conexion...");
+    this.consoleLogger.custom(
+      "LINK",
+      "blue",
+      "[SignalR] Iniciando conexion...",
+    );
     this.hubConnection
       .start()
       .then(() => {

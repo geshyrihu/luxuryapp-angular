@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import type { TabItem } from "@ui/base/tabs.base";
@@ -7,7 +13,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { CobranzaOnlineDashboard } from "../../cobranza-online/pages/dashboard/cobranza-online-dashboard";
 import { AiAgentContabilidadOnlineComponent } from "../components/ai-agent-contabilidad-online/ai-agent-contabilidad-online";
 import { AiAgentExplicadorContabilidadOnlineComponent } from "../components/ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";

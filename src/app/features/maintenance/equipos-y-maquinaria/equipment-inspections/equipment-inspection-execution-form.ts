@@ -1,5 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -8,12 +15,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   EquipmentInspectionExecutionCompleteDTO,
   EquipmentInspectionExecutionDetailDTO,

@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormsModule,
@@ -6,25 +12,27 @@ import {
   Validators,
 } from "@angular/forms";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { AiService } from "src/app/core/services/ai.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { LxModal } from "@ui/adaptive/modal/modal";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AiService } from "src/app/core/services/ai.service";
 
 @Component({
   selector: "app-job-description-form",
   templateUrl: "./job-description-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     FormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     WebButtonLabel,
-    LxModal],
+    LxModal,
+  ],
 })
 export class JobDescriptionForm implements OnInit {
   private fb = inject(FormBuilder);

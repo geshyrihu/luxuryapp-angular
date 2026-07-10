@@ -1,0 +1,16 @@
+import { inject, Injectable } from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+@Injectable({
+  providedIn: "root",
+})
+export class ModulePermissionService {
+  customerIdS = inject(CustomerIdService);
+
+  modulePermission: any[] = [];
+
+  constructor() {}
+
+  setModulePermission(modulePermission: any[]): void {
+    this.modulePermission = modulePermission;
+  }
+}

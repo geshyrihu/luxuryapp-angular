@@ -1,14 +1,21 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-resultado-general-evaluacion-areas-detalle",
   templateUrl: "./resultado-general-evaluacion-areas-detalle.html",
@@ -50,12 +57,3 @@ export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-
-
-
-
-
-
-
-
-

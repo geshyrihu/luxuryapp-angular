@@ -1,23 +1,23 @@
-import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
+import { IonicMocks } from "src/app/core/testing/ionic-mocks";
 
-vi.mock('@ionic/angular/standalone', () => ({ ...IonicMocks }));
-vi.mock('@ionic/core', () => ({}));
-vi.mock('@ionic/core/components', () => ({}));
+vi.mock("@ionic/angular/standalone", () => ({ ...IonicMocks }));
+vi.mock("@ionic/core", () => ({}));
+vi.mock("@ionic/core/components", () => ({}));
 vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class {},
 }));
 vi.mock("heic2any", () => ({ default: vi.fn() }));
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Subject } from 'rxjs';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { SignalRService } from 'src/app/core/services/signalr.service';
-import { FundingForm } from './funding-form';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Subject } from "rxjs";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
+import { FundingForm } from "./funding-form";
 
-describe('FundingForm', () => {
+describe("FundingForm", () => {
   let component: FundingForm;
   let fixture: ComponentFixture<FundingForm>;
   let mockApiResponseS: any;
@@ -37,7 +37,7 @@ describe('FundingForm', () => {
     };
     mockSignalRS = { messageReceived$: messageSubject.asObservable() };
     mockConfig = { data: {} };
-    mockCustomerIdS = { customerId: vi.fn(() => 'cust-123') };
+    mockCustomerIdS = { customerId: vi.fn(() => "cust-123") };
     mockRef = { close: vi.fn() };
 
     TestBed.resetTestingModule();
@@ -58,24 +58,24 @@ describe('FundingForm', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load existing data on init when id is provided', () => {
-    mockConfig.data = { id: 'fnd-001' };
+  it("should load existing data on init when id is provided", () => {
+    mockConfig.data = { id: "fnd-001" };
     mockApiResponseS.onGetSelectItem.mockResolvedValue([]);
-    mockApiResponseS.onGetItem.mockResolvedValue({ period: '2024-01' });
+    mockApiResponseS.onGetItem.mockResolvedValue({ period: "2024-01" });
 
     fixture = TestBed.createComponent(FundingForm);
     component = fixture.componentInstance;
     component.ngOnInit();
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith('funding/fnd-001');
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("funding/fnd-001");
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalled();
   });
 
-  it('should not load data on init when id is empty', () => {
+  it("should not load data on init when id is empty", () => {
     mockApiResponseS.onGetSelectItem.mockResolvedValue([]);
 
     fixture = TestBed.createComponent(FundingForm);
@@ -86,30 +86,30 @@ describe('FundingForm', () => {
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalled();
   });
 
-  it('should reload data when SignalR message is received', () => {
+  it("should reload data when SignalR message is received", () => {
     mockApiResponseS.onGetItem.mockResolvedValue({});
-    component.id = 'fnd-001';
+    component.id = "fnd-001";
 
-    messageSubject.next('refresh');
+    messageSubject.next("refresh");
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith('funding/fnd-001');
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("funding/fnd-001");
   });
 
-  it('should submit and close dialog on valid form', async () => {
+  it("should submit and close dialog on valid form", async () => {
     mockApiResponseS.onPost.mockResolvedValue(true);
-    component.form.patchValue({ period: '2024-01' });
+    component.form.patchValue({ period: "2024-01" });
 
     component.onSubmit();
 
     expect(mockApiResponseS.validateForm).toHaveBeenCalled();
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
     expect(mockRef.close).toHaveBeenCalledWith(true);
   });
 
-  it('should not close dialog on submit when API returns false', async () => {
+  it("should not close dialog on submit when API returns false", async () => {
     mockApiResponseS.onPost.mockResolvedValue(false);
-    component.form.patchValue({ period: '2024-01' });
+    component.form.patchValue({ period: "2024-01" });
 
     component.onSubmit();
     await vi.waitFor(() => expect(component.submitting()).toBe(false));
@@ -117,4 +117,3 @@ describe('FundingForm', () => {
     expect(mockRef.close).not.toHaveBeenCalled();
   });
 });
-

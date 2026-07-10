@@ -1,12 +1,12 @@
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { ContabilidadModuleGroup } from "./contabilidad-module.model";
-import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
 import { LxCard } from "@ui/adaptive/card/card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { ContabilidadModuleGroup } from "./contabilidad-module.model";
+import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
 
 @Component({
   selector: "app-master-dashboard",

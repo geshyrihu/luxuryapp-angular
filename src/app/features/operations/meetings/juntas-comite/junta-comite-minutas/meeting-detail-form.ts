@@ -1,5 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import {
@@ -7,11 +14,11 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { EAreaMinutasDetallesPipe } from "src/app/core/pipes/area-minuta-detalles.pipe";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { EAreaMinutasDetallesPipe } from "src/app/shared/pipes/area-minuta-detalles.pipe";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-meeting-detail-form",
   templateUrl: "./meeting-detail-form.html",
@@ -71,12 +78,3 @@ export class MeetingDetailForm implements OnInit {
     return total;
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskStatus } from './task-status';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { EnumSelectService } from 'src/app/core/services/enum-select.service';
-import { TaskGroupService } from '../../task.service';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver } from "@angular/cdk/layout";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { vi } from "vitest";
+import { TaskGroupService } from "../../task.service";
+import { TaskStatus } from "./task-status";
 
-describe('TaskStatus', () => {
+describe("TaskStatus", () => {
   let component: TaskStatus;
   let fixture: ComponentFixture<TaskStatus>;
   let mockTaskGroupService: any;
@@ -17,7 +17,7 @@ describe('TaskStatus', () => {
 
   beforeEach(() => {
     mockTaskGroupService = {
-      taskGroupMessageStatus: 'NotStarted',
+      taskGroupMessageStatus: "NotStarted",
       setStatus: vi.fn(),
     };
     mockApiResponseS = {};
@@ -28,7 +28,7 @@ describe('TaskStatus', () => {
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskStatus, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskStatus],
@@ -45,41 +45,41 @@ describe('TaskStatus', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default status', () => {
-    expect(component.status).toBe('NotStarted');
+  it("should have default status", () => {
+    expect(component.status).toBe("NotStarted");
   });
 
-  it('ngOnInit should fill cb_status', () => {
+  it("ngOnInit should fill cb_status", () => {
     component.ngOnInit();
     expect(component.cb_status.length).toBe(4);
-    expect(component.cb_status[0].value).toBe('NotStarted');
+    expect(component.cb_status[0].value).toBe("NotStarted");
   });
 
-  it('onStatusChange should call service and emit', () => {
-    const spy = vi.spyOn(component.statusChange, 'emit');
-    component.onStatusChange('InProgress');
-    expect(mockTaskGroupService.setStatus).toHaveBeenCalledWith('InProgress');
-    expect(component.status).toBe('InProgress');
-    expect(spy).toHaveBeenCalledWith('InProgress');
+  it("onStatusChange should call service and emit", () => {
+    const spy = vi.spyOn(component.statusChange, "emit");
+    component.onStatusChange("InProgress");
+    expect(mockTaskGroupService.setStatus).toHaveBeenCalledWith("InProgress");
+    expect(component.status).toBe("InProgress");
+    expect(spy).toHaveBeenCalledWith("InProgress");
   });
 
-  it('getIconForStatus should return correct icons', () => {
-    expect(component.getIconForStatus('NotStarted')).toBe('mdi:folder-open');
-    expect(component.getIconForStatus('InProgress')).toBe('mdi:sync');
-    expect(component.getIconForStatus('Completed')).toBe('mdi:check-circle');
-    expect(component.getIconForStatus('Reopened')).toBe('mdi:refresh');
-    expect(component.getIconForStatus('Unknown')).toBe('mdi:circle');
+  it("getIconForStatus should return correct icons", () => {
+    expect(component.getIconForStatus("NotStarted")).toBe("mdi:folder-open");
+    expect(component.getIconForStatus("InProgress")).toBe("mdi:sync");
+    expect(component.getIconForStatus("Completed")).toBe("mdi:check-circle");
+    expect(component.getIconForStatus("Reopened")).toBe("mdi:refresh");
+    expect(component.getIconForStatus("Unknown")).toBe("mdi:circle");
   });
 
-  it('getSeverityForStatus should return correct severities', () => {
-    expect(component.getSeverityForStatus('NotStarted')).toBe('danger');
-    expect(component.getSeverityForStatus('InProgress')).toBe('warn');
-    expect(component.getSeverityForStatus('Completed')).toBe('success');
-    expect(component.getSeverityForStatus('Reopened')).toBe('info');
-    expect(component.getSeverityForStatus('Unknown')).toBe('info');
+  it("getSeverityForStatus should return correct severities", () => {
+    expect(component.getSeverityForStatus("NotStarted")).toBe("danger");
+    expect(component.getSeverityForStatus("InProgress")).toBe("warn");
+    expect(component.getSeverityForStatus("Completed")).toBe("success");
+    expect(component.getSeverityForStatus("Reopened")).toBe("info");
+    expect(component.getSeverityForStatus("Unknown")).toBe("info");
   });
 });

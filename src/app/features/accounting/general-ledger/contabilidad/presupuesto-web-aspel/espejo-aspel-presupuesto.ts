@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -7,31 +8,31 @@ import {
   signal,
   viewChild,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "primeng/message";
 import { Table, TableModule } from "primeng/table";
 
-import { TooltipModule } from "primeng/tooltip";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TooltipModule } from "primeng/tooltip";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AiService } from "src/app/core/services/ai.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
-import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import Swal from "sweetalert2";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
 } from "../models/presupuesto-shared.models";
 import { BudgetRuleList } from "../presupuesto-propuesta/budget-rule-list/budget-rule-list";
+import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 import {
   ASPEL_MONTHS,
@@ -42,16 +43,18 @@ import {
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
 import { PurchaseHistory } from "./purchase-history";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-presupuesto-aspel-ejercicio-fiscal",
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     TableModule,
     MessageModule,
     DataViewMobile,
-    TooltipModule, LxTag],
+    TooltipModule,
+    LxTag,
+  ],
   templateUrl: "./espejo-aspel-presupuesto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -470,7 +473,10 @@ export class PresupuestoAspelEjercicioFiscal {
   }
 
   exportExcel(): void {
-    const grouped = splitAspelAccounts(this.allCuentas(), this.customerIdS.customerId());
+    const grouped = splitAspelAccounts(
+      this.allCuentas(),
+      this.customerIdS.customerId(),
+    );
     this.excelService.exportPresupuesto(
       grouped.mantenimiento,
       this.sharedS.budgetData(),

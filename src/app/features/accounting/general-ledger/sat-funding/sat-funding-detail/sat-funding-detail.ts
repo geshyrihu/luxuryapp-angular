@@ -7,19 +7,23 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // PrimeNG Modules
 
-import { DialogModule } from "primeng/dialog";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
+import { LxCard } from "@ui/adaptive/card/card";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DialogModule } from "primeng/dialog";
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
 import {
   BulkUpdateTipoGastoDTO,
   SatCfdiDTO,
@@ -29,15 +33,12 @@ import {
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { LxCard } from "@ui/adaptive/card/card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-sat-funding-detail",
   templateUrl: "./sat-funding-detail.html",
-  imports: [WebButtonIconConfirm,
+  imports: [
+    WebButtonIconConfirm,
     WebButtonIconEdit,
     CommonModule,
     FormsModule,
@@ -50,7 +51,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     TooltipModule,
     WebButtonLabelSave,
     WebButtonLabelConfirm,
-    WebButtonLabelEdit, LxCard, AppIcon],
+    WebButtonLabelEdit,
+    LxCard,
+    AppIcon,
+  ],
 })
 export class SatFundingDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -77,7 +81,7 @@ export class SatFundingDetailComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" }
+    { value: 9, label: "Impuestos y contribuciones" },
   ];
 
   form = this.formBuilder.nonNullable.group({

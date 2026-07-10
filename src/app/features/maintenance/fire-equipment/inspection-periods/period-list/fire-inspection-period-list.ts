@@ -8,8 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -18,13 +16,13 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireInspectionPeriodForm } from "../period-form/fire-inspection-period-form";
 
@@ -60,7 +58,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     TableModule,
     DataViewMobile,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,  ],
+    PrimeNgCustomTableFooter,
+  ],
 })
 export class FireInspectionPeriodList implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -17,12 +17,16 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TableModule } from "primeng/table";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -30,17 +34,14 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-orden-compra-presupuesto",
   templateUrl: "./orden-compra-presupuesto.html",
-  imports: [WebButtonIconItem,
+  imports: [
+    WebButtonIconItem,
     TooltipModule,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
@@ -51,7 +52,9 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     AppSpinner,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    PrimeNgCustomToast, LxTag],
+    PrimeNgCustomToast,
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [MessageService],
 })
@@ -79,7 +82,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   availableYears = [
     { label: "2024", value: 2024 },
     { label: "2025", value: 2025 },
-    { label: "2026", value: 2026 }
+    { label: "2026", value: 2026 },
   ];
   // Id de la orden de compra que viene desde el modal
   ordenCompraId: string = "";
@@ -191,7 +194,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     const superUser = this.aspRoleS.hasAny([
       EApplicationRole.SuperUsuario,
       EApplicationRole.Administrador,
-      EApplicationRole.Asistente
+      EApplicationRole.Asistente,
     ]);
     if (superUser) return false; // los superusuarios no tienen restricciones ??
 
@@ -211,7 +214,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     const superUser = this.aspRoleS.hasAny([
       EApplicationRole.SuperUsuario,
       EApplicationRole.Administrador,
-      EApplicationRole.Asistente
+      EApplicationRole.Asistente,
     ]);
     if (superUser) return false; // Admins y SuperUsuarios siempre pueden guardar
 

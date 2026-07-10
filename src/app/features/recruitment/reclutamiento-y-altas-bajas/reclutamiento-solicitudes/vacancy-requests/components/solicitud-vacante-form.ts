@@ -1,20 +1,31 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 @Component({
   selector: "app-solicitud-vacante",
   templateUrl: "./solicitud-vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CardModule, WebButtonLabelSave, CustomInputTextAreaSignal],
+  imports: [
+    ReactiveFormsModule,
+    CardModule,
+    WebButtonLabelSave,
+    CustomInputTextAreaSignal,
+  ],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

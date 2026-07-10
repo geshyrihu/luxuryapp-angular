@@ -6,10 +6,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-calificacion-proveedor",
   templateUrl: "./calificacion-proveedor.html",

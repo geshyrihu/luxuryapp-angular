@@ -1,16 +1,22 @@
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface ICompleteTaskForm {
   comments: FormControl<string>;
@@ -63,7 +69,10 @@ export class CompleteTaskForm implements OnInit {
     }
 
     this.apiResponseS
-      .onPostFile<any>(`recurring-tasks/instances/${this.task.id}/complete`, formData)
+      .onPostFile<any>(
+        `recurring-tasks/instances/${this.task.id}/complete`,
+        formData,
+      )
       .then((result) => {
         if (result) {
           this.ref.close(true);

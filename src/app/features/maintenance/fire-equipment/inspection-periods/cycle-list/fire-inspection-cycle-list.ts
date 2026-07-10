@@ -8,20 +8,18 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -44,7 +42,8 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     DataViewMobile,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,  ],
+    PrimeNgCustomTableFooter,
+  ],
 })
 export class FireInspectionCycleList implements OnInit {
   apiResponseS = inject(ApiResponseService);

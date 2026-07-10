@@ -1,18 +1,18 @@
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { vi } from "vitest";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { DialogService } from "primeng/dynamicdialog";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { GoogleCalendar } from "./google-calendar";
-import { SignalRService } from "src/app/core/services/signalr.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { DialogService } from "primeng/dynamicdialog";
+import { Subject } from "rxjs";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { Subject } from "rxjs";
+import { vi } from "vitest";
+import { GoogleCalendar } from "./google-calendar";
 
 vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class PdfViewerModal {},
@@ -44,11 +44,11 @@ vi.mock("src/app/core/components/mobile/buttons", async () => {
   };
 });
 
-vi.mock("src/app/core/services/api-response.service", () => ({
+vi.mock("src/app/core/http/services/api-response.service", () => ({
   ApiResponseService: class ApiResponseService {},
 }));
 
-vi.mock("src/app/core/services/customer-id.service", () => ({
+vi.mock("src/app/core/auth/services/customer-id.service", () => ({
   CustomerIdService: class CustomerIdService {},
 }));
 
@@ -56,7 +56,7 @@ vi.mock("src/app/core/services/signalr.service", () => ({
   SignalRService: class SignalRService {},
 }));
 
-vi.mock("src/app/core/services/asp-role.service", () => ({
+vi.mock("src/app/core/auth/services/asp-role.service", () => ({
   AspRoleService: class AspRoleService {},
 }));
 
@@ -155,5 +155,3 @@ describe("GoogleCalendar", () => {
     expect(fixture.nativeElement.textContent).toContain("Google Calendar List");
   });
 });
-
-

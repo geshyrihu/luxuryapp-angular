@@ -1,8 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import type {
   PresupuestoContabilidadFila,
@@ -27,7 +34,20 @@ export class PresupuestoContabilidad {
   data = signal<PresupuestoContabilidadResponse | null>(null);
 
   readonly acumLabel = computed(() => {
-    const names = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+    const names = [
+      "ENE",
+      "FEB",
+      "MAR",
+      "ABR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AGO",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DIC",
+    ];
     return `ACUMULADO ENE-${names[this.filterS.mesIdx()]}`;
   });
 
@@ -72,10 +92,14 @@ export class PresupuestoContabilidad {
 
   rowClass(fila: PresupuestoContabilidadFila): string {
     switch (fila.nivel) {
-      case 1: return "rf-row-section";
-      case 2: return "rf-row-group";
-      case 4: return "rf-row-total";
-      default: return "";
+      case 1:
+        return "rf-row-section";
+      case 2:
+        return "rf-row-group";
+      case 4:
+        return "rf-row-total";
+      default:
+        return "";
     }
   }
 
@@ -123,4 +147,3 @@ export class PresupuestoContabilidad {
     );
   }
 }
-

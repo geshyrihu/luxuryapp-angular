@@ -1,15 +1,20 @@
 import { CurrencyPipe, NgClass } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import {
-  TemplateCoverageDTO,
-} from "../../models/template-coverage.dto";
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ECalculationMethod } from "../../models/enums";
+import { TemplateCoverageDTO } from "../../models/template-coverage.dto";
 
 @Component({
   selector: "app-charge-template-coverage",
@@ -28,11 +33,15 @@ export default class ChargeTemplateCoverage {
 
   /** Columnas de periodo ónicas ordenadas, extraódas de todos los registros */
   periodColumns = computed(() => {
-    const keys = new Map<string, { label: string; year: number; month: number }>();
+    const keys = new Map<
+      string,
+      { label: string; year: number; month: number }
+    >();
     for (const row of this.dataSignal()) {
       for (const p of row.periods) {
         const key = `${p.year}-${String(p.month).padStart(2, "0")}`;
-        if (!keys.has(key)) keys.set(key, { label: p.label, year: p.year, month: p.month });
+        if (!keys.has(key))
+          keys.set(key, { label: p.label, year: p.year, month: p.month });
       }
     }
     return [...keys.entries()]

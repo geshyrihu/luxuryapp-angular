@@ -1,9 +1,9 @@
 import { Injectable, inject } from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 @Injectable({ providedIn: "root" })
 export class OrdenesServicioListPdfService {
@@ -12,13 +12,23 @@ export class OrdenesServicioListPdfService {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
 
-  async downloadReporteTablaCategoria(data: any[], periodo: string, filterName: string): Promise<void> {
+  async downloadReporteTablaCategoria(
+    data: any[],
+    periodo: string,
+    filterName: string,
+  ): Promise<void> {
     if (!data || data.length === 0) {
-      this.customToastS.showWarn("Sin Datos", "No hay órdenes de servicio para generar el reporte.");
+      this.customToastS.showWarn(
+        "Sin Datos",
+        "No hay órdenes de servicio para generar el reporte.",
+      );
       return;
     }
 
-    this.customToastS.showInfo("Generando Reporte", "Preparando reporte por categoría...");
+    this.customToastS.showInfo(
+      "Generando Reporte",
+      "Preparando reporte por categoría...",
+    );
     const logo = await this.htmlPrintS.getLogoDataUrl();
     const generatedAt = new Date();
 
@@ -81,47 +91,66 @@ ${this.htmlPrintS.getStandardCss()}
 </div>
 </body></html>`;
 
-    this.htmlPrintS.printHtml(html, `Reporte-Tabla-Ordenes-${filterName}-${periodo}`);
+    this.htmlPrintS.printHtml(
+      html,
+      `Reporte-Tabla-Ordenes-${filterName}-${periodo}`,
+    );
   }
 
   private getStatusLabel(status: number): string {
     switch (status) {
-      case 0: return "Pendiente";
-      case 1: return "Terminado";
-      case 2: return "No Autorizado";
-      case 4: return "Cancelado";
-      default: return "-";
+      case 0:
+        return "Pendiente";
+      case 1:
+        return "Terminado";
+      case 2:
+        return "No Autorizado";
+      case 4:
+        return "Cancelado";
+      default:
+        return "-";
     }
   }
 
   private getStatusBadgeClass(status: number): string {
     switch (status) {
-      case 1: return "st-success";
-      case 0: return "st-danger";
-      default: return "st-secondary";
+      case 1:
+        return "st-success";
+      case 0:
+        return "st-danger";
+      default:
+        return "st-secondary";
     }
   }
 
   async downloadReporte(periodo: string, filterName: string) {
-    this.customToastS.showInfo("Generando Reporte", "Descargando datos, espere por favor...");
+    this.customToastS.showInfo(
+      "Generando Reporte",
+      "Descargando datos, espere por favor...",
+    );
     const customerId = this.customerIdS.customerId();
     const urlApi = Endpoints.ServiceOrders.reporte(customerId, periodo);
 
-    const customerData: any = await this.apiResponseS.onGetItem(Endpoints.Customers.getByIdLegacy(customerId));
+    const customerData: any = await this.apiResponseS.onGetItem(
+      Endpoints.Customers.getByIdLegacy(customerId),
+    );
     const logoCustomer = customerData?.photoPath || null;
-    const nameCustomer = customerData?.nameCustomer || 'Cliente';
-    const address = customerData?.adreess || '';
-    const phoneOne = customerData?.phoneOne || '';
-    const phoneTwo = customerData?.phoneTwo || '';
+    const nameCustomer = customerData?.nameCustomer || "Cliente";
+    const address = customerData?.adreess || "";
+    const phoneOne = customerData?.phoneOne || "";
+    const phoneTwo = customerData?.phoneTwo || "";
 
     const data: any = await this.apiResponseS.onPost(urlApi);
     if (!data || data === true || data.length === 0) {
-      this.customToastS.showWarn("Sin Datos", "No hay órdenes de servicio para este periodo.");
+      this.customToastS.showWarn(
+        "Sin Datos",
+        "No hay órdenes de servicio para este periodo.",
+      );
       return;
     }
 
     const generatedAt = new Date();
-    
+
     let html = `<!doctype html>
 <html lang="es">
 <head>
@@ -183,19 +212,24 @@ ${this.htmlPrintS.getStandardCss()}
 `;
 
     data.forEach((item, index) => {
-      let imagesHtml = '';
+      let imagesHtml = "";
       if (item.serviceOrderImg && item.serviceOrderImg.length > 0) {
         imagesHtml = `
           <div class="mb-4 break-inside-avoid">
             <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-3">Evidencia Fotogrófica</h4>
             <div class="grid">
-              ${item.serviceOrderImg.slice(0,4).map((img: string) => `
+              ${item.serviceOrderImg
+                .slice(0, 4)
+                .map(
+                  (img: string) => `
                 <div class="col-3 text-center">
                   <div class="border-1 border-round p-1">
                     <img src="${this.htmlPrintS.esc(img)}" class="w-full border-round" style="aspect-ratio: 4/3; object-fit: cover" alt="Evidencia" />
                   </div>
                 </div>
-              `).join('')}
+              `,
+                )
+                .join("")}
             </div>
           </div>
         `;
@@ -205,24 +239,24 @@ ${this.htmlPrintS.getStandardCss()}
         <div class="report-container page-break">
           <div class="grid align-items-center mb-4 pb-3 border-bottom-1">
             <div class="col-3 text-center">
-              ${logoCustomer ? `<img src="${this.htmlPrintS.esc(logoCustomer)}" alt="Logo" class="report-logo" />` : ''}
+              ${logoCustomer ? `<img src="${this.htmlPrintS.esc(logoCustomer)}" alt="Logo" class="report-logo" />` : ""}
             </div>
             <div class="col-5">
               <h2 class="text-lg font-bold text-900 mb-1">${this.htmlPrintS.esc(nameCustomer)}</h2>
               <p class="text-xs text-600 mb-1">${this.htmlPrintS.esc(address)}</p>
               <div class="flex text-xs text-700">
-                ${phoneOne ? `<span class="mr-2">?? ${this.htmlPrintS.esc(phoneOne)}</span>` : ''}
-                ${phoneTwo ? `<span>?? ${this.htmlPrintS.esc(phoneTwo)}</span>` : ''}
+                ${phoneOne ? `<span class="mr-2">?? ${this.htmlPrintS.esc(phoneOne)}</span>` : ""}
+                ${phoneTwo ? `<span>?? ${this.htmlPrintS.esc(phoneTwo)}</span>` : ""}
               </div>
             </div>
             <div class="col-4 text-right">
               <h3 class="text-lg font-bold text-primary mb-2">ORDEN DE SERVICIO</h3>
               <div class="text-xs">
-                <div class="mb-1"><span class="font-bold">Folio:</span> #${this.htmlPrintS.esc(item.id || 'S/N')}</div>
+                <div class="mb-1"><span class="font-bold">Folio:</span> #${this.htmlPrintS.esc(item.id || "S/N")}</div>
                 <div class="mb-1"><span class="font-bold">Solicitud:</span> ${this.htmlPrintS.esc(item.requestDate)}</div>
                 <div class="mb-1"><span class="font-bold">Ejecución:</span> ${this.htmlPrintS.esc(item.executionDate)}</div>
                 <div class="mt-2 text-xs uppercase font-medium bg-primary border-round" style="display:inline-block; padding: 2px 4px;">
-                  ${this.htmlPrintS.esc(item.typeMaintance)} ${item.maintenanceCalendar ? '| ' + this.htmlPrintS.esc(item.recurrence) : ''}
+                  ${this.htmlPrintS.esc(item.typeMaintance)} ${item.maintenanceCalendar ? "| " + this.htmlPrintS.esc(item.recurrence) : ""}
                 </div>
               </div>
             </div>
@@ -249,11 +283,11 @@ ${this.htmlPrintS.getStandardCss()}
           <div class="grid mb-4">
             <div class="col-6">
               <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Actividad Realizada</h4>
-              <div class="text-xs line-height-3 text-700">${item.activity || ''}</div>
+              <div class="text-xs line-height-3 text-700">${item.activity || ""}</div>
             </div>
             <div class="col-6">
               <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Observaciones Tócnicas</h4>
-              <div class="text-xs line-height-3 text-700">${item.observations || ''}</div>
+              <div class="text-xs line-height-3 text-700">${item.observations || ""}</div>
             </div>
           </div>
 
@@ -264,21 +298,21 @@ ${this.htmlPrintS.getStandardCss()}
             <div class="grid text-xs">
               <div class="col-6">
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.cumplimientoActividades ? 'text-green-600' : 'text-red-600'}">${item.cumplimientoActividades ? '?' : '?'}</span>
+                  <span class="mr-2 ${item.cumplimientoActividades ? "text-green-600" : "text-red-600"}">${item.cumplimientoActividades ? "?" : "?"}</span>
                   <span>Cumplimiento de actividades programadas</span>
                 </div>
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.equiposOperando ? 'text-green-600' : 'text-red-600'}">${item.equiposOperando ? '?' : '?'}</span>
+                  <span class="mr-2 ${item.equiposOperando ? "text-green-600" : "text-red-600"}">${item.equiposOperando ? "?" : "?"}</span>
                   <span>Equipos/óreas operando correctamente</span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${!item.ocacionoDanos ? 'text-green-600' : 'text-orange-600'}">${!item.ocacionoDanos ? '?' : '??'}</span>
+                  <span class="mr-2 ${!item.ocacionoDanos ? "text-green-600" : "text-orange-600"}">${!item.ocacionoDanos ? "?" : "??"}</span>
                   <span>Sin daños al órea de trabajo</span>
                 </div>
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.calidadTrabajos ? 'text-green-600' : 'text-red-600'}">${item.calidadTrabajos ? '?' : '?'}</span>
+                  <span class="mr-2 ${item.calidadTrabajos ? "text-green-600" : "text-red-600"}">${item.calidadTrabajos ? "?" : "?"}</span>
                   <span>Calidad de trabajos satisfactoria</span>
                 </div>
               </div>
@@ -289,12 +323,12 @@ ${this.htmlPrintS.getStandardCss()}
             <div class="grid">
               <div class="col-6 text-center">
                 <div class="signature-line mb-2"></div>
-                <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.fullName || 'Pendiente de Firma')}</div>
+                <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.fullName || "Pendiente de Firma")}</div>
                 <div class="text-xs text-500 uppercase mt-1">Revisado / Aceptado</div>
               </div>
               <div class="col-6 text-center">
                 <div class="signature-line mb-2"></div>
-                <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.nameComercial || 'Proveedor')}</div>
+                <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.nameComercial || "Proveedor")}</div>
                 <div class="text-xs text-500 uppercase mt-1">Realizado por</div>
               </div>
             </div>

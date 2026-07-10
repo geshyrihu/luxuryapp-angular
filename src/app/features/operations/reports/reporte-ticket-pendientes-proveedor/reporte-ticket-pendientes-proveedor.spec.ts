@@ -1,14 +1,14 @@
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ReporteTicketPendientesProveedor } from './reporte-ticket-pendientes-proveedor';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { ReportService } from 'src/app/core/services/report.service';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ReportService } from "src/app/core/services/report.service";
+import { ReporteTicketPendientesProveedor } from "./reporte-ticket-pendientes-proveedor";
 
-describe('ReporteTicketPendientesProveedor', () => {
+describe("ReporteTicketPendientesProveedor", () => {
   let component: ReporteTicketPendientesProveedor;
   let fixture: ComponentFixture<ReporteTicketPendientesProveedor>;
   let mockApiResponseS: any;
@@ -23,10 +23,14 @@ describe('ReporteTicketPendientesProveedor', () => {
     mockReportService = {};
     mockRouter = {};
     mockActivatedRoute = {
-      snapshot: { params: { customerId: 'cust-123', departamentId: 'dept-456' } },
+      snapshot: {
+        params: { customerId: "cust-123", departamentId: "dept-456" },
+      },
     };
 
-    TestBed.overrideComponent(ReporteTicketPendientesProveedor, { set: { template: '<div>Mock</div>', imports: [] } });
+    TestBed.overrideComponent(ReporteTicketPendientesProveedor, {
+      set: { template: "<div>Mock</div>", imports: [] },
+    });
     TestBed.configureTestingModule({
       imports: [ReporteTicketPendientesProveedor],
       providers: [
@@ -43,11 +47,11 @@ describe('ReporteTicketPendientesProveedor', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signal values', () => {
+  it("should have default signal values", () => {
     expect(component.loading()).toBe(true);
     expect(component.data).toEqual([]);
     expect(component.tablePrimeNgRows).toBe(30);
@@ -57,21 +61,21 @@ describe('ReporteTicketPendientesProveedor', () => {
     expect(component.departamentId).toBeUndefined();
   });
 
-  it('should read params from ActivatedRoute and call onLoadData on init', () => {
+  it("should read params from ActivatedRoute and call onLoadData on init", () => {
     fixture.detectChanges();
-    expect(component.customerId).toBe('cust-123');
-    expect(component.departamentId).toBe('dept-456');
+    expect(component.customerId).toBe("cust-123");
+    expect(component.departamentId).toBe("dept-456");
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      'ticket/getreportpendingprovider/cust-123/dept-456',
+      "ticket/getreportpendingprovider/cust-123/dept-456",
     );
   });
 
-  it('onLoadData should set data and globalFilterFields from API response', async () => {
-    const fakeData = [{ id: 1, ticket: 'TKT-001', proveedor: 'Proveedor A' }];
+  it("onLoadData should set data and globalFilterFields from API response", async () => {
+    const fakeData = [{ id: 1, ticket: "TKT-001", proveedor: "Proveedor A" }];
     mockApiResponseS.onGetList.mockResolvedValue(fakeData);
     fixture.detectChanges();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
     expect(component.data).toEqual(fakeData);
-    expect(component.globalFilterFields).toEqual(['id', 'ticket', 'proveedor']);
+    expect(component.globalFilterFields).toEqual(["id", "ticket", "proveedor"]);
   });
 });

@@ -6,19 +6,19 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "primeng/table";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskTemplateItem } from "src/app/core/models/recurring-tasks/task-template-item.model";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
@@ -72,9 +72,9 @@ export class TaskTemplateItems implements OnInit {
 
   loadItems() {
     this.apiResponseS
-      .onGetList<
-        TaskTemplateItem[]
-      >(`recurring-tasks/templates/${this.templateId}/items`)
+      .onGetList<TaskTemplateItem[]>(
+        `recurring-tasks/templates/${this.templateId}/items`,
+      )
       .then((response) => this.items.set(response || []));
   }
 

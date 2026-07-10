@@ -1,6 +1,6 @@
 // file-explorer.service.ts
 import { Injectable } from "@angular/core";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface FileSystemItem {
   name: string;
   path: string;
@@ -42,12 +42,3 @@ export class FileExplorerService {
   //     );
   //   }
 }
-
-
-
-
-
-
-
-
-

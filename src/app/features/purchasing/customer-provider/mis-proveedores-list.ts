@@ -1,35 +1,36 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonIcon } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { storefrontOutline } from "ionicons/icons";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { addIcons } from "ionicons";
+import { storefrontOutline } from "ionicons/icons";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CustomerProviderForm } from "./customer-provider-form";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-mis-proveedores",
-  imports: [MobileActionMenu,
+  imports: [
+    MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
@@ -40,7 +41,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     DataViewMobile,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    IonIcon, MobileListItem, AppIcon],
+    IonIcon,
+    MobileListItem,
+    AppIcon,
+  ],
 
   templateUrl: "./mis-proveedores-list.html",
 })

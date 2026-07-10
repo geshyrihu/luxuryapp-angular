@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,21 +12,21 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ROUTES } from "src/app/routing/route-paths";
-import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { ROUTES } from "src/app/routing/route-paths";
 
 interface IHidranteChecklistForm {
   id: FormControl<string | null>;

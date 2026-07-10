@@ -1,5 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -8,8 +15,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { AppCard } from "@ui/web/card/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -19,10 +24,12 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppCard } from "@ui/web/card/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {
   EquipmentInspectionDefinitionAddOrEditDTO,
   EquipmentInspectionDefinitionDTO,

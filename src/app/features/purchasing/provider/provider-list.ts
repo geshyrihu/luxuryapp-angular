@@ -1,31 +1,37 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
+import { LxRating } from "@ui/adaptive/rating/rating";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxRating } from "@ui/adaptive/rating/rating";
 
-import { TooltipModule } from "primeng/tooltip";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TooltipModule } from "primeng/tooltip";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -33,24 +39,18 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IBusquedaProveedor } from "src/app/core/interfaces/busqueda-proveedor.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CalificacionProveedor } from "src/app/features/purchasing/providers/provider-qualification/calificacion-proveedor";
 import { ProveedorForm } from "./proveedor-form";
 import { TarjetaProveedor } from "./provider-card";
 import { ProviderUse } from "./provider-use";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -58,7 +58,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-provider-list",
   templateUrl: "./provider-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconItem,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -80,7 +81,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     DataViewMobile,
     ActionMenu,
     WebButtonLabelEdit,
-    WebButtonLabelDelete, LxTag, MobileListItem, AppIcon],
+    WebButtonLabelDelete,
+    LxTag,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class ListProvider implements OnInit {
   roles = EApplicationRole;
@@ -126,11 +131,11 @@ export class ListProvider implements OnInit {
     { label: "Todos", value: null },
     { label: "Servicio Fijo", value: "ServicioFijo" },
     { label: "Servicios Variables", value: "ServiciosVariables" },
-    { label: "Devoluciones", value: "Devoluciones" }
+    { label: "Devoluciones", value: "Devoluciones" },
   ];
   nivelAccesos = [
     { label: "Póblico", value: 0 },
-    { label: "Privado", value: 1 }
+    { label: "Privado", value: 1 },
   ];
   selectedServiceTypeControl = new FormControl<string | null>(null);
   // selectedNivelAcceso: number = 0;
@@ -144,7 +149,7 @@ export class ListProvider implements OnInit {
       EApplicationRole.JefeMantenimiento,
       EApplicationRole.Administrador,
       EApplicationRole.SuperUsuario,
-      EApplicationRole.Legal
+      EApplicationRole.Legal,
     ]);
   }
 

@@ -1,12 +1,18 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
-import { TableModule } from "primeng/table";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
@@ -104,12 +110,3 @@ export class MinutasResumen implements OnInit {
     );
   }
 }
-
-
-
-
-
-
-
-
-

@@ -13,17 +13,17 @@
  */
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model";
 @Component({
   selector: "app-fee-comparison-by-indiviso-modal",
@@ -171,12 +171,7 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
-    TableModule,
-    LxDivider,
-    LxMessage,
-  ],
+  imports: [CommonModule, TableModule, LxDivider, LxMessage],
 })
 export class FeeComparisonByIndivisoModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

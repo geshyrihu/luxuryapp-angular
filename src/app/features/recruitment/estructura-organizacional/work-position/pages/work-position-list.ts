@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
@@ -22,9 +23,11 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableModule } from "primeng/table";
 
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import {
@@ -32,10 +35,7 @@ import {
   rowsPerPageOptions as getRowsPerPageOptions,
   tablePrimeNgRows as getTablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -51,20 +51,21 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-work-position-list",
   templateUrl: "./work-position-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconActiveDesactive,
+  imports: [
+    WebButtonIconActiveDesactive,
     WebButtonIconEdit,
     WebButtonIconItem,
     WebButtonIconDelete,
@@ -79,7 +80,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     AppAvatar,
     PrimeNgCustomCaption,
     DataViewMobile,
-    LxTag, MobileListItem, AppIcon],
+    LxTag,
+    MobileListItem,
+    AppIcon,
+  ],
 })
 export class WorkPositionList {
   // --- INYECCIóN DE DEPENDENCIAS ---
@@ -227,4 +231,3 @@ export class WorkPositionList {
     return !isBlockingStatus;
   }
 }
-

@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const logbookRoutes: Routes = [
   {
     path: "maintenance-orders", // Ruta anterior: 'ordenes-mantenimiento'
@@ -215,7 +215,10 @@ export const logbookRoutes: Routes = [
         (m) => m.HidranteBitacoraList,
       ),
     canActivate: [authGuard],
-    data: { title: "Historial de Inspecciones de Hidrante", breadcrumb: "Historial de Hidrante" },
+    data: {
+      title: "Historial de Inspecciones de Hidrante",
+      breadcrumb: "Historial de Hidrante",
+    },
   },
   {
     path: "hydrant-checklist/:id",
@@ -233,7 +236,10 @@ export const logbookRoutes: Routes = [
         (m) => m.EstacionManualBitacoraList,
       ),
     canActivate: [authGuard],
-    data: { title: "Historial de Inspecciones de Estación Manual", breadcrumb: "Historial de Estación Manual" },
+    data: {
+      title: "Historial de Inspecciones de Estación Manual",
+      breadcrumb: "Historial de Estación Manual",
+    },
   },
   {
     path: "manual-call-point-checklist/:id",
@@ -242,7 +248,10 @@ export const logbookRoutes: Routes = [
         (m) => m.EstacionManualChecklist,
       ),
     canActivate: [authGuard],
-    data: { title: "Inspección de Estación Manual", breadcrumb: "Checklist Estación Manual" },
+    data: {
+      title: "Inspección de Estación Manual",
+      breadcrumb: "Checklist Estación Manual",
+    },
   },
   {
     path: "smoke-detector-log/:detectorId",
@@ -251,7 +260,10 @@ export const logbookRoutes: Routes = [
         (m) => m.DetectorHumoBitacoraList,
       ),
     canActivate: [authGuard],
-    data: { title: "Historial de Inspecciones de Detector de Humo", breadcrumb: "Historial de Detector de Humo" },
+    data: {
+      title: "Historial de Inspecciones de Detector de Humo",
+      breadcrumb: "Historial de Detector de Humo",
+    },
   },
   {
     path: "smoke-detector-checklist/:id",
@@ -260,7 +272,10 @@ export const logbookRoutes: Routes = [
         (m) => m.DetectorHumoChecklist,
       ),
     canActivate: [authGuard],
-    data: { title: "Inspección de Detector de Humo", breadcrumb: "Checklist Detector de Humo" },
+    data: {
+      title: "Inspección de Detector de Humo",
+      breadcrumb: "Checklist Detector de Humo",
+    },
   },
   {
     path: "fire-inspection-periods",
@@ -269,7 +284,10 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionPeriodList,
       ),
     canActivate: [authGuard],
-    data: { title: "Periodos de Inspección Contra Incendio", breadcrumb: "Periodos de Inspección" },
+    data: {
+      title: "Periodos de Inspección Contra Incendio",
+      breadcrumb: "Periodos de Inspección",
+    },
   },
   {
     path: "fire-inspection-cycles",
@@ -278,7 +296,10 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionCycleList,
       ),
     canActivate: [authGuard],
-    data: { title: "Ciclos de Inspección Contra Incendio", breadcrumb: "Ciclos de Inspección" },
+    data: {
+      title: "Ciclos de Inspección Contra Incendio",
+      breadcrumb: "Ciclos de Inspección",
+    },
   },
   {
     path: "fire-inspection-cycle/:cycleId",
@@ -287,7 +308,10 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionCycleDetail,
       ),
     canActivate: [authGuard],
-    data: { title: "Detalle del Ciclo de Inspección", breadcrumb: "Detalle del Ciclo" },
+    data: {
+      title: "Detalle del Ciclo de Inspección",
+      breadcrumb: "Detalle del Ciclo",
+    },
   },
   {
     path: "fire-inspection-period-extintor/:periodId",
@@ -296,7 +320,10 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionPeriodExtintorDetail,
       ),
     canActivate: [authGuard],
-    data: { title: "Periodo de Inspección — Extintores", breadcrumb: "Detalle de Periodo" },
+    data: {
+      title: "Periodo de Inspección — Extintores",
+      breadcrumb: "Detalle de Periodo",
+    },
   },
   {
     path: "fire-inspection-period-hidrante/:periodId",
@@ -305,7 +332,10 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionPeriodHidranteDetail,
       ),
     canActivate: [authGuard],
-    data: { title: "Periodo de Inspección — Hidrantes", breadcrumb: "Detalle de Periodo" },
+    data: {
+      title: "Periodo de Inspección — Hidrantes",
+      breadcrumb: "Detalle de Periodo",
+    },
   },
   {
     path: "fire-inspection-period-estacion/:periodId",
@@ -314,7 +344,10 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionPeriodEstacionDetail,
       ),
     canActivate: [authGuard],
-    data: { title: "Periodo de Inspección — Estaciones Manuales", breadcrumb: "Detalle de Periodo" },
+    data: {
+      title: "Periodo de Inspección — Estaciones Manuales",
+      breadcrumb: "Detalle de Periodo",
+    },
   },
   {
     path: "fire-inspection-period-detector/:periodId",
@@ -323,6 +356,9 @@ export const logbookRoutes: Routes = [
         (m) => m.FireInspectionPeriodDetectorDetail,
       ),
     canActivate: [authGuard],
-    data: { title: "Periodo de Inspección — Detectores de Humo", breadcrumb: "Detalle de Periodo" },
+    data: {
+      title: "Periodo de Inspección — Detectores de Humo",
+      breadcrumb: "Detalle de Periodo",
+    },
   },
 ];

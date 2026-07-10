@@ -1,17 +1,17 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxEditor } from "@ui/adaptive/editor/editor";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmationService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { LxEditor } from "@ui/adaptive/editor/editor";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-service-order",

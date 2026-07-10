@@ -1,19 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskForm } from './task-form';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CustomToastService } from 'src/app/core/services/custom-toast.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DateService } from 'src/app/core/services/date.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { EnumSelectService } from 'src/app/core/services/enum-select.service';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { TaskGroupService } from 'src/app/features/operations/task-engine/tasks/task.service';
-import { of } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { of } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DateService } from "src/app/core/services/date.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
+import { vi } from "vitest";
+import { TaskForm } from "./task-form";
 
-describe('TaskForm', () => {
+describe("TaskForm", () => {
   let component: TaskForm;
   let fixture: ComponentFixture<TaskForm>;
   let mockApiResponseS: any;
@@ -31,27 +31,31 @@ describe('TaskForm', () => {
     mockApiResponseS = {
       onGetList: vi.fn().mockResolvedValue([]),
       onGetSelectItem: vi.fn().mockResolvedValue([]),
-      onGetItem: vi.fn().mockResolvedValue({ title: 'Test', description: 'Desc' }),
+      onGetItem: vi
+        .fn()
+        .mockResolvedValue({ title: "Test", description: "Desc" }),
       onPost: vi.fn().mockResolvedValue(true),
       onPut: vi.fn().mockResolvedValue(true),
       validateForm: vi.fn().mockReturnValue(true),
     };
-    mockAuthS = { applicationUserId: 'user-001' };
+    mockAuthS = { applicationUserId: "user-001" };
     mockCustomToastS = { showError: vi.fn() };
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
-    mockDateS = { getDateFormat: vi.fn().mockReturnValue('2024-01-15') };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
+    mockDateS = { getDateFormat: vi.fn().mockReturnValue("2024-01-15") };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
-      sizeLg: '1200px',
+      sizeLg: "1200px",
     };
-    mockEnumSelectS = { priorityLevel: vi.fn().mockReturnValue(of([{ value: 1, label: 'Alta' }])) };
-    mockConfig = { data: { id: '', ticketGroupId: 'g1' } };
+    mockEnumSelectS = {
+      priorityLevel: vi.fn().mockReturnValue(of([{ value: 1, label: "Alta" }])),
+    };
+    mockConfig = { data: { id: "", ticketGroupId: "g1" } };
     mockRef = { close: vi.fn() };
-    mockTaskGroupService = { taskGroupMessageStatus: 'NotStarted' };
+    mockTaskGroupService = { taskGroupMessageStatus: "NotStarted" };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskForm, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskForm],
@@ -74,55 +78,54 @@ describe('TaskForm', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.submitting()).toBe(false);
     expect(component.cb_priority()).toEqual([]);
     expect(component.cb_ticket_group()).toEqual([]);
     expect(component.isLegalWorkGroup()).toBe(false);
   });
 
-  it('should have form with expected controls', () => {
-    expect(component.form.get('id')).not.toBeNull();
-    expect(component.form.contains('title')).toBe(true);
-    expect(component.form.contains('description')).toBe(true);
-    expect(component.form.contains('priority')).toBe(true);
-    expect(component.form.contains('ticketGroupId')).toBe(true);
+  it("should have form with expected controls", () => {
+    expect(component.form.get("id")).not.toBeNull();
+    expect(component.form.contains("title")).toBe(true);
+    expect(component.form.contains("description")).toBe(true);
+    expect(component.form.contains("priority")).toBe(true);
+    expect(component.form.contains("ticketGroupId")).toBe(true);
   });
 
-  it('ngOnInit should load select items', async () => {
+  it("ngOnInit should load select items", async () => {
     await component.ngOnInit();
     expect(mockEnumSelectS.priorityLevel).toHaveBeenCalled();
     expect(mockApiResponseS.onGetList).toHaveBeenCalled();
   });
 
-  it('onTicketGroupChange should load users and legal matters', () => {
-    component.onTicketGroupChange('g1');
+  it("onTicketGroupChange should load users and legal matters", () => {
+    component.onTicketGroupChange("g1");
     expect(mockApiResponseS.onGetList).toHaveBeenCalled();
   });
 
-  it('onAssigneeChange should patch form with assignee details', () => {
-    component.cb_application_user.set([{ value: 'u1', label: 'User 1' }]);
-    component.onAssigneeChange('u1');
-    expect(component.form.value.assigneeId).toBe('u1');
-    expect(component.form.value.assignee).toBe('User 1');
+  it("onAssigneeChange should patch form with assignee details", () => {
+    component.cb_application_user.set([{ value: "u1", label: "User 1" }]);
+    component.onAssigneeChange("u1");
+    expect(component.form.value.assigneeId).toBe("u1");
+    expect(component.form.value.assignee).toBe("User 1");
   });
 
-  it('onSubmit should call api and close ref on success', async () => {
+  it("onSubmit should call api and close ref on success", async () => {
     component.form.patchValue({
-      title: 'Test',
-      description: 'Desc',
+      title: "Test",
+      description: "Desc",
       priority: 1,
-      ticketGroupId: 'g1',
+      ticketGroupId: "g1",
     });
     component.onSubmit();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
     expect(mockRef.close).toHaveBeenCalledWith(true);
   });
 });
-

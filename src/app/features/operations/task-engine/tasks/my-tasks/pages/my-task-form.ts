@@ -1,22 +1,29 @@
-import { Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  viewChild,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { AvatarModule } from "primeng/avatar";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { firstValueFrom } from "rxjs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AvatarModule } from "primeng/avatar";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { ImageAnalysisDialogComponent } from "src/app/shared/components/image-analysis-dialog/image-analysis-dialog.component";
+import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import { TaskGroupService } from "../../task.service";
 
 @Component({

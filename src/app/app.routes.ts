@@ -1,13 +1,14 @@
 import { Routes } from "@angular/router";
 import { Loader } from "@ui/mobile/loader/loader";
-import { authGuard } from "./core/guard/auth.guard";
-import { committeeGuard } from "./core/guard/committee.guard";
-import { direccionGuard } from "./core/guard/direccion.guard";
-import { employeeGuard } from "./core/guard/employee.guard";
-import { roleRedirectGuard } from "./core/guard/role-redirect.guard";
-import { LayoutCommittee } from "./layout/committee-view/layout-committee";
-import { LayoutDireccion } from "./layout/direccion-view/layout-direccion";
-import { LayoutEmployee } from "./layout/employee-view/layout-employee";
+import { authGuard } from "./core/auth/guards/auth.guard";
+import { committeeGuard } from "./core/auth/guards/committee.guard";
+import { direccionGuard } from "./core/auth/guards/direccion.guard";
+import { employeeGuard } from "./core/auth/guards/employee.guard";
+import { roleRedirectGuard } from "./core/auth/guards/role-redirect.guard";
+import { LayoutCommittee } from "./core/layout/committee-view/layout-committee";
+import { LayoutDireccion } from "./core/layout/direccion-view/layout-direccion";
+import { LayoutEmployee } from "./core/layout/employee-view/layout-employee";
+
 /**
  * Rutas Principales de la Aplicación: El Gran Distribuidor 🚦
  *
@@ -26,7 +27,9 @@ export const appRoutes: Routes = [
   {
     path: "auth",
     loadChildren: () =>
-      import("src/app/routing/auth.routing").then((m) => m.authRoutes),
+      import("src/app/apps/auth.luxuryapp/auth.routes").then(
+        (m) => m.authRoutes,
+      ),
   },
   {
     path: "web",
@@ -112,7 +115,7 @@ export const appRoutes: Routes = [
     component: LayoutEmployee,
     canActivate: [authGuard, employeeGuard],
     loadChildren: () =>
-      import("src/app/routing/pages.routing").then((m) => m.pagesRoutes),
+      import("src/app/routing/pages.routes").then((m) => m.pagesRoutes),
   },
 
   // --- Wildcard Route (Captura todo lo demás) ---
@@ -122,5 +125,3 @@ export const appRoutes: Routes = [
     redirectTo: "page404",
   },
 ];
-
-

@@ -8,8 +8,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import {
   NgbDropdownModule,
   NgbTooltipModule,
@@ -26,16 +24,16 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
@@ -62,7 +60,8 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
     PrimeNgCustomTableFooter,
     ActionMenu,
     DataViewMobile,
-    WebButtonLabelEdit,  ],
+    WebButtonLabelEdit,
+  ],
 })
 export class TemplatesList implements OnInit {
   apiResponseS = inject(ApiResponseService);

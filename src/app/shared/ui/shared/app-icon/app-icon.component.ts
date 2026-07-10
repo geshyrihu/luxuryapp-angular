@@ -5,7 +5,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   input,
 } from "@angular/core";
-import { resolveIconifyIcon } from "src/app/core/utils/icon-mapping";
+import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 
 @Component({
   selector: "app-icon",

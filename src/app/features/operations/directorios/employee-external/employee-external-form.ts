@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   AbstractControl,
   FormBuilder,
@@ -8,9 +14,6 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
-import { Observable, of } from "rxjs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
@@ -18,11 +21,14 @@ import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
 import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { InputTextModule } from "primeng/inputtext";
+import { Observable, of } from "rxjs";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 interface IEmployeeExternalForm {
   firstName: FormControl<string>;

@@ -1,11 +1,19 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
-import { TableModule } from "primeng/table";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { CardModule } from "primeng/card";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface IJuntaMensualSessionBackfillMatch {
   id: string;
@@ -39,8 +47,6 @@ interface IBackfillSelectionState {
 }
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 
 @Component({
@@ -53,9 +59,9 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     LxTag,
-    LxCard,
+    CardModule,
     WebButtonLabel,
-    WebButtonLabelConfirm,
+
     DatePipe,
   ],
 })

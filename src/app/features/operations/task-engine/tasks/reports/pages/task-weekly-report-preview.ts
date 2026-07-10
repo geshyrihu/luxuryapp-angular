@@ -1,7 +1,13 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateRangeStorageService } from "src/app/features/operations/task-engine/tasks/services/date-range-storage.service";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 
@@ -40,4 +46,3 @@ export class TaskWeeklyReportPreview implements OnInit {
       });
   }
 }
-

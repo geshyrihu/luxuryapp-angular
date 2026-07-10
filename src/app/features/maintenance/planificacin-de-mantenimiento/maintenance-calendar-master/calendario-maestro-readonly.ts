@@ -1,9 +1,15 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
 
 @Component({

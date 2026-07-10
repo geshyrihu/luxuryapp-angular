@@ -22,23 +22,24 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface IOrdenCompraFacturaForm {
   pdfFile: FormControl<File | null>;
   xmlFile: FormControl<File | null>;
   tipoComprobante: FormControl<string | null>;
 }
 
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { LxCard } from "@ui/adaptive/card/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-orden-compra-factura-form",
   templateUrl: "./orden-compra-factura-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
@@ -47,7 +48,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     CustomInputFile,
     WebButtonLabel,
     CustomInputSelectSignal,
-    TooltipModule, LxCard, AppIcon],
+    TooltipModule,
+    LxCard,
+    AppIcon,
+  ],
 })
 export class OrdenCompraFacturaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -63,7 +67,7 @@ export class OrdenCompraFacturaForm implements OnInit {
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
-    { label: "Ingreso (Nota de Cródito)", value: "E" }
+    { label: "Ingreso (Nota de Cródito)", value: "E" },
   ];
 
   form: FormGroup<IOrdenCompraFacturaForm> =

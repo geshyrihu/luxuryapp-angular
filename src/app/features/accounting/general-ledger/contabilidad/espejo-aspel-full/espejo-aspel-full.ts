@@ -1,16 +1,23 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SharedModule } from "primeng/api";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { SharedModule } from "primeng/api";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   IEspejoAspelFullResponseDTO,
   IEspejoFilaTabla,

@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { } from "@ionic/angular/standalone";
+import {} from "@ionic/angular/standalone";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -21,16 +21,16 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
@@ -53,7 +53,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
   selector: "app-solicitud-compra-list",
   templateUrl: "./solicitud-compra-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -68,7 +69,9 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    AppIcon, MobileListItem],
+    AppIcon,
+    MobileListItem,
+  ],
 })
 export class SolicitudCompraList {
   apiResponseS = inject(ApiResponseService);
@@ -88,7 +91,7 @@ export class SolicitudCompraList {
     "solicita",
     "equipoOInstalacion",
     "justificacionGasto",
-    "ordenesRelacionadas.folio"
+    "ordenesRelacionadas.folio",
   ];
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();

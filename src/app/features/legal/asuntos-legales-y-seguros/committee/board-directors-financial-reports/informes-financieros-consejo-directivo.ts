@@ -1,20 +1,18 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import {
-  IonListHeader,
-} from "@ionic/angular/standalone";
+import { IonListHeader } from "@ionic/angular/standalone";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
@@ -85,4 +83,3 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     );
   }
 }
-

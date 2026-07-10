@@ -1,22 +1,29 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineInspectionResponse,
@@ -82,7 +89,8 @@ export class CobranzaOnlineInspection {
     "related401Accounts",
   ]);
   readonly currentCutLabel = computed(
-    () => `${this.currentMonth().toString().padStart(2, "0")}/${this.currentYear()}`,
+    () =>
+      `${this.currentMonth().toString().padStart(2, "0")}/${this.currentYear()}`,
   );
   readonly currentMonthName = computed(() => {
     const date = new Date(this.currentYear(), this.currentMonth() - 1, 1);
@@ -107,14 +115,15 @@ export class CobranzaOnlineInspection {
     if (!customerId) return;
 
     this.loading.set(true);
-    const response = await this.apiResponseS.onGetItem<CobranzaOnlineInspectionResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspection(
-        customerId,
-        this.currentYear(),
-        this.currentMonth(),
-      ),
-      false,
-    );
+    const response =
+      await this.apiResponseS.onGetItem<CobranzaOnlineInspectionResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspection(
+          customerId,
+          this.currentYear(),
+          this.currentMonth(),
+        ),
+        false,
+      );
 
     const typedResponse = response as CobranzaOnlineInspectionResponse | null;
     this.inspection.set(typedResponse);

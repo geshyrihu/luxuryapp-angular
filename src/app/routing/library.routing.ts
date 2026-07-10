@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router"; // Trivial change to force re-evaluation
-import { authGuard } from "src/app/core/guard/auth.guard";
-import { superUserGuard } from "src/app/core/guard/super-user.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { superUserGuard } from "src/app/core/auth/guards/super-user.guard";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 export const libraryRoutes: Routes = [
   {
@@ -80,9 +80,9 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/editor/:id",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manuals-and-processes-editor/manuals-and-processes-editor"
-      ).then((m) => m.ManualsAndProcessesEditor),
+      import("src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manuals-and-processes-editor/manuals-and-processes-editor").then(
+        (m) => m.ManualsAndProcessesEditor,
+      ),
     canActivate: [authGuard, superUserGuard],
     data: {
       title: "Editor de Manual",
@@ -92,9 +92,9 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/flowchart-editor/:id",
     loadComponent: () =>
-      import(
-        "src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manual-flowchart-editor/manual-flowchart-editor"
-      ).then((m) => m.ManualFlowchartEditor),
+      import("src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manual-flowchart-editor/manual-flowchart-editor").then(
+        (m) => m.ManualFlowchartEditor,
+      ),
     canActivate: [authGuard, superUserGuard],
     data: {
       title: "Editor de Diagrama",
@@ -203,4 +203,3 @@ export const libraryRoutes: Routes = [
     },
   },
 ];
-

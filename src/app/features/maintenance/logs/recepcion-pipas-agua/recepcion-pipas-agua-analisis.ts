@@ -1,10 +1,17 @@
 import { DecimalPipe } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { NgxEchartsDirective } from "ngx-echarts";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
@@ -21,11 +28,7 @@ interface IDatoAgrupado {
   selector: "app-recepcion-pipas-agua-analisis",
   templateUrl: "./recepcion-pipas-agua-analisis.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    DecimalPipe,
-    NgxEchartsDirective,
-    RangoCalendarioyyyymmdd,
-  ],
+  imports: [DecimalPipe, NgxEchartsDirective, RangoCalendarioyyyymmdd],
 })
 export class RecepcionPipasAguaAnalisis implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -35,23 +38,38 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
 
   rawData = signal<IRecepcionPipaAgua[]>([]);
 
-  fechaInicio = signal(this.dateS.getDateFormat(this.filtroCalendarService.fechaInicioDateFull));
-  fechaFin = signal(this.dateS.getDateFormat(this.filtroCalendarService.fechaFinalDateFull));
+  fechaInicio = signal(
+    this.dateS.getDateFormat(this.filtroCalendarService.fechaInicioDateFull),
+  );
+  fechaFin = signal(
+    this.dateS.getDateFormat(this.filtroCalendarService.fechaFinalDateFull),
+  );
 
   // KPIs calculados desde los datos crudos
   totalRecepciones = computed(() => this.rawData().length);
-  totalLitros = computed(() => this.rawData().reduce((s, x) => s + (x.capacidadPipa ?? 0), 0));
+  totalLitros = computed(() =>
+    this.rawData().reduce((s, x) => s + (x.capacidadPipa ?? 0), 0),
+  );
   promedioLitrosPorEntrega = computed(() =>
-    this.totalRecepciones() > 0 ? this.totalLitros() / this.totalRecepciones() : 0
+    this.totalRecepciones() > 0
+      ? this.totalLitros() / this.totalRecepciones()
+      : 0,
   );
   diferenciaPromCisterna = computed(() => {
     const data = this.rawData().filter((x) => x.horaTermino);
     if (!data.length) return 0;
-    return data.reduce((s, x) => s + (x.nivelCisternaDespues - x.nivelCisternaAntes), 0) / data.length;
+    return (
+      data.reduce(
+        (s, x) => s + (x.nivelCisternaDespues - x.nivelCisternaAntes),
+        0,
+      ) / data.length
+    );
   });
   placasMasFrecuente = computed(() => {
     const freq: Record<string, number> = {};
-    this.rawData().forEach((x) => (freq[x.placasCamion] = (freq[x.placasCamion] ?? 0) + 1));
+    this.rawData().forEach(
+      (x) => (freq[x.placasCamion] = (freq[x.placasCamion] ?? 0) + 1),
+    );
     return Object.entries(freq).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "-";
   });
 
@@ -68,7 +86,10 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
         const completadas = items.filter((x) => x.horaTermino);
         const litros = items.reduce((s, x) => s + (x.capacidadPipa ?? 0), 0);
         const difCist = completadas.length
-          ? completadas.reduce((s, x) => s + (x.nivelCisternaDespues - x.nivelCisternaAntes), 0) / completadas.length
+          ? completadas.reduce(
+              (s, x) => s + (x.nivelCisternaDespues - x.nivelCisternaAntes),
+              0,
+            ) / completadas.length
           : 0;
         return {
           periodo,
@@ -100,7 +121,9 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
   }));
 
   // Opción ECharts (barras) derivada del dataset de litros por mes
-  optLitros = computed(() => chartJsToCartesianOption(this.chartLitros(), "bar"));
+  optLitros = computed(() =>
+    chartJsToCartesianOption(this.chartLitros(), "bar"),
+  );
 
   // Dataset para grafico de linea (diferencia de cisterna por mes)
   chartCisterna = computed(() => ({
@@ -119,7 +142,9 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
   }));
 
   // Opción ECharts (línea con área) derivada del dataset de cisterna
-  optCisterna = computed(() => chartJsToCartesianOption(this.chartCisterna(), "line"));
+  optCisterna = computed(() =>
+    chartJsToCartesianOption(this.chartCisterna(), "line"),
+  );
 
   ngOnInit(): void {
     this.onLoadData();
@@ -136,7 +161,7 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
           (result ?? []).filter((x) => {
             const f = new Date(x.horaLlegada);
             return f >= inicio && f <= fin;
-          })
+          }),
         );
       });
   }

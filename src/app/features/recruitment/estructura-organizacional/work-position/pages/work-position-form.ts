@@ -1,34 +1,41 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxDivider } from "@ui/adaptive/divider/divider";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 
-import { lastValueFrom } from "rxjs";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { lastValueFrom } from "rxjs";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { LxCard } from "@ui/adaptive/card/card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxMessage } from "@ui/adaptive/message/message";
 
 @Component({
   selector: "app-work-position-form",
   templateUrl: "./work-position-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     InputTextModule,
     CustomInputTextSignal,
     CustomInputAutoComplete,
@@ -36,7 +43,11 @@ import { LxMessage } from "@ui/adaptive/message/message";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
-    LxCard, AppIcon, LxMessage, LxDivider],
+    LxCard,
+    AppIcon,
+    LxMessage,
+    LxDivider,
+  ],
 })
 export class WorkPositionForm implements OnInit {
   // --- INYECCIóN DE DEPENDENCIAS ---
@@ -115,7 +126,7 @@ export class WorkPositionForm implements OnInit {
         this.apiS.onGetSelectItem<ISelectItem[]>(
           `application-roles-to-administrator`,
         ),
-        this.apiS.onGetSelectItem<ISelectItem[]>(`Employee/${customerId}`)
+        this.apiS.onGetSelectItem<ISelectItem[]>(`Employee/${customerId}`),
       ]);
 
     this.cb_turnoTrabajo.set(turnoTrabajo);

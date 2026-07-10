@@ -1,11 +1,17 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, input, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EquipmentInspectionQrForm } from "./equipment-inspection-qr-form";
 import { EquipmentInspectionQrPrintService } from "./equipment-inspection-qr-print.service";

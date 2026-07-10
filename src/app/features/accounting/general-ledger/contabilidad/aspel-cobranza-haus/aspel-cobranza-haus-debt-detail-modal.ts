@@ -1,26 +1,37 @@
 import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { TableModule } from "primeng/table";
 
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxMessage } from "@ui/adaptive/message/message";
 
 @Component({
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
   templateUrl: "./aspel-cobranza-haus-debt-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     TableModule,
     WebButtonLabel,
     PrimeNgCustomCaption,
     CurrencyPipe,
-    NgClass, LxTag, LxMessage],
+    NgClass,
+    LxTag,
+    LxMessage,
+  ],
 })
 export class AspelCobranzaHausDebtDetailModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

@@ -12,7 +12,7 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { InspeccionAgregarRevision } from "src/app/features/operations/inspecciones-y-auditora/inspection/inspeccion-agregar-revision/inspeccion-agregar-revision";
 import { InspeccionActivoCondominio } from "../inspeccion-activo-condominio-agregar/inspeccion-activo-condominio";

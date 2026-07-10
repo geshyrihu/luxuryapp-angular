@@ -18,14 +18,17 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 import { ConfirmationService } from "primeng/api";
 
-
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service"; // Import added
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
@@ -45,16 +48,13 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-orden-compra",
   templateUrl: "./orden-compra.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
@@ -69,7 +69,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     RouterModule,
     TableModule,
     SkeletonModule,
-    AppSpinner, LxCard, LxMessage, AppIcon, LxTag],
+    AppSpinner,
+    LxCard,
+    LxMessage,
+    AppIcon,
+    LxTag,
+  ],
 })
 export class OrdenCompra implements OnInit {
   //----------------------------------------------------------------

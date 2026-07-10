@@ -1,21 +1,28 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { AppSpinner } from "@ui/web/spinner/spinner";
-import { TableModule } from "primeng/table";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 @Component({
   selector: "app-task-group-participant",

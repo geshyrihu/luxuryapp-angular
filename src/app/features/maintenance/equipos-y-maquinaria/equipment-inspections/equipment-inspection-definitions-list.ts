@@ -8,19 +8,18 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EquipmentInspectionDefinitionForm } from "./equipment-inspection-definition-form";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";

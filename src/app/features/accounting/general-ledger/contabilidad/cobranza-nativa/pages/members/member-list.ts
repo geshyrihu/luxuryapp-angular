@@ -11,14 +11,14 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
@@ -33,13 +33,14 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-member-list",
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     TooltipModule,
     WebButtonIconEdit,
     WebButtonIconDelete,
@@ -51,7 +52,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomCaption,
     DataViewMobile,
     MobileBadge,
-    DatePipe, MobileListItem, AppIcon],
+    DatePipe,
+    MobileListItem,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./member-list.html",
 })
@@ -83,9 +87,11 @@ export default class MemberList {
     const customerId = this.customerIdS.customerId();
     if (!customerId) return;
     this.apiResponseS
-      .onGetItem<
-        PropertyMemberResponseDTO[]
-      >(Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byCustomer(customerId))
+      .onGetItem<PropertyMemberResponseDTO[]>(
+        Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byCustomer(
+          customerId,
+        ),
+      )
       .then((res) => this.dataSignal.set(res ?? []));
   }
 

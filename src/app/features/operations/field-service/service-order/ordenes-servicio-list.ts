@@ -9,9 +9,8 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import {
-  } from "@ionic/angular/standalone";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
+import {} from "@ionic/angular/standalone";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
@@ -22,13 +21,12 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";

@@ -1,23 +1,29 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ActivosForm } from "src/app/features/maintenance/equipos-y-maquinaria/machinery-asset/activos-form";
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-inventory-engine-system",
@@ -29,7 +35,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CardModule,
     CustomInputSelectSignal,
     TooltipModule,
-
   ],
 })
 export class InventoryEngineSystem {

@@ -1,16 +1,22 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { CardModule } from "primeng/card";
-import { TableModule } from "primeng/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
+import { CardModule } from "primeng/card";
+import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-ticket-legal-reportes-pendientes",
   templateUrl: "./ticket-legal-reportes-pendientes.html",
@@ -44,27 +50,24 @@ export class TicketLegalReportesPendientes implements OnInit {
   }
 
   onLoadDataExternal() {
-    this.apiResponseS.onGetList(Endpoints.Tasks.legalPending(false)).then((result: any) => {
-      this.dataExternal.set(result ?? []);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.Tasks.legalPending(false))
+      .then((result: any) => {
+        this.dataExternal.set(result ?? []);
+      });
   }
   onLoadDataInternal() {
-    this.apiResponseS.onGetList(Endpoints.Tasks.legalPending(true)).then((result: any) => {
-      this.dataInternal.set(result ?? []);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.Tasks.legalPending(true))
+      .then((result: any) => {
+        this.dataInternal.set(result ?? []);
+      });
   }
   onLoadUnassignedData() {
-    this.apiResponseS.onGetList(Endpoints.Tasks.legalPending(undefined, true)).then((result: any) => {
-      this.unassignedData.set(result ?? []);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.Tasks.legalPending(undefined, true))
+      .then((result: any) => {
+        this.unassignedData.set(result ?? []);
+      });
   }
 }
-
-
-
-
-
-
-
-
-

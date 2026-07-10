@@ -1,6 +1,6 @@
 import {
-  DestroyRef,
   computed,
+  DestroyRef,
   effect,
   inject,
   Injectable,
@@ -11,13 +11,12 @@ import {
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { fromEvent } from "rxjs";
 import { debounceTime } from "rxjs/operators";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { IMenuItem } from "../interfaces/menu.model";
-import { ConsoleLoggerService } from "./console-logger.service";
-
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { IMenuItem } from "src/app/core/interfaces/menu.model";
+import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 @Injectable({
   providedIn: "root",
 })
@@ -122,7 +121,7 @@ export class MenuService implements OnDestroy {
     // reflejen inmediatamente el cambio de customer.
     this.menuLoadingSignal.set(true);
     this.menuLoadedSignal.set(false);
-    
+
     this.menuLoadPromise = (async () => {
       try {
         this.lastCustomerId = customerId;
@@ -131,7 +130,10 @@ export class MenuService implements OnDestroy {
         this.menuLoadedSignal.set(true);
       } catch (error) {
         this.lastCustomerId = null;
-        this.consoleLogger.error("Fallo en el proceso de carga del menu:", error);
+        this.consoleLogger.error(
+          "Fallo en el proceso de carga del menu:",
+          error,
+        );
         this.menuItemsSignal.set([]);
         this.menuLoadedSignal.set(false);
       } finally {
@@ -139,7 +141,7 @@ export class MenuService implements OnDestroy {
         this.menuLoadPromise = null;
       }
     })();
-    
+
     return this.menuLoadPromise;
   }
 

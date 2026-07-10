@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Injectable({
   providedIn: "root",

@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,17 +12,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { firstValueFrom } from "rxjs";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 interface ICalendarioMaestroForm {
@@ -123,9 +129,9 @@ export class CalendarioMaestroForm implements OnInit {
       });
 
     this.apiResponseS
-      .onGetSelectItem<
-        ISelectItem[]
-      >(`providers/${this.customerIdS.customerId()}`)
+      .onGetSelectItem<ISelectItem[]>(
+        `providers/${this.customerIdS.customerId()}`,
+      )
       .then((response: ISelectItem[]) => {
         this.cb_providers.set(response);
       });

@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from "@angular/core";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {
   EquipmentInspectionDefinitionAddOrEditDTO,
   EquipmentInspectionDefinitionDTO,
@@ -56,9 +56,9 @@ export class EquipmentInspectionService {
   ];
 
   async getDefinitionsByMachinery(machineryId: string) {
-    return await this.apiResponseS.onGetList<EquipmentInspectionDefinitionListDTO[]>(
-      Endpoints.EquipmentInspectionDefinitions.byMachinery(machineryId),
-    );
+    return await this.apiResponseS.onGetList<
+      EquipmentInspectionDefinitionListDTO[]
+    >(Endpoints.EquipmentInspectionDefinitions.byMachinery(machineryId));
   }
 
   async getDefinitionById(id: string) {
@@ -111,9 +111,9 @@ export class EquipmentInspectionService {
   }
 
   async getExecutionsByMachinery(machineryId: string) {
-    return await this.apiResponseS.onGetList<EquipmentInspectionExecutionListDTO[]>(
-      Endpoints.EquipmentInspectionExecutions.byMachinery(machineryId),
-    );
+    return await this.apiResponseS.onGetList<
+      EquipmentInspectionExecutionListDTO[]
+    >(Endpoints.EquipmentInspectionExecutions.byMachinery(machineryId));
   }
 
   async getPendingExecutionsByCustomer() {
@@ -122,10 +122,9 @@ export class EquipmentInspectionService {
       return [];
     }
 
-    const result =
-      await this.apiResponseS.onGetList<EquipmentInspectionExecutionListDTO[]>(
-        Endpoints.EquipmentInspectionExecutions.pending(customerId),
-      );
+    const result = await this.apiResponseS.onGetList<
+      EquipmentInspectionExecutionListDTO[]
+    >(Endpoints.EquipmentInspectionExecutions.pending(customerId));
 
     return result || [];
   }
@@ -255,7 +254,9 @@ export class EquipmentInspectionService {
     return "Sin cierre";
   }
 
-  getSeverityTag(severity: number | null): "success" | "warn" | "danger" | "info" {
+  getSeverityTag(
+    severity: number | null,
+  ): "success" | "warn" | "danger" | "info" {
     if (severity === 1) return "success";
     if (severity === 2) return "warn";
     if (severity === 3) return "danger";
@@ -270,7 +271,9 @@ export class EquipmentInspectionService {
     return "No autorizado";
   }
 
-  getStatusTag(status: number): "success" | "warn" | "danger" | "info" | "secondary" {
+  getStatusTag(
+    status: number,
+  ): "success" | "warn" | "danger" | "info" | "secondary" {
     if (status === 0) return "warn";
     if (status === 1) return "success";
     if (status === 3) return "info";

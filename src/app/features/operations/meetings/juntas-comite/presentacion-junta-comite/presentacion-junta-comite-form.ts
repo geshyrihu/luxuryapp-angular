@@ -1,17 +1,22 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface IPresentacionJuntaComiteForm {
   id: FormControl<string | null>;
@@ -31,7 +36,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     InputFile,
     ButtonModule,
     WebButtonLabelSave,
-
   ],
 })
 export class PresentacionJuntaComiteForm implements OnInit {

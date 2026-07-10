@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { ApiResponseService } from "./api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Injectable({
   providedIn: "root",
@@ -21,12 +21,3 @@ export class TicketAnalysisService {
     );
   }
 }
-
-
-
-
-
-
-
-
-

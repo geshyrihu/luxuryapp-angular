@@ -1,5 +1,8 @@
 import { Directive, inject, OnDestroy, OnInit } from "@angular/core";
-import { GlobalErrorService, type GlobalError } from "src/app/core/services/global-error.service";
+import {
+  GlobalErrorService,
+  type GlobalError,
+} from "src/app/core/http/services/global-error.service";
 
 @Directive()
 export abstract class GlobalErrorAlertBase implements OnInit, OnDestroy {
@@ -16,6 +19,5 @@ export abstract class GlobalErrorAlertBase implements OnInit, OnDestroy {
     this.globalErrorService.clearError();
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

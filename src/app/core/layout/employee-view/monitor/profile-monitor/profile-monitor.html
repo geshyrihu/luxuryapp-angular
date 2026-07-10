@@ -1,0 +1,54 @@
+<!-- Trigger: avatar + chevron -->
+<div
+  class="flex align-items-center cursor-pointer p-1 border-round-lg hover:bg-white-alpha-10 transition-colors"
+  (click)="profilePopover.toggle($event)"
+>
+  <p-avatar
+    [image]="profileImageUrl || 'assets/images/default-avatar.png'"
+    class="mr-2"
+    shape="square"
+    size="large"
+    styleClass="border-round-lg shadow-2"
+  />
+  <app-icon icon="mdi:chevron-down" class="text-white opacity-60" />
+</div>
+
+<p-popover #profilePopover appendTo="body">
+  <div class="profile-popup-menu">
+    <button
+      class="profile-popup-item"
+      (click)="navigateToProfile(); profilePopover.hide()"
+    >
+      <i class="pi pi-key"></i>
+      <span>Cambiar contraseña</span>
+    </button>
+
+    <button
+      class="profile-popup-item"
+      (click)="navigateToPasswordManager(); profilePopover.hide()"
+    >
+      <i class="pi pi-lock"></i>
+      <span>Credenciales de servicios</span>
+    </button>
+
+    @if (updateService.isUpdateAvailable()) {
+    <button
+      class="profile-popup-item"
+      (click)="onUpdateClick(); profilePopover.hide()"
+    >
+      <i class="pi pi-sync"></i>
+      <span>Actualizar Aplicación</span>
+    </button>
+    }
+
+    <div class="profile-popup-separator"></div>
+
+    <button
+      class="profile-popup-item profile-popup-item--danger"
+      (click)="logOut()"
+    >
+      <i class="pi pi-sign-out"></i>
+      <span>Cerrar sesión</span>
+    </button>
+  </div>
+</p-popover>

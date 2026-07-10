@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { StorageService } from "src/app/core/services/storage.service";
 
 export interface ElevenLabsVoiceOption {

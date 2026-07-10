@@ -16,27 +16,28 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { ROUTES } from "src/app/routing/route-paths";
-import { AppBadge } from "@ui/web/badge/badge";
 import { LxDivider } from "@ui/adaptive/divider/divider";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { AppBadge } from "@ui/web/badge/badge";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { ROUTES } from "src/app/routing/route-paths";
 
-import { TooltipModule } from "primeng/tooltip";
-import { firstValueFrom } from "rxjs";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TooltipModule } from "primeng/tooltip";
+import { firstValueFrom } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
@@ -45,7 +46,6 @@ import { SolicitudCompraDetalle } from "src/app/features/purchasing/pr/solicitud
 import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-link-manager";
 import { ProductAdd } from "./product-add";
 import { ProductModalAdd } from "./product-modal-add";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;
@@ -62,7 +62,8 @@ export interface ISolicitudCompraForm {
 @Component({
   selector: "app-solicitud-compra",
   templateUrl: "./solicitud-compra.html",
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     RouterModule,
     AppProgressBar,
     TooltipModule,
@@ -76,7 +77,9 @@ export interface ISolicitudCompraForm {
     WebButtonLabel,
     AppBadge,
     LxDivider,
-    AppIcon, LxTag],
+    AppIcon,
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SolicitudCompra implements OnInit {

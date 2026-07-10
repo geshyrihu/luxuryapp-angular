@@ -1,8 +1,13 @@
-import { Component, inject, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { UpdatePasswordAccount } from "../../../system/access/application-user/pages/update-password-account";
-import { UpdateRole } from "../../../system/access/application-user/pages/update-role";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { UpdatePasswordAccount } from "../../../../apps/admin.luxuryapp/application-user/update-password-account";
+import { UpdateRole } from "../../../../apps/admin.luxuryapp/application-user/update-role";
 
 @Component({
   selector: "app-employee-external-app-user",

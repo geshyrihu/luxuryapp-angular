@@ -6,8 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -18,11 +16,11 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IInventarioLlave } from "src/app/core/interfaces/inventario-llave-dto.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -50,7 +48,8 @@ import { TooltipModule } from "primeng/tooltip";
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    DataViewMobile,  ],
+    DataViewMobile,
+  ],
 })
 export class InventarioLlavesList {
   apiResponseS = inject(ApiResponseService);

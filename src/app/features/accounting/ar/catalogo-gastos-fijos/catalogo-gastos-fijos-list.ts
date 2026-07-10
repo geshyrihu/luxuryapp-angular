@@ -1,56 +1,69 @@
-import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
-import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { TooltipModule } from "primeng/tooltip";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { MobileBadge } from "@ui/mobile/badge/badge";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { MobileBadge } from "@ui/mobile/badge/badge";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconEdit,
+  imports: [
+    WebButtonIconEdit,
     WebButtonIconDelete,
     TooltipModule,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    MobileButtonLabelDelete,AppIcon,
+    MobileButtonLabelDelete,
+    AppIcon,
     LxAccordion,
     LxTabs,
     LxCheckbox,
     MobileBadge,
     MobileButtonLabel,
-    ...CATALOGO_GASTOS_FIJOS_LIST_MODULES, LxMessage, InputSelect, MobileListItem],
+    ...CATALOGO_GASTOS_FIJOS_LIST_MODULES,
+    LxMessage,
+    InputSelect,
+    MobileListItem,
+  ],
 })
 export class CatalogoGastosFijosList {
   apiResponseS = inject(ApiResponseService);
@@ -78,7 +91,9 @@ export class CatalogoGastosFijosList {
   fundingPeriodsByMonth = signal<any[]>([]);
 
   /** Accordion móvil (una sola sección colapsable). */
-  genAccordionItems = [{ id: "generation", title: "Generar órdenes de Compra" }];
+  genAccordionItems = [
+    { id: "generation", title: "Generar órdenes de Compra" },
+  ];
   genExpanded = signal<string[]>([]);
 
   /** Selector de mes como tabs (id = monthName, label = abreviatura). */
@@ -92,8 +107,18 @@ export class CatalogoGastosFijosList {
   allFundingsForYear = signal<any[]>([]);
 
   private readonly SPANISH_MONTHS = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
 
   selectedFundingStatus = computed(() => {
@@ -115,12 +140,20 @@ export class CatalogoGastosFijosList {
 
     const toStatus = (f: any) =>
       f
-        ? { isVerified: !!f.verifiedByName, isAuthorized: !!f.authorizedByName, isConfirmed: !!f.confirmedByName }
+        ? {
+            isVerified: !!f.verifiedByName,
+            isAuthorized: !!f.authorizedByName,
+            isConfirmed: !!f.confirmedByName,
+          }
         : null;
 
     return {
-      firstQNA: toStatus(matching.find((f: any) => new Date(f.periodDate).getDate() <= 15)),
-      secondQNA: toStatus(matching.find((f: any) => new Date(f.periodDate).getDate() > 15)),
+      firstQNA: toStatus(
+        matching.find((f: any) => new Date(f.periodDate).getDate() <= 15),
+      ),
+      secondQNA: toStatus(
+        matching.find((f: any) => new Date(f.periodDate).getDate() > 15),
+      ),
     };
   });
 
@@ -170,7 +203,7 @@ export class CatalogoGastosFijosList {
     const currentYear = new Date().getFullYear();
     return [
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 }
+      { label: (currentYear + 1).toString(), value: currentYear + 1 },
     ];
   }
 
@@ -331,7 +364,8 @@ export class CatalogoGastosFijosList {
         // Nota: updateSelectedItems se llamaré después
         this.customToastS.showInfo(
           "Selección Actualizada",
-          `Se han ${newState ? "marcado" : "desmarcado"} los registros de la ${quincenaTarget === 0 ? "1ra" : "2da"
+          `Se han ${newState ? "marcado" : "desmarcado"} los registros de la ${
+            quincenaTarget === 0 ? "1ra" : "2da"
           } quincena.`,
         );
       }
@@ -400,13 +434,3 @@ export class CatalogoGastosFijosList {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-

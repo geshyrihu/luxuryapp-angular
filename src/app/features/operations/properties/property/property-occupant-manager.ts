@@ -12,17 +12,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { LxMessage } from "@ui/adaptive/message/message";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -41,7 +40,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     CustomInputCheckSignal,
     LxTag,
     LxMessage,
-
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-occupant-manager.html",

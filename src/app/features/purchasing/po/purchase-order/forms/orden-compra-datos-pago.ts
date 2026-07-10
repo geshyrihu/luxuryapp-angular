@@ -1,10 +1,10 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   inject,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import {
   FormBuilder,
@@ -15,20 +15,19 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 
-
-import { lastValueFrom } from "rxjs";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { lastValueFrom } from "rxjs";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 // ... (Interface IOrdenCompraDatosPagoForm remains the same)
 export interface IOrdenCompraDatosPagoForm {
@@ -50,12 +49,16 @@ export interface IOrdenCompraDatosPagoForm {
   selector: "app-orden-compra-datos-pago",
   templateUrl: "./orden-compra-datos-pago.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     ReactiveFormsModule,
     CustomInputAutoComplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    WebButtonLabelSave, LxMessage, LxTag],
+    WebButtonLabelSave,
+    LxMessage,
+    LxTag,
+  ],
 })
 export class OrdenCompraDatosPago implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -148,7 +151,7 @@ export class OrdenCompraDatosPago implements OnInit {
         Endpoints.SelectItems.wayToPay,
       ),
       lastValueFrom(this.enumSelectS.onLoadEnumList("ETipoGasto")),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false))
+      lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false)),
     ];
 
     const [
@@ -157,7 +160,7 @@ export class OrdenCompraDatosPago implements OnInit {
       useCfdi,
       wayToPay,
       tipoGasto,
-      fundingPeriods
+      fundingPeriods,
     ] = await Promise.all(promises);
 
     this.cb_providers.set((providers as ISelectItem[]) || []);
@@ -180,7 +183,7 @@ export class OrdenCompraDatosPago implements OnInit {
     return [
       { label: (currentYear - 1).toString(), value: currentYear - 1 },
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 }
+      { label: (currentYear + 1).toString(), value: currentYear + 1 },
     ];
   }
 

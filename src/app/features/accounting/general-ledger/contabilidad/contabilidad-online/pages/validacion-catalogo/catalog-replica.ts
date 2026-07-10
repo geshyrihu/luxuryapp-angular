@@ -1,30 +1,41 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: "app-catalog-replica",
-  imports: [WebButtonIcon,
+  imports: [
+    WebButtonIcon,
     TooltipModule,
     CommonModule,
     FormsModule,
     TableModule,
     WebButtonLabel,
-    CustomInputTextSignal, LxTag, AppIcon],
+    CustomInputTextSignal,
+    LxTag,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalog-replica.html",
 })

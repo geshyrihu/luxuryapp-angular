@@ -1,11 +1,17 @@
-import { Component, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { environment } from "src/environments/environment";
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { environment } from "src/environments/environment";
 import { MiEdificioMobile } from "./mi-edificio-mobile";
 @Component({
   selector: "app-mi-edificio",
@@ -51,13 +57,3 @@ export class MiEdificio {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

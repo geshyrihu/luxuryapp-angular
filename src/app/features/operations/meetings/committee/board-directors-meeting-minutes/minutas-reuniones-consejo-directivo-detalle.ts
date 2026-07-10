@@ -16,7 +16,7 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",

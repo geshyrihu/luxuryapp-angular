@@ -1,5 +1,6 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -7,15 +8,14 @@ import {
   input,
   model,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
-import { TreeNode } from "primeng/api";
-import { LxTree } from "@ui/adaptive/tree/tree";
 import { LxBadge } from "@ui/adaptive/badge/badge";
+import { LxTree } from "@ui/adaptive/tree/tree";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TreeNode } from "primeng/api";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IAccountTreeNode } from "../../models/report-definition.interface";
 import { livePreviewState } from "../../state/live-preview.state";
 
@@ -24,13 +24,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
 @Component({
   selector: "app-account-tree-select",
 
-  imports: [
-    LxTree,
-    LxBadge,
-    DragDropModule,
-    AppIcon,
-    CustomInputTextSignal,
-  ],
+  imports: [LxTree, LxBadge, DragDropModule, AppIcon, CustomInputTextSignal],
   template: `
     <div class="flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">

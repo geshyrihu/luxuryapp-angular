@@ -1,10 +1,16 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { IWorkPositionHours } from "../models/work-position.model";
 import { LxCard } from "@ui/adaptive/card/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { IWorkPositionHours } from "../models/work-position.model";
 
 @Component({
   selector: "app-work-position-hours",

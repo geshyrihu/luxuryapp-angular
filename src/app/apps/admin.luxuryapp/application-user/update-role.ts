@@ -1,0 +1,156 @@
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ERoleType } from "src/app/core/enums/e-role-type";
+import { IRoles } from "src/app/core/interfaces/roles.interface";
+
+interface GroupedRole {
+  groupName: string;
+  roles: IRoles[];
+}
+
+const roleTypeNames: { [key in ERoleType]: string } = {
+  [ERoleType.System]: "Sistema",
+  [ERoleType.Executive]: "Dirección",
+  [ERoleType.Corporate]: "Corporativo",
+  [ERoleType.Staff]: "Personal Operativo",
+  [ERoleType.Client]: "Cliente",
+  [ERoleType.Contractor]: "Proveedor",
+};
+
+@Component({
+  selector: "app-update-role",
+  templateUrl: "./update-role.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [CommonModule, AppIcon],
+})
+export class UpdateRole implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  email: string = "";
+  phoneNumber: string = "";
+  userName: string = "";
+  applicationUserState: boolean = false;
+  applicationUserId = input<string>("");
+  roleType = input<ERoleType | null>(null);
+
+  groupedRolesSignal = signal<GroupedRole[]>([]);
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.getRoles(this.roleType());
+    this.apiResponseS
+      .onGetItem(
+        Endpoints.EmployeeInternal.dataForRecoveryPassword(
+          this.applicationUserId(),
+        ),
+      )
+      .then((result: any) => {
+        if (result) {
+          const { email, phoneNumber, userName } = result;
+          this.email = email;
+          this.phoneNumber = phoneNumber;
+          this.userName = userName;
+        }
+      });
+
+    this.apiResponseS
+      .onGetItem(
+        Endpoints.EmployeeInternal.onValidateState(this.applicationUserId()),
+      )
+      .then((result: any) => {
+        if (result !== null) {
+          this.applicationUserState = result;
+        }
+      });
+  }
+
+  getRoles(roleType: ERoleType | null = null) {
+    const urlApi = Endpoints.ApplicationUsers.getRoleUrl(
+      this.applicationUserId(),
+      roleType,
+    );
+
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: IRoles[] | null) => {
+        if (!result) return;
+        const grouped = new Map<ERoleType, IRoles[]>();
+
+        // Agrupar roles por roleType
+        for (const role of result) {
+          if (!grouped.has(role.roleType)) {
+            grouped.set(role.roleType, []);
+          }
+          grouped.get(role.roleType)!.push(role);
+        }
+
+        // Convertir el mapa a un array ordenado para la vista
+        const groupedArray: GroupedRole[] = Array.from(grouped.entries())
+          .map(([type, roles]) => ({
+            groupName: roleTypeNames[type],
+            roles: roles.sort((a, b) => a.sortOrder - b.sortOrder), // <-- óAquó la nueva ordenación!
+            order: type, // Usar el valor del enum para ordenar
+          }))
+          .sort((a, b) => a.order - b.order);
+
+        this.groupedRolesSignal.set(groupedArray);
+      })
+      .catch((error) => {
+        console.error("Error loading roles:", error);
+      });
+  }
+
+  selectRole(selectedRole: IRoles): void {
+    const updatedRole = {
+      ...selectedRole,
+      isSelected: !selectedRole.isSelected,
+    };
+
+    this.groupedRolesSignal.update((groups) =>
+      groups.map((group) => ({
+        ...group,
+        roles: group.roles.map((role) => {
+          if (role.roleId === updatedRole.roleId) {
+            return updatedRole; // El rol que acabamos de cambiar
+          }
+          // Si el nuevo rol esté seleccionado, deseleccionar todos los demós
+          if (updatedRole.isSelected) {
+            return { ...role, isSelected: false };
+          }
+          // Si estamos deseleccionando, no afectamos a los otros roles
+          return role;
+        }),
+      })),
+    );
+
+    this.apiResponseS
+      .onPost(
+        Endpoints.ApplicationUsers.addRoleToUser(this.applicationUserId()),
+        updatedRole,
+      )
+      .catch((error) => {
+        console.error("Error al actualizar el rol:", error);
+        // Opcional: Revertir el cambio en la UI si la API falla
+        this.groupedRolesSignal.update((groups) =>
+          groups.map((group) => ({
+            ...group,
+            roles: group.roles.map((role) =>
+              role.roleId === selectedRole.roleId ? selectedRole : role,
+            ),
+          })),
+        );
+      });
+  }
+}

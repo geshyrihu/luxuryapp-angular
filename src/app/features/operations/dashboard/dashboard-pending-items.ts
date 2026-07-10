@@ -1,6 +1,11 @@
-import { Component, computed, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { UnifiedPendingDashboard } from "./unified-pending-dashboard";
 import { UnifiedPendingDashboardMobile } from "./unified-pending-dashboard-mobile";
 @Component({

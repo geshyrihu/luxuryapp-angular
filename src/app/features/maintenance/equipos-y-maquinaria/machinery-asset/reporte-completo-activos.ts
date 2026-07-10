@@ -1,13 +1,20 @@
-import { Component, computed, effect, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { AppSpinner } from "@ui/web/spinner/spinner";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 // DETALLE IMPORTANTE: Una interfaz para la estructura de los datos.
 // Esto es opcional pero hace el código mucho mós robusto y fócil de leer.
 interface ActivoItem {
@@ -72,12 +79,3 @@ export class ReporteCompletoActivos {
     }
   }
 }
-
-
-
-
-
-
-
-
-

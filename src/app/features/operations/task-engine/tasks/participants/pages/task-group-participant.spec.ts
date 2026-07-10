@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { vi } from 'vitest';
-import { TaskGroupParticipant } from './task-group-participant';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { vi } from "vitest";
+import { TaskGroupParticipant } from "./task-group-participant";
 
-describe('TaskGroupParticipant', () => {
+describe("TaskGroupParticipant", () => {
   let component: TaskGroupParticipant;
   let fixture: ComponentFixture<TaskGroupParticipant>;
   let mockApiResponseS: any;
@@ -22,13 +22,13 @@ describe('TaskGroupParticipant', () => {
       onDelete: vi.fn().mockResolvedValue(true),
       validateForm: vi.fn().mockReturnValue(true),
     };
-    mockCustomerIdS = { customerId: vi.fn().mockReturnValue('cust-001') };
-    mockConfig = { data: { id: 'group-1' } };
+    mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
+    mockConfig = { data: { id: "group-1" } };
     mockRef = { close: vi.fn() };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskGroupParticipant, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [TaskGroupParticipant],
@@ -45,49 +45,49 @@ describe('TaskGroupParticipant', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default signals', () => {
+  it("should have default signals", () => {
     expect(component.submitting()).toBe(false);
     expect(component.loading_existing_participant()).toBe(false);
     expect(component.cb_existing_Participant()).toEqual([]);
     expect(component.cb_application_user()).toEqual([]);
   });
 
-  it('should have form with expected controls', () => {
-    expect(component.form.contains('ticketGroupId')).toBe(true);
-    expect(component.form.contains('applicationUserId')).toBe(true);
-    expect(component.form.contains('isAdmin')).toBe(true);
+  it("should have form with expected controls", () => {
+    expect(component.form.contains("ticketGroupId")).toBe(true);
+    expect(component.form.contains("applicationUserId")).toBe(true);
+    expect(component.form.contains("isAdmin")).toBe(true);
   });
 
-  it('onLoadAppUsers should call api and set signal', async () => {
-    const users = [{ value: 'u1', label: 'User 1' }];
+  it("onLoadAppUsers should call api and set signal", async () => {
+    const users = [{ value: "u1", label: "User 1" }];
     mockApiResponseS.onGetList.mockResolvedValue(users);
 
     await component.onLoadAppUsers();
     expect(component.cb_application_user()).toEqual(users);
   });
 
-  it('onSelectUser should patch form', () => {
-    const item = { value: 'u1', label: 'User 1' };
+  it("onSelectUser should patch form", () => {
+    const item = { value: "u1", label: "User 1" };
     component.onSelectUser(item);
-    expect(component.form.value.applicationUserId).toBe('u1');
-    expect(component.form.value.applicationUser).toBe('User 1');
+    expect(component.form.value.applicationUserId).toBe("u1");
+    expect(component.form.value.applicationUser).toBe("User 1");
   });
 
-  it('onSubmit should call api and clean form', async () => {
+  it("onSubmit should call api and clean form", async () => {
     component.onSubmit();
-    await new Promise(resolve => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
   });
 
-  it('onDelete should remove item from signal', async () => {
-    component.cb_existing_Participant.set([{ id: '1' }, { id: '2' }]);
-    await component.onDelete('1');
+  it("onDelete should remove item from signal", async () => {
+    component.cb_existing_Participant.set([{ id: "1" }, { id: "2" }]);
+    await component.onDelete("1");
     expect(component.cb_existing_Participant().length).toBe(1);
-    expect(component.cb_existing_Participant()[0].id).toBe('2');
+    expect(component.cb_existing_Participant()[0].id).toBe("2");
   });
 });

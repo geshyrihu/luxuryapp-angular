@@ -4,8 +4,16 @@ import {
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
-import { Component, HostListener, inject, OnInit, signal, ViewChild, ElementRef, ChangeDetectionStrategy } from "@angular/core";
-import { ROUTES } from "src/app/routing/route-paths";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  OnInit,
+  signal,
+  ViewChild,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -15,9 +23,7 @@ import {
 } from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   WebButtonLabelDelete,
@@ -25,14 +31,17 @@ import {
 } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ButtonModule } from "primeng/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { DiagramPreviewComponent } from "../../components/diagram-preview";
 import {
   IManualAdjuntoSimpleDTO,
@@ -127,7 +136,7 @@ export class ManualsAndProcessesEditor implements OnInit {
   adjuntos = signal<IManualAdjuntoSimpleDTO[]>([]);
   uploadingAdjunto = signal(false);
 
-  @ViewChild('adjuntoNombreInput', { static: false })
+  @ViewChild("adjuntoNombreInput", { static: false })
   adjuntoNombreInputRef?: ElementRef<HTMLInputElement>;
 
   roles = signal<ISelectItem[]>([]);
@@ -562,7 +571,8 @@ export class ManualsAndProcessesEditor implements OnInit {
       .then((res) => {
         if (res) {
           this.adjuntos.update((list) => [...list, res]);
-          if (this.adjuntoNombreInputRef?.nativeElement) this.adjuntoNombreInputRef.nativeElement.value = "";
+          if (this.adjuntoNombreInputRef?.nativeElement)
+            this.adjuntoNombreInputRef.nativeElement.value = "";
         }
         this.uploadingAdjunto.set(false);
       })

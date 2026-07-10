@@ -8,8 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -18,7 +18,6 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -27,9 +26,8 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
@@ -42,8 +40,9 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AspRoleService } from "../../../../core/auth/services/asp-role.service";
 
 @Component({
   selector: "app-ticket-legal-lista",
@@ -92,9 +91,9 @@ export class TicketLegalLista implements OnInit {
 
   ngOnInit() {
     this.apiResponseS
-      .onGetSelectItem<
-        ISelectItem[]
-      >(Endpoints.SelectItems.customersActiveNameShort)
+      .onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.customersActiveNameShort,
+      )
       .then((result: any) => this.cb_customer.set(result ?? []));
     this.onLoadData();
   }

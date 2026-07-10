@@ -5,16 +5,15 @@ import {
   input,
   output,
 } from "@angular/core";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
 export interface DetailEvent {
   meetingId: any;

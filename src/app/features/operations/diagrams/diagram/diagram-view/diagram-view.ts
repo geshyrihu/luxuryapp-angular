@@ -1,18 +1,18 @@
 import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
   OnInit,
   signal,
   viewChild,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
@@ -82,11 +82,13 @@ export class DiagramView implements OnInit, AfterViewInit {
   }
 
   onLoadDiagram(id: string) {
-    this.apiResponseS.onGetItem(Endpoints.DiagramDraw.getById(id)).then((result: any) => {
-      this.diagram.set(result);
-      this.setupConfig(result.content);
-      setTimeout(() => this.renderDiagram());
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.DiagramDraw.getById(id))
+      .then((result: any) => {
+        this.diagram.set(result);
+        this.setupConfig(result.content);
+        setTimeout(() => this.renderDiagram());
+      });
   }
 
   setupConfig(xml: string) {

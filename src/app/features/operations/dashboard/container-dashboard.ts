@@ -1,7 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, Type, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  Type,
+} from "@angular/core";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { MiEdificio } from "src/app/features/operations/properties/mi-edificio/mi-edificio";
 import { DashboardPendingItems } from "./dashboard-pending-items";
 @Component({
@@ -28,13 +34,3 @@ export class ContainerDashboard {
     return DashboardPendingItems;
   });
 }
-
-
-
-
-
-
-
-
-
-

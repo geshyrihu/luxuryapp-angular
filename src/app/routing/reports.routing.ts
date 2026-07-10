@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/guard/auth.guard";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const reportsRoutes: Routes = [
   {
     path: "supervision-report", // Ruta anterior: 'report-supervision'
@@ -16,7 +16,7 @@ export const reportsRoutes: Routes = [
   {
     path: "access-history",
     loadComponent: () =>
-      import("src/app/features/system/audit-logs/access-history/bitacora-acceso-list").then(
+      import("src/app/apps/admin.luxuryapp/reportes/access-history/bitacora-acceso-list").then(
         (m) => m.BitacoraAcceso,
       ),
     canActivate: [authGuard],
@@ -78,4 +78,3 @@ export const reportsRoutes: Routes = [
     },
   },
 ];
-

@@ -17,7 +17,7 @@
 import { WritableSignal } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { ApiResponseService } from "../services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 export interface CrudSubmitOptions {
   /** El FormGroup del formulario */

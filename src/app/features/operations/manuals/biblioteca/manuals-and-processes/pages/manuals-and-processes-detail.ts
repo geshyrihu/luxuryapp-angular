@@ -1,19 +1,26 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AppImage } from "@ui/web/image/image";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppImage } from "@ui/web/image/image";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { PrintService } from "src/app/core/services/print.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { DiagramPreviewComponent } from "../components/diagram-preview";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
-import { ROUTES } from "src/app/routing/route-paths";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 

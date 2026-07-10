@@ -1,10 +1,16 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
-import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
   AreaDetailsTable,
@@ -16,12 +22,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 
 @Component({
   selector: "app-meeting-management",
-  imports: [
-    CommonModule,
-    RouterModule,
-    CardModule,
-    AreaDetailsTable,
-  ],
+  imports: [CommonModule, RouterModule, CardModule, AreaDetailsTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
 })
@@ -82,9 +83,11 @@ export class MeetingManagement implements OnInit {
   }
 
   onDeleteMeetingDetail(id: any): void {
-    this.apiResponseS.onDelete(Endpoints.MeetingsDetails.delete(id)).then((result) => {
-      if (result) this.onLoadDetails();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.MeetingsDetails.delete(id))
+      .then((result) => {
+        if (result) this.onLoadDetails();
+      });
   }
 
   onDeleteSeguimiento(id: any): void {
@@ -98,8 +101,15 @@ export class MeetingManagement implements OnInit {
   onSendEmail(area: number): void {
     // Lígica de envío de email (reutilizando la del componente anterior)
     const customerId = this.meetingData()?.customerId;
-    this.apiResponseS.onPost(
-      Endpoints.Meetings.sendEmailResponsible(this.meetingId, customerId, area, "0"),
-    ).then(() => {});
+    this.apiResponseS
+      .onPost(
+        Endpoints.Meetings.sendEmailResponsible(
+          this.meetingId,
+          customerId,
+          area,
+          "0",
+        ),
+      )
+      .then(() => {});
   }
 }
