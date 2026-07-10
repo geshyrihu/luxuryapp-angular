@@ -6,8 +6,8 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { UpdatePasswordAccount } from "../../../../apps/admin.luxuryapp/application-user/update-password-account";
-import { UpdateRole } from "../../../../apps/admin.luxuryapp/application-user/update-role";
+import { UpdatePasswordAccount } from "../../../../apps/admin.luxuryapp/seguridad-permisos/application-user/update-password-account";
+import { UpdateRole } from "../../../../apps/admin.luxuryapp/seguridad-permisos/application-user/update-role";
 
 @Component({
   selector: "app-employee-external-app-user",
