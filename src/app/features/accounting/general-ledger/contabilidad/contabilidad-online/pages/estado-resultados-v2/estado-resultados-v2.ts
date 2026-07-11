@@ -21,6 +21,7 @@ import {
 } from "../../models/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const MONTH_NAMES = [
   "Enero",
@@ -66,6 +67,7 @@ type EstadoResultadosRow =
 @Component({
   selector: "app-estado-resultados-v2",
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     TableModule,

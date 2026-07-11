@@ -14,7 +14,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -38,7 +38,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
     ReactiveFormsModule,
     InputTextModule,
     CustomInputTextSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,

@@ -12,7 +12,7 @@ import { environment } from "src/environments/environment";
  * Se comunica directamente con la API vía pathUrl.
  */
 @Component({
-  selector: "app-custom-input-upload-pdf-signal",
+  selector: "app-subir-pdf",
   imports: [FileUploadModule, SharedModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

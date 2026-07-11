@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -92,7 +92,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="mobileDataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -102,7 +102,7 @@
   (nextPage)="loadNextPage($event)"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -117,14 +117,13 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>
-        <p class="text-medium text-500 m-0">
-          {{ item.category }} | {{ item.marca }}
-        </p>
-      
 
-      <ili-action-menu end>
+      <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>
+      <p class="text-medium text-500 m-0">
+        {{ item.category }} | {{ item.marca }}
+      </p>
+
+      <ili-action-menu slot="end">
         <ng-container actions>
           @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
           AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===

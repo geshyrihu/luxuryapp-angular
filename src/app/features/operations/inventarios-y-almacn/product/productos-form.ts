@@ -13,8 +13,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
@@ -47,9 +47,9 @@ interface IProductosForm {
     ReactiveFormsModule,
     CardModule,
     CustomInputTextSignal,
-    CustomInputImg,
+    InputImg,
     CustomInputSelectSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     WebButtonLabelSave,
   ],
 })

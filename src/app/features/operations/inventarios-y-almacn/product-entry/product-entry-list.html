@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -83,13 +83,13 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -104,22 +104,21 @@
           style="font-size: 1.1rem; color: var(--ds-success)"
         />
       </div>
-      
-        <div class="flex flex-column">
-          <h6 class="mb-0">{{ item.nombreProducto }}</h6>
-          <small class="text-color-secondary">
-            {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.provider }}
-          </small>
-          <small class="text-color-secondary">
-            Factura: {{ item.numeroFactura }} | {{ item.fechaEntrada |
-            date:'mediumDate':'UTC' }}
-          </small>
-        </div>
-      
+
+      <div class="flex flex-column">
+        <h6 class="mb-0">{{ item.nombreProducto }}</h6>
+        <small class="text-color-secondary">
+          {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.provider }}
+        </small>
+        <small class="text-color-secondary">
+          Factura: {{ item.numeroFactura }} | {{ item.fechaEntrada |
+          date:'mediumDate':'UTC' }}
+        </small>
+      </div>
 
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit
               (clicked)="onAddEntrada({

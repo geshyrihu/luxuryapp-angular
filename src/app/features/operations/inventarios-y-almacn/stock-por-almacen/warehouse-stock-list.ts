@@ -39,27 +39,31 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { AppAvatar } from "../../../../shared/ui/web/avatar/avatar";
+
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-warehouse-stock-list",
   templateUrl: "./warehouse-stock-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    TooltipModule,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
-    CommonModule,
-    TableModule,
-    PrimeNgCustomCaption,
-    DataViewMobile,
-
+    AppAvatar,
     CardModule,
+    CommonModule,
+    DataViewMobile,
+    MobileActionMenu,
+    MobileButtonLabelDelete,
+    MobileButtonLabelEdit,
+    MobileButtonLabelItem,
+    MobileListItem,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableEmptyMessage,
+    TableModule,
+    TooltipModule,
+    WebButtonIconDelete,
+    WebButtonIconEdit,
+    WebButtonIconItem,
   ],
 })
 export class WarehouseStockList {

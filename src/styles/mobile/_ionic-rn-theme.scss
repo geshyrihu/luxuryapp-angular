@@ -284,6 +284,16 @@ ion-refresher {
   --color: var(--ds-primary);
 }
 
+ion-modal.lx-form-modal {
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0 0 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+}
+
 // ── 15. ion-spinner ───────────────────────────────────────────
 ion-spinner {
   color: var(--ds-primary);
@@ -293,18 +303,18 @@ ion-spinner {
 // PrimeNG p-dialog usa z-index 10000+. Los overlays de Ionic deben
 // aparecer encima cuando se usan dentro de un modal PrimeNG.
 ion-action-sheet {
-  --z-index: 20001 !important;
-  z-index: 20001 !important;
+  --z-index: 110000 !important;
+  z-index: 110000 !important;
 }
 
 ion-alert {
-  --z-index: 20001 !important;
-  z-index: 20001 !important;
+  --z-index: 110000 !important;
+  z-index: 110000 !important;
 }
 
 ion-popover {
-  --z-index: 20001 !important;
-  z-index: 20001 !important;
+  --z-index: 110000 !important;
+  z-index: 110000 !important;
 }
 
 // 🔑 Overlays de Ionic SOBRE el diálogo PrimeNG.

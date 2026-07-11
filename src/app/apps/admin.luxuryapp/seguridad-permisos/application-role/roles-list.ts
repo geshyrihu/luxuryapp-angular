@@ -27,12 +27,14 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ApplicationRoleDto } from "./models/application-role.dto";
+import { ApplicationRoleDto } from "./interfaces/application-role.dto";
 import { RoleForm } from "./role-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-roles",
   imports: [
+    AppIcon,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,

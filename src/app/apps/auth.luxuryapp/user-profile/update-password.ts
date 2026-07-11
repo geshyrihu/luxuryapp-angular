@@ -19,11 +19,13 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IChangePassword } from "src/app/core/interfaces/change-password.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     CommonModule,
     ReactiveFormsModule,
     LxCard,

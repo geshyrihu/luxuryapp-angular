@@ -13,7 +13,7 @@ import { CustomInputNgSelect } from "../custom-input-ng-select-signal";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputNgSelect],
   template: `
-    <custom-input-ng-select
+    <web-custom-input-ng-select
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

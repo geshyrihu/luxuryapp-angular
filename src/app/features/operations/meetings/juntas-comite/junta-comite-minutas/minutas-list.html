@@ -335,7 +335,7 @@
         </div>
       </div>
       <ng-template #listItemTemplate let-item>
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -360,7 +360,7 @@
                   Total Asuntos: {{ item.issues }}
                 </p>
               
-              <ili-action-menu end>
+              <ili-action-menu slot="end">
                 <ng-container actions>
                   <ili-button-item
                     iconName="trending-up-outline"

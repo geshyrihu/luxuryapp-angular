@@ -9,7 +9,7 @@ import {
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
 import { of } from "rxjs";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApplicationUserForm } from "./application-user-form";
 
@@ -18,7 +18,7 @@ describe("ApplicationUserForm", () => {
   let fixture: ComponentFixture<ApplicationUserForm>;
 
   beforeEach(async () => {
-    TestBed.overrideComponent(CustomInputMaskSignal, {
+    TestBed.overrideComponent(InputMask, {
       set: { template: "<div>Mock Mask</div>", imports: [] },
     });
     TestBed.overrideComponent(CustomInputSelectSignal, {

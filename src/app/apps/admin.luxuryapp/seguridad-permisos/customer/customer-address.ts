@@ -17,7 +17,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomerAddressAddOrEditDto } from "./models/customer-address-add-or-edit.dto";
+import { CustomerAddressAddOrEditDto } from "./interfaces/customer-address-add-or-edit.dto";
 @Component({
   selector: "app-customer-address",
   templateUrl: "./customer-address.html",

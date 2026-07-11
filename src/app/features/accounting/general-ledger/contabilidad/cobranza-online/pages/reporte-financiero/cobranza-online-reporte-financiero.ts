@@ -20,6 +20,7 @@ import type {
   ReporteFinancieroFila,
   ReporteFinancieroResponse,
 } from "../../models/cobranza-online-reporte-financiero.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface OpcionMes {
   label: string;
@@ -44,6 +45,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 @Component({
   selector: "app-cobranza-online-reporte-financiero",
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     ButtonModule,

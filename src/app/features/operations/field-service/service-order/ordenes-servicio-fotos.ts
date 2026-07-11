@@ -12,12 +12,14 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [WebButtonLabelDelete, AppImage],
+  imports: [
+    AppIcon,WebButtonLabelDelete, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService, MessageService],
 })

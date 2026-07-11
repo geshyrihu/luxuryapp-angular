@@ -115,7 +115,7 @@
       <!-- Este es por si es ticket concluido -->
       <custom-input-date-signal
         [control]="form.controls.closedDate"
-        label="Fecha de túrmino"
+        label="Fecha de término"
         placeholder="fecha de cierre"
         description="Al colocar esta fecha, el ticket se marcaré como completado."
       />
@@ -166,7 +166,9 @@
     </div>
     <div class="col-12 md:col-6">
       <div class="mb-4">
-        <label class="font-bold text-xs uppercase text-700 block mb-2">Foto del antes</label>
+        <label class="font-bold text-xs uppercase text-700 block mb-2"
+          >Foto del antes</label
+        >
         <lx-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
@@ -180,7 +182,9 @@
 
     <div class="col-12 md:col-6">
       <div class="mb-4">
-        <label class="font-bold text-xs uppercase text-700 block mb-2">Foto del despu&eacute;s</label>
+        <label class="font-bold text-xs uppercase text-700 block mb-2"
+          >Foto del despu&eacute;s</label
+        >
         <lx-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"

@@ -6,7 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import {} from "@ionic/angular/standalone";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";

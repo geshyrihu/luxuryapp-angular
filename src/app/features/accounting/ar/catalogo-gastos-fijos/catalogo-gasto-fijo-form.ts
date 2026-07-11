@@ -22,7 +22,7 @@ import { CardModule } from "primeng/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -62,7 +62,7 @@ interface ICatalogoGastoFijoForm {
     TableModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputSelectSignal,
     WebButtonLabel,
     WebButtonLabelSave,

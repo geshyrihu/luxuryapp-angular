@@ -17,11 +17,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel],
+  imports: [
+    AppIcon,WebButtonLabel],
 })
 export class BudgetAuditDialog implements OnInit {
   private ref = inject(DynamicDialogRef);

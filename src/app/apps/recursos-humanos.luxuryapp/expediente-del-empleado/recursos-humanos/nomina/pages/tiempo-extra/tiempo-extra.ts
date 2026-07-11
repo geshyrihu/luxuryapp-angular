@@ -34,10 +34,14 @@ import { TooltipModule } from "primeng/tooltip";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-tiempo-extra",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,

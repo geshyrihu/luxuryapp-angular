@@ -91,7 +91,7 @@
     [globalFilterFields]="globalFilterFields()"
   >
     <ng-template #listItemTemplate let-item>
-      <ili-list-item [noPadding]="true">
+      <ili-list-item>
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -113,7 +113,7 @@
         
         <div end>
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-          <ili-action-menu>
+          <ili-action-menu slot="end">
             <ng-container actions>
               <ili-button-edit
                 (clicked)="onModalForm(item.id, item.eMonth)"

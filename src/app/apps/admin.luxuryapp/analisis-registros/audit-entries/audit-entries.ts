@@ -29,22 +29,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { DateService } from "src/app/core/services/date.service";
-
-interface AuditEntry {
-  id: string;
-  entityName: string;
-  entityId: string;
-  operationType: "Create" | "Update" | "Delete";
-  propertyName: string | null;
-  oldValue: string | null;
-  newValue: string | null;
-  userName: string;
-  changedAt: string;
-  customerId: string | null;
-  /** Grupo lígico para expandir: mismo entityName + entityId + changedAt */
-  groupKey?: string;
-  expanded?: boolean;
-}
+import { AuditEntry } from "./interfaces/audit-entry.interface";
 
 @Component({
   selector: "app-audit-entries",

@@ -6,7 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import {} from "@ionic/angular/standalone";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CardModule } from "primeng/card";

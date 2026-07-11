@@ -11,10 +11,12 @@ import { getStatusSeverity } from "src/app/apps/recursos-humanos.luxuryapp/exped
 import { LeaveRequestDetailDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/leave-request.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-leave-request-detail-my",
-  imports: [LxTag, WebButtonLabel],
+  imports: [
+    AppIcon,LxTag, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })

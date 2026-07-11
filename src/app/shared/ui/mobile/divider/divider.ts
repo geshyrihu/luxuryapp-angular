@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,18 +7,22 @@ import {
 import { DividerBase } from "@ui/base/divider.base";
 
 @Component({
+  imports: [NgTemplateOutlet],
   selector: "ili-divider",
 
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content /></ng-template>
     <div
       class="ili-divider"
       [class.ili-divider-vertical]="layout() === 'vertical'"
       role="separator"
     >
       @if (layout() !== "vertical") {
-        <span class="ili-divider-content"><ng-content /></span>
+        <span class="ili-divider-content"><ng-container [ngTemplateOutlet]="projected" /></span>
       } @else {
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       }
     </div>
   `,

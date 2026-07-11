@@ -9,7 +9,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {} from "@ionic/angular/standalone";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";

@@ -7,7 +7,6 @@ import {
   output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {} from "@ionic/angular/standalone";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { addIcons } from "ionicons";
 import {

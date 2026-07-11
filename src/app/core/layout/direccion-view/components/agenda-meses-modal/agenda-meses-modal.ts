@@ -13,6 +13,7 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { AgendaSemanalEventDTO } from "../agenda-semanal/agenda-semanal.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface MesGroup {
   label: string;
@@ -23,7 +24,8 @@ interface MesGroup {
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, TagModule, TooltipModule, WebButtonLabel],
+  imports: [
+    AppIcon,CommonModule, TagModule, TooltipModule, WebButtonLabel],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

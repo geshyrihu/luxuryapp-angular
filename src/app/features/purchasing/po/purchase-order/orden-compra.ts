@@ -48,12 +48,14 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-orden-compra",
   templateUrl: "./orden-compra.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabel,
     WebButtonIconEdit,
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,

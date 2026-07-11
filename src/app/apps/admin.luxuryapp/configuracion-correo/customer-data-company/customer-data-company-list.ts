@@ -30,7 +30,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CustomerDataCompanyDTO } from "./customer-data-company-dto";
+import { CustomerDataCompanyDto } from "./customer-data-company-dto";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 
 @Component({
@@ -61,7 +61,7 @@ export class CustomerDataCompanyList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   // Declaración e inicialización de variables
-  data = signal<CustomerDataCompanyDTO[]>([]);
+  data = signal<CustomerDataCompanyDto[]>([]);
   readonly globalFilterFields = signal<string[]>([
     "customer",
     "email",
@@ -123,7 +123,7 @@ export class CustomerDataCompanyList implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(Endpoints.CustomerDataCompany.getAll)
-      .then((result: CustomerDataCompanyDTO[]) => {
+      .then((result: CustomerDataCompanyDto[]) => {
         this.data.set(result ?? []);
         this.loading.set(false);
       });

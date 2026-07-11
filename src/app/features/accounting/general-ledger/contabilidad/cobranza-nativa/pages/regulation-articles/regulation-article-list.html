@@ -65,7 +65,7 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -83,7 +83,7 @@
           @else { Sin monto default }
         </p>
       </div>
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item)" label="Eliminar" />

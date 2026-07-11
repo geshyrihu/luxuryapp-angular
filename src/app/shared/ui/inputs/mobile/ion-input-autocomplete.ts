@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   input,
+  output,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import {
@@ -58,7 +59,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         >
           @for (item of suggestions(); track item) {
             <ion-item button (click)="selectSuggestion(item)">
-              <ion-label>{{ item }}</ion-label>
+              <ion-label>{{ resolveLabel(item) }}</ion-label>
             </ion-item>
           }
         </ion-list>
@@ -75,9 +76,19 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputAutocomplete extends BaseIonicInput {
-  suggestions = input<string[]>([]);
+  suggestions = input<any[]>([]);
+  field = input<string>("label");
+  optionLabel = input<string | undefined>(undefined);
+  propagar = output<any>();
 
   showSuggestions = false;
+
+  resolveLabel(item: any): string {
+    if (item == null) return "";
+    if (typeof item === "string") return item;
+    const key = this.optionLabel() || this.field();
+    return item[key] || JSON.stringify(item);
+  }
 
   onInput(event: any): void {
     const val = (event.target as any)?.value || "";
@@ -90,11 +101,12 @@ export class IonInputAutocomplete extends BaseIonicInput {
     }, 200);
   }
 
-  selectSuggestion(item: string): void {
+  selectSuggestion(item: any): void {
     const ctrl = this.control() || this.internalControl;
     ctrl.setValue(item);
     this.onChange(item);
     this.onTouch();
+    this.propagar.emit(item);
     this.showSuggestions = false;
   }
 

@@ -15,13 +15,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  IonApp,
-  IonButton,
-  IonContent,
-  IonSpinner,
-} from "@ionic/angular/standalone";
+import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
+import { MobilePage } from "@ui/mobile/page/page";
 import { catchError, finalize, throwError } from "rxjs";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
@@ -31,15 +27,12 @@ import { ROUTES } from "src/app/routing/route-paths";
   selector: "app-reset-password-mobile",
   imports: [
     ReactiveFormsModule,
-    IonApp,
-    IonContent,
-    IonButton,
-    IonSpinner,
+    MobilePage,
+    MobileButtonLabel,
     IonInputPassword,
   ],
   template: `
-    <ion-app>
-      <ion-content fullscreen>
+    <ili-page background="var(--ds-primary)">
         <!-- Fondo Premium -->
         <div class="lm-bg">
           @for (image of sliderImages(); track image) {
@@ -97,17 +90,13 @@ import { ROUTES } from "src/app/routing/route-paths";
               }
 
               <div class="lm-btn-wrapper mt-4">
-                <ion-button
+                <ili-button
                   expand="block"
                   type="submit"
+                  label="Cambiar Contraseña"
                   [disabled]="form.invalid || submitting() || !isValidLink()"
-                >
-                  @if (submitting()) {
-                    <ion-spinner name="crescent"></ion-spinner>
-                  } @else {
-                    Cambiar Contraseña
-                  }
-                </ion-button>
+                  [loading]="submitting()"
+                />
               </div>
 
               <div class="lm-links mt-4">
@@ -116,8 +105,7 @@ import { ROUTES } from "src/app/routing/route-paths";
             </form>
           </div>
         </div>
-      </ion-content>
-    </ion-app>
+    </ili-page>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -128,9 +116,6 @@ import { ROUTES } from "src/app/routing/route-paths";
         width: 100vw;
       }
 
-      ion-content {
-        --background: var(--ds-primary);
-      }
 
       .lm-bg {
         position: absolute;

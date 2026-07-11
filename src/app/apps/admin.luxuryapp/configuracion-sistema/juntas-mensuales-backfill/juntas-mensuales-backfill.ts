@@ -14,37 +14,8 @@ import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-
-interface IJuntaMensualSessionBackfillMatch {
-  id: string;
-  type: string;
-  title: string;
-  relevantDate: string | null;
-  score: number;
-  confidence: string;
-  reasons: string[];
-}
-
-interface IJuntaMensualSessionBackfillCandidate {
-  juntaMensualSessionId: string;
-  customerId: string;
-  customerName: string;
-  customerShortName: string;
-  sessionTitle: string;
-  sessionTypeDisplayName: string;
-  scheduledAt: string;
-  statusDisplayName: string;
-  hasPresentationLinked: boolean;
-  hasMeetingLinked: boolean;
-  suggestedPresentation: IJuntaMensualSessionBackfillMatch | null;
-  suggestedMeeting: IJuntaMensualSessionBackfillMatch | null;
-}
-
-interface IBackfillSelectionState {
-  applyPresentation: boolean;
-  applyMeeting: boolean;
-  applying: boolean;
-}
+import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
+import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { TooltipModule } from "primeng/tooltip";
@@ -70,8 +41,8 @@ export class JuntasMensualesBackfill {
   private readonly customerIdS = inject(CustomerIdService);
 
   readonly loading = signal(false);
-  readonly items = signal<IJuntaMensualSessionBackfillCandidate[]>([]);
-  readonly selectionState = signal<Record<string, IBackfillSelectionState>>({});
+  readonly items = signal<JuntaMensualSessionBackfillCandidate[]>([]);
+  readonly selectionState = signal<Record<string, BackfillSelectionState>>({});
   readonly windowDays = signal(7);
   readonly scopedCustomerId = computed(() => this.customerIdS.customerId());
   readonly pendingCount = computed(
@@ -103,7 +74,7 @@ export class JuntasMensualesBackfill {
 
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<IJuntaMensualSessionBackfillCandidate[]>(
+      .onGetList<JuntaMensualSessionBackfillCandidate[]>(
         `${Endpoints.JuntaMensualSessionBackfill.preview}?${query.toString()}`,
       )
       .then((result) => {
@@ -144,7 +115,7 @@ export class JuntasMensualesBackfill {
     }));
   }
 
-  onApply(item: IJuntaMensualSessionBackfillCandidate) {
+  onApply(item: JuntaMensualSessionBackfillCandidate) {
     const state = this.resolveSelectionState(item.juntaMensualSessionId);
     const dto = {
       juntaMensualSessionId: item.juntaMensualSessionId,
@@ -183,7 +154,7 @@ export class JuntasMensualesBackfill {
       });
   }
 
-  hasSomethingToApply(item: IJuntaMensualSessionBackfillCandidate) {
+  hasSomethingToApply(item: JuntaMensualSessionBackfillCandidate) {
     const state = this.resolveSelectionState(item.juntaMensualSessionId);
     return (
       (state.applyPresentation && !!item.suggestedPresentation) ||
@@ -214,8 +185,8 @@ export class JuntasMensualesBackfill {
     }
   }
 
-  private buildSelectionState(items: IJuntaMensualSessionBackfillCandidate[]) {
-    return items.reduce<Record<string, IBackfillSelectionState>>(
+  private buildSelectionState(items: JuntaMensualSessionBackfillCandidate[]) {
+    return items.reduce<Record<string, BackfillSelectionState>>(
       (acc, item) => {
         acc[item.juntaMensualSessionId] = {
           applyPresentation:
@@ -229,7 +200,7 @@ export class JuntasMensualesBackfill {
     );
   }
 
-  private resolveSelectionState(sessionId: string): IBackfillSelectionState {
+  private resolveSelectionState(sessionId: string): BackfillSelectionState {
     return (
       this.selectionState()[sessionId] ?? {
         applyPresentation: false,

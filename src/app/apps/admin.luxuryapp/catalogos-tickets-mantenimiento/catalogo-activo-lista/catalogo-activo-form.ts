@@ -20,13 +20,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-
-interface ICatalogoActivoForm {
-  id: FormControl<string>;
-  folio: FormControl<string>;
-  name: FormControl<string>;
-  assetCategory: FormControl<number | null>;
-}
+import { CatalogoActivoFormGroup } from "./interfaces/catalogo-activo-form.interface";
 
 @Component({
   selector: "app-catalogo-activo-form",
@@ -49,7 +43,7 @@ export class CatalogoActivoForm implements OnInit {
 
   cb_category = signal<ISelectItem[]>([]);
 
-  form: FormGroup<ICatalogoActivoForm> = new FormGroup({
+  form: FormGroup<CatalogoActivoFormGroup> = new FormGroup({
     id: new FormControl<string>(
       { value: "", disabled: true },
       { nonNullable: true },

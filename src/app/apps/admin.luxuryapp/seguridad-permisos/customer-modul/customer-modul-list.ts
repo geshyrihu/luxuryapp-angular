@@ -29,11 +29,13 @@ import { CustomerModulEdit } from "./customer-modul-edit";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     RouterModule,
     TableModule,

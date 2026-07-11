@@ -31,12 +31,16 @@ import {
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-employee-file-detail",
   templateUrl: "./employee-file-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    LxCard,
+    LxTag,
     LxTabs,
     WebButtonIconItem,
     TooltipModule,

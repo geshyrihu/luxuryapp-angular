@@ -28,12 +28,16 @@ import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form"
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "employee-emergency-contact-list",
   templateUrl: "./employee-emergency-contact-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     WebButtonIconConfirm,
     MobileActionMenu,

@@ -28,6 +28,8 @@ export default defineConfig({
         inline: [
           /@angular/,
           /primeng/,
+          /@primeicons/,
+          /@primeuix/,
           /@ionic\/angular/,
           /@ionic\/angular\/standalone/,
           /@ionic\/core/,

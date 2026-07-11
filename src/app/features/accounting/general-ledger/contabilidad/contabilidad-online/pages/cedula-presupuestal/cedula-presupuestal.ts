@@ -19,6 +19,7 @@ import {
 } from "../../models/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /** Nombres de meses para los encabezados de columnas */
 const MONTH_NAMES = [
@@ -86,7 +87,8 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
-  imports: [CommonModule, FormsModule, TableModule, AccountingNumberPipe],
+  imports: [
+    AppIcon,CommonModule, FormsModule, TableModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal.html",
 })

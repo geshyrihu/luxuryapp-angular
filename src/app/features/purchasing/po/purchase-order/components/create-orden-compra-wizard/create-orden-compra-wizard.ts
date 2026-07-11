@@ -30,7 +30,7 @@ import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -90,7 +90,7 @@ import { FileUpload } from "@ui/web/file-upload/file-upload";
     AppAvatar,
     WebButtonLabel,
     CommonModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     FormsModule,
@@ -164,7 +164,7 @@ export class CreateOrdenCompraWizard implements OnInit {
   constructor() {
     this.items = [
       { label: "Información General" },
-      { label: "Aóadir Productos" },
+      { label: "AñadirProductos" },
       { label: "Asignar Presupuesto" },
       { label: "Facturas" },
       { label: "Resumen" },
@@ -323,7 +323,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       .openDialog(
         OrdenCompraDetalleForm,
         data,
-        productData.productoId ? "Editar Artúculo" : "Aóadir Artúculo",
+        productData.productoId ? "Editar Artículo" : "Añadir Artículo",
         this.dialogHandlerS.sizeMd,
       )
       .then((result: any) => {
@@ -339,8 +339,12 @@ export class CreateOrdenCompraWizard implements OnInit {
       });
   }
 
-  onProductSelect(event: any): void {
-    const selectedProduct = event?.value ?? event;
+  onProductSelect(
+    selectedProduct: (ISelectItem & { image?: string }) | null,
+  ): void {
+    // (propagar) emite el item ya desempaquetado ({value, label, image}),
+    // no el evento crudo de PrimeNG.
+    if (!selectedProduct) return;
     const existingItem = this.itemsSignal().find(
       (item) => item.productoId === selectedProduct.value,
     );
@@ -528,7 +532,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       if (this.itemsSignal().length === 0) {
         return this.customToastS.showError(
           "Formulario Invólido",
-          "Debe Aóadir al menos un producto.",
+          "Debe Añadiral menos un producto.",
         );
       }
     }
@@ -538,8 +542,8 @@ export class CreateOrdenCompraWizard implements OnInit {
         !this.apiResponseS.validateForm(this.step3Form)
       ) {
         return this.customToastS.showError(
-          "Formulario Invólido",
-          "Debe Aóadir al menos una cuenta de presupuesto.",
+          "Formulario Inválido",
+          "Debe Añadir al menos una cuenta de presupuesto.",
         );
       }
     }
@@ -571,7 +575,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       this.activeIndex = 1;
       return this.customToastS.showError(
         "Formulario Invólido",
-        "Debe Aóadir al menos un producto.",
+        "Debe Añadiral menos un producto.",
       );
     }
     if (

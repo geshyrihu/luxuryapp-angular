@@ -52,3 +52,4 @@ Action-menus: `<app-action-menu>` = web (p-popover); `<ili-action-menu>` = móvi
 4. **Sombras de foco**: usar `var(--ds-shadow-focus)` para accesibilidad consistente.
 5. **Overlays/masks**: `var(--ds-bg-overlay)` en vez de `rgba(0,0,0,0.45)`.
 6. **Ejecutar `ng build` después de cambios en SCSS** para verificar compilación.
+7. **Wrappers**: prefijo obligatorio `wrapper-[nombre].ts` → `Wrapper[Nombre]` → `app-wrapper-[nombre]`. Prohibido `[nombre]-wrapper.ts`.

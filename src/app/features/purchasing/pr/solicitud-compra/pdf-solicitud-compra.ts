@@ -124,7 +124,7 @@ ${this.htmlPrintS.getStandardCss()}
   ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE COTIZACIóN", `Folio: ${data.folio}<br>Fecha: ${requestDateStr}`, generatedAt, "")}
 
   <div class="body-doc">
-    <div class="subheader">DETALLE DE ARTóCULOS / SERVICIOS</div>
+    <div class="subheader">DETALLE DE artículos/ SERVICIOS</div>
 
     <table class="items-table">
       <thead>

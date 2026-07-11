@@ -21,10 +21,7 @@ import {
   FormHelper,
 } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-interface IMeterCategoryForm {
-  id: FormControl<string | null>;
-  nombreMedidorCategoria: FormControl<string>;
-}
+import { MeterCategoryFormGroup } from "./interfaces/meter-category-form.interface";
 
 @Component({
   selector: "app-meter-category-form",
@@ -41,7 +38,7 @@ export class MeterCategoryForm implements OnInit {
   submitting = signal(false);
   id: string = "";
 
-  form: FormGroup<IMeterCategoryForm> = this.formB.group({
+  form: FormGroup<MeterCategoryFormGroup> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
     nombreMedidorCategoria: new FormControl("", {
       nonNullable: true,

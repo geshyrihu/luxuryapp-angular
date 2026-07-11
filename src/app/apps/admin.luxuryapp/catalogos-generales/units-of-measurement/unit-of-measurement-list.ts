@@ -28,11 +28,15 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { UnitOfMeasurementForm } from "./unit-of-measurement-form";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-unit-of-measurement-list",
   templateUrl: "./unit-of-measurement-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonIconEdit,

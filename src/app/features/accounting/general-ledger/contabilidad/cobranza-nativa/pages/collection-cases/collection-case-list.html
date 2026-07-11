@@ -94,7 +94,7 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-item>
-      <ili-list-item [noPadding]="true">
+      <ili-list-item>
         <div
           start
           class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -114,7 +114,7 @@
             {{ item.status }} &middot; {{ item.activities.length }} actividades
           </p>
         </div>
-        <ili-action-menu end>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
           </ng-container>

@@ -33,12 +33,18 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabel,
+    AppIcon,
+    MobileListItem,
     WebButtonIconItem,
     WebButtonIconEdit,
     WebButtonIconDelete,

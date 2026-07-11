@@ -63,6 +63,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   `,
   styles: [
     `
+      :host {
+        display: flex;
+        justify-content: flex-end;
+      }
+
       .ili-am-trigger {
         display: inline-flex;
         align-items: center;
@@ -115,6 +120,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
         font-weight: 600;
         color: var(--ds-text-muted);
         padding: 0.25rem 0 0.5rem;
+      }
+      .ili-am-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
       }
     `,
   ],

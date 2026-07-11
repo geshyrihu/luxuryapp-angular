@@ -10,7 +10,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  * Simple, directo y efectivo.
  */
 @Component({
-  selector: "custom-input-month",
+  selector: "web-custom-input-month",
   imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
   template: `
     <base-input-signal

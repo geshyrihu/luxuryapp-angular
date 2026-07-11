@@ -138,7 +138,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
+    <ili-list-item>
 <div
         start
         class="w-2rem h-2rem border-round-lg bg-indigo-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -157,7 +157,7 @@
       @if (item.isFinancialResponsible) {
       <ili-badge end value="Responsable" color="success" />
       }
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm(item.id, item.propertyId)"

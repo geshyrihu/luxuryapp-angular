@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -34,7 +34,7 @@ interface IReviewForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputTextSignal,
     WebButtonLabelConfirm,
     WebButtonLabelSave,

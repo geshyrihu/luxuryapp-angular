@@ -84,7 +84,7 @@
 
   <div class="md:hidden">
     @for (item of cycle().items; track item.inspectionId) {
-      <ili-list-item [noPadding]="true">
+      <ili-list-item>
         
           <h3>{{ item.location }} <small class="text-400">{{ item.equipmentType }}</small></h3>
           <p>

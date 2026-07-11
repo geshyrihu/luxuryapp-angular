@@ -40,6 +40,7 @@ import {
   IWorkPositionReassignResponse,
   ORG_CHART_VIRTUAL_ROOT_ID,
 } from "./models/org-chart.interfaces";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-org-chart",
@@ -48,6 +49,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
   imports: [
+    AppIcon,
     CommonModule,
     GraphModule,
     LxAvatar,

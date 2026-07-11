@@ -1,2 +1,2 @@
-export * from "./web-inputs";
-export * from "./mobile-inputs";
+export * from "./web";
+export * from "./mobile";

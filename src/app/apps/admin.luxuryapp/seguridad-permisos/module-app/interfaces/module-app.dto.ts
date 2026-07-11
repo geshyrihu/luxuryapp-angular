@@ -1,0 +1,11 @@
+export interface ModuleAppDto {
+  id: string;
+  nameModule: string;
+  rolLevel: string;
+  label: string;
+  routerLink: string;
+  icon: string;
+  pathParent: string;
+  positionIndex: number;
+  viewMobil: boolean;
+}

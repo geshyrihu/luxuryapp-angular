@@ -16,11 +16,13 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ReportHeader } from "@ui/web/report-header/report-header";
 @Component({
   selector: "app-entrega-recepcion-herramientas",
   templateUrl: "./entrega-recepcion-herramientas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, FormsModule, CustomInputCheckSignal],
+  imports: [
+    ReportHeader,TableModule, FormsModule, CustomInputCheckSignal],
 })
 export class EntregaRecepcionHerramientas {
   apiResponseS = inject(ApiResponseService);

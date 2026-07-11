@@ -9,18 +9,8 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
-
-interface ItemChecklist {
-  numero: number;
-  descripcion: string;
-  aprobado: boolean;
-}
-
-interface BloqueVisual {
-  titulo: string;
-  icono: string;
-  descripcion: string;
-}
+import { ItemChecklist } from "./interfaces/item-checklist.interface";
+import { BloqueVisual } from "./interfaces/bloque-visual.interface";
 
 @Component({
   selector: "app-catalog-audit",

@@ -12,10 +12,12 @@ import { FormsModule } from "@angular/forms";
 import { MarkdownModule } from "ngx-markdown";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { AiChatService } from "src/app/core/services/ai-chat.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ai-chat-widget",
-  imports: [CommonModule, FormsModule, MarkdownModule],
+  imports: [
+    AppIcon,CommonModule, FormsModule, MarkdownModule],
   templateUrl: "./ai-chat-widget.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

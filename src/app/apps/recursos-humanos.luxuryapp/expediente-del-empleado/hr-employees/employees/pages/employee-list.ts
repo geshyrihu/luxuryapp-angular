@@ -28,11 +28,15 @@ import { CardEmployee } from "./card-employee";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-employee-list",
   templateUrl: "./employee-list.html",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconActiveDesactive,
     WebButtonIconItem,
     TooltipModule,

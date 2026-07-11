@@ -30,10 +30,14 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CustomerProviderForm } from "./customer-provider-form";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-mis-proveedores",
   imports: [
+    AppIcon,
+    MobileListItem,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,

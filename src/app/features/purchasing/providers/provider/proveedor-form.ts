@@ -15,10 +15,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -74,13 +74,13 @@ interface IProveedorForm {
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
+    InputMask,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
     CustomInputMultiselectSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputFile,
-    CustomInputImg,
+    InputImg,
     WebButtonLabelSave,
   ],
 })
@@ -240,7 +240,7 @@ export class ProveedorForm implements OnInit {
     Object.keys(DTO).forEach((key) => {
       const value = DTO[key];
       if (value === null || value === undefined) {
-        return; // No Aóadir valores nulos
+        return; // No Añadirvalores nulos
       }
 
       if (key === "categorias" && Array.isArray(value)) {

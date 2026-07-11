@@ -13,9 +13,9 @@ import {
 } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
-import { CustomInputPhonePrefix } from "@ui/inputs/web/custom-input-phone-prefix";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { InputPhonePrefix } from "@ui/inputs/adaptive/input-phone-prefix/input-phone-prefix";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -31,9 +31,9 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
     ReactiveFormsModule,
     LxCard,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
-    CustomInputPhonePrefix,
-    CustomInputAutoComplete,
+    InputMask,
+    InputPhonePrefix,
+    InputAutocomplete,
     WebButtonLabelSave,
   ],
 })

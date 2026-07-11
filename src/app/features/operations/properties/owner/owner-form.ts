@@ -13,8 +13,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -52,8 +52,8 @@ interface IOwnerForm {
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    CustomInputMaskSignal,
-    CustomInputAutoComplete,
+    InputMask,
+    InputAutocomplete,
     WebButtonLabelSave,
   ],
 })

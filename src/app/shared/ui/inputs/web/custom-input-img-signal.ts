@@ -12,7 +12,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
 @Component({
-  selector: "custom-input-img-signal",
+  selector: "web-custom-input-img-signal",
   imports: [ReactiveFormsModule, BaseInputSignal],
   template: `
     <base-input-signal

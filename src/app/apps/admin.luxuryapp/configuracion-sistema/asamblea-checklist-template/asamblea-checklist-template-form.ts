@@ -23,20 +23,8 @@ import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { AsambleaChecklistTemplateAddOrEditDto } from "./models/asamblea-checklist-template-add-or-edit.dto";
-
-interface AsambleaChecklistTemplateFormGroup {
-  id: FormControl<string | null>;
-  code: FormControl<string>;
-  title: FormControl<string>;
-  category: FormControl<string>;
-  description: FormControl<string>;
-  offsetDaysFromMeeting: FormControl<number>;
-  defaultResponsibleRole: FormControl<string>;
-  isMandatory: FormControl<boolean>;
-  isActive: FormControl<boolean>;
-  sortOrder: FormControl<number>;
-}
+import { AsambleaChecklistTemplateAddOrEditDto } from "./interfaces/asamblea-checklist-template-add-or-edit.dto";
+import { AsambleaChecklistTemplateFormGroup } from "./interfaces/asamblea-checklist-template-form.interface";
 
 @Component({
   selector: "app-asamblea-checklist-template-form",

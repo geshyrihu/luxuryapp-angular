@@ -4,6 +4,7 @@ import {
   forwardRef,
   inject,
   input,
+  output,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "src/app/core/services/platform.service";
@@ -49,6 +50,15 @@ import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker"
         [hidden]="hidden()"
         [selectionMode]="selectionMode()"
         [dateFormat]="dateFormat()"
+        [showTime]="showTime()"
+        [showClear]="showClear()"
+        [showIcon]="showIcon()"
+        [hourFormat]="hourFormat()"
+        [readonlyInput]="readonlyInput()"
+        [showButtonBar]="showButtonBar()"
+        [dateStyle]="dateStyle()"
+        (dateSelect)="dateSelect.emit($event)"
+        (dateClear)="dateClear.emit()"
       />
     }
   `,
@@ -57,4 +67,13 @@ export class InputDatepicker extends BaseInputSignal {
   protected platform = inject(PlatformService);
   selectionMode = input<"single" | "multiple" | "range">("single");
   dateFormat = input<string>("dd/mm/yy");
+  showTime = input<boolean>(false);
+  showClear = input<boolean>(false);
+  showIcon = input<boolean>(true);
+  hourFormat = input<string>("24");
+  readonlyInput = input<boolean>(true);
+  showButtonBar = input<boolean>(true);
+  dateStyle = input<Record<string, string>>({ minWidth: "195px" });
+  dateSelect = output<any>();
+  dateClear = output<void>();
 }

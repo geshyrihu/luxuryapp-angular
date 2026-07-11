@@ -1,5 +1,5 @@
 @if (filteredDataSignal()) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -150,7 +150,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="filteredDataSignal()"
   (add)="onModalForm('', 'Crear Cuenta')"
@@ -198,11 +198,7 @@
   <!-- End Este bloque necesito agregarlo a data-view -->
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        class="mobile-avatar-slot"
-        (click)="onCardEmployee(item.id)"
-      >
+      <div start class="mobile-avatar-slot" (click)="onCardEmployee(item.id)">
         @if (item.photoPath) {
         <img
           [src]="item.photoPath"
@@ -216,7 +212,7 @@
         />
         }
       </div>
-      <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
+      <p class="font-semibold m-0 text-color">{{ item.fullName }}</p>
       <p class="text-xs m-0 mt-1">
         <span style="color: var(--ds-primary)" class="font-medium"
           >{{ item.userName }}</span
@@ -238,7 +234,7 @@
       </p>
       }
 
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           @if (item.active) {
           <ili-button-item

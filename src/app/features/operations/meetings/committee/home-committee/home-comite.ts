@@ -6,7 +6,6 @@ import {
   OnInit,
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { LxImage } from "@ui/adaptive/image/image";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

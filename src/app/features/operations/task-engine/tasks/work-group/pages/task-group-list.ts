@@ -54,12 +54,20 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
 
 @Component({
   selector: "app-task-group-list",
   templateUrl: "./task-group-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    LxTag,
+    PrimeNgCustomCaption,
+    StatusBadge,
+    AppIcon,
     WebButtonIcon,
     WebButtonIconActiveDesactive,
     WebButtonIconItem,

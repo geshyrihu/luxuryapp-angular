@@ -23,12 +23,14 @@ import {
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-resultado-evaluacion",
   templateUrl: "./resultado-evaluacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     CommonModule,
     LxCard,
     LxDivider,

@@ -12,6 +12,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -28,23 +29,24 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { BankForm } from "./bank-form";
-import { BankDto } from "./models/banks.dto";
+import { BankDto } from "./interfaces/banks.dto";
 
 @Component({
   selector: "app-bank-list",
   templateUrl: "./bank-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    TableModule,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-    PrimeNgCustomTableEmptyMessage,
     DataViewMobile,
     MobileActionMenu,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
+    MobileButtonLabelEdit,
+    MobileListItem,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableEmptyMessage,
+    PrimeNgCustomTableFooter,
+    TableModule,
+    WebButtonIconDelete,
+    WebButtonIconEdit,
   ],
 })
 export class BankList implements OnInit {

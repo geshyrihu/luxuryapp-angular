@@ -6,7 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -38,11 +37,13 @@ import { TaskProgram } from "../../components/task-program";
 import { TaskReopen } from "../../components/task-reopen";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
 import { TaskForm } from "./task-form";
+import { LxTag } from "@ui/adaptive/tag/tag";
 @Component({
   selector: "app-task-view",
   templateUrl: "./task-view.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule, AppAvatar, WebButtonLabel, AppIcon],
+  imports: [
+    LxTag,CardModule, AppAvatar, WebButtonLabel, AppIcon],
 })
 export class TaskView implements OnInit {
   apiResponseS = inject(ApiResponseService);

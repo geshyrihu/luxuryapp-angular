@@ -28,12 +28,16 @@ import { ICategory } from "src/app/core/interfaces/category.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MeterCategoryForm } from "./meter-category-form";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-meter-category-list",
   templateUrl: "./meter-category-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonIconEdit,

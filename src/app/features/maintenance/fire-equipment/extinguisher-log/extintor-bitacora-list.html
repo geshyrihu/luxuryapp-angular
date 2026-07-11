@@ -98,7 +98,7 @@
   (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -136,7 +136,7 @@
         </div>
       
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"

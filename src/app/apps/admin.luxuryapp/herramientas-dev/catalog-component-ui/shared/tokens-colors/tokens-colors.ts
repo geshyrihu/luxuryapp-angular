@@ -14,18 +14,8 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
-
-interface TokenColor {
-  nombre: string;
-  token: string;
-  uso: string;
-}
-
-interface TokenGroup {
-  titulo: string;
-  descripcion: string;
-  tokens: TokenColor[];
-}
+import { TokenColor } from "./interfaces/token-color.interface";
+import { TokenGroup } from "./interfaces/token-group.interface";
 
 @Component({
   selector: "app-tokens-colors",

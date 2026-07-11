@@ -14,16 +14,11 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import {
-  IonApp,
-  IonButton,
-  IonContent,
-  IonSpinner,
-} from "@ionic/angular/standalone";
 import { catchError, finalize, throwError } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
-// import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
+import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
+import { MobilePage } from "@ui/mobile/page/page";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 
@@ -31,15 +26,12 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
   selector: "app-recovery-mobile",
   imports: [
     ReactiveFormsModule,
-    IonContent,
-    IonButton,
-    IonSpinner,
-    IonApp,
+    MobilePage,
+    MobileButtonLabel,
     IonInputText,
   ],
   template: `
-    <ion-app>
-      <ion-content fullscreen>
+    <ili-page background="var(--ds-primary)">
         <!-- Fondo Premium -->
         <div class="lm-bg">
           @for (image of sliderImages(); track image) {
@@ -95,19 +87,17 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
               }
 
               <div class="lm-btn-wrapper mt-4">
-                <ion-button
+                <ili-button
                   expand="block"
                   type="submit"
                   [disabled]="form.invalid || submitting() || countdown > 0"
-                >
-                  @if (submitting()) {
-                    <ion-spinner name="crescent"></ion-spinner>
-                  } @else if (countdown > 0) {
-                    Reintentar en {{ countdown }}s
-                  } @else {
-                    Enviar Instrucciones
-                  }
-                </ion-button>
+                  [loading]="submitting()"
+                  [label]="
+                    countdown > 0
+                      ? 'Reintentar en ' + countdown + 's'
+                      : 'Enviar Instrucciones'
+                  "
+                />
               </div>
 
               <div class="lm-links mt-4">
@@ -116,8 +106,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
             </form>
           </div>
         </div>
-      </ion-content>
-    </ion-app>
+    </ili-page>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -128,9 +117,6 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
         width: 100vw;
       }
 
-      ion-content {
-        --background: var(--ds-primary);
-      }
 
       .lm-bg {
         position: absolute;

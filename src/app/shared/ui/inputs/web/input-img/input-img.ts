@@ -12,35 +12,26 @@ import { CustomInputImg } from "../custom-input-img-signal";
 @Component({
   selector: "web-input-img",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputImg],
+  imports: [CustomInputImg, ReactiveFormsModule],
   template: `
-    <base-input-signal
+    <web-custom-input-img-signal
       [control]="control()"
       [id]="id()"
       [label]="label()"
       [horizontal]="horizontal()"
       [required]="requiredInput()"
-      [hidden]="hidden()"
-    >
-      <custom-input-img-signal
-        [control]="control()"
-        [id]="id()"
-        [label]="label()"
-        [horizontal]="horizontal()"
-        [required]="requiredInput()"
-        [urlImgCurrent]="urlImgCurrent()"
-        [title]="title()"
-        [chooseLabel]="chooseLabel()"
-        [maxFileSize]="maxFileSize()"
-        [compressThreshold]="compressThreshold()"
-        [compressionQuality]="compressionQuality()"
-        [contentHeight]="contentHeight()"
-        [contentWidth]="contentWidth()"
-        (fileSelected)="fileSelected.emit($event)"
-        (imageLoaded)="imageLoaded.emit($event)"
-        (uploadError)="uploadError.emit($event)"
-      />
-    </base-input-signal>
+      [urlImgCurrent]="urlImgCurrent()"
+      [title]="title()"
+      [chooseLabel]="chooseLabel()"
+      [maxFileSize]="maxFileSize()"
+      [compressThreshold]="compressThreshold()"
+      [compressionQuality]="compressionQuality()"
+      [contentHeight]="contentHeight()"
+      [contentWidth]="contentWidth()"
+      (fileSelected)="fileSelected.emit($event)"
+      (imageLoaded)="imageLoaded.emit($event)"
+      (uploadError)="uploadError.emit($event)"
+    />
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [

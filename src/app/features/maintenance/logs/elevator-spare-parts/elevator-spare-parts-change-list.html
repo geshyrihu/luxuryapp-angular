@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -101,7 +101,7 @@
       [globalFilterFields]="globalFilterFields"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -116,37 +116,36 @@
               style="font-size: 1.1rem; color: var(--ds-primary)"
             />
           </div>
-          
-            <div class="flex justify-content-between align-items-center mb-1">
-              <h2 class="font-bold m-0 text-base text-wrap">
-                {{ item.partName }}
-              </h2>
-              <span class="font-bold text-lg text-green-600"
-                >{{ item.price | currency }}</span
-              >
-            </div>
-            <p class="text-sm text-500 m-0">
-              <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" />
-              Folio: {{ item.folio }}
-            </p>
-            <p class="text-sm text-500 m-0">
-              <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
-              {{ item.changeDate }}
-            </p>
-            <p class="text-sm text-500 m-0">
-              <app-icon [icon]="'mdi:cog'" class="mr-1 text-xs" /> {{
-              item.machinery }}
-            </p>
-            <p class="text-sm text-700 mt-2 mb-1">
-              <strong>Falla:</strong> {{ item.failure }}
-            </p>
-            <small class="text-xs text-500 block mt-1"
-              >Supervisí: {{ item.supervised }}</small
+
+          <div class="flex justify-content-between align-items-center mb-1">
+            <h2 class="font-bold m-0 text-base text-wrap">
+              {{ item.partName }}
+            </h2>
+            <span class="font-bold text-lg text-green-600"
+              >{{ item.price | currency }}</span
             >
-          
+          </div>
+          <p class="text-sm text-500 m-0">
+            <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" />
+            Folio: {{ item.folio }}
+          </p>
+          <p class="text-sm text-500 m-0">
+            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
+            {{ item.changeDate }}
+          </p>
+          <p class="text-sm text-500 m-0">
+            <app-icon [icon]="'mdi:cog'" class="mr-1 text-xs" /> {{
+            item.machinery }}
+          </p>
+          <p class="text-sm text-700 mt-2 mb-1">
+            <strong>Falla:</strong> {{ item.failure }}
+          </p>
+          <small class="text-xs text-500 block mt-1"
+            >Supervisí: {{ item.supervised }}</small
+          >
 
           <div end>
-            <ili-action-menu>
+            <ili-action-menu slot="end">
               <ng-container actions>
                 <ili-button-edit
                   (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

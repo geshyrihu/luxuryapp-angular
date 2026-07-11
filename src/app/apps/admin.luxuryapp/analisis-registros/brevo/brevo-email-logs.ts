@@ -15,28 +15,10 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-// --- Modelos -----------------------------------------------------------------
+import { BrevoEmailLogDto } from "./interfaces/brevo-email-log.interface";
+import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
 
-/** Representa un registro de email transaccional de Brevo */
-interface BrevoEmailLogDTO {
-  messageId: string;
-  email: string;
-  subject: string;
-  event: string;
-  date: string;
-  from: string;
-  templateId: number | null;
-  tags: string[];
-}
-
-/** Respuesta paginada del servidor */
-interface BrevoPagedResultDTO {
-  totalCount: number;
-  items: BrevoEmailLogDTO[];
-}
-
-/**
- * Componente para visualizar los logs de emails transaccionales desde la API de Brevo.
+/** Componente para visualizar los logs de emails transaccionales desde la API de Brevo.
  * Se conecta al backend como proxy seguro en lugar de usar un iframe.
  */
 @Component({
@@ -60,7 +42,7 @@ export class BrevoEmailLogs implements OnInit {
   private readonly apiS = inject(ApiResponseService);
 
   // --- Estado del componente ------------------------------------------------
-  registros = signal<BrevoEmailLogDTO[]>([]);
+  registros = signal<BrevoEmailLogDto[]>([]);
   totalRecords = signal<number>(0);
   cargando = signal<boolean>(false);
 
@@ -96,7 +78,7 @@ export class BrevoEmailLogs implements OnInit {
     if (this.filtroFechaFinCtrl.value)
       params["endDate"] = this.filtroFechaFinCtrl.value;
 
-    const resultado = await this.apiS.onGetItem<BrevoPagedResultDTO>(
+    const resultado = await this.apiS.onGetItem<BrevoPagedResultDto>(
       `brevo-email-log?${new URLSearchParams(params).toString()}`,
     );
 

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import {} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   briefcaseOutline,
@@ -15,6 +14,7 @@ import { ContratosCard } from "src/app/core/layout/direccion-view/components/con
 import { PersonalAusenteCard } from "src/app/core/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
 import { ReclutamientoCard } from "src/app/core/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
 import { TareasLegalCard } from "src/app/core/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface AreaDireccion {
   key: string;
@@ -28,6 +28,7 @@ export interface AreaDireccion {
 @Component({
   selector: "app-home-direccion",
   imports: [
+    AppIcon,
     AgendaSemanalCard,
     ReclutamientoCard,
     PersonalAusenteCard,

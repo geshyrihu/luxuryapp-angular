@@ -10,10 +10,9 @@ import { CustomInputUrl } from "../custom-input-url-signal";
 
 @Component({
   selector: "web-input-url",
-
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputUrl],
   template: `
-    <custom-input-url
+    <web-custom-input-url
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

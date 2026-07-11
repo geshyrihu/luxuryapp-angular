@@ -6,7 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import {} from "@ionic/angular/standalone";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";

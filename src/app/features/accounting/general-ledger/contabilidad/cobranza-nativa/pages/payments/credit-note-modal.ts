@@ -16,6 +16,7 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EPaymentMethod } from "../../models/enums";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface ICreditNoteForm {
   propertyId: FormControl<string>;
@@ -38,6 +39,7 @@ interface CreditNoteRequestDTO {
 @Component({
   selector: "app-credit-note-modal",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputCurrencySignal,

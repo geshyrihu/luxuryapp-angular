@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -31,7 +31,7 @@ import {
   selector: "app-modal-incidencia-add",
   imports: [
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputNumberSignal,

@@ -15,10 +15,12 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ECalculationMethod } from "../../models/enums";
 import { TemplateCoverageDTO } from "../../models/template-coverage.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-charge-template-coverage",
-  imports: [TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
+  imports: [
+    AppIcon,TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-coverage.html",
 })

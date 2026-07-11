@@ -31,10 +31,14 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-diagram-list",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     TooltipModule,
     WebButtonIconAdd,

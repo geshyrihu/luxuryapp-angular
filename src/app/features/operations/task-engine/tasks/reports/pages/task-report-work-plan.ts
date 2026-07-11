@@ -31,12 +31,18 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskForm } from "../../task-message/pages/task-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-task-report-work-plan",
   templateUrl: "./task-report-work-plan.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    LxSplitButton,
+    PrimeNgCustomCaption,
+    AppIcon,
     WebButtonLabel,
 
     TableModule,

@@ -36,7 +36,7 @@ export class HeaderMobile {
     if (canGoBack) {
       this.location.back();
     } else {
-      this.router.navigate(ROUTES.COMITE.HOME);
+      this.router.navigate(['/dashboard/default']);
     }
   }
 }

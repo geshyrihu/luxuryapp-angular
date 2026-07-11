@@ -7,7 +7,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import {} from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
@@ -93,12 +92,16 @@ import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-equipos-list",
   templateUrl: "./equipos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabel,
+    AppIcon,
     WebButtonIconActiveDesactive,
     WebButtonIconItem,
     WebButtonIconEdit,

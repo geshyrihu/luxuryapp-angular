@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
@@ -192,8 +192,8 @@
   (add)="onSolicitudCompra(0)"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
-@if (isPendingView()) {
+    <ili-list-item>
+      @if (isPendingView()) {
       <div
         start
         class="flex align-items-center justify-content-center"
@@ -225,12 +225,12 @@
           style="font-size: 20px; color: var(--ds-warning)"
         />
       </div>
-      
-        <h3>{{ item.equipoOInstalacion }}</h3>
-        <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
-        <p>{{ item.fechaSolicitud | date }}</p>
-      
-      <ili-action-menu end>
+
+      <h3>{{ item.equipoOInstalacion }}</h3>
+      <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
+      <p>{{ item.fechaSolicitud | date }}</p>
+
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onSolicitudCompra(item.id)"
@@ -239,7 +239,7 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
 

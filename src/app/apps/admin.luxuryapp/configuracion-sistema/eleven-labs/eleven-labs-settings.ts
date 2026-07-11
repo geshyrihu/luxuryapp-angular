@@ -21,17 +21,7 @@ import {
   ElevenLabsVoiceOption,
 } from "src/app/core/services/eleven-labs-settings.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
-
-interface ElevenLabsSettingsForm {
-  voiceId: FormControl<string>;
-  modelId: FormControl<string>;
-  stability: FormControl<number>;
-  similarity: FormControl<number>;
-  style: FormControl<number>;
-  speakerBoost: FormControl<number>;
-  autoPlayResponses: FormControl<boolean>;
-  sampleText: FormControl<string>;
-}
+import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.interface";
 
 @Component({
   selector: "app-eleven-labs-settings",
@@ -79,8 +69,8 @@ export class ElevenLabsSettingsComponent implements OnInit {
     },
   ];
 
-  readonly form: FormGroup<ElevenLabsSettingsForm> =
-    this.formB.group<ElevenLabsSettingsForm>({
+  readonly form: FormGroup<ElevenLabsSettingsFormGroup> =
+    this.formB.group<ElevenLabsSettingsFormGroup>({
       voiceId: new FormControl("", {
         nonNullable: true,
         validators: [Validators.required],

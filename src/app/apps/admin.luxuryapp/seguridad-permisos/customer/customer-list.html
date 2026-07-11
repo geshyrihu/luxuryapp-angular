@@ -89,7 +89,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -108,7 +108,7 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" detail="false" class="ion-no-padding">
+    <ili-list-item lines="full" detail="false">
       <!-- Logo / avatar del cliente -->
       <div slot="start" class="customer-logo-slot">
         @if (item.photoPath) {
@@ -127,7 +127,7 @@
       </div>
 
       <div class="ion-text-wrap">
-        <h3 class="font-semibold m-0 text-color">{{ item.nameCustomer }}</h3>
+        <p class="font-semibold m-0 text-color">{{ item.nameCustomer }}</p>
         <p class="text-xs m-0 mt-1 text-color-secondary">
           {{ item.phoneOne }}{{ item.phoneTwo ? ' é ' + item.phoneTwo : '' }}
         </p>

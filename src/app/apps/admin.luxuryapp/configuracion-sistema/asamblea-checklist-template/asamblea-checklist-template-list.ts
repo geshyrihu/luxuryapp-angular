@@ -22,7 +22,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AsambleaChecklistTemplateForm } from "./asamblea-checklist-template-form";
-import { AsambleaChecklistTemplateDto } from "./models/asamblea-checklist-template.dto";
+import { AsambleaChecklistTemplateDto } from "./interfaces/asamblea-checklist-template.dto";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -30,12 +30,16 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-asamblea-checklist-template-list",
   templateUrl: "./asamblea-checklist-template-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,

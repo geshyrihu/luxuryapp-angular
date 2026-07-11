@@ -231,16 +231,16 @@
     <tr>
       <th class="table-col-2">Nó</th>
       <th class="table-col-28">
-        <div class="text-center text-white">
+        <div class="text-center">
           <span>PRODUCTO |</span>
           <!-- REFACTOR: Condición simplificada con `computed signal`. -->
           @if (canAddProducts()) {
           <span
             (click)="onModalAgregarproducto()"
-            class="pointer ml-1 text-white"
+            class="pointer ml-1 text-primary font-bold"
           >
             AGREGAR
-            <app-icon [icon]="'mdi:plus'" class="icon ml-1 text-white" />
+            <app-icon [icon]="'mdi:plus'" class="icon ml-1" />
           </span>
           }
         </div>

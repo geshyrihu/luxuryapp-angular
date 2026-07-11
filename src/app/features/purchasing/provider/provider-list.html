@@ -221,7 +221,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
+    <ili-list-item>
 <div
         start
         class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -235,7 +235,7 @@
         </p>
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"

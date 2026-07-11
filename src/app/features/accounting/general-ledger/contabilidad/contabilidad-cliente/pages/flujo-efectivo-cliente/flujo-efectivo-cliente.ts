@@ -4,10 +4,12 @@ import { TableModule } from 'primeng/table';
 import type { IFlujoCajaDto } from '../../../contabilidad-online/models/aspel-budget.interface';
 import { AccountingNumberPipe } from '../../../contabilidad-online/pipes/accounting-number.pipe';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: 'app-flujo-efectivo-cliente',
-  imports: [CommonModule, TableModule, AccountingNumberPipe],
+  imports: [
+    AppIcon,CommonModule, TableModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './flujo-efectivo-cliente.html',
 })

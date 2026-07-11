@@ -9,7 +9,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
-  selector: "custom-input-datepicker-signal",
+  selector: "web-custom-input-datepicker-signal",
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,

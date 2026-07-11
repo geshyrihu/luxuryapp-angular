@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -78,7 +78,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: 0, title: 'Nuevo Conocimiento' })"
@@ -108,7 +108,7 @@
         >
       </p>
       <p class="text-sm text-wrap text-500">{{ item.keywords }}</p>
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

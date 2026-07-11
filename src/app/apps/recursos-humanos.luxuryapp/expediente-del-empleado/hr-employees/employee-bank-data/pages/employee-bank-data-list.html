@@ -86,7 +86,7 @@
         <p>Beneficiario: {{ item.nameContact }}</p>
         <p>{{ item.relacionName }} | {{ item.phoneNumber }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario y Beneficiario' })"

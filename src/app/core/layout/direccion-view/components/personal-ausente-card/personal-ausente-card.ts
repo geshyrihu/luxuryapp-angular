@@ -9,11 +9,13 @@ import {
 } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { PersonalAusenteResumenDTO } from "./personal-ausente-card.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-personal-ausente-card",
   templateUrl: "./personal-ausente-card.html",
-  imports: [CommonModule],
+  imports: [
+    AppIcon,CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `

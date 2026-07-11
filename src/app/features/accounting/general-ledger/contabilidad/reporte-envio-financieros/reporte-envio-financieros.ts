@@ -22,12 +22,14 @@ import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",
   styleUrls: ["./reporte-envio-financieros.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     TagModule,

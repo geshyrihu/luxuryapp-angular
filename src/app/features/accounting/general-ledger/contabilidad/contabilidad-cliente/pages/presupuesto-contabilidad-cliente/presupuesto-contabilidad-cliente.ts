@@ -7,10 +7,12 @@ import type {
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
 import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
 import { PurchaseHistory } from 'src/app/features/accounting/general-ledger/contabilidad/presupuesto-web-aspel/purchase-history';
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: 'app-presupuesto-contabilidad-cliente',
-  imports: [CommonModule],
+  imports: [
+    AppIcon,CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './presupuesto-contabilidad-cliente.html',
 })

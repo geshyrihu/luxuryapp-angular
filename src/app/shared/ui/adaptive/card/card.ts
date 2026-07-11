@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { CardBase } from "@ui/base/card.base";
 import { MobileCard } from "@ui/mobile/card/card";
@@ -7,8 +8,11 @@ import { PlatformService } from "src/app/core/services/platform.service";
 @Component({
   selector: "lx-card",
 
-  imports: [AppCard, MobileCard],
+  imports: [NgTemplateOutlet, AppCard, MobileCard],
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
       <ili-card
         [header]="header()"
@@ -16,7 +20,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [padded]="padded()"
         [elevated]="elevated()"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </ili-card>
     } @else {
       <app-card
@@ -25,7 +29,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [padded]="padded()"
         [elevated]="elevated()"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </app-card>
     }
   `,

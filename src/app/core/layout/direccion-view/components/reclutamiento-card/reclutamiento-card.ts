@@ -8,11 +8,13 @@ import {
 } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { VacantesResumenDTO } from "./reclutamiento-card.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-reclutamiento-card",
   templateUrl: "./reclutamiento-card.html",
-  imports: [CommonModule],
+  imports: [
+    AppIcon,CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `

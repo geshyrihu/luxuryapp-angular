@@ -26,16 +26,8 @@ import {
 } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { ApplicationRoleAddOrEditDto } from "./models/application-role-add-or-edit.dto";
-interface IRoleForm {
-  id: FormControl<string | null>;
-  name: FormControl<string>;
-  displayName: FormControl<string>;
-  roleType: FormControl<number>;
-  departament: FormControl<number>;
-  sortOrder: FormControl<number>;
-  isActive: FormControl<boolean>;
-}
+import { ApplicationRoleAddOrEditDto } from "./interfaces/application-role-add-or-edit.dto";
+import { RoleFormGroup } from "./interfaces/role-form.interface";
 
 @Component({
   selector: "app-role-form",
@@ -62,7 +54,7 @@ export class RoleForm implements OnInit {
   cb_roleType = toSignal(this.enumS.roleType(), { initialValue: [] });
   cb_departament = toSignal(this.enumS.departament(), { initialValue: [] });
 
-  form: FormGroup<IRoleForm> = this.formB.group({
+  form: FormGroup<RoleFormGroup> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
     name: new FormControl("", {
       nonNullable: true,

@@ -69,12 +69,14 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-google-calendar",
   templateUrl: "./google-calendar.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabel,
     WebButtonIcon,
     TooltipModule,
     WebButtonIconEdit,

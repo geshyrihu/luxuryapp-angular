@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { CarouselBase } from "@ui/base/carousel.base";
 import { MobileCarousel } from "@ui/mobile/carousel/carousel";
@@ -7,8 +8,11 @@ import { PlatformService } from "src/app/core/services/platform.service";
 @Component({
   selector: "lx-carousel",
 
-  imports: [Carousel, MobileCarousel],
+  imports: [NgTemplateOutlet, Carousel, MobileCarousel],
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
       <ili-carousel
         [value]="value()"
@@ -21,7 +25,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [showNavigators]="showNavigators()"
         (onPage)="onPage.emit($event)"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </ili-carousel>
     } @else {
       <app-carousel
@@ -35,7 +39,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [showNavigators]="showNavigators()"
         (onPage)="onPage.emit($event)"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </app-carousel>
     }
   `,

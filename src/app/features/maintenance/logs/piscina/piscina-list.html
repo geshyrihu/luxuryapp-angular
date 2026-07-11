@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -79,7 +79,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <div class="block md:hidden">
   <div class="card">
     <app-data-view-mobile
@@ -88,7 +88,7 @@
       [globalFilterFields]="globalFilterFields"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -103,22 +103,22 @@
               style="font-size: 1.1rem; color: var(--ds-info)"
             />
           </div>
-          
-            <h2 class="font-bold m-0 text-base">{{ item.name }}</h2>
-            <p class="text-sm text-500 m-0">?? {{ item.ubication }}</p>
-            <div class="flex mt-1">
-              <small class="text-xs"
-                ><strong class="text-primary">Vol:</strong> {{ item.volumen
-                }}</small
-              >
-              <small class="text-xs"
-                ><strong class="text-primary">Tipo:</strong> {{ item.typePiscina
-                }}</small
-              >
-            </div>
-          
+
+          <h2 class="font-bold m-0 text-base">{{ item.name }}</h2>
+          <p class="text-sm text-500 m-0">?? {{ item.ubication }}</p>
+          <div class="flex mt-1">
+            <small class="text-xs"
+              ><strong class="text-primary">Vol:</strong> {{ item.volumen
+              }}</small
+            >
+            <small class="text-xs"
+              ><strong class="text-primary">Tipo:</strong> {{ item.typePiscina
+              }}</small
+            >
+          </div>
+
           <div end>
-            <ili-action-menu>
+            <ili-action-menu slot="end">
               <ng-container actions>
                 <ili-button-edit
                   (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

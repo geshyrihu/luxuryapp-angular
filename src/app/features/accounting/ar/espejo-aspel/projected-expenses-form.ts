@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -29,7 +29,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
   imports: [
     ReactiveFormsModule,
     CustomInputCheckSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,

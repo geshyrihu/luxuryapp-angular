@@ -15,10 +15,12 @@ import {
   IReporteFinancieroFilaDto,
 } from "../../models/aspel-budget.interface";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-reporte-financiero",
-  imports: [CommonModule],
+  imports: [
+    AppIcon,CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reporte-financiero.html",
 })

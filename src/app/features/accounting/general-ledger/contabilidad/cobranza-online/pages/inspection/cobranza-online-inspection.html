@@ -162,7 +162,6 @@
   >
     <ng-template #listItemTemplate let-item>
       <ili-list-item
-        [noPadding]="true"
         class="ion-no-padding"
         (click)="onSelectRow(item)"
       >
@@ -181,9 +180,9 @@
           />
         </div>
         <div class="flex-1 min-w-0 ion-text-wrap">
-          <h3 class="font-semibold m-0 text-color">
+          <p class="font-semibold m-0 text-color">
             {{ item.departmentCode || item.accountNumber }}
-          </h3>
+          </p>
           <p class="text-xs m-0 mt-1 text-color-secondary">
             {{ item.ownerName || item.displayName }}
           </p>

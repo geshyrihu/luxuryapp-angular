@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonIcon } from "@ionic/angular/standalone";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -54,7 +53,6 @@ import { PurchaseRequestForm } from "./purchase-request-form";
     WebButtonLabelEdit,
     WebButtonLabelDelete,
     WebButtonLabelItem,
-    IonIcon,
     MobileListItem,
     AppIcon,
   ],

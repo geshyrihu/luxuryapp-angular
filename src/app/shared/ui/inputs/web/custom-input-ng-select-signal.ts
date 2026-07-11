@@ -10,7 +10,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  * Mapea 'items', 'bindLabel' y 'bindValue' a las propiedades de PrimeNG p-select.
  */
 @Component({
-  selector: "custom-input-ng-select",
+  selector: "web-custom-input-ng-select",
   imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
   template: `
     <base-input-signal

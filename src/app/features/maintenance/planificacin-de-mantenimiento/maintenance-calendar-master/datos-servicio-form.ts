@@ -3,12 +3,14 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TarjetaProveedor } from "src/app/features/purchasing/providers/provider/provider-card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-datos-servicio-addoredit",
   templateUrl: "./datos-servicio-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxTag],
+  imports: [
+    AppIcon,LxTag],
 })
 export class DatosServicioAddOrEdit implements OnInit {
   config = inject(DynamicDialogConfig);

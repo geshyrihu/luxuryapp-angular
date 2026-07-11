@@ -13,11 +13,13 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { environment } from "src/environments/environment";
 import { MiEdificioMobile } from "./mi-edificio-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-mi-edificio",
   templateUrl: "./mi-edificio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, CardModule, MiEdificioMobile],
+  imports: [
+    AppIcon,TableModule, CardModule, MiEdificioMobile],
 })
 export class MiEdificio {
   apiResponseS = inject(ApiResponseService);

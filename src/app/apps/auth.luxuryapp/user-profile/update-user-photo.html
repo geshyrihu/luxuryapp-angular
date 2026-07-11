@@ -1,12 +1,9 @@
 <lx-card>
-  <ng-template #header>
-    <div class="flex align-items-center p-3 gap-2">
-      <app-icon [icon]="'mdi:camera'" class="text-primary text-2xl" />
-      <span class="text-xl font-bold">Foto de perfil</span>
-    </div>
-  </ng-template>
-  <ng-template #content>
-    <div class="flex flex-column align-items-center gap-4 py-3">
+  <div class="flex align-items-center p-3 gap-2">
+    <app-icon [icon]="'mdi:camera'" class="text-primary text-2xl" />
+    <span class="text-xl font-bold">Foto de perfil</span>
+  </div>
+  <div class="flex flex-column align-items-center gap-4 py-3">
       <custom-input-img-signal
         (fileSelected)="changeImg($event)"
         [urlImgCurrent]="imgTemp ?? infoEmployeeDTO.photoPath"
@@ -36,6 +33,5 @@
           (clicked)="triggerCamera()"
         />
       </div>
-    </div>
-  </ng-template>
+  </div>
 </lx-card>

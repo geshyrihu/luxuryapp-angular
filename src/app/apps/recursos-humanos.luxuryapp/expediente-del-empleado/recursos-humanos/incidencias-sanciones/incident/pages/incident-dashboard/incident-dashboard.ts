@@ -17,9 +17,11 @@ import {
   IncidentDashboardDTO,
   IncidentDashboardFilterDTO,
 } from "../../models/incident.interfaces";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-incident-dashboard",
   imports: [
+    AppIcon,
     CommonModule,
     ReactiveFormsModule,
     ChartWrapper,

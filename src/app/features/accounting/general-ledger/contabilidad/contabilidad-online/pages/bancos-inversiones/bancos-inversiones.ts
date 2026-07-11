@@ -14,11 +14,15 @@ import { IBancosInversionesDto } from "../../models/aspel-budget.interface";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 import { TableModule } from "primeng/table";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 
 @Component({
   selector: "app-bancos-inversiones",
 
-  imports: [CommonModule, SkeletonModule, TableModule],
+  imports: [
+    LxSkeleton,
+    AppIcon,CommonModule, SkeletonModule, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones.html",
 })

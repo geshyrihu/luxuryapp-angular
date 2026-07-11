@@ -22,11 +22,13 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 
 @Component({
   selector: "app-bitacora-mantenimiento",
   templateUrl: "./bitacora-mantenimiento.html",
   imports: [
+    RangoCalendarioyyyymmdd,
     WebButtonIconConfirm,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,

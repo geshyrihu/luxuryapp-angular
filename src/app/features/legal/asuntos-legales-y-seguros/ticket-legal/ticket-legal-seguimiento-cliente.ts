@@ -9,12 +9,14 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ticket-legal-seguimiento-cliente",
   templateUrl: "./ticket-legal-seguimiento-cliente.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CardModule],
+  imports: [
+    AppIcon,CardModule],
 })
 export class TicketLegalSeguimientoCliente implements OnInit {
   config = inject(DynamicDialogConfig);

@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
@@ -193,7 +193,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
+<!--📲INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="
@@ -330,7 +330,7 @@
       </span>
 
       <div slot="end">
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item
               iconName="print-outline"

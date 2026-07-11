@@ -19,13 +19,8 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { PaymentMethodAddOrEditDto } from "./models/payment-method-add-or-edit.dto";
-interface IPaymentMethodForm {
-  id: FormControl<string | null>;
-  codigo: FormControl<string>;
-  descripcion: FormControl<string>;
-  applicationUserId: FormControl<string | null>;
-}
+import { PaymentMethodAddOrEditDto } from "./interfaces/payment-method-add-or-edit.dto";
+import { PaymentMethodFormGroup } from "./interfaces/payment-method-form.interface";
 
 @Component({
   selector: "app-payment-method-form",
@@ -42,7 +37,7 @@ export class PaymentMethodForm implements OnInit {
   submitting = signal(false);
 
   id: string = "";
-  form: FormGroup<IPaymentMethodForm>;
+  form: FormGroup<PaymentMethodFormGroup>;
 
   ngOnInit(): void {
     this.id = this.config.data.id;

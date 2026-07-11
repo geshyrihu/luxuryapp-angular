@@ -18,11 +18,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-interface IProductCategoryForm {
-  id: FormControl<string | null>;
-  nameCotegory: FormControl<string>;
-  user: FormControl<string | null>;
-}
+import { ProductCategoryFormGroup } from "./interfaces/product-category-form.interface";
 
 @Component({
   selector: "app-product-category-form",
@@ -38,7 +34,7 @@ export class ProductCategoryForm implements OnInit {
   submitting = signal(false);
 
   id: string = "";
-  form: FormGroup<IProductCategoryForm> = this.formB.group({
+  form: FormGroup<ProductCategoryFormGroup> = this.formB.group({
     id: new FormControl({ value: this.id, disabled: true }),
     nameCotegory: new FormControl("", {
       validators: [

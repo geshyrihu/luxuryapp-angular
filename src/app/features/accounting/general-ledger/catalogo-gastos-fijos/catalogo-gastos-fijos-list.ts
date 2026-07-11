@@ -35,11 +35,23 @@ import { MobileBadge } from "@ui/mobile/badge/badge";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TooltipModule } from "primeng/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
+import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
   imports: [
+    WebButtonLabel,
+    IonInputCheckbox,
+    IonInputSelect,
+    DataViewMobile,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
     WebButtonIconEdit,
     WebButtonIconDelete,
     TooltipModule,

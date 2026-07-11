@@ -13,11 +13,13 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { ButtonModule } from "primeng/button";
 import { TableLazyLoadEvent, TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -26,7 +28,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CredentialDetailDTO } from "./models/password.dto";
+import { CredentialDetailDTO } from "./interfaces/password.dto";
 import { PasswordForm } from "./password-form";
 
 @Component({
@@ -47,6 +49,8 @@ import { PasswordForm } from "./password-form";
     MobileListItem,
     DatePipe,
     AppIcon,
+    ButtonModule,
+    TooltipModule,
   ],
 })
 export class PasswordList implements OnInit {
@@ -54,22 +58,19 @@ export class PasswordList implements OnInit {
   dialogS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // Signals para datos y estado
   data = signal<CredentialDetailDTO[]>([]);
   totalRecords = signal(0);
   loading = signal(false);
 
-  // Opciones de tabla
   rows = tablePrimeNgRows();
   rowsPerPage = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  // Filtro actual
   lastLoadEvent: TableLazyLoadEvent | null = null;
 
-  ngOnInit(): void {
-    // La primera carga la dispara el evento (onLazyLoad) de p-table
-  }
+  private visiblePasswords = new Set<string>();
+
+  ngOnInit(): void {}
 
   async loadData(event: TableLazyLoadEvent) {
     this.lastLoadEvent = event;
@@ -98,6 +99,7 @@ export class PasswordList implements OnInit {
       Endpoints.PasswordManager.Credentials.delete(id),
     );
     if (success && this.lastLoadEvent) {
+      this.visiblePasswords.delete(id);
       this.loadData(this.lastLoadEvent);
     }
   }
@@ -114,4 +116,37 @@ export class PasswordList implements OnInit {
       this.loadData(this.lastLoadEvent);
     }
   }
+
+  isPasswordVisible(id: string): boolean {
+    return this.visiblePasswords.has(id);
+  }
+
+  togglePasswordVisibility(id: string): void {
+    if (this.visiblePasswords.has(id)) {
+      this.visiblePasswords.delete(id);
+    } else {
+      this.visiblePasswords.add(id);
+    }
+  }
+
+  getPasswordDisplay(id: string, password: string): string {
+    return this.isPasswordVisible(id) ? password : "••••••••";
+  }
+
+  async copyPassword(password: string): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(password);
+    } catch {
+      // Fallback: crear textarea temporal
+      const textarea = document.createElement("textarea");
+      textarea.value = password;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+  }
 }
+

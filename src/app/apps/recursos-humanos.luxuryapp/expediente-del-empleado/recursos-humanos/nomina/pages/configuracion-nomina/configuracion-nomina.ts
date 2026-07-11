@@ -20,9 +20,11 @@ import {
   ConfiguracionNominaUpdateDTO,
   FRECUENCIA_PAGO_OPTIONS,
 } from "../../interfaces/configuracion-nomina.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-configuracion-nomina",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     LxFieldset,
     CustomInputSelectSignal,

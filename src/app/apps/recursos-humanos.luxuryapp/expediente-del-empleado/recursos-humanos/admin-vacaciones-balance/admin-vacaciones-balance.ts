@@ -30,9 +30,13 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { VacationBalanceAdminViewDto } from "../interfaces/vacation-balance-admin-view.interface";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-admin-vacaciones-balance",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,

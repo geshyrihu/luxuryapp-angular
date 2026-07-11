@@ -15,10 +15,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-diagram-editor",
-  imports: [CommonModule, ToastModule],
+  imports: [
+    AppIcon,CommonModule, ToastModule],
   providers: [MessageService],
   templateUrl: "./diagram-editor.html",
   changeDetection: ChangeDetectionStrategy.Eager,

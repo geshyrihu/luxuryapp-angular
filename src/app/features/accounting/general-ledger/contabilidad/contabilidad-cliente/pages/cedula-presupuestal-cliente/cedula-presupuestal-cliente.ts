@@ -14,6 +14,7 @@ import type {
   IFinancialStatementDto,
 } from "../../../contabilidad-online/models/aspel-budget.interface";
 import { ContabilidadClienteService } from "../../services/contabilidad-cliente.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const MONTH_NAMES = [
   "ENE",
@@ -74,7 +75,8 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal-cliente",
-  imports: [CommonModule, TableModule],
+  imports: [
+    AppIcon,CommonModule, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal-cliente.html",
 })

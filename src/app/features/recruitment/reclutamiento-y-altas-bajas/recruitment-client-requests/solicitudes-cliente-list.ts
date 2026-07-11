@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";

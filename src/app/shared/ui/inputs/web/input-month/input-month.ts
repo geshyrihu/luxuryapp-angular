@@ -13,7 +13,7 @@ import { CustomInputMonth } from "../custom-input-month-signal";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputMonth],
   template: `
-    <custom-input-month
+    <web-custom-input-month
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

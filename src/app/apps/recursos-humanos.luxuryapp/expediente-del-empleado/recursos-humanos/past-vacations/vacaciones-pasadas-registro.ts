@@ -23,7 +23,7 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TableModule } from "primeng/table";
@@ -50,7 +50,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     ReactiveFormsModule,
     LxCard,
     CustomInputSelectSignal,
-    CustomInputDatepicker,
+    InputDatepicker,
     LxMessage,
     LxSkeleton,
     CustomInputTextAreaSignal,

@@ -90,7 +90,7 @@
     class="block md:hidden"
   >
     <ng-template #listItemTemplate let-task>
-      <ili-list-item [noPadding]="true">
+      <ili-list-item>
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -115,7 +115,7 @@
             [status]="task.statusDescription"
           />
         
-        <ili-action-menu end>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item
               label="Completar"

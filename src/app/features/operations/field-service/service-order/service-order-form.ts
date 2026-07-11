@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -59,7 +59,7 @@ interface IServiceOrderForm {
     ReactiveFormsModule,
     WebButtonLabelSave,
     WebButtonLabel,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,

@@ -26,10 +26,12 @@ import { MenuService } from "src/app/core/services/menu.service";
 import { HeaderMobile } from "../shared/header-mobile/header-mobile";
 import { FooterCommitteeMonitor } from "./monitor/components/footer-committee-monitor/footer-committee-monitor";
 import { HeaderCommitteeMonitor } from "./monitor/header-committee-monitor/header-committee-monitor";
+import { AppLoader } from "@ui/web/loader/loader";
 @Component({
   selector: "app-layout-committee",
   templateUrl: "./layout-committee.html",
   imports: [
+    AppLoader,
     CommonModule,
     RouterOutlet,
     HeaderCommitteeMonitor,

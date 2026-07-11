@@ -21,6 +21,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 interface AiMessage {
   role: "user" | "assistant";
@@ -33,6 +35,8 @@ interface AiMessage {
   selector: "app-contabilidad-ai-agent",
 
   imports: [
+    WebButtonIcon,
+    WebButtonLabel,
     CommonModule,
     FormsModule,
     ButtonModule,

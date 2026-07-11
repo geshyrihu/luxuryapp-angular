@@ -63,16 +63,10 @@ import {
   WebButtonIconTracking,
   WebButtonIconViewPdf,
 } from "@ui/buttons/web-icon";
+import { SemanticEntry } from "./interfaces/semantic-entry.interface";
 
 type WebSize = "sm" | "md" | "lg";
 type IonicSize = "small" | "default" | "large";
-
-interface SemanticEntry {
-  id: string;
-  selector: string;
-  defaultSeverity: string;
-  defaultVariant: string;
-}
 
 const IL_SEMANTIC: SemanticEntry[] = [
   {

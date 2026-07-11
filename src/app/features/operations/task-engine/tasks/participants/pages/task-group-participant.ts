@@ -12,7 +12,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CardModule } from "primeng/card";
@@ -37,7 +37,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
     LxMessage,
     CustomInputSelectSignal,
     WebButtonLabelEdit,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     WebButtonLabelSave,
     WebButtonLabelDelete,
   ],

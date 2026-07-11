@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface HRModuleCard {
   title: string;
@@ -22,7 +23,8 @@ interface HRModuleGroup {
 
 @Component({
   selector: "app-hr-dashboard",
-  imports: [],
+  imports: [
+    AppIcon,],
   templateUrl: "./hr-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

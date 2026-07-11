@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { MessageBase } from "@ui/base/message.base";
 import { MobileMessage } from "@ui/mobile/message/message";
@@ -7,8 +8,11 @@ import { PlatformService } from "src/app/core/services/platform.service";
 @Component({
   selector: "lx-message",
 
-  imports: [AppMessage, MobileMessage],
+  imports: [NgTemplateOutlet, AppMessage, MobileMessage],
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
       <ili-message
         [text]="text()"
@@ -17,7 +21,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [icon]="icon()"
         (close)="close.emit()"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </ili-message>
     } @else {
       <app-message
@@ -27,7 +31,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [icon]="icon()"
         (close)="close.emit()"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </app-message>
     }
   `,

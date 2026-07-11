@@ -16,7 +16,7 @@ import {
   IonInputTextarea,
   IonInputTime,
   IonInputToggle,
-} from "@ui/inputs/mobile-inputs";
+} from "@ui/inputs/mobile";
 
 
 @Component({

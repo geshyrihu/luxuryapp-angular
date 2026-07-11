@@ -29,21 +29,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { DateService } from "src/app/core/services/date.service";
-
-/**
- * Entrada de log del API
- */
-interface LogEntry {
-  id: number;
-  message: string;
-  messageTemplate: string;
-  level: string;
-  timestamp: string;
-  exception: string;
-  properties: string;
-  userName: string;
-  expanded?: boolean;
-}
+import { LogEntry } from "./interfaces/log-entry.interface";
 
 @Component({
   selector: "app-log-api-report",

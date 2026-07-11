@@ -23,17 +23,8 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { ModuleAppGetDto } from "./models/module-app.dto";
-interface IModuleAppForm {
-  id: FormControl<string | null>;
-  nameModule: FormControl<string>;
-  rolLevel: FormControl<string | number | null>;
-  label: FormControl<string | null>;
-  routerLink: FormControl<string | null>;
-  icon: FormControl<string | null>;
-  pathParent: FormControl<string | null>;
-  viewMobil: FormControl<boolean | null>;
-}
+import { ModuleAppGetDto } from "./interfaces/module-app-get.dto";
+import { ModuleAppFormGroup } from "./interfaces/module-app-form.interface";
 
 @Component({
   selector: "app-module-app-form",
@@ -58,7 +49,7 @@ export class ModuleAppForm {
   id: string = "";
   submitting = signal(false);
   cb_rolLevel = toSignal(this.enumSelectS.rolLevel(), { initialValue: [] });
-  form: FormGroup<IModuleAppForm> = this.formB.group({
+  form: FormGroup<ModuleAppFormGroup> = this.formB.group({
     id: new FormControl({ value: this.id, disabled: true }),
     nameModule: new FormControl("", {
       validators: [Validators.required],

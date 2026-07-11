@@ -120,7 +120,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   (add)="showModalAddEmployee()"
   [data]="dataSignal()"
@@ -144,18 +144,15 @@
         />
         }
       </div>
-      
-        <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
-        <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
-          item.celularPersonal : '' }}
-        </p>
-        <p class="text-xs m-0 text-color-secondary">
-          {{ item.correoPersonal }}
-        </p>
-      
 
-      <ili-action-menu end>
+      <p class="font-semibold m-0 text-color">{{ item.fullName }}</p>
+      <p class="text-xs m-0 mt-1 text-color-secondary">
+        {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
+        item.celularPersonal : '' }}
+      </p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.correoPersonal }}</p>
+
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-item
             (clicked)="onShowEditEmpleado(item.applicationUserId, item.employeeId, item.fullName)"

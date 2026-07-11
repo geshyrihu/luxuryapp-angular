@@ -2,11 +2,13 @@ import { Component, input, output } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 
 @Component({
   selector: "app-file-section",
   templateUrl: "./file-section.html",
   imports: [
+    WebButtonLabelConfirm,
     WebButtonIcon,WebButtonLabelViewPdf, WebButtonLabel],
 })
 export class FileSection {

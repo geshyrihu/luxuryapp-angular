@@ -18,14 +18,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { BankAddOrEditDto } from "./models/banks-add-or-edit.dto";
-
-interface BankFormGroup {
-  id: FormControl<string | null>;
-  code: FormControl<string>;
-  shortName: FormControl<string>;
-  largeName: FormControl<string>;
-}
+import { BankAddOrEditDto } from "./interfaces/banks-add-or-edit.dto";
+import { BankFormGroup } from "./interfaces/bank-form.interface";
 
 @Component({
   selector: "app-bank-form",

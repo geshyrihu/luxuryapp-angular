@@ -23,11 +23,13 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ModuleAppRolDto } from "./models/module-app-rol.dto";
+import { ModuleAppRolDto } from "./interfaces/module-app-rol.dto";
 import { ModuleAppRolUpdate } from "./module-app-rol-update";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-module-app-rol",
   imports: [
+    AppIcon,
     RouterModule,
     TableModule,
     LxTag,

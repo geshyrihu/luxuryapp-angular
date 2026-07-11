@@ -25,12 +25,14 @@ interface IPresentacionJuntaComiteForm {
 }
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-presentacion-junta-comite-form",
   templateUrl: "./presentacion-junta-comite-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     WebButtonIcon,
     ReactiveFormsModule,
     InputFile,

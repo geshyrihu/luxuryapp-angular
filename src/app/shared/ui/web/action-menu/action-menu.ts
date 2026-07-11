@@ -3,6 +3,7 @@ import { addIcons } from "ionicons";
 import { ellipsisVertical } from "ionicons/icons";
 import { ButtonModule } from "primeng/button";
 import { Popover, PopoverModule } from "primeng/popover";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /**
  * 🍔 ACTION MENU
@@ -18,18 +19,19 @@ import { Popover, PopoverModule } from "primeng/popover";
  */
 @Component({
   selector: "app-action-menu",
-  imports: [PopoverModule, ButtonModule],
+  imports: [PopoverModule, ButtonModule, AppIcon],
   template: `
     <!-- ✅ p-popover para web Y mobile — ng-content funciona correctamente -->
     <div class="action-menu">
       <button
         pButton
         type="button"
-        icon="pi pi-ellipsis-v"
-        class="border-round-lg p-button-text action-menu-button"
+        class="border-round-lg p-button-text p-button-icon-only action-menu-button"
         (click)="popover.toggle($event)"
         aria-label="Opciones"
-      ></button>
+      >
+        <app-icon icon="mdi:dots-vertical" class="text-xl" />
+      </button>
 
       <p-popover #popover appendTo="body" styleClass="action-menu-popover">
         <!-- 60ms: handler del botón hijo se ejecuta antes del hide -->

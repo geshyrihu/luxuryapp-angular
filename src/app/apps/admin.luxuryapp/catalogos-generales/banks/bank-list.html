@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -68,7 +68,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -76,39 +76,21 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" detail="false" class="ion-no-padding" [noPadding]="true">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="
-          width: 38px;
-          height: 38px;
-          background: var(--ds-primary-50, #edf1ff);
-        "
-      >
-        <app-icon
-          icon="mdi:bank-outline"
-          style="font-size: 1.25rem; color: var(--ds-primary)"
-        />
-      </div>
-
-      <div class="ion-text-wrap">
-        <h3 class="font-semibold m-0 text-color">{{ item.shortName }}</h3>
-        <p class="text-xs m-0 mt-1 text-color-secondary">
+    <ili-list-item>
+      <div class="flex flex-column gap-1">
+        <p class="font-semibold m-0 text-color line-height-2">{{ item.shortName }}</p>
+        <p class="text-xs m-0 text-color-secondary">
           {{ item.code }} - {{ item.largeName }}
         </p>
       </div>
 
       <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
+        <ili-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          label="Editar"
+        />
+        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
-

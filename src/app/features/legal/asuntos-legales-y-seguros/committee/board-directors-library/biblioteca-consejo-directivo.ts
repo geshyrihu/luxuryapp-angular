@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { IonRippleEffect } from "@ionic/angular/standalone";
 import { LxImage } from "@ui/adaptive/image/image";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -13,7 +12,7 @@ export interface DocumentCategory {
 
 @Component({
   selector: "app-biblioteca-consejo-directivo",
-  imports: [RouterModule, IonRippleEffect, LxImage],
+  imports: [RouterModule, LxImage],
   templateUrl: "./biblioteca-consejo-directivo.html",
 })
 export class BibliotecaConsejoDirectivo implements OnInit {

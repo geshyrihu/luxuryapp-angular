@@ -20,12 +20,14 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-budget-forecast-dialog",
   templateUrl: "./budget-forecast-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, WebButtonLabel, TableModule, FormsModule],
+  imports: [
+    AppIcon,CommonModule, WebButtonLabel, TableModule, FormsModule],
 })
 export class BudgetForecastDialog implements OnInit {
   private ref = inject(DynamicDialogRef);

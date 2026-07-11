@@ -18,7 +18,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { MachineryClassificationFormGroup } from "./models/machinery-classification.interface";
+import { MachineryClassificationFormGroup } from "./interfaces/machinery-classification.interface";
 
 @Component({
   selector: "app-machinery-classification-form",

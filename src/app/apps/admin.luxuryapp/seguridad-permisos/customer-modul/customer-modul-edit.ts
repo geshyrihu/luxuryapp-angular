@@ -22,23 +22,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
-
-interface ModuleGroup {
-  groupTitle: string;
-  items: CustomerModulListDTO[];
-}
-
-interface CustomerModulListDTO {
-  customerId: string;
-  nameCustomer: string;
-  moduleAppId: string;
-  moduleAppName: string;
-  isAssigned: boolean;
-  photoPath?: string;
-  numeroCliente?: string;
-  register?: string;
-  pathParent?: string;
-}
+import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface";
 
 @Component({
   selector: "app-customer-modul-edit",
@@ -63,7 +47,7 @@ export class CustomerModulEdit implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
 
-  allData = signal<ModuleGroup[]>([]);
+  allData = signal<CustomerModulGroup[]>([]);
   searchTerm = signal("");
 
   filteredGroupedData = computed(() => {
@@ -99,7 +83,7 @@ export class CustomerModulEdit implements OnInit {
   onLoadData(customerId: string): void {
     this.apiResponseS
       .onGetList(Endpoints.ModuleAppCustomers.customerModules(customerId))
-      .then((result: ModuleGroup[]) => {
+      .then((result: CustomerModulGroup[]) => {
         this.allData.set(result);
         this.loading.set(false);
       });

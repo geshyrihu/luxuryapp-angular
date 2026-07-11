@@ -6,7 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import {} from "@ionic/angular/standalone";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";

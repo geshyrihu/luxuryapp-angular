@@ -16,9 +16,9 @@ import {
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -49,11 +49,11 @@ interface IEmployeeExternalForm {
     InputTextModule,
     WebButtonLabel,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
+    InputMask,
     CustomInputSelectSignal,
     CustomInputSelectSignal,
-    CustomInputAutoComplete,
-    CustomInputImg,
+    InputAutocomplete,
+    InputImg,
     WebButtonLabelSave,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

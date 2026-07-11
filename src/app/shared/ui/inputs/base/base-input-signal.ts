@@ -36,10 +36,13 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
     ValidationErrorsCustomInput,
   ],
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content></ng-content></ng-template>
     @if (!hidden()) {
       @if (onlyInput()) {
         <div class="fluid">
-          <ng-content></ng-content>
+          <ng-container [ngTemplateOutlet]="projected" />
         </div>
       } @else {
         <div
@@ -56,7 +59,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
             </label>
           }
           <div class="field-content">
-            <ng-content></ng-content>
+            <ng-container [ngTemplateOutlet]="projected" />
             @if (description()) {
               <small class="block mt-1 text-500 line-height-2 italic px-1">
                 <app-icon [icon]="'mdi:information'" class="pi mr-1 text-xs" />

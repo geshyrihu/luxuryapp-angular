@@ -12,11 +12,13 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-soporte-orden-servicio",
   templateUrl: "./soporte-orden-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, SanitizeHtmlPipe],
+  imports: [
+    AppIcon,CommonModule, SanitizeHtmlPipe],
 })
 export class SoporteOrdenServicio implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -84,7 +84,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
+    <ili-list-item>
 <div
         start
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
@@ -98,7 +98,7 @@
           {{ item.currentSalary }} ? {{ item.finalSalary }} é {{ item.status }}
         </p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: item.employee })"

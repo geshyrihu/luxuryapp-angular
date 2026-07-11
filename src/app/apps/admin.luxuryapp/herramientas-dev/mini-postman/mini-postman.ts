@@ -10,20 +10,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
-
-interface KeyValuePair {
-  key: string;
-  value: string;
-  enabled: boolean;
-}
-
-interface HistoryEntry {
-  method: string;
-  url: string;
-  statusCode: number;
-  durationMs: number;
-  timestamp: Date;
-}
+import { KeyValuePair } from "./interfaces/key-value-pair.interface";
+import { HistoryEntry } from "./interfaces/history-entry.interface";
 
 @Component({
   selector: "app-mini-postman",

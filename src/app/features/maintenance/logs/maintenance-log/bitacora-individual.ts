@@ -24,11 +24,13 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 @Component({
   selector: "app-bitacora-individual",
   templateUrl: "./bitacora-individual.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    RangoCalendarioyyyymmdd,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

@@ -110,17 +110,25 @@ client/angular/src/app/
 ### Anatomía Interna de un Portal (ej. `apps/admin.luxuryapp/`)
 
 > [!IMPORTANT]
-> **REGLA DE ORO DE ESTRUCTURA INTERNA:**
-> Está **estrictamente prohibido** dejar carpetas de features, módulos o dominios "sueltas" en la raíz del portal. Todas las vistas enrutables deben ir forzosamente dentro de `pages/`. Esto garantiza una arquitectura plana dentro del portal y evita subdirectorios profundos e interminables.
+> **REGLA DE ORO DE ESTRUCTURA INTERNA (Feature Flat + Agrupación por Dominio):**
+> 1. **Agrupación por Dominio Lógico:** Dentro de la raíz de un portal complejo (ej. `admin.luxuryapp`), las funcionalidades se agrupan en subcarpetas de dominio lógico (ej. `seguridad-permisos/`, `configuracion-sistema/`, `catalogos-generales/`) para evitar tener 40 módulos sueltos. Portales simples (ej. `auth.luxuryapp`) pueden obviar esta agrupación.
+> 2. **Arquitectura Feature Flat (Cero `pages/`):** Dentro de cada agrupación o portal, cada feature tiene su propia carpeta principal. Está **ESTRICTAMENTE PROHIBIDO** el uso de carpetas envoltorio internas como `pages/`, `components/` o `services/`. Los archivos del componente (`.ts`, `.html`, `.scss`) y sus servicios conviven directamente aplanados en la carpeta del feature. 
+> 3. **Excepción (Carpetas de Tipos):** La única subcarpeta permitida dentro de un feature es `interfaces/`, donde obligatoriamente deben ir todos los DTOs, interfaces, enums, etc. **Prohibido usar el nombre `models/`**.
 
 ```text
 apps/admin.luxuryapp/
-├── 📄 admin.routes.ts        # Rutas exclusivas del portal (lazy loaded)
-├── 📂 components/            # UI exclusiva del portal (ej. admin-employee-card)
-├── 📂 pages/                 # Vistas enrutables (ej. hr-dashboard, login, user-profile)
-├── 📂 services/              # Servicios de API del portal (ej. api/hr/employees)
-├── 📂 models/                # DTOs e Interfaces (EmployeeDTO)
-└── 📄 INDEX.ts               # Punto de entrada estricto (Public API)
+├── 📄 admin.routes.ts              # Rutas exclusivas del portal (lazy loaded)
+├── 📂 seguridad-permisos/          # 🗂️ Grupo de Dominio Lógico
+│   ├── 📂 application-user/        # 🧩 Feature (Arquitectura Plana / Feature Flat)
+│   │   ├── application-user.ts     # Componente principal
+│   │   ├── application-user.html   
+│   │   ├── application-user-form.ts
+│   │   └── 📂 interfaces/          # 🎯 ÚNICA subcarpeta permitida (No usar "models/")
+│   │       ├── application-user.dto.ts 
+│   │       └── user-role.enum.ts
+│   └── 📂 application-role/        
+├── 📂 configuracion-sistema/       # 🗂️ Otro Grupo de Dominio Lógico
+└── 📄 INDEX.ts                     # Punto de entrada estricto (Public API)
 ```
 
 ---
@@ -268,3 +276,30 @@ La propuesta original omitió la capa de estado. El proyecto **YA usa Angular Si
 - **`system.luxuryapp` = portal de dominio para el USUARIO FINAL (usuario de sistemas):** es SOLO OTRO portal de negocio, igual que `cobranza` / `mantenimiento` / `contabilidad`. ⚠️ NO tiene relación con `admin` ni con "superusuario"; tampoco es "sistema de la app" (infra/core). Su origen `features/` está PENDIENTE de confirmar.
 - **`shared/components` vs `shared/ui`:** Redundancia; fusionar en Fase 2.
 - **`migrate.ps1` / `migrate-buttons.ps1` existentes:** Útiles como base de re-importación de rutas en la migración.
+
+---
+
+## 🏆 10. Progreso y Estado Actual (Sesión 10-Jul-2026)
+
+Durante esta sesión de reestructuración intensiva, se lograron los siguientes hitos que dejan el terreno preparado para continuar con la migración modular (como Contabilidad):
+
+1. **`admin.luxuryapp` - Limpieza de Wrappers Fantasmas:**
+   - Se eliminaron por completo las carpetas legadas duplicadas (`security`, `settings`, `communication`, `debug`, `jobs/jobs`) que quedaron como residuo tras aplanar el portal.
+   - Ahora el portal contiene **cero archivos duplicados**.
+   
+2. **`admin.luxuryapp` - Agrupación por Dominio Lógico:**
+   - Se reorganizaron los +30 features del portal en **10 Dominios Lógicos** (ej. `seguridad-permisos/`, `configuracion-sistema/`, `catalogos-generales/`).
+   - El enrutador `admin.routes.ts` fue actualizado y validado exitosamente (`ng build` verificado sin errores).
+   
+3. **Estándar "Feature Flat" & Tipos (`interfaces/`):**
+   - Se documentó y aplicó la regla de que todo feature debe vivir aplanado en su raíz, prohibiendo formalmente carpetas envoltorio como `pages/`.
+   - La **única subcarpeta permitida** es `interfaces/` (donde van DTOs, enums e interfaces). Queda **prohibido** usar el nombre `models/`.
+   - Se renombraron las carpetas residuales de `models/` a `interfaces/` en `auth.luxuryapp` (ej. `password-manager/interfaces/`) actualizando sus imports.
+
+4. **Inversión de la Regla de Wrappers:**
+   - Se actualizó el manifiesto `GEMINI.md` para exigir el uso de sufijos en los contenedores (`[nombre]-wrapper.ts`) en lugar del prefijo (`wrapper-[nombre]`), alineándose con los estándares de Angular y Nx (ej. `AdminWrapper` en vez de `WrapperAdmin`).
+   - Se refactorizó `admin.luxuryapp/wrapper-admin` a `admin.luxuryapp/admin-wrapper` (carpeta, archivos, clase y selectores).
+   - Se validó que `auth.luxuryapp` ya cumplía esta convención nativamente.
+
+**Siguiente paso recomendado para la próxima sesión:** 
+Iniciar la migración y el aplanamiento del portal de **Contabilidad** (`contabilidad.luxuryapp`) replicando este mismo esquema de "Feature Flat" y agrupación por dominio si fuera necesario.

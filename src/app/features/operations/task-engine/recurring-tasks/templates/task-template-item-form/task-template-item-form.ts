@@ -15,7 +15,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -48,7 +48,7 @@ interface ITaskTemplateItemForm {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     RecurrenceInput,
-    CustomInputDatepicker,
+    InputDatepicker,
     CheckboxModule,
     CustomInputCheckSignal,
   ],

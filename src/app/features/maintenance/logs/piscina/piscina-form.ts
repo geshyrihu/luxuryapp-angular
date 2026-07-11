@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -42,7 +42,7 @@ interface IPiscinaForm {
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,
-    CustomInputImg,
+    InputImg,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputTextSignal,

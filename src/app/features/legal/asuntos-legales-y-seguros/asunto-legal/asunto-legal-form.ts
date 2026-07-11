@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -19,7 +19,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
   selector: "app-asunto-legal-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     WebButtonLabelSave,

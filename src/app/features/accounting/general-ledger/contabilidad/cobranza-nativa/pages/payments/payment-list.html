@@ -136,7 +136,7 @@
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -155,7 +155,7 @@
         </p>
         <p>{{ item.reference || '-' }}</p>
       </div>
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <il-button
             label="Detalle"

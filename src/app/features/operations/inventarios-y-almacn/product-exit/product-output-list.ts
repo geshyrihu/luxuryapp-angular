@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { LazyLoadEvent } from "primeng/api";
 import { CardModule } from "primeng/card";
@@ -69,7 +69,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
     ReactiveFormsModule,
     CardModule,
-    CustomInputDatepicker,
+    InputDatepicker,
     MobileListItem,
     AppIcon,
   ],

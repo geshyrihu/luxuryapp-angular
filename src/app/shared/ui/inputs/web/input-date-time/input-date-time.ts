@@ -13,7 +13,7 @@ import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputDateTimeSignal],
   template: `
-    <custom-input-date-time-signal
+    <web-custom-input-date-time-signal
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

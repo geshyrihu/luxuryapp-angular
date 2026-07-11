@@ -151,7 +151,7 @@
     </h5>
     <app-data-view-mobile [data]="[reportData()]" [showAdd]="false">
       <ng-template #listItemTemplate let-d>
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -217,7 +217,7 @@
     </h5>
     <app-data-view-mobile [data]="requestsAttended()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -257,7 +257,7 @@
     </h5>
     <app-data-view-mobile [data]="requestsPending()" [showAdd]="false">
       <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"

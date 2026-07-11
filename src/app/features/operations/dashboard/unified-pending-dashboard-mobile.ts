@@ -8,7 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
@@ -33,10 +32,13 @@ import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-c
 import { TaskForm } from "src/app/features/operations/task-engine/tasks/task-message/pages/task-form";
 import Swal from "sweetalert2";
 import { TicketLegalForm } from "../../legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { PolicyContractForm } from "src/app/features/operations/custom-documents/custom-document/policy-contract/policy-contract-form";
 import { PendingItemDTO } from "./models/pending-item.dto";
+import { LxTag } from "@ui/adaptive/tag/tag";
+
 @Component({
   selector: "app-unified-pending-dashboard-mobile",
-  imports: [AppIcon, CommonModule, DataViewMobile],
+  imports: [LxTag, AppIcon, CommonModule, DataViewMobile],
   templateUrl: "./unified-pending-dashboard-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -176,6 +178,8 @@ export class UnifiedPendingDashboardMobile {
         this.openLegalTicketDialog(item);
         break;
       case "polizas":
+        this.openPolicyDialog(item);
+        break;
       default:
         if (item.urlRoute) {
           this.router.navigateByUrl(item.urlRoute);
@@ -190,6 +194,19 @@ export class UnifiedPendingDashboardMobile {
         TicketLegalForm,
         { id: item.id },
         "Ticket Legal",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((res) => {
+        if (res) this.loadData(this.customerIdS.customerId());
+      });
+  }
+
+  openPolicyDialog(item: PendingItemDTO) {
+    this.dialogHandlerS
+      .openDialog(
+        PolicyContractForm,
+        { id: item.id },
+        "Póliza / Contrato",
         this.dialogHandlerS.sizeLg,
       )
       .then((res) => {
@@ -287,7 +304,7 @@ export class UnifiedPendingDashboardMobile {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "?? Informe Ejecutivo Diario",
+        title: "✨ Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%", // Mobile width
@@ -301,7 +318,7 @@ export class UnifiedPendingDashboardMobile {
       console.error(error);
       this.swalService.error(
         "Error de Análisis",
-        "No se pudo generar el informe. Por favor intenta mós tarde.",
+        "No se pudo generar el informe. Por favor intenta más tarde.",
       );
     }
   }
@@ -339,6 +356,8 @@ export class UnifiedPendingDashboardMobile {
         return "success"; // green
       case "legal":
         return "danger"; // red
+      case "polizas":
+        return "warning"; // yellow
       default:
         return "medium";
     }

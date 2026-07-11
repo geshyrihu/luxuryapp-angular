@@ -12,11 +12,15 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFondoReservaDTO } from "../../models/aspel-budget.interface";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 
 @Component({
   selector: "app-fondo-reserva",
 
-  imports: [CommonModule, SkeletonModule],
+  imports: [
+    LxSkeleton,
+    AppIcon,CommonModule, SkeletonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fondo-reserva.html",
 })

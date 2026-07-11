@@ -137,7 +137,6 @@
     } @else { @for (item of payment()!.allocations || []; track
     item.allocationId) {
     <ili-list-item
-      [noPadding]="true"
       class="mb-2 border-round-xl border-1 surface-border"
     >
       <div

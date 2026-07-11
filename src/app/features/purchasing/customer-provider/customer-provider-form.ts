@@ -7,13 +7,14 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface ICustomerProviderForm {
   id: FormControl<string | null>;
@@ -27,8 +28,9 @@ interface ICustomerProviderForm {
 @Component({
   selector: "app-customer-provider-form",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     WebButtonLabelSave,
     CardModule,
   ],

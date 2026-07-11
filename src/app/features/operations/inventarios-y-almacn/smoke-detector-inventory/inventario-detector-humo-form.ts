@@ -13,8 +13,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
@@ -44,9 +44,9 @@ interface IInventarioDetectorHumoForm {
     ReactiveFormsModule,
     CardModule,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
+    InputMask,
     CustomInputSelectSignal,
-    CustomInputImg,
+    InputImg,
     WebButtonLabelSave,
   ],
 })

@@ -17,11 +17,13 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-gastos-mantenimiento",
   templateUrl: "./gastos-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule],
+  imports: [
+    AppIcon,TableModule],
 })
 export class GastosMantenimiento {
   apiResponseS = inject(ApiResponseService);

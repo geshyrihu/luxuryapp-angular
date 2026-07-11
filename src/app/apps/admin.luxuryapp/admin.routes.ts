@@ -2,12 +2,12 @@ import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { superUsuarioGuard } from "src/app/core/auth/guards/super-usuario.guard";
 export const adminRoutes: Routes = [
-  // Rutas principales de configuración
+  // Ruta principal
   {
     path: "",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/wrapper-admin/wrapper-admin").then(
-        (m) => m.WrapperAdmin,
+      import("src/app/apps/admin.luxuryapp/admin-wrapper/admin-wrapper").then(
+        (m) => m.AdminWrapper,
       ),
     canActivate: [authGuard],
     data: {
@@ -16,7 +16,19 @@ export const adminRoutes: Routes = [
     },
   },
 
-  // Rutas de gestión de usuarios y permisos
+  // Seguridad y Permisos
+  {
+    path: "customers",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/seguridad-permisos/customer/customer-list").then(
+        (m) => m.CustomerList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Clientes",
+      breadcrumb: "Clientes",
+    },
+  },
   {
     path: "application-user",
     loadComponent: () =>
@@ -30,27 +42,27 @@ export const adminRoutes: Routes = [
     },
   },
   {
-    path: "employee-permissions/:applicationUserId",
+    path: "roles",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/seguridad-permisos/profile-users/employee-permission-app").then(
-        (m) => m.EmployeePermissionApp,
-      ),
-    canActivate: [authGuard, superUsuarioGuard],
-    data: {
-      title: "Permisos de empleado",
-      breadcrumb: "Permisos de empleado",
-    },
-  },
-  {
-    path: "customers",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/seguridad-permisos/customer/customer-list").then(
-        (m) => m.CustomerList,
+      import("src/app/apps/admin.luxuryapp/seguridad-permisos/application-role/roles-list").then(
+        (m) => m.RolesList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Clientes",
-      breadcrumb: "Clientes",
+      title: "RolesApp",
+      breadcrumb: "RolesApp",
+    },
+  },
+  {
+    path: "module-app",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/seguridad-permisos/module-app/module-app-list").then(
+        (m) => m.ModuleAppList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catalogo de Modulos",
+      breadcrumb: "Catalogo de Modulos",
     },
   },
   {
@@ -78,18 +90,6 @@ export const adminRoutes: Routes = [
     },
   },
   {
-    path: "roles",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/seguridad-permisos/application-role/roles-list").then(
-        (m) => m.RolesList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "RolesApp",
-      breadcrumb: "RolesApp",
-    },
-  },
-  {
     path: "module-app-role",
     loadComponent: () =>
       import("src/app/apps/admin.luxuryapp/seguridad-permisos/module-app-rol/module-app-rol-list").then(
@@ -99,18 +99,6 @@ export const adminRoutes: Routes = [
     data: {
       title: "Administración Roles-Modulos",
       breadcrumb: "Administración Roles-Modulos",
-    },
-  },
-  {
-    path: "module-app",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/seguridad-permisos/module-app/module-app-list").then(
-        (m) => m.ModuleAppList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Catalogo de Modulos",
-      breadcrumb: "Catalogo de Modulos",
     },
   },
   {
@@ -125,7 +113,6 @@ export const adminRoutes: Routes = [
       breadcrumb: "Actualizar modulos a Role",
     },
   },
-
   {
     path: "approval-rules",
     loadComponent: () =>
@@ -138,46 +125,20 @@ export const adminRoutes: Routes = [
       breadcrumb: "Jerarquía de Aprobación",
     },
   },
-
-  // Rutas de configuración de empresa y correo
   {
-    path: "customer-data-company",
+    path: "employee-permissions/:applicationUserId",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-correo/customer-data-company/customer-data-company-list").then(
-        (m) => m.CustomerDataCompanyList,
+      import("src/app/apps/admin.luxuryapp/seguridad-permisos/profile-users/employee-permission-app").then(
+        (m) => m.EmployeePermissionApp,
       ),
-    canActivate: [authGuard],
+    canActivate: [authGuard, superUsuarioGuard],
     data: {
-      title: "Datos del Cliente por Empresa",
-      breadcrumb: "Datos del Cliente por Empresa",
-    },
-  },
-  {
-    path: "email-data",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-correo/email-data/email-data-list").then(
-        (m) => m.EmailDataList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Datos de Correo",
-      breadcrumb: "Datos de Correo",
-    },
-  },
-  {
-    path: "depuration",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/herramientas-dev/update-data-base/update-data-base").then(
-        (m) => m.UpdateDataBase,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Depuración",
-      breadcrumb: "Depuración",
+      title: "Permisos de empleado",
+      breadcrumb: "Permisos de empleado",
     },
   },
 
-  // Rutas de catálogos
+  // Catálogos Generales
   {
     path: "banks",
     loadComponent: () =>
@@ -227,27 +188,29 @@ export const adminRoutes: Routes = [
     },
   },
   {
-    path: "jobs",
+    path: "units-of-measurement",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
-        (m) => m.JobsDashboard,
+      import("src/app/apps/admin.luxuryapp/catalogos-generales/units-of-measurement/unit-of-measurement-list").then(
+        (m) => m.UnitOfMeasurementList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Jobs administrables",
-      breadcrumb: "Jobs administrables",
+      title: "Lista de Unidades de Medida",
+      breadcrumb: "Lista de Unidades de Medida",
     },
   },
+
+  // Catálogos de Tickets y Mantenimiento
   {
-    path: "app-implementation-report",
+    path: "ticket-group-category",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/herramientas-dev/app-implementation-tracking/app-implementation-tracking-manual").then(
-        (m) => m.AppImplementationTrackingManual,
+      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/task-group-category-list/task-group-category-list").then(
+        (m) => m.TaskGroupCategoryList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de Empleados",
-      breadcrumb: "Reporte de Empleados",
+      title: "Categoría de Grupos de Tickets",
+      breadcrumb: "Categoría de Grupos de Tickets",
     },
   },
   {
@@ -287,41 +250,131 @@ export const adminRoutes: Routes = [
     },
   },
   {
-    path: "units-of-measurement",
+    path: "client-delivery-reception",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-generales/units-of-measurement/unit-of-measurement-list").then(
-        (m) => m.UnitOfMeasurementList,
+      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/delivery-reception-catalog/catalogo-descripcion-list").then(
+        (m) => m.CatalogoDescripcionList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Lista de Unidades de Medida",
-      breadcrumb: "Lista de Unidades de Medida",
+      title: "Entrega y Recepción",
+      breadcrumb: "Entrega y Recepción",
     },
   },
   {
-    path: "audit-entries",
+    path: "catalog-asset",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/analisis-registros/audit-entries/audit-entries").then(
-        (m) => m.AuditEntries,
+      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista").then(
+        (m) => m.CatalogoActivoLista,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Auditoría de cambios",
-      breadcrumb: "Auditoría de cambios",
+      title: "Catalogo de amenidades",
+      breadcrumb: "Catalogo de amenidades",
     },
   },
   {
-    path: "user-activity-history",
+    path: "inspection-reviews-catalog",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/analisis-registros/user-activity-history/user-activity-history").then(
-        (m) => m.UserActivityHistory,
+      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/catalogo-revisiones-inspeccion/catalogo-revisiones-inspeccion").then(
+        (m) => m.CatalogoRevisionesInspeccion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Analisis de actividad",
-      breadcrumb: "Analisis de actividad",
+      title: "Catalogo de inspecciones",
+      breadcrumb: "Catalogo de inspecciones",
     },
   },
+
+  // Configuración de Sistema
+  {
+    path: "ai-knowledge-base",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list").then(
+        (m) => m.AiKnowledgeBaseList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Base de Conocimiento IA",
+      breadcrumb: "🧠 Base de Conocimiento IA",
+    },
+  },
+  {
+    path: "monthly-meetings-reconciliation",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
+        (m) => m.JuntasMensualesBackfill,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Conciliacion de juntas mensuales",
+      breadcrumb: "Conciliacion de juntas mensuales",
+    },
+  },
+  {
+    path: "assembly-checklist-catalog",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
+        (m) => m.AsambleaChecklistTemplateList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catalogo de checklist de asamblea",
+      breadcrumb: "Catalogo checklist asamblea",
+    },
+  },
+  {
+    path: "vault-secrets",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/vault-secrets/vault-secrets-list").then(
+        (m) => m.VaultSecretsList,
+      ),
+    canActivate: [authGuard, superUsuarioGuard],
+    data: {
+      title: "Secretos del Vault",
+      breadcrumb: "Secretos del Vault",
+    },
+  },
+  {
+    path: "jobs",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
+        (m) => m.JobsDashboard,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Jobs administrables",
+      breadcrumb: "Jobs administrables",
+    },
+  },
+
+  // Configuración de Correo Electrónico
+  {
+    path: "customer-data-company",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-correo/customer-data-company/customer-data-company-list").then(
+        (m) => m.CustomerDataCompanyList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Datos del Cliente por Empresa",
+      breadcrumb: "Datos del Cliente por Empresa",
+    },
+  },
+  {
+    path: "email-data",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/configuracion-correo/email-data/email-data-list").then(
+        (m) => m.EmailDataList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Datos de Correo",
+      breadcrumb: "Datos de Correo",
+    },
+  },
+
+  // Recursos Humanos
   {
     path: "incident-types",
     loadComponent: () =>
@@ -344,6 +397,32 @@ export const adminRoutes: Routes = [
     data: {
       title: "Tipos de Sanción",
       breadcrumb: "Tipos de Sanción",
+    },
+  },
+
+  // Análisis y Registros
+  {
+    path: "audit-entries",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/analisis-registros/audit-entries/audit-entries").then(
+        (m) => m.AuditEntries,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Auditoría de cambios",
+      breadcrumb: "Auditoría de cambios",
+    },
+  },
+  {
+    path: "user-activity-history",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/analisis-registros/user-activity-history/user-activity-history").then(
+        (m) => m.UserActivityHistory,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Analisis de actividad",
+      breadcrumb: "Analisis de actividad",
     },
   },
   {
@@ -371,31 +450,7 @@ export const adminRoutes: Routes = [
     },
   },
 
-  {
-    path: "testsignalr",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/herramientas-dev/testsignalr/testsignalr").then(
-        (m) => m.Testsignalr,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "TestingSignal",
-      breadcrumb: "TestingSignal",
-    },
-  },
-
-  {
-    path: "test-email",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/herramientas-dev/send-email/test-email").then(
-        (m) => m.TestEmail,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Iconos SVG",
-      breadcrumb: "Iconos SVG",
-    },
-  },
+  // Herramientas de Desarrollo / Prueba
   {
     path: "mini-postman",
     loadComponent: () =>
@@ -409,75 +464,15 @@ export const adminRoutes: Routes = [
     },
   },
   {
-    path: "ticket-group-category",
+    path: "app-implementation-report",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/task-group-category-list/task-group-category-list").then(
-        (m) => m.TaskGroupCategoryList,
+      import("src/app/apps/admin.luxuryapp/herramientas-dev/app-implementation-tracking/app-implementation-tracking-manual").then(
+        (m) => m.AppImplementationTrackingManual,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Categoría de Grupos de Tickets",
-      breadcrumb: "Categoría de Grupos de Tickets",
-    },
-  },
-  {
-    path: "assembly-checklist-catalog",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
-        (m) => m.AsambleaChecklistTemplateList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Catalogo de checklist de asamblea",
-      breadcrumb: "Catalogo checklist asamblea",
-    },
-  },
-  {
-    path: "monthly-meetings-reconciliation",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
-        (m) => m.JuntasMensualesBackfill,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Conciliacion de juntas mensuales",
-      breadcrumb: "Conciliacion de juntas mensuales",
-    },
-  },
-  {
-    path: "inspection-reviews-catalog",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/catalogo-revisiones-inspeccion/catalogo-revisiones-inspeccion").then(
-        (m) => m.CatalogoRevisionesInspeccion,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Catalogo de inspecciones",
-      breadcrumb: "Catalogo de inspecciones",
-    },
-  },
-  {
-    path: "catalog-asset",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista").then(
-        (m) => m.CatalogoActivoLista,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Catalogo de amenidades",
-      breadcrumb: "Catalogo de amenidades",
-    },
-  },
-  {
-    path: "client-delivery-reception",
-    loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/delivery-reception-catalog/catalogo-descripcion-list").then(
-        (m) => m.CatalogoDescripcionList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Entrega y Recepción",
-      breadcrumb: "Entrega y Recepción",
+      title: "Reporte de Empleados",
+      breadcrumb: "Reporte de Empleados",
     },
   },
   {
@@ -579,28 +574,39 @@ export const adminRoutes: Routes = [
     ],
   },
   {
-    path: "ai-knowledge-base",
+    path: "depuration",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list").then(
-        (m) => m.AiKnowledgeBaseList,
+      import("src/app/apps/admin.luxuryapp/herramientas-dev/update-data-base/update-data-base").then(
+        (m) => m.UpdateDataBase,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Base de Conocimiento IA",
-      breadcrumb: "🧠 Base de Conocimiento IA",
+      title: "Depuración",
+      breadcrumb: "Depuración",
     },
   },
-
   {
-    path: "vault-secrets",
+    path: "testsignalr",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/vault-secrets/vault-secrets-list").then(
-        (m) => m.VaultSecretsList,
+      import("src/app/apps/admin.luxuryapp/herramientas-dev/testsignalr/testsignalr").then(
+        (m) => m.Testsignalr,
       ),
-    canActivate: [authGuard, superUsuarioGuard],
+    canActivate: [authGuard],
     data: {
-      title: "Secretos del Vault",
-      breadcrumb: "Secretos del Vault",
+      title: "TestingSignal",
+      breadcrumb: "TestingSignal",
+    },
+  },
+  {
+    path: "test-email",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/herramientas-dev/send-email/test-email").then(
+        (m) => m.TestEmail,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Iconos SVG",
+      breadcrumb: "Iconos SVG",
     },
   },
   {
@@ -640,3 +646,4 @@ export const adminRoutes: Routes = [
     },
   },
 ];
+

@@ -29,6 +29,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;
@@ -41,6 +42,7 @@ interface ITicketMessageFollowupForm {
   templateUrl: "./task-followup.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,

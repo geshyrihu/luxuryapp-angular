@@ -14,7 +14,7 @@ import { CustomInputSelectPrefix } from "../custom-input-select-prefix-signal";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputSelectPrefix],
   template: `
-    <custom-input-select-signal-prefix
+    <web-custom-input-select-signal-prefix
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

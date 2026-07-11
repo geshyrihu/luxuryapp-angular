@@ -204,7 +204,7 @@
     [showAdd]="isAdmin()"
   >
     <ng-template #listItemTemplate let-item>
-      <ili-list-item [noPadding]="true">
+      <ili-list-item>
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -234,9 +234,9 @@
               >v{{ item.currentVersion }}</span
             >
           </div>
-          <h2 class="font-semibold text-wrap m-0 text-color">
+          <p class="font-semibold text-wrap m-0 text-color">
             {{ item.description }}
-          </h2>
+          </p>
           <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
         
         <div

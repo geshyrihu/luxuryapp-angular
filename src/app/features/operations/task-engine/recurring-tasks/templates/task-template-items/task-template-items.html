@@ -91,7 +91,7 @@
   class="block md:hidden"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -117,7 +117,7 @@
           {{ formatRecurrenceRule(item.recurrenceRule) }}
         </p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit label="Editar" (clicked)="showItemForm(item)" />
           <ili-button-delete

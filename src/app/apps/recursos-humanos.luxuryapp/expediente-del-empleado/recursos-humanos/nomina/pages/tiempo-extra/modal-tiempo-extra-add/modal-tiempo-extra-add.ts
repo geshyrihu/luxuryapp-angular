@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -28,7 +28,7 @@ import {
   selector: "app-modal-tiempo-extra-add",
   imports: [
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputDateSignal,
     CustomInputDecimal,
     CustomInputTextAreaSignal,

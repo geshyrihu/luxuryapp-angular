@@ -8,17 +8,19 @@ import {
 } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, CustomInputImg, WebButtonLabel],
+  imports: [
+    AppIcon,LxCard, InputImg, WebButtonLabel],
 })
 export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);

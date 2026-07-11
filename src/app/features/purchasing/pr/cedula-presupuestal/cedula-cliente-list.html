@@ -1,5 +1,5 @@
 @if (dataSignal() !== null) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -108,9 +108,17 @@
       <td>
         <div class="flex justify-content-center">
           @if (item.disponible) {
-          <lx-tag [value]="item.presupuestoDisponible" severity="success" class="p-3 rounded" />
+          <lx-tag
+            [value]="item.presupuestoDisponible"
+            severity="success"
+            class="p-3 rounded"
+          />
           } @if (!item.disponible) {
-          <lx-tag [value]="item.presupuestoDisponible" severity="danger" class="p-3 rounded" />
+          <lx-tag
+            [value]="item.presupuestoDisponible"
+            severity="danger"
+            class="p-3 rounded"
+          />
           }
         </div>
       </td>
@@ -151,8 +159,8 @@
   (add)="onModalAdd()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
-<div
+    <ili-list-item>
+      <div
         start
         style="
           width: 36px;
@@ -171,15 +179,15 @@
           style="font-size: 20px; color: var(--ds-primary)"
         />
       </div>
-      
-        <h3>{{ item.descripcion }}</h3>
-        <p>Cuenta: {{ item.numeroCuenta }}</p>
-        <p>
-          Mensual: {{ item.presupuestoMensual }} é Disponible: {{
-          item.presupuestoDisponible }}
-        </p>
-      
-      <ili-action-menu end>
+
+      <h3>{{ item.descripcion }}</h3>
+      <p>Cuenta: {{ item.numeroCuenta }}</p>
+      <p>
+        Mensual: {{ item.presupuestoMensual }} é Disponible: {{
+        item.presupuestoDisponible }}
+      </p>
+
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
@@ -188,6 +196,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

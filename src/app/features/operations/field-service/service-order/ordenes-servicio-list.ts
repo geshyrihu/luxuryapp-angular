@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -64,7 +63,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     WebButtonLabel,
-    // Aóadir WebButtonLabel a imports
+    // AñadirWebButtonLabel a imports
 
     DataViewMobile,
     ReactiveFormsModule,

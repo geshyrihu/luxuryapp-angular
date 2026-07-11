@@ -87,7 +87,7 @@
     <ili-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         style="
@@ -112,7 +112,7 @@
         <p>Serie: {{ item.serie }} | Bateróa: {{ item.bateria }}</p>
         <p>{{ item.applicationUser }} é {{ item.departament }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

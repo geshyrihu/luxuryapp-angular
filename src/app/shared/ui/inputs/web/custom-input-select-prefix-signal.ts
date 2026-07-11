@@ -13,7 +13,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  * Ideal para teléfonos (+52 555-555) o documentos (DNI 12345678).
  */
 @Component({
-  selector: "custom-input-select-signal-prefix",
+  selector: "web-custom-input-select-signal-prefix",
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,

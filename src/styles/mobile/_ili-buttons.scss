@@ -29,17 +29,19 @@
     // color semántico del botón (--ion-color-base lo fija Ionic vía [color]).
     // ⚠️ !important necesario: Ionic define el fondo con `:host(.button-solid)`
     // (especificidad 0,2,0) que gana sobre `.ili-menu-list ion-button` (0,1,1).
-    --background: transparent !important;
-    --background-hover: var(--ds-m-press) !important;
-    --background-activated: var(--ds-m-press) !important;
-    --background-focused: var(--ds-m-press) !important;
+    // Hacemos el botón "soft" (fondo semitransparente, texto a color)
+    // Usamos :host y ::part(native) para asegurar que sobreescribimos a Ionic
+    --background: var(--ds-primary-light, #e0e7ff) !important;
+    --background-hover: var(--ds-primary-light, #e0e7ff) !important;
+    --background-activated: var(--ds-primary-light, #e0e7ff) !important;
+    --background-focused: var(--ds-primary-light, #e0e7ff) !important;
     --color: var(--ion-color-base, var(--ds-text-primary)) !important;
     --box-shadow: none !important;
     --border-width: 0 !important;
-    --border-radius: 0 !important;
-    --ripple-color: var(--ds-m-press);
-    --padding-start: 6px;
-    --padding-end: 6px;
+    --border-radius: var(--ds-m-radius-btn, 8px) !important;
+    --ripple-color: var(--ds-primary);
+    --padding-start: 12px;
+    --padding-end: 12px;
     margin: 0;
     width: 100%;
     height: var(--ds-m-row-height);
@@ -58,5 +60,14 @@
   ion-button ion-icon {
     margin-inline-end: 14px;
     font-size: 1.3rem;
+  }
+
+  // Si es un botón de peligro (Eliminar), usamos el color rojo suave
+  ion-button.ion-color-danger {
+    --background: var(--ds-danger-light, #fee2e2) !important;
+    --background-hover: var(--ds-danger-light, #fee2e2) !important;
+    --background-activated: var(--ds-danger-light, #fee2e2) !important;
+    --background-focused: var(--ds-danger-light, #fee2e2) !important;
+    --ripple-color: var(--ds-danger);
   }
 }

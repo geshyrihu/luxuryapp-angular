@@ -13,7 +13,7 @@ import { CheckboxModule } from "primeng/checkbox";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
@@ -52,7 +52,7 @@ const GUIA_LABELS: Record<string, string> = {
     InputText,
     InputTextarea,
     InputNumber,
-    CustomInputDatepicker,
+    InputDatepicker,
     CustomInputToggleSwitch,
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,

@@ -9,9 +9,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 @Component({
   selector: "app-funding-purchase-detail",
-  imports: [CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe, LxTag],
+  imports: [
+    LxSpinner,CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-purchase-detail.html",
 })

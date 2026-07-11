@@ -31,12 +31,14 @@ import type {
   CobranzaOnlineExcludedAccountRow,
   CobranzaOnlineExcludedAccountUpsert,
 } from "../../models/cobranza-online-exclusions.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-cobranza-online-exclusions",
   templateUrl: "./cobranza-online-exclusions.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     RouterModule,

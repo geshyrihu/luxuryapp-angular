@@ -14,7 +14,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CardModule } from "primeng/card";
@@ -23,6 +23,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface IReviewForm {
   id: FormControl<string | null>;
@@ -37,10 +38,11 @@ interface IReviewForm {
   templateUrl: "./inspeccion-activo-condominio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     FormsModule,
     ReactiveFormsModule,
     CardModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     WebButtonLabelSave,

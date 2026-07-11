@@ -9,7 +9,7 @@ import { FormControl } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -20,7 +20,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
     LxCard,
     WebButtonLabel,
     CustomInputTextSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputAutoMultiple,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

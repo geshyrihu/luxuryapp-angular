@@ -1,5 +1,4 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { IonIcon } from "@ionic/angular/standalone";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -41,7 +40,6 @@ import { CustomerProviderForm } from "./customer-provider-form";
     DataViewMobile,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    IonIcon,
     MobileListItem,
     AppIcon,
   ],

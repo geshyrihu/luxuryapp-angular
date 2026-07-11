@@ -13,7 +13,7 @@ import { CustomInputMaskSignal } from "../custom-input-mask-signal";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputMaskSignal],
   template: `
-    <custom-input-mask-signal
+    <web-custom-input-mask-signal
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

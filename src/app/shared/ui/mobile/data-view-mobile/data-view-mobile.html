@@ -10,14 +10,13 @@
     "
     class="pb-1"
   >
-    <!-- 🧭 Breadcrumb Premium (Pill Style) -->
+    <!-- 🧭 Breadcrumb Premium -->
     @if (viewchildBreadcrumb() && breadcrumbItems().length > 0) {
     <div
-      class="flex justify-content-center px-3 py-2 border-bottom-1 border-50 surface-ground shadow-inner overflow-hidden"
+      class="flex justify-content-center px-3 py-1 bg-transparent"
     >
       <div
-        class="flex align-items-center gap-1 px-3 py-1 border-round-pill shadow-1 border-1 overflow-x-auto no-scrollbar max-w-full"
-        style="background: var(--ds-bg-surface); border-color: var(--ds-border)"
+        class="flex align-items-center gap-1 overflow-x-auto no-scrollbar max-w-full"
       >
         @for (item of breadcrumbItems(); track $index; let last = $last) {
         <div class="flex align-items-center">
@@ -63,26 +62,46 @@
       </ion-button>
       }
     </div>
+
+    <!-- Custom Filters Slot -->
+    @if (filterValue() === '') {
+    <ng-content select="[customFilters]"></ng-content>
+    }
   </div>
 
   <!-- Content List -->
-  @if (isGrouped()) {
-  <ion-list class="bg-transparent">
-    @for (group of objectKeys(groupedData()); track group) { @if
-    (groupedData()[group]?.length > 0) {
-    <ion-item-divider sticky="true" class="p-2">
-      <ion-label>{{ group }}</ion-label>
-    </ion-item-divider>
-
-    @for (item of groupedData()[group]; track trackByFn($index, item)) { @if
-    (item.visible !== false) {
-    <ng-container
-      *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
-    ></ng-container>
-    } } } }
-  </ion-list>
-  } @else {
   <div class="flex-grow-1 relative overflow-y-auto min-h-0">
+    @if (isGrouped()) {
+    <div class="pb-4">
+      @for (group of objectKeys(groupedData()); track group) { 
+        @if (groupedData()[group]?.length > 0) {
+        
+        <!-- Group Header Premium -->
+        <div 
+          class="sticky z-2 flex align-items-center justify-content-between px-3 py-2 surface-100 border-y-1 surface-border shadow-1 mb-2 mt-2 mx-2 border-round"
+          style="top: 0;"
+        >
+          <span class="text-sm font-bold text-800 uppercase tracking-wider">{{ group }}</span>
+          <span class="text-xs font-medium text-500 bg-surface-200 px-2 py-1 border-round-xl">
+            {{ groupedData()[group].length }}
+          </span>
+        </div>
+
+        <!-- Group Items -->
+        <div>
+          @for (item of groupedData()[group]; track trackByFn($index, item)) { 
+            @if (item.visible !== false) {
+            <ng-container
+              *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
+            ></ng-container>
+            } 
+          }
+        </div>
+        
+        } 
+      }
+    </div>
+    } @else {
     <!-- Loading Indicator -->
     @if (loading()) {
     <div class="p-3">
@@ -90,14 +109,10 @@
     </div>
     }
 
-    <!-- Custom Filters Slot -->
-    @if (filterValue() === '') {
-    <ng-content select="[customFilters]"></ng-content>
-    }
 
     <!-- Data List -->
     @if (filteredData().length > 0) {
-    <ion-list class="bg-transparent p-2" lines="full">
+    <ion-list class="bg-transparent" lines="full">
       @for (item of filteredData(); track trackByFn($index, item)) {
       <ng-container
         *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
@@ -128,8 +143,8 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
     }
+    }
   </div>
-  }
 
   <!-- Default Template (Fallback) -->
   <ng-template #defaultListItemTemplate let-item="item">

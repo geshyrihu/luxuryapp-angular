@@ -22,7 +22,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { CredentialDetailDTO } from "./models/password.dto";
+import { CredentialDetailDTO } from "./interfaces/password.dto";
 
 /**
  * Formulario para crear o editar credenciales de servicios operativos.
@@ -135,3 +135,4 @@ export class PasswordForm implements OnInit {
     return null;
   }
 }
+

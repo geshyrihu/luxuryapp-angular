@@ -19,7 +19,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  * Usa un calendario con seleccionador de tiempo.
  */
 @Component({
-  selector: "custom-input-date-time-signal",
+  selector: "web-custom-input-date-time-signal",
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,

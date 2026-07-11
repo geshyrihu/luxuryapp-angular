@@ -13,7 +13,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -41,7 +41,7 @@ const tipoGastoLabels: { [key: number]: string } = {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,

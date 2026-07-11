@@ -33,12 +33,14 @@ import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspecti
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-cobranza-online-inspection",
   templateUrl: "./cobranza-online-inspection.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     WebButtonIcon,
     TooltipModule,
     CommonModule,

@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import {} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";

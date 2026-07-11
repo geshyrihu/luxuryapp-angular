@@ -45,12 +45,14 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { ROUTES } from "src/app/routing/route-paths";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 
 @Component({
   selector: "app-medidores-list",
   templateUrl: "./medidores-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabelDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,

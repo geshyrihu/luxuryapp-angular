@@ -9,7 +9,7 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -35,7 +35,7 @@ import { TaskGroupService } from "../../task.service";
     CardModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    CustomInputImg,
+    InputImg,
     CustomInputTextAreaSignal,
     WebButtonLabel,
     WebButtonLabelSave,

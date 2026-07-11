@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -108,7 +108,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -131,19 +131,18 @@
           style="font-size: 1.1rem; color: var(--ds-success)"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.requestTypeName }}</h2>
-        <p class="mt-0 mb-0">{{ item.userName }}</p>
-        <p class="text-color-secondary font-size-12 mt-0 mb-0">
-          {{ item.startDate | date: "dd/MM/yyyy" }} - {{ item.endDate | date:
-          "dd/MM/yyyy" }}
-        </p>
-        <p class="text-color-secondary font-size-12 mt-0 mb-0">
-          Estado: {{ item.status }}
-        </p>
-      
 
-      <ili-action-menu end>
+      <h2 class="font-normal m-0">{{ item.requestTypeName }}</h2>
+      <p class="mt-0 mb-0">{{ item.userName }}</p>
+      <p class="text-color-secondary font-size-12 mt-0 mb-0">
+        {{ item.startDate | date: "dd/MM/yyyy" }} - {{ item.endDate | date:
+        "dd/MM/yyyy" }}
+      </p>
+      <p class="text-color-secondary font-size-12 mt-0 mb-0">
+        Estado: {{ item.status }}
+      </p>
+
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

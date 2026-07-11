@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
     <p-table
@@ -87,7 +87,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -95,7 +95,7 @@
   [globalFilterFields]="globalFilterFields"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -110,37 +110,35 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      
-        <div class="flex justify-content-between align-items-center mb-1">
-          <h2 class="font-bold m-0 text-base text-wrap">
-            {{ item.machinery }}
-          </h2>
-        </div>
-        <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" /> Folio: {{
-          item.folio }}
-        </p>
-        <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" /> {{
-          item.requestDate }}
-        </p>
-        <p class="text-sm text-700 mt-2 mb-1">
-          <strong>Reporte:</strong> {{ item.report }}
-        </p>
-        <p class="text-sm text-700 m-0 mb-1">
-          <strong>Respuesta:</strong> {{ item.request }}
-        </p>
-        <div class="flex flex-column gap-1 mt-1">
-          <small class="text-xs text-500"
-            >Reportú: {{ item.personWhoReports }}</small
-          >
-          <small class="text-xs text-500"
-            >Atendié: {{ item.technicianWhoAttended }}</small
-          >
-        </div>
-      
+
+      <div class="flex justify-content-between align-items-center mb-1">
+        <h2 class="font-bold m-0 text-base text-wrap">{{ item.machinery }}</h2>
+      </div>
+      <p class="text-sm text-500 m-0">
+        <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" /> Folio: {{
+        item.folio }}
+      </p>
+      <p class="text-sm text-500 m-0">
+        <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" /> {{
+        item.requestDate }}
+      </p>
+      <p class="text-sm text-700 mt-2 mb-1">
+        <strong>Reporte:</strong> {{ item.report }}
+      </p>
+      <p class="text-sm text-700 m-0 mb-1">
+        <strong>Respuesta:</strong> {{ item.request }}
+      </p>
+      <div class="flex flex-column gap-1 mt-1">
+        <small class="text-xs text-500"
+          >Reportú: {{ item.personWhoReports }}</small
+        >
+        <small class="text-xs text-500"
+          >Atendié: {{ item.technicianWhoAttended }}</small
+        >
+      </div>
+
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

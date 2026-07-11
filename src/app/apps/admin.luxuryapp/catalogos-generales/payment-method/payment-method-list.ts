@@ -26,14 +26,18 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { PaymentMethodDto } from "./models/payment-method.dto";
+import { PaymentMethodDto } from "./interfaces/payment-method.dto";
 import { PaymentMethodForm } from "./payment-method-form";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-payment-method-list",
   templateUrl: "./payment-method-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonIconEdit,

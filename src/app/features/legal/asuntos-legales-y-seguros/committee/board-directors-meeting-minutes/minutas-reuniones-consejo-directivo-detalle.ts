@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { IonCardSubtitle, IonListHeader } from "@ionic/angular/standalone";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -14,13 +13,13 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
   imports: [
+    MobileListItem,
     CommonModule,
-    IonCardSubtitle,
-    IonListHeader,
     AppIcon,
     LxTag,
     LxBadge,

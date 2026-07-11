@@ -29,13 +29,19 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { VaultSecretForm } from "./vault-secret-form";
-import { VaultSecretSummary } from "./models/vault-secret.model";
+import { VaultSecretSummary } from "./interfaces/vault-secret.model";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-vault-secrets-list",
   templateUrl: "./vault-secrets-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabel,
+    AppIcon,
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     DatePipe,
     TableModule,

@@ -13,25 +13,20 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-// import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+// import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-interface ICustomerProviderForm {
-  id: FormControl<string | null>;
-  customerId: FormControl<string | null>;
-  providerId: FormControl<string | null>;
-  providerName: FormControl<string | null>;
-  categoryId: FormControl<number | null>;
-  categoryName: FormControl<string | null>;
-}
+import { CustomerProviderFormGroup } from "./interfaces/customer-provider-form.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-customer-provider-form",
-  imports: [ReactiveFormsModule, CustomInputAutoComplete, WebButtonLabelSave],
+  imports: [
+    AppIcon,ReactiveFormsModule, InputAutocomplete, WebButtonLabelSave],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./customer-provider-form.html",
 })
@@ -48,7 +43,7 @@ export class CustomerProviderForm implements OnInit {
   cb_providers = signal<ISelectItem[]>([]);
   cb_categories = signal<ISelectItem[]>([]);
 
-  form: FormGroup<ICustomerProviderForm> = this.formB.group({
+  form: FormGroup<CustomerProviderFormGroup> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
     customerId: new FormControl<string | null>(this.customerIdS.customerId(), {
       validators: [Validators.required],

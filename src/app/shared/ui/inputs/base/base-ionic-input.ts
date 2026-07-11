@@ -27,17 +27,16 @@ import { BaseInputSignal } from "./base-input-signal";
   selector: "base-ionic-input",
   imports: [CommonModule, ReactiveFormsModule, IonNote],
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content></ng-content></ng-template>
     @if (onlyInput()) {
       <!-- Solo input sin wrapper (para casos embebidos) -->
-      <ng-content></ng-content>
+      <ng-container [ngTemplateOutlet]="projected" />
     } @else {
-      <!-- Layout Ionic: IonItem actúa como contenedor del label + control -->
-      @if (label()) {
-        <!-- El label nativo flotante lo manejará el ion-input interno, omitimos inyectar label manual -->
-        <ng-content></ng-content>
-      }
+      <!-- Layout Ionic: el label nativo flotante lo maneja el ion-input interno -->
       <!-- El input específico se proyecta aquí -->
-      <ng-content></ng-content>
+      <ng-container [ngTemplateOutlet]="projected" />
 
       <!-- Mensajes de error bajo el input -->
       @if (shouldShowErrors()) {

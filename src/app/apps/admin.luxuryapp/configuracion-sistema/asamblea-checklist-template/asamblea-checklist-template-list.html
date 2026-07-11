@@ -91,7 +91,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -107,7 +107,7 @@
         />
       </div>
       
-        <h3 class="font-semibold m-0 text-color">{{ item.title }}</h3>
+        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
         <p class="text-xs m-0 mt-1 text-color-secondary">
           {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
           }}
@@ -123,7 +123,7 @@
         </p>
       
 
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar item de checklist' })"

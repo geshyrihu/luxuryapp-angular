@@ -17,7 +17,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
-  selector: "custom-input-autocomplete-signal",
+  selector: "web-custom-input-autocomplete-signal",
   imports: [
     CommonModule,
     NgTemplateOutlet,
@@ -65,7 +65,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [inputId]="id()"
         appendTo="body"
       >
-        @if (itemTemplate(); as tpl) {
+        @if (itemTemplate() || itemTemplateIn(); as tpl) {
           <ng-template let-item #item>
             <ng-container
               [ngTemplateOutlet]="tpl"
@@ -78,7 +78,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
           </ng-template>
         }
 
-        @if (selectedItemTemplate(); as tpl) {
+        @if (selectedItemTemplate() || selectedItemTemplateIn(); as tpl) {
           <ng-template let-item #selectedItem>
             <ng-container
               [ngTemplateOutlet]="tpl"
@@ -105,6 +105,9 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputAutoComplete extends BaseInputSignal {
   itemTemplate = contentChild<TemplateRef<any>>("item");
   selectedItemTemplate = contentChild<TemplateRef<any>>("selectedItem");
+  /** Passthrough para capas superiores (shell/adaptive) que re-proyectan templates. */
+  itemTemplateIn = input<TemplateRef<any> | undefined>(undefined);
+  selectedItemTemplateIn = input<TemplateRef<any> | undefined>(undefined);
 
   data = input<any[]>([]);
   suggestionsInput = input<any[]>([], { alias: "suggestions" });

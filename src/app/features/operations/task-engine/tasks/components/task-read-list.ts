@@ -15,11 +15,13 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-task-read-list",
   templateUrl: "./task-read-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, CardModule],
+  imports: [
+    AppIcon,TableModule, CardModule],
 })
 export class TaskReadList implements OnInit {
   apiResponseS = inject(ApiResponseService);

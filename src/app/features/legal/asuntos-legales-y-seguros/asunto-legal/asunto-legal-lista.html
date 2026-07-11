@@ -104,7 +104,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Vista para míviles -->
+<!--📲INICIO: Vista para míviles -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -135,31 +135,28 @@
         />
       </div>
       <div class="p-3 border-bottom-1 surface-border">
-        
-          <div class="flex justify-content-between align-items-center w-full">
-            <span class="font-bold text-lg">{{ category.name }}</span>
-            <div class="flex">
-              <ili-button-edit
-                (clicked)="
+        <div class="flex justify-content-between align-items-center w-full">
+          <span class="font-bold text-lg">{{ category.name }}</span>
+          <div class="flex">
+            <ili-button-edit
+              (clicked)="
                   onModalEditCategorie({ id: category.id, title: 'Editar' })
                 "
-              />
-              <ili-button-delete (confirmed)="onDeleteCategorie(category.id)" />
-            </div>
+            />
+            <ili-button-delete (confirmed)="onDeleteCategorie(category.id)" />
           </div>
-        
+        </div>
       </div>
 
       @for (legalMatter of category.legalMatters; track legalMatter) {
       <ili-list-item>
-        
-          <h3 class="font-bold text-wrap">{{ legalMatter.title }}</h3>
-          <p class="text-small text-color-secondary">
-            {{ legalMatter.isInternal ? "Interno" : "Externo" }}
-          </p>
-        
+        <h3 class="font-bold text-wrap">{{ legalMatter.title }}</h3>
+        <p class="text-small text-color-secondary">
+          {{ legalMatter.isInternal ? "Interno" : "Externo" }}
+        </p>
+
         <div end>
-          <ili-action-menu>
+          <ili-action-menu slot="end">
             <ng-container actions>
               <ili-button-edit
                 (clicked)="onModalForm({ id: legalMatter.id, title: 'Editar' })"

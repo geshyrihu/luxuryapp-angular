@@ -8,10 +8,12 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-digital-signature",
-  imports: [FormsModule, WebButtonLabel],
+  imports: [
+    AppIcon,FormsModule, WebButtonLabel],
   templateUrl: "./digital-signature.html",
 })
 export class DigitalSignatureComponent {

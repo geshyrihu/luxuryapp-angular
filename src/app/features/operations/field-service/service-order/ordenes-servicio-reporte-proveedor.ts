@@ -14,12 +14,14 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
   templateUrl: "./ordenes-servicio-reporte-proveedor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIconDelete, PrimeNgCustomTableEmptyMessage, TableModule],
+  imports: [
+    AppIcon,WebButtonIconDelete, PrimeNgCustomTableEmptyMessage, TableModule],
 })
 export class OrdenesServicioReporteProveedor {
   config = inject(DynamicDialogConfig);

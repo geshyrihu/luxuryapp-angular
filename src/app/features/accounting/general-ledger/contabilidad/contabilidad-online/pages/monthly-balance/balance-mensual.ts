@@ -17,10 +17,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-balance-mensual",
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     TableModule,

@@ -156,7 +156,7 @@
     </div>
 
     <ng-template #listItemTemplate let-item>
-      <ili-list-item class="ion-no-padding">
+      <ili-list-item>
 <div
           start
           class="mobile-avatar-slot"
@@ -196,7 +196,7 @@
           }
         
 
-        <ili-action-menu end>
+        <ili-action-menu slot="end">
           <ng-container actions>
             @if (shouldShowVacancyRequest(item)) {
             <ili-button-item

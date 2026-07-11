@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación

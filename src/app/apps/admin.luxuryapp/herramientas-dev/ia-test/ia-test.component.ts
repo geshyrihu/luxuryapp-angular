@@ -11,7 +11,8 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { LxCard } from "@ui/adaptive/card/card";
-import { AiTestResultDTO, IaTestService } from "./ia-test.service";
+import { IaTestService } from "./ia-test.service";
+import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
 
 @Component({
   selector: "app-ia-test",
@@ -50,7 +51,7 @@ export default class IaTestComponent {
   ]);
 
   isLoading = signal<boolean>(false);
-  result = signal<AiTestResultDTO | null>(null);
+  result = signal<AiTestResultDto | null>(null);
 
   async onTestProfile() {
     if (this.form.invalid) {

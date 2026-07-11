@@ -225,7 +225,7 @@ export class AnnouncementAdminForm implements OnInit {
     const currentData = this.data();
     if (!currentData?.attachments) return;
 
-    // Aóadir a lista de borrado
+    // Añadira lista de borrado
     this.attachmentsToDelete.update((ids) => [...ids, attachmentToRemove.id]);
 
     // Remover de la vista local (signal)

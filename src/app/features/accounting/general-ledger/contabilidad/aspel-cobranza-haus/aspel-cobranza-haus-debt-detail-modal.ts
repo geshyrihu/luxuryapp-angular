@@ -17,12 +17,14 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 
 @Component({
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
   templateUrl: "./aspel-cobranza-haus-debt-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabelDownload,
     CommonModule,
     TableModule,
     WebButtonLabel,

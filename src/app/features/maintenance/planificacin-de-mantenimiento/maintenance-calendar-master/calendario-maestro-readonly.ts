@@ -11,12 +11,14 @@ import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-calendario-maestro-readonly",
   templateUrl: "./calendario-maestro-readonly.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxDivider, LxTag, TooltipModule],
+  imports: [
+    AppIcon,LxDivider, LxTag, TooltipModule],
 })
 export class CalendarioMaestroReadonly implements OnInit {
   private apiResponseS = inject(ApiResponseService);

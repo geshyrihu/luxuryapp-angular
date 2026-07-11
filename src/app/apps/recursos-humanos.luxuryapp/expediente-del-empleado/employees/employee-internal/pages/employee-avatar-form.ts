@@ -6,14 +6,14 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-employee-avatar-form",
   templateUrl: "./employee-avatar-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CustomInputImg],
+  imports: [InputImg],
 })
 export class EmployeeAvatarForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

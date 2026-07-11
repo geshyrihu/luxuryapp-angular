@@ -14,8 +14,8 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -26,23 +26,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ICustomerForm } from "src/app/core/interfaces/customer-form.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { DateService } from "src/app/core/services/date.service";
-import { CustomerAddOrEditDto } from "./models/customer-add-or-edit.dto";
-interface ICustomerFormGroup {
-  id: FormControl<string | null>;
-  active: FormControl<boolean | null>;
-  nameCustomer: FormControl<string>;
-  nombreCorto: FormControl<string>;
-  numeroCliente: FormControl<string>;
-  phoneOne: FormControl<string | null>;
-  phoneTwo: FormControl<string | null>;
-  photoPath: FormControl<string | File | null>;
-  register: FormControl<Date | string>;
-  rfc: FormControl<string>;
-  folioPrefix: FormControl<string | null>;
-  adreess: FormControl<string>;
-  latitud: FormControl<string>;
-  longitud: FormControl<string>;
-}
+import { CustomerAddOrEditDto } from "./interfaces/customer-add-or-edit.dto";
+import { CustomerFormGroup } from "./interfaces/customer-form.interface";
 
 @Component({
   selector: "app-customer-form",
@@ -51,11 +36,11 @@ interface ICustomerFormGroup {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
+    InputMask,
     CustomInputDateSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    CustomInputImg,
+    InputImg,
     WebButtonLabelSave,
   ],
 })
@@ -76,7 +61,7 @@ export class CustomerForm implements OnInit {
   model: ICustomerForm;
   photoFileUpdate: boolean = false;
 
-  form: FormGroup<ICustomerFormGroup> = this.formB.group({
+  form: FormGroup<CustomerFormGroup> = this.formB.group({
     id: new FormControl({ value: this.id, disabled: true }),
     active: new FormControl<boolean | null>(null),
     nameCustomer: new FormControl("", {

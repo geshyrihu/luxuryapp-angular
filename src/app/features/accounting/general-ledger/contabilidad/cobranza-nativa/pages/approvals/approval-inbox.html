@@ -72,7 +72,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -91,7 +91,7 @@
         </p>
       </div>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
         </ng-container>

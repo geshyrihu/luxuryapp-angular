@@ -121,7 +121,7 @@
         class="m-0 border-round-lg overflow-hidden shadow-1"
       >
         @for (item of group.items; track item.moduleAppId) {
-        <ili-list-item class="ion-no-padding" [noPadding]="true">
+        <ili-list-item class="ion-no-padding">
           <div slot="start" class="pl-3 py-2 flex align-items-center">
             <app-icon
               [icon]="item.isAssigned ? 'mdi:check-circle' : 'mdi:circle-outline'"

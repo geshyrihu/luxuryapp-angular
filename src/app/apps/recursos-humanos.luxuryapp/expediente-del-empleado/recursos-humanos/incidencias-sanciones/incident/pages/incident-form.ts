@@ -14,7 +14,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { InputDateTime } from "@ui/inputs/adaptive/input-date-time/input-date-time";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -56,7 +56,7 @@ interface IIncidentForm {
     ReactiveFormsModule,
     LxTabs,
     CustomInputSelectSignal,
-    CustomInputDateTimeSignal,
+    InputDateTime,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
     IncidentAttachmentsComponent,

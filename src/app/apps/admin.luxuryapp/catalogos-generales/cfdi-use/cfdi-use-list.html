@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -56,7 +56,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -68,7 +68,6 @@
       lines="full"
       detail="false"
       class="ion-no-padding"
-      [noPadding]="true"
     >
       <div
         slot="start"
@@ -87,7 +86,7 @@
 
       <!-- Jerarquóa Visual -->
       <div class="ion-text-wrap">
-        <h3 class="font-semibold m-0 text-color">{{ item.codigo }}</h3>
+        <p class="font-semibold m-0 text-color">{{ item.codigo }}</p>
         <p class="text-xs m-0 mt-1 text-color-secondary">
           {{ item.descripcion }}
         </p>

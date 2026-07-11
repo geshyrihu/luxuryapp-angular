@@ -12,10 +12,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputDateTimeNative } from "@ui/inputs/web/custom-input-date-time-native";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputImg } from "@ui/inputs/web/custom-input-img-signal";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -36,8 +36,8 @@ import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
     CustomInputTextSignal,
     CustomInputDateTimeNative,
     CustomInputDecimal,
-    CustomInputImg,
-    CustomInputAutoComplete,
+    InputImg,
+    InputAutocomplete,
   ],
 })
 export class RecepcionPipasAguaForm implements OnInit {

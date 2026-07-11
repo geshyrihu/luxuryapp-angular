@@ -33,9 +33,11 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { IDestinatariosMailReporte } from "src/app/core/interfaces/destinatarios-mail-reporte.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-send-operation-report",
   imports: [
+    AppIcon,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     CardModule,

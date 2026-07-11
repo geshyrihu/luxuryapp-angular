@@ -33,6 +33,8 @@ import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-comite-vigilancia-list",
@@ -40,6 +42,8 @@ import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
   // Aóadido para Angular 20
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonIconSendEmail,

@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -35,7 +35,7 @@ import { IEmployeeBankDataForm } from "../models/employee-bank-data.interface";
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    CustomInputMaskSignal,
+    InputMask,
     WebButtonLabelSave,
   ],
 })

@@ -20,6 +20,7 @@ import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
 } from "../../models/presupuesto-contabilidad.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface OpcionMes {
   label: string;
@@ -44,6 +45,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 @Component({
   selector: "app-presupuesto-contabilidad",
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     ButtonModule,

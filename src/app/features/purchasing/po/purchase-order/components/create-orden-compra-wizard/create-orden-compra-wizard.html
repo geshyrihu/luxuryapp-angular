@@ -88,11 +88,20 @@
           <div class="grid">
             @for (month of fundingPeriodsByMonth(); track month.monthName) {
             <div class="col-12 md:col-6 lg:col-4">
-              <lx-message [text]="month.monthName" class="w-full justify-content-start"><div class="flex-flex-grow-1-1 text-right">
+              <lx-message
+                [text]="month.monthName"
+                class="w-full justify-content-start"
+                ><div class="flex-flex-grow-1-1 text-right">
                   @for ( quincena of month.quincenas; track quincena.value ) {
-                  <lx-tag (click)="selectFundingPeriod(quincena)" [value]="quincena.label.split(' ')[0]" [severity]=" step1Form.get('fundingPeriod')?.value === quincena.value ? 'success' : 'secondary' " class="ml-2 cursor-pointer" />
+                  <lx-tag
+                    (click)="selectFundingPeriod(quincena)"
+                    [value]="quincena.label.split(' ')[0]"
+                    [severity]=" step1Form.get('fundingPeriod')?.value === quincena.value ? 'success' : 'secondary' "
+                    class="ml-2 cursor-pointer"
+                  />
                   }
-                </div></lx-message>
+                </div></lx-message
+              >
             </div>
             }
           </div>
@@ -107,9 +116,8 @@
     <div>
       <h4>Paso 2: Añadir Productos/Servicios</h4>
       <p>
-        Busque y agregue los artóculos que forman parte de esta orden de compra.
+        Busque y agregue los artículos que forman parte de esta orden de compra.
       </p>
-
       <div class="mt-4">
         <div class="mb-4">
           <custom-input-autocomplete-signal
@@ -300,7 +308,8 @@
       </p>
 
       <div class="mt-4">
-        <app-file-upload #fileUpload
+        <app-file-upload
+          #fileUpload
           name="invoices[]"
           [multiple]="true"
           accept=".pdf,.xml"

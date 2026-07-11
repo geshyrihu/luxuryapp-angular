@@ -40,12 +40,18 @@ import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/
 import { TemplatesForm } from "./templates-form";
 
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 
 @Component({
   selector: "app-templates-list",
   templateUrl: "./templates-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabelDelete,
+    AppIcon,
+    MobileListItem,
     WebButtonIconViewPdf,
     MobileActionMenu,
     MobileButtonLabelEdit,

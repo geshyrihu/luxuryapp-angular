@@ -7,7 +7,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 // 🎭 COMPONENTE DE INPUT CON MÁSCARA
 // Un componente para entradas de texto con formato de máscara.
 @Component({
-  selector: "custom-input-mask-signal",
+  selector: "web-custom-input-mask-signal",
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,

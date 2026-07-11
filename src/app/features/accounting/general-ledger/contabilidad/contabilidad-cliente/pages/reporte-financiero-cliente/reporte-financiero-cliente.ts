@@ -5,10 +5,12 @@ import type {
   IReporteFinancieroFilaDto,
 } from '../../../contabilidad-online/models/aspel-budget.interface';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: 'app-reporte-financiero-cliente',
-  imports: [CommonModule],
+  imports: [
+    AppIcon,CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './reporte-financiero-cliente.html',
 })

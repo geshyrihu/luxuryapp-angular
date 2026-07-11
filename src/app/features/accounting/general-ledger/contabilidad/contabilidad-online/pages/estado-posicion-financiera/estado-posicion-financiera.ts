@@ -16,10 +16,12 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { IEpfDTO } from "../../models/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-estado-posicion-financiera",
-  imports: [CommonModule, FormsModule, LxSkeleton, AccountingNumberPipe],
+  imports: [
+    AppIcon,CommonModule, FormsModule, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-posicion-financiera.html",
 })

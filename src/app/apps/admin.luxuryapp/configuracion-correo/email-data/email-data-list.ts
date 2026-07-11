@@ -29,11 +29,13 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EmailDataForm } from "./email-data-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-email-data-list",
   templateUrl: "./email-data-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonIconEdit,

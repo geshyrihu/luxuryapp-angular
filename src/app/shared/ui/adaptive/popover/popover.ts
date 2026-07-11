@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject, viewChild } from "@angular/core";
 import { PopoverBase } from "@ui/base/popover.base";
 import { MobilePopover } from "@ui/mobile/popover/popover";
@@ -7,8 +8,11 @@ import { PlatformService } from "src/app/core/services/platform.service";
 @Component({
   selector: "lx-popover",
 
-  imports: [AppPopover, MobilePopover],
+  imports: [NgTemplateOutlet, AppPopover, MobilePopover],
   template: `
+    <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
+         slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
+    <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
       <ili-popover
         #inner
@@ -18,7 +22,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [autoZIndex]="autoZIndex()"
         [focusOnShow]="focusOnShow()"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </ili-popover>
     } @else {
       <app-popover
@@ -29,7 +33,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [autoZIndex]="autoZIndex()"
         [focusOnShow]="focusOnShow()"
       >
-        <ng-content />
+        <ng-container [ngTemplateOutlet]="projected" />
       </app-popover>
     }
   `,

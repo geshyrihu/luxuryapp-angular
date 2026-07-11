@@ -295,7 +295,7 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item [noPadding]="true">
+        <ili-list-item>
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -311,9 +311,9 @@
             />
           </div>
           <div class="flex-1 min-w-0 ion-text-wrap">
-            <h3 class="font-semibold m-0 text-color">
+            <p class="font-semibold m-0 text-color">
               {{ item.numeroCuenta }}
-            </h3>
+            </p>
             <p class="text-xs m-0 mt-1 text-color-secondary">
               {{ item.condomino }}
             </p>

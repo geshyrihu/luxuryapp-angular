@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -89,7 +89,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onCreate()"
@@ -112,11 +112,11 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
-        <p class="text-medium text-500 m-0">{{ item.evaluationTemplate }}</p>
-      
-      <ili-action-menu end>
+
+      <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
+      <p class="text-medium text-500 m-0">{{ item.evaluationTemplate }}</p>
+
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-item
             (clicked)="onEdit(item.id)"

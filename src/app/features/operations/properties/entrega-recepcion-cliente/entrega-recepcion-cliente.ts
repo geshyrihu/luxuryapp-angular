@@ -30,12 +30,16 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EntregaRecepcionClienteForm } from "src/app/features/operations/properties/entrega-recepcion/entrega-recepcion-cliente-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    WebButtonLabelEdit,
+    AppIcon,
     WebButtonIconViewPdf,
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelItem,

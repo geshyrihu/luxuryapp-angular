@@ -18,7 +18,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { lastValueFrom } from "rxjs";
@@ -52,7 +52,7 @@ export interface IOrdenCompraDatosPagoForm {
   imports: [
     ReactiveFormsModule,
     ReactiveFormsModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,
@@ -214,7 +214,7 @@ export class OrdenCompraDatosPago implements OnInit {
   }
 
   onSubmit() {
-    // Aqué podrías Aóadir Validators.required al fundingPeriod y fundingYear
+    // Aqué podrías AñadirValidators.required al fundingPeriod y fundingYear
     // si ambos deben ser seleccionados al mismo tiempo.
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach((control) => {

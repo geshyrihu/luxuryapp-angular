@@ -9,7 +9,6 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";

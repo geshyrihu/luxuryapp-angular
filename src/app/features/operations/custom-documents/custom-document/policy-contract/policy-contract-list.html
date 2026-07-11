@@ -46,7 +46,7 @@
         <p-sorticon field="startDateFilter" />
       </th>
       <th pSortableColumn="endDateFilter">
-        Túrmino
+        término
         <p-sorticon field="endDateFilter" />
       </th>
       <th pSortableColumn="tagLabel">
@@ -70,7 +70,7 @@
     <tr pRowGroupHeader>
       <!-- La celda abarca todas las columnas definidas en el header -->
       <td [attr.colspan]="9">
-        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, Túrmino, Estado, Vigencia, Documento, Opciones -->
+        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, término, Estado, Vigencia, Documento, Opciones -->
         <!-- Muestra el nombre del grupo -->
         <strong class="font-bold ml-2 p-0 font-size-24">
           {{ group.typeOfContract }}
@@ -102,7 +102,7 @@
           [severity]="getTagSeverity(item.tagLabel)"
           fluid
           [value]="item.tagLabel"
-         />
+        />
       </td>
       <td>{{ item.validity }}</td>
       <td class="text-center">
@@ -150,7 +150,7 @@
   [globalFilterFields]="globalFilterFields"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -165,24 +165,23 @@
           style="font-size: 1.1rem; color: var(--ds-warning)"
         />
       </div>
-      
-        <div class="flex justify-content-between align-items-center mb-1">
-          <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
-          <lx-tag
-            [severity]="getTagSeverity(item.tagLabel)"
-            [value]="item.tagLabel"
-            class="text-sm"
-           />
-        </div>
-        <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
-        <p class="text-xs text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Inicio: {{
-          item.startDate }}
-        </p>
-      
+
+      <div class="flex justify-content-between align-items-center mb-1">
+        <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
+        <lx-tag
+          [severity]="getTagSeverity(item.tagLabel)"
+          [value]="item.tagLabel"
+          class="text-sm"
+        />
+      </div>
+      <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
+      <p class="text-xs text-500 m-0">
+        <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Inicio: {{
+        item.startDate }}
+      </p>
 
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-view-pdf
               [url]="item.pathDocument"

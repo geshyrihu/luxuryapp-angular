@@ -20,6 +20,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface VacationHistoryItemDTO {
   id: string;
@@ -52,6 +53,7 @@ export interface VacationHistoryItemDTO {
   templateUrl: "./vacaciones-admin-auditoria.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     LxCard,

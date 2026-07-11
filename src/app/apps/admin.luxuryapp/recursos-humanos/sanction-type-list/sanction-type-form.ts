@@ -21,15 +21,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { SanctionTypeDetailDTO } from "src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/hr-catalog/models/hr-catalog.interfaces";
-
-interface ISanctionTypeForm {
-  name: import("@angular/forms").FormControl<string>;
-  description: import("@angular/forms").FormControl<string>;
-  severityLevel: import("@angular/forms").FormControl<number>;
-  isTermination: import("@angular/forms").FormControl<boolean>;
-  requiresHRApproval: import("@angular/forms").FormControl<boolean>;
-  isActive: import("@angular/forms").FormControl<boolean>;
-}
+import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface";
 
 @Component({
   selector: "app-sanction-type-form",
@@ -56,7 +48,7 @@ export class SanctionTypeForm implements OnInit {
   // ? OBLIGATORIO: Cargar selects de enums desde el servicio
   cb_severity = signal<ISelectItem[]>([]);
 
-  form!: FormGroup<ISanctionTypeForm>;
+  form!: FormGroup<SanctionTypeFormGroup>;
 
   ngOnInit(): void {
     // Cargar opciones de enums desde el backend
@@ -68,7 +60,7 @@ export class SanctionTypeForm implements OnInit {
     this.id = this.config.data?.id || "";
 
     // Inicializar formulario para modo creación
-    this.form = this.fb.group<ISanctionTypeForm>({
+    this.form = this.fb.group<SanctionTypeFormGroup>({
       name: this.fb.control(""),
       description: this.fb.control(""),
       severityLevel: this.fb.control<number>(0),

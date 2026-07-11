@@ -64,7 +64,7 @@
     </ng-template>
   </p-table>
 
-  <!-- ?? INICIO: Componente adaptado para versión mívil -->
+  <!--📲INICIO: Componente adaptado para versión mívil -->
   <app-data-view-mobile
     [data]="items()"
     (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Incidencia' })"
@@ -87,23 +87,23 @@
             style="font-size: 1.1rem; color: var(--ds-danger)"
           />
         </div>
-        
-          <h2 class="text-base font-semibold">{{ item.name }}</h2>
-          <p class="text-sm text-wrap">
-            <strong>Categoróa:</strong> {{ item.category }} |
-            <strong>Severidad:</strong> {{ item.defaultSeverity }}
-          </p>
-          <p class="text-sm">
-            <strong>Estado:</strong>
-            @if (item.isActive) {
-            <span class="badge badge-success">Activo</span>
-            } @else {
-            <span class="badge badge-danger">Inactivo</span>
-            }
-          </p>
-        
+
+        <h2 class="text-base font-semibold">{{ item.name }}</h2>
+        <p class="text-sm text-wrap">
+          <strong>Categoróa:</strong> {{ item.category }} |
+          <strong>Severidad:</strong> {{ item.defaultSeverity }}
+        </p>
+        <p class="text-sm">
+          <strong>Estado:</strong>
+          @if (item.isActive) {
+          <span class="badge badge-success">Activo</span>
+          } @else {
+          <span class="badge badge-danger">Inactivo</span>
+          }
+        </p>
+
         <div end>
-          <ili-action-menu>
+          <ili-action-menu slot="end">
             <ng-container actions>
               <ili-button-edit (clicked)="onEdit(item)" label="Editar" />
               <ili-button-delete

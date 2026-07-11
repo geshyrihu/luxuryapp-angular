@@ -1,0 +1,72 @@
+<div class="hidden md:block fadein">
+  <div class="w-full px-4 py-2">
+    @for (group of objectKeys(menuItemsGrouped); track group) { @if
+    (menuItemsGrouped[group]?.length > 0) {
+    <!-- Header de grupo alineado con master-dashboard -->
+    <div class="flex align-items-center gap-2 mb-4 mt-6">
+      <div class="border-round"
+           style="width:4px;height:20px;"
+           [style.backgroundColor]="menuTone(group).accent"></div>
+      <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase"
+          [ngClass]="menuTone(group).heading">
+        {{ group }}
+      </h2>
+      <div class="flex-grow-1 border-bottom-1 surface-border ml-2"></div>
+    </div>
+
+    <!-- Cards alineadas con master-dashboard: borde top, ícono izquierda, flecha -->
+    <div class="grid mb-5">
+      @for (item of menuItemsGrouped[group]; track item) { @if (item.visible) {
+      <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2">
+        <div
+          class="surface-card border-round-xl p-3 h-full cursor-pointer relative overflow-hidden
+                 shadow-1 hover:shadow-3 transition-all transition-duration-200
+                 flex flex-column gap-3"
+          [style]="{'border-top': '3px solid ' + menuTone(group).accent}"
+          [routerLink]="item.routerLink || null"
+        >
+          <!-- Ícono + flecha (igual a master-dashboard) -->
+          <div class="flex align-items-center justify-content-between">
+            <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+                 style="width:44px;height:44px;"
+                 [style.backgroundColor]="menuTone(group).bgColor">
+              <app-icon [icon]="item.icon"
+                        style="font-size:1.35rem;"
+                        [style.color]="menuTone(group).accent" />
+            </div>
+            <app-icon icon="mdi:arrow-up-right" class="text-400 text-lg" />
+          </div>
+
+          <!-- Label -->
+          <span class="font-bold text-900 text-sm line-height-2">
+            {{ item.label }}
+          </span>
+        </div>
+      </div>
+      } }
+    </div>
+    } }
+  </div>
+</div>
+
+<app-data-view-mobile
+  [groupedData]="menuItemsGrouped"
+  [isGrouped]="true"
+  [showAdd]="false"
+  [globalFilterFields]="[]"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item [divider]="false">
+      <div start
+           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2"
+           [ngClass]="menuTone(item.group).mobileShell"
+           style="width:36px;height:36px;">
+        <app-icon [icon]="item.icon"
+                  class="text-base"
+                  [ngClass]="menuTone(item.group).glyph" />
+      </div>
+      <a [routerLink]="item.routerLink" class="flex align-items-center w-full h-full">{{ item.label }}</a>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+

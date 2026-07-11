@@ -13,12 +13,14 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIcon, TooltipModule],
+  imports: [
+    AppIcon,WebButtonIcon, TooltipModule],
 })
 export class ResultadoInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);

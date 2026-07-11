@@ -17,10 +17,12 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
-  imports: [CommonModule, AppIcon],
+  imports: [
+    LxTag,CommonModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })

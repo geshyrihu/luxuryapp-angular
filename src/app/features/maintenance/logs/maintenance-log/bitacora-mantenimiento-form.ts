@@ -8,7 +8,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -35,7 +35,7 @@ interface IBitacoraMantenimientoForm {
     CommonModule,
     ReactiveFormsModule,
     WebButtonLabelSave,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputCheckSignal,
     CustomInputTextAreaSignal,
   ],

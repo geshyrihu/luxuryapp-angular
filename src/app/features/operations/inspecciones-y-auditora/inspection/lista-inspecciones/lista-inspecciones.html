@@ -149,7 +149,7 @@
         <span class="text-sm">{{ item.frequency }}</span>
       </span>
       <div slot="end">
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"

@@ -15,10 +15,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { EFinancialApprovalOperationType } from "../../models/enums";
 import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-approval-detail-modal",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextAreaSignal,

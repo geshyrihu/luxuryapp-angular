@@ -14,7 +14,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -36,7 +36,7 @@ interface IEmployeePrincipalDataForm {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
+    InputMask,
     WebButtonLabelSave,
   ],
 })

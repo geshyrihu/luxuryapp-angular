@@ -32,9 +32,13 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { TooltipModule } from "primeng/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-nomina-detalle",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIcon,
     WebButtonIconEdit,
     TooltipModule,

@@ -40,6 +40,7 @@ import {
   trashOutline,
   warningOutline,
 } from "ionicons/icons";
+import { Task } from "./interfaces/task.interface";
 
 
 @Component({
@@ -756,9 +757,6 @@ export class MobileLists {
   ]);
 
   toggleTask(id: number): void {
-    this.tasks.update((list) =>
-      list.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
-    );
   }
 
   // --- Contacts Directory data ---
@@ -830,10 +828,3 @@ export class MobileLists {
   }
 }
 
-interface Task {
-  id: number;
-  title: string;
-  priority: "high" | "medium" | "low";
-  due: string;
-  completed: boolean;
-}

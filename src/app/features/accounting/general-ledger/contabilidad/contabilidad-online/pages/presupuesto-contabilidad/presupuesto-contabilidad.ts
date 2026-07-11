@@ -17,10 +17,12 @@ import type {
 } from "src/app/features/accounting/general-ledger/contabilidad/cobranza-online/models/presupuesto-contabilidad.model";
 import { PurchaseHistory } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-web-aspel/purchase-history";
 import { reportFilterState } from "../../state/financial-report-filter.state";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-presupuesto-contabilidad",
-  imports: [CommonModule],
+  imports: [
+    AppIcon,CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-contabilidad.html",
 })

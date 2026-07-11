@@ -9,13 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "src/app/shared/ui/inputs/web/custom-input-check-signal";
 import { CustomInputNumberSignal } from "src/app/shared/ui/inputs/web/custom-input-number-signal";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon.component";
-
-interface IModuleQuote {
-  id: string;
-  name: string;
-  price: number;
-  selected: boolean;
-}
+import { ModuleQuote } from "./interfaces/module-quote.interface";
 
 @Component({
   selector: "app-cotizador",
@@ -33,7 +27,7 @@ interface IModuleQuote {
 })
 export class CotizadorComponent {
   // Datos mockeados temporalmente como indicó el usuario
-  modules = signal<IModuleQuote[]>([
+  modules = signal<ModuleQuote[]>([
     {
       id: "accounting",
       name: "Contabilidad (Accounting)",
@@ -84,7 +78,7 @@ export class CotizadorComponent {
     return this.selectedModulesPrice() + this.departmentsPrice();
   });
 
-  toggleModule(mod: IModuleQuote, isChecked: boolean) {
+  toggleModule(mod: ModuleQuote, isChecked: boolean) {
     this.modules.update((mods) => {
       const index = mods.findIndex((m) => m.id === mod.id);
       if (index !== -1) {

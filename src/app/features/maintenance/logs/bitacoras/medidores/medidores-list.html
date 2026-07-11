@@ -1,4 +1,4 @@
-ï»¿<!-- Vista de Escritorio -->
+<!-- Vista de Escritorio -->
 <div class="hidden md:block">
   <div class="grid">
     <div class="col-9"></div>
@@ -19,7 +19,7 @@
         [class.border-blue-500]="item.medidorCategoriaId == '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
       >
         <div class="card" class="h-full surface-100">
-          <!-- AÃ³adido surface-100 para fondo -->
+          <!-- Aóadido surface-100 para fondo -->
           
             <div
               class="text-center pointer"
@@ -53,7 +53,7 @@
                 {{ item.numeroMedidor }}
               </h6>
               <p>{{ item.descripcion }}</p>
-              <p>Consumo MÃ­x: {{ item.consumoDiarioMaximo }}</p>
+              <p>Consumo Míx: {{ item.consumoDiarioMaximo }}</p>
             </div>
           
           <div class="mt-3 flex justify-content-end gap-2">
@@ -74,7 +74,7 @@
               />
               <il-button-item
                 iconClass="mdi:chart-line"
-                label="GrÃ³fica"
+                label="Grófica"
                 class="text-xl"
                 (clicked)="onGoToGrafico(item.id)"
               />
@@ -94,7 +94,7 @@
   </div>
 </div>
 
-<!-- Vista MÃ­vil Corregida -->
+<!-- Vista Mívil Corregida -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
@@ -119,7 +119,7 @@
               >{{ item.numeroMedidor }}</span
             >
           </div>
-            <ili-action-menu>
+            <ili-action-menu slot="end">
             <ng-container actions>
               <ili-button-edit
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
@@ -136,7 +136,7 @@
               />
               <ili-button-item
                 iconName="trending-up-outline"
-                label="GrÃ³fica"
+                label="Grófica"
                 (clicked)="onGoToGrafico(item.id)"
               />
               <ili-button-item
@@ -148,12 +148,12 @@
           </ili-action-menu>
         </div>
 
-        <!-- DescripciÃ³n -->
+        <!-- Descripción -->
         <p class="text-sm m-0 text-600 line-height-3 mb-3">
           {{ item.descripcion }}
         </p>
 
-        <!-- Footer: Icono, Consumo y BotÃºn Registrar -->
+        <!-- Footer: Icono, Consumo y Botún Registrar -->
         <div
           class="flex align-items-center justify-content-between pt-3 border-top-1 surface-border"
         >
@@ -170,7 +170,7 @@
             <app-icon icon="mdi:flash" color="success" class="text-2xl mr-2" />
             }
             <div class="flex flex-column">
-              <span class="text-xs text-500 uppercase font-bold">MÃ¡ximo</span>
+              <span class="text-xs text-500 uppercase font-bold">Máximo</span>
               <span class="text-sm font-bold text-700"
                 >{{ item.consumoDiarioMaximo }}</span
               >

@@ -21,14 +21,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { IncidentTypeDetailDTO } from "src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/hr-catalog/models/hr-catalog.interfaces";
-
-interface IIncidentTypeForm {
-  name: import("@angular/forms").FormControl<string>;
-  description: import("@angular/forms").FormControl<string>;
-  category: import("@angular/forms").FormControl<number>;
-  defaultSeverity: import("@angular/forms").FormControl<number>;
-  isActive: import("@angular/forms").FormControl<boolean>;
-}
+import { IncidentTypeFormGroup } from "./interfaces/incident-type-form.interface";
 
 @Component({
   selector: "app-incident-type-form",
@@ -56,7 +49,7 @@ export class IncidentTypeForm implements OnInit {
   cb_category = signal<ISelectItem[]>([]);
   cb_severity = signal<ISelectItem[]>([]);
 
-  form!: FormGroup<IIncidentTypeForm>;
+  form!: FormGroup<IncidentTypeFormGroup>;
 
   ngOnInit(): void {
     // Cargar opciones de enums desde el backend
@@ -71,7 +64,7 @@ export class IncidentTypeForm implements OnInit {
     this.id = this.config.data?.id || "";
 
     // Inicializar formulario para modo creación
-    this.form = this.fb.group<IIncidentTypeForm>({
+    this.form = this.fb.group<IncidentTypeFormGroup>({
       name: this.fb.control(""),
       description: this.fb.control(""),
       category: this.fb.control<number>(0),

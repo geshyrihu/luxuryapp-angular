@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CardModule } from "primeng/card";
@@ -42,7 +42,7 @@ interface IComiteVigilanciaForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     WebButtonLabelSave,
     CardModule,
   ],

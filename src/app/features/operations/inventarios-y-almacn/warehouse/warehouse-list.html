@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -72,7 +72,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [showAdd]="isAdmin"
@@ -81,7 +81,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -96,15 +96,12 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      
-        <p class="mt-0 mb-0 font-bold">{{ item.nombre }}</p>
-        <p class="text-color-secondary text-sm mt-0 mb-0">
-          {{ item.ubicacion }}
-        </p>
-      
+
+      <p class="mt-0 mb-0 font-bold">{{ item.nombre }}</p>
+      <p class="text-color-secondary text-sm mt-0 mb-0">{{ item.ubicacion }}</p>
 
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item
               (clicked)="onViewProducts(item.id)"

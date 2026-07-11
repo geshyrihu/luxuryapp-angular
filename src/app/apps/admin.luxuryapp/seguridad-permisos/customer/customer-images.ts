@@ -13,7 +13,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomerImageDto } from "./models/customer-image.dto";
+import { CustomerImageDto } from "./interfaces/customer-image.dto";
 
 @Component({
   selector: "app-customer-images",

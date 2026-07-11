@@ -8,7 +8,7 @@ import {
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
-  selector: "custom-input-phone-prefix",
+  selector: "web-custom-input-phone-prefix",
   imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
   template: `
     <base-input-signal

@@ -14,7 +14,7 @@ import { CustomInputDatepicker } from "../custom-input-datepicker-signal";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputDatepicker],
   template: `
-    <custom-input-datepicker-signal
+    <web-custom-input-datepicker-signal
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"
@@ -28,6 +28,13 @@ import { CustomInputDatepicker } from "../custom-input-datepicker-signal";
       [hidden]="hidden()"
       [selectionMode]="selectionMode()"
       [dateFormat]="dateFormat()"
+      [showTime]="showTime()"
+      [showClear]="showClear()"
+      [showIcon]="showIcon()"
+      [hourFormat]="hourFormat()"
+      [readonlyInput]="readonlyInput()"
+      [showButtonBar]="showButtonBar()"
+      [dateStyle]="dateStyle()"
       (dateSelect)="dateSelect.emit($event)"
       (dateClear)="dateClear.emit()"
     />
@@ -46,4 +53,11 @@ export class WebInputDatepicker extends BaseInputSignal {
   dateClear = output<void>();
   dateFormat = input<string>("dd/mm/yy");
   selectionMode = input<"single" | "multiple" | "range" | undefined>(undefined);
+  showTime = input<boolean>(false);
+  showClear = input<boolean>(false);
+  showIcon = input<boolean>(true);
+  hourFormat = input<string>("24");
+  readonlyInput = input<boolean>(true);
+  showButtonBar = input<boolean>(true);
+  dateStyle = input<Record<string, string>>({ minWidth: "195px" });
 }

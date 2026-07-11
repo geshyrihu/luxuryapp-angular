@@ -28,11 +28,13 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ModuleAppDto } from "./models/module-app.dto";
+import { ModuleAppDto } from "./interfaces/module-app.dto";
 import { ModuleAppForm } from "./module-app-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-module-app-list",
   imports: [
+    AppIcon,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     LxTag,

@@ -23,6 +23,7 @@ import {
   IncidentPendingDTO,
   IncidentStatsDTO,
 } from "../models/incident-report.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface IReportFilterForm {
   from: import("@angular/forms").FormControl<Date | null>;
@@ -36,6 +37,7 @@ interface IReportFilterForm {
   templateUrl: "./incident-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,

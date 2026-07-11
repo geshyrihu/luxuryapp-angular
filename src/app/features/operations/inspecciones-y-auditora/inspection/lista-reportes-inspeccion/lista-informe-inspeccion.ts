@@ -19,10 +19,12 @@ import { DateService } from "src/app/core/services/date.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-lista-informe-inspeccion",
   imports: [
+    AppIcon,
     WebButtonIcon,
     ReactiveFormsModule,
     CustomInputSelectSignal,

@@ -333,7 +333,7 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
+    <ili-list-item>
 <div
         start
         style="
@@ -358,7 +358,7 @@
           date:'d MMM yyyy':'UTC' }}
         </p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit (clicked)="onAddOrEdit(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />

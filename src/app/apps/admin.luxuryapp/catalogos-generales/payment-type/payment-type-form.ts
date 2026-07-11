@@ -19,12 +19,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-interface IPaymentTypeForm {
-  id: FormControl<string | null>;
-  codigo: FormControl<string>;
-  descripcion: FormControl<string>;
-  applicationUserId: FormControl<string | null>;
-}
+import { PaymentTypeFormGroup } from "./interfaces/payment-type-form.interface";
 
 @Component({
   selector: "app-payment-type-form",
@@ -41,7 +36,7 @@ export class PaymentTypeForm implements OnInit {
   submitting = signal(false);
 
   id: string = "";
-  form: FormGroup<IPaymentTypeForm>;
+  form: FormGroup<PaymentTypeFormGroup>;
 
   ngOnInit(): void {
     this.id = this.config.data.id;

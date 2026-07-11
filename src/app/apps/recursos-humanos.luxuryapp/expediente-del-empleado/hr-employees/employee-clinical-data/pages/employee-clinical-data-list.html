@@ -76,7 +76,7 @@
         <h3>{{ item.name }}</h3>
         <p>{{ item.description }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"

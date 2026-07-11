@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="card">
   <p-table
     [value]="dataSignal()"
@@ -145,13 +145,13 @@
   </p-table>
 </div>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -166,21 +166,20 @@
           style="font-size: 1.1rem; color: var(--ds-danger)"
         />
       </div>
-      
-        <div class="flex flex-column">
-          <h6 class="mb-0">{{ item.producto }}</h6>
-          <small class="text-color-secondary">
-            {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.quienUso }}
-          </small>
-          <small class="text-color-secondary">
-            Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
-            date:'mediumDate':'UTC' }}
-          </small>
-        </div>
-      
+
+      <div class="flex flex-column">
+        <h6 class="mb-0">{{ item.producto }}</h6>
+        <small class="text-color-secondary">
+          {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.quienUso }}
+        </small>
+        <small class="text-color-secondary">
+          Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
+          date:'mediumDate':'UTC' }}
+        </small>
+      </div>
 
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
             <ili-button-item

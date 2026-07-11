@@ -20,12 +20,14 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-minuta-pendientes",
   templateUrl: "./minuta-pendientes.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    LxTag,
     CommonModule,
     ReportHeader,
     SanitizeHtmlPipe,

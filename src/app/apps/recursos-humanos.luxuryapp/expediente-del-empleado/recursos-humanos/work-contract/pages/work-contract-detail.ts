@@ -10,12 +10,14 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { WorkContractDetailDTO } from "../models/work-contract.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-work-contract-detail",
   templateUrl: "./work-contract-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [DatePipe, CurrencyPipe],
+  imports: [
+    AppIcon,DatePipe, CurrencyPipe],
 })
 export class WorkContractDetailComponent implements OnInit {
   apiS = inject(ApiResponseService);

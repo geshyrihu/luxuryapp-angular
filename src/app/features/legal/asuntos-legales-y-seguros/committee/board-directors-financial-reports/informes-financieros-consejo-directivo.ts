@@ -1,5 +1,4 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { IonListHeader } from "@ionic/angular/standalone";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
@@ -14,9 +13,11 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
-  imports: [TableModule, IonListHeader, AppIcon],
+  imports: [
+    MobileListItem,TableModule, AppIcon],
   templateUrl: "./informes-financieros-consejo-directivo.html",
 })
 export class InformesFinancierosConsejoDirectivo implements OnInit {

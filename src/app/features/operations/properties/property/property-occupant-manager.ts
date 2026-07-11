@@ -151,12 +151,12 @@ export class PropertyOccupantManager implements OnInit {
             this.occupants.update((current) => [...current, response]);
             this.resetForm();
           } else {
-            this.errorMensaje = "Error al Aóadir el ocupante.";
+            this.errorMensaje = "Error al Añadirel ocupante.";
           }
         })
         .catch((error) => {
           this.errorMensaje =
-            error.error?.message || "Error al Aóadir el ocupante.";
+            error.error?.message || "Error al Añadirel ocupante.";
           console.error("Error adding occupant:", error);
         })
         .finally(() => this.loading.set(false));

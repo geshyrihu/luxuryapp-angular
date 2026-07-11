@@ -33,11 +33,13 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-solicitud-baja",
   templateUrl: "./solicitud-baja-form.html",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     FileUploadModule,
     CustomInputTextSignal,

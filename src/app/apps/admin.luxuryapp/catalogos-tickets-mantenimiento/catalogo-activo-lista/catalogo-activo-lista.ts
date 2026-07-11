@@ -24,13 +24,20 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CatalogoActivoForm } from "./catalogo-activo-form";
+import { CatalogAsset } from "./interfaces/catalog-asset.interface";
+import { CatalogAssetAddOrEdit } from "./interfaces/catalog-asset-add-or-edit.interface";
+import { AssetCategory } from "./interfaces/asset-category.enum";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-catalogo-activo-lista",
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -102,23 +109,3 @@ export class CatalogoActivoLista {
   }
 }
 
-export interface CatalogAsset {
-  id: string;
-  folio: string;
-  name: string;
-  assetCategory: EAssetCategory;
-}
-export enum EAssetCategory {
-  Equipo,
-  Amenidades,
-  Mobiliario,
-  AreasComunes,
-  Gimnasio,
-  Sistemas,
-  "Almacenes, cuartos y bodegas",
-}
-export interface CatalogAssetAddOrEdit {
-  folio: string;
-  name: string;
-  assetCategory: EAssetCategory;
-}

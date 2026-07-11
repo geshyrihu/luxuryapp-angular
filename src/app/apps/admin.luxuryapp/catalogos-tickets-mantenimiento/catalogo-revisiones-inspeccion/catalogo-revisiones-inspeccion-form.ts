@@ -18,11 +18,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-
-interface ICatalogoRevisionesInspeccionForm {
-  id: FormControl<string>;
-  description: FormControl<string>;
-}
+import { CatalogoRevisionesInspeccionFormGroup } from "./interfaces/catalogo-revisiones-inspeccion-form.interface";
 
 @Component({
   selector: "app-catalogo-revisiones-inspeccion-form",
@@ -42,7 +38,7 @@ export class CatalogoRevisionesInspeccionForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  form: FormGroup<ICatalogoRevisionesInspeccionForm> = new FormGroup({
+  form: FormGroup<CatalogoRevisionesInspeccionFormGroup> = new FormGroup({
     id: new FormControl<string>(
       { value: "", disabled: true },
       { nonNullable: true },

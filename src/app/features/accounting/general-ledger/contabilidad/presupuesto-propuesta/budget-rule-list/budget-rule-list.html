@@ -79,7 +79,7 @@
   (add)="onModalForm({ id: '', title: 'Nueva Regla' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
+    <ili-list-item>
 <div
         start
         class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
@@ -93,7 +93,7 @@
           getScopeLabel(item.customerId) }}
         </p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"

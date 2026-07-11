@@ -40,17 +40,19 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
-import { CustomerDto } from "./models/customer.dto";
+import { CustomerDto } from "./interfaces/customer.dto";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomerAddress } from "./customer-address";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-customer-list",
   templateUrl: "./customer-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    MobileListItem,
     WebButtonIconItem,
     TooltipModule,
     MobileActionMenu,

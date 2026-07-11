@@ -25,9 +25,11 @@ import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interfac
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-evidencias-nomina",
   imports: [
+    AppIcon,
     WebButtonIcon,
     TooltipModule,
     CommonModule,

@@ -14,10 +14,12 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-collection-case-detail-modal",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextAreaSignal,

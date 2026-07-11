@@ -21,16 +21,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-
-interface IAiKnowledgeBaseForm {
-  id: FormControl<string | null>;
-  topic: FormControl<string>;
-  instructions: FormControl<string>;
-  keywords: FormControl<string>;
-  route: FormControl<string>;
-  isActive: FormControl<boolean>;
-  moduleAppId: FormControl<string | null>;
-}
+import { AiKnowledgeBaseFormGroup } from "./interfaces/ai-knowledge-base-form.interface";
 
 @Component({
   selector: "app-ai-knowledge-base-form",
@@ -55,7 +46,7 @@ export class AiKnowledgeBaseForm implements OnInit {
   submitting = signal(false);
   modulesSignal = signal<any[]>([]); // Signal para opciones del select
 
-  form: FormGroup<IAiKnowledgeBaseForm> = this.formB.group({
+  form: FormGroup<AiKnowledgeBaseFormGroup> = this.formB.group({
     id: new FormControl<string | null>(null),
     topic: new FormControl("", {
       nonNullable: true,

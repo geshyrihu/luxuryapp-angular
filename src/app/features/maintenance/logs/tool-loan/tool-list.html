@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -85,7 +85,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -93,7 +93,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -109,13 +109,11 @@
         />
       </div>
 
-      
-        <h2 class="font-normal m-0">{{ item.nameTool }}</h2>
-        <p class="text-medium text-500 m-0">{{ item.category }}</p>
-      
+      <h2 class="font-normal m-0">{{ item.nameTool }}</h2>
+      <p class="text-medium text-500 m-0">{{ item.category }}</p>
 
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

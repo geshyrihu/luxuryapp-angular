@@ -69,7 +69,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         style="
@@ -96,12 +96,12 @@
       
     </ili-list-item>
     @for (itm of item.items; track itm) {
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       
         <h3>{{ itm.nameMachinery }}</h3>
         <p>{{ itm.area }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"

@@ -19,13 +19,8 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CfdiUseAddOrEditDto } from "./models/cfdi-use-add-or-edit.dto";
-interface ICfdiUseForm {
-  id: FormControl<string | null>;
-  codigo: FormControl<string>;
-  descripcion: FormControl<string>;
-  employeeId: FormControl<string | null>;
-}
+import { CfdiUseAddOrEditDto } from "./interfaces/cfdi-use-add-or-edit.dto";
+import { CfdiUseFormGroup } from "./interfaces/cfdi-use-form.interface";
 
 @Component({
   selector: "app-cfdi-use-form",
@@ -42,7 +37,7 @@ export class CfdiUseForm implements OnInit {
   submitting = signal(false);
 
   id: string = "";
-  form: FormGroup<ICfdiUseForm>;
+  form: FormGroup<CfdiUseFormGroup>;
 
   ngOnInit(): void {
     this.id = this.config.data.id;

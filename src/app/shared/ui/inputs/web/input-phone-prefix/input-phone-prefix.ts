@@ -14,7 +14,7 @@ import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
 
   imports: [BaseInputSignal, ReactiveFormsModule, CustomInputPhonePrefix],
   template: `
-    <custom-input-phone-prefix
+    <web-custom-input-phone-prefix
       [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"

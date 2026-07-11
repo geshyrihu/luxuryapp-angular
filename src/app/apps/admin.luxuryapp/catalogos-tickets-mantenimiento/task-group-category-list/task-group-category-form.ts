@@ -25,15 +25,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-
-interface ITaskGroupCategoryForm {
-  id: FormControl<string | null>;
-  name: FormControl<string>;
-  description: FormControl<string>;
-  departament: FormControl<number | null>;
-  emoji: FormControl<string>;
-  color: FormControl<string>;
-}
+import { TaskGroupCategoryFormGroup } from "./interfaces/task-group-category-form.interface";
 
 @Component({
   selector: "app-task-group-category-form",
@@ -58,7 +50,7 @@ export class TaskGroupCategoryForm implements OnInit {
   submitting = signal(false);
   cb_departament = signal<ISelectItem[]>([]);
 
-  form: FormGroup<ITaskGroupCategoryForm> = this.formB.group({
+  form: FormGroup<TaskGroupCategoryFormGroup> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
     name: new FormControl("", {
       nonNullable: true,

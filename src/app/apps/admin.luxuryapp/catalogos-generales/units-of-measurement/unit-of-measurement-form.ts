@@ -19,10 +19,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-interface IUnitOfMeasurementForm {
-  id: FormControl<string | null>;
-  descripcion: FormControl<string>;
-}
+import { UnitOfMeasurementFormGroup } from "./interfaces/unit-of-measurement-form.interface";
 
 @Component({
   selector: "app-unit-of-measurement-form",
@@ -40,7 +37,7 @@ export class UnitOfMeasurementForm implements OnInit {
 
   id: string = "";
 
-  form: FormGroup<IUnitOfMeasurementForm> = this.formB.group({
+  form: FormGroup<UnitOfMeasurementFormGroup> = this.formB.group({
     id: new FormControl({ value: this.id, disabled: true }),
     descripcion: new FormControl("", {
       validators: [Validators.required],

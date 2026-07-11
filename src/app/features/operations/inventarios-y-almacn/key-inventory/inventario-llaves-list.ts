@@ -30,12 +30,16 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { TooltipModule } from "primeng/tooltip";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-inventario-llaves-list",
   templateUrl: "./inventario-llaves-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     WebButtonIconDownload,
     WebButtonIconEdit,
     WebButtonIconDelete,

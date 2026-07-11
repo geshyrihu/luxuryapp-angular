@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import FileSaver from "file-saver";
@@ -25,6 +25,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
 @Component({
@@ -32,11 +33,12 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
   templateUrl: "./recepcion-pipas-agua-reporte.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
     WebButtonIconDownload,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
-    CustomInputDatepicker,
+    InputDatepicker,
     TableModule,
     WebButtonLabelDownload,
     PrimeNgCustomCaption,
@@ -256,7 +258,7 @@ ${this.htmlPrintS.getStandardCss()}
         <tr>
           <th>Empresa</th>
           <th>Placas / Cap.</th>
-          <th>Llegada / Túrmino</th>
+          <th>Llegada / término</th>
           <th style="text-align: center;">Cisterna ant ? des</th>
           <th style="text-align: center;">Medidor ini ? fin</th>
           <th style="text-align: right;">mí</th>

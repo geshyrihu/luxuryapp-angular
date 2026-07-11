@@ -16,7 +16,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -31,6 +31,7 @@ import {
   CreatePropertyMemberDTO,
   UpdatePropertyMemberDTO,
 } from "../../models/property-member.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 // ETypePerson.Client = 2
 const E_TYPE_PERSON_CLIENT = 2;
@@ -54,10 +55,11 @@ interface IMemberForm {
 @Component({
   selector: "app-member-form",
   imports: [
+    AppIcon,
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextSignal,
-    CustomInputMaskSignal,
+    InputMask,
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputDateSignal,

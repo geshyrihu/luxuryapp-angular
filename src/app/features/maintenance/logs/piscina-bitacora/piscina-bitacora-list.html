@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields"
@@ -94,7 +94,7 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -102,7 +102,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item [noPadding]="true">
+    <ili-list-item>
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -117,62 +117,61 @@
           style="font-size: 1.1rem; color: var(--ds-info)"
         />
       </div>
-      
-        <div class="flex justify-content-between align-items-center mb-1">
-          <h2 class="font-bold m-0 text-base">
-            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-primary" />
-            {{ item.dateString }}
-          </h2>
-        </div>
 
-        <!-- Mediciones en Grid Compacto -->
-        <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
-          <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Cl:</strong> {{ item.cl || "é" }}
-          </div>
-          <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Ph:</strong> {{ item.ph || "é" }}
-          </div>
-          <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Alk:</strong> {{ item.alkalinidad ||
-            "é" }}
-          </div>
-          <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Dur:</strong> {{ item.dureza || "é" }}
-          </div>
-          <div class="col-4 p-0 pb-1">
-            <strong class="text-primary">Tem:</strong> {{ item.temperatura ||
-            "é" }}
-          </div>
-        </div>
+      <div class="flex justify-content-between align-items-center mb-1">
+        <h2 class="font-bold m-0 text-base">
+          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-primary" />
+          {{ item.dateString }}
+        </h2>
+      </div>
 
-        <!-- Tareas Realizadas (Iconos) -->
-        <div class="flex align-items-center mt-1">
-          <div
-            class="flex align-items-center gap-1"
-            [class.opacity-50]="!item.cepillado"
-          >
-            <app-icon
-              [icon]="item.cepillado ? 'mdi:check' : 'mdi:close'"
-              [class]="item.cepillado ? 'text-green-600' : 'text-400'"
-            />
-            <small class="text-xs">Cepillado</small>
-          </div>
-          <div
-            class="flex align-items-center gap-1 ml-3"
-            [class.opacity-50]="!item.aspirado"
-          >
-            <app-icon
-              [icon]="item.aspirado ? 'mdi:check' : 'mdi:close'"
-              [class]="item.aspirado ? 'text-green-600' : 'text-400'"
-            />
-            <small class="text-xs">Aspirado</small>
-          </div>
+      <!-- Mediciones en Grid Compacto -->
+      <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Cl:</strong> {{ item.cl || "é" }}
         </div>
-      
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Ph:</strong> {{ item.ph || "é" }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Alk:</strong> {{ item.alkalinidad || "é"
+          }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Dur:</strong> {{ item.dureza || "é" }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Tem:</strong> {{ item.temperatura || "é"
+          }}
+        </div>
+      </div>
+
+      <!-- Tareas Realizadas (Iconos) -->
+      <div class="flex align-items-center mt-1">
+        <div
+          class="flex align-items-center gap-1"
+          [class.opacity-50]="!item.cepillado"
+        >
+          <app-icon
+            [icon]="item.cepillado ? 'mdi:check' : 'mdi:close'"
+            [class]="item.cepillado ? 'text-green-600' : 'text-400'"
+          />
+          <small class="text-xs">Cepillado</small>
+        </div>
+        <div
+          class="flex align-items-center gap-1 ml-3"
+          [class.opacity-50]="!item.aspirado"
+        >
+          <app-icon
+            [icon]="item.aspirado ? 'mdi:check' : 'mdi:close'"
+            [class]="item.aspirado ? 'text-green-600' : 'text-400'"
+          />
+          <small class="text-xs">Aspirado</small>
+        </div>
+      </div>
 
       <div end>
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

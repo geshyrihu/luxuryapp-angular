@@ -1261,7 +1261,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para Aóadir nuevas cuentas a la propuesta.
+   * Muestra el diólogo modal para Añadirnuevas cuentas a la propuesta.
    */
   showAddAccountModal(): void {
     const currentProposal = this.currentProposal();
@@ -1275,7 +1275,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           fiscalYear: currentProposal.fiscalYear,
           proposalId: currentProposal.id,
         },
-        "Aóadir Cuentas",
+        "AñadirCuentas",
         this.dialogHandlerS.sizeLg,
       )
       .then((selectedAccountNumbers: string[]) => {

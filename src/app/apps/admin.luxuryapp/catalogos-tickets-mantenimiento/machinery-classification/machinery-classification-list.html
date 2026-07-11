@@ -1,4 +1,4 @@
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -55,7 +55,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -63,7 +63,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" [noPadding]="true">
+    <ili-list-item lines="full">
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
@@ -82,7 +82,7 @@
         <h2>{{ item.descripcion }}</h2>
       </div>
       <div slot="end">
-        <ili-action-menu>
+        <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -98,4 +98,3 @@
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
-

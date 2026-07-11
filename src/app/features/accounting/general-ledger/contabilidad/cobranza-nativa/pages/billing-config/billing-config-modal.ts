@@ -29,10 +29,12 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { UpsertBillingConfigDTO } from "../../models/billing-config.dto";
 import { EBillingMode } from "../../models/enums";
 import { SaveNativeCollectionNotificationSettingsDTO } from "../../models/notification-settings.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-billing-config-modal",
   imports: [
+    AppIcon,
     CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,

@@ -1,6 +1,6 @@
 <lx-confirm-dialog />
 
-<!-- ??? INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   #dt
   [value]="dataSignal()"
@@ -80,7 +80,7 @@
   </ng-template>
 </p-table>
 
-<!-- ?? INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [dt]="dt"
@@ -103,34 +103,33 @@
           style="font-size: 1.1rem; color: var(--ds-primary)"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.fullName }}</h2>
-        <p class="text-xs m-0">
-          Contratado: {{ item.hireDate | date: "dd/MM/yyyy" }}
+
+      <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+      <p class="text-xs m-0">
+        Contratado: {{ item.hireDate | date: "dd/MM/yyyy" }}
+      </p>
+      @if (item.isEligibleForAdvance) {
+      <div class="mt-1">
+        <p class="text-xs text-blue-600 m-0">
+          Adelanto Disponible: {{ item.availableAdvanceDays }} de {{
+          item.allowedAdvanceDays }}
         </p>
-        @if (item.isEligibleForAdvance) {
-        <div class="mt-1">
-          <p class="text-xs text-blue-600 m-0">
-            Adelanto Disponible: {{ item.availableAdvanceDays }} de {{
-            item.allowedAdvanceDays }}
-          </p>
-        </div>
-        }
+      </div>
+      }
 
-        <div class="flex flex-column mt-2">
-          <p class="text-xs m-0">Balance Sistema</p>
-          <p class="text-lg font-bold m-0">{{ item.currentSystemBalance }}</p>
-        </div>
+      <div class="flex flex-column mt-2">
+        <p class="text-xs m-0">Balance Sistema</p>
+        <p class="text-lg font-bold m-0">{{ item.currentSystemBalance }}</p>
+      </div>
 
-        @if (item.isDiscrepant) {
-        <div class="mt-1">
-          <lx-tag
-            severity="danger"
-            value="DISCREPANCIA (BALANCE NEGATIVO)"
-          ></lx-tag>
-        </div>
-        }
-      
+      @if (item.isDiscrepant) {
+      <div class="mt-1">
+        <lx-tag
+          severity="danger"
+          value="DISCREPANCIA (BALANCE NEGATIVO)"
+        ></lx-tag>
+      </div>
+      }
 
       <div end class="flex align-items-center">
         <il-button-edit (clicked)="openEditModal(item)" />

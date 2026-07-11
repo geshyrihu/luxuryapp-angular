@@ -23,11 +23,15 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
 import { StorageService } from "src/app/core/services/storage.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-maintenance-reports",
   templateUrl: "./maintenance-reports-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     FormsModule,
     RouterModule,
     NgbTooltipModule,

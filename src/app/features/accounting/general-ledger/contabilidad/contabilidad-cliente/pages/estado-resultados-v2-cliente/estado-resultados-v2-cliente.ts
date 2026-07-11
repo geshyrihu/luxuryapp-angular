@@ -9,6 +9,7 @@ import type {
 } from '../../../contabilidad-online/models/aspel-budget.interface';
 import { AccountingNumberPipe } from '../../../contabilidad-online/pipes/accounting-number.pipe';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const MONTH_NAMES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -27,7 +28,8 @@ type ClientRow =
 
 @Component({
   selector: 'app-estado-resultados-v2-cliente',
-  imports: [CommonModule, TableModule, LxSkeleton, AccountingNumberPipe],
+  imports: [
+    AppIcon,CommonModule, TableModule, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './estado-resultados-v2-cliente.html',
 })

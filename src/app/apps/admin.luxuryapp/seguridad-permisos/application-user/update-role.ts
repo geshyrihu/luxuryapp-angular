@@ -12,11 +12,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ERoleType } from "src/app/core/enums/e-role-type";
 import { IRoles } from "src/app/core/interfaces/roles.interface";
-
-interface GroupedRole {
-  groupName: string;
-  roles: IRoles[];
-}
+import { GroupedRole } from "./interfaces/grouped-role.interface";
 
 const roleTypeNames: { [key in ERoleType]: string } = {
   [ERoleType.System]: "Sistema",

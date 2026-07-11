@@ -19,10 +19,16 @@ import {
 } from "./meeting-area-table/meeting-area-table";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-meeting-management",
-  imports: [CommonModule, RouterModule, CardModule, AreaDetailsTable],
+  imports: [
+    LxTag,
+    WebButtonLabel,
+    AppIcon,CommonModule, RouterModule, CardModule, AreaDetailsTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
 })

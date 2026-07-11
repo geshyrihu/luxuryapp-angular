@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -51,7 +51,7 @@ interface ILegalTaskClienteForm {
   imports: [
     ReactiveFormsModule,
     CardModule,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
     WebButtonLabel,

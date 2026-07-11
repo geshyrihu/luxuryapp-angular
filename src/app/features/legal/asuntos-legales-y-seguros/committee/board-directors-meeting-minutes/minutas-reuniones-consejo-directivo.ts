@@ -1,6 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonListHeader } from "@ionic/angular/standalone";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
@@ -13,9 +12,11 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo",
-  imports: [TableModule, RouterModule, IonListHeader, AppIcon],
+  imports: [
+    MobileListItem,TableModule, RouterModule, AppIcon],
   templateUrl: "./minutas-reuniones-consejo-directivo.html",
 })
 export class MinutasReunionesConsejoDirectivo implements OnInit {

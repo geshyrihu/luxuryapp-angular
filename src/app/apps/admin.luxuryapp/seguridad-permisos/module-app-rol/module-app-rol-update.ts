@@ -18,14 +18,14 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import {
-  ModuleAppRolAssignedDto,
-  ModuleGroupRolDto,
-} from "./models/module-app-rol.dto";
+import { ModuleAppRolAssignedDto } from "./interfaces/module-app-rol-assigned.dto";
+import { ModuleGroupRolDto } from "./interfaces/module-group-rol.dto";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-module-app-rol-update",
-  imports: [CommonModule, LxMessage, IonInputToggle, LxSpinner],
+  imports: [
+    AppIcon,CommonModule, LxMessage, IonInputToggle, LxSpinner],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./module-app-rol-update.html",
 })

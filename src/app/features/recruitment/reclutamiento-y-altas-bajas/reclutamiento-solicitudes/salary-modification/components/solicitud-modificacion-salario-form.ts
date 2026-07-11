@@ -13,7 +13,7 @@ import {
 } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -42,7 +42,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
     CustomInputSelectSignal,
     WebButtonLabelSave,
     CustomInputTextAreaSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     CardModule,
   ],
 })

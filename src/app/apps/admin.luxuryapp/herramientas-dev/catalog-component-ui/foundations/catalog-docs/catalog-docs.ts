@@ -3,32 +3,9 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-
-type TagSeverity =
-  "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
-
-interface TipoDocumento {
-  tipo: string;
-  codigo: string;
-  destinatario: string;
-  confidencialidad: string;
-  colorToken: string;
-  severity: TagSeverity;
-}
-
-interface AccesoRol {
-  documento: string;
-  superUsuario: string;
-  direccion: string;
-  staff: string;
-  condomino: string;
-  proveedor: string;
-}
-
-interface NomenclaturaCampo {
-  campo: string;
-  valores: string;
-}
+import { TipoDocumento } from "./interfaces/tipo-documento.interface";
+import { AccesoRol } from "./interfaces/acceso-rol.interface";
+import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
 
 @Component({
   selector: "app-catalog-docs",

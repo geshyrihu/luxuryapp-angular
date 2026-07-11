@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import {} from "@ionic/angular/standalone";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -24,11 +23,15 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-bitacora-acceso",
   templateUrl: "./bitacora-acceso-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     CommonModule,
     TableModule,
     LxAvatar,

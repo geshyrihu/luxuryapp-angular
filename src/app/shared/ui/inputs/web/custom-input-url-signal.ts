@@ -10,7 +10,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  * Valida formato automáticamente en móviles.
  */
 @Component({
-  selector: "custom-input-url",
+  selector: "web-custom-input-url",
   imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
   template: `
     <base-input-signal

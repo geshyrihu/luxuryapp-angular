@@ -35,12 +35,14 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 
 @Component({
   selector: "app-agenda-supervision",
   templateUrl: "./agenda-supervision.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ActionMenu,
     WebButtonIcon,
     TooltipModule,
     PrimeNgCustomTableEmptyMessage,

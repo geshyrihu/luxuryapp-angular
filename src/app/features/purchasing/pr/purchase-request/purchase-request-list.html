@@ -138,7 +138,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding">
+    <ili-list-item>
 <div
         start
         style="
@@ -163,7 +163,7 @@
         <p>{{ item.area }} é Folio: {{ item.folio }}</p>
         <p>{{ item.requestDate | date }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           label="Editar"

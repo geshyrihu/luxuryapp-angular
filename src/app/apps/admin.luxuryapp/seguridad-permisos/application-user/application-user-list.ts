@@ -38,17 +38,19 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ApplicationUserDto } from "./models/application-user.dto";
+import { ApplicationUserDto } from "./interfaces/application-user.dto";
 import { ApplicationUserForm } from "./application-user-form";
 import { MdEditAccount } from "./md-edit-account";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-application-user-list",
   templateUrl: "./application-user-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    MobileListItem,
     WebButtonIconItem,
     TooltipModule,
     MobileActionMenu,

@@ -29,13 +29,17 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CfdiUseDto } from "./models/cfdi-use.dto";
+import { CfdiUseDto } from "./interfaces/cfdi-use.dto";
 import { CfdiUseForm } from "./cfdi-use-form";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-cfdi-use-list",
   templateUrl: "./cfdi-use-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    AppIcon,
+    MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonIconEdit,

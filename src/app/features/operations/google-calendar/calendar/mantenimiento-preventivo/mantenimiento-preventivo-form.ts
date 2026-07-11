@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputAutoComplete } from "@ui/inputs/web/custom-input-autocomplete-signal";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -57,7 +57,7 @@ interface IMantenimientoPreventivoForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputAutoComplete,
+    InputAutocomplete,
     WebButtonLabelSave,
     CardModule,
   ],

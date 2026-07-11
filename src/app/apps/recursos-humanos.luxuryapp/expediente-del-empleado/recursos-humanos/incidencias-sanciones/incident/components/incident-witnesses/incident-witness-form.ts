@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputMaskSignal } from "@ui/inputs/web/custom-input-mask-signal";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -37,7 +37,7 @@ interface IWitnessForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CustomInputMaskSignal,
+    InputMask,
     WebButtonLabelSave,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,

@@ -10,7 +10,6 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import {} from "@ionic/angular/standalone";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -88,6 +87,10 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
+import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 
 @Component({
   selector: "app-task-list",
@@ -124,7 +127,11 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    LxTag,
+    IonInputSelect,
+    IonInputText,
     MobileActionMenu,
+    MobileListItem,
     MobileButtonLabelItem,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,

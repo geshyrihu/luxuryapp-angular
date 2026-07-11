@@ -96,7 +96,7 @@
         <h3>{{ item.nameContact }}</h3>
         <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
@@ -214,7 +214,7 @@
         <h3>{{ item.nameContact }}</h3>
         <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
       
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"

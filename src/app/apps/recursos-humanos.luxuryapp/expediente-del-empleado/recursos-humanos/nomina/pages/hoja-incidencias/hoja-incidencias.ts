@@ -25,9 +25,11 @@ import {
   StatusHoja,
 } from "../../interfaces/hoja-incidencias.interface";
 import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [CommonModule, TooltipModule, LxPopover, WebButtonLabel],
+  imports: [
+    AppIcon,CommonModule, TooltipModule, LxPopover, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })
