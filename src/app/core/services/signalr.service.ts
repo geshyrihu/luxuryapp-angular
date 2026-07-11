@@ -3,6 +3,7 @@ import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
+import { PanicAlertRealTimeDto } from "src/app/features/operations/panic-alert/interfaces/panic-alert-real-time.dto";
 import { environment } from "src/environments/environment";
 import { AuthService } from "../auth/services/auth.service";
 export interface GoogleCalendarEventRealTimeUpdateDTO {
@@ -65,6 +66,13 @@ export class SignalRService {
     new Subject<NativeCollectionRealTimeUpdateDTO>();
   public nativeCollectionUpdate$ =
     this.nativeCollectionUpdateSource.asObservable();
+
+  private panicAlertReceivedSource = new Subject<PanicAlertRealTimeDto>();
+  public panicAlertReceived$ =
+    this.panicAlertReceivedSource.asObservable();
+
+  private panicAlertAttendedSource = new Subject<PanicAlertRealTimeDto>();
+  public panicAlertAttended$ = this.panicAlertAttendedSource.asObservable();
 
   public start(): void {
     if (
@@ -313,6 +321,32 @@ export class SignalRService {
           payload,
         );
         this.nativeCollectionUpdateSource.next(payload);
+      },
+    );
+
+    this.hubConnection.on(
+      "ReceivePanicAlert",
+      (payload: PanicAlertRealTimeDto) => {
+        this.consoleLogger.custom(
+          "ALERT",
+          "red",
+          "[SignalR] Alerta de pánico recibida:",
+          payload,
+        );
+        this.panicAlertReceivedSource.next(payload);
+      },
+    );
+
+    this.hubConnection.on(
+      "ReceivePanicAlertAttended",
+      (payload: PanicAlertRealTimeDto) => {
+        this.consoleLogger.custom(
+          "ALERT",
+          "green",
+          "[SignalR] Alerta de pánico atendida:",
+          payload,
+        );
+        this.panicAlertAttendedSource.next(payload);
       },
     );
   }

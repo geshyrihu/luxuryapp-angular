@@ -11,7 +11,7 @@ import { CustomInputMaskSignal } from "../custom-input-mask-signal";
 @Component({
   selector: "web-input-mask",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputMaskSignal],
+  imports: [ReactiveFormsModule, CustomInputMaskSignal],
   template: `
     <web-custom-input-mask-signal
       [control]="control() || internalControl"

@@ -15,7 +15,6 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 
-import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
@@ -56,7 +55,6 @@ export interface IOrdenCompraDatosPagoForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    LxMessage,
     LxTag,
   ],
 })

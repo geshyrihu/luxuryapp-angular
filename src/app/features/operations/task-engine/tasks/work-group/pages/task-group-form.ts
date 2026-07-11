@@ -13,7 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -48,7 +47,6 @@ interface ITaskGroupForm {
     CustomInputTextSignal,
     CustomInputSelectSignal,
     WebButtonLabelSave,
-    LxTag,
   ],
 })
 export class TaskGroupForm implements OnInit {

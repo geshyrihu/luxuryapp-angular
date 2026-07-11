@@ -7,12 +7,14 @@ import {
   viewChild,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import heic2any from "heic2any";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -22,11 +24,8 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import heic2any from "heic2any";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import { TaskGroupService } from "../../task.service";
 
@@ -39,7 +38,6 @@ import { TaskGroupService } from "../../task.service";
     CardModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    InputImg,
     CustomInputTextAreaSignal,
     WebButtonLabel,
     WebButtonLabelSave,
@@ -111,7 +109,8 @@ export class MyTaskForm implements OnInit {
   onFilesChange(files: File[], fieldName: "beforeWork" | "afterWork") {
     if (files.length === 0) {
       this.form.get(fieldName)?.setValue(null);
-      if (fieldName === "beforeWork") this.form.controls.beforeWorkPreview.setValue("");
+      if (fieldName === "beforeWork")
+        this.form.controls.beforeWorkPreview.setValue("");
       else this.form.controls.afterWorkPreview.setValue("");
     }
   }
@@ -120,18 +119,29 @@ export class MyTaskForm implements OnInit {
     const file: File = event.files[0];
     if (!file) return;
 
-    const allowed = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"];
-    const isHeic = file.name.toLowerCase().endsWith(".heic") || file.name.toLowerCase().endsWith(".heif");
+    const allowed = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/heic",
+      "image/heif",
+    ];
+    const isHeic =
+      file.name.toLowerCase().endsWith(".heic") ||
+      file.name.toLowerCase().endsWith(".heif");
 
     if (!isHeic && !allowed.includes(file.type)) {
       this.customToastS.showError(
         "Formato no compatible",
-        `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`
+        `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`,
       );
       return;
     }
 
-    const processingSignal = fieldName === "beforeWork" ? this.processingBeforeWork : this.processingAfterWork;
+    const processingSignal =
+      fieldName === "beforeWork"
+        ? this.processingBeforeWork
+        : this.processingAfterWork;
     processingSignal.set(true);
 
     try {
@@ -140,34 +150,50 @@ export class MyTaskForm implements OnInit {
       if (isHeic) {
         try {
           const buffer = await file.arrayBuffer();
-          const heicBlob = new Blob([buffer], { type: file.type || "image/heic" });
+          const heicBlob = new Blob([buffer], {
+            type: file.type || "image/heic",
+          });
 
           const convertedBlob = await heic2any({
             blob: heicBlob,
             toType: "image/jpeg",
             quality: 0.9,
           });
-          const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+          const resultBlob = Array.isArray(convertedBlob)
+            ? convertedBlob[0]
+            : convertedBlob;
           const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
-          fileToProcess = new File([resultBlob], newFileName, { type: "image/jpeg" });
+          fileToProcess = new File([resultBlob], newFileName, {
+            type: "image/jpeg",
+          });
         } catch (heicError) {
-          console.warn("heic2any falló al analizar el archivo, intentando como fallback nativo...", heicError);
+          console.warn(
+            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
+            heicError,
+          );
         }
       }
 
-      const processed = await this.compressToMaxSize(fileToProcess, 2 * 1024 * 1024);
+      const processed = await this.compressToMaxSize(
+        fileToProcess,
+        2 * 1024 * 1024,
+      );
       this.form.get(fieldName)?.setValue(processed);
-      
+
       const reader = new FileReader();
       reader.onload = () => {
-        if (fieldName === "beforeWork") this.form.controls.beforeWorkPreview.setValue(reader.result as string);
-        else this.form.controls.afterWorkPreview.setValue(reader.result as string);
+        if (fieldName === "beforeWork")
+          this.form.controls.beforeWorkPreview.setValue(
+            reader.result as string,
+          );
+        else
+          this.form.controls.afterWorkPreview.setValue(reader.result as string);
       };
       reader.readAsDataURL(processed);
     } catch {
       this.customToastS.showError(
         "Error al procesar imagen",
-        "No se pudo procesar o comprimir la imagen. Intenta con otro archivo."
+        "No se pudo procesar o comprimir la imagen. Intenta con otro archivo.",
       );
     } finally {
       processingSignal.set(false);
@@ -215,7 +241,7 @@ export class MyTaskForm implements OnInit {
               }
             },
             "image/jpeg",
-            quality
+            quality,
           );
         };
 
@@ -237,7 +263,9 @@ export class MyTaskForm implements OnInit {
         this.form.patchValue(result);
         // Si las imígenes existen, carga las vistas previas
         if (result.beforeWorkPreview) {
-          this.form.controls.beforeWorkPreview.setValue(result.beforeWorkPreview);
+          this.form.controls.beforeWorkPreview.setValue(
+            result.beforeWorkPreview,
+          );
           // Limpiar el form control real para que lx-file-upload no trate de leer la URL como File
           this.form.controls.beforeWork.setValue(null);
         }

@@ -12,7 +12,7 @@ import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
 @Component({
   selector: "web-input-phone-prefix",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputPhonePrefix],
+  imports: [ReactiveFormsModule, CustomInputPhonePrefix],
   template: `
     <web-custom-input-phone-prefix
       [control]="control() || internalControl"

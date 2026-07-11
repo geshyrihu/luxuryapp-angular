@@ -5,20 +5,18 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-calendario-maestro-readonly",
   templateUrl: "./calendario-maestro-readonly.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,LxDivider, LxTag, TooltipModule],
+  imports: [AppIcon, LxTag, TooltipModule],
 })
 export class CalendarioMaestroReadonly implements OnInit {
   private apiResponseS = inject(ApiResponseService);

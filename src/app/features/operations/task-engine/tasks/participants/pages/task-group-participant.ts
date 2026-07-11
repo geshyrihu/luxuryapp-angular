@@ -9,17 +9,15 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppSpinner } from "@ui/web/spinner/spinner";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -41,10 +39,8 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
     AppSpinner,
     LxMessage,
     CustomInputSelectSignal,
-    WebButtonLabelEdit,
     InputAutocomplete,
     WebButtonLabelSave,
-    WebButtonLabelDelete,
     MobileListItem,
     MobileActionMenu,
     MobileButtonLabelEdit,

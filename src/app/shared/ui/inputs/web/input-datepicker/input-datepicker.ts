@@ -12,7 +12,7 @@ import { CustomInputDatepicker } from "../custom-input-datepicker-signal";
 @Component({
   selector: "web-input-datepicker",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputDatepicker],
+  imports: [ReactiveFormsModule, CustomInputDatepicker],
   template: `
     <web-custom-input-datepicker-signal
       [control]="control() || internalControl"

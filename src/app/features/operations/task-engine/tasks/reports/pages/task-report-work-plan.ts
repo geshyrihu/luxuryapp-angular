@@ -10,8 +10,12 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -31,11 +35,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskForm } from "../../task-message/pages/task-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-task-report-work-plan",
@@ -44,11 +43,9 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
   imports: [
     DataViewMobile,
     MobileListItem,
-    LxSplitButton,
     PrimeNgCustomCaption,
     AppIcon,
     WebButtonLabel,
-
     TableModule,
     AppImage,
     AppAvatar,

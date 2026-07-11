@@ -16,6 +16,7 @@ import { MenuService } from "src/app/core/services/menu.service";
 import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 import { FooterEmployeeMobile } from "../footer-employee-mobile/footer-employee-mobile";
 import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
+import { PanicButton } from "src/app/features/operations/panic-alert/components/panic-button/panic-button";
 @Component({
   selector: "app-view-employee-mobile",
   imports: [
@@ -30,6 +31,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
     IonMenu,
     IonTitle,
     LxLoader,
+    PanicButton,
   ],
   templateUrl: "./view-employee-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -43,6 +45,12 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
       ion-app {
         height: 100%;
         width: 100%;
+      }
+      .panic-fab {
+        position: fixed;
+        bottom: 80px;
+        right: 16px;
+        z-index: 1000;
       }
     `,
   ],

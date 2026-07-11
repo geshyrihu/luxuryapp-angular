@@ -13,6 +13,7 @@ import { OneSignalService } from "src/app/core/services/one-signal.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ViewEmployeeMonitor } from "./monitor/view-employee-monitor/view-employee-monitor";
 import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-mobile";
+import { PanicAlertIncomingDialog } from "src/app/features/operations/panic-alert/components/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
 /**
  * Layout Completo: El Centro de Operaciones 🚀
  *
@@ -35,7 +36,7 @@ import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-m
 @Component({
   selector: "app-layout-employee",
   templateUrl: "./layout-employee.html",
-  imports: [ViewEmployeeMonitor, ViewEmployeeMobile],
+  imports: [ViewEmployeeMonitor, ViewEmployeeMobile, PanicAlertIncomingDialog],
   // La magia de la carga perezosa de servicios ocurre aquí.
   // Estos servicios solo "viven" mientras este layout esté activo.
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -14,7 +14,7 @@ import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
 @Component({
   selector: "web-input-autocomplete",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputAutoComplete],
+  imports: [ReactiveFormsModule, CustomInputAutoComplete],
   template: `
     <web-custom-input-autocomplete-signal
       [control]="control() || internalControl"
@@ -43,7 +43,9 @@ import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
       [panelStyle]="panelStyle()"
       [inputStyleClass]="inputStyleClass()"
       [itemTemplateIn]="itemTemplate() || itemTemplateIn()"
-      [selectedItemTemplateIn]="selectedItemTemplate() || selectedItemTemplateIn()"
+      [selectedItemTemplateIn]="
+        selectedItemTemplate() || selectedItemTemplateIn()
+      "
       (propagar)="propagar.emit($event)"
       (completeMethod)="completeMethod.emit($event)"
       (cleared)="cleared.emit()"

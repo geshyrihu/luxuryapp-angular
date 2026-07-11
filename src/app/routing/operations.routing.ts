@@ -50,4 +50,16 @@ export const operationsRoutes: Routes = [
       breadcrumb: "Grupo de Extintores",
     },
   },
+  {
+    path: "alertas-panico",
+    loadComponent: () =>
+      import("src/app/features/operations/panic-alert/pages/panic-alert-list/panic-alert-list").then(
+        (m) => m.PanicAlertList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Alertas de Pánico",
+      breadcrumb: "Alertas de Pánico",
+    },
+  },
 ];

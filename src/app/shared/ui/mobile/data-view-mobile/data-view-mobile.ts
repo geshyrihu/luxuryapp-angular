@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
@@ -10,7 +11,6 @@ import {
   signal,
   TemplateRef,
   viewChild,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -26,7 +26,6 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
-  IonItemDivider,
   IonLabel,
   IonList,
   IonProgressBar,
@@ -60,7 +59,6 @@ export interface IMobileBreadcrumbItem {
     IonList,
     IonItem,
     IonProgressBar,
-    IonItemDivider,
     IonLabel,
     IonSearchbar,
     IonButton,
@@ -248,4 +246,3 @@ export class DataViewMobile implements OnInit {
     return obj ? Object.keys(obj) : [];
   }
 }
-

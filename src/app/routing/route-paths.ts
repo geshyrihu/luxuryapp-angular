@@ -661,6 +661,12 @@ export const ROUTES = {
     INVENTARIO_PRODUCTOS: ["/operations", "inventario-productos"],
     EXTINTORES: ["/operations", "extintores"],
     EXTINTORES_GRUPO: ["/operations", "extintores-group"],
+    ALERTAS_PANICO: ["/operations", "alertas-panico"],
+    ALERTAS_PANICO_DETALLE: (id: string) => [
+      "/operations",
+      "alertas-panico",
+      id,
+    ],
   },
 
   // ============================================================

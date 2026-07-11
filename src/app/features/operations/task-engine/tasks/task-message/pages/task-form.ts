@@ -14,7 +14,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -71,7 +70,6 @@ import { DateService } from "src/app/core/services/date.service";
     ReactiveFormsModule,
     CardModule,
     LxFileUpload,
-    WebButtonIcon,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,

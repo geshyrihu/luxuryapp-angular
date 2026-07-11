@@ -21,11 +21,11 @@ import {
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
+  keyOutline,
   logOutOutline,
   personOutline,
   refreshOutline,
   syncOutline,
-  keyOutline,
 } from "ionicons/icons";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -38,11 +38,9 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { MenuService } from "src/app/core/services/menu.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-profile-user-mobile",
   imports: [
-    AppIcon,
     RouterModule,
     FormsModule,
     FormsModule,
@@ -91,7 +89,13 @@ export class ProfileUserMobile {
   customerName = this.customerIdS.nombreCorto;
 
   constructor() {
-    addIcons({ personOutline, syncOutline, refreshOutline, logOutOutline, keyOutline });
+    addIcons({
+      personOutline,
+      syncOutline,
+      refreshOutline,
+      logOutOutline,
+      keyOutline,
+    });
 
     effect(() => {
       const currentCustomerId = this.customerIdS.customerId();

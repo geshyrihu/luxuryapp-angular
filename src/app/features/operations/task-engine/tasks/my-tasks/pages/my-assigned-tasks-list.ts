@@ -10,10 +10,8 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -45,12 +43,12 @@ import { TaskForm } from "../../task-message/pages/task-form";
 import { MyTaskForm } from "./my-task-form";
 import { MyTaskProgram } from "./my-task-program";
 
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
 @Component({
   selector: "app-my-assigned-tasks-list",
@@ -63,7 +61,6 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     TaskStatus,
     CommonModule,
     TableModule,
-    WebButtonLabelAdd,
     DataViewMobile,
     MobileListItem,
     MobileActionMenu,
@@ -76,7 +73,6 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
     AppImage,
     AppAvatar,
     PrimeNgCustomCaption,
-    CustomInputTextSignal,
     InitialsAbbrPipe,
     AppIcon,
   ],

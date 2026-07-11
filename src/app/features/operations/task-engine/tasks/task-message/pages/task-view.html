@@ -60,203 +60,204 @@
       </div>
     </div>
 
-    
-      <div class="p-4 pt-0">
-        <!-- Description -->
-        <div class="surface-ground p-3 border-round-lg mb-4">
-          <h6 class="text-600 font-bold mb-2 uppercase text-xs tracking-wider">
-            Descripcion
-          </h6>
-          <p class="text-800 line-height-3 m-0">{{ t.description }}</p>
-        </div>
+    <div class="p-4 pt-0">
+      <!-- Description -->
+      <div class="surface-ground p-3 border-round-lg mb-4">
+        <h6 class="text-600 font-bold mb-2 uppercase text-xs tracking-wider">
+          Descripcion
+        </h6>
+        <p class="text-800 line-height-3 m-0">{{ t.description }}</p>
+      </div>
 
-        <!-- Images -->
-        <div class="grid mb-5">
-          <div class="col-12 md:col-6">
+      <!-- Images -->
+      <div class="grid mb-5">
+        <div class="col-12 md:col-6">
+          <div
+            class="relative border-round-xl overflow-hidden shadow-2 surface-card h-full"
+          >
             <div
-              class="relative border-round-xl overflow-hidden shadow-2 surface-card h-full"
+              class="absolute top-0 left-0 bg-black-alpha-60 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
             >
-              <div
-                class="absolute top-0 left-0 bg-black-alpha-60 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
-              >
-                ANTES
-              </div>
-              <img
-                [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
-                class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
-                alt="Antes"
-              />
+              ANTES
             </div>
+            <img
+              [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
+              class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
+              alt="Antes"
+            />
           </div>
-          <div class="col-12 md:col-6">
+        </div>
+        <div class="col-12 md:col-6">
+          <div
+            class="relative border-round-xl overflow-hidden shadow-2 surface-card h-full"
+          >
             <div
-              class="relative border-round-xl overflow-hidden shadow-2 surface-card h-full"
+              class="absolute top-0 left-0 bg-green-600 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
             >
-              <div
-                class="absolute top-0 left-0 bg-green-600 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
-              >
-                DESPUES
-              </div>
-              <img
-                [src]="t.afterWorkPreview || 'assets/images/default-avatar.png'"
-                class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
-                alt="Despues"
-              />
+              DESPUES
             </div>
+            <img
+              [src]="t.afterWorkPreview || 'assets/images/default-avatar.png'"
+              class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
+              alt="Despues"
+            />
           </div>
         </div>
+      </div>
 
-        <!-- Info Grid -->
-        <div class="grid text-sm mb-4 border-top-1 surface-border pt-4">
-          <div class="col-12 sm:col-6 md:col-3">
-            <div class="text-500 mb-1">Solicita</div>
-            <div class="font-semibold text-900">{{ t.creator }}</div>
-            <div class="text-xs text-500">{{ t.createDate }}</div>
-          </div>
-          <div class="col-12 sm:col-6 md:col-3">
-            <div class="text-500 mb-1">Responsable</div>
-            <div class="font-semibold text-900">{{ t.assignee }}</div>
-          </div>
-          @if (t.scheduledDate) {
-          <div class="col-12 sm:col-6 md:col-3">
-            <div class="text-500 mb-1">Programado</div>
-            <div class="font-semibold text-900">{{ t.scheduledDate }}</div>
-          </div>
-          } @if (t.closedBy) {
-          <div class="col-12 sm:col-6 md:col-3">
-            <div class="text-500 mb-1">Cerrado por</div>
-            <div class="font-semibold text-900">{{ t.closedBy }}</div>
-            <div class="text-xs text-500">{{ t.closedDate }}</div>
-          </div>
-          }
+      <!-- Info Grid -->
+      <div class="grid text-sm mb-4 border-top-1 surface-border pt-4">
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="text-500 mb-1">Solicita</div>
+          <div class="font-semibold text-900">{{ t.creator }}</div>
+          <div class="text-xs text-500">{{ t.createDate }}</div>
         </div>
-
-        <!-- Actions -->
-        @if (t.seeEditingOptions) {
-        <div class="flex flex-wrap gap-2 mb-5">
-          <il-button
-            (clicked)="onModalForm(t)"
-            label="Editar Ticket"
-            iconClass="mdi:pencil"
-            variant="outlined"
-          />
-          <il-button
-            (clicked)="onFollowUp(t.id)"
-            label="Anadir Seguimiento"
-            iconClass="mdi:comment-multiple"
-            severity="help"
-            variant="outlined"
-          />
-          <il-button
-            (clicked)="onProgram(t.id)"
-            label="Programar"
-            iconClass="mdi:calendar"
-            severity="info"
-            variant="outlined"
-          />
-          @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
-          <il-button
-            (clicked)="onProgress(t.id)"
-            label="En Proceso"
-            iconClass="mdi:sync"
-            severity="warn"
-            variant="outlined"
-          />
-          <il-button
-            (clicked)="onClosed(t.id)"
-            label="Cerrar Ticket"
-            iconClass="mdi:lock"
-            severity="success"
-            variant="outlined"
-          />
-          } @if (t.status === 'Cerrado' || t.status === 'Completed') {
-          <il-button
-            (clicked)="onReopen(t.id)"
-            label="Reabrir Ticket"
-            iconClass="mdi:lock-open"
-            variant="outlined"
-            severity="danger"
-          />
-          }
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="text-500 mb-1">Responsable</div>
+          <div class="font-semibold text-900">{{ t.assignee }}</div>
         </div>
-        }
-
-        <!-- Timeline -->
-        <h3 class="text-xl font-bold mb-3 border-left-3 border-primary pl-3">
-          Bitacora de Seguimiento
-        </h3>
-        @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
-        <ul class="list-none p-0 m-0">
-          @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
-          <li class="mb-4 flex">
-            <div class="flex flex-column align-items-center">
-              <app-avatar
-                [image]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
-                shape="circle"
-                size="large"
-                styleClass="shadow-1"
-              ></app-avatar>
-              @if ($index !== t.ticketMessageFollowUpViewDTO.length - 1) {
-              <div class="h-full border-left-2 surface-border w-1 my-2"></div>
-              }
-            </div>
-            <div
-              class="flex-1 surface-card border-1 surface-border border-round-xl p-3 shadow-1 relative arrow-left"
-            >
-              <div class="flex justify-content-between mb-2">
-                <span class="font-bold text-900"
-                  >{{ follow.applicationUser }}</span
-                >
-                <span class="text-xs text-500">{{ follow.createdAt }}</span>
-              </div>
-              <p class="m-0 text-700 line-height-3">{{ follow.description }}</p>
-            </div>
-          </li>
-          }
-        </ul>
-        } @else {
-        <div
-          class="p-4 surface-ground border-round text-center text-500 italic"
-        >
-          No hay registros de seguimiento.
+        @if (t.scheduledDate) {
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="text-500 mb-1">Programado</div>
+          <div class="font-semibold text-900">{{ t.scheduledDate }}</div>
+        </div>
+        } @if (t.closedBy) {
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="text-500 mb-1">Cerrado por</div>
+          <div class="font-semibold text-900">{{ t.closedBy }}</div>
+          <div class="text-xs text-500">{{ t.closedDate }}</div>
         </div>
         }
       </div>
-    
+
+      <!-- Actions -->
+      @if (t.seeEditingOptions) {
+      <div class="flex flex-wrap gap-2 mb-5">
+        <il-button
+          (clicked)="onModalForm(t)"
+          label="Editar Ticket"
+          iconClass="mdi:pencil"
+          variant="outlined"
+        />
+        <il-button
+          (clicked)="onFollowUp(t.id)"
+          label="Anadir Seguimiento"
+          iconClass="mdi:comment-multiple"
+          severity="help"
+          variant="outlined"
+        />
+        <il-button
+          (clicked)="onProgram(t.id)"
+          label="Programar"
+          iconClass="mdi:calendar"
+          severity="info"
+          variant="outlined"
+        />
+        @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
+        <il-button
+          (clicked)="onProgress(t.id)"
+          label="En Proceso"
+          iconClass="mdi:sync"
+          severity="warn"
+          variant="outlined"
+        />
+        <il-button
+          (clicked)="onClosed(t.id)"
+          label="Cerrar Ticket"
+          iconClass="mdi:lock"
+          severity="success"
+          variant="outlined"
+        />
+        } @if (t.status === 'Cerrado' || t.status === 'Completed') {
+        <il-button
+          (clicked)="onReopen(t.id)"
+          label="Reabrir Ticket"
+          iconClass="mdi:lock-open"
+          variant="outlined"
+          severity="danger"
+        />
+        }
+      </div>
+      }
+
+      <!-- Timeline -->
+      <h3 class="text-xl font-bold mb-3 border-left-3 border-primary pl-3">
+        Bitacora de Seguimiento
+      </h3>
+      @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
+      <ul class="list-none p-0 m-0">
+        @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
+        <li class="mb-4 flex">
+          <div class="flex flex-column align-items-center">
+            <app-avatar
+              [image]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
+              shape="circle"
+              size="large"
+              styleClass="shadow-1"
+            ></app-avatar>
+            @if ($index !== t.ticketMessageFollowUpViewDTO.length - 1) {
+            <div class="h-full border-left-2 surface-border w-1 my-2"></div>
+            }
+          </div>
+          <div
+            class="flex-1 surface-card border-1 surface-border border-round-xl p-3 shadow-1 relative arrow-left"
+          >
+            <div class="flex justify-content-between mb-2">
+              <span class="font-bold text-900"
+                >{{ follow.applicationUser }}</span
+              >
+              <span class="text-xs text-500">{{ follow.createdAt }}</span>
+            </div>
+            <p class="m-0 text-700 line-height-3">{{ follow.description }}</p>
+          </div>
+        </li>
+        }
+      </ul>
+      } @else {
+      <div class="p-4 surface-ground border-round text-center text-500 italic">
+        No hay registros de seguimiento.
+      </div>
+      }
+    </div>
   </div>
 </div>
 
 <!-- MOBILE VIEW (Ionic) -->
-<div class="block md:hidden pb-6">
-  <div class="flex align-items-center p-2 bg-white border-bottom">
-    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="goBack()">
-      <app-icon icon="mdi:arrow-left" slot="icon-only" />
-    </button>
-    <h1 class="text-lg font-bold m-0 ml-2">Detalle del Ticket</h1>
-  </div>
-
+<div class="block md:hidden pb-6 p-3">
   <div class="m-0 mb-2 border-radius-0 shadow-none border-bottom">
     <div class="pb-2">
       <div class="flex justify-content-between mb-1">
-        <lx-tag>{{ t.folio }}</lx-tag>
-        <lx-tag>{{ t.priority }}</lx-tag        >
+        <lx-tag [value]="t.folio"></lx-tag>
+        <lx-tag [value]="t.priority" [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warning' : 'info'"></lx-tag>
       </div>
       <h2 class="text-xl font-bold my-1 text-dark">{{ t.title }}</h2>
       <p class="text-sm text-color-secondary m-0 flex align-items-center gap-1">
         <app-icon icon="mdi:clock-outline" /> {{ t.createDate }}
       </p>
     </div>
-    <div class="border-1 surface-border shadow-1 border-round-xl">
-      <div class="flex align-items-center mb-2 p-2 surface-100 border-round">
+    <div
+      class="border-1 surface-border shadow-1 border-round-xl mt-3 overflow-hidden"
+    >
+      <div
+        class="flex align-items-center mb-0 p-3 surface-100 border-bottom-1 surface-border"
+      >
         <div class="mr-3">
-          <img src="assets/images/default-avatar.png" />
+          <img
+            src="assets/images/default-avatar.png"
+            class="w-3rem h-3rem border-circle"
+            alt="Avatar"
+          />
         </div>
-        <div class="flex-flex-grow-1-1">
-          <div class="text-xs font-bold text-dark">{{ t.creator }}</div>
-          <div class="text-xs text-color-secondary">Solicitante</div>
+        <div class="flex-grow-1">
+          <div class="text-sm font-bold text-900">{{ t.creator }}</div>
+          <div class="text-xs text-500 uppercase tracking-wider">
+            Solicitante
+          </div>
         </div>
       </div>
-      <p class="text-dark line-height-3 m-0 text-md">{{ t.description }}</p>
+      <div class="p-3 bg-white">
+        <p class="text-800 line-height-3 m-0">{{ t.description }}</p>
+      </div>
     </div>
   </div>
 
@@ -294,21 +295,27 @@
   </div>
 
   <div class="surface-card mb-3 border-round">
-    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+    <div
+      class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+    >
       <span class="">
         <h3 class="text-xs uppercase text-medium">Responsable</h3>
         <p class="text-dark font-semibold">{{ t.assignee }}</p>
       </span>
     </div>
     @if (t.scheduledDate) {
-    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+    <div
+      class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+    >
       <span class="">
         <h3 class="text-xs uppercase text-medium">Programado</h3>
         <p class="text-dark font-semibold">{{ t.scheduledDate }}</p>
       </span>
     </div>
     }
-    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+    <div
+      class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+    >
       <span class="">
         <h3 class="text-xs uppercase text-medium">Estado</h3>
         <p class="text-dark font-semibold">{{ t.status }}</p>
@@ -325,7 +332,10 @@
         <app-icon icon="mdi:forum-outline" /> Seguimiento
       </h3>
       @if (t.seeEditingOptions) {
-      <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onFollowUp(t.id)">
+      <button
+        class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+        (click)="onFollowUp(t.id)"
+      >
         <app-icon icon="mdi:plus-circle-outline" slot="icon-only" />
       </button>
       }
@@ -368,7 +378,10 @@
   >
     <div class="flex flex-column gap-1">
       <div class="flex gap-1">
-        <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onModalForm(t)">
+        <button
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          (click)="onModalForm(t)"
+        >
           <app-icon
             icon="mdi:pencil-outline"
             slot="start"
@@ -376,7 +389,10 @@
           />
           Editar
         </button>
-        <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onProgram(t.id)">
+        <button
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          (click)="onProgram(t.id)"
+        >
           <app-icon
             icon="mdi:calendar-blank"
             slot="start"
@@ -388,11 +404,17 @@
 
       <div class="flex gap-1">
         @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
-        <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onProgress(t.id)">
+        <button
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          (click)="onProgress(t.id)"
+        >
           <app-icon icon="mdi:sync" slot="start" style="font-size: 0.9rem" />
           Proceso
         </button>
-        <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onClosed(t.id)">
+        <button
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          (click)="onClosed(t.id)"
+        >
           <app-icon
             icon="mdi:lock-outline"
             slot="start"
@@ -401,7 +423,10 @@
           Cerrar
         </button>
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
-        <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onReopen(t.id)">
+        <button
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+          (click)="onReopen(t.id)"
+        >
           <app-icon
             icon="mdi:lock-open-outline"
             slot="start"
@@ -412,7 +437,10 @@
         }
       </div>
 
-      <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onFollowUp(t.id)">
+      <button
+        class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+        (click)="onFollowUp(t.id)"
+      >
         <app-icon
           icon="mdi:forum-outline"
           slot="start"
@@ -456,4 +484,3 @@
     opacity: 0.8;
   }
 </style>
-

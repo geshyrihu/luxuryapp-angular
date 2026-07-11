@@ -11,7 +11,7 @@ import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
 @Component({
   selector: "web-input-date-time",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputDateTimeSignal],
+  imports: [ReactiveFormsModule, CustomInputDateTimeSignal],
   template: `
     <web-custom-input-date-time-signal
       [control]="control() || internalControl"

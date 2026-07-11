@@ -1,16 +1,15 @@
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ROUTES } from "src/app/routing/route-paths";
 
-import { CardModule } from "primeng/card";
-import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxPanel } from "@ui/adaptive/panel/panel";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { CardModule } from "primeng/card";
 
 @Component({
   selector: "app-manuals-and-processes-guide",
@@ -24,7 +23,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     RouterLink,
     CardModule,
     LxPanel,
-    LxDivider,
     LxTag,
     LxFieldset,
    AppIcon],
