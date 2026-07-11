@@ -1,3 +1,4 @@
+<div class="hidden md:block">
 <p-table
   [value]="data()"
   [loading]="loading()"
@@ -85,3 +86,34 @@
     </tr>
   </ng-template>
 </p-table>
+</div>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.inspectionName }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.assignedTo }} · {{ item.status }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-item
+            iconClass="mdi:eye-outline"
+            (clicked)="onView(item.id)"
+          />
+          @if (!item.isClosed) {
+            <ili-button-item
+              iconClass="mdi:check-circle-outline"
+              (clicked)="onContinue(item.id)"
+            />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

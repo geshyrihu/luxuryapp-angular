@@ -8,6 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
@@ -21,6 +22,7 @@ import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
   templateUrl: "./resultado-general-evaluacion-areas-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
     TableModule,
     LxTag,
     MultiSelectModule,

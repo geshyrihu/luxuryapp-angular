@@ -26,7 +26,7 @@
 
   <!-- 📊 CONTENIDO PRINCIPAL -->
   @if (dataSignal()) {
-  <div class="card" class="shadow-2 border-round-xl overflow-hidden p-0 border-none">
+  <div class="card" class="shadow-2 border-round-xl overflow-hidden p-0 border-none hidden md:block">
     <p-table
       #dt
       [value]="dataSignal()"
@@ -209,6 +209,20 @@
       </ng-template>
     </p-table>
   </div>
+
+  <!-- 📱 MOBILE -->
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [showAdd]="false"
+    [dt]="dt"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item>
+        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+        <p class="text-xs m-0 text-color-secondary">{{ item.status }}</p>
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
   }
 </div>
 

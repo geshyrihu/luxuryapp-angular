@@ -117,8 +117,7 @@
       </div>
 
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-      <div end>
-        <ili-action-menu slot="end">
+      <ili-action-menu end>
           <ng-container actions>
             <ili-button-edit
               (clicked)="onAddEntrada({
@@ -135,7 +134,6 @@
             />
           </ng-container>
         </ili-action-menu>
-      </div>
       }
     </ili-list-item>
   </ng-template>

@@ -7,6 +7,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -27,6 +28,7 @@ import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
   templateUrl: "./filtro-minutas-area.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

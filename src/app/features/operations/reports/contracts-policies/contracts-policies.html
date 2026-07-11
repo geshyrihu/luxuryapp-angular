@@ -60,3 +60,24 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.description }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.provider }} · {{ item.endDate }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-view-pdf [url]="item.path" fileName="Poliza | Contrato" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

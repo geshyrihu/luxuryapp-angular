@@ -15,6 +15,11 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -40,6 +45,11 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
     InputAutocomplete,
     WebButtonLabelSave,
     WebButtonLabelDelete,
+    MobileListItem,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    AppIcon,
   ],
 })
 export class TaskGroupParticipant implements OnInit, OnDestroy {

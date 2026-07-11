@@ -56,3 +56,38 @@
     <primeng-custom-table-emptymessage [colspan]="1" />
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="true"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  (add)="onModalFormBiacora({ id: 0, title: 'Nueva Bitácora' })"
+>
+  <div customFilters>
+    <div class="px-2 pb-2">
+      <app-rango-calendario-yyyymmdd
+        [mostrartextDesde]="false"
+        [mostrartextHasta]="false"
+      />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.machinery }} · {{ item.fechaRegistro | date:'short' }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          @if (aspRoleS.hasRole(AspRole.JefeMantenimiento)) {
+          <ili-button-delete
+            label="Eliminar"
+            (confirmed)="onDelete(item)"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

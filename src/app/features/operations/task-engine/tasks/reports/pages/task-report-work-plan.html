@@ -151,4 +151,31 @@
     </tr>
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [dt]="dt"
+>
+  <div customFilters>
+    <custom-input-select-signal
+      [data]="cb_assignee"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Seleccione un asignado"
+      [control]="assigneeControl"
+      (selectionChange)="onResponsibleChange($event.value)"
+      [horizontal]="false"
+      customClass="w-full"
+      [filter]="true"
+    />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.folio }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.responsibleArea }} · {{ item.responsableNombre }}</p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
 }

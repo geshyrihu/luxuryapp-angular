@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   checkmarkCircleOutline,
@@ -22,7 +23,10 @@ import { TaskGroupService } from "../../task.service";
   selector: "app-task-status",
   templateUrl: "./task-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, WebButtonLabel],
+  imports: [FormsModule, WebButtonLabel, IonSegment, IonSegmentButton, IonLabel],
+  host: {
+    class: "w-full block",
+  },
 })
 export class TaskStatus implements OnInit {
   TaskGroupService = inject(TaskGroupService);

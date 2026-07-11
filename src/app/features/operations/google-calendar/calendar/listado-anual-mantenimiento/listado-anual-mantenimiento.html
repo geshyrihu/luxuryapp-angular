@@ -241,8 +241,7 @@
 
       @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario])) {
-      <div end>
-        <ili-action-menu slot="end">
+      <ili-action-menu end>
           <ng-container actions>
             <ili-button-edit
               (clicked)="
@@ -274,7 +273,6 @@
             />
           </ng-container>
         </ili-action-menu>
-      </div>
       }
     </ili-list-item>
   </ng-template>

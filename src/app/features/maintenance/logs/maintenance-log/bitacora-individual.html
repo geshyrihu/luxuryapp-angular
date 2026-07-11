@@ -47,4 +47,24 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <div customFilters>
+    <div class="px-2 pb-2">
+      <app-rango-calendario-yyyymmdd />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item (click)="onCardEmployee(item.applicationUserId)">
+      <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.fechaRegistro | date:'short' }} · {{ item.userName }}</p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
 }

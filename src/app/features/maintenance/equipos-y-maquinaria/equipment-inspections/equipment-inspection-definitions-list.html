@@ -1,3 +1,4 @@
+<div class="hidden md:block">
 <p-table
   [value]="data()"
   [loading]="loading()"
@@ -90,3 +91,41 @@
     <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
 </p-table>
+</div>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.frequency }} · {{ item.status }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          @if (
+            aspRoleS.hasAny([
+              AspRole.JefeMantenimiento,
+              AspRole.Administrador,
+              AspRole.SuperUsuario,
+            ])
+          ) {
+            <ili-button-item
+              iconClass="mdi:play-circle-outline"
+              (clicked)="onStartManual(item.id)"
+            />
+            <ili-button-item
+              iconClass="mdi:power"
+              (clicked)="onToggleActive(item)"
+            />
+            <ili-button-edit (clicked)="onAddOrEdit(item.id)" />
+            <ili-button-delete (confirmed)="onDelete(item.id)" />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

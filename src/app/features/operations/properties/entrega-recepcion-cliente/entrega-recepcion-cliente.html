@@ -122,3 +122,62 @@ cb_departamento; track item) {
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  [isGrouped]="true"
+  [groupedData]="data()"
+>
+  <div customFilters>
+    @if (aspRoleS.roleSignal(AspRole.JefeMantenimiento)()) {
+    <div class="flex flex-wrap gap-1 p-2">
+      @for (item of cb_departamento; track item) {
+      <ili-button-item
+        [iconClass]="item.value == departamento() ? 'mdi:check' : ''"
+        [label]="item.value"
+        (clicked)="onChangeDepartamento(item.value)"
+      />
+      }
+    </div>
+    }
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.observaciones }} · {{ item.estatus === 1 ? 'Activo' : 'Inactivo' }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          @if (item.archivo && item.superviso === '') {
+          <ili-button-item
+            iconClass="mdi:check"
+            label="Validar"
+            (clicked)="onValidarDocument(item.id)"
+          />
+          }
+          @if (item.archivo && item.superviso !== '') {
+          <ili-button-item
+            iconClass="mdi:arrow-left"
+            label="Revocar"
+            (clicked)="onInvalidarDocument(item.id)"
+          />
+          }
+          @if (item.archivo !== '') {
+          <ili-button-delete
+            label="Eliminar archivo"
+            (confirmed)="onDeleteFile(item.id)"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

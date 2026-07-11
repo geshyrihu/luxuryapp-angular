@@ -39,36 +39,45 @@
 } @else if (cb_existing_Participant().length === 0) {
 <lx-message severity="info" text="No hay integrantes."></lx-message>
 } @else {
-<div class="flex flex-column mt-3">
+<div class="flex flex-column mt-3 gap-2">
   @for (item of cb_existing_Participant(); track item.id) {
-  <div
-    class="flex align-items-center justify-content-between w-full p-3 border-1 border-round-md"
+  <ili-list-item
+    class="w-full border-1 border-round-md"
     [class.border-green-500]="item.isAdmin === 'Administrador'"
     [class.border-red-500]="item.isAdmin !== 'Administrador'"
   >
-    <!-- Lado izquierdo: ócono + texto -->
-    <div class="flex align-items-center flex-grow-1">
-      <i
+    <!-- Lado izquierdo: icono + texto -->
+    <div slot="start" class="mr-2 flex align-items-center">
+      <app-icon
+        [icon]="
+              item.isAdmin === 'Administrador'
+                ? 'mdi:account-minus'
+                : 'mdi:account'
+            "
         [class]="
               item.isAdmin === 'Administrador'
-                ? 'mdi:account-minus text-green-500'
-                : 'mdi:account text-red-500'
+                ? 'text-green-500'
+                : 'text-red-500'
             "
-        style="font-size: 1.1rem"
-      ></i>
-      <span class="font-semibold">
-        {{ item.isAdmin === 'Administrador' ? 'Administrador' : 'Participante'
-        }}:
-        <span class="font-normal">{{ item.applicationUser }}</span>
-      </span>
+        class="text-2xl"
+      />
+    </div>
+
+    <div class="flex flex-column gap-1">
+      <p class="font-semibold m-0 text-color line-height-2 text-sm">
+        {{ item.isAdmin === 'Administrador' ? 'Administrador' : 'Participante' }}
+      </p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.applicationUser }}
+      </p>
     </div>
 
     <!-- Lado derecho: acciones -->
-    <div class="flex flex-shrink-0">
-      <il-button-edit (clicked)="onEditParticipant(item)" />
-      <il-button-delete (confirmed)="onDelete(item.id)" />
-    </div>
-  </div>
+    <ili-action-menu slot="end">
+      <ili-button-edit (clicked)="onEditParticipant(item)" label="Editar" />
+      <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+    </ili-action-menu>
+  </ili-list-item>
   }
 </div>
 }

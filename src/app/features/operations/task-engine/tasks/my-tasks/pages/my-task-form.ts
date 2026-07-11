@@ -23,6 +23,10 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
+import heic2any from "heic2any";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import { TaskGroupService } from "../../task.service";
 
@@ -41,6 +45,8 @@ import { TaskGroupService } from "../../task.service";
     WebButtonLabelSave,
     AvatarModule,
     ImageAnalysisDialogComponent,
+    LxFileUpload,
+    AppIcon,
   ],
 })
 export class MyTaskForm implements OnInit {
@@ -53,11 +59,14 @@ export class MyTaskForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
   private TaskGroupService = inject(TaskGroupService);
+  private customToastS = inject(CustomToastService);
   // notificationPushService = inject(SignalRService);
   private enumSelectS = inject(EnumSelectService);
   id: string = "";
   submitting = signal(false);
 
+  processingBeforeWork = signal(false);
+  processingAfterWork = signal(false);
   cb_priority = signal<ISelectItem[]>([]);
   cb_ticket_group = signal<ISelectItem[]>([]);
 
@@ -99,24 +108,126 @@ export class MyTaskForm implements OnInit {
     this.cb_ticket_group.set(ticketGroups ?? []);
   }
 
-  // Para manejar las imígenes 'BeforeWork' y 'AfterWork'
-  onFileChange(event: any, fieldName: "beforeWork" | "afterWork") {
-    const file = event.target.files[0];
-    if (file) {
-      this.form.controls[fieldName].setValue(file);
+  onFilesChange(files: File[], fieldName: "beforeWork" | "afterWork") {
+    if (files.length === 0) {
+      this.form.get(fieldName)?.setValue(null);
+      if (fieldName === "beforeWork") this.form.controls.beforeWorkPreview.setValue("");
+      else this.form.controls.afterWorkPreview.setValue("");
+    }
+  }
 
-      // Crear una vista previa
+  async onFileSelect(event: any, fieldName: "beforeWork" | "afterWork") {
+    const file: File = event.files[0];
+    if (!file) return;
+
+    const allowed = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"];
+    const isHeic = file.name.toLowerCase().endsWith(".heic") || file.name.toLowerCase().endsWith(".heif");
+
+    if (!isHeic && !allowed.includes(file.type)) {
+      this.customToastS.showError(
+        "Formato no compatible",
+        `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`
+      );
+      return;
+    }
+
+    const processingSignal = fieldName === "beforeWork" ? this.processingBeforeWork : this.processingAfterWork;
+    processingSignal.set(true);
+
+    try {
+      let fileToProcess = file;
+
+      if (isHeic) {
+        try {
+          const buffer = await file.arrayBuffer();
+          const heicBlob = new Blob([buffer], { type: file.type || "image/heic" });
+
+          const convertedBlob = await heic2any({
+            blob: heicBlob,
+            toType: "image/jpeg",
+            quality: 0.9,
+          });
+          const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+          const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
+          fileToProcess = new File([resultBlob], newFileName, { type: "image/jpeg" });
+        } catch (heicError) {
+          console.warn("heic2any falló al analizar el archivo, intentando como fallback nativo...", heicError);
+        }
+      }
+
+      const processed = await this.compressToMaxSize(fileToProcess, 2 * 1024 * 1024);
+      this.form.get(fieldName)?.setValue(processed);
+      
       const reader = new FileReader();
       reader.onload = () => {
-        if (fieldName === "beforeWork")
-          this.form.controls.beforeWorkPreview.setValue(
-            reader.result as string,
-          );
-        if (fieldName === "afterWork")
-          this.form.controls.afterWorkPreview.setValue(reader.result as string);
+        if (fieldName === "beforeWork") this.form.controls.beforeWorkPreview.setValue(reader.result as string);
+        else this.form.controls.afterWorkPreview.setValue(reader.result as string);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(processed);
+    } catch {
+      this.customToastS.showError(
+        "Error al procesar imagen",
+        "No se pudo procesar o comprimir la imagen. Intenta con otro archivo."
+      );
+    } finally {
+      processingSignal.set(false);
     }
+  }
+
+  private compressToMaxSize(file: File, maxBytes: number): Promise<File> {
+    if (file.size <= maxBytes) return Promise.resolve(file);
+
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const canvas = document.createElement("canvas");
+        let w = img.naturalWidth;
+        let h = img.naturalHeight;
+
+        const MAX_DIM = 4000;
+        if (w > MAX_DIM || h > MAX_DIM) {
+          const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
+
+        const baseName = file.name.replace(/\.[^.]+$/, "");
+        const outName = `${baseName}.jpg`;
+
+        const tryQuality = (quality: number) => {
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) {
+                reject(new Error("Canvas toBlob failed"));
+                return;
+              }
+              if (blob.size <= maxBytes || quality <= 0.1) {
+                resolve(new File([blob], outName, { type: "image/jpeg" }));
+              } else {
+                tryQuality(+(quality - 0.1).toFixed(1));
+              }
+            },
+            "image/jpeg",
+            quality
+          );
+        };
+
+        tryQuality(0.9);
+      };
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error("Image load failed"));
+      };
+      img.src = url;
+    });
   }
 
   onLoadData() {
@@ -126,13 +237,14 @@ export class MyTaskForm implements OnInit {
         this.form.patchValue(result);
         // Si las imígenes existen, carga las vistas previas
         if (result.beforeWorkPreview) {
-          this.form.controls.beforeWorkPreview.setValue(
-            result.beforeWorkPreview,
-          );
+          this.form.controls.beforeWorkPreview.setValue(result.beforeWorkPreview);
+          // Limpiar el form control real para que lx-file-upload no trate de leer la URL como File
+          this.form.controls.beforeWork.setValue(null);
         }
 
         if (result.afterWorkPreview) {
           this.form.controls.afterWorkPreview.setValue(result.afterWorkPreview);
+          this.form.controls.afterWork.setValue(null);
         }
 
         this.form.patchValue({

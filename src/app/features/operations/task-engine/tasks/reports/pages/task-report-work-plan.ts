@@ -33,6 +33,8 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { TaskForm } from "../../task-message/pages/task-form";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
@@ -40,6 +42,8 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
   templateUrl: "./task-report-work-plan.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
+    MobileListItem,
     LxSplitButton,
     PrimeNgCustomCaption,
     AppIcon,

@@ -22,6 +22,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { DataViewMobile } from "../../../../shared/ui/mobile/data-view-mobile/data-view-mobile";
 import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
 
 @Component({
@@ -33,7 +34,7 @@ import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-
+    DataViewMobile,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],

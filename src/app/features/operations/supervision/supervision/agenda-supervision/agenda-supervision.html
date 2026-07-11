@@ -205,3 +205,51 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [dt]="dt"
+>
+  <div customFilters>
+    <div class="flex flex-column sm:flex-row align-items-center gap-2">
+      <div style="min-width: 200px">
+        <app-rango-calendario-yyyymmdd />
+      </div>
+      <div class="flex-shrink-0">
+        <iw-button
+          pTooltip="Actualizar Información"
+          tooltipPosition="bottom"
+          iconClass="mdi:sync"
+          (clicked)="onLoadData()"
+          [rounded]="true"
+          [text]="true"
+          severity="info"
+        />
+      </div>
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.problema }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.name.label }} · {{ item.estatus }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          @if (applicationUserId == item.applicationUserId ||
+          aspRoleS.hasRole(AspRole.SuperUsuario)) {
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

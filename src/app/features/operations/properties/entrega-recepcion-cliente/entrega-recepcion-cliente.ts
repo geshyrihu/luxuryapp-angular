@@ -32,6 +32,12 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { EntregaRecepcionClienteForm } from "src/app/features/operations/properties/entrega-recepcion/entrega-recepcion-cliente-form";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",
@@ -50,6 +56,12 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 
     ActionMenu,
     PrimeNgCustomCaption,
+    DataViewMobile,
+    MobileListItem,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    MobileButtonLabelItem,
   ],
 })
 export class EntregaRecepcionClienteLista {

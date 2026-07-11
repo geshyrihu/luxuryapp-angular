@@ -375,19 +375,17 @@
           <!-- Actions Slide/Popover -->
           @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.Administrador,
           AspRole.SuperUsuario, ])() ) {
-          <div end>
-            <ili-action-menu slot="end">
-              <ng-container actions>
-                <ili-button-edit
-                  (clicked)="onModal({ id: item.id, title: 'Editar' })"
-                  label="Editar"
-                ></ili-button-edit>
-                <ili-button-delete
-                  (confirmed)="onDelete(item.id)"
-                ></ili-button-delete>
-              </ng-container>
-            </ili-action-menu>
-          </div>
+          <ili-action-menu slot="end">
+            <ng-container actions>
+              <ili-button-edit
+                (clicked)="onModal({ id: item.id, title: 'Editar' })"
+                label="Editar"
+              ></ili-button-edit>
+              <ili-button-delete
+                (confirmed)="onDelete(item.id)"
+              ></ili-button-delete>
+            </ng-container>
+          </ili-action-menu>
           }
         </ili-list-item>
       </ng-template>

@@ -25,6 +25,8 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-bitacora-individual",
   templateUrl: "./bitacora-individual.html",
@@ -36,6 +38,8 @@ import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango
     PrimeNgCustomCaption,
     CardModule,
     PrimeNgCustomTableFooter,
+    DataViewMobile,
+    MobileListItem,
   ],
 })
 export class BitacoraIndividual implements OnInit {

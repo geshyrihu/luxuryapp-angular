@@ -1,4 +1,5 @@
 @if (dataSignal()) {
+<div class="hidden md:block">
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
@@ -70,4 +71,20 @@
     </tr>
   </ng-template>
 </p-table>
+</div>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.customer }} · {{ item.status }}</p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
 }

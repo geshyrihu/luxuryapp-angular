@@ -111,9 +111,8 @@
           <p>{{ item.month }} | {{ item.task }}</p>
           <p>Frecuencia: {{ item.frequency }}</p>
         
-        <div end>
-          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-          <ili-action-menu slot="end">
+        @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+        <ili-action-menu end>
             <ng-container actions>
               <ili-button-edit
                 (clicked)="onModalForm(item.id, item.eMonth)"
@@ -126,7 +125,6 @@
             </ng-container>
           </ili-action-menu>
           }
-        </div>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

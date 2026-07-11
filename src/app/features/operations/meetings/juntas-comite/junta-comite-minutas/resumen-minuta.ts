@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CardModule } from "primeng/card";
@@ -32,6 +33,7 @@ import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
   templateUrl: "./resumen-minuta.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
     // ResumenMinutaGrafico,
     CommonModule,
     TableModule,

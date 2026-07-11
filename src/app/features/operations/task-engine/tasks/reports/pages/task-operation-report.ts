@@ -32,7 +32,11 @@ import { TaskStatus } from "src/app/features/operations/task-engine/tasks/compon
 import { SendOperationReport } from "src/app/features/operations/task-engine/tasks/send-operation-report/pages/send-operation-report";
 import { ROUTES } from "src/app/routing/route-paths";
 
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { TaskClose } from "../../components/task-close";
 import { TaskReadList } from "../../components/task-read-list";
@@ -45,6 +49,10 @@ import { TaskForm } from "../../task-message/pages/task-form";
   templateUrl: "./task-operation-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
+    MobileListItem,
+    MobileActionMenu,
+    MobileButtonLabelItem,
     WebButtonIconTracking,
     TaskStatus,
     TaskReportActions,

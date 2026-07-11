@@ -12,6 +12,8 @@ import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -35,7 +37,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 
 @Component({
   selector: "app-agenda-supervision",
@@ -54,7 +55,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
     LxMultiSelect,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-
+    DataViewMobile,
     RangoCalendarioyyyymmdd,
   ],
 })

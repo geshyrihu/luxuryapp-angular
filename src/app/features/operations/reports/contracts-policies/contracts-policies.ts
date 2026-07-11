@@ -7,7 +7,11 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
@@ -26,6 +30,10 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
   templateUrl: "./contracts-policies.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
+    MobileListItem,
+    MobileActionMenu,
+    MobileButtonLabelViewPdf,
     WebButtonIconViewPdf,
     CommonModule,
     TableModule,

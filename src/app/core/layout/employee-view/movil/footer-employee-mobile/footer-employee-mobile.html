@@ -1,6 +1,6 @@
-@if (footerItems.length > 0) {
+@if (footerItems().length > 0) {
 <ion-tab-bar class="shadow-1 pb-3 pt-1 border-none">
-  @for (item of footerItems; track item.label) {
+  @for (item of footerItems(); track item.label) {
   <ion-tab-button
     [routerLink]="item.link || []"
     (click)="item.action ? item.action() : null"
@@ -10,12 +10,8 @@
 
     <ion-label class="text-xs">{{ item.label }}</ion-label>
 
-    @if (item.showNotification && messageInNotRead > 0) {
-    <ion-badge
-      color="danger"
-      class="absolute top-0 right-0 -mr-2 -mt-1 scale-75"
-      >{{ messageInNotRead }}</ion-badge
-    >
+    @if (item.showNotification && messageInNotRead() > 0) {
+      <ion-badge color="danger">{{ messageInNotRead() }}</ion-badge>
     }
   </ion-tab-button>
   }

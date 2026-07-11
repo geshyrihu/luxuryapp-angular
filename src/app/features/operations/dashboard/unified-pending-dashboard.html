@@ -1,4 +1,5 @@
 <div class="flex flex-column mb-4">
+  <div class="hidden md:block">
   <p-table
     #dt
     [value]="data()"
@@ -283,6 +284,58 @@
       <primeng-custom-table-footer [data]="data()" />
     </ng-template>
   </p-table>
+  </div>
+
+  <!-- 📱 MOBILE -->
+  <app-data-view-mobile
+    [data]="data()"
+    [showAdd]="false"
+    [dt]="dt"
+  >
+    <div customFilters>
+      <!-- Module Filters -->
+      @if (uniqueModules().length > 0) {
+      <div class="flex overflow-x-auto align-items-center pb-1">
+        <div
+          class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+          [class.border-primary]="selectedModule() === null"
+          [class.bg-primary-50]="selectedModule() === null"
+          (click)="onModuleFilterChange(null)"
+        >
+          <app-icon [icon]="'mdi:grid'" class="text-primary" />
+          <span class="font-bold text-sm">Todos</span>
+          <lx-tag
+            [value]="allData.length"
+            severity="secondary"
+            class="text-xs py-0"
+           />
+        </div>
+
+        @for (mod of uniqueModules(); track mod.name) {
+        <div
+          class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+          [class.border-primary]="selectedModule() === mod.name"
+          [class.bg-primary-50]="selectedModule() === mod.name"
+          (click)="onModuleFilterChange(mod.name)"
+        >
+          <span>{{ mod.emoji }}</span>
+          <span class="font-medium text-sm">{{ mod.name }}</span>
+          <span
+            class="text-xs text-500 font-bold bg-surface-200 px-1 border-round"
+            >{{ mod.count }}</span
+          >
+        </div>
+        }
+      </div>
+      }
+    </div>
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item (click)="onNavigate(item)">
+        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+        <p class="text-xs m-0 text-color-secondary">{{ item.module }} · {{ item.responsible }}</p>
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
 
   <app-image-analysis-dialog
     (resultAccepted)="onVisionResult($event)"

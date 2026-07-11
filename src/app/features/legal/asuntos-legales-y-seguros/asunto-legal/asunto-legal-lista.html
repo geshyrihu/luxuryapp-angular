@@ -155,8 +155,7 @@
           {{ legalMatter.isInternal ? "Interno" : "Externo" }}
         </p>
 
-        <div end>
-          <ili-action-menu slot="end">
+        <ili-action-menu end>
             <ng-container actions>
               <ili-button-edit
                 (clicked)="onModalForm({ id: legalMatter.id, title: 'Editar' })"
@@ -170,7 +169,6 @@
               />
             </ng-container>
           </ili-action-menu>
-        </div>
       </ili-list-item>
       }
     </div>

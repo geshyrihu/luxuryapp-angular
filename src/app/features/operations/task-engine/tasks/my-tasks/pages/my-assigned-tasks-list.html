@@ -205,158 +205,81 @@
     }
   </div>
 
-  <div class="block md:hidden mt-3 no-print">
-    <div class="container-fluid py-1">
-      <div class="flex justify-content-between align-items-center mb-1">
-        <h4 class="mb-0">Mis Tickets Asignados</h4>
+  <div class="block md:hidden mt-3 no-print h-full min-h-0">
+    <app-data-view-mobile
+      [data]="dataSignal()"
+      (add)="onModalAdd({ id: '', title: 'Agregar' })"
+      [globalFilterFields]="globalFilterFields()"
+    >
+      <div customFilters class="my-2 px-2 w-full">
+        <app-task-status (statusChange)="onLoadData($event)" />
       </div>
 
-      <div class="flex justify-content-between align-items-center mb-1">
-        <custom-input-text-signal
-          placeholder="Ingresa texto para buscar..."
-          [customClass]="'mr-1'"
-          [ngModel]="searchTextSignal()"
-          (ngModelChange)="searchTextSignal.set($event)"
-          [horizontal]="false"
-        />
-        <il-button-add
-          label="Agregar"
-          iconClass="mdi:plus"
-          customClass="p-button-outlined"
-          (clicked)="
-        onModalAdd({
-          id: '',
-          title: 'Agregar',
-        })
-      "
-        />
-      </div>
-
-      <div class="flex mb-1">
-        <il-button
-          iconClass="mdi:clock-outline"
-          label="Pend.."
-          variant="outlined"
-          size="small"
-          (clicked)="onLoadData(0)"
-        />
-
-        <il-button
-          iconClass="mdi:sync"
-          label="Reab.."
-          variant="outlined"
-          size="small"
-          (clicked)="onLoadData(3)"
-        />
-
-        <il-button
-          iconClass="mdi:cog"
-          label="Proc.."
-          variant="outlined"
-          size="small"
-          (clicked)="onLoadData(1)"
-        />
-
-        <il-button
-          iconClass="mdi:check-circle"
-          label="Term.."
-          variant="outlined"
-          size="small"
-          (clicked)="onLoadData(2)"
-        />
-      </div>
-
-      @if (filteredDataSignal()) {
-      <div class="ticket-list">
-        @for (item of filteredDataSignal(); track item) {
-        <div
-          class="py-1 border-left-2 mb-1 pl-2"
-          [class.border-red-500]="item.status === 'Completed'"
-          [class.border-gray-500]="item.status === 'Reopened'"
-          [class.border-green-500]="item.status === 'Closed'"
-          [class.border-yellow-500]="item.status === 'InProgress'"
+      <ng-template #listItemTemplate let-item>
+        <ili-list-item
+          alignTop="true"
+          class="w-full"
         >
-          <div class="flex justify-content-between align-items-center mb-1">
-            <small class="text-color-secondary"
-              >{{ item.folio }} | {{ item.createdAtDate }}</small
-            >
-            <span
-              class="bg-primary-100 text-primary-700 border-round px-2 py-1 text-sm"
-            >
-              {{ item.daysDifference }}
-            </span>
+          <div slot="start">
+            <app-avatar
+              [image]="item.beforeWork ? item.beforeWork : 'assets/images/default-avatar.jpg'"
+              [alt]="item.title"
+              size="large"
+              shape="circle"
+            />
           </div>
-          <div class="flex align-items-center">
-            <div class="mr-3">
-              @if (item.beforeWork) {
-              <app-image
-                [src]="
-              item.beforeWork
-                ? item.beforeWork
-                : 'assets/images/default-avatar.png'
-            "
-                alt="."
-                width="50"
-                styleClass="border-round border-1 border-200"
-                [preview]="true"
-              ></app-image>
-              }
+
+          <div class="flex flex-column gap-1">
+            <div class="flex justify-content-between align-items-center mt-1">
+              <small class="text-color-secondary text-xs">{{ item.folio }} | {{ item.createdAtDate }}</small>
+              <span class="bg-primary-100 text-primary-700 border-round px-2 py-1 text-xs font-bold">{{ item.daysDifference }} d</span>
             </div>
-            <div class="flex-grow-1">
-              <div
-                class="ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
-              >
-                {{ item.title }}
-              </div>
-              <small class="ticket-description two-lines text-color-secondary">
-                {{ item.description }}
-              </small>
-            </div>
-            <div>
-              <app-action-menu>
-                <ng-container actions>
-                  <il-button-item
-                    iconClass="mdi:clipboard-text"
-                    label="Seguimiento"
-                    (clicked)="onFollowUp(item.id)"
-                  />
-                  @if (item.status !== "Completed") {
-                  <il-button-edit
-                    (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-                    label="Editar"
-                  />
-                  <il-button-item
-                    iconClass="mdi:calendar"
-                    label="Programar"
-                    (clicked)="onProgram(item.id)"
-                  />
-                  <il-button-item
-                    iconClass="mdi:sync"
-                    label="En proceso"
-                    (clicked)="onProgress(item.id)"
-                  />
-                  } @if (item.status !== "Completed") {
-                  <il-button-item
-                    iconClass="mdi:lock"
-                    label="Cerrar"
-                    (clicked)="onClosed(item.id)"
-                  />
-                  } @if (item.status === "Completed") {
-                  <il-button-item
-                    iconClass="mdi:lock-open"
-                    label="Re abrir"
-                    (clicked)="onReopen(item.id)"
-                  />
-                  }
-                </ng-container>
-              </app-action-menu>
-            </div>
+            <p class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap">
+              {{ item.title }}
+            </p>
+            <p class="text-xs m-0 text-color-secondary ticket-description two-lines">
+              {{ item.description }}
+            </p>
           </div>
-        </div>
-        }
-      </div>
-      }
-    </div>
+
+          <ili-action-menu slot="end">
+            <ili-button-item
+              iconName="clipboard-outline"
+              label="Seguimiento"
+              (clicked)="onFollowUp(item.id)"
+            />
+            @if (item.status !== "Completed") {
+            <ili-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            <ili-button-item
+              iconName="calendar-outline"
+              label="Programar"
+              (clicked)="onProgram(item.id)"
+            />
+            <ili-button-item
+              iconName="sync-outline"
+              label="En proceso"
+              (clicked)="onProgress(item.id)"
+            />
+            } @if (item.status !== "Completed") {
+            <ili-button-item
+              iconName="lock-closed-outline"
+              label="Cerrar"
+              (clicked)="onClosed(item.id)"
+            />
+            } @if (item.status === "Completed") {
+            <ili-button-item
+              iconName="lock-open-outline"
+              label="Re abrir"
+              (clicked)="onReopen(item.id)"
+            />
+            }
+          </ili-action-menu>
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
   </div>
 
   <!-- ================================================================

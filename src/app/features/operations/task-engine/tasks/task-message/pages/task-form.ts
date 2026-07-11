@@ -260,12 +260,13 @@ export class TaskForm implements OnInit {
       dependsOnTaskId: result.dependsOnTaskId ?? null,
     });
 
-    // Vistas previas de imígenes
     if (result.beforeWorkPreview) {
       this.beforeWorkPreview.set(result.beforeWorkPreview);
+      this.form.controls.beforeWork.setValue(null);
     }
     if (result.afterWorkPreview) {
       this.afterWorkPreview.set(result.afterWorkPreview);
+      this.form.controls.afterWork.setValue(null);
     }
   }
 
@@ -322,7 +323,6 @@ export class TaskForm implements OnInit {
           const heicBlob = new Blob([buffer], {
             type: file.type || "image/heic",
           });
-
           const convertedBlob = await heic2any({
             blob: heicBlob,
             toType: "image/jpeg",

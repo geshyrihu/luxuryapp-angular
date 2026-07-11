@@ -1,3 +1,4 @@
+<div class="hidden md:block">
 <p-table [value]="data()" [loading]="loading()" class="custom-table" #dt>
   <ng-template #caption>
     <div class="flex flex-column gap-2 mb-2">
@@ -71,3 +72,31 @@
     </tr>
   </ng-template>
 </p-table>
+</div>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="false"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.name }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.type }} · {{ item.code }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-item
+            iconClass="mdi:printer-outline"
+            (clicked)="onPrint(item.id)"
+          />
+          <ili-button-item
+            iconClass="mdi:refresh"
+            (clicked)="onRegenerate(item.id)"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

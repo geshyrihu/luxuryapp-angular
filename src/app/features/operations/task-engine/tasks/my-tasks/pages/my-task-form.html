@@ -1,4 +1,4 @@
-<div class="p-4">
+<div class="md:p-3">
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     @if (id) {
     <custom-input-text-signal
@@ -51,22 +51,52 @@
       [filter]="true"
     />
 
-    <div class="grid">
-      <div class="col-12">
-        <custom-input-img-signal
-          [control]="form.controls.beforeWork"
-          [urlImgCurrent]="form.controls.beforeWorkPreview.value"
-          label="Foto de antes"
-          [required]="false"
-        />
+    <div class="grid mt-2">
+      <div class="col-12 mb-2">
+        <small class="text-500 italic">
+          <app-icon [icon]="'mdi:camera'" class="mr-1" />
+          Recuerda: Fotos horizontales, centradas en el detalle.
+        </small>
       </div>
-      <div class="col-12">
-        <custom-input-img-signal
-          [control]="form.controls.afterWork"
-          [urlImgCurrent]="form.controls.afterWorkPreview.value"
-          label="Foto de después"
-          [required]="false"
-        />
+      <div class="col-12 md:col-6">
+        <div class="mb-4">
+          <label class="font-bold text-xs uppercase text-700 block mb-2"
+            >Foto del antes</label
+          >
+          @if (form.controls.beforeWorkPreview.value) {
+            <div class="mb-2">
+              <img [src]="form.controls.beforeWorkPreview.value" class="w-full border-round shadow-1" style="max-height: 200px; object-fit: contain;" alt="Evidencia Antes" />
+            </div>
+          }
+          <lx-file-upload
+            accept="image/*,.heic,.heif"
+            [maxFileSize]="10000000"
+            [multiple]="false"
+            [chooseLabel]="'Seleccionar foto'"
+            (onSelect)="onFileSelect($event, 'beforeWork')"
+            (filesChange)="onFilesChange($event, 'beforeWork')"
+          />
+        </div>
+      </div>
+      <div class="col-12 md:col-6">
+        <div class="mb-4">
+          <label class="font-bold text-xs uppercase text-700 block mb-2"
+            >Foto del después</label
+          >
+          @if (form.controls.afterWorkPreview.value) {
+            <div class="mb-2">
+              <img [src]="form.controls.afterWorkPreview.value" class="w-full border-round shadow-1" style="max-height: 200px; object-fit: contain;" alt="Evidencia Después" />
+            </div>
+          }
+          <lx-file-upload
+            accept="image/*,.heic,.heif"
+            [maxFileSize]="10000000"
+            [multiple]="false"
+            [chooseLabel]="'Seleccionar foto'"
+            (onSelect)="onFileSelect($event, 'afterWork')"
+            (filesChange)="onFilesChange($event, 'afterWork')"
+          />
+        </div>
       </div>
     </div>
 

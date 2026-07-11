@@ -1,4 +1,5 @@
-<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<div class="md:p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <!-- Guóa de usuario para mejorar la consistencia de datos -->
   <div
     class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
@@ -169,6 +170,11 @@
         <label class="font-bold text-xs uppercase text-700 block mb-2"
           >Foto del antes</label
         >
+        @if (beforeWorkPreview()) {
+          <div class="mb-2">
+            <img [src]="beforeWorkPreview()" class="w-full border-round shadow-1" style="max-height: 200px; object-fit: contain;" alt="Evidencia Antes" />
+          </div>
+        }
         <lx-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
@@ -183,8 +189,13 @@
     <div class="col-12 md:col-6">
       <div class="mb-4">
         <label class="font-bold text-xs uppercase text-700 block mb-2"
-          >Foto del despu&eacute;s</label
+          >Foto del después</label
         >
+        @if (afterWorkPreview()) {
+          <div class="mb-2">
+            <img [src]="afterWorkPreview()" class="w-full border-round shadow-1" style="max-height: 200px; object-fit: contain;" alt="Evidencia Después" />
+          </div>
+        }
         <lx-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
@@ -209,4 +220,5 @@
       [submitting]="submitting()"
     />
   </div>
-</form>
+  </form>
+</div>

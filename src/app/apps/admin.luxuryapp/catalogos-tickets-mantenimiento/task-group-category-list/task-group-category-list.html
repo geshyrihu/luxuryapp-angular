@@ -112,29 +112,27 @@
         <div class="flex align-items-center">
           <span class="text-xl">{{ item.emoji }}</span>
           <div class="ml-2">
-            <h2>{{ item.name }}</h2>
-            <p>{{ item.code }} | {{ item.departament | uppercase }}</p>
+            <p class="font-semibold m-0 text-color">{{ item.name }}</p>
+            <p class="text-xs m-0 text-color-secondary">{{ item.code }} | {{ item.departament | uppercase }}</p>
           </div>
+          <div
+            class="w-6 h-6 border-round-md flex-shrink-0 ml-auto"
+            [style.backgroundColor]="item.color"
+          ></div>
         </div>
       
-      <div end>
-        <div
-          class="w-6 h-6 border-round-md flex-shrink-0"
-          [style.backgroundColor]="item.color"
-        ></div>
-        <ili-action-menu slot="end">
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
-      </div>
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

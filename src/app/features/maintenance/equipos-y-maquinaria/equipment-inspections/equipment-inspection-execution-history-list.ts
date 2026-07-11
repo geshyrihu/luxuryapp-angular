@@ -9,10 +9,11 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -37,6 +38,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     LxTag,
+    DataViewMobile,
     PrimeNgCustomCaption,
   ],
 })

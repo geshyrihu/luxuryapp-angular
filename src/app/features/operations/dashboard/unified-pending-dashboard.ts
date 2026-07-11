@@ -37,6 +37,7 @@ import Swal from "sweetalert2";
 import { PendingItemDTO } from "./models/pending-item.dto";
 
 // Recruitment Dialog Components
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TicketLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { ServiceOrderForm } from "src/app/features/operations/field-service/service-order/service-order-form";
@@ -59,7 +60,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     IconFieldModule,
     CardModule,
     AppAvatar,
-
+    DataViewMobile,
     TooltipModule,
     PrimeNgCustomTableFooter,
     PrimeNgCustomCaption,

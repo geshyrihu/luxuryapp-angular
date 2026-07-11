@@ -112,8 +112,7 @@
       <h2 class="font-normal m-0">{{ item.nameTool }}</h2>
       <p class="text-medium text-500 m-0">{{ item.category }}</p>
 
-      <div end>
-        <ili-action-menu slot="end">
+      <ili-action-menu end>
           <ng-container actions>
             <ili-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -127,7 +126,6 @@
             }
           </ng-container>
         </ili-action-menu>
-      </div>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

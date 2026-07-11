@@ -23,6 +23,10 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
 @Component({
   selector: "app-bitacora-mantenimiento",
@@ -37,6 +41,10 @@ import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango
     WebButtonLabelEdit,
     PrimeNgCustomCaption,
     CardModule,
+    DataViewMobile,
+    MobileListItem,
+    MobileActionMenu,
+    MobileButtonLabelDelete,
   ],
 })
 export class BitacoraMantenimiento {

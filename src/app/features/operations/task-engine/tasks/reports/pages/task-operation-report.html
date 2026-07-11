@@ -150,4 +150,38 @@
     </tr>
   </ng-template>
 </p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [dt]="dt"
+>
+  <div customFilters>
+    <app-task-status (statusChange)="onChangeStatus($event)" />
+    <app-task-report-actions
+      (previewClicked)="onPreviewClicked()"
+      (sendReportClicked)="onSendReportClicked()"
+    />
+    <app-task-date-range-selector
+      (selectedDates)="onDateRangeSelected($event)"
+    />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.folio }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.responsibleArea }} · {{ item.dateFinished }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-item
+            iconClass="mdi:crosshairs-gps"
+            label="Tracking"
+            (clicked)="onFollowUp(item.id)"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
 }

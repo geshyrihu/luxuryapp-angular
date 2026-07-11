@@ -26,6 +26,7 @@ import { EquipmentInspectionExecutionForm } from "./equipment-inspection-executi
 import { EquipmentInspectionDefinitionListDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -36,6 +37,7 @@ import { TooltipModule } from "primeng/tooltip";
   templateUrl: "./equipment-inspection-definitions-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    DataViewMobile,
     WebButtonIconItem,
     WebButtonIconEdit,
     WebButtonIconDelete,

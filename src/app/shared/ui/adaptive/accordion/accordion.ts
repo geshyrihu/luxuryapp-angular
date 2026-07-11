@@ -7,7 +7,6 @@ import { PlatformService } from "src/app/core/services/platform.service";
 
 @Component({
   selector: "lx-accordion",
-
   imports: [NgTemplateOutlet, Accordion, MobileAccordion],
   template: `
     <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo

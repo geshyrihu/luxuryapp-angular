@@ -148,8 +148,7 @@
         <div class="text-base font-medium">{{ item.name }}</div>
         <span class="text-sm">{{ item.frequency }}</span>
       </span>
-      <div slot="end">
-        <ili-action-menu slot="end">
+      <ili-action-menu end>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
@@ -161,7 +160,6 @@
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ili-action-menu>
-      </div>
     </div>
   </ng-template>
 </app-data-view-mobile>

@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -23,6 +23,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TooltipModule } from "primeng/tooltip";
+import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-equipment-inspection-qr-list",
@@ -34,7 +35,7 @@ import { TooltipModule } from "primeng/tooltip";
     CommonModule,
     TableModule,
     LxTag,
-
+    DataViewMobile,
     PrimeNgCustomCaption,
   ],
 })

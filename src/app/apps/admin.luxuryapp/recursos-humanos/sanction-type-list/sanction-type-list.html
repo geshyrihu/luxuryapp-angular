@@ -120,17 +120,15 @@
           }
         </p>
 
-        <div end>
-          <ili-action-menu slot="end">
-            <ng-container actions>
-              <ili-button-edit (clicked)="onEdit(item)" label="Editar" />
-              <ili-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
-              />
-            </ng-container>
-          </ili-action-menu>
-        </div>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="onEdit(item)" label="Editar" />
+          <ili-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
