@@ -106,7 +106,7 @@ export interface PaletteCommand {
 
         <div class="palette-footer">
           <span><kbd>↑↓</kbd> Navegar</span>
-          <span><kbd>â†µ</kbd> Seleccionar</span>
+          <span><kbd>↵</kbd> Seleccionar</span>
           <span><kbd>Esc</kbd> Cerrar</span>
         </div>
       </div>
