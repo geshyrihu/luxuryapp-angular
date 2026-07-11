@@ -25,7 +25,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/models/document-type.enum";
+import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 
 @Component({
   selector: "app-acta-constitutiva-list",

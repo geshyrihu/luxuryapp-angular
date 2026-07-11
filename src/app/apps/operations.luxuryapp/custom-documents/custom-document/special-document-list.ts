@@ -16,7 +16,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
 import { DocumentoPersonalizadoForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-form";
-import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/models/document-type.enum";
+import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";

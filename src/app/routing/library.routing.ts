@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router"; // Trivial change to force re-evaluation
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { superUserGuard } from "src/app/core/auth/guards/super-user.guard";
-import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/models/document-type.enum";
+import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 export const libraryRoutes: Routes = [
   {
     path: "incorporation-deed", // Ruta anterior: 'acta-constitutiva'

@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
-import { documentTypeRoutesConfig } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/models/documentTypeRoutesConfig";
+import { documentTypeRoutesConfig } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/documentTypeRoutesConfig";
 // Importa el componente de forma perezosa
 const CustomDocumentList = () =>
   import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-lista").then(
