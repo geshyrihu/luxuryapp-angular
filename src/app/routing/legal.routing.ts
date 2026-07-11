@@ -82,7 +82,7 @@ export const legalRoutes: Routes = [
   {
     path: "committee-directory", // Ruta anterior: 'directorio-comites'
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/directorios/comite-vigilancia/comites-list").then(
+      import("src/app/apps/legal.luxuryapp/comite-vigilancia/comites-list").then(
         (m) => m.ComitesList,
       ),
     canActivate: [authGuard],

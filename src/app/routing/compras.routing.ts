@@ -29,7 +29,7 @@ export const comprasRoutes: Routes = [
   {
     path: "products-services",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/product/productos-list").then(
+      import("src/app/apps/supplier.luxuryapp/product/productos-list").then(
         (m) => m.ProductosList,
       ),
     canActivate: [authGuard],

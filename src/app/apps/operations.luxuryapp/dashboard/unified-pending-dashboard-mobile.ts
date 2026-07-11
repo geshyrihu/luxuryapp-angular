@@ -25,7 +25,7 @@ import {
 } from "ionicons/icons";
 import { PolicyContractForm } from "src/app/apps/operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
-import { MinutaDetalleForm } from "src/app/apps/operations.luxuryapp/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { TaskForm } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/pages/task-form";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

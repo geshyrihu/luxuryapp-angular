@@ -16,7 +16,7 @@ export const logbookRoutes: Routes = [
   {
     path: "inspections-areas",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/areas-inspeccion/inspections-areas").then(
+      import("src/app/apps/mantenimiento.luxuryapp/inspection/areas-inspeccion/inspections-areas").then(
         (m) => m.InspectionsAreas,
       ),
     canActivate: [authGuard],
@@ -115,7 +115,7 @@ export const logbookRoutes: Routes = [
   {
     path: "my-inspection/:customerInspectionId",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-ejecutar").then(
+      import("src/app/apps/mantenimiento.luxuryapp/inspection/bitacora/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],

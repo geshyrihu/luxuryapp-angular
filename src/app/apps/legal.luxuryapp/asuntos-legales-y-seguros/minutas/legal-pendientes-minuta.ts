@@ -35,8 +35,8 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { MeetingSeguimientoEdit } from "src/app/apps/operations.luxuryapp/meetings/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "src/app/apps/operations.luxuryapp/meetings/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { ContMinutaSeguimientos } from "../../../../apps/contabilidad.luxuryapp/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
 // import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";

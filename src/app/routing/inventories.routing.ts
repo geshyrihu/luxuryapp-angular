@@ -54,7 +54,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'paint'
     path: "pintura",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/paint-inventory/inventario-pintura").then(
+      import("src/app/apps/supplier.luxuryapp/paint-inventory/inventario-pintura").then(
         (m) => m.InventarioPintura,
       ),
     canActivate: [authGuard],

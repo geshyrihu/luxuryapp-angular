@@ -14,7 +14,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { InspeccionAgregarRevision } from "src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/inspeccion-agregar-revision/inspeccion-agregar-revision";
+import { InspeccionAgregarRevision } from "src/app/apps/mantenimiento.luxuryapp/inspection/inspeccion-agregar-revision/inspeccion-agregar-revision";
 import { InspeccionActivoCondominio } from "../inspeccion-activo-condominio-agregar/inspeccion-activo-condominio";
 import { InspeccionActivoCondominioEditar } from "../inspeccion-activo-condominio-editar/inspeccion-activo-condominio-editar";
 

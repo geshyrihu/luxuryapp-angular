@@ -31,7 +31,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TarjetaProducto } from "src/app/apps/operations.luxuryapp/inventarios-y-almacn/product/tarjeta-producto";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<number>;

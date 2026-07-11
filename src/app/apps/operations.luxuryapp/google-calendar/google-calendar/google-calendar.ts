@@ -34,7 +34,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { JuntaMensualSessionChecklistDialog } from "src/app/apps/operations.luxuryapp/meetings/juntas-comite/juntas-mensuales-session/junta-mensual-session-checklist-dialog";
+import { JuntaMensualSessionChecklistDialog } from "src/app/apps/direccion.luxuryapp/juntas-comite/juntas-mensuales-session/junta-mensual-session-checklist-dialog";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 

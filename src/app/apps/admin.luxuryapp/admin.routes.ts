@@ -204,7 +204,7 @@ export const adminRoutes: Routes = [
   {
     path: "ticket-group-category",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/task-group-category-list/task-group-category-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/task-group-category-list/task-group-category-list").then(
         (m) => m.TaskGroupCategoryList,
       ),
     canActivate: [authGuard],
@@ -216,7 +216,7 @@ export const adminRoutes: Routes = [
   {
     path: "meter-category",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/meter-category/meter-category-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/meter-category/meter-category-list").then(
         (m) => m.MeterCategoryList,
       ),
     canActivate: [authGuard],
@@ -228,7 +228,7 @@ export const adminRoutes: Routes = [
   {
     path: "product-category",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/product-category/product-category-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/product-category/product-category-list").then(
         (m) => m.ProductCategoryList,
       ),
     canActivate: [authGuard],
@@ -240,7 +240,7 @@ export const adminRoutes: Routes = [
   {
     path: "machinery-classification",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/machinery-classification/machinery-classification-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/machinery-classification/machinery-classification-list").then(
         (m) => m.MachineryClassificationList,
       ),
     canActivate: [authGuard],
@@ -252,7 +252,7 @@ export const adminRoutes: Routes = [
   {
     path: "client-delivery-reception",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/delivery-reception-catalog/catalogo-descripcion-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/delivery-reception-catalog/catalogo-descripcion-list").then(
         (m) => m.CatalogoDescripcionList,
       ),
     canActivate: [authGuard],
@@ -264,7 +264,7 @@ export const adminRoutes: Routes = [
   {
     path: "catalog-asset",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista").then(
         (m) => m.CatalogoActivoLista,
       ),
     canActivate: [authGuard],
@@ -276,7 +276,7 @@ export const adminRoutes: Routes = [
   {
     path: "inspection-reviews-catalog",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/catalogos-tickets-mantenimiento/catalogo-revisiones-inspeccion/catalogo-revisiones-inspeccion").then(
+      import("src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/catalogo-revisiones-inspeccion/catalogo-revisiones-inspeccion").then(
         (m) => m.CatalogoRevisionesInspeccion,
       ),
     canActivate: [authGuard],
@@ -290,7 +290,7 @@ export const adminRoutes: Routes = [
   {
     path: "ai-knowledge-base",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list").then(
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list").then(
         (m) => m.AiKnowledgeBaseList,
       ),
     canActivate: [authGuard],
@@ -302,7 +302,7 @@ export const adminRoutes: Routes = [
   {
     path: "monthly-meetings-reconciliation",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
         (m) => m.JuntasMensualesBackfill,
       ),
     canActivate: [authGuard],
@@ -314,7 +314,7 @@ export const adminRoutes: Routes = [
   {
     path: "assembly-checklist-catalog",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
         (m) => m.AsambleaChecklistTemplateList,
       ),
     canActivate: [authGuard],
@@ -326,7 +326,7 @@ export const adminRoutes: Routes = [
   {
     path: "vault-secrets",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/vault-secrets/vault-secrets-list").then(
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/vault-secrets/vault-secrets-list").then(
         (m) => m.VaultSecretsList,
       ),
     canActivate: [authGuard, superUsuarioGuard],
@@ -338,7 +338,7 @@ export const adminRoutes: Routes = [
   {
     path: "jobs",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
         (m) => m.JobsDashboard,
       ),
     canActivate: [authGuard],
@@ -378,7 +378,7 @@ export const adminRoutes: Routes = [
   {
     path: "incident-types",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/recursos-humanos/incident-type-list/incident-type-list").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/recursos-humanos-admin/incident-type-list/incident-type-list").then(
         (m) => m.IncidentTypeList,
       ),
     canActivate: [authGuard],
@@ -390,7 +390,7 @@ export const adminRoutes: Routes = [
   {
     path: "sanction-types",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/recursos-humanos/sanction-type-list/sanction-type-list").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/recursos-humanos-admin/sanction-type-list/sanction-type-list").then(
         (m) => m.SanctionTypeList,
       ),
     canActivate: [authGuard],
@@ -612,7 +612,7 @@ export const adminRoutes: Routes = [
   {
     path: "eleven-labs",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/configuracion-sistema/eleven-labs/eleven-labs-settings").then(
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/eleven-labs/eleven-labs-settings").then(
         (m) => m.ElevenLabsSettingsComponent,
       ),
     canActivate: [authGuard],

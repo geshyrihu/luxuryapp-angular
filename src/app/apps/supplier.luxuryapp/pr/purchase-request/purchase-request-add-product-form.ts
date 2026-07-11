@@ -37,7 +37,7 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { TarjetaProducto } from "src/app/apps/operations.luxuryapp/inventarios-y-almacn/product/tarjeta-producto";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { IProductData } from "./product-data.interface";
 
 @Component({

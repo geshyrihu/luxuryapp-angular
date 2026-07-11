@@ -181,7 +181,7 @@ export const libraryRoutes: Routes = [
   {
     path: "painting", // Ruta anterior: 'pintura' (Note: using painting to match DB standard)
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/paint-inventory/inventario-pintura").then(
+      import("src/app/apps/supplier.luxuryapp/paint-inventory/inventario-pintura").then(
         (m) => m.InventarioPintura,
       ),
     canActivate: [authGuard],
@@ -193,7 +193,7 @@ export const libraryRoutes: Routes = [
   {
     path: "lighting", // Ruta anterior: 'iluminacion'
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/lighting-inventory/inventario-iluminacion").then(
+      import("src/app/apps/supplier.luxuryapp/lighting-inventory/inventario-iluminacion").then(
         (m) => m.InventarioIluminacion,
       ),
     canActivate: [authGuard],
