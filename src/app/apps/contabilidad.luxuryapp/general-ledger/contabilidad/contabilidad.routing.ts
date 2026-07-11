@@ -33,7 +33,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "accounting-catalog",
     loadComponent: () =>
-      import("./accounting-catalog/pages/accounting-catalog").then(
+      import("./accounting-catalog/accounting-catalog").then(
         (m) => m.AccountingCatalog,
       ),
     canActivate: [authGuard],
@@ -170,7 +170,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections",
     loadComponent: () =>
-      import("./cobranza-online/pages/dashboard/cobranza-online-dashboard").then(
+      import("./cobranza-online/dashboard/cobranza-online-dashboard").then(
         (m) => m.CobranzaOnlineDashboard,
       ),
     canActivate: [authGuard],
@@ -183,7 +183,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/inspection",
     loadComponent: () =>
-      import("./cobranza-online/pages/inspection/cobranza-online-inspection").then(
+      import("./cobranza-online/inspection/cobranza-online-inspection").then(
         (m) => m.CobranzaOnlineInspection,
       ),
     canActivate: [authGuard],
@@ -196,7 +196,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/analysis",
     loadComponent: () =>
-      import("./cobranza-online/pages/analysis/cobranza-online-analysis").then(
+      import("./cobranza-online/analysis/cobranza-online-analysis").then(
         (m) => m.CobranzaOnlineAnalysis,
       ),
     canActivate: [authGuard],
@@ -209,7 +209,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/reporte-financiero",
     loadComponent: () =>
-      import("./cobranza-online/pages/reporte-financiero/cobranza-online-reporte-financiero").then(
+      import("./cobranza-online/reporte-financiero/cobranza-online-reporte-financiero").then(
         (m) => m.CobranzaOnlineReporteFinanciero,
       ),
     canActivate: [authGuard],
@@ -222,7 +222,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/presupuesto-contabilidad",
     loadComponent: () =>
-      import("./cobranza-online/pages/presupuesto-contabilidad/presupuesto-contabilidad").then(
+      import("./cobranza-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
         (m) => m.PresupuestoContabilidad,
       ),
     canActivate: [authGuard],
@@ -234,7 +234,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/exclusions",
     loadComponent: () =>
-      import("./cobranza-online/pages/exclusions/cobranza-online-exclusions").then(
+      import("./cobranza-online/exclusions/cobranza-online-exclusions").then(
         (m) => m.CobranzaOnlineExclusions,
       ),
     canActivate: [authGuard],
@@ -252,7 +252,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "accounts",
     loadComponent: () =>
-      import("./accounting-catalog/pages/accounting-catalog").then(
+      import("./accounting-catalog/accounting-catalog").then(
         (m) => m.AccountingCatalog,
       ),
     data: {
@@ -269,7 +269,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "financial-statements-reports",
     loadComponent: () =>
-      import("./contabilidad-online/pages/financial-reports-wrapper").then(
+      import("./contabilidad-online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {

@@ -30,7 +30,7 @@ import Swal from "sweetalert2";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
-} from "../models/presupuesto-shared.models";
+} from "../interfaces/presupuesto-shared.models";
 import { BudgetRuleList } from "../presupuesto-propuesta/budget-rule-list/budget-rule-list";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";

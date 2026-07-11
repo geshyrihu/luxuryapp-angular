@@ -21,8 +21,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import {
   IEspejoAspelFullResponseDTO,
   IEspejoFilaTabla,
-} from "./models/espejo-aspel-full.interface";
-import { ReportFilterService } from "./services/financial-report-filter.service";
+} from "./interfaces/espejo-aspel-full.interface";
+import { ReportFilterService } from "./financial-report-filter.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 

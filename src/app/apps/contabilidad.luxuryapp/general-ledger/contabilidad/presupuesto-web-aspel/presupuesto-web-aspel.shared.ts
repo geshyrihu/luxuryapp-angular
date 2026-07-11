@@ -1,5 +1,5 @@
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CuentaAspelTercerNivelDTO } from "../models/presupuesto-shared.models";
+import { CuentaAspelTercerNivelDTO } from "../interfaces/presupuesto-shared.models";
 import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
 
 export const ASPEL_AVAILABLE_YEARS: SelectItemDto[] = [

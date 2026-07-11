@@ -1,7 +1,7 @@
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
-import { BudgetProposalItemDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
+import { BudgetProposalItemDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { PanicAlertRealTimeDto } from "src/app/apps/operations.luxuryapp/panic-alert/interfaces/panic-alert-real-time.dto";
 import { environment } from "src/environments/environment";

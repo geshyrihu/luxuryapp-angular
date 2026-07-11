@@ -21,7 +21,7 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { FundingPurchaseDetail } from "src/app/apps/contabilidad.luxuryapp/fondeos-y-reporteo/funding/funding-purchase-detail";
 import { FundingDetailDTO } from "src/app/apps/contabilidad.luxuryapp/fondeos-y-reporteo/funding/model/funding-detail-dto";
-import { FundingExcelExportService } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/services/funding-excel-export.service";
+import { FundingExcelExportService } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/funding-excel-export.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

@@ -4,7 +4,7 @@ import { saveAs } from "file-saver";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
-} from "../models/presupuesto-shared.models";
+} from "../interfaces/presupuesto-shared.models";
 import {
   ASPEL_MONTHS,
   getCuentaMonthValue,

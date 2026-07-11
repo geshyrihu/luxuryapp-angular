@@ -24,7 +24,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model";
+import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.model";
 @Component({
   selector: "app-fee-comparison-by-indiviso-modal",
   template: `

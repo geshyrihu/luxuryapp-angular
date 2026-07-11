@@ -40,7 +40,7 @@ import { Subscription } from "rxjs";
 import {
   BudgetProposalDTO,
   BudgetProposalItemDTO,
-} from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
+} from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
@@ -64,7 +64,7 @@ import { BudgetSupportDialog } from "./budget-support-dialog";
 import { FeeComparisonByFija } from "./fee-comparison-by-fija";
 import { BudgetExecutionDetailsModal } from "./modal-budget-execution-details";
 import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso";
-import { ExcelExportService } from "./services/excel-export.service";
+import { ExcelExportService } from "./excel-export.service";
 /**
  * Componente principal para la gestión de la propuesta de presupuesto.
  * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.

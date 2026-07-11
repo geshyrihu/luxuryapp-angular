@@ -3,8 +3,8 @@ import {
   ICanvasRow,
   ICanvasSection,
   ILivePreviewResult,
-} from "../models/live-preview.interface";
-import { IReportDataSource } from "../models/report-definition.interface";
+} from "../interfaces/live-preview.interface";
+import { IReportDataSource } from "../interfaces/report-definition.interface";
 
 type LivePreviewPayload = {
   customerId: string;

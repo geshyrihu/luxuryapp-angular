@@ -30,7 +30,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { RippleModule } from "primeng/ripple";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IAvailableAccountDTO } from "./models/IAvailableAccountDto";
+import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {
   searchTerm: FormControl<string>;

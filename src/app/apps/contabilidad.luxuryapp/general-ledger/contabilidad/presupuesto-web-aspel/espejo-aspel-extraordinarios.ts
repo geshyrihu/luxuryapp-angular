@@ -25,7 +25,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
-} from "../models/presupuesto-shared.models";
+} from "../interfaces/presupuesto-shared.models";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 import {

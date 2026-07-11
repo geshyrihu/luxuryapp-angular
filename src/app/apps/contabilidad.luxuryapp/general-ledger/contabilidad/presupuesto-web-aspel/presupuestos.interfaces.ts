@@ -5,7 +5,7 @@ export {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO as CuentaAspelDetalladaDTO,
   CuentaAspelTercerNivelDTO,
-} from "../models/presupuesto-shared.models";
+} from "../interfaces/presupuesto-shared.models";
 
 export interface PurchaseHistoryDTO {
   ordenCompraId?: string;

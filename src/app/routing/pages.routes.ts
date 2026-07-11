@@ -321,7 +321,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/report-catalog/report-catalog").then(
         (m) => m.ReportCatalog,
       ),
     data: { title: "Reportes Financieros", breadcrumb: "Reportes" },
@@ -329,7 +329,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/nuevo",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Nuevo Reporte", breadcrumb: "Nuevo Reporte" },
@@ -337,7 +337,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/editar/:id",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Editar Reporte", breadcrumb: "Editar Reporte" },
@@ -345,7 +345,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/ver/:id",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/report-viewer/report-viewer").then(
         (m) => m.ReportViewer,
       ),
     data: { title: "Ver Reporte", breadcrumb: "Ver Reporte" },
@@ -353,7 +353,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/guia",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/report-guide/report-guide").then(
         (m) => m.ReportGuide,
       ),
     data: { title: "Guía del Módulo de Reportes", breadcrumb: "Guía" },
@@ -361,7 +361,7 @@ export const pagesRoutes: Routes = [
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -372,7 +372,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/validacion-catalogo/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -383,7 +383,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {

@@ -17,7 +17,7 @@ export const accountingRoutes: Routes = [
   {
     path: "accounting-catalog",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/accounting-catalog/pages/accounting-catalog").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/accounting-catalog/accounting-catalog").then(
         (m) => m.AccountingCatalog,
       ),
     canActivate: [authGuard],

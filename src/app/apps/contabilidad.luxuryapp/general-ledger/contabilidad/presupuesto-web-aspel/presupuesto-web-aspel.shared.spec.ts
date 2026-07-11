@@ -8,7 +8,7 @@ import {
   normalizeAspelAccounts,
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
-import { CuentaAspelTercerNivelDTO } from "../models/presupuesto-shared.models";
+import { CuentaAspelTercerNivelDTO } from "../interfaces/presupuesto-shared.models";
 import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
 
 describe("presupuesto-web-aspel.shared", () => {

@@ -16,7 +16,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
+import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-budget-audit-dialog",

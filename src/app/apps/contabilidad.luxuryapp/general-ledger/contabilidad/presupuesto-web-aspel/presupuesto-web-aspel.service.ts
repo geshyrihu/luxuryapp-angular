@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core";
-import { AspelBudgetDTO } from "../models/presupuesto-shared.models";
+import { AspelBudgetDTO } from "../interfaces/presupuesto-shared.models";
 import { ASPEL_AVAILABLE_YEARS, ASPEL_MONTHS } from "./presupuesto-web-aspel.shared";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
