@@ -21,7 +21,7 @@ import { CustomerAddressAddOrEditDto } from "./interfaces/customer-address-add-o
 @Component({
   selector: "app-customer-address",
   templateUrl: "./customer-address.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

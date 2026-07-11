@@ -1,4 +1,4 @@
-export interface IInventarioExtintor {
+export interface InventarioExtintorDto {
   id: any;
   customerId: string;
   extinguisherType: string;

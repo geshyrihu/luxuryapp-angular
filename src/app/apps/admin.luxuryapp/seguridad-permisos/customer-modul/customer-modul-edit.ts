@@ -36,7 +36,7 @@ import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface"
     IonInputToggle,
     AppIcon,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-modul-edit.html",
 })
 export class CustomerModulEdit implements OnInit {

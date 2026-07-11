@@ -11,19 +11,19 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { UpdatePasswordDTO } from "src/app/core/interfaces/user-info.interface";
+import { UpdatePasswordDto } from "src/app/core/interfaces/user-info.interface";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-update-password-account",
   templateUrl: "./update-password-account.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LxMessage, WebButtonLabel, AppIcon],
 })
 export class UpdatePasswordAccount implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customToastService = inject(CustomToastService);
   applicationUserId = input<string>("");
-  userInfoDTO = input<UpdatePasswordDTO>(null);
+  userInfoDTO = input<UpdatePasswordDto>(null);
 
   submitting = signal(false);
   email = signal<string>("");

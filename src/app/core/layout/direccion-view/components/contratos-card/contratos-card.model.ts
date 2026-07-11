@@ -1,4 +1,4 @@
-export interface ContratoProximoDTO {
+export interface ContratoProximoDto {
   id: string;
   description: string;
   provider: string;
@@ -7,18 +7,18 @@ export interface ContratoProximoDTO {
   diasRestantes: number;
 }
 
-export interface ContratoPorVencerCustomerGroupDTO {
+export interface ContratoPorVencerCustomerGroupDto {
   customerName: string;
   count: number;
-  contratos: ContratoProximoDTO[];
+  contratos: ContratoProximoDto[];
 }
 
-export interface ContratosPorVencerResumenDTO {
+export interface ContratosPorVencerResumenDto {
   total: number;
-  customers: ContratoPorVencerCustomerGroupDTO[];
+  customers: ContratoPorVencerCustomerGroupDto[];
 }
 
-export interface ContratoVigenteDTO {
+export interface ContratoVigenteDto {
   id: string;
   description: string;
   provider: string;
@@ -29,13 +29,13 @@ export interface ContratoVigenteDTO {
   porVencer: boolean;
 }
 
-export interface ContratosVigentesCustomerGroupDTO {
+export interface ContratosVigentesCustomerGroupDto {
   customerName: string;
   total: number;
-  contratos: ContratoVigenteDTO[];
+  contratos: ContratoVigenteDto[];
 }
 
-export interface ContratosVigentesResumenDTO {
+export interface ContratosVigentesResumenDto {
   total: number;
-  customers: ContratosVigentesCustomerGroupDTO[];
+  customers: ContratosVigentesCustomerGroupDto[];
 }

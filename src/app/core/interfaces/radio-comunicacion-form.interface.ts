@@ -1,4 +1,4 @@
-export interface IRadioComunicacionForm {
+export interface RadioComunicacionFormDto {
   marca: string;
   fotografia: any;
   modelo: string;

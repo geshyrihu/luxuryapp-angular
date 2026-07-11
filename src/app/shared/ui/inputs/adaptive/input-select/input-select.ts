@@ -9,7 +9,7 @@ import {
   TemplateRef,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
 import { IonInputSelect } from "../../mobile/ion-input-select";
@@ -81,7 +81,7 @@ export class InputSelect extends BaseInputSignal {
   itemTemplate = contentChild<TemplateRef<any>>("item");
   selectedItemTemplate = contentChild<TemplateRef<any>>("selectedItem");
   selectionChange = output<any>();
-  data = input<ISelectItem[]>([]);
+  data = input<SelectItemDto[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
   optionDisabled = input<string | undefined>(undefined);

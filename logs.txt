@@ -1,292 +1,77 @@
-X [ERROR] TS2307: Cannot find module './pages/password-list' or its corresponding type declarations. [plugin angular-compiler]
 
-    src/app/apps/admin.luxuryapp/password-manager/password-manager.routes.ts:7:13:
-      7 │       import("./pages/password-list").then((m) => m.PasswordList),
-        ╵              ~~~~~~~~~~~~~~~~~~~~~~~
+X [ERROR] TS2339: Property 'sortOrder' does not exist on type 'SelectItemDto<any>'. [plugin angular-compiler]
 
+    src/app/apps/admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules.ts:87:28:
+      87 │           .sort((a, b) => a.sortOrder - b.sortOrder)
+         ╵                             ~~~~~~~~~
 
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp/access/settings-menu/settings-menu' or its corresponding type declarations. [plugin angular-compiler]
 
-    src/app/apps/admin.luxuryapp/settings-menu/index-menu-item.ts:1:28:
-      1 │ ...enu } from "src/app/apps/admin.luxuryapp/access/settings-menu/se...
-        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X [ERROR] TS2339: Property 'sortOrder' does not exist on type 'SelectItemDto<any>'. [plugin angular-compiler]
 
+    src/app/apps/admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules.ts:87:42:
+      87 │           .sort((a, b) => a.sortOrder - b.sortOrder)
+         ╵                                           ~~~~~~~~~
 
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp/access/application-user/pages/update-password-account' or its corresponding type declarations. [plugin angular-compiler]
 
-    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form.ts:15:38:
-      15 │ ...nt } from "src/app/apps/admin.luxuryapp/access/application-user...
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X [ERROR] TS2339: Property 'sortOrder' does not exist on type 'SelectItemDto<any>'. [plugin angular-compiler]
 
+    src/app/apps/admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules.ts:90:28:
+      90 │           .sort((a, b) => a.sortOrder - b.sortOrder)
+         ╵                             ~~~~~~~~~
 
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp/access/application-user/pages/update-role' or its corresponding type declarations. [plugin angular-compiler]
 
-    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form.ts:16:27:
-      16 │ ...le } from "src/app/apps/admin.luxuryapp/access/application-user...
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X [ERROR] TS2339: Property 'sortOrder' does not exist on type 'SelectItemDto<any>'. [plugin angular-compiler]
 
+    src/app/apps/admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules.ts:90:42:
+      90 │           .sort((a, b) => a.sortOrder - b.sortOrder)
+         ╵                                           ~~~~~~~~~
 
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
 
-    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form.ts:50:4:
-      50 │     UpdatePasswordAccount,
-         ╵     ~~~~~~~~~~~~~~~~~~~~~
+X [ERROR] TS2345: Argument of type 'CustomerForm' is not assignable to parameter of type 'CustomerFormDto'.
+  Type 'CustomerForm' is missing the following properties from type 'CustomerFormDto': active, adreess, nameCustomer, nombreCorto, and 9 more. [plugin angular-compiler]
 
-  Unknown reference.
+    src/app/apps/admin.luxuryapp/seguridad-permisos/customer/customer-form.ts:133:10:
+      133 │           this.form.getRawValue() as unknown as CustomerForm,
+          ╵           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form.ts:50:4:
-      50 │     UpdatePasswordAccount,
-         ╵     ~~~~~~~~~~~~~~~~~~~~~
 
+X [ERROR] TS2345: Argument of type 'MenuItem' is not assignable to parameter of type 'SubMenuItem'.
+  Property 'nameModule' is missing in type 'MenuItem' but required in type 'SubMenuItem'. [plugin angular-compiler]
 
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
+    src/app/core/layout/employee-view/monitor/sidebar/sidebar.ts:878:38:
+      878 │               this.searchResults.push(subItem);
+          ╵                                       ~~~~~~~
 
-    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form.ts:51:4:
-      51 │     UpdateRole,
-         ╵     ~~~~~~~~~~
+  'nameModule' is declared here.
 
-  Unknown reference.
+    src/app/core/interfaces/menu.model.ts:20:2:
+      20 │   nameModule: string;
+         ╵   ~~~~~~~~~~
 
-    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form.ts:51:4:
-      51 │     UpdateRole,
-         ╵     ~~~~~~~~~~
 
+X [ERROR] TS2345: Argument of type 'MenuItem[]' is not assignable to parameter of type 'SubMenuItem[]'.
+  Property 'nameModule' is missing in type 'MenuItem' but required in type 'SubMenuItem'. [plugin angular-compiler]
 
-X [ERROR] TS2307: Cannot find module '../../../../apps/admin.luxuryapp/pages/application-user/pages/update-password-account' or its corresponding type declarations. [plugin angular-compiler]
+    src/app/core/layout/employee-view/movil/home-menu-mobile/home-menu-mobile.ts:72:56:
+      72 │ ... item.items ? this.mapSubItemsToMenuItems(item.items) : undefined,
+         ╵                                              ~~~~~~~~~~
 
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:9:38:
-      9 │ ...unt } from "../../../../apps/admin.luxuryapp/pages/application-u...
-        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  'nameModule' is declared here.
 
+    src/app/core/interfaces/menu.model.ts:20:2:
+      20 │   nameModule: string;
+         ╵   ~~~~~~~~~~
 
-X [ERROR] TS2307: Cannot find module '../../../../apps/admin.luxuryapp/pages/application-user/pages/update-role' or its corresponding type declarations. [plugin angular-compiler]
 
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:10:27:
-      10 │ ...le } from "../../../../apps/admin.luxuryapp/pages/application-u...
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X [ERROR] TS2305: Module '"src/app/core/interfaces/menu.model"' has no exported member 'MenuItem'. [plugin angular-compiler]
 
+    src/app/core/services/menu.service.ts:18:9:
+      18 │ import { MenuItem } from "src/app/core/interfaces/menu.model";
+         ╵          ~~~~~~~~
 
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
 
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:14:12:
-      14 │   imports: [UpdateRole, UpdatePasswordAccount],
-         ╵             ~~~~~~~~~~
+X [ERROR] TS2305: Module '"src/app/core/interfaces/menu.model"' has no exported member 'MenuItem'. [plugin angular-compiler]
 
-  Unknown reference.
-
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:14:12:
-      14 │   imports: [UpdateRole, UpdatePasswordAccount],
-         ╵             ~~~~~~~~~~
-
-
-X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
-  Value could not be determined statically. [plugin angular-compiler]
-
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:14:24:
-      14 │   imports: [UpdateRole, UpdatePasswordAccount],
-         ╵                         ~~~~~~~~~~~~~~~~~~~~~
-
-  Unknown reference.
-
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:14:24:
-      14 │   imports: [UpdateRole, UpdatePasswordAccount],
-         ╵                         ~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//application-user-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:23:13:
-      23 │       import("src/app/apps/admin.luxuryapp//application-user-list"...
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//customer-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:36:13:
-      36 │       import("src/app/apps/admin.luxuryapp//customer-list").then(
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//customer-modul-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:49:13:
-      49 │       import("src/app/apps/admin.luxuryapp//customer-modul-list")....
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//customer-modul-edit' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:62:13:
-      62 │       import("src/app/apps/admin.luxuryapp//customer-modul-edit")....
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//roles-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:74:13:
-      74 │       import("src/app/apps/admin.luxuryapp//roles-list").then(
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//module-app-rol-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:87:13:
-      87 │       import("src/app/apps/admin.luxuryapp//module-app-rol-list")....
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//module-app-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:99:13:
-      99 │       import("src/app/apps/admin.luxuryapp//module-app-list").then(
-         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//module-app-rol-update' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:112:13:
-      112 │       import("src/app/apps/admin.luxuryapp//module-app-rol-update...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//approval-rules' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:125:13:
-      125 │       import("src/app/apps/admin.luxuryapp//approval-rules").then(
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp/update-data-base/update-data-base' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:164:13:
-      164 │       import("src/app/apps/admin.luxuryapp/update-data-base/updat...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//payment-method-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:191:13:
-      191 │       import("src/app/apps/admin.luxuryapp//payment-method-list")...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//cfdi-use-list' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:217:13:
-      217 │       import("src/app/apps/admin.luxuryapp//cfdi-use-list").then(
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//jobs-dashboard' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:229:13:
-      229 │       import("src/app/apps/admin.luxuryapp//jobs-dashboard").then(
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp/testsignalr/testsignalr' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:375:13:
-      375 │       import("src/app/apps/admin.luxuryapp/testsignalr/testsignal...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp/mini-postman/mini-postman' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:400:13:
-      400 │       import("src/app/apps/admin.luxuryapp/mini-postman/mini-post...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//foundations/catalog-tokens-item/catalog-tokens-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:510:17:
-      510 │ ...   import("src/app/apps/admin.luxuryapp//foundations/catalog-t...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//components/catalog-web-item/catalog-web-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:517:17:
-      517 │ ...   import("src/app/apps/admin.luxuryapp//components/catalog-we...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//components/catalog-mobile-item/catalog-mobile-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:524:17:
-      524 │ ...   import("src/app/apps/admin.luxuryapp//components/catalog-mo...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//components/catalog-core-item/catalog-core-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:531:17:
-      531 │ ...   import("src/app/apps/admin.luxuryapp//components/catalog-co...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//charts/catalog-charts-item/catalog-charts-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:538:17:
-      538 │ ...   import("src/app/apps/admin.luxuryapp//charts/catalog-charts...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//patterns-layouts/catalog-patterns-item/catalog-patterns-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:545:17:
-      545 │ ...   import("src/app/apps/admin.luxuryapp//patterns-layouts/cata...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//patterns-layouts/catalog-layouts-item/catalog-layouts-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:552:17:
-      552 │ ...   import("src/app/apps/admin.luxuryapp//patterns-layouts/cata...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//foundations/catalog-docs-item/catalog-docs-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:559:17:
-      559 │ ...   import("src/app/apps/admin.luxuryapp//foundations/catalog-d...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//foundations/catalog-audit-item/catalog-audit-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:566:17:
-      566 │ ...   import("src/app/apps/admin.luxuryapp//foundations/catalog-a...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] TS2307: Cannot find module 'src/app/apps/admin.luxuryapp//foundations/catalog-guia-item/catalog-guia-item' or its corresponding type declarations. [plugin angular-compiler]
-
-    src/app/routing/settings.routing.ts:573:17:
-      573 │ ...   import("src/app/apps/admin.luxuryapp//foundations/catalog-g...
-          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] Could not resolve "./pages/password-list"
-
-    src/app/apps/admin.luxuryapp/password-manager/password-manager.routes.ts:4:36:
-      4 │ ...ponent: () => import("./pages/password-list").then((m) => m.Pass...
-        ╵                         ~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] Could not resolve "../../../../apps/admin.luxuryapp/pages/application-user/pages/update-password-account"
-
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:5:38:
-      5 │ ...unt } from "../../../../apps/admin.luxuryapp/pages/application-u...
-        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-X [ERROR] Could not resolve "../../../../apps/admin.luxuryapp/pages/application-user/pages/update-role"
-
-    src/app/features/operations/directorios/employee-external/employee-external-app-user.ts:6:27:
-      6 │ ...ole } from "../../../../apps/admin.luxuryapp/pages/application-u...
-        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    src/app/core/services/search.service.ts:2:9:
+      2 │ import { MenuItem, SubMenuItem } from "src/app/core/interfaces/menu...
+        ╵          ~~~~~~~~

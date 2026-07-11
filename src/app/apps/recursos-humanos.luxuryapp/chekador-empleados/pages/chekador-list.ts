@@ -16,7 +16,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
@@ -40,7 +39,6 @@ import { ChekadorEmpleadosService } from "../services/chekador-empleados.service
     WebButtonLabel,
     WebButtonIcon,
     LxImage,
-    TooltipModule,
     CustomInputCheckSignal,
     IonInputCheckbox,
     FormsModule,

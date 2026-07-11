@@ -10,7 +10,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ISettingsMenuItem } from "src/app/core/interfaces/menu.model";
+import { SettingsMenuItem } from "src/app/core/interfaces/menu.model";
 import {
   normalizePrimeIconClass,
   resolvePrimeIcon,
@@ -29,7 +29,7 @@ import { MenuTone } from "./interfaces/menu-tone.interface";
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: "./admin-wrapper.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["./admin-wrapper.scss"],
 })
 export class AdminWrapper {
@@ -126,7 +126,7 @@ export class AdminWrapper {
     );
   }
 
-  groupMenuItemsByGroup(items: ISettingsMenuItem[]) {
+  groupMenuItemsByGroup(items: SettingsMenuItem[]) {
     return items.reduce((groups, item) => {
       const group = item.group || "Otros"; // Si no tiene un group, se asigna 'Otros'
       if (!groups[group]) {

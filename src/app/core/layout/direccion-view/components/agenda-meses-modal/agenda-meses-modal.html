@@ -92,7 +92,7 @@
             @if (evento.isRecurring) {
             <app-icon
               icon="mdi:refresh"
-              pTooltip="Recurrente"
+              lxTooltip="Recurrente"
               class="text-xs text-400"
             />
             }
@@ -116,7 +116,7 @@
         @if (evento.guestCount > 0) {
         <div
           class="flex align-items-center gap-1 flex-none text-400"
-          [pTooltip]="evento.guestCount + ' invitados'"
+          [lxTooltip]="evento.guestCount + ' invitados'"
         >
           <app-icon icon="mdi:account-group-outline" class="text-xs" />
           <span class="text-xs">{{ evento.guestCount }}</span>

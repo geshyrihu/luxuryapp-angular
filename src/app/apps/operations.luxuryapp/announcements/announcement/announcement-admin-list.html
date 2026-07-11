@@ -1,0 +1,278 @@
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+    >
+      <div class="flex-grow-1">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+        <div style="min-width: 200px">
+          <custom-input-select-signal
+            [control]="statusControl"
+            (onChange)="onFilterChange()"
+            [data]="statusOptions()"
+            placeholder="Estado"
+            [horizontal]="false"
+            [noMargin]="true"
+          />
+        </div>
+        <div style="min-width: 200px">
+          <custom-input-select-signal
+            [control]="typeControl"
+            (onChange)="onFilterChange()"
+            [data]="typeOptions()"
+            placeholder="Tipo"
+            [horizontal]="false"
+            [noMargin]="true"
+          />
+        </div>
+        <div class="flex-shrink-0">
+          <il-button
+            label="Filtrar"
+            iconClass="mdi:magnify"
+            variant="outlined"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="folio">
+        Folio
+        <p-sorticon field="folio" />
+      </th>
+      <th pSortableColumn="title">
+        Titulo
+        <p-sorticon field="title" />
+      </th>
+      <th pSortableColumn="announcementType">
+        Tipo
+        <p-sorticon field="announcementType" />
+      </th>
+      <th pSortableColumn="status">
+        Estado
+        <p-sorticon field="status" />
+      </th>
+      <th pSortableColumn="customerName">
+        Cliente
+        <p-sorticon field="customerName" />
+      </th>
+      <th pSortableColumn="publishedAt">
+        Publicación
+        <p-sorticon field="publishedAt" />
+      </th>
+      <th pSortableColumn="expirationDate">
+        Expiración
+        <p-sorticon field="expirationDate" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.title }}</td>
+      <td>
+        <lx-tag
+          [value]="item.announcementType"
+          [severity]="
+            item.announcementType === 'Urgente'
+              ? 'danger'
+              : item.announcementType === 'Informativo'
+                ? 'info'
+                : item.announcementType === 'General'
+                  ? 'primary'
+                  : 'secondary'
+          "
+        />
+      </td>
+      <td>
+        <lx-tag
+          [value]="item.status"
+          [severity]="
+            item.status === 'Publicado'
+              ? 'success'
+              : item.status === 'Borrador'
+                ? 'secondary'
+                : item.status === 'Archivado'
+                  ? 'warning'
+                  : 'secondary'
+          "
+        />
+      </td>
+      <td>{{ item.customerName }}</td>
+      <td>{{ item.publishedAt | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.expirationDate | date: "dd/MM/yyyy":"UTC" }}</td>
+      <td>
+        <div class="flex">
+          <iw-button-edit (clicked)="onModalForm(item)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-download
+            iconClass="mdi:file-pdf-box"
+            ngbTooltip="Descargar PDF"
+            severity="danger"
+            (clicked)="onDownloadPdf(item.id)"
+          />
+          <iw-button-item
+            (clicked)="onViewPreview(item.id)"
+            iconClass="mdi:book"
+            lxTooltip="Vista previa"
+            tooltipPosition="top"
+          />
+          <iw-button-item
+            (clicked)="onViewAnalytics(item.id)"
+            iconClass="mdi:chart-bar"
+            lxTooltip="Analíticas"
+            tooltipPosition="top"
+          />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!--📲INICIO: Componente adaptado para versión mívil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <div customFilters class="px-4 py-2 flex flex-column gap-3">
+    <div>
+      <h5 class="m-0 mb-2 text-secondary text-xs uppercase tracking-wider">
+        Filtrar por Estado
+      </h5>
+      <custom-input-select-signal
+        [control]="statusControl"
+        (onChange)="onFilterChange()"
+        [data]="statusOptions()"
+        placeholder="Estado"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div>
+      <h5 class="m-0 mb-2 text-secondary text-xs uppercase tracking-wider">
+        Filtrar por Tipo
+      </h5>
+      <custom-input-select-signal
+        [control]="typeControl"
+        (onChange)="onFilterChange()"
+        [data]="typeOptions()"
+        placeholder="Tipo"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
+      >
+        <app-icon
+          icon="mdi:bullhorn-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        />
+      </div>
+
+      <div class="flex justify-content-between align-items-center mb-2">
+        <h2 class="font-bold m-0 text-base">{{ item.title }}</h2>
+        <lx-tag
+          [value]="item.status"
+          [severity]="
+              item.status === 'Publicado'
+                ? 'success'
+                : item.status === 'Borrador'
+                  ? 'secondary'
+                  : item.status === 'Archivado'
+                    ? 'warning'
+                    : 'secondary'
+            "
+        />
+      </div>
+      <p class="text-medium text-500 m-0 text-sm mb-1">
+        <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Publicado: {{
+        item.publishedAt | date: "dd/MM/yyyy" }}
+      </p>
+      <p class="text-medium text-500 m-0 text-sm">
+        <app-icon [icon]="'mdi:office-building'" class="mr-1" /> Cliente: {{
+        item.customerName }}
+      </p>
+      <lx-tag
+        [value]="item.announcementType"
+        class="mt-2 block"
+        [severity]="
+            item.announcementType === 'Urgente'
+              ? 'danger'
+              : item.announcementType === 'Informativo'
+                ? 'info'
+                : item.announcementType === 'General'
+                  ? 'primary'
+                  : 'secondary'
+          "
+      />
+
+      <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+
+            <ili-button-item
+              (clicked)="onDownloadPdf(item.id)"
+              iconName="document-text-outline"
+              label="Descargar PDF"
+            />
+
+            <ili-button-item
+              (clicked)="onViewPreview(item.id)"
+              iconName="book-outline"
+              label="Vista previa"
+            />
+
+            <ili-button-item
+              (clicked)="onViewAnalytics(item.id)"
+              iconName="bar-chart-outline"
+              label="Analóticas"
+            />
+          </ng-container>
+        </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

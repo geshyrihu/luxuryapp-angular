@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,

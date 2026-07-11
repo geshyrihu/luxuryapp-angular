@@ -1,4 +1,4 @@
-export interface IPropertyOccupant {
+export interface PropertyOccupant {
   id: string;
   propertyId: any;
   fullName: string;

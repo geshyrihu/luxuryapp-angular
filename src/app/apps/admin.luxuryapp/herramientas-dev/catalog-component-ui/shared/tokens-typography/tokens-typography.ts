@@ -4,7 +4,6 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -12,7 +11,7 @@ import { TagModule } from "primeng/tag";
 @Component({
   selector: "app-tokens-typography",
 
-  imports: [CommonModule, TableModule, TagModule, CardModule, MessageModule],
+  imports: [CommonModule, TableModule, TagModule, MessageModule],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">
@@ -131,7 +130,7 @@ import { TagModule } from "primeng/tag";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TokensTypography {

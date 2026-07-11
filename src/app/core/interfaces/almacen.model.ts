@@ -1,10 +1,10 @@
-export interface AlmacenAddOrEditDTO {
+export interface AlmacenAddOrEditDto {
   nombre: string;
   ubicacion: string;
   customerId: string;
   applicationUserId: string;
 }
-export interface AlmacenDTO {
+export interface AlmacenDto {
   id: string;
   nombre: string;
   ubicacion: string;

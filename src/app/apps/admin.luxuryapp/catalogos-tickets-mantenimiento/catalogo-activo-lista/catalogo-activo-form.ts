@@ -19,7 +19,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CatalogoActivoFormGroup } from "./interfaces/catalogo-activo-form.interface";
 
 @Component({
@@ -30,7 +30,7 @@ import { CatalogoActivoFormGroup } from "./interfaces/catalogo-activo-form.inter
     CustomInputSelectSignal,
     WebButtonLabelSave,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./catalogo-activo-form.html",
 })
 export class CatalogoActivoForm implements OnInit {
@@ -41,7 +41,7 @@ export class CatalogoActivoForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  cb_category = signal<ISelectItem[]>([]);
+  cb_category = signal<SelectItemDto[]>([]);
 
   form: FormGroup<CatalogoActivoFormGroup> = new FormGroup({
     id: new FormControl<string>(

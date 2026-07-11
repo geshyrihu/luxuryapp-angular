@@ -28,7 +28,7 @@ import { TokensTypography } from "../../shared/tokens-typography/tokens-typograp
       }
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogTokensItem {

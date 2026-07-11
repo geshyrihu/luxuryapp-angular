@@ -1,0 +1,209 @@
+<p-table
+  [value]="dataSignal()"
+  #dt
+  class="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="typeOfContract"
+  sortField="typeOfContract"
+  sortMode="single"
+  [globalFilterFields]="globalFilterFields()"
+  [tableStyle]="{ 'min-width': '60rem' }"
+>
+  <ng-template #caption>
+    <div class="grid col-12">
+      <div class="col-10">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-2">
+        <iw-button-active-desactive
+          [state]="isCurrent"
+          (stateChange)="onSelectActive($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Encabezado de las columnas (define qué columnas se mostrarón para cada item) -->
+  <ng-template #header>
+    <tr>
+      <!-- Ajusta los pSortableColumn field a las propiedades DENTRO de los objetos 'Contracts' -->
+      <th>ID</th>
+      <th class="table-col-20" pSortableColumn="description">
+        <!-- Cambiado a Description -->
+        Servicio
+        <p-sorticon field="description" />
+      </th>
+      <th class="table-col-20" pSortableColumn="provider">
+        <!-- Cambiado a Provider -->
+        Proveedor
+        <p-sorticon field="Provider" />
+      </th>
+      <th pSortableColumn="startDateFilter">
+        Inicio
+        <p-sorticon field="startDateFilter" />
+      </th>
+      <th pSortableColumn="endDateFilter">
+        término
+        <p-sorticon field="endDateFilter" />
+      </th>
+      <th pSortableColumn="tagLabel">
+        <!-- Cambiado a tagLabel -->
+        Estado
+        <p-sorticon field="tagLabel" />
+      </th>
+      <th pSortableColumn="validity">
+        <!-- Cambiado a validity -->
+        Vigencia
+        <p-sorticon field="validity" />
+      </th>
+      <th>Documento</th>
+      <th></th>
+      <!-- Aóadido encabezado para columna de opciones -->
+    </tr>
+  </ng-template>
+
+  <!-- Plantilla para el encabezado de CADA GRUPO -->
+  <ng-template #groupheader let-group>
+    <tr pRowGroupHeader>
+      <!-- La celda abarca todas las columnas definidas en el header -->
+      <td [attr.colspan]="9">
+        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, término, Estado, Vigencia, Documento, Opciones -->
+        <!-- Muestra el nombre del grupo -->
+        <strong class="font-bold ml-2 p-0 font-size-24">
+          {{ group.typeOfContract }}
+        </strong>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Plantilla para el cuerpo (filas de datos dentro de cada grupo) -->
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <!-- item es un objeto del array 'Contracts' -->
+    <tr>
+      <td>
+        {{ rowIndex + 1 }}
+        <!-- Muestra el ID del contrato -->
+      </td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.provider }}</td>
+      <td>
+        {{ item.startDateFormatted }}
+        <!-- Usa las propiedades formateadas -->
+      </td>
+      <td>
+        {{ item.endDateFormatted }}
+        <!-- Usa las propiedades formateadas -->
+      </td>
+      <td>
+        <lx-tag
+          [severity]="getTagSeverity(item.tagLabel)"
+          fluid
+          [value]="item.tagLabel"
+        />
+      </td>
+      <td>{{ item.validity }}</td>
+      <td class="text-center">
+        <!-- Alineación opcional -->
+        @if (item.document) {
+        <iw-button-view-pdf
+          iconClass="mdi:file-pdf-box"
+          [url]="item.pathDocument"
+          fileName="Poliza | Contrato"
+          lxTooltip="Ver documento"
+          tooltipPosition="top"
+          class="text-xl"
+        />
+        }
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div class="flex">
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          @if (item.document) {
+          <iw-button-delete
+            lxTooltip="Eliminar documento"
+            tooltipPosition="top"
+            ngbTooltip="Eliminar documento"
+            (confirmed)="onDeleteDocument(item.id)"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="9" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [groupedData]="groupedData"
+  [isGrouped]="true"
+  [showAdd]="true"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-warning-light, #fef3c7);
+        "
+      >
+        <app-icon
+          icon="mdi:file-sign"
+          style="font-size: 1.1rem; color: var(--ds-warning)"
+        />
+      </div>
+
+      <div class="flex justify-content-between align-items-center mb-1">
+        <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
+        <lx-tag
+          [severity]="getTagSeverity(item.tagLabel)"
+          [value]="item.tagLabel"
+          class="text-sm"
+        />
+      </div>
+      <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
+      <p class="text-xs text-500 m-0">
+        <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Inicio: {{
+        item.startDate }}
+      </p>
+
+      <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-view-pdf
+              [url]="item.pathDocument"
+              fileName="Poliza | Contrato"
+              label="Ver PDF"
+            />
+            <ili-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+            @if (item.document) {
+            <ili-button-delete
+              label="Eliminar documento"
+              ngbTooltip="Eliminar documento"
+              (confirmed)="onDeleteDocument(item.id)"
+            />
+            }
+          </ng-container>
+        </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

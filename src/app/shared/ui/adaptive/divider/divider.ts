@@ -14,9 +14,13 @@ import { PlatformService } from "src/app/core/services/platform.service";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-divider [layout]="layout()"><ng-container [ngTemplateOutlet]="projected" /></ili-divider>
+      <ili-divider [layout]="layout()"
+        ><ng-container [ngTemplateOutlet]="projected"
+      /></ili-divider>
     } @else {
-      <app-divider [layout]="layout()"><ng-container [ngTemplateOutlet]="projected" /></app-divider>
+      <app-divider [layout]="layout()"
+        ><ng-container [ngTemplateOutlet]="projected"
+      /></app-divider>
     }
   `,
 })

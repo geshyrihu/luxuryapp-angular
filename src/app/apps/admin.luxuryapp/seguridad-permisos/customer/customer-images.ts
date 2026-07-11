@@ -18,7 +18,7 @@ import { CustomerImageDto } from "./interfaces/customer-image.dto";
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, LxImage, AppIcon, WebButtonIcon],
 })
 export class CustomerImages implements OnInit {

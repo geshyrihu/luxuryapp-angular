@@ -36,7 +36,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-cfdi-use-list",
   templateUrl: "./cfdi-use-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,

@@ -27,7 +27,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { LogEntry } from "./interfaces/log-entry.interface";
 
@@ -50,7 +50,7 @@ import { LogEntry } from "./interfaces/log-entry.interface";
     AppIcon,
   ],
   templateUrl: "./log-api-report.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["./log-api-report.scss"],
 })
 export class LogApiReport implements OnInit {
@@ -68,7 +68,7 @@ export class LogApiReport implements OnInit {
   filterLevelControl = new FormControl<string | null>(null);
   filterDateRangeControl = new FormControl<Date[] | null>(null);
 
-  levelOptions: ISelectItem[] = [
+  levelOptions: SelectItemDto[] = [
     { label: "Information", value: "Information" },
     { label: "Warning", value: "Warning" },
     { label: "Error", value: "Error" },

@@ -26,7 +26,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-module-app-rol-update",
   imports: [
     AppIcon,CommonModule, LxMessage, IonInputToggle, LxSpinner],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./module-app-rol-update.html",
 })
 export class ModuleAppRolUpdate implements OnInit {

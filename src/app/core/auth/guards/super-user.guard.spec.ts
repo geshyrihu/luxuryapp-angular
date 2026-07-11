@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { signal } from '@angular/core';
-import { EApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../enums/asp-net-roles.enum';
 import { AspRoleService } from '../services/asp-role.service';
 import { superUserGuard } from './super-user.guard';
 
@@ -30,29 +30,29 @@ describe('superUserGuard', () => {
     TestBed.runInInjectionContext(() => superUserGuard(mockRoute, mockState));
 
   it('should allow access when user has SuperUsuario role', () => {
-    aspRoleMock.roleSignal.mockImplementation((role: EApplicationRole) =>
-      signal(role === EApplicationRole.SuperUsuario),
+    aspRoleMock.roleSignal.mockImplementation((role: ApplicationRole) =>
+      signal(role === ApplicationRole.SuperUsuario),
     );
     expect(runGuard()).toBe(true);
   });
 
   it('should allow access when user has Legal role', () => {
-    aspRoleMock.roleSignal.mockImplementation((role: EApplicationRole) =>
-      signal(role === EApplicationRole.Legal),
+    aspRoleMock.roleSignal.mockImplementation((role: ApplicationRole) =>
+      signal(role === ApplicationRole.Legal),
     );
     expect(runGuard()).toBe(true);
   });
 
   it('should allow access when user has RecursosHumanos role', () => {
-    aspRoleMock.roleSignal.mockImplementation((role: EApplicationRole) =>
-      signal(role === EApplicationRole.RecursosHumanos),
+    aspRoleMock.roleSignal.mockImplementation((role: ApplicationRole) =>
+      signal(role === ApplicationRole.RecursosHumanos),
     );
     expect(runGuard()).toBe(true);
   });
 
   it('should allow access when user has Reclutamiento role', () => {
-    aspRoleMock.roleSignal.mockImplementation((role: EApplicationRole) =>
-      signal(role === EApplicationRole.Reclutamiento),
+    aspRoleMock.roleSignal.mockImplementation((role: ApplicationRole) =>
+      signal(role === ApplicationRole.Reclutamiento),
     );
     expect(runGuard()).toBe(true);
   });
@@ -70,9 +70,9 @@ describe('superUserGuard', () => {
 
   it('should check all four authorized roles', () => {
     runGuard();
-    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(EApplicationRole.SuperUsuario);
-    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(EApplicationRole.Legal);
-    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(EApplicationRole.RecursosHumanos);
-    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(EApplicationRole.Reclutamiento);
+    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(ApplicationRole.SuperUsuario);
+    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(ApplicationRole.Legal);
+    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(ApplicationRole.RecursosHumanos);
+    expect(aspRoleMock.roleSignal).toHaveBeenCalledWith(ApplicationRole.Reclutamiento);
   });
 });

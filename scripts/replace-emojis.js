@@ -1,6 +1,6 @@
 const fs = require("fs");
 const htmlPath =
-  "D:/repos/luxuryapp-api/client/angular/src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/presupuesto-propuesta.html";
+  "D:/repos/luxuryapp-api/client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/presupuesto-propuesta.html";
 let htmlCode = fs.readFileSync(htmlPath, "utf8");
 
 // Table replacements

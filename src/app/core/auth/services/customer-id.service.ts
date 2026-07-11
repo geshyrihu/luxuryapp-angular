@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, inject, Injectable, NgZone, signal } from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
-import type { ApiResponseDTO } from "src/app/core/http/services/api-response.service";
-import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import type { ApiResponseDto } from "src/app/core/http/services/api-response.service";
+import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { StorageService } from "src/app/core/services/storage.service";
 import { environment } from "src/environments/environment";
@@ -52,7 +52,7 @@ export class CustomerIdService {
   );
 
   public initializeCustomerStateAfterLogin(
-    userTokenData: UserTokenDTO,
+    userTokenData: UserTokenDto,
   ): Observable<boolean> {
     if (!userTokenData) {
       this.consoleLogger.error(
@@ -123,7 +123,7 @@ export class CustomerIdService {
     }
 
     return this.http
-      .get<ApiResponseDTO<CustomerDetailDTO>>(
+      .get<ApiResponseDto<CustomerDetailDTO>>(
         `${environment.API_BASE_URL}Customers/${customerId}`,
       )
       .pipe(

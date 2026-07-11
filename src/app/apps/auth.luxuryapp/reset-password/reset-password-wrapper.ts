@@ -13,7 +13,7 @@ import { ResetPasswordMobile } from "./reset-password-mobile";
       <app-reset-password />
     }
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [`:host { display: block; height: 100vh; width: 100vw; }`],
 })
 export class ResetPasswordWrapper {

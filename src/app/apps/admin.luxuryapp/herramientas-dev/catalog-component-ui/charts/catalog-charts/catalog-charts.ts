@@ -6,7 +6,6 @@ import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { PieChart } from "@ui/web/charts/pie-chart";
 import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
-import { CardModule } from "primeng/card";
 
 /**
  * Catálogo de gráficos — ejemplos renderizados de los 6 componentes de charts
@@ -17,7 +16,6 @@ import { CardModule } from "primeng/card";
 
   imports: [
     CommonModule,
-    CardModule,
     ChartWrapper,
     CustomBarChart,
     MultiAxisChart,

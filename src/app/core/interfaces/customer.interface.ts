@@ -1,4 +1,4 @@
-export interface ICustomer {
+export interface Customer {
   id: any;
   active: boolean;
   adreess: string;

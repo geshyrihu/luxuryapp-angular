@@ -63,7 +63,7 @@
           @if (contrato.porVencer) {
           <app-icon
             icon="mdi:alert-outline"
-            pTooltip="Por vencer"
+            lxTooltip="Por vencer"
             class="text-ds-warning text-sm"
           />
           } @else {
@@ -95,7 +95,7 @@
             [value]="contrato.diasRestantes + 'd'"
             [severity]="getSeverity(contrato)"
             styleClass="text-xs"
-            [pTooltip]="contrato.diasRestantes + ' dias restantes'"
+            [lxTooltip]="contrato.diasRestantes + ' dias restantes'"
           />
         </div>
         }

@@ -24,7 +24,7 @@ import { BankFormGroup } from "./interfaces/bank-form.interface";
 @Component({
   selector: "app-bank-form",
   templateUrl: "./bank-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, InputText, WebButtonLabelSave],
 })
 export class BankForm implements OnInit {

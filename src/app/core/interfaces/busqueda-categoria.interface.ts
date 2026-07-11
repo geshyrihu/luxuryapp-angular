@@ -1,4 +1,4 @@
-export interface IBusquedaCategoria {
+export interface BusquedaCategoria {
   nombreCategoria: string;
 }
 

@@ -7,7 +7,7 @@ import { environment } from "src/environments/environment";
   selector: "app-jobs-dashboard",
   templateUrl: "./jobs-dashboard.html",
   imports: [WebButtonLabel],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .hangfire-shell {

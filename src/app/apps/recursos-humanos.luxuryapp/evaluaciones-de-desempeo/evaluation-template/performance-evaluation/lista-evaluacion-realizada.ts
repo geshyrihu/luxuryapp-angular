@@ -38,7 +38,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -50,7 +50,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonIconEdit,
     WebButtonIconItem,
     WebButtonIconDelete,
-    TooltipModule,
+    LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelItem,
     MobileButtonLabelDelete,

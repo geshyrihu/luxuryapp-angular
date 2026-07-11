@@ -175,13 +175,13 @@
                 <iw-button-item
                   (clicked)="onShowDetail(item)"
                   iconClass="mdi:information-outline"
-                  pTooltip="Ver Detalle"
+                  lxTooltip="Ver Detalle"
                 />
                 @if(item.status === 'Aprobada' && canCancel()){
                 <iw-button-item
                   (clicked)="onCancel(item)"
                   iconClass="mdi:ban"
-                  pTooltip="Cancelar"
+                  lxTooltip="Cancelar"
                 />
                 }
               </div>

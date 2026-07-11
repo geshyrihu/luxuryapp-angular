@@ -4,7 +4,7 @@ export const directoryRoutes: Routes = [
   {
     path: "provider", // Ruta anterior: 'proveedor'
     loadComponent: () =>
-      import("src/app/features/purchasing/providers/provider/provider-list").then(
+      import("src/app/apps/supplier.luxuryapp/providers/provider/provider-list").then(
         (m) => m.ListProvider,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("src/app/features/operations/properties/owner/owner-list").then(
+      import("src/app/apps/operations.luxuryapp/properties/owner/owner-list").then(
         (m) => m.OwnerList,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const directoryRoutes: Routes = [
   {
     path: "properties", // Ruta anterior: 'propiedades'
     loadComponent: () =>
-      import("src/app/features/operations/properties/property/propiedades-list").then(
+      import("src/app/apps/operations.luxuryapp/properties/property/propiedades-list").then(
         (m) => m.PropiedadesList,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const directoryRoutes: Routes = [
   {
     path: "vigilance-committee", // Ruta anterior: 'comite-vigilancia'
     loadComponent: () =>
-      import("src/app/features/operations/directorios/comite-vigilancia/comite-vigilancia-list").then(
+      import("src/app/apps/operations.luxuryapp/directorios/comite-vigilancia/comite-vigilancia-list").then(
         (m) => m.ComiteVigilanciaList,
       ),
     canActivate: [authGuard],
@@ -88,7 +88,7 @@ export const directoryRoutes: Routes = [
   {
     path: "external-staff", // Ruta anterior: 'personal-externo'
     loadComponent: () =>
-      import("src/app/features/operations/directorios/employee-external/employee-external-list").then(
+      import("src/app/apps/operations.luxuryapp/directorios/employee-external/employee-external-list").then(
         (m) => m.EmployeeExternalList,
       ),
     canActivate: [authGuard],
@@ -113,7 +113,7 @@ export const directoryRoutes: Routes = [
   {
     path: "emergency-phones", // Ruta anterior: 'telefonos-emergencia'
     loadComponent: () =>
-      import("src/app/features/operations/directorios/telefonos-emergencia/telefonos-emergencia").then(
+      import("src/app/apps/operations.luxuryapp/directorios/telefonos-emergencia/telefonos-emergencia").then(
         (m) => m.TelefonosEmergencia,
       ),
     canActivate: [authGuard],

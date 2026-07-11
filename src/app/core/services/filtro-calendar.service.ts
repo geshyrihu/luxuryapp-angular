@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, inject } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { IFechasFiltro } from "src/app/core/interfaces/fechas-filtro.interface";
+import { FechasFiltro } from "src/app/core/interfaces/fechas-filtro.interface";
 import { DateService } from "./date.service";
 // Creamos una instancia de la fecha actual
 const date = new Date();
@@ -26,8 +26,8 @@ export class FiltroCalendarService {
   ); // Día último del mes actual
 
   // EventEmitter para emitir las fechas seleccionadas
-  fechas$ = new EventEmitter<IFechasFiltro>();
-  fechasMOnth$ = new EventEmitter<IFechasFiltro>();
+  fechas$ = new EventEmitter<FechasFiltro>();
+  fechasMOnth$ = new EventEmitter<FechasFiltro>();
 
   // Subject para emitir un arreglo de fechas
   dates$ = new Subject<Date[]>();

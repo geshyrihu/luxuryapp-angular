@@ -19,7 +19,7 @@ import { NotificationsListMobile } from "src/app/core/layout/employee-view/movil
       <app-notifications-list-web />
     }
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NotificationsListMobile, NotificationsListWeb],
 })
 export class NotificationsWrapper implements OnInit {

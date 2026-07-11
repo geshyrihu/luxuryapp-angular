@@ -33,7 +33,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-unit-of-measurement-list",
   templateUrl: "./unit-of-measurement-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,

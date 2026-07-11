@@ -1,0 +1,131 @@
+<div class="hidden md:block">
+<p-table
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table"
+  #dt
+>
+  <ng-template #caption>
+    <div class="flex flex-column gap-2 mb-2">
+      <div>
+        <div class="font-semibold text-lg">Inspecciones configuradas</div>
+        <div class="text-sm text-600">{{ machineryName }}</div>
+      </div>
+      <primeng-custom-caption
+        [dt]="dt"
+        [rolAuth]="
+          aspRoleS.hasAny([
+            AspRole.JefeMantenimiento,
+            AspRole.Administrador,
+            AspRole.SuperUsuario,
+          ])
+        "
+        (add)="onAddOrEdit()"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Frecuencia</th>
+      <th class="text-center">Criterios</th>
+      <th class="text-center">Responsables</th>
+      <th class="text-center">Estado</th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <div class="font-medium">{{ item.name }}</div>
+        <div class="text-sm text-600">{{ item.machineryName }}</div>
+      </td>
+      <td>{{ recurrenceLabel(item) }}</td>
+      <td class="text-center">{{ item.criteriaCount }}</td>
+      <td class="text-center">{{ item.assigneesCount }}</td>
+      <td class="text-center">
+        <lx-tag
+          [value]="item.isActive ? 'Activa' : 'Inactiva'"
+          [severity]="item.isActive ? 'success' : 'danger'"
+         />
+      </td>
+      <td>
+        <div
+          class="flex justify-content-end gap-1"
+          *ngIf="
+            aspRoleS.hasAny([
+              AspRole.JefeMantenimiento,
+              AspRole.Administrador,
+              AspRole.SuperUsuario,
+            ])
+          "
+        >
+          <iw-button-item
+            iconClass="mdi:play-circle-outline"
+            lxTooltip="Iniciar"
+            tooltipPosition="top"
+            (clicked)="onStartManual(item.id)"
+          />
+          <iw-button-item
+            iconClass="mdi:power"
+            [lxTooltip]="item.isActive ? 'Desactivar' : 'Activar'"
+            tooltipPosition="top"
+            (clicked)="onToggleActive(item)"
+          />
+          <iw-button-edit (clicked)="onAddOrEdit(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
+</p-table>
+</div>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.frequency }} · {{ item.status }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          @if (
+            aspRoleS.hasAny([
+              AspRole.JefeMantenimiento,
+              AspRole.Administrador,
+              AspRole.SuperUsuario,
+            ])
+          ) {
+            <ili-button-item
+              iconClass="mdi:play-circle-outline"
+              (clicked)="onStartManual(item.id)"
+            />
+            <ili-button-item
+              iconClass="mdi:power"
+              (clicked)="onToggleActive(item)"
+            />
+            <ili-button-edit (clicked)="onAddOrEdit(item.id)" />
+            <ili-button-delete (confirmed)="onDelete(item.id)" />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -13,7 +13,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 /**
  * AppBarcodeInput — Input de texto con botón de escaneo de barcode/QR.
  * En mobile activa BarcodeDetector API (si disponible) o fallback a cámara.
@@ -27,7 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
     FormsModule,
     ButtonModule,
     InputTextModule,
-    TooltipModule,
+    LxTooltipDirective,
   ],
   template: `
     <div class="bi-root">
@@ -46,7 +46,7 @@ import { TooltipModule } from "primeng/tooltip";
         />
         <p-button
           icon="mdi:barcode-scan"
-          [pTooltip]="'Escanear código'"
+          [lxTooltip]="'Escanear código'"
           tooltipPosition="top"
           severity="secondary"
           [outlined]="true"
@@ -58,7 +58,7 @@ import { TooltipModule } from "primeng/tooltip";
         @if (showSearch()) {
           <p-button
             icon="mdi:magnify"
-            [pTooltip]="'Buscar'"
+            [lxTooltip]="'Buscar'"
             tooltipPosition="top"
             [disabled]="!value() || disabled()"
             (onClick)="search()"

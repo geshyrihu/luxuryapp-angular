@@ -1,8 +1,8 @@
 import { ApprovalRuleDto } from "./approval-rules.dto";
-import { SelectItem } from "./select-item.interface";
+import { SelectItemDto } from "../../../../../core/interfaces/select-item.dto";
 
 export interface ApprovalMatrixDto {
-  approverRoles: SelectItem[];
-  targetRoles: SelectItem[];
+  approverRoles: SelectItemDto[];
+  targetRoles: SelectItemDto[];
   rules: ApprovalRuleDto[];
 }

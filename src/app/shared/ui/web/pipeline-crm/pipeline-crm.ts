@@ -10,7 +10,7 @@ import {
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 export interface PipelineDeal {
   id: string;
@@ -37,7 +37,7 @@ export interface PipelineStage {
 @Component({
   selector: "app-pipeline-crm",
 
-  imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
+  imports: [CommonModule, ButtonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="pipeline-root">
       <!-- Header -->
@@ -95,7 +95,7 @@ export interface PipelineStage {
                         icon="mdi:flag"
                         class="text-sm"
                         style="color: var(--ds-danger)"
-                        pTooltip="Alta prioridad"
+                        lxTooltip="Alta prioridad"
                       />
                     }
                   </div>
@@ -120,14 +120,14 @@ export interface PipelineStage {
                       <span
                         class="pipeline-deal-days"
                         [class.pipeline-deal-days-warn]="deal.daysInStage > 14"
-                        [pTooltip]="deal.daysInStage + ' días en esta etapa'"
+                        [lxTooltip]="deal.daysInStage + ' días en esta etapa'"
                       >
                         <app-icon icon="mdi:clock-outline" class="text-xs" />
                         {{ deal.daysInStage }}d
                       </span>
                     }
                     @if (deal.owner) {
-                      <span class="pipeline-deal-owner" [pTooltip]="deal.owner">
+                      <span class="pipeline-deal-owner" [lxTooltip]="deal.owner">
                         {{ ownerInitials(deal.owner) }}
                       </span>
                     }

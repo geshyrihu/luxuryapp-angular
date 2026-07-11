@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 @Component({
   selector: "app-footer-direccion-monitor",
   imports: [],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./footer-direccion-monitor.html",
 })
 export class FooterDireccionMonitor {

@@ -23,7 +23,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 @Component({
   selector: "app-vault-secret-form",
   templateUrl: "./vault-secret-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     WebButtonLabelSave,

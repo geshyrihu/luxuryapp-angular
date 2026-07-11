@@ -15,7 +15,7 @@ import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range"
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ButtonType } from "src/app/core/enums/button-type";
+import { ButtonType } from "src/app/core/interfaces/button-type.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -28,7 +28,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-bitacora-acceso",
   templateUrl: "./bitacora-acceso-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,

@@ -21,7 +21,7 @@ import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
     LxLoader,
   ],
   templateUrl: "./view-direccion-mobile.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {

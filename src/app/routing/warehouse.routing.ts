@@ -4,7 +4,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/warehouse/warehouse-list").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/warehouse/warehouse-list").then(
         (m) => m.WarehouseList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "products/:almacenId",
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
         (m) => m.WarehouseStockList,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "product-output", // Ruta anterior: 'salida-productos'
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/product-exit/product-output-list").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-list").then(
         (m) => m.ProductOutputList,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "product-entry", // Ruta anterior: 'entrada-productos'
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/product-entry/product-entry-list").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/product-entry/product-entry-list").then(
         (m) => m.ProductEntryList,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "tool-loan", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control").then(
         (m) => m.PrestamoHerramientasControl,
       ),
     canActivate: [authGuard],

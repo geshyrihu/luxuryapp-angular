@@ -1,0 +1,180 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex justify-content-between align-items-center w-full">
+      <div class="flex align-items-center gap-2">
+        <iw-button-download
+          (clicked)="onPdfReport()"
+          lxTooltip="PDF"
+          tooltipPosition="top"
+          tooltip="Reporte PDF por rango de fecha"
+        />
+      </div>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+        [dt]="dt"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="date">Fecha <p-sorticon field="date" /></th>
+      <th class="table-col-10">Hora</th>
+      <th class="table-col-10">Etiqueta</th>
+      <th class="table-col-10">Cristal</th>
+      <th class="table-col-10">Llave</th>
+      <th class="table-col-10">Manguera</th>
+      <th class="table-col-10">Chiflón</th>
+      <th class="table-col-10">Vólvula</th>
+      <th class="table-col-10">Cerradura</th>
+      <th>Estado Gabinete</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.date | date:'dd-MMM-yy' }}</td>
+      <td class="text-center">{{ item.hour }}</td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.labelPresent ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.labelPresent"
+          [class.text-red-600]="!item.labelPresent"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.glassIntact ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.glassIntact"
+          [class.text-red-600]="!item.glassIntact"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.wrenchPresent ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.wrenchPresent"
+          [class.text-red-600]="!item.wrenchPresent"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.hoseOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.hoseOk"
+          [class.text-red-600]="!item.hoseOk"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.nozzlePresent ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.nozzlePresent"
+          [class.text-red-600]="!item.nozzlePresent"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.valveOperational ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.valveOperational"
+          [class.text-red-600]="!item.valveOperational"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.lockOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.lockOk"
+          [class.text-red-600]="!item.lockOk"
+        />
+      </td>
+      <td><small>{{ item.cabinetState }}</small></td>
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="11" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-info-light, #e0f2fe);
+        "
+      >
+        <app-icon
+          icon="mdi:pipe"
+          style="font-size: 1.1rem; color: var(--ds-info)"
+        />
+      </div>
+      
+        <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
+        <p>{{ item.cabinetState }}</p>
+        <div class="flex gap-2 mt-1">
+          <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'"
+            >Etiqueta</small
+          >
+          <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'"
+            >Cristal</small
+          >
+          <small
+            [class]="item.wrenchPresent ? 'text-green-600' : 'text-red-600'"
+            >Llave</small
+          >
+          <small [class]="item.hoseOk ? 'text-green-600' : 'text-red-600'"
+            >Manguera</small
+          >
+          <small
+            [class]="item.valveOperational ? 'text-green-600' : 'text-red-600'"
+            >Vólvula</small
+          >
+        </div>
+      
+      <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+              label="Editar"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

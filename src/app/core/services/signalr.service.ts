@@ -1,12 +1,12 @@
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
+import { BudgetProposalItemDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
-import { PanicAlertRealTimeDto } from "src/app/features/operations/panic-alert/interfaces/panic-alert-real-time.dto";
+import { PanicAlertRealTimeDto } from "src/app/apps/operations.luxuryapp/panic-alert/interfaces/panic-alert-real-time.dto";
 import { environment } from "src/environments/environment";
 import { AuthService } from "../auth/services/auth.service";
-export interface GoogleCalendarEventRealTimeUpdateDTO {
+export interface GoogleCalendarEventRealTimeUpdateDto {
   customerId: string;
   eventId: string | null;
   recurrenceSeriesId: string | null;
@@ -15,7 +15,7 @@ export interface GoogleCalendarEventRealTimeUpdateDTO {
   timestampUtc: string;
 }
 
-export interface NativeCollectionRealTimeUpdateDTO {
+export interface NativeCollectionRealTimeUpdateDto {
   customerId: string;
   propertyId: string | null;
   chargeId: string | null;
@@ -58,18 +58,17 @@ export class SignalRService {
     this.projectedExpenseUpdateSource.asObservable();
 
   private googleCalendarEventUpdateSource =
-    new Subject<GoogleCalendarEventRealTimeUpdateDTO>();
+    new Subject<GoogleCalendarEventRealTimeUpdateDto>();
   public googleCalendarEventUpdate$ =
     this.googleCalendarEventUpdateSource.asObservable();
 
   private nativeCollectionUpdateSource =
-    new Subject<NativeCollectionRealTimeUpdateDTO>();
+    new Subject<NativeCollectionRealTimeUpdateDto>();
   public nativeCollectionUpdate$ =
     this.nativeCollectionUpdateSource.asObservable();
 
   private panicAlertReceivedSource = new Subject<PanicAlertRealTimeDto>();
-  public panicAlertReceived$ =
-    this.panicAlertReceivedSource.asObservable();
+  public panicAlertReceived$ = this.panicAlertReceivedSource.asObservable();
 
   private panicAlertAttendedSource = new Subject<PanicAlertRealTimeDto>();
   public panicAlertAttended$ = this.panicAlertAttendedSource.asObservable();
@@ -300,7 +299,7 @@ export class SignalRService {
 
     this.hubConnection.on(
       "ReceiveGoogleCalendarEventUpdate",
-      (payload: GoogleCalendarEventRealTimeUpdateDTO) => {
+      (payload: GoogleCalendarEventRealTimeUpdateDto) => {
         this.consoleLogger.custom(
           "CAL",
           "dodgerblue",
@@ -313,7 +312,7 @@ export class SignalRService {
 
     this.hubConnection.on(
       "ReceiveNativeCollectionUpdate",
-      (payload: NativeCollectionRealTimeUpdateDTO) => {
+      (payload: NativeCollectionRealTimeUpdateDto) => {
         this.consoleLogger.custom(
           "MONEY",
           "teal",

@@ -29,7 +29,7 @@ import ModalPeriodoAdd from "./modal-periodo-add/modal-periodo-add";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -44,7 +44,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    TooltipModule,
+    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

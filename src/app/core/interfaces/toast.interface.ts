@@ -1,5 +1,5 @@
 // src/app/core/interfaces/toast.interface.ts
-export interface IToast {
+export interface ToastMessage {
   severity: "success" | "info" | "warn" | "error";
   summary: string;
   detail?: string;

@@ -8,7 +8,7 @@ import { HeaderDireccionMonitor } from "../header-direccion-monitor/header-direc
   selector: "app-view-direccion-monitor",
   imports: [RouterOutlet, HeaderDireccionMonitor, FooterDireccionMonitor, LxLoader],
   templateUrl: "./view-direccion-monitor.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./view-direccion-monitor.scss",
 })
 export class ViewDireccionMonitor {}

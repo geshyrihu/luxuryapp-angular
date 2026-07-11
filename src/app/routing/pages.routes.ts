@@ -4,7 +4,7 @@ export const pagesRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/features/operations/dashboard/container-dashboard").then(
+      import("src/app/apps/operations.luxuryapp/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -24,7 +24,7 @@ export const pagesRoutes: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("src/app/features/operations/dashboard/container-dashboard").then(
+      import("src/app/apps/operations.luxuryapp/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -124,7 +124,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad",
     loadChildren: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad.routing").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad.routing").then(
         (m) => m.CONTABILIDAD_ROUTES,
       ),
     data: {
@@ -135,7 +135,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza-nativa",
     loadChildren: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/cobranza-nativa.routing").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/cobranza-nativa/cobranza-nativa.routing").then(
         (m) => m.COBRANZA_NATIVA_ROUTES,
       ),
     data: {
@@ -321,7 +321,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
         (m) => m.ReportCatalog,
       ),
     data: { title: "Reportes Financieros", breadcrumb: "Reportes" },
@@ -329,7 +329,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/nuevo",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Nuevo Reporte", breadcrumb: "Nuevo Reporte" },
@@ -337,7 +337,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/editar/:id",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Editar Reporte", breadcrumb: "Editar Reporte" },
@@ -345,7 +345,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/ver/:id",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
         (m) => m.ReportViewer,
       ),
     data: { title: "Ver Reporte", breadcrumb: "Ver Reporte" },
@@ -353,7 +353,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/guia",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
         (m) => m.ReportGuide,
       ),
     data: { title: "Guía del Módulo de Reportes", breadcrumb: "Guía" },
@@ -361,7 +361,7 @@ export const pagesRoutes: Routes = [
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -372,7 +372,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -383,7 +383,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {
@@ -502,7 +502,7 @@ export const pagesRoutes: Routes = [
   {
     path: "sat-funding",
     loadChildren: () =>
-      import("src/app/features/accounting/fondeos-y-reporteo/sat-funding/sat-funding.routes").then(
+      import("src/app/apps/contabilidad.luxuryapp/fondeos-y-reporteo/sat-funding/sat-funding.routes").then(
         (m) => m.SAT_FUNDING_ROUTES,
       ),
     data: {
@@ -526,7 +526,7 @@ export const pagesRoutes: Routes = [
   {
     path: "entrega-recepcion-check",
     loadComponent: () =>
-      import("src/app/features/operations/properties/entrega-recepcion-check/entrega-recepcion-check").then(
+      import("src/app/apps/operations.luxuryapp/properties/entrega-recepcion-check/entrega-recepcion-check").then(
         (m) => m.EntregaRecepcionCheckComponent,
       ),
     data: {
@@ -551,7 +551,7 @@ export const pagesRoutes: Routes = [
   {
     path: "accounting",
     loadChildren: () =>
-      import("src/app/features/accounting/accounting.routing").then(
+      import("src/app/apps/contabilidad.luxuryapp/accounting.routing").then(
         (m) => m.accountingRoutes,
       ),
     data: { title: "Contabilidad", breadcrumb: "Contabilidad" },
@@ -567,13 +567,13 @@ export const pagesRoutes: Routes = [
   {
     path: "legal",
     loadChildren: () =>
-      import("src/app/features/legal/legal.routing").then((m) => m.legalRoutes),
+      import("src/app/apps/legal.luxuryapp/legal.routing").then((m) => m.legalRoutes),
     data: { title: "Legal", breadcrumb: "Legal" },
   },
   {
     path: "maintenance",
     loadChildren: () =>
-      import("src/app/features/maintenance/maintenance.routing").then(
+      import("src/app/apps/mantenimiento.luxuryapp/maintenance.routing").then(
         (m) => m.maintenanceRoutes,
       ),
     data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" },
@@ -581,7 +581,7 @@ export const pagesRoutes: Routes = [
   {
     path: "operations",
     loadChildren: () =>
-      import("src/app/features/operations/operations.routing").then(
+      import("src/app/apps/operations.luxuryapp/operations.routing").then(
         (m) => m.operationsRoutes,
       ),
     data: { title: "Operaciones", breadcrumb: "Operaciones" },
@@ -589,7 +589,7 @@ export const pagesRoutes: Routes = [
   {
     path: "initial-implementation",
     loadChildren: () =>
-      import("src/app/features/operations/initial-implementation/initial-implementation.routing").then(
+      import("src/app/apps/operations.luxuryapp/initial-implementation/initial-implementation.routing").then(
         (m) => m.initialImplementationRoutes,
       ),
     data: {
@@ -600,7 +600,7 @@ export const pagesRoutes: Routes = [
   {
     path: "purchasing",
     loadChildren: () =>
-      import("src/app/features/purchasing/purchasing.routing").then(
+      import("src/app/apps/supplier.luxuryapp/purchasing.routing").then(
         (m) => m.purchasingRoutes,
       ),
     data: { title: "Compras", breadcrumb: "Compras" },
@@ -608,7 +608,7 @@ export const pagesRoutes: Routes = [
   {
     path: "recruitment",
     loadChildren: () =>
-      import("src/app/features/recruitment/recruitment.routing").then(
+      import("src/app/apps/reclutamiento.luxuryapp/recruitment.routing").then(
         (m) => m.recruitmentRoutes,
       ),
     data: { title: "Reclutamiento", breadcrumb: "Reclutamiento" },

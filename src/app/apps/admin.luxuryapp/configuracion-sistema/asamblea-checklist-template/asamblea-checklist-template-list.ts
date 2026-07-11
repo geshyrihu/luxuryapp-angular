@@ -36,7 +36,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-asamblea-checklist-template-list",
   templateUrl: "./asamblea-checklist-template-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,

@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 @Component({
   selector: "app-footer-monitor",
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container-fluid">
       <div class="grid">

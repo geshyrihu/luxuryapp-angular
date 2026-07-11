@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 export interface GanttTask {
   id: string;
@@ -30,7 +30,7 @@ export interface GanttTask {
 @Component({
   selector: "app-gantt",
 
-  imports: [CommonModule, TooltipModule, AppIcon],
+  imports: [CommonModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="gantt-root">
       <!-- Header -->
@@ -111,7 +111,7 @@ export interface GanttTask {
                     [style.left.px]="barLeft(task)"
                     [style.width.px]="barWidth(task)"
                     [style.background]="task.color || 'var(--ds-primary)'"
-                    [pTooltip]="barTooltip(task)"
+                    [lxTooltip]="barTooltip(task)"
                     tooltipPosition="top"
                     (click)="taskClick.emit(task)"
                   >

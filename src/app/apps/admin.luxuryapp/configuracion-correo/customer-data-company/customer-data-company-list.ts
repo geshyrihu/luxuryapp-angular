@@ -30,13 +30,13 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CustomerDataCompanyDto } from "./customer-data-company-dto";
+import { CustomerDataCompanyDto } from "./customer-data-company.dto";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 
 @Component({
   selector: "app-customer-data-company-list",
   templateUrl: "./customer-data-company-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     FormsModule,

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 
@@ -12,13 +12,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
     CommonModule,
     RouterModule,
     TagModule,
-    TooltipModule,
+    LxTooltipDirective,
     AppIcon,
     WebButtonIcon,
   ],
   templateUrl: "./catalog-layout.html",
   styleUrls: ["./catalog-layout.scss"],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogLayout {

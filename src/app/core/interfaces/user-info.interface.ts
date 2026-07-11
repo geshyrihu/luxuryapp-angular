@@ -1,8 +1,8 @@
-export interface UserInfoDTO {
+export interface UserInfoDto {
   email?: string;
   password?: string;
 }
-export interface UpdatePasswordDTO {
+export interface UpdatePasswordDto {
   userName?: string;
   id?: string;
   password?: string;

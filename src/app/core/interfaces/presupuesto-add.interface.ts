@@ -1,4 +1,4 @@
-export interface IPresupuestoAdd {
+export interface PresupuestoAdd {
   from: string;
   to: string;
   customerId: string;

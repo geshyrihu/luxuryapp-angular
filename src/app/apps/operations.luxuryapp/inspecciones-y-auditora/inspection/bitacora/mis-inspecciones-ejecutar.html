@@ -1,0 +1,148 @@
+<div class="p-3">
+  <h4 class="text-2xl mb-4 text-center font-bold text-primary">
+    Ejecutar Inspección
+  </h4>
+
+  <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+  <p-table
+    #dt
+    [globalFilterFields]="globalFilterFields()"
+    [scrollHeight]="scrollHeight()"
+    [scrollable]="true"
+    [value]="flattenedData()"
+    groupRowsBy="condominiumAssetName"
+    rowGroupMode="subheader"
+    class="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th>Descripción</th>
+        <th class="w-10rem">Estado</th>
+        <th>Observaciones</th>
+        <th class="w-12rem">Imágenes</th>
+        <th class="w-5rem">Acción</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #groupheader let-item>
+      <tr pRowGroupHeader>
+        <td colspan="5" class="surface-100 p-2">
+          <span class="font-bold ml-2 text-primary">
+            {{ item.condominiumAssetName }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-revision>
+      <tr>
+        <td>{{ revision.inspectionDescription }}</td>
+        <td>
+          <div class="flex align-items-center">
+            <custom-input-toggle-switch-signal
+              [control]="revision.stateControl"
+              (toggleChange)="saveRevision(revision)"
+            />
+            <span class="text-sm ml-2">
+              {{ revision.stateControl.value ? "Bien" : "Mal" }}
+            </span>
+          </div>
+        </td>
+        <td>
+          <custom-input-textarea-signal
+            [control]="revision.observationsControl"
+            [rows]="1"
+            placeholder="Observaciones..."
+            (focusout)="saveRevision(revision)"
+          />
+        </td>
+        <td>
+          <div class="flex flex-wrap gap-1">
+            @for (image of revision.images; track image) {
+            <app-image
+              [preview]="true"
+              [src]="image.photoPath || 'assets/images/default-avatar.png'"
+              width="40"
+            />
+            }
+          </div>
+        </td>
+        <td class="text-center">
+          <iw-button
+            iconClass="mdi:camera"
+            (clicked)="onModalAddImages(revision.id)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="flattenedData()" />
+    </ng-template>
+  </p-table>
+
+  <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+  <app-data-view-mobile
+    [isGrouped]="true"
+    [groupedData]="groupedData()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <div
+        class="p-3 border-bottom-1 surface-border surface-card mb-2 shadow-1"
+      >
+        <div class="flex justify-content-between align-items-center mb-2">
+          <span class="font-bold text-sm">
+            {{ item.inspectionDescription }}
+          </span>
+          <div class="flex align-items-center">
+            <custom-input-toggle-switch-signal
+              [control]="item.stateControl"
+              (toggleChange)="saveRevision(item)"
+            />
+            <span class="text-xs ml-2">
+              {{ item.stateControl.value ? "Bien" : "Mal" }}
+            </span>
+          </div>
+        </div>
+        <custom-input-textarea-signal
+          [control]="item.observationsControl"
+          [rows]="2"
+          placeholder="Observaciones..."
+          (focusout)="saveRevision(item)"
+        />
+        <div class="flex justify-content-between align-items-center mt-2">
+          <div class="flex flex-wrap gap-1">
+            @for (image of item.images; track image) {
+            <app-image
+              [preview]="true"
+              [src]="image.photoPath || 'assets/images/default-avatar.png'"
+              width="40"
+            />
+            }
+          </div>
+          <il-button
+            (clicked)="onModalAddImages(item.id)"
+            iconClass="mdi:camera"
+            label="Fotos"
+            variant="outlined"
+            size="small"
+          />
+        </div>
+      </div>
+    </ng-template>
+  </app-data-view-mobile>
+
+  <div class="text-center mt-4">
+    <il-button
+      (clicked)="onSubmit()"
+      iconClass="mdi:content-save"
+      label="Finalizar Inspección"
+      lxTooltip="Finalizar Inspección"
+      variant="outlined"
+    />
+  </div>
+</div>

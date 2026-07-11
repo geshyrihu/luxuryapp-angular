@@ -21,12 +21,12 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
 @Component({
   selector: "app-customer-data-company-form",
   templateUrl: "./customer-data-company-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     LxCard,
@@ -46,9 +46,9 @@ export class CustomerDataCompanyForm implements OnInit {
   submitting = signal(false);
 
   // Signals para ComboBoxes
-  cb_applicationUser = signal<ISelectItem[]>([]);
-  cb_customer = signal<ISelectItem[]>([]);
-  cb_applicationRole = signal<ISelectItem[]>([]);
+  cb_applicationUser = signal<SelectItemDto[]>([]);
+  cb_customer = signal<SelectItemDto[]>([]);
+  cb_applicationRole = signal<SelectItemDto[]>([]);
 
   // Definición estricta del formulario
   form = new FormGroup({
@@ -130,37 +130,37 @@ export class CustomerDataCompanyForm implements OnInit {
 
   async onLoadSelectItem(): Promise<void> {
     const [customers, users, applicationRoles] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.customersActive,
       ),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.applicationUser,
       ),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.applicationRolesToAdministrator,
       ),
     ]);
 
-    this.cb_customer.set((customers as ISelectItem[]) ?? []);
-    this.cb_applicationUser.set((users as ISelectItem[]) ?? []);
-    this.cb_applicationRole.set((applicationRoles as ISelectItem[]) ?? []);
+    this.cb_customer.set((customers as SelectItemDto[]) ?? []);
+    this.cb_applicationUser.set((users as SelectItemDto[]) ?? []);
+    this.cb_applicationRole.set((applicationRoles as SelectItemDto[]) ?? []);
   }
 
-  saveCustomer = (item: ISelectItem) => {
+  saveCustomer = (item: SelectItemDto) => {
     this.form.patchValue({
       customerId: item?.value,
       customer: item?.label,
     });
   };
 
-  saveApplicationUser = (item: ISelectItem) => {
+  saveApplicationUser = (item: SelectItemDto) => {
     this.form.patchValue({
       applicationUserId: item?.value,
       applicationUser: item?.label,
     });
   };
 
-  savAppRoles = (item: ISelectItem) => {
+  savAppRoles = (item: SelectItemDto) => {
     this.form.patchValue({
       applicationRoleId: item?.value,
       applicationRole: item?.label,

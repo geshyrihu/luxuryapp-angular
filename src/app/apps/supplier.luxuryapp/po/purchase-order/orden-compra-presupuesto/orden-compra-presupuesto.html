@@ -1,0 +1,139 @@
+<!-- REFACTOR: El template ha sido actualizado para leer el valor del total directamente
+del signal en `ordenCompraService.totalPorCubrir()`. -->
+<primeng-custom-toast />
+
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table hidden md:block"
+  [loading]="loading()"
+  [scrollable]="true"
+  scrollHeight="50vh"
+>
+  <ng-template #caption>
+    <div class="grid align-items-center">
+      <div class="col-12 md:col-3">
+        <lx-tag severity="danger" [value]="'Total a cubrir: ' + (ordenCompraService.totalPorCubrir() | number: '1.2-2')" />
+      </div>
+      <div class="col-12 md:col-7">
+        <primeng-custom-caption
+          [title]="'Presupuesto para Orden de Compra'"
+          [showAdd]="false"
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          id="yearSelector"
+          [data]="availableYears"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccionar Año Fiscal"
+          [control]="intYearControl"
+          (selectionChange)="onLoadData()"
+          [horizontal]="false"
+          customClass="w-full"
+          [filter]="true"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-20" pSortableColumn="accountNumber">
+        Cuenta
+        <p-sorticon field="accountNumber" />
+      </th>
+      <th class="table-col-13">Pres. Mensual</th>
+      <th class="table-col-13">Gastado</th>
+      <th class="table-col-13">Provisionado</th>
+      <th class="table-col-13" pSortableColumn="availableBudget">
+        Disponible
+        <p-sorticon field="availableBudget" />
+      </th>
+      <th class="table-col-13">Gasto</th>
+      <th class="table-col-15"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <span class="text-sm text-color-secondary">
+          {{ item.accountNumber }}
+        </span>
+        <br />
+        <span>{{ item.accountName }}</span>
+      </td>
+      <td>{{ item.budgetMonth | number: '1.2-2' }}</td>
+      <td>{{ item.budgetSpent | number: '1.2-2' }}</td>
+      <td>{{ item.pendingPayments | number: '1.2-2' }}</td>
+      <td>
+        <div class="flex flex-column">
+          @if (item.pendingPayments > 0) {
+          <span
+            class="text-xs"
+            [class]="item.availableBudget > 0 ? 'text-green-500' : 'text-red-500'"
+          >
+            {{ item.availableBudget | number: '1.2-2' }}
+          </span>
+          }
+          <span
+            [class]="item.availableBudget > 0 ? 'text-green-500' : 'text-red-500'"
+          >
+            {{ item.availableBudget - item.pendingPayments | number: '1.2-2' }}
+          </span>
+        </div>
+      </td>
+      <td>
+        <!-- <p-inputnumber
+          [(ngModel)]="item.dineroUsado"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2"
+          mode="decimal"
+          locale="es-MX"
+          [max]="item.availableBudget || ordenCompraService.totalPorCubrir()"
+          placeholder="0.00"
+          [disabled]="isInputDisabled(item)"
+          fluid
+        /> -->
+        <custom-input-number-signal
+          [control]="item.dineroUsadoControl"
+          [disabled]="isInputDisabled(item)"
+          mode="currency"
+          currency="MXN"
+          locale="es-MX"
+          [max]="item.availableBudget || ordenCompraService.totalPorCubrir()"
+          [horizontal]="false"
+        />
+      </td>
+      <td class="text-center">
+        @if (!submitting() && ordenCompraService.totalPorCubrir() > 0) {
+        <iw-button-item
+          (clicked)="onSubmit(item)"
+          iconClass="mdi:content-save"
+          lxTooltip="Guardar"
+          tooltipPosition="top"
+        />
+        } @if (submitting()) {
+        <app-spinner [size]="32" [strokeWidth]="8" />
+        }
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>

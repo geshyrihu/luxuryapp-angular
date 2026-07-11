@@ -672,7 +672,7 @@ import { Task } from "./interfaces/task.interface";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileLists {

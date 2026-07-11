@@ -16,10 +16,10 @@ import { UpdatePasswordAccount } from "src/app/apps/admin.luxuryapp/seguridad-pe
 import { UpdateRole } from "src/app/apps/admin.luxuryapp/seguridad-permisos/application-user/update-role";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EmployeeReclutamiento } from "../../../../../features/recruitment/reclutamiento-y-altas-bajas/pages/employee-reclutamiento";
+import { EmployeeReclutamiento } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/pages/employee-reclutamiento";
 import { IncidentList } from "../../recursos-humanos/incidencias-sanciones/incident/pages/incident-list";
 import { EmployeeBankDataList } from "../employee-bank-data/pages/employee-bank-data-list";
 import { EmployeeClinicalDataList } from "../employee-clinical-data/pages/employee-clinical-data-list";
@@ -105,7 +105,7 @@ export class EmployeeForm implements OnInit {
       label: string;
       icon: string;
       section: string;
-      roles?: EApplicationRole[];
+      roles?: ApplicationRole[];
     };
 
     const all: MenuDef[] = [
@@ -115,10 +115,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:account",
         section: "principal",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
       {
@@ -126,10 +126,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:image",
         section: "avatar",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
       {
@@ -137,10 +137,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:card-account-details",
         section: "personal",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
       {
@@ -148,10 +148,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:map-marker",
         section: "address",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
       {
@@ -159,10 +159,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:phone",
         section: "contacts",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
       {
@@ -170,10 +170,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:credit-card",
         section: "bank-data",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
       {
@@ -181,10 +181,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:heart-outline",
         section: "clinical-data",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
 
@@ -194,10 +194,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:briefcase",
         section: "laboral",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
 
@@ -207,10 +207,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:format-list-bulleted",
         section: "recruitment",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.RecursosHumanos,
-          EApplicationRole.Reclutamiento,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.Reclutamiento,
         ],
       },
 
@@ -220,10 +220,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:alert",
         section: "incidents",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
 
@@ -233,10 +233,10 @@ export class EmployeeForm implements OnInit {
         icon: "mdi:key",
         section: "user",
         roles: [
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.Administrador,
-          EApplicationRole.Asistente,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
         ],
       },
     ];

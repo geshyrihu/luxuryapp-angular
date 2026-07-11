@@ -15,7 +15,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import saveAs from "file-saver";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -57,7 +57,7 @@ export class IncidentReport {
 
   form!: FormGroup<IReportFilterForm>;
 
-  cb_category: ISelectItem[] = [
+  cb_category: SelectItemDto[] = [
     { value: "", label: "Todas las categoróas" },
     { value: "Conducta", label: "Conducta" },
     { value: "Desempeno", label: "Desempeóo" },
@@ -66,7 +66,7 @@ export class IncidentReport {
     { value: "Etica", label: "ótica" },
   ];
 
-  cb_severity: ISelectItem[] = [
+  cb_severity: SelectItemDto[] = [
     { value: "", label: "Todas las severidades" },
     { value: "Low", label: "Leve" },
     { value: "Moderate", label: "Moderado" },

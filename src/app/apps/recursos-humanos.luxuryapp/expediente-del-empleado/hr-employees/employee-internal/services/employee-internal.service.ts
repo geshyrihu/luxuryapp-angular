@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { IEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/models/employee.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 @Injectable({
   providedIn: "root",
 })
@@ -193,7 +193,7 @@ export class EmployeeInternalService {
   // ==========================================================================
 
   getApplicationRoles() {
-    return this._apiResponseS.onGetSelectItem<ISelectItem[]>(
+    return this._apiResponseS.onGetSelectItem<SelectItemDto[]>(
       Endpoints.SelectItems.applicationRolesToAdministrator,
     );
   }

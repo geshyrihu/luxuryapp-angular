@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { StorageService } from "src/app/core/services/storage.service";
 @Injectable({
@@ -17,7 +17,7 @@ export class SecurityService {
     );
   }
 
-  setAuthData(data: UserTokenDTO): void {
+  setAuthData(data: UserTokenDto): void {
     this.consoleLogger.custom(
       "🔐",
       "#2196F3",
@@ -41,7 +41,7 @@ export class SecurityService {
     );
   }
 
-  getAuthData(): UserTokenDTO | null {
+  getAuthData(): UserTokenDto | null {
     this.consoleLogger.custom(
       "🔍",
       "#2196F3",
@@ -60,7 +60,7 @@ export class SecurityService {
           roles: data.roles,
         },
       );
-      return data as UserTokenDTO;
+      return data as UserTokenDto;
     }
 
     this.consoleLogger.custom(

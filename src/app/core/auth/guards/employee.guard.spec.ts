@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
-import { EApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../enums/asp-net-roles.enum';
 import { AuthService } from '../services/auth.service';
 import { employeeGuard } from './employee.guard';
 
@@ -35,13 +35,13 @@ describe('employeeGuard', () => {
     TestBed.runInInjectionContext(() => employeeGuard(mockRoute, mockState));
 
   it('should allow access when user is NOT Comite', async () => {
-    authServiceMock.userToken$.next({ roles: [EApplicationRole.Administrador] });
+    authServiceMock.userToken$.next({ roles: [ApplicationRole.Administrador] });
     const result = await firstValueFrom(runGuard() as Observable<boolean | UrlTree>);
     expect(result).toBe(true);
   });
 
   it('should redirect to /committee when user IS Comite', async () => {
-    authServiceMock.userToken$.next({ roles: [EApplicationRole.Comite] });
+    authServiceMock.userToken$.next({ roles: [ApplicationRole.Comite] });
     const result = await firstValueFrom(runGuard() as Observable<boolean | UrlTree>);
     expect(result).not.toBe(true);
     expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/committee']);

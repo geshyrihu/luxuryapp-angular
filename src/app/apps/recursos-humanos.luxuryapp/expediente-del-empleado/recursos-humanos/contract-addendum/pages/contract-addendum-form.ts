@@ -17,7 +17,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import {
   ContractAddendumAddOrEditDTO,
@@ -63,7 +63,7 @@ export class ContractAddendumFormComponent {
 
   form!: FormGroup<IContractAddendumForm>;
 
-  cb_addendumType: ISelectItem[] = [
+  cb_addendumType: SelectItemDto[] = [
     { value: "ModificacionSalario", label: "Modificación de Salario" },
     { value: "CambioPuesto", label: "Cambio de Puesto" },
     { value: "CambioDepartamento", label: "Cambio de Departamento" },

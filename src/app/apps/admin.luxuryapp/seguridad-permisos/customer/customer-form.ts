@@ -23,8 +23,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ICustomerForm } from "src/app/core/interfaces/customer-form.interface";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { CustomerFormDto } from "src/app/core/interfaces/customer-form.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { CustomerAddOrEditDto } from "./interfaces/customer-add-or-edit.dto";
 import { CustomerFormGroup } from "./interfaces/customer-form.interface";
@@ -32,7 +32,7 @@ import { CustomerFormGroup } from "./interfaces/customer-form.interface";
 @Component({
   selector: "app-customer-form",
   templateUrl: "./customer-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -53,12 +53,12 @@ export class CustomerForm implements OnInit {
   submitting = signal(false);
 
   id: string = "";
-  optionActive: ISelectItem[] = [
+  optionActive: SelectItemDto[] = [
     { value: true, label: "Activo" },
     { value: false, label: "Inactivo" },
   ];
 
-  model: ICustomerForm;
+  model: CustomerFormDto;
   photoFileUpdate: boolean = false;
 
   form: FormGroup<CustomerFormGroup> = this.formB.group({
@@ -130,12 +130,12 @@ export class CustomerForm implements OnInit {
       submitting: this.submitting,
       transformPayload: () =>
         this.createFormData(
-          this.form.getRawValue() as unknown as ICustomerForm,
+          this.form.getRawValue() as unknown as CustomerFormDto,
         ),
     });
   }
 
-  private createFormData(customerAdCustomerForm: ICustomerForm): FormData {
+  private createFormData(customerAdCustomerForm: CustomerFormDto): FormData {
     const formData = new FormData();
     formData.append("active", String(customerAdCustomerForm.active));
     formData.append("adreess", customerAdCustomerForm.adreess);

@@ -9,7 +9,7 @@ import { inject } from "@angular/core";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, filter, switchMap, take } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { StorageService } from "src/app/core/services/storage.service";
 // State shared across requests (Singleton behavior)
@@ -90,7 +90,7 @@ function handle401Error(
     refreshTokenSubject.next(null);
 
     return authService.refreshToken().pipe(
-      switchMap((newSession: UserTokenDTO) => {
+      switchMap((newSession: UserTokenDto) => {
         isRefreshing = false;
         refreshTokenSubject.next(newSession.token);
         return next(addToken(request, newSession.token));

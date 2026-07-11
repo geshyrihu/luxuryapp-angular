@@ -115,7 +115,7 @@
           <lx-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-            pTooltip="Asignar rol al puesto"
+            lxTooltip="Asignar rol al puesto"
           />
         </div>
         } @else {
@@ -203,7 +203,7 @@
               size="large"
               class="cursor-pointer mr-2"
               (click)="onCardEmployee(item.applicationUserId!)"
-              pTooltip="Ver tarjeta"
+              lxTooltip="Ver tarjeta"
             />
             } @else {
             <lx-avatar
@@ -223,7 +223,7 @@
                 <il-button-item
                   iconClass="mdi:account-edit"
                   label="Perfil"
-                  pTooltip="Ir al perfil"
+                  lxTooltip="Ir al perfil"
                   (clicked)="onShowEditEmpleado(item)"
                 />
                 @if (aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Legal,
@@ -232,14 +232,14 @@
                 <il-button-item
                   iconClass="mdi:folder-open"
                   label="Expediente"
-                  pTooltip="Ver expediente completo"
+                  lxTooltip="Ver expediente completo"
                   (clicked)="onGoToEmployeeFile(item)"
                 />
                 } @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
                 <il-button-item
                   iconClass="mdi:logout"
                   label="Desvincular del puesto"
-                  pTooltip="Desvincular del puesto"
+                  lxTooltip="Desvincular del puesto"
                   (clicked)="onUnassignEmployee(item.id)"
                 />
                 }
@@ -265,12 +265,12 @@
             <div class="flex gap-1">
               <iw-button-item
                 iconClass="mdi:link"
-                pTooltip="Vincular del pool"
+                lxTooltip="Vincular del pool"
                 (clicked)="onOpenDrawer(item)"
               />
               <iw-button-item
                 iconClass="mdi:account-plus"
-                pTooltip="Registrar nuevo empleado"
+                lxTooltip="Registrar nuevo empleado"
                 (clicked)="showModalAddEmployeeFromPosition(item)"
               />
             </div>
@@ -281,14 +281,14 @@
           @if (item.positionRequest) { @if (item.positionRequest.status === 0) {
           <span
             class="badge badge-warning text-xs text-center block py-2"
-            pTooltip="Vacante abierta é esperando alta de colaborador"
+            lxTooltip="Vacante abierta é esperando alta de colaborador"
           >
             🟡 VA-{{ item.positionRequest.folio }} é Vacante abierta
           </span>
           } @else {
           <span
             class="badge badge-info text-xs text-center block py-2"
-            pTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
+            lxTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
           >
             🔵 VA-{{ item.positionRequest.folio }} é Alta en proceso
           </span>
@@ -494,7 +494,7 @@
       <il-button-item
         iconClass="mdi:check"
         label="Activar"
-        pTooltip="Activar puesto"
+        lxTooltip="Activar puesto"
         (clicked)="onActivatePosition(pos.id)"
       />
     </div>
@@ -533,13 +533,13 @@
         <il-button-item
           iconClass="mdi:check"
           label="Activar"
-          pTooltip="Activar colaborador"
+          lxTooltip="Activar colaborador"
           (clicked)="onActivateEmployee(emp.applicationUserId)"
         />
         <il-button-item
           iconClass="mdi:plus"
           label="Activar y asignar"
-          pTooltip="Activar y mover al pool para asignar puesto"
+          lxTooltip="Activar y mover al pool para asignar puesto"
           (clicked)="onActivateAndAssign(emp)"
         />
       </div>

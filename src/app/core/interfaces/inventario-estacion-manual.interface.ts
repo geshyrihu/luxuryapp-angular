@@ -1,4 +1,4 @@
-export interface IInventarioEstacionManual {
+export interface InventarioEstacionManualDto {
   id: any;
   customerId: string;
   stationType: string;

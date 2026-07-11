@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { filter, map, switchMap, take } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 
 export const direccionGuard: CanActivateFn = (route, state) => {
   const authS = inject(AuthService);
@@ -14,7 +14,7 @@ export const direccionGuard: CanActivateFn = (route, state) => {
     switchMap(() => authS.userToken$),
     map((session) => {
       const roles = new Set(session?.roles ?? []);
-      if (roles.has(EApplicationRole.Direccion)) {
+      if (roles.has(ApplicationRole.Direccion)) {
         return true;
       }
       return router.createUrlTree(["/unauthorized"]);

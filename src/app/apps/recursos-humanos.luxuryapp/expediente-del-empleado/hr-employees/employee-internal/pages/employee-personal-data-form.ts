@@ -23,9 +23,9 @@ import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ECountry } from "src/app/core/enums/paises.enum";
+import { ECountry } from "src/app/core/interfaces/paises.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { IEmployeePersonalDataForm } from "../models/employee-personal-data-form.interface";
 
@@ -52,10 +52,10 @@ export class EmployeePersonalDataForm implements OnInit {
   employeeId = input<string>("");
 
   // Signals para ComboBoxes
-  cb_blood_type = signal<ISelectItem[]>([]);
-  cb_marital_status = signal<ISelectItem[]>([]);
-  cb_nationality = signal<ISelectItem[]>([]);
-  cb_sex = signal<ISelectItem[]>([]);
+  cb_blood_type = signal<SelectItemDto[]>([]);
+  cb_marital_status = signal<SelectItemDto[]>([]);
+  cb_nationality = signal<SelectItemDto[]>([]);
+  cb_sex = signal<SelectItemDto[]>([]);
 
   submitting = signal(false);
 
@@ -78,7 +78,7 @@ export class EmployeePersonalDataForm implements OnInit {
     maritalStatus: new FormControl<number | null>(null, {
       validators: [Validators.required],
     }),
-    nationality: new FormControl<ISelectItem | null>(null, {
+    nationality: new FormControl<SelectItemDto | null>(null, {
       validators: [Validators.required],
     }),
     nss: new FormControl("", {
@@ -134,7 +134,7 @@ export class EmployeePersonalDataForm implements OnInit {
     return typeof field === "object" && field !== null ? field.value : field;
   }
 
-  findNationalityObject(nationality: any): ISelectItem | null {
+  findNationalityObject(nationality: any): SelectItemDto | null {
     if (!nationality) return null;
 
     // Si ya es un objeto con label y value

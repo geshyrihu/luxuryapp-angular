@@ -10,7 +10,7 @@ import { ClickOutsideDirective } from "./click-outside.directive";
     <div id="outside">Outside</div>
   `,
   imports: [ClickOutsideDirective],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TestHostComponent {
   clicked = false;

@@ -1,4 +1,4 @@
-export interface IProviderSupportList {
+export interface ProviderSupportList {
   id: string;
   fullName: string;
   email: string;

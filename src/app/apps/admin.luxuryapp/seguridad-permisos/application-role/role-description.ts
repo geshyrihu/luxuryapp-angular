@@ -11,7 +11,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 @Component({
   selector: "app-role-description",
   templateUrl: "./role-description.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
 })
 export class RoleDescription implements OnInit {

@@ -7,7 +7,7 @@ import {
   output,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { BaseInputSignal } from "../../base/base-input-signal";
 import { IonInputMultiselect } from "../../mobile/ion-input-multiselect";
@@ -77,7 +77,7 @@ import { WebInputMultiselect } from "../../web/input-multiselect/input-multisele
 export class InputMultiselect extends BaseInputSignal {
   protected platform = inject(PlatformService);
 
-  options = input<ISelectItem[]>([]);
+  options = input<SelectItemDto[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string | undefined>("value");
   group = input<boolean>(false);

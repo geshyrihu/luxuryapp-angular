@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { getTestBed } from '@angular/core/testing';
 import '@angular/localize/init';

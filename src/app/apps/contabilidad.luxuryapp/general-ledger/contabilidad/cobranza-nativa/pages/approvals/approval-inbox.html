@@ -1,0 +1,102 @@
+<div class="card p-0 md:p-4">
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        title="Bandeja de Aprobaciones"
+        [showAdd]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="w-10rem text-center">Tipo de Operacion</th>
+        <th>Descripcion</th>
+        <th class="w-8rem">Solicitado por</th>
+        <th class="w-8rem text-center">Fecha</th>
+        <th class="w-7rem text-center">Estado</th>
+        <th class="w-7rem text-center">Accion</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="text-center">
+          <span class="badge bg-purple-100 text-purple-800 text-xs">
+            {{ operationLabel(item.operationType) }}
+          </span>
+        </td>
+        <td class="text-sm">{{ item.summary }}</td>
+        <td class="text-sm font-medium">{{ item.requestedBy }}</td>
+        <td class="text-center text-sm">
+          {{ item.requestedAt | date:'dd/MM/yyyy HH:mm' }}
+        </td>
+        <td class="text-center">
+          <span class="badge text-xs" [class]="statusClass(item.status)">
+            {{ statusLabel(item.status) }}
+          </span>
+        </td>
+        <td class="text-center">
+          @if (item.status === EFinancialApprovalStatus.Pendiente) {
+          <iw-button
+            lxTooltip="Revisar"
+            tooltipPosition="top"
+            iconClass="mdi:eye-outline"
+            size="small"
+            severity="warn"
+            (clicked)="openDetail(item)"
+          />
+          }
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="6" />
+    </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="['summary', 'requestedBy']"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <app-icon
+          icon="mdi:shield-check-outline"
+          class="text-purple-600 text-xl"
+        />
+      </div>
+      <div class="flex-1 min-w-0">
+        <h3>{{ operationLabel(item.operationType) }}</h3>
+        <p>{{ item.summary }}</p>
+        <p>
+          Por: {{ item.requestedBy }} &middot; {{ item.requestedAt |
+          date:'dd/MM/yyyy' }}
+        </p>
+      </div>
+      @if (item.status === EFinancialApprovalStatus.Pendiente) {
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
+        </ng-container>
+      </ili-action-menu>
+      }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -13,7 +13,6 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -26,9 +25,8 @@ import { CatalogoRevisionesInspeccionFormGroup } from "./interfaces/catalogo-rev
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    CardModule,
-  ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+    ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./catalogo-revisiones-inspeccion-form.html",
 })
 export class CatalogoRevisionesInspeccionForm implements OnInit {

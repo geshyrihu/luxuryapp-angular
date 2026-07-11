@@ -160,7 +160,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
     </div>
   `,
   styleUrls: ["../../../../shared/mobile-showcase-styles.css"],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileButtons {}

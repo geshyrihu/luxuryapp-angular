@@ -19,7 +19,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import {
   EContractType,
@@ -64,7 +64,7 @@ export class WorkContractFormComponent implements OnInit {
 
   form!: FormGroup<IWorkContractForm>;
 
-  cb_contractType: ISelectItem[] = [
+  cb_contractType: SelectItemDto[] = [
     { value: "Indeterminado", label: "Indeterminado" },
     { value: "Determinado", label: "Determinado" },
     { value: "Temporal", label: "Temporal / Estacional" },

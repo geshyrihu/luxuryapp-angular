@@ -225,7 +225,7 @@ interface IResetPasswordForm {
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger("slideAnimation", [
       transition(":enter", [

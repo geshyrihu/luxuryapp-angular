@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 export const humanResourcesRoutes: Routes = [
   // =============================================================
   // DASHBOARD PRINCIPAL DE RH
@@ -16,13 +16,13 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
-          EApplicationRole.Comite,
-          EApplicationRole.Administrador,
-          EApplicationRole.GerenteOperaciones,
-          EApplicationRole.GerenteAtencion,
-          EApplicationRole.Asistente,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.Comite,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.GerenteAtencion,
+          ApplicationRole.Asistente,
         ]),
     ],
     data: {
@@ -194,7 +194,7 @@ export const humanResourcesRoutes: Routes = [
         (m) => m.AdminVacacionesBalance,
       ),
     canActivate: [
-      () => inject(AspRoleService).hasRole(EApplicationRole.SuperUsuario),
+      () => inject(AspRoleService).hasRole(ApplicationRole.SuperUsuario),
     ],
     data: {
       title: "Administración de Balances",
@@ -211,8 +211,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -233,9 +233,9 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
-          EApplicationRole.Administrador,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.Administrador,
         ]),
     ],
     data: {
@@ -256,8 +256,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -278,8 +278,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -300,8 +300,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -322,8 +322,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -344,8 +344,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -362,9 +362,9 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
-          EApplicationRole.Direccion,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.Direccion,
         ]),
     ],
     data: {
@@ -385,8 +385,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -407,8 +407,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -425,8 +425,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -447,8 +447,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
@@ -469,8 +469,8 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [
       () =>
         inject(AspRoleService).hasAny([
-          EApplicationRole.SuperUsuario,
-          EApplicationRole.RecursosHumanos,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {

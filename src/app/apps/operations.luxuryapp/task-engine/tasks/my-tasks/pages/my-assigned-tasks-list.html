@@ -1,0 +1,409 @@
+<div>
+  <div class="hidden md:block no-print">
+    @if (dataSignal() && dataSignal() !== undefined) {
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      class="custom-table hidden md:block"
+      [tableStyle]="{ 'min-width': '60rem' }"
+    >
+      <ng-template #caption>
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
+        >
+          <!-- IZQUIERDA: Tútulo y Status Filter -->
+          <div class="flex flex-column sm:flex-row align-items-center gap-3">
+            <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
+              Mis tickets asignados
+            </h4>
+            <app-task-status (statusChange)="onLoadData($event)" />
+          </div>
+
+          <!-- DERECHA: Buscador, Agregar e Imprimir -->
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <primeng-custom-caption
+              (add)="onModalAdd({ id: '', title: 'Agregar' })"
+              [dt]="dt"
+              [noPadding]="true"
+              [noMargin]="true"
+            />
+            <il-button
+              iconClass="mdi:printer"
+              label="Imprimir pendientes"
+              variant="outlined"
+              severity="secondary"
+              size="small"
+              (clicked)="printReport()"
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th style="width: 7%">FOLIO</th>
+          <th style="width: 5%" class="hidden md:table-cell">SOLICITA</th>
+          <th style="width: 8%">FECHA SOL.</th>
+          <th style="width: 22%">SOLICITUD</th>
+          <th style="width: 5%" class="hidden md:table-cell">EVIDENCIA</th>
+          <th style="width: 6%">RESP.</th>
+          <th style="width: 8%">PROGRAMADO</th>
+          <th style="width: 7%" class="hidden md:table-cell">CIERRE</th>
+          <th style="width: 5%">DIAS</th>
+          <th style="width: 22%">ULTIMO SEGUIMIENTO</th>
+          <th style="width: 5%"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr
+          [class.row-status-completed]="item.status === 'Completed'"
+          [class.row-status-in-progress]="item.status === 'InProgress'"
+          [class.row-status-reopened]="item.status === 'Reopened'"
+          [class.row-status-not-started]="item.status === 'NotStarted'"
+        >
+          <td>
+            <p class="m-0 text-xs text-400">{{ item.folio }}</p>
+            <p class="m-0 text-xs text-500">{{ item.createdAtDate }}</p>
+          </td>
+          <td class="text-center hidden md:table-cell">
+            <app-avatar
+              (click)="onCardEmployee(item.creatorId)"
+              [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
+              alt="Creador"
+              shape="circle"
+              size="normal"
+              styleClass="cursor-pointer"
+              [lxTooltip]="item.creator"
+              tooltipPosition="top"
+            />
+          </td>
+          <td class="text-xs text-600">{{ item.createdAtDate }}</td>
+          <td>
+            <p class="m-0 font-semibold text-xs text-900">{{ item.title }}</p>
+            <p
+              class="m-0 text-xs text-700"
+              style="
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+              "
+            >
+              {{ item.description }}
+            </p>
+          </td>
+          <td class="text-center hidden md:table-cell">
+            @if (item.beforeWork) {
+            <app-image
+              [src]="item.beforeWork"
+              alt="."
+              width="40"
+              [preview]="true"
+            />
+            }
+          </td>
+          <td class="text-center text-xs text-600">
+            {{ item.creator | initialsAbbr }}
+          </td>
+          <td class="text-xs text-600">{{ item.scheduledAt || 'é' }}</td>
+          <td class="text-center text-xs text-600 hidden md:table-cell">
+            {{ item.closedAtDate || 'é' }}
+          </td>
+          <td class="text-center">
+            <strong class="text-xs">{{ item.daysDifference }}</strong>
+          </td>
+          <td
+            style="
+              white-space: normal;
+              overflow-wrap: break-word;
+              word-break: break-word;
+              overflow: hidden;
+              max-width: 0;
+            "
+          >
+            @if (item.lastFollowUp) {
+            <span class="text-xs text-400 font-medium block mb-1"
+              >{{ item.lastFollowUpDate }}</span
+            >
+            <p
+              class="m-0 text-xs text-700"
+              style="
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+              "
+            >
+              {{ item.lastFollowUp }}
+            </p>
+            }
+          </td>
+          <td class="text-center no-print">
+            <div class="flex align-items-center justify-content-center gap-1">
+              <a
+                (click)="onFollowUp(item.id)"
+                class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
+                lxTooltip="Seguimientos"
+                tooltipPosition="top"
+              >
+                <app-icon
+                  [icon]="'mdi:comment-multiple'"
+                  class="text-blue-500"
+                />
+                <span class="badge bg-info px-2 py-1 text-xs font-semibold"
+                  >{{ item.ticketMessageFollowUp }}</span
+                >
+              </a>
+              <app-action-menu>
+                <ng-container actions>
+                  @if (item.status !== "Completed") {
+                  <il-button-item
+                    iconClass="mdi:calendar"
+                    label="Programar"
+                    (clicked)="onProgram(item.id)"
+                  />
+
+                  } @if (item.status !== "Completed") {
+                  <il-button-item
+                    iconClass="mdi:lock"
+                    label="Cerrar"
+                    (clicked)="onClosed(item.id)"
+                  />
+                  } @if (item.status === "Completed") {
+                  <il-button-item
+                    iconClass="mdi:lock-open"
+                    label="Re abrir"
+                    (clicked)="onReopen(item.id)"
+                  />
+                  } @if (item.status !== "Completed") {
+                  <il-button-edit
+                    (clicked)="
+                          onModalForm({
+                            id: item.id,
+                            title: 'Editar',
+                            ticketGroupId: item.ticketGroupId,
+                          })
+                        "
+                    label="Editar"
+                  />
+                  }
+                </ng-container>
+              </app-action-menu>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <primeng-custom-table-emptymessage [colspan]="19" />
+      </ng-template>
+    </p-table>
+    }
+  </div>
+
+  <div class="block md:hidden mt-3 no-print h-full min-h-0">
+    <app-data-view-mobile
+      [data]="dataSignal()"
+      (add)="onModalAdd({ id: '', title: 'Agregar' })"
+      [globalFilterFields]="globalFilterFields()"
+    >
+      <div customFilters class="my-2 px-2 w-full">
+        <app-task-status (statusChange)="onLoadData($event)" />
+      </div>
+
+      <ng-template #listItemTemplate let-item>
+        <ili-list-item
+          alignTop="true"
+          class="w-full"
+        >
+          <div slot="start">
+            <app-avatar
+              [image]="item.beforeWork ? item.beforeWork : 'assets/images/default-avatar.jpg'"
+              [alt]="item.title"
+              size="large"
+              shape="circle"
+            />
+          </div>
+
+          <div class="flex flex-column gap-1">
+            <div class="flex justify-content-between align-items-center mt-1">
+              <small class="text-color-secondary text-xs">{{ item.folio }} | {{ item.createdAtDate }}</small>
+              <span class="bg-primary-100 text-primary-700 border-round px-2 py-1 text-xs font-bold">{{ item.daysDifference }} d</span>
+            </div>
+            <p class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap">
+              {{ item.title }}
+            </p>
+            <p class="text-xs m-0 text-color-secondary ticket-description two-lines">
+              {{ item.description }}
+            </p>
+          </div>
+
+          <ili-action-menu slot="end">
+            <ili-button-item
+              iconName="clipboard-outline"
+              label="Seguimiento"
+              (clicked)="onFollowUp(item.id)"
+            />
+            @if (item.status !== "Completed") {
+            <ili-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            <ili-button-item
+              iconName="calendar-outline"
+              label="Programar"
+              (clicked)="onProgram(item.id)"
+            />
+            <ili-button-item
+              iconName="sync-outline"
+              label="En proceso"
+              (clicked)="onProgress(item.id)"
+            />
+            } @if (item.status !== "Completed") {
+            <ili-button-item
+              iconName="lock-closed-outline"
+              label="Cerrar"
+              (clicked)="onClosed(item.id)"
+            />
+            } @if (item.status === "Completed") {
+            <ili-button-item
+              iconName="lock-open-outline"
+              label="Re abrir"
+              (clicked)="onReopen(item.id)"
+            />
+            }
+          </ili-action-menu>
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+
+  <!-- ================================================================
+       REPORTE  DE TAREAS PENDIENTES é solo visible al imprimir
+       ================================================================ -->
+  <div class="print-task-report">
+    <div class="print-report-header">
+      <div class="print-report-header-left">
+        <h2>Reporte é Mis Tareas Pendientes</h2>
+        <p>Mis tareas asignadas pendientes</p>
+      </div>
+      <div class="print-report-header-right">
+        <p>Fecha: <strong>{{ today }}</strong></p>
+        <p>Total de pendientes: <strong>{{ pendingItems().length }}</strong></p>
+      </div>
+    </div>
+
+    <div class="print-legend">
+      <span
+        ><span
+          class="print-legend-dot"
+          style="background: var(--ds-danger)"
+        ></span>
+        No iniciado</span
+      >
+      <span
+        ><span
+          class="print-legend-dot"
+          style="background: var(--ds-warning)"
+        ></span>
+        En proceso</span
+      >
+      <span
+        ><span
+          class="print-legend-dot"
+          style="background: var(--ds-danger)"
+        ></span>
+        Reabierto</span
+      >
+    </div>
+
+    <table class="print-task-table">
+      <colgroup>
+        <col class="col-num" />
+        <col class="col-req" />
+        <col class="col-resp" />
+        <col class="col-fecha" />
+        <col class="col-estado" />
+        <col class="col-dias" />
+        <col class="col-evid" />
+        <col class="col-seg" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="col-num">#</th>
+          <th class="col-req">Solicitud</th>
+          <th class="col-resp">Responsable</th>
+          <th class="col-fecha">Programado</th>
+          <th class="col-estado">Estado</th>
+          <th class="col-dias" style="text-align: center">Dias</th>
+          <th class="col-evid" style="text-align: center">Evidencias</th>
+          <th class="col-seg">Ultimo seguimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pendingItems(); track item.id; let idx = $index) {
+        <tr>
+          <td
+            [class]="statusTdClass(item.status)"
+            style="font-size: 7.5pt; color: var(--ds-text-muted)"
+          >
+            {{ idx + 1 }}
+          </td>
+          <td>
+            <div class="print-folio">
+              {{ item.folio }} | {{ item.createdAtDate }}
+            </div>
+            <div class="print-title">{{ item.title }}</div>
+            @if (item.description) {
+            <div class="print-desc">{{ item.description }}</div>
+            }
+          </td>
+          <td style="font-size: 7.5pt">{{ item.creator || 'é' }}</td>
+          <td style="font-size: 7.5pt; white-space: nowrap">
+            {{ item.scheduledAt || 'é' }}
+          </td>
+          <td>
+            <span
+              class="print-status-pill"
+              [style]="statusPillStyle(item.status)"
+            >
+              {{ statusLabel(item.status) }}
+            </span>
+          </td>
+          <td style="text-align: center; font-size: 7.5pt">
+            {{ item.daysDifference }}
+          </td>
+          <td style="text-align: center; font-size: 9pt">
+            @if (item.beforeWork || item.afterWork) { ? } @else { é }
+          </td>
+          <td>
+            @if (item.lastFollowUp) {
+            <span
+              style="
+                font-size: 7pt;
+                color: var(--ds-text-muted);
+                display: block;
+                margin-bottom: 2px;
+              "
+              >{{ item.lastFollowUpDate }}</span
+            >
+            <p class="print-followup">{{ item.lastFollowUp }}</p>
+            } @else {
+            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">é</span>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="print-report-footer">
+      <span>Luxury Building Group é Sistema de Gestion Operativa</span>
+      <span>Generado el {{ today }}</span>
+    </div>
+  </div>
+</div>

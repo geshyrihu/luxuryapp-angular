@@ -75,7 +75,7 @@ export const EndpointsInfrastructure = {
   EnumSelectItems: {
     assetCategory: "EAssetCategory",
     brand: "EBrand",
-    departament: "EDepartament",
+    departament: "Departament",
     inventoryCategory: "EInventoryCategory",
     inventorySubCategory: "EInventorySubCategory",
     measurementUnit: "EMeasurementUnit",

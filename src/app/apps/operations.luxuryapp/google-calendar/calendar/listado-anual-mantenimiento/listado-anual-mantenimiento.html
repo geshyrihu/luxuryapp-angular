@@ -1,0 +1,279 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  groupRowsBy="inventoryCategory"
+  rowGroupMode="subheader"
+  sortField="inventoryCategory"
+  sortMode="single"
+  class="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <div class="grid">
+      <div class="col-12 sm:col-3">
+        <custom-input-select-signal
+          lxTooltip="Seleccionar Mes"
+          [control]="monthControl"
+          [data]="months()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Todos"
+          (selectionChange)="selectMonth()"
+          [id]="'mesSelect'"
+        />
+      </div>
+      <div class="col-12 sm:col-9">
+        <primeng-custom-caption
+          [viewNavigateButton]="false"
+          (add)="
+            onModalForm({
+              id: 0,
+              task: 'create',
+              title: 'Nuevo Registro',
+              idMachinery: 0,
+            })
+          "
+          [showAdd]="
+            aspRoleS.hasAny([
+              AspRole.JefeMantenimiento,
+              AspRole.Administrador,
+              AspRole.SuperUsuario,
+            ])
+          "
+          [dt]="dt"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
+      <td colspan="5">
+        <span class="font-bold ml-2">{{ item.inventoryCategory }}</span>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #groupfooter let-item>
+    <tr class="p-rowgroup-footer">
+      <td colspan="5" class="table-col-80 font-bold">
+        <div class="text-right w-full">
+          Total Actividades: {{ calculateCustomerTotal(item.inventoryCategory)
+          }}
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="id">
+        Id
+        <p-sorticon field="id" />
+      </th>
+      <th pSortableColumn="nombre">
+        <p-sorticon field="nombre" />
+      </th>
+      <th pSortableColumn="actividad">
+        Actividad
+        <p-sorticon field="actividad" />
+      </th>
+      <th pSortableColumn="provider">
+        Proveedor
+        <p-sorticon field="provider" />
+      </th>
+      <th pSortableColumn="recurrence">
+        Recurrencia
+        <p-sorticon field="recurrence" />
+      </th>
+      <th pSortableColumn="fechaServicioFiltro">
+        Fecha
+        <p-sorticon field="fechaServicioFiltro" />
+      </th>
+      <th pSortableColumn="precio">
+        Costo
+        <p-sorticon field="precio" />
+      </th>
+      @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento, AspRole.Administrador,
+      AspRole.SuperUsuario, ]) ) {
+      <th class="table-col-10"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr [class.has-service-order]="item.hasServiceOrder">
+      <td>
+        <span>{{ item.id }}</span>
+      </td>
+      <td>
+        <span>{{ item.nombre }}</span>
+      </td>
+      <td>
+        <div
+          class="text-justify"
+          [innerHTML]="item.actividad | sanitizeHtml"
+        ></div>
+      </td>
+      <td>
+        <span>{{ item.provider }}</span>
+      </td>
+      <td>
+        <span>{{ item.recurrencia }}</span>
+      </td>
+      <td>
+        <span>{{ item.fechaServicio }}</span>
+      </td>
+      <td>
+        <span>{{ item.precio | CurrencyMexicoPipe }}</span>
+      </td>
+      @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento, AspRole.Administrador,
+      AspRole.SuperUsuario, ]) ) {
+      <td class="no-print">
+        <div class="flex">
+          <iw-button-edit
+            (clicked)="
+                  onModalForm({
+                    idnombre: item.id,
+                    id: item.id,
+                    task: 'edit',
+                    header: 'Editar regitro ' + item.id,
+                  })
+                "
+          />
+
+          <iw-button-item
+            (clicked)="
+                  onModalForm({
+                    idnombre: item.id,
+                    id: item.id,
+                    task: 'copy',
+                    header: 'Duplicar servicio',
+                  })
+                "
+            lxTooltip="Duplicar"
+            tooltipPosition="top"
+            iconClass="mdi:content-copy"
+          />
+          <iw-button-delete
+            (confirmed)="onDelete(item.id)"
+            [isLinked]="item.hasServiceOrder"
+          />
+        </div>
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [isGrouped]="true"
+  [groupedData]="groupedData()"
+>
+  <ng-container customFilters>
+    <div class="mb-3 px-1">
+      <custom-input-select-signal
+        lxTooltip="Seleccionar Mes"
+        [control]="monthControl"
+        [data]="months()"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Todos"
+        (selectionChange)="selectMonth()"
+        [id]="'mesSelectMobile'"
+      />
+    </div>
+  </ng-container>
+
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
+      >
+        <app-icon
+          icon="mdi:calendar-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        />
+      </div>
+      
+        <h2 class="text-base font-bold mb-1">{{ item.nombre }}</h2>
+
+        <div
+          class="mb-2 text-sm text-700"
+          [innerHTML]="item.actividad | sanitizeHtml"
+        ></div>
+
+        <div class="grid mt-1">
+          <div class="p-0 text-xs">
+            <p class="mb-0 text-color-secondary">Proveedor</p>
+            <p class="mb-1 font-semibold">{{ item.provider }}</p>
+          </div>
+          <div class="p-0 text-xs">
+            <p class="mb-0 text-color-secondary">Recurrencia</p>
+            <p class="mb-1 font-semibold">{{ item.recurrencia }}</p>
+          </div>
+          <div class="p-0 text-xs">
+            <p class="mb-0 text-color-secondary">Fecha</p>
+            <p class="mb-1 font-semibold">{{ item.fechaServicio }}</p>
+          </div>
+          <div class="p-0 text-xs">
+            <p class="mb-0 text-color-secondary">Costo</p>
+            <p class="mb-1 font-semibold">
+              {{ item.precio | CurrencyMexicoPipe }}
+            </p>
+          </div>
+        </div>
+      
+
+      @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
+      AspRole.SuperUsuario])) {
+      <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-edit
+              (clicked)="
+                  onModalForm({
+                    idnombre: item.id,
+                    id: item.id,
+                    task: 'edit',
+                    header: 'Editar registro ' + item.id,
+                  })
+                "
+              label="Editar"
+            />
+            <ili-button-item
+              (clicked)="
+                  onModalForm({
+                    idnombre: item.id,
+                    id: item.id,
+                    task: 'copy',
+                    header: 'Duplicar servicio',
+                  })
+                "
+              label="Duplicar"
+              iconName="document-text-outline"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              [isLinked]="item.hasServiceOrder"
+              label="Eliminar"
+            />
+          </ng-container>
+        </ili-action-menu>
+      }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

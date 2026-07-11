@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
+import { SubMenuItem } from "src/app/core/interfaces/menu.model";
 import { MenuService } from "src/app/core/services/menu.service";
 
 @Injectable({
@@ -9,7 +9,7 @@ export class SearchService {
   public text: string = "";
   // itemsData ahora se deriva reactivamente del MenuService
   public itemsData = this.menuService.sidebarMenuItems;
-  public menuItems: ISubMenuItem[] = [];
+  public menuItems: SubMenuItem[] = [];
   public searchResult: boolean = false;
   public searchResultEmpty: boolean = false;
 
@@ -23,7 +23,7 @@ export class SearchService {
       return;
     }
 
-    let results: ISubMenuItem[] = [];
+    let results: SubMenuItem[] = [];
     term = term.toLowerCase();
 
     const currentItems = this.itemsData();
@@ -60,7 +60,7 @@ export class SearchService {
     this.menuItems = results;
   }
 
-  checkSearchResultEmpty(items: ISubMenuItem[]) {
+  checkSearchResultEmpty(items: SubMenuItem[]) {
     this.searchResultEmpty = !items.length;
   }
 
@@ -79,12 +79,3 @@ export class SearchService {
     this.searchResult = false;
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-export interface AiKnowledgeBaseDTO {
+export interface AiKnowledgeBaseDto {
     id?: string;
     topic: string;
     instructions: string;

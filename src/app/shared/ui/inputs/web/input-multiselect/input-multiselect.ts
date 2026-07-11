@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MultiSelectModule } from "primeng/multiselect";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
@@ -58,7 +58,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
   ],
 })
 export class WebInputMultiselect extends BaseInputSignal {
-  options = input<ISelectItem[]>([]);
+  options = input<SelectItemDto[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string | undefined>("value");
   group = input<boolean>(false);

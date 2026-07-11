@@ -29,7 +29,7 @@ import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-edit
 
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -41,7 +41,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileListItem,
     WebButtonIcon,
     WebButtonIconEdit,
-    TooltipModule,
+    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

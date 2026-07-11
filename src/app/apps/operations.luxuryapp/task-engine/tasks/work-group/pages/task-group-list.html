@@ -1,0 +1,229 @@
+<!-- Desktop View -->
+<div class="hidden md:block">
+  <p-table
+    #dt
+    [value]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    class="custom-table card"
+  >
+    <ng-template #caption>
+      <div
+        class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2"
+      >
+        <div class="flex-grow-1">
+          <primeng-custom-caption
+            [title]="'Grupos de Trabajo'"
+            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [dt]="dt"
+            [noPadding]="true"
+            [noMargin]="true"
+            [showAdd]="hasSuperUsuario()"
+          />
+        </div>
+        <div class="flex-shrink-0" style="width: 150px">
+          <iw-button-active-desactive
+            [state]="value()"
+            (stateChange)="onChange($event)"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="table-col-10 text-center">GRUPO</th>
+        <th pSortableColumn="nameGroup">
+          NOMBRE <p-sorticon field="nameGroup" />
+        </th>
+        <th pSortableColumn="visibility">
+          VISIBILIDAD <p-sorticon field="visibility" />
+        </th>
+        <th class="table-col-15 text-center">PENDIENTES</th>
+        <th class="table-col-20 no-print text-right">ACCIONES</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="text-center">
+          <div
+            class="flex align-items-center justify-content-center border-round flex-shrink-0 w-3rem h-3rem mx-auto"
+            [style.backgroundColor]="item.color || 'var(--primary-color)'"
+          >
+            <span class="text-white text-xl">{{ item.emoji || '??' }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="flex align-items-center gap-2">
+            <h3 class="m-0 font-semibold text-900 text-sm">
+              {{ item.nameGroup }}
+            </h3>
+            @if (item.isLegalGroup) {
+            <lx-tag value="Legal" severity="warn"  />
+            }
+          </div>
+        </td>
+        <td>
+          <app-status-badge
+            [status]="item.visibility"
+            [isVisibility]="true"
+            [clickable]="false"
+          />
+        </td>
+        <td class="text-center">
+          <div
+            class="inline-flex align-items-center justify-content-center gap-2 px-3 py-1 border-round surface-50 cursor-pointer hover:surface-100 transition-colors"
+            (click)="onNavigateMessage(item.id, 0)"
+          >
+            <span
+              class="text-sm font-bold"
+              [class.text-orange-500]="(item.open + item.inProgress + item.reopened) > 0"
+              [class.text-green-500]="(item.open + item.inProgress + item.reopened) === 0"
+            >
+              {{ item.open + item.inProgress + item.reopened }}
+            </span>
+            <app-icon [icon]="'mdi:inbox'" class="text-500" />
+          </div>
+        </td>
+        <td class="no-print">
+          <div class="flex justify-content-end">
+            @if (item.customerId === customerIdS.customerId()) {
+            <iw-button-item
+              (clicked)="onModalParticipants(item)"
+              iconClass="mdi:account-group"
+              lxTooltip="Integrantes"
+              tooltipPosition="top"
+              variant="text"
+            />
+            } @if (hasSuperUsuario()) {
+            <iw-button-item
+              (clicked)="SendReportPendingTicketGroupAsync(item)"
+              iconClass="mdi:email-outline"
+              lxTooltip="Reporte"
+              tooltipPosition="top"
+              variant="text"
+            />
+            }
+            <iw-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <iw-button
+              [iconClass]="item.active ? 'mdi:lock' : 'mdi:lock-open'"
+              (click)="onToggleStatus(item.id)"
+              [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
+              variant="text"
+              [severity]="item.active ? 'warn' : 'success'"
+            />
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="5" />
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Contenido para pantallas pequenas -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+>
+  <ng-container customFilters>
+    <div class="px-3 pb-3">
+      <ili-button-active-desactive
+        [state]="value()"
+        (stateChange)="onChange($event)"
+      />
+    </div>
+  </ng-container>
+  <ng-template #listItemTemplate let-item>
+    <div class="surface-card border-bottom-1 surface-border px-3 py-3">
+      <div class="flex align-items-center justify-content-between gap-3">
+        <div class="flex align-items-center gap-3 flex-1 min-w-0">
+          <div
+            class="w-2rem h-2rem flex align-items-center justify-content-center flex-shrink-0 text-2xl"
+            [style.color]="item.color || 'var(--primary-color)'"
+          >
+            <span>{{ item.emoji || '??' }}</span>
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <h3 class="m-0 text-900 font-medium text-xl text-wrap">
+              {{ item.nameGroup }}
+            </h3>
+            <p class="m-0 mt-1">
+              <app-status-badge
+                [status]="item.visibility"
+                [isVisibility]="true"
+                [clickable]="false"
+              />
+            </p>
+          </div>
+        </div>
+
+        <div class="flex align-items-center gap-2 flex-shrink-0">
+          <div
+            class="flex align-items-center gap-1 text-700 cursor-pointer"
+            (click)="onNavigateMessage(item.id, 0)"
+          >
+            <span class="font-semibold text-sm">
+              {{ item.open + item.inProgress + item.reopened }}
+            </span>
+            <app-icon icon="mdi:forum-outline" class="text-base" />
+          </div>
+
+          <ili-action-menu slot="end">
+            <ng-container actions>
+              @if (item.customerId === customerIdS.customerId()) {
+              <ili-button-item
+                (clicked)="onModalParticipants(item)"
+                [label]="'Integrantes (' + item.TaskGroupParticipant + ')'"
+                iconName="people-outline"
+              />
+              } @if (hasSuperUsuario()) {
+              <ili-button-item
+                iconName="mail-outline"
+                label="Enviar por correo"
+                (clicked)="SendReportPendingTicketGroupAsync(item)"
+              />
+              }
+              <ili-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+                label="Editar"
+              />
+              <ili-button-delete
+                (confirmed)="onDelete(item.id)"
+                label="Eliminar"
+              />
+              @if (item.active) {
+              <ili-button-item
+                iconName="lock-closed-outline"
+                label="Bloquear"
+                (clicked)="onToggleStatus(item.id)"
+              />
+              } @if (!item.active) {
+              <ili-button-item
+                iconName="lock-open-outline"
+                label="Desbloquear"
+                (clicked)="onToggleStatus(item.id)"
+              />
+              }
+            </ng-container>
+          </ili-action-menu>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

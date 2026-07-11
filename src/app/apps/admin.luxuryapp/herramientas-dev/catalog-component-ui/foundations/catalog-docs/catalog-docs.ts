@@ -274,7 +274,7 @@ export class CatalogDocs {
     return `${doc.codigo}-DEPTO-001_v1.0_2026-04_VIGENTE.pdf`;
   }
 
-  getColorAcceso(valor: string): TagSeverity {
+  getColorAcceso(valor: string): any {
     if (valor === "Sin acceso") return "danger";
     if (valor === "Editar" || valor === "Publicar") return "success";
     if (valor === "Aprobar") return "info";

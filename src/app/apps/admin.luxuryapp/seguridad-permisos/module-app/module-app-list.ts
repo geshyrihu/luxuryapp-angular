@@ -49,7 +49,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     RouterModule,
     MobileListItem,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./module-app-list.html",
 })
 export class ModuleAppList {

@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
@@ -31,7 +30,6 @@ type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contr
   imports: [
     CommonModule,
     FormsModule,
-    CardModule,
     WebButtonLabel,
     WebButtonIcon,
     InputText,

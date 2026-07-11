@@ -36,12 +36,15 @@
         <div class="result-container border-round p-3 surface-100" style="min-height: 250px;">
           <h4 class="mt-0 mb-3">Respuesta del Modelo</h4>
           
-          <div *ngIf="isLoading()" class="flex align-items-center gap-2 text-primary">
+          @if (isLoading()) {
+          <div class="flex align-items-center gap-2 text-primary">
             <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" style="font-size: 1.5rem" />
             <span>Generando respuesta...</span>
           </div>
+          }
 
-          <div *ngIf="!isLoading() && result()" class="response-content">
+          @if (!isLoading() && result()) {
+          <div class="response-content">
             <div class="mb-2">
               <span class="font-bold text-500">Perfil Respondiente:</span> 
               <span class="p-badge p-badge-info ml-2">{{ result()?.profile }}</span>
@@ -50,10 +53,13 @@
               {{ result()?.response }}
             </div>
           </div>
+          }
 
-          <div *ngIf="!isLoading() && !result()" class="text-500 font-italic text-center mt-5">
+          @if (!isLoading() && !result()) {
+          <div class="text-500 font-italic text-center mt-5">
             Selecciona un modelo, escribe un prompt y presiona "Probar Modelo" para ver el resultado aquí.
           </div>
+          }
         </div>
       </div>
     </div>

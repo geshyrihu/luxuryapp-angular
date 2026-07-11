@@ -10,7 +10,7 @@ import { ROUTES } from "src/app/routing/route-paths";
   selector: "app-offline",
   templateUrl: "./offline.html",
   styleUrls: ["./offline.scss"],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [WebButtonLabel],
 })
 export class Offline implements OnInit, OnDestroy {

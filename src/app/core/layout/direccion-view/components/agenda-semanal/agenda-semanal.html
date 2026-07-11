@@ -18,7 +18,7 @@
       variant="text"
       severity="secondary"
       size="sm"
-      pTooltip="Dos semanas anteriores"
+      lxTooltip="Dos semanas anteriores"
       (clicked)="periodoAnterior()"
     />
     <span class="text-sm font-semibold text-700 px-2 white-space-nowrap">
@@ -29,7 +29,7 @@
       variant="text"
       severity="secondary"
       size="sm"
-      pTooltip="Dos semanas siguientes"
+      lxTooltip="Dos semanas siguientes"
       (clicked)="periodoSiguiente()"
     />
     @if (!esPeriodoActual()) {
@@ -47,7 +47,7 @@
       variant="text"
       size="sm"
       customClass="ml-2"
-      pTooltip="Ver todos los meses con eventos"
+      lxTooltip="Ver todos los meses con eventos"
       (clicked)="abrirVistasMeses()"
     />
   </div>
@@ -134,7 +134,7 @@
             <app-icon
               icon="mdi:refresh"
               class="text-xs text-400"
-              pTooltip="Recurrente"
+              lxTooltip="Recurrente"
             />
             }
           </div>
@@ -168,7 +168,7 @@
         @if (evento.guestCount > 0) {
         <div
           class="flex align-items-center gap-1 flex-none text-400"
-          [pTooltip]="evento.guestCount + ' invitados'"
+          [lxTooltip]="evento.guestCount + ' invitados'"
         >
           <app-icon icon="mdi:account-group" class="text-xs" />
           <span class="text-xs">{{ evento.guestCount }}</span>

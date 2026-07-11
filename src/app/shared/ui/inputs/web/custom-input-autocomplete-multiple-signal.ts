@@ -1,11 +1,17 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import {
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 /**
@@ -74,13 +80,13 @@ import { BaseInputSignal } from "../base/base-input-signal";
 })
 export class CustomInputAutoMultiple extends BaseInputSignal {
   // <--- Inputs Específicos --->
-  data = input<ISelectItem[]>([]);
+  data = input<SelectItemDto[]>([]);
   size = input<"small" | "large" | undefined>(undefined);
 
   // <--- Outputs --->
   propagar = output<any[]>();
 
-  filteredData: ISelectItem[] = [];
+  filteredData: SelectItemDto[] = [];
 
   getSizeClass(): string {
     if (this.size() === "small") return "p-inputtext-sm";

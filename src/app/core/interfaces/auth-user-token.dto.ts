@@ -1,14 +1,14 @@
-export interface UserTokenDTO {
+export interface UserTokenDto {
   token: string;
   refreshToken: string; // Añade esta propiedad
   expiration: string;
   roles: string[];
-  infoUserAuthDTO: InfoAccountAuthDTO;
-  customerAccess: SelectItemCustomerAccessDTO[];
+  infoUserAuthDTO: InfoAccountAuthDto;
+  customerAccess: SelectItemCustomerAccessDto[];
   permission?: any[]; // Considera renombrar a permissions para consistencia
 }
 
-export interface InfoAccountAuthDTO {
+export interface InfoAccountAuthDto {
   customerId: string;
   applicationUserId: string;
   customer: string;
@@ -22,7 +22,7 @@ export interface InfoAccountAuthDTO {
   customerPhotoPath: string;
 }
 
-export interface SelectItemCustomerAccessDTO {
+export interface SelectItemCustomerAccessDto {
   label: string;
   value: string;
   image: string;

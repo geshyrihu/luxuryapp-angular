@@ -59,7 +59,7 @@
             iconClass="mdi:eye-outline"
             severity="info"
             variant="ghost-text"
-            pTooltip="Ver detalle"
+            lxTooltip="Ver detalle"
             (clicked)="verDetalle(item)"
           />
           @if (puedeEnviar(item.estadoValue)) {
@@ -67,7 +67,7 @@
             iconClass="mdi:send"
             severity="secondary"
             variant="ghost-text"
-            pTooltip="Enviar a revision"
+            lxTooltip="Enviar a revision"
             (clicked)="cambiarEstado(item, 'enviar-revision')"
           />
           } @if (puedeAprobar(item.estadoValue)) {
@@ -75,7 +75,7 @@
             iconClass="mdi:check"
             severity="success"
             variant="ghost-text"
-            pTooltip="Aprobar nomina"
+            lxTooltip="Aprobar nomina"
             (clicked)="cambiarEstado(item, 'aprobar')"
           />
           } @if (puedePagar(item.estadoValue)) {
@@ -83,7 +83,7 @@
             iconClass="mdi:dollar"
             severity="contrast"
             variant="ghost-text"
-            pTooltip="Marcar como pagada"
+            lxTooltip="Marcar como pagada"
             (clicked)="cambiarEstado(item, 'marcar-pagada')"
           />
           } @if (puedeCerrar(item.estadoValue)) {
@@ -91,7 +91,7 @@
             iconClass="mdi:lock"
             severity="secondary"
             variant="ghost-text"
-            pTooltip="Cerrar nomina"
+            lxTooltip="Cerrar nomina"
             (clicked)="cambiarEstado(item, 'cerrar')"
           />
           }

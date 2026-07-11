@@ -7,15 +7,15 @@ import {
   signal,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { TareasLegalResumenDTO } from "./tareas-legal-card.model";
+import type { TareasLegalResumenDto } from "./tareas-legal-card.model";
 
 @Component({
   selector: "app-tareas-legal-card",
   templateUrl: "./tareas-legal-card.html",
-  imports: [CommonModule, TooltipModule, AppIcon],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [CommonModule, LxTooltipDirective, AppIcon],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .text-ds-danger {
@@ -27,7 +27,7 @@ import type { TareasLegalResumenDTO } from "./tareas-legal-card.model";
 export class TareasLegalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);
 
-  resumen = signal<TareasLegalResumenDTO | null>(null);
+  resumen = signal<TareasLegalResumenDto | null>(null);
   cargando = signal<boolean>(false);
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class TareasLegalCard implements OnInit {
 
   private async cargar(): Promise<void> {
     this.cargando.set(true);
-    const data = await this.apiResponseS.onGetItem<TareasLegalResumenDTO>(
+    const data = await this.apiResponseS.onGetItem<TareasLegalResumenDto>(
       "direccion-dashboard/tareas-legal",
       false,
     );

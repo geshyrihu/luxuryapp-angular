@@ -21,7 +21,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
@@ -30,7 +30,7 @@ import ModalTiempoExtraAdd from "./modal-tiempo-extra-add/modal-tiempo-extra-add
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -45,7 +45,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonIcon,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    TooltipModule,
+    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
@@ -67,7 +67,7 @@ export default class TiempoExtra {
 
   loading = signal(true);
   data = signal<TiempoExtraDTO[]>([]);
-  periodos = signal<ISelectItem[]>([]);
+  periodos = signal<SelectItemDto[]>([]);
   periodoSeleccionado = signal<string>("");
 
   tablePrimeNgRows = tablePrimeNgRows();
@@ -95,7 +95,7 @@ export default class TiempoExtra {
     const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
       Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
-    const options: ISelectItem[] = ((result as any) ?? []).map((p: any) => ({
+    const options: SelectItemDto[] = ((result as any) ?? []).map((p: any) => ({
       label: p.quincenaDisplay,
       value: p.id,
     }));

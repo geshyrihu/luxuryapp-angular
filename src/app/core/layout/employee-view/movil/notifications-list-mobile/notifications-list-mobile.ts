@@ -59,7 +59,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,IonicModule],
 })

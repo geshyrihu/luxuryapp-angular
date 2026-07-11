@@ -20,7 +20,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   IncidenciaNominaCreateDTO,
   TIPO_INCAPACIDAD_OPTIONS,
@@ -50,9 +50,9 @@ export default class ModalIncidenciaAdd implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
 
-  employees = signal<ISelectItem[]>([]);
-  readonly tipoIncidenciaOptions: ISelectItem[] = TIPO_INCIDENCIA_OPTIONS;
-  readonly tipoIncapacidadOptions: ISelectItem[] = TIPO_INCAPACIDAD_OPTIONS;
+  employees = signal<SelectItemDto[]>([]);
+  readonly tipoIncidenciaOptions: SelectItemDto[] = TIPO_INCIDENCIA_OPTIONS;
+  readonly tipoIncapacidadOptions: SelectItemDto[] = TIPO_INCAPACIDAD_OPTIONS;
 
   submitting = signal(false);
 
@@ -83,7 +83,7 @@ export default class ModalIncidenciaAdd implements OnInit {
     this.form.patchValue({ periodoNominaId: periodoId, employeeId });
 
     const customerId = this.customerIdS.customerId();
-    const employees = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+    const employees = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
       Endpoints.SelectItems.employeesByCustomer(customerId),
     );
     this.employees.set(employees ?? []);
@@ -100,7 +100,7 @@ export default class ModalIncidenciaAdd implements OnInit {
     }
   }
 
-  saveEmployee = (item: ISelectItem) => {
+  saveEmployee = (item: SelectItemDto) => {
     this.form.patchValue({
       employeeId: item?.value || "",
       employeeName: item?.label || "",

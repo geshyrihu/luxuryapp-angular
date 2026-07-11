@@ -5,13 +5,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
-import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 @Component({
   selector: "app-profile-committee-monitor",
   imports: [CommonModule, RouterModule, AppIcon],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile-committee-monitor.html",
 })
 export class ProfileCommitteeMonitor {
@@ -21,7 +21,7 @@ export class ProfileCommitteeMonitor {
   private profielServiceService = inject(ProfielService);
   public customerIdS = inject(CustomerIdService);
   public isMenuVisible: boolean = false;
-  public infoAccountAuthDTO: InfoAccountAuthDTO;
+  public infoAccountAuthDTO: InfoAccountAuthDto;
   public profileImageUrl: string = "";
   public customerName = this.customerIdS.nombreCorto;
 

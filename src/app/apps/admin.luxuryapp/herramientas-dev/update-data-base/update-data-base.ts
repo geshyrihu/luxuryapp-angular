@@ -14,7 +14,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-update-data-base",
   templateUrl: "./update-data-base.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, LxCard],
 })
 export class UpdateDataBase {

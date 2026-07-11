@@ -1,4 +1,4 @@
-export interface IMeetingIndex {
+export interface MeetingIndex {
   id: string;
   customerId: string;
   date: string;
@@ -10,12 +10,12 @@ export interface IMeetingIndex {
   pending: number;
   concluidos: number;
   noAutorizado: number;
-  contable: IMeetingDetail[];
-  operaciones: IMeetingDetail[];
-  legal: IMeetingDetail[];
+  contable: MeetingDetail[];
+  operaciones: MeetingDetail[];
+  legal: MeetingDetail[];
 }
 
-export interface IMeetingDetail {
+export interface MeetingDetail {
   id: string;
   meetingId: string;
   status: number;
@@ -23,10 +23,10 @@ export interface IMeetingDetail {
   deliveryDateFilter: string;
   deliveryDate: string;
   title: string;
-  seguimiento: ISeguimiento[];
+  seguimiento: Seguimiento[];
 }
 
-export interface ISeguimiento {
+export interface Seguimiento {
   id: string;
   fechaOrden: string;
   fecha: string;

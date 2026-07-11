@@ -11,14 +11,14 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
-import { DialogSize } from "src/app/core/enums/dialog-size";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { DialogSize } from "src/app/core/interfaces/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AgendaMesesModal } from "../agenda-meses-modal/agenda-meses-modal";
 import type {
   AgendaDiaGroup,
-  AgendaSemanalEventDTO,
+  AgendaSemanalEventDto,
 } from "./agenda-semanal.model";
 
 @Component({
@@ -27,12 +27,12 @@ import type {
   imports: [
     CommonModule,
     TagModule,
-    TooltipModule,
+    LxTooltipDirective,
     AppIcon,
     WebButtonLabel,
     WebButtonIcon,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .agenda-hoy-badge {
@@ -47,7 +47,7 @@ export class AgendaSemanal {
   private dialogHandlerS = inject(DialogHandlerService);
 
   fechaReferencia = signal<Date>(new Date());
-  eventos = signal<AgendaSemanalEventDTO[]>([]);
+  eventos = signal<AgendaSemanalEventDto[]>([]);
   cargando = signal<boolean>(false);
 
   rangoLabel = computed(() => {
@@ -137,7 +137,7 @@ export class AgendaSemanal {
   private async cargar(fecha: Date): Promise<void> {
     this.cargando.set(true);
     const fechaStr = fecha.toISOString().slice(0, 10);
-    const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDTO[]>(
+    const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDto[]>(
       `direccion-dashboard/agenda-semanal?fecha=${fechaStr}`,
       false,
     );

@@ -28,7 +28,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AiKnowledgeBaseDTO } from "src/app/core/interfaces/ai-knowledge-base.dto";
+import { AiKnowledgeBaseDto } from "src/app/core/interfaces/ai-knowledge-base.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
 
@@ -50,7 +50,7 @@ import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
     MobileButtonLabelDelete,
     AppIcon,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ConfirmationService, DialogService],
 })
 export class AiKnowledgeBaseList implements OnInit {
@@ -58,7 +58,7 @@ export class AiKnowledgeBaseList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   confirmationService = inject(ConfirmationService);
 
-  dataSignal = signal<AiKnowledgeBaseDTO[]>([]);
+  dataSignal = signal<AiKnowledgeBaseDto[]>([]);
 
   // PrimeNG Table Options
   loading = signal(true);
@@ -76,7 +76,7 @@ export class AiKnowledgeBaseList implements OnInit {
   }
 
   async onLoadData() {
-    const result = await this.apiResponseS.onGetList<AiKnowledgeBaseDTO[]>(
+    const result = await this.apiResponseS.onGetList<AiKnowledgeBaseDto[]>(
       Endpoints.AiKnowledgeBase.base,
     );
     if (result) {

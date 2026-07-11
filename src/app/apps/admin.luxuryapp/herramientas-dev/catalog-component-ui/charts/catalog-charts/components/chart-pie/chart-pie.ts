@@ -5,7 +5,7 @@ import { PieChart } from "@ui/web/charts/pie-chart";
   selector: "app-chart-pie",
 
   imports: [PieChart],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` <app-pie-chart [dataGrafico]="data()"></app-pie-chart> `,
 })
 export class ChartPie {

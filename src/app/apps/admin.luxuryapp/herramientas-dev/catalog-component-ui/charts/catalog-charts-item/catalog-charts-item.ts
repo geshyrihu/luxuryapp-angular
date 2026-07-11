@@ -1,4 +1,4 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
@@ -32,7 +32,7 @@ const CHARTS_LABELS: Record<string, string> = {
       </div>
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogChartsItem {
@@ -55,7 +55,7 @@ export class CatalogChartsItem {
   barData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
     datasets: [
-      { label: 'Consumo ElÃ³ctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
+      { label: 'Consumo Elóctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
     ],
   };
 
@@ -74,7 +74,7 @@ export class CatalogChartsItem {
   };
 
   doughnutData = {
-    labels: ['Mantenimiento', 'Operaciones', 'AdministraciÃ³n'],
+    labels: ['Mantenimiento', 'Operaciones', 'Administración'],
     datasets: [{ data: [300, 50, 100], backgroundColor: [this.primaryColor, this.tertiaryColor, this.warningColor] }],
   };
 

@@ -1,8 +1,8 @@
 import fs from "fs";
 
 const files = [
-  "D:/repos/luxuryapp-api/client/angular/src/app/features/accounting/general-ledger/contabilidad/cobranza-online/pages/dashboard/cobranza-online-dashboard.html",
-  "D:/repos/luxuryapp-api/client/angular/src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/modal-fee-comparison-by-indiviso.ts",
+  "D:/repos/luxuryapp-api/client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/cobranza-online/pages/dashboard/cobranza-online-dashboard.html",
+  "D:/repos/luxuryapp-api/client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/modal-fee-comparison-by-indiviso.ts",
   "D:/repos/luxuryapp-api/client/angular/src/app/features/maintenance/logs/bitacoras/medidores/medidores-list.html",
   "D:/repos/luxuryapp-api/client/angular/src/app/features/operations/announcements/announcement/announcement-analytics.html",
   "D:/repos/luxuryapp-api/client/angular/src/app/features/operations/diagrams/diagram/diagram-gallery/diagram-gallery.ts",

@@ -51,7 +51,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonLabelDelete,
   ],
 
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-proveedores-list.html",
 })
 export class MisProveedores {

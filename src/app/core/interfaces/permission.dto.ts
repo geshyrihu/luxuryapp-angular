@@ -1,4 +1,4 @@
-export interface PermissionDTO {
+export interface PermissionDto {
   id: any;
   moduleName: string;
   canRead: boolean;

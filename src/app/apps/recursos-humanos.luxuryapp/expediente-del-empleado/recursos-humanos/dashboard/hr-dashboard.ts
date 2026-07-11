@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface HRModuleCard {
@@ -12,7 +12,7 @@ interface HRModuleCard {
   color: string;
   bgColor: string;
   /** Roles con acceso. Vacío = todos los usuarios autenticados. */
-  roles: EApplicationRole[];
+  roles: ApplicationRole[];
 }
 
 interface HRModuleGroup {
@@ -63,12 +63,12 @@ export class HRDashboard {
           color: "#dc2626",
           bgColor: "#fee2e2",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Administrador,
-            EApplicationRole.Direccion,
-            EApplicationRole.GerenteOperaciones,
-            EApplicationRole.GerenteAtencion,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Administrador,
+            ApplicationRole.Direccion,
+            ApplicationRole.GerenteOperaciones,
+            ApplicationRole.GerenteAtencion,
           ],
         },
         {
@@ -80,9 +80,9 @@ export class HRDashboard {
           color: "#0f766e",
           bgColor: "#ccfbf1",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Direccion,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Direccion,
           ],
         },
         {
@@ -94,8 +94,8 @@ export class HRDashboard {
           color: "#0891b2",
           bgColor: "#cffafe",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
           ],
         },
         {
@@ -107,10 +107,10 @@ export class HRDashboard {
           color: "#7c2d12",
           bgColor: "#fed7aa",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Administrador,
-            EApplicationRole.Direccion,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Administrador,
+            ApplicationRole.Direccion,
           ],
         },
       ],
@@ -142,12 +142,12 @@ export class HRDashboard {
           color: "#15803d",
           bgColor: "#dcfce7",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Administrador,
-            EApplicationRole.GerenteOperaciones,
-            EApplicationRole.GerenteAtencion,
-            EApplicationRole.Direccion,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Administrador,
+            ApplicationRole.GerenteOperaciones,
+            ApplicationRole.GerenteAtencion,
+            ApplicationRole.Direccion,
           ],
         },
       ],
@@ -209,9 +209,9 @@ export class HRDashboard {
           color: "#6b7280",
           bgColor: "#f3f4f6",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Administrador,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Administrador,
           ],
         },
         {
@@ -223,8 +223,8 @@ export class HRDashboard {
           color: "#1e40af",
           bgColor: "#dbeafe",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
           ],
         },
         {
@@ -235,7 +235,7 @@ export class HRDashboard {
           emoji: "??",
           color: "#374151",
           bgColor: "#e5e7eb",
-          roles: [EApplicationRole.SuperUsuario],
+          roles: [ApplicationRole.SuperUsuario],
         },
       ],
     },
@@ -256,9 +256,9 @@ export class HRDashboard {
           color: "#1e40af",
           bgColor: "#dbeafe",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Comite,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Comite,
           ],
         },
         {
@@ -270,8 +270,8 @@ export class HRDashboard {
           color: "#059669",
           bgColor: "#d1fae5",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
           ],
         },
         {
@@ -283,9 +283,9 @@ export class HRDashboard {
           color: "#7c3aed",
           bgColor: "#ede9fe",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
-            EApplicationRole.Comite,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
+            ApplicationRole.Comite,
           ],
         },
         {
@@ -297,8 +297,8 @@ export class HRDashboard {
           color: "#ea580c",
           bgColor: "#ffedd5",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
           ],
         },
       ],
@@ -320,8 +320,8 @@ export class HRDashboard {
           color: "#4338ca",
           bgColor: "#e0e7ff",
           roles: [
-            EApplicationRole.SuperUsuario,
-            EApplicationRole.RecursosHumanos,
+            ApplicationRole.SuperUsuario,
+            ApplicationRole.RecursosHumanos,
           ],
         },
       ],
@@ -345,40 +345,40 @@ export class HRDashboard {
     this.router.navigateByUrl(route);
   }
 
-  getRoleNames(roles: EApplicationRole[]): string {
+  getRoleNames(roles: ApplicationRole[]): string {
     if (roles.length === 0) return "Todos los usuarios";
     const roleNames: Record<string, string> = {
-      [EApplicationRole.SuperUsuario]: "Super Usuario",
-      [EApplicationRole.Direccion]: "Dirección",
-      [EApplicationRole.Administrador]: "Administrador",
-      [EApplicationRole.GerenteOperaciones]: "Gerente Operaciones",
-      [EApplicationRole.GerenteAtencion]: "Gerente Atención",
-      [EApplicationRole.GerenteMantenimiento]: "Gerente Mantenimiento",
-      [EApplicationRole.JefeMantenimiento]: "Jefe Mantenimiento",
-      [EApplicationRole.Asistente]: "Asistente",
-      [EApplicationRole.Comite]: "Comité",
-      [EApplicationRole.Legal]: "Legal",
-      [EApplicationRole.CoordinacionLegal]: "Coordinación Legal",
-      [EApplicationRole.Reclutamiento]: "Reclutamiento",
-      [EApplicationRole.RecursosHumanos]: "Recursos Humanos",
-      [EApplicationRole.SistemasGeneral]: "Sistemas",
-      [EApplicationRole.Sistemas]: "Sistemas",
-      [EApplicationRole.Mensajeria]: "Mensajería",
-      [EApplicationRole.SupervisionOperativa]: "Supervisión Operativa",
-      [EApplicationRole.Almacenista]: "Almacenista",
-      [EApplicationRole.Contador]: "Contador",
-      [EApplicationRole.Cobranza]: "Cobranza",
-      [EApplicationRole.TecnicoMantenimiento]: "Tócnico Mantenimiento",
-      [EApplicationRole.JardineriaInterna]: "Jardinería",
-      [EApplicationRole.SeguridadInterna]: "Seguridad",
-      [EApplicationRole.SupervisorObra]: "Supervisor Obra",
-      [EApplicationRole.Recepcionista]: "Recepcionista",
-      [EApplicationRole.Ludotecaria]: "Ludotecaria",
-      [EApplicationRole.Condomino]: "Condomino",
-      [EApplicationRole.Jardineria]: "Jardinería",
-      [EApplicationRole.Limpieza]: "Limpieza",
-      [EApplicationRole.Seguridad]: "Seguridad",
-      [EApplicationRole.Proveedor]: "Proveedor",
+      [ApplicationRole.SuperUsuario]: "Super Usuario",
+      [ApplicationRole.Direccion]: "Dirección",
+      [ApplicationRole.Administrador]: "Administrador",
+      [ApplicationRole.GerenteOperaciones]: "Gerente Operaciones",
+      [ApplicationRole.GerenteAtencion]: "Gerente Atención",
+      [ApplicationRole.GerenteMantenimiento]: "Gerente Mantenimiento",
+      [ApplicationRole.JefeMantenimiento]: "Jefe Mantenimiento",
+      [ApplicationRole.Asistente]: "Asistente",
+      [ApplicationRole.Comite]: "Comité",
+      [ApplicationRole.Legal]: "Legal",
+      [ApplicationRole.CoordinacionLegal]: "Coordinación Legal",
+      [ApplicationRole.Reclutamiento]: "Reclutamiento",
+      [ApplicationRole.RecursosHumanos]: "Recursos Humanos",
+      [ApplicationRole.SistemasGeneral]: "Sistemas",
+      [ApplicationRole.Sistemas]: "Sistemas",
+      [ApplicationRole.Mensajeria]: "Mensajería",
+      [ApplicationRole.SupervisionOperativa]: "Supervisión Operativa",
+      [ApplicationRole.Almacenista]: "Almacenista",
+      [ApplicationRole.Contador]: "Contador",
+      [ApplicationRole.Cobranza]: "Cobranza",
+      [ApplicationRole.TecnicoMantenimiento]: "Tócnico Mantenimiento",
+      [ApplicationRole.JardineriaInterna]: "Jardinería",
+      [ApplicationRole.SeguridadInterna]: "Seguridad",
+      [ApplicationRole.SupervisorObra]: "Supervisor Obra",
+      [ApplicationRole.Recepcionista]: "Recepcionista",
+      [ApplicationRole.Ludotecaria]: "Ludotecaria",
+      [ApplicationRole.Condomino]: "Condomino",
+      [ApplicationRole.Jardineria]: "Jardinería",
+      [ApplicationRole.Limpieza]: "Limpieza",
+      [ApplicationRole.Seguridad]: "Seguridad",
+      [ApplicationRole.Proveedor]: "Proveedor",
     };
     return roles.map((r) => roleNames[r] || r).join(", ");
   }

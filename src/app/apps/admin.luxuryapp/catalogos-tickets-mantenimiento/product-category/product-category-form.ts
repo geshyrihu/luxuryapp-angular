@@ -23,7 +23,7 @@ import { ProductCategoryFormGroup } from "./interfaces/product-category-form.int
 @Component({
   selector: "app-product-category-form",
   templateUrl: "./product-category-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class ProductCategoryForm implements OnInit {

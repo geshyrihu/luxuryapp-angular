@@ -1,4 +1,4 @@
-export interface IProductoListAdd {
+export interface ProductoListAdd {
   id: any;
   almacenId: string;
   customerId: string;

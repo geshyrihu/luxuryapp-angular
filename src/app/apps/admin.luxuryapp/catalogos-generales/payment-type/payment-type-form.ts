@@ -24,7 +24,7 @@ import { PaymentTypeFormGroup } from "./interfaces/payment-type-form.interface";
 @Component({
   selector: "app-payment-type-form",
   templateUrl: "./payment-type-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class PaymentTypeForm implements OnInit {

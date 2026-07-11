@@ -313,7 +313,7 @@ const PATTERNS_LABELS: Record<string, string> = {
       }
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogPatternsItem {

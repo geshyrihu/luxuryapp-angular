@@ -1,4 +1,4 @@
-export interface IRadioComunicacion {
+export interface RadioComunicacion {
   id: any;
   marca: string;
   fotografia: string;

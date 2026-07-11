@@ -7,7 +7,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-page500",
   templateUrl: "./page500.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DividerModule, AppIcon, WebButtonLabel],
 })
 export class Page500 implements OnInit {

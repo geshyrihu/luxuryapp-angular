@@ -5,12 +5,12 @@ import {
 } from "@angular/core";
 import { TagBase } from "@ui/base/tag.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-tag",
 
-  imports: [AppIcon, TooltipModule],
+  imports: [AppIcon, LxTooltipDirective],
   template: `
     <span
       class="app-tag"
@@ -18,7 +18,7 @@ import { TooltipModule } from "primeng/tooltip";
       [style.background]="colors().bg"
       [style.color]="colors().text"
       [style.border-color]="colors().border"
-      [pTooltip]="tooltip()"
+      [lxTooltip]="tooltip()"
     >
       @if (icon()) {
         <app-icon [icon]="icon()" class="app-tag-icon" />

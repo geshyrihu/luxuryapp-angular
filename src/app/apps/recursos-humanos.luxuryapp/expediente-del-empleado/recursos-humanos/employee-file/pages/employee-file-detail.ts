@@ -30,7 +30,7 @@ import {
 } from "../models/employee-file.interfaces";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
@@ -43,7 +43,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     LxTag,
     LxTabs,
     WebButtonIconItem,
-    TooltipModule,
+    LxTooltipDirective,
     DatePipe,
     CurrencyPipe,
     TableModule,

@@ -13,7 +13,7 @@ import { RecoveryMobile } from "./recovery-mobile";
       <app-recover-password />
     }
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [`:host { display: block; height: 100vh; width: 100vw; }`],
 })
 export class RecoveryWrapper {

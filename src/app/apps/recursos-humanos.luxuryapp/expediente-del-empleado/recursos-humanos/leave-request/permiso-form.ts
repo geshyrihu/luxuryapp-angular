@@ -19,8 +19,8 @@ import { LeaveRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/exped
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { SelectedFile } from "src/app/core/interfaces/selected-file";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { SelectedFile } from "src/app/core/interfaces/selected-file.interface";
 import { DateService } from "src/app/core/services/date.service";
 interface LeaveRequestEditDTO {
   leaveType: number;
@@ -54,7 +54,7 @@ export class PermisoForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   id: string = this.config.data?.id || "";
   submitting = signal(false);
-  requestTypes = signal<ISelectItem[]>([]);
+  requestTypes = signal<SelectItemDto[]>([]);
   selectedFile: SelectedFile | null = null;
   disabledDates = signal<Date[]>([]);
   leaveMode = signal<"full" | "partial">("full");
@@ -92,7 +92,7 @@ export class PermisoForm implements OnInit {
   loadRequestTypes() {
     this.apiResponseS
       .onGetEnumSelectItem("ELeaveType")
-      .then((data: ISelectItem[]) => {
+      .then((data: SelectItemDto[]) => {
         this.requestTypes.set(data);
       });
   }

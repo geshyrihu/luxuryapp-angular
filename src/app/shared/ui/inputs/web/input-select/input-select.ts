@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { SelectModule } from "primeng/select";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
@@ -98,7 +98,7 @@ export class WebInputSelect
   implements ControlValueAccessor
 {
   selectionChange = output<any>();
-  data = input<ISelectItem[]>([]);
+  data = input<SelectItemDto[]>([]);
   showClear = input<boolean>(true);
   filter = input<boolean>(false);
   filterBy = input<string>("label");

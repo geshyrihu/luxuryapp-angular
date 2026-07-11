@@ -43,18 +43,18 @@ import { CustomerImages } from "./customer-images";
 import { CustomerDto } from "./interfaces/customer.dto";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerAddress } from "./customer-address";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-customer-list",
   templateUrl: "./customer-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MobileListItem,
     WebButtonIconItem,
-    TooltipModule,
+    LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelItem,

@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
 export interface IEmployeePersonalDataForm {
   birth: FormControl<Date | string>;
@@ -7,7 +7,7 @@ export interface IEmployeePersonalDataForm {
   curp: FormControl<string>;
   localPhone: FormControl<string>;
   maritalStatus: FormControl<number | null>;
-  nationality: FormControl<ISelectItem | null>;
+  nationality: FormControl<SelectItemDto | null>;
   nss: FormControl<string>;
   rfc: FormControl<string>;
   sex: FormControl<number | null>;

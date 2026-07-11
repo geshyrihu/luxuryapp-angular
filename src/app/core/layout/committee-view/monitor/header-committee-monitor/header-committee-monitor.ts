@@ -6,7 +6,7 @@ import { CustomerHeaderDataCommittee } from "../components/customer-header-data-
   selector: "app-header-committee-monitor",
   imports: [CustomerHeaderDataCommittee, ToolbarModule, ProfileUserMobile],
   templateUrl: "./header-committee-monitor.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./header-committee-monitor.scss",
 })
 export class HeaderCommitteeMonitor {}

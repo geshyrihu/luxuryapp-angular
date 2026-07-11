@@ -4,7 +4,7 @@ import { ButtonModule } from "primeng/button";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 /**
  * 🔢 TOUCHSPIN
@@ -20,7 +20,7 @@ import { TooltipModule } from "primeng/tooltip";
     InputTextModule,
     InputGroupModule,
     InputGroupAddonModule,
-    TooltipModule,
+    LxTooltipDirective,
   ],
   template: `
     <p-inputgroup>
@@ -31,7 +31,7 @@ import { TooltipModule } from "primeng/tooltip";
           (onClick)="decrement()"
           [disabled]="disabled() || isMin()"
           [outlined]="outlined()"
-          pTooltip="Disminuir"
+          lxTooltip="Disminuir"
           tooltipPosition="top"
           size="small"
         />
@@ -57,7 +57,7 @@ import { TooltipModule } from "primeng/tooltip";
           (onClick)="increment()"
           [disabled]="disabled() || isMax()"
           [outlined]="outlined()"
-          pTooltip="Aumentar"
+          lxTooltip="Aumentar"
           tooltipPosition="top"
           size="small"
         />

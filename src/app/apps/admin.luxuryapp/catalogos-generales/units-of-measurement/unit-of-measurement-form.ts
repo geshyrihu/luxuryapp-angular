@@ -24,7 +24,7 @@ import { UnitOfMeasurementFormGroup } from "./interfaces/unit-of-measurement-for
 @Component({
   selector: "app-unit-of-measurement-form",
   templateUrl: "./unit-of-measurement-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class UnitOfMeasurementForm implements OnInit {

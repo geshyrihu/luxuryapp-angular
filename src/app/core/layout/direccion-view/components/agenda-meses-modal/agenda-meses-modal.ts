@@ -10,28 +10,28 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { AgendaSemanalEventDTO } from "../agenda-semanal/agenda-semanal.model";
+import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface MesGroup {
   label: string;
-  eventos: AgendaSemanalEventDTO[];
+  eventos: AgendaSemanalEventDto[];
 }
 
 @Component({
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,CommonModule, TagModule, TooltipModule, WebButtonLabel],
+    AppIcon,CommonModule, TagModule, LxTooltipDirective, WebButtonLabel],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private ref = inject(DynamicDialogRef);
 
-  eventos = signal<AgendaSemanalEventDTO[]>([]);
+  eventos = signal<AgendaSemanalEventDto[]>([]);
   cargando = signal<boolean>(false);
   mesesSeleccionados = signal<number>(6);
 
@@ -94,7 +94,7 @@ export class AgendaMesesModal implements OnInit {
 
   private async cargar(): Promise<void> {
     this.cargando.set(true);
-    const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDTO[]>(
+    const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDto[]>(
       `direccion-dashboard/agenda-meses?meses=${this.mesesSeleccionados()}`,
       false,
     );

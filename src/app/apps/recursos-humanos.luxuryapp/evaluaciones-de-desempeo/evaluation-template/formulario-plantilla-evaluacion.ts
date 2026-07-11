@@ -32,7 +32,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -43,7 +43,7 @@ interface IQuestionForm {
   order: FormControl<number>;
 }
 
-interface ICategoryForm {
+interface CategoryForm {
   id: FormControl<string | null>;
   name: FormControl<string>;
   order: FormControl<number>;
@@ -57,7 +57,7 @@ interface ICategoryForm {
   imports: [
     InputGroupModule,
     InputGroupAddonModule,
-    TooltipModule,
+    LxTooltipDirective,
     LxFieldset,
     WebButtonLabel,
     WebButtonLabelDelete,
@@ -95,7 +95,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    categories: new FormArray<FormGroup<ICategoryForm>>([]),
+    categories: new FormArray<FormGroup<CategoryForm>>([]),
   });
 
   paramsSignal = toSignal(this.activatedRoute.paramMap);
@@ -138,7 +138,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   }
 
   // --- Métodos para manejar el FormArray de Categoróas ---
-  get categories(): FormArray<FormGroup<ICategoryForm>> {
+  get categories(): FormArray<FormGroup<CategoryForm>> {
     return this.form.controls.categories;
   }
 
@@ -151,7 +151,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
       });
     }
 
-    const categoryGroup = new FormGroup<ICategoryForm>({
+    const categoryGroup = new FormGroup<CategoryForm>({
       id: new FormControl(category?.id ?? null),
       name: new FormControl(category?.name ?? "", {
         nonNullable: true,

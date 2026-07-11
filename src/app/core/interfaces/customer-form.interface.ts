@@ -1,4 +1,4 @@
-export interface ICustomerForm {
+export interface CustomerFormDto {
   active: boolean;
   adreess: string;
   nameCustomer: string;

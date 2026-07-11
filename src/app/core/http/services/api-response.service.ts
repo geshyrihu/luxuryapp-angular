@@ -7,7 +7,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DataConnectorService } from "../../services/data-connector.service";
 import { LoaderService } from "../../services/loader.service";
 import { GlobalErrorService } from "./global-error.service";
-export interface ApiResponseDTO<T> {
+export interface ApiResponseDto<T> {
   success: boolean;
   message: string;
   data: T;
@@ -26,7 +26,7 @@ export class ApiResponseService {
   private loaderS = inject(LoaderService);
 
   handleSuccess<T>(
-    response: ApiResponseDTO<T>,
+    response: ApiResponseDto<T>,
     showSuccessToast: boolean = true,
     logColor: string = "green",
     urlApi?: string,
@@ -48,7 +48,7 @@ export class ApiResponseService {
     return null;
   }
 
-  handleError<T>(response: ApiResponseDTO<T>, urlApi?: string): void {
+  handleError<T>(response: ApiResponseDto<T>, urlApi?: string): void {
     const errorMessage =
       response.message || "No se pudo completar la operacion.";
     this.customToastService.showError("Error", errorMessage);
@@ -67,7 +67,7 @@ export class ApiResponseService {
   }
 
   processResponse<T>(
-    response: ApiResponseDTO<T>,
+    response: ApiResponseDto<T>,
     options?: {
       showSuccessToast?: boolean;
       showErrorToast?: boolean;
@@ -92,19 +92,19 @@ export class ApiResponseService {
     }
   }
 
-  isSuccess<T>(response: ApiResponseDTO<T>): boolean {
+  isSuccess<T>(response: ApiResponseDto<T>): boolean {
     return response?.success === true;
   }
 
-  getErrors<T>(response: ApiResponseDTO<T>): string[] {
+  getErrors<T>(response: ApiResponseDto<T>): string[] {
     return response?.errors || [];
   }
 
-  getMessage<T>(response: ApiResponseDTO<T>): string {
+  getMessage<T>(response: ApiResponseDto<T>): string {
     return response?.message || "";
   }
 
-  getTotalCount<T>(response: ApiResponseDTO<T>): number | undefined {
+  getTotalCount<T>(response: ApiResponseDto<T>): number | undefined {
     return response?.totalCount;
   }
 
@@ -120,7 +120,7 @@ export class ApiResponseService {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.get<ApiResponseDTO<T>>(urlApi, httpParams),
+        this.dataConnectorS.get<ApiResponseDto<T>>(urlApi, httpParams),
       );
       return this.processResponse(responseData.body, {
         showSuccessToast: false,
@@ -143,11 +143,11 @@ export class ApiResponseService {
   async onGetPaged<T>(
     urlApi: string,
     httpParams?: unknown,
-  ): Promise<ApiResponseDTO<T> | null> {
+  ): Promise<ApiResponseDto<T> | null> {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.get<ApiResponseDTO<T>>(urlApi, httpParams),
+        this.dataConnectorS.get<ApiResponseDto<T>>(urlApi, httpParams),
       );
       if (responseData.body.success) {
         this.consoleLogger.custom(
@@ -181,7 +181,7 @@ export class ApiResponseService {
     if (showLoader) this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.get<ApiResponseDTO<T>>(urlApi),
+        this.dataConnectorS.get<ApiResponseDto<T>>(urlApi),
       );
       return this.processResponse(responseData.body, {
         showSuccessToast: false,
@@ -205,7 +205,7 @@ export class ApiResponseService {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.post<ApiResponseDTO<T>>(urlApi, data),
+        this.dataConnectorS.post<ApiResponseDto<T>>(urlApi, data),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: true,
@@ -229,11 +229,11 @@ export class ApiResponseService {
   async onPostPaged<T>(
     urlApi: string,
     data: unknown,
-  ): Promise<ApiResponseDTO<T> | null> {
+  ): Promise<ApiResponseDto<T> | null> {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.post<ApiResponseDTO<T>>(urlApi, data),
+        this.dataConnectorS.post<ApiResponseDto<T>>(urlApi, data),
       );
       if (responseData.body.success) {
         this.consoleLogger.custom(
@@ -269,7 +269,7 @@ export class ApiResponseService {
     if (showLoader) this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.put<ApiResponseDTO<T>>(urlApi, data),
+        this.dataConnectorS.put<ApiResponseDto<T>>(urlApi, data),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: showSuccess,
@@ -298,7 +298,7 @@ export class ApiResponseService {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.patch<ApiResponseDTO<T>>(urlApi, data),
+        this.dataConnectorS.patch<ApiResponseDto<T>>(urlApi, data),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: showSuccess,
@@ -323,7 +323,7 @@ export class ApiResponseService {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.delete<ApiResponseDTO<unknown>>(urlApi),
+        this.dataConnectorS.delete<ApiResponseDto<unknown>>(urlApi),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: true,
@@ -358,7 +358,7 @@ export class ApiResponseService {
   ): Promise<T | null> {
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.get<ApiResponseDTO<T>>(urlApi, httpParams),
+        this.dataConnectorS.get<ApiResponseDto<T>>(urlApi, httpParams),
       );
       return this.processResponse(responseData.body, {
         showSuccessToast: false,
@@ -379,7 +379,7 @@ export class ApiResponseService {
   async onPostNotLoading<T>(urlApi: string, data: unknown): Promise<T | false> {
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.post<ApiResponseDTO<T>>(urlApi, data),
+        this.dataConnectorS.post<ApiResponseDto<T>>(urlApi, data),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: false,
@@ -559,7 +559,7 @@ export class ApiResponseService {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.post<ApiResponseDTO<T>>(urlApi, data),
+        this.dataConnectorS.post<ApiResponseDto<T>>(urlApi, data),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: true,

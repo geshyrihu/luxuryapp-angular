@@ -26,7 +26,7 @@ import { MeterCategoryFormGroup } from "./interfaces/meter-category-form.interfa
 @Component({
   selector: "app-meter-category-form",
   templateUrl: "./meter-category-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class MeterCategoryForm implements OnInit {

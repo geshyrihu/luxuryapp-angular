@@ -20,7 +20,7 @@ import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { SelectModule } from "primeng/select";
 import { ToolbarModule } from "primeng/toolbar";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { filter, map, startWith } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -38,11 +38,11 @@ import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/p
     RouterModule,
     SelectModule,
     ToolbarModule,
-    TooltipModule,
+    LxTooltipDirective,
     WebButtonIcon,
   ],
   templateUrl: "./header-direccion-monitor.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./header-direccion-monitor.scss",
 })
 export class HeaderDireccionMonitor implements OnInit {

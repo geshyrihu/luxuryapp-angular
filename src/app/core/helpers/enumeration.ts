@@ -1,4 +1,4 @@
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 /**
  * Convierte un archivo File a su representación en formato base64.
  * @param file El archivo File que se va a convertir.
@@ -18,8 +18,8 @@ export function imageToBase64(file: File) {
  * @param enumeracion La enumeración TypeScript que se va a convertir en opciones select.
  * @returns Un array de objetos ISelectItemDTO que representan las opciones select.
  */
-export function onGetSelectItemFromEnum(enumeracion: any): ISelectItem[] {
-  const enumeraciones: ISelectItem[] = [];
+export function onGetSelectItemFromEnum(enumeracion: any): SelectItemDto[] {
+  const enumeraciones: SelectItemDto[] = [];
   // Recorre las propiedades de la enumeración y crea objetos ISelectItemDTO para cada una.
   for (const [key, value] of Object.entries(enumeracion)) {
     if (isNaN(Number(key))) {

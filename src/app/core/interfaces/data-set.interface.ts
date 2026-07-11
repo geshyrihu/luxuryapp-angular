@@ -1,4 +1,4 @@
-export interface IDataSet {
+export interface DataSet {
   label: string;
   backgroundColor: string;
   hoverBackgroundColor: string;

@@ -1,0 +1,185 @@
+<div class="card p-0 md:p-4">
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template #caption>
+      <div class="flex align-items-end justify-content-between flex-wrap mb-4">
+        <primeng-custom-caption
+          title="Cobranza y Recepción de Pagos (Motor Nativo)"
+          (add)="onModalForm()"
+          [dt]="dt"
+          [noMargin]="true"
+          [noPadding]="true"
+        />
+        <il-button
+          label="Nota de Crédito"
+          iconClass="mdi:credit-card"
+          severity="secondary"
+          variant="outlined"
+          size="small"
+          lxTooltip="Emitir condonación de deuda"
+          tooltipPosition="top"
+          (clicked)="onCreditNote()"
+        />
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="w-8rem">Fecha de Pago</th>
+        <th class="w-12rem">Propiedad</th>
+        <th class="w-8rem">Método</th>
+        <th class="w-8rem">Referencia</th>
+        <th class="w-8rem text-right">Monto Recibido</th>
+        <th class="w-8rem text-right">Aplicado</th>
+        <th class="w-8rem text-right">Sin Aplicar</th>
+        <th class="w-6rem text-center">Estado</th>
+        <th class="w-10rem text-center">Opciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="font-medium">
+          {{ item.paymentDate | date: 'dd/MM/yyyy':'UTC' }}
+        </td>
+        <td class="font-bold text-800">{{ item.propertyFullName || 'N/A' }}</td>
+        <td class="text-xs">
+          @switch (item.method) { @case (EPaymentMethod.Cash) {
+          <span>Efectivo</span> } @case (EPaymentMethod.ElectronicTransfer) {
+          <span>Transferencia</span> } @case (EPaymentMethod.NominativeCheck) {
+          <span>Cheque</span> } @case (EPaymentMethod.CreditCard) {
+          <span>Tarjeta Cto.</span> } @case (EPaymentMethod.DebitCard) {
+          <span>Tarjeta Dto.</span> } @case (EPaymentMethod.ToBeDefined) {
+          <span>Por Definir</span> } @default { <span>{{ item.method }}</span> }
+          }
+        </td>
+        <td class="text-600 text-sm">{{ item.reference || '-' }}</td>
+        <td class="text-right font-medium text-green-600">
+          {{ item.amount | number: "1.2-2" }}
+        </td>
+        <td class="text-right font-medium text-blue-600">
+          {{ item.allocatedAmount | number: "1.2-2" }}
+        </td>
+        <td class="text-right">
+          <span
+            class="font-medium"
+            [class.text-orange-600]="item.unappliedAmount > 0.009"
+            [class.text-500]="item.unappliedAmount <= 0.009"
+          >
+            {{ item.unappliedAmount | number: "1.2-2" }}
+          </span>
+        </td>
+        <td class="text-center">
+          @switch (item.status) { @case (EPaymentStatus.Registrado) {
+          <span class="badge bg-yellow-100 text-yellow-800"
+            >{{ getPaymentFlowLabel(item) }}</span
+          >
+          } @case (EPaymentStatus.Verificado) {
+          <span class="badge bg-green-100 text-green-800">Verificado</span>
+          } @case (EPaymentStatus.Rechazado) {
+          <span class="badge bg-red-100 text-red-800">Rechazado</span> } @case
+          (EPaymentStatus.Cancelado) {
+          <span class="badge bg-gray-100 text-gray-800">Cancelado</span> } @case
+          (EPaymentStatus.Revertido) {
+          <span class="badge bg-orange-100 text-orange-800">Revertido</span>
+          } @case (EPaymentStatus.NoIdentificado) {
+          <span class="badge bg-slate-100 text-slate-800">No identificado</span>
+          } }
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center gap-1">
+            <iw-button
+              iconClass="mdi:eye-outline"
+              severity="info"
+              variant="outlined"
+              size="small"
+              lxTooltip="Ver detalle"
+              tooltipPosition="top"
+              (clicked)="onViewDetail(item)"
+            />
+            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            @if (item.status !== EPaymentStatus.Rechazado && item.status !==
+            EPaymentStatus.Cancelado && item.status !==
+            EPaymentStatus.Revertido) {
+            <iw-button
+              iconClass="mdi:close-circle"
+              severity="warning"
+              variant="outlined"
+              size="small"
+              lxTooltip="Cancelar pago"
+              tooltipPosition="top"
+              (clicked)="onCancelPayment(item)"
+            />
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="9" />
+    </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="['propertyFullName', 'reference', 'amount']"
+  (add)="onModalForm()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <app-icon icon="mdi:cash" class="text-green-600 text-xl" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <h3>{{ item.propertyFullName || 'N/A' }}</h3>
+        <p>
+          {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} · {{ item.amount |
+          number:'1.2-2' }}
+        </p>
+        <p>
+          Aplicado: {{ item.allocatedAmount | number:'1.2-2' }} · Sin aplicar:
+          {{ item.unappliedAmount | number:'1.2-2' }}
+        </p>
+        <p>{{ item.reference || '-' }}</p>
+      </div>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <il-button
+            label="Detalle"
+            iconClass="mdi:eye-outline"
+            severity="info"
+            variant="outlined"
+            size="small"
+            (clicked)="onViewDetail(item)"
+          />
+          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          @if (item.status !== EPaymentStatus.Rechazado && item.status !==
+          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
+          {
+          <il-button
+            label="Cancelar"
+            iconClass="mdi:close-circle"
+            severity="warning"
+            variant="outlined"
+            size="small"
+            (clicked)="onCancelPayment(item)"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

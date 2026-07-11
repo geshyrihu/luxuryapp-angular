@@ -34,7 +34,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -48,7 +48,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonIconItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    TooltipModule,
+    LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,

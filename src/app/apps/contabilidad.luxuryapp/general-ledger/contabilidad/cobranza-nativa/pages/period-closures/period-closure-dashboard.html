@@ -1,0 +1,174 @@
+<div class="card p-0 md:p-4">
+  <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
+    <div class="font-semibold mb-3 flex align-items-center gap-2">
+      <app-icon [icon]="'mdi:lock'" class="text-primary" />
+      <span>Cerrar Periodo Contable</span>
+    </div>
+
+    <div class="grid formgrid align-items-end">
+      <div class="field col-6 md:col-2">
+        <custom-input-number-signal
+          label="Año"
+          [control]="yearCtrl"
+          [noMargin]="true"
+          [useGrouping]="false"
+          [horizontal]="false"
+        />
+      </div>
+
+      <div class="field col-6 md:col-2">
+        <custom-input-select-signal
+          label="Mes"
+          [control]="monthCtrl"
+          [data]="monthOptions"
+          [noMargin]="true"
+          [horizontal]="false"
+          [filter]="true"
+        />
+      </div>
+
+      <div class="field col-12 md:col-5">
+        <custom-input-text-signal
+          label="Notas de cierre (opcional)"
+          [control]="notesCtrl"
+          [noMargin]="true"
+          [horizontal]="false"
+        />
+      </div>
+
+      <div class="field col-12 md:col-3 flex gap-2">
+        @if (!currentPeriodClosed()) {
+        <il-button
+          label="Cerrar Periodo"
+          iconClass="mdi:lock"
+          severity="warn"
+          [disabled]="submitting()"
+          (clicked)="onClosePeriod()"
+        />
+        } @else {
+        <div class="flex align-items-center h-3rem gap-2 text-green-700">
+          <app-icon [icon]="'mdi:check-circle'" />
+          <span class="text-sm font-medium">Periodo ya cerrado</span>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        title="Historial de Cierres de Periodo"
+        [showAdd]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="w-6rem text-center">Año</th>
+        <th class="w-8rem text-center">Mes</th>
+        <th class="w-7rem text-center">Estado</th>
+        <th class="w-9rem text-center">Fecha de Cierre</th>
+        <th class="w-8rem">Cerrado por</th>
+        <th>Notas</th>
+        <th class="w-7rem text-center">Acción</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="text-center font-medium">{{ item.year }}</td>
+        <td class="text-center">{{ monthName(item.month) }}</td>
+        <td class="text-center">
+          @if (item.isClosed) {
+          <span class="badge bg-red-100 text-red-800 text-xs">
+            <app-icon [icon]="'mdi:lock'" class="mr-1" />Cerrado
+          </span>
+          } @else {
+          <span class="badge bg-green-100 text-green-800 text-xs">
+            <app-icon [icon]="'mdi:lock-open'" class="mr-1" />Abierto
+          </span>
+          }
+        </td>
+        <td class="text-center text-sm">
+          {{ item.closedAt | date:'dd/MM/yyyy HH:mm' }}
+        </td>
+        <td class="text-sm">{{ item.closedBy }}</td>
+        <td class="text-sm text-500">{{ item.closureNotes }}</td>
+        <td class="text-center">
+          @if (item.isClosed) {
+          <iw-button
+            lxTooltip="Reabrir"
+            tooltipPosition="top"
+            iconClass="mdi:lock-open"
+            size="small"
+            severity="danger"
+            [disabled]="submitting()"
+            (clicked)="onReopenPeriod(item)"
+          />
+          }
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="7" class="text-center p-4 text-500">
+          No hay periodos registrados.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="['closedBy', 'closureNotes']"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item>
+        <div
+          start
+          class="w-2rem h-2rem border-round-lg flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          [class]="item.isClosed ? 'bg-red-100' : 'bg-green-100'"
+        >
+          <app-icon
+            [icon]="item.isClosed ? 'mdi:lock' : 'mdi:lock-open'"
+            [class]="item.isClosed ? 'text-red-600 text-xl' : 'text-green-600 text-xl'"
+          />
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3>{{ monthName(item.month) }} {{ item.year }}</h3>
+          <p>
+            {{ item.isClosed ? 'Cerrado' : 'Abierto' }}{{ item.closedBy ? ' por
+            ' + item.closedBy : '' }}
+          </p>
+          @if (item.closedAt) {
+          <p>{{ item.closedAt | date:'dd/MM/yyyy HH:mm' }}</p>
+          }
+        </div>
+        @if (item.isClosed) {
+        <il-button
+          end
+          label="Reabrir"
+          iconClass="mdi:lock-open"
+          size="small"
+          severity="danger"
+          [disabled]="submitting()"
+          (clicked)="onReopenPeriod(item)"
+        />
+        }
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

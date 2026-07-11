@@ -13,16 +13,16 @@ import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 
 @Component({
   selector: "app-profile-monitor",
   imports: [RouterModule, PopoverModule, AvatarModule, AppIcon],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile-monitor.html",
 })
 export class ProfileMonitor {
@@ -35,12 +35,12 @@ export class ProfileMonitor {
   router = inject(Router);
   private consoleLogger = inject(ConsoleLoggerService);
 
-  infoAccountAuthDTO: InfoAccountAuthDTO;
+  infoAccountAuthDTO: InfoAccountAuthDto;
   profileImageUrl: string = "";
   customerPhotoPath = this.customerIdS.customerPhotoPath();
 
   profileRoute = computed(() =>
-    this.aspRoleS.roleSignal(EApplicationRole.Direccion)()
+    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
       ? "/direccion/profile/update-user-profile"
       : "/profile/update-user-profile",
   );

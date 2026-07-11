@@ -23,7 +23,7 @@ import { ApprovalRuleDto } from "./interfaces/approval-rules.dto";
   selector: "app-approval-rules",
   templateUrl: "./approval-rules.html",
   styleUrls: ["./approval-rules.scss"],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     LxCard,

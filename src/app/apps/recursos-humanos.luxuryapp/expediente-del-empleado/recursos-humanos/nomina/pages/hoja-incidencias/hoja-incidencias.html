@@ -118,7 +118,7 @@
           style="min-width: 42px; font-size: 0.7rem"
           [class.bg-slate-100]="dia.esDescanso"
           [class.bg-blue-50]="dia.esFestivo"
-          [pTooltip]="dia.descripcionDia ?? ''"
+          [lxTooltip]="dia.descripcionDia ?? ''"
         >
           {{ dia.diaSemana }}
         </th>
@@ -168,7 +168,7 @@
           [class.hoja-celda-descanso]="getStatus(emp.employeeId, celda.fecha) === 'D'"
           [class.hoja-celda-festivo]="getStatus(emp.employeeId, celda.fecha) === 'DF'"
           [class.cursor-pointer]="!isSyncronizada(emp.employeeId, celda.fecha)"
-          [pTooltip]="
+          [lxTooltip]="
             statusConfig[getStatus(emp.employeeId, celda.fecha)].label +
             (isSyncronizada(emp.employeeId, celda.fecha) ? ' (sincronizada)' : ' é clic para cambiar')
           "

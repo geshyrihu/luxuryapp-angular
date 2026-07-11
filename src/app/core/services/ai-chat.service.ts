@@ -2,14 +2,14 @@ import { Injectable, inject, signal } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomerIdService } from "../auth/services/customer-id.service";
 
-export interface ChatSessionDTO {
+export interface ChatSessionDto {
   id: string;
   userId: string;
   title: string;
   createdAt: string;
 }
 
-export interface ChatMessageDTO {
+export interface ChatMessageDto {
   id: string;
   sessionId: string;
   role: string; // 'User' | 'Assistant'
@@ -17,7 +17,7 @@ export interface ChatMessageDTO {
   timestamp: string;
 }
 
-export interface SendMessageDTO {
+export interface SendMessageDto {
   sessionId?: string;
   message: string;
 }
@@ -31,8 +31,8 @@ export class AiChatService {
 
   // State
   currentSessionId = signal<string | null>(null);
-  sessions = signal<ChatSessionDTO[]>([]);
-  messages = signal<ChatMessageDTO[]>([]);
+  sessions = signal<ChatSessionDto[]>([]);
+  messages = signal<ChatMessageDto[]>([]);
   isLoading = signal<boolean>(false);
 
   constructor() {
@@ -40,13 +40,13 @@ export class AiChatService {
   }
 
   async loadSessions() {
-    const res = await this.api.onGetList<ChatSessionDTO[]>("AiChat/Sessions");
+    const res = await this.api.onGetList<ChatSessionDto[]>("AiChat/Sessions");
     this.sessions.set(res || []);
   }
 
   async startNewSession() {
     this.isLoading.set(true);
-    const res = await this.api.onPost<ChatSessionDTO>(
+    const res = await this.api.onPost<ChatSessionDto>(
       "AiChat/StartSession",
       {},
     );
@@ -61,7 +61,7 @@ export class AiChatService {
   async selectSession(sessionId: string) {
     this.currentSessionId.set(sessionId);
     this.isLoading.set(true);
-    const res = await this.api.onGetList<ChatMessageDTO[]>(
+    const res = await this.api.onGetList<ChatMessageDto[]>(
       `AiChat/History/${sessionId}`,
     );
     this.messages.set(res || []);
@@ -72,7 +72,7 @@ export class AiChatService {
     if (!message.trim()) return;
 
     // Optimistic UI update
-    const tempMsg: ChatMessageDTO = {
+    const tempMsg: ChatMessageDto = {
       id: crypto.randomUUID(),
       sessionId: this.currentSessionId() || "",
       role: "User",
@@ -83,13 +83,13 @@ export class AiChatService {
     this.messages.update((msgs) => [...msgs, tempMsg]);
     this.isLoading.set(true);
 
-    const payload: SendMessageDTO = {
+    const payload: SendMessageDto = {
       sessionId: this.currentSessionId() || undefined,
       message: message,
     };
 
     // Call API
-    // Note: onPost normally returns the T response. My backend returns generic ApiResponseDTO<string>.
+    // Note: onPost normally returns the T response. My backend returns generic ApiResponseDto<string>.
     // The ApiResponseService unwraps it.
     const responseText = await this.api.onPost<string>(
       "AiChat/SendMessage",
@@ -98,7 +98,7 @@ export class AiChatService {
 
     // Add AI response
     if (responseText) {
-      const aiMsg: ChatMessageDTO = {
+      const aiMsg: ChatMessageDto = {
         id: crypto.randomUUID(),
         sessionId: this.currentSessionId() || "",
         role: "Assistant",

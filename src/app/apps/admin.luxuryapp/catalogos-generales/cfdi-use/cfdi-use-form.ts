@@ -25,7 +25,7 @@ import { CfdiUseFormGroup } from "./interfaces/cfdi-use-form.interface";
 @Component({
   selector: "app-cfdi-use-form",
   templateUrl: "./cfdi-use-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class CfdiUseForm implements OnInit {

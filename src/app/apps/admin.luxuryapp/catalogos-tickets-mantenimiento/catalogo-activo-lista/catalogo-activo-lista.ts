@@ -49,7 +49,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomTableFooter,
     DataViewMobile,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./catalogo-activo-lista.html",
 })
 export class CatalogoActivoLista {

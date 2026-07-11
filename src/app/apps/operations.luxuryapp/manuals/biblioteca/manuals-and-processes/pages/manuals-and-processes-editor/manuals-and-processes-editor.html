@@ -1,0 +1,661 @@
+<div class="flex flex-column h-full">
+  <!-- Top Bar -->
+  <div
+    class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
+  >
+    <div class="flex align-items-center gap-3">
+      <iw-button
+        iconClass="mdi:arrow-left"
+        [variant]="'text'"
+        severity="secondary"
+        (clicked)="onGoBack()"
+      />
+      <div>
+        <h2 class="text-xl font-bold text-900 m-0">
+          {{ manual()?.folio || 'Editor de Manual' }}
+        </h2>
+        <p class="text-500 m-0 text-xs">
+          {{ manual()?.departament }} &mdash; v{{ manual()?.currentVersion }}
+        </p>
+      </div>
+    </div>
+    <div class="flex align-items-center gap-2">
+      @if (activeTab() === 'pasos') {
+      <il-button
+        iconClass="mdi:plus"
+        label="Agregar Paso"
+        severity="primary"
+        size="small"
+        (clicked)="onNewPaso()"
+      />
+      }
+      <il-button
+        [label]="'Pasos (' + pasos().length + ')'"
+        iconClass="mdi:format-list-bulleted"
+        [severity]="activeTab() === 'pasos' ? 'primary' : 'secondary'"
+        [variant]="activeTab() === 'pasos' ? null : 'outlined'"
+        size="small"
+        (clicked)="activeTab.set('pasos')"
+      />
+      <il-button
+        [label]="'Versiones (' + versiones().length + ')'"
+        iconClass="mdi:history"
+        [severity]="activeTab() === 'versiones' ? 'primary' : 'secondary'"
+        [variant]="activeTab() === 'versiones' ? null : 'outlined'"
+        size="small"
+        (clicked)="activeTab.set('versiones')"
+      />
+      <il-button
+        [label]="'Adjuntos (' + adjuntos().length + ')'"
+        iconClass="mdi:paperclip"
+        [severity]="activeTab() === 'adjuntos' ? 'primary' : 'secondary'"
+        [variant]="activeTab() === 'adjuntos' ? null : 'outlined'"
+        size="small"
+        (clicked)="activeTab.set('adjuntos')"
+      />
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB: PASOS -->
+  <!-- ============================================================ -->
+  @if (activeTab() === 'pasos') {
+  <div class="flex flex-grow-1 overflow-hidden">
+    <!-- Panel izquierdo: lista de pasos -->
+    <div
+      class="border-right-1 border-200 overflow-y-auto flex-shrink-0 w-20rem"
+    >
+      @if (!pasos().length) {
+      <div class="p-4 text-center text-500">
+        <app-icon
+          [icon]="'mdi:format-list-bulleted'"
+          class="text-3xl mb-2 block"
+        />
+        <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
+      </div>
+      }
+      <div
+        cdkDropList
+        (cdkDropListDropped)="onDropPaso($event)"
+        class="flex flex-column"
+      >
+        @for (paso of pasos(); track paso.id; let i = $index) {
+        <div
+          cdkDrag
+          class="flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-100 transition-colors transition-duration-150"
+          [class.surface-100]="selectedPaso()?.id === paso.id"
+          (click)="onSelectPaso(paso)"
+        >
+          <app-icon
+            cdkDragHandle
+            icon="mdi:menu"
+            class="text-400 cursor-grab flex-shrink-0 text-xs"
+          />
+
+          <div
+            class="flex-shrink-0 w-2rem h-2rem border-circle flex align-items-center justify-content-center text-white font-bold text-xs"
+            [class.bg-primary]="paso.tipoNota === 0"
+            [class.bg-blue-400]="paso.tipoNota === 1"
+            [class.bg-yellow-500]="paso.tipoNota === 2"
+            [class.bg-green-500]="paso.tipoNota === 3"
+          >
+            {{ i + 1 }}
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <div
+              class="text-sm font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            >
+              {{ paso.titulo }}
+            </div>
+            @if (paso.responsableRoleNombre) {
+            <div class="text-xs text-500 mt-1">
+              {{ paso.responsableRoleNombre }}
+            </div>
+            } @if (paso.tipoNota !== 0) {
+            <lx-tag
+              [value]="tipoNotaLabel(paso.tipoNota)"
+              [severity]="tipoNotaSeverity(paso.tipoNota)"
+              class="text-xs mt-1"
+             />
+            }
+          </div>
+
+          <div
+            class="flex-shrink-0 flex gap-1"
+            (click)="$event.stopPropagation()"
+          >
+            @if (paso.diagramaId) {
+            <iw-button
+              iconClass="mdi:sitemap"
+              [variant]="'text'"
+              severity="info"
+              size="small"
+              lxTooltip="Ver Diagrama"
+              (clicked)="onAbrirDiagrama(paso)"
+            />
+            }
+            <il-button-delete (confirmed)="onDeletePaso(paso)" />
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Panel derecho: formulario del paso -->
+    <div class="flex-grow-1 overflow-y-auto p-4">
+      @if (!selectedPaso() && !isNewPaso()) {
+      <div
+        class="flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
+      >
+        <app-icon [icon]="'mdi:book'" class="text-6xl text-primary mb-4" />
+        <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
+        <p class="text-500 line-height-3 mb-4">
+          Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso
+          de la lista de la izquierda para editarlo, o haz clic en
+          <strong>Agregar Paso</strong> para crear una nueva instrucción.
+        </p>
+        <il-button
+          iconClass="mdi:plus"
+          label="Crear Primer Paso"
+          severity="primary"
+          (clicked)="onNewPaso()"
+          *ngIf="pasos().length === 0"
+        />
+      </div>
+      } @else {
+
+      <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+        <div class="surface-ground border-round-xl p-4 border-1 surface-border">
+          <div class="flex align-items-center gap-3 mb-2">
+            <app-icon [icon]="'mdi:pencil'" class="text-2xl text-primary" />
+            <h3 class="m-0 text-900 font-semibold">
+              {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
+            </h3>
+          </div>
+          <p class="text-color-secondary m-0 line-height-3">
+            Detalla la instrucción a realizar. Usa el tipo
+            <strong>Normal</strong> para instrucciones regulares, o resalta
+            precauciones cambiando a <strong>Advertencia</strong> o
+            <strong>Buenas Prácticas</strong>. Puedes asignar uno o más roles
+            como responsables exclusivos de esta acción.
+          </p>
+        </div>
+
+        <form
+          [formGroup]="pasoForm"
+          (ngSubmit)="onSavePaso()"
+          class="flex flex-column gap-3"
+        >
+          <custom-input-text-signal
+            [control]="pasoForm.controls.titulo"
+            label="Titulo del Paso"
+            placeholder="Ej: Verificar documentos del cliente"
+            [horizontal]="false"
+          />
+
+          <custom-input-textarea-signal
+            [control]="pasoForm.controls.descripcion"
+            label="Descripcion (opcional)"
+            placeholder="Detalle del paso..."
+            [rows]="4"
+            [horizontal]="false"
+          />
+
+          <custom-input-multiselect-signal
+            [control]="pasoForm.controls.responsableRoleIds"
+            [options]="roles()"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            label="Responsables (Roles)"
+            placeholder="Seleccionar roles..."
+            [horizontal]="false"
+          />
+
+          <div class="flex flex-column gap-2">
+            <label class="font-bold text-sm text-700">Tipo de Nota</label>
+            <custom-input-select-button-signal
+              [options]="tipoNotaOpciones"
+              [control]="pasoForm.controls.tipoNota"
+              optionLabel="label"
+              optionValue="value"
+            />
+          </div>
+
+          <div class="flex justify-content-end">
+            <il-button-save [loading]="savingPaso()" />
+          </div>
+        </form>
+
+        <!-- Diagrama de flujo (solo en edicion) -->
+        @if (!isNewPaso() && selectedPaso()) {
+        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <div class="flex align-items-center justify-content-between">
+            <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
+            <il-button
+              [iconClass]="selectedPaso()!.diagramaId ? 'mdi:sitemap' : 'mdi:plus'"
+              [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
+              [severity]="selectedPaso()!.diagramaId ? 'info' : 'secondary'"
+              size="small"
+              [loading]="creatingDiagram()"
+              (clicked)="onAbrirDiagrama(selectedPaso()!)"
+            />
+          </div>
+          @if (!selectedPaso()!.diagramaId) {
+          <div class="surface-ground border-round p-3 border-1 surface-border">
+            <div class="flex align-items-center gap-2 mb-2">
+              <app-icon
+                [icon]="'mdi:lightbulb-on-outline'"
+                class="text-yellow-500"
+              />
+              <span class="font-bold text-700 text-sm">Tip Visual</span>
+            </div>
+            <p class="text-sm text-500 m-0 line-height-3">
+              Puedes agregar un
+              <strong>Diagrama de Flujo interactivo</strong> (estilo BPMN) para
+              explicar visualmente este paso. Haz clic en "Crear Diagrama" para
+              abrir el editor integrado de draw.io.
+            </p>
+          </div>
+          } @else {
+          <div
+            class="surface-ground border-round p-3 border-1 surface-border mb-2"
+          >
+            <div class="flex align-items-center gap-2 mb-2">
+              <app-icon
+                [icon]="'mdi:check-circle-outline'"
+                class="text-green-500"
+              />
+              <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
+            </div>
+            <p class="text-sm text-500 m-0 line-height-3">
+              Este paso cuenta con un diagrama interactivo. Usa el botón "Abrir
+              Diagrama" para realizar modificaciones.
+            </p>
+          </div>
+          } @if (selectedPaso()!.diagramaXml) {
+          <div class="border-round overflow-hidden border-1 border-200">
+            <app-diagram-preview [xml]="selectedPaso()!.diagramaXml!" />
+          </div>
+          }
+        </div>
+        }
+
+        <!-- Imagenes del paso (solo en edicion) -->
+        @if (!isNewPaso() && selectedPaso()) {
+        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <div class="flex align-items-center justify-content-between">
+            <h4 class="text-base font-bold text-700 m-0">Imagenes del Paso</h4>
+            <div class="flex align-items-center gap-2">
+              <span class="text-xs text-400">o Ctrl+V para pegar</span>
+              <lx-file-upload
+                accept="image/*"
+                [maxFileSize]="10000000"
+                [multiple]="false"
+                [chooseLabel]="'Subir Imagen'"
+                [autoUpload]="false"
+                (onSelect)="onSubirImagen($event)"
+                [styleClass]="'p-button-sm p-button-outlined'"
+              />
+            </div>
+          </div>
+
+          @if (uploadingImagen()) {
+          <div class="flex align-items-center gap-2 text-500 text-sm">
+            <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />
+            Subiendo...
+          </div>
+          } @if (selectedPaso()!.imagenes?.length) {
+          <div class="flex flex-wrap gap-3">
+            @for (img of selectedPaso()!.imagenes; track img.id) {
+            <div
+              class="relative surface-card border-1 surface-border border-round-xl overflow-hidden p-2"
+            >
+              <img
+                [src]="img.url"
+                class="block max-w-full h-auto border-round-lg"
+                alt="imagen"
+              />
+              <div class="absolute top-0 right-0 m-1">
+                <iw-button
+                  iconClass="mdi:close"
+                  severity="danger"
+                  size="small"
+                  [rounded]="true"
+                  (clicked)="onEliminarImagen(img.id)"
+                />
+              </div>
+            </div>
+            }
+          </div>
+          } @else {
+          <p class="text-sm text-500 m-0">Sin imagenes para este paso.</p>
+          }
+        </div>
+        }
+
+        <!-- Enlaces / Videos del paso (solo en edicion) -->
+        @if (!isNewPaso() && selectedPaso()) {
+        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <h4 class="text-base font-bold text-700 m-0">Enlaces y Videos</h4>
+
+          <form
+            [formGroup]="enlaceForm"
+            (ngSubmit)="onAddEnlace()"
+            class="flex flex-column gap-2 border-1 border-round p-3 surface-50 border-200"
+          >
+            <div class="grid align-items-end">
+              <div class="col-12 md:col-7">
+                <custom-input-text-signal
+                  [control]="enlaceForm.controls.urlEnlace"
+                  label="URL del Enlace o Video"
+                  placeholder="Ej: https://youtube.com/watch?v=..."
+                  [horizontal]="false"
+                />
+              </div>
+              <div class="col-12 md:col-3 pb-3">
+                <custom-input-switch-signal
+                  [control]="enlaceForm.controls.esVideo"
+                  label="¿Es un Video?"
+                  [horizontal]="false"
+                />
+              </div>
+              <div class="col-12 md:col-2 pb-3 flex justify-content-end">
+                <il-button
+                  type="submit"
+                  label="Agregar"
+                  iconClass="mdi:plus"
+                  size="small"
+                  [loading]="savingEnlace()"
+                  [disabled]="enlaceForm.invalid"
+                />
+              </div>
+            </div>
+          </form>
+
+          @if (selectedPaso()!.enlaces?.length) {
+          <div class="flex flex-column gap-3 mt-2">
+            @for (enlace of selectedPaso()!.enlaces; track enlace.id) {
+            <div
+              class="relative border-round overflow-hidden border-1 border-200 p-3 bg-white"
+            >
+              <div class="absolute top-0 right-0 m-2 z-5">
+                <iw-button
+                  iconClass="mdi:delete"
+                  severity="danger"
+                  size="small"
+                  [rounded]="true"
+                  [variant]="'text'"
+                  (clicked)="onDeleteEnlace(enlace.id)"
+                />
+              </div>
+
+              @if (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
+              <div
+                class="border-round overflow-hidden mt-3"
+                style="aspect-ratio: 16/9"
+              >
+                <iframe
+                  [src]="safeUrl(enlace.urlEnlace)"
+                  class="w-full h-full border-none"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              } @else {
+              <p class="text-sm text-500 m-0">URL de video no válida.</p>
+              } } @else {
+              <div class="flex align-items-center gap-2 mt-2">
+                <a
+                  [href]="enlace.urlEnlace"
+                  target="_blank"
+                  class="no-underline"
+                >
+                  <il-button
+                    iconClass="mdi:external-link"
+                    label="Abrir Enlace"
+                    severity="info"
+                    size="small"
+                    [variant]="'outlined'"
+                  />
+                </a>
+                <span
+                  class="text-sm text-500 text-overflow-ellipsis overflow-hidden white-space-nowrap"
+                  style="max-width: 300px"
+                  >{{ enlace.urlEnlace }}</span
+                >
+              </div>
+              }
+            </div>
+            }
+          </div>
+          } @else {
+          <p class="text-sm text-500 m-0">No hay enlaces o videos adjuntos.</p>
+          }
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <!-- ============================================================ -->
+  <!-- TAB: VERSIONES -->
+  <!-- ============================================================ -->
+  @if (activeTab() === 'versiones') {
+  <div class="flex-grow-1 overflow-y-auto p-4">
+    <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+      <div class="flex align-items-center justify-content-between">
+        <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
+        <il-button
+          iconClass="mdi:plus"
+          label="Nueva Version"
+          severity="primary"
+          size="small"
+          (clicked)="showVersionForm.set(!showVersionForm())"
+        />
+      </div>
+
+      @if (showVersionForm()) {
+      <div
+        class="surface-card p-4 border-round-xl border-1 border-200 shadow-1"
+      >
+        <h4 class="text-base font-bold text-700 m-0 mb-3">Agregar Version</h4>
+        <form
+          [formGroup]="versionForm"
+          (ngSubmit)="onAgregarVersion()"
+          class="flex flex-column gap-3"
+        >
+          <div class="grid">
+            <div class="col-12 md:col-4">
+              <custom-input-text-signal
+                [control]="versionForm.controls.version"
+                label="Version"
+                placeholder="Ej: 2.0"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-4">
+              <label class="font-bold text-sm text-700 block mb-2">Fecha</label>
+              <input
+                type="date"
+                formControlName="fechaCambio"
+                class="p-inputtext w-full"
+              />
+            </div>
+            <div class="col-12 md:col-4">
+              <custom-input-text-signal
+                [control]="versionForm.controls.autor"
+                label="Autor"
+                placeholder="Nombre del responsable"
+                [horizontal]="false"
+              />
+            </div>
+          </div>
+          <custom-input-textarea-signal
+            [control]="versionForm.controls.descripcionCambio"
+            label="Descripcion del Cambio"
+            placeholder="Que cambios se realizaron en esta version..."
+            [rows]="3"
+            [horizontal]="false"
+          />
+          <div class="flex justify-content-end gap-2">
+            <il-button
+              label="Cancelar"
+              severity="secondary"
+              [variant]="'outlined'"
+              size="small"
+              (clicked)="showVersionForm.set(false)"
+            />
+            <il-button-save [loading]="savingVersion()" />
+          </div>
+        </form>
+      </div>
+      } @if (!versiones().length) {
+      <div class="text-center text-500 py-5">
+        <app-icon [icon]="'mdi:history'" class="text-4xl mb-3 block" />
+        <p class="text-sm m-0">Sin versiones registradas.</p>
+      </div>
+      } @else {
+      <div class="flex flex-column gap-2">
+        @for (v of versiones(); track v.id) {
+        <div
+          class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-start justify-content-between gap-3"
+        >
+          <div class="flex-1">
+            <div class="flex align-items-center gap-2 mb-1">
+              <span class="font-bold text-primary">v{{ v.version }}</span>
+              <span class="text-500 text-xs"
+                >{{ v.fechaCambio | date: 'dd/MM/yyyy' }}</span
+              >
+              @if (v.autor) {
+              <span class="text-xs text-700">por {{ v.autor }}</span>
+              }
+            </div>
+            @if (v.descripcionCambio) {
+            <p class="text-sm text-600 m-0">{{ v.descripcionCambio }}</p>
+            }
+          </div>
+          <iw-button
+            iconClass="mdi:delete"
+            [variant]="'text'"
+            severity="danger"
+            size="small"
+            (clicked)="onEliminarVersion(v.id)"
+          />
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <!-- ============================================================ -->
+  <!-- TAB: ADJUNTOS -->
+  <!-- ============================================================ -->
+  @if (activeTab() === 'adjuntos') {
+  <div class="flex-grow-1 overflow-y-auto p-4">
+    <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+      <h3 class="text-lg font-bold text-900 m-0">
+        Archivos Adjuntos (Anexos y Referencias)
+      </h3>
+
+      <div
+        class="surface-card p-4 border-round-xl border-1 border-200 shadow-1"
+      >
+        <h4 class="text-base font-bold text-700 m-0 mb-3">Subir Archivo</h4>
+        <div class="flex flex-column gap-3">
+          <div class="flex flex-column gap-1">
+            <label class="font-bold text-sm text-700"
+              >Nombre del Documento</label
+            >
+            <input
+              #adjuntoNombreInput
+              type="text"
+              class="p-inputtext w-full"
+              placeholder="Ej: Reglamento Interno v3"
+            />
+          </div>
+          <div class="flex align-items-center gap-3">
+            <lx-file-upload
+              accept=".pdf,.doc,.docx,.xls,.xlsx"
+              [maxFileSize]="10000000"
+              [multiple]="false"
+              [chooseLabel]="'Seleccionar Archivo'"
+              [autoUpload]="false"
+              (onSelect)="onSubirAdjunto($event)"
+              [styleClass]="'p-button-sm p-button-outlined'"
+            />
+            @if (uploadingAdjunto()) {
+            <span class="text-500 text-sm flex align-items-center gap-1">
+              <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />
+              Subiendo...
+            </span>
+            }
+          </div>
+          <p class="text-xs text-500 m-0">
+            Formatos permitidos: PDF, Word, Excel.
+          </p>
+        </div>
+      </div>
+
+      @if (!adjuntos().length) {
+      <div class="text-center text-500 py-5">
+        <app-icon [icon]="'mdi:paperclip'" class="text-4xl mb-3 block" />
+        <p class="text-sm m-0">Sin archivos adjuntos.</p>
+      </div>
+      } @else {
+      <div class="flex flex-column gap-2">
+        @for (adj of adjuntos(); track adj.id) {
+        <div
+          class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3"
+        >
+          <app-icon
+            [icon]="'mdi:file-document-outline'"
+            class="text-2xl text-400 flex-shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <div
+              class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            >
+              {{ adj.nombre }}
+            </div>
+            <div class="text-xs text-500 uppercase">
+              {{ adj.fileExtension }}
+            </div>
+          </div>
+          <div class="flex gap-1 flex-shrink-0">
+            <a [href]="adj.url" target="_blank" class="no-underline">
+              <iw-button
+                iconClass="mdi:download"
+                [variant]="'text'"
+                severity="info"
+                size="small"
+              />
+            </a>
+            <iw-button
+              iconClass="mdi:delete"
+              [variant]="'text'"
+              severity="danger"
+              size="small"
+              (clicked)="onEliminarAdjunto(adj.id)"
+            />
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

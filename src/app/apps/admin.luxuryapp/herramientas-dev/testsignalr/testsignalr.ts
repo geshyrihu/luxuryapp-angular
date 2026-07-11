@@ -13,7 +13,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 @Component({
   selector: "app-testsignalr",
   imports: [
@@ -23,13 +23,13 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
     InputAutocomplete,
     CustomInputAutoMultiple,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./testsignalr.html",
 })
 export class Testsignalr implements OnInit {
   apiResponseS = inject(ApiResponseService);
   // Signals
-  users = signal<ISelectItem[]>([]);
+  users = signal<SelectItemDto[]>([]);
   selectedUserId = signal<string | null>(null);
   selectedUserIds = signal<string[]>([]);
 
@@ -48,10 +48,10 @@ export class Testsignalr implements OnInit {
     const result: any = await this.apiResponseS.onGetListNotLoading(
       Endpoints.Notifications.users,
     );
-    this.users.set(result as ISelectItem[]);
+    this.users.set(result as SelectItemDto[]);
   }
 
-  onSelectUser = (item: ISelectItem) => {
+  onSelectUser = (item: SelectItemDto) => {
     this.selectedUserId.set(item?.value);
     this.userControl.setValue(item?.label);
   };

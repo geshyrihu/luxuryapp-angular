@@ -7,13 +7,12 @@ import {
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "primeng/api";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { TokenColor } from "./interfaces/token-color.interface";
 import { TokenGroup } from "./interfaces/token-group.interface";
 
@@ -22,11 +21,10 @@ import { TokenGroup } from "./interfaces/token-group.interface";
 
   imports: [
     CommonModule,
-    CardModule,
     TableModule,
     TagModule,
     DividerModule,
-    TooltipModule,
+    LxTooltipDirective,
     MessageModule,
     ToastModule,
     AppIcon,
@@ -49,7 +47,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
             <div
               class="token-swatch flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
               (click)="copy(color.token)"
-              [pTooltip]="'Copiar ' + color.token"
+              [lxTooltip]="'Copiar ' + color.token"
               tooltipPosition="top"
             >
               <div
@@ -103,7 +101,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
                 <div
                   class="token-swatch flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
                   (click)="copy(color.token)"
-                  [pTooltip]="'Copiar ' + color.token"
+                  [lxTooltip]="'Copiar ' + color.token"
                   tooltipPosition="top"
                 >
                   <div
@@ -179,7 +177,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
     `,
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
 })
 export class TokensColors {

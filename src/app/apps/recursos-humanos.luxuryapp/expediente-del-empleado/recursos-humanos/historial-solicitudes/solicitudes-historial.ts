@@ -19,14 +19,14 @@ import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -81,7 +81,7 @@ interface IHistorialSolicitud {
 }
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -95,7 +95,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileListItem,
     WebButtonIcon,
     WebButtonIconItem,
-    TooltipModule,
+    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
@@ -121,16 +121,16 @@ export class SolicitudesHistorial implements OnInit {
   private aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
-  allowedCancellerRoles: EApplicationRole[] = [
-    EApplicationRole.SuperUsuario,
-    EApplicationRole.RecursosHumanos,
+  allowedCancellerRoles: ApplicationRole[] = [
+    ApplicationRole.SuperUsuario,
+    ApplicationRole.RecursosHumanos,
   ];
   canCancel = computed(() => this.aspRoleS.hasAny(this.allowedCancellerRoles));
   data = signal<IHistorialSolicitud[]>([]);
   loading = signal(true);
-  employees = signal<ISelectItem[]>([]);
-  requestTypes = signal<ISelectItem[]>([]);
-  statuses = signal<ISelectItem[]>([]);
+  employees = signal<SelectItemDto[]>([]);
+  requestTypes = signal<SelectItemDto[]>([]);
+  statuses = signal<SelectItemDto[]>([]);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   filterForm = this.formBuilder.group({
@@ -227,7 +227,7 @@ export class SolicitudesHistorial implements OnInit {
 
   loadEmployees(customerId: string) {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(
+      .onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.employeesByUserId(customerId),
       )
       .then((response) => {

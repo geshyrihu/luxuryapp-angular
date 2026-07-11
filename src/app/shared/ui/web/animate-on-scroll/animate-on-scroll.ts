@@ -11,8 +11,6 @@ import { AnimateOnScrollModule } from "primeng/animateonscroll";
 
 @Directive({
   selector: "[appAnimateOnScroll]",
-
-  imports: [AnimateOnScrollModule],
 })
 export class AppAnimateOnScroll
   extends AnimateOnScrollBase

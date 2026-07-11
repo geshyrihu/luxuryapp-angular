@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { filter, map, switchMap, take } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 /**
  * Un guardián de ruta para proteger las rutas de empleados.
  *
@@ -23,10 +23,10 @@ export const employeeGuard: CanActivateFn = (route, state) => {
     switchMap(() => authS.userToken$), // Cambiar al stream del token de usuario
     map((session) => {
       const roles = new Set(session?.roles ?? []);
-      if (roles.has(EApplicationRole.Comite)) {
+      if (roles.has(ApplicationRole.Comite)) {
         return router.createUrlTree(["/committee"]);
       }
-      if (roles.has(EApplicationRole.Direccion)) {
+      if (roles.has(ApplicationRole.Direccion)) {
         return router.createUrlTree(["/direccion"]);
       }
       return true;

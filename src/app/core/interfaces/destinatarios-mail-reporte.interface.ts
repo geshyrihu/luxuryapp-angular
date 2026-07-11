@@ -1,4 +1,4 @@
-export interface IDestinatariosMailReporte {
+export interface DestinatariosMailReporte {
   nivelPrivacidad: string;
   email: string;
 }

@@ -1,4 +1,4 @@
-export interface IFichaTecnicaActivo {
+export interface FichaTecnicaActivoDto {
   id: any;
   nameMachinery: string;
   ubication: string;

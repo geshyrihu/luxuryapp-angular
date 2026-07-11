@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { VacantesResumenDTO } from "./reclutamiento-card.model";
+import type { VacantesResumenDto } from "./reclutamiento-card.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
@@ -15,7 +15,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   templateUrl: "./reclutamiento-card.html",
   imports: [
     AppIcon,CommonModule],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .text-ds-danger {
@@ -30,7 +30,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 export class ReclutamientoCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);
 
-  resumen = signal<VacantesResumenDTO | null>(null);
+  resumen = signal<VacantesResumenDto | null>(null);
   cargando = signal<boolean>(false);
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class ReclutamientoCard implements OnInit {
 
   private async cargar(): Promise<void> {
     this.cargando.set(true);
-    const data = await this.apiResponseS.onGetItem<VacantesResumenDTO>(
+    const data = await this.apiResponseS.onGetItem<VacantesResumenDto>(
       "direccion-dashboard/reclutamiento-resumen",
       false,
     );

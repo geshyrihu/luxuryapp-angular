@@ -22,9 +22,9 @@ import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
@@ -54,10 +54,10 @@ export class EmployeeLaboralDataForm implements OnInit {
   formB = inject(FormBuilder);
   applicationUserId = input<string>("");
 
-  cb_type_contract = signal<ISelectItem[]>([]);
-  cb_education_level = signal<ISelectItem[]>([]);
-  cb_customer = signal<ISelectItem[]>([]);
-  cb_state: ISelectItem[] = [
+  cb_type_contract = signal<SelectItemDto[]>([]);
+  cb_education_level = signal<SelectItemDto[]>([]);
+  cb_customer = signal<SelectItemDto[]>([]);
+  cb_state: SelectItemDto[] = [
     {
       label: "Activo",
       value: true,
@@ -69,7 +69,7 @@ export class EmployeeLaboralDataForm implements OnInit {
   ];
 
   submitting = signal(false);
-  public AspRole = EApplicationRole;
+  public AspRole = ApplicationRole;
 
   form: FormGroup<IEmployeeLaboralDataForm> = this.formB.group({
     // Person data
@@ -110,7 +110,7 @@ export class EmployeeLaboralDataForm implements OnInit {
     });
 
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.customersActive)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.customersActive)
       .then((response: any) => {
         this.cb_customer.set(response);
       });

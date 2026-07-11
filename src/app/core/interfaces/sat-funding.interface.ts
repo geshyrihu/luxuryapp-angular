@@ -1,6 +1,6 @@
-// Corresponds to the SatFundingDTO in the backend
+// Corresponds to the SatFundingDto in the backend
 
-export interface SatFundingDTO {
+export interface SatFundingDto {
   id: string;
   customerId: string;
   fundingPeriod: any; // Consider creating a frontend enum for EFundingPeriod

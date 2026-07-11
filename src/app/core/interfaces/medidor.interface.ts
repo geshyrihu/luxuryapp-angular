@@ -1,4 +1,4 @@
-export interface IMedidor {
+export interface Medidor {
   id: any;
   customerId: string;
   medidorCategoriaId: any;

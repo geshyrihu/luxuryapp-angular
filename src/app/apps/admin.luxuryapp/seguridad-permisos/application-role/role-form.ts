@@ -32,7 +32,7 @@ import { RoleFormGroup } from "./interfaces/role-form.interface";
 @Component({
   selector: "app-role-form",
   templateUrl: "./role-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

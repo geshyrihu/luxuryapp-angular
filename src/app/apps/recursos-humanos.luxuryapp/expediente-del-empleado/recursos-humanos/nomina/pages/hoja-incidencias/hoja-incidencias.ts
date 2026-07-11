@@ -9,11 +9,11 @@ import {
 } from "@angular/core";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   CeldaGuardarDTO,
   CeldaHojaDTO,
@@ -29,7 +29,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-hoja-incidencias",
   imports: [
-    AppIcon,CommonModule, TooltipModule, LxPopover, WebButtonLabel],
+    AppIcon,CommonModule, LxTooltipDirective, LxPopover, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })
@@ -43,7 +43,7 @@ export default class HojaIncidencias {
   loading = signal(false);
   guardando = signal(false);
   hoja = signal<HojaIncidenciasDTO | null>(null);
-  periodos = signal<ISelectItem[]>([]);
+  periodos = signal<SelectItemDto[]>([]);
   periodoSeleccionado = signal<string>("");
   anioFiltro = signal<number>(new Date().getFullYear());
 
@@ -91,7 +91,7 @@ export default class HojaIncidencias {
     const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
       Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
-    const options: ISelectItem[] = ((result as any) ?? []).map((p: any) => ({
+    const options: SelectItemDto[] = ((result as any) ?? []).map((p: any) => ({
       label: p.quincenaDisplay,
       value: p.id,
     }));

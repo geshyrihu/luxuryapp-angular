@@ -22,7 +22,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
@@ -81,9 +81,9 @@ export class IncidentFormComponent implements OnInit {
     { id: "testigos", label: "👤 Testigos", disabled: !this.id() },
     { id: "suspension", label: "📅 Días de Suspensión", disabled: !this.id() },
   ]);
-  incidentTypes = signal<ISelectItem[]>([]);
-  sanctionTypes = signal<ISelectItem[]>([]);
-  cb_severity = signal<ISelectItem[]>([]);
+  incidentTypes = signal<SelectItemDto[]>([]);
+  sanctionTypes = signal<SelectItemDto[]>([]);
+  cb_severity = signal<SelectItemDto[]>([]);
 
   form!: FormGroup<IIncidentForm>;
 

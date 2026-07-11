@@ -11,8 +11,6 @@ import { StyleClassModule } from "primeng/styleclass";
 
 @Directive({
   selector: "[appStyleClass]",
-
-  imports: [StyleClassModule],
 })
 export class AppStyleClass extends StyleClassBase {
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);

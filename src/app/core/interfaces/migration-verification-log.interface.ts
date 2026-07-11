@@ -1,4 +1,4 @@
-export interface IMigrationVerificationLog {
+export interface MigrationVerificationLog {
   id: string;
   tableName: string;
   sourceCount: number;

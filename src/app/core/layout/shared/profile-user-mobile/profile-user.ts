@@ -31,10 +31,10 @@ import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { MenuService } from "src/app/core/services/menu.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
@@ -53,7 +53,7 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
     IonSelect,
     IonSelectOption,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile-user.html",
 })
 export class ProfileUserMobile {
@@ -64,7 +64,7 @@ export class ProfileUserMobile {
   customerIdS = inject(CustomerIdService);
 
   profileRoute = computed(() =>
-    this.aspRoleS.roleSignal(EApplicationRole.Direccion)()
+    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
       ? "/direccion/profile/update-user-profile"
       : "/profile/update-user-profile",
   );
@@ -73,7 +73,7 @@ export class ProfileUserMobile {
   router = inject(Router);
   private consoleLogger = inject(ConsoleLoggerService);
   public isShow: boolean = false;
-  infoAccountAuthDTO: InfoAccountAuthDTO;
+  infoAccountAuthDTO: InfoAccountAuthDto;
   profileImageUrl: string = "";
 
   // Signal para imagen actualizada
@@ -81,7 +81,7 @@ export class ProfileUserMobile {
     this.profielServiceService.imagenPerfilActualizada$,
     { initialValue: null },
   );
-  cb_customer: ISelectItem[] = [];
+  cb_customer: SelectItemDto[] = [];
   customerId: Signal<string>; // Changed from number to string (Guid)
   customerPhotoPath = this.customerIdS.customerPhotoPath();
 

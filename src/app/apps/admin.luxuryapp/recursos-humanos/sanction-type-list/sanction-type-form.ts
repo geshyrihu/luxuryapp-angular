@@ -18,7 +18,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { SanctionTypeDetailDTO } from "src/app/apps/recursos-humanos.luxuryapp/evaluaciones-de-desempeo/hr-catalog/models/hr-catalog.interfaces";
 import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface";
@@ -26,7 +26,7 @@ import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface
 @Component({
   selector: "app-sanction-type-form",
   templateUrl: "./sanction-type-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -46,7 +46,7 @@ export class SanctionTypeForm implements OnInit {
   submitting = signal(false);
 
   // ? OBLIGATORIO: Cargar selects de enums desde el servicio
-  cb_severity = signal<ISelectItem[]>([]);
+  cb_severity = signal<SelectItemDto[]>([]);
 
   form!: FormGroup<SanctionTypeFormGroup>;
 

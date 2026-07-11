@@ -21,7 +21,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ModuleAppGetDto } from "./interfaces/module-app-get.dto";
 import { ModuleAppFormGroup } from "./interfaces/module-app-form.interface";
@@ -36,7 +36,7 @@ import { ModuleAppFormGroup } from "./interfaces/module-app-form.interface";
     WebButtonLabelSave,
     RouterModule,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./module-app-form.html",
 })
 export class ModuleAppForm {
@@ -45,7 +45,7 @@ export class ModuleAppForm {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   enumSelectS = inject(EnumSelectService);
-  cb_pathParent = signal<ISelectItem[]>([]);
+  cb_pathParent = signal<SelectItemDto[]>([]);
   id: string = "";
   submitting = signal(false);
   cb_rolLevel = toSignal(this.enumSelectS.rolLevel(), { initialValue: [] });
@@ -93,7 +93,7 @@ export class ModuleAppForm {
 
   onLoadModuleApp() {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(Endpoints.ModuleApps.getAll)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.ModuleApps.getAll)
       .then((result) => {
         this.cb_pathParent.set(result);
       });

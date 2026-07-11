@@ -16,7 +16,7 @@ import { HistoryEntry } from "./interfaces/history-entry.interface";
 @Component({
   selector: "app-mini-postman",
   templateUrl: "./mini-postman.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     LxTabs,

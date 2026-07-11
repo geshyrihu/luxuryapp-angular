@@ -41,7 +41,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileListItem,
   ],
   templateUrl: "./module-app-rol-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host ::ng-deep ion-item-divider {

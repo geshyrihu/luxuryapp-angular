@@ -15,7 +15,6 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -23,21 +22,20 @@ import {
   FormHelper,
 } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupCategoryFormGroup } from "./interfaces/task-group-category-form.interface";
 
 @Component({
   selector: "app-task-group-category-form",
   templateUrl: "./task-group-category-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     WebButtonLabelSave,
-    CardModule,
-  ],
+    ],
 })
 export class TaskGroupCategoryForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -48,7 +46,7 @@ export class TaskGroupCategoryForm implements OnInit {
 
   id: string = "";
   submitting = signal(false);
-  cb_departament = signal<ISelectItem[]>([]);
+  cb_departament = signal<SelectItemDto[]>([]);
 
   form: FormGroup<TaskGroupCategoryFormGroup> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),

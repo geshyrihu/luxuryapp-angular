@@ -27,7 +27,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { AuditEntry } from "./interfaces/audit-entry.interface";
 
@@ -50,7 +50,7 @@ import { AuditEntry } from "./interfaces/audit-entry.interface";
     AppIcon,
   ],
   templateUrl: "./audit-entries.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["./audit-entries.scss"],
 })
 export class AuditEntries implements OnInit {
@@ -69,13 +69,13 @@ export class AuditEntries implements OnInit {
   filterEntityControl = new FormControl<string | null>(null);
   filterDateRangeControl = new FormControl<Date[] | null>(null);
 
-  operationOptions: ISelectItem[] = [
+  operationOptions: SelectItemDto[] = [
     { label: "Create", value: "Create" },
     { label: "Update", value: "Update" },
     { label: "Delete", value: "Delete" },
   ];
 
-  entityOptions: ISelectItem[] = [];
+  entityOptions: SelectItemDto[] = [];
 
   readonly globalFilterFields = computed(() => {
     const data = this.data();

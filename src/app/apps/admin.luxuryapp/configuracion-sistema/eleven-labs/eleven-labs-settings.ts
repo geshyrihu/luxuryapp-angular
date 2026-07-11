@@ -26,7 +26,7 @@ import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.i
 @Component({
   selector: "app-eleven-labs-settings",
   templateUrl: "./eleven-labs-settings.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
     ReactiveFormsModule,

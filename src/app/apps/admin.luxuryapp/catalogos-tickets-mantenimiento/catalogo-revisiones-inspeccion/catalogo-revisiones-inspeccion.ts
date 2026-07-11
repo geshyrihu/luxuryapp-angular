@@ -46,7 +46,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomTableFooter,
     DataViewMobile,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./catalogo-revisiones-inspeccion.html",
 })
 export class CatalogoRevisionesInspeccion {

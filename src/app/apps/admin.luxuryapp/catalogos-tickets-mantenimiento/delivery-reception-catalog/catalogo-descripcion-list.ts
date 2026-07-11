@@ -23,7 +23,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CatalogoDescripcionForm } from "src/app/features/operations/properties/entrega-recepcion/catalogo-descripcion-form";
+import { CatalogoDescripcionForm } from "src/app/apps/operations.luxuryapp/properties/entrega-recepcion/catalogo-descripcion-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -33,7 +33,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-catalogo-descripcion-list",
   templateUrl: "./catalogo-descripcion-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,

@@ -24,7 +24,7 @@ import ModalPrestamoAdd from "./modal-prestamo-add/modal-prestamo-add";
 import ModalPrestamoDetalle from "./modal-prestamo-detalle/modal-prestamo-detalle";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -38,7 +38,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileListItem,
     WebButtonIcon,
     WebButtonIconDelete,
-    TooltipModule,
+    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,

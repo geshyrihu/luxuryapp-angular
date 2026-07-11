@@ -17,7 +17,7 @@ import { LoginMobile } from "./login-mobile";
       <app-login-mobile />
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {

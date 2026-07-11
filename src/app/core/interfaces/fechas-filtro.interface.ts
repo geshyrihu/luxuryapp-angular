@@ -1,4 +1,4 @@
-export interface IFechasFiltro {
+export interface FechasFiltro {
   fechaInicio: string;
   fechaFinal: string;
 }

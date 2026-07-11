@@ -19,7 +19,7 @@ import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expe
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 export interface VacationHistoryItemDTO {
@@ -70,7 +70,7 @@ export class VacacionesAdminAuditoria implements OnInit {
   private customerIdS = inject(CustomerIdService);
 
   /** Lista de empleados del cliente en sesión para el selector. */
-  employees = signal<ISelectItem[]>([]);
+  employees = signal<SelectItemDto[]>([]);
 
   /** ID del empleado seleccionado actualmente. */
   selectedEmployeeId = signal<string | null>(null);
@@ -112,8 +112,8 @@ export class VacacionesAdminAuditoria implements OnInit {
     if (!customerId) return;
     this.loadingEmployees.set(true);
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`employee/${customerId}`)
-      .then((response: ISelectItem[]) => this.employees.set(response ?? []))
+      .onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`)
+      .then((response: SelectItemDto[]) => this.employees.set(response ?? []))
       .finally(() => this.loadingEmployees.set(false));
   }
 

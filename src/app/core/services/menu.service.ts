@@ -15,7 +15,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IMenuItem } from "src/app/core/interfaces/menu.model";
+import { MenuItemDto } from "src/app/core/interfaces/menu.model";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 @Injectable({
   providedIn: "root",
@@ -39,7 +39,7 @@ export class MenuService implements OnDestroy {
   // Señal reactiva al token de usuario
   private userTokenSignal = toSignal(this.authS.userToken$);
   // Señales base del estado del menú.
-  private menuItemsSignal = signal<IMenuItem[]>([]);
+  private menuItemsSignal = signal<MenuItemDto[]>([]);
   private menuLoadedSignal = signal(false);
   private menuLoadingSignal = signal(false);
 
@@ -147,7 +147,7 @@ export class MenuService implements OnDestroy {
 
   private async fetchMenuItemsFromApi(
     customerId: string,
-  ): Promise<IMenuItem[]> {
+  ): Promise<MenuItemDto[]> {
     const applicationUserId = this.authS.applicationUserId;
 
     if (!applicationUserId) {
@@ -158,7 +158,7 @@ export class MenuService implements OnDestroy {
     }
 
     const urlApi = Endpoints.MenuItems.byCustomer(customerId);
-    const result = await this.apiResponseS.onGetList<IMenuItem[]>(urlApi);
+    const result = await this.apiResponseS.onGetList<MenuItemDto[]>(urlApi);
 
     if (result === null) {
       this.consoleLogger.error("MenuService: onGetList returned null.");

@@ -8,7 +8,7 @@ import { ProfileCardBase } from "@ui/base/profile-card.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 export { type ProfileAction } from "@ui/base/profile-card.base";
 
@@ -19,7 +19,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
 @Component({
   selector: "app-profile-card",
 
-  imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
+  imports: [CommonModule, ButtonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="profile-card" [class.profile-card-compact]="compact()">
       <!-- Avatar -->
@@ -74,7 +74,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         <div class="profile-actions">
           @for (act of actions(); track act.action) {
             <p-button
-              [pTooltip]="act.label"
+              [lxTooltip]="act.label"
               tooltipPosition="top"
               [rounded]="true"
               [text]="true"

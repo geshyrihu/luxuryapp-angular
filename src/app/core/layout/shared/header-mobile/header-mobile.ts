@@ -19,7 +19,7 @@ import { ProfileUserMobile } from "../profile-user-mobile/profile-user";
     IonButtons,
     IonButton,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./header-mobile.html",
 })
 export class HeaderMobile {

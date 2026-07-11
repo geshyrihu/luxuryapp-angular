@@ -1,4 +1,4 @@
-import { Department, RoleType } from "./application-role.enum";
+import { Department } from "./application-role.enum";
 
 export interface ApplicationRole {
   id: string;
@@ -6,6 +6,6 @@ export interface ApplicationRole {
   normalizedName: string;
   sortOrder: number;
   isActive: boolean;
-  roleType: RoleType;
+  roleType: any;
   departament: Department;
 }

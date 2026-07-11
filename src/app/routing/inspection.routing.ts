@@ -4,7 +4,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "catalog",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/lista-inspecciones/lista-inspecciones").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/lista-inspecciones/lista-inspecciones").then(
         (m) => m.ListaInspecciones,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/detalles-inspeccion/detalles-inspeccion").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/detalles-inspeccion/detalles-inspeccion").then(
         (m) => m.DetallesInspeccion,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "inspection-report-list",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/lista-reportes-inspeccion/lista-informe-inspeccion").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/lista-reportes-inspeccion/lista-informe-inspeccion").then(
         (m) => m.ListaInformeInspeccion,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "my-inspection-list",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-lista").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-lista").then(
         (m) => m.MisInspeccionesLista,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "my-inspection",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-ejecutar").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],
@@ -64,7 +64,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "result/:id",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/resultado-inspeccion/resultado-inspeccion").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/resultado-inspeccion/resultado-inspeccion").then(
         (m) => m.ResultadoInspeccion,
       ),
     canActivate: [authGuard],

@@ -15,7 +15,7 @@ const DEFAULT_ACTIONS: ProfileAction[] = [
 
 /**
  * Base compartida de ProfileCard (API + avatar).
- *  - web:     `app-profile-card` (p-tag + p-button + pTooltip)
+ *  - web:     `app-profile-card` (p-tag + p-button + lxTooltip)
  *  - mobile:  `ili-profile-card` (badge span, acciones táctiles sin tooltip)
  *  - wrapper: `lx-profile-card`  (auto runtime)
  */

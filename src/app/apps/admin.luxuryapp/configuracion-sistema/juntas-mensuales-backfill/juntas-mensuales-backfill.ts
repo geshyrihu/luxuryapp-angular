@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -18,19 +17,18 @@ import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-juntas-mensuales-backfill",
   templateUrl: "./juntas-mensuales-backfill.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconConfirm,
-    TooltipModule,
+    LxTooltipDirective,
     CommonModule,
     TableModule,
     LxTag,
-    CardModule,
     WebButtonLabel,
 
     DatePipe,

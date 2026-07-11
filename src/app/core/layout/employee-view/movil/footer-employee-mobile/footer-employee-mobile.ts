@@ -25,7 +25,7 @@ import {
 } from "ionicons/icons";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 
@@ -78,7 +78,7 @@ export class FooterEmployeeMobile implements OnInit {
   }
 
   setFooterItems() {
-    if (this.aspRoleS.hasRole(EApplicationRole.Proveedor)) {
+    if (this.aspRoleS.hasRole(ApplicationRole.Proveedor)) {
       this.footerItems.set([
         {
           label: "Resumen",
@@ -92,7 +92,7 @@ export class FooterEmployeeMobile implements OnInit {
           showNotification: true,
         },
       ]);
-    } else if (this.aspRoleS.hasRole(EApplicationRole.SuperUsuario)) {
+    } else if (this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) {
       this.footerItems.set([
         {
           label: "Inicio",

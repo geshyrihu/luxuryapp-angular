@@ -34,7 +34,7 @@ export const appRoutes: Routes = [
   {
     path: "web",
     loadChildren: () =>
-      import("src/app/features/web/web.routing").then((m) => m.webRoutes),
+      import("src/app/apps/web.luxuryapp/web.routing").then((m) => m.webRoutes),
     data: { title: "Inicio", breadcrumb: "Inicio" },
   },
   {
@@ -91,7 +91,7 @@ export const appRoutes: Routes = [
     component: LayoutCommittee,
     canActivate: [authGuard, committeeGuard],
     loadChildren: () =>
-      import("src/app/features/operations/meetings/committee/committee.routing").then(
+      import("src/app/apps/operations.luxuryapp/meetings/committee/committee.routing").then(
         (m) => m.committeeRoutes,
       ),
   },
@@ -102,7 +102,7 @@ export const appRoutes: Routes = [
     component: LayoutDireccion,
     canActivate: [authGuard, direccionGuard],
     loadChildren: () =>
-      import("src/app/features/operations/direccion/direccion.routing").then(
+      import("src/app/apps/direccion.luxuryapp/direccion.routing").then(
         (m) => m.direccionRoutes,
       ),
   },

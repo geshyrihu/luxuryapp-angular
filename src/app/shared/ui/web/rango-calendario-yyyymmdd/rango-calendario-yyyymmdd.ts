@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
-import { IFechasFiltro } from "src/app/core/interfaces/fechas-filtro.interface";
+import { FechasFiltro } from "src/app/core/interfaces/fechas-filtro.interface";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 
@@ -47,7 +47,7 @@ export class RangoCalendarioyyyymmdd implements OnInit {
   onSendDateRange(fechaInicio: any, fechaFinal: any) {
     this.rangoCalendarioService.setFechas(fechaInicio, fechaFinal);
     if (fechaInicio != null && fechaFinal != null) {
-      const fechasFiltro: IFechasFiltro = {
+      const fechasFiltro: FechasFiltro = {
         fechaInicio: this.dateS.getDateFormat(fechaInicio),
         fechaFinal: this.dateS.getDateFormat(fechaFinal),
       };

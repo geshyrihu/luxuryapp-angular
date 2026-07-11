@@ -13,7 +13,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DrawerModule } from "primeng/drawer";
 import { OverlayBadge } from "primeng/overlaybadge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -25,12 +25,12 @@ import { ROUTES } from "src/app/routing/route-paths";
     AppIcon,
     OverlayBadge,
     DrawerModule,
-    TooltipModule,
+    LxTooltipDirective,
     ScrollPanelModule,
     WebButtonLabel,
   ],
   templateUrl: "./notifications-gadget.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./notifications-gadget.scss",
 })
 export class NotificationsGadget implements OnInit {

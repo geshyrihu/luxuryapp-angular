@@ -1,0 +1,115 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="folio" style="width: 5rem">
+        FOLIO <p-sorticon field="folio" />
+      </th>
+      <th pSortableColumn="requestDateFilter" style="width: 8rem">
+        SOLICITUD <p-sorticon field="requestDateFilter" />
+      </th>
+      <th style="width: 12rem">CLIENTE</th>
+      <th pSortableColumn="applicationRoleName" style="width: 10rem">
+        PUESTO <p-sorticon field="applicationRoleName" />
+      </th>
+      <th style="width: 8rem">SUELDO</th>
+      <th style="width: 5rem">DIAS</th>
+      <th pSortableColumn="status" style="width: 8rem">
+        ESTATUS <p-sorticon field="status" />
+      </th>
+      <th style="width: 8rem">CANDIDATO</th>
+      <th style="width: 6rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td class="text-center font-semibold">{{ item.folio }}</td>
+      <td>{{ item.requestDate }}</td>
+      <td
+        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        [title]="item.customer"
+      >
+        {{ item.customer }}
+      </td>
+      <td
+        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        [title]="item.applicationRoleName"
+      >
+        {{ item.applicationRoleName }}
+      </td>
+      <td class="text-right">
+        {{ item.sueldoMensualLibre | currency:'MXN':'symbol-narrow':'1.0-0' }}
+      </td>
+      <td class="text-center">{{ item.daysPassed }}</td>
+      <td class="text-center">
+        <lx-tag [value]="item.status" [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'" />
+      </td>
+      <td
+        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        [title]="item.nameCandidate"
+      >
+        {{ item.nameCandidate }}
+      </td>
+      <td class="no-print">
+        <div class="flex gap-1">
+          <iw-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <iw-button-item
+            iconClass="mdi:information"
+            lxTooltip="Detalle del puesto"
+            tooltipPosition="top"
+            (clicked)="onModalDetail(item.workPositionId)"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="9" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+<div
+        start
+        class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
+      >
+        <app-icon icon="mdi:briefcase-outline" class="text-xl text-green-600" />
+      </div>
+      
+        <h3>{{ item.applicationRoleName }}</h3>
+        <p>{{ item.customer }} é {{ item.requestDate }}</p>
+        <p>{{ item.status }}</p>
+      
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+</ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

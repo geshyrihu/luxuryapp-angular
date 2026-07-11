@@ -21,7 +21,7 @@ import { firstValueFrom } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
 import { IEmployeeBankDataForm } from "../models/employee-bank-data.interface";
@@ -49,8 +49,8 @@ export class EmployeeBankDataForm implements OnInit {
 
   id = this.config.data?.id || "";
   submitting = signal(false);
-  cbBanks = signal<ISelectItem[]>([]);
-  cbRelations = signal<ISelectItem[]>([]);
+  cbBanks = signal<SelectItemDto[]>([]);
+  cbRelations = signal<SelectItemDto[]>([]);
 
   form = new FormGroup({
     id: new FormControl<string>(this.id, { nonNullable: true }),
@@ -96,7 +96,7 @@ export class EmployeeBankDataForm implements OnInit {
 
   async onLoadCombos() {
     const [banks, relations] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.bank,
       ),
       firstValueFrom(this.enumSelectS.relationEmployee()),

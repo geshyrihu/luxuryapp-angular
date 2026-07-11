@@ -37,11 +37,6 @@
               "src/onesignal/OneSignalSDKWorker.js",
               {
                 "glob": "**/*",
-                "input": "assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "**/*",
                 "input": "public"
               },
               {

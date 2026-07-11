@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 export interface Territory {
   id: string;
@@ -25,7 +25,7 @@ export interface Territory {
 @Component({
   selector: "app-territory-map",
 
-  imports: [CommonModule, TagModule, TooltipModule, AppIcon],
+  imports: [CommonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="tm-root">
       <!-- Header -->
@@ -84,7 +84,7 @@ export interface Territory {
                   <div
                     class="tm-owner-avatar"
                     [style.background]="avatarBg(t)"
-                    [pTooltip]="t.owner ?? ''"
+                    [lxTooltip]="t.owner ?? ''"
                     tooltipPosition="top"
                   >
                     {{ ownerInitials(t) }}

@@ -16,7 +16,7 @@ import { MenuService } from "src/app/core/services/menu.service";
 import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 import { FooterEmployeeMobile } from "../footer-employee-mobile/footer-employee-mobile";
 import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
-import { PanicButton } from "src/app/features/operations/panic-alert/components/panic-button/panic-button";
+import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/components/panic-button/panic-button";
 @Component({
   selector: "app-view-employee-mobile",
   imports: [
@@ -34,7 +34,7 @@ import { PanicButton } from "src/app/features/operations/panic-alert/components/
     PanicButton,
   ],
   templateUrl: "./view-employee-mobile.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {

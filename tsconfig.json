@@ -3,6 +3,7 @@
   // Evita recompilar automáticamente cuando se guardan archivos. Útil en desarrollo.
   "compileOnSave": true,
 
+  "exclude": ["**/*.spec.ts"],
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

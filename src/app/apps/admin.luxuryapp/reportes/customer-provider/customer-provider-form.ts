@@ -19,7 +19,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomerProviderFormGroup } from "./interfaces/customer-provider-form.interface";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -27,7 +27,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-customer-provider-form",
   imports: [
     AppIcon,ReactiveFormsModule, InputAutocomplete, WebButtonLabelSave],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-provider-form.html",
 })
 export class CustomerProviderForm implements OnInit {
@@ -40,8 +40,8 @@ export class CustomerProviderForm implements OnInit {
   id: string = "";
 
   // Signals para ComboBoxes
-  cb_providers = signal<ISelectItem[]>([]);
-  cb_categories = signal<ISelectItem[]>([]);
+  cb_providers = signal<SelectItemDto[]>([]);
+  cb_categories = signal<SelectItemDto[]>([]);
 
   form: FormGroup<CustomerProviderFormGroup> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
@@ -100,22 +100,22 @@ export class CustomerProviderForm implements OnInit {
 
   async onLoadSelectItem(): Promise<void> {
     const [providers, categories] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         `providers/${this.customerIdS.customerId()}`,
       ),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(`categories`),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(`categories`),
     ]);
 
-    this.cb_providers.set(providers as ISelectItem[]);
-    this.cb_categories.set(categories as ISelectItem[]);
+    this.cb_providers.set(providers as SelectItemDto[]);
+    this.cb_categories.set(categories as SelectItemDto[]);
   }
 
-  saveProviderId = (item: ISelectItem) =>
+  saveProviderId = (item: SelectItemDto) =>
     this.form.patchValue({
       providerId: item?.value,
       providerName: item?.label,
     });
-  saveCategoryId = (item: ISelectItem) =>
+  saveCategoryId = (item: SelectItemDto) =>
     this.form.patchValue({
       categoryId: item?.value,
       categoryName: item?.label,

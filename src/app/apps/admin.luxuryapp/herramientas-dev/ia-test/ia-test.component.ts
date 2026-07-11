@@ -27,7 +27,7 @@ import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
     AppIcon,
   ],
   templateUrl: "./ia-test.component.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./ia-test.component.css",
 })
 export default class IaTestComponent {

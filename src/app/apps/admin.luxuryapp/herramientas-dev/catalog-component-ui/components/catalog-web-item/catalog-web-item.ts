@@ -69,7 +69,7 @@ import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 const WEB_ITEM_LABELS: Record<string, string> = {
   accordion: "Accordion",
@@ -146,7 +146,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     TagModule,
     ToggleSwitchModule,
     ToolbarModule,
-    TooltipModule,
+    LxTooltipDirective,
     FullCalendarModule,
     AppIcon,
     WebButtonLabel,
@@ -849,18 +849,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             <div class="flex gap-3">
               <p-button
                 label="Hover me"
-                pTooltip="Tooltip arriba"
+                lxTooltip="Tooltip arriba"
                 tooltipPosition="top"
               />
               <p-button
                 label="Hover me"
-                pTooltip="Tooltip derecha"
+                lxTooltip="Tooltip derecha"
                 severity="secondary"
                 tooltipPosition="right"
               />
               <p-button
                 label="Hover me"
-                pTooltip="Tooltip abajo"
+                lxTooltip="Tooltip abajo"
                 severity="info"
                 tooltipPosition="bottom"
               />
@@ -1092,7 +1092,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogWebItem {

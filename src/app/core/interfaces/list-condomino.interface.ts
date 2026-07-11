@@ -1,4 +1,4 @@
-export interface IOwner {
+export interface Owner {
   id: any;
   habitant: string;
   extencion: string;

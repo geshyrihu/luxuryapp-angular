@@ -1,0 +1,445 @@
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  class="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="equipoClasificacion"
+>
+  <ng-template #caption>
+    <div class="flex align-items-end flex-wrap gap-2 no-print mb-4 mt-1">
+      <custom-input-text-signal
+        [control]="fechaControl"
+        type="month"
+        customClass="w-15rem"
+        (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
+        lxTooltip="Seleccionar Mes y Aóo"
+        tooltipPosition="top"
+        [horizontal]="false"
+        [noMargin]="true"
+      />
+      <div class="flex flex-wrap gap-1">
+        @for (item of filtroEquipos; track item) {
+        <iw-button
+          [lxTooltip]="'Ver ' + item.nombre"
+          tooltipPosition="bottom"
+          [iconClass]="item.icon"
+          variant="outlined"
+          [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
+          (clicked)="onReloadOrdenes(item.id, item.nombre)"
+        />
+        }
+      </div>
+      <il-button
+        iconClass="mdi:file-document-outline"
+        label="Reporte de órdenes"
+        (click)="onNavigateToReport()"
+        variant="outlined"
+      />
+      <il-button
+        iconClass="mdi:table"
+        label="Reporte por categoria"
+        (click)="onNavigateToReportTabla()"
+        variant="outlined"
+      />
+      <div class="ml-auto">
+        <primeng-custom-caption
+          [title]="filtroEquiposValue | titlecase"
+          (add)="
+        onEdit({
+          id: 0,
+          title: 'Nuevo Registro',
+          machineryId: 0,
+          providerId: 0
+        })
+      "
+          [dt]="dt"
+          [noMargin]="true"
+          [noPadding]="true"
+        />
+      </div>
+    </div>
+    <div
+      class="flex align-items-center justify-content-between text-sm text-color-secondary pt-2 border-top-1 border-200"
+    >
+      Servicios Totales: {{ dataSignal() ? dataSignal().length : 0 }} .
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10" pSortableColumn="maintenanceCalendarId">
+        CL-ID
+        <p-sorticon field="maintenanceCalendarId" class="no-print" />
+      </th>
+      <th class="table-col-20" pSortableColumn="machinery">
+        Equipo
+        <p-sorticon field="machinery" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="typeMaintance">
+        Servicio
+        <p-sorticon field="typeMaintance" class="no-print" />
+      </th>
+      <th class="table-col-15" pSortableColumn="provider">
+        Proveedor
+        <p-sorticon field="provider" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="status">
+        Estatus
+        <p-sorticon field="status" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="serviceOrderImg.length">
+        Fotos
+        <p-sorticon field="serviceOrderImg.length" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="serviceOrderDocument.length">
+        Reporte
+        <p-sorticon field="serviceOrderDocument.length" class="no-print" />
+      </th>
+      <th class="table-col-15 no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr>
+      <td colspan="8" class="font-bold text-sm surface-100 px-3 py-2">
+        {{ item.equipoClasificacion || 'Sin Categoróa' }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <!-- Esto mostraré los óltimos 5 dógitos -->
+        {{ item.maintenanceCalendarId | slice:-5 }}
+      </td>
+      <!-- {{ item.machineryId }} | -->
+      <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
+      <td>
+        <div class="cursor-pointer font-center">
+          <lx-tag
+            [value]="item.typeMaintanceFilter"
+            class="ml-auto"
+            (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
+            [severity]="
+              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
+              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
+              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
+            "
+          />
+        </div>
+      </td>
+      <td>{{ item.provider }}</td>
+      <td>
+        <lx-tag
+          [value]="getStatusLabel(item.status)"
+          [severity]="getBadgeSeverity(item.status)"
+        />
+      </td>
+      <td class="text-center">
+        <lx-tag
+          (click)="onModalFotos(item.id)"
+          [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
+          [value]="item.serviceOrderImg.length"
+        />
+      </td>
+      <td class="text-center">
+        <lx-tag
+          (click)="onModalRpeorteProveedor(item.id)"
+          [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
+          [value]="item.serviceOrderDocument.length"
+        />
+      </td>
+      <td class="no-print">
+        <div class="flex">
+          <iw-button-item
+            iconClass="mdi:printer"
+            lxTooltip="Imprimir soporte"
+            tooltipPosition="top"
+            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+            variant="outlined"
+          />
+
+          <iw-button-item
+            iconClass="mdi:image"
+            lxTooltip="Cargar imagen"
+            tooltipPosition="top"
+            (clicked)="onModalFormUploadImg(item.id)"
+            variant="outlined"
+          />
+
+          <iw-button-item
+            iconClass="mdi:paperclip"
+            lxTooltip="Cargar documentos"
+            tooltipPosition="top"
+            (clicked)="onModalFormUploadDoc(item.id)"
+            variant="outlined"
+          />
+          <iw-button-edit
+            (clicked)="onEdit({
+                  id: item.id,
+                  title: 'Editar',
+                  machineryId: item.machineryId,
+                  providerId: item.providerId
+                })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
+</p-table>
+
+<!--📲INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="
+    onEdit({
+      id: 0,
+      title: 'Nuevo Registro',
+      machineryId: 0,
+      providerId: 0
+    })
+  "
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-container customFilters>
+    <!-- tu bloque aqué -->
+    <div class="card-body p-0">
+      <!-- Sección Tútulo y Fecha -->
+      <div class="flex flex-column mb-3">
+        <div
+          class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+        >
+          <span class="font-bold text-lg mb-1">
+            {{ filtroEquiposValue | titlecase }}
+          </span>
+          <custom-input-text-signal
+            [control]="fechaControl"
+            name="fecha"
+            type="month"
+            customClass="w-full"
+            (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
+            lxTooltip="Seleccionar Mes y Aóo"
+            tooltipPosition="top"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      <!-- Segmento de Filtros (Scrollable) -->
+      <div class="flex gap-2 mb-3 bg-surface-100 p-1 border-round">
+        @for (item of filtroEquipos; track item) {
+        <button class="p-button p-button-text p-button-sm flex-1">
+          <app-icon [icon]="item.icon" class="text-xl mb-1" />
+          <span class="text-xs">{{ item.nombre | titlecase }}</span>
+        </button>
+        }
+      </div>
+
+      <!-- Botún Reporte -->
+      <div class="mb-2">
+        <ili-button-item
+          iconName="document-text-outline"
+          label="Reporte de órdenes"
+          (click)="onNavigateToReport()"
+          variant="outlined"
+          fullWidth="true"
+        />
+      </div>
+      <div class="mb-2">
+        <ili-button-item
+          iconName="grid-outline"
+          label="Reporte por categoria"
+          (click)="onNavigateToReportTabla()"
+          variant="outlined"
+          fullWidth="true"
+        />
+      </div>
+
+      <!-- Contador Totales -->
+      <div class="flex align-items-center justify-content-end px-2 pb-2">
+        <small class="text-color-secondary"
+          >Servicios Totales:
+          <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong></small
+        >
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Lista de órdenes de servicio en formato de tarjeta -->
+  <ng-template #listItemTemplate let-item>
+    <div
+      class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center"
+    >
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-warning-light, #fef3c7);
+        "
+      >
+        <app-icon
+          icon="mdi:wrench-outline"
+          style="font-size: 1.1rem; color: var(--ds-warning)"
+        />
+      </div>
+      <span class="">
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h2 class="font-bold m-0 text-base text-wrap">
+            {{ item.machineryId }}- {{ item.machinery }}
+          </h2>
+        </div>
+        <p class="mb-1 text-color-secondary text-sm">
+          CL-ID: {{ item.maintenanceCalendarId }}
+        </p>
+        <p class="mb-1 text-sm">
+          <lx-tag
+            [value]="item.typeMaintanceFilter"
+            [severity]="
+              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
+              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
+              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
+            "
+          />
+          <span class="ml-2 text-500">({{ item.provider }})</span>
+        </p>
+
+        <div class="flex flex-wrap mt-2">
+          <lx-tag
+            [value]="getStatusLabel(item.status)"
+            [severity]="getBadgeSeverity(item.status)"
+          />
+          <lx-tag
+            (click)="onModalFotos(item.id)"
+            [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
+            [value]="item.serviceOrderImg.length + ' Fotos'"
+          />
+          <lx-tag
+            (click)="onModalRpeorteProveedor(item.id)"
+            [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
+            [value]="item.serviceOrderDocument.length + ' Reportes'"
+          />
+        </div>
+      </span>
+
+      <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-item
+              iconName="print-outline"
+              label="Imprimir soporte"
+              [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+            />
+
+            <ili-button-item
+              iconName="image-outline"
+              label="Cargar imagen"
+              (clicked)="onModalFormUploadImg(item.id)"
+            />
+
+            <ili-button-item
+              iconName="ellipsis-horizontal-outline"
+              label="Cargar documentos"
+              (clicked)="onModalFormUploadDoc(item.id)"
+              variant="outlined"
+            />
+            <ili-button-edit
+              (clicked)="onEdit({
+                    id: item.id,
+                    title: 'Editar',
+                    machineryId: item.machineryId,
+                    providerId: item.providerId
+                    })"
+              label="Editar"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </ili-action-menu>
+    </div>
+  </ng-template>
+</app-data-view-mobile>
+
+<style>
+  @media print {
+    /* 1. Reset Global Layout */
+    body {
+      visibility: visible !important;
+      background-color: white !important;
+      color: black !important;
+    }
+
+    /* Ocultar todo lo que no queremos imprimir */
+    app-topbar,
+    app-footer,
+    app-sidebar,
+    .layout-topbar,
+    .layout-sidebar,
+    .layout-footer {
+      display: none !important;
+    }
+
+    /* 2. Forzar visualización de la Tabla */
+    .custom-table {
+      display: block !important;
+      visibility: visible !important;
+      width: 100% !important;
+    }
+
+    /* Resetear las clases de ocultamiento para impresión */
+    .hidden.md\:block {
+      display: block !important;
+    }
+
+    /* 3. Ocultar Vista Mívil */
+    app-data-view-mobile {
+      display: none !important;
+    }
+
+    /* 4. Limpieza de UI de la Tabla */
+    .p-datatable-header,
+    /* El Caption con filtros */
+    .p-paginator-bottom,
+    /* Paginación */
+    .no-print {
+      /* Clase utilitaria para columnas específicas */
+      display: none !important;
+    }
+
+    /* Ajustes de Tabla */
+    .p-datatable table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+    }
+
+    .p-datatable th,
+    .p-datatable td {
+      border: 1px solid #ddd !important;
+      padding: 4px !important;
+      font-size: 10px !important;
+      /* Reducir fuente para que quepa */
+    }
+
+    /* Ajustes de Badges/Tags para que se vea el color */
+    .p-tag {
+      border: 1px solid #000;
+      color: black !important;
+      font-weight: bold;
+    }
+
+    /* Configuración de Página */
+    @page {
+      size: landscape;
+      /* Sugerir horizontal para tablas anchas */
+      margin: 1cm;
+    }
+  }
+</style>

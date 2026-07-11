@@ -7,7 +7,7 @@ import {
 import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 /**
  * AppThemeSwitcher — Toggle que aplica/remueve `body.theme-dark`.
@@ -16,10 +16,10 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-theme-switcher",
 
-  imports: [CommonModule, ButtonModule, TooltipModule, AppIcon],
+  imports: [CommonModule, ButtonModule, LxTooltipDirective, AppIcon],
   template: `
     <p-button
-      [pTooltip]="
+      [lxTooltip]="
         theme() === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
       "
       tooltipPosition="bottom"

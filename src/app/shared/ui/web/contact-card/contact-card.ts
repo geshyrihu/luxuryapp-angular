@@ -4,7 +4,7 @@ import { ContactCardBase } from "@ui/base/contact-card.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 export { type ContactStatus } from "@ui/base/contact-card.base";
 
@@ -15,7 +15,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
 @Component({
   selector: "app-contact-card",
 
-  imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
+  imports: [CommonModule, ButtonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div
       class="contact-card"
@@ -59,7 +59,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         @if (email()) {
           <a
             [href]="'mailto:' + email()"
-            pTooltip="Enviar email"
+            lxTooltip="Enviar email"
             tooltipPosition="top"
             class="contact-action-btn"
             (click)="$event.stopPropagation()"
@@ -70,7 +70,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         @if (phone()) {
           <a
             [href]="'tel:' + phone()"
-            pTooltip="Llamar"
+            lxTooltip="Llamar"
             tooltipPosition="top"
             class="contact-action-btn"
             (click)="$event.stopPropagation()"
@@ -79,7 +79,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
           </a>
         }
         <button
-          pTooltip="Agendar reunión"
+          lxTooltip="Agendar reunión"
           tooltipPosition="top"
           class="contact-action-btn"
           (click)="$event.stopPropagation(); meetingClick.emit()"

@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
-import { EApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../enums/asp-net-roles.enum';
 import { AuthService } from '../services/auth.service';
 import { direccionGuard } from './direccion.guard';
 
@@ -42,7 +42,7 @@ describe('direccionGuard', () => {
     TestBed.runInInjectionContext(() => direccionGuard(mockRoute, mockState));
 
   it('should allow access when user has Direccion role', async () => {
-    authServiceMock.userToken$.next({ roles: [EApplicationRole.Direccion] });
+    authServiceMock.userToken$.next({ roles: [ApplicationRole.Direccion] });
     const result = await firstValueFrom(
       runGuard() as Observable<boolean | UrlTree>,
     );
@@ -50,7 +50,7 @@ describe('direccionGuard', () => {
   });
 
   it('should redirect to unauthorized when user does not have Direccion role', async () => {
-    authServiceMock.userToken$.next({ roles: [EApplicationRole.Comite] });
+    authServiceMock.userToken$.next({ roles: [ApplicationRole.Comite] });
     const result = await firstValueFrom(
       runGuard() as Observable<boolean | UrlTree>,
     );

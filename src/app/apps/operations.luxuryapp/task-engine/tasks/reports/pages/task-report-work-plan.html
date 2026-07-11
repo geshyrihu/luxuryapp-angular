@@ -1,0 +1,181 @@
+@if (dataSignal().length > 0) {
+<p-table
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table hidden md:block"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #caption>
+    <div class="grid">
+      <div class="col-12 lg:col-7">
+        <primeng-custom-caption title="Plan de Trabajo" [dt]="dt" />
+      </div>
+      <div class="col-12 lg:col-2">
+        <il-button
+          iconClass="mdi:eye-outline"
+          label="Vista Previa"
+          variant="outlined"
+          customClass="w-full"
+          (clicked)="onPreviewClicked()"
+        />
+      </div>
+      <div class="col-12 lg:col-3">
+        <custom-input-select-signal
+          [data]="cb_assignee"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccione un asignado"
+          [control]="assigneeControl"
+          (selectionChange)="onResponsibleChange($event.value)"
+          [horizontal]="false"
+          customClass="w-full"
+          [filter]="true"
+        />
+      </div>
+    </div>
+    <!-- end col -->
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-6 text-sm">FOLIO</th>
+      <th class="table-col-30 text-sm" pSortableColumn="responsibleArea">
+        SOLICITUD
+        <p-sorticon field="responsibleArea" />
+      </th>
+      <th class="text-sm">EVIDENCIA</th>
+      <th class="table-col-8 text-sm" pSortableColumn="priority">
+        PRIORIDAD
+        <p-sorticon field="priority" />
+      </th>
+      <th class="table-col-8 text-sm" pSortableColumn="responsableNombre">
+        ASIGNADO A
+        <p-sorticon field="responsableNombre" />
+      </th>
+      <th
+        class="table-col-10"
+        class="text-sm"
+        pSortableColumn="scheduledAtFilter"
+      >
+        PROGRAMADO
+        <p-sorticon field="scheduledAtFilter" />
+      </th>
+      <th class="table-col-10 text-sm" pSortableColumn="daysDifference">
+        DIAS
+        <p-sorticon field="daysDifference" />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>
+        <strong class="font-bold text-base">{{ item.title }}</strong>
+        <p class="text-sm">{{ item.description }}</p>
+      </td>
+      <td class="text-center">
+        <div class="flex justify-content-center align-items-center">
+          @if (item.beforeWork) {
+          <app-image
+            [src]="
+                  item.beforeWork
+                    ? item.beforeWork
+                    : 'assets/images/default-avatar.png'
+                "
+            alt="."
+            width="40"
+            styleClass="mr-2 border-1 border-red-500 border-round"
+            [preview]="true"
+          ></app-image>
+          }
+        </div>
+      </td>
+      <td class="text-center">
+        @if (item.priority === 'Alta') {
+        <app-icon
+          [icon]="'mdi:star-outline'"
+          class="text-md text-primary-500 cursor-pointer"
+          (click)="onUpdatePriority(item.id)"
+        />
+        } @if (item.priority === 'Baja') {
+        <app-icon
+          [icon]="'mdi:star-outline'"
+          class="text-md text-primary-500 cursor-pointer"
+          (click)="onUpdatePriority(item.id)"
+        />
+        }
+      </td>
+      <td class="text-center">
+        @if (item.assigneeId) {
+        <app-avatar
+          (onClick)="onCardEmployee(item.assigneeId)"
+          [image]="
+                $any(item.assigneeImg)
+                  ? item.assigneeImg
+                  : 'assets/images/default-avatar.png'
+              "
+          alt="."
+          size="large"
+          styleClass="cursor-pointer"
+        />
+        }
+      </td>
+      <td>{{ item.scheduledAt }}</td>
+      <td class="text-center">
+        <p>
+          <strong class="font-bold"> {{ item.daysDifference }} </strong>
+        </p>
+      </td>
+      <!-- Opciones -->
+      <td class="text-center">
+        <div class="flex justify-content-center">
+          <!-- <custom-btn-follow-up
+            [id]="item.id"
+            [count]="item.ticketMessageFollowUp"
+            (followUpCompleted)="onLoadData()"
+          />
+          <lx-split-button
+            icon="mdi:dots-vertical"
+            lxTooltip="Opciones"
+            [model]="getMenuItems(item)"
+          ></lx-split-button> -->
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- 📱 MOBILE -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [dt]="dt"
+>
+  <div customFilters>
+    <custom-input-select-signal
+      [data]="cb_assignee"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Seleccione un asignado"
+      [control]="assigneeControl"
+      (selectionChange)="onResponsibleChange($event.value)"
+      [horizontal]="false"
+      customClass="w-full"
+      [filter]="true"
+    />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="font-semibold m-0 text-color">{{ item.folio }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.responsibleArea }} · {{ item.responsableNombre }}</p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+}

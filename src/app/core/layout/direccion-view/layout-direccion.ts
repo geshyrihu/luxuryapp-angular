@@ -17,7 +17,7 @@ import { ViewDireccionMobile } from "./movil/view-direccion-mobile/view-direccio
   selector: "app-layout-direccion",
   templateUrl: "./layout-direccion.html",
   imports: [ViewDireccionMonitor, ViewDireccionMobile],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SignalRService, OneSignalService],
 })
 export class LayoutDireccion implements OnInit {

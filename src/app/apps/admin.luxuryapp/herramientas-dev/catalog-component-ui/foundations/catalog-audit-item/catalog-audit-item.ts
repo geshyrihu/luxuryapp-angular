@@ -9,7 +9,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { CardModule } from "primeng/card";
 import { CheckboxModule } from "primeng/checkbox";
 import { resolveToIconify } from "src/app/shared/utils/icon-mapping";
 
@@ -20,7 +19,7 @@ const AUDIT_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-audit-item",
-  imports: [CommonModule, FormsModule, CardModule, CheckboxModule, AppIcon],
+  imports: [CommonModule, FormsModule, CheckboxModule, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -69,7 +68,7 @@ const AUDIT_LABELS: Record<string, string> = {
       }
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogAuditItem {

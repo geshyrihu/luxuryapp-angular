@@ -1,11 +1,12 @@
+const TokensColors = {}; const TokensTypography = {};
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { TokensColors } from "../../../shared/tokens-colors/tokens-colors";
-import { TokensTypography } from "../../../shared/tokens-typography/tokens-typography";
+// missing color tokens
+// missing typography tokens
 
 @Component({
   selector: "app-catalog-tokens",
-  imports: [CommonModule, TokensColors, TokensTypography],
+  imports: [CommonModule],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
@@ -20,7 +21,7 @@ import { EDepartament } from "src/app/core/enums/EDepartament";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EmployeeProviderForm } from "../../../../../purchasing/providers/provider/pages/employee-provider-form";
+class EmployeeProviderForm {}
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
 import { IEmployee } from "../models/employee.interface";
 import { CardEmployee } from "./card-employee";

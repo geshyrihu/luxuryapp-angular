@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-06-23 (actualizado 2026-06-27)
 **Alcance:** `src/styles/` + `catalog-component-ui/`
-**Framework:** Angular 21 (standalone) + PrimeNG 21 + Ionic 8
+**Framework:** Angular 22 (standalone) + PrimeNG 22 + Ionic 8
 
 ---
 

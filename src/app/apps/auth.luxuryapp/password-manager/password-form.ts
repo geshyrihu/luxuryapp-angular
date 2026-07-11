@@ -22,23 +22,18 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { CredentialDetailDTO } from "./interfaces/password.dto";
+import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
+import { CredentialFormGroup } from "./interfaces/password-form.interface";
 
 /**
  * Formulario para crear o editar credenciales de servicios operativos.
  * Solo credenciales de trabajo, no personales.
  */
-interface ICredentialForm {
-  platformName: FormControl<string>;
-  username: FormControl<string>;
-  password: FormControl<string>;
-  subscriptionExpirationDate: FormControl<string | null>;
-}
 
 @Component({
   selector: "app-password-form",
   templateUrl: "./password-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -63,7 +58,7 @@ export class PasswordForm implements OnInit {
     this.isMobile.set(window.innerWidth <= 768);
   }
 
-  form: FormGroup<ICredentialForm> = this.fb.group({
+  form: FormGroup<CredentialFormGroup> = this.fb.group({
     platformName: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(100)],
@@ -85,7 +80,7 @@ export class PasswordForm implements OnInit {
   }
 
   async loadData() {
-    const res = await this.apiS.onGetItem<CredentialDetailDTO>(
+    const res = await this.apiS.onGetItem<CredentialDetailDto>(
       Endpoints.PasswordManager.Credentials.getById(this.id!),
     );
     if (res) {

@@ -1,0 +1,89 @@
+﻿<div class="grid">
+  <div class="col-12 md:col-3">
+    <div class="mb-3">
+      <label for="systemSelect">Sistema</label>
+      <custom-input-select-signal
+        [data]="systemOptions()"
+        optionLabel="system"
+        optionValue="system"
+        placeholder="Mostrar todos"
+        (selectionChange)="onFilterForSystem($event.value)"
+        [id]="'systemSelect'"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+@for (system of filteredDataSignal(); track system) {
+<div>
+  <div class="surface-100 p-3 border-round mb-3">{{ system.system }}</div>
+  <div class="grid">
+    @for (itemUbication of system.ubications; track itemUbication) {
+    <div class="col-12 md:col-12">
+      <div class="card" class="p-2 mb-3">
+        <ng-template #header #headerUbication>
+          <div class="text-xl font-bold">{{ itemUbication.ubication }}</div>
+        </ng-template>
+        <div class="grid">
+          @for (item of itemUbication.items; track item) {
+          <div class="col-12">
+            <div class="card" class="h-full">
+              <ng-template #header #headerItem>
+                <div class="card-img-container">
+                  <img class="w-full" [src]="item.photoPath" alt="image" />
+                </div>
+              </ng-template>
+              <div class="card-body text-center">
+                <h4 class="text-lg font-bold">{{ item.nameMachinery }}</h4>
+                <div class="flex justify-content-center">
+                  <iw-button
+                    lxTooltip="Servicios calendarizados"
+                    class="p-button-outlined p-button-primary p-button-sm"
+                    iconClass="mdi:calendar"
+                    (clicked)="showModalListOrderService(item.id)"
+                  />
+                  <iw-button
+                    lxTooltip="Historico de servicios"
+                    class="p-button-outlined p-button-primary p-button-sm"
+                    iconClass="mdi:palette"
+                    (clicked)="onServiceHistory(item.id)"
+                  />
+                  <iw-button
+                    lxTooltip="Bitacora"
+                    class="p-button-outlined p-button-warning p-button-sm"
+                    iconClass="mdi:book"
+                    (clicked)="onBitacoraIndividual(item.id)"
+                  />
+                  <iw-button
+                    lxTooltip="Ficha tócnica"
+                    class="p-button-outlined p-button-primary p-button-sm"
+                    iconClass="mdi:book"
+                    (clicked)="showModalFichatecnica(item)"
+                  />
+                  <iw-button
+                    iconClass="mdi:pencil"
+                    class="p-button-outlined p-button-secondary p-button-sm"
+                    lxTooltip="Editar"
+                    (clicked)="
+                            onModalForm({
+                              id: item.id,
+                              title: 'Editar regitro ' + item.id,
+                              inventoryCategoryId: 1,
+                            })
+                          "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}
+<!-- ? Cerrar @for de systems -->
+
+

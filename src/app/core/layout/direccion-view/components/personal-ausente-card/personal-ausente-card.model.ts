@@ -1,4 +1,4 @@
-export interface AusentePersonaDTO {
+export interface AusentePersonaDto {
   employeeName: string;
   roleName: string;
   tipoAusencia: 'Permiso' | 'Vacaciones';
@@ -8,13 +8,13 @@ export interface AusentePersonaDTO {
   esActual: boolean;
 }
 
-export interface AusenteCustomerGroupDTO {
+export interface AusenteCustomerGroupDto {
   customerName: string;
-  personas: AusentePersonaDTO[];
+  personas: AusentePersonaDto[];
 }
 
-export interface PersonalAusenteResumenDTO {
+export interface PersonalAusenteResumenDto {
   totalPermisos: number;
   totalVacaciones: number;
-  customers: AusenteCustomerGroupDTO[];
+  customers: AusenteCustomerGroupDto[];
 }

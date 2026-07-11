@@ -1,0 +1,108 @@
+<!-- 1. Contenedor Principal y Estado de Carga -->
+<div class="p-4 hidden md:block">
+  <div class="card">
+    <div class="text-xl font-bold mb-2">
+      <h2 class="text-2xl font-bold">Comunicados</h2>
+    </div>
+
+    <!-- Spinner de carga -->
+
+    <!-- Mensaje si no hay anuncios vigentes -->
+    @if (!loading() && announcements().length === 0) {
+    <div class="text-center p-4">
+      <app-icon [icon]="'mdi:inbox'" class="text-4xl" />
+      <p class="mt-2">No hay comunicados para mostrar.</p>
+    </div>
+    }
+
+    <!-- Rejilla de Anuncios -->
+    @if (!loading() && announcements().length > 0) {
+    <div class="grid">
+      @for (anuncio of announcements(); track anuncio.id) {
+      <div class="col-12">
+        <div
+          class="card cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column"
+          (click)="navigateToDetail(anuncio.id)"
+          [style]="{ height: '100%' }"
+        >
+          <div class="card-header">
+            @if(anuncio.imagePath) {
+            <img
+              [src]="anuncio.imagePath"
+              alt="Imagen del anuncio"
+              class="w-full h-10rem object-cover"
+            />
+            }
+          </div>
+
+          <div class="card-body">
+            <div class="text-xl font-bold mb-2">
+              <span class="text-lg font-semibold">{{ anuncio.title }}</span>
+            </div>
+            <div class="text-color-secondary mb-3">
+              <div class="text-sm text-color-secondary mb-2">
+                <span>{{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+
+            <p class="m-0 text-sm">
+              {{ stripHtml(anuncio.content) | slice:0:120 }}...
+            </p>
+
+            <div class="mt-3 flex justify-content-end gap-2">
+              <div class="flex justify-content-end align-items-center">
+                @if (anuncio.attachmentCount > 0) {
+                <app-icon
+                  [icon]="'mdi:paperclip'"
+                  class="text-color-secondary"
+                  lxTooltip="Contiene adjuntos"
+                />
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden pb-5">
+  @if (!loading() && announcements().length === 0) {
+  <div class="ion-text-center ion-padding mt-5">
+    <app-icon
+      icon="mdi:tray"
+      style="font-size: 4rem; color: var(--ion-color-medium)"
+    />
+    <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
+  </div>
+  } @if (!loading() && announcements().length > 0) {
+  <div class="flex flex-column p-2">
+    @for (anuncio of announcements(); track anuncio.id) {
+    <div class="card shadow-2 border-round-xl mb-3 overflow-hidden cursor-pointer flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
+      @if(anuncio.imagePath) {
+        <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover" onerror="this.style.display='none'" />
+      }
+      <div class="p-3">
+        <div class="text-lg font-bold text-900 mb-1">{{ anuncio.title }}</div>
+        <div class="text-sm text-500 mb-2">
+          {{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}
+        </div>
+        <p class="text-sm text-700 m-0 line-height-3">
+          {{ stripHtml(anuncio.content) | slice:0:100 }}...
+        </p>
+
+        @if (anuncio.attachmentCount > 0) {
+        <div class="flex justify-content-end mt-3">
+          <app-icon icon="mdi:paperclip" class="text-lg text-500" />
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>

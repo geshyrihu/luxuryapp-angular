@@ -37,7 +37,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { GlobalErrorService } from "src/app/core/http/services/global-error.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
@@ -68,7 +68,7 @@ export class VacacionesPasadasRegistro implements OnInit {
   private dialogHandlerS = inject(DialogHandlerService);
   private globalErrorS = inject(GlobalErrorService);
   private tableScrollHeightS = inject(TableScrollHeightService);
-  employees = signal<ISelectItem[]>([]);
+  employees = signal<SelectItemDto[]>([]);
   submitting = signal(false);
   balance = signal<VacationBalanceDTO | null>(null);
   loadingBalance = signal(false);
@@ -224,8 +224,8 @@ export class VacacionesPasadasRegistro implements OnInit {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`employee/${customerId}`)
-      .then((response: ISelectItem[]) => this.employees.set(response));
+      .onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`)
+      .then((response: SelectItemDto[]) => this.employees.set(response));
   }
 
   loadHistory(employeeId: number): void {

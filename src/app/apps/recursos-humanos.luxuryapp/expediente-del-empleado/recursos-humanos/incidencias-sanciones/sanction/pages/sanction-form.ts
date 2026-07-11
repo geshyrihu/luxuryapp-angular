@@ -20,7 +20,7 @@ import { SanctionTypeListDTO } from "src/app/apps/recursos-humanos.luxuryapp/eva
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { ESanctionStatus } from "../models/sanction.dto";
 
@@ -64,13 +64,13 @@ export class SanctionFormComponent {
   isChangeStatus = signal(false);
   sanctionId = signal<string>("");
   incidentId = signal<string>("");
-  sanctionTypes = signal<ISelectItem[]>([]);
+  sanctionTypes = signal<SelectItemDto[]>([]);
   submitting = signal(false);
 
   form!: FormGroup<ISanctionForm>;
   changeStatusForm!: FormGroup<ISanctionChangeStatusForm>;
 
-  cb_sanctionStatus: ISelectItem[] = [
+  cb_sanctionStatus: SelectItemDto[] = [
     { value: "Activa", label: "Activa" },
     { value: "Apelada", label: "Apelada" },
     { value: "Suspendida", label: "Suspendida" },

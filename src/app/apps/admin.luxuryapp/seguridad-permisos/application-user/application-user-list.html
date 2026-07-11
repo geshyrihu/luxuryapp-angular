@@ -117,21 +117,21 @@
               <iw-button-item
                 (clicked)="onToBlockAccount(item.id)"
                 iconClass="mdi:lock"
-                pTooltip="Bloquear"
+                lxTooltip="Bloquear"
                 tooltipPosition="top"
               />
               } @if (!item.active) {
               <iw-button-item
                 (clicked)="onToUnlockAccount(item.id)"
                 iconClass="mdi:lock-open"
-                pTooltip="Desbloquear"
+                lxTooltip="Desbloquear"
                 tooltipPosition="top"
               />
               }
               <iw-button-item
                 (clicked)="onModalEditAccount(item.id, item.email)"
                 iconClass="mdi:account"
-                pTooltip="Permisos"
+                lxTooltip="Permisos"
                 tooltipPosition="top"
               />
               <iw-button-edit (clicked)="onModalForm(item.id, 'Editar')" />

@@ -5,7 +5,7 @@ import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
   selector: "app-chart-bar",
 
   imports: [CustomBarChart],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` <app-custom-bar-chart [data]="data()"></app-custom-bar-chart> `,
 })
 export class ChartBar {

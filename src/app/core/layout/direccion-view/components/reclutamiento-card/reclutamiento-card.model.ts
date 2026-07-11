@@ -1,23 +1,23 @@
-export interface VacanteItemDTO {
+export interface VacanteItemDto {
   folio: number;
   requestDate: string;
   diasPendiente: number;
   status: string;
 }
 
-export interface VacanteRoleGroupDTO {
+export interface VacanteRoleGroupDto {
   roleName: string;
   count: number;
-  items: VacanteItemDTO[];
+  items: VacanteItemDto[];
 }
 
-export interface VacanteCustomerGroupDTO {
+export interface VacanteCustomerGroupDto {
   customerName: string;
   total: number;
-  roles: VacanteRoleGroupDTO[];
+  roles: VacanteRoleGroupDto[];
 }
 
-export interface VacantesResumenDTO {
+export interface VacantesResumenDto {
   total: number;
-  customers: VacanteCustomerGroupDTO[];
+  customers: VacanteCustomerGroupDto[];
 }

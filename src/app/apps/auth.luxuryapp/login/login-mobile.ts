@@ -26,7 +26,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { SecurityService } from "src/app/core/auth/services/security.service";
-import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -116,7 +116,7 @@ import { ROUTES } from "src/app/routing/route-paths";
         </div>
     </ili-page>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {
@@ -343,7 +343,7 @@ export class LoginMobile implements OnInit {
     this.authS
       .login(this.loginForm.value)
       .pipe(
-        switchMap((userTokenData: UserTokenDTO) => {
+        switchMap((userTokenData: UserTokenDto) => {
           if (userTokenData) {
             return this.customerIdS.initializeCustomerStateAfterLogin(
               userTokenData,

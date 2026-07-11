@@ -3,7 +3,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 @Component({
   selector: "app-customer-header-data-committee",
   imports: [],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-header-data-committee.html",
 })
 export class CustomerHeaderDataCommittee {

@@ -1,0 +1,193 @@
+<div class="fadein">
+  <!-- Filtros propios del componente -->
+  <div class="flex mb-4 align-items-end gap-2">
+    <div class="mb-0">
+      <custom-input-text-signal
+        [ngModel]="year()"
+        (ngModelChange)="year.set($event)"
+        [ngModelOptions]="{ standalone: true }"
+        type="number"
+        size="small"
+        [horizontal]="false"
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="w-10rem"
+      />
+    </div>
+    <div class="mb-0">
+      <il-button
+        label="Cargar Catálogo"
+        iconClass="mdi:refresh"
+        size="sm"
+        [loading]="loading()"
+        (clicked)="onLoadCatalog()"
+      />
+    </div>
+    <!-- Controles de la tabla -->
+    @if (data(); as catalog) {
+    <div class="flex justify-content-between align-items-center mb-3">
+      <div class="text-xs text-500 p-2">
+        <strong>{{ catalog.nombreEmpresa }}</strong> &mdash; {{
+        catalog.periodoPresupuesto }}
+      </div>
+      <div class="flex gap-1">
+        <il-button
+          label="Expandir Todo"
+          iconClass="mdi:chevron-double-down"
+          variant="outlined"
+          severity="secondary"
+          size="sm"
+          (clicked)="toggleAll(true)"
+        />
+        <il-button
+          label="Colapsar Todo"
+          iconClass="mdi:chevron-double-up"
+          variant="outlined"
+          severity="secondary"
+          size="sm"
+          (clicked)="toggleAll(false)"
+        />
+      </div>
+    </div>
+    }
+  </div>
+
+  @if (loading()) {
+  <div class="flex align-items-center text-color-secondary mb-4 gap-2">
+    <app-icon [icon]="'mdi:loading'" />
+    <span>Consultando catálogo en Aspel...</span>
+  </div>
+  } @if (!loading() && !data()) {
+  <p class="text-color-secondary">
+    No hay datos. Verifique el cliente y el aóo, luego pulse
+    <strong>Cargar Catálogo</strong>.
+  </p>
+  } @if (data(); as catalog) {
+  <!-- Panel de cuentas faltantes -->
+  @if (cuentasFaltantes().length > 0) {
+  <div
+    class="surface-ground p-4 border-round mb-4 border-left-4 border-orange-500"
+  >
+    <div class="flex align-items-center mb-3">
+      <app-icon [icon]="'mdi:alert'" class="text-orange-500 text-xl" />
+      <h4 class="m-0 text-orange-600 ml-2">
+        {{ cuentasFaltantes().length }} cuenta(s) Nivel 1 no encontrada(s) en
+        Aspel
+      </h4>
+    </div>
+    <p class="m-0 text-xs text-700 mb-3">
+      Las siguientes cuentas del
+      <strong>Catálogo General LuxuryF</strong> (base para reportes)
+      <strong>no fueron devueltas</strong> por la API de Aspel para este cliente
+      y aóo. Si deben existir, el contador debe darlas de alta en Aspel COI.
+    </p>
+    <div class="flex flex-wrap gap-2">
+      @for (faltante of cuentasFaltantes(); track faltante.numeroCuenta) {
+      <div
+        class="flex align-items-center surface-card border-round p-2 border-1 border-orange-300 gap-2"
+      >
+        <lx-tag [value]="faltante.clasificacion" [severity]="getSeverity(faltante.clasificacion)" class="text-xs" />
+        <span class="font-mono text-xs font-bold"
+          >{{ faltante.numeroCuenta }}</span
+        >
+        <span class="text-xs text-700">{{ faltante.descripcion }}</span>
+      </div>
+      }
+    </div>
+  </div>
+  } @else {
+  <div
+    class="surface-ground p-3 border-round mb-4 border-left-4 border-green-500"
+  >
+    <div class="flex align-items-center gap-2">
+      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <span class="text-green-700 font-medium text-xs">
+        Todas las cuentas Nivel 1 del Catálogo General LuxuryF estén presentes
+        en Aspel.
+      </span>
+    </div>
+  </div>
+  }
+
+  <!-- Tabla jerórquica -->
+  <p-table
+    [value]="flatData()"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    class="custom-table p-datatable-gridlines"
+  >
+    <ng-template #header>
+      <tr>
+        <th style="width: 180px">No. de cuenta</th>
+        <th style="width: 300px">Descripción</th>
+        <th class="table-col-160px">Origen de datos</th>
+        <th class="text-center table-col-60px">Cta.M</th>
+        <th class="table-col-90px">Debe</th>
+        <th class="table-col-90px">Haber</th>
+        <th class="text-center table-col-50px">EPF</th>
+        <th class="text-center table-col-50px">ER</th>
+        <th class="text-center table-col-50px">CedP</th>
+        <th class="text-center table-col-50px">FE</th>
+        <th class="text-center table-col-50px">ACob</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-account>
+      @if (account.visible) {
+      <tr
+        [class.font-bold]="account.nivel === 1"
+        [class.surface-100]="account.nivel === 1"
+      >
+        <td>
+          <div class="flex align-items-center">
+            <!-- ⬆️ ⬇️ âž¡️ ⬅️ -->
+            @if (account.nivel === 1) {
+            <iw-button
+              [lxTooltip]="account.expanded ? '⬇️' : 'âž¡️'"
+              tooltipPosition="top"
+              variant="ghost-text"
+              size="sm"
+              (clicked)="toggleNode(account)"
+            />
+            } @else {
+            <span class="inline-block" style="width: 2.5rem"></span>
+            }
+            <span class="font-mono text-xs">{{ account.numeroCuenta }}</span>
+          </div>
+        </td>
+        <td
+          class="text-xs text-500"
+          [style.padding-left]="
+                account.nivel === 2
+                  ? '2rem'
+                  : account.nivel === 3
+                    ? '4rem'
+                    : '0.5rem'
+              "
+        >
+          {{ account.descripcion }}
+        </td>
+        <td class="text-xs text-500">{{ account.origenDatos }}</td>
+        <td class="text-center">{{ account.esCuentaMadre ? "❌" : "" }}</td>
+        <td class="text-xs">
+          {{ account.naturaleza === "Deudora" ? "Deudora" : "" }}
+        </td>
+        <td class="text-xs">
+          {{ account.naturaleza === "Acreedora" ? "Acreedora" : "" }}
+        </td>
+        <td class="text-center">@if (account.epf) { ✔️ }</td>
+        <td class="text-center">@if (account.er) { ✔️ }</td>
+        <td class="text-center">@if (account.cedP) { ✔️ }</td>
+        <td class="text-center">@if (account.fe) { ✔️ }</td>
+        <td class="text-center">@if (account.aCob) { ✔️ }</td>
+      </tr>
+      }
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="11" class="text-center py-4 text-color-secondary">
+          No hay cuentas en el resultado de Aspel para este período.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  }
+</div>

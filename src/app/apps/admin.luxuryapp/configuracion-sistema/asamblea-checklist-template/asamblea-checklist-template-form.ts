@@ -19,17 +19,17 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { AsambleaChecklistTemplateAddOrEditDto } from "./interfaces/asamblea-checklist-template-add-or-edit.dto";
 import { AsambleaChecklistTemplateFormGroup } from "./interfaces/asamblea-checklist-template-form.interface";
 
 @Component({
   selector: "app-asamblea-checklist-template-form",
   templateUrl: "./asamblea-checklist-template-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -46,7 +46,7 @@ export class AsambleaChecklistTemplateForm implements OnInit {
   private readonly ref = inject(DynamicDialogRef);
 
   readonly submitting = signal(false);
-  readonly roleOptions = signal<ISelectItem[]>(this.buildRoleOptions());
+  readonly roleOptions = signal<SelectItemDto[]>(this.buildRoleOptions());
   id = "";
 
   form = new FormGroup<AsambleaChecklistTemplateFormGroup>({
@@ -120,8 +120,8 @@ export class AsambleaChecklistTemplateForm implements OnInit {
     });
   }
 
-  private buildRoleOptions(): ISelectItem[] {
-    return Object.values(EApplicationRole).map((role) => ({
+  private buildRoleOptions(): SelectItemDto[] {
+    return Object.values(ApplicationRole).map((role) => ({
       label: this.formatRole(role),
       value: role,
     }));

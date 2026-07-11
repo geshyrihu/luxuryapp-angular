@@ -1,4 +1,4 @@
-export interface IFilterTicket {
+export interface FilterTicket {
   customer: any;
   status: number;
   responsible: any;

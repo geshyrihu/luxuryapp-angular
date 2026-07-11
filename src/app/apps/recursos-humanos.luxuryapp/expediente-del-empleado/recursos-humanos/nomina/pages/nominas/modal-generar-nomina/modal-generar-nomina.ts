@@ -14,7 +14,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { GenerarNominaDTO } from "../../../interfaces/nomina-encabezado.interface";
 import { PeriodoNominaDTO } from "../../../interfaces/periodo-nomina.interface";
 
@@ -37,7 +37,7 @@ export default class ModalGenerarNomina implements OnInit {
   private customerIdS = inject(CustomerIdService);
 
   submitting = signal(false);
-  periodosOptions = signal<ISelectItem[]>([]);
+  periodosOptions = signal<SelectItemDto[]>([]);
 
   form = this.fb.nonNullable.group({
     periodoNominaId: ["", Validators.required],
@@ -57,7 +57,7 @@ export default class ModalGenerarNomina implements OnInit {
     const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
       Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
-    const options: ISelectItem[] = ((result as any) ?? []).map((p: any) => ({
+    const options: SelectItemDto[] = ((result as any) ?? []).map((p: any) => ({
       label: p.quincenaDisplay,
       value: p.id,
     }));

@@ -21,7 +21,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EmployeeBankDataDTO } from "../models/employee-bank-data.interfaces";
 
 @Component({
@@ -49,9 +49,9 @@ export class EmployeeBankDataFormComponent implements OnInit {
   id: string = this.config.data?.id || "";
   submitting = signal(false);
 
-  cbEmployees = signal<ISelectItem[]>([]);
-  cbBanks = signal<ISelectItem[]>([]);
-  cbRelations = signal<ISelectItem[]>([]);
+  cbEmployees = signal<SelectItemDto[]>([]);
+  cbBanks = signal<SelectItemDto[]>([]);
+  cbRelations = signal<SelectItemDto[]>([]);
 
   get f() {
     return this.form.controls as any;
@@ -87,7 +87,7 @@ export class EmployeeBankDataFormComponent implements OnInit {
   onLoadCombos(): void {
     // Cargar Empleados
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(
+      .onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.employeesByCustomer(
           this.customerIdS.customerId(),
         ),
@@ -98,14 +98,14 @@ export class EmployeeBankDataFormComponent implements OnInit {
 
     // Cargar Bancos
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.bank)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.bank)
       .then((res) => {
         if (res) this.cbBanks.set(res);
       });
 
     // Cargar Relaciones (Enum)
     this.apiResponseS
-      .onGetEnumSelectItem<ISelectItem[]>(
+      .onGetEnumSelectItem<SelectItemDto[]>(
         Endpoints.EnumSelectItems.relationEmployee,
       )
       .then((res) => {

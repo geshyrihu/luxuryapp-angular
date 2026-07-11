@@ -19,14 +19,14 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IEmailDataForm } from "src/app/core/interfaces/email-data-form.interface";
+import { EmailDataFormDto } from "src/app/core/interfaces/email-data-form.interface";
 @Component({
   selector: "app-email-data-form",
   templateUrl: "./email-data-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -46,7 +46,7 @@ export class EmailDataForm implements OnInit {
   applicationUserId: string = "";
   testEmailMessage = signal<string>("");
   submitting = signal(false);
-  public AspRole = EApplicationRole;
+  public AspRole = ApplicationRole;
 
   // Definición estricta del formulario
   form = new FormGroup({
@@ -79,7 +79,7 @@ export class EmailDataForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<IEmailDataForm>(Endpoints.EmailData.getById(this.id))
+      .onGetList<EmailDataFormDto>(Endpoints.EmailData.getById(this.id))
       .then((result: any) => {
         if (result !== null) {
           this.form.patchValue(result);

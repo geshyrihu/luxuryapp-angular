@@ -5,7 +5,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'manage'
     path: "manage",
     loadComponent: () =>
-      import("src/app/features/operations/announcements/announcement/announcement-admin-list").then(
+      import("src/app/apps/operations.luxuryapp/announcements/announcement/announcement-admin-list").then(
         (m) => m.AnnouncementAdminList,
       ),
     canActivate: [authGuard],
@@ -19,7 +19,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'list'
     path: "list",
     loadComponent: () =>
-      import("src/app/features/operations/announcements/announcement/announcement-list").then(
+      import("src/app/apps/operations.luxuryapp/announcements/announcement/announcement-list").then(
         (m) => m.AnnouncementList,
       ),
     canActivate: [authGuard],
@@ -32,7 +32,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'detail/:id'
     path: "detail/:id",
     loadComponent: () =>
-      import("src/app/features/operations/announcements/announcement/announcement-detail").then(
+      import("src/app/apps/operations.luxuryapp/announcements/announcement/announcement-detail").then(
         (m) => m.announcementDetail,
       ),
     canActivate: [authGuard],
@@ -45,7 +45,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'detail/:id'
     path: "analytics/:id",
     loadComponent: () =>
-      import("src/app/features/operations/announcements/announcement/announcement-analytics").then(
+      import("src/app/apps/operations.luxuryapp/announcements/announcement/announcement-analytics").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],

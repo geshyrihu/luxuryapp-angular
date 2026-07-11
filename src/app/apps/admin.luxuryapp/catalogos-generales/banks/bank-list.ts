@@ -34,7 +34,7 @@ import { BankDto } from "./interfaces/banks.dto";
 @Component({
   selector: "app-bank-list",
   templateUrl: "./bank-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DataViewMobile,
     MobileActionMenu,

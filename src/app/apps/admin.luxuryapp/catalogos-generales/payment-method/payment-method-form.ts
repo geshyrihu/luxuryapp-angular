@@ -25,7 +25,7 @@ import { PaymentMethodFormGroup } from "./interfaces/payment-method-form.interfa
 @Component({
   selector: "app-payment-method-form",
   templateUrl: "./payment-method-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class PaymentMethodForm implements OnInit {

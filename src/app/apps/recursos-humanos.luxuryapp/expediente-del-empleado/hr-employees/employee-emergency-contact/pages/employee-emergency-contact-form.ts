@@ -20,7 +20,7 @@ import { firstValueFrom } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 @Component({
   selector: "app-employee-emergency-contact-form",
@@ -41,7 +41,7 @@ export class EmployeeEmergencyContactForm implements OnInit {
   enumSelectS = inject(EnumSelectService);
   id: string = "";
   submitting = signal(false);
-  cb_relacion = signal<ISelectItem[]>([]);
+  cb_relacion = signal<SelectItemDto[]>([]);
 
   // Definición estricta del formulario
   form = new FormGroup({

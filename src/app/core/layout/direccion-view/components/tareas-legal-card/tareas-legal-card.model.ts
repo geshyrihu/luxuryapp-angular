@@ -1,4 +1,4 @@
-export interface TareaLegalItemDTO {
+export interface TareaLegalItemDto {
   id: string;
   folio: string;
   title: string;
@@ -11,13 +11,13 @@ export interface TareaLegalItemDTO {
   ultimoSeguimientoFecha: string | null;
 }
 
-export interface TareaLegalCustomerGroupDTO {
+export interface TareaLegalCustomerGroupDto {
   customerName: string;
   total: number;
-  tareas: TareaLegalItemDTO[];
+  tareas: TareaLegalItemDto[];
 }
 
-export interface TareasLegalResumenDTO {
+export interface TareasLegalResumenDto {
   total: number;
-  customers: TareaLegalCustomerGroupDTO[];
+  customers: TareaLegalCustomerGroupDto[];
 }

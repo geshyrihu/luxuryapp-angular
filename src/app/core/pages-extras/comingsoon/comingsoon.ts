@@ -11,7 +11,7 @@ import { map } from "rxjs/operators";
 @Component({
   selector: "app-comingsoon",
   templateUrl: "./comingsoon.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
     RouterModule,

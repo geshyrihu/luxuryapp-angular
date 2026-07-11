@@ -1,7 +1,7 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EApplicationRole } from "../../enums/asp-net-roles.enum";
+import { ApplicationRole } from "../../interfaces/asp-net-roles.enum";
 import { AspRoleService } from "../services/asp-role.service";
 
 /**
@@ -16,10 +16,10 @@ export const superUserGuard: CanActivateFn = (route, state) => {
 
   // Roles autorizados para funciones administrativas maestro
   const authorizedRoles = [
-    EApplicationRole.SuperUsuario,
-    EApplicationRole.Legal,
-    EApplicationRole.RecursosHumanos,
-    EApplicationRole.Reclutamiento,
+    ApplicationRole.SuperUsuario,
+    ApplicationRole.Legal,
+    ApplicationRole.RecursosHumanos,
+    ApplicationRole.Reclutamiento,
   ];
 
   // Verificamos si el usuario tiene alguno de los roles autorizados

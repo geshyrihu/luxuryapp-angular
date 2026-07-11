@@ -35,7 +35,7 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
     CustomInputTextSignal,
     LxSkeleton,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./brevo-email-logs.html",
 })
 export class BrevoEmailLogs implements OnInit {

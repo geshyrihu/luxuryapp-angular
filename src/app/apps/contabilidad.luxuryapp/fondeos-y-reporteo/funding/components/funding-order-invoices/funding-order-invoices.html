@@ -1,0 +1,29 @@
+<p-table [value]="invoices()" class="border custom-table">
+  <ng-template #header>
+    <tr>
+      <th>Folio</th>
+      <th>Factura</th>
+      <th class="text-center"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-invoice>
+    <tr>
+      <td>{{ invoice.folioFiscal }}</td>
+      <td>{{ invoice.factura }}</td>
+      <td class="text-center">
+        <iw-button-item
+          iconClass="mdi:file-pdf-box"
+          lxTooltip="Ver PDF" tooltipPosition="top"
+          (clicked)="viewPdf(invoice.pdfFile, 'Factura')"
+        />
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-maintenance",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./maintenance.html",
   imports: [AppIcon],
 })

@@ -4,16 +4,16 @@
 // 1. MODELOS DE API (Reflejan la respuesta del backend)
 // ===================================================================
 
-export interface IMenuItem {
+export interface MenuItemDto {
   id: string;
   label: string;
   icon: string;
   nameModule: string;
   routerLink: string | null;
   active: boolean;
-  items: ISubMenuItem[];
+  items: SubMenuItem[];
 }
-export interface ISubMenuItem {
+export interface SubMenuItem {
   id: string;
   label: string;
   routerLink: string;
@@ -42,19 +42,10 @@ export interface ISubMenuItem {
 // 3. MODELO DE VISTA ARA MENU DE SETTINGS
 // ===================================================================
 
-export interface ISettingsMenuItem {
+export interface SettingsMenuItem {
   group: string;
   visible: boolean;
   label: string;
   icon: string;
   routerLink: string;
 }
-
-
-
-
-
-
-
-
-

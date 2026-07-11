@@ -26,7 +26,7 @@ import { Touchspin } from "@ui/web/touchspin/touchspin";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
@@ -162,11 +162,11 @@ export class RealizarEvaluacion implements OnInit {
   loadInitialData(): void {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`employee/${customerId}`)
+      .onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`)
       .then((response: any) => (this.employees = response));
 
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`EvaluationTemplates/${customerId}`)
+      .onGetSelectItem<SelectItemDto[]>(`EvaluationTemplates/${customerId}`)
       .then((response: any) => (this.templates = response));
   }
 

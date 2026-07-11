@@ -1,9 +1,9 @@
-import { ERoleType } from "../enums/e-role-type";
-export interface IRoles {
+import { RoleType } from "../interfaces/role-type.enum";
+export interface Roles {
   roleId: string;
   roleName: string;
   isSelected: boolean;
-  roleType: ERoleType;
+  roleType: RoleType;
   sortOrder: number;
 }
 

@@ -1,4 +1,4 @@
-export interface IComiteVigilancia {
+export interface ComiteVigilancia {
   id: any;
   customerId: string;
   propertyMemberId: string;

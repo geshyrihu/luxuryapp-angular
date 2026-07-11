@@ -24,7 +24,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ICategory } from "src/app/core/interfaces/category.interface";
+import { Category } from "src/app/core/interfaces/category.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ProductCategoryForm } from "./product-category-form";
@@ -33,7 +33,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-product-category-list",
   templateUrl: "./product-category-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,
@@ -53,7 +53,7 @@ export class ProductCategoryList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  data = signal<ICategory[]>([]);
+  data = signal<Category[]>([]);
   readonly globalFilterFields = computed(() => {
     const data = this.data();
     if (!data || data.length === 0) return [];

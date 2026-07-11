@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 
@@ -20,7 +20,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
-    TooltipModule,
+    LxTooltipDirective,
     InputTextModule,
     InputGroupModule,
     InputGroupAddonModule,

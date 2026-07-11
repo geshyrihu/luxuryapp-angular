@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
-import { documentTypeRoutesConfig } from "src/app/features/legal/asuntos-legales-y-seguros/models/documentTypeRoutesConfig";
+import { documentTypeRoutesConfig } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/models/documentTypeRoutesConfig";
 // Importa el componente de forma perezosa
 const CustomDocumentList = () =>
-  import("src/app/features/legal/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-lista").then(
+  import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-lista").then(
     (m) => m.DocumentoPersonalizadoLista,
   );
 // Genera las rutas dinámicamente
@@ -22,7 +22,7 @@ export const legalRoutes: Routes = [
   {
     path: "legal-minutes-pendings", // Ruta anterior: 'pendientes-minutas-legal'
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/minutas/legal-pendientes-minuta").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/minutas/legal-pendientes-minuta").then(
         (m) => m.LegalPendientesMinuta,
       ),
     canActivate: [authGuard],
@@ -34,7 +34,7 @@ export const legalRoutes: Routes = [
   {
     path: "list-ticket-legal", // Sincronizado con BD (ya en inglés)
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-lista").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-lista").then(
         (m) => m.TicketLegalLista,
       ),
     canActivate: [authGuard],
@@ -46,7 +46,7 @@ export const legalRoutes: Routes = [
   {
     path: "pendings", // Sincronizado con BD (ya en inglés)
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-pendientes").then(
         (m) => m.TicketLegalReportesPendientes,
       ),
     canActivate: [authGuard],
@@ -58,7 +58,7 @@ export const legalRoutes: Routes = [
   {
     path: "reports-internal",
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-internos").then(
         (m) => m.TicketLegalReportesInternos,
       ),
     canActivate: [authGuard],
@@ -70,7 +70,7 @@ export const legalRoutes: Routes = [
   {
     path: "reports-external",
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-reportes-externos").then(
         (m) => m.TicketLegalReportesExternos,
       ),
     canActivate: [authGuard],
@@ -82,7 +82,7 @@ export const legalRoutes: Routes = [
   {
     path: "committee-directory", // Ruta anterior: 'directorio-comites'
     loadComponent: () =>
-      import("src/app/features/operations/directorios/comite-vigilancia/comites-list").then(
+      import("src/app/apps/operations.luxuryapp/directorios/comite-vigilancia/comites-list").then(
         (m) => m.ComitesList,
       ),
     canActivate: [authGuard],
@@ -94,7 +94,7 @@ export const legalRoutes: Routes = [
   {
     path: "legal-matter",
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/asunto-legal/asunto-legal-lista").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-lista").then(
         (m) => m.AsuntoLegalLista,
       ),
     canActivate: [authGuard],
@@ -107,7 +107,7 @@ export const legalRoutes: Routes = [
   {
     path: "list-ticket-customer",
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-lista-cliente").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-lista-cliente").then(
         (m) => m.TicketLegalListaCliente,
       ),
     canActivate: [authGuard],
@@ -119,7 +119,7 @@ export const legalRoutes: Routes = [
   {
     path: "ticket/:ticketId",
     loadComponent: () =>
-      import("src/app/features/legal/asuntos-legales-y-seguros/ticket-legal/ticket-legal-individual").then(
+      import("src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-individual").then(
         (m) => m.TicketLegalIndividual,
       ),
     canActivate: [authGuard],

@@ -10,7 +10,7 @@ import {
   warning,
 } from "ionicons/icons";
 import { MessageService } from "primeng/api";
-import { IToast } from "src/app/core/interfaces/toast.interface";
+import { ToastMessage } from "src/app/core/interfaces/toast.interface";
 @Injectable({
   providedIn: "root",
 })
@@ -38,7 +38,7 @@ export class CustomToastService {
   }
 
   // Método genérico para mostrar notificaciones
-  async show(toast: IToast) {
+  async show(toast: ToastMessage) {
     if (this.isMobile) {
       await this.presentMobileToast(toast);
     } else {
@@ -46,7 +46,7 @@ export class CustomToastService {
     }
   }
 
-  private presentDesktopToast(toast: IToast) {
+  private presentDesktopToast(toast: ToastMessage) {
     this.messageService.add({
       severity: toast.severity,
       summary: toast.summary,
@@ -55,7 +55,7 @@ export class CustomToastService {
     });
   }
 
-  private async presentMobileToast(toast: IToast) {
+  private async presentMobileToast(toast: ToastMessage) {
     let color = "medium";
     let icon = "information-circle";
 

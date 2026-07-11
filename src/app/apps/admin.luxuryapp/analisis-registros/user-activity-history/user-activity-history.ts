@@ -19,18 +19,17 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 
 @Component({
@@ -41,7 +40,6 @@ import { DateService } from "src/app/core/services/date.service";
     TableModule,
     LxCard,
     LxTag,
-    TooltipModule,
     FlatpickrModule,
     WebButtonLabel,
     CustomInputDateSignal,
@@ -52,7 +50,7 @@ import { DateService } from "src/app/core/services/date.service";
     AppIcon,
   ],
   templateUrl: "./user-activity-history.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     provideFlatpickrDefaults({
       dateFormat: "d/m/Y",
@@ -79,8 +77,8 @@ export class UserActivityHistory implements OnInit {
   filterUserTypeControl = new FormControl<any | null>(0);
   filterDateRangeControl = new FormControl<Date[] | null>(null);
 
-  customerOptions: ISelectItem[] = [];
-  userTypeOptions: ISelectItem[] = [];
+  customerOptions: SelectItemDto[] = [];
+  userTypeOptions: SelectItemDto[] = [];
   isUserAdmin = false;
 
   readonly globalFilterFields = computed(() => {
@@ -92,8 +90,8 @@ export class UserActivityHistory implements OnInit {
 
   ngOnInit(): void {
     this.isUserAdmin = this.aspRoleS.hasAny([
-      EApplicationRole.SuperUsuario,
-      EApplicationRole.Administrador,
+      ApplicationRole.SuperUsuario,
+      ApplicationRole.Administrador,
     ]);
 
     this.setupFilters();

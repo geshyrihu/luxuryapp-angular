@@ -12,13 +12,13 @@ import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,LxCard, InputImg, WebButtonLabel],
 })
@@ -28,7 +28,7 @@ export class UpdateUserPhotoComponent implements OnInit {
   public profielServiceService = inject(ProfielService);
 
   applicationUserId: string = this.authS.applicationUserId;
-  infoEmployeeDTO: InfoAccountAuthDTO;
+  infoEmployeeDTO: InfoAccountAuthDto;
 
   public imgUpload: any;
   public imgTemp: any;

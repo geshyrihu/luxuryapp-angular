@@ -1,0 +1,152 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex justify-content-between align-items-center w-full">
+      <div class="flex align-items-center gap-2">
+        <iw-button-download
+          (clicked)="onPdfReport()"
+          lxTooltip="PDF"
+          tooltipPosition="top"
+          tooltip="Reporte PDF por rango de fecha"
+        />
+      </div>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+        [dt]="dt"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="date">Fecha <p-sorticon field="date" /></th>
+      <th class="table-col-10">Hora</th>
+      <th class="table-col-10">Presión</th>
+      <th class="table-col-10">Seguro</th>
+      <th class="table-col-10">Etiquetas</th>
+      <th class="table-col-10">Sin Daóos</th>
+      <th>Observaciones</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.date | date:'dd-MMM-yy' }}</td>
+      <td class="text-center">{{ item.hour }}</td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.adequatePressure ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.adequatePressure"
+          [class.text-red-600]="!item.adequatePressure"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.safetyPinOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.safetyPinOk"
+          [class.text-red-600]="!item.safetyPinOk"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.labelsOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.labelsOk"
+          [class.text-red-600]="!item.labelsOk"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.noPhysicalDamage ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.noPhysicalDamage"
+          [class.text-red-600]="!item.noPhysicalDamage"
+        />
+      </td>
+      <td><small>{{ item.observations }}</small></td>
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-danger-light, #ffdad6);
+        "
+      >
+        <app-icon
+          icon="mdi:fire-extinguisher"
+          style="font-size: 1.1rem; color: var(--ds-danger)"
+        />
+      </div>
+      
+        <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
+        @if (item.observations) {
+        <p>{{ item.observations }}</p>
+        }
+        <div class="flex gap-2 mt-1">
+          <small
+            [class]="item.adequatePressure ? 'text-green-600' : 'text-red-600'"
+            >Presion</small
+          >
+          <small [class]="item.safetyPinOk ? 'text-green-600' : 'text-red-600'"
+            >Seguro</small
+          >
+          <small [class]="item.labelsOk ? 'text-green-600' : 'text-red-600'"
+            >Etiquetas</small
+          >
+          <small
+            [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
+            >Sin Daóos</small
+          >
+        </div>
+      
+      <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+              label="Editar"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

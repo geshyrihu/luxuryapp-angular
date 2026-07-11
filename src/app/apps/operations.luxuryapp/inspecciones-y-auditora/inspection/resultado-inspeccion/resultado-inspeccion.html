@@ -1,0 +1,86 @@
+<!-- Contenido para pantallas pequeóas (sm y menores) -->
+<div class="container-fluid py-3">
+  <div class="flex justify-content-between align-items-center mb-1">
+    <h4 class="page-title-box">Reporte de Inspeccion</h4>
+  </div>
+
+  <!-- Filtros de Inspección -->
+
+  <!-- Botón con Icono de PDF -->
+  @if (data) {
+  <iw-button
+    lxTooltip="Descargar PDF"
+    customClass="
+        btn-soft-danger
+      "
+    iconClass="file-pdf"
+    (clicked)="onExportPDF()"
+  />
+  }
+</div>
+
+<hr />
+
+@if (!data) {
+<div class="flex justify-content-center align-items-center p-4">
+  <p class="text-color-secondary">No hay datos para mostrar</p>
+</div>
+} @if (data) {
+<div class="mt-4">
+  <h4 class="font-bold text-primary">{{ data.name }}</h4>
+  <p class="text-color-secondary mb-0">
+    <strong>Departamento:</strong>
+    {{ data.departament }}
+  </p>
+  <p class="text-color-secondary mb-0">
+    <strong>Frecuencia:</strong>
+    {{ data.frequency }}
+  </p>
+  <p class="text-color-secondary mb-0">
+    <strong>Realizo:</strong>
+    {{ data.user }}
+  </p>
+  <div class="mt-3">
+    @for (item of data.results; track item) {
+    <div class="card shadow-1 p-3 mb-4">
+      <div class="flex justify-content-between align-items-center">
+        <h5 class="font-bold text-900 m-0">{{ item.inspectionDescription }}</h5>
+        @if (item.state) {
+        <app-icon
+          [icon]="'mdi:check'"
+          style="color: var(--ds-success); font-size: 1.5rem"
+        />
+        } @if (!item.state) {
+        <app-icon
+          [icon]="'mdi:close'"
+          style="color: var(--ds-danger); font-size: 1.5rem"
+        />
+        }
+      </div>
+      <div class="mt-2">
+        <p class="font-bold mb-1">Observaciones:</p>
+        <p class="text-color-secondary m-0">{{ item.observations }}</p>
+      </div>
+      <div class="mt-3">
+        <h5 class="font-bold mb-3">Reporte Fotogrófico</h5>
+        <div class="grid">
+          @for (image of item.images; track image) {
+          <div class="col-6 sm:col-3">
+            <img
+              [src]="
+                  image.photoPath
+                    ? image.photoPath
+                    : 'assets/images/default-avatar.png'
+                "
+              alt="photo"
+              class="border-round shadow-1 border-1 surface-border w-full h-auto"
+            />
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}

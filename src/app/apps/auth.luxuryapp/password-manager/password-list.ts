@@ -19,7 +19,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { ButtonModule } from "primeng/button";
 import { TableLazyLoadEvent, TableModule } from "primeng/table";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -28,13 +28,13 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CredentialDetailDTO } from "./interfaces/password.dto";
+import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { PasswordForm } from "./password-form";
 
 @Component({
   selector: "app-password-list",
   templateUrl: "./password-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,
@@ -50,7 +50,7 @@ import { PasswordForm } from "./password-form";
     DatePipe,
     AppIcon,
     ButtonModule,
-    TooltipModule,
+    LxTooltipDirective,
   ],
 })
 export class PasswordList implements OnInit {
@@ -58,7 +58,7 @@ export class PasswordList implements OnInit {
   dialogS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  data = signal<CredentialDetailDTO[]>([]);
+  data = signal<CredentialDetailDto[]>([]);
   totalRecords = signal(0);
   loading = signal(false);
 
@@ -82,7 +82,7 @@ export class PasswordList implements OnInit {
       search: event.globalFilter || "",
     };
 
-    const res = await this.apiS.onPostPaged<CredentialDetailDTO[]>(
+    const res = await this.apiS.onPostPaged<CredentialDetailDto[]>(
       Endpoints.PasswordManager.Credentials.getPaged,
       filter,
     );

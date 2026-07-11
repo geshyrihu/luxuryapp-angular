@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { StatusBadgeBase } from "@ui/base/status-badge.base";
 
@@ -12,7 +12,7 @@ export {
 
 @Component({
   selector: "app-status-badge",
-  imports: [TooltipModule, AppIcon],
+  imports: [LxTooltipDirective, AppIcon],
   template: `
     <span
       class="status-badge"
@@ -20,7 +20,7 @@ export {
       [style.color]="styles.text"
       [style.border-color]="styles.border"
       [style.cursor]="clickable() ? 'pointer' : 'default'"
-      [pTooltip]="tooltip()"
+      [lxTooltip]="tooltip()"
       (click)="onStatusClick()"
     >
       @if (showIcon()) {

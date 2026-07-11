@@ -25,12 +25,12 @@ import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { MenuModule } from "primeng/menu";
 import { ToolbarModule } from "primeng/toolbar";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { filter, map, startWith } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { MenuService } from "src/app/core/services/menu.service";
@@ -39,7 +39,7 @@ import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
-import { PanicButton } from "src/app/features/operations/panic-alert/components/panic-button/panic-button";
+import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/components/panic-button/panic-button";
 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import * as htmlToImage from "html-to-image";
@@ -70,9 +70,9 @@ import { ROUTES } from "src/app/routing/route-paths";
     RouterModule,
     SelectButtonModule,
     ToolbarModule,
-    TooltipModule,
+    LxTooltipDirective,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./header-employee-monitor.html",
 })
 export class HeaderEmployeeMonitor implements OnInit {
@@ -102,7 +102,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   public breadcrumbItems: MenuItem[] = [];
 
   // Class properties
-  public AspRole = EApplicationRole;
+  public AspRole = ApplicationRole;
   public displayNavIcons: any[] = [];
   public isFlip: boolean = false;
   public isSearchOpen: boolean = false;
@@ -284,7 +284,7 @@ export class HeaderEmployeeMonitor implements OnInit {
         ngbTooltip: "Configuración",
         iconClass: "fluent-color:settings-24",
         action: () => this.onSetting(),
-        requiresRole: [EApplicationRole.SuperUsuario],
+        requiresRole: [ApplicationRole.SuperUsuario],
       },
       {
         id: "whats-new",

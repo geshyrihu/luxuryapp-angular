@@ -7,7 +7,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-page404",
   templateUrl: "./page404.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DividerModule, AppIcon, WebButtonLabel],
 })
 export class Page404 implements OnInit {

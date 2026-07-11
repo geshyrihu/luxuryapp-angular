@@ -1,4 +1,4 @@
-export interface AgendaSemanalEventDTO {
+export interface AgendaSemanalEventDto {
   id: string;
   customerId: string;
   customerName: string;
@@ -18,5 +18,5 @@ export interface AgendaDiaGroup {
   label: string;
   fecha: Date;
   esHoy: boolean;
-  eventos: AgendaSemanalEventDTO[];
+  eventos: AgendaSemanalEventDto[];
 }

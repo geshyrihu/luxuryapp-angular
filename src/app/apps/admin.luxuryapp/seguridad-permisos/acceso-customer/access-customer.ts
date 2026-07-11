@@ -10,18 +10,18 @@ import {
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IAddCustomerPermisoToUser } from "src/app/core/interfaces/add-customer-permiso-to-user.interface";
+import { AddCustomerPermisoToUser } from "src/app/core/interfaces/add-customer-permiso-to-user.interface";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-access-customer",
   templateUrl: "./access-customer.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, AppIcon],
 })
 export class AccessCustomer implements OnInit {
   customToastService = inject(CustomToastService);
   apiResponseS = inject(ApiResponseService);
-  dataSignal = signal<IAddCustomerPermisoToUser[]>([]);
+  dataSignal = signal<AddCustomerPermisoToUser[]>([]);
   applicationUserId = input<string>("");
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class AccessCustomer implements OnInit {
     );
   }
 
-  toggleCliente(item: IAddCustomerPermisoToUser): void {
+  toggleCliente(item: AddCustomerPermisoToUser): void {
     this.dataSignal.update((current) => {
       return current.map((c) => {
         if (c.customerId === item.customerId) {

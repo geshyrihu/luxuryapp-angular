@@ -19,8 +19,8 @@ import { filter, map } from "rxjs/operators";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { MenuItemDto, SubMenuItem } from "src/app/core/interfaces/menu.model";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
 
@@ -36,7 +36,7 @@ import { MenuService } from "src/app/core/services/menu.service";
     AppIcon,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./sidebar.html",
 })
 export class Sidebar {
@@ -46,7 +46,7 @@ export class Sidebar {
   router = inject(Router);
   public layoutService = inject(LayoutService);
   public aspRoleS = inject(AspRoleService);
-  readonly AspRole = EApplicationRole;
+  readonly AspRole = ApplicationRole;
 
   public infoAccountAuthDTO = this.authS.infoUserAuth;
   public customerName = this.customerIdS.nombreCorto;
@@ -60,7 +60,7 @@ export class Sidebar {
 
   public primengMenuItems: MenuItem[] = [];
   public searchText: string = "";
-  public searchResults: ISubMenuItem[] = [];
+  public searchResults: SubMenuItem[] = [];
   public isSearching: boolean = false;
   public loading = this.menuService.menuLoading;
 
@@ -768,7 +768,7 @@ export class Sidebar {
   public pinnedData: boolean = false;
   public pinnedDataList: string[] = [];
 
-  private allMenuItems = signal<IMenuItem[]>([]);
+  private allMenuItems = signal<MenuItem[]>([]);
 
   private routerEventSignal = toSignal(
     this.router.events.pipe(
@@ -782,7 +782,7 @@ export class Sidebar {
     effect(() => {
       const items = this.menuService.sidebarMenuItems();
       this.primengMenuItems = this.transformMenuItems(items);
-      this.allMenuItems.set(JSON.parse(JSON.stringify(items)) as IMenuItem[]);
+      this.allMenuItems.set(JSON.parse(JSON.stringify(items)) as MenuItem[]);
       this.setActiveOnNavigation(this.router.url);
     });
 
@@ -794,20 +794,20 @@ export class Sidebar {
     });
   }
 
-  private transformMenuItems(items: (IMenuItem | ISubMenuItem)[]): MenuItem[] {
+  private transformMenuItems(items: (MenuItem | SubMenuItem)[]): MenuItem[] {
     return items.map((item) => {
       const primeNGItem: MenuItem = {
         label: item.label,
         routerLink: item.routerLink,
-        expanded: (item as IMenuItem).active,
+        expanded: (item as MenuItem).active,
       };
 
-      if ((item as IMenuItem).icon) {
-        primeNGItem.icon = (item as IMenuItem).icon;
+      if ((item as MenuItem).icon) {
+        primeNGItem.icon = (item as MenuItem).icon;
       }
 
-      if ((item as IMenuItem).items && (item as IMenuItem).items!.length > 0) {
-        primeNGItem.items = this.transformMenuItems((item as IMenuItem).items!);
+      if ((item as MenuItem).items && (item as MenuItem).items!.length > 0) {
+        primeNGItem.items = this.transformMenuItems((item as MenuItem).items!);
       }
       return primeNGItem;
     });
@@ -875,7 +875,7 @@ export class Sidebar {
         if (menuItem.items && menuItem.items.length > 0) {
           menuItem.items.forEach((subItem) => {
             if (subItem.label?.toLowerCase().includes(lowerCaseSearchText)) {
-              this.searchResults.push(subItem);
+              this.searchResults.push(subItem as any);
             }
           });
         }

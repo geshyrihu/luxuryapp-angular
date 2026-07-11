@@ -1,6 +1,6 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router, UrlTree } from "@angular/router";
-import { EApplicationRole } from "../../enums/asp-net-roles.enum";
+import { ApplicationRole } from "../../interfaces/asp-net-roles.enum";
 import { AspRoleService } from "../services/asp-role.service";
 /**
  * El Portero de la Discoteca (RoleRedirectGuard) 🕴️
@@ -23,9 +23,9 @@ export const roleRedirectGuard: CanActivateFn = (): UrlTree => {
   const aspRoleS = inject(AspRoleService);
   const router = inject(Router);
 
-  if (aspRoleS.hasRole(EApplicationRole.Comite)) {
+  if (aspRoleS.hasRole(ApplicationRole.Comite)) {
     return router.createUrlTree(["/committee"]);
-  } else if (aspRoleS.hasRole(EApplicationRole.Direccion)) {
+  } else if (aspRoleS.hasRole(ApplicationRole.Direccion)) {
     return router.createUrlTree(["/direccion"]);
   }
   return router.createUrlTree(["/dashboard"]);

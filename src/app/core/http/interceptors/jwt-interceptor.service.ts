@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, filter, switchMap, take } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -77,7 +77,7 @@ export class JwtInterceptor implements HttpInterceptor {
       this.refreshTokenSubject.next(null);
 
       return this.authService.refreshToken().pipe(
-        switchMap((newSession: UserTokenDTO) => {
+        switchMap((newSession: UserTokenDto) => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(newSession.token);
           return next.handle(this.adDTOken(request, newSession.token));

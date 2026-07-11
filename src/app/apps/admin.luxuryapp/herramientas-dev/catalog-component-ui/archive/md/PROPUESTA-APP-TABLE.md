@@ -245,9 +245,9 @@ core/components/app-table/
 </p-table>
 ```
 
-## Notas técnicas (PrimeNG 21)
+## Notas técnicas (PrimeNG 22)
 
-- **Templates**: `#caption`, `#header`, `#body`, `#paginatorleft` usan el nombre directo. `emptymessage` debe usar `#emptymessage` (no `#emptymessage`) para que PrimeNG 21 lo resuelva correctamente.
+- **Templates**: `#caption`, `#header`, `#body`, `#paginatorleft` usan el nombre directo. `emptymessage` debe usar `#emptymessage` (no `#emptymessage`) para que PrimeNG 22 lo resuelva correctamente.
 - **`p-sortIcon`**: sigue funcionando con `[field]` binding.
 - **`pSortableColumn`**: funciona tanto como atributo directo como binding `[pSortableColumn]="field"`.
 - **`scrollHeight="flex"`**: recomendado para auto-ajuste responsivo (sin px fijo).

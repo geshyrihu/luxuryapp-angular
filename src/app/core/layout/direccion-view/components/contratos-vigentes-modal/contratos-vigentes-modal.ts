@@ -8,18 +8,18 @@ import {
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type {
-  ContratosVigentesCustomerGroupDTO,
-  ContratosVigentesResumenDTO,
+  ContratosVigentesCustomerGroupDto,
+  ContratosVigentesResumenDto,
 } from "../contratos-card/contratos-card.model";
 
 @Component({
   selector: "app-contratos-vigentes-modal",
   templateUrl: "./contratos-vigentes-modal.html",
-  imports: [CommonModule, TagModule, TooltipModule, AppIcon],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [CommonModule, TagModule, LxTooltipDirective, AppIcon],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .text-ds-warning {
@@ -34,7 +34,7 @@ import type {
 export class ContratosVigentesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);
 
-  resumen = signal<ContratosVigentesResumenDTO | null>(null);
+  resumen = signal<ContratosVigentesResumenDto | null>(null);
   cargando = signal<boolean>(false);
 
   expandidos = signal<Set<string>>(new Set());
@@ -63,7 +63,7 @@ export class ContratosVigentesModal implements OnInit {
   }
 
   getSeverity(
-    c: ContratosVigentesCustomerGroupDTO["contratos"][0],
+    c: ContratosVigentesCustomerGroupDto["contratos"][0],
   ): "danger" | "warn" | "success" {
     if (!c.diasRestantes) return "success";
     if (c.diasRestantes <= 30) return "danger";
@@ -73,7 +73,7 @@ export class ContratosVigentesModal implements OnInit {
 
   private async cargar(): Promise<void> {
     this.cargando.set(true);
-    const data = await this.apiResponseS.onGetItem<ContratosVigentesResumenDTO>(
+    const data = await this.apiResponseS.onGetItem<ContratosVigentesResumenDto>(
       "direccion-dashboard/contratos-vigentes",
       false,
     );

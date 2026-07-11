@@ -5,7 +5,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "annual-calendar",
     loadComponent: () =>
-      import("src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/calendario-mtto-list").then(
+      import("src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/calendario-mtto-list").then(
         (m) => m.CalendarioMttoList,
       ),
     canActivate: [authGuard],

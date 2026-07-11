@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { PersonalAusenteResumenDTO } from "./personal-ausente-card.model";
+import type { PersonalAusenteResumenDto } from "./personal-ausente-card.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
@@ -16,7 +16,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   templateUrl: "./personal-ausente-card.html",
   imports: [
     AppIcon,CommonModule],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .text-ds-warning {
@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 export class PersonalAusenteCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);
 
-  resumen = signal<PersonalAusenteResumenDTO | null>(null);
+  resumen = signal<PersonalAusenteResumenDto | null>(null);
   cargando = signal<boolean>(false);
 
   total = computed(() => {
@@ -52,7 +52,7 @@ export class PersonalAusenteCard implements OnInit {
 
   private async cargar(): Promise<void> {
     this.cargando.set(true);
-    const data = await this.apiResponseS.onGetItem<PersonalAusenteResumenDTO>(
+    const data = await this.apiResponseS.onGetItem<PersonalAusenteResumenDto>(
       "direccion-dashboard/personal-ausente",
       false,
     );

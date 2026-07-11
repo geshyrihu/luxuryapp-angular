@@ -10,23 +10,23 @@ import {
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ERoleType } from "src/app/core/enums/e-role-type";
-import { IRoles } from "src/app/core/interfaces/roles.interface";
+import { RoleType } from "src/app/core/interfaces/role-type.enum";
+import { Roles } from "src/app/core/interfaces/roles.interface";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
 
-const roleTypeNames: { [key in ERoleType]: string } = {
-  [ERoleType.System]: "Sistema",
-  [ERoleType.Executive]: "Dirección",
-  [ERoleType.Corporate]: "Corporativo",
-  [ERoleType.Staff]: "Personal Operativo",
-  [ERoleType.Client]: "Cliente",
-  [ERoleType.Contractor]: "Proveedor",
+const roleTypeNames: { [key in RoleType]: string } = {
+  [RoleType.System]: "Sistema",
+  [RoleType.Executive]: "Dirección",
+  [RoleType.Corporate]: "Corporativo",
+  [RoleType.Staff]: "Personal Operativo",
+  [RoleType.Client]: "Cliente",
+  [RoleType.Contractor]: "Proveedor",
 };
 
 @Component({
   selector: "app-update-role",
   templateUrl: "./update-role.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, AppIcon],
 })
 export class UpdateRole implements OnInit {
@@ -36,7 +36,7 @@ export class UpdateRole implements OnInit {
   userName: string = "";
   applicationUserState: boolean = false;
   applicationUserId = input<string>("");
-  roleType = input<ERoleType | null>(null);
+  roleType = input<RoleType | null>(null);
 
   groupedRolesSignal = signal<GroupedRole[]>([]);
 
@@ -72,7 +72,7 @@ export class UpdateRole implements OnInit {
       });
   }
 
-  getRoles(roleType: ERoleType | null = null) {
+  getRoles(roleType: RoleType | null = null) {
     const urlApi = Endpoints.ApplicationUsers.getRoleUrl(
       this.applicationUserId(),
       roleType,
@@ -80,9 +80,9 @@ export class UpdateRole implements OnInit {
 
     this.apiResponseS
       .onGetList(urlApi)
-      .then((result: IRoles[] | null) => {
+      .then((result: Roles[] | null) => {
         if (!result) return;
-        const grouped = new Map<ERoleType, IRoles[]>();
+        const grouped = new Map<RoleType, Roles[]>();
 
         // Agrupar roles por roleType
         for (const role of result) {
@@ -108,7 +108,7 @@ export class UpdateRole implements OnInit {
       });
   }
 
-  selectRole(selectedRole: IRoles): void {
+  selectRole(selectedRole: Roles): void {
     const updatedRole = {
       ...selectedRole,
       isSelected: !selectedRole.isSelected,

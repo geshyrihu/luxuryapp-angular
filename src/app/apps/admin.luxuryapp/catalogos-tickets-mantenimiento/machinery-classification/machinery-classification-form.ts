@@ -23,7 +23,7 @@ import { MachineryClassificationFormGroup } from "./interfaces/machinery-classif
 @Component({
   selector: "app-machinery-classification-form",
   templateUrl: "./machinery-classification-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class MachineryClassificationForm implements OnInit {

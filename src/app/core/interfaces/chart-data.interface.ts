@@ -1,7 +1,7 @@
-import { IDataSets } from './chart-data-set.interface';
-export interface IChartData {
+import { DataSets } from './chart-data-set.interface';
+export interface ChartData {
   labels: string[];
-  dataSets: IDataSets[];
+  dataSets: DataSets[];
 }
 
 

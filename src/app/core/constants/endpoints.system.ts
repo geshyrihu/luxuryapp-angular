@@ -150,18 +150,18 @@ export const EndpointsSystem = {
     update: (id: string) => `payment-methods/${id}`,
   },
   PaymentTypes: {
-    create: "MetodoPago",
-    delete: (id: string) => `MetodoPago/${id}`,
-    getAll: "MetodoPago",
-    getById: (id: string | number) => `MetodoPago/${id}`,
-    update: (id: string | number) => `MetodoPago/${id}`,
+    create: "metodo-pago",
+    delete: (id: string) => `metodo-pago/${id}`,
+    getAll: "metodo-pago",
+    getById: (id: string | number) => `metodo-pago/${id}`,
+    update: (id: string | number) => `metodo-pago/${id}`,
   },
   UnitsOfMeasurement: {
-    create: "UnidadMedida",
-    delete: (id: string) => `unidadmedida/${id}`,
-    getAll: "UnidadMedida",
-    getById: (id: string | number) => `UnidadMedida/${id}`,
-    update: (id: string | number) => `UnidadMedida/${id}`,
+    create: "unidad-medida",
+    delete: (id: string) => `unidad-medida/${id}`,
+    getAll: "unidad-medida",
+    getById: (id: string | number) => `unidad-medida/${id}`,
+    update: (id: string | number) => `unidad-medida/${id}`,
   },
 
   // ==========================================================================

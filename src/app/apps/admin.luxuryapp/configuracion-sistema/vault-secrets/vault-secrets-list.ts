@@ -19,7 +19,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { TableModule } from "primeng/table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -37,7 +37,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 @Component({
   selector: "app-vault-secrets-list",
   templateUrl: "./vault-secrets-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonLabel,
     AppIcon,
@@ -63,7 +63,7 @@ export class VaultSecretsList {
   aspRoleS = inject(AspRoleService);
 
   readonly isSuperUsuario = this.aspRoleS.roleSignal(
-    EApplicationRole.SuperUsuario,
+    ApplicationRole.SuperUsuario,
   );
 
   dataSignal = signal<VaultSecretSummary[]>([]);

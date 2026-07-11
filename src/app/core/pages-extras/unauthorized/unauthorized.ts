@@ -7,7 +7,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-unauthorized",
   imports: [DividerModule, AppIcon, WebButtonLabel],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./unauthorized.html",
 })
 export class Unauthorized {

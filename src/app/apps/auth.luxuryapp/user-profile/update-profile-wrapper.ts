@@ -13,7 +13,7 @@ import { UpdateUserPhotoComponent } from "./update-user-photo";
       </div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [UpdateUserPhotoComponent, UpdatePasswordComponent],
 })
 export class UpdateProfileWrapper {}

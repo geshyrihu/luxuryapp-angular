@@ -1,4 +1,4 @@
-export interface IMedidorCategoria {
+export interface MedidorCategoria {
   id: any;
   nombreMedidorCategoria: string;
 }

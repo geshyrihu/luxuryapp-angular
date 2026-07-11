@@ -5,7 +5,7 @@ export const publicRoutes: Routes = [
     // Suggested path: 'operation-report/:customer/:start/:end'
     path: "reporte-operacion/:customer/:inicio/:final",
     loadComponent: () =>
-      import("src/app/features/operations/reports/report-client/report-client").then(
+      import("src/app/apps/operations.luxuryapp/reports/report-client/report-client").then(
         (m) => m.ReportClient,
       ),
     data: {
@@ -16,7 +16,7 @@ export const publicRoutes: Routes = [
   {
     path: "operation-report-client/:customer/:inicio/:final",
     loadComponent: () =>
-      import("src/app/features/operations/reports/operation-report-client/operation-report-client").then(
+      import("src/app/apps/operations.luxuryapp/reports/operation-report-client/operation-report-client").then(
         (m) => m.OperationReportClient,
       ),
     data: {
@@ -29,7 +29,7 @@ export const publicRoutes: Routes = [
     // Suggested path: 'minute-report/:customer/:id'
     path: "reporte-minuta/:customer/:id",
     loadComponent: () =>
-      import("src/app/features/operations/reports/report-meeting/report-meeting").then(
+      import("src/app/apps/operations.luxuryapp/reports/report-meeting/report-meeting").then(
         (m) => m.ReportMeeting,
       ),
     data: {
@@ -41,7 +41,7 @@ export const publicRoutes: Routes = [
     // Suggested path: 'provider-pending-tickets-report/:customerId/:departmentId'
     path: "reporte-ticket-pendientes-proveedor/:customerId/:departamentId",
     loadComponent: () =>
-      import("src/app/features/operations/reports/reporte-ticket-pendientes-proveedor/reporte-ticket-pendientes-proveedor").then(
+      import("src/app/apps/operations.luxuryapp/reports/reporte-ticket-pendientes-proveedor/reporte-ticket-pendientes-proveedor").then(
         (m) => m.ReporteTicketPendientesProveedor,
       ),
     data: {
@@ -52,7 +52,7 @@ export const publicRoutes: Routes = [
   {
     path: "contabilidad-cliente/:customerId/:anio/:mes",
     loadComponent: () =>
-      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-cliente/pages/contabilidad-cliente-wrapper").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/contabilidad-cliente/pages/contabilidad-cliente-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -61,14 +61,3 @@ export const publicRoutes: Routes = [
     },
   },
 ];
-
-
-
-
-
-
-
-
-
-
-

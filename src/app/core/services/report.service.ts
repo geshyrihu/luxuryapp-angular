@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IFilterTicket } from "src/app/core/interfaces/filter-ticket.interface";
+import { FilterTicket } from "src/app/core/interfaces/filter-ticket.interface";
 @Injectable({
   providedIn: "root",
 })
@@ -7,7 +7,7 @@ export class ReportService {
   data: any[] = [];
   dateGrafico: any[] = [];
   customerId: string;
-  operationReportfFilter: IFilterTicket;
+  operationReportfFilter: FilterTicket;
   minutaId: any = 0;
 
   dataReport: any[] = [];
@@ -21,7 +21,7 @@ export class ReportService {
   getDataOperationReport() {
     return this.operationReportfFilter;
   }
-  setDataOperationReport(model: IFilterTicket) {
+  setDataOperationReport(model: FilterTicket) {
     this.operationReportfFilter = model;
   }
   setDataGrafico(model: any) {

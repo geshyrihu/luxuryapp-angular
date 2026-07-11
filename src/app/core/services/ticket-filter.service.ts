@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { IFilterTicket } from "src/app/core/interfaces/filter-ticket.interface";
+import { FilterTicket } from "src/app/core/interfaces/filter-ticket.interface";
 @Injectable({
   providedIn: "root",
 })
@@ -9,7 +9,7 @@ export class TicketFilterService {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
 
-  filterTicket: IFilterTicket = {
+  filterTicket: FilterTicket = {
     customer: this.customerIdS.customerId(),
     status: 0,
     responsible: "",
@@ -34,7 +34,7 @@ export class TicketFilterService {
   get getfilterTicket() {
     return this.filterTicket;
   }
-  setfilterTicket(filterTicket: IFilterTicket) {
+  setfilterTicket(filterTicket: FilterTicket) {
     this.filterTicket = filterTicket;
   }
 }

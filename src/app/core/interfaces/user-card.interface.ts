@@ -1,4 +1,4 @@
-export interface IUserCard {
+export interface UserCard {
   firstName: string;
   lastName: string;
   fullName: string;

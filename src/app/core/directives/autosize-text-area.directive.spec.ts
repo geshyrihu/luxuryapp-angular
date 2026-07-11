@@ -5,7 +5,7 @@ import { AutosizeDirective } from "./autosize-text-area.directive";
 @Component({
   template: `<textarea appAutosize></textarea>`,
   imports: [AutosizeDirective],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TestHostComponent {}
 

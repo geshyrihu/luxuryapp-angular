@@ -1,5 +1,5 @@
-import { IPropertyOccupant } from "./property-occupant.interface";
-export interface IProperty {
+import { PropertyOccupant } from "./property-occupant.interface";
+export interface Property {
   id: any;
   department: string;
   tower: string;
@@ -14,7 +14,7 @@ export interface IProperty {
   fullName: string;
   isDelinquent: boolean;
   delinquentSince: string | null;
-  occupants: IPropertyOccupant[];
+  occupants: PropertyOccupant[];
 }
 
 

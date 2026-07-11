@@ -211,7 +211,7 @@ de `openDialog` resuelve con `modal.onDidDismiss().data`.
 > puente, co-locada con `DialogHandlerService`.
 
 ### 5.3 Panel del `p-select` en web
-PrimeNG 21 inyecta en runtime `.p-component.p-select-overlay` con un surface oscuro;
+PrimeNG 22 inyecta en runtime `.p-component.p-select-overlay` con un surface oscuro;
 en `styles/web/_prime-dropdown.scss` se fuerza `background: var(--ds-bg-surface)
 !important` en el panel y `transparent` en las opciones.
 
@@ -272,7 +272,7 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 | Síntoma | Causa / Fix |
 |---|---|
 | Overlay Ionic (select/picker) detrás del diálogo en móvil | **Resuelto en Fase 3**: en móvil el form se abre en `ion-modal` (`IonicDialogModal`), no en `DynamicDialog` → select y modal comparten overlay Ionic. Fallback CSS: `body.p-overflow-hidden ion-app { contain: none }`. |
-| Panel `p-select` oscuro o **opciones invisibles** en web | `_prime-dropdown.scss`: `background`/`color` con `!important` en `.p-select-overlay` y `.p-select-option` (PrimeNG 21 inyecta panel oscuro + texto claro en runtime). |
+| Panel `p-select` oscuro o **opciones invisibles** en web | `_prime-dropdown.scss`: `background`/`color` con `!important` en `.p-select-overlay` y `.p-select-option` (PrimeNG 22 inyecta panel oscuro + texto claro en runtime). |
 | Input Ionic sin recuadro / texto pegado | Falta `mode="md"` o el theme le mete border manual (ver §5.1). |
 | `Cannot read properties of undefined (reading 'fill')` en botón móvil | `variant` fuera del mapa → ya es defensivo; revisar que no sea un `variant` web en botón móvil. |
 | `NG0100 ExpressionChanged…` con datos async | `@if` que voltea al asignar en `.then()`; `cdr.detectChanges()` tras asignar o usar signals. |

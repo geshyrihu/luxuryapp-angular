@@ -43,7 +43,7 @@ import { Subject } from "rxjs";
     IonButton,
     IonContent,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ion-header>
       <ion-toolbar>

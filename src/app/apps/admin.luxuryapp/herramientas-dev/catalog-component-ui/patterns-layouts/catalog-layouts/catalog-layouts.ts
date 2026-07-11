@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 
@@ -11,7 +10,6 @@ import { TagModule } from "primeng/tag";
 
   imports: [
     CommonModule,
-    CardModule,
     ButtonModule,
     DividerModule,
     TagModule,

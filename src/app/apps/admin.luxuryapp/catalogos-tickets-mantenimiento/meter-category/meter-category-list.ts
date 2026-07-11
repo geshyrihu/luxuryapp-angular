@@ -24,7 +24,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ICategory } from "src/app/core/interfaces/category.interface";
+import { Category } from "src/app/core/interfaces/category.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MeterCategoryForm } from "./meter-category-form";
@@ -34,7 +34,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-meter-category-list",
   templateUrl: "./meter-category-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     MobileListItem,
@@ -55,7 +55,7 @@ export class MeterCategoryList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  data = signal<ICategory[]>([]);
+  data = signal<Category[]>([]);
   loading = signal(true);
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

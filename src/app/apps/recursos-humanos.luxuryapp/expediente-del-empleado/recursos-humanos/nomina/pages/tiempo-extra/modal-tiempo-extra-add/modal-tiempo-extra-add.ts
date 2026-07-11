@@ -17,7 +17,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   TiempoExtraCreateDTO,
   TiempoExtraDTO,
@@ -46,7 +46,7 @@ export default class ModalTiempoExtraAdd implements OnInit {
 
   submitting = signal(false);
   item = signal<TiempoExtraDTO | null>(null);
-  employees = signal<ISelectItem[]>([]);
+  employees = signal<SelectItemDto[]>([]);
 
   form = this.fb.nonNullable.group({
     employeeId: ["", Validators.required],
@@ -69,7 +69,7 @@ export default class ModalTiempoExtraAdd implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const employees = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+    const employees = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
       Endpoints.SelectItems.employeesByCustomer(customerId),
     );
     this.employees.set(employees ?? []);
@@ -99,7 +99,7 @@ export default class ModalTiempoExtraAdd implements OnInit {
     }
   }
 
-  saveEmployee = (item: ISelectItem) => {
+  saveEmployee = (item: SelectItemDto) => {
     this.form.patchValue({
       employeeId: item?.value || "",
       employeeName: item?.label || "",

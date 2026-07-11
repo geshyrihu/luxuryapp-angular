@@ -1,0 +1,181 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex justify-content-between align-items-center w-full">
+      <div class="flex align-items-center gap-2">
+        <iw-button-item
+          (clicked)="onOpenScanner()"
+          [iconClass]="'mdi:qrcode'"
+          tooltip="Escanear QR"
+        />
+        <iw-button-download
+          (clicked)="onDownloadAllQr()"
+          lxTooltip="QR"
+          tooltipPosition="top"
+          tooltip="Descargar todos los QR"
+        />
+        <iw-button-item
+          (clicked)="onViewPeriodos()"
+          lxTooltip="Periodos"
+          tooltipPosition="top"
+          tooltip="Configurar periodos de inspección"
+        />
+        <iw-button-download
+          (clicked)="downloadTemplate()"
+          lxTooltip="Plantilla"
+          tooltipPosition="top"
+          tooltip="Descargar plantilla Excel"
+        />
+        <iw-button-download
+          (clicked)="fileInput.click()"
+          lxTooltip="Importar"
+          tooltipPosition="top"
+          tooltip="Importar desde Excel"
+        />
+        <input
+          type="file"
+          accept=".xlsx"
+          style="display: none"
+          #fileInput
+          (change)="onImportExcel($event)"
+        />
+      </div>
+      <primeng-custom-caption
+        [title]="'Inventario de Hidrantes'"
+        (add)="onModalForm({ id: '', title: 'Nuevo Hidrante' })"
+        [dt]="dt"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5">Foto</th>
+      <th class="table-col-15" pSortableColumn="localCode">
+        Código <p-sorticon field="localCode" />
+      </th>
+      <th class="table-col-25" pSortableColumn="hydrantType">
+        Tipo <p-sorticon field="hydrantType" />
+      </th>
+      <th class="table-col-15" pSortableColumn="cabinetNumber">
+        Gabinete <p-sorticon field="cabinetNumber" />
+      </th>
+      <th class="table-col-25" pSortableColumn="location">
+        Ubicación <p-sorticon field="location" />
+      </th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <app-image
+          [src]="item.photo"
+          alt="."
+          width="100"
+          styleClass="shadow-4"
+          [preview]="true"
+        />
+      </td>
+      <td><small>{{ item.localCode }}</small></td>
+      <td><small>{{ item.hydrantType }}</small></td>
+      <td><small>{{ item.cabinetNumber }}</small></td>
+      <td><small>{{ item.location }}</small></td>
+      <td>
+        <div class="flex">
+          <iw-button-item
+            (clicked)="onViewHistory(item)"
+            tooltip="Ver historial de inspecciones"
+            [iconClass]="'mdi:format-list-bulleted'"
+          />
+          <iw-button-download
+            (clicked)="onDownloadQr(item)"
+            tooltip="Descargar QR"
+          />
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Hidrante' })"
+>
+  <div customFilters class="px-3 pb-2 flex flex-column gap-2">
+    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onOpenScanner()">
+      <app-icon icon="mdi:qrcode" slot="start" />
+      Escanear QR
+    </button>
+    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onViewPeriodos()">
+      <app-icon icon="mdi:clock-outline" slot="start" />
+      Periodos de Inspección
+    </button>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: var(--ds-border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <app-icon
+          icon="mdi:water-outline"
+          style="font-size: 20px; color: var(--ds-primary)"
+        />
+      </div>
+      <span class="">
+        <h3>
+          {{ item.localCode ? item.localCode + ' é ' : '' }}{{ item.hydrantType
+          }}
+        </h3>
+        <p>{{ item.location }}</p>
+      </span>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="onViewHistory(item)"
+            label="Historial"
+            iconName="list-outline"
+          />
+          <ili-button-download (clicked)="onDownloadQr(item)" label="QR" />
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

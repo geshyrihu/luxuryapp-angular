@@ -1,0 +1,133 @@
+@if (announcement()) {
+<div class="container mt-4 hidden md:block">
+  <div class="flex flex-column align-items-center">
+    <div class="w-full max-w-4xl mx-auto">
+      <div class="mb-3">
+        <a
+          (click)="navigateBack()"
+          class="btn btn-secondary btn-sm cursor-pointer"
+        >
+          <app-icon [icon]="'mdi:arrow-left'" class="mr-1" /> Volver al listado
+        </a>
+      </div>
+
+      <div class="card">
+        <!-- Imagen de cabecera -->
+        @if (announcement().imagePath) {
+        <img
+          [src]="announcement().imagePath"
+          class="w-full"
+          alt="Banner del Anuncio"
+          style="max-height: 400px; object-fit: cover"
+        />
+        }
+        <div class="p-4">
+          <!-- Título y Metadatos Simplificados -->
+          <h1 class="text-3xl font-bold mb-2">{{ announcement().title }}</h1>
+          <div class="text-sm text-color-secondary mb-4">
+            <span
+              ><app-icon [icon]="'mdi:calendar'" class="mr-2" />Publicado: {{
+              announcement().publishedAt | date: 'fullDate' }}</span
+            >
+          </div>
+
+          <!-- Contenido del Anuncio -->
+          <div
+            class="announcement-content mb-4"
+            [innerHTML]="announcement().content"
+          ></div>
+
+          <!-- Enlace Externo -->
+          @if (announcement().externalLink) {
+          <div class="mt-4">
+            <a
+              [href]="announcement().externalLink"
+              target="_blank"
+              class="btn btn-secondary btn-sm"
+              ><app-icon [icon]="'mdi:external-link'" class="mr-1" /> Visitar
+              Enlace</a
+            >
+          </div>
+          }
+
+          <!-- Archivos Adjuntos -->
+          @if (announcement().attachments && announcement().attachments.length > 0)
+          {
+          <hr class="my-4" />
+          <div>
+            <h5 class="font-semibold mb-3">Archivos Adjuntos</h5>
+            <div class="flex flex-column">
+              @for (item of announcement().attachments; track item.id) {
+              <a
+                [href]="item.filePath"
+                target="_blank"
+                class="p-2 surface-100 border-round text-color hover:surface-200 transition-colors transition-duration-200 flex align-items-center"
+              >
+                <app-icon [icon]="'mdi:download'" class="mr-2" />
+                <span>{{ item.fileName }}</span>
+              </a>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden pb-5">
+  <div class="p-2">
+    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary" (click)="navigateBack()">
+      <app-icon icon="mdi:arrow-left" slot="start" />
+      Volver
+    </button>
+
+    <div class="m-0">
+      @if (announcement().imagePath) {
+      <lx-image
+        [src]="announcement().imagePath"
+        [alt]="announcement().title"
+      ></lx-image>
+      }
+
+      <div class="border-1 surface-border shadow-1 border-round-xl">
+        <div class="border-1 surface-border shadow-1 border-round-xl">{{ announcement().title }}</div>
+        <div class="border-1 surface-border shadow-1 border-round-xl">
+          {{ announcement().publishedAt | date: 'mediumDate' }}
+        </div>
+      </div>
+
+      <div class="border-1 surface-border shadow-1 border-round-xl">
+        <div
+          class="announcement-content"
+          [innerHTML]="announcement().content"
+        ></div>
+
+        @if (announcement().externalLink) {
+        <div class="ion-margin-top">
+          <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary">
+            Visitar Enlace <app-icon icon="mdi:open-in-new" slot="end" />
+          </button>
+        </div>
+        } @if (announcement().attachments && announcement().attachments.length > 0)
+        {
+        <div class="surface-card mb-3 border-round">
+          <div class="surface-card mb-3 border-round">
+            <span class="">Adjuntos</span>
+          </div>
+          @for (item of announcement().attachments; track item.id) {
+          <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+            <app-icon icon="mdi:file-document-outline" slot="start" />
+            <span class="">{{ item.fileName }}</span>
+            <app-icon icon="mdi:download-outline" slot="end" color="primary" />
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+}

@@ -4,7 +4,7 @@ export const operationsRoutes: Routes = [
   {
     path: "my-building", // Ruta anterior: 'mi-edificio'
     loadComponent: () =>
-      import("src/app/features/operations/properties/mi-edificio/mi-edificio").then(
+      import("src/app/apps/operations.luxuryapp/properties/mi-edificio/mi-edificio").then(
         (m) => m.MiEdificio,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const operationsRoutes: Routes = [
   {
     path: "inventario-productos",
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
         (m) => m.WarehouseStockList,
       ),
     canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const operationsRoutes: Routes = [
   {
     path: "extintores",
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
         (m) => m.InventarioExtintor,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const operationsRoutes: Routes = [
   {
     path: "extintores-group",
     loadComponent: () =>
-      import("src/app/features/operations/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
+      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
         (m) => m.InventarioExtintorGroup,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const operationsRoutes: Routes = [
   {
     path: "alertas-panico",
     loadComponent: () =>
-      import("src/app/features/operations/panic-alert/pages/panic-alert-list/panic-alert-list").then(
+      import("src/app/apps/operations.luxuryapp/panic-alert/pages/panic-alert-list/panic-alert-list").then(
         (m) => m.PanicAlertList,
       ),
     canActivate: [authGuard],

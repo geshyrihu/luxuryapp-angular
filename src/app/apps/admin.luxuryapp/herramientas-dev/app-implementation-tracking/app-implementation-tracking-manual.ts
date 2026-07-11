@@ -14,7 +14,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   selector: "app-implementation-tracking-manual",
 
   imports: [CommonModule, WebButtonLabel],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="card p-4">
       <h2 class="text-2xl font-bold mb-4">

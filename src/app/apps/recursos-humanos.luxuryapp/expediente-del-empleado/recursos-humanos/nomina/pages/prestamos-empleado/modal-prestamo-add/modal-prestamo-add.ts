@@ -17,7 +17,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   NUMERO_PAGOS_OPTIONS,
   PrestamoEmpleadoCreateDTO,
@@ -43,8 +43,8 @@ export default class ModalPrestamoAdd implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
 
-  employees = signal<ISelectItem[]>([]);
-  readonly numeroPagosOptions: ISelectItem[] = NUMERO_PAGOS_OPTIONS;
+  employees = signal<SelectItemDto[]>([]);
+  readonly numeroPagosOptions: SelectItemDto[] = NUMERO_PAGOS_OPTIONS;
   submitting = signal(false);
 
   form = this.fb.nonNullable.group({
@@ -58,13 +58,13 @@ export default class ModalPrestamoAdd implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const employees = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+    const employees = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
       Endpoints.SelectItems.employeesByCustomer(customerId),
     );
     this.employees.set(employees ?? []);
   }
 
-  saveEmployee = (item: ISelectItem) => {
+  saveEmployee = (item: SelectItemDto) => {
     this.form.patchValue({
       employeeId: item?.value || "",
       employeeName: item?.label || "",

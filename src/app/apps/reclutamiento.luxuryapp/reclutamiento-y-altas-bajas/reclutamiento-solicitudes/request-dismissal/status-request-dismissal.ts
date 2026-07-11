@@ -1,0 +1,142 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/card-employee";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
+import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
+import { ROUTES } from "src/app/routing/route-paths";
+import { PhoneFormatPipe } from "src/app/shared/pipes/phone-format.pipe";
+import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
+
+@Component({
+  selector: "app-status-request-dismissal",
+  templateUrl: "./status-request-dismissal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    WebButtonIcon,
+    LxTooltipDirective,
+    NgbTooltipModule,
+    WebButtonLabelConfirm,
+    PhoneFormatPipe,
+  ],
+})
+export class StatusRequestDismissal implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  dialogHandlerS = inject(DialogHandlerService);
+  statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
+  authS = inject(AuthService);
+  aspRoleS = inject(AspRoleService);
+  customerIdS = inject(CustomerIdService);
+  router = inject(Router);
+
+  workPositionId = this.statusSolicitudVacanteService.getworkPositionId();
+  ref: DynamicDialogRef;
+
+  dataSignal = signal<any>(null);
+  noCandidates: boolean = true;
+  applicationUserId: string = this.authS.infoUserAuth.applicationUserId;
+  public AspRole = ApplicationRole;
+
+  ngOnInit() {
+    if (this.workPositionId === null) {
+      this.router.navigate(ROUTES.RECLUTAMIENTO.PLANTILLA_INTERNA);
+    }
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    const urlApi = "RequestDismissal/" + this.workPositionId;
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      this.dataSignal.set(result);
+    });
+  }
+
+  //Ver tarjeta de Colaborador
+  onCardEmployee(applicationUserId: string) {
+    this.dialogHandlerS
+      .openDialog(
+        CardEmployee,
+        {
+          applicationUserId,
+        },
+        "Tarjeta de Colaborador",
+        this.dialogHandlerS.sizeSm,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  //Editar solicitud de baja
+  onModalForm(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        SolicitudBajaForm,
+        {
+          id: data.id,
+        },
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+  //Eliminar solicitud de baja
+  onDelete(id: any) {
+    this.apiResponseS
+      .onDelete(`RequestDismissal/${id}`)
+      .then((result: boolean) => {
+        if (result) {
+          // Si es un objeto ónico y se borra, recargar o limpiar
+          this.onLoadData();
+        }
+      });
+  }
+
+  //Autorizar baja
+  onAuthorize(department: string) {
+    const urlApi = `RequestDismissal/${this.dataSignal().id}/authorize/${department}`;
+    this.apiResponseS.onPatch(urlApi, {}).then((result: boolean) => {
+      if (result) this.onLoadData();
+    });
+  }
+  //Editar solicitud de Discounts
+  onModalFormDiscounts(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        StatusRequestDismissalDiscountForm,
+        {
+          id: data.id,
+        },
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+  //Eliminar solicitud de baja
+  onDeleteDiscounts(id: any) {
+    const urlApi = `RequestDismissalDiscount/${id}`;
+    this.apiResponseS.onDelete(urlApi).then(() => {
+      this.onLoadData();
+    });
+  }
+}

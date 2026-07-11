@@ -10,7 +10,7 @@
           type="button"
           class="toolbar-icon-btn"
           (click)="sidebarToggle()"
-          pTooltip="Menú"
+          lxTooltip="Menú"
           tooltipPosition="bottom"
         >
           <app-icon icon="fluent-color:text-bullet-list-square-24" />
@@ -83,7 +83,7 @@
           type="button"
           class="toolbar-icon-btn"
           (click)="navIcon.action()"
-          [pTooltip]="navIcon.ngbTooltip"
+          [lxTooltip]="navIcon.ngbTooltip"
           tooltipPosition="bottom"
         >
           <app-icon
@@ -98,7 +98,7 @@
           type="button"
           class="toolbar-icon-btn"
           (click)="toggleTheme()"
-          pTooltip="Cambiar Tema"
+          lxTooltip="Cambiar Tema"
           tooltipPosition="bottom"
         >
           <app-icon [icon]="getThemeIcon()" />

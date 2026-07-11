@@ -1,4 +1,4 @@
-export interface IInventarioHidrante {
+export interface InventarioHidranteDto {
   id: any;
   customerId: string;
   hydrantType: string;

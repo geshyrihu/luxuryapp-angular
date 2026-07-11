@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { DockBase } from "@ui/base/dock.base";
 import { DockModule } from "primeng/dock";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 /**
  * AppDock — Wrapper sobre p-dock para barra de herramientas tipo macOS.
@@ -17,7 +17,7 @@ import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-dock",
 
-  imports: [CommonModule, DockModule, TooltipModule],
+  imports: [CommonModule, DockModule, LxTooltipDirective],
   template: `
     <div class="app-dock-root">
       <p-dock
@@ -29,7 +29,7 @@ import { TooltipModule } from "primeng/tooltip";
         <ng-template #item let-item>
           <div
             class="app-dock-item"
-            [pTooltip]="item.label"
+            [lxTooltip]="item.label"
             [tooltipPosition]="tooltipPosition()"
             (click)="runCommand(item)"
           >

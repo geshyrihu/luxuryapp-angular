@@ -18,7 +18,7 @@ import { Sidebar } from "../sidebar/sidebar";
   selector: "app-view-employee-monitor",
   imports: [CommonModule, RouterOutlet, Sidebar, HeaderEmployeeMonitor, LxLoader],
   templateUrl: "./view-employee-monitor.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./view-employee-monitor.scss",
 })
 export class ViewEmployeeMonitor implements OnInit, AfterViewInit {

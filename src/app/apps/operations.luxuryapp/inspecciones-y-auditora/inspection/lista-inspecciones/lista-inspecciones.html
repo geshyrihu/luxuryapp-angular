@@ -1,0 +1,165 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block py-3">
+  <div class="flex justify-content-between align-items-center mb-1 p-2">
+    <h4 class="text-xl font-bold">Listado de Inspecciones</h4>
+    <iw-button
+      iconClass="mdi:plus"
+      lxTooltip="Nuevo Registro"
+      (clicked)="onModalForm({ title: 'Agregar Inspección', id: '' })"
+    />
+  </div>
+
+  <div class="flex align-items-center">
+    <custom-input-select-signal
+      class="m-1"
+      [ngModel]="selectedAreaSignal()"
+      (ngModelChange)="selectedAreaSignal.set($event)"
+      [data]="areasResponsablesSignal()"
+      placeholder="Todas las óreas"
+      [horizontal]="false"
+      [filter]="true"
+    />
+
+    <custom-input-select-signal
+      class="m-1"
+      [ngModel]="selectedRecurrenceSignal()"
+      (ngModelChange)="selectedRecurrenceSignal.set($event)"
+      [data]="[
+        { label: 'Diario', value: 'Diario' },
+        { label: 'Semanal', value: 'Semanal' },
+        { label: 'Mensual', value: 'Mensual' }
+      ]"
+      placeholder="Todas las Recurrencias"
+      [horizontal]="false"
+      [filter]="true"
+    />
+
+    <il-button-item
+      iconClass="mdi:book"
+      label="Reportes"
+      tooltip="Ver reportes de inspección"
+      (clicked)="navigateToReportes()"
+    />
+  </div>
+
+  @if (inspeccionesFiltradasSignal().length) {
+  <div class="mt-1">
+    @for (group of inspeccionesFiltradasSignal(); track group) {
+    <div>
+      <div class="p-3 surface-100 border-round mb-2">
+        <strong class="text-lg"> {{ group.departament }} </strong>
+      </div>
+      @for (item of group.inspecciones; track item) {
+      <div
+        class="flex align-items-center justify-content-between w-full py-1 mb-2 p-3 border-1 surface-border border-round"
+      >
+        <div class="flex align-items-center">
+          <div>
+            <div class="text-base font-medium">{{ item.name }}</div>
+            <small class="text-sm text-color-secondary"
+              >{{ item.frequency }}</small
+            >
+          </div>
+        </div>
+        <div class="flex align-items-center">
+          <app-action-menu>
+            <ng-container actions>
+              <il-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+                label="Editar"
+              />
+              <il-button-item
+                iconClass="mdi:magnify"
+                label="Detalles"
+                (clicked)="navigateToDetalles(item.id)"
+              />
+              <il-button-delete
+                (confirmed)="onDelete(item.id)"
+                label="Eliminar"
+              />
+            </ng-container>
+          </app-action-menu>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+  } @else {
+  <p class="p-3">No hay inspecciones disponibles.</p>
+  }
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión mívil -->
+<app-data-view-mobile
+  class="md:hidden"
+  [isGrouped]="true"
+  [groupedData]="groupedData()"
+  (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
+>
+  <div customFilters class="px-2 pb-2">
+    <div class="flex mb-2">
+      <custom-input-select-signal
+        class="flex-1"
+        [ngModel]="selectedAreaSignal()"
+        (ngModelChange)="selectedAreaSignal.set($event)"
+        [data]="areasResponsablesSignal()"
+        placeholder="Todas las óreas"
+        [filter]="true"
+      />
+      <custom-input-select-signal
+        class="flex-1"
+        [ngModel]="selectedRecurrenceSignal()"
+        (ngModelChange)="selectedRecurrenceSignal.set($event)"
+        [data]="[
+          { label: 'Diario', value: 'Diario' },
+          { label: 'Semanal', value: 'Semanal' },
+          { label: 'Mensual', value: 'Mensual' }
+        ]"
+        placeholder="Todas las Recurrencias"
+        [filter]="true"
+      />
+    </div>
+    <ili-button-item
+      class="w-full"
+      iconClass="mdi:book"
+      label="Ver Reportes"
+      (clicked)="navigateToReportes()"
+    />
+  </div>
+
+  <ng-template #listItemTemplate let-item>
+    <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
+      >
+        <app-icon
+          icon="mdi:clipboard-search-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        />
+      </div>
+      <span class="">
+        <div class="text-base font-medium">{{ item.name }}</div>
+        <span class="text-sm">{{ item.frequency }}</span>
+      </span>
+      <ili-action-menu end>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-item
+            icon="search"
+            label="Detalles"
+            (clicked)="navigateToDetalles(item.id)"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ili-action-menu>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

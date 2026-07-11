@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { SelectButtonModule } from "primeng/selectbutton";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
@@ -56,7 +56,7 @@ export class CustomInputSelectButton
   implements ControlValueAccessor
 {
   selectionChange = output<any>();
-  options = input<ISelectItem[]>([]);
+  options = input<SelectItemDto[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
   multiple = input<boolean>(false);

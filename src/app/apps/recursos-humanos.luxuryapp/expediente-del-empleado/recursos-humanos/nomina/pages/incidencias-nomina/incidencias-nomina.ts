@@ -20,7 +20,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import {
@@ -62,7 +62,7 @@ export default class IncidenciasNomina {
   loading = signal(true);
   sincronizando = signal(false);
   data = signal<IncidenciaNominaDTO[]>([]);
-  periodos = signal<ISelectItem[]>([]);
+  periodos = signal<SelectItemDto[]>([]);
   periodoSeleccionado = signal<string>("");
 
   tablePrimeNgRows = tablePrimeNgRows();
@@ -90,7 +90,7 @@ export default class IncidenciasNomina {
     const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
       Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
-    const options: ISelectItem[] = ((result as any) ?? []).map((p: any) => ({
+    const options: SelectItemDto[] = ((result as any) ?? []).map((p: any) => ({
       label: p.quincenaDisplay,
       value: p.id,
     }));

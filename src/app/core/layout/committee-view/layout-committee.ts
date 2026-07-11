@@ -19,7 +19,7 @@ import { LxLoader } from "@ui/adaptive/loader/loader";
 import { filter, map } from "rxjs/operators";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
@@ -43,7 +43,7 @@ import { AppLoader } from "@ui/web/loader/loader";
     IonContent,
     LxLoader,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       ion-app {
@@ -84,7 +84,7 @@ export class LayoutCommittee implements OnInit {
   public aspRoleS = inject(AspRoleService);
   public authS = inject(AuthService);
 
-  public AspRole = EApplicationRole;
+  public AspRole = ApplicationRole;
 
   get layoutClass() {
     return this.layout.config.settings.sidebar_type + "";

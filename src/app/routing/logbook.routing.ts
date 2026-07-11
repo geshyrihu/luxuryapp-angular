@@ -4,7 +4,7 @@ export const logbookRoutes: Routes = [
   {
     path: "maintenance-orders", // Ruta anterior: 'ordenes-mantenimiento'
     loadComponent: () =>
-      import("src/app/features/operations/field-service/service-order/ordenes-servicio-list").then(
+      import("src/app/apps/operations.luxuryapp/field-service/service-order/ordenes-servicio-list").then(
         (m) => m.OrdenesServicio,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const logbookRoutes: Routes = [
   {
     path: "inspections-areas",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/areas-inspeccion/inspections-areas").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/areas-inspeccion/inspections-areas").then(
         (m) => m.InspectionsAreas,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const logbookRoutes: Routes = [
   {
     path: "pool", // Ruta anterior: 'piscina'
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/piscina/piscina-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/piscina/piscina-list").then(
         (m) => m.PiscinaList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'pool-logbook/:poolId'
     path: "piscina-bitacora/:piscinaId",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/piscina-bitacora/piscina-bitacora-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/piscina-bitacora/piscina-bitacora-list").then(
         (m) => m.PiscinaBitacoraList,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const logbookRoutes: Routes = [
   {
     path: "meter-list", // Ruta anterior: 'lista-medidor'
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/bitacoras/medidores/medidores-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/bitacoras/medidores/medidores-list").then(
         (m) => m.MedidoresList,
       ),
     canActivate: [authGuard],
@@ -66,7 +66,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'meter-reading-list/:id'
     path: "lista-medidor-lectura/:id", // Corregido typo "medidar"
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/bitacoras/medidores/medidor-lectura-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/bitacoras/medidores/medidor-lectura-list").then(
         (m) => m.MedidorLecturaList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'chart/:id'
     path: "grafico/:id",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/bitacoras/medidores/medidor-lectura-chart").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/bitacoras/medidores/medidor-lectura-chart").then(
         (m) => m.MedidorLecturaChart,
       ),
     canActivate: [authGuard],
@@ -91,7 +91,7 @@ export const logbookRoutes: Routes = [
   {
     path: "elevator-spare-parts-change",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/elevator-spare-parts/elevator-spare-parts-change-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/elevator-spare-parts/elevator-spare-parts-change-list").then(
         (m) => m.ElevatorSparePartsChangeList,
       ),
     canActivate: [authGuard],
@@ -103,7 +103,7 @@ export const logbookRoutes: Routes = [
   {
     path: "elevators-emergency-call",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/elevator-emergency-call/elevators-emergency-call-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/elevator-emergency-call/elevators-emergency-call-list").then(
         (m) => m.ElevatorsEmergencyCallList,
       ),
     canActivate: [authGuard],
@@ -115,7 +115,7 @@ export const logbookRoutes: Routes = [
   {
     path: "my-inspection/:customerInspectionId",
     loadComponent: () =>
-      import("src/app/features/operations/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-ejecutar").then(
+      import("src/app/apps/operations.luxuryapp/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],
@@ -127,7 +127,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/recepcion-pipas-agua/recepcion-pipas-agua-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-list").then(
         (m) => m.RecepcionPipasAguaList,
       ),
     canActivate: [authGuard],
@@ -139,7 +139,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception/reporte",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/recepcion-pipas-agua/recepcion-pipas-agua-reporte").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-reporte").then(
         (m) => m.RecepcionPipasAguaReporte,
       ),
     canActivate: [authGuard],
@@ -151,7 +151,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception/analisis",
     loadComponent: () =>
-      import("src/app/features/maintenance/logs/recepcion-pipas-agua/recepcion-pipas-agua-analisis").then(
+      import("src/app/apps/mantenimiento.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-analisis").then(
         (m) => m.RecepcionPipasAguaAnalisis,
       ),
     canActivate: [authGuard],
@@ -163,7 +163,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-extinguisher-log/:extinguisherId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/extinguisher-log/extintor-bitacora-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/extinguisher-log/extintor-bitacora-list").then(
         (m) => m.ExtintorBitacoraList,
       ),
     canActivate: [authGuard],
@@ -175,7 +175,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-extinguisher-checklist/:id",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/extinguisher-checklist/extintor-checklist").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/extinguisher-checklist/extintor-checklist").then(
         (m) => m.ExtintorChecklist,
       ),
     canActivate: [authGuard],
@@ -187,7 +187,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-equipment-scanner",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/qr-scanner/qr-scanner").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/qr-scanner/qr-scanner").then(
         (m) => m.QrScanner,
       ),
     canActivate: [authGuard],
@@ -199,7 +199,7 @@ export const logbookRoutes: Routes = [
   {
     path: "equipment-inspection/:code",
     loadComponent: () =>
-      import("src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-entry").then(
+      import("src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-entry").then(
         (m) => m.EquipmentInspectionQrEntry,
       ),
     canActivate: [authGuard],
@@ -211,7 +211,7 @@ export const logbookRoutes: Routes = [
   {
     path: "hydrant-log/:hydrantId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/hydrant-log/hidrante-bitacora-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/hydrant-log/hidrante-bitacora-list").then(
         (m) => m.HidranteBitacoraList,
       ),
     canActivate: [authGuard],
@@ -223,7 +223,7 @@ export const logbookRoutes: Routes = [
   {
     path: "hydrant-checklist/:id",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/hydrant-checklist/hidrante-checklist").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/hydrant-checklist/hidrante-checklist").then(
         (m) => m.HidranteChecklist,
       ),
     canActivate: [authGuard],
@@ -232,7 +232,7 @@ export const logbookRoutes: Routes = [
   {
     path: "manual-call-point-log/:stationId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/manual-call-point-log/estacion-manual-bitacora-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/manual-call-point-log/estacion-manual-bitacora-list").then(
         (m) => m.EstacionManualBitacoraList,
       ),
     canActivate: [authGuard],
@@ -244,7 +244,7 @@ export const logbookRoutes: Routes = [
   {
     path: "manual-call-point-checklist/:id",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/manual-call-point-checklist/estacion-manual-checklist").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/manual-call-point-checklist/estacion-manual-checklist").then(
         (m) => m.EstacionManualChecklist,
       ),
     canActivate: [authGuard],
@@ -256,7 +256,7 @@ export const logbookRoutes: Routes = [
   {
     path: "smoke-detector-log/:detectorId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/smoke-detector-log/detector-humo-bitacora-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/smoke-detector-log/detector-humo-bitacora-list").then(
         (m) => m.DetectorHumoBitacoraList,
       ),
     canActivate: [authGuard],
@@ -268,7 +268,7 @@ export const logbookRoutes: Routes = [
   {
     path: "smoke-detector-checklist/:id",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/smoke-detector-checklist/detector-humo-checklist").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/smoke-detector-checklist/detector-humo-checklist").then(
         (m) => m.DetectorHumoChecklist,
       ),
     canActivate: [authGuard],
@@ -280,7 +280,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-periods",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-list/fire-inspection-period-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/period-list/fire-inspection-period-list").then(
         (m) => m.FireInspectionPeriodList,
       ),
     canActivate: [authGuard],
@@ -292,7 +292,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-cycles",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/cycle-list/fire-inspection-cycle-list").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/cycle-list/fire-inspection-cycle-list").then(
         (m) => m.FireInspectionCycleList,
       ),
     canActivate: [authGuard],
@@ -304,7 +304,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-cycle/:cycleId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/cycle-detail/fire-inspection-cycle-detail").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/cycle-detail/fire-inspection-cycle-detail").then(
         (m) => m.FireInspectionCycleDetail,
       ),
     canActivate: [authGuard],
@@ -316,7 +316,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-period-extintor/:periodId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-extintor/fire-inspection-period-extintor-detail").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/period-detail-extintor/fire-inspection-period-extintor-detail").then(
         (m) => m.FireInspectionPeriodExtintorDetail,
       ),
     canActivate: [authGuard],
@@ -328,7 +328,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-period-hidrante/:periodId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-hidrante/fire-inspection-period-hidrante-detail").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/period-detail-hidrante/fire-inspection-period-hidrante-detail").then(
         (m) => m.FireInspectionPeriodHidranteDetail,
       ),
     canActivate: [authGuard],
@@ -340,7 +340,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-period-estacion/:periodId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-estacion/fire-inspection-period-estacion-detail").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/period-detail-estacion/fire-inspection-period-estacion-detail").then(
         (m) => m.FireInspectionPeriodEstacionDetail,
       ),
     canActivate: [authGuard],
@@ -352,7 +352,7 @@ export const logbookRoutes: Routes = [
   {
     path: "fire-inspection-period-detector/:periodId",
     loadComponent: () =>
-      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-detector/fire-inspection-period-detector-detail").then(
+      import("src/app/apps/mantenimiento.luxuryapp/fire-equipment/inspection-periods/period-detail-detector/fire-inspection-period-detector-detail").then(
         (m) => m.FireInspectionPeriodDetectorDetail,
       ),
     canActivate: [authGuard],

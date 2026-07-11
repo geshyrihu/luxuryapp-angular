@@ -5,7 +5,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -16,7 +15,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CardModule,
     CustomInputDateSignal,
     WebButtonLabelSave,
   ],

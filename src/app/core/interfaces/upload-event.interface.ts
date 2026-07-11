@@ -1,4 +1,4 @@
-export interface IUploadEvent {
+export interface UploadEvent {
   originalEvent: Event;
   files: File[];
 }

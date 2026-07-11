@@ -11,7 +11,6 @@ import { Router } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { BadgeModule } from "primeng/badge";
-import { CardModule } from "primeng/card";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -21,8 +20,8 @@ import { SignalRService } from "src/app/core/services/signalr.service";
 @Component({
   selector: "app-notifications-list-web",
   templateUrl: "./notifications-list-web.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [BadgeModule, CardModule, ScrollPanelModule, AppIcon, WebButtonIcon],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BadgeModule, ScrollPanelModule, AppIcon, WebButtonIcon],
 })
 export class NotificationsListWeb implements OnInit {
   private apiResponseS = inject(ApiResponseService);

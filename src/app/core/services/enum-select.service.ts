@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { from, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 @Injectable({
   providedIn: "root",
 })
@@ -15,13 +15,13 @@ export class EnumSelectService {
   onLoadEnumList(
     nameEnum: string,
     defaultOption?: boolean,
-  ): Observable<ISelectItem[]> {
+  ): Observable<SelectItemDto[]> {
     const urlApi =
       defaultOption !== undefined
         ? `select-item-enum/${nameEnum}/${defaultOption}`
         : `select-item-enum/${nameEnum}`;
 
-    return from(this.apiResponseS.onGetList<ISelectItem[]>(urlApi)).pipe(
+    return from(this.apiResponseS.onGetList<SelectItemDto[]>(urlApi)).pipe(
       map((result) => result || []),
       catchError((error) => {
         console.error(`Error al obtener ${nameEnum}:`, error);
@@ -33,9 +33,9 @@ export class EnumSelectService {
   /**
    * Método para cargar una lista de selección desde la API.
    */
-  onLoadSelectList(nameEnum: string): Observable<ISelectItem[]> {
+  onLoadSelectList(nameEnum: string): Observable<SelectItemDto[]> {
     return from(
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(nameEnum),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(nameEnum),
     ).pipe(
       map((result) => result || []),
       catchError((error) => {
@@ -48,9 +48,9 @@ export class EnumSelectService {
   boolYesNo = () => this.onLoadSelectList("BoolYesNo");
 
   areaMinutasDetalles = (d?: boolean) =>
-    this.onLoadEnumList("EAreaMinutasDetalles", d);
+    this.onLoadEnumList("AreaMinutasDetalles", d);
 
-  departament = (d?: boolean) => this.onLoadEnumList("EDepartament", d);
+  departament = (d?: boolean) => this.onLoadEnumList("Departament", d);
 
   areaOrganigrama = (d?: boolean) => this.onLoadEnumList("EAreaOrganigrama", d);
 
@@ -87,7 +87,7 @@ export class EnumSelectService {
 
   maritalStatus = (d?: boolean) => this.onLoadEnumList("EMaritalStatus", d);
 
-  month(defaultOption?: boolean): Observable<ISelectItem[]> {
+  month(defaultOption?: boolean): Observable<SelectItemDto[]> {
     return this.onLoadEnumList("EMonth", defaultOption).pipe(
       map((months) => months.sort((a, b) => a.value - b.value)),
     );
@@ -97,9 +97,9 @@ export class EnumSelectService {
 
   priorityLevel = (d?: boolean) => this.onLoadEnumList("EPriorityLevel", d);
 
-  recurrence = (d?: boolean) => this.onLoadEnumList("ERecurrence", d);
+  recurrence = (d?: boolean) => this.onLoadEnumList("Recurrence", d);
 
-  roleType = (d?: boolean) => this.onLoadEnumList("ERoleType", d);
+  roleType = (d?: boolean) => this.onLoadEnumList("RoleType", d);
 
   sex = (d?: boolean) => this.onLoadEnumList("ESex", d);
 
@@ -109,7 +109,7 @@ export class EnumSelectService {
 
   tipoBaja = (d?: boolean) => this.onLoadEnumList("ETipoBaja", d);
 
-  tipoGasto = (d?: boolean) => this.onLoadEnumList("ETipoGasto", d);
+  tipoGasto = (d?: boolean) => this.onLoadEnumList("TipoGasto", d);
 
   turnoTrabajo = (d?: boolean) => this.onLoadEnumList("ETurnoTrabajo", d);
 

@@ -53,15 +53,16 @@ El objetivo es consolidar la infraestructura puramente transversal.
 
 ---
 
-## 🚛 Fase 4: Migración de Dominios `features/` → `apps/` (En Progreso ⏳)
+## 🚛 Fase 4: Migración de Dominios `features/` → `apps/` (Completado ✅)
 
 - [x] Migrar System → `apps/admin.luxuryapp/` (y separar dominio user-facing `system`).
 - [x] Migrar RRHH → `apps/recursos-humanos.luxuryapp/`.
-- [ ] Migrar Contabilidad → `apps/contabilidad.luxuryapp/`.
-- [ ] Migrar Mantenimiento → `apps/mantenimiento.luxuryapp/`.
-- [ ] Migrar Operaciones y Dirección → `apps/operations.luxuryapp/` y `apps/direccion.luxuryapp/`.
-- [ ] Migrar Web → `apps/web.luxuryapp/`.
-- [ ] (Usuario) Reemplazar masivamente imports y actualizar el `app.routes.ts` (Lazy Loading).
+- [x] Migrar Contabilidad → `apps/contabilidad.luxuryapp/`.
+- [x] Migrar Mantenimiento → `apps/mantenimiento.luxuryapp/`.
+- [x] Migrar Operaciones y Dirección → `apps/operations.luxuryapp/` y `apps/direccion.luxuryapp/`.
+- [x] Migrar Web → `apps/web.luxuryapp/`.
+- [x] Migrar Dominios Adicionales (Legal, Reclutamiento, Compras) → `apps/legal.luxuryapp/`, `apps/reclutamiento.luxuryapp/`, `apps/supplier.luxuryapp/`.
+- [x] (Agente/Usuario) Reemplazar masivamente imports y actualizar el `app.routes.ts` (Lazy Loading).
 
 ---
 

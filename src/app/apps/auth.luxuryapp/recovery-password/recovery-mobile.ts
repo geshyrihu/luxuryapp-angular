@@ -108,7 +108,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
         </div>
     </ili-page>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {

@@ -4,7 +4,7 @@ import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { PermissionDTO } from "src/app/core/interfaces/permission.dto";
+import { PermissionDto } from "src/app/core/interfaces/permission.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 import { CommonModule } from "@angular/common";
@@ -32,7 +32,7 @@ export class EmployeePermissionApp implements OnInit {
         this.data = result;
       });
   }
-  onCheckboxChange(permission: PermissionDTO, field: string, checked: boolean) {
+  onCheckboxChange(permission: PermissionDto, field: string, checked: boolean) {
     // Actualiza el campo correspondiente en el objeto de permiso
     permission[field] = checked;
 

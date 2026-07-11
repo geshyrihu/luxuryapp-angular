@@ -107,7 +107,7 @@ import { ROUTES } from "src/app/routing/route-paths";
         </div>
     </ili-page>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {

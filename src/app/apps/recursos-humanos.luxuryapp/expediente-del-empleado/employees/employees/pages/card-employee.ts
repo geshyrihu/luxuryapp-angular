@@ -12,7 +12,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IUserCard } from "src/app/core/interfaces/user-card.interface";
+import { UserCard } from "src/app/core/interfaces/user-card.interface";
 @Component({
   selector: "app-card-employee",
   templateUrl: "./card-employee.html",
@@ -25,7 +25,7 @@ export class CardEmployee implements OnInit {
   config = inject(DynamicDialogConfig);
   urlImage = computed(() => this.applicationUser()?.photoPath || "");
   applicationUserId: string = "";
-  applicationUser = signal<IUserCard | null>(null);
+  applicationUser = signal<UserCard | null>(null);
 
   ngOnInit(): void {
     this.onLoadData(this.config.data.applicationUserId);

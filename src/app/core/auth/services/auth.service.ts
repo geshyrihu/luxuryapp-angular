@@ -14,11 +14,11 @@ import {
   throwError,
 } from "rxjs";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseDTO } from "src/app/core/http/services/api-response.service";
+import { ApiResponseDto } from "src/app/core/http/services/api-response.service";
 import {
-  InfoAccountAuthDTO,
-  SelectItemCustomerAccessDTO,
-  UserTokenDTO,
+  InfoAccountAuthDto,
+  SelectItemCustomerAccessDto,
+  UserTokenDto,
 } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -43,7 +43,7 @@ export class AuthService {
   private _signalRService?: SignalRService;
 
   // === PROPIEDADES DE ESTADO (INTERNAS) ===
-  private currentUserSession = new BehaviorSubject<UserTokenDTO | null>(null);
+  private currentUserSession = new BehaviorSubject<UserTokenDto | null>(null);
   private initialAuthCheckCompleted = new BehaviorSubject<boolean>(false);
 
   // === OBSERVABLES Y GETTERS PÚBLICOS (PARA COMPATIBILIDAD HACIA ATRÁS) ===
@@ -66,13 +66,13 @@ export class AuthService {
       this.currentUserSession.value?.infoUserAuthDTO.applicationUserId ?? null
     );
   }
-  public get infoUserAuth(): InfoAccountAuthDTO | null {
+  public get infoUserAuth(): InfoAccountAuthDto | null {
     return this.currentUserSession.value?.infoUserAuthDTO ?? null;
   }
-  public get userToken(): UserTokenDTO | null {
+  public get userToken(): UserTokenDto | null {
     return this.currentUserSession.value;
   }
-  public get customerAccess(): SelectItemCustomerAccessDTO[] {
+  public get customerAccess(): SelectItemCustomerAccessDto[] {
     return this.currentUserSession.value?.customerAccess ?? [];
   }
   public readonly customerAccess$ = this.currentUserSession.pipe(
@@ -121,9 +121,9 @@ export class AuthService {
   login(credentials: {
     userName: string;
     password: string;
-  }): Observable<UserTokenDTO> {
+  }): Observable<UserTokenDto> {
     return this.http
-      .post<ApiResponseDTO<UserTokenDTO>>(
+      .post<ApiResponseDto<UserTokenDto>>(
         `${environment.API_BASE_URL}Auth/Login`,
         credentials,
         {
@@ -146,7 +146,7 @@ export class AuthService {
 
   logout(): Observable<any> {
     return this.httpWithoutInterceptors
-      .post<ApiResponseDTO<boolean>>(
+      .post<ApiResponseDto<boolean>>(
         `${environment.API_BASE_URL}Auth/Logout`,
         {},
         { withCredentials: true },
@@ -160,9 +160,9 @@ export class AuthService {
       );
   }
 
-  refreshToken(): Observable<UserTokenDTO> {
+  refreshToken(): Observable<UserTokenDto> {
     return this.httpWithoutInterceptors
-      .post<ApiResponseDTO<UserTokenDTO>>(
+      .post<ApiResponseDto<UserTokenDto>>(
         `${environment.API_BASE_URL}Auth/Refresh`,
         {},
         { withCredentials: true }, // <-- ¡ESTA ES LA CLAVE QUE FALTABA!
@@ -192,7 +192,7 @@ export class AuthService {
       );
   }
 
-  trySilentLogin(): Observable<UserTokenDTO | null> {
+  trySilentLogin(): Observable<UserTokenDto | null> {
     return this.refreshToken().pipe(
       catchError(() => {
         // Si refreshToken falla (y ya ejecuta clearSession), simplemente devolvemos null para que el flujo continúe.
@@ -205,7 +205,7 @@ export class AuthService {
   }
 
   // === MÉTODOS DE UTILIDAD Y COMPATIBILIDAD ===
-  public notifyLoginSuccess(sessionData: UserTokenDTO): Observable<boolean> {
+  public notifyLoginSuccess(sessionData: UserTokenDto): Observable<boolean> {
     this.currentUserSession.next(sessionData);
     this.signalRService.start();
     return of(true);

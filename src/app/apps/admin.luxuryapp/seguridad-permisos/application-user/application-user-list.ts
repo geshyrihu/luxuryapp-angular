@@ -34,7 +34,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -43,16 +43,16 @@ import { ApplicationUserForm } from "./application-user-form";
 import { MdEditAccount } from "./md-edit-account";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-application-user-list",
   templateUrl: "./application-user-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MobileListItem,
     WebButtonIconItem,
-    TooltipModule,
+    LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelItem,
     MobileButtonLabelEdit,
@@ -82,8 +82,8 @@ export class ApplicationUserList implements OnInit {
   filteredDataSignal = signal<ApplicationUserDto[]>([]);
 
   searchText: string = ""; // Para almacenar el texto de bósqueda
-  selectCustomerSignal = signal<ISelectItem[]>([]);
-  cbTypePersonSignal = signal<ISelectItem[]>([]);
+  selectCustomerSignal = signal<SelectItemDto[]>([]);
+  cbTypePersonSignal = signal<SelectItemDto[]>([]);
 
   /*
     /PRIME NG TABLE OPTIONS
@@ -145,7 +145,7 @@ export class ApplicationUserList implements OnInit {
           // Crear opciones para el select
           this.selectCustomerSignal.set([
             { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
-            ...uniqueCustomers.map((customer): ISelectItem => ({
+            ...uniqueCustomers.map((customer): SelectItemDto => ({
               label: customer ? String(customer) : "Sin Cliente",
               value: customer ? String(customer) : "sin_cliente",
             })),

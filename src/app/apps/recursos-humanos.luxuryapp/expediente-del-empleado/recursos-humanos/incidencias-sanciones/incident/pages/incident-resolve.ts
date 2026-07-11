@@ -15,7 +15,7 @@ import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import {
   IncidentDetailDTO,
@@ -52,7 +52,7 @@ export class IncidentResolveComponent {
   submitting = signal(false);
   form!: FormGroup<IIncidentResolveForm>;
 
-  cb_status = signal<ISelectItem[]>([]);
+  cb_status = signal<SelectItemDto[]>([]);
 
   ngOnInit(): void {
     this.incidentId.set(this.config.data?.id as string);

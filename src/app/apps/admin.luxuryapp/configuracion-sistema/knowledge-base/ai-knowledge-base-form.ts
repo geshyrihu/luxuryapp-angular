@@ -26,7 +26,7 @@ import { AiKnowledgeBaseFormGroup } from "./interfaces/ai-knowledge-base-form.in
 @Component({
   selector: "app-ai-knowledge-base-form",
   templateUrl: "./ai-knowledge-base-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

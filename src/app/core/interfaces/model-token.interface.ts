@@ -1,4 +1,4 @@
-export interface IModelToken {
+export interface ModelToken {
   token: string;
 }
 

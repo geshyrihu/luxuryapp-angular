@@ -33,7 +33,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MobileListItem,
     PrimeNgCustomTableEmptyMessage,

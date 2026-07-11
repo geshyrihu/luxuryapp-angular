@@ -6,7 +6,7 @@ export type ContactSeverity = "success" | "info" | "secondary" | "warn";
 
 /**
  * Base compartida de ContactCard (API + estatus + avatar).
- *  - web:     `app-contact-card` (p-tag + pTooltip)
+ *  - web:     `app-contact-card` (p-tag + lxTooltip)
  *  - mobile:  `ili-contact-card` (badge span, sin tooltip, acciones táctiles)
  *  - wrapper: `lx-contact-card`  (auto runtime)
  */

@@ -15,7 +15,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   EvidenciaNominaDTO,
   TIPO_EVIDENCIA_COLORS,
@@ -24,14 +24,14 @@ import {
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-evidencias-nomina",
   imports: [
     AppIcon,
     WebButtonIcon,
-    TooltipModule,
+    LxTooltipDirective,
     CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
@@ -47,13 +47,13 @@ export default class EvidenciasNomina {
   private customerIdS = inject(CustomerIdService);
   private fb = inject(FormBuilder);
 
-  readonly tipoEvidenciaOptions: ISelectItem[] = TIPO_EVIDENCIA_OPTIONS;
+  readonly tipoEvidenciaOptions: SelectItemDto[] = TIPO_EVIDENCIA_OPTIONS;
   readonly tipoEvidenciaColors = TIPO_EVIDENCIA_COLORS;
 
   loading = signal(false);
   uploading = signal(false);
   evidencias = signal<EvidenciaNominaDTO[]>([]);
-  nominas = signal<ISelectItem[]>([]);
+  nominas = signal<SelectItemDto[]>([]);
   nominaSeleccionada = signal<string>("");
   archivoSeleccionado = signal<File | null>(null);
 
@@ -83,7 +83,7 @@ export default class EvidenciasNomina {
     const result = await this.apiResponseS.onGetList<NominaEncabezadoDTO[]>(
       Endpoints.HR.Nomina.Encabezado.getAll(customerId),
     );
-    const options: ISelectItem[] = ((result as any) ?? []).map((n: any) => ({
+    const options: SelectItemDto[] = ((result as any) ?? []).map((n: any) => ({
       label: n.periodoDescripcion,
       value: n.id,
     }));

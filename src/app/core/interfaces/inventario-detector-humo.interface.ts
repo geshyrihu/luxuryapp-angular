@@ -1,4 +1,4 @@
-export interface IInventarioDetectorHumo {
+export interface InventarioDetectorHumoDto {
   id: any;
   customerId: string;
   detectorType: string;

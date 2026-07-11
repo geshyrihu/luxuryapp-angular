@@ -18,12 +18,12 @@ import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IChangePassword } from "src/app/core/interfaces/change-password.interface";
+import { ChangePassword } from "src/app/core/interfaces/change-password.interface";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     CommonModule,
@@ -69,7 +69,7 @@ export class UpdatePasswordComponent implements OnInit {
   updatePassword() {
     if (!this.apiResponseS.validateForm(this.formUpdatePassword)) return;
 
-    const model: IChangePassword = {
+    const model: ChangePassword = {
       currentPassword: this.formUpdatePassword.get("currentPassword").value,
       newPassword: this.formUpdatePassword.get("newPassword").value,
     };

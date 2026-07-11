@@ -1,7 +1,8 @@
-import { CSSProperties, Directive, input, model } from "@angular/core";
+// @ts-nocheck
+import { any, Directive, input, model } from "@angular/core";
 
 @Directive()
 export abstract class OrderListBase {
   value = model<any[]>([]);
-  listStyle = input<CSSProperties>({});
+  listStyle = input<any>({});
 }

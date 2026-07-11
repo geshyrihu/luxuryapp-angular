@@ -1,4 +1,4 @@
-export interface IInventarioLlave {
+export interface InventarioLlave {
   id: any;
   descripcion: string;
   marca: string;

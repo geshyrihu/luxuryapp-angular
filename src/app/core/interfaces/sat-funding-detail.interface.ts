@@ -1,16 +1,16 @@
-// Corresponds to SatFundingDetailDTO
-export interface SatFundingDetailDTO {
+// Corresponds to SatFundingDetailDto
+export interface SatFundingDetailDto {
   id: string;
   customerId: string;
   fundingPeriod: any;
   year: number;
   periodDisplayName: string;
   inProgress: boolean;
-  invoices: SatCfdiDTO[];
+  invoices: SatCfdiDto[];
 }
 
-// Corresponds to SatCfdiDTO
-export interface SatCfdiDTO {
+// Corresponds to SatCfdiDto
+export interface SatCfdiDto {
   satCfdiId: string; // UUID
   satFundingDetailId: string;
   sortOrder: number | null;
@@ -33,15 +33,15 @@ export interface SatCfdiDTO {
   isManuallyEdited: boolean;
 }
 
-// Corresponds to SatDownloadRequestDTO
-export interface SatDownloadRequestDTO {
+// Corresponds to SatDownloadRequestDto
+export interface SatDownloadRequestDto {
   satFundingId: string;
   startDate: string;
   endDate: string;
 }
 
-// Corresponds to UpdateSatFundingDetailDTO
-export interface UpdateSatFundingDetailDTO {
+// Corresponds to UpdateSatFundingDetailDto
+export interface UpdateSatFundingDetailDto {
   id: string;
   bankId: any | null;
   interbankCode: string | null;
@@ -50,8 +50,8 @@ export interface UpdateSatFundingDetailDTO {
   tipoGasto: any; // ESatTipoGasto
 }
 
-// Corresponds to BulkUpdateTipoGastoDTO
-export interface BulkUpdateTipoGastoDTO {
+// Corresponds to BulkUpdateTipoGastoDto
+export interface BulkUpdateTipoGastoDto {
   satFundingDetailIds: string[];
   newTipoGasto: any; // ESatTipoGasto
 }

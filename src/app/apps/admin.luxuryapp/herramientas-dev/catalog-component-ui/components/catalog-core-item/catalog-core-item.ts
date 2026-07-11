@@ -1,4 +1,4 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -260,7 +260,7 @@ const CORE_LABELS: Record<string, string> = {
                 Dentro de <code>app-action-menu</code> los botones muestran
                 <strong>icono + label alineados</strong>. Siempre agrega
                 <code>[showLabelOnDesktop]="true"</code> y un
-                <code>label</code> expl√≥cito.
+                <code>label</code> explÛcito.
               </p>
               <div class="flex gap-4">
                 <div>
@@ -427,14 +427,14 @@ const CORE_LABELS: Record<string, string> = {
 
             <div class="card-body">
               <p-button
-                label="Abrir confirmaci√≥n"
+                label="Abrir confirmaciÛn"
                 severity="danger"
                 (onClick)="confirmVisible.set(true)"
               />
               <app-confirm-dialog
                 [(visible)]="confirmVisible"
                 title="Eliminar registro"
-                message="√≥Est√©s seguro?"
+                message="ÛEstÈs seguro?"
                 type="danger"
                 confirmLabel="Eliminar"
               />
@@ -507,7 +507,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
             <div class="col-12 md:col-6 lg:col-3">
               <app-kpi-card
-                label="Conversi√≥n"
+                label="ConversiÛn"
                 [value]="68"
                 format="percent"
                 suffix="%"
@@ -784,7 +784,7 @@ const CORE_LABELS: Record<string, string> = {
                     class="border-round-lg p-4 text-center cursor-pointer"
                     style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
                   >
-                    <p class="m-0 font-bold">√Årea de contexto</p>
+                    <p class="m-0 font-bold">¡rea de contexto</p>
                     <p class="m-0 text-xs text-secondary mt-1">
                       Clic derecho aqu
                     </p>
@@ -1348,7 +1348,7 @@ const CORE_LABELS: Record<string, string> = {
                   @media print.
                 </p>
                 <p>
-                  Las reas de navegaci√≥l y el sidebar quedan ocultos
+                  Las reas de navegaciÛl y el sidebar quedan ocultos
                   automticamente.
                 </p>
               </app-print-view>
@@ -1429,7 +1429,7 @@ const CORE_LABELS: Record<string, string> = {
       }
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogCoreItem {
@@ -1489,7 +1489,7 @@ export class CatalogCoreItem {
     },
     {
       field: "area",
-      header: "√Årea",
+      header: "¡rea",
       type: "select",
       editable: true,
       sortable: true,
@@ -1551,7 +1551,7 @@ export class CatalogCoreItem {
   readonly timelineEvents: TimelineEvent[] = [
     {
       title: "Solicitud recibida",
-      description: "El cliente envi√≥ la solicitud de compra.",
+      description: "El cliente enviÛ la solicitud de compra.",
       date: "10 Jun 2026",
       icon: "mdi:inbox-arrow-down",
       color: "var(--ds-primary)",
@@ -1559,8 +1559,8 @@ export class CatalogCoreItem {
       badgeColor: "primary",
     },
     {
-      title: "Revisi√≥n de cr√≥dito",
-      description: "Validaci√≥n aprobada por el √≥rea financiera.",
+      title: "RevisiÛn de crÛdito",
+      description: "ValidaciÛn aprobada por el Ûrea financiera.",
       date: "12 Jun 2026",
       icon: "mdi:shield-check",
       color: "var(--ds-success)",
@@ -1633,7 +1633,7 @@ export class CatalogCoreItem {
     },
     {
       id: "negotiation",
-      name: "Negociaci√≥n",
+      name: "NegociaciÛn",
       color: "var(--ds-primary)",
       deals: [
         {
@@ -1711,23 +1711,23 @@ export class CatalogCoreItem {
       id: "1",
       label: "Solicitante",
       status: "approved",
-      assignee: "Juan Garc√≥a",
+      assignee: "Juan GarcÛa",
       date: "10 Jun 2026",
       comment: "Solicitud generada.",
     },
     {
       id: "2",
-      label: "Jefe de √Årea",
+      label: "Jefe de ¡rea",
       status: "approved",
-      assignee: "Mar√≥a L√≥pez",
+      assignee: "MarÛa LÛpez",
       date: "11 Jun 2026",
     },
     { id: "3", label: "Finanzas", status: "pending", assignee: "Carlos Ruiz" },
     {
       id: "4",
-      label: "Direcci√≥n",
+      label: "DirecciÛn",
       status: "pending",
-      assignee: "Ana Mart√∫nez",
+      assignee: "Ana Mart˙nez",
     },
   ];
 
@@ -1747,7 +1747,7 @@ export class CatalogCoreItem {
       icon: "mdi:check-circle",
     },
     {
-      label: "En tr√≥nsito",
+      label: "En trÛnsito",
       date: "13 Jun 2026",
       completed: false,
       active: true,
@@ -1763,26 +1763,26 @@ export class CatalogCoreItem {
 
   readonly dashWidgets: DashboardWidget[] = [
     { id: "w1", title: "KPIs Generales", cols: 2, rows: 1 },
-    { id: "w2", title: "Gr√≥fica de Ventas", cols: 1, rows: 1 },
+    { id: "w2", title: "GrÛfica de Ventas", cols: 1, rows: 1 },
     { id: "w3", title: "Pipeline CRM", cols: 3, rows: 1 },
     { id: "w4", title: "Actividad Reciente", cols: 1, rows: 1 },
-    { id: "w5", title: "Inventario Cr√≥tico", cols: 2, rows: 1 },
+    { id: "w5", title: "Inventario CrÛtico", cols: 2, rows: 1 },
   ];
 
   readonly sampleComments = [
     {
       id: "1",
-      author: "Juan Garc√≥a",
+      author: "Juan GarcÛa",
       authorInitials: "JG",
-      content: "El cliente solicit√∫ extensi√≥n de plazo de pago a 45 d√≠as.",
+      content: "El cliente solicit˙ extensiÛn de plazo de pago a 45 dÌas.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
     {
       id: "2",
-      author: "Mar√≥a L√≥pez",
+      author: "MarÛa LÛpez",
       authorInitials: "ML",
-      content: "Confirmado con finanzas. Se aplicar√© a partir de julio.",
+      content: "Confirmado con finanzas. Se aplicarÈ a partir de julio.",
       timestamp: new Date("2026-06-24T10:30:00"),
       read: false,
     },
@@ -1790,16 +1790,16 @@ export class CatalogCoreItem {
 
   readonly emailHtml = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmaci√≥n de Orden</h2>
+      <h2 style="color:var(--ds-primary);">ConfirmaciÛn de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y est√© en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y estÈ en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material el√≥ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material elÛctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP √© sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP È sistema@luxuryapp.mx</p>
     </div>`;
 
   private resolvePrimaryColor(): string {
@@ -1817,16 +1817,16 @@ export class CatalogCoreItem {
 
   readonly emailHtmlTokenized = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmaci√≥n de Orden</h2>
+      <h2 style="color:var(--ds-primary);">ConfirmaciÛn de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y est√© en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y estÈ en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material el√≥ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material elÛctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP √© sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP È sistema@luxuryapp.mx</p>
     </div>`;
 
   readonly formSchema: FormField[] = [
@@ -1835,18 +1835,18 @@ export class CatalogCoreItem {
       type: "text",
       label: "Nombre completo",
       required: true,
-      placeholder: "Juan Garc√≥a",
+      placeholder: "Juan GarcÛa",
     },
     {
       key: "email",
       type: "email",
-      label: "Correo electr√≥nico",
+      label: "Correo electrÛnico",
       required: true,
     },
     {
       key: "area",
       type: "select",
-      label: "√Årea",
+      label: "¡rea",
       required: true,
       options: [
         { label: "Contabilidad", value: "cont" },
@@ -1877,7 +1877,7 @@ export class CatalogCoreItem {
     company: "GHR SA de CV",
     email: "contacto@ghr.mx",
     phone: "+52 55 9876 5432",
-    tags: ["Premium", "Hoteler√≥a", "CDMX"],
+    tags: ["Premium", "HotelerÛa", "CDMX"],
     totalRevenue: 2450000,
     openDeals: 3,
     lastContact: "24 Jun 2026",
@@ -1886,27 +1886,27 @@ export class CatalogCoreItem {
       {
         icon: "mdi:phone",
         text: "Llamada de seguimiento Q3",
-        time: "Hace 2 d√≠as",
+        time: "Hace 2 dÌas",
       },
       {
         icon: "mdi:email",
         text: "Propuesta enviada por email",
-        time: "Hace 5 d√≠as",
+        time: "Hace 5 dÌas",
       },
       {
         icon: "mdi:calendar",
-        text: "Reuni√≥n de revisi√≥n anual",
+        text: "ReuniÛn de revisiÛn anual",
         time: "Hace 2 sem.",
       },
     ],
     deals: [
       {
-        title: "Remodelaci√≥n Lobby",
-        stage: "Negociaci√≥n",
+        title: "RemodelaciÛn Lobby",
+        stage: "NegociaciÛn",
         value: 850000,
       },
       { title: "Mantenimiento anual", stage: "Propuesta", value: 420000 },
-      { title: "Instalaci√≥n AC", stage: "Prospecto" },
+      { title: "InstalaciÛn AC", stage: "Prospecto" },
     ],
   };
 
@@ -1919,7 +1919,7 @@ export class CatalogCoreItem {
   ];
 
   readonly heatmapData: HeatmapCell[] = [
-    ...[["Lun", "Mar", "Mi√©", "Jue", "Vie"]].flatMap((cols) =>
+    ...[["Lun", "Mar", "MiÈ", "Jue", "Vie"]].flatMap((cols) =>
       [
         "08:00",
         "09:00",
@@ -1946,8 +1946,8 @@ export class CatalogCoreItem {
   readonly ganttTasks: GanttTask[] = [
     {
       id: "g1",
-      name: "Dise√≥o de arquitectura",
-      group: "Planificaci√≥n",
+      name: "DiseÛo de arquitectura",
+      group: "PlanificaciÛn",
       startDate: new Date("2026-07-01"),
       endDate: new Date("2026-07-07"),
       progress: 100,
@@ -1987,7 +1987,7 @@ export class CatalogCoreItem {
     },
     {
       id: "g5",
-      name: "Despliegue producci√≥n",
+      name: "Despliegue producciÛn",
       group: "Deploy",
       startDate: new Date("2026-08-06"),
       endDate: new Date("2026-08-08"),
@@ -2008,7 +2008,7 @@ export class CatalogCoreItem {
   ];
 
   readonly pivotRows: PivotDimension[] = [
-    { field: "area", label: "√Årea", sort: "asc" },
+    { field: "area", label: "¡rea", sort: "asc" },
   ];
   readonly pivotColumns: PivotDimension = { field: "mes", label: "Mes" };
   readonly pivotValues: PivotValue[] = [
@@ -2047,8 +2047,8 @@ export class CatalogCoreItem {
       id: "1",
       type: "call",
       title: "Llamada con el cliente",
-      description: "Se discuti√© el presupuesto para Q3.",
-      user: "Juan Garc√≥a",
+      description: "Se discutiÈ el presupuesto para Q3.",
+      user: "Juan GarcÛa",
       timestamp: new Date("2026-06-24T10:00:00"),
     },
     {
@@ -2056,14 +2056,14 @@ export class CatalogCoreItem {
       type: "email",
       title: "Propuesta enviada",
       description: "Propuesta comercial por $120,000 MXN.",
-      user: "Mar√≥a L√≥pez",
+      user: "MarÛa LÛpez",
       timestamp: new Date("2026-06-23T15:30:00"),
     },
     {
       id: "3",
       type: "meeting",
-      title: "Reuni√≥n de seguimiento",
-      description: "Revisi√≥n de avances del proyecto.",
+      title: "ReuniÛn de seguimiento",
+      description: "RevisiÛn de avances del proyecto.",
       user: "Carlos Ruiz",
       timestamp: new Date("2026-06-22T09:00:00"),
     },
@@ -2072,14 +2072,14 @@ export class CatalogCoreItem {
       type: "note",
       title: "Nota interna",
       description: "El cliente solicita entrega antes del 30 de junio.",
-      user: "Ana Mart√∫nez",
+      user: "Ana Mart˙nez",
       timestamp: new Date("2026-06-21T17:00:00"),
     },
     {
       id: "5",
       type: "approval",
-      title: "Aprobaci√≥n de cr√≥dito",
-      description: "Aprobado por el √≥rea financiera.",
+      title: "AprobaciÛn de crÛdito",
+      description: "Aprobado por el Ûrea financiera.",
       user: "Sistema",
       timestamp: new Date("2026-06-20T12:00:00"),
     },
@@ -2093,7 +2093,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k1",
-          title: "Actualizar documentaci√≥n",
+          title: "Actualizar documentaciÛn",
           stage: "todo",
           priority: "low",
           tags: ["docs"],
@@ -2114,7 +2114,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k3",
-          title: "Integraci√≥n con SAT",
+          title: "IntegraciÛn con SAT",
           stage: "in-progress",
           priority: "high",
           assignee: "JG",
@@ -2124,7 +2124,7 @@ export class CatalogCoreItem {
     },
     {
       id: "review",
-      title: "Revisi√≥n",
+      title: "RevisiÛn",
       color: "var(--ds-info)",
       cards: [
         {
@@ -2143,7 +2143,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k5",
-          title: "Migraci√≥n de base de datos",
+          title: "MigraciÛn de base de datos",
           stage: "done",
           priority: "critical",
           assignee: "CR",
@@ -2255,7 +2255,7 @@ export class CatalogCoreItem {
     },
     {
       id: "settings",
-      label: "Configuraci√≥n",
+      label: "ConfiguraciÛn",
       description: "Abrir preferencias del sistema",
       icon: "mdi:cog",
       category: "Sistema",
@@ -2267,30 +2267,30 @@ export class CatalogCoreItem {
   tourVisible = signal(false);
   readonly tourSteps: TourStep[] = [
     {
-      title: "√≥Bienvenido al sistema!",
+      title: "ÛBienvenido al sistema!",
       description:
-        "Este tour te guiar√© por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
+        "Este tour te guiarÈ por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
       icon: "mdi:hand-wave",
       position: "center",
     },
     {
-      title: "Men√≠ lateral",
+      title: "MenÌ lateral",
       description:
-        "Aqu√© encontrar√≥s todos los m√≥dulos del ERP organizados por √≥rea.",
+        "AquÈ encontrarÛs todos los mÛdulos del ERP organizados por Ûrea.",
       icon: "mdi:menu",
       position: "center",
     },
     {
       title: "Design System",
       description:
-        "El cat√°logo de componentes est√© disponible para SuperUsuarios en el men√≠ lateral.",
+        "El cat·logo de componentes estÈ disponible para SuperUsuarios en el menÌ lateral.",
       icon: "mdi:palette",
       position: "center",
     },
     {
-      title: "√≥Listo!",
+      title: "ÛListo!",
       description:
-        "Ya conoces lo b√≥sico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
+        "Ya conoces lo bÛsico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
       icon: "mdi:check-circle",
       position: "center",
     },
