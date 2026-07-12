@@ -456,7 +456,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       </div>
 
       <!-- --------------------------------------------------------------
-       1. buttons-icon-label  (il-*)  ó  Icon + Label  Web
+       1. buttons-icon-label  (il-*)  √©  Icon + Label  Web
        -------------------------------------------------------------- -->
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
@@ -464,7 +464,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             buttons-icon-label <code class="ml-2 text-base">il-button-*</code>
           </h3>
           <small class="text-color-secondary"
-            >Icon + Label ∑ Web (PrimeNG)</small
+            >Icon + Label √© Web (PrimeNG)</small
           >
         </div>
 
@@ -498,7 +498,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
 
         <p-table [value]="ilSemantic" dataKey="id">
           <ng-template #caption>
-            Sem·ntica por defecto
+            Sem√≥ntica por defecto
             <small class="text-color-secondary ml-2"
               >(sin overrides de color/variante)</small
             >
@@ -623,14 +623,14 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       </div>
 
       <!-- --------------------------------------------------------------
-       2. buttons-icon-web  (iw-*)  ó  Icon-only  Web
+       2. buttons-icon-web  (iw-*)  √©  Icon-only  Web
        -------------------------------------------------------------- -->
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
           <h3 class="m-0">
             buttons-icon-web <code class="ml-2 text-base">iw-button-*</code>
           </h3>
-          <small class="text-color-secondary">Solo icono ∑ Web (PrimeNG)</small>
+          <small class="text-color-secondary">Solo icono √© Web (PrimeNG)</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
@@ -662,7 +662,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         </div>
 
         <p-table [value]="iwSemantic" dataKey="id">
-          <ng-template #caption>Sem·ntica por defecto</ng-template>
+          <ng-template #caption>Sem√≥ntica por defecto</ng-template>
           <ng-template pTemplate="header"><tr>
               <th style="width:100px">Vista previa</th>
               <th style="width:280px">Selector</th>
@@ -778,14 +778,14 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       </div>
 
       <!-- --------------------------------------------------------------
-       3. buttons-icon-ionic  (ii-*)  ó  Icon-only  Ionic
+       3. buttons-icon-ionic  (ii-*)  √©  Icon-only  Ionic
        -------------------------------------------------------------- -->
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
           <h3 class="m-0">
             buttons-icon-ionic <code class="ml-2 text-base">ii-button-*</code>
           </h3>
-          <small class="text-color-secondary">Solo icono ∑ Ionic</small>
+          <small class="text-color-secondary">Solo icono √© Ionic</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
@@ -817,7 +817,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         </div>
 
         <p-table [value]="iiSemantic" dataKey="id">
-          <ng-template #caption>Sem·ntica por defecto</ng-template>
+          <ng-template #caption>Sem√≥ntica por defecto</ng-template>
           <ng-template pTemplate="header"><tr>
               <th style="width:100px">Vista previa</th>
               <th style="width:280px">Selector</th>
@@ -922,7 +922,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       </div>
 
       <!-- --------------------------------------------------------------
-       4. buttons-icon-label-ionic  (ili-*)  ó  Icon + Label  Ionic
+       4. buttons-icon-label-ionic  (ili-*)  √©  Icon + Label  Ionic
        -------------------------------------------------------------- -->
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
@@ -930,7 +930,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             buttons-icon-label-ionic
             <code class="ml-2 text-base">ili-button-*</code>
           </h3>
-          <small class="text-color-secondary">Icon + Label ∑ Ionic</small>
+          <small class="text-color-secondary">Icon + Label √© Ionic</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
@@ -962,7 +962,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         </div>
 
         <p-table [value]="iliSemantic" dataKey="id">
-          <ng-template #caption>Sem·ntica por defecto</ng-template>
+          <ng-template #caption>Sem√≥ntica por defecto</ng-template>
           <ng-template pTemplate="header"><tr>
               <th style="width:160px">Vista previa</th>
               <th style="width:280px">Selector</th>

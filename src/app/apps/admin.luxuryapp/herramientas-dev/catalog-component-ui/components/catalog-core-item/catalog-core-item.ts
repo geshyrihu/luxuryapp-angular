@@ -260,7 +260,7 @@ const CORE_LABELS: Record<string, string> = {
                 Dentro de <code>app-action-menu</code> los botones muestran
                 <strong>icono + label alineados</strong>. Siempre agrega
                 <code>[showLabelOnDesktop]="true"</code> y un
-                <code>label</code> explócito.
+                <code>label</code> explÃ³cito.
               </p>
               <div class="flex gap-4">
                 <div>
@@ -427,14 +427,14 @@ const CORE_LABELS: Record<string, string> = {
 
             <div class="card-body">
               <p-button
-                label="Abrir confirmación"
+                label="Abrir confirmaciÃ³n"
                 severity="danger"
                 (onClick)="confirmVisible.set(true)"
               />
               <app-confirm-dialog
                 [(visible)]="confirmVisible"
                 title="Eliminar registro"
-                message="óEstés seguro?"
+                message="Ã³EstÃ³s seguro?"
                 type="danger"
                 confirmLabel="Eliminar"
               />
@@ -507,7 +507,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
             <div class="col-12 md:col-6 lg:col-3">
               <app-kpi-card
-                label="Conversión"
+                label="ConversiÃ³n"
                 [value]="68"
                 format="percent"
                 suffix="%"
@@ -784,7 +784,7 @@ const CORE_LABELS: Record<string, string> = {
                     class="border-round-lg p-4 text-center cursor-pointer"
                     style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
                   >
-                    <p class="m-0 font-bold">Área de contexto</p>
+                    <p class="m-0 font-bold">Ã³rea de contexto</p>
                     <p class="m-0 text-xs text-secondary mt-1">
                       Clic derecho aqu
                     </p>
@@ -1348,7 +1348,7 @@ const CORE_LABELS: Record<string, string> = {
                   @media print.
                 </p>
                 <p>
-                  Las reas de navegaciól y el sidebar quedan ocultos
+                  Las reas de navegaciÃ³l y el sidebar quedan ocultos
                   automticamente.
                 </p>
               </app-print-view>
@@ -1489,7 +1489,7 @@ export class CatalogCoreItem {
     },
     {
       field: "area",
-      header: "Área",
+      header: "Ã³rea",
       type: "select",
       editable: true,
       sortable: true,
@@ -1551,7 +1551,7 @@ export class CatalogCoreItem {
   readonly timelineEvents: TimelineEvent[] = [
     {
       title: "Solicitud recibida",
-      description: "El cliente envió la solicitud de compra.",
+      description: "El cliente enviÃ© la solicitud de compra.",
       date: "10 Jun 2026",
       icon: "mdi:inbox-arrow-down",
       color: "var(--ds-primary)",
@@ -1559,8 +1559,8 @@ export class CatalogCoreItem {
       badgeColor: "primary",
     },
     {
-      title: "Revisión de cródito",
-      description: "Validación aprobada por el órea financiera.",
+      title: "RevisiÃ³n de crÃ³dito",
+      description: "ValidaciÃ³n aprobada por el Ã³rea financiera.",
       date: "12 Jun 2026",
       icon: "mdi:shield-check",
       color: "var(--ds-success)",
@@ -1633,7 +1633,7 @@ export class CatalogCoreItem {
     },
     {
       id: "negotiation",
-      name: "Negociación",
+      name: "NegociaciÃ³n",
       color: "var(--ds-primary)",
       deals: [
         {
@@ -1711,23 +1711,23 @@ export class CatalogCoreItem {
       id: "1",
       label: "Solicitante",
       status: "approved",
-      assignee: "Juan Garcóa",
+      assignee: "Juan GarcÃ³a",
       date: "10 Jun 2026",
       comment: "Solicitud generada.",
     },
     {
       id: "2",
-      label: "Jefe de Área",
+      label: "Jefe de Ã³rea",
       status: "approved",
-      assignee: "Maróa López",
+      assignee: "MarÃ³a LÃ³pez",
       date: "11 Jun 2026",
     },
     { id: "3", label: "Finanzas", status: "pending", assignee: "Carlos Ruiz" },
     {
       id: "4",
-      label: "Dirección",
+      label: "DirecciÃ³n",
       status: "pending",
-      assignee: "Ana Martúnez",
+      assignee: "Ana MartÃ³nez",
     },
   ];
 
@@ -1747,7 +1747,7 @@ export class CatalogCoreItem {
       icon: "mdi:check-circle",
     },
     {
-      label: "En trónsito",
+      label: "En trÃ³nsito",
       date: "13 Jun 2026",
       completed: false,
       active: true,
@@ -1763,26 +1763,26 @@ export class CatalogCoreItem {
 
   readonly dashWidgets: DashboardWidget[] = [
     { id: "w1", title: "KPIs Generales", cols: 2, rows: 1 },
-    { id: "w2", title: "Grófica de Ventas", cols: 1, rows: 1 },
+    { id: "w2", title: "GrÃ³fica de Ventas", cols: 1, rows: 1 },
     { id: "w3", title: "Pipeline CRM", cols: 3, rows: 1 },
     { id: "w4", title: "Actividad Reciente", cols: 1, rows: 1 },
-    { id: "w5", title: "Inventario Crótico", cols: 2, rows: 1 },
+    { id: "w5", title: "Inventario CrÃ³tico", cols: 2, rows: 1 },
   ];
 
   readonly sampleComments = [
     {
       id: "1",
-      author: "Juan Garcóa",
+      author: "Juan GarcÃ³a",
       authorInitials: "JG",
-      content: "El cliente solicitú extensión de plazo de pago a 45 días.",
+      content: "El cliente solicitÃ© extensiÃ³n de plazo de pago a 45 dÃ³as.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
     {
       id: "2",
-      author: "Maróa López",
+      author: "MarÃ³a LÃ³pez",
       authorInitials: "ML",
-      content: "Confirmado con finanzas. Se aplicaré a partir de julio.",
+      content: "Confirmado con finanzas. Se aplicarÃ© a partir de julio.",
       timestamp: new Date("2026-06-24T10:30:00"),
       read: false,
     },
@@ -1790,16 +1790,16 @@ export class CatalogCoreItem {
 
   readonly emailHtml = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
+      <h2 style="color:var(--ds-primary);">ConfirmaciÃ³n de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y esté en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y estÃ© en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material elóctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material elÃ³ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP é sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP Ã© sistema@luxuryapp.mx</p>
     </div>`;
 
   private resolvePrimaryColor(): string {
@@ -1817,16 +1817,16 @@ export class CatalogCoreItem {
 
   readonly emailHtmlTokenized = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
+      <h2 style="color:var(--ds-primary);">ConfirmaciÃ³n de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y esté en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y estÃ© en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material elóctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material elÃ³ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP é sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP Ã© sistema@luxuryapp.mx</p>
     </div>`;
 
   readonly formSchema: FormField[] = [
@@ -1835,18 +1835,18 @@ export class CatalogCoreItem {
       type: "text",
       label: "Nombre completo",
       required: true,
-      placeholder: "Juan Garcóa",
+      placeholder: "Juan GarcÃ³a",
     },
     {
       key: "email",
       type: "email",
-      label: "Correo electrónico",
+      label: "Correo electrÃ³nico",
       required: true,
     },
     {
       key: "area",
       type: "select",
-      label: "Área",
+      label: "Ã³rea",
       required: true,
       options: [
         { label: "Contabilidad", value: "cont" },
@@ -1877,7 +1877,7 @@ export class CatalogCoreItem {
     company: "GHR SA de CV",
     email: "contacto@ghr.mx",
     phone: "+52 55 9876 5432",
-    tags: ["Premium", "Hoteleróa", "CDMX"],
+    tags: ["Premium", "HotelerÃ³a", "CDMX"],
     totalRevenue: 2450000,
     openDeals: 3,
     lastContact: "24 Jun 2026",
@@ -1886,27 +1886,27 @@ export class CatalogCoreItem {
       {
         icon: "mdi:phone",
         text: "Llamada de seguimiento Q3",
-        time: "Hace 2 días",
+        time: "Hace 2 dÃ³as",
       },
       {
         icon: "mdi:email",
         text: "Propuesta enviada por email",
-        time: "Hace 5 días",
+        time: "Hace 5 dÃ³as",
       },
       {
         icon: "mdi:calendar",
-        text: "Reunión de revisión anual",
+        text: "ReuniÃ³n de revisiÃ³n anual",
         time: "Hace 2 sem.",
       },
     ],
     deals: [
       {
-        title: "Remodelación Lobby",
-        stage: "Negociación",
+        title: "RemodelaciÃ³n Lobby",
+        stage: "NegociaciÃ³n",
         value: 850000,
       },
       { title: "Mantenimiento anual", stage: "Propuesta", value: 420000 },
-      { title: "Instalación AC", stage: "Prospecto" },
+      { title: "InstalaciÃ³n AC", stage: "Prospecto" },
     ],
   };
 
@@ -1919,7 +1919,7 @@ export class CatalogCoreItem {
   ];
 
   readonly heatmapData: HeatmapCell[] = [
-    ...[["Lun", "Mar", "Mié", "Jue", "Vie"]].flatMap((cols) =>
+    ...[["Lun", "Mar", "MiÃ©", "Jue", "Vie"]].flatMap((cols) =>
       [
         "08:00",
         "09:00",
@@ -1946,8 +1946,8 @@ export class CatalogCoreItem {
   readonly ganttTasks: GanttTask[] = [
     {
       id: "g1",
-      name: "Diseóo de arquitectura",
-      group: "Planificación",
+      name: "DiseÃ³o de arquitectura",
+      group: "PlanificaciÃ³n",
       startDate: new Date("2026-07-01"),
       endDate: new Date("2026-07-07"),
       progress: 100,
@@ -1987,7 +1987,7 @@ export class CatalogCoreItem {
     },
     {
       id: "g5",
-      name: "Despliegue producción",
+      name: "Despliegue producciÃ³n",
       group: "Deploy",
       startDate: new Date("2026-08-06"),
       endDate: new Date("2026-08-08"),
@@ -2008,7 +2008,7 @@ export class CatalogCoreItem {
   ];
 
   readonly pivotRows: PivotDimension[] = [
-    { field: "area", label: "Área", sort: "asc" },
+    { field: "area", label: "Ã³rea", sort: "asc" },
   ];
   readonly pivotColumns: PivotDimension = { field: "mes", label: "Mes" };
   readonly pivotValues: PivotValue[] = [
@@ -2047,8 +2047,8 @@ export class CatalogCoreItem {
       id: "1",
       type: "call",
       title: "Llamada con el cliente",
-      description: "Se discutié el presupuesto para Q3.",
-      user: "Juan Garcóa",
+      description: "Se discutiÃ© el presupuesto para Q3.",
+      user: "Juan GarcÃ³a",
       timestamp: new Date("2026-06-24T10:00:00"),
     },
     {
@@ -2056,14 +2056,14 @@ export class CatalogCoreItem {
       type: "email",
       title: "Propuesta enviada",
       description: "Propuesta comercial por $120,000 MXN.",
-      user: "Maróa López",
+      user: "MarÃ³a LÃ³pez",
       timestamp: new Date("2026-06-23T15:30:00"),
     },
     {
       id: "3",
       type: "meeting",
-      title: "Reunión de seguimiento",
-      description: "Revisión de avances del proyecto.",
+      title: "ReuniÃ³n de seguimiento",
+      description: "RevisiÃ³n de avances del proyecto.",
       user: "Carlos Ruiz",
       timestamp: new Date("2026-06-22T09:00:00"),
     },
@@ -2072,14 +2072,14 @@ export class CatalogCoreItem {
       type: "note",
       title: "Nota interna",
       description: "El cliente solicita entrega antes del 30 de junio.",
-      user: "Ana Martúnez",
+      user: "Ana MartÃ³nez",
       timestamp: new Date("2026-06-21T17:00:00"),
     },
     {
       id: "5",
       type: "approval",
-      title: "Aprobación de cródito",
-      description: "Aprobado por el órea financiera.",
+      title: "AprobaciÃ³n de crÃ³dito",
+      description: "Aprobado por el Ã³rea financiera.",
       user: "Sistema",
       timestamp: new Date("2026-06-20T12:00:00"),
     },
@@ -2093,7 +2093,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k1",
-          title: "Actualizar documentación",
+          title: "Actualizar documentaciÃ³n",
           stage: "todo",
           priority: "low",
           tags: ["docs"],
@@ -2114,7 +2114,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k3",
-          title: "Integración con SAT",
+          title: "IntegraciÃ³n con SAT",
           stage: "in-progress",
           priority: "high",
           assignee: "JG",
@@ -2124,7 +2124,7 @@ export class CatalogCoreItem {
     },
     {
       id: "review",
-      title: "Revisión",
+      title: "RevisiÃ³n",
       color: "var(--ds-info)",
       cards: [
         {
@@ -2143,7 +2143,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k5",
-          title: "Migración de base de datos",
+          title: "MigraciÃ³n de base de datos",
           stage: "done",
           priority: "critical",
           assignee: "CR",
@@ -2255,7 +2255,7 @@ export class CatalogCoreItem {
     },
     {
       id: "settings",
-      label: "Configuración",
+      label: "ConfiguraciÃ³n",
       description: "Abrir preferencias del sistema",
       icon: "mdi:cog",
       category: "Sistema",
@@ -2267,30 +2267,30 @@ export class CatalogCoreItem {
   tourVisible = signal(false);
   readonly tourSteps: TourStep[] = [
     {
-      title: "óBienvenido al sistema!",
+      title: "Ã³Bienvenido al sistema!",
       description:
-        "Este tour te guiaré por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
+        "Este tour te guiarÃ© por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
       icon: "mdi:hand-wave",
       position: "center",
     },
     {
-      title: "Mení lateral",
+      title: "MenÃ© lateral",
       description:
-        "Aqué encontrarós todos los módulos del ERP organizados por órea.",
+        "AquÃ© encontrarÃ³s todos los mÃ³dulos del ERP organizados por Ã³rea.",
       icon: "mdi:menu",
       position: "center",
     },
     {
       title: "Design System",
       description:
-        "El catálogo de componentes esté disponible para SuperUsuarios en el mení lateral.",
+        "El catÃ³logo de componentes estÃ© disponible para SuperUsuarios en el menÃ© lateral.",
       icon: "mdi:palette",
       position: "center",
     },
     {
-      title: "óListo!",
+      title: "Ã³Listo!",
       description:
-        "Ya conoces lo bósico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
+        "Ya conoces lo bÃ³sico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
       icon: "mdi:check-circle",
       position: "center",
     },

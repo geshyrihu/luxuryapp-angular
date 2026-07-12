@@ -55,7 +55,7 @@ export class CatalogChartsItem {
   barData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
     datasets: [
-      { label: 'Consumo Elóctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
+      { label: 'Consumo ElÃ³ctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
     ],
   };
 
@@ -74,7 +74,7 @@ export class CatalogChartsItem {
   };
 
   doughnutData = {
-    labels: ['Mantenimiento', 'Operaciones', 'Administración'],
+    labels: ['Mantenimiento', 'Operaciones', 'AdministraciÃ³n'],
     datasets: [{ data: [300, 50, 100], backgroundColor: [this.primaryColor, this.tertiaryColor, this.warningColor] }],
   };
 

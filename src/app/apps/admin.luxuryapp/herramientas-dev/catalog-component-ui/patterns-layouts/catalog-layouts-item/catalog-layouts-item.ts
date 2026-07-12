@@ -14,7 +14,7 @@ import { TagModule } from "primeng/tag";
 const LAYOUTS_LABELS: Record<string, string> = {
   fullwidth: "Full Width",
   sidebarcontent: "Sidebar + Content",
-  masterdetail: "MasterÛDetail",
+  masterdetail: "Master√≥Detail",
   wizard: "Wizard (Stepper)",
   splitpanels: "Split Panels",
 };
@@ -29,7 +29,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
       </div>
       <div class="card">
         <p class="text-color-secondary">
-          Layout <strong>{{ label }}</strong> È consulta la secciÛn completa de
+          Layout <strong>{{ label }}</strong> √© consulta la secci√≥n completa de
           Layouts para ver todas las variantes con ejemplos visuales.
         </p>
         <p-divider />
