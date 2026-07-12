@@ -29,6 +29,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
@@ -195,7 +196,7 @@ export class ProveedorForm implements OnInit {
 
   async getItem(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `Providers/${this.id}/${this.customerIdS.customerId()}`,
+      Endpoints.Providers.getByIdAndCustomerAlt(this.id, this.customerIdS.customerId()),
     );
 
     // Extraer bankId

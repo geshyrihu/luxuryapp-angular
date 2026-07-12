@@ -27,6 +27,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DateService } from "src/app/core/services/date.service";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
@@ -100,7 +101,7 @@ export class RealizarEvaluacion implements OnInit {
     try {
       // 1. Obtener los datos de la evaluación y ESPERAR la respuesta
       const data: any = await this.apiResponseS.onGetItem(
-        `PerformanceEvaluations/${id}/result`,
+        Endpoints.PerformanceEvaluations.result(id),
       );
       this.evaluationId = data.id;
 

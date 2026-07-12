@@ -10,7 +10,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'internal-template'
     path: "plantilla-interna",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/pages/work-position-list").then(
+      import("src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/work-position-list").then(
         (m) => m.WorkPositionList,
       ),
     canActivate: [authGuard],
@@ -78,7 +78,7 @@ export const recruitmentRoutes: Routes = [
   {
     path: "dismissal-requests", // Ruta anterior: 'solicitudes-baja'
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/pages/solicitud-baja-list").then(
+      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-list").then(
         (m) => m.SolicitudBajaList,
       ),
     canActivate: [authGuard],

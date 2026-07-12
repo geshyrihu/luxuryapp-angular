@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 // PrimeNG Modules
 
 import { LxCard } from "@ui/adaptive/card/card";
@@ -148,7 +149,7 @@ export class SatFundingDetailComponent implements OnInit {
 
   onRowReorder(event: any) {
     const orderedIds = this.invoices().map((i) => i.satFundingDetailId);
-    this.apiResponseService.onPut("SatFunding/UpdateOrder", orderedIds);
+    this.apiResponseService.onPut(Endpoints.SatFunding.updateOrder, orderedIds);
   }
 
   onBulkUpdate(newTipoGasto: any) {

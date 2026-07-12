@@ -17,6 +17,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionDetectorForm } from "../cycle-checklist-detector/fire-cycle-inspection-detector-form";
 
@@ -79,15 +80,15 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     Promise.all([
-      this.apiResponseS.onGetItem(`FireInspectionPeriod/${this.periodId}`),
+      this.apiResponseS.onGetItem(Endpoints.FireInspectionPeriod.getById(this.periodId)),
       this.apiResponseS.onGetList(
-        `FireInspectionPeriodItems/detector/list/${this.periodId}`,
+        Endpoints.FireInspectionPeriodItems.detectorList(this.periodId),
       ),
       this.apiResponseS.onGetItem(
-        `FireInspectionCycle/active/${this.periodId}`,
+        Endpoints.FireInspectionCycle.active(this.periodId),
       ),
       this.apiResponseS.onGetList(
-        `InventarioDetectorHumo/list/${this.customerIdS.customerId()}`,
+        Endpoints.InventarioDetectorHumo.list(this.customerIdS.customerId()),
       ),
     ]).then(([period, items, cycle, inventory]: any) => {
       this.period.set(period);
@@ -100,7 +101,7 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
   async onAddItem() {
     if (!this.selectedEquipmentId) return;
     const result = await this.apiResponseS.onPost(
-      `FireInspectionPeriodItems/detector/${this.periodId}/${this.selectedEquipmentId}`,
+      Endpoints.FireInspectionPeriodItems.detectorDetail(this.periodId, this.selectedEquipmentId),
       {},
     );
     if (result !== false) {
@@ -112,7 +113,7 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
 
   async onGenerateCycle() {
     await this.apiResponseS.onPost(
-      `FireInspectionCycle/generate/${this.periodId}`,
+      Endpoints.FireInspectionCycle.generate(this.periodId),
       {},
     );
     this.onLoadData();
@@ -120,7 +121,7 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
 
   async onRemoveItem(id: string) {
     const ok = await this.apiResponseS.onDelete(
-      `FireInspectionPeriodItems/detector/${id}`,
+      Endpoints.FireInspectionPeriodItems.detectorDelete(id),
     );
     if (ok) this.onLoadData();
   }

@@ -21,6 +21,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { debounceTime } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -320,7 +321,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
 
       promises.push(
         this.apiResponseS.onPut(
-          `SolicitudCompraDetalle/UpdatePrice/${item.id}`,
+          Endpoints.PurchaseRequestDetails.updatePrice(item.id),
           cleanItem,
           false,
         ),

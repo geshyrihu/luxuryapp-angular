@@ -4,7 +4,7 @@ import {
   IOrgChartGraphNode,
   IWorkPositionOrgChartNode,
   ORG_CHART_VIRTUAL_ROOT_ID,
-} from "../models/org-chart.interfaces";
+} from '../interfaces/org-chart.interfaces';
 
 export const ORG_CHART_NODE_WIDTH = 260;
 export const ORG_CHART_NODE_HEIGHT = 146;

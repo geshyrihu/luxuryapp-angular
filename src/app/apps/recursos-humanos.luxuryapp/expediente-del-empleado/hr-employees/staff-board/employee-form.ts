@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
 import { MenuItem } from "primeng/api";
-import { IncidentList } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/pages/incident-list";
+import { IncidentList } from 'src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/incident-list';
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
@@ -15,14 +15,14 @@ import { ROUTES } from "src/app/routing/route-paths";
 // missing reclutamiento
 import { UpdatePasswordAccount } from "../../../../admin.luxuryapp/seguridad-permisos/application-user/update-password-account";
 import { UpdateRole } from "../../../../admin.luxuryapp/seguridad-permisos/application-user/update-role";
-import { EmployeeBankDataList } from "../employee-bank-data/pages/employee-bank-data-list";
-import { EmployeeClinicalDataList } from "../employee-clinical-data/pages/employee-clinical-data-list";
-import { EmployeeEmergencyContactList } from "../employee-emergency-contact/pages/employee-emergency-contact-list";
-import { EmployeeAddressForm } from "../employee-internal/pages/employee-address-form";
-import { EmployeeAvatarForm } from "../employee-internal/pages/employee-avatar-form";
-import { EmployeeLaboralDataForm } from "../employee-internal/pages/employee-laboral-data-form";
-import { EmployeePersonalDataForm } from "../employee-internal/pages/employee-personal-data-form";
-import { EmployeePrincipalDataForm } from "../employee-internal/pages/employee-principal-data-form";
+import { EmployeeBankDataList } from '../employee-bank-data/employee-bank-data-list';
+import { EmployeeClinicalDataList } from '../employee-clinical-data/employee-clinical-data-list';
+import { EmployeeEmergencyContactList } from '../employee-emergency-contact/employee-emergency-contact-list';
+import { EmployeeAddressForm } from '../employee-internal/employee-address-form';
+import { EmployeeAvatarForm } from '../employee-internal/employee-avatar-form';
+import { EmployeeLaboralDataForm } from '../employee-internal/employee-laboral-data-form';
+import { EmployeePersonalDataForm } from '../employee-internal/employee-personal-data-form';
+import { EmployeePrincipalDataForm } from '../employee-internal/employee-principal-data-form';
 @Component({
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",

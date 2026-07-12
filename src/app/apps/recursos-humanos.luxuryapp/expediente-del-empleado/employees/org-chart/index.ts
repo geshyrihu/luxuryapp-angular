@@ -15,13 +15,13 @@ export type {
   IWorkPositionReassignRequest,
   IWorkPositionReassignResponse,
   ReassignmentValidation,
-} from "./models/org-chart.interfaces";
+} from './interfaces/org-chart.interfaces';
 
 export {
   DEPTO_ACCENT_COLORS,
   DEPTO_BORDER_COLORS,
   ORG_CHART_VIRTUAL_ROOT_ID,
-} from "./models/org-chart.interfaces";
+} from './interfaces/org-chart.interfaces';
 
 // Helpers
 export {

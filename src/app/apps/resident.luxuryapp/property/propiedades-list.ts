@@ -130,7 +130,7 @@ export class PropiedadesList {
 
   downloadTemplate() {
     this.apiResponseS.onDownloadFile(
-      `Property/download-template/${this.customerIdS.customerId()}`,
+      Endpoints.Properties.downloadTemplate(this.customerIdS.customerId()),
       "Propiedades_Plantilla.xlsx",
     );
   }

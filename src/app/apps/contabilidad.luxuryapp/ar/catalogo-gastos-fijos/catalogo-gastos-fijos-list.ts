@@ -21,6 +21,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
@@ -231,7 +232,7 @@ export class CatalogoGastosFijosList {
 
   async loadAllFundings(): Promise<void> {
     const result: any = await this.apiResponseS.onGetList(
-      `Funding/list/${this.customerIdS.customerId()}`,
+      Endpoints.Funding.list(this.customerIdS.customerId()),
     );
     if (result) {
       this.allFundingsForYear.set(result);

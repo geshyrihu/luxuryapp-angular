@@ -76,7 +76,7 @@ export const directoryRoutes: Routes = [
   {
     path: "internal-staff", // Ruta anterior: 'personal-interno'
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/pages/employee-list").then(
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/employee-list").then(
         (m) => m.EmployeeList,
       ),
     canActivate: [authGuard],

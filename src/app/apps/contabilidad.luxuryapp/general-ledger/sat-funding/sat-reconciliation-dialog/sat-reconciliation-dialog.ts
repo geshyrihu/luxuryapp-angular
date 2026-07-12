@@ -8,6 +8,7 @@ import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ReconciledItemDTO } from "../interfaces/sat-reconciliation.dtos";
 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -61,10 +62,6 @@ export class SatReconciliationDialog implements OnInit {
   // Mode: reconciliation (default) or xml
   mode = signal<"reconciliation" | "xml">("reconciliation");
 
-  get _base() {
-    return "satreconciliation";
-  }
-
   ngOnInit() {
     if (this.config.data?.mode) {
       this.mode.set(this.config.data.mode);
@@ -105,8 +102,8 @@ export class SatReconciliationDialog implements OnInit {
 
       // 2. Request (POST)
       const url = isXml
-        ? `${this._base}/RequestCfdi`
-        : `${this._base}/RequestLegacy`;
+        ? Endpoints.SatReconciliation.requestCfdi
+        : Endpoints.SatReconciliation.requestLegacy;
       const requestResponse = await this.apiResponseS.onPost<any>(url, payload);
 
       if (!requestResponse) {
@@ -158,7 +155,7 @@ export class SatReconciliationDialog implements OnInit {
       if (isXml) {
         // Download Blob
         const blobResponse = await this.apiResponseS.onPostBlob(
-          `${this._base}/DownloadCfdi`,
+          Endpoints.SatReconciliation.downloadCfdi,
           processPayload,
         );
 
@@ -182,7 +179,7 @@ export class SatReconciliationDialog implements OnInit {
         // Legacy Process (JSON)
         const processResponse = await this.apiResponseS.onPost<
           ReconciledItemDTO[]
-        >(`${this._base}/ProcessLegacy`, processPayload);
+        >(Endpoints.SatReconciliation.processLegacy, processPayload);
 
         if (processResponse) {
           this.results.set(processResponse);

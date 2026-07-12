@@ -1,6 +1,7 @@
 export const EndpointsMantenimiento = {
   MaintenanceCalendars: {
     delete: (id: string) => `maintenancecalendars/${id}`,
+    get: (id: string) => `MaintenanceCalendars/Get/${id}`,
   },
   MaintenanceReports: {
     weeklyExecutiveReport: "MaintenanceReport/WeeklyExecutiveReport",
@@ -12,6 +13,39 @@ export const EndpointsMantenimiento = {
   },
   BitacoraMantenimiento: {
     delete: (id: string) => `BitacoraMantenimiento/${id}`,
+  },
+  FireInspectionPeriod: {
+    getById: (periodId: string) => `FireInspectionPeriod/${periodId}`,
+  },
+  FireInspectionCycle: {
+    active: (periodId: string) => `FireInspectionCycle/active/${periodId}`,
+    generate: (periodId: string) => `FireInspectionCycle/generate/${periodId}`,
+  },
+  FireInspectionPeriodItems: {
+    detectorList: (periodId: string) => `FireInspectionPeriodItems/detector/list/${periodId}`,
+    detectorDetail: (periodId: string, equipmentId: string) => `FireInspectionPeriodItems/detector/${periodId}/${equipmentId}`,
+    detectorDelete: (id: string) => `FireInspectionPeriodItems/detector/${id}`,
+    estacionList: (periodId: string) => `FireInspectionPeriodItems/estacion/list/${periodId}`,
+    estacionDetail: (periodId: string, equipmentId: string) => `FireInspectionPeriodItems/estacion/${periodId}/${equipmentId}`,
+    estacionDelete: (id: string) => `FireInspectionPeriodItems/estacion/${id}`,
+    extintorList: (periodId: string) => `FireInspectionPeriodItems/extintor/list/${periodId}`,
+    extintorDetail: (periodId: string, equipmentId: string) => `FireInspectionPeriodItems/extintor/${periodId}/${equipmentId}`,
+    extintorDelete: (id: string) => `FireInspectionPeriodItems/extintor/${id}`,
+    hidranteList: (periodId: string) => `FireInspectionPeriodItems/hidrante/list/${periodId}`,
+    hidranteDetail: (periodId: string, equipmentId: string) => `FireInspectionPeriodItems/hidrante/${periodId}/${equipmentId}`,
+    hidranteDelete: (id: string) => `FireInspectionPeriodItems/hidrante/${id}`,
+  },
+  InventarioDetectorHumo: {
+    list: (customerId: string) => `InventarioDetectorHumo/list/${customerId}`,
+  },
+  InventarioEstacionManual: {
+    list: (customerId: string) => `InventarioEstacionManual/list/${customerId}`,
+  },
+  InventarioExtintor: {
+    list: (customerId: string) => `InventarioExtintor/list/${customerId}`,
+  },
+  InventarioHidrante: {
+    list: (customerId: string) => `InventarioHidrante/list/${customerId}`,
   },
   ToolLoans: {
     create: "controlprestamoherramientas",
@@ -58,6 +92,8 @@ export const EndpointsMantenimiento = {
   },
   Machineries: {
     delete: (id: string) => `Machineries/${id}`,
+    getMachinerySelectItem: (machineryId: string) => `Machineries/GetMachinerySelectItem/${machineryId}`,
+    getAutocompleteInv: (customerId: string) => `Machineries/GetAutocompeteInv/${customerId}`,
   },
   EquipmentInspectionDefinitions: {
     byMachinery: (machineryId: string) =>

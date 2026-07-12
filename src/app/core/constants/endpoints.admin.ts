@@ -62,6 +62,9 @@ export const EndpointsAdmin = {
     resyncGoogleCalendar: "UpdateDataBase/resync-google-calendar-event-times",
     seedNativeCollectionTestData: "UpdateDataBase/seed-native-collection-test-data",
   },
+  CustomerProvider: {
+    getById: (id: string) => `customerprovider/getById/${id}`,
+  },
   VaultSecrets: {
     getAll: "vault-secrets/list",
     store: "vault-secrets",

@@ -122,6 +122,7 @@ export const EndpointsOperations = {
   },
   AiAssistant: {
     testProfile: "AiAssistant/TestProfile",
+    generateImage: "AiAssistant/GenerateImage",
   },
   Announcements: {
     adminList: "announcements/admin-list",
@@ -180,6 +181,7 @@ export const EndpointsOperations = {
     update: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
   },
   GoogleCalendarEvents: {
+    getById: (id: string) => `google-calendar-events/${id}`,
     updateSeries: (id: string) => `google-calendar-events/${id}/series`,
   },
   Manuals: {
@@ -246,9 +248,14 @@ export const EndpointsOperations = {
   Almacen: {
     delete: (id: string) => `almacen/${id}`,
     getById: (id: string) => `almacen/${id}`,
+    assignResponsibles: "almacen/assign-responsibles",
   },
   InventarioProducto: {
     create: "InventarioProducto",
+  },
+  PanicAlerts: {
+    attend: (id: string) => `PanicAlerts/${id}/attend`,
+    resolve: (id: string) => `PanicAlerts/${id}/resolve`,
   },
   Tools: {
     delete: (id: string) => `Tools/${id}`,
@@ -259,6 +266,7 @@ export const EndpointsOperations = {
     update: (id: string) => `RadioComunicacion/${id}`,
   },
   ServiceOrders: {
+    uploadImg: (serviceOrderId: string) => `ServiceOrders/SubirImg/${serviceOrderId}`,
     create: "ServiceOrders",
     delete: (id: string | number) => `ServiceOrders/${id}`,
     deleteDocument: (id: string | number) => `ServiceOrders/DeleteDocument/${id}`,

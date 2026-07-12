@@ -368,7 +368,7 @@ import {
       </div>
     </div>
   `,
-  styleUrls: ["../../../../shared/mobile-showcase-styles.css"],
+  styleUrls: ["../../shared/mobile-showcase-styles.css"],
   styles: [
     `
       /* -----------------------------------------------

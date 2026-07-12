@@ -11,6 +11,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -72,7 +73,7 @@ export class CustomerProviderForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `customerprovider/getById/${this.id}`,
+      Endpoints.CustomerProvider.getById(this.id),
     );
 
     // Extraer IDs

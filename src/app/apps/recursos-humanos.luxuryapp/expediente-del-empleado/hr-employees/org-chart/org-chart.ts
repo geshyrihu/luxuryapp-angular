@@ -39,7 +39,7 @@ import {
   IWorkPositionReassignRequest,
   IWorkPositionReassignResponse,
   ORG_CHART_VIRTUAL_ROOT_ID,
-} from "./models/org-chart.interfaces";
+} from './interfaces/org-chart.interfaces';
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({

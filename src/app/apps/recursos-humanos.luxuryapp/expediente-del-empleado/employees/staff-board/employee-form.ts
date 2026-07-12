@@ -19,16 +19,16 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EmployeeReclutamiento } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/pages/employee-reclutamiento";
-import { IncidentList } from "../../recursos-humanos/incidencias-sanciones/incident/pages/incident-list";
-import { EmployeeBankDataList } from "../employee-bank-data/pages/employee-bank-data-list";
-import { EmployeeClinicalDataList } from "../employee-clinical-data/pages/employee-clinical-data-list";
-import { EmployeeEmergencyContactList } from "../employee-emergency-contact/pages/employee-emergency-contact-list";
-import { EmployeeAddressForm } from "../employee-internal/pages/employee-address-form";
-import { EmployeeAvatarForm } from "../employee-internal/pages/employee-avatar-form";
-import { EmployeeLaboralDataForm } from "../employee-internal/pages/employee-laboral-data-form";
-import { EmployeePersonalDataForm } from "../employee-internal/pages/employee-personal-data-form";
-import { EmployeePrincipalDataForm } from "../employee-internal/pages/employee-principal-data-form";
+import { EmployeeReclutamiento } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento';
+import { IncidentList } from '../../recursos-humanos/incidencias-sanciones/incident/incident-list';
+import { EmployeeBankDataList } from '../employee-bank-data/employee-bank-data-list';
+import { EmployeeClinicalDataList } from '../employee-clinical-data/employee-clinical-data-list';
+import { EmployeeEmergencyContactList } from '../employee-emergency-contact/employee-emergency-contact-list';
+import { EmployeeAddressForm } from '../employee-internal/employee-address-form';
+import { EmployeeAvatarForm } from '../employee-internal/employee-avatar-form';
+import { EmployeeLaboralDataForm } from '../employee-internal/employee-laboral-data-form';
+import { EmployeePersonalDataForm } from '../employee-internal/employee-personal-data-form';
+import { EmployeePrincipalDataForm } from '../employee-internal/employee-principal-data-form';
 @Component({
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",

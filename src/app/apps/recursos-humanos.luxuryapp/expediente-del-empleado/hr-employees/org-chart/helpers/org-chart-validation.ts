@@ -1,4 +1,4 @@
-import { IWorkPositionOrgChartNode, ReassignmentValidation } from "../models/org-chart.interfaces";
+import { IWorkPositionOrgChartNode, ReassignmentValidation } from '../interfaces/org-chart.interfaces';
 
 /**
  * Valida si una reasignación de jerarquía de puestos es segura (client-side).

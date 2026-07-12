@@ -344,6 +344,9 @@ export const EndpointsRecursosHumanos = {
       `employeeexternal/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
     update: (id: string) => `EmployeeExternal/${id}`,
   },
+  PerformanceEvaluations: {
+    result: (id: string) => `PerformanceEvaluations/${id}/result`,
+  },
   TemplateEvaluation: {
     delete: (id: string) => `TemplateEvaluation/${id}`,
   },

@@ -17,6 +17,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionHidranteForm } from "../cycle-checklist-hidrante/fire-cycle-inspection-hidrante-form";
 
@@ -86,15 +87,15 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     Promise.all([
-      this.apiResponseS.onGetItem(`FireInspectionPeriod/${this.periodId}`),
+      this.apiResponseS.onGetItem(Endpoints.FireInspectionPeriod.getById(this.periodId)),
       this.apiResponseS.onGetList(
-        `FireInspectionPeriodItems/hidrante/list/${this.periodId}`,
+        Endpoints.FireInspectionPeriodItems.hidranteList(this.periodId),
       ),
       this.apiResponseS.onGetItem(
-        `FireInspectionCycle/active/${this.periodId}`,
+        Endpoints.FireInspectionCycle.active(this.periodId),
       ),
       this.apiResponseS.onGetList(
-        `InventarioHidrante/list/${this.customerIdS.customerId()}`,
+        Endpoints.InventarioHidrante.list(this.customerIdS.customerId()),
       ),
     ]).then(([period, items, cycle, inventory]: any) => {
       this.period.set(period);
@@ -107,7 +108,7 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
   async onAddItem() {
     if (!this.selectedEquipmentId) return;
     const result = await this.apiResponseS.onPost(
-      `FireInspectionPeriodItems/hidrante/${this.periodId}/${this.selectedEquipmentId}`,
+      Endpoints.FireInspectionPeriodItems.hidranteDetail(this.periodId, this.selectedEquipmentId),
       {},
     );
     if (result !== false) {
@@ -119,7 +120,7 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
 
   async onGenerateCycle() {
     await this.apiResponseS.onPost(
-      `FireInspectionCycle/generate/${this.periodId}`,
+      Endpoints.FireInspectionCycle.generate(this.periodId),
       {},
     );
     this.onLoadData();
@@ -127,7 +128,7 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
 
   async onRemoveItem(id: string) {
     const ok = await this.apiResponseS.onDelete(
-      `FireInspectionPeriodItems/hidrante/${id}`,
+      Endpoints.FireInspectionPeriodItems.hidranteDelete(id),
     );
     if (ok) this.onLoadData();
   }

@@ -96,7 +96,7 @@ export class InventarioIluminacionForm implements OnInit {
   async onLoadSelectItems(): Promise<void> {
     const [machinery, productos] = await Promise.all([
       this.apiResponseS.onGetList(
-        `Machineries/GetAutocompeteInv/${this.customerIdS.customerId()}`,
+        Endpoints.Machineries.getAutocompleteInv(this.customerIdS.customerId()),
       ),
       this.apiResponseS.onGetList(Endpoints.Products.autoComplete),
     ]);
@@ -107,7 +107,7 @@ export class InventarioIluminacionForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `InventarioIluminacion/${this.id}`,
+      Endpoints.InventarioIluminacion.getById(this.id),
     );
 
     // Extraer IDs

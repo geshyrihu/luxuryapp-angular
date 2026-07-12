@@ -13,6 +13,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { PanicAlertRealTimeDto } from "../interfaces/panic-alert-real-time.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const RECIPIENT_ROLES: ApplicationRole[] = [
@@ -262,7 +263,7 @@ export class PanicAlertIncomingDialog implements OnInit {
 
     this.isProcessing.set(true);
     try {
-      await this.apiResponseS.onPut(`PanicAlerts/${alert.id}/attend`, null);
+      await this.apiResponseS.onPut(Endpoints.PanicAlerts.attend(alert.id), null);
       this.onClose();
     } finally {
       this.isProcessing.set(false);

@@ -369,7 +369,7 @@ import {
       </ng-template>
     </ion-modal>
   `,
-  styleUrls: ["../../../../shared/mobile-showcase-styles.css"],
+  styleUrls: ["../../shared/mobile-showcase-styles.css"],
   styles: [
     `
       .page-anatomy {

@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { Subject } from "rxjs";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-// Asumiendo la ruta correcta
+import { Endpoints } from "../constants/endpoints";
 
 @Injectable({
   providedIn: "root",
@@ -53,7 +53,7 @@ export class OrdenCompraService implements OnDestroy {
 
     // Usamos el ApiRequestService que ya maneja async/await y loaders.
     const detalleResult: any = await this.apiResponseS.onGetList(
-      `OrdenCompraDetalle/GetAllTotal/${ordenCompraId}`,
+      Endpoints.PurchaseOrderDetails.getAllTotal(ordenCompraId),
     );
     if (detalleResult) {
       const nuevoTotalOC = detalleResult.reduce(
@@ -64,7 +64,7 @@ export class OrdenCompraService implements OnDestroy {
     }
 
     const presupuestoResult: any = await this.apiResponseS.onGetList(
-      `OrdenCompraPresupuesto/GetAllForOrdenCompraTotal/${ordenCompraId}`,
+      Endpoints.PurchaseOrderBudgets.getAllForOrdenCompraTotal(ordenCompraId),
     );
     if (presupuestoResult) {
       const nuevoTotalCubierto = presupuestoResult.reduce(

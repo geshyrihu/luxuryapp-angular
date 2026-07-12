@@ -16,6 +16,24 @@ export const EndpointsShared = {
     getPdf: (id: string) => `cfdi-use/${id}/pdf`,
     update: (id: string) => `cfdi-use/${id}`,
   },
+  EnumSelectItems: {
+    assetCategory: "EAssetCategory",
+    brand: "EBrand",
+    departament: "Departament",
+    inventoryCategory: "EInventoryCategory",
+    inventorySubCategory: "EInventorySubCategory",
+    measurementUnit: "EMeasurementUnit",
+    paymentMethod: "EPaymentMethod",
+    priority: "EPriority",
+    purchaseRequestStatus: "EPurchaseRequestStatus",
+    relationEmployee: "ERelationEmployee",
+    status: "EStatus",
+    statusMaintenance: "EStatusMaintenance",
+    typeDocument: "ETypeDocument",
+    typeMaintance: "ETypeMaintance",
+    selectItemEnum: (nameEnum: string, defaultOption?: string) =>
+      `select-item-enum/${nameEnum}${defaultOption ? '/' + defaultOption : ''}`,
+  },
   SelectItems: {
     accountingCatalogsByCustomerAndYear: (customerId: string, year: number) =>
       `AccountingCatalogs/${customerId}?fiscalYear=${year}`,
@@ -46,22 +64,7 @@ export const EndpointsShared = {
     usersByCustomer: (customerId: string) => `UserFromCustomer/${customerId}`,
     wayToPay: "WayToPay",
   },
-  EnumSelectItems: {
-    assetCategory: "EAssetCategory",
-    brand: "EBrand",
-    departament: "Departament",
-    inventoryCategory: "EInventoryCategory",
-    inventorySubCategory: "EInventorySubCategory",
-    measurementUnit: "EMeasurementUnit",
-    paymentMethod: "EPaymentMethod",
-    priority: "EPriority",
-    purchaseRequestStatus: "EPurchaseRequestStatus",
-    relationEmployee: "ERelationEmployee",
-    status: "EStatus",
-    statusMaintenance: "EStatusMaintenance",
-    typeDocument: "ETypeDocument",
-    typeMaintance: "ETypeMaintance",
-  },
+
   CustomDocuments: {
     create: "customdocument",
     delete: (id: string) => `customdocument/${id}`,
@@ -76,6 +79,7 @@ export const EndpointsShared = {
     delete: (id: string) => `productos/${id}`,
     getAll: "Productos",
     getAllPaged: "Productos/paged",
+    getById: (id: string) => `Productos/${id}`,
   },
   ProductCategories: {
     base: "Categories",

@@ -1,4 +1,4 @@
-import { IWorkPositionOrgChartNode } from "../models/org-chart.interfaces";
+import { IWorkPositionOrgChartNode } from '../interfaces/org-chart.interfaces';
 
 export interface IOrgChartSiblingContext {
   node: IWorkPositionOrgChartNode;

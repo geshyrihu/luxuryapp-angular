@@ -1,4 +1,16 @@
 export const EndpointsSystem = {
+  AiChat: {
+    sessions: "AiChat/Sessions",
+    startSession: "AiChat/StartSession",
+    history: (sessionId: string) => `AiChat/History/${sessionId}`,
+    sendMessage: "AiChat/SendMessage",
+  },
+  ElevenLabs: {
+    settings: "eleven-labs/settings",
+    voices: "eleven-labs/voices",
+    subscriptionStatus: "eleven-labs/subscription-status",
+    textToSpeech: "eleven-labs/text-to-speech",
+  },
   AiKnowledgeBase: {
     base: "AiKnowledgeBase",
     delete: (id: string) => `AiKnowledgeBase/${id}`,

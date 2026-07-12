@@ -9,6 +9,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { PanicAlertDto } from "../interfaces/panic-alert.dto";
 import { PanicAlertResolveDto } from "../interfaces/panic-alert-resolve.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 
 @Component({
   selector: "app-panic-alert-list",
@@ -346,7 +347,7 @@ export class PanicAlertList implements OnInit {
   }
 
   async onAttend(alert: PanicAlertDto): Promise<void> {
-    await this.apiResponseS.onPut(`PanicAlerts/${alert.id}/attend`, {});
+    await this.apiResponseS.onPut(Endpoints.PanicAlerts.attend(alert.id), {});
     this.loadActive();
     this.loadHistory();
   }
@@ -364,7 +365,7 @@ export class PanicAlertList implements OnInit {
       resolutionNotes: this.resolveNotes() || null,
     };
 
-    await this.apiResponseS.onPut(`PanicAlerts/${alert.id}/resolve`, dto);
+    await this.apiResponseS.onPut(Endpoints.PanicAlerts.resolve(alert.id), dto);
     this.closeResolve();
     this.loadActive();
     this.loadHistory();

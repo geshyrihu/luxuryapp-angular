@@ -26,6 +26,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 interface IMantenimientoPreventivoForm {
@@ -210,7 +211,7 @@ export class MantenimientoPreventivoForm implements OnInit {
   async onGetMachinerySelectItem(): Promise<void> {
     if (this.config.data.idMachinery !== 0) {
       const result: any = await this.apiResponseS.onGetList(
-        `Machineries/GetMachinerySelectItem/${this.config.data.idMachinery}`,
+        Endpoints.Machineries.getMachinerySelectItem(this.config.data.idMachinery),
       );
 
       const selectedMachinery = this.cb_machinery().find(
@@ -227,7 +228,7 @@ export class MantenimientoPreventivoForm implements OnInit {
 
   async LoadCopy(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `MaintenanceCalendars/Get/${this.config.data.id}`,
+      Endpoints.MaintenanceCalendars.get(this.config.data.id),
     );
     this.id = "";
     this.onPathForm(result);
@@ -235,7 +236,7 @@ export class MantenimientoPreventivoForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `MaintenanceCalendars/Get/${this.config.data.id}`,
+      Endpoints.MaintenanceCalendars.get(this.config.data.id),
     );
     this.id = result.id;
     this.onPathForm(result);

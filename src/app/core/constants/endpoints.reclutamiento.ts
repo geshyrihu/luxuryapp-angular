@@ -12,6 +12,9 @@ export const EndpointsReclutamiento = {
     getTree: (customerId: string) => `WorkPositionOrgChart/tree/${customerId}`,
     reassign: "WorkPositionOrgChart/reassign",
   },
+  RequestSalaryModification: {
+    getDataForModificacionSalario: (workPositionId: string) => `RequestSalaryModification/GetDataForModificacionSalario/${workPositionId}`,
+  },
   JobDescriptions: {
     base: "job-descriptions",
     getById: (id: string) => `job-descriptions/${id}`,

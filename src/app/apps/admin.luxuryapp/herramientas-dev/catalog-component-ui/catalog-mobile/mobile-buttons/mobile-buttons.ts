@@ -159,7 +159,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
       </div>
     </div>
   `,
-  styleUrls: ["../../../../shared/mobile-showcase-styles.css"],
+  styleUrls: ["../../shared/mobile-showcase-styles.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

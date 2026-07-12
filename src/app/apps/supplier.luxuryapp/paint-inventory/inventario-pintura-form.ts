@@ -89,7 +89,7 @@ export class InventarioPinturaForm implements OnInit {
   async onLoadSelectItems(): Promise<void> {
     const [machinery, productos] = await Promise.all([
       this.apiResponseS.onGetList(
-        `Machineries/GetAutocompeteInv/${this.customerIdS.customerId()}`,
+        Endpoints.Machineries.getAutocompleteInv(this.customerIdS.customerId()),
       ),
       this.apiResponseS.onGetList(Endpoints.Products.autoComplete),
     ]);
@@ -100,7 +100,7 @@ export class InventarioPinturaForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `InventarioPintura/${this.id}`,
+      Endpoints.InventarioPintura.getById(this.id),
     );
 
     // Extraer IDs

@@ -26,12 +26,25 @@ export const EndpointsSupplier = {
     solicitudCompraBase: "SolicitudCompra",
     update: (id: string) => `purchaserequest/${id}`,
     updateProduct: (id: string | number) => `PurchaseRequest/update-product/${id}`,
+    cuadroComparativoEvidences: (solicitudCompraId: string) => `SolicitudCompra/CuadroComparativo/${solicitudCompraId}/Evidences`,
+    cuadroComparativoEvidenceDelete: (evidenceId: string) => `SolicitudCompra/CuadroComparativo/Evidences/${evidenceId}`,
+    comiteEvents: (customerId: string) => `SolicitudCompra/comite-events/${customerId}`,
+  },
+  CustomerProvider: {
+    getById: (id: string) => `customerprovider/getById/${id}`,
+  },
+  InventarioIluminacion: {
+    getById: (id: string) => `InventarioIluminacion/${id}`,
+  },
+  InventarioPintura: {
+    getById: (id: string) => `InventarioPintura/${id}`,
   },
   PurchaseRequestDetails: {
     addProductList: (solicitudCompraId: string) =>
       `SolicitudCompraDetalle/AddProduct/${solicitudCompraId}`,
     create: "SolicitudCompraDetalle",
     delete: (id: string | number) => `solicitudcompradetalle/${id}`,
+    updatePrice: (id: string) => `SolicitudCompraDetalle/UpdatePrice/${id}`,
     editProduct: (id: string | number) =>
       `solicitudcompradetalle/editproduct/${id}`,
     searchToAdd: (solicitudId: string) =>
@@ -81,14 +94,18 @@ export const EndpointsSupplier = {
     delete: (id: string) => `providers/${id}`,
     getByIdAndCustomer: (id: string | number, customerId: string) =>
       `providers/${id}/${customerId}`,
+    getByIdAndCustomerAlt: (id: string, customerId: string) =>
+      `Providers/${id}/${customerId}`,
   },
   PurchaseOrderBudgets: {
     create: "OrdenCompraPresupuesto",
     delete: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
     getById: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
     update: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+    getAllForOrdenCompraTotal: (ordenCompraId: string) => `OrdenCompraPresupuesto/GetAllForOrdenCompraTotal/${ordenCompraId}`,
   },
   PurchaseOrderDetails: {
+    getAllTotal: (ordenCompraId: string) => `OrdenCompraDetalle/GetAllTotal/${ordenCompraId}`,
     addProductToOrder: (ordenCompraId: string) =>
       `OrdenCompraDetalle/AddProductoToOrder/${ordenCompraId}`,
     create: "OrdenCompraDetalle/",

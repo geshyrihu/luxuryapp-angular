@@ -1,5 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "../constants/endpoints";
 @Injectable({
   providedIn: "root",
 })
@@ -60,7 +61,7 @@ export class AiService {
   async generateImage(prompt: string): Promise<Blob> {
     try {
       const response = await this.apiResponseService.onPostBlob(
-        "AiAssistant/GenerateImage",
+        Endpoints.AiAssistant.generateImage,
         { prompt },
       );
 

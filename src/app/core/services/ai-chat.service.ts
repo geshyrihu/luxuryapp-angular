@@ -1,6 +1,7 @@
 import { Injectable, inject, signal } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomerIdService } from "../auth/services/customer-id.service";
+import { Endpoints } from "../constants/endpoints";
 
 export interface ChatSessionDto {
   id: string;
@@ -40,14 +41,14 @@ export class AiChatService {
   }
 
   async loadSessions() {
-    const res = await this.api.onGetList<ChatSessionDto[]>("AiChat/Sessions");
+    const res = await this.api.onGetList<ChatSessionDto[]>(Endpoints.AiChat.sessions);
     this.sessions.set(res || []);
   }
 
   async startNewSession() {
     this.isLoading.set(true);
     const res = await this.api.onPost<ChatSessionDto>(
-      "AiChat/StartSession",
+      Endpoints.AiChat.startSession,
       {},
     );
     if (res) {
@@ -62,7 +63,7 @@ export class AiChatService {
     this.currentSessionId.set(sessionId);
     this.isLoading.set(true);
     const res = await this.api.onGetList<ChatMessageDto[]>(
-      `AiChat/History/${sessionId}`,
+      Endpoints.AiChat.history(sessionId),
     );
     this.messages.set(res || []);
     this.isLoading.set(false);
@@ -92,7 +93,7 @@ export class AiChatService {
     // Note: onPost normally returns the T response. My backend returns generic ApiResponseDto<string>.
     // The ApiResponseService unwraps it.
     const responseText = await this.api.onPost<string>(
-      "AiChat/SendMessage",
+      Endpoints.AiChat.sendMessage,
       payload,
     );
 

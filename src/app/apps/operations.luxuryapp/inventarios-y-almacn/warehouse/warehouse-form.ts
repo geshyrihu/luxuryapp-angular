@@ -199,7 +199,7 @@ export class WarehouseForm implements OnInit {
           userIds: this.form.get("responsablesIds")?.value,
         };
         await this.apiResponseS.onPut(
-          "almacen/assign-responsibles",
+          Endpoints.Almacen.assignResponsibles,
           DTO,
           false,
         );

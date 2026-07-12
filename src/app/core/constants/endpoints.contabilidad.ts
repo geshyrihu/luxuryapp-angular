@@ -69,6 +69,16 @@ export const EndpointsContabilidad = {
   Funding: {
     delete: (id: string) => `funding/${id}`,
     deleteDetail: (id: string) => `funding/detail/${id}`,
+    list: (customerId: string) => `Funding/list/${customerId}`,
+  },
+  SatFunding: {
+    updateOrder: "SatFunding/UpdateOrder",
+  },
+  SatReconciliation: {
+    requestCfdi: "satreconciliation/RequestCfdi",
+    requestLegacy: "satreconciliation/RequestLegacy",
+    downloadCfdi: "satreconciliation/DownloadCfdi",
+    processLegacy: "satreconciliation/ProcessLegacy",
   },
   FundingFiles: {
     solicitudesPago: "FundingFile/solicitudes-pago",

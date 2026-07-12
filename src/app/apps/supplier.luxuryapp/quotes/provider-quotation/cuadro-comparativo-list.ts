@@ -21,6 +21,7 @@ import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { AutorizacionCuadroComparativo } from "src/app/core/interfaces/autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/interfaces/tooltip-placement.enum";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { AiService } from "src/app/core/services/ai.service";
@@ -355,7 +356,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (value === undefined) return;
 
     this.apiResponseS
-      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+      .onPut(Endpoints.PurchaseRequests.cuadroComparativoUpdate(this.solicitudCompraId), {
         estatus: 0,
         autorizadaPor: Number(value),
         motivoNoAutorizacion: "",
@@ -431,7 +432,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (!result.isConfirmed || !result.value) return;
 
     this.apiResponseS
-      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+      .onPut(Endpoints.PurchaseRequests.cuadroComparativoUpdate(this.solicitudCompraId), {
         estatus: 1,
         autorizadaPor: result.value.autorizadaPor,
         motivoNoAutorizacion: result.value.motivo,
@@ -458,7 +459,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (!result.isConfirmed) return;
 
     this.apiResponseS
-      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+      .onPut(Endpoints.PurchaseRequests.cuadroComparativoUpdate(this.solicitudCompraId), {
         estatus: 2,
         autorizadaPor: null,
         motivoNoAutorizacion: "",
@@ -700,7 +701,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       formData.append("Descripcion", file.name);
       formData.append("ApplicationUserId", this.authS.applicationUserId);
       const result = await this.apiResponseS.onPostFile(
-        `SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Evidences`,
+        Endpoints.PurchaseRequests.cuadroComparativoEvidences(this.solicitudCompraId),
         formData,
       );
 
@@ -719,7 +720,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   onDeleteEvidence(evidenceId: string) {
     this.apiResponseS
-      .onDelete(`SolicitudCompra/CuadroComparativo/Evidences/${evidenceId}`)
+      .onDelete(Endpoints.PurchaseRequests.cuadroComparativoEvidenceDelete(evidenceId))
       .then((success) => {
         if (success) {
           this.evidenciasSignal.set(
@@ -737,7 +738,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   onToggleRequiereContrato() {
     const nuevoValor = !this.solicitudCompra.requiereContrato;
     this.apiResponseS
-      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+      .onPut(Endpoints.PurchaseRequests.cuadroComparativoUpdate(this.solicitudCompraId), {
         estatus: this.solicitudCompra.estatus,
         autorizadaPor: this.solicitudCompra.autorizadaPor ?? null,
         motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? "",
@@ -761,7 +762,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
     if (events.length === 0) {
       const fetched: any = await this.apiResponseS.onGetItem(
-        `SolicitudCompra/comite-events/${this.solicitudCompra.customerId}`,
+        Endpoints.PurchaseRequests.comiteEvents(this.solicitudCompra.customerId),
       );
       events = Array.isArray(fetched) ? fetched : [];
       this.comiteEventsSignal.set(events);
@@ -802,7 +803,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     const eventoId = selected.value === "" ? null : selected.value;
 
     this.apiResponseS
-      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+      .onPut(Endpoints.PurchaseRequests.cuadroComparativoUpdate(this.solicitudCompraId), {
         estatus: this.solicitudCompra.estatus,
         autorizadaPor: this.solicitudCompra.autorizadaPor ?? null,
         motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? "",

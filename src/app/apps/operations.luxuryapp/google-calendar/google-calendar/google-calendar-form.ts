@@ -371,7 +371,7 @@ export class GoogleCalendarForm implements OnInit {
 
   async onLoadData() {
     const result = (await this.apiResponseS.onGetItem(
-      `google-calendar-events/${this.id()}`,
+      Endpoints.GoogleCalendarEvents.getById(this.id()),
     )) as IGoogleCalendarEventDetail | null;
 
     if (!result) {
@@ -580,7 +580,7 @@ export class GoogleCalendarForm implements OnInit {
     this.deletingSeries.set(true);
     try {
       const result = await this.apiResponseS.onDelete(
-        `google-calendar-events/${this.id()}/series`,
+        Endpoints.GoogleCalendarEvents.updateSeries(this.id()),
       );
 
       if (result) {

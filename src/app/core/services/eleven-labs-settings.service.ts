@@ -1,6 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { StorageService } from "src/app/core/services/storage.service";
+import { Endpoints } from "../constants/endpoints";
 
 export interface ElevenLabsVoiceOption {
   voiceId: string;
@@ -64,7 +65,7 @@ export class ElevenLabsSettingsService {
   async loadFromServer(): Promise<ElevenLabsFrontendSettings> {
     try {
       const result = await this.apiS.onGetItem<ElevenLabsFrontendSettings>(
-        "eleven-labs/settings",
+        Endpoints.ElevenLabs.settings,
         false,
       );
       if (result) {
@@ -91,7 +92,7 @@ export class ElevenLabsSettingsService {
   async saveSettings(settings: ElevenLabsFrontendSettings): Promise<void> {
     this.storageS.store(this.storageKey, settings);
     try {
-      await this.apiS.onPostNotLoading("eleven-labs/settings", settings);
+      await this.apiS.onPostNotLoading(Endpoints.ElevenLabs.settings, settings);
     } catch {
       // El dato queda en localStorage como respaldo
     }

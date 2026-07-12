@@ -20,6 +20,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomerProviderFormGroup } from "./interfaces/customer-provider-form.interface";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -68,7 +69,7 @@ export class CustomerProviderForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `customerprovider/getById/${this.id}`,
+      Endpoints.CustomerProvider.getById(this.id),
     );
 
     // Extraer IDs

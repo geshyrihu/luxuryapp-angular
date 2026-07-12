@@ -4,6 +4,7 @@ export const EndpointsResident = {
     delete: (id: string) => `Property/${id}`,
     getById: (id: string) => `Property/${id}`,
     update: (id: string) => `Property/${id}`,
+    downloadTemplate: (customerId: string) => `Property/download-template/${customerId}`,
   },
   ResidentesEdificio: {
     selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
