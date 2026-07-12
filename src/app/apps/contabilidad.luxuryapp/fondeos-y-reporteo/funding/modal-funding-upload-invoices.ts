@@ -24,7 +24,7 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TipoGasto } from "src/app/core/interfaces/tipo-gasto.enum";
+import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 
 // Definición de un ótem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {

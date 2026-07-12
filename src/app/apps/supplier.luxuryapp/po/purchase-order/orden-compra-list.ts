@@ -24,7 +24,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { TipoGasto } from "src/app/core/interfaces/tipo-gasto.enum";
+import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,

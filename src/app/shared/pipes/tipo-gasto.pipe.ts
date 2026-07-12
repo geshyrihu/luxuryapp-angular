@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { TipoGasto } from "src/app/core/interfaces/tipo-gasto.enum";
+import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { onGetSelectItemFromEnum } from "src/app/core/helpers/enumeration";
 @Pipe({
   name: "eTipoGasto",
