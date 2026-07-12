@@ -34,7 +34,7 @@ import {
   SatCfdiDto,
   SatDownloadRequestDto,
   SatFundingDetailDto,
-} from "src/app/core/interfaces/sat-funding-detail.interface";
+} from "src/app/apps/contabilidad.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
