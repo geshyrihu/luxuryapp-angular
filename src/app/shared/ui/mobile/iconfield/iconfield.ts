@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IconFieldBase } from "@ui/base/iconfield.base";
-import { AppIconField } from "@ui/web/iconfield/iconfield";
+import { IonItem } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-iconfield",
-
-  imports: [AppIconField],
+  imports: [IonItem],
   template: `
-    <app-iconfield [iconPosition]="iconPosition()">
+    <ion-item lines="none" [class]="'icon-pos-' + iconPosition()">
       <ng-content />
-    </app-iconfield>
+    </ion-item>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
 })

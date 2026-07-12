@@ -5,25 +5,24 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ToolbarBase } from "@ui/base/toolbar.base";
-import { ToolbarModule } from "primeng/toolbar";
+import { IonToolbar, IonButtons } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-toolbar",
-
-  imports: [CommonModule, ToolbarModule],
+  imports: [CommonModule, IonToolbar, IonButtons],
   template: `
-    <p-toolbar [class]="styleClass()">
+    <ion-toolbar [class]="styleClass()">
       @if (leftTemplate(); as tpl) {
-        <ng-template pTemplate="start">
+        <ion-buttons slot="start">
           <ng-container *ngTemplateOutlet="tpl" />
-        </ng-template>
+        </ion-buttons>
       }
       @if (rightTemplate(); as tpl) {
-        <ng-template pTemplate="end">
+        <ion-buttons slot="end">
           <ng-container *ngTemplateOutlet="tpl" />
-        </ng-template>
+        </ion-buttons>
       }
-    </p-toolbar>
+    </ion-toolbar>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,

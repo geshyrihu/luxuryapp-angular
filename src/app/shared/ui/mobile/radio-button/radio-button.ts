@@ -5,18 +5,16 @@ import {
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RadioButtonBase } from "@ui/base/radio-button.base";
-import { RadioButtonModule } from "primeng/radiobutton";
+import { IonRadio } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-radio-button",
-
-  imports: [ReactiveFormsModule, RadioButtonModule],
-  template: `<p-radiobutton
+  imports: [ReactiveFormsModule, IonRadio],
+  template: `<ion-radio
     [value]="value()"
     [formControl]="formControl()"
-    [inputId]="inputId()"
     [class]="styleClass()"
-  ></p-radiobutton>`,
+  ></ion-radio>`,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

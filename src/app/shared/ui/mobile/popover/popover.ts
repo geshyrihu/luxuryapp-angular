@@ -1,37 +1,39 @@
 import { ChangeDetectionStrategy, Component, viewChild } from "@angular/core";
 import { PopoverBase } from "@ui/base/popover.base";
-import { AppPopover } from "@ui/web/popover/popover";
+import { IonPopover } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-popover",
-
-  imports: [AppPopover],
+  imports: [IonPopover],
   template: `
-    <app-popover
+    <ion-popover
       #inner
-      [styleClass]="styleClass()"
-      [appendTo]="appendTo()"
-      [dismissable]="dismissable()"
-      [autoZIndex]="autoZIndex()"
-      [focusOnShow]="focusOnShow()"
+      [dismissOnSelect]="dismissable()"
+      [class]="styleClass()"
     >
-      <ng-content />
-    </app-popover>
+      <ng-template>
+        <ng-content />
+      </ng-template>
+    </ion-popover>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class MobilePopover extends PopoverBase {
-  private inner = viewChild.required<AppPopover>("inner");
+  private inner = viewChild.required<any>("inner");
 
   toggle(event?: any): void {
-    this.inner().toggle(event);
+    if (this.inner().isOpen) {
+      this.inner().dismiss();
+    } else {
+      this.inner().present(event);
+    }
   }
 
   show(event?: any): void {
-    this.inner().show(event);
+    this.inner().present(event);
   }
 
   hide(): void {
-    this.inner().hide();
+    this.inner().dismiss();
   }
 }

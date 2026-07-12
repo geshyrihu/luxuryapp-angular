@@ -4,22 +4,21 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { SplitButtonBase } from "@ui/base/split-button.base";
-import { SplitButtonModule } from "primeng/splitbutton";
+import { IonButton, IonIcon } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-split-button",
-
-  imports: [SplitButtonModule],
-  template: `<p-splitbutton
-    [label]="label()"
-    [icon]="icon()"
-    [model]="model()"
-    [size]="size()"
-    [severity]="severity()"
-    [disabled]="disabled()"
-    (onClick)="onClick.emit($event)"
-    [class]="styleClass()"
-  ></p-splitbutton>`,
+  imports: [IonButton, IonIcon],
+  template: `
+    <div [class]="styleClass()" style="display: flex;">
+      <ion-button [disabled]="disabled()" (click)="onClick.emit($event)" [color]="severity()">
+        @if (icon()) {
+          <ion-icon [name]="icon()" slot="start"></ion-icon>
+        }
+        {{ label() }}
+      </ion-button>
+    </div>
+  `,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -3,32 +3,46 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { FileUploadBase } from "@ui/base/file-upload.base";
-import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
+import { FileUploadBase, FileUploadEvent } from "@ui/base/file-upload.base";
+import { IonButton, IonIcon } from "@ionic/angular/standalone";
+import { addIcons } from "ionicons";
+import { cloudUploadOutline } from "ionicons/icons";
 
-/**
- * MobileFileUpload — wrapper móvil sobre el upload de PrimeNG (no existe
- * equivalente Ionic). Delega al componente web `app-file-upload`, que ya
- * contempla la fuente móvil (cámara/galería) vía `mobileSource`.
- */
 @Component({
   selector: "ili-file-upload",
-
-  imports: [AppFileUpload],
+  imports: [IonButton, IonIcon],
   template: `
-    <app-file-upload
-      [chooseLabel]="chooseLabel()"
-      [accept]="accept()"
-      [maxFileSize]="maxFileSize()"
-      [multiple]="multiple()"
-      [autoUpload]="autoUpload()"
-      [mobileSource]="mobileSource()"
-      (filesChange)="filesChange.emit($event)"
-      (upload)="upload.emit($event)"
-      (onSelect)="onSelect.emit($event)"
-    ></app-file-upload>
+    <div class="mobile-file-upload">
+      <input 
+        type="file" 
+        [accept]="accept()" 
+        [multiple]="multiple()" 
+        (change)="onFileChange($event)" 
+        #fileInput 
+        style="display: none;" 
+      />
+      <ion-button (click)="fileInput.click()" expand="block" fill="outline">
+        <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+        {{ chooseLabel() }}
+      </ion-button>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
-export class IliFileUpload extends FileUploadBase {}
+export class IliFileUpload extends FileUploadBase {
+  constructor() {
+    super();
+    addIcons({ cloudUploadOutline });
+  }
+
+  onFileChange(event: any) {
+    const files = Array.from(event.target.files) as File[];
+    if (files.length > 0) {
+      this.onSelect.emit({ originalEvent: event, files });
+      if (this.autoUpload()) {
+        this.upload.emit({ originalEvent: event, files });
+      }
+    }
+  }
+}

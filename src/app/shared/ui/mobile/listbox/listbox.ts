@@ -2,35 +2,42 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  forwardRef,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { ListboxBase } from "@ui/base/listbox.base";
-import { ListboxModule } from "primeng/listbox";
+import { IonList, IonItem, IonLabel, IonCheckbox } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-listbox",
-
-  imports: [ListboxModule, FormsModule],
-  template: `<p-listbox
-    [ngModel]="value()"
-    (ngModelChange)="value.set($event)"
-    [options]="options()"
-    [optionLabel]="optionLabel()"
-    [optionValue]="optionValue()"
-    [multiple]="multiple()"
-    [checkbox]="checkbox()"
-    [filter]="filter()"
-    [style]="style()"
-    [listStyle]="listStyle()"
-    [emptyFilterMessage]="emptyFilterMessage()"
-    [group]="group()"
-    [optionGroupLabel]="optionGroupLabel()"
-    [optionGroupChildren]="optionGroupChildren()"
-    [metaKeySelection]="metaKeySelection()"
-    [class]="styleClass()"
-    ><ng-content
-  /></p-listbox>`,
+  imports: [FormsModule, IonList, IonItem, IonLabel, IonCheckbox],
+  template: `
+    <ion-list [class]="styleClass()">
+      @for (option of options(); track option) {
+        <ion-item>
+          <ion-checkbox 
+            [checked]="value() === option[optionValue()] || value() === option"
+            (ionChange)="selectOption(option)">
+            {{ optionLabel() ? option[optionLabel()] : option }}
+          </ion-checkbox>
+        </ion-item>
+      }
+    </ion-list>
+  `,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MobileListbox),
+      multi: true,
+    },
+  ],
 })
-export class MobileListbox extends ListboxBase {}
+export class MobileListbox extends ListboxBase {
+  selectOption(option: any) {
+    const val = this.optionValue() ? option[this.optionValue()] : option;
+    this.value.set(val);
+    this.onChangeCva(val);
+  }
+}

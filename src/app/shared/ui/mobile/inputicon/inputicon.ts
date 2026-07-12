@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { InputIconBase } from "@ui/base/inputicon.base";
-import { AppInputIcon } from "@ui/web/inputicon/inputicon";
+import { IonIcon } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-inputicon",
-
-  imports: [AppInputIcon],
-  template: `<app-inputicon [styleClass]="styleClass()" />`,
+  imports: [IonIcon],
+  template: `<ion-icon [class]="styleClass()" name="help-outline"></ion-icon>`,
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class MobileInputIcon extends InputIconBase {}

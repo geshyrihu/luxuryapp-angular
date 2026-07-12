@@ -6,19 +6,20 @@ import {
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EditorBase } from "@ui/base/editor.base";
-import { EditorModule } from "primeng/editor";
+import { IonTextarea } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-editor",
 
-  imports: [FormsModule, EditorModule],
-  template: `<p-editor
+  imports: [FormsModule, IonTextarea],
+  template: `<ion-textarea
     [(ngModel)]="_value"
     (ngModelChange)="onChange($event)"
     [style]="style()"
     [placeholder]="placeholder()"
     [class]="styleClass()"
-  ></p-editor>`,
+    autoGrow="true"
+  ></ion-textarea>`,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
   providers: [

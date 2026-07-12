@@ -1,5 +1,9 @@
 import { Directive, input, output } from "@angular/core";
-import { FileUploadHandlerEvent } from "primeng/fileupload";
+
+export interface FileUploadEvent {
+  files: File[];
+  originalEvent: Event;
+}
 
 export interface UploadFile {
   name: string;
@@ -20,6 +24,6 @@ export abstract class FileUploadBase {
   autoUpload = input<boolean>(true);
   mobileSource = input<"camera" | "gallery" | "both" | "none">("both");
   filesChange = output<UploadFile[]>();
-  upload = output<FileUploadHandlerEvent>();
+  upload = output<FileUploadEvent>();
   onSelect = output<any>();
 }
