@@ -36,8 +36,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
-import { CreateOrdenCompraWizard } from "src/app/apps/supplier.luxuryapp/po/purchase-order/components/create-orden-compra-wizard/create-orden-compra-wizard";
-import { PaymentVoucherModal } from "src/app/apps/supplier.luxuryapp/po/purchase-order/components/payment-voucher-modal/payment-voucher-modal";
+import { CreateOrdenCompraWizard } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra-wizard/create-orden-compra-wizard";
+import { PaymentVoucherModal } from "src/app/apps/supplier.luxuryapp/po/purchase-order/payment-voucher-modal/payment-voucher-modal";
 import { CreateOrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra";
 import { OrdenCompraDatosPago } from "src/app/apps/supplier.luxuryapp/po/purchase-order/forms/orden-compra-datos-pago";
 import { OrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra";

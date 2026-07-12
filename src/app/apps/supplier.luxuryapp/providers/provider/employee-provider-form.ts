@@ -29,7 +29,7 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { UserInfoDto } from "src/app/core/interfaces/user-info.interface";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EmployeeInternalService } from "../../../../../apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employee-internal/services/employee-internal.service";
+import { EmployeeInternalService } from "../../../recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/services/employee-internal.service";
 
 type Opcion = "none" | "vacante" | "alta";
 
