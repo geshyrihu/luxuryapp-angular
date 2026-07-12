@@ -511,21 +511,21 @@ export const adminRoutes: Routes = [
       {
         path: "web/:item",
         loadComponent: () =>
-          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/components/catalog-web-item/catalog-web-item").then(
+          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-web-item/catalog-web-item").then(
             (m) => m.CatalogWebItem,
           ),
       },
       {
         path: "mobile/:item",
         loadComponent: () =>
-          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/components/catalog-mobile-item/catalog-mobile-item").then(
+          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-mobile-item/catalog-mobile-item").then(
             (m) => m.CatalogMobileItem,
           ),
       },
       {
         path: "core/:item",
         loadComponent: () =>
-          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/components/catalog-core-item/catalog-core-item").then(
+          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-core-item/catalog-core-item").then(
             (m) => m.CatalogCoreItem,
           ),
       },

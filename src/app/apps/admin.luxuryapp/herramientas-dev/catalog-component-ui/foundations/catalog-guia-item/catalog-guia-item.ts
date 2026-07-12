@@ -28,7 +28,7 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ToolbarModule } from "primeng/toolbar";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ButtonCatalog } from "./components/button-catalog/button-catalog";
+import { ButtonCatalog } from "./button-catalog/button-catalog";
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
@@ -607,7 +607,7 @@ export class CatalogGuiaItem {
     {
       family: "Botones unificados",
       selector: "custom-button-*",
-      source: "core/components/web/buttons",
+      source: "cor./web/buttons",
       useCase: "Acciones estandarizadas. Auto-detectan plataforma.",
       preferredFor: "CRUD, acciones por fila, guardar, editar, eliminar.",
       avoidWhen: "Nunca — reemplazaron ios-button-* eliminados.",
@@ -616,7 +616,7 @@ export class CatalogGuiaItem {
     {
       family: "Inputs unificados",
       selector: "custom-input-*-signal",
-      source: "core/components/web/inputs",
+      source: "cor./web/inputs",
       useCase: "CVA completo. Auto-detectan plataforma.",
       preferredFor: "Todos los formularios — web y mobile.",
       avoidWhen: "Nunca — reemplazaron ion-input-* eliminados.",
@@ -625,7 +625,7 @@ export class CatalogGuiaItem {
     {
       family: "Mobile data",
       selector: "app-data-view-mobile",
-      source: "core/components/data-view-mobile",
+      source: "cor./data-view-mobile",
       useCase: "Listado mobile agrupado con template proyectado.",
       preferredFor: "Reemplazar tablas densas en pantallas pequenas.",
       avoidWhen: "Comparacion tabular de muchas columnas en desktop.",
@@ -634,7 +634,7 @@ export class CatalogGuiaItem {
     {
       family: "Acciones contextuales",
       selector: "app-action-menu",
-      source: "core/components/action-menu",
+      source: "cor./action-menu",
       useCase: "Menu de acciones por fila con PrimeNG Popover.",
       preferredFor: "Mas de dos acciones secundarias.",
       avoidWhen: "Accion primaria visible.",
@@ -643,7 +643,7 @@ export class CatalogGuiaItem {
     {
       family: "Tabla PrimeNG",
       selector: "primeng-custom-caption / footer",
-      source: "core/components/primeng-custom-*",
+      source: "cor./primeng-custom-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",
       avoidWhen: "Listados mobile donde convenga DataViewMobile.",
@@ -670,7 +670,7 @@ export class CatalogGuiaItem {
     {
       family: "Graficas",
       selector: "app-custom-bar-chart / app-pie-chart",
-      source: "core/components/charts",
+      source: "cor./charts",
       useCase: "Visualizaciones ejecutivas reutilizables.",
       preferredFor: "Dashboards y metricas.",
       avoidWhen: "Datos que requieren tabla para auditoria.",

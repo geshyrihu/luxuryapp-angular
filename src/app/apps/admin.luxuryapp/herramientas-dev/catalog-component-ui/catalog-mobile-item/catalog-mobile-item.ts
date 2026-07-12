@@ -1,14 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MobileButtons } from "../catalog-mobile/components/mobile-buttons/mobile-buttons";
-import { MobileInputs } from "../catalog-mobile/components/mobile-inputs/mobile-inputs";
-import { MobileFeedback } from "../catalog-mobile/components/mobile-feedback/mobile-feedback";
-import { MobileNavigation } from "../catalog-mobile/components/mobile-navigation/mobile-navigation";
-import { MobileLists } from "../catalog-mobile/components/mobile-lists/mobile-lists";
-import { MobileData } from "../catalog-mobile/components/mobile-data/mobile-data";
-import { MobileForms } from "../catalog-mobile/components/mobile-forms/mobile-forms";
-import { MobileOverlays } from "../catalog-mobile/components/mobile-overlays/mobile-overlays";
+import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
+import { MobileInputs } from "../catalog-mobile/mobile-inputs/mobile-inputs";
+import { MobileFeedback } from "../catalog-mobile/mobile-feedback/mobile-feedback";
+import { MobileNavigation } from "../catalog-mobile/mobile-navigation/mobile-navigation";
+import { MobileLists } from "../catalog-mobile/mobile-lists/mobile-lists";
+import { MobileData } from "../catalog-mobile/mobile-data/mobile-data";
+import { MobileForms } from "../catalog-mobile/mobile-forms/mobile-forms";
+import { MobileOverlays } from "../catalog-mobile/mobile-overlays/mobile-overlays";
 
 const MOBILE_LABELS: Record<string, string> = {
   buttons: "Mobile Buttons",

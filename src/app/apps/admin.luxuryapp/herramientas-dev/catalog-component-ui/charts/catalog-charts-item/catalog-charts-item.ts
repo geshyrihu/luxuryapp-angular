@@ -2,8 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { ChartBar } from "../catalog-charts/components/chart-bar/chart-bar";
-import { ChartPie } from "../catalog-charts/components/chart-pie/chart-pie";
+import { ChartBar } from "../catalog-charts/chart-bar/chart-bar";
+import { ChartPie } from "../catalog-charts/chart-pie/chart-pie";
 
 const CHARTS_LABELS: Record<string, string> = {
   bar: "Bar Chart",
