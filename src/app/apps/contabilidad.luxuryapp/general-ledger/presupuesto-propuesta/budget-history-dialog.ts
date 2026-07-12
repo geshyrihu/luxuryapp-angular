@@ -21,7 +21,7 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { BudgetProposalItemHistoryDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { BudgetProposalItemHistoryDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-budget-history-dialog",

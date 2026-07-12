@@ -41,7 +41,7 @@ import { PaymentVoucherModal } from "src/app/apps/supplier.luxuryapp/po/purchase
 import { CreateOrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra";
 import { OrdenCompraDatosPago } from "src/app/apps/supplier.luxuryapp/po/purchase-order/forms/orden-compra-datos-pago";
 import { OrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra";
-import { FundingExcelExportService } from "../../general-ledger/contabilidad/funding-excel-export.service";
+import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/sat-reconciliation-dialog/sat-reconciliation-dialog";
 import { FundingGroupFiles } from "./funding-group-files/funding-group-files.";

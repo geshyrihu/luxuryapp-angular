@@ -1,7 +1,7 @@
 # Cobranza Nativa - Documentacion Maestra
 
 Fecha de actualizacion: 2026-07-04
-Modulo: `client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/cobranza-nativa`
+Modulo: `client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/cobranza-nativa`
 Estado funcional: Activo, con Fases 1 a 7 ejecutadas
 
 ## Objetivo del modulo
@@ -261,7 +261,7 @@ Area principal:
 
 Area principal:
 
-- `client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/cobranza-nativa/`
+- `client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/cobranza-nativa/`
 
 ## Fase 6 cerrada
 

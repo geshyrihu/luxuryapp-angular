@@ -23,7 +23,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { ExcelExportService } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/excel-export.service";
+import { ExcelExportService } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";

@@ -38,8 +38,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
-import { ContMinutaSeguimientos } from "../../../../apps/contabilidad.luxuryapp/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
-// import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-seguimientos";
+import { ContMinutaSeguimientos } from "../../../../apps/contabilidad.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
+// import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
 
 @Component({
   selector: "app-legal-pendientes-minuta",

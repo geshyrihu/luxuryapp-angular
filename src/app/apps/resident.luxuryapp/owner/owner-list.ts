@@ -16,7 +16,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ExcelExportService } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/excel-export.service";
+import { ExcelExportService } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";

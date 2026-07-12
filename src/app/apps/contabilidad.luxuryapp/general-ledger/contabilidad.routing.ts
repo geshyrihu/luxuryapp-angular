@@ -61,7 +61,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "funding-list",
     loadComponent: () =>
-      import("../funding-accounting/funding-accounting-list").then(
+      import("./funding-accounting/funding-accounting-list").then(
         (m) => m.FundingAccountingList,
       ),
     canActivate: [authGuard],
@@ -75,7 +75,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "funding-details/:id",
     loadComponent: () =>
-      import("../funding-accounting/funding-accounting-detail").then(
+      import("./funding-accounting/funding-accounting-detail").then(
         (m) => m.FundingAccountingDetail,
       ),
     canActivate: [authGuard],
@@ -103,7 +103,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "budget-execution",
     loadComponent: () =>
-      import("../espejo-aspel/projected-expenses-list").then((m) => m.default),
+      import("./espejo-aspel/projected-expenses-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Espejo Aspel",

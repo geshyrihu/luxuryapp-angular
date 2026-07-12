@@ -65,9 +65,9 @@ Requieren evaluación. Pueden tener layout agrupado, tablas comparativas, o cont
 | # | Archivo | Módulo | Razón para evaluar |
 |---|---------|--------|-------------------|
 | 1 | `apps/admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules` | Admin | Matriz de aprobación con badges de estado |
-| 2 | `features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/charge-template-coverage/charge-template-coverage.html` | Contabilidad | Filas agrupadas con subheaders |
+| 2 | `features/accounting/general-ledger/cobranza-nativa/pages/charge-template-coverage/charge-template-coverage.html` | Contabilidad | Filas agrupadas con subheaders |
 | 3 | `features/operations/supervision/supervision/reporte-tickets/reporte-tickets.html` | Supervisión | Reporte de tickets con `hidden md:block` |
-| 4 | `features/accounting/general-ledger/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica.html` | Contabilidad | Árbol con filas expandibles |
+| 4 | `features/accounting/general-ledger/contabilidad-online/pages/validacion-catalogo/catalog-replica.html` | Contabilidad | Árbol con filas expandibles |
 | 5 | `features/operations/properties/entrega-recepcion/entrega-recepcion-equipos.html` | Propiedades | Inventario con filas agrupadas |
 | 6 | `features/operations/properties/entrega-recepcion/entrega-recepcion-herramientas.html` | Propiedades | Inventario de herramientas |
 | 7 | `features/operations/properties/entrega-recepcion/entrega-recepcion-hidrantes.html` | Propiedades | Inventario de hidrantes |
@@ -76,7 +76,7 @@ Requieren evaluación. Pueden tener layout agrupado, tablas comparativas, o cont
 | 10 | `features/operations/properties/entrega-recepcion/entrega-recepcion-llaves.html` | Propiedades | Inventario de llaves |
 | 11 | `features/operations/field-service/service-order/ordenes-servicio-reporte-proveedor.html` | Field Service | Reporte proveedor (3 columnas simples) |
 | 12 | `features/operations/field-service/service-order/resumen-ordenes-servicio.html` | Field Service | Resumen de órdenes de servicio |
-| 13 | `features/accounting/general-ledger/contabilidad/cobranza-online/pages/dashboard/cobranza-online-dashboard.html` | Contabilidad | Dashboard con `hidden md:block` |
+| 13 | `features/accounting/general-ledger/cobranza-online/pages/dashboard/cobranza-online-dashboard.html` | Contabilidad | Dashboard con `hidden md:block` |
 | 14 | `features/operations/inspecciones-y-auditora/inspection/lista-inspecciones/lista-inspecciones.html` | Inspecciones | Lista de inspecciones |
 
 ---

@@ -41,31 +41,31 @@ import { Subscription } from "rxjs";
 import {
   BudgetProposalDTO,
   BudgetProposalItemDTO,
-} from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-propuesta/interfaces/budget-proposal.model";
+} from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { EquiposList } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
-import { EquiposList } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
 import Swal from "sweetalert2";
-import ProjectedExpensesList from "../../espejo-aspel/projected-expenses-list";
+import ProjectedExpensesList from "../espejo-aspel/projected-expenses-list";
 import { PurchaseHistory } from "../presupuesto-web-aspel/purchase-history";
 import { AccountModalAdd } from "./account-modal-add";
 import { BudgetAuditDialog } from "./budget-audit-dialog";
 import { BudgetForecastDialog } from "./budget-forecast-dialog";
 import { BudgetHistoryDialog } from "./budget-history-dialog";
 import { BudgetSupportDialog } from "./budget-support-dialog";
+import { ExcelExportService } from "./excel-export.service";
 import { FeeComparisonByFija } from "./fee-comparison-by-fija";
 import { BudgetExecutionDetailsModal } from "./modal-budget-execution-details";
 import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso";
-import { ExcelExportService } from "./excel-export.service";
 /**
  * Componente principal para la gestión de la propuesta de presupuesto.
  * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.
@@ -1357,7 +1357,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         this.loading.set(true);
         this.apiResponseS
-          .onDelete(Endpoints.RefactorContabilidad.budgetProposalItemById(item.id))
+          .onDelete(
+            Endpoints.RefactorContabilidad.budgetProposalItemById(item.id),
+          )
           .then((success) => {
             if (success) {
               // Actualiza el estado local para remover el ótem sin recargar toda la data.

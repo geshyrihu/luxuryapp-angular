@@ -5,7 +5,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'budget'
     path: "presupuesto",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-web-aspel/wrapper").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const comprasRoutes: Routes = [
   // {
   //   path: "presupuesto/:id",
   //   loadComponent: () =>
-  //     import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/edicion-presupuesto/presupuesto-individual").then(
+  //     import("src/app/apps/contabilidad.luxuryapp/general-ledger/edicion-presupuesto/presupuesto-individual").then(
   //       (m) => m.PresupuestoIndividual,
   //     ),
   //   canActivate: [authGuard],

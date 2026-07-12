@@ -111,7 +111,7 @@ Seguir el orden del CSV priorizando `accounting/` primero:
 2. `accounting/ar/aspel-customer-empresa/aspel-customer-empresa-list.html`
 3. `accounting/fondeos-y-reporteo/funding/funding-list.html`
 4. `accounting/fondeos-y-reporteo/funding-accounting/funding-accounting-list.html`
-5. `accounting/general-ledger/contabilidad/cobranza-online/pages/dashboard/cobranza-online-dashboard.html`
+5. `accounting/general-ledger/cobranza-online/pages/dashboard/cobranza-online-dashboard.html`
 
 **Checklist por componente:**
 - [ ] B1: `<p-button>` raw → `<custom-button-*>`

@@ -12,8 +12,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
-} from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/cobranza-online/interfaces/presupuesto-contabilidad.model";
-import { PurchaseHistory } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad/presupuesto-web-aspel/purchase-history";
+} from "src/app/apps/contabilidad.luxuryapp/general-ledger/cobranza-online/interfaces/presupuesto-contabilidad.model";
+import { PurchaseHistory } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
