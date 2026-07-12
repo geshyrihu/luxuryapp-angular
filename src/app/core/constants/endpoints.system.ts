@@ -1,9 +1,9 @@
 export const EndpointsSystem = {
   AiChat: {
-    sessions: "AiChat/Sessions",
-    startSession: "AiChat/StartSession",
-    history: (sessionId: string) => `AiChat/History/${sessionId}`,
-    sendMessage: "AiChat/SendMessage",
+    sessions: "ai-chat/sessions",
+    startSession: "ai-chat/start-session",
+    history: (sessionId: string) => `ai-chat/history/${sessionId}`,
+    sendMessage: "ai-chat/send-message",
   },
   ElevenLabs: {
     settings: "eleven-labs/settings",
@@ -12,27 +12,27 @@ export const EndpointsSystem = {
     textToSpeech: "eleven-labs/text-to-speech",
   },
   AiKnowledgeBase: {
-    base: "AiKnowledgeBase",
-    delete: (id: string) => `AiKnowledgeBase/${id}`,
-    getById: (id: string) => `AiKnowledgeBase/${id}`,
-    modules: "AiKnowledgeBase/modules",
+    base: "ai-knowledge-base",
+    delete: (id: string) => `ai-knowledge-base/${id}`,
+    getById: (id: string) => `ai-knowledge-base/${id}`,
+    modules: "ai-knowledge-base/modules",
   },
   AuditEntries: {
-    base: "AuditEntries",
+    base: "audit-entries",
   },
   UserActivityHistory: {
-    base: "UserActivityHistory",
+    base: "user-activity-history",
   },
   AccessHistory: {
     byCustomerAndRange: (
       customerId: string,
       fechaInicial: string,
       fechaFinal: string,
-    ) => `UserActivityHistory?customerId=${customerId}&startDate=${fechaInicial}&endDate=${fechaFinal}`,
+    ) => `user-activity-history?customerId=${customerId}&startDate=${fechaInicial}&endDate=${fechaFinal}`,
   },
   Logs: {
-    deleteAll: "Logs/all",
-    getAll: "Logs",
+    deleteAll: "logs/all",
+    getAll: "logs",
   },
   Notifications: {
     getAll: "notifications",

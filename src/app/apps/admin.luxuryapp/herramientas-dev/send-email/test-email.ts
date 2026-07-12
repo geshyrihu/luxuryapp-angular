@@ -24,7 +24,7 @@ export class TestEmail {
     }
 
     // Endpoint: api/test/test-email/{email}
-    const urlApi = `SendEmail/test-email/${this.emailControl.value}`;
+    const urlApi = `send-email/test-email/${this.emailControl.value}`;
 
     this.apiResponseS
       .onPost(urlApi, {})

@@ -154,7 +154,7 @@ export class ProductosForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id() === "" ? `Productos` : `Productos/${this.id()}`,
+      endpoint: this.id() === "" ? `productos` : `productos/${this.id()}`,
       method: this.id() === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,

@@ -69,7 +69,7 @@ export class FireCycleInspectionEstacionForm implements OnInit {
   onLoadExisting() {
     this.apiResponseS
       .onGetItem(
-        `FireCycleInspection/estacion/${this.cycleId}/${this.equipmentId}`,
+        `fire-cycle-inspection/estacion/${this.cycleId}/${this.equipmentId}`,
       )
       .then((result: any) => {
         if (result) this.form.patchValue(result);
@@ -80,7 +80,7 @@ export class FireCycleInspectionEstacionForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "FireCycleInspection/estacion",
+      endpoint: "fire-cycle-inspection/estacion",
       id: "",
       ref: this.ref,
       submitting: this.submitting,

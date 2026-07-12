@@ -70,7 +70,7 @@ export class FireInspectionPeriodForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`FireInspectionPeriod/${this.id}`)
+      .onGetItem(`fire-inspection-period/${this.id}`)
       .then((result: any) => {
         this.form.patchValue({
           ...result,

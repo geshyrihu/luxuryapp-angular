@@ -134,9 +134,9 @@ export const EndpointsOperations = {
     update: (id: string) => `announcements/${id}`,
   },
   DiagramDraw: {
-    delete: (id: string) => `DiagramDraw/${id}`,
-    getById: (id: string) => `DiagramDraw/${id}`,
-    update: (id: string) => `DiagramDraw/${id}`,
+    delete: (id: string) => `diagram-draw/${id}`,
+    getById: (id: string) => `diagram-draw/${id}`,
+    update: (id: string) => `diagram-draw/${id}`,
   },
   Meetings: {
     allPendingMinutas: (customerId: string) =>
@@ -157,7 +157,7 @@ export const EndpointsOperations = {
       area: number,
       applicationUserId: string,
     ) =>
-      `Meetings/SendEmailResponsible/${id}/${customerId}/${area}/${applicationUserId}`,
+      `Meetings/send-email-responsible/${id}/${customerId}/${area}/${applicationUserId}`,
   },
   MeetingsDetails: {
     base: "MeetingsDetails",
@@ -168,14 +168,14 @@ export const EndpointsOperations = {
     base: "MeetingDertailsSeguimiento",
     delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
     exportSummaryToExcel: (meetingId: string | number) =>
-      `MeetingDertailsSeguimiento/ExportSummaryToExcel/${meetingId}`,
+      `MeetingDertailsSeguimiento/export-summary-to-excel/${meetingId}`,
     getById: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
     resumenGrafico: (customerId: string, date: string) =>
-      `MeetingDertailsSeguimiento/ResumenPreventivosGraficoPresentacion/${customerId}/${date}`,
+      `MeetingDertailsSeguimiento/resumen-preventivosGraficoPresentacion/${customerId}/${date}`,
     resumenGraficoPresentacion: (meetingId: string | number) =>
       `MeetingDertailsSeguimiento/ResumenMinutasGraficoPresentacion/${meetingId}`,
     resumenPreventivos: (customerId: string, date: string) =>
-      `MeetingDertailsSeguimiento/ResumenPreventivosPresentacion/${customerId}/${date}`,
+      `MeetingDertailsSeguimiento/resumen-preventivosPresentacion/${customerId}/${date}`,
     resumenPresentacion: (meetingId: string | number) =>
       `MeetingDertailsSeguimiento/ResumenMinutasPresentacion/${meetingId}`,
     update: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
@@ -254,8 +254,8 @@ export const EndpointsOperations = {
     create: "InventarioProducto",
   },
   PanicAlerts: {
-    attend: (id: string) => `PanicAlerts/${id}/attend`,
-    resolve: (id: string) => `PanicAlerts/${id}/resolve`,
+    attend: (id: string) => `panic-alerts/${id}/attend`,
+    resolve: (id: string) => `panic-alerts/${id}/resolve`,
   },
   Tools: {
     delete: (id: string) => `Tools/${id}`,
@@ -288,21 +288,21 @@ export const EndpointsOperations = {
     matrix: "approval-rules/matrix",
   },
   EntregaRecepcion: {
-    base: "CatalogoEntregaRecepcionDescripcion",
-    getByClient: (id: string) => `EntregaRecepcionCliente/${id}`,
-    getById: (id: string) => `CatalogoEntregaRecepcionDescripcion/${id}`,
-    grupos: "CatalogoEntregaRecepcionDescripcion/grupos",
+    base: "catalogo-entrega-recepcion-descripcion",
+    getByClient: (id: string) => `entrega-recepcion-cliente/${id}`,
+    getById: (id: string) => `catalogo-entrega-recepcion-descripcion/${id}`,
+    grupos: "catalogo-entrega-recepcion-descripcion/grupos",
     updateClient: (id: string, userId: string, customerId: string) =>
-      `EntregaRecepcionCliente/${id}/${userId}/${customerId}`,
+      `entrega-recepcion-cliente/${id}/${userId}/${customerId}`,
   },
   EntregaRecepcionCliente: {
-    deleteFile: (id: string) => `EntregaRecepcionCliente/DeleteFile/${id}`,
-    generateData: "EntregaRecepcionCliente/GenerateData",
+    deleteFile: (id: string) => `entrega-recepcion-cliente/DeleteFile/${id}`,
+    generateData: "entrega-recepcion-cliente/GenerateData",
     getByCustomerAndDepartment: (customerId: string, department: string) =>
-      `EntregaRecepcionCliente/${customerId}/${department}`,
+      `entrega-recepcion-cliente/${customerId}/${department}`,
     invalidateFile: (id: string) =>
-      `EntregaRecepcionCliente/InvalidarArchivo/${id}`,
+      `entrega-recepcion-cliente/InvalidarArchivo/${id}`,
     validateFile: (applicationUserId: string, id: string) =>
-      `EntregaRecepcionCliente/ValidarArchivo/${applicationUserId}/${id}`,
+      `entrega-recepcion-cliente/ValidarArchivo/${applicationUserId}/${id}`,
   },
 } as const;

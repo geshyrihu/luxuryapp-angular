@@ -230,7 +230,7 @@ export class EquiposList {
   // --- CARGA DE DATOS (Refactorizado) ---
   async onLoadData(customerId: string, categoryId: any, state: number) {
     this.loading.set(true);
-    const urlApi = `Machineries/list/${customerId}/${categoryId}/${state}`;
+    const urlApi = `machineries/list/${customerId}/${categoryId}/${state}`;
     try {
       const result = await this.apiResponseS.onGetList<Equipo[]>(urlApi);
       console.log(result);

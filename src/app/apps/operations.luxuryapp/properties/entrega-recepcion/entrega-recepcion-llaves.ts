@@ -44,7 +44,7 @@ export class EntregaRecepcionLlaves {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/InventarioLlaves/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/InventarioLlaves/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

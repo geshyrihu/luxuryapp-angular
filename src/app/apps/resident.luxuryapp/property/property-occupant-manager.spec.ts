@@ -61,7 +61,7 @@ describe("PropertyOccupantManager", () => {
     component.loadOccupants();
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "PropertyOccupant/list/prop-1",
+      "property-occupant/list/prop-1",
     );
   });
 

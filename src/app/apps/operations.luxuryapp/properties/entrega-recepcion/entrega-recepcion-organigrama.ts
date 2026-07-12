@@ -27,7 +27,7 @@ export class EntregaRecepcionOrganigrama {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/Organigrama/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/Organigrama/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

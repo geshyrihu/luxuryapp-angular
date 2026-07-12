@@ -152,7 +152,7 @@ export class FundingGroupFiles implements OnInit {
     if (uniqueOrderIds.length === 0) return;
 
     this.apiResponseS.onDownloadFilePost(
-      "Funding/download-bulk-invoices-zip",
+      "funding/download-bulk-invoices-zip",
       uniqueOrderIds,
       "Facturas_Agrupadas.zip",
     );

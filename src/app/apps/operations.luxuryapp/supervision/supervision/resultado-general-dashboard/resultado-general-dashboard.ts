@@ -94,7 +94,7 @@ export class ResultadoGeneralDashboard implements OnInit {
     this.reporteFiltro = "MINUTAS GENERAL";
     // Mostrar un mensaje de carga
 
-    const urlApi = `ResumenGeneral/ReporteResumenMinutas/${this.dateS.getDateFormat(
+    const urlApi = `resumen-general/ReporteResumenMinutas/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}/${this.nivelReporte}`;
 
@@ -103,7 +103,7 @@ export class ResultadoGeneralDashboard implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataMinutaFiltro(AreaMinutasDetalles: number) {
-    const urlApi = `ResumenGeneral/ReporteResumenMinutasFiltro/${this.dateS.getDateFormat(
+    const urlApi = `resumen-general/ReporteResumenMinutasFiltro/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoFin,
@@ -114,7 +114,7 @@ export class ResultadoGeneralDashboard implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataPreventivos() {
-    const urlApi = `ResumenGeneral/ReporteResumenPreventivos/${this.dateS.getDateFormat(
+    const urlApi = `resumen-general/ReporteResumenPreventivos/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}`;
 
@@ -123,7 +123,7 @@ export class ResultadoGeneralDashboard implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataTickets() {
-    const urlApi = `ResumenGeneral/ReporteResumenTicket/${this.dateS.getDateFormat(
+    const urlApi = `resumen-general/ReporteResumenTicket/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}`;
 

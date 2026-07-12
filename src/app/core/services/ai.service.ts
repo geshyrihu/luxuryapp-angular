@@ -13,7 +13,7 @@ export class AiService {
   ): Promise<string> {
     try {
       const response = await this.apiResponseService.onPostNotLoading<string>(
-        "Announcements/generate-draft",
+        "announcements/generate-draft",
         {
           prompt,
           tone,
@@ -41,7 +41,7 @@ export class AiService {
   }> {
     try {
       const response = await this.apiResponseService.onPostNotLoading<any>(
-        "Announcements/generate-official-draft",
+        "announcements/generate-official-draft",
         {
           idea,
           buildingName,
@@ -79,7 +79,7 @@ export class AiService {
     tone: string = "Profesional",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "Presupuesto/analyze",
+      "presupuesto/analyze",
       {
         context,
         tone,
@@ -99,7 +99,7 @@ export class AiService {
     tone: string = "Ejecutivo",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "Dashboard/Analyze",
+      "dashboard/Analyze",
       {
         context,
         tone,
@@ -119,7 +119,7 @@ export class AiService {
     tone: string = "Auditor Estricto",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "BudgetProposal/Audit",
+      "budget-proposal/Audit",
       {
         context,
         tone,
@@ -138,7 +138,7 @@ export class AiService {
     inflationRate: number = 5,
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "BudgetProposal/Forecast",
+      "budget-proposal/Forecast",
       {
         context,
         inflationRate,

@@ -76,7 +76,7 @@ export class FiltroMinutasArea implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `Dashboard/FiltroMinutasArea/${this.meetingId}/${this.area}/${this.estatus}`;
+    const urlApi = `dashboard/FiltroMinutasArea/${this.meetingId}/${this.area}/${this.estatus}`;
 
     this.apiResponseS
       .onGetList(urlApi)

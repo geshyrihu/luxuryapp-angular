@@ -260,7 +260,7 @@ export class SolicitudBajaForm implements OnInit {
   }
 
   checkEvaluations() {
-    const urlApi = `PerformanceEvaluations/employee/${this.employeeId}/history`;
+    const urlApi = `performance-evaluations/employee/${this.employeeId}/history`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.hasEvaluations =
         result && Array.isArray(result) && result.length > 0;

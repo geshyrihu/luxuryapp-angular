@@ -879,7 +879,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     };
     this.apiResponseS
       .onPut<BudgetProposalItemDTO>(
-        `BudgetProposal/${item.id}`,
+        `budget-proposal/${item.id}`,
         updateDTO,
         false,
         false,
@@ -1310,7 +1310,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onPost<BudgetProposalItemDTO[]>(
-        `BudgetProposal/${currentProposal.id}/add-accounts`,
+        `budget-proposal/${currentProposal.id}/add-accounts`,
         accountNumbers,
       )
       .then((response) => {
@@ -1356,7 +1356,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         this.loading.set(true);
         this.apiResponseS
-          .onDelete(`BudgetProposal/item/${item.id}`)
+          .onDelete(`budget-proposal/item/${item.id}`)
           .then((success) => {
             if (success) {
               // Actualiza el estado local para remover el ótem sin recargar toda la data.

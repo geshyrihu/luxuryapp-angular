@@ -54,7 +54,7 @@ export class BudgetExecutionDetailsModal implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<any>(
-        `ProjectedExpenses/by-account-id/${this.customerIdS.customerId()}/${this.month}/${
+        `projected-expenses/by-account-id/${this.customerIdS.customerId()}/${this.month}/${
           this.accountNumber
         }`,
       )

@@ -142,7 +142,7 @@ export class ProjectedExpensesForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        `ProjectedExpenses/${this.customerIdS.customerId()}/${this.id}`,
+        `projected-expenses/${this.customerIdS.customerId()}/${this.id}`,
       )
       .then((result: any) => {
         this.form.patchValue(result);
@@ -205,7 +205,7 @@ export class ProjectedExpensesForm implements OnInit {
       }
       formValue.initialMonth = formValue.executionMonth;
       this.apiResponseS
-        .onPost("ProjectedExpenses/recurrence", formValue)
+        .onPost("projected-expenses/recurrence", formValue)
         .then((result) => {
           this.ref.close(true);
         })
@@ -224,7 +224,7 @@ export class ProjectedExpensesForm implements OnInit {
     } else {
       this.apiResponseS
         .onPut(
-          `ProjectedExpenses/${this.customerIdS.customerId()}/${this.id}`,
+          `projected-expenses/${this.customerIdS.customerId()}/${this.id}`,
           formValue,
         )
         .then((result) => {

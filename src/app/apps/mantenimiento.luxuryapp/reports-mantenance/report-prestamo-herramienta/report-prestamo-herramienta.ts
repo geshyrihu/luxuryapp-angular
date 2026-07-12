@@ -57,7 +57,7 @@ export class ReportPrestamoHerramienta {
     });
   }
   onLoadData() {
-    const urlApi = `MaintenanceReport/presatamoherramienta/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `maintenance-report/presatamoherramienta/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}`;
     this.apiResponseS

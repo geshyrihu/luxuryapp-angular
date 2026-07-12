@@ -80,7 +80,7 @@ export class RecorridoMantenimientoBitacoraAdd implements OnInit {
   }
 
   onGetMachinerySelectItem(value: number) {
-    const urlApi = `Machineries/GetMachinerySelectItem/${value}`;
+    const urlApi = `machineries/GetMachinerySelectItem/${value}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.machinery.set(result);
       this.form.patchValue({

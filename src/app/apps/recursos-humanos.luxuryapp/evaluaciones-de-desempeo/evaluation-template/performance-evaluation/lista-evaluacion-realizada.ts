@@ -90,7 +90,7 @@ export class ListaEvaluacionRealizada {
   }
 
   onLoadData() {
-    const urlApi = `PerformanceEvaluations/customer/${this.customerIdS.customerId()}/history`;
+    const urlApi = `performance-evaluations/customer/${this.customerIdS.customerId()}/history`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result || []));
@@ -98,7 +98,7 @@ export class ListaEvaluacionRealizada {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`PerformanceEvaluations/${id}`)
+      .onDelete(`performance-evaluations/${id}`)
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>
@@ -143,7 +143,7 @@ export class ListaEvaluacionRealizada {
   ): Promise<void> {
     try {
       const evaluationResult = await this.apiResponseS.onGetItem<any>(
-        `PerformanceEvaluations/${id}/result`,
+        `performance-evaluations/${id}/result`,
       );
       if (!evaluationResult) {
         this.customToastS.showError(

@@ -45,7 +45,7 @@ export class ReportSolicitudCompra {
     });
   }
   onLoadData() {
-    const urlApi = `MaintenanceReport/solicitudinsumos/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `maintenance-report/solicitudinsumos/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {

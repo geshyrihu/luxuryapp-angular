@@ -79,7 +79,7 @@ export class NotificationsGadget implements OnInit {
 
   markAsRead(notificationId: string, url: string): void {
     this.drawerVisible.set(false);
-    const urlApi = `Notifications/mark-as-read/${notificationId}`;
+    const urlApi = `notifications/mark-as-read/${notificationId}`;
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigate([url]);

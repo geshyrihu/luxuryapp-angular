@@ -156,7 +156,7 @@ export class CatalogoGastoFijoForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = `CatalogoGastosFijos/${this.id()}`;
+    const urlApi = `catalogo-gastos-fijos/${this.id()}`;
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     if (!result) return;

@@ -42,7 +42,7 @@ export class ReportBitacoraAlberca {
   }
 
   onLoadData() {
-    const urlApi = `MaintenanceReport/bitacoraalbercaparametros/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `maintenance-report/bitacoraalbercaparametros/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {

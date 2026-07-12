@@ -64,7 +64,7 @@ export class ElevatorsEmergencyCallForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `ElevatorsEmergencyCall/${this.id}`;
+    const urlApi = `elevators-emergency-call/${this.id}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       const requestDate = this.dateS.getDateFormat(result.requestDate);
       result.requestDate = requestDate;
@@ -83,7 +83,7 @@ export class ElevatorsEmergencyCallForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "ElevatorsEmergencyCall",
+      endpoint: "elevators-emergency-call",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

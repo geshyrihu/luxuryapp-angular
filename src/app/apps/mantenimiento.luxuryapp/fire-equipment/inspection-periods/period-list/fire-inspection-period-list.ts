@@ -95,13 +95,13 @@ export class FireInspectionPeriodList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`FireInspectionPeriod/list/${this.customerIdS.customerId()}`)
+      .onGetList(`fire-inspection-period/list/${this.customerIdS.customerId()}`)
       .then((result: any) => this.dataSignal.set(result));
   }
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`FireInspectionPeriod/${id}`)
+      .onDelete(`fire-inspection-period/${id}`)
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

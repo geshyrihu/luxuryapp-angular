@@ -63,7 +63,7 @@ export class ReporteTickets {
   }
 
   onLoadData() {
-    const urlApi = `ResumenGeneral/ReporteResumenTicket/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `resumen-general/ReporteResumenTicket/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}`;
     this.apiResponseS

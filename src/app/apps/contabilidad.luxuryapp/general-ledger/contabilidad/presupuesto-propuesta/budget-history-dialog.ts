@@ -48,7 +48,7 @@ export class BudgetHistoryDialog implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<BudgetProposalItemHistoryDTO[]>(
-        `BudgetProposal/history/${this.itemId}`,
+        `budget-proposal/history/${this.itemId}`,
       )
       .then((response) => {
         if (response) {

@@ -94,10 +94,10 @@ describe("MinutasResumen", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "ResumenGeneral/ResumenMinutasGeneralLista/2025-01-01/2025-01-31",
+      "resumen-general/ResumenMinutasGeneralLista/2025-01-01/2025-01-31",
     );
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "ResumenGeneral/ResumenMinutasGeneralGrupo/2025-01-01/2025-01-31",
+      "resumen-general/ResumenMinutasGeneralGrupo/2025-01-01/2025-01-31",
     );
     expect(component.generalMinutasSignal()).toEqual(mockGeneral);
     expect(component.generalMinutasGrupoSignal()).toEqual(mockGrupo);

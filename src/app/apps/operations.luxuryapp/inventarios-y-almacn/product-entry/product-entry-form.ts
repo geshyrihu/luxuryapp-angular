@@ -152,7 +152,7 @@ export class ProductEntryForm implements OnInit {
 
   private async loadProviders(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `Providers/${this.customerIdS.customerId()}`,
+      `providers/${this.customerIdS.customerId()}`,
     );
     this.cb_providers.set(data);
   }

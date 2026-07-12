@@ -88,7 +88,7 @@ export class AccountModalAdd implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<IAvailableAccountDTO[]>(
-        `BudgetProposal/available-accounts/${this.customerId}/${this.fiscalYear}/${this.proposalId}`,
+        `budget-proposal/available-accounts/${this.customerId}/${this.fiscalYear}/${this.proposalId}`,
       )
       .then((response) => {
         if (response) {

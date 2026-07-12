@@ -27,7 +27,7 @@ export class EmployeePermissionApp implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`Permission/PermissionUserAdmin/${this.applicationUserId()}/`)
+      .onGetItem(`permission/PermissionUserAdmin/${this.applicationUserId()}/`)
       .then((result: any) => {
         this.data = result;
       });

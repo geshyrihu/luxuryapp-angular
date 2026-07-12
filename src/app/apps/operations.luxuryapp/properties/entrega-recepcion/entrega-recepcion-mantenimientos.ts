@@ -42,7 +42,7 @@ export class EntregaRecepcionMantenimientos {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/InventarioMantenimientos/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/InventarioMantenimientos/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

@@ -52,7 +52,7 @@ export class EstadosFinancieros {
   async onLoadData(customerId: string) {
     this.reportData.set(null); // Reseteamos el estado para una nueva carga.
 
-    const urlApi = `Reports/EstadosFinancieros/${customerId}`;
+    const urlApi = `reports/EstadosFinancieros/${customerId}`;
 
     try {
       // 5. Hacemos la llamada a la API y esperamos el resultado.

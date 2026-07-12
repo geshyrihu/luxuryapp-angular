@@ -78,7 +78,7 @@ export class BibliotecaConsejoDirectivo implements OnInit {
   private async loadImages(): Promise<void> {
     const imageUrlMap = await this.apiResponseS.onGetList<
       Record<string, string>
-    >("File/comite-home-images");
+    >("file/comite-home-images");
     console.log(
       "?? ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
       imageUrlMap,

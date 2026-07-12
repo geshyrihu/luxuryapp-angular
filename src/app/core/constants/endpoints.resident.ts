@@ -1,10 +1,10 @@
 export const EndpointsResident = {
   Properties: {
-    create: "Property",
-    delete: (id: string) => `Property/${id}`,
-    getById: (id: string) => `Property/${id}`,
-    update: (id: string) => `Property/${id}`,
-    downloadTemplate: (customerId: string) => `Property/download-template/${customerId}`,
+    create: "property",
+    delete: (id: string) => `property/${id}`,
+    getById: (id: string) => `property/${id}`,
+    update: (id: string) => `property/${id}`,
+    downloadTemplate: (customerId: string) => `property/download-template/${customerId}`,
   },
   ResidentesEdificio: {
     selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,

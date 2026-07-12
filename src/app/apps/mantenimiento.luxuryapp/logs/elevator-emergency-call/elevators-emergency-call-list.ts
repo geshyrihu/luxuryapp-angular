@@ -74,7 +74,7 @@ export class ElevatorsEmergencyCallList {
   }
 
   onLoadData() {
-    const urlApi = `ElevatorsEmergencyCall/list/${this.customerIdS.customerId()}`;
+    const urlApi = `elevators-emergency-call/list/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -82,7 +82,7 @@ export class ElevatorsEmergencyCallList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`ElevatorsEmergencyCall/${id}`)
+      .onDelete(`elevators-emergency-call/${id}`)
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

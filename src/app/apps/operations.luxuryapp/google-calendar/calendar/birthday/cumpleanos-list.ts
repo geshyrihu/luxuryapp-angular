@@ -69,7 +69,7 @@ export class Cumpleanos implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        `Birthday/${this.customerIdS.customerId()}/${this.selectedMonth()}`,
+        `birthday/${this.customerIdS.customerId()}/${this.selectedMonth()}`,
       )
       .then((result: any) => {
         this.dataSignal.set(result);

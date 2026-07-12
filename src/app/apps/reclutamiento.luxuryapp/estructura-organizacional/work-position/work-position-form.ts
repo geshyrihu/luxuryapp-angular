@@ -126,7 +126,7 @@ export class WorkPositionForm implements OnInit {
         this.apiS.onGetSelectItem<SelectItemDto[]>(
           `application-roles-to-administrator`,
         ),
-        this.apiS.onGetSelectItem<SelectItemDto[]>(`Employee/${customerId}`),
+        this.apiS.onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`),
       ]);
 
     this.cb_turnoTrabajo.set(turnoTrabajo);

@@ -1,19 +1,19 @@
 export const EndpointsLegal = {
   LegalMatters: {
     categories: "legalmattercategory",
-    categoryById: (id: string) => `LegalMatter/Category/${id}`,
-    create: "LegalMatter",
-    createCategory: "LegalMatter/Category",
-    delete: (id: string) => `LegalMatter/${id}`,
-    deleteCategory: (id: string) => `LegalMatter/Category/${id}`,
-    getAll: "LegalMatter",
-    getById: (id: string) => `LegalMatter/${id}`,
-    update: (id: string) => `LegalMatter/${id}`,
-    updateCategory: (id: string) => `LegalMatter/Category/${id}`,
+    categoryById: (id: string) => `legal-matter/Category/${id}`,
+    create: "legal-matter",
+    createCategory: "legal-matter/Category",
+    delete: (id: string) => `legal-matter/${id}`,
+    deleteCategory: (id: string) => `legal-matter/Category/${id}`,
+    getAll: "legal-matter",
+    getById: (id: string) => `legal-matter/${id}`,
+    update: (id: string) => `legal-matter/${id}`,
+    updateCategory: (id: string) => `legal-matter/Category/${id}`,
   },
   LegalMinutes: {
     pendingByUserAndStatus: (applicationUserId: string, status: number) =>
-      `ContabilidadMinuta/ListaMinutaLegal/${applicationUserId}/${status}`,
+      `contabilidad-minuta/lista-minuta-legal/${applicationUserId}/${status}`,
   },
   LegalReports: {
     generateWeeklyReport: (

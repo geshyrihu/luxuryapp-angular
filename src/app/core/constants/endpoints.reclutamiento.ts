@@ -9,8 +9,8 @@ export const EndpointsReclutamiento = {
     unassignEmployee: (id: string) => `work-positions/${id}/unassign-employee`,
   },
   OrgChart: {
-    getTree: (customerId: string) => `WorkPositionOrgChart/tree/${customerId}`,
-    reassign: "WorkPositionOrgChart/reassign",
+    getTree: (customerId: string) => `work-position-org-chart/tree/${customerId}`,
+    reassign: "work-position-org-chart/reassign",
   },
   RequestSalaryModification: {
     getDataForModificacionSalario: (workPositionId: string) => `RequestSalaryModification/GetDataForModificacionSalario/${workPositionId}`,

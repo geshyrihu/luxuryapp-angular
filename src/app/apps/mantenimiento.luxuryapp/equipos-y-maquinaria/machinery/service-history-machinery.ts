@@ -52,7 +52,7 @@ export class ServiceHistoryMachinery implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `Machineries/ServiceHistory/${this.config.data.id}`;
+    const urlApi = `machineries/ServiceHistory/${this.config.data.id}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

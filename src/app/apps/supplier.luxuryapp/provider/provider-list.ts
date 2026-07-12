@@ -297,7 +297,7 @@ export class ListProvider implements OnInit {
   // Cambia el estado (activo/inactivo) del proveedor
   onActivateProvider(data: any) {
     this.apiResponseS
-      .onPut(`Providers/change-state/${data.providerId}/${data.state}`, null)
+      .onPut(`providers/change-state/${data.providerId}/${data.state}`, null)
       .then(() => {
         this.onLoadData();
       });

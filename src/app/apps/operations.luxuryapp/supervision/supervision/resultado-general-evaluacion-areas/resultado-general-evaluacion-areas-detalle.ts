@@ -53,7 +53,7 @@ export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
   }
 
   onLoadData(fecha: string, area: number, status?: number) {
-    const urlApi = `ResumenGeneral/EvaluacionAreasDetalle/${fecha}/${area}/${status}`;
+    const urlApi = `resumen-general/EvaluacionAreasDetalle/${fecha}/${area}/${status}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

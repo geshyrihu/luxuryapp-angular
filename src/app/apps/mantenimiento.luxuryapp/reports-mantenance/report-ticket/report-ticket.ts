@@ -66,18 +66,18 @@ export class ReportTicket {
     );
     const customerId: string = this.customerIdS.customerId();
 
-    const urlApi = `MaintenanceReport/ticket/${customerId}/${periodo}`;
+    const urlApi = `maintenance-report/ticket/${customerId}/${periodo}`;
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = `MaintenanceReport/TicketResponsable/${customerId}/${periodo}`;
+    const urlApi2 = `maintenance-report/TicketResponsable/${customerId}/${periodo}`;
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataResponsable.set(result);
     });
 
-    const urlApi3 = `MaintenanceReport/CargaTicket/${customerId}/${periodo}`;
+    const urlApi3 = `maintenance-report/CargaTicket/${customerId}/${periodo}`;
     this.apiResponseS.onGetList(urlApi3).then((result: any) => {
       this.dataCargaTicket.set(result);
     });

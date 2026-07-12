@@ -120,7 +120,7 @@ export class FundingUploadInvoicesModal {
     const customerId = this.customerIdService.customerId();
     this.apiResponseService
       .onPost<any[]>(
-        `Funding/analyze-invoices/${customerId}?fundingId=${this.fundingId}`,
+        `funding/analyze-invoices/${customerId}?fundingId=${this.fundingId}`,
         formData,
       )
       .then((result) => {
@@ -184,7 +184,7 @@ export class FundingUploadInvoicesModal {
     };
 
     this.apiResponseService
-      .onPost("Funding/create-orders-from-invoices", requestDto)
+      .onPost("funding/create-orders-from-invoices", requestDto)
       .then(() => {
         this.ref.close(true);
       })

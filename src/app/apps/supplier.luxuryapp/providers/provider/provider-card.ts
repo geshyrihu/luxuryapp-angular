@@ -38,7 +38,7 @@ export class TarjetaProveedor implements OnInit {
   onLoadItem() {
     this.apiResponseS
       .onGetItem(
-        `Providers/${this.providerId}/${this.customerIdS.customerId()}`,
+        `providers/${this.providerId}/${this.customerIdS.customerId()}`,
       )
       .then((result: any) => {
         if (!result) return;

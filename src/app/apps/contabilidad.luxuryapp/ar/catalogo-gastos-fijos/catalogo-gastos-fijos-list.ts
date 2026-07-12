@@ -268,7 +268,7 @@ export class CatalogoGastosFijosList {
   }
 
   onLoadData() {
-    const urlApi = `CatalogoGastosFijos/list/${this.customerIdS.customerId()}`;
+    const urlApi = `catalogo-gastos-fijos/list/${this.customerIdS.customerId()}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result);
       this.updateSelectedItems();
@@ -298,7 +298,7 @@ export class CatalogoGastosFijosList {
   }
 
   updateItemSelectionOnApi(id: any, value: any) {
-    const urlApi = `CatalogoGastosFijos/UpdateValidation/${id}/${value}`;
+    const urlApi = `catalogo-gastos-fijos/UpdateValidation/${id}/${value}`;
     this.apiResponseS.onGetListNotLoading(urlApi, null).then(() => {
       // Opcional: se podría volver a llamar a updateSelectedItems aqué si hubiera alguna duda,
       // pero ya se hace en el método que origina el cambio.

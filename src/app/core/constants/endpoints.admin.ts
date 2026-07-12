@@ -49,8 +49,8 @@ export const EndpointsAdmin = {
       "appimplementationtracking/trigger-employee-validation",
   },
   JuntaMensualSessionBackfill: {
-    apply: "JuntaMensualSessionBackfill/apply",
-    preview: "JuntaMensualSessionBackfill/preview",
+    apply: "junta-mensual-session-backfill/apply",
+    preview: "junta-mensual-session-backfill/preview",
   },
   UpdateDataBase: {
     backfillAgendaEvents:
@@ -63,7 +63,7 @@ export const EndpointsAdmin = {
     seedNativeCollectionTestData: "UpdateDataBase/seed-native-collection-test-data",
   },
   CustomerProvider: {
-    getById: (id: string) => `customerprovider/getById/${id}`,
+    getById: (id: string) => `customer-provider/getById/${id}`,
   },
   VaultSecrets: {
     getAll: "vault-secrets/list",

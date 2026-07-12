@@ -64,7 +64,7 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
     );
   }
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = `ResumenGeneral/EvaluacionAreas/${fechaInicio}/${fechaFinal}`;
+    const urlApi = `resumen-general/EvaluacionAreas/${fechaInicio}/${fechaFinal}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

@@ -27,18 +27,18 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         endpoints: [
           {
             method: "GET",
-            path: "/Property/list/{customerId}",
+            path: "/property/list/{customerId}",
             description: "Listar propiedades",
           },
           { method: "POST", path: "/Property", description: "Crear propiedad" },
           {
             method: "PUT",
-            path: "/Property/{id}",
+            path: "/property/{id}",
             description: "Actualizar propiedad",
           },
           {
             method: "DELETE",
-            path: "/Property/{id}",
+            path: "/property/{id}",
             description: "Eliminar propiedad",
           },
         ],

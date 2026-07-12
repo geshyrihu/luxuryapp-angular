@@ -78,7 +78,7 @@ export class UpdatePasswordComponent implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPut(`Users/ChangePassword/${id}`, model)
+      .onPut(`users/ChangePassword/${id}`, model)
       .then((result: boolean) => {
         if (result) {
           this.submitting.set(false);

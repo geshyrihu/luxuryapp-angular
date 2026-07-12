@@ -58,7 +58,7 @@ export class ReportEntradaAlmacen {
   }
   onLoadData() {
     // Usamos la fecha actualizada
-    const urlApi = `MaintenanceReport/entradaproducto/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `maintenance-report/entradaproducto/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}`;
     this.apiResponseS

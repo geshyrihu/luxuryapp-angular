@@ -1,9 +1,9 @@
 export const EndpointsAuth = {
   AccesoCustomers: {
     addToUser: (applicationUserId: string) =>
-      `AccesoCustomers/AddCustomerAccesoToUser/${applicationUserId}`,
+      `acceso-customers/AddCustomerAccesoToUser/${applicationUserId}`,
     getByUser: (applicationUserId: string) =>
-      `AccesoCustomers/GetCustomers/${applicationUserId}`,
+      `acceso-customers/GetCustomers/${applicationUserId}`,
   },
   ApplicationRoles: {
     create: "application-roles",

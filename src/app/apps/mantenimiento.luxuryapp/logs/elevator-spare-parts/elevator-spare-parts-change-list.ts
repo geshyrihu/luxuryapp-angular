@@ -75,7 +75,7 @@ export class ElevatorSparePartsChangeList {
   }
 
   onLoadData() {
-    const urlApi = `ElevatorSparePartsChange/list/${this.customerIdS.customerId()}`;
+    const urlApi = `elevator-spare-parts-change/list/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -83,7 +83,7 @@ export class ElevatorSparePartsChangeList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`ElevatorSparePartsChange/${id}`)
+      .onDelete(`elevator-spare-parts-change/${id}`)
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

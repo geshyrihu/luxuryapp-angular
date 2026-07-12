@@ -44,7 +44,7 @@ export class EntregaRecepcionHidrantes {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/Extintores/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/Extintores/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

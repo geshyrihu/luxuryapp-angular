@@ -248,7 +248,7 @@ export class EmployeeForm implements OnInit {
 
   onValidarAdminAsis() {
     this.apiResponseS
-      .onGetItem(`Employees/validaradminasis/${this.authS.applicationUserId}`)
+      .onGetItem(`employees/validaradminasis/${this.authS.applicationUserId}`)
       .then((result: any) => {
         this.tienePermiso = result;
       });

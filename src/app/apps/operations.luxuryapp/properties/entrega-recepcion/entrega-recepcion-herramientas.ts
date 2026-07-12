@@ -45,7 +45,7 @@ export class EntregaRecepcionHerramientas {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/InventarioHerramientas/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/InventarioHerramientas/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

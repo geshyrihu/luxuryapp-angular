@@ -57,7 +57,7 @@ export class ReportRecorridoDiario {
     });
   }
   onLoadData() {
-    const urlApi = `MaintenanceReport/bitacoradiaria/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `maintenance-report/bitacoradiaria/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}`;
     this.apiResponseS

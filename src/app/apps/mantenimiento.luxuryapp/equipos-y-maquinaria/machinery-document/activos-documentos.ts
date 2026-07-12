@@ -55,7 +55,7 @@ export class ActivosDocumentos implements OnInit {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`Machineries/DeleteDocument/${id}`)
+      .onDelete(`machineries/DeleteDocument/${id}`)
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>
@@ -69,7 +69,7 @@ export class ActivosDocumentos implements OnInit {
         SubirPdf,
         {
           serviceOrderId: id,
-          pathUrl: "Machineries/SubirDocumento/",
+          pathUrl: "machineries/SubirDocumento/",
         },
         "Cargar Documentos",
         this.dialogHandlerS.sizeLg,

@@ -70,7 +70,7 @@ export class UpdateUserPhotoComponent implements OnInit {
     const formData = new FormData();
     formData.append("file", this.imgUpload);
     this.apiResponseS
-      .onPut("Users/UpdateImage/" + this.applicationUserId, formData)
+      .onPut("users/UpdateImage/" + this.applicationUserId, formData)
       .then((result: any) => {
         if (result) {
           this.infoEmployeeDTO.photoPath = result.photoPath;

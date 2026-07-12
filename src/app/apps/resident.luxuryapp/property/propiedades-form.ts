@@ -108,7 +108,7 @@ export class PropiedadesForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "Property",
+      endpoint: "property",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

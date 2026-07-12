@@ -111,7 +111,7 @@ export class NotificationsListMobile implements OnInit {
    * @param notificationId ID de la notificación a marcar
    */
   markAsRead(notificationId: string, url: string): void {
-    const urlApi = `Notifications/mark-as-read/${notificationId}`;
+    const urlApi = `notifications/mark-as-read/${notificationId}`;
 
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();

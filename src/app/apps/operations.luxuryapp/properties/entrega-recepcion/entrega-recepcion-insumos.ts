@@ -45,7 +45,7 @@ export class EntregaRecepcionInsumos {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/InventarioInsumos/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/InventarioInsumos/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

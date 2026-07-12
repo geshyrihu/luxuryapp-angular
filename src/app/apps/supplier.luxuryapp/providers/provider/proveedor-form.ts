@@ -226,7 +226,7 @@ export class ProveedorForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id === "" ? `Providers/` : `Providers/${this.id}`,
+      endpoint: this.id === "" ? `providers/` : `providers/${this.id}`,
       method: this.id === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,
@@ -272,7 +272,7 @@ export class ProveedorForm implements OnInit {
 
   onValidarRFC(valueRfc: string) {
     if (valueRfc.length > 5) {
-      const urlApi = `Providers/ValidarRfc/${valueRfc}/${this.customerIdS.customerId()}`;
+      const urlApi = `providers/ValidarRfc/${valueRfc}/${this.customerIdS.customerId()}`;
       this.apiResponseS.onGetList(urlApi).then((result: any) => {
         this.rfcCoincidente.set(result);
       });

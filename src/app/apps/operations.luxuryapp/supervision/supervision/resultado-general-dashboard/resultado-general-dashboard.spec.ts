@@ -91,7 +91,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "ResumenGeneral/ReporteResumenPreventivos/2025-01-01/2025-01-01",
+      "resumen-general/ReporteResumenPreventivos/2025-01-01/2025-01-01",
     );
   });
 
@@ -100,7 +100,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "ResumenGeneral/ReporteResumenTicket/2025-01-01/2025-01-01",
+      "resumen-general/ReporteResumenTicket/2025-01-01/2025-01-01",
     );
   });
 
@@ -109,7 +109,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "ResumenGeneral/ReporteResumenMinutasFiltro/2025-01-01/2025-01-01/3/0",
+      "resumen-general/ReporteResumenMinutasFiltro/2025-01-01/2025-01-01/3/0",
     );
   });
 

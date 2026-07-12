@@ -66,7 +66,7 @@ export class ReporteCompletoActivos {
 
   // --- CARGA DE DATOS (Refactorizado) ---
   async onLoadData(customerId: string) {
-    const urlApi = `Machineries/InventarioCompleto/${customerId}`;
+    const urlApi = `machineries/InventarioCompleto/${customerId}`;
 
     try {
       const result = await this.apiResponseS.onGetList<ActivoGroup[]>(urlApi);

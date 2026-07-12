@@ -93,7 +93,7 @@ export class UnifiedPendingDashboardMobile {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url = `Dashboard/GlobalPendingItems/${customerId}`;
+    const url = `dashboard/GlobalPendingItems/${customerId}`;
 
     this.apiResponseS
       .onGetList(url)

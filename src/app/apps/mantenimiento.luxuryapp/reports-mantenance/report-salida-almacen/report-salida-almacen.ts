@@ -57,7 +57,7 @@ export class ReportSalidaAlmacen {
     });
   }
   onLoadData() {
-    const urlApi = `MaintenanceReport/salidaproducto/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = `maintenance-report/salidaproducto/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
     )}`;
     this.apiResponseS

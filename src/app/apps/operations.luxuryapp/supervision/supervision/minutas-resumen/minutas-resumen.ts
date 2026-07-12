@@ -75,7 +75,7 @@ export class MinutasResumen implements OnInit {
   onLoadData(fehcaInicio: string, fechaFinal: string) {
     this.apiResponseS
       .onGetList(
-        `ResumenGeneral/ResumenMinutasGeneralLista/${fehcaInicio}/${fechaFinal}`,
+        `resumen-general/ResumenMinutasGeneralLista/${fehcaInicio}/${fechaFinal}`,
       )
       .then((result: any) => {
         this.generalMinutasSignal.set(result);
@@ -83,7 +83,7 @@ export class MinutasResumen implements OnInit {
 
     this.apiResponseS
       .onGetList(
-        `ResumenGeneral/ResumenMinutasGeneralGrupo/${fehcaInicio}/${fechaFinal}`,
+        `resumen-general/ResumenMinutasGeneralGrupo/${fehcaInicio}/${fechaFinal}`,
       )
       .then((result: any) => {
         this.generalMinutasGrupoSignal.set(result);

@@ -132,7 +132,7 @@ export class DiagramForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`DiagramDraw/${this.id}`)
+      .onGetItem(`diagram-draw/${this.id}`)
       .then((result: any) => {
         this.form.patchValue(result);
       });

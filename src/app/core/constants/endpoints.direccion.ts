@@ -1,42 +1,42 @@
 export const EndpointsDireccion = {
   AsambleaChecklist: {
-    bySession: (sessionId: string) => `AsambleaChecklist/session/${sessionId}`,
-    updateStatus: (id: string) => `AsambleaChecklist/${id}/status`,
+    bySession: (sessionId: string) => `asamblea-checklist/session/${sessionId}`,
+    updateStatus: (id: string) => `asamblea-checklist/${id}/status`,
   },
   AsambleaChecklistTemplate: {
-    create: "AsambleaChecklistTemplate",
-    delete: (id: string) => `AsambleaChecklistTemplate/${id}`,
-    getAll: "AsambleaChecklistTemplate",
-    getById: (id: string) => `AsambleaChecklistTemplate/${id}`,
-    update: (id: string) => `AsambleaChecklistTemplate/${id}`,
+    create: "asamblea-checklist-template",
+    delete: (id: string) => `asamblea-checklist-template/${id}`,
+    getAll: "asamblea-checklist-template",
+    getById: (id: string) => `asamblea-checklist-template/${id}`,
+    update: (id: string) => `asamblea-checklist-template/${id}`,
   },
   JuntaMensualSession: {
     detail: (sessionId: string) => `JuntaMensualSession/${sessionId}/detail`,
   },
   MeetingAdministracion: {
     addParticipant: (meetingId: string | number, participantId: string | number) =>
-      `MeetingAdministracion/AgregarParticipantesAdministracion/${meetingId}/${participantId}/1`,
-    delete: (id: string | number) => `MeetingAdministracion/${id}`,
+      `meeting-administracion/agregar-participantes-administracion/${meetingId}/${participantId}/1`,
+    delete: (id: string | number) => `meeting-administracion/${id}`,
     listCandidates: (customerId: string, meetingId: string | number) =>
       `GetListAdministracionMinuta/${customerId}/${meetingId}`,
     participants: (meetingId: string | number) =>
-      `MeetingAdministracion/ParticipantesAdministracion/${meetingId}`,
+      `meeting-administracion/participantes-administracion/${meetingId}`,
   },
   MeetingComite: {
     addParticipant: (meetingId: string | number, participantId: string | number) =>
-      `MeetingComite/AgregarParticipantesComite/${meetingId}/${participantId}`,
-    delete: (id: string | number) => `MeetingComite/${id}`,
+      `meeting-comite/agregar-participantes-comite/${meetingId}/${participantId}`,
+    delete: (id: string | number) => `meeting-comite/${id}`,
     listCandidates: (customerId: string, meetingId: string | number) =>
       `GetListComiteMinuta/${customerId}/${meetingId}`,
     participants: (meetingId: string | number) =>
-      `MeetingComite/ParticipantesComite/${meetingId}`,
+      `meeting-comite/participantes-comite/${meetingId}`,
   },
   MeetingInvitado: {
     addParticipant: (meetingId: string | number, invitado: string | null) =>
-      `MeetingInvitado/AgregarParticipantesInvitado/${meetingId}/${invitado}`,
-    delete: (id: string | number) => `MeetingInvitado/${id}`,
+      `meeting-invitado/agregar-participantes-invitado/${meetingId}/${invitado}`,
+    delete: (id: string | number) => `meeting-invitado/${id}`,
     participants: (meetingId: string | number) =>
-      `MeetingInvitado/ParticipantesInvitado/${meetingId}`,
+      `meeting-invitado/participantes-invitado/${meetingId}`,
   },
   PresentacionJuntaComite: {
     addFecha: "PresentacionJuntaComite/AddFecha",

@@ -36,7 +36,7 @@ export const EndpointsShared = {
   },
   SelectItems: {
     accountingCatalogsByCustomerAndYear: (customerId: string, year: number) =>
-      `AccountingCatalogs/${customerId}?fiscalYear=${year}`,
+      `accounting-catalogs/${customerId}?fiscalYear=${year}`,
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
     applicationUser: "application-users",
@@ -109,7 +109,7 @@ export const EndpointsShared = {
     update: (id: string) => `ComiteVigilancia/${id}`,
   },
   LegalDirectories: {
-    committees: "LegalDirectories/Committees",
+    committees: "legal-directories/Committees",
   },
   SendEmail: {
     meeting: (meetingId: string | number) => `sendemail/meeting/${meetingId}`,
@@ -121,14 +121,14 @@ export const EndpointsShared = {
     ) =>
       `sendemail/operation-report/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
     presentacionFinalComite: (idJunta: string | number) =>
-      `SendEmail/PresentacionFinalComite/${idJunta}`,
+      `send-email/presentacion-final-comite/${idJunta}`,
   },
   EmailData: {
     base: "EmailData",
     delete: (id: string) => `emaildata/${id}`,
     getAll: "EmailData/List",
     getById: (id: string) => `EmailData/${id}`,
-    sendTestEmail: (id: string) => `SendEmail/TestEmail/${id}`,
+    sendTestEmail: (id: string) => `send-email/TestEmail/${id}`,
   },
   MenuItems: {
     byCustomer: (customerId: string) => `menu-items/${customerId}`,

@@ -51,7 +51,7 @@ export class EntregaRecepcionInstalaciones {
     });
   }
   onLoadData() {
-    const urlApi = `EntregaRecepcion/InventarioInstalaciones/${this.customerIdS.customerId()}`;
+    const urlApi = `entrega-recepcion/InventarioInstalaciones/${this.customerIdS.customerId()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

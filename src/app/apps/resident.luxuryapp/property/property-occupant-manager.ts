@@ -81,7 +81,7 @@ export class PropertyOccupantManager implements OnInit {
     this.errorMensaje = null;
     this.apiResponseS
       .onGetList<PropertyOccupant[]>(
-        `PropertyOccupant/list/${this.propertyId}`,
+        `property-occupant/list/${this.propertyId}`,
       )
       .then((response) => {
         if (Array.isArray(response)) {
@@ -121,7 +121,7 @@ export class PropertyOccupantManager implements OnInit {
       // Actualizar
       this.apiResponseS
         .onPut<PropertyOccupant>(
-          `PropertyOccupant/${occupantData.id}`,
+          `property-occupant/${occupantData.id}`,
           occupantData,
         )
         .then((response) => {
@@ -169,7 +169,7 @@ export class PropertyOccupantManager implements OnInit {
     this.loading.set(true);
     this.errorMensaje = null;
     this.apiResponseS
-      .onDelete(`PropertyOccupant/${id}`)
+      .onDelete(`property-occupant/${id}`)
       .then((response) => {
         if (response !== false) {
           this.occupants.update((current) =>

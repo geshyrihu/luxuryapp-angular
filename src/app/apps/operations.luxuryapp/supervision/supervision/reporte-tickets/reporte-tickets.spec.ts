@@ -69,7 +69,7 @@ describe("ReporteTickets", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "ResumenGeneral/ReporteResumenTicket/cust-123/2025-01-01/2025-01-01",
+      "resumen-general/ReporteResumenTicket/cust-123/2025-01-01/2025-01-01",
     );
     expect(component.dataSignal()).toEqual(mockData);
   });

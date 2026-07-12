@@ -144,7 +144,7 @@ export class FooterEmployeeMobile implements OnInit {
   }
 
   onLoadNotification() {
-    const urlApi = `Notifications/unread-count`;
+    const urlApi = `notifications/unread-count`;
     this.apiResponseS.onGetListNotLoading(urlApi).then((result: any) => {
       this.messageInNotRead.set(result);
     });

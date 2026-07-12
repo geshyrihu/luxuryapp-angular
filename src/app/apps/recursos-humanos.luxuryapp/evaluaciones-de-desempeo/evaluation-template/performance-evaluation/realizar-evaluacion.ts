@@ -277,7 +277,7 @@ export class RealizarEvaluacion implements OnInit {
 
     if (this.isEditMode && this.evaluationId) {
       this.apiResponseS
-        .onPut(`PerformanceEvaluations/Update/${this.evaluationId}`, DTO)
+        .onPut(`performance-evaluations/Update/${this.evaluationId}`, DTO)
         .then((result: any) => {
           if (result) {
             this.submitting.set(false);
@@ -285,7 +285,7 @@ export class RealizarEvaluacion implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPost("PerformanceEvaluations/Create", DTO)
+        .onPost("performance-evaluations/Create", DTO)
         .then((result: any) => {
           if (result) {
             this.route.navigate(

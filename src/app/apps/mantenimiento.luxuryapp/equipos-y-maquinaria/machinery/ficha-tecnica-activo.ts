@@ -25,7 +25,7 @@ export class FichaTecnicaActivo implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `Machineries/Fichatecnica/${this.id}`;
+    const urlApi = `machineries/Fichatecnica/${this.id}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
     });

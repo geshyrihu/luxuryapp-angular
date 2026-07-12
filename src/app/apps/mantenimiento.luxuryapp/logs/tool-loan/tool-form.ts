@@ -126,7 +126,7 @@ export class ToolForm implements OnInit {
       });
   }
   onLoadData() {
-    const urlApi = `Tools/Get/${this.id}`;
+    const urlApi = `tools/Get/${this.id}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.model = result;
       result.dateOfPurchase = this.dateS.getDateFormat(result.dateOfPurchase);
@@ -139,7 +139,7 @@ export class ToolForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "Tools",
+      endpoint: "tools",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

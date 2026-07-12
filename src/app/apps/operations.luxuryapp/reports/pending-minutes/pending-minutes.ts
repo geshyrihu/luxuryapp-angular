@@ -56,7 +56,7 @@ export class PendingMinutes {
   async onLoadData(customerId: string) {
     this.reportData.set(null); // Limpiamos datos antiguos para evitar mostrar info incorrecta.
 
-    const urlApi = `Reports/PendingMinutes/${customerId}`;
+    const urlApi = `reports/PendingMinutes/${customerId}`;
 
     try {
       // 5. Hacemos la llamada a la API y esperamos el resultado.

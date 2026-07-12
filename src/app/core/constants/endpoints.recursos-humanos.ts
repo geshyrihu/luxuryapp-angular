@@ -316,13 +316,13 @@ export const EndpointsRecursosHumanos = {
     getById: (id: string) => `EmployeeClinicalData/${id}`,
   },
   EmployeeEmergencyContact: {
-    base: "EmployeeEmergencyContact",
+    base: "employee-emergency-contact",
     byEmployee: (employeeId: string) =>
-      `EmployeeEmergencyContact/employee/${employeeId}`,
-    delete: (id: string) => `EmployeeEmergencyContact/${id}`,
-    getById: (id: string) => `EmployeeEmergencyContact/${id}`,
+      `employee-emergency-contact/employee/${employeeId}`,
+    delete: (id: string) => `employee-emergency-contact/${id}`,
+    getById: (id: string) => `employee-emergency-contact/${id}`,
     listEmployeeContact: (employeeId: string, typeContact: number) =>
-      `EmployeeEmergencyContact/ListEmployeeContact/${employeeId}/${typeContact}`,
+      `employee-emergency-contact/ListEmployeeContact/${employeeId}/${typeContact}`,
   },
   EmployeeExternal: {
     addAccessCustomer: (applicationUserId: string, customerId: string) =>
@@ -345,7 +345,7 @@ export const EndpointsRecursosHumanos = {
     update: (id: string) => `EmployeeExternal/${id}`,
   },
   PerformanceEvaluations: {
-    result: (id: string) => `PerformanceEvaluations/${id}/result`,
+    result: (id: string) => `performance-evaluations/${id}/result`,
   },
   TemplateEvaluation: {
     delete: (id: string) => `TemplateEvaluation/${id}`,

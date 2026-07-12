@@ -109,7 +109,7 @@ export class AccountingCatalog {
     const customerId = this.customerIdService.customerId();
     if (!customerId) return;
 
-    const urlApi = `AccountingCatalog/customer/${customerId}?year=${this.currentYear()}`;
+    const urlApi = `accounting-catalog/customer/${customerId}?year=${this.currentYear()}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((response: GroupedAccountingCatalogDTO[]) => {

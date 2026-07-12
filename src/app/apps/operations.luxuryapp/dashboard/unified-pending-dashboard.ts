@@ -135,7 +135,7 @@ export class UnifiedPendingDashboard {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url = `Dashboard/GlobalPendingItems/${customerId}`;
+    const url = `dashboard/GlobalPendingItems/${customerId}`;
 
     this.apiResponseS
       .onGetList(url)
@@ -518,7 +518,7 @@ export class UnifiedPendingDashboard {
     this.swalService.showLoading("Enviando reporte ejecutivo...");
 
     this.apiResponseS
-      .onPost(`Dashboard/SendExecutiveReport/${customerId}`, {})
+      .onPost(`dashboard/SendExecutiveReport/${customerId}`, {})
       .then(() => {
         this.swalService.success(
           "Reporte Enviado",

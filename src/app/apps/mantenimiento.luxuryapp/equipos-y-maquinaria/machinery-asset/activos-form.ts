@@ -136,7 +136,7 @@ export class ActivosForm implements OnInit {
     this.form.patchValue({ photoPath: file });
   }
   onLoadData(id: string) {
-    const urlApi = `Machineries/${id}`;
+    const urlApi = `machineries/${id}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.id = result.id;
       result.dateOfPurchase = this.getdateService.getDateFormat(

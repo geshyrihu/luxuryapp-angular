@@ -63,8 +63,8 @@ export const EndpointsContabilidad = {
       `CedulaPresupuestal/OrdenesCompra/${id}`,
   },
   CatalogoGastosFijosDetalles: {
-    base: "CatalogoGastosFijosDetalles",
-    delete: (id: string) => `CatalogoGastosFijosDetalles/${id}`,
+    base: "catalogo-gastos-fijos-detalles",
+    delete: (id: string) => `catalogo-gastos-fijos-detalles/${id}`,
   },
   Funding: {
     delete: (id: string) => `funding/${id}`,

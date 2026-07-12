@@ -52,12 +52,12 @@ export class ResumenMantenimientos {
     );
     const customerId: string = this.customerIdS.customerId();
 
-    const urlApi = `MaintenanceReport/resumen/${customerId}/${periodo}`;
+    const urlApi = `maintenance-report/resumen/${customerId}/${periodo}`;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = `MaintenanceReport/proveedor/${customerId}/${periodo}`;
+    const urlApi2 = `maintenance-report/proveedor/${customerId}/${periodo}`;
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataProviderSignal.set(result);
     });

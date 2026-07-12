@@ -96,7 +96,7 @@ export class ResultadoEvaluacion {
 
   loadEvaluationResult(id: string): void {
     this.apiResponseS
-      .onGetItem<any>(`PerformanceEvaluations/${id}/result`)
+      .onGetItem<any>(`performance-evaluations/${id}/result`)
       .then((data) => {
         if (data) {
           this.evaluationResult.set(data);
