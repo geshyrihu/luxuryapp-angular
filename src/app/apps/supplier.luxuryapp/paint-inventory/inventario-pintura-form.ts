@@ -147,7 +147,7 @@ export class InventarioPinturaForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "InventarioPintura",
+      endpoint: "inventario-pintura",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

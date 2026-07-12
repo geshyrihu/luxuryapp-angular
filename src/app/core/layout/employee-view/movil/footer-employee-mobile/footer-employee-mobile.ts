@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -144,7 +145,7 @@ export class FooterEmployeeMobile implements OnInit {
   }
 
   onLoadNotification() {
-    const urlApi = `notifications/unread-count`;
+    const urlApi = Endpoints.RefactorShared.notificationsUnreadCount;
     this.apiResponseS.onGetListNotLoading(urlApi).then((result: any) => {
       this.messageInNotRead.set(result);
     });

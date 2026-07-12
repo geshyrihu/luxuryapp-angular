@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -63,7 +64,7 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las juntas mensuales que creamos en el backend
-    const urlApi = `BoardDirectors/monthly-meetings/${customerId}`;
+    const urlApi = Endpoints.RefactorOperations.boardDirectorsMonthlyMeetingsById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -131,7 +132,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
 
-    let url = `SalidaProductos/GetPagedList?customerId=${customerId}`;
+    let url = `salidas-productos/GetPagedList?customerId=${customerId}`;
     if (this.selectedDateControl.value) {
       const month = this.selectedDateControl.value.getMonth() + 1;
       const year = this.selectedDateControl.value.getFullYear();
@@ -163,7 +164,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
 
-    let url = `SalidaProductos/GetPagedList?customerId=${customerId}&RecordsNumber=2147483647&Page=1`;
+    let url = `salidas-productos/GetPagedList?customerId=${customerId}&RecordsNumber=2147483647&Page=1`;
     let reportName = "Reporte de Salidas.xlsx";
 
     if (this.selectedDateControl.value) {
@@ -191,7 +192,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
 
   onDelete(id: any): void {
     this.apiResponseS
-      .onDelete(`salidaproductos/${id}`)
+      .onDelete(Endpoints.RefactorOperations.salidaproductosById(id))
       .then((result: boolean) => {
         if (result) this.paginationService.refreshData();
       });

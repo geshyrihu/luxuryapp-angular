@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -115,7 +116,7 @@ export class ToolForm implements OnInit {
   }
 
   onLoadSelectItem() {
-    this.apiResponseS.onGetEnumSelectItem(`EState`).then((result: any) => {
+    this.apiResponseS.onGetEnumSelectItem(`e-state`).then((result: any) => {
       this.optionActive = result;
     });
 
@@ -126,7 +127,7 @@ export class ToolForm implements OnInit {
       });
   }
   onLoadData() {
-    const urlApi = `tools/Get/${this.id}`;
+    const urlApi = Endpoints.RefactorMantenimiento.toolsGetById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.model = result;
       result.dateOfPurchase = this.dateS.getDateFormat(result.dateOfPurchase);

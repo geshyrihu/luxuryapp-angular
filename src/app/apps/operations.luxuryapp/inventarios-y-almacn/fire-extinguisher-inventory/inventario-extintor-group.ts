@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,7 +38,7 @@ export class InventarioExtintorGroup {
 
   onLoadData() {
     const urlApi =
-      "InventarioExtintor/GetAllGroup/" + this.customerIdS.customerId;
+      Endpoints.RefactorOperations.inventarioExtintorGetAllGroupById(this.customerIdS.customerId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

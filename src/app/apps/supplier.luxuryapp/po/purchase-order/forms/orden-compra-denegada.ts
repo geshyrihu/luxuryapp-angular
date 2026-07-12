@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,8 +63,7 @@ export class OrdenCompraDenegada implements OnInit {
   onSubmit() {
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(
-        `OrdenCompraAuth/NoAutorizada/${this.ordenCompraAuthId}/${this.authS.applicationUserId}`,
+      .onPut(Endpoints.RefactorSupplier.ordenCompraAuthNoAutorizadaByIdById(this.ordenCompraAuthId, this.authS.applicationUserId),
         this.form.value,
       )
       .then((result: boolean) => {

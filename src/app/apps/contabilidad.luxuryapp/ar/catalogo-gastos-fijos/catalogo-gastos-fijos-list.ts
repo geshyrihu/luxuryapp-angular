@@ -225,7 +225,7 @@ export class CatalogoGastosFijosList {
   async loadFundingOptions() {
     this.cb_fundingYear = this.generateYearOptions();
     this.cb_fundingPeriod = (await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("EFundingPeriod", false),
+      this.enumSelectS.onLoadEnumList("e-funding-period", false),
     )) as SelectItemDto[];
     this.processFundingPeriods(this.cb_fundingPeriod);
   }
@@ -268,7 +268,7 @@ export class CatalogoGastosFijosList {
   }
 
   onLoadData() {
-    const urlApi = `catalogo-gastos-fijos/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosListById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result);
       this.updateSelectedItems();
@@ -298,7 +298,7 @@ export class CatalogoGastosFijosList {
   }
 
   updateItemSelectionOnApi(id: any, value: any) {
-    const urlApi = `catalogo-gastos-fijos/UpdateValidation/${id}/${value}`;
+    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosUpdateValidationByIdById(id, value);
     this.apiResponseS.onGetListNotLoading(urlApi, null).then(() => {
       // Opcional: se podría volver a llamar a updateSelectedItems aqué si hubiera alguna duda,
       // pero ya se hace en el método que origina el cambio.
@@ -392,7 +392,7 @@ export class CatalogoGastosFijosList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`catalogogastosfijos/${id}`)
+      .onDelete(Endpoints.RefactorContabilidad.catalogogastosfijosById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((current) =>
@@ -437,7 +437,7 @@ export class CatalogoGastosFijosList {
 
     const fundingPeriodId = monthData.quincenas[quincenaIndex].value;
 
-    const urlApi = `OrdenCompra/GenerarOrdenCompraFijos/${this.customerIdS.customerId()}/${quincenaIndex}/${this.fundingYear()}/${fundingPeriodId}`;
+    const urlApi = Endpoints.RefactorContabilidad.ordenCompraGenerarOrdenCompraFijosByIdByIdByIdById(this.customerIdS.customerId(), quincenaIndex, this.fundingYear(), fundingPeriodId);
 
     this.apiResponseS.onPostNotLoading(urlApi, {}).then((result) => {
       if (result !== false) {

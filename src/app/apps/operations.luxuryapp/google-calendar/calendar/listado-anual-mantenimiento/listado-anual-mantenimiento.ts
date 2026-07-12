@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -115,9 +116,7 @@ export class ListadoAnualMantenimiento {
   }
 
   onLoadData() {
-    const url = `MaintenanceCalendars/list/${this.customerIdS.customerId()}/${
-      this.monthControl.value
-    }`;
+    const url = Endpoints.RefactorOperations.maintenanceCalendarsListByIdById(this.customerIdS.customerId(), this.monthControl.value);
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.dataSignal.set(result || []);
     });
@@ -136,7 +135,7 @@ export class ListadoAnualMantenimiento {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`maintenancecalendars/${id}`)
+      .onDelete(Endpoints.RefactorOperations.maintenancecalendarsById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>
@@ -166,7 +165,7 @@ export class ListadoAnualMantenimiento {
   }
   onLoadEnumSelectItem() {
     this.apiResponseS
-      .onGetEnumSelectItem(`EMonth/${false}`)
+      .onGetEnumSelectItem(`e-month/${false}`)
       .then((result: any) => {
         const sorted = (result || []).sort((a, b) => a.value - b.value);
         this.months.set([{ label: "Todos", value: "" } as any, ...sorted]);

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -48,7 +49,7 @@ export class ReportSupervision {
     this.loadingMinutas.set(true);
     this.minutas.set(null);
     this.apiResponseS
-      .onGetList(`SupervisionReports/PendingMinutes/${customerId}`)
+      .onGetList(Endpoints.RefactorOperations.supervisionReportsPendingMinutesById(customerId))
       .then((result: any) => {
         this.minutas.set(result);
       })
@@ -65,7 +66,7 @@ export class ReportSupervision {
     this.loadingTickets.set(true);
     this.tickets.set(null);
     this.apiResponseS
-      .onGetList(`SupervisionReports/PendingTickets/${customerId}`)
+      .onGetList(Endpoints.RefactorOperations.supervisionReportsPendingTicketsById(customerId))
       .then((result: any) => {
         this.tickets.set(result);
       })
@@ -82,7 +83,7 @@ export class ReportSupervision {
     this.loadingPendingLegal.set(true);
     this.pendingLegal.set(null);
     this.apiResponseS
-      .onGetList(`SupervisionReports/PendingLegal/${customerId}`)
+      .onGetList(Endpoints.RefactorOperations.supervisionReportsPendingLegalById(customerId))
       .then((result: any) => {
         this.pendingLegal.set(result);
       })
@@ -99,7 +100,7 @@ export class ReportSupervision {
     this.loadingEnvioFinancieros.set(true);
     this.envioFinancieros.set(null);
     this.apiResponseS
-      .onGetList(`SupervisionReports/EstadosFinancieros/${customerId}`)
+      .onGetList(Endpoints.RefactorOperations.supervisionReportsEstadosFinancierosById(customerId))
       .then((result: any) => {
         this.envioFinancieros.set(result);
       })

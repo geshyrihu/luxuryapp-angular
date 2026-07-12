@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -125,7 +126,7 @@ export class RecepcionPipasAguaForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`recepcion-pipas-agua/${this.id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.recepcionPipasAguaById(this.id))
       .then((result: any) => {
         this.urlFotoPipaLlena.set(result.fotoPipaLlenaUrl ?? "");
         this.urlFotoPipaVacia.set(result.fotoPipaVaciaUrl ?? "");

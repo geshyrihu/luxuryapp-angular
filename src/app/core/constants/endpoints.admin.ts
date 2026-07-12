@@ -4,7 +4,7 @@ export const EndpointsAdmin = {
     delete: (id: string) => `customers/${id}`,
     getAll: (state: boolean) => `customers/list/${state}`,
     getById: (id: string) => `customers/${id}`,
-    getByIdLegacy: (id: string) => `Customers/${id}`,
+    getByIdLegacy: (id: string) => `customers/${id}`,
     getPdf: (id: string) => `customers/${id}/pdf`,
     update: (id: string) => `customers/${id}`,
   },
@@ -46,21 +46,20 @@ export const EndpointsAdmin = {
 
   AppImplementationTracking: {
     triggerEmployeeValidation:
-      "appimplementationtracking/trigger-employee-validation",
+      "app-implementation-tracking/trigger-employee-validation",
   },
   JuntaMensualSessionBackfill: {
     apply: "junta-mensual-session-backfill/apply",
     preview: "junta-mensual-session-backfill/preview",
   },
   UpdateDataBase: {
-    backfillAgendaEvents:
-      "UpdateDataBase/backfill-agenda-events-from-meetings",
+    backfillAgendaEvents: "update-data-base/backfill-agenda-events-from-meetings",
     backfillHistoricalMeetings:
-      "UpdateDataBase/backfill-historical-meeting-times",
-    importAsambleaChecklist:
-      "UpdateDataBase/import-asamblea-checklist-catalog",
-    resyncGoogleCalendar: "UpdateDataBase/resync-google-calendar-event-times",
-    seedNativeCollectionTestData: "UpdateDataBase/seed-native-collection-test-data",
+      "update-data-base/backfill-historical-meeting-times",
+    importAsambleaChecklist: "update-data-base/import-asamblea-checklist-catalog",
+    resyncGoogleCalendar: "update-data-base/resync-google-calendar-event-times",
+    seedNativeCollectionTestData:
+      "update-data-base/seed-native-collection-test-data",
   },
   CustomerProvider: {
     getById: (id: string) => `customer-provider/getById/${id}`,
@@ -71,5 +70,14 @@ export const EndpointsAdmin = {
     update: (secretName: string) => `vault-secrets/${secretName}`,
     rotate: (secretName: string) => `vault-secrets/${secretName}/rotate`,
     revoke: (secretName: string) => `vault-secrets/${secretName}/revoke`,
+  },
+  RefactorAdmin: {
+    customerproviderById: (id: any) => `customer-provider/${id}`,
+    permissionPermissionUserAdminById: (applicationUserId: any) =>
+      `permission/permission-user-admin/${applicationUserId}`,
+    sendEmailTestEmailById: (emailControl: any) =>
+      `send-email/test-email/${emailControl}`,
+    customerProviderById: (customerIdS: any) =>
+      `customer-provider/${customerIdS}`,
   },
 } as const;

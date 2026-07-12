@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -51,7 +52,7 @@ export class ServiceOrder implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MaintenanceCalendars/ListService/${this.idMachinery}`;
+    const urlApi = Endpoints.RefactorOperations.maintenanceCalendarsListServiceById(this.idMachinery);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.maintenanceCalendars = result.map((item: any) => ({
         ...item,
@@ -68,7 +69,7 @@ export class ServiceOrder implements OnInit {
       accept: () => {
         //confirm action
 
-        const urlApi = `MaintenanceCalendars/${Id}`;
+        const urlApi = Endpoints.RefactorOperations.maintenanceCalendarsById(Id);
         this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
           this.onLoadData();
         });

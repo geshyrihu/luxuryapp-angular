@@ -34,6 +34,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-solicitud-baja",
@@ -194,7 +195,7 @@ export class SolicitudBajaForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `RequestDismissal/GetRequestDismissal/${this.employeeId}`;
+    const urlApi = EndpointsReclutamiento.RequestDismissal.getRequestDismissal(this.employeeId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (result) {
         this.form.patchValue({
@@ -288,7 +289,7 @@ export class SolicitudBajaForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        `SolicitudesReclutamiento/SolicitudBaja/${this.customerIdS.customerId()}/${this.employeeId}/${this.authS.infoUserAuth.applicationUserId}`,
+        EndpointsReclutamiento.RecruitmentRequests.solicitudBaja(this.customerIdS.customerId(), this.employeeId, this.authS.infoUserAuth.applicationUserId),
         model,
       )
       .then((result: boolean) => {

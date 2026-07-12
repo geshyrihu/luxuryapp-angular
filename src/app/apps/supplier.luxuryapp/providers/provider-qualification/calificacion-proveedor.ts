@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -46,7 +47,7 @@ export class CalificacionProveedor implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `QualificationProvider/${this.authS.applicationUserId}/${this.providerId}`;
+    const urlApi = Endpoints.RefactorSupplier.qualificationProviderByIdById(this.authS.applicationUserId, this.providerId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (result != null) {
         this.qualificationProviderId = result.id;
@@ -62,14 +63,13 @@ export class CalificacionProveedor implements OnInit {
 
     if (this.qualificationProviderId) {
       this.apiResponseS
-        .onPost(`QualificationProvider`, this.form.value)
+        .onPost(Endpoints.RefactorSupplier.qualificationProvider, this.form.value)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(
-          `QualificationProvider/${this.qualificationProviderId}`,
+        .onPut(Endpoints.RefactorSupplier.qualificationProviderById(this.qualificationProviderId),
           this.form.value,
         )
         .then((result: boolean) => {

@@ -51,7 +51,6 @@
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
           <iw-button-send-email (confirmed)="onSendTestEmail(item.id)" />
         </div>
       </td>
@@ -101,7 +100,6 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
           <ili-button-send-email
             (confirmed)="onSendTestEmail(item.id)"
             label="Enviar"

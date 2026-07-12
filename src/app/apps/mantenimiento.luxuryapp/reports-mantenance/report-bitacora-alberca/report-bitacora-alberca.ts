@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,9 +43,9 @@ export class ReportBitacoraAlberca {
   }
 
   onLoadData() {
-    const urlApi = `maintenance-report/bitacoraalbercaparametros/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportBitacoraalbercaparametrosByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}`;
+    ));
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.medidores.set(result);
     });

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -73,7 +74,7 @@ export class PresentacionesJuntasComite implements OnInit {
     let inicial = this.dateS.getDateFormat(
       new Date((this.periodoControl.value || "") + "-" + 1),
     );
-    const urlApi = "PresentacionJuntaComite/Generales/" + inicial + "/";
+    const urlApi = Endpoints.RefactorOperations.presentacionJuntaComiteGeneralesById(inicial);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

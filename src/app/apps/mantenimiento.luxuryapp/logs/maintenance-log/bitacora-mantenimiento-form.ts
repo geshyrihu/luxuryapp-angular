@@ -93,7 +93,7 @@ export class BitacoraMantenimientoForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "BitacoraMantenimiento",
+      endpoint: "bitacora-mantenimiento",
       id: "",
       ref: this.ref,
       submitting: this.submitting,

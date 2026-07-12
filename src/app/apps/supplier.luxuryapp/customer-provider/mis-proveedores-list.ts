@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -72,7 +73,7 @@ export class MisProveedores {
 
   // Función para cargar los datos de los CustomerProviders
   onLoadData() {
-    const urlApi = `CustomerProvider/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorSupplier.customerProviderById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -94,7 +95,7 @@ export class MisProveedores {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`customerprovider/${id}`)
+      .onDelete(Endpoints.RefactorSupplier.customerproviderById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((prev) =>

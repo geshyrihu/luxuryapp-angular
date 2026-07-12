@@ -21,6 +21,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-status-request-salary-modification",
@@ -58,7 +59,7 @@ export class StatusRequestSalaryModification implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `RequestSalaryModification/${this.workPositionId}/${this.employeeId}`;
+    const urlApi = EndpointsReclutamiento.RequestSalaryModification.getStatus(this.workPositionId, this.employeeId);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -95,7 +96,7 @@ export class StatusRequestSalaryModification implements OnInit {
   //Eliminar solicitud de baja
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RequestSalaryModification/${id}`)
+      .onDelete(EndpointsReclutamiento.RequestSalaryModification.delete(id))
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

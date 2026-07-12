@@ -73,10 +73,10 @@ describe("GastosMantenimiento", () => {
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledTimes(2);
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "BudgetMaintenance/SummaryOfExpenses/cust-123",
+      "budget-maintenance/SummaryOfExpenses/cust-123",
     );
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "BudgetMaintenance/Resumengastos/cust-123",
+      "budget-maintenance/Resumengastos/cust-123",
     );
   });
 

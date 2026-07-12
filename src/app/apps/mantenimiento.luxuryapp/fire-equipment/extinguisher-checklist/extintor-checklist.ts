@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -99,7 +100,7 @@ export class ExtintorChecklist implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`BitacoraExtintor/${this.id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.bitacoraExtintorById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -109,7 +110,7 @@ export class ExtintorChecklist implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "BitacoraExtintor",
+      endpoint: "bitacora-extintor",
       id: this.id,
       ref: this.ref ?? undefined,
       submitting: this.submitting,

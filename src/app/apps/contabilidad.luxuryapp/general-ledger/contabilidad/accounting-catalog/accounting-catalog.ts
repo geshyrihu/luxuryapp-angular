@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -109,7 +110,7 @@ export class AccountingCatalog {
     const customerId = this.customerIdService.customerId();
     if (!customerId) return;
 
-    const urlApi = `accounting-catalog/customer/${customerId}?year=${this.currentYear()}`;
+    const urlApi = Endpoints.RefactorContabilidad.accountingCatalogCustomeryear(customerId, this.currentYear());
     this.apiResponseS
       .onGetList(urlApi)
       .then((response: GroupedAccountingCatalogDTO[]) => {

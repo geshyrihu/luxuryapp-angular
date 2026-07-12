@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ export class CalendarioMaestroReadonly implements OnInit {
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetList("calendariomaestro/list")
+      .onGetList(Endpoints.RefactorMantenimiento.calendariomaestroList)
       .then((result: any) => {
         this.data.set(Array.isArray(result) ? result : []);
       });

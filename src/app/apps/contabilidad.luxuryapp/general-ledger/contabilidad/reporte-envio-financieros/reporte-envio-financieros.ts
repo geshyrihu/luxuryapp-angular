@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -85,7 +86,7 @@ export class ReporteEnvioFinancieros implements OnInit {
   // Función para cargar los datos de los reporte
   onLoadData() {
     this.apiResponseS
-      .onGetList(`FinancialReport/reporte-envio-anual/${this.selectedYear}`)
+      .onGetList(Endpoints.RefactorContabilidad.financialReportReporteEnvioAnualById(this.selectedYear))
       .then((result: any) => {
         this.dataSignal.set(result);
       });

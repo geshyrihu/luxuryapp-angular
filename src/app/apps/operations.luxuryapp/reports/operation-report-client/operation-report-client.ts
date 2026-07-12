@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,7 +41,7 @@ export class OperationReportClient implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `task-report/GetReportClient/${this.customer}/${this.inicio}/${this.final}`;
+    const urlApi = Endpoints.RefactorOperations.taskReportGetReportClientByIdByIdById(this.customer, this.inicio, this.final);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       // Actualizamos el valor del signal con los datos recibidos
       this.data.set(result);

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -152,7 +153,7 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`recepcion-pipas-agua/list/${this.customerIdS.customerId()}`)
+      .onGetList(Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(this.customerIdS.customerId()))
       .then((result: IRecepcionPipaAgua[]) => {
         const inicio = new Date(this.fechaInicio());
         const fin = new Date(this.fechaFin());

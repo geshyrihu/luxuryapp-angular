@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -82,7 +83,7 @@ export class ProductReturn implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost("salidaproductos/devolver", this.form.value)
+      .onPost(Endpoints.RefactorOperations.salidaproductosDevolver, this.form.value)
       .then((result) => {
         if (result) {
           this.ref.close(true);

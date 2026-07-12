@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,14 +49,14 @@ export class ActivosDocumentos implements OnInit {
     if (this.machineryId !== 0) this.onLoadData();
   }
   onLoadData() {
-    const urlApi = `MachineryDocument/list/${this.machineryId}`;
+    const urlApi = Endpoints.RefactorMantenimiento.machineryDocumentListById(this.machineryId);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`machineries/DeleteDocument/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.machineriesDeleteDocumentById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>
@@ -69,7 +70,7 @@ export class ActivosDocumentos implements OnInit {
         SubirPdf,
         {
           serviceOrderId: id,
-          pathUrl: "machineries/SubirDocumento/",
+          pathUrl: "machineries/subir-documento/",
         },
         "Cargar Documentos",
         this.dialogHandlerS.sizeLg,

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -68,8 +69,7 @@ export class Cumpleanos implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(
-        `birthday/${this.customerIdS.customerId()}/${this.selectedMonth()}`,
+      .onGetList(Endpoints.RefactorOperations.birthdayByIdById(this.customerIdS.customerId(), this.selectedMonth()),
       )
       .then((result: any) => {
         this.dataSignal.set(result);

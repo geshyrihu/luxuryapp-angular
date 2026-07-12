@@ -12,6 +12,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 @Component({
   selector: "app-status-request-dismissal-discount-form",
   templateUrl: "./status-request-dismissal-discount-form.html",
@@ -44,7 +45,7 @@ export class StatusRequestDismissalDiscountForm implements OnInit {
     if (this.id) this.onLoadData();
   }
   onLoadData() {
-    const urlApi = `RequestDismissalDiscount/${this.id}`;
+    const urlApi = EndpointsReclutamiento.RequestDismissalDiscount.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -53,7 +54,7 @@ export class StatusRequestDismissalDiscountForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "RequestDismissalDiscount",
+      endpoint: EndpointsReclutamiento.RequestDismissalDiscount.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

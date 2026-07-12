@@ -135,7 +135,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (!this.solicitudCompraId) return;
 
     this.onResetData();
-    const urlApi = `solicitudcompra/cuadrocomparativo/${this.solicitudCompraId}`;
+    const urlApi = Endpoints.RefactorSupplier.solicitudcompraCuadrocomparativoById(this.solicitudCompraId);
 
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (!result) return;
@@ -155,8 +155,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   onLoadAvailableBudgets() {
     this.apiResponseS
-      .onGetItem(
-        `SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`,
+      .onGetItem(Endpoints.RefactorSupplier.solicitudCompraCuadroComparativoByIdBudgets(this.solicitudCompraId),
       )
       .then((result: any) => {
         this.availableBudgetSignal.set(Array.from(result?.accounts || []));
@@ -588,8 +587,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (!amountModal.isConfirmed || !amountModal.value) return;
 
     this.apiResponseS
-      .onPost(
-        `SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`,
+      .onPost(Endpoints.RefactorSupplier.solicitudCompraCuadroComparativoByIdBudgets(this.solicitudCompraId),
         {
           fiscalYear: String(this.getFiscalYear()),
           accountNumber: budgetData.accountNumber,
@@ -606,7 +604,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   onDeleteBudget(budgetId: string) {
     this.apiResponseS
-      .onDelete(`SolicitudCompra/CuadroComparativo/Budgets/${budgetId}`)
+      .onDelete(Endpoints.RefactorSupplier.solicitudCompraCuadroComparativoBudgetsById(budgetId))
       .then((success) => {
         if (success) {
           this.onLoadData();

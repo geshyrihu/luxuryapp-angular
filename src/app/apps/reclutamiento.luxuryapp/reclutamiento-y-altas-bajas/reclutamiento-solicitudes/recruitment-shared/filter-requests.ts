@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -100,7 +101,7 @@ export class FilterRequests {
   }
 
   onSendReportVacants() {
-    const urlApi = `solicitudesreclutamiento/sendreportvacants`;
+    const urlApi = Endpoints.RefactorReclutamiento.solicitudesreclutamientoSendreportvacants;
     this.apiResponseS.onPost(urlApi).then(() => {
       this.onLoadData();
     });

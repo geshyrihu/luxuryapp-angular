@@ -181,7 +181,7 @@ export class RealizarEvaluacion implements OnInit {
       }
 
       this.apiResponseS
-        .onGetItem(`TemplateEvaluation/${templateId}`)
+        .onGetItem(Endpoints.RefactorRecursosHumanos.templateEvaluationById(templateId))
         .then((response: any) => {
           this.selectedTemplate = response;
           this.buildAnswersFormArray(); // Construye el FormArray
@@ -277,7 +277,7 @@ export class RealizarEvaluacion implements OnInit {
 
     if (this.isEditMode && this.evaluationId) {
       this.apiResponseS
-        .onPut(`performance-evaluations/Update/${this.evaluationId}`, DTO)
+        .onPut(Endpoints.RefactorRecursosHumanos.performanceEvaluationsUpdateById(this.evaluationId), DTO)
         .then((result: any) => {
           if (result) {
             this.submitting.set(false);
@@ -285,7 +285,7 @@ export class RealizarEvaluacion implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPost("performance-evaluations/Create", DTO)
+        .onPost(Endpoints.RefactorRecursosHumanos.performanceEvaluationsCreate, DTO)
         .then((result: any) => {
           if (result) {
             this.route.navigate(

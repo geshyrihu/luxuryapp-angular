@@ -15,6 +15,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { IRequestEmployeeRegisterBasicInfo } from './dtos/request-employee-register-basic-info.dto';
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import { IRequestEmployeeRegisterUpdateStatus } from './dtos/request-employee-register-update-status.dto';
 @Component({
   selector: "app-solicitud-alta-status-form",
@@ -59,7 +60,7 @@ export class SolicitudAltaStatusForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem<IRequestEmployeeRegisterBasicInfo>(
-        `RequestEmployeeRegister/${this.id}/basic-info`,
+        EndpointsReclutamiento.RequestEmployeeRegister.getBasicInfo(this.id),
       )
       .then((result) => {
         // Exclude folio from direct patch because types differ (number vs string)
@@ -85,7 +86,7 @@ export class SolicitudAltaStatusForm implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(`RequestEmployeeRegister/${this.id}/status`, dto)
+      .onPut(EndpointsReclutamiento.RequestEmployeeRegister.updateStatus(this.id), dto)
       .then((result) => {
         this.ref.close(true);
       })

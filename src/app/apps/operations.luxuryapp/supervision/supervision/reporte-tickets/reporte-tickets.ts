@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -63,9 +64,9 @@ export class ReporteTickets {
   }
 
   onLoadData() {
-    const urlApi = `resumen-general/ReporteResumenTicket/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}`;
+    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin));
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

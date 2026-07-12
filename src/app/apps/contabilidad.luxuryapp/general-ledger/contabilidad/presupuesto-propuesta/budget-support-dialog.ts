@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -247,7 +248,7 @@ export class BudgetSupportDialog implements OnInit {
   onDeleteFile(fileId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onDelete(`BudgetProposalItemSupport/support-file/${fileId}`) // New endpoint
+      .onDelete(Endpoints.RefactorContabilidad.budgetProposalItemSupportSupportFileById(fileId)) // New endpoint
       .then((response) => {
         if (response) {
           this.loadSupports(); // Reload supports

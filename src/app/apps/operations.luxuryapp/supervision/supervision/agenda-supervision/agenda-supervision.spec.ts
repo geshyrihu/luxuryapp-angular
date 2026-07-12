@@ -10,7 +10,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { vi } from "vitest";
 import { AgendaSupervision } from "./agenda-supervision";
 
-describe("AgendaSupervision", () => {
+describe("agenda-supervision", () => {
   let component: AgendaSupervision;
   let fixture: ComponentFixture<AgendaSupervision>;
   let mockApiResponseS: any;
@@ -92,7 +92,7 @@ describe("AgendaSupervision", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "AgendaSupervision/list/2025-01-01/2025-01-31",
+      "agenda-supervision/list/2025-01-01/2025-01-31",
     );
     expect(component.dataSignal()).toEqual(mockData);
   });
@@ -108,7 +108,7 @@ describe("AgendaSupervision", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onDelete).toHaveBeenCalledWith(
-      "AgendaSupervision/1",
+      "agenda-supervision/1",
     );
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].id).toBe("2");

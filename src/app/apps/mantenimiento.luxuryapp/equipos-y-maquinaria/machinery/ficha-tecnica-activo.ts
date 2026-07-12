@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +26,7 @@ export class FichaTecnicaActivo implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `machineries/Fichatecnica/${this.id}`;
+    const urlApi = Endpoints.RefactorMantenimiento.machineriesFichatecnicaById(this.id);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
     });

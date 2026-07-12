@@ -81,14 +81,14 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   onGetCotizacioProveedor() {
     if (this.cotizacionProveedorId) {
       this.apiResponseS
-        .onGetItem(`CotizacionProveedor/${this.cotizacionProveedorId}`)
+        .onGetItem(Endpoints.RefactorSupplier.cotizacionProveedorById(this.cotizacionProveedorId))
         .then((result: any) => {
           this.processProviderData(result);
         });
       return;
     }
 
-    const url = `CotizacionProveedor/posicionCotizacion/${this.solicitudCompraId}/${this.posicionCotizacion}`;
+    const url = Endpoints.RefactorSupplier.cotizacionProveedorPosicionCotizacionByIdById(this.solicitudCompraId, this.posicionCotizacion);
     this.apiResponseS.onGetItem(url).then((result: any) => {
       this.processProviderData(result);
     });
@@ -107,7 +107,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   onLoadData() {
-    const urlApi = `solicitudcompra/${this.solicitudCompraId}`;
+    const urlApi = Endpoints.RefactorSupplier.solicitudcompraById(this.solicitudCompraId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.solicitudCompra = result;
       this.solicitudCompraDetalle = result.solicitudCompraDetalle;
@@ -175,8 +175,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
 
     return this.apiResponseS
-      .onPut(
-        `CotizacionProveedor/update-provider/${this.cotizacionProveedor.id}`,
+      .onPut(Endpoints.RefactorSupplier.cotizacionProveedorUpdateProviderById(this.cotizacionProveedor.id),
         formData,
         showToast,
       )
@@ -192,8 +191,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     if (!this.cotizacionProveedor?.id) return;
 
     this.apiResponseS
-      .onDelete(
-        `CotizacionProveedor/remove-file/${this.cotizacionProveedor.id}`,
+      .onDelete(Endpoints.RefactorSupplier.cotizacionProveedorRemoveFileById(this.cotizacionProveedor.id),
       )
       .then((success) => {
         if (success) {
@@ -227,8 +225,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
 
   onDeleteProvider() {
     this.apiResponseS
-      .onDelete(
-        `solicitudCompra/deleteprovider/${this.solicitudCompraId}/${this.cotizacionProveedorId}`,
+      .onDelete(Endpoints.RefactorSupplier.solicitudCompraDeleteproviderByIdById(this.solicitudCompraId, this.cotizacionProveedorId),
       )
       .then((result: boolean) => {
         if (result) this.ref.close(true);
@@ -250,7 +247,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   onCotizacionesRelacionadas() {
-    const urlApi = `OrdenCompra/CotizacionesRelacionadas/${this.solicitudCompraId}`;
+    const urlApi = Endpoints.RefactorSupplier.ordenCompraCotizacionesRelacionadasById(this.solicitudCompraId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.cotizacionesRelacionadas = result || [];
       this.cdr.detectChanges();

@@ -29,10 +29,10 @@ export const EndpointsRecursosHumanos = {
       delete: (id: string) => `hr/contract-templates/${id}`,
     },
     EmployeeBankData: {
-      getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
-      getById: (id: string) => `EmployeeBankData/${id}`,
-      upsert: "EmployeeBankData",
-      delete: (id: string) => `EmployeeBankData/${id}`,
+      getAll: (customerId: string) => `employee-bank-data/list/${customerId}`,
+      getById: (id: string) => `employee-bank-data/${id}`,
+      upsert: "employee-bank-data",
+      delete: (id: string) => `employee-bank-data/${id}`,
     },
     EmployeeFile: {
       getAll: (customerId: string, isActive?: boolean | null) => {
@@ -268,52 +268,52 @@ export const EndpointsRecursosHumanos = {
     updateSanctionType: (id: string) => `hr/sanction-types/${id}`,
   },
   EmployeeInternal: {
-    activate: (id: string) => `EmployeeInternal/${id}/activate`,
+    activate: (id: string) => `employee-internal/${id}/activate`,
     addressData: (employeeId: string | number) =>
-      `EmployeeInternal/AddressData/${employeeId}`,
+      `employee-internal/AddressData/${employeeId}`,
     dataForRecoveryPassword: (id: string) =>
-      `EmployeeInternal/DataForRecoveryPassword/${id}`,
+      `employee-internal/DataForRecoveryPassword/${id}`,
     laboralData: (applicationUserId: string) =>
-      `EmployeeInternal/LaboralData/${applicationUserId}`,
+      `employee-internal/LaboralData/${applicationUserId}`,
     list: (customerId: string, active: boolean) =>
-      `EmployeeInternal/list/${customerId}/${active}`,
-    onValidateState: (id: string) => `EmployeeInternal/OnValidateState/${id}`,
+      `employee-internal/list/${customerId}/${active}`,
+    onValidateState: (id: string) => `employee-internal/OnValidateState/${id}`,
     personalData: (employeeId: string | number) =>
-      `EmployeeInternal/PersonalData/${employeeId}`,
+      `employee-internal/PersonalData/${employeeId}`,
     photoPath: (applicationUserId: string) =>
-      `EmployeeInternal/PhotoPath/${applicationUserId}`,
+      `employee-internal/PhotoPath/${applicationUserId}`,
     principalData: (applicationUserId: string) =>
-      `EmployeeInternal/PrincipalData/${applicationUserId}`,
+      `employee-internal/PrincipalData/${applicationUserId}`,
     updateAddressData: (addressId: string) =>
-      `EmployeeInternal/UpdateAddressData/${addressId}`,
+      `employee-internal/UpdateAddressData/${addressId}`,
     updateImage: (applicationUserId: string) =>
-      `EmployeeInternal/UpdateImage/${applicationUserId}`,
+      `employee-internal/UpdateImage/${applicationUserId}`,
     updateLaboralData: (applicationUserId: string) =>
-      `EmployeeInternal/UpdateLaboralData/${applicationUserId}`,
+      `employee-internal/UpdateLaboralData/${applicationUserId}`,
     updatePersonalData: (employeeId: string | number) =>
-      `EmployeeInternal/UpdatePersonalData/${employeeId}`,
+      `employee-internal/UpdatePersonalData/${employeeId}`,
     updatePrincipalData: (applicationUserId: string) =>
-      `EmployeeInternal/UpdatePrincipalData/${applicationUserId}`,
+      `employee-internal/UpdatePrincipalData/${applicationUserId}`,
   },
   Employees: {
-    createEmployee: "Employees/CreateEmployee",
-    createEmployeeExternal: "Employees/CreateEmployeeExternal",
+    createEmployee: "employees/create-employee",
+    createEmployeeExternal: "employees/create-employee-external",
   },
   EmployeeBankData: {
-    base: "EmployeeBankData",
+    base: "employee-bank-data",
     byEmployee: (employeeId: string) =>
-      `EmployeeBankData/employee/${employeeId}`,
-    delete: (id: string) => `EmployeeBankData/${id}`,
-    getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
-    getById: (id: string) => `EmployeeBankData/${id}`,
-    upsert: "EmployeeBankData",
+      `employee-bank-data/employee/${employeeId}`,
+    delete: (id: string) => `employee-bank-data/${id}`,
+    getAll: (customerId: string) => `employee-bank-data/list/${customerId}`,
+    getById: (id: string) => `employee-bank-data/${id}`,
+    upsert: "employee-bank-data",
   },
   EmployeeClinicalData: {
-    base: "EmployeeClinicalData",
+    base: "employee-clinical-data",
     byEmployee: (employeeId: string) =>
-      `EmployeeClinicalData/employee/${employeeId}`,
-    delete: (id: string) => `EmployeeClinicalData/${id}`,
-    getById: (id: string) => `EmployeeClinicalData/${id}`,
+      `employee-clinical-data/employee/${employeeId}`,
+    delete: (id: string) => `employee-clinical-data/${id}`,
+    getById: (id: string) => `employee-clinical-data/${id}`,
   },
   EmployeeEmergencyContact: {
     base: "employee-emergency-contact",
@@ -326,29 +326,29 @@ export const EndpointsRecursosHumanos = {
   },
   EmployeeExternal: {
     addAccessCustomer: (applicationUserId: string, customerId: string) =>
-      `employeeexternal/add-access-cutomer/${applicationUserId}/${customerId}`,
-    create: "EmployeeExternal",
-    delete: (id: string) => `employeeexternal/${id}`,
+      `employee-external/add-access-cutomer/${applicationUserId}/${customerId}`,
+    create: "employee-external",
+    delete: (id: string) => `employee-external/${id}`,
     deleteAccessCustomer: (applicationUserId: string, customerId: string) =>
-      `employeeexternal/delete-access-cutomer/${applicationUserId}/${customerId}`,
-    getById: (id: string) => `EmployeeExternal/${id}`,
+      `employee-external/delete-access-cutomer/${applicationUserId}/${customerId}`,
+    getById: (id: string) => `employee-external/${id}`,
     list: (customerId: string, active: boolean) =>
-      `EmployeeExternal/List/${customerId}/${active}`,
+      `employee-external/list/${customerId}/${active}`,
     searchByEmail: (customerId: string, email: string, excludeUserId?: string) =>
-      `employeeexternal/search-by-email/${customerId}?email=${email}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+      `employee-external/search-by-email/${customerId}?email=${email}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
     searchByPhone: (
       customerId: string,
       phoneNumber: string,
       excludeUserId?: string,
     ) =>
-      `employeeexternal/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
-    update: (id: string) => `EmployeeExternal/${id}`,
+      `employee-external/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+    update: (id: string) => `employee-external/${id}`,
   },
   PerformanceEvaluations: {
     result: (id: string) => `performance-evaluations/${id}/result`,
   },
   TemplateEvaluation: {
-    delete: (id: string) => `TemplateEvaluation/${id}`,
+    delete: (id: string) => `template-evaluation/${id}`,
   },
   ChekadorEmpleados: {
     registrar: "chekador-empleados/registrar",
@@ -378,4 +378,20 @@ export const EndpointsRecursosHumanos = {
       `chekador-empleados/${id}/rechazar-anomalia`,
     sedes: "chekador-empleados/sedes",
   },
+  RefactorRecursosHumanos: {
+    templateEvaluation: "template-evaluation",
+    templateEvaluationById: (id: any) => `template-evaluation/${id}`,
+    performanceEvaluationsById: (id: any) => `performance-evaluations/${id}`,
+    performanceEvaluationsUpdateById: (evaluationId: any) => `performance-evaluations/Update/${evaluationId}`,
+    performanceEvaluationsCreate: "performance-evaluations/Create",
+    applicationUsersCardUserById: (appUserId: any) => `application-users/CardUser/${appUserId}`,
+    employeesValidaradminasisById: (authS: any) => `employees/validaradminasis/${authS}`,
+    hrNominaPeriodos: "hr/nomina/periodos",
+    hrNominaPeriodosById: (p0: any) => `hr/nomina/periodos/${p0}`,
+    hrNominaPrestamosById: (p0: any) => `hr/nomina/prestamos/${p0}`,
+    configuracionDiasFestivosById: (year: any) => `configuracion/dias-festivos/${year}`,
+    vacationRequestApprovalsByIdBalance: (employeeId: any) => `vacation-request-approvals/${employeeId}/balance`,
+      templateEvaluationListById: (customerIdS: any) => `template-evaluation/list/${customerIdS}`,
+    performanceEvaluationsCustomerByIdHistory: (customerIdS: any) => `performance-evaluations/customer/${customerIdS}/history`,
+},
 } as const;

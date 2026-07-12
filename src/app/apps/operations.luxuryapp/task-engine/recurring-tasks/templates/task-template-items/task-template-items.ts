@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -80,7 +81,7 @@ export class TaskTemplateItems implements OnInit {
 
   onDeleteItem(itemId: string) {
     this.apiResponseS
-      .onDelete(`recurring-tasks/templates/items/${itemId}`)
+      .onDelete(Endpoints.RefactorOperations.recurringTasksTemplatesItemsById(itemId))
       .then((result: boolean) => {
         if (result) {
           this.loadItems();
@@ -107,7 +108,7 @@ export class TaskTemplateItems implements OnInit {
     // The 'items' signal already holds the reordered array
     const itemIdsInOrder = this.items().map((item) => item.id);
     this.apiResponseS
-      .onPut(`recurring-tasks/templates/${this.templateId}/items/reorder`, {
+      .onPut(Endpoints.RefactorOperations.recurringTasksTemplatesByIdItemsReorder(this.templateId), {
         itemIdsInOrder,
       })
       .then((result) => {

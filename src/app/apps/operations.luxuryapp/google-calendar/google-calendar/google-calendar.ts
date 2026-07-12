@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -261,7 +262,7 @@ export class GoogleCalendar {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`google-calendar-events/${id}`)
+      .onDelete(Endpoints.RefactorOperations.googleCalendarEventsById(id))
       .then((result) => {
         if (!result) return;
 

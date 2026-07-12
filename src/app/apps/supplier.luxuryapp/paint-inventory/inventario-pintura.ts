@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -76,14 +77,14 @@ export class InventarioPintura {
   }
 
   onLoadData() {
-    const urlApi = "InventarioPintura/list/" + this.customerIdS.customerId();
+    const urlApi = Endpoints.RefactorSupplier.inventarioPinturaListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`InventarioPintura/${id}`)
+      .onDelete(Endpoints.RefactorSupplier.inventarioPinturaById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

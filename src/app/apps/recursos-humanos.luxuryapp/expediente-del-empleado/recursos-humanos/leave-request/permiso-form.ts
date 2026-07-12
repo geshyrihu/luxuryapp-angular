@@ -91,7 +91,7 @@ export class PermisoForm implements OnInit {
 
   loadRequestTypes() {
     this.apiResponseS
-      .onGetEnumSelectItem("ELeaveType")
+      .onGetEnumSelectItem("e-leave-type")
       .then((data: SelectItemDto[]) => {
         this.requestTypes.set(data);
       });

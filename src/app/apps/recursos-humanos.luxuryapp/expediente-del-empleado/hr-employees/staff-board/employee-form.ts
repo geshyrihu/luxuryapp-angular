@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 class EmployeeReclutamiento {}
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
@@ -78,7 +79,7 @@ export class EmployeeForm implements OnInit {
         }
 
         this.apiResponseS
-          .onGetItem(`application-users/CardUser/${appUserId}`)
+          .onGetItem(Endpoints.RefactorRecursosHumanos.applicationUsersCardUserById(appUserId))
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
@@ -248,7 +249,7 @@ export class EmployeeForm implements OnInit {
 
   onValidarAdminAsis() {
     this.apiResponseS
-      .onGetItem(`employees/validaradminasis/${this.authS.applicationUserId}`)
+      .onGetItem(Endpoints.RefactorRecursosHumanos.employeesValidaradminasisById(this.authS.applicationUserId))
       .then((result: any) => {
         this.tienePermiso = result;
       });

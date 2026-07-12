@@ -227,7 +227,7 @@ export class OrdenCompraList {
     const statusCompra = this.statusCompra();
     const tipoGasto = this.tipoGasto();
 
-    const url = `OrdenCompra/list/${customerId}/${statusCompra}/${tipoGasto}`;
+    const url = Endpoints.RefactorSupplier.ordenCompraListByIdByIdById(customerId, statusCompra, tipoGasto);
 
     this.apiResponseS
       .onGetList(url)

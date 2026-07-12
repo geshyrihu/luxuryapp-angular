@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -94,7 +95,7 @@ export class AgendaSupervisionForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `AgendaSupervision/${this.id}`;
+    const urlApi = Endpoints.RefactorOperations.agendaSupervisionById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       // Date handling might need adjustment if getDateFormat returns string
       // But CustomInputDateSignal expects Date object or compatible string.
@@ -115,7 +116,7 @@ export class AgendaSupervisionForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "AgendaSupervision",
+      endpoint: "agenda-supervision",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

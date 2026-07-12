@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -58,7 +59,7 @@ export class ReportMeeting {
   }
 
   loadMeetingData() {
-    const urlApi = `meetings/MeetingReportPdf/${this.meetingId}`;
+    const urlApi = Endpoints.RefactorOperations.meetingsMeetingReportPdfById(this.meetingId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       // Parse the date string into a Date object
       if (result && result.minuta && result.minuta.date) {
@@ -126,7 +127,7 @@ export class ReportMeeting {
   }
 
   onLoadCustomer() {
-    const urlApi = `customers/${this.customerId}`;
+    const urlApi = Endpoints.RefactorOperations.customersById(this.customerId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.nameCustomer.set(result.nameCustomer);
       this.logoCustomer.set(result.photoPath);

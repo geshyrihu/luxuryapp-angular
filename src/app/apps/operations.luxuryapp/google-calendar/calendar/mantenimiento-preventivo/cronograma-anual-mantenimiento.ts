@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -160,7 +161,7 @@ export class CronogramaAnualMantenimiento {
   // --- Lígica de Carga y Filtro de Datos ---
   onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
-    let endpoint = `MaintenanceCalendars/CronogramaAnual/${customerId}`;
+    let endpoint = Endpoints.RefactorOperations.maintenanceCalendarsCronogramaAnualById(customerId);
     if (this.filtroId !== "") {
       endpoint += `/${this.filtroId}`;
     }
@@ -239,8 +240,7 @@ export class CronogramaAnualMantenimiento {
 
   exportExcel(): void {
     this.apiResponseS
-      .onGetItem(
-        `MaintenanceCalendars/ExportCalendar/${this.customerIdS.customerId()}`,
+      .onGetItem(Endpoints.RefactorOperations.maintenanceCalendarsExportCalendarById(this.customerIdS.customerId()),
       )
       .then((dataToExport: any[]) => {
         import("xlsx").then((xlsx) => {

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
@@ -51,7 +52,7 @@ export class PolizaSeguroEdificio {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetItem(`PolicyContract/building-insurance/${customerId}`)
+      .onGetItem(Endpoints.RefactorLegal.policyContractBuildingInsuranceById(customerId))
       .then((result) => {
         this.data.set(result);
       });

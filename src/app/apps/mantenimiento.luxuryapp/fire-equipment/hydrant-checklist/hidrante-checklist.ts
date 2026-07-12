@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -117,7 +118,7 @@ export class HidranteChecklist implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`BitacoraHidrante/${this.id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.bitacoraHidranteById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -127,7 +128,7 @@ export class HidranteChecklist implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "BitacoraHidrante",
+      endpoint: "bitacora-hidrante",
       id: this.id,
       ref: this.ref ?? undefined,
       submitting: this.submitting,

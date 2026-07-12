@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -66,18 +67,18 @@ export class ReportTicket {
     );
     const customerId: string = this.customerIdS.customerId();
 
-    const urlApi = `maintenance-report/ticket/${customerId}/${periodo}`;
+    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportTicketByIdById(customerId, periodo);
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = `maintenance-report/TicketResponsable/${customerId}/${periodo}`;
+    const urlApi2 = Endpoints.RefactorMantenimiento.maintenanceReportTicketResponsableByIdById(customerId, periodo);
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataResponsable.set(result);
     });
 
-    const urlApi3 = `maintenance-report/CargaTicket/${customerId}/${periodo}`;
+    const urlApi3 = Endpoints.RefactorMantenimiento.maintenanceReportCargaTicketByIdById(customerId, periodo);
     this.apiResponseS.onGetList(urlApi3).then((result: any) => {
       this.dataCargaTicket.set(result);
     });

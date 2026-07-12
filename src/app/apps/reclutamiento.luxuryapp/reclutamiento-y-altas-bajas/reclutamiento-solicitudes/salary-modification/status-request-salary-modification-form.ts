@@ -17,6 +17,7 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 @Component({
   selector: "app-status-request-salary-modification-form",
   templateUrl: "./status-request-salary-modification-form.html",
@@ -69,7 +70,7 @@ export class StatusRequestSalaryModificationForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `RequestSalaryModification/GetById/${this.id}`;
+    const urlApi = EndpointsReclutamiento.RequestSalaryModification.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -78,7 +79,7 @@ export class StatusRequestSalaryModificationForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "RequestSalaryModification",
+      endpoint: EndpointsReclutamiento.RequestSalaryModification.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

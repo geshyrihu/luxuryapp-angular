@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -151,8 +152,7 @@ export class FundingGroupFiles implements OnInit {
     const uniqueOrderIds = [...new Set(files.map((f: any) => f.ordenCompraId))];
     if (uniqueOrderIds.length === 0) return;
 
-    this.apiResponseS.onDownloadFilePost(
-      "funding/download-bulk-invoices-zip",
+    this.apiResponseS.onDownloadFilePost(Endpoints.RefactorContabilidad.fundingDownloadBulkInvoicesZip,
       uniqueOrderIds,
       "Facturas_Agrupadas.zip",
     );

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -121,7 +122,7 @@ export class WarehouseStockList {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    let urlApi = `InventarioProducto/GetAsyncAll/${customerId}/${this.almacenIdFromRoute}`;
+    let urlApi = Endpoints.RefactorOperations.inventarioProductoGetAsyncAllByIdById(customerId, this.almacenIdFromRoute);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);
@@ -132,7 +133,7 @@ export class WarehouseStockList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`InventarioProducto/${id}`)
+      .onDelete(Endpoints.RefactorOperations.inventarioProductoById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>

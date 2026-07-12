@@ -85,7 +85,7 @@ export class OwnerList {
   }
 
   onLoadData() {
-    const urlApi = `owner/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorResident.ownerListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

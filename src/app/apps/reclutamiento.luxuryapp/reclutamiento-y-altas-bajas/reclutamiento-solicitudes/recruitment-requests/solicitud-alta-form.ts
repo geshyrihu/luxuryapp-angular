@@ -17,6 +17,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 @Component({
   selector: "app-solicitud-alta",
   templateUrl: "./solicitud-alta-form.html",
@@ -66,7 +67,7 @@ export class SolicitudAltaForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `RequestEmployeeRegister/GetEmployeeRegister/${this.employeeId}/${this.customerId}`;
+    const urlApi = EndpointsReclutamiento.RequestEmployeeRegister.getEmployeeRegister(this.employeeId, this.customerId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.data = result;
       this.form.patchValue(result);
@@ -79,7 +80,7 @@ export class SolicitudAltaForm implements OnInit {
   }
 
   onLoadDataVacante() {
-    const urlApi = `requestemployeeregister/vacantes/${this.customerId}`;
+    const urlApi = EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(this.customerId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.cb_vacantes.set(result);
     });
@@ -90,7 +91,7 @@ export class SolicitudAltaForm implements OnInit {
 
     this.submitting.set(true);
 
-    var urlApi = `SolicitudesReclutamiento/SolicitudAlta/${this.authS.applicationUserId}`;
+    var urlApi = EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(this.authS.applicationUserId);
     this.apiResponseS
       .onPost(urlApi, this.form.getRawValue())
       .then((result: boolean) => {

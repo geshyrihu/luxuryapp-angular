@@ -37,12 +37,12 @@ export const EndpointsSystem = {
   Notifications: {
     getAll: "notifications",
     markAsRead: (notificationId: string) =>
-      `Notifications/mark-as-read/${notificationId}`,
+      `notifications/mark-as-read/${notificationId}`,
     testOneSignal: "notifications/test-one-signal",
     testOneSignalWeb: "notifications/test-one-signal-web",
     testSignalR: (userId: string) => `notifications/test-signal-r/${userId}`,
     testSignalUsers: "notifications/test-signal-users",
-    unreadCount: "Notifications/unread-count",
+    unreadCount: "notifications/unread-count",
     users: "notifications/users",
   },
   AspelCustomerEmpresa: {
@@ -59,11 +59,11 @@ export const EndpointsSystem = {
       `espejo-aspel-full?customerId=${customerId}&year=${year}&empresa=${empresa}`,
   },
   EmergencyPhones: {
-    create: "TelefonosEmergencia",
-    delete: (id: string) => `telefonosemergencia/${id}`,
-    getAll: "TelefonosEmergencia",
-    getById: (id: string | number) => `TelefonosEmergencia/${id}`,
-    update: (id: string | number) => `TelefonosEmergencia/${id}`,
+    create: "telefonos-emergencia",
+    delete: (id: string) => `telefonos-emergencia/${id}`,
+    getAll: "telefonos-emergencia",
+    getById: (id: string | number) => `telefonos-emergencia/${id}`,
+    update: (id: string | number) => `telefonos-emergencia/${id}`,
   },
   PaymentMethods: {
     create: "payment-methods",

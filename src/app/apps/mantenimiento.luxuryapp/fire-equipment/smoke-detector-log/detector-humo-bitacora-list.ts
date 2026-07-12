@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -82,13 +83,13 @@ export class DetectorHumoBitacoraList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`BitacoraDetectorHumo/list/${this.detectorId}`)
+      .onGetList(Endpoints.RefactorMantenimiento.bitacoraDetectorHumoListById(this.detectorId))
       .then((result: any) => this.dataSignal.set(result));
   }
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`BitacoraDetectorHumo/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.bitacoraDetectorHumoById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

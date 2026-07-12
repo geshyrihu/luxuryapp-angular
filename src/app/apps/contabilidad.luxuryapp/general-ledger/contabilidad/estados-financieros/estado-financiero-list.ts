@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -84,7 +85,7 @@ export class EstadoFinancieroList {
   }
 
   onLoadData(): void {
-    const urlApi = `FinancialReport/ToCustomer/${this.customerIdS.customerId()}/`;
+    const urlApi = Endpoints.RefactorContabilidad.financialReportToCustomerById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -142,8 +143,7 @@ export class EstadoFinancieroList {
     this.processingAuthorize.set(currentSet);
 
     this.apiResponseS
-      .onGetItem(
-        `FinancialReport/Authorize/${id}/${this.authS.applicationUserId}`,
+      .onGetItem(Endpoints.RefactorContabilidad.financialReportAuthorizeByIdById(id, this.authS.applicationUserId),
       )
       .then((_) => {
         this.onLoadData();
@@ -163,7 +163,7 @@ export class EstadoFinancieroList {
     this.processingDesauthorize.set(currentSet);
 
     this.apiResponseS
-      .onGetItem(`FinancialReport/Desauthorize/${id}`)
+      .onGetItem(Endpoints.RefactorContabilidad.financialReportDesauthorizeById(id))
       .then((_) => {
         this.onLoadData();
       })
@@ -182,8 +182,7 @@ export class EstadoFinancieroList {
     this.processingSend.set(currentSet);
 
     this.apiResponseS
-      .onPost(
-        `FinancialReport/Send/${data.id}/${this.authS.applicationUserId}`,
+      .onPost(Endpoints.RefactorContabilidad.financialReportSendByIdById(data.id, this.authS.applicationUserId),
         null,
       )
       .then((_) => {

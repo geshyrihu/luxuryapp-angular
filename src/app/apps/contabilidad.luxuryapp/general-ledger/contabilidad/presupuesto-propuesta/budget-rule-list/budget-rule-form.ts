@@ -95,7 +95,7 @@ export class BudgetRuleForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "BudgetAccountRules",
+      endpoint: "budget-account-rules",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

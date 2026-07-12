@@ -193,7 +193,7 @@ export class AiService {
 
   async consultDocument(documentId: string, query: string): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "CustomDocument/ConsultWithAi",
+      "custom-documents/consult-with-ai",
       {
         documentId,
         query,

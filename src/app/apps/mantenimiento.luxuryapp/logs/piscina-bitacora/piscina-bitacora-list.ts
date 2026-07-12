@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -75,7 +76,7 @@ export class PiscinaBitacoraList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = "piscinabitacora/list/" + this.piscinaId;
+    const urlApi = Endpoints.RefactorMantenimiento.piscinabitacoraListById(this.piscinaId);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -83,7 +84,7 @@ export class PiscinaBitacoraList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`piscinabitacora/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.piscinabitacoraById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

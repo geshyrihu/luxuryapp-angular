@@ -13,4 +13,10 @@ export const EndpointsResident = {
     delete: (id: string) => `owner/${id}`,
     getById: (id: string) => `owner/${id}`,
   },
+  RefactorResident: {
+    propertyOccupantById: (id: any) => `property-occupant/${id}`,
+      ownerListById: (customerIdS: any) => `owner/list/${customerIdS}`,
+    propertyListById: (customerIdS: any) => `property/list/${customerIdS}`,
+    propertyImportById: (customerIdS: any) => `property/import/${customerIdS}`,
+},
 } as const;

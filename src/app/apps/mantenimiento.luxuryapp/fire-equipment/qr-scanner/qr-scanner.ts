@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -121,7 +122,7 @@ export class QrScanner implements OnDestroy {
     const id = segments[0];
     this.statusMsg.set("Identificando equipo...");
     const result: any = await this.apiResponseS
-      .onGetItem(`FireEquipment/resolve/${id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.fireEquipmentResolveById(id))
       .catch(() => null);
 
     if (!result) {

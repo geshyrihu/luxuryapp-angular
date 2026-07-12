@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -74,16 +75,14 @@ export class MinutasResumen implements OnInit {
 
   onLoadData(fehcaInicio: string, fechaFinal: string) {
     this.apiResponseS
-      .onGetList(
-        `resumen-general/ResumenMinutasGeneralLista/${fehcaInicio}/${fechaFinal}`,
+      .onGetList(Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralListaByIdById(fehcaInicio, fechaFinal),
       )
       .then((result: any) => {
         this.generalMinutasSignal.set(result);
       });
 
     this.apiResponseS
-      .onGetList(
-        `resumen-general/ResumenMinutasGeneralGrupo/${fehcaInicio}/${fechaFinal}`,
+      .onGetList(Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralGrupoByIdById(fehcaInicio, fechaFinal),
       )
       .then((result: any) => {
         this.generalMinutasGrupoSignal.set(result);

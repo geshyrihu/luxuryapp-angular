@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -167,13 +168,13 @@ export class InventarioHidrante {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList("InventarioHidrante/list/" + this.customerIdS.customerId())
+      .onGetList(Endpoints.RefactorOperations.inventarioHidranteListById(this.customerIdS.customerId()))
       .then((result: any) => this.dataSignal.set(result));
   }
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`InventarioHidrante/${id}`)
+      .onDelete(Endpoints.RefactorOperations.inventarioHidranteById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

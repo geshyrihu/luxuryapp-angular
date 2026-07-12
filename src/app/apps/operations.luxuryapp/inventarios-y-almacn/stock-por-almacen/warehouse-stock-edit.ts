@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -82,7 +83,7 @@ export class WarehouseStockEdit implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `InventarioProducto/${this.id()}`;
+    const urlApi = Endpoints.RefactorOperations.inventarioProductoById(this.id());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -94,13 +95,13 @@ export class WarehouseStockEdit implements OnInit {
     this.submitting.set(true);
     if (this.id() === 0) {
       this.apiResponseS
-        .onPost(`InventarioProducto`, this.form.getRawValue())
+        .onPost(Endpoints.RefactorOperations.inventarioProducto, this.form.getRawValue())
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`InventarioProducto/${this.id()}`, this.form.getRawValue())
+        .onPut(Endpoints.RefactorOperations.inventarioProductoById(this.id()), this.form.getRawValue())
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

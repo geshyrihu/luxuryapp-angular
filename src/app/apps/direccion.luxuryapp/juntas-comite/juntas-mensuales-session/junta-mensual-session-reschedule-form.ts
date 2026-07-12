@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -96,7 +97,7 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(`JuntaMensualSession/${this.id()}/reschedule`, {
+      .onPut(Endpoints.RefactorDireccion.juntaMensualSessionByIdReschedule(this.id()), {
         startAt,
         endAt,
         modality: raw.modality,

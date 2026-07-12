@@ -186,7 +186,7 @@ export class ProveedorForm implements OnInit {
     const [categories, banks, tipoServicio] = await Promise.all([
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(`Categories`),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(`Bank`),
-      this.apiResponseS.onGetEnumSelectItem(`EServiceType`),
+      this.apiResponseS.onGetEnumSelectItem(`e-service-type`),
     ]);
 
     this.cb_category.set(categories as SelectItemDto[]);
@@ -272,7 +272,7 @@ export class ProveedorForm implements OnInit {
 
   onValidarRFC(valueRfc: string) {
     if (valueRfc.length > 5) {
-      const urlApi = `providers/ValidarRfc/${valueRfc}/${this.customerIdS.customerId()}`;
+      const urlApi = Endpoints.RefactorSupplier.providersValidarRfcByIdById(valueRfc, this.customerIdS.customerId());
       this.apiResponseS.onGetList(urlApi).then((result: any) => {
         this.rfcCoincidente.set(result);
       });

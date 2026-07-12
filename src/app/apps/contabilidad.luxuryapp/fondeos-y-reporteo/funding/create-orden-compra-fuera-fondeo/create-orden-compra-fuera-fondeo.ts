@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -106,7 +107,7 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost("OrdenCompra/fuera-fondeo", this.form.value)
+      .onPost(Endpoints.RefactorContabilidad.ordenCompraFueraFondeo, this.form.value)
       .then((result: any) => {
         if (result) {
           this.ref.close(true);

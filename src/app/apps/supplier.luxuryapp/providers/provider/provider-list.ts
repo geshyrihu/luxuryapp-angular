@@ -167,7 +167,7 @@ export class ListProvider implements OnInit {
     pageSize: number = this.rows,
     filter: string = this.searchTerm,
   ) {
-    const urlApi = `providers/list`;
+    const urlApi = Endpoints.RefactorSupplier.providersList;
     const httpParams: any = {
       customerId: this.customerIdS.customerId(), // Obtenemos el ID del servicio
       page,
@@ -225,7 +225,7 @@ export class ListProvider implements OnInit {
 
   // Autoriza un proveedor
   onAutorizarProvider(providerId: any) {
-    const urlApi = `providers/Autorizar/${providerId}`;
+    const urlApi = Endpoints.RefactorSupplier.providersAutorizarById(providerId);
     this.apiResponseS.onGetList(urlApi).then(() => {
       this.onLoadData();
     });
@@ -287,7 +287,7 @@ export class ListProvider implements OnInit {
   // Cambia el estado (activo/inactivo) del proveedor
   onActivateProvider(data: any) {
     this.apiResponseS
-      .onPut(`providers/change-state/${data.providerId}/${data.state}`, null)
+      .onPut(Endpoints.RefactorSupplier.providersChangeStateByIdById(data.providerId, data.state), null)
       .then(() => {
         this.onLoadData();
       });

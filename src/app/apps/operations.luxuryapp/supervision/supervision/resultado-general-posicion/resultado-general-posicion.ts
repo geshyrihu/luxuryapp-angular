@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -55,7 +56,7 @@ export class ResultadoGeneralPosicion {
   });
 
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = `resumen-general/Posicion/${fechaInicio}/${fechaFinal}`;
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralPosicionByIdById(fechaInicio, fechaFinal);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.dataSignal.set(result);
     });

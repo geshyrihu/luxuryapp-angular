@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -116,7 +117,7 @@ export class AgendaSupervision implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `AgendaSupervision/list/${this.fechaInicial}/${this.fechaFinal}`;
+    const urlApi = Endpoints.RefactorOperations.agendaSupervisionListByIdById(this.fechaInicial, this.fechaFinal);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -146,7 +147,7 @@ export class AgendaSupervision implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`AgendaSupervision/${id}`)
+      .onDelete(Endpoints.RefactorOperations.agendaSupervisionById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

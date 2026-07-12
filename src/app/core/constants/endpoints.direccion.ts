@@ -11,14 +11,14 @@ export const EndpointsDireccion = {
     update: (id: string) => `asamblea-checklist-template/${id}`,
   },
   JuntaMensualSession: {
-    detail: (sessionId: string) => `JuntaMensualSession/${sessionId}/detail`,
+    detail: (sessionId: string) => `junta-mensual-sessions/${sessionId}/detail`,
   },
   MeetingAdministracion: {
     addParticipant: (meetingId: string | number, participantId: string | number) =>
       `meeting-administracion/agregar-participantes-administracion/${meetingId}/${participantId}/1`,
     delete: (id: string | number) => `meeting-administracion/${id}`,
     listCandidates: (customerId: string, meetingId: string | number) =>
-      `GetListAdministracionMinuta/${customerId}/${meetingId}`,
+      `get-list-administracion-minuta/${customerId}/${meetingId}`,
     participants: (meetingId: string | number) =>
       `meeting-administracion/participantes-administracion/${meetingId}`,
   },
@@ -27,7 +27,7 @@ export const EndpointsDireccion = {
       `meeting-comite/agregar-participantes-comite/${meetingId}/${participantId}`,
     delete: (id: string | number) => `meeting-comite/${id}`,
     listCandidates: (customerId: string, meetingId: string | number) =>
-      `GetListComiteMinuta/${customerId}/${meetingId}`,
+      `get-list-comite-minuta/${customerId}/${meetingId}`,
     participants: (meetingId: string | number) =>
       `meeting-comite/participantes-comite/${meetingId}`,
   },
@@ -39,13 +39,18 @@ export const EndpointsDireccion = {
       `meeting-invitado/participantes-invitado/${meetingId}`,
   },
   PresentacionJuntaComite: {
-    addFecha: "PresentacionJuntaComite/AddFecha",
+    addFecha: "presentaciones-junta-comite/add-fecha",
     authorize: (id: any, userId: string) =>
-      `PresentacionJuntaComite/AutorizarPresentacion/${id}/${userId}`,
-    delete: (id: any) => `PresentacionJuntaComite/${id}`,
-    deleteFile: (id: any, area: string) => `PresentacionJuntaComite/${id}/${area}`,
-    getById: (id: string) => `PresentacionJuntaComite/Get/${id}`,
-    list: (customerId: string) => `PresentacionJuntaComite/list/${customerId}`,
-    updateFecha: (id: string) => `PresentacionJuntaComite/AddFecha/${id}`,
+      `presentaciones-junta-comite/autorizar-presentacion/${id}/${userId}`,
+    delete: (id: any) => `presentaciones-junta-comite/${id}`,
+    deleteFile: (id: any, area: string) => `presentaciones-junta-comite/${id}/${area}`,
+    getById: (id: string) => `presentaciones-junta-comite/Get/${id}`,
+    list: (customerId: string) => `presentaciones-junta-comite/list/${customerId}`,
+    updateFecha: (id: string) => `presentaciones-junta-comite/add-fecha/${id}`,
   },
+  RefactorDireccion: {
+    juntaMensualSessionByIdReschedule: (id: any) => `junta-mensual-sessions/${id}/reschedule`,
+    presentacionJuntaComiteAddFile: "presentaciones-junta-comite/add-file",
+      meetingsDetailsDetallesFiltroByIdById: (meetingId: any, status: any) => `meetings-details/detalles-filtro/${meetingId}/${status}`,
+},
 } as const;

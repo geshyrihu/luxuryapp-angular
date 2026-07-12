@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -50,7 +51,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`FireInspectionCycle/${this.cycleId}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.fireInspectionCycleById(this.cycleId))
       .then((result: any) => this.cycle.set(result));
   }
 
@@ -177,7 +178,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     } else {
       this.scanStatus.set("Identificando equipo...");
       const result: any = await this.apiResponseS
-        .onGetItem(`FireEquipment/resolve/${segments[0]}`)
+        .onGetItem(Endpoints.RefactorMantenimiento.fireEquipmentResolveById(segments[0]))
         .catch(() => null);
       if (!result) {
         this.scanError.set("No se encontré el equipo en el sistema.");

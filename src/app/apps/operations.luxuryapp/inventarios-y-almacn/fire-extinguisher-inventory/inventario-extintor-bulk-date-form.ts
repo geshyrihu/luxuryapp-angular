@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -49,8 +50,7 @@ export class InventarioExtintorBulkDateForm {
     if (!this.apiResponseS.validateForm(this.form)) return;
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(
-        `InventarioExtintor/bulk-expiration/${this.customerIdS.customerId()}`,
+      .onPut(Endpoints.RefactorOperations.inventarioExtintorBulkExpirationById(this.customerIdS.customerId()),
         {
           expirationDate: this.form.value.expirationDate,
         },

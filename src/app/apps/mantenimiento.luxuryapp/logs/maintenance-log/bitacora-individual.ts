@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -107,7 +108,7 @@ export class BitacoraIndividual implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `BitacoraMantenimiento/BitacoraIndividual/${this.machineryId}/${this.fechaInicial}/${this.fechaFinal}`;
+    const urlApi = Endpoints.RefactorMantenimiento.bitacoraMantenimientoBitacoraIndividualByIdByIdById(this.machineryId, this.fechaInicial, this.fechaFinal);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

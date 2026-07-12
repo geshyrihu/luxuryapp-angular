@@ -3,22 +3,23 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter, map, startWith } from "rxjs/operators";
 import { FilterRequests } from "./recruitment-shared/filter-requests";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 const ROUTE_FILTER_CONFIG: Record<string, { apiUrl: string; nameFile: string }> = {
   vacancies: {
-    apiUrl: "RequestPosition/ExportRequestToExcel",
+    apiUrl: EndpointsReclutamiento.RequestPosition.exportExcel,
     nameFile: "Reporte de vacantes.xlsx",
   },
   hirings: {
-    apiUrl: "RequestEmployeeRegister/ExportRequestToExcel",
+    apiUrl: EndpointsReclutamiento.RequestEmployeeRegister.exportExcel,
     nameFile: "Reporte de altas.xlsx",
   },
   dismissals: {
-    apiUrl: "RequestDismissal/ExportRequestToExcel",
+    apiUrl: EndpointsReclutamiento.RequestDismissal.exportExcel,
     nameFile: "Reporte de bajas.xlsx",
   },
   "salary-increase": {
-    apiUrl: "RequestSalaryModification/ExportRequestToExcel",
+    apiUrl: EndpointsReclutamiento.RequestSalaryModification.exportExcel,
     nameFile: "Reporte Modificacion Salario.xlsx",
   },
 };

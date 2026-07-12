@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -94,38 +95,38 @@ export class ResultadoGeneralDashboard implements OnInit {
     this.reporteFiltro = "MINUTAS GENERAL";
     // Mostrar un mensaje de carga
 
-    const urlApi = `resumen-general/ReporteResumenMinutas/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenMinutasByIdByIdById(this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}/${this.nivelReporte}`;
+    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin), this.nivelReporte);
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataMinutaFiltro(AreaMinutasDetalles: number) {
-    const urlApi = `resumen-general/ReporteResumenMinutasFiltro/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenMinutasFiltroByIdByIdByIdById(this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}/${this.dateS.getDateFormat(
+    ), this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoFin,
-    )}/${AreaMinutasDetalles}/${this.nivelReporte}`;
+    ), AreaMinutasDetalles, this.nivelReporte);
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataPreventivos() {
-    const urlApi = `resumen-general/ReporteResumenPreventivos/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenPreventivosByIdById(this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}`;
+    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin));
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataTickets() {
-    const urlApi = `resumen-general/ReporteResumenTicket/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdById(this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}/${this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin)}`;
+    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin));
 
     this.apiResponseS
       .onGetList(urlApi)

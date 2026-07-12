@@ -43,121 +43,121 @@ export class EnumSelectService {
     );
   }
 
-  boolYesNo = () => this.onLoadSelectList("BoolYesNo");
+  boolYesNo = () => this.onLoadSelectList("bool-yes-no");
 
   areaMinutasDetalles = (d?: boolean) =>
-    this.onLoadEnumList("AreaMinutasDetalles", d);
+    this.onLoadEnumList("e-area-minutas-detalles", d);
 
-  departament = (d?: boolean) => this.onLoadEnumList("Departament", d);
+  departament = (d?: boolean) => this.onLoadEnumList("e-departament", d);
 
-  areaOrganigrama = (d?: boolean) => this.onLoadEnumList("EAreaOrganigrama", d);
+  areaOrganigrama = (d?: boolean) => this.onLoadEnumList("e-area-organigrama", d);
 
-  assetCategory = (d?: boolean) => this.onLoadEnumList("EAssetCategory", d);
+  assetCategory = (d?: boolean) => this.onLoadEnumList("e-asset-category", d);
 
-  bloodType = (d?: boolean) => this.onLoadEnumList("EBloodType", d);
+  bloodType = (d?: boolean) => this.onLoadEnumList("e-blood-type", d);
 
-  companyArea = (d?: boolean) => this.onLoadEnumList("ECompanyArea", d);
+  companyArea = (d?: boolean) => this.onLoadEnumList("e-company-area", d);
 
-  educationLevel = (d?: boolean) => this.onLoadEnumList("EEducationLevel", d);
+  educationLevel = (d?: boolean) => this.onLoadEnumList("e-education-level", d);
 
   extinguisherType = (d?: boolean) =>
-    this.onLoadEnumList("EExtinguisherType", d);
+    this.onLoadEnumList("e-extinguisher-type", d);
 
-  hydrantType = (d?: boolean) => this.onLoadEnumList("EHydrantType", d);
+  hydrantType = (d?: boolean) => this.onLoadEnumList("e-hydrant-type", d);
 
-  cabinetState = (d?: boolean) => this.onLoadEnumList("ECabinetState", d);
+  cabinetState = (d?: boolean) => this.onLoadEnumList("e-cabinet-state", d);
 
   manualStationType = (d?: boolean) =>
-    this.onLoadEnumList("EManualStationType", d);
+    this.onLoadEnumList("e-manual-station-type", d);
 
   smokeDetectorType = (d?: boolean) =>
-    this.onLoadEnumList("ESmokeDetectorType", d);
+    this.onLoadEnumList("e-smoke-detector-type", d);
 
-  severityLevel = (d?: boolean) => this.onLoadEnumList("ESeverityLevel", d);
+  severityLevel = (d?: boolean) => this.onLoadEnumList("e-severity-level", d);
 
   incidentCategory = (d?: boolean) =>
-    this.onLoadEnumList("EIncidentCategory", d);
+    this.onLoadEnumList("e-incident-category", d);
 
-  frequencyType = (d?: boolean) => this.onLoadEnumList("EFrequencyType", d);
+  frequencyType = (d?: boolean) => this.onLoadEnumList("e-frequency-type", d);
 
   fuenteReclutamiento = (d?: boolean) =>
-    this.onLoadEnumList("EFuenteReclutamiento", d);
+    this.onLoadEnumList("e-fuente-reclutamiento", d);
 
-  maritalStatus = (d?: boolean) => this.onLoadEnumList("EMaritalStatus", d);
+  maritalStatus = (d?: boolean) => this.onLoadEnumList("e-marital-status", d);
 
   month(defaultOption?: boolean): Observable<SelectItemDto[]> {
-    return this.onLoadEnumList("EMonth", defaultOption).pipe(
+    return this.onLoadEnumList("e-month", defaultOption).pipe(
       map((months) => months.sort((a, b) => a.value - b.value)),
     );
   }
 
-  permission = (d?: boolean) => this.onLoadEnumList("EPermission", d);
+  permission = (d?: boolean) => this.onLoadEnumList("e-permission", d);
 
-  priorityLevel = (d?: boolean) => this.onLoadEnumList("EPriorityLevel", d);
+  priorityLevel = (d?: boolean) => this.onLoadEnumList("e-priority-level", d);
 
-  recurrence = (d?: boolean) => this.onLoadEnumList("Recurrence", d);
+  recurrence = (d?: boolean) => this.onLoadEnumList("e-recurrence", d);
 
-  roleType = (d?: boolean) => this.onLoadEnumList("RoleType", d);
+  roleType = (d?: boolean) => this.onLoadEnumList("e-role-type", d);
 
-  sex = (d?: boolean) => this.onLoadEnumList("ESex", d);
+  sex = (d?: boolean) => this.onLoadEnumList("e-sex", d);
 
-  status = (d?: boolean) => this.onLoadEnumList("EStatus", d);
+  status = (d?: boolean) => this.onLoadEnumList("e-status", d);
 
-  requestStatus = (d?: boolean) => this.onLoadEnumList("ERequestStatus", d);
+  requestStatus = (d?: boolean) => this.onLoadEnumList("e-request-status", d);
 
-  tipoBaja = (d?: boolean) => this.onLoadEnumList("ETipoBaja", d);
+  tipoBaja = (d?: boolean) => this.onLoadEnumList("e-tipo-baja", d);
 
-  tipoGasto = (d?: boolean) => this.onLoadEnumList("TipoGasto", d);
+  tipoGasto = (d?: boolean) => this.onLoadEnumList("e-tipo-gasto", d);
 
-  turnoTrabajo = (d?: boolean) => this.onLoadEnumList("ETurnoTrabajo", d);
+  turnoTrabajo = (d?: boolean) => this.onLoadEnumList("e-turno-trabajo", d);
 
-  typeContract = (d?: boolean) => this.onLoadEnumList("ETypeContract", d);
+  typeContract = (d?: boolean) => this.onLoadEnumList("e-type-contract", d);
 
-  typePiscina = (d?: boolean) => this.onLoadEnumList("ETypePiscina", d);
+  typePiscina = (d?: boolean) => this.onLoadEnumList("e-type-piscina", d);
 
-  typeMaintance = (d?: boolean) => this.onLoadEnumList("ETypeMaintance", d);
+  typeMaintance = (d?: boolean) => this.onLoadEnumList("e-type-maintance", d);
 
   typeContractRegister = (d?: boolean) =>
-    this.onLoadEnumList("ETypeContractRegister", d);
+    this.onLoadEnumList("e-type-contract-register", d);
 
-  typeMeeting = (d?: boolean) => this.onLoadEnumList("ETypeMeeting", d);
+  typeMeeting = (d?: boolean) => this.onLoadEnumList("e-type-meeting", d);
 
   typeStatusOrdenCompra = (d?: boolean) =>
-    this.onLoadEnumList("EStatusOrdenCompra", d);
+    this.onLoadEnumList("e-status-orden-compra", d);
 
   typePosicionComite = (d?: boolean) =>
-    this.onLoadEnumList("EPosicionComite", d);
+    this.onLoadEnumList("e-posicion-comite", d);
 
-  typeHabitant = (d?: boolean) => this.onLoadEnumList("EHabitant", d);
+  typeHabitant = (d?: boolean) => this.onLoadEnumList("e-habitant", d);
 
   typeTaskMessageStatus = (d?: boolean) =>
-    this.onLoadEnumList("ETaskMessageStatus", d);
+    this.onLoadEnumList("e-ticket-message-status", d);
 
   relationEmployee = (d?: boolean) =>
-    this.onLoadEnumList("ERelationEmployee", d);
+    this.onLoadEnumList("e-relation-employee", d);
 
   inventoryCategory = (d?: boolean) =>
-    this.onLoadEnumList("EInventoryCategory", d);
+    this.onLoadEnumList("e-inventory-category", d);
 
-  state = (d?: boolean) => this.onLoadEnumList("EState", d);
+  state = (d?: boolean) => this.onLoadEnumList("e-state", d);
 
-  typePerson = (d?: boolean) => this.onLoadEnumList("ETypePerson", d);
+  typePerson = (d?: boolean) => this.onLoadEnumList("e-type-person", d);
 
   productClasificacion = (d?: boolean) =>
-    this.onLoadEnumList("EProductClasificacion", d);
+    this.onLoadEnumList("e-product-clasificacion", d);
 
-  rolLevel = (d?: boolean) => this.onLoadEnumList("ERolLevel", d);
+  rolLevel = (d?: boolean) => this.onLoadEnumList("e-rol-level", d);
 
-  visibilityLevel = (d?: boolean) => this.onLoadEnumList("EVisibilityLevel", d);
+  visibilityLevel = (d?: boolean) => this.onLoadEnumList("e-visibility-level", d);
 
-  requestType = (d?: boolean) => this.onLoadEnumList("ERequestType", d);
+  requestType = (d?: boolean) => this.onLoadEnumList("e-request-type", d);
 
-  expenseType = (d?: boolean) => this.onLoadEnumList("EExpenseType", d);
+  expenseType = (d?: boolean) => this.onLoadEnumList("e-expense-type", d);
 
   investigationStatus = (d?: boolean) =>
-    this.onLoadEnumList("EInvestigationStatus", d);
+    this.onLoadEnumList("e-investigation-status", d);
 
-  memberRole = (d?: boolean) => this.onLoadEnumList("EMemberRole", d);
+  memberRole = (d?: boolean) => this.onLoadEnumList("e-member-role", d);
 
-  billingMode = (d?: boolean) => this.onLoadEnumList("EBillingMode", d);
+  billingMode = (d?: boolean) => this.onLoadEnumList("e-billing-mode", d);
 }

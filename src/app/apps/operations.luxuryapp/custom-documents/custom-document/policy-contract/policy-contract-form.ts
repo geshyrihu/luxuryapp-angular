@@ -134,7 +134,7 @@ export class PolicyContractForm implements OnInit {
   }
 
   private async loadTypeOfContract(): Promise<void> {
-    const data = await this.apiResponseS.onGetEnumSelectItem(`ETypeOfContract`);
+    const data = await this.apiResponseS.onGetEnumSelectItem(`e-type-of-contract`);
     this.cb_type_of_contract.set(data as SelectItemDto[]);
   }
 

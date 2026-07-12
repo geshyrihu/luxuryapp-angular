@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -74,7 +75,7 @@ export class ElevatorsEmergencyCallList {
   }
 
   onLoadData() {
-    const urlApi = `elevators-emergency-call/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorMantenimiento.elevatorsEmergencyCallListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -82,7 +83,7 @@ export class ElevatorsEmergencyCallList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`elevators-emergency-call/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.elevatorsEmergencyCallById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

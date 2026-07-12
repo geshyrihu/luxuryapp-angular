@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,7 +41,7 @@ export class EmployeeReclutamiento implements OnInit {
   // Solicitud de baja
   // Solicitud de modificacion de salario
   onValidarSolicitudesAbiertas() {
-    const urlApi = `employees/validarsolicitudesabiertas/${this.employeeId()}`;
+    const urlApi = Endpoints.RefactorReclutamiento.employeesValidarsolicitudesabiertasById(this.employeeId());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.workPosition.set(result.workPosition);
       this.solicitudAltaStatus.set(result.solicitudAlta);

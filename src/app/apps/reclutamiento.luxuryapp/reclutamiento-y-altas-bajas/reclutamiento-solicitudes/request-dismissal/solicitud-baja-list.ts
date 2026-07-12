@@ -29,6 +29,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SolicitudBajaUpdateStatus } from "./solicitud-baja-update-status";
 
@@ -97,7 +98,7 @@ export class SolicitudBajaList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `requestdismissal/list/`;
+    const urlApi = EndpointsReclutamiento.RequestDismissal.list;
     const params = this.filterRequestsService.getParams();
     this.apiResponseS.onGetList(urlApi, params).then((result: any) => {
       this.dataSignal.set(result);
@@ -121,7 +122,7 @@ export class SolicitudBajaList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RequestDismissal/${id}`)
+      .onDelete(EndpointsReclutamiento.RequestDismissal.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

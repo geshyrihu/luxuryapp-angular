@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -104,7 +105,7 @@ export class InventarioEstacionManualForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`InventarioEstacionManual/${this.id}`)
+      .onGetItem(Endpoints.RefactorOperations.inventarioEstacionManualById(this.id))
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
         this.form.patchValue(result);
@@ -117,13 +118,13 @@ export class InventarioEstacionManualForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost("InventarioEstacionManual", formData)
+        .onPost(Endpoints.RefactorOperations.inventarioEstacionManual, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`InventarioEstacionManual/${this.id}`, formData)
+        .onPut(Endpoints.RefactorOperations.inventarioEstacionManualById(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

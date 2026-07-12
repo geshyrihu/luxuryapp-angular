@@ -107,7 +107,7 @@ export class EspejoAspelExtraordinarios {
     this.sharedS.errorMensaje.set(null);
 
     const urlBudget = `presupuesto/presupuesto-limpio-ejercicio-fiscal?customerId=${customerId}&intYear=${this.sharedS.intYear()}`;
-    const urlRules = `BudgetAccountRules/${customerId}`;
+    const urlRules = `budget-account-rules/${customerId}`;
 
     this.apiResponseS
       .onGetList<AspelBudgetDTO>(urlBudget)

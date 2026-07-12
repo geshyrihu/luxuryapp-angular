@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -92,7 +93,7 @@ export class UnifiedPendingDashboardMobile {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url = `dashboard/GlobalPendingItems/${customerId}`;
+    const url = Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
 
     this.apiResponseS
       .onGetList(url)

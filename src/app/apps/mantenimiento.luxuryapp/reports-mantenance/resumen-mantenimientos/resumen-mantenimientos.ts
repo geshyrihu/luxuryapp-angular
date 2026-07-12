@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -52,12 +53,12 @@ export class ResumenMantenimientos {
     );
     const customerId: string = this.customerIdS.customerId();
 
-    const urlApi = `maintenance-report/resumen/${customerId}/${periodo}`;
+    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportResumenByIdById(customerId, periodo);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = `maintenance-report/proveedor/${customerId}/${periodo}`;
+    const urlApi2 = Endpoints.RefactorMantenimiento.maintenanceReportProveedorByIdById(customerId, periodo);
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataProviderSignal.set(result);
     });

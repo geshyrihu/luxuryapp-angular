@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -53,7 +54,7 @@ export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
   }
 
   onLoadData(fecha: string, area: number, status?: number) {
-    const urlApi = `resumen-general/EvaluacionAreasDetalle/${fecha}/${area}/${status}`;
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasDetalleByIdByIdById(fecha, area, status);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

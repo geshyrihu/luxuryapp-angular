@@ -28,6 +28,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ModificacionSalarioForm } from "./modificacion-salario-form";
@@ -96,7 +97,7 @@ export class SolicitudModificacionList implements OnInit {
     // Logic moved to effect
   }
   onLoadData() {
-    const urlApi = `RequestSalaryModification`;
+    const urlApi = EndpointsReclutamiento.RequestSalaryModification.list;
     this.apiResponseS
       .onGetList(urlApi, this.filterRequestsService.getParams())
       .then((result: any) => {
@@ -106,7 +107,7 @@ export class SolicitudModificacionList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RequestSalaryModification/${id}`)
+      .onDelete(EndpointsReclutamiento.RequestSalaryModification.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

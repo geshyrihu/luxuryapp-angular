@@ -30,6 +30,7 @@ import { FilterRequestsService } from "src/app/core/http/services/filter-request
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import { VacanteDetailModal } from './vacante-detail-modal';
 import { VacanteForm } from './vacante-form';
 
@@ -103,13 +104,13 @@ export class VacantesList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`RequestPosition/`, this.filterRequestsService.getParams())
+      .onGetList(EndpointsReclutamiento.RequestPosition.list, this.filterRequestsService.getParams())
       .then((result: any) => this.dataSignal.set(result));
   }
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RequestPosition/${id}`)
+      .onDelete(EndpointsReclutamiento.RequestPosition.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

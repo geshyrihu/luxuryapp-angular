@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +15,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-solicitud-vacante",
@@ -72,7 +74,7 @@ export class SolicitudVacanteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `work-positions/${this.workPositionId}`;
+    const urlApi = Endpoints.RefactorReclutamiento.workPositionsById(this.workPositionId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.data = result;
       this.form.patchValue(result);
@@ -86,7 +88,7 @@ export class SolicitudVacanteForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        `SolicitudesReclutamiento/SolicitudVacante/${this.authS.infoUserAuth.applicationUserId}`,
+        EndpointsReclutamiento.RecruitmentRequests.solicitudVacante(this.authS.infoUserAuth.applicationUserId),
         this.form.getRawValue(),
       )
       .then((result: boolean) => {

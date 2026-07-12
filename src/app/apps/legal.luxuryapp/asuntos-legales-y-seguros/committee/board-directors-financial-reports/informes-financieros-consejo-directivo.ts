@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
@@ -61,7 +62,7 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     }
 
     // Construimos la URL del endpoint que creamos en el backend
-    const urlApi = `BoardDirectors/financial-reports/${customerId}`;
+    const urlApi = Endpoints.RefactorLegal.boardDirectorsFinancialReportsById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

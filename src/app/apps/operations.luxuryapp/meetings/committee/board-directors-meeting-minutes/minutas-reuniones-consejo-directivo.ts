@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -60,7 +61,7 @@ export class MinutasReunionesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las minutas que creamos en el backend
-    const urlApi = `BoardDirectors/meeting-minutes/${customerId}`;
+    const urlApi = Endpoints.RefactorOperations.boardDirectorsMeetingMinutesById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

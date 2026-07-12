@@ -15,6 +15,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 // Assuming EStatus enum is available globally or imported
 // For this example, I'll define it here based on the C# enum.
 export const ESTATUS_BAJA = [
@@ -70,7 +71,7 @@ export class SolicitudBajaUpdateStatus implements OnInit {
 
     // Use onPatch for partial update
     this.apiResponseS
-      .onPatch(`RequestDismissal/${this.id}/status`, dto)
+      .onPatch(EndpointsReclutamiento.RequestDismissal.updateStatus(this.id), dto)
       .then((result: boolean) => {
         this.submitting = false;
         if (result) {

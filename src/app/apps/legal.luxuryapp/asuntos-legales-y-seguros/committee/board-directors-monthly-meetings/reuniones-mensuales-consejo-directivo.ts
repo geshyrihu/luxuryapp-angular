@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
@@ -57,7 +58,7 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las juntas mensuales que creamos en el backend
-    const urlApi = `BoardDirectors/monthly-meetings/${customerId}`;
+    const urlApi = Endpoints.RefactorLegal.boardDirectorsMonthlyMeetingsById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

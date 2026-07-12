@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -167,7 +168,7 @@ export class PropertyOccupantManager implements OnInit {
     this.loading.set(true);
     this.errorMensaje = null;
     this.apiResponseS
-      .onDelete(`property-occupant/${id}`)
+      .onDelete(Endpoints.RefactorResident.propertyOccupantById(id))
       .then((response) => {
         if (response !== false) {
           this.occupants.update((current) =>

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -46,8 +47,7 @@ export class AddFileEstadoFinanciero implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost(
-        `FinancialReport/UploadFile/${this.id}/${this.authS.applicationUserId}`,
+      .onPost(Endpoints.RefactorContabilidad.financialReportUploadFileByIdById(this.id, this.authS.applicationUserId),
         model,
       )
       .then((result: boolean) => {

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -68,8 +69,7 @@ export class FireCycleInspectionEstacionForm implements OnInit {
 
   onLoadExisting() {
     this.apiResponseS
-      .onGetItem(
-        `fire-cycle-inspection/estacion/${this.cycleId}/${this.equipmentId}`,
+      .onGetItem(Endpoints.RefactorMantenimiento.fireCycleInspectionEstacionByIdById(this.cycleId, this.equipmentId),
       )
       .then((result: any) => {
         if (result) this.form.patchValue(result);

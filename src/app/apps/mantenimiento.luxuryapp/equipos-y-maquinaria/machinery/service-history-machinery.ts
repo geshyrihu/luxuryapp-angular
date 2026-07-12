@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -52,7 +53,7 @@ export class ServiceHistoryMachinery implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `machineries/ServiceHistory/${this.config.data.id}`;
+    const urlApi = Endpoints.RefactorMantenimiento.machineriesServiceHistoryById(this.config.data.id);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

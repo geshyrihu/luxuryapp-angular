@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -91,8 +92,7 @@ export class ContListMinutaPendientes implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(
-        `ContabilidadMinuta/ListaMinuta/${this.authS.userToken.infoUserAuthDTO.applicationUserId}/${this.statusFiltroControl.value}`,
+      .onGetList(Endpoints.RefactorContabilidad.contabilidadMinutaListaMinutaByIdById(this.authS.userToken.infoUserAuthDTO.applicationUserId, this.statusFiltroControl.value),
       )
       .then((result: any) => {
         this.dataSignal.set(result);
@@ -149,7 +149,7 @@ export class ContListMinutaPendientes implements OnInit {
 
   async onDownloadPdf() {
     const pendientes = await this.apiResponseS.onGetList<any[]>(
-      "ContabilidadMinuta/Pendientes/0",
+      "contabilidad-minuta/Pendientes/0",
     );
 
     if (!pendientes || pendientes.length === 0) {

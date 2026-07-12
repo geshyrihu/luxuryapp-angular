@@ -128,7 +128,7 @@ export class SatFundingDetailComponent implements OnInit {
     };
 
     this.apiResponseService
-      .onPost("SatFunding/RequestDownload", request)
+      .onPost(Endpoints.RefactorContabilidad.satFundingRequestDownload, request)
       .then(() => {
         this.onLoadData(); // Refresh data after processing
       })
@@ -170,7 +170,7 @@ export class SatFundingDetailComponent implements OnInit {
     };
 
     this.apiResponseService
-      .onPut("SatFunding/BulkUpdateTipoGasto", request)
+      .onPut(Endpoints.RefactorContabilidad.satFundingBulkUpdateTipoGasto, request)
       .then(() => {
         this.onLoadData();
         this.selection = [];

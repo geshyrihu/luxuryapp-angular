@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -85,7 +86,7 @@ export default class ProjectedExpensesList {
   onLoadData() {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList(`projected-expenses/${this.customerIdS.customerId()}`)
+      .onGetList(Endpoints.RefactorContabilidad.projectedExpensesById(this.customerIdS.customerId()))
       .then((result: any) => {
         this.dataSignal.set(result);
         this.loading.set(false);
@@ -94,7 +95,7 @@ export default class ProjectedExpensesList {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`projected-expenses/${this.customerIdS.customerId()}/${id}`)
+      .onDelete(Endpoints.RefactorContabilidad.projectedExpensesByIdById(this.customerIdS.customerId(), id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.set(

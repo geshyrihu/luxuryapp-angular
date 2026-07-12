@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -69,7 +70,7 @@ export class CalendarioMaestroLista implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList("calendariomaestro/list")
+      .onGetList(Endpoints.RefactorMantenimiento.calendariomaestroList)
       .then((result: any) => {
         const data = Array.isArray(result) ? result : [];
         this.data.set(data);
@@ -126,7 +127,7 @@ export class CalendarioMaestroLista implements OnInit {
 
   onDelete(id: any): void {
     this.apiResponseS
-      .onDelete(`calendariomaestro/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.calendariomaestroById(id))
       .then((result: boolean) => {
         if (result) {
           this.onLoadData(); // Recargar los datos para reflejar el cambio

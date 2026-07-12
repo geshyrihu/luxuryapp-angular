@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -56,7 +57,7 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
     });
   }
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = `resumen-general/EvaluacionAreas/${fechaInicio}/${fechaFinal}`;
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasByIdById(fechaInicio, fechaFinal);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

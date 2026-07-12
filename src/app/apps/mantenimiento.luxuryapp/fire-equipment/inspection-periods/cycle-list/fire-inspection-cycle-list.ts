@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -69,7 +70,7 @@ export class FireInspectionCycleList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`FireInspectionCycle/list/${this.customerIdS.customerId()}`)
+      .onGetList(Endpoints.RefactorMantenimiento.fireInspectionCycleListById(this.customerIdS.customerId()))
       .then((result: any) => this.dataSignal.set(result));
   }
 

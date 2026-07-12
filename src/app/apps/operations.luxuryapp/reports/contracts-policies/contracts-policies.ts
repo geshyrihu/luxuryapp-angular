@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,7 +63,7 @@ export class ContractsPolicies {
   }
 
   onLoadData() {
-    const urlApi = `PolicyContract/List/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.policyContractListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

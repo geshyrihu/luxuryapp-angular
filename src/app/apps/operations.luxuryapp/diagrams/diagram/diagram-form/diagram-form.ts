@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -130,7 +131,7 @@ export class DiagramForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`diagram-draw/${this.id}`)
+      .onGetItem(Endpoints.RefactorOperations.diagramDrawById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -140,7 +141,7 @@ export class DiagramForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "DiagramDraw",
+      endpoint: "diagram-draw",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

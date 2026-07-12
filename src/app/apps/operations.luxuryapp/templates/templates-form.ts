@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -52,7 +53,7 @@ export class TemplatesForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `customdocument/${this.id}`;
+    const urlApi = Endpoints.RefactorOperations.customdocumentById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -66,13 +67,13 @@ export class TemplatesForm implements OnInit {
 
     if (this.id === "") {
       this.apiResponseS
-        .onPost(`customdocument`, model)
+        .onPost(Endpoints.RefactorOperations.customdocument, model)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`customdocument/${this.id}`, model)
+        .onPut(Endpoints.RefactorOperations.customdocumentById(this.id), model)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

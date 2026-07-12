@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -67,7 +68,7 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     }
 
     // Construimos la URL del endpoint que creamos en el backend
-    const urlApi = `BoardDirectors/financial-reports/${customerId}`;
+    const urlApi = Endpoints.RefactorOperations.boardDirectorsFinancialReportsById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -69,7 +70,7 @@ export class TaskTemplateList implements OnInit {
 
   onLoadData(state: boolean = this.state()) {
     this.loading.set(true);
-    const urlApi = `recurring-tasks/templates/list/${state}`;
+    const urlApi = Endpoints.RefactorOperations.recurringTasksTemplatesListById(state);
     this.apiResponseS
       .onGetList<TaskTemplate[]>(urlApi)
       .then((response) => {

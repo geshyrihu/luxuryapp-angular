@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -103,7 +104,7 @@ export class CuadroComparativoAddProveedor implements OnInit {
     }
 
     this.apiResponseS
-      .onPostFile(`cotizacionproveedor`, formData)
+      .onPostFile(Endpoints.RefactorSupplier.cotizacionproveedor, formData)
       .then((result: any) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

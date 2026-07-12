@@ -129,7 +129,7 @@ describe("ListadoAnualMantenimiento", () => {
     component.onLoadEnumSelectItem();
     await new Promise((resolve) => setTimeout(resolve));
     expect(apiResponseSMock.onGetEnumSelectItem).toHaveBeenCalledWith(
-      "EMonth/false",
+      "e-month/false",
     );
     expect(component.months()).toEqual(months);
   });

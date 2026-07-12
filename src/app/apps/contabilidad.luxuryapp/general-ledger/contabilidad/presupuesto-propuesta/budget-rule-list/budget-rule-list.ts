@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -81,7 +82,7 @@ export class BudgetRuleList implements OnInit {
   onLoadData() {
     // Si viene customerId en config (opcional), usarlo, sino el del servicio
     const customerIdToLoad = this.config.data?.customerId || this.customerId;
-    const url = `BudgetAccountRules/${customerIdToLoad}`;
+    const url = Endpoints.RefactorContabilidad.budgetAccountRulesById(customerIdToLoad);
 
     this.apiResponseS
       .onGetList(url)
@@ -108,7 +109,7 @@ export class BudgetRuleList implements OnInit {
   }
 
   onDelete(id: string) {
-    const url = `BudgetAccountRules/${id}`;
+    const url = Endpoints.RefactorContabilidad.budgetAccountRulesById(id);
     this.apiResponseS.onDelete(url).then((result: boolean) => {
       if (result) this.onLoadData();
     });

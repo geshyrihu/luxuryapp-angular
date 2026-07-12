@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -92,7 +93,7 @@ export class InventarioLlaveForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `InventarioLlave/${this.id}`;
+    const urlApi = Endpoints.RefactorOperations.inventarioLlaveById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -101,7 +102,7 @@ export class InventarioLlaveForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "InventarioLlave",
+      endpoint: "inventario-llave",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -110,7 +111,7 @@ export class InventarioLlaveForm implements OnInit {
   }
 
   onLoadEquipoClasificacion() {
-    const urlApi = "EquipoClasificacion";
+    const urlApi = "equipo-clasificacion";
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: any) => {

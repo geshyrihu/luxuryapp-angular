@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -71,7 +72,7 @@ export class ActaConstitutivaList {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = `customdocument/list/${customerId}/${EDocumentType.ActaConstitutiva}`;
+    const urlApi = Endpoints.RefactorOperations.customdocumentListByIdById(customerId, EDocumentType.ActaConstitutiva);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

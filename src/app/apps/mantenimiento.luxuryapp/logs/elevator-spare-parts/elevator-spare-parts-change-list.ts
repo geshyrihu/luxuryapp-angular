@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -75,7 +76,7 @@ export class ElevatorSparePartsChangeList {
   }
 
   onLoadData() {
-    const urlApi = `elevator-spare-parts-change/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorMantenimiento.elevatorSparePartsChangeListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -83,7 +84,7 @@ export class ElevatorSparePartsChangeList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`elevator-spare-parts-change/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.elevatorSparePartsChangeById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

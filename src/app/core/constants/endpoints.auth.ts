@@ -54,4 +54,8 @@ export const EndpointsAuth = {
       delete: (id: string) => `password-manager/credentials/${id}`,
     },
   },
+  RefactorAuth: {
+    usersChangePasswordById: (id: any) => `users/ChangePassword/${id}`,
+    usersUpdateImageById: (applicationUserId: any) => `users/UpdateImage/${applicationUserId}`,
+  },
 } as const;

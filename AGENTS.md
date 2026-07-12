@@ -53,3 +53,16 @@ Action-menus: `<app-action-menu>` = web (p-popover); `<ili-action-menu>` = móvi
 5. **Overlays/masks**: `var(--ds-bg-overlay)` en vez de `rgba(0,0,0,0.45)`.
 6. **Ejecutar `ng build` después de cambios en SCSS** para verificar compilación.
 7. **Wrappers**: sufijo obligatorio `[nombre]-wrapper.ts` → `[Nombre]Wrapper` → `app-[nombre]-wrapper`. Prohibido usar el prefijo `wrapper-[nombre].ts`.
+
+## Organización por Apps (regla CONVENTIONS §14)
+
+Las features multi-rol **NUNCA** van en una sola carpeta. Se distribuyen por app destino:
+
+```
+security.luxuryapp/qr-scanner/    ← Guardias escanean QR
+resident.luxuryapp/qr-scanner/    ← Residentes gestionan invitaciones
+admin.luxuryapp/qr-scanner/       ← Admin configura puertas y blacklist
+```
+Mismo nombre de carpeta `qr-scanner/` en las 3 apps (CONVENTIONS §14.3).
+
+Catálogo completo de 16 apps en `CONVENTIONS.md §14.2`. Componentes visuales compartidos (usados por ≥2 apps) van a `shared/ui/` — prohibido duplicar.

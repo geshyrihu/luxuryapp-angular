@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CdkDragDrop,
   DragDropModule,
@@ -118,7 +119,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   }
 
   private onLoadData(): void {
-    const urlApi = `TemplateEvaluation/${this.id}`;
+    const urlApi = Endpoints.RefactorRecursosHumanos.templateEvaluationById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue({
         name: result.name,
@@ -212,7 +213,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     if (!this.id) {
       // Crear nuevo
       this.apiResponseS
-        .onPost(`TemplateEvaluation`, formValue)
+        .onPost(Endpoints.RefactorRecursosHumanos.templateEvaluation, formValue)
         .then((result: any) => {
           if (result) {
             console.log("Template creado exitosamente");
@@ -227,7 +228,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     } else {
       // Editar existente
       this.apiResponseS
-        .onPut(`TemplateEvaluation/${this.id}`, formValue)
+        .onPut(Endpoints.RefactorRecursosHumanos.templateEvaluationById(this.id), formValue)
         .then(() => {
           this.submitting.set(false);
         });

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -115,7 +116,7 @@ export default class PrestamosEmpleado {
 
   onDelete(item: PrestamoEmpleadoDTO): void {
     this.apiResponseS
-      .onDelete(`hr/nomina/prestamos/${item.id}`)
+      .onDelete(Endpoints.RefactorRecursosHumanos.hrNominaPrestamosById(item.id))
       .then((result) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
       });

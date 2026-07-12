@@ -23,6 +23,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -90,12 +91,7 @@ export class SolicitudesClienteList {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     const applicationUserId = this.authS.infoUserAuth.applicationUserId;
-    const urlApi = `SolicitudesReclutamiento/solicitudesporcliente/${customerId}/${applicationUserId}`;
-    // const urlApi =
-    //   "SolicitudesReclutamiento/solicitudesporcliente/" +
-    //   customerId +
-    //   "/" +
-    //   applicationUserId;
+    const urlApi = EndpointsReclutamiento.RecruitmentRequests.solicitudesPorCliente(customerId, applicationUserId);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

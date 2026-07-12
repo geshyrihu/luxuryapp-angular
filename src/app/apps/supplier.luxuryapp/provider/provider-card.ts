@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -37,8 +38,7 @@ export class TarjetaProveedor implements OnInit {
   }
   onLoadItem() {
     this.apiResponseS
-      .onGetItem(
-        `providers/${this.providerId}/${this.customerIdS.customerId()}`,
+      .onGetItem(Endpoints.RefactorSupplier.providersByIdById(this.providerId, this.customerIdS.customerId()),
       )
       .then((result: any) => {
         if (!result) return;

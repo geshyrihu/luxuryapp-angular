@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -135,7 +136,7 @@ export class UnifiedPendingDashboard {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url = `dashboard/GlobalPendingItems/${customerId}`;
+    const url = Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
 
     this.apiResponseS
       .onGetList(url)
@@ -518,7 +519,7 @@ export class UnifiedPendingDashboard {
     this.swalService.showLoading("Enviando reporte ejecutivo...");
 
     this.apiResponseS
-      .onPost(`dashboard/SendExecutiveReport/${customerId}`, {})
+      .onPost(Endpoints.RefactorOperations.dashboardSendExecutiveReportById(customerId), {})
       .then(() => {
         this.swalService.success(
           "Reporte Enviado",

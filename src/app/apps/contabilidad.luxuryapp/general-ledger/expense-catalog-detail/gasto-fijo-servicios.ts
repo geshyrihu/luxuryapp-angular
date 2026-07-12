@@ -87,7 +87,7 @@ export class GastoFijoServicios implements OnInit {
     this.onLoadProductsAgregados();
   }
   onLoadProductsAgregados() {
-    const urlApi = `CatalogoGastosFijosDetalles/DetallesOrdenCompraFijos/${this.catalogoGastosFijosId}`;
+    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesDetallesOrdenCompraFijosById(this.catalogoGastosFijosId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.productosAgregados.set(result);
       this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -103,7 +103,7 @@ export class GastoFijoServicios implements OnInit {
   }
   onLoadProducts() {
     const urlApi =
-      "CatalogoGastosFijosDetalles/products/" + this.catalogoGastosFijosId;
+      Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesProductsById(this.catalogoGastosFijosId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.productos.set(result);
       this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -131,7 +131,7 @@ export class GastoFijoServicios implements OnInit {
 
   onUpdateProductoAgregado(item: any) {
     this.apiResponseS
-      .onPut(`CatalogoGastosFijosDetalles/${item.id}`, item)
+      .onPut(Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesById(item.id), item)
       .then(() => {
         this.mensajeError = false;
         this.onLoadProducts();

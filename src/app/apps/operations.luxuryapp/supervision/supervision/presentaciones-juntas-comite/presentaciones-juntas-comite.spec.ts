@@ -76,7 +76,7 @@ describe("PresentacionesJuntasComite", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "PresentacionJuntaComite/Generales/2025-01-01/",
+      "presentaciones-junta-comite/generales/2025-01-01/",
     );
     expect(component.dataSignal()).toEqual(mockData);
   });

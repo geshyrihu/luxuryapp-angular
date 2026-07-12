@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -150,7 +151,7 @@ export class InventarioExtintor {
   }
 
   onLoadData() {
-    const urlApi = "InventarioExtintor/list/" + this.customerIdS.customerId();
+    const urlApi = Endpoints.RefactorOperations.inventarioExtintorListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -158,7 +159,7 @@ export class InventarioExtintor {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`InventarioExtintor/${id}`)
+      .onDelete(Endpoints.RefactorOperations.inventarioExtintorById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

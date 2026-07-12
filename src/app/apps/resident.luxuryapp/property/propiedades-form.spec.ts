@@ -77,7 +77,7 @@ describe("PropiedadesForm", () => {
     component = fixture.componentInstance;
     component.ngOnInit();
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("Property/prop-1");
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("properties/prop-1");
   });
 
   it("submit should call FormHelper.submitCrud", () => {

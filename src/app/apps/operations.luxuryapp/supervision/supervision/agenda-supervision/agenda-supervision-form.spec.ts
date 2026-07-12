@@ -107,7 +107,7 @@ describe("AgendaSupervisionForm", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
-      "AgendaSupervision/item-1",
+      "agenda-supervision/item-1",
     );
   });
 });

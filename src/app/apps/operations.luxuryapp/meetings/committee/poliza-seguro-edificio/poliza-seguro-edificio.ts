@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -56,7 +57,7 @@ export class PolizaSeguroEdificio {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetItem(`PolicyContract/building-insurance/${customerId}`)
+      .onGetItem(Endpoints.RefactorOperations.policyContractBuildingInsuranceById(customerId))
       .then((result) => {
         this.data.set(result);
       });

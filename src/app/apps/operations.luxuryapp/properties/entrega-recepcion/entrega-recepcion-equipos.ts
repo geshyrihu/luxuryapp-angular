@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -52,7 +53,7 @@ export class EntregaRecepcionEquipos {
     });
   }
   onLoadData() {
-    const urlApi = `entregarecepcion/inventarioequipos/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.entregarecepcionInventarioequiposById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

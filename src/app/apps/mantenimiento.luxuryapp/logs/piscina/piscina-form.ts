@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -99,7 +100,7 @@ export class PiscinaForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `piscina/${this.id()}`;
+    const urlApi = Endpoints.RefactorMantenimiento.piscinaById(this.id());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.model.set(result);
       this.form.patchValue(result);
@@ -113,13 +114,13 @@ export class PiscinaForm implements OnInit {
 
     if (!this.id()) {
       this.apiResponseS
-        .onPost("piscina", formDataDTO)
+        .onPost(Endpoints.RefactorMantenimiento.piscina, formDataDTO)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`piscina/${this.id()}`, formDataDTO)
+        .onPut(Endpoints.RefactorMantenimiento.piscinaById(this.id()), formDataDTO)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
@@ -147,7 +148,7 @@ export class PiscinaForm implements OnInit {
 
   onLoadEnumSelectItem() {
     this.apiResponseS
-      .onGetEnumSelectItem(`ETypePiscina`)
+      .onGetEnumSelectItem(`e-type-piscina`)
       .then((result: any) => {
         this.cb_typePiscina.set(result);
       });

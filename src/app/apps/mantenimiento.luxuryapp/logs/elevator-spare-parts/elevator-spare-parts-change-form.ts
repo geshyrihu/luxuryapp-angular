@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -67,7 +68,7 @@ export class ElevatorSparePartsChangeForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `elevatorsparepartschange/${this.id}`;
+    const urlApi = Endpoints.RefactorMantenimiento.elevatorsparepartschangeById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       const changeDate = this.dateS.getDateFormat(result.changeDate);
       result.changeDate = changeDate;
@@ -76,7 +77,7 @@ export class ElevatorSparePartsChangeForm implements OnInit {
   }
 
   onLoadDataElevators() {
-    const urlApi = `elevatorsparepartschange/elevators/${this.config.data.customerId}`;
+    const urlApi = Endpoints.RefactorMantenimiento.elevatorsparepartschangeElevatorsById(this.config.data.customerId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.cb_elevators.set(result);
     });

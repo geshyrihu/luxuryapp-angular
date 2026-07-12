@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -92,7 +93,7 @@ export default class ModalPeriodoAdd implements OnInit {
       };
       this.submitting.set(true);
       this.apiResponseS
-        .onPost("hr/nomina/periodos", dto)
+        .onPost(Endpoints.RefactorRecursosHumanos.hrNominaPeriodos, dto)
         .then((r) => {
           if (r) this.ref.close(true);
         })
@@ -110,7 +111,7 @@ export default class ModalPeriodoAdd implements OnInit {
       };
       this.submitting.set(true);
       this.apiResponseS
-        .onPut(`hr/nomina/periodos/${existing.id}`, dto)
+        .onPut(Endpoints.RefactorRecursosHumanos.hrNominaPeriodosById(existing.id), dto)
         .then((r) => {
           if (r) this.ref.close(true);
         })

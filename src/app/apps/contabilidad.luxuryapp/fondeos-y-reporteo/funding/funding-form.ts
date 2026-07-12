@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,7 +63,7 @@ export class FundingForm implements OnInit {
       this.onLoadData();
     }
 
-    const urlApi = `funding-period/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorContabilidad.fundingPeriodById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: SelectItemDto[]) => {
@@ -90,7 +91,7 @@ export class FundingForm implements OnInit {
     });
 
     this.apiResponseS
-      .onPost(`funding`, this.form.value)
+      .onPost(Endpoints.RefactorContabilidad.funding, this.form.value)
       .then((result: boolean) => {
         if (result) {
           this.ref.close(true);

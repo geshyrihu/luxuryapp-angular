@@ -25,9 +25,9 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-solicitud-modificacion-salario",
@@ -123,7 +123,7 @@ export class SolicitudModificacionSalarioForm implements OnInit {
         `application-roles-to-administrator`,
       ),
       this.apiResponseS.onGetList<SelectItemDto[]>(
-        `requestemployeeregister/vacantes/${customerId}`,
+        EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(customerId),
       ),
     ]);
 
@@ -134,7 +134,7 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
   async onLoadData(): Promise<any> {
     const result: any = await this.apiResponseS.onGetItem(
-      Endpoints.RequestSalaryModification.getDataForModificacionSalario(this.workPositionId),
+      EndpointsReclutamiento.RequestSalaryModification.getData(this.workPositionId),
     );
 
     // Extraer applicationRoleCurrentId
@@ -206,7 +206,7 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        `SolicitudesReclutamiento/solicitudmodificacionsalario/${this.customerIdS.customerId()}/${this.authS.infoUserAuth.applicationUserId}`,
+        EndpointsReclutamiento.RecruitmentRequests.solicitudModificacionSalario(this.customerIdS.customerId(), this.authS.infoUserAuth.applicationUserId),
         model,
       )
       .then((result: boolean) => {

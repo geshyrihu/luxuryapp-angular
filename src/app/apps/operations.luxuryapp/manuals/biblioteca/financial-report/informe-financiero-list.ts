@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,7 +41,7 @@ export class InformeFinanciero {
     });
   }
   onLoadData() {
-    const urlApi = `FinancialReport/List/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.financialReportListById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((response: any) => {
       this.dataSignal.set(response);
     });

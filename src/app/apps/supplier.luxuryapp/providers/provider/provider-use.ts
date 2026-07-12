@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,7 +36,7 @@ export class ProviderUse implements OnInit {
   }
 
   onLoadData(providerId: any) {
-    const urlApi = `providers/coincidencias/${providerId}`;
+    const urlApi = Endpoints.RefactorSupplier.providersCoincidenciasById(providerId);
     return this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

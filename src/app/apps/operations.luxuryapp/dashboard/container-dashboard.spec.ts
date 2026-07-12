@@ -57,7 +57,7 @@ describe("ContainerDashboard", () => {
       return roles.includes(ApplicationRole.Condomino);
     });
     fixture.detectChanges();
-    expect(component.componentToRender().name).toContain("MiEdificio");
+    expect(component.componentToRender().name).toContain("mi-edificio");
   });
 
   it("should render MiEdificio when user is Comite", () => {
@@ -65,7 +65,7 @@ describe("ContainerDashboard", () => {
       return roles.includes(ApplicationRole.Comite);
     });
     fixture.detectChanges();
-    expect(component.componentToRender().name).toContain("MiEdificio");
+    expect(component.componentToRender().name).toContain("mi-edificio");
   });
 
   it("should render DashboardPendingItems when user is neither Condomino nor Comite", () => {

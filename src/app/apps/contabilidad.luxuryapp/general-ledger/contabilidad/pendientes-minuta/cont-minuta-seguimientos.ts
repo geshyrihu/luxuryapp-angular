@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -44,7 +45,7 @@ export class ContMinutaSeguimientos implements OnInit {
   onLoadData() {
     // Mostrar un mensaje de carga
     this.apiResponseS
-      .onGetList(`ContabilidadMinuta/ListaSeguimientos/${this.id}`)
+      .onGetList(Endpoints.RefactorContabilidad.contabilidadMinutaListaSeguimientosById(this.id))
       .then((result: any) => {
         this.dataSignal.set(result);
       });
@@ -52,7 +53,7 @@ export class ContMinutaSeguimientos implements OnInit {
 
   onDeleteSeguimiento(id: any) {
     this.apiResponseS
-      .onDelete(`MeetingDertailsSeguimiento/${id}`)
+      .onDelete(Endpoints.RefactorContabilidad.meetingDertailsSeguimientoById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

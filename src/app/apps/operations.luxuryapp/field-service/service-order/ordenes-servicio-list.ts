@@ -195,7 +195,7 @@ export class OrdenesServicio {
         SubirPdf,
         {
           serviceOrderId: id,
-          pathUrl: "ServiceOrders/SubirDocumento/",
+          pathUrl: "service-orders/subir-documento/",
         },
         "Cargar Documentos",
         this.dialogHandlerS.sizeFull,
@@ -303,7 +303,7 @@ export class OrdenesServicio {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`ServiceOrders/${id}`)
+      .onDelete(Endpoints.RefactorOperations.serviceOrdersById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>

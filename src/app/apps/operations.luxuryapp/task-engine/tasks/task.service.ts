@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Injectable } from "@angular/core";
 @Injectable({
   providedIn: "root",
@@ -36,7 +37,7 @@ export class TaskGroupService {
   }
 
   onLoadDataMessageInNotRead(): void {
-    // const urlApi = `Tickets/MessageInNotRead/${this.authS.applicationUserId}`;
+    // const urlApi = Endpoints.RefactorOperations.ticketsMessageInNotReadById(this.authS.applicationUserId);
     // this.apiResponseS.onGetList(urlApi).then((result: any) => {
     //   this.messageInNotRead = result;
     // });

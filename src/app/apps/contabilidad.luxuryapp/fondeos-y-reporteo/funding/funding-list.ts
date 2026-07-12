@@ -80,7 +80,7 @@ export class FundingList {
   }
 
   onLoadData(): void {
-    const urlApi = `funding/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorContabilidad.fundingListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

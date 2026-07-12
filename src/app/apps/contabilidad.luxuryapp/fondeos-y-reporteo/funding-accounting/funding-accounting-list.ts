@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -79,7 +80,7 @@ export class FundingAccountingList {
   }
 
   onLoadData(): void {
-    const urlApi = `fundingaccounting/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorContabilidad.fundingaccountingListById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result || []);
     });

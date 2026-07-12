@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -92,7 +93,7 @@ export class CatalogoDescripcionList implements OnInit {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`catalogoentregarecepciondescripcion/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.catalogoentregarecepciondescripcionById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

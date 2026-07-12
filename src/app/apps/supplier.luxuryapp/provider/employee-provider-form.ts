@@ -30,6 +30,7 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { UserInfoDto } from "src/app/core/interfaces/user-info.interface";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 type Opcion = "none" | "vacante" | "alta";
 
@@ -142,7 +143,7 @@ export class EmployeeProviderForm implements OnInit {
     const customerId = this.customerIdS.customerId();
     const [vacantes, tiposContrato, address, admins] = await Promise.all([
       this.apiResponseS.onGetList<SelectItemDto[]>(
-        `requestemployeeregister/vacantes/${customerId}`,
+        EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(customerId),
       ),
       firstValueFrom(this.enumSelectS.typeContractRegister()),
       this.apiResponseS.onGetItem<any>(`customer-addresses/${customerId}`),
@@ -238,7 +239,7 @@ export class EmployeeProviderForm implements OnInit {
       this.submitting.set(true);
       this.apiResponseS
         .onPost(
-          `SolicitudesReclutamiento/SolicitudAlta/${this.authS.applicationUserId}`,
+          EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(this.authS.applicationUserId),
           {
             employeeId: this.newEmployeeId(),
             positionRequestId,
@@ -256,7 +257,7 @@ export class EmployeeProviderForm implements OnInit {
       this.submitting.set(true);
       this.apiResponseS
         .onPost(
-          `SolicitudesReclutamiento/SolicitudAlta/${this.authS.applicationUserId}`,
+          EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(this.authS.applicationUserId),
           {
             employeeId: this.newEmployeeId(),
             positionRequestId: altaValues.positionRequestId,

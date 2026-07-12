@@ -73,7 +73,7 @@ describe("TaskTemplateItemForm", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockEnumSelectS.onLoadEnumList).toHaveBeenCalledWith(
-      "EPriorityLevel",
+      "e-priority-level",
     );
     expect(component.priorities()).toEqual(fakePriorities);
   });

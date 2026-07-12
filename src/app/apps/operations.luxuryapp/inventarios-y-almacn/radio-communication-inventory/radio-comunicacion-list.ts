@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -81,14 +82,14 @@ export class RadioComunicacionList {
   }
 
   onLoadData() {
-    const urlApi = `RadioComunicacion/List/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.radioComunicacionListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RadioComunicacion/${id}`)
+      .onDelete(Endpoints.RefactorOperations.radioComunicacionById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

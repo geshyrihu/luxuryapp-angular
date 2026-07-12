@@ -100,9 +100,7 @@ export class BitacoraMantenimiento {
     });
   }
   onLoadData() {
-    const urlApi = `BitacoraMantenimiento/list/${this.customerIdS.customerId()}/${
-      this.fechaInicial
-    }/${this.fechaFinal}`;
+    const urlApi = Endpoints.RefactorMantenimiento.bitacoraMantenimientoListByIdByIdById(this.customerIdS.customerId(), this.fechaInicial, this.fechaFinal);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -76,7 +77,7 @@ export class UpdatePasswordComponent implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPut(`users/ChangePassword/${id}`, model)
+      .onPut(Endpoints.RefactorAuth.usersChangePasswordById(id), model)
       .then((result: boolean) => {
         if (result) {
           this.submitting.set(false);

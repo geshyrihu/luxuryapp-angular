@@ -173,7 +173,7 @@ export class ManualsAndProcessesForm implements OnInit {
     const [roles, customers, depts] = await Promise.all([
       this.apiS.onGetSelectItem<SelectItemDto[]>("roles-for-announcements"),
       this.apiS.onGetSelectItem<SelectItemDto[]>("CustomersActiveNameShort"),
-      this.apiS.onGetItem<SelectItemDto[]>("select-item-enum/Departament"),
+      this.apiS.onGetItem<SelectItemDto[]>("select-item-enum/e-departament"),
     ]);
 
     const groupedRoles = (roles ?? []).reduce((acc: any[], curr) => {

@@ -179,7 +179,7 @@ export class JuntasMensualesSession {
     if (!customerId && !this.canViewAllCustomers()) return;
 
     const url = this.canViewAllCustomers()
-      ? "JuntaMensualSession"
+      ? "junta-mensual-sessions"
       : `JuntaMensualSession?customerId=${customerId}`;
 
     this.loading.set(true);
@@ -207,7 +207,7 @@ export class JuntasMensualesSession {
     this.selectedId.set(id);
     this.detailLoading.set(true);
     this.apiResponseS
-      .onGetItem<IJuntaMensualSessionDetail>(`JuntaMensualSession/${id}/detail`)
+      .onGetItem<IJuntaMensualSessionDetail>(`junta-mensual-sessions/${id}/detail`)
       .then((result) => {
         this.selectedDetail.set(result || null);
       })
@@ -254,7 +254,7 @@ export class JuntasMensualesSession {
 
     this.apiResponseS
       .onPost<IJuntaMensualSessionListItem>(
-        `JuntaMensualSession/${detail.id}/meeting/create`,
+        `junta-mensual-sessions/${detail.id}/meeting/create`,
         {},
       )
       .then((result) => {
@@ -275,7 +275,7 @@ export class JuntasMensualesSession {
 
     this.apiResponseS
       .onPost<IJuntaMensualSessionListItem>(
-        `JuntaMensualSession/${detail.id}/cancel`,
+        `junta-mensual-sessions/${detail.id}/cancel`,
         {
           reason:
             "Sesion cancelada desde el modulo central de juntas mensuales.",

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -80,7 +81,7 @@ export class MisProveedores {
 
   // Función para cargar los datos de los CustomerProviders
   onLoadData() {
-    const urlApi = `CustomerProvider/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorAdmin.customerProviderById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -102,7 +103,7 @@ export class MisProveedores {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`customerprovider/${id}`)
+      .onDelete(Endpoints.RefactorAdmin.customerproviderById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((prev) =>

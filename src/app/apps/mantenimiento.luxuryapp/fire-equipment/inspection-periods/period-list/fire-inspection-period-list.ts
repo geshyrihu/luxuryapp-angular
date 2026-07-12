@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -95,13 +96,13 @@ export class FireInspectionPeriodList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`fire-inspection-period/list/${this.customerIdS.customerId()}`)
+      .onGetList(Endpoints.RefactorMantenimiento.fireInspectionPeriodListById(this.customerIdS.customerId()))
       .then((result: any) => this.dataSignal.set(result));
   }
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`fire-inspection-period/${id}`)
+      .onDelete(Endpoints.RefactorMantenimiento.fireInspectionPeriodById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

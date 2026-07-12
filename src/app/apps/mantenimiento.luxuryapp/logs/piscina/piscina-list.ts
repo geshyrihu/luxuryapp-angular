@@ -86,7 +86,7 @@ export class PiscinaList {
     });
   }
   onLoadData() {
-    const urlApi = "piscina/list/" + this.customerIdS.customerId();
+    const urlApi = Endpoints.RefactorMantenimiento.piscinaListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

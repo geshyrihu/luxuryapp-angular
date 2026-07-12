@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -115,13 +116,13 @@ export class ProjectedExpensesForm implements OnInit {
 
   private async loadExpenseTypes(): Promise<void> {
     this.cb_expenseTypes = await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("EExpenseType"),
+      this.enumSelectS.onLoadEnumList("e-expense-type"),
     );
   }
 
   private async loadRecurrences(): Promise<void> {
     this.cb_recurrences = await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("Recurrence"),
+      this.enumSelectS.onLoadEnumList("e-recurrence"),
     );
   }
 
@@ -141,8 +142,7 @@ export class ProjectedExpensesForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(
-        `projected-expenses/${this.customerIdS.customerId()}/${this.id}`,
+      .onGetItem(Endpoints.RefactorContabilidad.projectedExpensesByIdById(this.customerIdS.customerId(), this.id),
       )
       .then((result: any) => {
         this.form.patchValue(result);
@@ -205,7 +205,7 @@ export class ProjectedExpensesForm implements OnInit {
       }
       formValue.initialMonth = formValue.executionMonth;
       this.apiResponseS
-        .onPost("projected-expenses/recurrence", formValue)
+        .onPost(Endpoints.RefactorContabilidad.projectedExpensesRecurrence, formValue)
         .then((result) => {
           this.ref.close(true);
         })
@@ -214,7 +214,7 @@ export class ProjectedExpensesForm implements OnInit {
         });
     } else if (this.id === "") {
       this.apiResponseS
-        .onPost("ProjectedExpenses", formValue)
+        .onPost(Endpoints.RefactorContabilidad.projectedExpenses, formValue)
         .then((result) => {
           this.ref.close(true);
         })
@@ -223,8 +223,7 @@ export class ProjectedExpensesForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(
-          `projected-expenses/${this.customerIdS.customerId()}/${this.id}`,
+        .onPut(Endpoints.RefactorContabilidad.projectedExpensesByIdById(this.customerIdS.customerId(), this.id),
           formValue,
         )
         .then((result) => {

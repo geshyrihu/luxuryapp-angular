@@ -168,7 +168,7 @@ export class VacacionesPasadasRegistro implements OnInit {
 
   loadHolidays(year: number): void {
     this.apiResponseS
-      .onGetItem(`configuracion/dias-festivos/${year}`)
+      .onGetItem(Endpoints.RefactorRecursosHumanos.configuracionDiasFestivosById(year))
       .then((response: { fecha: string }[]) => {
         const holidays = response.map((item) => {
           const date = new Date(item.fecha);
@@ -242,7 +242,7 @@ export class VacacionesPasadasRegistro implements OnInit {
   loadBalance(employeeId: number): void {
     this.loadingBalance.set(true);
     this.apiResponseS
-      .onGetItem(`vacation-request-approvals/${employeeId}/balance`)
+      .onGetItem(Endpoints.RefactorRecursosHumanos.vacationRequestApprovalsByIdBalance(employeeId))
       .then((response: VacationBalanceDTO) => {
         console.log("é” Balance Cargado:", response);
         this.balance.set(response);

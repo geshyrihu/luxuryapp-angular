@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -79,14 +80,14 @@ export class InventarioLlavesList {
   }
 
   onLoadData() {
-    const urlApi = `InventarioLlave/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.inventarioLlaveListById(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`InventarioLlave/${id}`)
+      .onDelete(Endpoints.RefactorOperations.inventarioLlaveById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

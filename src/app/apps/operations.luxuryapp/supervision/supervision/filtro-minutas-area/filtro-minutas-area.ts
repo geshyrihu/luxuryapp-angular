@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -76,7 +77,7 @@ export class FiltroMinutasArea implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `dashboard/FiltroMinutasArea/${this.meetingId}/${this.area}/${this.estatus}`;
+    const urlApi = Endpoints.RefactorOperations.dashboardFiltroMinutasAreaByIdByIdById(this.meetingId, this.area, this.estatus);
 
     this.apiResponseS
       .onGetList(urlApi)

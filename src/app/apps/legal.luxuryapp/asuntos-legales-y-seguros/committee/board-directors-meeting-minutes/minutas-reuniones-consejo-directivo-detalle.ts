@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
@@ -51,7 +52,7 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
   onLoadData(meetingMinuteId: string) {
     this.loading.set(true);
     // Usamos el endpoint específico para las minutas que creamos en el backend
-    const urlApi = `BoardDirectors/meeting-minutes-detail/${meetingMinuteId}`;
+    const urlApi = Endpoints.RefactorLegal.boardDirectorsMeetingMinutesDetailById(meetingMinuteId);
 
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data.set(result);

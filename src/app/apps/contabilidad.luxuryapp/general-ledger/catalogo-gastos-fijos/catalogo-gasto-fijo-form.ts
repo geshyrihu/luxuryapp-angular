@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -156,7 +157,7 @@ export class CatalogoGastoFijoForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = `catalogo-gastos-fijos/${this.id()}`;
+    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosById(this.id());
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     if (!result) return;
@@ -202,7 +203,7 @@ export class CatalogoGastoFijoForm implements OnInit {
     const result: any = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "CatalogoGastosFijos",
+      endpoint: "catalogo-gastos-fijos",
       id: this.id() || "",
       submitting: this.submitting,
       closeOnSuccess: false,

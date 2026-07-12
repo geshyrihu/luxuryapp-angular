@@ -23,6 +23,7 @@ import { SolicitudBajaForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutam
 import { ROUTES } from "src/app/routing/route-paths";
 import { PhoneFormatPipe } from "src/app/shared/pipes/phone-format.pipe";
 import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-status-request-dismissal",
@@ -61,7 +62,7 @@ export class StatusRequestDismissal implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = "RequestDismissal/" + this.workPositionId;
+    const urlApi = EndpointsReclutamiento.RequestDismissal.sendEmail(this.workPositionId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.dataSignal.set(result);
     });
@@ -101,7 +102,7 @@ export class StatusRequestDismissal implements OnInit {
   //Eliminar solicitud de baja
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RequestDismissal/${id}`)
+      .onDelete(EndpointsReclutamiento.RequestDismissal.delete(id))
       .then((result: boolean) => {
         if (result) {
           // Si es un objeto ónico y se borra, recargar o limpiar
@@ -112,7 +113,7 @@ export class StatusRequestDismissal implements OnInit {
 
   //Autorizar baja
   onAuthorize(department: string) {
-    const urlApi = `RequestDismissal/${this.dataSignal().id}/authorize/${department}`;
+    const urlApi = EndpointsReclutamiento.RequestDismissal.authorize(this.dataSignal().id, department);
     this.apiResponseS.onPatch(urlApi, {}).then((result: boolean) => {
       if (result) this.onLoadData();
     });
@@ -134,7 +135,7 @@ export class StatusRequestDismissal implements OnInit {
   }
   //Eliminar solicitud de baja
   onDeleteDiscounts(id: any) {
-    const urlApi = `RequestDismissalDiscount/${id}`;
+    const urlApi = EndpointsReclutamiento.RequestDismissalDiscount.delete(id);
     this.apiResponseS.onDelete(urlApi).then(() => {
       this.onLoadData();
     });

@@ -5,10 +5,10 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelSendEmail } from "@ui/buttons/mobile-label/button-send-email";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -39,10 +39,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     WebButtonIconEdit,
-    WebButtonIconDelete,
     WebButtonIconSendEmail,
     MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
     MobileButtonLabelSendEmail,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -77,17 +75,6 @@ export class EmailDataList {
         this.dataSignal.set(result);
       });
   }
-  onDelete(id: any) {
-    this.apiResponseS
-      .onDelete(Endpoints.EmailData.delete(id))
-      .then((result: boolean) => {
-        if (result)
-          this.dataSignal.update((currentData) =>
-            currentData.filter((item) => item.id !== id),
-          );
-      });
-  }
-
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(EmailDataForm, data, data.title, this.dialogHandlerS.sizeLg)

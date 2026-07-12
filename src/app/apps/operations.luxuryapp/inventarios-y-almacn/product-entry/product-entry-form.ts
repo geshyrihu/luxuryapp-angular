@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -172,7 +173,7 @@ export class ProductEntryForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = `EntradaProducto/${this.id()}`;
+    const urlApi = Endpoints.RefactorOperations.entradaProductoById(this.id());
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     this.cantidadActual.set(result.cantidad);
@@ -204,8 +205,8 @@ export class ProductEntryForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint: isNew
-        ? `EntradaProducto`
-        : `EntradaProducto/${this.id()}/${this.cantidadActual()}`,
+        ? `entrada-producto`
+        : `entrada-producto/${this.id()}/${this.cantidadActual()}`,
       method: isNew ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,

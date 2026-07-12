@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -39,7 +40,7 @@ export class MiEdificio {
     });
   }
   onLoadData() {
-    const urlApi = `MiEdificio/Caratula/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.miEdificioCaratulaById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data.set(result);
     });

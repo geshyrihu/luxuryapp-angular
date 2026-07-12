@@ -1,6 +1,6 @@
 export const EndpointsLegal = {
   LegalMatters: {
-    categories: "legalmattercategory",
+    categories: "legal-matter-category",
     categoryById: (id: string) => `legal-matter/Category/${id}`,
     create: "legal-matter",
     createCategory: "legal-matter/Category",
@@ -21,28 +21,28 @@ export const EndpointsLegal = {
       endDate: string,
       isInternal: boolean,
     ) =>
-      `LegalReport/GenerateWeeklyReport/${startDate}/${endDate}/${isInternal}`,
+      `legal-report/GenerateWeeklyReport/${startDate}/${endDate}/${isInternal}`,
     pending: (isExternal: boolean) =>
-      `LegalReport/Pending/${isExternal ? 1 : 0}`,
-    pendingUnassignedData: "LegalReport/PendingUnassignedData",
-    report: "LegalReport/Report",
+      `legal-report/Pending/${isExternal ? 1 : 0}`,
+    pendingUnassignedData: "legal-report/PendingUnassignedData",
+    report: "legal-report/Report",
     requestsAttended: (
       startDate: string,
       endDate: string,
       isInternal: boolean,
-    ) => `LegalReport/RequestsAttended/${startDate}/${endDate}/${isInternal}`,
+    ) => `legal-report/RequestsAttended/${startDate}/${endDate}/${isInternal}`,
     requestsPending: (isInternal: boolean) =>
-      `LegalReport/RequestsPending/${isInternal}`,
+      `legal-report/RequestsPending/${isInternal}`,
     results: (startDate: string, endDate: string, isInternal: boolean) =>
-      `LegalReport/Results/${startDate}/${endDate}/${isInternal}`,
+      `legal-report/Results/${startDate}/${endDate}/${isInternal}`,
     summary: (startDate: string, endDate: string) =>
-      `LegalReport/Summary/${startDate}/${endDate}`,
+      `legal-report/Summary/${startDate}/${endDate}`,
     summaryCustomer: (startDate: string, endDate: string) =>
-      `LegalReport/SummaryCustomer/${startDate}/${endDate}`,
+      `legal-report/SummaryCustomer/${startDate}/${endDate}`,
     summaryIndividual: (startDate: string, endDate: string) =>
-      `LegalReport/SummaryIndividual/${startDate}/${endDate}`,
+      `legal-report/SummaryIndividual/${startDate}/${endDate}`,
     totalRequests: (startDate: string, endDate: string) =>
-      `LegalReport/TotalRequests/${startDate}/${endDate}`,
+      `legal-report/TotalRequests/${startDate}/${endDate}`,
   },
   TaskLegal: {
     addTracking: "task-legal/Addtraking",
@@ -61,4 +61,11 @@ export const EndpointsLegal = {
     updateStatus: (id: string, status: number | null) =>
       `task-legal/UpdateStatus/${id}/${status}`,
   },
+  RefactorLegal: {
+    policyContractBuildingInsuranceById: (customerId: any) => `policy-contract/building-insurance/${customerId}`,
+      boardDirectorsFinancialReportsById: (customerId: any) => `board-directors/financial-reports/${customerId}`,
+    boardDirectorsMeetingMinutesDetailById: (meetingMinuteId: any) => `board-directors/meeting-minutes-detail/${meetingMinuteId}`,
+    boardDirectorsMeetingMinutesById: (customerId: any) => `board-directors/meeting-minutes/${customerId}`,
+    boardDirectorsMonthlyMeetingsById: (customerId: any) => `board-directors/monthly-meetings/${customerId}`,
+},
 } as const;

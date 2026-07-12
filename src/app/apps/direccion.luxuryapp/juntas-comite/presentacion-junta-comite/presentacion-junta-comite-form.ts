@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -87,7 +88,7 @@ export class PresentacionJuntaComiteForm implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost(`PresentacionJuntaComite/AddFile`, model)
+      .onPost(Endpoints.RefactorDireccion.presentacionJuntaComiteAddFile, model)
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

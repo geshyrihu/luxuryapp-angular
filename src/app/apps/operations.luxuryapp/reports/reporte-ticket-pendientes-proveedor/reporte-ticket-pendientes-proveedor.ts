@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -47,7 +48,7 @@ export class ReporteTicketPendientesProveedor implements OnInit {
     this.onLoadData();
   }
   onLoadData() {
-    const urlApi = `ticket/getreportpendingprovider/${this.customerId}/${this.departamentId}`;
+    const urlApi = Endpoints.RefactorOperations.ticketGetreportpendingproviderByIdById(this.customerId, this.departamentId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

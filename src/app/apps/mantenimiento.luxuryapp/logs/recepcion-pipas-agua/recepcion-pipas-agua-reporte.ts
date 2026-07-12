@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, formatDate } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -129,7 +130,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
   onLoadData(): void {
     this.apiResponseS
-      .onGetList(`recepcion-pipas-agua/list/${this.customerIdS.customerId()}`)
+      .onGetList(Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(this.customerIdS.customerId()))
       .then((result: IRecepcionPipaAgua[]) => {
         this.allData = result ?? [];
         this.applyFilter();

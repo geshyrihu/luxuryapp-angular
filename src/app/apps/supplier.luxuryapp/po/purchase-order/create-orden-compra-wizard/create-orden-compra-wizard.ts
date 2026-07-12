@@ -234,7 +234,7 @@ export class CreateOrdenCompraWizard implements OnInit {
   async loadFundingOptions() {
     this.cb_fundingYear.set(this.generateYearOptions());
     const periods = await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("EFundingPeriod", false),
+      this.enumSelectS.onLoadEnumList("e-funding-period", false),
     );
     this.processFundingPeriods(periods as SelectItemDto[]);
   }

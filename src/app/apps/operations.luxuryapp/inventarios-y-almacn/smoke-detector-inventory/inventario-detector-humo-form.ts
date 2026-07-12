@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -104,7 +105,7 @@ export class InventarioDetectorHumoForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`InventarioDetectorHumo/${this.id}`)
+      .onGetItem(Endpoints.RefactorOperations.inventarioDetectorHumoById(this.id))
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
         this.form.patchValue(result);
@@ -117,13 +118,13 @@ export class InventarioDetectorHumoForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost("InventarioDetectorHumo", formData)
+        .onPost(Endpoints.RefactorOperations.inventarioDetectorHumo, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`InventarioDetectorHumo/${this.id}`, formData)
+        .onPut(Endpoints.RefactorOperations.inventarioDetectorHumoById(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

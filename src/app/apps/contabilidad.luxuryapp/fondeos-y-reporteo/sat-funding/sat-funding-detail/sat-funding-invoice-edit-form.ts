@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -101,7 +102,7 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
       this.form.getRawValue() as UpdateSatFundingDetailDto;
 
     this.apiResponseService
-      .onPut(`SatFunding/UpdateDetail`, request)
+      .onPut(Endpoints.RefactorContabilidad.satFundingUpdateDetail, request)
       .then((result) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

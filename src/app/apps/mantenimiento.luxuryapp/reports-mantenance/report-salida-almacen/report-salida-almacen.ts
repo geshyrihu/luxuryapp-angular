@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -57,9 +58,9 @@ export class ReportSalidaAlmacen {
     });
   }
   onLoadData() {
-    const urlApi = `maintenance-report/salidaproducto/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportSalidaproductoByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}`;
+    ));
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

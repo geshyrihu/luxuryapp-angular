@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +20,7 @@ export class TarjetaProducto implements OnInit {
   producto: any;
 
   ngOnInit(): void {
-    const urlApi = `productos/${this.productoId}`;
+    const urlApi = Endpoints.RefactorSupplier.productosById(this.productoId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.producto = result;
     });

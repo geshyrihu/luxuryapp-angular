@@ -30,7 +30,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             path: "/property/list/{customerId}",
             description: "Listar propiedades",
           },
-          { method: "POST", path: "/Property", description: "Crear propiedad" },
+          { method: "POST", path: "/properties", description: "Crear propiedad" },
           {
             method: "PUT",
             path: "/property/{id}",

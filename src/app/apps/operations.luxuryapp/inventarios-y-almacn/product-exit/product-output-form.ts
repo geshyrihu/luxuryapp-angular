@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -88,9 +89,7 @@ export class ProductOutputForm implements OnInit {
     return this.form.controls;
   }
   onLoadExistencia() {
-    const urlApi = `InventarioProducto/GetExistenciaProducto/${this.customerIdS.customerId()}/${
-      this.config.data.idProducto
-    }/${this.config.data.almacenId}`;
+    const urlApi = Endpoints.RefactorOperations.inventarioProductoGetExistenciaProductoByIdByIdById(this.customerIdS.customerId(), this.config.data.idProducto, this.config.data.almacenId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result !== null) {
         this.existenciaAlmacen.set(result.existencia);
@@ -187,7 +186,7 @@ export class ProductOutputForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `SalidaProductos/${this.id}`;
+    const urlApi = Endpoints.RefactorOperations.salidaProductosById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.nombreProducto.set(result.producto);
       this.cantidadActualUsada.set(result.cantidad);
@@ -206,14 +205,13 @@ export class ProductOutputForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost(`SalidaProductos`, payload)
+        .onPost(Endpoints.RefactorOperations.salidaProductos, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(
-          `SalidaProductos/${this.id}/${this.cantidadActualUsada()}`,
+        .onPut(Endpoints.RefactorOperations.salidaProductosByIdById(this.id, this.cantidadActualUsada()),
           payload,
         )
         .then((result: boolean) => {

@@ -68,7 +68,7 @@ describe("PropiedadesList", () => {
   it("onLoadData should call api with customerId", () => {
     component.onLoadData();
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "Property/list/cust-123",
+      "properties/list/cust-123",
     );
   });
 
@@ -80,7 +80,7 @@ describe("PropiedadesList", () => {
 
     await component.onDelete("1");
 
-    expect(mockApiResponseS.onDelete).toHaveBeenCalledWith("Property/1");
+    expect(mockApiResponseS.onDelete).toHaveBeenCalledWith("properties/1");
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].id).toBe("2");
   });

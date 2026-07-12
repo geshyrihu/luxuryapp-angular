@@ -61,7 +61,7 @@ describe("ReportMeeting", () => {
   it("should call loadMeetingData and onLoadCustomer when params arrive", () => {
     fixture.detectChanges();
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "Meetings/MeetingReportPdf/meeting-456",
+      "meetings/meeting-report-pdf/meeting-456",
     );
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
       "Customers/cust-123",

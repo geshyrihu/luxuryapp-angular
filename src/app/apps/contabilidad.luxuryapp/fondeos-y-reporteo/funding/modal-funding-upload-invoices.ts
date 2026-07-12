@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -184,7 +185,7 @@ export class FundingUploadInvoicesModal {
     };
 
     this.apiResponseService
-      .onPost("funding/create-orders-from-invoices", requestDto)
+      .onPost(Endpoints.RefactorContabilidad.fundingCreateOrdersFromInvoices, requestDto)
       .then(() => {
         this.ref.close(true);
       })

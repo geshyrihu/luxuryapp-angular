@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
@@ -24,7 +25,7 @@ export class TestEmail {
     }
 
     // Endpoint: api/test/test-email/{email}
-    const urlApi = `send-email/test-email/${this.emailControl.value}`;
+    const urlApi = Endpoints.RefactorAdmin.sendEmailTestEmailById(this.emailControl.value);
 
     this.apiResponseS
       .onPost(urlApi, {})

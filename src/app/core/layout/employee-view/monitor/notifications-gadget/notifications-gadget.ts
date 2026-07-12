@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,14 +63,14 @@ export class NotificationsGadget implements OnInit {
 
   onLoadNotification(): void {
     this.apiResponseS
-      .onGetListNotLoading("notifications")
+      .onGetListNotLoading(Endpoints.RefactorShared.notifications)
       .then((result: any) => {
         if (result) {
           this.notifications.set(result);
         }
       });
     this.apiResponseS
-      .onGetListNotLoading("notifications/unread-count")
+      .onGetListNotLoading(Endpoints.RefactorShared.notificationsUnreadCount)
       .then((result: any) => {
         if (result) {
           this.messageInNotRead.set(result);
@@ -79,7 +80,7 @@ export class NotificationsGadget implements OnInit {
 
   markAsRead(notificationId: string, url: string): void {
     this.drawerVisible.set(false);
-    const urlApi = `notifications/mark-as-read/${notificationId}`;
+    const urlApi = Endpoints.RefactorShared.notificationsMarkAsReadById(notificationId);
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigate([url]);

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -99,7 +100,7 @@ export class DetectorHumoChecklist implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`BitacoraDetectorHumo/${this.id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.bitacoraDetectorHumoById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -109,7 +110,7 @@ export class DetectorHumoChecklist implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "BitacoraDetectorHumo",
+      endpoint: "bitacora-detector-humo",
       id: this.id,
       ref: this.ref ?? undefined,
       submitting: this.submitting,

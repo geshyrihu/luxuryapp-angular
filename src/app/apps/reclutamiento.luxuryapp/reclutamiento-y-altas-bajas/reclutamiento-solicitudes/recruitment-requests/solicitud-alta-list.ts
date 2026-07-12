@@ -32,6 +32,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SolicitudAltaStatusForm } from "./solicitud-alta-status-form";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -101,7 +102,7 @@ export class SolicitudAltaList implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        `RequestEmployeeRegister/GetList/`,
+        EndpointsReclutamiento.RequestEmployeeRegister.list,
         this.filterRequestsService.getParams(),
       )
       .then((result: any) => {
@@ -127,7 +128,7 @@ export class SolicitudAltaList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`RequestEmployeeRegister/${id}`)
+      .onDelete(EndpointsReclutamiento.RequestEmployeeRegister.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

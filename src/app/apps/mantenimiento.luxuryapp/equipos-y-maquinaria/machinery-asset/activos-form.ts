@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -136,7 +137,7 @@ export class ActivosForm implements OnInit {
     this.form.patchValue({ photoPath: file });
   }
   onLoadData(id: string) {
-    const urlApi = `machineries/${id}`;
+    const urlApi = Endpoints.RefactorMantenimiento.machineriesById(id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.id = result.id;
       result.dateOfPurchase = this.getdateService.getDateFormat(

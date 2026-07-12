@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -109,7 +110,7 @@ export class InventarioExtintorForm implements OnInit {
     }
   }
   onLoadData() {
-    const urlApi = `InventarioExtintor/${this.id}`;
+    const urlApi = Endpoints.RefactorOperations.inventarioExtintorById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.urlBaseImg = result.currentPhoto;
       this.form.patchValue({
@@ -126,13 +127,13 @@ export class InventarioExtintorForm implements OnInit {
 
     if (!this.id) {
       this.apiResponseS
-        .onPost(`InventarioExtintor`, formData)
+        .onPost(Endpoints.RefactorOperations.inventarioExtintor, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`InventarioExtintor/${this.id}`, formData)
+        .onPut(Endpoints.RefactorOperations.inventarioExtintorById(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

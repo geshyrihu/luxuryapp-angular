@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -70,7 +71,7 @@ export class FireInspectionPeriodForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`fire-inspection-period/${this.id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.fireInspectionPeriodById(this.id))
       .then((result: any) => {
         this.form.patchValue({
           ...result,
@@ -83,7 +84,7 @@ export class FireInspectionPeriodForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "FireInspectionPeriod",
+      endpoint: "fire-inspection-period",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

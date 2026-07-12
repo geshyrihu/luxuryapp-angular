@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -49,8 +50,8 @@ export class GastosMantenimiento {
   }
   onLoadData() {
     this.loading.set(true);
-    const urlApi = `BudgetMaintenance/SummaryOfExpenses/${this.customerIdS.customerId()}`;
-    const urlApi2 = `BudgetMaintenance/Resumengastos/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.budgetMaintenanceSummaryOfExpensesById(this.customerIdS.customerId());
+    const urlApi2 = Endpoints.RefactorOperations.budgetMaintenanceResumengastosById(this.customerIdS.customerId());
 
     Promise.all([
       this.apiResponseS.onGetList(urlApi),

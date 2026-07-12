@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,7 +44,7 @@ export class GeneralAnualMantenimiento {
   }
 
   onLoadProveedores() {
-    const url = `MaintenanceCalendars/ProveedoresCalendario/${this.customerIdS.customerId()}`;
+    const url = Endpoints.RefactorOperations.maintenanceCalendarsProveedoresCalendarioById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.cb_providers.set([
         { label: "Todos", value: "" } as any,
@@ -54,9 +55,7 @@ export class GeneralAnualMantenimiento {
 
   onLoadData() {
     this.dataSignal.set([]);
-    const url = `MaintenanceCalendars/GeneralMantenimiento/${this.customerIdS.customerId()}/${
-      this.providerIdControl.value || ""
-    }`;
+    const url = Endpoints.RefactorOperations.maintenanceCalendarsGeneralMantenimientoByIdById(this.customerIdS.customerId(), this.providerIdControl.value || "");
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.dataSignal.set(result || []);
     });

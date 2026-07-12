@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -45,9 +46,9 @@ export class ReportSolicitudCompra {
     });
   }
   onLoadData() {
-    const urlApi = `maintenance-report/solicitudinsumos/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportSolicitudinsumosByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}`;
+    ));
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.solicitudes.set(result.solicitudes);
       this.ordenesCompra.set(result.ordenesCompra);

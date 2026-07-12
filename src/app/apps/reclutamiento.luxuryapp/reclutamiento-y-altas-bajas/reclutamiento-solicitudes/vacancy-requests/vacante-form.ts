@@ -14,6 +14,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import { firstValueFrom } from "rxjs";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -70,7 +71,7 @@ export class VacanteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `RequestPosition/${this.id}`;
+    const urlApi = EndpointsReclutamiento.RequestPosition.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -80,7 +81,7 @@ export class VacanteForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "RequestPosition",
+      endpoint: EndpointsReclutamiento.RequestPosition.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

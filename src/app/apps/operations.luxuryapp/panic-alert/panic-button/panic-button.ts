@@ -366,7 +366,7 @@ export class PanicButton implements OnDestroy {
       };
 
       const result = await this.apiResponseS.onPost<PanicAlertDto>(
-        "PanicAlerts",
+        "panic-alerts",
         dto,
       );
 

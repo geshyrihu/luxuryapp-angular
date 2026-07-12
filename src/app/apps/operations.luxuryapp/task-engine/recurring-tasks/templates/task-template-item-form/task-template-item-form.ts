@@ -118,7 +118,7 @@ export class TaskTemplateItemForm implements OnInit {
 
   loadPriorities() {
     firstValueFrom(
-      this.enumSelectService.onLoadEnumList("EPriorityLevel"),
+      this.enumSelectService.onLoadEnumList("e-priority-level"),
     ).then((resp) => {
       this.priorities.set(resp);
     });

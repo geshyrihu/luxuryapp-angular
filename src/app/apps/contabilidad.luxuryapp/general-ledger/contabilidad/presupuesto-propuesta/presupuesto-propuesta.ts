@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -1356,7 +1357,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         this.loading.set(true);
         this.apiResponseS
-          .onDelete(`budget-proposal/item/${item.id}`)
+          .onDelete(Endpoints.RefactorContabilidad.budgetProposalItemById(item.id))
           .then((success) => {
             if (success) {
               // Actualiza el estado local para remover el ótem sin recargar toda la data.

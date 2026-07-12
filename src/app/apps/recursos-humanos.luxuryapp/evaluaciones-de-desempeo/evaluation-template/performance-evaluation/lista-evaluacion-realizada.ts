@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -90,7 +91,7 @@ export class ListaEvaluacionRealizada {
   }
 
   onLoadData() {
-    const urlApi = `performance-evaluations/customer/${this.customerIdS.customerId()}/history`;
+    const urlApi = Endpoints.RefactorRecursosHumanos.performanceEvaluationsCustomerByIdHistory(this.customerIdS.customerId());
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result || []));
@@ -98,7 +99,7 @@ export class ListaEvaluacionRealizada {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`performance-evaluations/${id}`)
+      .onDelete(Endpoints.RefactorRecursosHumanos.performanceEvaluationsById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

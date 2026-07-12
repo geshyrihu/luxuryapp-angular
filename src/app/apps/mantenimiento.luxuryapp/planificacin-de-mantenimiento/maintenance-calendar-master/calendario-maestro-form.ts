@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -98,7 +99,7 @@ export class CalendarioMaestroForm implements OnInit {
 
   onLoadData(id: string) {
     this.apiResponseS
-      .onGetItem(`CalendarioMaestro/${id}`)
+      .onGetItem(Endpoints.RefactorMantenimiento.calendarioMaestroById(id))
       .then((result: any) => {
         this.form.patchValue(result);
         // Asegurar que el mes no se sobrescriba incorrectamente si viene null del back
@@ -112,7 +113,7 @@ export class CalendarioMaestroForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "CalendarioMaestro",
+      endpoint: "calendario-maestro",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -121,7 +122,7 @@ export class CalendarioMaestroForm implements OnInit {
 
   onLoadSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>("EquipoCalendarioMaestro")
+      .onGetSelectItem<SelectItemDto[]>("equipo-calendario-maestro")
       .then((response: SelectItemDto[]) => {
         this.cb_equipoCalendarioMaestro.set(response);
       });

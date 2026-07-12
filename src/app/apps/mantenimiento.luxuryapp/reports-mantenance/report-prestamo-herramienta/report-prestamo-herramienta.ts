@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -57,9 +58,9 @@ export class ReportPrestamoHerramienta {
     });
   }
   onLoadData() {
-    const urlApi = `maintenance-report/presatamoherramienta/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
+    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportPresatamoherramientaByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
       this.PeriodMonthService.getPeriodoInicio,
-    )}`;
+    ));
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

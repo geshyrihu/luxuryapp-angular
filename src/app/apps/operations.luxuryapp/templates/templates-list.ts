@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -107,7 +108,7 @@ export class TemplatesList implements OnInit {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = `customdocument/list/${customerId}/${EDocumentType.Template}`;
+    const urlApi = Endpoints.RefactorOperations.customdocumentListByIdById(customerId, EDocumentType.Template);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);
@@ -116,7 +117,7 @@ export class TemplatesList implements OnInit {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`customdocument/${id}`)
+      .onDelete(Endpoints.RefactorOperations.customdocumentById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>

@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -55,7 +56,7 @@ export class InventoryEngineSystem {
   }
 
   onLoadData() {
-    const urlApi = `InventoryEngineSystem/List/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.inventoryEngineSystemListById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result);
       this.filteredDataSignal.set(result);

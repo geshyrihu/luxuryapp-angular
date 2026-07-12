@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -83,7 +84,7 @@ export class ProductEntryList {
   }
 
   onLoadData() {
-    const urlApi = `EntradaProducto/GetEntradaProductos/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.RefactorOperations.entradaProductoGetEntradaProductosById(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);
@@ -92,7 +93,7 @@ export class ProductEntryList {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`entradaproducto/${id}`)
+      .onDelete(Endpoints.RefactorOperations.entradaproductoById(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>

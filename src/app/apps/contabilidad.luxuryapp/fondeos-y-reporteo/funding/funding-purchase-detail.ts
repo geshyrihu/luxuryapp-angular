@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -30,7 +31,7 @@ export class FundingPurchaseDetail {
     if (this.ordenCompraId !== "") this.onLoadData();
   }
   onLoadData() {
-    const urlApi = `funding/purchase-details/${this.ordenCompraId}`;
+    const urlApi = Endpoints.RefactorContabilidad.fundingPurchaseDetailsById(this.ordenCompraId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.data.set(result);
       this.submitting.set(false);

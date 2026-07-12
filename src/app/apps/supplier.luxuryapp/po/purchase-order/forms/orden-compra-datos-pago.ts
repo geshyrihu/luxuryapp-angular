@@ -148,8 +148,8 @@ export class OrdenCompraDatosPago implements OnInit {
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.wayToPay,
       ),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("TipoGasto")),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false)),
+      lastValueFrom(this.enumSelectS.onLoadEnumList("e-tipo-gasto")),
+      lastValueFrom(this.enumSelectS.onLoadEnumList("e-funding-period", false)),
     ];
 
     const [

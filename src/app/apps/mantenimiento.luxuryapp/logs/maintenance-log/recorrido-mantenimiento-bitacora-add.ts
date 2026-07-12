@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -71,14 +72,14 @@ export class RecorridoMantenimientoBitacoraAdd implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPost(`BitacoraMantenimiento`, this.form.getRawValue())
+      .onPost(Endpoints.RefactorMantenimiento.bitacoraMantenimiento, this.form.getRawValue())
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });
   }
 
   onGetMachinerySelectItem(value: number) {
-    const urlApi = `machineries/GetMachinerySelectItem/${value}`;
+    const urlApi = Endpoints.RefactorMantenimiento.machineriesGetMachinerySelectItemById(value);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.machinery.set(result);
       this.form.patchValue({

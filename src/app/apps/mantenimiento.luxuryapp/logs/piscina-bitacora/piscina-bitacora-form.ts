@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -110,7 +111,7 @@ export class PiscinaBitacoraForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `piscinabitacora/${this.id}`;
+    const urlApi = Endpoints.RefactorMantenimiento.piscinabitacoraById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -120,7 +121,7 @@ export class PiscinaBitacoraForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "piscinabitacora",
+      endpoint: "piscina-bitacora",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
