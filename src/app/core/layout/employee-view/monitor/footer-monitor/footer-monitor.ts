@@ -1,8 +1,7 @@
-import { CommonModule } from "@angular/common";
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 @Component({
   selector: "app-footer-monitor",
-  imports: [CommonModule],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container-fluid">
@@ -17,12 +16,3 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 export class FooterMonitor {
   currentYear: number = new Date().getFullYear();
 }
-
-
-
-
-
-
-
-
-

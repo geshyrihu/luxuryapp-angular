@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -21,7 +20,7 @@ import { ButtonModule } from "primeng/button";
 @Component({
   selector: "app-signature-pad",
 
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [ButtonModule, AppIcon],
   template: `
     <div class="sig-root">
       @if (label()) {

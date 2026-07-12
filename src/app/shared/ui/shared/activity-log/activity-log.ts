@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -41,7 +40,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
 @Component({
   selector: "app-activity-log",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="activity-log-root">
       @if (title()) {

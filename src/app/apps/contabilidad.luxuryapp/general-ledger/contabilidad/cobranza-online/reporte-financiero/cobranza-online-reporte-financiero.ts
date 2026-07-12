@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -46,7 +45,6 @@ const MESES_OPCIONES: OpcionMes[] = [
   selector: "app-cobranza-online-reporte-financiero",
   imports: [
     AppIcon,
-    CommonModule,
     FormsModule,
     ButtonModule,
     CustomInputSelectSignal,

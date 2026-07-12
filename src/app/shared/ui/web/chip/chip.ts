@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { ChipModule } from "primeng/chip";
 @Component({
   selector: "app-chip",
 
-  imports: [CommonModule, ChipModule, AppIcon],
+  imports: [ChipModule, AppIcon],
   template: `
     <p-chip
       [label]="label()"

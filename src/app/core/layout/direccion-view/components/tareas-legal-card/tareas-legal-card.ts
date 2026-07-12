@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import type { TareasLegalResumenDto } from "./tareas-legal-card.model";
 @Component({
   selector: "app-tareas-legal-card",
   templateUrl: "./tareas-legal-card.html",
-  imports: [CommonModule, LxTooltipDirective, AppIcon],
+  imports: [LxTooltipDirective, AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

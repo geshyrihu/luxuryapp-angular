@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { TagInputBase } from "@ui/base/tag-input.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-tag-input",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="ili-tag-root">
       @if (label()) {

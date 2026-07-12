@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,7 @@ export interface HeatmapCell {
 @Component({
   selector: "app-heatmap",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="hm-root">
       @if (title()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,7 +30,6 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
   templateUrl: "./task-group-participant.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     TableModule,
     AppSpinner,

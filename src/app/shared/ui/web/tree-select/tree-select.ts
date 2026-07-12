@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { TreeSelectModule } from "primeng/treeselect";
 @Component({
   selector: "app-tree-select",
 
-  imports: [CommonModule, FormsModule, TreeSelectModule],
+  imports: [FormsModule, TreeSelectModule],
   template: `
     <p-treeSelect
       [(ngModel)]="value"

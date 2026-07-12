@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,15 +22,14 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EmployeeInternalService } from '../employee-internal/employee-internal.service';
-import { IEmployeeBankDataForm } from './interfaces/employee-bank-data.interface';
+import { EmployeeInternalService } from "../employee-internal/employee-internal.service";
+import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface";
 
 @Component({
   selector: "app-employee-bank-data-form",
   templateUrl: "./employee-bank-data-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,

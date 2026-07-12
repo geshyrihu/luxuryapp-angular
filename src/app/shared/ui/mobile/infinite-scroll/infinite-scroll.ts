@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, output } from "@angular/core";
 import {
   IonInfiniteScroll,
@@ -9,7 +8,7 @@ import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
 @Component({
   selector: "ili-infinite-scroll",
 
-  imports: [CommonModule, IonInfiniteScroll, IonInfiniteScrollContent],
+  imports: [IonInfiniteScroll, IonInfiniteScrollContent],
   template: `
     <ion-infinite-scroll
       [disabled]="disabled()"

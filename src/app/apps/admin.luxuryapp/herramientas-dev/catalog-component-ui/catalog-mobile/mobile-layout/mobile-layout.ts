@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import {
   IonButtons,
@@ -22,12 +21,10 @@ import {
   settingsOutline,
 } from "ionicons/icons";
 
-
 @Component({
   selector: "app-mobile-layout",
 
   imports: [
-    CommonModule,
     IonButtons,
     IonContent,
     IonHeader,

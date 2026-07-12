@@ -1,17 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
-import { TableModule } from 'primeng/table';
-import type { IFlujoCajaDto } from '../../contabilidad-online/interfaces/aspel-budget.interface';
-import { AccountingNumberPipe } from '../../contabilidad-online/pipes/accounting-number.pipe';
-import { ContabilidadClienteService } from '../contabilidad-cliente.service';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
+import { TableModule } from "primeng/table";
+import type { IFlujoCajaDto } from "../../contabilidad-online/interfaces/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
+import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
-  selector: 'app-flujo-efectivo-cliente',
-  imports: [
-    AppIcon,CommonModule, TableModule, AccountingNumberPipe],
+  selector: "app-flujo-efectivo-cliente",
+  imports: [AppIcon, TableModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './flujo-efectivo-cliente.html',
+  templateUrl: "./flujo-efectivo-cliente.html",
 })
 export class FlujoEfectivoClienteComponent {
   private readonly svc = inject(ContabilidadClienteService);
@@ -34,12 +40,15 @@ export class FlujoEfectivoClienteComponent {
     const grps = this.data()?.grupos ?? [];
     if (grps.length === 0) return [];
     const maxIdx = Math.min(11, this.month() - 1);
-    return grps.map(g => ({
+    return grps.map((g) => ({
       ...g,
-      filas: g.filas.map(f => ({
+      filas: g.filas.map((f) => ({
         ...f,
-        montos: [...f.montos.slice(0, maxIdx + 1), f.montos[f.montos.length - 1]]
-      }))
+        montos: [
+          ...f.montos.slice(0, maxIdx + 1),
+          f.montos[f.montos.length - 1],
+        ],
+      })),
     }));
   });
 

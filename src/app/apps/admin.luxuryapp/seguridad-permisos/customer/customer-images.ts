@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ import { CustomerImageDto } from "./interfaces/customer-image.dto";
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, LxImage, AppIcon, WebButtonIcon],
+  imports: [LxImage, AppIcon, WebButtonIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);

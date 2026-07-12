@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonBadge } from "@ionic/angular/standalone";
 import { BadgeBase } from "@ui/base/badge.base";
@@ -9,7 +8,7 @@ import { BadgeBase } from "@ui/base/badge.base";
 @Component({
   selector: "ili-badge",
 
-  imports: [CommonModule, IonBadge],
+  imports: [IonBadge],
   template: `
     <ion-badge [color]="ionColor()" [class]="'ili-badge-' + size()">{{
       displayValue()

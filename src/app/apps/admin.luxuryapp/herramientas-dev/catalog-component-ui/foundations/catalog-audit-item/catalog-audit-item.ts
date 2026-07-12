@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ const AUDIT_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-audit-item",
-  imports: [CommonModule, FormsModule, CheckboxModule, AppIcon],
+  imports: [FormsModule, CheckboxModule, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

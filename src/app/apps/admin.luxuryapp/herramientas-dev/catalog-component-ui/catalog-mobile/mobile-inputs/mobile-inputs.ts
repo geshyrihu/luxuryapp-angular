@@ -1,5 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
   IonInputCheckbox,
@@ -18,11 +22,9 @@ import {
   IonInputToggle,
 } from "@ui/inputs/mobile";
 
-
 @Component({
   selector: "app-mobile-inputs",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     IonInputText,
     IonInputTextarea,
@@ -366,5 +368,3 @@ export class MobileInputs {
     { label: "Opcion 3", value: 3 },
   ];
 }
-
-

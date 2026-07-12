@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,7 @@ export interface ApprovalNode {
 @Component({
   selector: "app-approval-workflow",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="approval-root">
       @for (node of nodes(); track node.id; let i = $index) {

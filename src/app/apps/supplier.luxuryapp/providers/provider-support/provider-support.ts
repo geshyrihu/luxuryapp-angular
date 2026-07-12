@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -38,7 +37,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     TableModule,
     AppAvatar,
     WebButtonLabelEdit,

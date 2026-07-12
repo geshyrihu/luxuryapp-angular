@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,12 +19,10 @@ import {
   IonSpinner,
 } from "@ionic/angular/standalone";
 
-
 @Component({
   selector: "app-mobile-feedback",
 
   imports: [
-    CommonModule,
     IonAvatar,
     IonButton,
     IonInfiniteScroll,

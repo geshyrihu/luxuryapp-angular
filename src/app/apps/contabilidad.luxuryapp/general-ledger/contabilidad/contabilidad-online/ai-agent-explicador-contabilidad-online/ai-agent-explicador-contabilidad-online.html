@@ -1,5 +1,10 @@
-<lx-sidebar [visible]="visible()" (visibleChange)="visible.set($event)" position="right" class="w-full lg:w-8 xl:w-7 p-0" >
-<ng-template #header>
+<lx-sidebar
+  [visible]="visible()"
+  (visibleChange)="visible.set($event)"
+  position="right"
+  class="w-full lg:w-8 xl:w-7 p-0"
+>
+  <ng-template #header>
     <div class="flex align-items-center gap-2">
       <app-icon
         [icon]="'mdi:comment-multiple'"
@@ -20,8 +25,8 @@
       <div class="flex-1 min-h-0 flex flex-column xl:flex-row gap-3 p-3">
         <div class="flex-1 min-h-0 flex flex-column">
           <div class="flex-1 overflow-y-auto flex flex-column gap-3 pr-1">
+            @for (msg of messages(); track msg) {
             <div
-              *ngFor="let msg of messages()"
               class="flex w-full"
               [ngClass]="{'justify-content-end': msg.role === 'user', 'justify-content-start': msg.role === 'assistant'}"
             >
@@ -35,30 +40,29 @@
                   <app-icon
                     [icon]="msg.role === 'user' ? 'mdi:account' : 'mdi:comment-multiple'"
                   />
+                  @if (msg.role === 'assistant') {
                   <iw-button
-                    *ngIf="msg.role === 'assistant'"
                     iconClass="mdi:volume-high"
                     size="small"
                     variant="text"
                     (clicked)="replayMessage(msg)"
                   />
+                  }
                 </div>
-
-                <div
-                  *ngIf="!msg.isHtml"
-                  class="white-space-pre-wrap line-height-3 text-sm"
-                >
+                @if (!msg.isHtml) {
+                <div class="white-space-pre-wrap line-height-3 text-sm">
                   {{ msg.content }}
                 </div>
+                } @if (msg.isHtml) {
                 <div
-                  *ngIf="msg.isHtml"
                   [innerHTML]="msg.content"
                   class="html-ai-response text-sm line-height-3 shadow-none"
                 ></div>
+                }
               </div>
             </div>
-
-            <div *ngIf="loading()" class="flex justify-content-start">
+            } @if (loading()) {
+            <div class="flex justify-content-start">
               <div
                 class="p-3 surface-200 border-round-xl border-noround-left flex align-items-center gap-2"
               >
@@ -66,8 +70,8 @@
                 <span class="text-sm">Interpretando el informe actual...</span>
               </div>
             </div>
-
-            <div *ngIf="speaking()" class="flex justify-content-start">
+            } @if (speaking()) {
+            <div class="flex justify-content-start">
               <div
                 class="p-3 surface-100 border-round-xl border-1 border-primary flex align-items-center gap-2"
               >
@@ -77,6 +81,7 @@
                 >
               </div>
             </div>
+            }
           </div>
         </div>
 
@@ -88,8 +93,8 @@
               Preguntas Sugeridas
             </div>
             <div class="flex flex-column gap-2">
+              @for (q of suggestedQuestions; track q) {
               <il-button
-                *ngFor="let q of suggestedQuestions"
                 (clicked)="setQuery(q)"
                 [label]="q"
                 size="small"
@@ -98,6 +103,7 @@
                 class="text-xs justify-content-start w-full"
                 iconClass="mdi:help-circle"
               />
+              }
             </div>
           </div>
 

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageService } from "primeng/api";
@@ -12,7 +11,6 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
 @Component({
   selector: "app-image-analysis-dialog",
   imports: [
-    CommonModule,
     FormsModule,
     ButtonModule,
     FileUploadModule,

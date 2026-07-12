@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { DrawerModule } from "primeng/drawer";
 @Component({
   selector: "app-sidebar",
 
-  imports: [CommonModule, DrawerModule],
+  imports: [DrawerModule],
   template: `
     <p-drawer
       [(visible)]="visible"

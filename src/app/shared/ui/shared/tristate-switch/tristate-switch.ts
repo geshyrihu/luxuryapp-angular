@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,7 @@ export type TriState = true | false | null;
 @Component({
   selector: "app-tristate-switch",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div
       class="tri-root"

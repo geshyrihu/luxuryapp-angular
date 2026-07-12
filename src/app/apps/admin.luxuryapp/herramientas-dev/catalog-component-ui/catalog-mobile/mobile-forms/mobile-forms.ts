@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,12 +32,10 @@ import {
   timeOutline,
 } from "ionicons/icons";
 
-
 @Component({
   selector: "app-mobile-forms",
 
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonButton,

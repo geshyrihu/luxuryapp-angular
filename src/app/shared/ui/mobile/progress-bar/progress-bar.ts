@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonProgressBar } from "@ionic/angular/standalone";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
@@ -10,7 +9,7 @@ import { ProgressBarBase } from "@ui/base/progress-bar.base";
 @Component({
   selector: "ili-progress-bar",
 
-  imports: [CommonModule, IonProgressBar],
+  imports: [IonProgressBar],
   template: `
     <div class="ili-progress-bar-root">
       <ion-progress-bar

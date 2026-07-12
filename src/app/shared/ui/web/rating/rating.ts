@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ import { RatingModule } from "primeng/rating";
 @Component({
   selector: "app-rating",
 
-  imports: [CommonModule, FormsModule, RatingModule, ButtonModule],
+  imports: [FormsModule, RatingModule, ButtonModule],
   template: `
     <div class="app-rating-root">
       @if (label()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,10 +23,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-meeting-management",
-  imports: [
-    LxTag,
-    WebButtonLabel,
-    AppIcon,CommonModule, RouterModule, AreaDetailsTable],
+  imports: [LxTag, WebButtonLabel, AppIcon, RouterModule, AreaDetailsTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
 })

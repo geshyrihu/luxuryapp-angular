@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { KnobBase } from "@ui/base/knob.base";
@@ -6,7 +5,7 @@ import { KnobBase } from "@ui/base/knob.base";
 @Component({
   selector: "ili-knob",
 
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   template: `
     <div class="ili-knob-root">
       <input

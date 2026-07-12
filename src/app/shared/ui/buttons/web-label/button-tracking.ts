@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +11,7 @@ import { TrackingEvent } from "../shared/tracking";
 @Component({
   selector: "il-button-tracking",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button

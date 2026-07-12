@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   ElementRef,
@@ -12,7 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-tabs",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="ili-tabs" role="tablist">
       @for (tab of tabs(); track tab.id) {

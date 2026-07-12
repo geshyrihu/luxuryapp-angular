@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
@@ -7,7 +6,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-confirm-dialog",
 
-  imports: [CommonModule, IonButton, AppIcon],
+  imports: [IonButton, AppIcon],
   template: `
     @if (visible()) {
       <div class="ili-confirm-backdrop" (click)="onCancel()">

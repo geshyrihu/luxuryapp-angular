@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ export interface LeadScoreCategory {
 @Component({
   selector: "app-lead-scoring",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="lead-scoring-root">
       <div class="lead-scoring-total">

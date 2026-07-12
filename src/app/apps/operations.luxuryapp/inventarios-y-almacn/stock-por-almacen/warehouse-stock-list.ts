@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,7 +47,6 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppAvatar,
-    CommonModule,
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelDelete,

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,6 @@ import {
   selector: "app-aspel-cobranza-haus-query-panel",
 
   imports: [
-    CommonModule,
     FormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,

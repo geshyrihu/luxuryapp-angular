@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   OnInit,
@@ -39,7 +38,6 @@ interface IPurchaseRequestAddProductForm {
   templateUrl: "./purchase-request-add-product.html",
   imports: [
     LxFluid,
-    CommonModule,
     ReactiveFormsModule,
     InputAutocomplete,
     CustomInputTextSignal,
@@ -102,9 +100,9 @@ export class PurchaseRequestAddProduct implements OnInit {
   }
 
   async onLoadMeasurementUnits(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.SelectItems.measurementUnits,
-    );
+    const result: any = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(Endpoints.SelectItems.measurementUnits);
     this.cb_measurement_units.set(result as SelectItemDto[]);
   }
 

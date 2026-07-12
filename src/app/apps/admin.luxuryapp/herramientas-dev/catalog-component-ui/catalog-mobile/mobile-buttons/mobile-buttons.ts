@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +28,6 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 @Component({
   selector: "app-mobile-buttons",
   imports: [
-    CommonModule,
     MobileButtonLabel,
     MobileButtonLabelAdd,
     MobileButtonLabelEdit,

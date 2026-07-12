@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,7 +34,6 @@ interface EquipmentQrFormGroup {
   templateUrl: "./equipment-inspection-qr-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabelSave,
     CustomInputCheckSignal,

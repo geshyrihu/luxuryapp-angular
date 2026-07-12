@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,12 +30,10 @@ import {
   notificationsOutline,
 } from "ionicons/icons";
 
-
 @Component({
   selector: "app-mobile-data",
 
   imports: [
-    CommonModule,
     IonAccordion,
     IonAccordionGroup,
     IonAvatar,

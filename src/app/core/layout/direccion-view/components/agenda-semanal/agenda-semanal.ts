@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +24,6 @@ import type {
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
   imports: [
-    CommonModule,
     TagModule,
     LxTooltipDirective,
     AppIcon,

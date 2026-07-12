@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 @Component({
   selector: "app-input-group",
 
-  imports: [CommonModule, InputGroupModule, InputGroupAddonModule],
+  imports: [InputGroupModule, InputGroupAddonModule],
   template: `
     <p-inputgroup>
       @if (addonBefore()) {

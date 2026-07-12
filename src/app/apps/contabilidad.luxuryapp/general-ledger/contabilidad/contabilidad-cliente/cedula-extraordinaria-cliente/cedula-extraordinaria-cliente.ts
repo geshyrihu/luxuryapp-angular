@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import { PresupuestoWebAspelService } from "../../presupuesto-web-aspel/presupue
 
 @Component({
   selector: "app-cedula-extraordinaria-cliente",
-  imports: [CommonModule, EspejoAspelExtraordinarios],
+  imports: [EspejoAspelExtraordinarios],
   providers: [PresupuestoWebAspelService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-extraordinaria-cliente.html",

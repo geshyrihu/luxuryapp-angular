@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,8 +15,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { TableModule } from "primeng/table";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeInternalService } from '../employee-internal/employee-internal.service';
-import { IEmployeeBankData } from './interfaces/employee-bank-data.interface';
+import { EmployeeInternalService } from "../employee-internal/employee-internal.service";
+import { IEmployeeBankData } from "./interfaces/employee-bank-data.interface";
 import { EmployeeBankDataForm } from "./employee-bank-data-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -41,11 +40,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    ],
+  ],
 })
 export class EmployeeBankDataList {
   private readonly employeeInternalS = inject(EmployeeInternalService);

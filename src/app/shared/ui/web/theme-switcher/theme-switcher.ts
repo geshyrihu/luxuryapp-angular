@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 @Component({
   selector: "app-theme-switcher",
 
-  imports: [CommonModule, ButtonModule, LxTooltipDirective, AppIcon],
+  imports: [ButtonModule, LxTooltipDirective, AppIcon],
   template: `
     <p-button
       [lxTooltip]="

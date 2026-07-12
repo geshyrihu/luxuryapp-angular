@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ export type WizardStep = StepperStep;
 @Component({
   selector: "app-wizard",
 
-  imports: [CommonModule, ButtonModule, StepperModule, AppIcon],
+  imports: [ButtonModule, StepperModule, AppIcon],
   template: `
     <p-stepper [(value)]="activeStep" [linear]="linear()">
       <p-step-list>

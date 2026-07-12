@@ -1,4 +1,4 @@
-import { CommonModule, Location } from "@angular/common";
+import { Location } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +32,6 @@ import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/p
   selector: "app-header-direccion-monitor",
   imports: [
     BreadcrumbModule,
-    CommonModule,
     FormsModule,
     ProfileMonitor,
     RouterModule,

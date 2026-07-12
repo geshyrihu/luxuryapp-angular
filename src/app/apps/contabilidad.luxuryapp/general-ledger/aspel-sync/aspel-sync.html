@@ -1,6 +1,6 @@
 <div class="p-3">
   <lx-card>
-<ng-template #title>Sincronización manual Aspel</ng-template>
+    <ng-template #title>Sincronización manual Aspel</ng-template>
     <ng-template #subtitle>
       Ejecuta la carga manual de Aspel para el cliente activo actual. El proceso
       puede tardar varios minutos.
@@ -8,7 +8,9 @@
 
     <div class="grid mt-2 mb-2">
       <div class="col-12 md:col-6">
-        <div class="surface-ground p-3 border-round-lg border-1 border-blue-100 h-full">
+        <div
+          class="surface-ground p-3 border-round-lg border-1 border-blue-100 h-full"
+        >
           <div class="flex align-items-center gap-2 mb-2 text-blue-700">
             <app-icon [icon]="'mdi:information'" class="text-xl" />
             <span class="font-bold">Cliente Seleccionado</span>
@@ -20,7 +22,9 @@
             </div>
             <div class="flex justify-content-between">
               <span class="text-secondary">Nombre:</span>
-              <span class="font-bold">{{ currentCustomerName() || 'Sin cliente activo' }}</span>
+              <span class="font-bold"
+                >{{ currentCustomerName() || 'Sin cliente activo' }}</span
+              >
             </div>
           </div>
         </div>
@@ -67,14 +71,14 @@
       />
     </div>
 
-    <div class="mt-4" *ngIf="lastAction()">
+    @if (lastAction()) {
+    <div class="mt-4">
       <h5 class="mb-2">Última acción:</h5>
       <div class="text-sm text-color-secondary">
         {{ lastAction() | titlecase }}
       </div>
     </div>
-
-    @if (lastResult()) {
+    } @if (lastResult()) {
     <div class="mt-4">
       <h5 class="mb-2">Respuesta:</h5>
       <pre
@@ -82,5 +86,5 @@
       ><code class="language-json">{{ lastResult() | json }}</code></pre>
     </div>
     }
-</lx-card>
+  </lx-card>
 </div>

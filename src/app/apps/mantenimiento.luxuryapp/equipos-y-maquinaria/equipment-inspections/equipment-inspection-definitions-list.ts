@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,10 +42,8 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     WebButtonIconDelete,
     LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     TableModule,
     LxTag,
-
     PrimeNgCustomCaption,
   ],
 })

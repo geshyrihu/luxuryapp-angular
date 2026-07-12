@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { CarouselBase } from "@ui/base/carousel.base";
 
 @Component({
   selector: "ili-carousel",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-carousel">
       <div class="ili-carousel-track" #track (scroll)="onScroll(track)">

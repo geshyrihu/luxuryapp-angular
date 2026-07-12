@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { FluidModule } from "primeng/fluid";
 @Component({
   selector: "app-fluid",
 
-  imports: [CommonModule, FluidModule],
+  imports: [FluidModule],
   template: `
     <p-fluid>
       <ng-content />

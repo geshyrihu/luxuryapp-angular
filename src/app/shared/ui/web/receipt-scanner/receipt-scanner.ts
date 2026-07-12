@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   input,
@@ -24,7 +23,7 @@ export interface ScannedFile {
 @Component({
   selector: "app-receipt-scanner",
 
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [ButtonModule, AppIcon],
   template: `
     <div class="rs-root">
       <input

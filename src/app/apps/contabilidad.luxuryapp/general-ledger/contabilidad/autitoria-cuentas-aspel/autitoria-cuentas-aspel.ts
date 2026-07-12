@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +31,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-autitoria-cuentas-aspel",
   imports: [
     WebButtonIcon,
-    CommonModule,
     FormsModule,
     TableModule,
     CustomInputSelectButton,

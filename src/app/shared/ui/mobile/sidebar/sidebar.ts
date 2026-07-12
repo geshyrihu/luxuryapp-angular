@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SidebarBase } from "@ui/base/sidebar.base";
@@ -7,7 +6,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-sidebar",
 
-  imports: [CommonModule, RouterModule, AppIcon],
+  imports: [RouterModule, AppIcon],
   template: `
     @if (visible()) {
       <div class="ili-sidebar-backdrop" (click)="onBackdropClick()"></div>

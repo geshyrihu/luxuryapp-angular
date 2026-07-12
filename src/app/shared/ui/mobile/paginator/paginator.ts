@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import {
   IonButton,
@@ -12,14 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-paginator",
 
-  imports: [
-    CommonModule,
-    IonButton,
-    IonIcon,
-    IonSelect,
-    IonSelectOption,
-    AppIcon,
-  ],
+  imports: [IonButton, IonIcon, IonSelect, IonSelectOption, AppIcon],
   template: `
     <div class="ili-paginator">
       <div class="ili-paginator-info">

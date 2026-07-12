@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CardEmployee } from 'src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee';
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -59,7 +58,6 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     WebButtonLabelEdit,
     WebButtonLabelItem,
     TaskStatus,
-    CommonModule,
     TableModule,
     DataViewMobile,
     MobileListItem,

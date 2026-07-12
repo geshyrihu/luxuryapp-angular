@@ -1,4 +1,5 @@
-<div class="p-3" *ngIf="item() as req">
+@if (item(); as req) {
+<div class="p-3">
   <!-- Cabecera -->
   <div class="flex align-items-center gap-3 mb-4 p-3 border-round surface-100">
     <app-icon [icon]="'mdi:shield'" class="text-3xl text-purple-600" />
@@ -12,13 +13,11 @@
       </div>
     </div>
   </div>
-
   <!-- Descripcion -->
   <div class="mb-4">
     <label class="text-500 text-xs uppercase font-medium">Descripcion</label>
     <p class="mt-1 text-800">{{ req.summary }}</p>
   </div>
-
   @if (req.requestNotes) {
   <div class="mb-4">
     <label class="text-500 text-xs uppercase font-medium"
@@ -27,7 +26,6 @@
     <p class="mt-1 text-800">{{ req.requestNotes }}</p>
   </div>
   }
-
   <!-- Payload tecnico -->
   @if (payload()) {
   <div class="mb-4">
@@ -37,11 +35,9 @@
     <pre
       class="mt-1 p-3 surface-100 border-round text-sm overflow-auto max-h-10rem"
     >
-{{ payload() | json }}</pre
-    >
+              {{ payload() | json }}</pre>
   </div>
   }
-
   <!-- Advertencia anti-auto-aprobacion -->
   <div
     class="p-3 mb-4 border-round bg-yellow-50 border-1 border-yellow-300 flex gap-2 align-items-start"
@@ -52,7 +48,6 @@
       operacion se ejecuta automaticamente.
     </span>
   </div>
-
   <!-- Notas de revision -->
   <div class="mb-4">
     <custom-input-textarea-signal
@@ -60,7 +55,6 @@
       [control]="reviewNotesCtrl"
     />
   </div>
-
   <!-- Botones -->
   <div class="flex justify-content-end gap-2 mt-3">
     <il-button
@@ -79,3 +73,4 @@
     />
   </div>
 </div>
+}

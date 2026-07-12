@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -52,7 +51,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     ActionMenu,
-    CommonModule,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     DataViewMobile,

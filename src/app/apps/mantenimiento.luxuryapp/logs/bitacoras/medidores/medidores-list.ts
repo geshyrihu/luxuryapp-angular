@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -55,7 +54,6 @@ import { MedidorLecturaForm } from "./medidor-lectura-form";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     MobileButtonLabelItem,
-    CommonModule,
     TableModule,
     WebButtonLabelAdd,
     WebButtonLabelEdit,

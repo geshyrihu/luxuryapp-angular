@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { SplitterModule } from "primeng/splitter";
 @Component({
   selector: "app-split-pane",
 
-  imports: [CommonModule, SplitterModule],
+  imports: [SplitterModule],
   template: `
     <p-splitter
       [style]="{ height: height() }"

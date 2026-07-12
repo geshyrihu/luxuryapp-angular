@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -27,7 +26,6 @@ interface IRecorridoMantenimientoBitacoraAdd {
   selector: "app-recorrido-mantenimiento-bitacora-add",
   templateUrl: "./recorrido-mantenimiento-bitacora-add.html",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabelSave,
     CustomInputCheckSignal,

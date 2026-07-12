@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
 @Component({
   selector: "app-profile-card",
 
-  imports: [CommonModule, ButtonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [ButtonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="profile-card" [class.profile-card-compact]="compact()">
       <!-- Avatar -->

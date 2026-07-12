@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { TagModule } from "primeng/tag";
 @Component({
   selector: "app-tokens-typography",
 
-  imports: [CommonModule, TableModule, TagModule, MessageModule],
+  imports: [TableModule, TagModule, MessageModule],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">

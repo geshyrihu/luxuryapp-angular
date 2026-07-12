@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +25,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
-    CommonModule,
     ReactiveFormsModule,
     LxCard,
     WebButtonLabelSave,

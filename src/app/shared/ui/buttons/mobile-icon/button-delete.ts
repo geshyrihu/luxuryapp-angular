@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import { ConfirmService } from "../shared/confirm.service";
 @Component({
   selector: "ii-button-delete",
 
-  imports: [CommonModule, IonButton, AppIcon],
+  imports: [IonButton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button
@@ -39,7 +38,9 @@ export class MobileButtonIconDelete extends MobileButtonBase {
 
   protected async confirmDelete(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (await this.confirmSvc.confirm(this.confirmMessage(), this.confirmHeader())) {
+    if (
+      await this.confirmSvc.confirm(this.confirmMessage(), this.confirmHeader())
+    ) {
       this.confirmed.emit();
     }
   }

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,7 +36,7 @@ export interface PipelineStage {
 @Component({
   selector: "app-pipeline-crm",
 
-  imports: [CommonModule, ButtonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [ButtonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="pipeline-root">
       <!-- Header -->
@@ -127,7 +126,10 @@ export interface PipelineStage {
                       </span>
                     }
                     @if (deal.owner) {
-                      <span class="pipeline-deal-owner" [lxTooltip]="deal.owner">
+                      <span
+                        class="pipeline-deal-owner"
+                        [lxTooltip]="deal.owner"
+                      >
                         {{ ownerInitials(deal.owner) }}
                       </span>
                     }

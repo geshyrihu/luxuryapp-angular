@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, inject, input, output } from "@angular/core";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -17,7 +16,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
-    CommonModule,
     TableModule,
     ActionMenu,
   ],

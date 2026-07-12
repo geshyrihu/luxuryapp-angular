@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,7 +36,7 @@ export interface Customer360Data {
 @Component({
   selector: "app-customer-360",
 
-  imports: [CommonModule, DividerModule, TagModule, AppIcon],
+  imports: [DividerModule, TagModule, AppIcon],
   template: `
     <div class="c360-root">
       <!-- Header / Identity -->

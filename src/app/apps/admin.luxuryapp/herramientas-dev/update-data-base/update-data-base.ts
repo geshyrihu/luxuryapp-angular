@@ -1,5 +1,3 @@
-import { CommonModule } from "@angular/common";
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +13,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
   selector: "app-update-data-base",
   templateUrl: "./update-data-base.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, LxCard],
+  imports: [LxCard],
 })
 export class UpdateDataBase {
   apiResponseS = inject(ApiResponseService);

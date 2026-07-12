@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { TreeModule } from "primeng/tree";
 @Component({
   selector: "app-tree",
 
-  imports: [CommonModule, TreeModule],
+  imports: [TreeModule],
   template: `
     <p-tree
       [value]="value()"

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { MenubarModule } from "primeng/menubar";
 @Component({
   selector: "app-menubar",
 
-  imports: [CommonModule, MenubarModule],
+  imports: [MenubarModule],
   template: `
     <p-menubar
       [model]="items()"

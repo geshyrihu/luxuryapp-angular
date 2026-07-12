@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -54,14 +53,12 @@ import { AspRoleService } from "../../../../core/auth/services/asp-role.service"
     MobileActionMenu,
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     FormsModule,
     TableModule,
     LxTooltipDirective,
     LxTag,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-
     WebButtonIconEdit,
     DataViewMobile,
     WebButtonIconTracking,

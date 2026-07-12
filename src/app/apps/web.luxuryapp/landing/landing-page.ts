@@ -1,5 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 interface IAreaCard {
@@ -13,7 +17,7 @@ interface IAreaCard {
 
 @Component({
   selector: "app-landing-page",
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: "./landing-page.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./landing-page.scss"],
@@ -22,7 +26,8 @@ export class LandingPage implements AfterViewInit {
   public areas: IAreaCard[] = [
     {
       title: "Legal",
-      description: "Gestión de contratos, asesoría jurídica, cumplimiento normativo y protección legal de los condóminos.",
+      description:
+        "Gestión de contratos, asesoría jurídica, cumplimiento normativo y protección legal de los condóminos.",
       icon: "⚖",
       route: "/web/legal",
       gradient: "linear-gradient(135deg, #1b365d 0%, #2a4d7c 100%)",
@@ -30,7 +35,8 @@ export class LandingPage implements AfterViewInit {
     },
     {
       title: "Operaciones",
-      description: "Supervisión diaria del residencial, coordinación de servicios, control de acceso y gestión de incidencias.",
+      description:
+        "Supervisión diaria del residencial, coordinación de servicios, control de acceso y gestión de incidencias.",
       icon: "⚙",
       route: "/web/operations",
       gradient: "linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)",
@@ -38,7 +44,8 @@ export class LandingPage implements AfterViewInit {
     },
     {
       title: "Mantenimiento",
-      description: "Planificación y ejecución de mantenimiento preventivo y correctivo de instalaciones y equipos comunes.",
+      description:
+        "Planificación y ejecución de mantenimiento preventivo y correctivo de instalaciones y equipos comunes.",
       icon: "🔧",
       route: "/web/maintenance",
       gradient: "linear-gradient(135deg, #c2410c 0%, #ea580c 100%)",
@@ -46,7 +53,8 @@ export class LandingPage implements AfterViewInit {
     },
     {
       title: "Contabilidad",
-      description: "Administración financiera, cobro de cuotas de mantenimiento, estados financieros y auditorías.",
+      description:
+        "Administración financiera, cobro de cuotas de mantenimiento, estados financieros y auditorías.",
       icon: "📊",
       route: "/web/accounting",
       gradient: "linear-gradient(135deg, #15803d 0%, #22c55e 100%)",
@@ -54,7 +62,8 @@ export class LandingPage implements AfterViewInit {
     },
     {
       title: "Recursos Humanos",
-      description: "Gestión del personal, nómina, capacitación, contratación y clima laboral del equipo administrativo.",
+      description:
+        "Gestión del personal, nómina, capacitación, contratación y clima laboral del equipo administrativo.",
       icon: "👥",
       route: "/web/hr",
       gradient: "linear-gradient(135deg, #4338ca 0%, #6366f1 100%)",

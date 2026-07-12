@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,12 +34,10 @@ import {
   warningOutline,
 } from "ionicons/icons";
 
-
 @Component({
   selector: "app-mobile-overlays",
 
   imports: [
-    CommonModule,
     IonButton,
     IonButtons,
     IonContent,

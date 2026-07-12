@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -8,7 +7,7 @@ export type { SwipeAction } from "@ui/base/swipe-actions.base";
 @Component({
   selector: "ili-swipe-actions",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div
       class="swipe-root"

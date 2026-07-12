@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +8,7 @@ import { TerminalBase } from "@ui/base/terminal.base";
 @Component({
   selector: "ili-terminal",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-terminal">
       <div class="ili-terminal-header">{{ welcomeMessage() }}</div>

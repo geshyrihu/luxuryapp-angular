@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,8 +20,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
-  imports: [
-    LxTag,CommonModule, AppIcon],
+  imports: [LxTag, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,12 +41,10 @@ import {
   trashOutline,
 } from "ionicons/icons";
 
-
 @Component({
   selector: "app-mobile-navigation",
 
   imports: [
-    CommonModule,
     IonBackButton,
     IonButton,
     IonButtons,

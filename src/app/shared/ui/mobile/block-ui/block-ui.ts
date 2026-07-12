@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { BlockUIBase } from "@ui/base/block-ui.base";
 
 @Component({
   selector: "ili-block-ui",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-block-ui-root">
       @if (blocked()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,7 +30,7 @@ import { FilterRequestsService } from "src/app/core/http/services/filter-request
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ModificacionSalarioForm } from './modificacion-salario-form';
+import { ModificacionSalarioForm } from "./modificacion-salario-form";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -50,7 +49,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     TableModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,

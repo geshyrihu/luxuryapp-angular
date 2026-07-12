@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +21,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { EmployeeBankDataDTO } from './interfaces/employee-bank-data.interfaces';
+import { EmployeeBankDataDTO } from "./interfaces/employee-bank-data.interfaces";
 import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
 
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -46,11 +45,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileActionMenu,
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-
     DataViewMobile,
   ],
 })

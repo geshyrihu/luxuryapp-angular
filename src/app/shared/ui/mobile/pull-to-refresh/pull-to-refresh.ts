@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-pull-to-refresh",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div
       class="ptr-root"

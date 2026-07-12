@@ -1,5 +1,5 @@
 import { BreakpointObserver } from "@angular/cdk/layout";
-import { CommonModule } from "@angular/common";
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,7 +40,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-mis-inspecciones-ejecutar",
   imports: [
     WebButtonIcon,
-    CommonModule,
     ReactiveFormsModule,
     CustomInputToggleSwitch,
     CustomInputTextAreaSignal,

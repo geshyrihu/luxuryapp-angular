@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -34,7 +33,6 @@ export interface DataGridColumn {
   selector: "app-data-grid",
 
   imports: [
-    CommonModule,
     TableModule,
     ButtonModule,
     InputTextModule,

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [CommonModule, ButtonModule, DividerModule, TagModule],
+  imports: [ButtonModule, DividerModule, TagModule],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

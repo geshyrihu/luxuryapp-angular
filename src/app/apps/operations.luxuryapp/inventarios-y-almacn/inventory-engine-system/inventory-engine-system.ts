@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,12 +27,7 @@ import { BitacoraIndividual } from "src/app/apps/mantenimiento.luxuryapp/logs/ma
   selector: "app-inventory-engine-system",
   templateUrl: "./inventory-engine-system.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    CommonModule,
-    CustomInputSelectSignal,
-    LxTooltipDirective,
-  ],
+  imports: [WebButtonIcon, CustomInputSelectSignal, LxTooltipDirective],
 })
 export class InventoryEngineSystem {
   apiResponseS = inject(ApiResponseService);

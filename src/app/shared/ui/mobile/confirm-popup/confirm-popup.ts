@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-confirm-popup",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     @if (visible()) {
       <div class="ili-cp-backdrop" (click)="close()">

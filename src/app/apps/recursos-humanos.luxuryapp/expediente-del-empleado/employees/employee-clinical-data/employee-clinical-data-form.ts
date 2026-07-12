@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,15 +18,14 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EmployeeInternalService } from '../employee-internal/employee-internal.service';
-import { IEmployeeClinicalDataForm } from './interfaces/employee-clinical-data.interface';
+import { EmployeeInternalService } from "../employee-internal/employee-internal.service";
+import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.interface";
 
 @Component({
   selector: "app-employee-clinical-data-form",
   templateUrl: "./employee-clinical-data-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,

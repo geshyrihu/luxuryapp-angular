@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -6,7 +5,7 @@ import {
   inject,
   input,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from "primeng/table";
@@ -61,8 +60,7 @@ type ClientRow =
 
 @Component({
   selector: "app-estado-resultados-cliente",
-  imports: [
-    AppIcon,CommonModule, TableModule, LxSkeleton, AccountingNumberPipe],
+  imports: [AppIcon, TableModule, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-cliente.html",
 })

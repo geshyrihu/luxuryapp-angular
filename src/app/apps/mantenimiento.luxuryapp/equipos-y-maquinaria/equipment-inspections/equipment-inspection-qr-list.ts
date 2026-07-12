@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +31,6 @@ import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-c
   imports: [
     WebButtonIconItem,
     LxTooltipDirective,
-    CommonModule,
     TableModule,
     LxTag,
     DataViewMobile,

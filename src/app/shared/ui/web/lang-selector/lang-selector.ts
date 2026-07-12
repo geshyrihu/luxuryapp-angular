@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ export { DEFAULT_LANGUAGES, type Language } from "@ui/base/lang-selector.base";
 @Component({
   selector: "app-lang-selector",
 
-  imports: [CommonModule, FormsModule, SelectModule],
+  imports: [FormsModule, SelectModule],
   template: `
     <div class="lang-selector-root">
       @if (showLabel()) {

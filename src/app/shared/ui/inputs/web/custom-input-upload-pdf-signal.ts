@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { SharedModule } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -43,7 +43,7 @@ import { environment } from "src/environments/environment";
 export class SubirPdf implements OnInit {
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
-  http = inject(HttpClient);
+  apiResponse = inject(ApiResponseService);
   maxFileSize: number = 20000000;
   url: string = "";
   pathUrl: string = "";
@@ -61,14 +61,11 @@ export class SubirPdf implements OnInit {
       formData.append("files", file);
     }
 
-    this.http.post(this.url, formData).subscribe({
-      next: (response) => {
+    this.apiResponse.onPostFile(this.url, formData).then((response) => {
+      if (response !== false) {
         // Notificar éxito y cerrar
         this.ref.close(true);
-      },
-      error: (error) => {
-        console.error("Error al subir:", error);
-      },
+      }
     });
   }
 

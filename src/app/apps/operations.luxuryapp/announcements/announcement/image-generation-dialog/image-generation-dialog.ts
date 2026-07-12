@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,6 @@ import { SwalService } from "src/app/core/services/swal.service";
   styleUrls: ["./image-generation-dialog.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
     WebButtonIcon,

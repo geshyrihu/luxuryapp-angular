@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -45,7 +44,6 @@ import { IProductData } from "./product-data.interface";
   templateUrl: "./purchase-request-add-product-form.html",
   imports: [
     WebButtonIcon,
-    CommonModule,
     ReactiveFormsModule,
     TableModule,
     CustomInputSelectSignal,

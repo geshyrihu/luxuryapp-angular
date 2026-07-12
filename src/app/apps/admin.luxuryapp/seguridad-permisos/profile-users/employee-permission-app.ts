@@ -7,11 +7,11 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { PermissionDto } from "src/app/core/interfaces/permission.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
-import { CommonModule } from "@angular/common";
+
 @Component({
   selector: "employee-permission-app",
   templateUrl: "./employee-permission-app.html",
-  imports: [CommonModule, FormsModule, LxCheckbox],
+  imports: [FormsModule, LxCheckbox],
 })
 export class EmployeePermissionApp implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,7 @@ export interface DashboardWidget {
 @Component({
   selector: "app-dashboard-layout",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div
       class="dashboard-grid"

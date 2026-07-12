@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +27,6 @@ import { EmailDataFormDto } from "src/app/core/interfaces/email-data-form.interf
   templateUrl: "./email-data-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabelSendEmail,
     CustomInputTextSignal,

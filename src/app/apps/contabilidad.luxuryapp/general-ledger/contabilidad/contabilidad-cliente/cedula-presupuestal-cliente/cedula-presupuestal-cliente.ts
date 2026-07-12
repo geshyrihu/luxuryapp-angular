@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -6,7 +5,7 @@ import {
   inject,
   input,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { TableModule } from "primeng/table";
 import type {
@@ -75,8 +74,7 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal-cliente",
-  imports: [
-    AppIcon,CommonModule, TableModule],
+  imports: [AppIcon, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal-cliente.html",
 })

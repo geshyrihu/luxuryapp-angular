@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   ElementRef,
@@ -24,7 +23,7 @@ export interface ScanResult {
 @Component({
   selector: "app-barcode-scanner",
 
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [ButtonModule, AppIcon],
   template: `
     <div class="bs-root">
       @if (label()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +27,6 @@ const PATTERNS_LABELS: Record<string, string> = {
 @Component({
   selector: "app-catalog-patterns-item",
   imports: [
-    CommonModule,
     FormsModule,
     ButtonModule,
     DividerModule,

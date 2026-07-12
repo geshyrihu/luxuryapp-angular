@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ColorPickerBase } from "@ui/base/color-picker.base";
 
 @Component({
   selector: "ili-color-picker",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-cp-root" [class.ili-cp-disabled]="disabled()">
       @if (label()) {

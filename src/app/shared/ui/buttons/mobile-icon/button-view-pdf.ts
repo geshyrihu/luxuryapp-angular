@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
@@ -8,7 +7,7 @@ import { openPdf } from "../shared/pdf";
 @Component({
   selector: "ii-button-view-pdf",
 
-  imports: [CommonModule, IonButton, AppIcon],
+  imports: [IonButton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,7 +41,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonIconEdit,
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     ReactiveFormsModule,
     TableModule,
     CustomInputFile,

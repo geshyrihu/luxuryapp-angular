@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +25,6 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
   templateUrl: "./aspel-customer-empresa-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,

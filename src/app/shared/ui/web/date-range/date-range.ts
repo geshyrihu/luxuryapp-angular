@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ export {
 @Component({
   selector: "app-date-range",
 
-  imports: [CommonModule, ButtonModule],
+  imports: [ButtonModule],
   template: `
     <div class="date-range-root flex flex-column gap-2">
       <div class="flex gap-2 flex-wrap">

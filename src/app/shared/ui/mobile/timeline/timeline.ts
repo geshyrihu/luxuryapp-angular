@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TimelineBase } from "@ui/base/timeline.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-timeline",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="ili-tl">
       @for (event of events(); track $index; let last = $last) {

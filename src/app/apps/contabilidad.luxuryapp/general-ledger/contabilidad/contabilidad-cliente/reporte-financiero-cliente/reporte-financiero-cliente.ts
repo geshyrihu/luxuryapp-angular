@@ -1,18 +1,24 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import type {
   IReporteFinancieroDto,
   IReporteFinancieroFilaDto,
-} from '../../contabilidad-online/interfaces/aspel-budget.interface';
-import { ContabilidadClienteService } from '../contabilidad-cliente.service';
+} from "../../contabilidad-online/interfaces/aspel-budget.interface";
+import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
-  selector: 'app-reporte-financiero-cliente',
-  imports: [
-    AppIcon,CommonModule],
+  selector: "app-reporte-financiero-cliente",
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './reporte-financiero-cliente.html',
+  templateUrl: "./reporte-financiero-cliente.html",
 })
 export class ReporteFinancieroClienteComponent {
   private readonly svc = inject(ContabilidadClienteService);
@@ -42,13 +48,24 @@ export class ReporteFinancieroClienteComponent {
   }
 
   formatNum(value: number): string {
-    if (value === 0 || value === null || value === undefined) return '-';
-    const f = new Intl.NumberFormat('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(Math.abs(value));
+    if (value === 0 || value === null || value === undefined) return "-";
+    const f = new Intl.NumberFormat("es-MX", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(Math.abs(value));
     return value < 0 ? `(${f})` : f;
   }
 
-  isNeg(value: number): boolean { return value < 0; }
-  isLastCol(index: number, total: number): boolean { return index === total - 1; }
-  isFilaVacia(fila: IReporteFinancieroFilaDto): boolean { return fila.valores.every(v => v === 0); }
-  trackByIndex(index: number): number { return index; }
+  isNeg(value: number): boolean {
+    return value < 0;
+  }
+  isLastCol(index: number, total: number): boolean {
+    return index === total - 1;
+  }
+  isFilaVacia(fila: IReporteFinancieroFilaDto): boolean {
+    return fila.valores.every((v) => v === 0);
+  }
+  trackByIndex(index: number): number {
+    return index;
+  }
 }

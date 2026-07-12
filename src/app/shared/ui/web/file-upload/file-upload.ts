@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,13 +27,7 @@ export interface UploadFile {
 @Component({
   selector: "app-file-upload",
 
-  imports: [
-    CommonModule,
-    ButtonModule,
-    ProgressBarModule,
-    FileUploadModule,
-    AppIcon,
-  ],
+  imports: [ButtonModule, ProgressBarModule, FileUploadModule, AppIcon],
   template: `
     <div class="file-upload-root">
       <!-- Drop Zone -->

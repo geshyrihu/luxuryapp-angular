@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +24,7 @@ export type ChartType =
 @Component({
   selector: "app-chart-wrapper",
 
-  imports: [CommonModule, NgxEchartsDirective],
+  imports: [NgxEchartsDirective],
   template: `
     <div class="chart-wrapper-root">
       @if (title()) {

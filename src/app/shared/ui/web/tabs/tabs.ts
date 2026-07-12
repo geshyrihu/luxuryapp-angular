@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,7 +22,7 @@ import { TabsModule } from "primeng/tabs";
 @Component({
   selector: "app-tabs",
 
-  imports: [CommonModule, TabsModule, AppIcon],
+  imports: [TabsModule, AppIcon],
   template: `
     <p-tabs [value]="activeId()" (valueChange)="onValueChange($event)">
       <p-tablist>

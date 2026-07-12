@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { ScrollerModule } from "primeng/scroller";
 @Component({
   selector: "app-virtual-scroller",
 
-  imports: [CommonModule, ScrollerModule],
+  imports: [ScrollerModule],
   template: `
     <p-scroller
       [items]="items()"

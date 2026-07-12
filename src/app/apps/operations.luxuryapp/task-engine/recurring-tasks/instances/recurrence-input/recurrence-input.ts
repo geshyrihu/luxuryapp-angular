@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   DestroyRef,
@@ -7,7 +6,7 @@ import {
   inject,
   input,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -22,7 +21,6 @@ import {
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-
 
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
@@ -47,7 +45,6 @@ interface IRecurrenceForm {
 @Component({
   selector: "app-recurrence-input",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     CustomInputNumberSignal,

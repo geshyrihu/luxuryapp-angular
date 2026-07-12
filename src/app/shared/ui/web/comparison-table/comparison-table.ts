@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,7 @@ export interface ComparisonItem {
 @Component({
   selector: "app-comparison-table",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div
       class="comparison-table-root"

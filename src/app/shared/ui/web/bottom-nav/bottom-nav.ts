@@ -1,15 +1,15 @@
 // @ts-nocheck
 class TabMenuModule {}
-import { CommonModule } from "@angular/common";
+
 import { Component, ViewEncapsulation, computed } from "@angular/core";
 import { BottomNavBase } from "@ui/base/bottom-nav.base";
 import type { MenuItem } from "primeng/api";
-import { /* any */ } from "primeng/tabmenu";
+import {} from /* any */ "primeng/tabmenu";
 
 @Component({
   selector: "app-bottom-nav",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="bottom-nav-web" [attr.aria-label]="ariaLabel()">
       <p-tabMenu

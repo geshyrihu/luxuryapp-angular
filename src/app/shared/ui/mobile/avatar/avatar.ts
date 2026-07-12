@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarBase } from "@ui/base/avatar.base";
@@ -10,7 +9,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-avatar",
 
-  imports: [CommonModule, IonAvatar, AppIcon],
+  imports: [IonAvatar, AppIcon],
   template: `
     <ion-avatar
       [class]="'ili-avatar ' + styleClass()"

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { ColorPickerModule } from "primeng/colorpicker";
 @Component({
   selector: "app-color-picker",
 
-  imports: [CommonModule, FormsModule, ColorPickerModule],
+  imports: [FormsModule, ColorPickerModule],
   template: `
     <div class="cp-root" [class.cp-root-disabled]="disabled()">
       @if (label()) {

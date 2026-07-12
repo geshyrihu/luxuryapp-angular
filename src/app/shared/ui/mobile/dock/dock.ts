@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { DockBase } from "@ui/base/dock.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-dock",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="ili-dock" [class.ili-dock-top]="position() === 'top'">
       @for (item of items(); track $index) {

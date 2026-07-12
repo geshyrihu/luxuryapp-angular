@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { CheckboxModule } from "primeng/checkbox";
 @Component({
   selector: "app-table-checkbox",
 
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule],
+  imports: [FormsModule, ReactiveFormsModule, CheckboxModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (control()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -15,7 +14,6 @@ import { BloqueVisual } from "./interfaces/bloque-visual.interface";
 @Component({
   selector: "app-catalog-audit",
   imports: [
-    CommonModule,
     FormsModule,
     ButtonModule,
     CheckboxModule,

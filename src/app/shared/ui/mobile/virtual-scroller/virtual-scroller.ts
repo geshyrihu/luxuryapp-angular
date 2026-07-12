@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { VirtualScrollerBase } from "@ui/base/virtual-scroller.base";
 
 @Component({
   selector: "ili-virtual-scroller",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-virtual-scroller-root" [style.maxHeight]="scrollHeight()">
       @for (item of items(); track $index) {

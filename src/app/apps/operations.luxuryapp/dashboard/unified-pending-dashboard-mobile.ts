@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -38,7 +37,7 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 @Component({
   selector: "app-unified-pending-dashboard-mobile",
-  imports: [LxTag, AppIcon, CommonModule, DataViewMobile],
+  imports: [LxTag, AppIcon, DataViewMobile],
   templateUrl: "./unified-pending-dashboard-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

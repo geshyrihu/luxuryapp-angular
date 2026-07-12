@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +27,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [CommonModule, WebButtonLabel, CustomInputFile, LxMessage, AppIcon],
+  imports: [WebButtonLabel, CustomInputFile, LxMessage, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
 @Component({
   selector: "app-realtime-indicator",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="rt-root" [attr.aria-label]="statusLabel()">
       <!-- Pulsing dot -->

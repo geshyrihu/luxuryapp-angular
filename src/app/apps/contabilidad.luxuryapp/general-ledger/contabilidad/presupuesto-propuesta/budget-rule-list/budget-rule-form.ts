@@ -39,7 +39,6 @@ import {
 @Component({
   selector: "app-budget-rule-form",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,

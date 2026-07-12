@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,7 @@ export interface TourStep {
 @Component({
   selector: "app-tour",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     @if (visible()) {
       <div class="tour-backdrop" (click)="skip()"></div>

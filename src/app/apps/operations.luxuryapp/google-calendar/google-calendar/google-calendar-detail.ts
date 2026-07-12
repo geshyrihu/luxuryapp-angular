@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -28,7 +27,7 @@ interface IGoogleCalendarEventListItem {
   selector: "app-google-calendar-detail",
   templateUrl: "./google-calendar-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, WebButtonLabel],
+  imports: [WebButtonLabel],
 })
 export class GoogleCalendarDetail {
   private readonly config = inject(DynamicDialogConfig);

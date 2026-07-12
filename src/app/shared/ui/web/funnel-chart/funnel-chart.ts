@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 @Component({
   selector: "app-funnel-chart",
 
-  imports: [CommonModule, ChartWrapper],
+  imports: [ChartWrapper],
   template: `
     <div class="funnel-root">
       @if (title()) {

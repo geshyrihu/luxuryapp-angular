@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,13 +18,7 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus-source-toolbar",
 
-  imports: [
-    CommonModule,
-    FormsModule,
-    LxTag,
-    CustomInputSelectSignal,
-    WebButtonLabel,
-  ],
+  imports: [FormsModule, LxTag, CustomInputSelectSignal, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div

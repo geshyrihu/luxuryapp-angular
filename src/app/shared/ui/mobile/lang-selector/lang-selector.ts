@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { LangSelectorBase } from "@ui/base/lang-selector.base";
@@ -6,7 +5,7 @@ import { LangSelectorBase } from "@ui/base/lang-selector.base";
 @Component({
   selector: "ili-lang-selector",
 
-  imports: [CommonModule, IonSelect, IonSelectOption],
+  imports: [IonSelect, IonSelectOption],
   template: `
     <div class="ili-lang-root">
       @if (showLabel()) {

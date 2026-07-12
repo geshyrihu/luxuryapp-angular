@@ -1,5 +1,10 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
 import { MobileInputs } from "../catalog-mobile/mobile-inputs/mobile-inputs";
@@ -24,7 +29,6 @@ const MOBILE_LABELS: Record<string, string> = {
 @Component({
   selector: "app-catalog-mobile-item",
   imports: [
-    CommonModule,
     MobileButtons,
     MobileInputs,
     MobileFeedback,
@@ -40,14 +44,30 @@ const MOBILE_LABELS: Record<string, string> = {
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
       </div>
       @switch (item()) {
-        @case ('buttons') { <app-mobile-buttons /> }
-        @case ('inputs') { <app-mobile-inputs /> }
-        @case ('feedback') { <app-mobile-feedback /> }
-        @case ('navigation') { <app-mobile-navigation /> }
-        @case ('lists') { <app-mobile-lists /> }
-        @case ('data') { <app-mobile-data /> }
-        @case ('forms') { <app-mobile-forms /> }
-        @case ('overlays') { <app-mobile-overlays /> }
+        @case ("buttons") {
+          <app-mobile-buttons />
+        }
+        @case ("inputs") {
+          <app-mobile-inputs />
+        }
+        @case ("feedback") {
+          <app-mobile-feedback />
+        }
+        @case ("navigation") {
+          <app-mobile-navigation />
+        }
+        @case ("lists") {
+          <app-mobile-lists />
+        }
+        @case ("data") {
+          <app-mobile-data />
+        }
+        @case ("forms") {
+          <app-mobile-forms />
+        }
+        @case ("overlays") {
+          <app-mobile-overlays />
+        }
       }
     </section>
   `,

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,7 @@ export type PreviewMode = "desktop" | "mobile";
 @Component({
   selector: "app-email-preview",
 
-  imports: [CommonModule, ButtonModule, TagModule, AppIcon],
+  imports: [ButtonModule, TagModule, AppIcon],
   template: `
     <div class="ep-root">
       <!-- Toolbar -->

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -23,11 +22,7 @@ interface FrontendRoute {
 
 @Component({
   selector: "app-report-guide",
-  imports: [CommonModule,
-    RouterModule,
-    LxAccordion,
-    WebButtonLabel,
-    AppIcon, LxTag],
+  imports: [RouterModule, LxAccordion, WebButtonLabel, AppIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-guide.html",
 })
@@ -71,7 +66,7 @@ export class ReportGuide {
       path: "/contabilidad/reportes/guia",
       component: "ReportGuide",
       description: "Esta guóa práctica del módulo.",
-    }
+    },
   ];
 
   apiRoutes: RouteEntry[] = [
@@ -151,7 +146,7 @@ export class ReportGuide {
         "Catálogo de cuentas contables del cliente para el aóo indicado. Usado por el autocomplete en el Builder.",
       params: "customerId: Guid, year: int",
       response: "AccountCatalogItemDTO[] { code, name, level }",
-    }
+    },
   ];
 
   tiposRenglon = [
@@ -189,7 +184,7 @@ export class ReportGuide {
       tipo: "spacer",
       descripcion: "Fila vacóa para separación visual.",
       ejemplo: "",
-    }
+    },
   ];
 
   tiposPeriodo = [
@@ -214,7 +209,7 @@ export class ReportGuide {
       campo: "(ignorado)",
       descripcion:
         "Suma de los 12 meses del aóo. Para presupuesto suma los 12 montos de presupuesto.",
-    }
+    },
   ];
 
   tiposVisualizacion = [
@@ -242,7 +237,7 @@ export class ReportGuide {
       tipo: "summary-cards",
       descripcion:
         "Tarjetas KPI. Muestra los renglones grandTotal y subtotal-bold como cards con valor principal.",
-    }
+    },
   ];
 
   ejemploJson = `{

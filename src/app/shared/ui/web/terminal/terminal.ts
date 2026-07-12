@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { TerminalModule } from "primeng/terminal";
 @Component({
   selector: "app-terminal",
 
-  imports: [CommonModule, TerminalModule],
+  imports: [TerminalModule],
   template: `
     <p-terminal [welcomeMessage]="welcomeMessage()" [prompt]="prompt()" />
   `,

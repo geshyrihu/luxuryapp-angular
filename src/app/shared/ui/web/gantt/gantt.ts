@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,7 +29,7 @@ export interface GanttTask {
 @Component({
   selector: "app-gantt",
 
-  imports: [CommonModule, LxTooltipDirective, AppIcon],
+  imports: [LxTooltipDirective, AppIcon],
   template: `
     <div class="gantt-root">
       <!-- Header -->

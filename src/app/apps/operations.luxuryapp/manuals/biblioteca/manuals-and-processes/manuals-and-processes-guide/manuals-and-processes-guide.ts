@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
@@ -16,19 +15,19 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     WebButtonLabel,
     WebButtonIcon,
     RouterLink,
     LxPanel,
     LxTag,
     LxFieldset,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class ManualsAndProcessesGuide {
   private router = inject(Router);
 
   onBack(): void {
-    this.router.navigate([...ROUTES.BIBLIOTECA.MANUALES_Y_PROCESOS, 'list']);
+    this.router.navigate([...ROUTES.BIBLIOTECA.MANUALES_Y_PROCESOS, "list"]);
   }
 }

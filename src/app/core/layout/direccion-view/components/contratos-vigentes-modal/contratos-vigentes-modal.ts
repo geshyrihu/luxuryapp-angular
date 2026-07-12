@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,7 @@ import type {
 @Component({
   selector: "app-contratos-vigentes-modal",
   templateUrl: "./contratos-vigentes-modal.html",
-  imports: [CommonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [TagModule, LxTooltipDirective, AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

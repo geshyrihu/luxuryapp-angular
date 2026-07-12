@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonRange } from "@ionic/angular/standalone";
 import { SliderBase } from "@ui/base/slider.base";
@@ -6,7 +5,7 @@ import { SliderBase } from "@ui/base/slider.base";
 @Component({
   selector: "ili-slider",
 
-  imports: [CommonModule, IonRange],
+  imports: [IonRange],
   template: `
     <div class="ili-slider-root">
       @if (label()) {

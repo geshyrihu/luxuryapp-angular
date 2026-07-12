@@ -1,6 +1,6 @@
 import { Overlay, OverlayRef } from "@angular/cdk/overlay";
 import { TemplatePortal } from "@angular/cdk/portal";
-import { CommonModule } from "@angular/common";
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,7 +36,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-action-menu",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <button
       type="button"

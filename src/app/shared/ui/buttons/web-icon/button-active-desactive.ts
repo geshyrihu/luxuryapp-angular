@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { BaseButton } from "../base/base-button";
 @Component({
   selector: "iw-button-active-desactive",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button

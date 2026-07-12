@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -143,7 +142,6 @@ interface IGoogleCalendarEventForm {
   templateUrl: "./google-calendar-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
     WebButtonIcon,

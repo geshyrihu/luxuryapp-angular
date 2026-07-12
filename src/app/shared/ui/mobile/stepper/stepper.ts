@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { StepperBase } from "@ui/base/stepper.base";
@@ -7,7 +6,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-stepper",
 
-  imports: [CommonModule, IonButton, AppIcon],
+  imports: [IonButton, AppIcon],
   template: `
     <div class="ili-stepper">
       <div class="ili-stepper-steps">

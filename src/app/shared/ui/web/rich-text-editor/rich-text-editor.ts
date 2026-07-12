@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, input, model, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { EditorModule } from "primeng/editor";
@@ -6,7 +5,7 @@ import { EditorModule } from "primeng/editor";
 @Component({
   selector: "app-rich-text-editor",
 
-  imports: [CommonModule, FormsModule, EditorModule],
+  imports: [FormsModule, EditorModule],
   template: `
     <p-editor
       [(ngModel)]="content"

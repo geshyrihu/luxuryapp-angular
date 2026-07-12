@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,8 +19,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-flujo-efectivo",
-  imports: [
-    AppIcon,CommonModule, FormsModule, TableModule, AccountingNumberPipe],
+  imports: [AppIcon, FormsModule, TableModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./flujo-efectivo.html",
 })

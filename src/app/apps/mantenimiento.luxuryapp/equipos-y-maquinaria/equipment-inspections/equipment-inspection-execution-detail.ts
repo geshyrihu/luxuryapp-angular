@@ -1,5 +1,10 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { AppImage } from "@ui/web/image/image";
 import { TableModule } from "primeng/table";
@@ -14,7 +19,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
   selector: "app-equipment-inspection-execution-detail",
   templateUrl: "./equipment-inspection-execution-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, TableModule, LxTag, AppImage, WebButtonLabel],
+  imports: [TableModule, LxTag, AppImage, WebButtonLabel],
 })
 export class EquipmentInspectionExecutionDetail implements OnInit {
   private config = inject(DynamicDialogConfig);

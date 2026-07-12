@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { TooltipBase } from "@ui/base/tooltip.base";
 
 @Component({
   selector: "ili-tooltip",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div
       class="ili-tooltip-wrapper"

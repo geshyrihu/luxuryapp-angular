@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +11,7 @@ import { MobileButtonBase } from "../mobile-button-base";
 @Component({
   selector: "ili-button-active-desactive",
 
-  imports: [CommonModule, IonButton, AppIcon],
+  imports: [IonButton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button

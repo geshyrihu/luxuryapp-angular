@@ -1,17 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import type { IEpfDTO } from '../../contabilidad-online/interfaces/aspel-budget.interface';
-import { AccountingNumberPipe } from '../../contabilidad-online/pipes/accounting-number.pipe';
-import { ContabilidadClienteService } from '../contabilidad-cliente.service';
+import type { IEpfDTO } from "../../contabilidad-online/interfaces/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
+import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
-  selector: 'app-epf-cliente',
-  imports: [
-    AppIcon,CommonModule, LxSkeleton, AccountingNumberPipe],
+  selector: "app-epf-cliente",
+  imports: [AppIcon, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './epf-cliente.html',
+  templateUrl: "./epf-cliente.html",
 })
 export class EpfClienteComponent {
   private readonly svc = inject(ContabilidadClienteService);
@@ -29,7 +35,9 @@ export class EpfClienteComponent {
   readonly totalActivo = computed(() => this.data()?.totalActivo ?? 0);
   readonly totalPasivo = computed(() => this.data()?.totalPasivo ?? 0);
   readonly totalCapital = computed(() => this.data()?.totalCapital ?? 0);
-  readonly totalPasivoCapital = computed(() => this.data()?.totalPasivoCapital ?? 0);
+  readonly totalPasivoCapital = computed(
+    () => this.data()?.totalPasivoCapital ?? 0,
+  );
 
   constructor() {
     effect(() => {

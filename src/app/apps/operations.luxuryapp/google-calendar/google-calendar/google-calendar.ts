@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -85,7 +84,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     FullCalendarModule,
     TableModule,
     LxTag,

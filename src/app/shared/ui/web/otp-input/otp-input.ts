@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { InputOtpModule } from "primeng/inputotp";
 @Component({
   selector: "app-otp-input",
 
-  imports: [CommonModule, FormsModule, InputOtpModule],
+  imports: [FormsModule, InputOtpModule],
   template: `
     <div class="app-otp-root">
       @if (label()) {

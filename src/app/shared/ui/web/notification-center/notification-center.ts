@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
 @Component({
   selector: "app-notification-center",
 
-  imports: [CommonModule, ButtonModule, PopoverModule, BadgeModule, AppIcon],
+  imports: [ButtonModule, PopoverModule, BadgeModule, AppIcon],
   template: `
     <div class="notification-center-root">
       <p-button

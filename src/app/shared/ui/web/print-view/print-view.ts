@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { ButtonModule } from "primeng/button";
 @Component({
   selector: "app-print-view",
 
-  imports: [CommonModule, ButtonModule],
+  imports: [ButtonModule],
   template: `
     <div class="print-view-root">
       <!-- Toolbar (only shown on screen, hidden when printing) -->

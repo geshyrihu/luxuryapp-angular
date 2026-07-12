@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +21,7 @@ import type {
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, TableModule, WebButtonLabel, PrimeNgCustomCaption],
+  imports: [TableModule, WebButtonLabel, PrimeNgCustomCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

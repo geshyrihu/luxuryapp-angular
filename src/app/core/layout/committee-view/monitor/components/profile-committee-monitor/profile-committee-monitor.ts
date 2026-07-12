@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -10,7 +9,7 @@ import { ConsoleLoggerService } from "src/app/core/services/console-logger.servi
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 @Component({
   selector: "app-profile-committee-monitor",
-  imports: [CommonModule, RouterModule, AppIcon],
+  imports: [RouterModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile-committee-monitor.html",
 })

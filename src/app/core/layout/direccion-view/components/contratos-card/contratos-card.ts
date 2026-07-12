@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ import type { ContratosPorVencerResumenDto } from "./contratos-card.model";
 @Component({
   selector: "app-contratos-card",
   templateUrl: "./contratos-card.html",
-  imports: [CommonModule, AppIcon, WebButtonLabel],
+  imports: [AppIcon, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

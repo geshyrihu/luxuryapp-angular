@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +27,6 @@ import {
 @Component({
   selector: "app-report-viewer",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     LxSpinner,
     WebButtonLabel,

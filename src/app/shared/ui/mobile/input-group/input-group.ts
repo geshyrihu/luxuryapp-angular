@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +8,7 @@ import { InputGroupBase } from "@ui/base/input-group.base";
 @Component({
   selector: "ili-input-group",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-input-group">
       @if (addonBefore()) {

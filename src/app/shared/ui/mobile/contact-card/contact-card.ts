@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ContactCardBase, ContactSeverity } from "@ui/base/contact-card.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -13,7 +12,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
 @Component({
   selector: "ili-contact-card",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div
       class="ili-contact-card"

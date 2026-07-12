@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -56,7 +55,6 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   selector: "app-estado-resultados",
   imports: [
     AppIcon,
-    CommonModule,
     FormsModule,
     TableModule,
     LxSkeleton,

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 @Component({
   selector: "app-cascade-select",
 
-  imports: [CommonModule, FormsModule, CascadeSelectModule],
+  imports: [FormsModule, CascadeSelectModule],
   template: `
     <p-cascadeSelect
       [(ngModel)]="value"

@@ -49,7 +49,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    CommonModule,
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,

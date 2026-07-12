@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -32,7 +31,6 @@ interface IBitacoraMantenimientoForm {
   selector: "app-bitacora-mantenimiento-form",
   templateUrl: "./bitacora-mantenimiento-form.html",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabelSave,
     InputAutocomplete,

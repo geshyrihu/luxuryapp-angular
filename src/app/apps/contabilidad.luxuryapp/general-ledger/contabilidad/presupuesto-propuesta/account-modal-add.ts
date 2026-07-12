@@ -39,7 +39,6 @@ interface ISearchForm {
 @Component({
   selector: "app-account-modal-add",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabel,

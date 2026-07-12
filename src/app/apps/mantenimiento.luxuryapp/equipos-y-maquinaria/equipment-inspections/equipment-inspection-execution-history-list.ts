@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,7 +34,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   imports: [
     WebButtonIconItem,
     LxTooltipDirective,
-    CommonModule,
     TableModule,
     LxTag,
     DataViewMobile,

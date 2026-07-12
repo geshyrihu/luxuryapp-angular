@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +26,7 @@ export interface TreeTableColumn {
 @Component({
   selector: "app-tree-table",
 
-  imports: [CommonModule, TreeTableModule, ButtonModule, AppIcon],
+  imports: [TreeTableModule, ButtonModule, AppIcon],
   template: `
     <div class="tree-table-root">
       @if (headerTemplate() || headerTitle()) {

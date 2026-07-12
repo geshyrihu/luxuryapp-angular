@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 @Component({
   selector: "app-implementation-tracking-manual",
 
-  imports: [CommonModule, WebButtonLabel],
+  imports: [WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="card p-4">

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,13 +22,12 @@ import {
   STATUS_CONFIG,
   STATUS_ORDEN_CICLO,
   StatusHoja,
-} from '../interfaces/hoja-incidencias.interface';
-import { PeriodoNominaDTO } from '../interfaces/periodo-nomina.interface';
+} from "../interfaces/hoja-incidencias.interface";
+import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [
-    AppIcon,CommonModule, LxTooltipDirective, LxPopover, WebButtonLabel],
+  imports: [AppIcon, LxTooltipDirective, LxPopover, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })

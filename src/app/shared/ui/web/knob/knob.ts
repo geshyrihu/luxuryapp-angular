@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { KnobModule } from "primeng/knob";
 @Component({
   selector: "app-knob",
 
-  imports: [CommonModule, FormsModule, KnobModule],
+  imports: [FormsModule, KnobModule],
   template: `
     <p-knob
       [(ngModel)]="value"

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -49,7 +48,7 @@ const PRIORITY_COLORS: Record<string, string> = {
 @Component({
   selector: "app-kanban-board",
 
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [ButtonModule, AppIcon],
   template: `
     <div class="kanban-root">
       <div class="kanban-columns">

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   DestroyRef,
@@ -13,7 +12,7 @@ import { ConfirmPopupModule } from "primeng/confirmpopup";
 @Component({
   selector: "app-confirm-popup",
 
-  imports: [CommonModule, ConfirmPopupModule, ButtonModule],
+  imports: [ConfirmPopupModule, ButtonModule],
   template: ` <p-confirmPopup [key]="key()" /> `,
   styles: [
     `

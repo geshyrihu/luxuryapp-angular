@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-notification-center",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <button type="button" class="ili-nc-bell" (click)="open.set(true)">
       <app-icon icon="mdi:bell-outline" class="text-xl" />

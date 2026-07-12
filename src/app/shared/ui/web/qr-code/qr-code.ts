@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ import QRCode from "qrcode";
 @Component({
   selector: "app-qr-code",
 
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [ButtonModule, AppIcon],
   template: `
     <div class="qr-root">
       @if (label()) {

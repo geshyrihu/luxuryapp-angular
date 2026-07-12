@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { SliderModule } from "primeng/slider";
 @Component({
   selector: "app-slider",
 
-  imports: [CommonModule, FormsModule, SliderModule],
+  imports: [FormsModule, SliderModule],
   template: `
     <div class="app-slider-root">
       @if (label()) {

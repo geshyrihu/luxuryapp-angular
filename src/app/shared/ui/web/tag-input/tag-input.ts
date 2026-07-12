@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
  */
 @Component({
   selector: "app-tag-input",
-  imports: [CommonModule, FormsModule, AutoCompleteModule],
+  imports: [FormsModule, AutoCompleteModule],
   template: `
     <div class="app-tag-root">
       @if (label()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,7 +41,6 @@ const MONTH_NAMES = [
 @Component({
   selector: "app-contabilidad-cliente-wrapper",
   imports: [
-    CommonModule,
     LxTabs,
     EpfClienteComponent,
     EstadoResultadosClienteComponent,

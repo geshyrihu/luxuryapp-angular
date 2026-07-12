@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 @Component({
   selector: "app-dock",
 
-  imports: [CommonModule, DockModule, LxTooltipDirective],
+  imports: [DockModule, LxTooltipDirective],
   template: `
     <div class="app-dock-root">
       <p-dock
@@ -33,16 +32,12 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
             [tooltipPosition]="tooltipPosition()"
             (click)="runCommand(item)"
           >
-            <img
-              *ngIf="item.icon && item.icon.startsWith('assets')"
-              [src]="item.icon"
-              [alt]="item.label"
-              class="app-dock-img"
-            />
-            <span
-              *ngIf="item.icon && !item.icon.startsWith('assets')"
-              [class]="item.icon + ' app-dock-icon'"
-            ></span>
+            @if (item.icon && item.icon.startsWith("assets")) {
+              <img [src]="item.icon" [alt]="item.label" class="app-dock-img" />
+            }
+            @if (item.icon && !item.icon.startsWith("assets")) {
+              <span [class]="item.icon + ' app-dock-icon'"></span>
+            }
           </div>
         </ng-template>
       </p-dock>

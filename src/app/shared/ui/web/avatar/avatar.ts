@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import { AvatarModule } from "primeng/avatar";
 @Component({
   selector: "app-avatar",
 
-  imports: [CommonModule, AvatarModule, AppIcon],
+  imports: [AvatarModule, AppIcon],
   template: `
     <p-avatar
       [image]="image() || undefined"

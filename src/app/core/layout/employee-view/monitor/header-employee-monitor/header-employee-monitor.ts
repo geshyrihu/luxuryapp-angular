@@ -1,4 +1,4 @@
-import { CommonModule, Location } from "@angular/common";
+import { Location } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -53,10 +53,8 @@ import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-header-employee-monitor",
   imports: [
-    // ActionIconsGroupComponent,
     AppIcon,
     BreadcrumbModule,
-    CommonModule,
     WebButtonLabel,
     DialogModule,
     TextareaModule,

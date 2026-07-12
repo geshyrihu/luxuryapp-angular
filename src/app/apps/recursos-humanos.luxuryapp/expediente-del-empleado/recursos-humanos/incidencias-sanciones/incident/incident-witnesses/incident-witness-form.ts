@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,7 +22,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import {
   IncidentWitnessAddOrEditDTO,
   IncidentWitnessDetailDTO,
-} from '../interfaces/incident.interfaces';
+} from "../interfaces/incident.interfaces";
 
 interface IWitnessForm {
   fullName: import("@angular/forms").FormControl<string>;
@@ -35,7 +34,6 @@ interface IWitnessForm {
 @Component({
   selector: "app-incident-witness-form",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     InputMask,
     WebButtonLabelSave,

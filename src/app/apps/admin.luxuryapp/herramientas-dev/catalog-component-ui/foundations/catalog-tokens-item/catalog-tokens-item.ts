@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +11,7 @@ import { TokensTypography } from "../../shared/tokens-typography/tokens-typograp
 
 @Component({
   selector: "app-catalog-tokens-item",
-  imports: [CommonModule, TokensColors, TokensTypography],
+  imports: [TokensColors, TokensTypography],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

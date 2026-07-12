@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +8,7 @@ import { FluidBase } from "@ui/base/fluid.base";
 @Component({
   selector: "ili-fluid",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-fluid">
       <ng-content />

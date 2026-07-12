@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -91,7 +90,6 @@ const REPORT_META = [
 @Component({
   selector: "app-financial-reports-wrapper",
   imports: [
-    CommonModule,
     FormsModule,
     LxTabs,
     CustomInputSelectSignal,

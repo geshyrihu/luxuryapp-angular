@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -175,7 +174,6 @@ const CORE_LABELS: Record<string, string> = {
 @Component({
   selector: "app-catalog-core-item",
   imports: [
-    CommonModule,
     ButtonModule,
     CheckboxModule,
     DividerModule,
@@ -194,7 +192,6 @@ const CORE_LABELS: Record<string, string> = {
     ConfirmDialog,
     FileUpload,
     Wizard,
-    // 13.3.3
     DashboardLayout,
     DocumentPreviewer,
     ApprovalWorkflow,
@@ -220,7 +217,6 @@ const CORE_LABELS: Record<string, string> = {
     AppGantt,
     PivotTable,
     AppOtpInput,
-    // 13.3.2
     ComparisonTable,
     ActivityLog,
     KanbanBoard,
@@ -231,7 +227,6 @@ const CORE_LABELS: Record<string, string> = {
     Tour,
     Gauge,
     FunnelChart,
-    // Fase 6-10
     AvatarGroup,
     KpiCard,
     AppStatCard,
@@ -2296,4 +2291,3 @@ export class CatalogCoreItem {
     },
   ];
 }
-

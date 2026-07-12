@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonSpinner } from "@ionic/angular/standalone";
 import { SpinnerBase } from "@ui/base/spinner.base";
@@ -9,7 +8,7 @@ import { SpinnerBase } from "@ui/base/spinner.base";
 @Component({
   selector: "ili-spinner",
 
-  imports: [CommonModule, IonSpinner],
+  imports: [IonSpinner],
   template: `
     <ion-spinner
       name="crescent"

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagModule } from "primeng/tag";
@@ -25,7 +24,7 @@ export interface Territory {
 @Component({
   selector: "app-territory-map",
 
-  imports: [CommonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="tm-root">
       <!-- Header -->

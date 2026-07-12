@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -17,7 +16,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-view",
-  imports: [CommonModule, WebButtonLabel],
+  imports: [WebButtonLabel],
   template: `
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">

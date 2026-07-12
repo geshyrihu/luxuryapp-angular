@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
 @Component({
   selector: "app-inventory-level",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="inv-root">
       <div class="inv-header">

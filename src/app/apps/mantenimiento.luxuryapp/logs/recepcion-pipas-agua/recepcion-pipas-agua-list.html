@@ -132,69 +132,70 @@
       <td><small>{{ item.guardiaSeguridad }}</small></td>
       <td>
         <div class="flex flex-wrap gap-1">
+          @if (item.fotoPipaLlenaUrl) {
           <app-image
-            *ngIf="item.fotoPipaLlenaUrl"
             [src]="item.fotoPipaLlenaUrl"
             alt="Pipa llena"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoPipaVaciaUrl) {
           <app-image
-            *ngIf="item.fotoPipaVaciaUrl"
             [src]="item.fotoPipaVaciaUrl"
             alt="Pipa vacia"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoPlacasUrl) {
           <app-image
-            *ngIf="item.fotoPlacasUrl"
             [src]="item.fotoPlacasUrl"
             alt="Placas"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoIneChoferUrl) {
           <app-image
-            *ngIf="item.fotoIneChoferUrl"
             [src]="item.fotoIneChoferUrl"
             alt="INE chofer"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoMedidorAntesUrl) {
           <app-image
-            *ngIf="item.fotoMedidorAntesUrl"
             [src]="item.fotoMedidorAntesUrl"
             alt="Medidor antes"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoMedidorDespuesUrl) {
           <app-image
-            *ngIf="item.fotoMedidorDespuesUrl"
             [src]="item.fotoMedidorDespuesUrl"
             alt="Medidor despues"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoNivelAntesUrl) {
           <app-image
-            *ngIf="item.fotoNivelAntesUrl"
             [src]="item.fotoNivelAntesUrl"
             alt="Nivel antes"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoNivelDespuesUrl) {
           <app-image
-            *ngIf="item.fotoNivelDespuesUrl"
             [src]="item.fotoNivelDespuesUrl"
             alt="Nivel despues"
             width="30"
             [preview]="true"
           />
+          } @if (item.fotoNotaUrl) {
           <app-image
-            *ngIf="item.fotoNotaUrl"
             [src]="item.fotoNotaUrl"
             alt="Nota"
             width="30"
             [preview]="true"
           />
+          }
         </div>
       </td>
       <td>
@@ -275,46 +276,46 @@
         />
       </div>
 
-      
-        <h3 class="font-bold">{{ item.placasCamion }}</h3>
-        @if (item.empresa) {
-        <p class="text-500">{{ item.empresa }}</p>
+      <h3 class="font-bold">{{ item.placasCamion }}</h3>
+      @if (item.empresa) {
+      <p class="text-500">{{ item.empresa }}</p>
+      }
+      <p>
+        {{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' : 'UTC' }} @if
+        (item.horaTermino) {
+        <span> é {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span>
+        } @if (!item.horaTermino) {
+        <span class="text-orange-500"> (en curso)</span>
         }
-        <p>
-          {{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' : 'UTC' }}
-          <span *ngIf="item.horaTermino">
-            é {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span
-          >
-          <span *ngIf="!item.horaTermino" class="text-orange-500">
-            (en curso)</span
-          >
-        </p>
-        <div class="grid m-0 text-sm mt-1">
-          <div class="col-6 p-0">
-            <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
-          </div>
-          <div class="col-6 p-0">
-            <strong>mí:</strong>
-            {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
-            '1.0-0' }}
-          </div>
-          <div class="col-6 p-0">
-            <strong>Cisterna:</strong>
-            {{ item.nivelCisternaAntes | number: '1.0-0' }}% ? {{
-            item.nivelCisternaDespues | number: '1.0-0' }}%
-          </div>
-          <div class="col-6 p-0">
-            <strong>Costo mí:</strong> {{ item.costoMetroCubico | number:
-            '1.2-2' }}
-          </div>
-          <div *ngIf="item.colaboradorMtto" class="col-12 p-0">
-            <strong>Colaborador:</strong> {{ item.colaboradorMtto }}
-          </div>
-          <div *ngIf="item.guardiaSeguridad" class="col-12 p-0">
-            <strong>Guardia:</strong> {{ item.guardiaSeguridad }}
-          </div>
+      </p>
+      <div class="grid m-0 text-sm mt-1">
+        <div class="col-6 p-0">
+          <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
         </div>
-      
+        <div class="col-6 p-0">
+          <strong>mí:</strong>
+          {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
+          '1.0-0' }}
+        </div>
+        <div class="col-6 p-0">
+          <strong>Cisterna:</strong>
+          {{ item.nivelCisternaAntes | number: '1.0-0' }}% ? {{
+          item.nivelCisternaDespues | number: '1.0-0' }}%
+        </div>
+        <div class="col-6 p-0">
+          <strong>Costo mí:</strong> {{ item.costoMetroCubico | number: '1.2-2'
+          }}
+        </div>
+        @if (item.colaboradorMtto) {
+        <div class="col-12 p-0">
+          <strong>Colaborador:</strong> {{ item.colaboradorMtto }}
+        </div>
+        } @if (item.guardiaSeguridad) {
+        <div class="col-12 p-0">
+          <strong>Guardia:</strong> {{ item.guardiaSeguridad }}
+        </div>
+        }
+      </div>
 
       <ili-action-menu slot="end">
         <ng-container actions>

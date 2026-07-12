@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
 import { ButtonModule } from "primeng/button";
@@ -7,7 +6,7 @@ import { MessageModule } from "primeng/message";
 @Component({
   selector: "app-global-error-alert",
 
-  imports: [CommonModule, MessageModule, ButtonModule],
+  imports: [MessageModule, ButtonModule],
   template: `
     @if (error) {
       <div class="global-error-web">

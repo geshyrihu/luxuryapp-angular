@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +23,7 @@ export interface PivotValue {
 @Component({
   selector: "app-pivot-table",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="pivot-root">
       @if (title()) {

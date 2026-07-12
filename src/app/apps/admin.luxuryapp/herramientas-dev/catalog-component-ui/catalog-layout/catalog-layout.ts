@@ -1,5 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -9,7 +13,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
 @Component({
   selector: "app-catalog-layout",
   imports: [
-    CommonModule,
     RouterModule,
     TagModule,
     LxTooltipDirective,
@@ -33,6 +36,9 @@ export class CatalogLayout {
     document.body.classList.toggle("theme-dark", newTheme);
     document.body.setAttribute("data-theme", newTheme ? "dark" : "light");
     document.documentElement.classList.toggle("theme-dark", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme ? "dark" : "light");
+    document.documentElement.setAttribute(
+      "data-theme",
+      newTheme ? "dark" : "light",
+    );
   }
 }

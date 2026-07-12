@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import {
 @Component({
   selector: "app-context-menu",
 
-  imports: [CommonModule, ContextMenuModule],
+  imports: [ContextMenuModule],
   template: `
     <div
       class="context-menu-host"

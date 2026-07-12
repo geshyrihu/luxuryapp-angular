@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -37,11 +36,10 @@ interface IProviderSupportForm {
   templateUrl: "./provider-support-form.html",
   imports: [
     AppIcon,
-    CommonModule,
     ReactiveFormsModule,
     InputAutocomplete,
     WebButtonLabelSave,
-    ],
+  ],
 })
 export class ProviderSupportForm implements OnInit {
   private config = inject(DynamicDialogConfig);

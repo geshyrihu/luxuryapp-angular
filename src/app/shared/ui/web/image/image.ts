@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,7 @@ import { ImageModule } from "primeng/image";
 @Component({
   selector: "app-image",
 
-  imports: [CommonModule, ImageModule],
+  imports: [ImageModule],
   template: `
     <p-image
       [src]="src()"

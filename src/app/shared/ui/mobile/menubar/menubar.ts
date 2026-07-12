@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonButton } from "@ionic/angular/standalone";
@@ -8,7 +7,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-menubar",
 
-  imports: [CommonModule, RouterModule, IonButton, AppIcon],
+  imports: [RouterModule, IonButton, AppIcon],
   template: `
     <div class="ili-menubar">
       <button

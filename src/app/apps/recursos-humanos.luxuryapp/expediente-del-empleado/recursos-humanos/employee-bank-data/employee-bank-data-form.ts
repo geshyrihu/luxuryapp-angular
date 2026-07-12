@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +21,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { EmployeeBankDataDTO } from './interfaces/employee-bank-data.interfaces';
+import { EmployeeBankDataDTO } from "./interfaces/employee-bank-data.interfaces";
 
 @Component({
   selector: "app-employee-bank-data-form",
@@ -30,7 +29,6 @@ import { EmployeeBankDataDTO } from './interfaces/employee-bank-data.interfaces'
 
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,

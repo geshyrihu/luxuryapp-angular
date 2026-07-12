@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +8,7 @@ import { InplaceBase } from "@ui/base/inplace.base";
 @Component({
   selector: "ili-inplace",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-inplace">
       @if (!active()) {

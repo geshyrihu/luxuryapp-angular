@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,8 +23,7 @@ interface MesGroup {
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppIcon,CommonModule, TagModule, LxTooltipDirective, WebButtonLabel],
+  imports: [AppIcon, TagModule, LxTooltipDirective, WebButtonLabel],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

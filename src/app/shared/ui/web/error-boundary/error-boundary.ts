@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CommonModule } from "@angular/common";
+
 import { Component, inject, input, signal } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
@@ -8,7 +8,7 @@ import { GlobalErrorService } from "src/app/core/http/services/global-error-hand
 @Component({
   selector: "app-error-boundary",
 
-  imports: [CommonModule, ButtonModule, AppIcon],
+  imports: [ButtonModule, AppIcon],
   template: `
     @if (hasError()) {
       <div class="error-boundary-root">

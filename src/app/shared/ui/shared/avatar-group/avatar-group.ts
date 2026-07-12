@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ export interface AvatarItem {
 @Component({
   selector: "app-avatar-group",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="avatar-group-root" [title]="groupTitle()">
       @for (item of visibleAvatars(); track $index; let i = $index) {

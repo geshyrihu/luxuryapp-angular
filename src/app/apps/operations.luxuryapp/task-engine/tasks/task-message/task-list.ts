@@ -59,12 +59,11 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
-import { CardEmployee } from 'src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee';
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { PrintService } from "src/app/core/services/print.service";
 
 import Swal from "sweetalert2";
 
-import { CommonModule } from "@angular/common";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
@@ -154,7 +153,6 @@ import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,
-    CommonModule,
     CustomInputSelectSignal,
     CustomInputTextSignal,
     InitialsAbbrPipe,
@@ -176,9 +174,7 @@ export class TaskList implements OnInit {
 
   // User and Data Setup
   readonly applicationUser = this.authS.applicationUserId;
-  readonly isSuperUser = this.aspRoleS.roleSignal(
-    ApplicationRole.SuperUsuario,
-  );
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 

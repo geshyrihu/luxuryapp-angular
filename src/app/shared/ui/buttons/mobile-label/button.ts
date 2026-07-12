@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonButton, IonSpinner } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
@@ -7,7 +6,7 @@ import { MobileButtonBase } from "../mobile-button-base";
 @Component({
   selector: "ili-button",
 
-  imports: [CommonModule, IonButton, IonSpinner, AppIcon],
+  imports: [IonButton, IonSpinner, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ion-button

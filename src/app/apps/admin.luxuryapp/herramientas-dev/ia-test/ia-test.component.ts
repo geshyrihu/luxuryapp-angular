@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,6 @@ import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
   selector: "app-ia-test",
 
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
     LxCard,

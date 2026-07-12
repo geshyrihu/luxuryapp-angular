@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { TreeSelectBase } from "@ui/base/tree-select.base";
 
 @Component({
   selector: "ili-tree-select",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-tree-select-root">
       <button class="ili-tree-select-trigger" (click)="toggleOpen()">

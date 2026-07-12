@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   ElementRef,
@@ -11,7 +10,7 @@ import { OtpInputBase } from "@ui/base/otp-input.base";
 @Component({
   selector: "ili-otp-input",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-otp-root">
       @if (label()) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,7 @@ export type SkeletonPresetType =
 @Component({
   selector: "web-skeleton-presets",
 
-  imports: [CommonModule, SkeletonModule],
+  imports: [SkeletonModule],
   template: `
     @switch (variant()) {
       @case ("card") {

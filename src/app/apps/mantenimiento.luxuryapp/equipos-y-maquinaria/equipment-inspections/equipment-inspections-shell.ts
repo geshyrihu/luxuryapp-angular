@@ -1,5 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { EquipmentInspectionDefinitionsList } from "./equipment-inspection-definitions-list";
@@ -11,7 +15,6 @@ import { EquipmentInspectionQrList } from "./equipment-inspection-qr-list";
   templateUrl: "./equipment-inspections-shell.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     LxTabs,
     EquipmentInspectionDefinitionsList,
     EquipmentInspectionExecutionHistoryList,

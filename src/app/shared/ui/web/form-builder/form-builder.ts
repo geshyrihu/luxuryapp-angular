@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -56,7 +55,6 @@ export type FormValues = Record<string, unknown>;
   selector: "app-form-builder",
 
   imports: [
-    CommonModule,
     FormsModule,
     ButtonModule,
     InputTextModule,

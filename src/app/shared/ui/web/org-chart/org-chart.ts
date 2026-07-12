@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CommonModule } from "@angular/common";
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +11,7 @@ import { OrgChartModule } from "primeng/orgchart";
 @Component({
   selector: "app-org-chart",
 
-  imports: [CommonModule, OrgChartModule],
+  imports: [OrgChartModule],
   template: `
     <p-orgChart
       [value]="value()"

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,8 +12,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-reclutamiento-card",
   templateUrl: "./reclutamiento-card.html",
-  imports: [
-    AppIcon,CommonModule],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

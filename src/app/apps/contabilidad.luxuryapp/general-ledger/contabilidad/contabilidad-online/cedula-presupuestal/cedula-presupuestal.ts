@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -87,8 +86,7 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
-  imports: [
-    AppIcon,CommonModule, FormsModule, TableModule, AccountingNumberPipe],
+  imports: [AppIcon, FormsModule, TableModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal.html",
 })

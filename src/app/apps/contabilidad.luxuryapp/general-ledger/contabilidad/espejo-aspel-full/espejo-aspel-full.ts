@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,7 +29,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-espejo-aspel-full",
   imports: [
     WebButtonIcon,
-    CommonModule,
     FormsModule,
     TableModule,
     CustomInputSelectButton,

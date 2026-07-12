@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import {
 @Component({
   selector: "app-gauge",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="gauge-root">
       <svg

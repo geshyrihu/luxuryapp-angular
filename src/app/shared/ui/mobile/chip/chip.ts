@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonChip, IonLabel } from "@ionic/angular/standalone";
 import { ChipBase } from "@ui/base/chip.base";
@@ -11,7 +10,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-chip",
 
-  imports: [CommonModule, IonChip, IonLabel, AppIcon],
+  imports: [IonChip, IonLabel, AppIcon],
   template: `
     <ion-chip
       [color]="ionColor()"

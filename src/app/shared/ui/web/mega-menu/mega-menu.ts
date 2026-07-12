@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { MegaMenuBase } from "@ui/base/mega-menu.base";
 import { MegaMenuModule } from "primeng/megamenu";
@@ -6,7 +5,7 @@ import { MegaMenuModule } from "primeng/megamenu";
 @Component({
   selector: "app-mega-menu",
 
-  imports: [CommonModule, MegaMenuModule],
+  imports: [MegaMenuModule],
   template: `
     <p-megamenu
       [model]="items()"

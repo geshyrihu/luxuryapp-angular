@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,7 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
 @Component({
   selector: "app-timeline",
 
-  imports: [CommonModule, TimelineModule, AppIcon],
+  imports: [TimelineModule, AppIcon],
   template: `
     <p-timeline [value]="events()" [align]="align()" [layout]="layout()">
       <ng-template #marker let-event>

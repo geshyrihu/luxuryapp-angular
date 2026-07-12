@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,8 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-reporte-financiero",
-  imports: [
-    AppIcon,CommonModule],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reporte-financiero.html",
 })

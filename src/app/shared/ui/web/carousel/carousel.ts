@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { CarouselModule } from "primeng/carousel";
 @Component({
   selector: "app-carousel",
 
-  imports: [CommonModule, CarouselModule],
+  imports: [CarouselModule],
   template: `
     <p-carousel
       [value]="value()"

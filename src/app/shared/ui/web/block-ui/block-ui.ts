@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { BlockUIModule } from "primeng/blockui";
 @Component({
   selector: "app-block-ui",
 
-  imports: [CommonModule, BlockUIModule],
+  imports: [BlockUIModule],
   template: `
     <div class="app-block-ui-root">
       <p-blockUI [blocked]="blocked()" [fullScreen]="fullScreen()" />

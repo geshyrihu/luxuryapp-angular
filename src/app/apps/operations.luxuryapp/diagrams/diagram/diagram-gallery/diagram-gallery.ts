@@ -6,7 +6,7 @@ import {
   inject,
   OnInit,
   signal,
-  computed
+  computed,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -19,12 +19,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-gallery",
-  imports: [
-    CommonModule,
-    WebButtonLabel,
-    AppIcon,
-    CustomInputTextSignal,
-  ],
+  imports: [CommonModule, WebButtonLabel, AppIcon, CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
@@ -49,48 +44,60 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
       </div>
 
       <div class="grid grid-nogutter">
-        <div class="col-12 md:col-4 p-2" *ngFor="let diagram of paginatedDiagrams()">
-          <div class="card h-full shadow-2 hover:shadow-4 transition-duration-150">
-            <div class="card-header flex-column gap-1">
-              <span class="card-title">{{ diagram.name }}</span>
-              <span class="card-subtitle">Actualizado: {{ diagram.updateAt | date: "dd/MM/yyyy" }}</span>
-            </div>
+        @for (diagram of paginatedDiagrams(); track diagram) {
+          <div class="col-12 md:col-4 p-2">
             <div
-              class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
-              style="min-height: 150px"
+              class="card h-full shadow-2 hover:shadow-4 transition-duration-150"
             >
-              <app-icon [icon]="'mdi:image-multiple'" class="text-6xl text-primary-400" />
-            </div>
-            <div class="card-footer">
-              <div class="flex ">
-                <il-button
-                  label="Visualizar"
-                  iconClass="mdi:eye-outline"
-                  severity="success"
-                  customClass="w-full"
-                  (clicked)="onView(diagram.id)"
+              <div class="card-header flex-column gap-1">
+                <span class="card-title">{{ diagram.name }}</span>
+                <span class="card-subtitle"
+                  >Actualizado:
+                  {{ diagram.updateAt | date: "dd/MM/yyyy" }}</span
+                >
+              </div>
+              <div
+                class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
+                style="min-height: 150px"
+              >
+                <app-icon
+                  [icon]="'mdi:image-multiple'"
+                  class="text-6xl text-primary-400"
                 />
+              </div>
+              <div class="card-footer">
+                <div class="flex ">
+                  <il-button
+                    label="Visualizar"
+                    iconClass="mdi:eye-outline"
+                    severity="success"
+                    customClass="w-full"
+                    (clicked)="onView(diagram.id)"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        }
       </div>
 
-      <div class="flex justify-content-center align-items-center mt-3 gap-2" *ngIf="diagrams().length > pageSize()">
-        <il-button 
-          iconClass="mdi:chevron-left" 
-          variant="text" 
-          (clicked)="currentPage.set(currentPage() - 1)" 
-          [disabled]="currentPage() === 1" 
-        />
-        <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
-        <il-button 
-          iconClass="mdi:chevron-right" 
-          variant="text" 
-          (clicked)="currentPage.set(currentPage() + 1)" 
-          [disabled]="currentPage() === totalPages()" 
-        />
-      </div>
+      @if (diagrams().length > pageSize()) {
+        <div class="flex justify-content-center align-items-center mt-3 gap-2">
+          <il-button
+            iconClass="mdi:chevron-left"
+            variant="text"
+            (clicked)="currentPage.set(currentPage() - 1)"
+            [disabled]="currentPage() === 1"
+          />
+          <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
+          <il-button
+            iconClass="mdi:chevron-right"
+            variant="text"
+            (clicked)="currentPage.set(currentPage() + 1)"
+            [disabled]="currentPage() === totalPages()"
+          />
+        </div>
+      }
     </div>
   `,
 })
@@ -102,7 +109,7 @@ export class DiagramGallery implements OnInit {
   diagrams = signal<IDiagramDraw[]>([]);
   allDiagrams: IDiagramDraw[] = [];
   loading = signal(true);
-  
+
   currentPage = signal(1);
   pageSize = signal(9);
 

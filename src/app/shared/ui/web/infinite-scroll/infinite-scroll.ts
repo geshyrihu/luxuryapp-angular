@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
   Component,
@@ -13,7 +12,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-infinite-scroll",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div #sentinel class="infinite-scroll-sentinel">
       @if (loading()) {

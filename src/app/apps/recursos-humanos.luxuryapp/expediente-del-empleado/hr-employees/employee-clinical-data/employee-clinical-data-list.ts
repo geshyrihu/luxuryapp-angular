@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -6,7 +5,7 @@ import {
   inject,
   input,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 
 import { TableModule } from "primeng/table";
@@ -21,8 +20,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeInternalService } from '../employee-internal/employee-internal.service';
-import { IEmployeeClinicalData } from './interfaces/employee-clinical-data.interface';
+import { EmployeeInternalService } from "../employee-internal/employee-internal.service";
+import { IEmployeeClinicalData } from "./interfaces/employee-clinical-data.interface";
 import { EmployeeClinicalDataForm } from "./employee-clinical-data-form";
 
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -46,7 +45,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
@@ -55,7 +53,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     ActionMenu,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    ],
+  ],
 })
 export class EmployeeClinicalDataList {
   private readonly employeeInternalS = inject(EmployeeInternalService);

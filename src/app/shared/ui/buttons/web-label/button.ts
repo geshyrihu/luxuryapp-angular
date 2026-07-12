@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
@@ -6,7 +5,7 @@ import { BaseButton } from "../base/base-button";
 @Component({
   selector: "il-button",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button

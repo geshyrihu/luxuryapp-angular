@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import { BadgeSeverity, BadgeSize } from "primeng/types/badge";
 @Component({
   selector: "app-badge",
 
-  imports: [CommonModule, BadgeModule],
+  imports: [BadgeModule],
   template: `
     <p-badge
       [value]="displayValue()"

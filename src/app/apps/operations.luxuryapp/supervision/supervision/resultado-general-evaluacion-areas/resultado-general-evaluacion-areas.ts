@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,12 +25,7 @@ import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-eval
   selector: "app-evaluacion-areas",
   templateUrl: "./resultado-general-evaluacion-areas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    PrimeNgCustomTableEmptyMessage,
-    CommonModule,
-    TableModule,
-    PrimeNgCustomCaption,
-  ],
+  imports: [PrimeNgCustomTableEmptyMessage, TableModule, PrimeNgCustomCaption],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -57,11 +51,9 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
       this.rangoCalendarioService.fechaFinal,
     );
     this.onLoadData(this.fechaInicial, this.fechaFinal);
-    this.rangoCalendarioService.fechasMOnth$.subscribe(
-      (resp: FechasFiltro) => {
-        this.onLoadData(resp.fechaInicio, resp.fechaFinal);
-      },
-    );
+    this.rangoCalendarioService.fechasMOnth$.subscribe((resp: FechasFiltro) => {
+      this.onLoadData(resp.fechaInicio, resp.fechaFinal);
+    });
   }
   onLoadData(fechaInicio: string, fechaFinal: string) {
     const urlApi = `resumen-general/EvaluacionAreas/${fechaInicio}/${fechaFinal}`;

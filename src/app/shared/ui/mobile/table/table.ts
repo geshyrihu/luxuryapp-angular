@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import {
   IonCard,
@@ -18,7 +17,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "ili-table",
 
   imports: [
-    CommonModule,
     IonCard,
     IonCardContent,
     IonCardHeader,

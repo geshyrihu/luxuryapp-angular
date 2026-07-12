@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { MeterGroupModule } from "primeng/metergroup";
 @Component({
   selector: "app-meter-group",
 
-  imports: [CommonModule, MeterGroupModule],
+  imports: [MeterGroupModule],
   template: ` <p-meterGroup [value]="value()" [min]="min()" [max]="max()" /> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

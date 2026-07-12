@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +28,7 @@ export interface PaletteCommand {
 @Component({
   selector: "app-command-palette",
 
-  imports: [CommonModule, FormsModule, DialogModule, AppIcon],
+  imports: [FormsModule, DialogModule, AppIcon],
   template: `
     <p-dialog
       [(visible)]="visible"

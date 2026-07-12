@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,7 +61,6 @@ interface DefinitionFormGroup {
   templateUrl: "./equipment-inspection-definition-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     AppCard,
     WebButtonLabel,

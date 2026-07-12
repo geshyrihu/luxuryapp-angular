@@ -1,4 +1,3 @@
-import { HttpClient } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,7 +34,6 @@ export class TaskPendingBoard implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly apiS = inject(ApiResponseService);
-  private readonly http = inject(HttpClient);
   private readonly htmlPrintS = inject(HtmlPrintService);
 
   readonly ticketGroupId: string = this.route.snapshot.params["ticketGroupId"];
@@ -121,10 +119,10 @@ export class TaskPendingBoard implements OnInit {
           .filter((url): url is string => !!url)
           .map(async (url) => {
             try {
-              const blob = await firstValueFrom(
-                this.http.get(url, { responseType: "blob" }),
-              );
-              imageMap.set(url, await this.blobToBase64(blob));
+              const blob = await this.apiS.getBlobFileFromFullUrl(url);
+              if (blob) {
+                imageMap.set(url, await this.blobToBase64(blob));
+              }
             } catch {
               // skip images that fail to load
             }

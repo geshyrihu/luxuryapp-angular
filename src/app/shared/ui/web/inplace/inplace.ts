@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { InplaceModule } from "primeng/inplace";
 @Component({
   selector: "app-inplace",
 
-  imports: [CommonModule, InplaceModule],
+  imports: [InplaceModule],
   template: `
     <p-inplace
       [active]="active()"

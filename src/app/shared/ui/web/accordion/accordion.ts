@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ import { AccordionModule } from "primeng/accordion";
 @Component({
   selector: "app-accordion",
 
-  imports: [CommonModule, AccordionModule, AppIcon],
+  imports: [AccordionModule, AppIcon],
   template: `
     <p-accordion
       [value]="accordionValue()"

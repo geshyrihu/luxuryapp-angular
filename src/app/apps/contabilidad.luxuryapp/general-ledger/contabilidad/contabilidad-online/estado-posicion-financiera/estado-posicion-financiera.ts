@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,8 +19,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-estado-posicion-financiera",
-  imports: [
-    AppIcon,CommonModule, FormsModule, LxSkeleton, AccountingNumberPipe],
+  imports: [AppIcon, FormsModule, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-posicion-financiera.html",
 })

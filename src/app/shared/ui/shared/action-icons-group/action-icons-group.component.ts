@@ -1,9 +1,8 @@
-import { CommonModule } from "@angular/common";
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-action-icons-group",
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div
       class="flex align-items-center gap-1 border-1 surface-border border-round-lg px-2 py-1 surface-card"

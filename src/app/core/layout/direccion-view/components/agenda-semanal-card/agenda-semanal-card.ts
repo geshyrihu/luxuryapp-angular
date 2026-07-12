@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.mod
   selector: "app-agenda-semanal-card",
   templateUrl: "./agenda-semanal-card.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, AppIcon, WebButtonLabel],
+  imports: [AppIcon, WebButtonLabel],
 })
 export class AgendaSemanalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

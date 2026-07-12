@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,13 +15,12 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import {
   IncidentDashboardDTO,
   IncidentDashboardFilterDTO,
-} from '../interfaces/incident.interfaces';
+} from "../interfaces/incident.interfaces";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-incident-dashboard",
   imports: [
     AppIcon,
-    CommonModule,
     ReactiveFormsModule,
     ChartWrapper,
     TableModule,

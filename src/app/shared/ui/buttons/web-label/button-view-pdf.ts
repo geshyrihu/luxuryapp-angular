@@ -1,5 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, input } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { BaseButton } from "../base/base-button";
@@ -7,7 +11,7 @@ import { BaseButton } from "../base/base-button";
 @Component({
   selector: "il-button-view-pdf",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
@@ -43,9 +47,8 @@ export class WebButtonLabelViewPdf extends BaseButton {
 
   /** Abre el PDF en el visor modal (lazy-load para no cargar ng2-pdf-viewer siempre). */
   private async openViewer(url: string): Promise<void> {
-    const { PdfViewerModal } = await import(
-      "@ui/web/pdf-viewer-modal/pdf-viewer-modal"
-    );
+    const { PdfViewerModal } =
+      await import("@ui/web/pdf-viewer-modal/pdf-viewer-modal");
     void this.dialogHandlerS.openDialog(
       PdfViewerModal,
       { pdfSrc: url, fileName: this.fileName() },

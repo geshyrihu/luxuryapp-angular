@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
@@ -15,7 +14,6 @@ import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
   selector: "app-catalog-charts",
 
   imports: [
-    CommonModule,
     ChartWrapper,
     CustomBarChart,
     MultiAxisChart,

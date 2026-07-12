@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
 @Component({
   selector: "app-comment-thread",
 
-  imports: [CommonModule, FormsModule, ButtonModule, TextareaModule, AppIcon],
+  imports: [FormsModule, ButtonModule, TextareaModule, AppIcon],
   template: `
     <div class="comment-thread">
       <!-- Title -->

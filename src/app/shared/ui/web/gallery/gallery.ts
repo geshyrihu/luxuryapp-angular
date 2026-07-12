@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +9,7 @@ import { GalleriaModule } from "primeng/galleria";
 @Component({
   selector: "app-gallery",
 
-  imports: [CommonModule, GalleriaModule],
+  imports: [GalleriaModule],
   template: `
     <p-galleria
       [value]="images()"

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
 
 @Component({
   selector: "app-cedula-extraordinaria",
-  imports: [CommonModule, EspejoAspelExtraordinarios, LxSkeleton],
+  imports: [EspejoAspelExtraordinarios, LxSkeleton],
   providers: [PresupuestoWebAspelService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-extraordinaria.html",

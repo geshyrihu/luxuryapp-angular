@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { BaseButton } from "../base/base-button";
 @Component({
   selector: "il-button-save",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   styles: [":host { display: block; width: fit-content; margin-left: auto; }"],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

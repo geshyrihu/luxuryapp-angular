@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -13,7 +12,6 @@ import { map } from "rxjs/operators";
   templateUrl: "./comingsoon.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
     RouterModule,
     CarouselModule,
     InputTextModule,

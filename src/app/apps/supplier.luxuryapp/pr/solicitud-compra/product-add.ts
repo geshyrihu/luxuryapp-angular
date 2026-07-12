@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -58,7 +57,6 @@ interface IProductSuggestion {
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
     WebButtonLabelSave,
@@ -111,9 +109,9 @@ export class ProductAdd implements OnInit {
   }
 
   async onLoadMeasurementUnits(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.SelectItems.measurementUnits,
-    );
+    const result: any = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(Endpoints.SelectItems.measurementUnits);
     this.cb_measurement_units.set(result as SelectItemDto[]);
   }
 

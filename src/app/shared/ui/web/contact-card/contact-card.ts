@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ContactCardBase } from "@ui/base/contact-card.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -15,7 +14,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
 @Component({
   selector: "app-contact-card",
 
-  imports: [CommonModule, ButtonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [ButtonModule, TagModule, LxTooltipDirective, AppIcon],
   template: `
     <div
       class="contact-card"

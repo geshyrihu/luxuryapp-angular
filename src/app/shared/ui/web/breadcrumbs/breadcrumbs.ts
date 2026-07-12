@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
 import { BreadcrumbModule } from "primeng/breadcrumb";
@@ -6,7 +5,7 @@ import { BreadcrumbModule } from "primeng/breadcrumb";
 @Component({
   selector: "app-breadcrumbs",
 
-  imports: [CommonModule, BreadcrumbModule],
+  imports: [BreadcrumbModule],
   template: `
     <div class="breadcrumbs-root">
       <p-breadcrumb [model]="items()" [home]="home()" />

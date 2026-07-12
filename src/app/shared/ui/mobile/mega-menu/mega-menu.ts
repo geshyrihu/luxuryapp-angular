@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { MegaMenuBase } from "@ui/base/mega-menu.base";
@@ -7,7 +6,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-mega-menu",
 
-  imports: [CommonModule, RouterModule, AppIcon],
+  imports: [RouterModule, AppIcon],
   template: `
     <div class="ili-megamenu">
       @for (category of items(); track $index) {

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -68,7 +67,6 @@ type EstadoResultadosRow =
   selector: "app-estado-resultados-v2",
   imports: [
     AppIcon,
-    CommonModule,
     FormsModule,
     TableModule,
     LxSkeleton,

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,12 +41,10 @@ import {
 } from "ionicons/icons";
 import { Task } from "./interfaces/task.interface";
 
-
 @Component({
   selector: "app-mobile-lists",
 
   imports: [
-    CommonModule,
     FormsModule,
     IonBadge,
     IonButton,
@@ -756,8 +753,7 @@ export class MobileLists {
     },
   ]);
 
-  toggleTask(id: number): void {
-  }
+  toggleTask(id: number): void {}
 
   // --- Contacts Directory data ---
   contacts = [
@@ -827,4 +823,3 @@ export class MobileLists {
     });
   }
 }
-

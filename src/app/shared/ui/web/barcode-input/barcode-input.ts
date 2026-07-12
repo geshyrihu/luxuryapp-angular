@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,13 +21,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 @Component({
   selector: "app-barcode-input",
 
-  imports: [
-    CommonModule,
-    FormsModule,
-    ButtonModule,
-    InputTextModule,
-    LxTooltipDirective,
-  ],
+  imports: [FormsModule, ButtonModule, InputTextModule, LxTooltipDirective],
   template: `
     <div class="bi-root">
       @if (label()) {

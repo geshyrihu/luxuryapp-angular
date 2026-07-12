@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 @Component({
   selector: "app-spinner",
 
-  imports: [CommonModule, ProgressSpinnerModule],
+  imports: [ProgressSpinnerModule],
   template: `
     <p-progressspinner
       [style]="{ width: sizePx(), height: sizePx() }"

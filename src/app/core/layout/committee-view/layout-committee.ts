@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { CommonModule } from "@angular/common";
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +32,6 @@ import { AppLoader } from "@ui/web/loader/loader";
   templateUrl: "./layout-committee.html",
   imports: [
     AppLoader,
-    CommonModule,
     RouterOutlet,
     HeaderCommitteeMonitor,
     FooterCommitteeMonitor,

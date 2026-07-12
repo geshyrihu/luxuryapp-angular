@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,9 +34,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     MobileActionMenu,
     MobileButtonLabelViewPdf,
     WebButtonIconViewPdf,
-    CommonModule,
     TableModule,
-
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
   ],

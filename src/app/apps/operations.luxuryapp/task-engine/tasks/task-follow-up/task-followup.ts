@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,7 +41,6 @@ interface ITicketMessageFollowupForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,
-    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     WebButtonLabelSave,
@@ -59,9 +57,7 @@ export class TaskFollowup implements OnInit, OnDestroy {
   private formB = inject(FormBuilder);
   private ref = inject(DynamicDialogRef);
 
-  readonly isSuperUser = this.aspRoleS.roleSignal(
-    ApplicationRole.SuperUsuario,
-  );
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
   description = signal<any[]>([]);
   submitting = signal(false);
 

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { BottomNavBase } from "@ui/base/bottom-nav.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -8,7 +7,7 @@ export type { BottomNavItem } from "@ui/base/bottom-nav.base";
 @Component({
   selector: "ili-bottom-nav",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <nav class="bottom-nav" role="tablist" [attr.aria-label]="ariaLabel()">
       @for (item of items(); track item.id) {

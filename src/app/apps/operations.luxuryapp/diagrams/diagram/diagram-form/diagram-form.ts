@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -41,7 +40,6 @@ interface SelectItem {
 @Component({
   selector: "app-diagram-form",
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabelSave,

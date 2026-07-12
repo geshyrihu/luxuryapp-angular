@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,7 @@ import { ProgressBarModule } from "primeng/progressbar";
 @Component({
   selector: "app-progress-bar",
 
-  imports: [CommonModule, ProgressBarModule],
+  imports: [ProgressBarModule],
   template: `
     <p-progressbar
       [value]="clampedValue()"

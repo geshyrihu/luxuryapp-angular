@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -6,7 +5,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-offline-indicator",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     @if (showBanner()) {
       <div class="offline-banner" [class.offline-banner-online]="online()">

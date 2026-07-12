@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   input,
@@ -24,7 +23,7 @@ export interface TabBarItem {
 @Component({
   selector: "app-tab-bar",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="tab-bar" role="tablist" [class.tab-bar-compact]="compact()">
       @for (tab of tabs(); track tab.id) {

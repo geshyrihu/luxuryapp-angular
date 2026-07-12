@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonButton, IonTextarea } from "@ionic/angular/standalone";
@@ -8,7 +7,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-comment-thread",
 
-  imports: [CommonModule, FormsModule, IonButton, IonTextarea, AppIcon],
+  imports: [FormsModule, IonButton, IonTextarea, AppIcon],
   template: `
     <div class="ili-ct">
       @if (title()) {

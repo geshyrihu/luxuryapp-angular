@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { DateRangeBase } from "@ui/base/date-range.base";
@@ -6,7 +5,7 @@ import { DateRangeBase } from "@ui/base/date-range.base";
 @Component({
   selector: "ili-date-range",
 
-  imports: [CommonModule, IonButton],
+  imports: [IonButton],
   template: `
     <div class="ili-date-range">
       <div class="ili-date-presets">

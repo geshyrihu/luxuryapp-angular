@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { MeterGroupBase } from "@ui/base/meter-group.base";
 
 @Component({
   selector: "ili-meter-group",
 
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="ili-meter-group-root">
       <div class="ili-meter-group-bar">

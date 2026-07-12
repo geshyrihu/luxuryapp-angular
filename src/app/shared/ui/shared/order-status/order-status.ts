@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,7 @@ export interface OrderStatusStep {
 @Component({
   selector: "app-order-status",
 
-  imports: [CommonModule, AppIcon],
+  imports: [AppIcon],
   template: `
     <div class="order-status-root" [class.order-status-vertical]="vertical()">
       @for (step of steps(); track $index; let i = $index) {

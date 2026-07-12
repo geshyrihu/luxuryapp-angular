@@ -1,5 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { Component, ElementRef, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 interface IStep {
@@ -21,7 +25,7 @@ interface IPhase {
 
 @Component({
   selector: "app-preventive-maintenance",
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: "./preventive-maintenance.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./preventive-maintenance.scss"],
@@ -40,7 +44,8 @@ export class PreventiveMaintenance implements AfterViewInit {
           num: "01",
           icon: "📋",
           title: "Inventariar instalaciones y equipos",
-          summary: "Listar todas las instalaciones bajo responsabilidad del área de mantenimiento.",
+          summary:
+            "Listar todas las instalaciones bajo responsabilidad del área de mantenimiento.",
           details: [
             "Tableros eléctricos generales y secundarios",
             "Bombas de agua potable y aguas negras",
@@ -57,7 +62,8 @@ export class PreventiveMaintenance implements AfterViewInit {
           num: "02",
           icon: "📅",
           title: "Definir frecuencias de mantenimiento",
-          summary: "Asignar periodicidad a cada equipo según especificaciones del fabricante y normativa aplicable.",
+          summary:
+            "Asignar periodicidad a cada equipo según especificaciones del fabricante y normativa aplicable.",
           details: [
             "Diario: tableros, presión de bombas, nivel de cisternas",
             "Semanal: iluminación exterior, puertas automáticas",
@@ -73,7 +79,8 @@ export class PreventiveMaintenance implements AfterViewInit {
           num: "03",
           icon: "🗓️",
           title: "Elaborar calendario anual",
-          summary: "Crear cronograma maestro con todas las actividades preventivas del año.",
+          summary:
+            "Crear cronograma maestro con todas las actividades preventivas del año.",
           details: [
             "Distribuir actividades por mes y área responsable",
             "Asignar fechas tentativas y personal ejecutor",
@@ -96,7 +103,8 @@ export class PreventiveMaintenance implements AfterViewInit {
           num: "04",
           icon: "🔧",
           title: "Ejecutar mantenimiento programado",
-          summary: "Realizar cada actividad según el calendario con checklists estandarizadas.",
+          summary:
+            "Realizar cada actividad según el calendario con checklists estandarizadas.",
           details: [
             "Limpieza de tableros y conexiones eléctricas",
             "Lubricación de motores y partes móviles",
@@ -112,7 +120,8 @@ export class PreventiveMaintenance implements AfterViewInit {
           num: "05",
           icon: "📝",
           title: "Documentar cada intervención",
-          summary: "Registrar en bitácora todas las actividades realizadas con evidencia fotográfica.",
+          summary:
+            "Registrar en bitácora todas las actividades realizadas con evidencia fotográfica.",
           details: [
             "Fecha y hora de la intervención",
             "Equipo intervenido y código de identificación",
@@ -128,7 +137,8 @@ export class PreventiveMaintenance implements AfterViewInit {
           num: "06",
           icon: "📊",
           title: "Revisar y ajustar programa",
-          summary: "Evaluar cumplimiento y ajustar frecuencias según resultados y condiciones del equipo.",
+          summary:
+            "Evaluar cumplimiento y ajustar frecuencias según resultados y condiciones del equipo.",
           details: [
             "Cierre mensual: % de cumplimiento vs programado",
             "Identificar desviaciones recurrentes",
@@ -150,10 +160,26 @@ export class PreventiveMaintenance implements AfterViewInit {
   ];
 
   deliverables = [
-    { icon: "📋", title: "Inventario de equipos", desc: "Catálogo completo con códigos, ubicación y especificaciones técnicas de cada equipo." },
-    { icon: "🗓️", title: "Calendario maestro anual", desc: "Cronograma con todas las actividades preventivas del año, por mes y área." },
-    { icon: "📝", title: "Checklists estandarizadas", desc: "Formato de lista de verificación para cada tipo de equipo intervenido." },
-    { icon: "📊", title: "Reporte mensual de cumplimiento", desc: "Indicadores de cumplimiento, desviaciones y recomendaciones del periodo." },
+    {
+      icon: "📋",
+      title: "Inventario de equipos",
+      desc: "Catálogo completo con códigos, ubicación y especificaciones técnicas de cada equipo.",
+    },
+    {
+      icon: "🗓️",
+      title: "Calendario maestro anual",
+      desc: "Cronograma con todas las actividades preventivas del año, por mes y área.",
+    },
+    {
+      icon: "📝",
+      title: "Checklists estandarizadas",
+      desc: "Formato de lista de verificación para cada tipo de equipo intervenido.",
+    },
+    {
+      icon: "📊",
+      title: "Reporte mensual de cumplimiento",
+      desc: "Indicadores de cumplimiento, desviaciones y recomendaciones del periodo.",
+    },
   ];
 
   constructor(private elementRef: ElementRef) {}

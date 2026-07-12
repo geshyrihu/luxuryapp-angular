@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ import { alertCircleOutline, closeOutline } from "ionicons/icons";
 @Component({
   selector: "ili-global-error-alert",
 
-  imports: [CommonModule, IonItem, IonLabel, IonButton, IonIcon],
+  imports: [IonItem, IonLabel, IonButton, IonIcon],
   template: `
     @if (error) {
       <ion-item color="danger" lines="none" class="global-error-alert">

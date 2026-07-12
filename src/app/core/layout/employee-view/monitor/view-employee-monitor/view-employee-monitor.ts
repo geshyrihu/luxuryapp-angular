@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
   inject,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { LxLoader } from "@ui/adaptive/loader/loader";
@@ -16,7 +15,7 @@ import { HeaderEmployeeMonitor } from "../header-employee-monitor/header-employe
 import { Sidebar } from "../sidebar/sidebar";
 @Component({
   selector: "app-view-employee-monitor",
-  imports: [CommonModule, RouterOutlet, Sidebar, HeaderEmployeeMonitor, LxLoader],
+  imports: [RouterOutlet, Sidebar, HeaderEmployeeMonitor, LxLoader],
   templateUrl: "./view-employee-monitor.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./view-employee-monitor.scss",
@@ -65,4 +64,3 @@ export class ViewEmployeeMonitor implements OnInit, AfterViewInit {
     this.footerDark = false;
   }
 }
-

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
 @Component({
   selector: "app-confirm-dialog",
 
-  imports: [CommonModule, DialogModule, ButtonModule, AppIcon],
+  imports: [DialogModule, ButtonModule, AppIcon],
   template: `
     <p-dialog
       [(visible)]="visible"
