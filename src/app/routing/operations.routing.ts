@@ -53,7 +53,7 @@ export const operationsRoutes: Routes = [
   {
     path: "alertas-panico",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/panic-alert/pages/panic-alert-list/panic-alert-list").then(
+      import("src/app/apps/operations.luxuryapp/panic-alert/panic-alert-list/panic-alert-list").then(
         (m) => m.PanicAlertList,
       ),
     canActivate: [authGuard],

@@ -30,10 +30,10 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
-import { TaskForm } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/pages/task-form";
+import { TaskForm } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import Swal from "sweetalert2";
-import { PendingItemDTO } from "./models/pending-item.dto";
+import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";

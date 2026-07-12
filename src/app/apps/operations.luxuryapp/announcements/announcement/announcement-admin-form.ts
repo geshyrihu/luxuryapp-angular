@@ -42,7 +42,7 @@ import {
   Customer,
   IRole,
 } from "./announcement.model";
-import { ImageGenerationDialog } from "./components/image-generation-dialog/image-generation-dialog";
+import { ImageGenerationDialog } from "./image-generation-dialog/image-generation-dialog";
 
 @Component({
   selector: "app-announcement-admin-form",

@@ -18,7 +18,7 @@ import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { TaskDateRangeSelector } from "src/app/apps/operations.luxuryapp/task-engine/tasks/components/task-date-range-selector/task-date-range-selector";
+import { TaskDateRangeSelector } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
 @Component({
   selector: "app-ticket-legal-reportes-externos",
   templateUrl: "./ticket-legal-reportes-externos.html",

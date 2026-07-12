@@ -39,7 +39,7 @@ import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
-import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/components/panic-button/panic-button";
+import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/panic-button/panic-button";
 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import * as htmlToImage from "html-to-image";
