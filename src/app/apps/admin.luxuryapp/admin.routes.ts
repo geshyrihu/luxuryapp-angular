@@ -645,5 +645,41 @@ export const adminRoutes: Routes = [
       breadcrumb: "Cotizador",
     },
   },
+  {
+    path: "access-control/puertas",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/access-control/access-point-list").then(
+        (m) => m.AccessPointList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Puntos de acceso",
+      breadcrumb: "Puntos de acceso",
+    },
+  },
+  {
+    path: "access-control/dashboard",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/access-control/access-dashboard").then(
+        (m) => m.AccessDashboard,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Dashboard de accesos",
+      breadcrumb: "Dashboard de accesos",
+    },
+  },
+  {
+    path: "access-control/bitacora",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/access-control/access-events").then(
+        (m) => m.AccessEvents,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Bitácora de accesos",
+      breadcrumb: "Bitácora de accesos",
+    },
+  },
 ];
 

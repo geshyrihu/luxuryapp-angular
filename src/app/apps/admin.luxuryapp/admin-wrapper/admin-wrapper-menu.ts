@@ -1,6 +1,6 @@
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
-import { SettingsMenuItem } from "src/app/core/interfaces/menu.model";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { SettingsMenuItem } from "src/app/core/interfaces/menu.interface";
 
 export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
   {

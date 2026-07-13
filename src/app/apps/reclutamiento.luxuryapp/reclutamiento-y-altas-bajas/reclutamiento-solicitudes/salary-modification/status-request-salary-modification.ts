@@ -7,21 +7,21 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CardEmployee } from 'src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee';
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-status-request-salary-modification",
@@ -59,7 +59,10 @@ export class StatusRequestSalaryModification implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = EndpointsReclutamiento.RequestSalaryModification.getStatus(this.workPositionId, this.employeeId);
+    const urlApi = EndpointsReclutamiento.RequestSalaryModification.getStatus(
+      this.workPositionId,
+      this.employeeId,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

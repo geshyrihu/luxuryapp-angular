@@ -25,7 +25,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.model";
+import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.interface";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";

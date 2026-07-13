@@ -30,7 +30,7 @@ import { filter, map, startWith } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { MenuService } from "src/app/core/services/menu.service";

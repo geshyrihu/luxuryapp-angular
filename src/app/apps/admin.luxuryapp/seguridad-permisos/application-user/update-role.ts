@@ -10,7 +10,7 @@ import {
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { RoleType } from "src/app/core/interfaces/role-type.enum";
+import { RoleType } from "src/app/core/enums/role-type.enum";
 import { Roles } from "src/app/core/interfaces/roles.interface";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
 

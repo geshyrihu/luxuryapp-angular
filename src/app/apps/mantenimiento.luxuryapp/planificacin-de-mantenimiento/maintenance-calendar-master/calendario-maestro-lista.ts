@@ -23,7 +23,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu } from "primeng/menu";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

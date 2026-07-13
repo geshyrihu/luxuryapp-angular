@@ -28,7 +28,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ButtonType } from "src/app/core/interfaces/button-type.enum";
+import { ButtonType } from "src/app/core/enums/button-type.enum";
 import { DestinatariosMailReporte } from "src/app/core/interfaces/destinatarios-mail-reporte.interface";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";

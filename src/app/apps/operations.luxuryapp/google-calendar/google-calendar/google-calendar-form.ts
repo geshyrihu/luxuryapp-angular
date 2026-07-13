@@ -26,9 +26,9 @@ import { firstValueFrom } from "rxjs";
 
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
-import { Recurrence } from "src/app/core/interfaces/recurrence.enum";
-import { GoogleCalendarRecurrenceMode } from "src/app/core/interfaces/google-calendar-recurrence-mode.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Recurrence } from "src/app/core/enums/recurrence.enum";
+import { GoogleCalendarRecurrenceMode } from "src/app/core/enums/google-calendar-recurrence-mode.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";

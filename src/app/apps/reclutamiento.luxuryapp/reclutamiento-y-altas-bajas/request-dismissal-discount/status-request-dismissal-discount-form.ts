@@ -10,9 +10,9 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 @Component({
   selector: "app-status-request-dismissal-discount-form",
   templateUrl: "./status-request-dismissal-discount-form.html",
@@ -45,7 +45,9 @@ export class StatusRequestDismissalDiscountForm implements OnInit {
     if (this.id) this.onLoadData();
   }
   onLoadData() {
-    const urlApi = EndpointsReclutamiento.RequestDismissalDiscount.getById(this.id);
+    const urlApi = EndpointsReclutamiento.RequestDismissalDiscount.getById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });

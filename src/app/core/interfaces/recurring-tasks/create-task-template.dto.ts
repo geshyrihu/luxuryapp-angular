@@ -1,4 +1,4 @@
-import { TaskPriority } from './enums.model';
+import { TaskPriority } from './task-priority.enum';
 export interface CreateTaskTemplateDto {
   name: string;
   description: string;

@@ -24,17 +24,17 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-solicitud-baja",
@@ -195,7 +195,9 @@ export class SolicitudBajaForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = EndpointsReclutamiento.RequestDismissal.getRequestDismissal(this.employeeId);
+    const urlApi = EndpointsReclutamiento.RequestDismissal.getRequestDismissal(
+      this.employeeId,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (result) {
         this.form.patchValue({
@@ -289,7 +291,11 @@ export class SolicitudBajaForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        EndpointsReclutamiento.RecruitmentRequests.solicitudBaja(this.customerIdS.customerId(), this.employeeId, this.authS.infoUserAuth.applicationUserId),
+        EndpointsReclutamiento.RecruitmentRequests.solicitudBaja(
+          this.customerIdS.customerId(),
+          this.employeeId,
+          this.authS.infoUserAuth.applicationUserId,
+        ),
         model,
       )
       .then((result: boolean) => {

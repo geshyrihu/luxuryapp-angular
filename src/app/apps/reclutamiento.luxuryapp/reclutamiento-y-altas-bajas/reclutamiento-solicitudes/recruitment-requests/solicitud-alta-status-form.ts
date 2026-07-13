@@ -11,12 +11,12 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { IRequestEmployeeRegisterBasicInfo } from './dtos/request-employee-register-basic-info.dto';
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
-import { IRequestEmployeeRegisterUpdateStatus } from './dtos/request-employee-register-update-status.dto';
+import { IRequestEmployeeRegisterBasicInfo } from "./dtos/request-employee-register-basic-info.dto";
+import { IRequestEmployeeRegisterUpdateStatus } from "./dtos/request-employee-register-update-status.dto";
 @Component({
   selector: "app-solicitud-alta-status-form",
   templateUrl: "./solicitud-alta-status-form.html",
@@ -86,7 +86,10 @@ export class SolicitudAltaStatusForm implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(EndpointsReclutamiento.RequestEmployeeRegister.updateStatus(this.id), dto)
+      .onPut(
+        EndpointsReclutamiento.RequestEmployeeRegister.updateStatus(this.id),
+        dto,
+      )
       .then((result) => {
         this.ref.close(true);
       })

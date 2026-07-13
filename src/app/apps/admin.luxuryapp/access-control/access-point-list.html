@@ -1,0 +1,78 @@
+<div class="card p-4 mb-3">
+  <h2 class="text-xl font-semibold mb-3">
+    {{ editingId() ? "Editar punto de acceso" : "Nuevo punto de acceso" }}
+  </h2>
+  <form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre *"
+      placeholder="Ej: Caseta principal"
+      required
+    />
+    <custom-input-select-signal
+      [control]="form.controls.accessPointType"
+      label="Tipo"
+      placeholder="Tipo de acceso"
+      [data]="types"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.location"
+      label="Ubicación"
+      placeholder="Ubicación"
+    />
+    <custom-input-switch-signal
+      [control]="form.controls.isActive"
+      label="Activo"
+    />
+    <div class="flex gap-2 mt-2">
+      <il-button
+        [label]="editingId() ? 'Guardar cambios' : 'Crear puerta'"
+        iconClass="mdi:door"
+        type="submit"
+        [loading]="submitting()"
+        [disabled]="form.invalid"
+      />
+      @if (editingId()) {
+      <il-button
+        label="Cancelar"
+        severity="secondary"
+        variant="text"
+        (clicked)="resetForm()"
+      />
+      }
+    </div>
+  </form>
+</div>
+
+<p-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Ubicación</th>
+      <th>Activo</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-ap>
+    <tr>
+      <td>{{ ap.name }}</td>
+      <td>{{ ap.accessPointType }}</td>
+      <td>{{ ap.location }}</td>
+      <td>{{ ap.isActive ? "Sí" : "No" }}</td>
+      <td class="text-right">
+        <il-button
+          label="Editar"
+          variant="text"
+          iconClass="mdi:pencil"
+          (clicked)="edit(ap)"
+        />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="5" class="text-center text-500 py-4">Sin puntos de acceso.</td>
+    </tr>
+  </ng-template>
+</p-table>

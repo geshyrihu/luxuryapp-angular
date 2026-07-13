@@ -23,11 +23,11 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-solicitud-modificacion-salario",
@@ -43,7 +43,7 @@ import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.recluta
     WebButtonLabelSave,
     CustomInputTextAreaSignal,
     InputAutocomplete,
-    ],
+  ],
 })
 export class SolicitudModificacionSalarioForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -134,7 +134,9 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
   async onLoadData(): Promise<any> {
     const result: any = await this.apiResponseS.onGetItem(
-      EndpointsReclutamiento.RequestSalaryModification.getData(this.workPositionId),
+      EndpointsReclutamiento.RequestSalaryModification.getData(
+        this.workPositionId,
+      ),
     );
 
     // Extraer applicationRoleCurrentId
@@ -206,7 +208,10 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        EndpointsReclutamiento.RecruitmentRequests.solicitudModificacionSalario(this.customerIdS.customerId(), this.authS.infoUserAuth.applicationUserId),
+        EndpointsReclutamiento.RecruitmentRequests.solicitudModificacionSalario(
+          this.customerIdS.customerId(),
+          this.authS.infoUserAuth.applicationUserId,
+        ),
         model,
       )
       .then((result: boolean) => {

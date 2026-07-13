@@ -16,7 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.model";
+import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.interface";
 
 interface ICompleteTaskForm {
   comments: FormControl<string>;

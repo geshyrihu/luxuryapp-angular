@@ -20,6 +20,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Table, TableModule } from "primeng/table";
 
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -30,21 +31,20 @@ import { FilterRequestsService } from "src/app/core/http/services/filter-request
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
-import { VacanteDetailModal } from './vacante-detail-modal';
-import { VacanteForm } from './vacante-form';
+import { VacanteDetailModal } from "./vacante-detail-modal";
+import { VacanteForm } from "./vacante-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-vacantes-list",
@@ -104,7 +104,10 @@ export class VacantesList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(EndpointsReclutamiento.RequestPosition.list, this.filterRequestsService.getParams())
+      .onGetList(
+        EndpointsReclutamiento.RequestPosition.list,
+        this.filterRequestsService.getParams(),
+      )
       .then((result: any) => this.dataSignal.set(result));
   }
 

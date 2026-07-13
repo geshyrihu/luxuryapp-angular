@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { filter, map, switchMap, take } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 /**
  * Un guardián de ruta para proteger las rutas del comité.
  *

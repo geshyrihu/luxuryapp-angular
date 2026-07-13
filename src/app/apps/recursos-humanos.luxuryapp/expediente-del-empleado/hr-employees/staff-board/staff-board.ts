@@ -25,9 +25,9 @@ import { TableModule } from "primeng/table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
-import { DialogSize } from "src/app/core/interfaces/dialog-size.enum";
-import { Departament } from "src/app/core/interfaces/departament.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { Department } from "src/app/core/enums/department.enum";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions as getRowsPerPageOptions,
@@ -92,24 +92,24 @@ export class StaffBoard {
   readonly tablePrimeNgRows = getTablePrimeNgRows();
 
   readonly departamentLabels: Record<number, string> = {
-    [Departament.Administracion]: "Administración",
-    [Departament.Legal]: "Legal",
-    [Departament.Contabilidad]: "Contabilidad",
-    [Departament.Mantenimiento]: "Mantenimiento",
-    [Departament.Limpieza]: "Limpieza",
-    [Departament.Operaciones]: "Operaciones",
-    [Departament.Jardineria]: "Jardineróa",
-    [Departament.Sistemas]: "Sistemas",
-    [Departament.Seguridad]: "Seguridad",
-    [Departament.Constructora]: "Constructora",
-    [Departament.Supervision]: "Supervisión",
-    [Departament.Direcciones]: "Dirección",
-    [Departament.RecusrosHumanos]: "Recursos Humanos",
-    [Departament.Reclutamiento]: "Reclutamiento",
-    [Departament.Recepcion]: "Recepción",
-    [Departament.Mensajeria]: "Mensajeróa",
-    [Departament.Ludoteca]: "Ludoteca",
-    [Departament.NA]: "Sin Departamento",
+    [Department.Administracion]: "Administración",
+    [Department.Legal]: "Legal",
+    [Department.Contabilidad]: "Contabilidad",
+    [Department.Mantenimiento]: "Mantenimiento",
+    [Department.Limpieza]: "Limpieza",
+    [Department.Operaciones]: "Operaciones",
+    [Department.Jardineria]: "Jardineróa",
+    [Department.Sistemas]: "Sistemas",
+    [Department.Seguridad]: "Seguridad",
+    [Department.Constructora]: "Constructora",
+    [Department.Supervision]: "Supervisión",
+    [Department.Direcciones]: "Dirección",
+    [Department.RecursosHumanos]: "Recursos Humanos",
+    [Department.Reclutamiento]: "Reclutamiento",
+    [Department.Recepcion]: "Recepción",
+    [Department.Mensajeria]: "Mensajeróa",
+    [Department.Ludoteca]: "Ludoteca",
+    [Department.NA]: "Sin Departamento",
   };
 
   getDepartamentLabel(value: number | null | undefined): string {

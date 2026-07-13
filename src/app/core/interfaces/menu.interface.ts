@@ -1,4 +1,4 @@
-// En: src/app/core/interfaces/menu.model.ts
+// En: src/app/core/interfaces/menu.interface.ts
 
 // ===================================================================
 // 1. MODELOS DE API (Reflejan la respuesta del backend)

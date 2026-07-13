@@ -7,7 +7,7 @@ import {
   Type,
 } from "@angular/core";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { MiEdificio } from "src/app/apps/operations.luxuryapp/properties/mi-edificio/mi-edificio";
 import { DashboardPendingItems } from "./dashboard-pending-items";
 @Component({

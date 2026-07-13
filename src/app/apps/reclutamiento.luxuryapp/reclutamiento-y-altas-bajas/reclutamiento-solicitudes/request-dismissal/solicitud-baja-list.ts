@@ -21,6 +21,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Table, TableModule } from "primeng/table";
 
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -29,7 +30,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SolicitudBajaUpdateStatus } from "./solicitud-baja-update-status";
 

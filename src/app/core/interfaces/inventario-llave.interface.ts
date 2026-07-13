@@ -1,5 +1,5 @@
 export interface InventarioLlave {
-  id: any;
+  id: string;
   descripcion: string;
   marca: string;
   numeroLlave: number;

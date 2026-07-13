@@ -8,7 +8,7 @@ import {
   WritableSignal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { ApplicationRole } from "../../interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "../../enums/asp-net-roles.enum";
 import { AuthService } from "./auth.service";
 
 type RoleSignalsMap = { [K in ApplicationRole]: WritableSignal<boolean> };

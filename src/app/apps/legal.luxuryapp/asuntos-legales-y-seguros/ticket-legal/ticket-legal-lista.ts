@@ -19,7 +19,7 @@ import { saveAs } from "file-saver";
 import { TableModule } from "primeng/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,

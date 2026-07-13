@@ -1,4 +1,4 @@
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 
 export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [

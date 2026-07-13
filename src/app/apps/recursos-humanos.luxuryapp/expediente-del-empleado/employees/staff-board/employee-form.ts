@@ -17,7 +17,7 @@ import { UpdatePasswordAccount } from "src/app/apps/admin.luxuryapp/seguridad-pe
 import { UpdateRole } from "src/app/apps/admin.luxuryapp/seguridad-permisos/application-user/update-role";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeReclutamiento } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento';

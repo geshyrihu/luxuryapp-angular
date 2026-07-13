@@ -1,19 +1,19 @@
-import { EndpointsAuth } from './endpoints.auth';
-import { EndpointsSecurity } from './endpoints.security';
-import { EndpointsAdmin } from './endpoints.admin';
-import { EndpointsSystem } from './endpoints.system';
-import { EndpointsContabilidad } from './endpoints.contabilidad';
-import { EndpointsCobranza } from './endpoints.cobranza';
-import { EndpointsRecursosHumanos } from './endpoints.recursos-humanos';
-import { EndpointsLegal } from './endpoints.legal';
-import { EndpointsMantenimiento } from './endpoints.mantenimiento';
-import { EndpointsOperations } from './endpoints.operations';
-import { EndpointsDireccion } from './endpoints.direccion';
-import { EndpointsSupplier } from './endpoints.supplier';
-import { EndpointsReclutamiento } from './endpoints.reclutamiento';
-import { EndpointsResident } from './endpoints.resident';
-import { EndpointsWeb } from './endpoints.web';
-import { EndpointsShared } from './endpoints.shared';
+import { EndpointsAdmin } from "./admin.endpoints";
+import { EndpointsAuth } from "./auth.endpoints";
+import { EndpointsCobranza } from "./cobranza.endpoints";
+import { EndpointsContabilidad } from "./contabilidad.endpoints";
+import { EndpointsDireccion } from "./direccion.endpoints";
+import { EndpointsLegal } from "./legal.endpoints";
+import { EndpointsMantenimiento } from "./mantenimiento.endpoints";
+import { EndpointsOperations } from "./operations.endpoints";
+import { EndpointsReclutamiento } from "./reclutamiento.endpoints";
+import { EndpointsRecursosHumanos } from "./recursos-humanos.endpoints";
+import { EndpointsResident } from "./resident.endpoints";
+import { EndpointsSecurity } from "./security.endpoints";
+import { EndpointsShared } from "./shared.endpoints";
+import { EndpointsSupplier } from "./supplier.endpoints";
+import { EndpointsSystem } from "./system.endpoints";
+import { EndpointsWeb } from "./web.endpoints";
 
 /**
  * Archivo centralizado de endpoints del API - LuxuryApp.

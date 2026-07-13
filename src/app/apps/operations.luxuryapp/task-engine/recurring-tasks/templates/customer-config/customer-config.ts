@@ -15,8 +15,8 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CustomerTaskItemConfig } from "src/app/core/interfaces/recurring-tasks/customer-task-item-config.model";
-import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.model";
+import { CustomerTaskItemConfig } from "src/app/core/interfaces/recurring-tasks/customer-task-item-config.interface";
+import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",

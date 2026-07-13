@@ -19,7 +19,7 @@ import { LxLoader } from "@ui/adaptive/loader/loader";
 import { filter, map } from "rxjs/operators";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";

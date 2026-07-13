@@ -13,7 +13,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { DialogSize } from "src/app/core/interfaces/dialog-size.enum";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
   HeroMetric,

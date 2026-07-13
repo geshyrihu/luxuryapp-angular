@@ -1,0 +1,40 @@
+<div class="flex justify-content-between align-items-center mb-3">
+  <h2 class="text-xl font-semibold m-0">Mis visitas</h2>
+  <a routerLink="../visitas/nueva" class="p-button p-button-primary">Nueva visita</a>
+</div>
+
+<p-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
+  <ng-template #header>
+    <tr>
+      <th>Visitante</th>
+      <th>Propiedad</th>
+      <th>Inicio</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-visit>
+    <tr>
+      <td>{{ visit.visitorName }}</td>
+      <td>{{ visit.propertyDisplay }}</td>
+      <td>{{ visit.scheduledStart | date: "dd/MM/yyyy HH:mm" }}</td>
+      <td>{{ visit.status }}</td>
+      <td class="text-right">
+        @if (visit.status === "Scheduled") {
+        <il-button
+          label="Cancelar"
+          severity="danger"
+          variant="text"
+          iconClass="mdi:cancel"
+          (clicked)="cancel(visit)"
+        />
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="5" class="text-center text-500 py-4">Sin visitas registradas.</td>
+    </tr>
+  </ng-template>
+</p-table>

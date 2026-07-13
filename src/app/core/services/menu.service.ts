@@ -15,7 +15,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { MenuItemDto } from "src/app/core/interfaces/menu.model";
+import { MenuItemDto } from "src/app/core/interfaces/menu.interface";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 @Injectable({
   providedIn: "root",

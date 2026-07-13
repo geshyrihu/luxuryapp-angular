@@ -15,7 +15,7 @@ import { ToastController } from "@ionic/angular/standalone";
 import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ContainerDashboard } from "./container-dashboard";
 import { DashboardPendingItems } from "./dashboard-pending-items";
 

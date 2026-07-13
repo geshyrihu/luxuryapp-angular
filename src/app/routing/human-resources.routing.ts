@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 export const humanResourcesRoutes: Routes = [
   // =============================================================
   // DASHBOARD PRINCIPAL DE RH

@@ -21,9 +21,13 @@ import { TableModule } from "primeng/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { SolicitudAltaForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/solicitud-alta-form";
+import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/solicitud-modificacion-salario-form";
+import { VacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/vacante-form";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -33,10 +37,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SolicitudAltaForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/solicitud-alta-form';
-import { SolicitudBajaForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-form';
-import { SolicitudModificacionSalarioForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/solicitud-modificacion-salario-form';
-import { VacanteForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/vacante-form';
 import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
@@ -91,7 +91,11 @@ export class SolicitudesClienteList {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     const applicationUserId = this.authS.infoUserAuth.applicationUserId;
-    const urlApi = EndpointsReclutamiento.RecruitmentRequests.solicitudesPorCliente(customerId, applicationUserId);
+    const urlApi =
+      EndpointsReclutamiento.RecruitmentRequests.solicitudesPorCliente(
+        customerId,
+        applicationUserId,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

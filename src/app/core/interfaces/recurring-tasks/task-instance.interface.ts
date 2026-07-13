@@ -1,6 +1,7 @@
-import { TaskPriority, TaskStatus } from "./enums.model";
-import { TaskAttachment } from "./task-attachment.model";
-import { TaskComment } from "./task-comment.model";
+import { TaskPriority } from "./task-priority.enum";
+import { TaskStatus } from "./task-status.enum";
+import { TaskAttachment } from "./task-attachment.interface";
+import { TaskComment } from "./task-comment.interface";
 export interface TaskInstance {
   id: string;
   taskTemplateItemId: string;

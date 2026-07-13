@@ -1,11 +1,19 @@
-import { Component, computed, inject, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter, map, startWith } from "rxjs/operators";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { FilterRequests } from "./recruitment-shared/filter-requests";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
-const ROUTE_FILTER_CONFIG: Record<string, { apiUrl: string; nameFile: string }> = {
+const ROUTE_FILTER_CONFIG: Record<
+  string,
+  { apiUrl: string; nameFile: string }
+> = {
   vacancies: {
     apiUrl: EndpointsReclutamiento.RequestPosition.exportExcel,
     nameFile: "Reporte de vacantes.xlsx",

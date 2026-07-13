@@ -15,10 +15,10 @@ import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ApprovalScope } from "./interfaces/approval-rules.enum";
 import { ApprovalMatrixDto } from "./interfaces/approval-matrix.dto";
 import { UpdateApprovalRulesDto } from "./interfaces/approval-rules-update.dto";
 import { ApprovalRuleDto } from "./interfaces/approval-rules.dto";
+import { ApprovalScope } from "./interfaces/approval-rules.enum";
 @Component({
   selector: "app-approval-rules",
   templateUrl: "./approval-rules.html",

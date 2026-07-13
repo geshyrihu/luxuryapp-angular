@@ -10,7 +10,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { SettingsMenuItem } from "src/app/core/interfaces/menu.model";
+import { SettingsMenuItem } from "src/app/core/interfaces/menu.interface";
 import {
   normalizePrimeIconClass,
   resolvePrimeIcon,

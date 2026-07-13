@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms";
-import { Recurrence } from "src/app/core/interfaces/recurrence.enum";
+import { Recurrence } from "src/app/core/enums/recurrence.enum";
 
 export interface IProjectedExpensesForm {
   id: FormControl<string>;

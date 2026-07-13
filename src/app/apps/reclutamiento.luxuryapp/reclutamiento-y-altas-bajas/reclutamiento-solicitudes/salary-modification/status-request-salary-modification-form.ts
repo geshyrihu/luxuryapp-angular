@@ -13,11 +13,11 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 @Component({
   selector: "app-status-request-salary-modification-form",
   templateUrl: "./status-request-salary-modification-form.html",
@@ -70,7 +70,9 @@ export class StatusRequestSalaryModificationForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = EndpointsReclutamiento.RequestSalaryModification.getById(this.id);
+    const urlApi = EndpointsReclutamiento.RequestSalaryModification.getById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });

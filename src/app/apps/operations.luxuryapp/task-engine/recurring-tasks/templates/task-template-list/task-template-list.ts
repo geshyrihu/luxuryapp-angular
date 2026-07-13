@@ -16,7 +16,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.model";
+import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";

@@ -19,7 +19,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { MenuItemDto, SubMenuItem } from "src/app/core/interfaces/menu.model";
+import { MenuItemDto, SubMenuItem } from "src/app/core/interfaces/menu.interface";
 import { MenuService } from "src/app/core/services/menu.service";
 @Component({
   selector: "app-home-menu-mobile",

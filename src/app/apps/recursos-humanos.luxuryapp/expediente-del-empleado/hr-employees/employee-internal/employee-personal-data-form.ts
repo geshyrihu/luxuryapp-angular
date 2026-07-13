@@ -23,7 +23,7 @@ import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ECountry } from "src/app/core/interfaces/paises.enum";
+import { ECountry } from "src/app/core/enums/paises.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";

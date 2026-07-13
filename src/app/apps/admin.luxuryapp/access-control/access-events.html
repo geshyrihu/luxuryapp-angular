@@ -1,0 +1,41 @@
+<div class="flex justify-content-between align-items-center mb-3">
+  <h2 class="text-xl font-semibold m-0">Bitácora de accesos</h2>
+  <div class="flex gap-2">
+    <il-button label="Actualizar" iconClass="mdi:refresh" variant="text" (clicked)="onLoadData()" />
+    <il-button label="Exportar Excel" iconClass="mdi:file-excel" severity="success" (clicked)="export()" />
+  </div>
+</div>
+
+<p-table [value]="dataSignal()" [paginator]="true" [rows]="15" class="custom-table card">
+  <ng-template #header>
+    <tr>
+      <th>Fecha/Hora</th>
+      <th>Evento</th>
+      <th>Éxito</th>
+      <th>Visitante</th>
+      <th>Punto de acceso</th>
+      <th>Procesado por</th>
+      <th>Detalle</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-e>
+    <tr>
+      <td>{{ e.occurredAt | date: "dd/MM/yyyy HH:mm:ss" }}</td>
+      <td>{{ e.eventType }}</td>
+      <td>
+        <span [class.text-green-600]="e.wasSuccessful" [class.text-red-600]="!e.wasSuccessful">
+          {{ e.wasSuccessful ? "Sí" : "No" }}
+        </span>
+      </td>
+      <td>{{ e.visitorName }}</td>
+      <td>{{ e.accessPointName }}</td>
+      <td>{{ e.processedByName }}</td>
+      <td>{{ e.failureReason }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7" class="text-center text-500 py-4">Sin eventos registrados.</td>
+    </tr>
+  </ng-template>
+</p-table>

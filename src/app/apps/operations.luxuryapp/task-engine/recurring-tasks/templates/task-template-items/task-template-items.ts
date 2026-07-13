@@ -18,8 +18,8 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TaskTemplateItem } from "src/app/core/interfaces/recurring-tasks/task-template-item.model";
-import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.model";
+import { TaskTemplateItem } from "src/app/core/interfaces/recurring-tasks/task-template-item.interface";
+import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";

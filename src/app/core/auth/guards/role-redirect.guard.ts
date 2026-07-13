@@ -1,6 +1,6 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router, UrlTree } from "@angular/router";
-import { ApplicationRole } from "../../interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "../../enums/asp-net-roles.enum";
 import { AspRoleService } from "../services/asp-role.service";
 /**
  * El Portero de la Discoteca (RoleRedirectGuard) 🕴️

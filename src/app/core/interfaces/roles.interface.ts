@@ -1,4 +1,4 @@
-import { RoleType } from "../interfaces/role-type.enum";
+import { RoleType } from "../enums/role-type.enum";
 export interface Roles {
   roleId: string;
   roleName: string;

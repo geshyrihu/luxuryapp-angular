@@ -5,7 +5,7 @@ import {
   inject,
 } from "@angular/core";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/interfaces/asp-net-roles.enum";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { UnifiedPendingDashboard } from "./unified-pending-dashboard";
 import { UnifiedPendingDashboardMobile } from "./unified-pending-dashboard-mobile";
 @Component({

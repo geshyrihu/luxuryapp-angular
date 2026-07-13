@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,20 +11,17 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 @Component({
   selector: "app-solicitud-vacante",
   templateUrl: "./solicitud-vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    WebButtonLabelSave,
-    CustomInputTextAreaSignal,
-  ],
+  imports: [ReactiveFormsModule, WebButtonLabelSave, CustomInputTextAreaSignal],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -74,7 +70,9 @@ export class SolicitudVacanteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorReclutamiento.workPositionsById(this.workPositionId);
+    const urlApi = Endpoints.RefactorReclutamiento.workPositionsById(
+      this.workPositionId,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.data = result;
       this.form.patchValue(result);
@@ -88,7 +86,9 @@ export class SolicitudVacanteForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        EndpointsReclutamiento.RecruitmentRequests.solicitudVacante(this.authS.infoUserAuth.applicationUserId),
+        EndpointsReclutamiento.RecruitmentRequests.solicitudVacante(
+          this.authS.infoUserAuth.applicationUserId,
+        ),
         this.form.getRawValue(),
       )
       .then((result: boolean) => {

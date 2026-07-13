@@ -19,7 +19,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { AutorizacionCuadroComparativo } from "src/app/core/enums/autorizacion-cuadro-comparativo.enum";
-import { TooltipPlacement } from "src/app/core/interfaces/tooltip-placement.enum";
+import { TooltipPlacement } from "src/app/core/enums/tooltip-placement.enum";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";

@@ -1,0 +1,64 @@
+<div class="flex justify-content-between align-items-center mb-3">
+  <h2 class="text-xl font-semibold m-0">Dashboard de accesos</h2>
+  <il-button label="Actualizar" iconClass="mdi:refresh" variant="text" (clicked)="onLoadData()" />
+</div>
+
+@if (stats(); as s) {
+<div class="grid mb-3">
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <div class="text-2xl font-bold">{{ s.activeVisits }}</div>
+      <div class="text-500 text-sm">Activas</div>
+    </div>
+  </div>
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <div class="text-2xl font-bold">{{ s.scheduledToday }}</div>
+      <div class="text-500 text-sm">Programadas hoy</div>
+    </div>
+  </div>
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <div class="text-2xl font-bold">{{ s.entriesToday }}</div>
+      <div class="text-500 text-sm">Entradas hoy</div>
+    </div>
+  </div>
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <div class="text-2xl font-bold">{{ s.completedToday }}</div>
+      <div class="text-500 text-sm">Completadas hoy</div>
+    </div>
+  </div>
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <div class="text-2xl font-bold text-red-600">{{ s.deniedToday }}</div>
+      <div class="text-500 text-sm">Denegados hoy</div>
+    </div>
+  </div>
+</div>
+}
+
+<h3 class="text-lg font-semibold mb-2">
+  Dentro actualmente: {{ occupancy()?.currentInside ?? 0 }}
+</h3>
+<p-table [value]="occupancy()?.visits ?? []" [paginator]="true" [rows]="10" class="custom-table card">
+  <ng-template #header>
+    <tr>
+      <th>Visitante</th>
+      <th>Propiedad</th>
+      <th>Entrada</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-visit>
+    <tr>
+      <td>{{ visit.visitorName }}</td>
+      <td>{{ visit.propertyDisplay }}</td>
+      <td>{{ visit.actualCheckIn | date: "dd/MM/yyyy HH:mm" }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3" class="text-center text-500 py-4">Nadie dentro.</td>
+    </tr>
+  </ng-template>
+</p-table>

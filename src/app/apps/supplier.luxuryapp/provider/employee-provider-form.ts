@@ -12,9 +12,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -24,13 +24,13 @@ import { firstValueFrom } from "rxjs";
 import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/employee-internal.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
 import { imageToBase64 } from "src/app/core/helpers/enumeration";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { UserInfoDto } from "src/app/core/interfaces/user-info.interface";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints.reclutamiento";
 
 type Opcion = "none" | "vacante" | "alta";
 
@@ -239,7 +239,9 @@ export class EmployeeProviderForm implements OnInit {
       this.submitting.set(true);
       this.apiResponseS
         .onPost(
-          EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(this.authS.applicationUserId),
+          EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(
+            this.authS.applicationUserId,
+          ),
           {
             employeeId: this.newEmployeeId(),
             positionRequestId,
@@ -257,7 +259,9 @@ export class EmployeeProviderForm implements OnInit {
       this.submitting.set(true);
       this.apiResponseS
         .onPost(
-          EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(this.authS.applicationUserId),
+          EndpointsReclutamiento.RecruitmentRequests.solicitudAlta(
+            this.authS.applicationUserId,
+          ),
           {
             employeeId: this.newEmployeeId(),
             positionRequestId: altaValues.positionRequestId,

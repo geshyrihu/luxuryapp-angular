@@ -26,7 +26,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TooltipPlacement } from "src/app/core/interfaces/tooltip-placement.enum";
+import { TooltipPlacement } from "src/app/core/enums/tooltip-placement.enum";
 import { CronogramaMantenimientoService } from "src/app/core/services/cronograma-mantenimiento.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";

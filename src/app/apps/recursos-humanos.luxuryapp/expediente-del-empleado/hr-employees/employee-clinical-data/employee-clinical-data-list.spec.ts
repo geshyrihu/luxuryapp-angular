@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
 import { EmployeeInternalService } from '../../employee-internal/services/employee-internal.service';
 import { EmployeeClinicalDataList } from './employee-clinical-data-list';
-import { DialogSize } from 'src/app/core/interfaces/dialog-size.enum';
+import { DialogSize } from 'src/app/core/enums/dialog-size.enum';
 
 describe('EmployeeClinicalDataList', () => {
   let fixture: ComponentFixture<EmployeeClinicalDataList>;

@@ -13,7 +13,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { DialogSize } from "src/app/core/interfaces/dialog-size.enum";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
