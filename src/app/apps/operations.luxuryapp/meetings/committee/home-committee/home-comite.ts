@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxImage } from "@ui/adaptive/image/image";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
 @Component({
@@ -62,7 +63,7 @@ export class HomeComite implements OnInit {
   private async loadImages(): Promise<void> {
     const imageUrlMap = await this.apiResponseS.onGetList<
       Record<string, string>
-    >("file/comite-home-images");
+    >(Endpoints.File.comiteHomeImages);
     console.log(
       "?? ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
       imageUrlMap,

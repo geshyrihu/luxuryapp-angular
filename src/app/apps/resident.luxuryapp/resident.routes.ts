@@ -11,4 +11,9 @@ export const residentRoutes: Routes = [
     loadComponent: () =>
       import('./access-control/visit-form').then((m) => m.VisitForm),
   },
+  {
+    path: 'access-control/visitas/:id',
+    loadComponent: () =>
+      import('./access-control/visit-detail').then((m) => m.VisitDetail),
+  },
 ];

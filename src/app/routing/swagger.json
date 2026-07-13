@@ -24360,7 +24360,7 @@
         }
       }
     },
-    "/api/File/download": {
+    "/api/files/download": {
       "get": {
         "tags": ["File"],
         "parameters": [
@@ -24379,7 +24379,7 @@
         }
       }
     },
-    "/api/File/sidebar-images": {
+    "/api/files/sidebar-images": {
       "get": {
         "tags": ["File"],
         "responses": {
@@ -24406,7 +24406,7 @@
         }
       }
     },
-    "/api/File/comite-home-images": {
+    "/api/files/comite-home-images": {
       "get": {
         "tags": ["File"],
         "responses": {
@@ -54520,7 +54520,7 @@
         }
       }
     },
-    "/api/QualificationProvider/GetUserProvider/{applicationUserId}/{providerId}": {
+    "/api/qualification-provider/{applicationUserId}/{providerId}": {
       "get": {
         "tags": ["QualificationProvider"],
         "parameters": [
@@ -54566,7 +54566,7 @@
         }
       }
     },
-    "/api/QualificationProvider": {
+    "/api/qualification-provider": {
       "get": {
         "tags": ["QualificationProvider"],
         "responses": {
@@ -54642,7 +54642,7 @@
         }
       }
     },
-    "/api/QualificationProvider/{id}": {
+    "/api/qualification-provider/{id}": {
       "put": {
         "tags": ["QualificationProvider"],
         "parameters": [

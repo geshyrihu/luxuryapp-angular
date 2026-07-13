@@ -658,6 +658,18 @@ export const adminRoutes: Routes = [
     },
   },
   {
+    path: "access-control/visitantes",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/access-control/visitor-list").then(
+        (m) => m.VisitorList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Visitantes",
+      breadcrumb: "Visitantes",
+    },
+  },
+  {
     path: "access-control/dashboard",
     loadComponent: () =>
       import("src/app/apps/admin.luxuryapp/access-control/access-dashboard").then(

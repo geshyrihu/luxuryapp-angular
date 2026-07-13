@@ -45,12 +45,12 @@ import {
 import { EquiposList } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -76,17 +76,16 @@ import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso
   selector: "app-presupuesto-propuesta",
   imports: [
     AppIcon,
+    CheckboxModule,
     CommonModule,
+    CustomInputMultiselectSignal,
+    CustomInputNumberSignal,
+    CustomInputSelectSignal,
     CustomSearchInput,
     FormsModule,
-    CustomInputNumberSignal,
-
-    TableModule,
-    CustomInputSelectSignal,
-    CustomInputMultiselectSignal,
-    CheckboxModule,
-    LxTooltipDirective,
     LxModal,
+    LxTooltipDirective,
+    TableModule,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
@@ -393,7 +392,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<BudgetProposalDTO>(
-        `BudgetProposal?customerId=${this.customerId}&fiscalYear=${this.selectedFiscalYear}`,
+        Endpoints.BudgetProposal.byCustomerYear(
+          this.customerId,
+          this.selectedFiscalYear,
+        ),
       )
       .then((response) => {
         if (response && response.items) {
@@ -880,7 +882,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     };
     this.apiResponseS
       .onPut<BudgetProposalItemDTO>(
-        `budget-proposal/${item.id}`,
+        Endpoints.BudgetProposal.updateItem(item.id),
         updateDTO,
         false,
         false,
@@ -1311,7 +1313,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onPost<BudgetProposalItemDTO[]>(
-        `budget-proposal/${currentProposal.id}/add-accounts`,
+        Endpoints.BudgetProposal.addAccounts(currentProposal.id),
         accountNumbers,
       )
       .then((response) => {

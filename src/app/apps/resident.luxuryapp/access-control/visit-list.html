@@ -20,6 +20,7 @@
       <td>{{ visit.scheduledStart | date: "dd/MM/yyyy HH:mm" }}</td>
       <td>{{ visit.status }}</td>
       <td class="text-right">
+        <a [routerLink]="[visit.id]" class="p-button p-button-text p-button-sm">Ver</a>
         @if (visit.status === "Scheduled") {
         <il-button
           label="Cancelar"

@@ -5,6 +5,12 @@ export const EndpointsAdmin = {
     occupancy: "access-controls/dashboard/occupancy",
     stats: "access-controls/dashboard/stats",
   },
+  AccessControlVisitors: {
+    getAll: "access-controls/visitors",
+    getById: (id: string) => `access-controls/visitors/${id}`,
+    create: "access-controls/visitors",
+    update: (id: string) => `access-controls/visitors/${id}`,
+  },
   Customers: {
     create: "customers",
     delete: (id: string) => `customers/${id}`,

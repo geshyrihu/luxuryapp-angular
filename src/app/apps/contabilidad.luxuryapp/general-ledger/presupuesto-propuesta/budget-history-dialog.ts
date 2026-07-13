@@ -22,6 +22,7 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { BudgetProposalItemHistoryDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-budget-history-dialog",
@@ -48,7 +49,7 @@ export class BudgetHistoryDialog implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<BudgetProposalItemHistoryDTO[]>(
-        `budget-proposal/history/${this.itemId}`,
+        Endpoints.BudgetProposal.historyByItem(this.itemId),
       )
       .then((response) => {
         if (response) {

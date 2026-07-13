@@ -1,35 +1,35 @@
 export const EndpointsCobranza = {
   AspelCobranza: {
     accounts: (customerId: string, year: number) =>
-      `aspel-cobranza/accounts?customer-id=${customerId}&year=${year}`,
+      `aspel-cobranza/accounts?customerId=${customerId}&year=${year}`,
     detalleCobranzaRango: (customerId: string, numCta: string) =>
-      `aspel-cobranza/detalle-cobranza-rango?customer-id=${customerId}&num-cta=${numCta}`,
+      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}`,
     deudasActuales: (customerId: string) =>
-      `aspel-cobranza/deudas-actuales?customer-id=${customerId}`,
+      `aspel-cobranza/deudas-actuales?customerId=${customerId}`,
     estadoCuentaRango: (
       customerId: string,
       numCta: string,
       fechaInicio: string,
       fechaFin: string,
     ) =>
-      `aspel-cobranza/estado-cuenta-rango?customer-id=${customerId}&num-cta=${numCta}&fecha-inicio=${fechaInicio}&fecha-fin=${fechaFin}`,
+      `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
   },
   AspelCobranzaLocal: {
     accounts: (customerId: string, year: number) =>
-      `aspel-cobranza-local/accounts?customer-id=${customerId}&year=${year}`,
+      `aspel-cobranza-local/accounts?customerId=${customerId}&year=${year}`,
     detalleCobranzaRango: (customerId: string, numCta: string) =>
-      `aspel-cobranza-local/detalle-cobranza-rango?customer-id=${customerId}&num-cta=${numCta}`,
+      `aspel-cobranza-local/detalle-cobranza-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}`,
     deudasActuales: (customerId: string) =>
-      `aspel-cobranza-local/deudas-actuales?customer-id=${customerId}`,
+      `aspel-cobranza-local/deudas-actuales?customerId=${customerId}`,
     estadoCuentaRango: (
       customerId: string,
       numCta: string,
       fechaInicio: string,
       fechaFin: string,
     ) =>
-      `aspel-cobranza-local/estado-cuenta-rango?customer-id=${customerId}&num-cta=${numCta}&fecha-inicio=${fechaInicio}&fecha-fin=${fechaFin}`,
+      `aspel-cobranza-local/estado-cuenta-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
     status: (customerId: string, year: number) =>
-      `aspel-cobranza-local/status?customer-id=${customerId}&year=${year}`,
+      `aspel-cobranza-local/status?customerId=${customerId}&year=${year}`,
   },
   AccountingCoi: {
     Accounting: {
@@ -75,11 +75,11 @@ export const EndpointsCobranza = {
     Configuration: {
       AspelSync: {
         completo: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/completo`,
+          `cobranza/migration/aspel-sync/${customerId}/ejercicio/${year}/completo`,
         contabilidad: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/contabilidad`,
+          `cobranza/migration/aspel-sync/${customerId}/ejercicio/${year}/contabilidad`,
         cobranza: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
+          `cobranza/migration/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
       },
     },
     Migration: {
@@ -91,64 +91,64 @@ export const EndpointsCobranza = {
     CobranzaOnline: {
       Dashboard: {
         get: (customerId: string, year: number, month: number, day?: number) =>
-          `accounting-coi/cobranza-online/dashboard/customer/${customerId}/year/${year}/month/${month}${day ? '?day=' + day : ''}`,
+          `cobranza-online/dashboard/customer/${customerId}/year/${year}/month/${month}${day ? '?day=' + day : ''}`,
         analysis: (
           customerId: string,
           year: number,
           month: number,
           day: number,
         ) =>
-          `accounting-coi/cobranza-online/analysis/customer/${customerId}/year/${year}/month/${month}/day/${day}`,
+          `cobranza-online/analysis/customer/${customerId}/year/${year}/month/${month}/day/${day}`,
         inspection: (customerId: string, year: number, month: number) =>
-          `accounting-coi/cobranza-online/inspection/customer/${customerId}/year/${year}/month/${month}`,
+          `cobranza-online/inspection/customer/${customerId}/year/${year}/month/${month}`,
         inspectionHistory: (customerId: string, year: number, accountNumber: string) =>
-          `accounting-coi/cobranza-online/inspection-history/customer/${customerId}/year/${year}/account/${encodeURIComponent(accountNumber)}`,
+          `cobranza-online/inspection-history/customer/${customerId}/year/${year}/account/${encodeURIComponent(accountNumber)}`,
         syncStatus: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/sync-status/customer/${customerId}/year/${year}`,
+          `cobranza-online/sync-status/customer/${customerId}/year/${year}`,
         excludedAccounts: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/excluded-accounts/customer/${customerId}/year/${year}`,
+          `cobranza-online/excluded-accounts/customer/${customerId}/year/${year}`,
         updateExcludedAccount: (customerId: string) =>
-          `accounting-coi/cobranza-online/excluded-accounts/customer/${customerId}`,
+          `cobranza-online/excluded-accounts/customer/${customerId}`,
       },
       Sync: {
         cobranza: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
+          `cobranza/migration/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
       },
       Accounts: {
         tree: (customerId: string) =>
-          `accounting-coi/cobranza-online/accounts/tree/customer/${customerId}`,
+          `cobranza-online/accounts/tree/customer/${customerId}`,
       },
       Balances: {
         annual: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/balances/customer/${customerId}/year/${year}`,
+          `cobranza-online/balances/customer/${customerId}/year/${year}`,
       },
       Cartera: {
         get: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/cartera/customer/${customerId}/year/${year}`,
+          `cobranza-online/cartera/customer/${customerId}/year/${year}`,
       },
       Mapping: {
         status: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}`,
         properties: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}/properties`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}/properties`,
         update: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}`,
         auto: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}/auto`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}/auto`,
       },
       Movements: {
         get: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/movements/customer/${customerId}/year/${year}`,
+          `cobranza-online/movements/customer/${customerId}/year/${year}`,
       },
       Policies: {
         get: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/policies/customer/${customerId}/year/${year}`,
+          `cobranza-online/policies/customer/${customerId}/year/${year}`,
       },
       Statements: {
         get: (customerId: string, accountId: string, year: number) =>
-          `accounting-coi/cobranza-online/statements/customer/${customerId}/account/${accountId}/year/${year}`,
+          `cobranza-online/statements/customer/${customerId}/account/${accountId}/year/${year}`,
         cuentasNivel3: (customerId: string) =>
-          `accounting-coi/cobranza-online/statements/cuentas-nivel3/customer/${customerId}`,
+          `cobranza-online/statements/cuentas-nivel3/customer/${customerId}`,
       },
       ReporteFinanciero: {
         get: (
@@ -157,51 +157,51 @@ export const EndpointsCobranza = {
           mesInicio: number,
           mesFin: number,
         ) =>
-          `accounting-coi/cobranza-online/reporte-financiero/customer/${customerId}/year/${year}/from/${mesInicio}/to/${mesFin}`,
+          `cobranza-online/reporte-financiero/customer/${customerId}/year/${year}/from/${mesInicio}/to/${mesFin}`,
       },
     },
     LegacyCollection: {
       Dashboard: {
         get: (customerId: string, year: number, month: number) =>
-          `accounting-coi/cobranza-online/dashboard/customer/${customerId}/year/${year}/month/${month}`,
+          `cobranza-online/dashboard/customer/${customerId}/year/${year}/month/${month}`,
         syncStatus: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/sync-status/customer/${customerId}/year/${year}`,
+          `cobranza-online/sync-status/customer/${customerId}/year/${year}`,
       },
       Accounts: {
         tree: (customerId: string) =>
-          `accounting-coi/cobranza-online/accounts/tree/customer/${customerId}`,
+          `cobranza-online/accounts/tree/customer/${customerId}`,
       },
       Balances: {
         annual: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/balances/customer/${customerId}/year/${year}`,
+          `cobranza-online/balances/customer/${customerId}/year/${year}`,
       },
       Cartera: {
         get: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/cartera/customer/${customerId}/year/${year}`,
+          `cobranza-online/cartera/customer/${customerId}/year/${year}`,
       },
       Mapping: {
         status: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}`,
         properties: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}/properties`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}/properties`,
         update: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}`,
         auto: (customerId: string) =>
-          `accounting-coi/legacy-collection/mapping/customer/${customerId}/auto`,
+          `cobranza/legacy-collection/mapping/customer/${customerId}/auto`,
       },
       Movements: {
         get: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/movements/customer/${customerId}/year/${year}`,
+          `cobranza-online/movements/customer/${customerId}/year/${year}`,
       },
       Policies: {
         get: (customerId: string, year: number) =>
-          `accounting-coi/cobranza-online/policies/customer/${customerId}/year/${year}`,
+          `cobranza-online/policies/customer/${customerId}/year/${year}`,
       },
       Statements: {
         get: (customerId: string, accountId: string, year: number) =>
-          `accounting-coi/cobranza-online/statements/customer/${customerId}/account/${accountId}/year/${year}`,
+          `cobranza-online/statements/customer/${customerId}/account/${accountId}/year/${year}`,
         cuentasNivel3: (customerId: string) =>
-          `accounting-coi/cobranza-online/statements/cuentas-nivel3/customer/${customerId}`,
+          `cobranza-online/statements/cuentas-nivel3/customer/${customerId}`,
       },
     },
     NativeCollection: {
@@ -296,8 +296,8 @@ export const EndpointsCobranza = {
       },
       BillingConfig: {
         customer: (customerId: string) =>
-          `accounting-coi/native-collection/billing-config/customer/${customerId}`,
-        save: "accounting-coi/native-collection/billing-config",
+          `cobranza/native-collection/billing-config/customer/${customerId}`,
+        save: "cobranza/native-collection/billing-config",
       },
       Analytics: {
         metrics: (customerId: string) =>

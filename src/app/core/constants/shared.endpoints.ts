@@ -1,4 +1,10 @@
 export const EndpointsShared = {
+  File: {
+    comiteHomeImages: "files/comite-home-images",
+    download: (filePath: string) =>
+      `files/download?filePath=${encodeURIComponent(filePath)}`,
+    sidebarImages: "files/sidebar-images",
+  },
   Banks: {
     create: "banks",
     delete: (id: string) => `banks/${id}`,
@@ -32,7 +38,7 @@ export const EndpointsShared = {
     typeDocument: "etype-document",
     typeMaintance: "e-type-maintance",
     selectItemEnum: (nameEnum: string, defaultOption?: string) =>
-      `select-item-enum/${nameEnum}${defaultOption ? '/' + defaultOption : ''}`,
+      `select-item-enum/${nameEnum}${defaultOption ? "/" + defaultOption : ""}`,
   },
   SelectItems: {
     accountingCatalogsByCustomerAndYear: (customerId: string, year: number) =>
@@ -105,7 +111,8 @@ export const EndpointsShared = {
     delete: (id: string) => `comites-vigilancia/${id}`,
     getById: (id: string) => `comites-vigilancia/${id}`,
     list: (customerId: string) => `comites-vigilancia/list/${customerId}`,
-    sendCredentials: (id: string) => `comites-vigilancia/${id}/send-credentials`,
+    sendCredentials: (id: string) =>
+      `comites-vigilancia/${id}/send-credentials`,
     update: (id: string) => `comites-vigilancia/${id}`,
   },
   LegalDirectories: {
@@ -145,6 +152,7 @@ export const EndpointsShared = {
   RefactorShared: {
     notifications: "notifications",
     notificationsUnreadCount: "notifications/unread-count",
-      notificationsMarkAsReadById: (notificationId: any) => `notifications/mark-as-read/${notificationId}`,
-},
+    notificationsMarkAsReadById: (notificationId: any) =>
+      `notifications/mark-as-read/${notificationId}`,
+  },
 } as const;

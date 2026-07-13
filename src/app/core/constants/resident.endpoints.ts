@@ -31,4 +31,9 @@ export const EndpointsResident = {
     getById: (id: string) => `access-controls/credentials/${id}`,
     revoke: (id: string) => `access-controls/credentials/${id}/revoke`,
   },
+  AccessControlInvitations: {
+    send: "access-controls/invitations",
+    resend: (id: string) => `access-controls/invitations/${id}/resend`,
+    byVisit: (visitId: string) => `access-controls/invitations/by-visit/${visitId}`,
+  },
 } as const;

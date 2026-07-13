@@ -30,6 +30,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { RippleModule } from "primeng/ripple";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {
@@ -87,7 +88,11 @@ export class AccountModalAdd implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<IAvailableAccountDTO[]>(
-        `budget-proposal/available-accounts/${this.customerId}/${this.fiscalYear}/${this.proposalId}`,
+        Endpoints.BudgetProposal.availableAccounts(
+          this.customerId,
+          this.fiscalYear,
+          this.proposalId,
+        ),
       )
       .then((response) => {
         if (response) {

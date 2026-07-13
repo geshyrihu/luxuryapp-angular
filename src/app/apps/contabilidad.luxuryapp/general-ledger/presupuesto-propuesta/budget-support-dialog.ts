@@ -84,7 +84,7 @@ export class BudgetSupportDialog implements OnInit {
     // Fetch the BudgetProposalItem itself
     this.apiResponseS
       .onGetItem<BudgetProposalItemDTO>( // Fetch BudgetProposalItemDTO
-        `BudgetProposalItemSupport/${this.budgetProposalItemId}`, // New endpoint
+        Endpoints.BudgetProposalItemSupport.byItem(this.budgetProposalItemId),
       )
       .then((response) => {
         if (response) {
@@ -160,7 +160,9 @@ export class BudgetSupportDialog implements OnInit {
           };
           this.apiResponseS
             .onPut<BudgetProposalItemDTO>(
-              `BudgetProposalItemSupport/${this.budgetProposalItemId}/support-info`,
+              Endpoints.BudgetProposalItemSupport.updateSupportInfo(
+                this.budgetProposalItemId,
+              ),
               updateInfoDTO,
             )
             .then(() => resolve())
@@ -180,7 +182,7 @@ export class BudgetSupportDialog implements OnInit {
           });
           this.apiResponseS
             .onPost<BudgetProposalItemDTO>(
-              `BudgetProposalItemSupport/support-files`,
+              Endpoints.BudgetProposalItemSupport.uploadFiles,
               formData,
             )
             .then(() => resolve())
@@ -227,7 +229,7 @@ export class BudgetSupportDialog implements OnInit {
 
       this.apiResponseS
         .onPost<BudgetProposalItemDTO>(
-          `BudgetProposalItemSupport/support-files`,
+          Endpoints.BudgetProposalItemSupport.uploadFiles,
           formData,
         )
         .then(() => {
@@ -248,7 +250,7 @@ export class BudgetSupportDialog implements OnInit {
   onDeleteFile(fileId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onDelete(Endpoints.RefactorContabilidad.budgetProposalItemSupportSupportFileById(fileId)) // New endpoint
+      .onDelete(Endpoints.BudgetProposalItemSupport.deleteSupportFile(fileId))
       .then((response) => {
         if (response) {
           this.loadSupports(); // Reload supports

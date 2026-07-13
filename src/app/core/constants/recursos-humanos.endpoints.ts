@@ -246,10 +246,10 @@ export const EndpointsRecursosHumanos = {
     },
     VacationBalanceAdmin: {
       byCustomer: (customerId: string) =>
-        `admin/vacation-balances/customer/${customerId}`,
+        `recursos-humanos/vacation-balances/customer/${customerId}`,
       recalculateAll: (customerId: string) =>
-        `admin/vacation-balances/recalculate-all/${customerId}`,
-      manualUpdate: "admin/vacation-balances/manual-update",
+        `recursos-humanos/vacation-balances/recalculate-all/${customerId}`,
+      manualUpdate: "recursos-humanos/vacation-balances/manual-update",
     },
   },
   Settings: {

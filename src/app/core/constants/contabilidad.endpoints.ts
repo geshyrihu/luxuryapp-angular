@@ -101,6 +101,32 @@ export const EndpointsContabilidad = {
     livePreview: "dynamic-reports/live-preview",
     update: (id: string) => `dynamic-reports/${id}`,
   },
+  BudgetProposal: {
+    byCustomerYear: (customerId: string, fiscalYear: number) =>
+      `budget-proposal?customerId=${customerId}&fiscalYear=${fiscalYear}`,
+    updateItem: (itemId: string) => `budget-proposal/${itemId}`,
+    historyByItem: (itemId: string) => `budget-proposal/history/${itemId}`,
+    availableAccounts: (
+      customerId: string,
+      fiscalYear: number,
+      proposalId: string,
+    ) =>
+      `budget-proposal/available-accounts/${customerId}/${fiscalYear}/${proposalId}`,
+    addAccounts: (proposalId: string) =>
+      `budget-proposal/${proposalId}/add-accounts`,
+    feeComparison: (proposalId: string) =>
+      `budget-proposal/${proposalId}/fee-comparison`,
+    feeComparisonByIndiviso: (proposalId: string) =>
+      `budget-proposal/${proposalId}/fee-comparison-by-indiviso`,
+  },
+  BudgetProposalItemSupport: {
+    byItem: (itemId: string) => `budget-proposal-item-support/${itemId}`,
+    updateSupportInfo: (itemId: string) =>
+      `budget-proposal-item-support/${itemId}/support-info`,
+    uploadFiles: "budget-proposal-item-support/support-files",
+    deleteSupportFile: (fileId: string) =>
+      `budget-proposal-item-support/support-file/${fileId}`,
+  },
   RefactorContabilidad: {
     catalogogastosfijosById: (id: any) => `catalogo-gastos-fijos/${id}`,
     projectedExpensesByIdById: (customerIdS: any, id: any) => `projected-expenses/${customerIdS}/${id}`,

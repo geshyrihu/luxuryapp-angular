@@ -23,6 +23,7 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.model";
 @Component({
@@ -185,7 +186,7 @@ export class FeeComparisonByIndivisoModal implements OnInit {
       this.loading.set(true);
       this.apiResponseS
         .onGetList<IndivisoFeeComparisonDTO>(
-          `budget-proposal/${this.proposalId}/fee-comparison-by-indiviso`,
+          Endpoints.BudgetProposal.feeComparisonByIndiviso(this.proposalId),
         )
         .then((response) => {
           if (response && response.propertyIndivisoDetails) {
