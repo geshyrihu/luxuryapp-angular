@@ -18,25 +18,25 @@ export const EndpointsShared = {
   },
   EnumSelectItems: {
     assetCategory: "e-asset-category",
-    brand: "EBrand",
+    brand: "ebrand",
     departament: "e-departament",
     inventoryCategory: "e-inventory-category",
-    inventorySubCategory: "EInventorySubCategory",
-    measurementUnit: "EMeasurementUnit",
-    paymentMethod: "EPaymentMethod",
-    priority: "EPriority",
+    inventorySubCategory: "einventory-sub-category",
+    measurementUnit: "emeasurement-unit",
+    paymentMethod: "epayment-method",
+    priority: "epriority",
     purchaseRequestStatus: "e-purchase-request-status",
     relationEmployee: "e-relation-employee",
     status: "e-status",
-    statusMaintenance: "EStatusMaintenance",
-    typeDocument: "ETypeDocument",
+    statusMaintenance: "estatus-maintenance",
+    typeDocument: "etype-document",
     typeMaintance: "e-type-maintance",
     selectItemEnum: (nameEnum: string, defaultOption?: string) =>
       `select-item-enum/${nameEnum}${defaultOption ? '/' + defaultOption : ''}`,
   },
   SelectItems: {
     accountingCatalogsByCustomerAndYear: (customerId: string, year: number) =>
-      `accounting-catalogs/${customerId}?fiscalYear=${year}`,
+      `accounting-catalogs/${customerId}?fiscal-year=${year}`,
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
     applicationUser: "application-users",
@@ -49,7 +49,7 @@ export const EndpointsShared = {
     employeesByUserId: (userId: string) => `employee-by-user-id/${userId}`,
     machineryActiveByCustomer: (customerId: string) =>
       `machineries-active/${customerId}`,
-    measurementUnits: "getMeasurementUnits",
+    measurementUnits: "get-measurement-units",
     paymentMethod: "payment-method",
     periodoPresupuestals: (customerId: string) =>
       `periodo-presupuestals/${customerId}`,
@@ -96,7 +96,7 @@ export const EndpointsShared = {
       `policy-contract/delete-document/${id}`,
     getById: (id: string | number) => `policy-contract/${id}`,
     list: (customerId: string, isCurrent: boolean) =>
-      `policy-contract/List/${customerId}/${isCurrent}`,
+      `policy-contract/list/${customerId}/${isCurrent}`,
     providersByCustomer: (customerId: string) => `providers/${customerId}`,
     update: (id: string | number) => `policy-contract/${id}`,
   },
@@ -109,7 +109,7 @@ export const EndpointsShared = {
     update: (id: string) => `comites-vigilancia/${id}`,
   },
   LegalDirectories: {
-    committees: "legal-directories/Committees",
+    committees: "legal-directories/committees",
   },
   SendEmail: {
     meeting: (meetingId: string | number) => `send-email/meeting/${meetingId}`,

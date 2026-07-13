@@ -170,7 +170,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections",
     loadComponent: () =>
-      import("./cobranza-online/dashboard/cobranza-online-dashboard").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-online/dashboard/cobranza-online-dashboard").then(
         (m) => m.CobranzaOnlineDashboard,
       ),
     canActivate: [authGuard],
@@ -183,7 +183,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/inspection",
     loadComponent: () =>
-      import("./cobranza-online/inspection/cobranza-online-inspection").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-online/inspection/cobranza-online-inspection").then(
         (m) => m.CobranzaOnlineInspection,
       ),
     canActivate: [authGuard],
@@ -196,7 +196,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/analysis",
     loadComponent: () =>
-      import("./cobranza-online/analysis/cobranza-online-analysis").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-online/analysis/cobranza-online-analysis").then(
         (m) => m.CobranzaOnlineAnalysis,
       ),
     canActivate: [authGuard],
@@ -209,7 +209,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/reporte-financiero",
     loadComponent: () =>
-      import("./cobranza-online/reporte-financiero/cobranza-online-reporte-financiero").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-online/reporte-financiero/cobranza-online-reporte-financiero").then(
         (m) => m.CobranzaOnlineReporteFinanciero,
       ),
     canActivate: [authGuard],
@@ -222,7 +222,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/presupuesto-contabilidad",
     loadComponent: () =>
-      import("./cobranza-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
         (m) => m.PresupuestoContabilidad,
       ),
     canActivate: [authGuard],
@@ -234,7 +234,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/exclusions",
     loadComponent: () =>
-      import("./cobranza-online/exclusions/cobranza-online-exclusions").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-online/exclusions/cobranza-online-exclusions").then(
         (m) => m.CobranzaOnlineExclusions,
       ),
     canActivate: [authGuard],
@@ -286,7 +286,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "aspel-cobranza",
     loadComponent: () =>
-      import("./aspel-cobranza-haus/aspel-cobranza-haus").then(
+      import("src/app/apps/cobranza.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus").then(
         (m) => m.AspelCobranzaHaus,
       ),
     data: {

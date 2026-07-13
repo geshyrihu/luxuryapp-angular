@@ -4,12 +4,13 @@ import { Observable } from "rxjs";
 import { AiKnowledgeBaseDto } from "src/app/core/interfaces/ai-knowledge-base.dto";
 import { ApiResponse } from "src/app/core/interfaces/api-response.dto";
 import { environment } from "src/environments/environment";
+import { Endpoints } from "src/app/core/constants/endpoints";
 
 @Injectable({
   providedIn: "root",
 })
 export class AiKnowledgeBaseService {
-  private baseUrl = `${environment.API_BASE_URL}AiKnowledgeBase`;
+  private baseUrl = `${environment.API_BASE_URL}${Endpoints.AiKnowledgeBase.base}`;
 
   constructor(private http: HttpClient) {}
 

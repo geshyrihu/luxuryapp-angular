@@ -48,11 +48,11 @@ export function isCriticalCustomer(customerId: string): boolean {
 export function getCriticalCustomerName(customerId: string): string | null {
   switch (customerId) {
     case CRITICAL_CUSTOMER_IDS.TORRE_MITIKAH:
-      return "TORRE MITIKAH";
+      return "torre mitikah";
     case CRITICAL_CUSTOMER_IDS.RESIDENCIAL_ROYAL:
-      return "RESIDENCIAL ROYAL R 1440";
+      return "residencial royal r 1440";
     case CRITICAL_CUSTOMER_IDS.PENINSULA:
-      return "PENINSULA";
+      return "peninsula";
     default:
       return null;
   }

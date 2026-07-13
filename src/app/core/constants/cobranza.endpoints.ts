@@ -1,35 +1,35 @@
 export const EndpointsCobranza = {
   AspelCobranza: {
     accounts: (customerId: string, year: number) =>
-      `aspel-cobranza/accounts?customerId=${customerId}&year=${year}`,
+      `aspel-cobranza/accounts?customer-id=${customerId}&year=${year}`,
     detalleCobranzaRango: (customerId: string, numCta: string) =>
-      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${numCta}`,
+      `aspel-cobranza/detalle-cobranza-rango?customer-id=${customerId}&num-cta=${numCta}`,
     deudasActuales: (customerId: string) =>
-      `aspel-cobranza/deudas-actuales?customerId=${customerId}`,
+      `aspel-cobranza/deudas-actuales?customer-id=${customerId}`,
     estadoCuentaRango: (
       customerId: string,
       numCta: string,
       fechaInicio: string,
       fechaFin: string,
     ) =>
-      `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${numCta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+      `aspel-cobranza/estado-cuenta-rango?customer-id=${customerId}&num-cta=${numCta}&fecha-inicio=${fechaInicio}&fecha-fin=${fechaFin}`,
   },
   AspelCobranzaLocal: {
     accounts: (customerId: string, year: number) =>
-      `aspel-cobranza-local/accounts?customerId=${customerId}&year=${year}`,
+      `aspel-cobranza-local/accounts?customer-id=${customerId}&year=${year}`,
     detalleCobranzaRango: (customerId: string, numCta: string) =>
-      `aspel-cobranza-local/detalle-cobranza-rango?customerId=${customerId}&numCta=${numCta}`,
+      `aspel-cobranza-local/detalle-cobranza-rango?customer-id=${customerId}&num-cta=${numCta}`,
     deudasActuales: (customerId: string) =>
-      `aspel-cobranza-local/deudas-actuales?customerId=${customerId}`,
+      `aspel-cobranza-local/deudas-actuales?customer-id=${customerId}`,
     estadoCuentaRango: (
       customerId: string,
       numCta: string,
       fechaInicio: string,
       fechaFin: string,
     ) =>
-      `aspel-cobranza-local/estado-cuenta-rango?customerId=${customerId}&numCta=${numCta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+      `aspel-cobranza-local/estado-cuenta-rango?customer-id=${customerId}&num-cta=${numCta}&fecha-inicio=${fechaInicio}&fecha-fin=${fechaFin}`,
     status: (customerId: string, year: number) =>
-      `aspel-cobranza-local/status?customerId=${customerId}&year=${year}`,
+      `aspel-cobranza-local/status?customer-id=${customerId}&year=${year}`,
   },
   AccountingCoi: {
     Accounting: {
@@ -233,7 +233,7 @@ export const EndpointsCobranza = {
         calculateLateFees:
           "accounting-coi/native-collection/charges/calculate-late-fees",
         bulkImportSaldoInicial: (customerId: string) =>
-          `accounting-coi/native-collection/charges/bulk-import/saldo-inicial?customerId=${customerId}`,
+          `accounting-coi/native-collection/charges/bulk-import/saldo-inicial?customer-id=${customerId}`,
         initialBalanceStatus: (customerId: string) =>
           `accounting-coi/native-collection/charges/initial-balance-status/customer/${customerId}`,
         bulkSetInitialBalance:
@@ -273,16 +273,16 @@ export const EndpointsCobranza = {
       Statements: {
         get: (propertyId: string, asOf?: string | null) =>
           asOf
-            ? `accounting-coi/native-collection/statements/${propertyId}?asOf=${encodeURIComponent(asOf)}`
+            ? `accounting-coi/native-collection/statements/${propertyId}?as-of=${encodeURIComponent(asOf)}`
             : `accounting-coi/native-collection/statements/${propertyId}`,
         pdf: (propertyId: string, asOf?: string | null) =>
           asOf
-            ? `accounting-coi/native-collection/statements/${propertyId}/pdf?asOf=${encodeURIComponent(asOf)}`
+            ? `accounting-coi/native-collection/statements/${propertyId}/pdf?as-of=${encodeURIComponent(asOf)}`
             : `accounting-coi/native-collection/statements/${propertyId}/pdf`,
       },
       Notifications: {
         process: (customerId: string) =>
-          `accounting-coi/native-collection/notifications/process?customerId=${customerId}`,
+          `accounting-coi/native-collection/notifications/process?customer-id=${customerId}`,
         sendStatement: "accounting-coi/native-collection/notifications/statements/send",
         sendStatementBatch:
           "accounting-coi/native-collection/notifications/statements/send-batch",
@@ -441,9 +441,9 @@ export const EndpointsCobranza = {
         generateMonthlyCharges:
           "accounting-coi/native-collection/charges/generate-monthly",
         calculateLateFees: (customerId: string) =>
-          `accounting-coi/native-collection/charges/calculate-late-fees?customerId=${customerId}`,
+          `accounting-coi/native-collection/charges/calculate-late-fees?customer-id=${customerId}`,
         processNotifications: (customerId: string) =>
-          `accounting-coi/native-collection/notifications/process?customerId=${customerId}`,
+          `accounting-coi/native-collection/notifications/process?customer-id=${customerId}`,
         evaluateCollectionCases: (customerId: string) =>
           `accounting-coi/native-collection/collection-cases/evaluate-and-escalate/${customerId}`,
         autoReconcile:

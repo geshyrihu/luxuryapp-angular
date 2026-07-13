@@ -23,6 +23,7 @@ import {
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",
@@ -124,7 +125,7 @@ export class AuthService {
   }): Observable<UserTokenDto> {
     return this.http
       .post<ApiResponseDto<UserTokenDto>>(
-        `${environment.API_BASE_URL}Auth/Login`,
+        `${environment.API_BASE_URL}${Endpoints.Auth.login}`,
         credentials,
         {
           withCredentials: true,
@@ -147,7 +148,7 @@ export class AuthService {
   logout(): Observable<any> {
     return this.httpWithoutInterceptors
       .post<ApiResponseDto<boolean>>(
-        `${environment.API_BASE_URL}Auth/Logout`,
+        `${environment.API_BASE_URL}${Endpoints.Auth.logout}`,
         {},
         { withCredentials: true },
       )
@@ -163,7 +164,7 @@ export class AuthService {
   refreshToken(): Observable<UserTokenDto> {
     return this.httpWithoutInterceptors
       .post<ApiResponseDto<UserTokenDto>>(
-        `${environment.API_BASE_URL}Auth/Refresh`,
+        `${environment.API_BASE_URL}${Endpoints.Auth.refresh}`,
         {},
         { withCredentials: true }, // <-- ¡ESTA ES LA CLAVE QUE FALTABA!
       )

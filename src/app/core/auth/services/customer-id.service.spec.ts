@@ -2,6 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { environment } from 'src/environments/environment';
 import { ConsoleLoggerService } from './console-logger.service';
 import { CustomerIdService } from './customer-id.service';
@@ -76,7 +77,11 @@ describe('CustomerIdService', () => {
       service.initializeCustomerStateAfterLogin(mockToken as any),
     );
 
-    const req = httpMock.expectOne(`${environment.API_BASE_URL}Customers/guid-123`);
+    const req = httpMock.expectOne(
+      `${environment.API_BASE_URL}${Endpoints.Customers.getById(
+        "guid-123",
+      )}`,
+    );
     req.flush({
       success: true,
       data: {

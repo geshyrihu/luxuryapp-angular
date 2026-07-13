@@ -44,7 +44,7 @@ export const EndpointsDireccion = {
       `presentaciones-junta-comite/autorizar-presentacion/${id}/${userId}`,
     delete: (id: any) => `presentaciones-junta-comite/${id}`,
     deleteFile: (id: any, area: string) => `presentaciones-junta-comite/${id}/${area}`,
-    getById: (id: string) => `presentaciones-junta-comite/Get/${id}`,
+    getById: (id: string) => `presentaciones-junta-comite/get/${id}`,
     list: (customerId: string) => `presentaciones-junta-comite/list/${customerId}`,
     updateFecha: (id: string) => `presentaciones-junta-comite/add-fecha/${id}`,
   },

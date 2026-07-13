@@ -32,14 +32,14 @@ export const EndpointsAdmin = {
   },
   ModuleAppCustomers: {
     activeModules: (customerId: string) =>
-      `module-app-customers/Customer/${customerId}/ActiveModules`,
+      `module-app-customers/customer/${customerId}/active-modules`,
     customerModules: (customerId: string) =>
-      `module-app-customers/Customer/${customerId}`,
-    customers: (state: boolean) => `module-app-customers/Customers/${state}`,
+      `module-app-customers/customer/${customerId}`,
+    customers: (state: boolean) => `module-app-customers/customers/${state}`,
     delete: (id: string) => `module-app-customers/${id}`,
     permissions: (customerId: string) =>
-      `module-app-customers/${customerId}/Permissions`,
-    updateModuleStatus: "module-app-customers/UpdateModuleStatus",
+      `module-app-customers/${customerId}/permissions`,
+    updateModuleStatus: "module-app-customers/update-module-status",
   },
   ModuleApps: {
     create: "module-apps",
@@ -68,7 +68,7 @@ export const EndpointsAdmin = {
       "update-data-base/seed-native-collection-test-data",
   },
   CustomerProvider: {
-    getById: (id: string) => `customer-provider/getById/${id}`,
+    getById: (id: string) => `customer-provider/get-by-id/${id}`,
   },
   VaultSecrets: {
     getAll: "vault-secrets/list",

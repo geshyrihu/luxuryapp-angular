@@ -36,9 +36,9 @@ export const EndpointsRecursosHumanos = {
     },
     EmployeeFile: {
       getAll: (customerId: string, isActive?: boolean | null) => {
-        let url = `hr/employee-files?customerId=${customerId}`;
+        let url = `hr/employee-files?customer-id=${customerId}`;
         if (isActive !== null && isActive !== undefined)
-          url += `&isActive=${isActive}`;
+          url += `&is-active=${isActive}`;
         return url;
       },
       summary: (id: string) => `hr/employee-files/${id}/summary`,
@@ -56,7 +56,7 @@ export const EndpointsRecursosHumanos = {
       requests: (id: string) => `hr/employee-files/${id}/requests`,
     },
     Incident: {
-      getAll: (customerId: string) => `hr/incidents?customerId=${customerId}`,
+      getAll: (customerId: string) => `hr/incidents?customer-id=${customerId}`,
       byEmployee: (employeeId: string, customerId: string) =>
         `hr/incidents/by-employee/${employeeId}/${customerId}`,
       getById: (id: string) => `hr/incidents/${id}`,
@@ -119,7 +119,7 @@ export const EndpointsRecursosHumanos = {
         endDate: string,
         excludeEmployeeId: string,
       ) =>
-        `leave-request-approvals/overlapping-requests?customerId=${customerId}&startDate=${startDate}&endDate=${endDate}&excludeEmployeeId=${excludeEmployeeId}`,
+        `leave-request-approvals/overlapping-requests?customer-id=${customerId}&start-date=${startDate}&end-date=${endDate}&exclude-employee-id=${excludeEmployeeId}`,
       detail: (id: string) => `leave-request-approvals/${id}/detail`,
       approve: (id: string) => `leave-request-approvals/${id}/approve`,
       reject: (id: string) => `leave-request-approvals/${id}/reject`,
@@ -134,7 +134,7 @@ export const EndpointsRecursosHumanos = {
       Encabezado: {
         changeState: (nominaId: string, accion: string) =>
           `hr/nomina/${nominaId}/${accion}`,
-        getAll: (customerId: string) => `hr/nomina?customerId=${customerId}`,
+        getAll: (customerId: string) => `hr/nomina?customer-id=${customerId}`,
         getById: (nominaId: string) => `hr/nomina/${nominaId}`,
         getDetalles: (nominaId: string) => `hr/nomina/${nominaId}/detalles`,
         getResumenEjecutivo: (nominaId: string) =>
@@ -151,7 +151,7 @@ export const EndpointsRecursosHumanos = {
       },
       Incidencias: {
         list: (periodoNominaId: string) =>
-          `hr/nomina/incidencias?periodoNominaId=${periodoNominaId}`,
+          `hr/nomina/incidencias?periodo-nomina-id=${periodoNominaId}`,
         create: "hr/nomina/incidencias",
         delete: (id: string) => `hr/nomina/incidencias/${id}`,
         syncVacaciones: "hr/nomina/incidencias/sincronizar-vacaciones",
@@ -162,9 +162,9 @@ export const EndpointsRecursosHumanos = {
       },
       Periodos: {
         autoCrear: (customerId: string) =>
-          `hr/nomina/periodos/auto-crear?customerId=${customerId}`,
+          `hr/nomina/periodos/auto-crear?customer-id=${customerId}`,
         byCustomerAndYear: (customerId: string, anio: number) =>
-          `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
+          `hr/nomina/periodos?customer-id=${customerId}&anio=${anio}`,
         delete: (id: string) => `hr/nomina/periodos/${id}`,
         diasNoHabiles: (periodoId: string) =>
           `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
@@ -183,7 +183,7 @@ export const EndpointsRecursosHumanos = {
         create: "hr/nomina/tiempo-extra",
         delete: (id: string) => `hr/nomina/tiempo-extra/${id}`,
         list: (periodoId: string) =>
-          `hr/nomina/tiempo-extra?periodoNominaId=${periodoId}`,
+          `hr/nomina/tiempo-extra?periodo-nomina-id=${periodoId}`,
         update: (id: string) => `hr/nomina/tiempo-extra/${id}`,
       },
     },
@@ -228,7 +228,7 @@ export const EndpointsRecursosHumanos = {
         endDate: string,
         excludeEmployeeId: string,
       ) =>
-        `vacation-request-approvals/overlapping-requests?customerId=${customerId}&startDate=${startDate}&endDate=${endDate}&excludeEmployeeId=${excludeEmployeeId}`,
+        `vacation-request-approvals/overlapping-requests?customer-id=${customerId}&start-date=${startDate}&end-date=${endDate}&exclude-employee-id=${excludeEmployeeId}`,
       approve: (id: string) => `vacation-request-approvals/${id}/approve`,
       reject: (id: string) => `vacation-request-approvals/${id}/reject`,
       cancel: (id: string) => `vacation-request-approvals/${id}/cancel`,
@@ -270,30 +270,30 @@ export const EndpointsRecursosHumanos = {
   EmployeeInternal: {
     activate: (id: string) => `employee-internal/${id}/activate`,
     addressData: (employeeId: string | number) =>
-      `employee-internal/AddressData/${employeeId}`,
+      `employee-internal/address-data/${employeeId}`,
     dataForRecoveryPassword: (id: string) =>
-      `employee-internal/DataForRecoveryPassword/${id}`,
+      `employee-internal/data-for-recovery-password/${id}`,
     laboralData: (applicationUserId: string) =>
-      `employee-internal/LaboralData/${applicationUserId}`,
+      `employee-internal/laboral-data/${applicationUserId}`,
     list: (customerId: string, active: boolean) =>
       `employee-internal/list/${customerId}/${active}`,
-    onValidateState: (id: string) => `employee-internal/OnValidateState/${id}`,
+    onValidateState: (id: string) => `employee-internal/on-validate-state/${id}`,
     personalData: (employeeId: string | number) =>
-      `employee-internal/PersonalData/${employeeId}`,
+      `employee-internal/personal-data/${employeeId}`,
     photoPath: (applicationUserId: string) =>
-      `employee-internal/PhotoPath/${applicationUserId}`,
+      `employee-internal/photo-path/${applicationUserId}`,
     principalData: (applicationUserId: string) =>
-      `employee-internal/PrincipalData/${applicationUserId}`,
+      `employee-internal/principal-data/${applicationUserId}`,
     updateAddressData: (addressId: string) =>
-      `employee-internal/UpdateAddressData/${addressId}`,
+      `employee-internal/update-address-data/${addressId}`,
     updateImage: (applicationUserId: string) =>
-      `employee-internal/UpdateImage/${applicationUserId}`,
+      `employee-internal/update-image/${applicationUserId}`,
     updateLaboralData: (applicationUserId: string) =>
-      `employee-internal/UpdateLaboralData/${applicationUserId}`,
+      `employee-internal/update-laboral-data/${applicationUserId}`,
     updatePersonalData: (employeeId: string | number) =>
-      `employee-internal/UpdatePersonalData/${employeeId}`,
+      `employee-internal/update-personal-data/${employeeId}`,
     updatePrincipalData: (applicationUserId: string) =>
-      `employee-internal/UpdatePrincipalData/${applicationUserId}`,
+      `employee-internal/update-principal-data/${applicationUserId}`,
   },
   Employees: {
     createEmployee: "employees/create-employee",
@@ -322,7 +322,7 @@ export const EndpointsRecursosHumanos = {
     delete: (id: string) => `employee-emergency-contact/${id}`,
     getById: (id: string) => `employee-emergency-contact/${id}`,
     listEmployeeContact: (employeeId: string, typeContact: number) =>
-      `employee-emergency-contact/ListEmployeeContact/${employeeId}/${typeContact}`,
+      `employee-emergency-contact/list-employee-contact/${employeeId}/${typeContact}`,
   },
   EmployeeExternal: {
     addAccessCustomer: (applicationUserId: string, customerId: string) =>
@@ -341,7 +341,7 @@ export const EndpointsRecursosHumanos = {
       phoneNumber: string,
       excludeUserId?: string,
     ) =>
-      `employee-external/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+      `employee-external/search-by-phone/${customerId}?phone-number=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
     update: (id: string) => `employee-external/${id}`,
   },
   PerformanceEvaluations: {
@@ -363,12 +363,12 @@ export const EndpointsRecursosHumanos = {
       soloAnomalias?: boolean;
     }) => {
       const q = new URLSearchParams();
-      if (params.empleadoId) q.set("empleadoId", params.empleadoId);
+      if (params.empleadoId) q.set("empleado-id", params.empleadoId);
       if (params.desde) q.set("desde", params.desde);
       if (params.hasta) q.set("hasta", params.hasta);
       if (params.tipo !== undefined) q.set("tipo", String(params.tipo));
       if (params.soloAnomalias !== undefined)
-        q.set("soloAnomalias", String(params.soloAnomalias));
+        q.set("solo-anomalias", String(params.soloAnomalias));
       const qs = q.toString();
       return `chekador-empleados/por-tenant${qs ? "?" + qs : ""}`;
     },
@@ -382,9 +382,9 @@ export const EndpointsRecursosHumanos = {
     templateEvaluation: "template-evaluation",
     templateEvaluationById: (id: any) => `template-evaluation/${id}`,
     performanceEvaluationsById: (id: any) => `performance-evaluations/${id}`,
-    performanceEvaluationsUpdateById: (evaluationId: any) => `performance-evaluations/Update/${evaluationId}`,
-    performanceEvaluationsCreate: "performance-evaluations/Create",
-    applicationUsersCardUserById: (appUserId: any) => `application-users/CardUser/${appUserId}`,
+    performanceEvaluationsUpdateById: (evaluationId: any) => `performance-evaluations/update/${evaluationId}`,
+    performanceEvaluationsCreate: "performance-evaluations/create",
+    applicationUsersCardUserById: (appUserId: any) => `application-users/card-user/${appUserId}`,
     employeesValidaradminasisById: (authS: any) => `employees/validaradminasis/${authS}`,
     hrNominaPeriodos: "hr/nomina/periodos",
     hrNominaPeriodosById: (p0: any) => `hr/nomina/periodos/${p0}`,

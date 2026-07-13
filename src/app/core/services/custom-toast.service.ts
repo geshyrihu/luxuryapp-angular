@@ -33,7 +33,7 @@ export class CustomToastService {
   // Esto permite probar cambiando el tamaño de ventana sin recargar
   private get isMobile(): boolean {
     return (
-      this.platform.ANDROID || this.platform.IOS || window.innerWidth <= 768
+      this.platform.ANDROID || this.platform.IOS || window.innerWidth < 768
     );
   }
 

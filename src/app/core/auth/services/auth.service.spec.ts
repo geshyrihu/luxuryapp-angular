@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { ConsoleLoggerService } from './console-logger.service';
 import { CustomerIdService } from './customer-id.service';
 import { SignalRService } from './signalr.service';
+import { Endpoints } from "src/app/core/constants/endpoints";
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -50,7 +51,9 @@ describe('AuthService', () => {
 
     // The AuthService constructor may call trySilentLogin → refreshToken
     // if the current URL is not a public route. Flush or discard those requests.
-    const pendingRefresh = httpMock.match(`${environment.API_BASE_URL}Auth/Refresh`);
+    const pendingRefresh = httpMock.match(
+      `${environment.API_BASE_URL}${Endpoints.Auth.refresh}`,
+    );
     pendingRefresh.forEach((req) => req.error(new ProgressEvent('error')));
   });
 
@@ -98,7 +101,9 @@ describe('AuthService', () => {
       service.login({ email: 'test@test.com', password: '123' }),
     );
 
-    const req = httpMock.expectOne(`${environment.API_BASE_URL}Auth/Login`);
+    const req = httpMock.expectOne(
+      `${environment.API_BASE_URL}${Endpoints.Auth.login}`,
+    );
     expect(req.request.method).toBe('POST');
     req.flush(mockResponse);
 

@@ -13,7 +13,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { CobranzaOnlineDashboard } from "../cobranza-online/dashboard/cobranza-online-dashboard";
+import { CobranzaOnlineDashboard } from "src/app/apps/cobranza.luxuryapp/cobranza-online/dashboard/cobranza-online-dashboard";
 import { AiAgentContabilidadOnlineComponent } from "./ai-agent-contabilidad-online/ai-agent-contabilidad-online";
 import { AiAgentExplicadorContabilidadOnlineComponent } from "./ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";
 import { AiAgentComponent } from "./ai-agent/ai-agent";

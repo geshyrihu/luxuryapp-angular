@@ -1,10 +1,10 @@
 export const EndpointsOperations = {
   Tasks: {
-    close: "tasks/Closed",
-    create: "tasks/Create",
+    close: "tasks/closed",
+    create: "tasks/create",
     deleteByCustomer: (id: string, customerId: string) =>
       `tasks/${id}/${customerId}`,
-    getByClosed: (id: string) => `tasks/GetByClosed/${id}`,
+    getByClosed: (id: string) => `tasks/get-by-closed/${id}`,
     getById: (id: string) => `tasks/${id}`,
     getStatus: (id: string) => `tasks/${id}/status`,
     groupListByCustomer: (customerId: string) => `task-group-list/${customerId}`,
@@ -12,14 +12,14 @@ export const EndpointsOperations = {
       `tickets/in-progress/${id}/${applicationUserId}`,
     inProgressLower: (id: string, applicationUserId: string) =>
       `tasks/in-progress/${id}/${applicationUserId}`,
-    legalAll: (customerId?: string) => customerId ? `tasks/legal/all?customerId=${customerId}` : `tasks/legal/all`,
+    legalAll: (customerId?: string) => customerId ? `tasks/legal/all?customer-id=${customerId}` : `tasks/legal/all`,
     legalByCustomer: "tasks/legal/customer",
     legalPending: (isInternal?: boolean, unassigned: boolean = false) => {
       if (unassigned) return "tasks/legal/pending?unassigned=true";
-      return isInternal !== undefined ? `tasks/legal/pending?isInternal=${isInternal}` : "tasks/legal/pending";
+      return isInternal !== undefined ? `tasks/legal/pending?is-internal=${isInternal}` : "tasks/legal/pending";
     },
     list: (ticketGroupId: string, status: string) =>
-      `tasks/List/${ticketGroupId}/${status}`,
+      `tasks/list/${ticketGroupId}/${status}`,
     myAssignedTickets: (
       applicationUserId: string,
       status: string,
@@ -29,24 +29,24 @@ export const EndpointsOperations = {
       applicationUserId: string,
       status: string,
       customerId: string,
-    ) => `tasks/MyRequest/${applicationUserId}/${status}/${customerId}`,
-    myTicketProgramation: (id: string) => `tasks/MyTicket/Programation/${id}`,
+    ) => `tasks/my-request/${applicationUserId}/${status}/${customerId}`,
+    myTicketProgramation: (id: string) => `tasks/my-ticket/programation/${id}`,
     participants: (ticketGroupId: string) => `tasks/participant/${ticketGroupId}`,
-    programation: (id: string) => `tasks/Programation/${id}`,
-    reopen: "tasks/Reopen",
-    update: (id: string) => `tasks/Update/${id}`,
+    programation: (id: string) => `tasks/programation/${id}`,
+    reopen: "tasks/reopen",
+    update: (id: string) => `tasks/update/${id}`,
     updateOrder: "tasks/update-order",
     updatePriority: (id: string, applicationUserId: string) =>
-      `tasks/UpdatePriority/${id}/${applicationUserId}`,
+      `tasks/update-priority/${id}/${applicationUserId}`,
     updatePriorityLower: (id: string, applicationUserId: string) =>
       `tasks/update-priority/${id}/${applicationUserId}`,
     updateRelevance: (id: string) => `tasks/update-relevance/${id}`,
-    updateRelevanceLegacy: (id: string) => `tasks/UpdateRelevance/${id}`,
+    updateRelevanceLegacy: (id: string) => `tasks/update-relevance/${id}`,
     updateStatus: (id: string) => `tasks/${id}/status`,
     view: (id: string) => `tasks/view/${id}`,
     availablePredecessors: (groupId: string, excludeId?: string) =>
       excludeId
-        ? `tasks/available-predecessors/${groupId}?excludeId=${excludeId}`
+        ? `tasks/available-predecessors/${groupId}?exclude-id=${excludeId}`
         : `tasks/available-predecessors/${groupId}`,
     setDependency: (taskId: string, predecessorId: string) =>
       `tasks/set-predecessor/${taskId}/${predecessorId}`,
@@ -57,7 +57,7 @@ export const EndpointsOperations = {
     create: "task-follow-up",
     delete: (id: string) => `task-follow-up/${id}`,
     listByTicketMessage: (ticketMessageId: string) =>
-      `task-follow-up/List/${ticketMessageId}`,
+      `task-follow-up/list/${ticketMessageId}`,
   },
   TaskGroupCategories: {
     base: "task-group-categories",
@@ -68,7 +68,7 @@ export const EndpointsOperations = {
   },
   TaskGroupParticipants: {
     availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
-      `task-group-participant/Participants/${customerId}/${taskGroupId}`,
+      `task-group-participant/participants/${customerId}/${taskGroupId}`,
     base: "task-group-participant",
     delete: (id: string | number) => `task-group-participant/${id}`,
     listByGroup: (taskGroupId: string) => `task-group-participant/${taskGroupId}`,
@@ -79,7 +79,7 @@ export const EndpointsOperations = {
     delete: (id: string | number) => `task-groups/${id}`,
     getById: (id: string) => `task-groups/${id}`,
     list: (customerId: string, isActive: boolean, applicationUserId: string) =>
-      `task-groups/List/${customerId}/${isActive}/${applicationUserId}`,
+      `task-groups/list/${customerId}/${isActive}/${applicationUserId}`,
     sendReportPendingAll: "tasks/send-report-pending",
     sendReportPendingByGroup: (id: string) => `tasks/send-report-pending/${id}`,
     toggleStatus: (id: string) => `task-groups/toggle-status/${id}`,
@@ -91,15 +91,15 @@ export const EndpointsOperations = {
   },
   TaskReports: {
     ticketReport: (customerId: string, startDate: string, endDate: string) =>
-      `task-report/GetTicketReport/${customerId}/${startDate}/${endDate}`,
+      `task-report/get-ticket-report/${customerId}/${startDate}/${endDate}`,
     weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
-      `task-report/WeeklyReportPreview/${customerId}/${year}/${weekNumber}`,
+      `task-report/weekly-report-preview/${customerId}/${year}/${weekNumber}`,
     weeklyReport: (
       customerId: string,
       startDate: string | null,
       endDate: string | null,
       status: string | number,
-    ) => `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
+    ) => `task-report/weekly-report/${customerId}/${startDate}/${endDate}/${status}`,
   },
   TaskWorkPlans: {
     create: (
@@ -107,7 +107,7 @@ export const EndpointsOperations = {
       customerId: string,
       year: number,
       weekNumber: number,
-    ) => `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+    ) => `task-work-plan/create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
     pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
     preview: (customerId: string, year: number, weekNumber: number) =>
       `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
@@ -171,11 +171,11 @@ export const EndpointsOperations = {
       `meeting-details-seguimientos/export-summary-to-excel/${meetingId}`,
     getById: (id: string | number) => `meeting-details-seguimientos/${id}`,
     resumenGrafico: (customerId: string, date: string) =>
-      `meeting-details-seguimientos/resumen-preventivosGraficoPresentacion/${customerId}/${date}`,
+      `meeting-details-seguimientos/resumen-preventivos-grafico-presentacion/${customerId}/${date}`,
     resumenGraficoPresentacion: (meetingId: string | number) =>
       `meeting-details-seguimientos/resumen-minutas-grafico-presentacion/${meetingId}`,
     resumenPreventivos: (customerId: string, date: string) =>
-      `meeting-details-seguimientos/resumen-preventivosPresentacion/${customerId}/${date}`,
+      `meeting-details-seguimientos/resumen-preventivos-presentacion/${customerId}/${date}`,
     resumenPresentacion: (meetingId: string | number) =>
       `meeting-details-seguimientos/resumen-minutas-presentacion/${meetingId}`,
     update: (id: string | number) => `meeting-details-seguimientos/${id}`,
@@ -192,7 +192,7 @@ export const EndpointsOperations = {
       `manuals/templates/attachments/${id}`,
     getInstances: (customerId?: string) =>
       customerId
-        ? `manuals/instances?customerId=${customerId}`
+        ? `manuals/instances?customer-id=${customerId}`
         : "manuals/instances",
     getTemplateById: (id: string) => `manuals/templates/${id}`,
     getTemplates: "manuals/templates",
@@ -306,7 +306,7 @@ export const EndpointsOperations = {
       `entrega-recepcion-cliente/validar-archivo/${applicationUserId}/${id}`,
   },
   RefactorOperations: {
-    dashboardSendExecutiveReportById: (customerId: any) => `dashboard/SendExecutiveReport/${customerId}`,
+    dashboardSendExecutiveReportById: (customerId: any) => `dashboard/send-executive-report/${customerId}`,
     diagramDrawById: (id: any) => `diagram-draw/${id}`,
     serviceOrdersById: (id: any) => `service-orders/${id}`,
     birthdayByIdById: (customerIdS: any, selectedMonth: any) => `birthday/${customerIdS}/${selectedMonth}`,
@@ -336,12 +336,12 @@ export const EndpointsOperations = {
     inventarioProductoById: (id: any) => `inventario-producto/${id}`,
     policyContractBuildingInsuranceById: (customerId: any) => `policy-contract/building-insurance/${customerId}`,
     agendaSupervisionById: (id: any) => `agenda-supervision/${id}`,
-    resumenGeneralResumenMinutasGeneralListaByIdById: (fehcaInicio: any, fechaFinal: any) => `resumen-general/ResumenMinutasGeneralLista/${fehcaInicio}/${fechaFinal}`,
-    resumenGeneralResumenMinutasGeneralGrupoByIdById: (fehcaInicio: any, fechaFinal: any) => `resumen-general/ResumenMinutasGeneralGrupo/${fehcaInicio}/${fechaFinal}`,
-    supervisionReportsPendingMinutesById: (customerId: any) => `supervision-reports/PendingMinutes/${customerId}`,
-    supervisionReportsPendingTicketsById: (customerId: any) => `supervision-reports/PendingTickets/${customerId}`,
-    supervisionReportsPendingLegalById: (customerId: any) => `supervision-reports/PendingLegal/${customerId}`,
-    supervisionReportsEstadosFinancierosById: (customerId: any) => `supervision-reports/EstadosFinancieros/${customerId}`,
+    resumenGeneralResumenMinutasGeneralListaByIdById: (fehcaInicio: any, fechaFinal: any) => `resumen-general/resumen-minutas-general-lista/${fehcaInicio}/${fechaFinal}`,
+    resumenGeneralResumenMinutasGeneralGrupoByIdById: (fehcaInicio: any, fechaFinal: any) => `resumen-general/resumen-minutas-general-grupo/${fehcaInicio}/${fechaFinal}`,
+    supervisionReportsPendingMinutesById: (customerId: any) => `supervision-reports/pending-minutes/${customerId}`,
+    supervisionReportsPendingTicketsById: (customerId: any) => `supervision-reports/pending-tickets/${customerId}`,
+    supervisionReportsPendingLegalById: (customerId: any) => `supervision-reports/pending-legal/${customerId}`,
+    supervisionReportsEstadosFinancierosById: (customerId: any) => `supervision-reports/estados-financieros/${customerId}`,
     recurringTasksTemplatesItemsById: (itemId: any) => `recurring-tasks/templates/items/${itemId}`,
     recurringTasksTemplatesByIdItemsReorder: (templateId: any) => `recurring-tasks/templates/${templateId}/items/reorder`,
     customdocument: "custom-document",
@@ -352,52 +352,52 @@ export const EndpointsOperations = {
     maintenanceCalendarsGeneralMantenimientoByIdById: (customerIdS: any, providerIdControl: any) => `maintenance-calendars/general-mantenimiento/${customerIdS}/${providerIdControl}`,
     maintenanceCalendarsListByIdById: (customerIdS: any, monthControl: any) => `maintenance-calendars/list/${customerIdS}/${monthControl}`,
     maintenanceCalendarsCronogramaAnualById: (customerId: any) => `maintenance-calendars/cronograma-anual/${customerId}`,
-    inventarioExtintorGetAllGroupById: (customerIdS: any) => `inventario-extintor/GetAllGroup/${customerIdS}`,
+    inventarioExtintorGetAllGroupById: (customerIdS: any) => `inventario-extintor/get-all-group/${customerIdS}`,
     inventarioExtintorListById: (customerIdS: any) => `inventario-extintor/list/${customerIdS}`,
     inventoryEngineSystemListById: (customerIdS: any) => `inventory-engine-system/list/${customerIdS}`,
     maintenanceCalendarsListServiceById: (idMachinery: any) => `maintenance-calendars/list-service/${idMachinery}`,
     maintenanceCalendarsById: (Id: any) => `maintenance-calendars/${Id}`,
     inventarioLlaveListById: (customerIdS: any) => `inventario-llave/list/${customerIdS}`,
     entradaProductoById: (id: any) => `entrada-producto/${id}`,
-    entradaProductoGetEntradaProductosById: (customerIdS: any) => `entrada-producto/GetEntradaProductos/${customerIdS}`,
-    inventarioProductoGetExistenciaProductoByIdByIdById: (customerIdS: any, config: any, config2: any) => `inventario-producto/GetExistenciaProducto/${customerIdS}/${config}/${config2}`,
+    entradaProductoGetEntradaProductosById: (customerIdS: any) => `entrada-producto/get-entrada-productos/${customerIdS}`,
+    inventarioProductoGetExistenciaProductoByIdByIdById: (customerIdS: any, config: any, config2: any) => `inventario-producto/get-existencia-producto/${customerIdS}/${config}/${config2}`,
     salidaProductosById: (id: any) => `salidas-productos/${id}`,
     radioComunicacionListById: (customerIdS: any) => `radios-comunicacion/list/${customerIdS}`,
-    inventarioProductoGetAsyncAllByIdById: (customerId: any, almacenIdFromRoute: any) => `inventario-producto/GetAsyncAll/${customerId}/${almacenIdFromRoute}`,
+    inventarioProductoGetAsyncAllByIdById: (customerId: any, almacenIdFromRoute: any) => `inventario-producto/get-async-all/${customerId}/${almacenIdFromRoute}`,
     financialReportListById: (customerIdS: any) => `financial-report/list/${customerIdS}`,
     boardDirectorsFinancialReportsById: (customerId: any) => `board-directors/financial-reports/${customerId}`,
     boardDirectorsMeetingMinutesDetailById: (meetingMinuteId: any) => `board-directors/meeting-minutes-detail/${meetingMinuteId}`,
     boardDirectorsMeetingMinutesById: (customerId: any) => `board-directors/meeting-minutes/${customerId}`,
     boardDirectorsMonthlyMeetingsById: (customerId: any) => `board-directors/monthly-meetings/${customerId}`,
     entregarecepcionInventarioequiposById: (customerIdS: any) => `entrega-recepcion/inventario-equipos/${customerIdS}`,
-    entregaRecepcionInventarioHerramientasById: (customerIdS: any) => `entrega-recepcion/InventarioHerramientas/${customerIdS}`,
-    entregaRecepcionExtintoresById: (customerIdS: any) => `entrega-recepcion/Extintores/${customerIdS}`,
-    entregaRecepcionInventarioInstalacionesById: (customerIdS: any) => `entrega-recepcion/InventarioInstalaciones/${customerIdS}`,
-    entregaRecepcionInventarioInsumosById: (customerIdS: any) => `entrega-recepcion/InventarioInsumos/${customerIdS}`,
-    entregaRecepcionInventarioLlavesById: (customerIdS: any) => `entrega-recepcion/InventarioLlaves/${customerIdS}`,
-    EntregaRecepcionPendientesById: (customerIdS: any) => `entrega-recepcion/Pendientes/${customerIdS}`,
-    entregaRecepcionInventarioMantenimientosById: (customerIdS: any) => `entrega-recepcion/InventarioMantenimientos/${customerIdS}`,
-    entregaRecepcionOrganigramaById: (customerIdS: any) => `entrega-recepcion/Organigrama/${customerIdS}`,
-    miEdificioCaratulaById: (customerIdS: any) => `mi-edificio/Caratula/${customerIdS}`,
+    entregaRecepcionInventarioHerramientasById: (customerIdS: any) => `entrega-recepcion/inventario-herramientas/${customerIdS}`,
+    entregaRecepcionExtintoresById: (customerIdS: any) => `entrega-recepcion/extintores/${customerIdS}`,
+    entregaRecepcionInventarioInstalacionesById: (customerIdS: any) => `entrega-recepcion/inventario-instalaciones/${customerIdS}`,
+    entregaRecepcionInventarioInsumosById: (customerIdS: any) => `entrega-recepcion/inventario-insumos/${customerIdS}`,
+    entregaRecepcionInventarioLlavesById: (customerIdS: any) => `entrega-recepcion/inventario-llaves/${customerIdS}`,
+    EntregaRecepcionPendientesById: (customerIdS: any) => `entrega-recepcion/pendientes/${customerIdS}`,
+    entregaRecepcionInventarioMantenimientosById: (customerIdS: any) => `entrega-recepcion/inventario-mantenimientos/${customerIdS}`,
+    entregaRecepcionOrganigramaById: (customerIdS: any) => `entrega-recepcion/organigrama/${customerIdS}`,
+    miEdificioCaratulaById: (customerIdS: any) => `mi-edificio/caratula/${customerIdS}`,
     policyContractListById: (customerIdS: any) => `policy-contract/list/${customerIdS}`,
-    budgetMaintenanceSummaryOfExpensesById: (customerIdS: any) => `budget-maintenance/SummaryOfExpenses/${customerIdS}`,
-    budgetMaintenanceResumengastosById: (customerIdS: any) => `budget-maintenance/Resumengastos/${customerIdS}`,
-    taskReportGetReportClientByIdByIdById: (customer: any, inicio: any, final: any) => `task-report/GetReportClient/${customer}/${inicio}/${final}`,
-    tasksGetReportClientByIdByIdById: (customer: any, inicio: any, final: any) => `tasks/GetReportClient/${customer}/${inicio}/${final}`,
+    budgetMaintenanceSummaryOfExpensesById: (customerIdS: any) => `budget-maintenance/summary-of-expenses/${customerIdS}`,
+    budgetMaintenanceResumengastosById: (customerIdS: any) => `budget-maintenance/resumengastos/${customerIdS}`,
+    taskReportGetReportClientByIdByIdById: (customer: any, inicio: any, final: any) => `task-report/get-report-client/${customer}/${inicio}/${final}`,
+    tasksGetReportClientByIdByIdById: (customer: any, inicio: any, final: any) => `tasks/get-report-client/${customer}/${inicio}/${final}`,
     meetingsMeetingReportPdfById: (meetingId: any) => `meetings/meeting-report-pdf/${meetingId}`,
     customersById: (customerId: any) => `customers/${customerId}`,
     ticketGetreportpendingproviderByIdById: (customerId: any, departamentId: any) => `ticket/getreportpendingprovider/${customerId}/${departamentId}`,
     agendaSupervisionListByIdById: (fechaInicial: any, fechaFinal: any) => `agenda-supervision/list/${fechaInicial}/${fechaFinal}`,
     dashboardFiltroMinutasAreaByIdByIdById: (meetingId: any, area: any, estatus: any) => `dashboard/filtro-minutas-area/${meetingId}/${area}/${estatus}`,
     presentacionJuntaComiteGeneralesById: (inicial: any) => `presentaciones-junta-comite/generales/${inicial}/`,
-    resumenGeneralReporteResumenTicketByIdByIdById: (customerIdS: any, dateS: any, dateS2: any) => `resumen-general/ReporteResumenTicket/${customerIdS}/${dateS}/${dateS2}`,
-    resumenGeneralReporteResumenMinutasByIdByIdById: (dateS: any, dateS2: any, nivelReporte: any) => `resumen-general/ReporteResumenMinutas/${dateS}/${dateS2}/${nivelReporte}`,
-    resumenGeneralReporteResumenMinutasFiltroByIdByIdByIdById: (dateS: any, dateS2: any, AreaMinutasDetalles: any, nivelReporte: any) => `resumen-general/ReporteResumenMinutasFiltro/${dateS}/${dateS2}/${AreaMinutasDetalles}/${nivelReporte}`,
-    resumenGeneralReporteResumenPreventivosByIdById: (dateS: any, dateS2: any) => `resumen-general/ReporteResumenPreventivos/${dateS}/${dateS2}`,
-    resumenGeneralReporteResumenTicketByIdById: (dateS: any, dateS2: any) => `resumen-general/ReporteResumenTicket/${dateS}/${dateS2}`,
-    resumenGeneralEvaluacionAreasDetalleByIdByIdById: (fecha: any, area: any, status: any) => `resumen-general/EvaluacionAreasDetalle/${fecha}/${area}/${status}`,
-    resumenGeneralEvaluacionAreasByIdById: (fechaInicio: any, fechaFinal: any) => `resumen-general/EvaluacionAreas/${fechaInicio}/${fechaFinal}`,
-    resumenGeneralPosicionByIdById: (fechaInicio: any, fechaFinal: any) => `resumen-general/Posicion/${fechaInicio}/${fechaFinal}`,
+    resumenGeneralReporteResumenTicketByIdByIdById: (customerIdS: any, dateS: any, dateS2: any) => `resumen-general/reporte-resumen-ticket/${customerIdS}/${dateS}/${dateS2}`,
+    resumenGeneralReporteResumenMinutasByIdByIdById: (dateS: any, dateS2: any, nivelReporte: any) => `resumen-general/reporte-resumen-minutas/${dateS}/${dateS2}/${nivelReporte}`,
+    resumenGeneralReporteResumenMinutasFiltroByIdByIdByIdById: (dateS: any, dateS2: any, AreaMinutasDetalles: any, nivelReporte: any) => `resumen-general/reporte-resumen-minutas-filtro/${dateS}/${dateS2}/${AreaMinutasDetalles}/${nivelReporte}`,
+    resumenGeneralReporteResumenPreventivosByIdById: (dateS: any, dateS2: any) => `resumen-general/reporte-resumen-preventivos/${dateS}/${dateS2}`,
+    resumenGeneralReporteResumenTicketByIdById: (dateS: any, dateS2: any) => `resumen-general/reporte-resumen-ticket/${dateS}/${dateS2}`,
+    resumenGeneralEvaluacionAreasDetalleByIdByIdById: (fecha: any, area: any, status: any) => `resumen-general/evaluacion-areas-detalle/${fecha}/${area}/${status}`,
+    resumenGeneralEvaluacionAreasByIdById: (fechaInicio: any, fechaFinal: any) => `resumen-general/evaluacion-areas/${fechaInicio}/${fechaFinal}`,
+    resumenGeneralPosicionByIdById: (fechaInicio: any, fechaFinal: any) => `resumen-general/posicion/${fechaInicio}/${fechaFinal}`,
     recurringTasksTemplatesListById: (state: any) => `recurring-tasks/templates/list/${state}`,
     ticketsMessageInNotReadById: (authS: any) => `tickets/message-in-not-read/${authS}`,
 },

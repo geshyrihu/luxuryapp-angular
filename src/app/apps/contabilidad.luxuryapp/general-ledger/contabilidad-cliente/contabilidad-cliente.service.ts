@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { PresupuestoContabilidadResponse } from "../cobranza-online/interfaces/presupuesto-contabilidad.model";
+import type { PresupuestoContabilidadResponse } from "src/app/apps/cobranza.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
 import type {
   IAnalisisCobranzaOnlineDto,
   IBancosInversionesDto,

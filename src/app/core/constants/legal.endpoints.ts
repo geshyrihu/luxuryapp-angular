@@ -1,15 +1,15 @@
 export const EndpointsLegal = {
   LegalMatters: {
     categories: "legal-matter-category",
-    categoryById: (id: string) => `legal-matter/Category/${id}`,
+    categoryById: (id: string) => `legal-matter/category/${id}`,
     create: "legal-matter",
-    createCategory: "legal-matter/Category",
+    createCategory: "legal-matter/category",
     delete: (id: string) => `legal-matter/${id}`,
-    deleteCategory: (id: string) => `legal-matter/Category/${id}`,
+    deleteCategory: (id: string) => `legal-matter/category/${id}`,
     getAll: "legal-matter",
     getById: (id: string) => `legal-matter/${id}`,
     update: (id: string) => `legal-matter/${id}`,
-    updateCategory: (id: string) => `legal-matter/Category/${id}`,
+    updateCategory: (id: string) => `legal-matter/category/${id}`,
   },
   LegalMinutes: {
     pendingByUserAndStatus: (applicationUserId: string, status: number) =>
@@ -21,45 +21,45 @@ export const EndpointsLegal = {
       endDate: string,
       isInternal: boolean,
     ) =>
-      `legal-report/GenerateWeeklyReport/${startDate}/${endDate}/${isInternal}`,
+      `legal-report/generate-weekly-report/${startDate}/${endDate}/${isInternal}`,
     pending: (isExternal: boolean) =>
-      `legal-report/Pending/${isExternal ? 1 : 0}`,
-    pendingUnassignedData: "legal-report/PendingUnassignedData",
-    report: "legal-report/Report",
+      `legal-report/pending/${isExternal ? 1 : 0}`,
+    pendingUnassignedData: "legal-report/pending-unassigned-data",
+    report: "legal-report/report",
     requestsAttended: (
       startDate: string,
       endDate: string,
       isInternal: boolean,
-    ) => `legal-report/RequestsAttended/${startDate}/${endDate}/${isInternal}`,
+    ) => `legal-report/requests-attended/${startDate}/${endDate}/${isInternal}`,
     requestsPending: (isInternal: boolean) =>
-      `legal-report/RequestsPending/${isInternal}`,
+      `legal-report/requests-pending/${isInternal}`,
     results: (startDate: string, endDate: string, isInternal: boolean) =>
-      `legal-report/Results/${startDate}/${endDate}/${isInternal}`,
+      `legal-report/results/${startDate}/${endDate}/${isInternal}`,
     summary: (startDate: string, endDate: string) =>
-      `legal-report/Summary/${startDate}/${endDate}`,
+      `legal-report/summary/${startDate}/${endDate}`,
     summaryCustomer: (startDate: string, endDate: string) =>
-      `legal-report/SummaryCustomer/${startDate}/${endDate}`,
+      `legal-report/summary-customer/${startDate}/${endDate}`,
     summaryIndividual: (startDate: string, endDate: string) =>
-      `legal-report/SummaryIndividual/${startDate}/${endDate}`,
+      `legal-report/summary-individual/${startDate}/${endDate}`,
     totalRequests: (startDate: string, endDate: string) =>
-      `legal-report/TotalRequests/${startDate}/${endDate}`,
+      `legal-report/total-requests/${startDate}/${endDate}`,
   },
   TaskLegal: {
-    addTracking: "task-legal/Addtraking",
+    addTracking: "task-legal/addtraking",
     create: "task-legal",
-    createToCustomer: "task-legal/ToCustomer",
+    createToCustomer: "task-legal/to-customer",
     delete: (id: string) => `task-legal/${id}`,
-    employeeLegal: "task-legal/EmployeeLegal",
-    getAllByCustomer: (customerId: string) => `task-legal/All/${customerId}`,
-    getAllLegal: "task-legal/AllLegal",
+    employeeLegal: "task-legal/employee-legal",
+    getAllByCustomer: (customerId: string) => `task-legal/all/${customerId}`,
+    getAllLegal: "task-legal/all-legal",
     getById: (id: string) => `task-legal/${id}`,
-    requestDetail: (id: string) => `task-legal/requestDetail/${id}`,
-    selectForAddTicket: "SelectForAddTicket",
+    requestDetail: (id: string) => `task-legal/request-detail/${id}`,
+    selectForAddTicket: "select-for-add-ticket",
     status: (id: string) => `task-legal/status/${id}`,
-    tracking: (ticketId: string) => `task-legal/Traking/${ticketId}`,
+    tracking: (ticketId: string) => `task-legal/traking/${ticketId}`,
     update: (id: string) => `task-legal/${id}`,
     updateStatus: (id: string, status: number | null) =>
-      `task-legal/UpdateStatus/${id}/${status}`,
+      `task-legal/update-status/${id}/${status}`,
   },
   RefactorLegal: {
     policyContractBuildingInsuranceById: (customerId: any) => `policy-contract/building-insurance/${customerId}`,

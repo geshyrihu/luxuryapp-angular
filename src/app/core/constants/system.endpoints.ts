@@ -28,7 +28,7 @@ export const EndpointsSystem = {
       customerId: string,
       fechaInicial: string,
       fechaFinal: string,
-    ) => `user-activity-history?customerId=${customerId}&startDate=${fechaInicial}&endDate=${fechaFinal}`,
+    ) => `user-activity-history?customer-id=${customerId}&start-date=${fechaInicial}&end-date=${fechaFinal}`,
   },
   Logs: {
     deleteAll: "logs/all",
@@ -52,11 +52,11 @@ export const EndpointsSystem = {
   },
   AutitoriaCuentasAspel: {
     get: (year: number, empresa: string) =>
-      `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
+      `autitoria-cuentas-aspel?int-year=${year}&empresa=${empresa}`,
   },
   EspejoAspelFull: {
     get: (customerId: string, year: number, empresa: string) =>
-      `espejo-aspel-full?customerId=${customerId}&year=${year}&empresa=${empresa}`,
+      `espejo-aspel-full?customer-id=${customerId}&year=${year}&empresa=${empresa}`,
   },
   EmergencyPhones: {
     create: "telefonos-emergencia",

@@ -11,7 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
-} from "src/app/apps/contabilidad.luxuryapp/general-ledger/cobranza-online/interfaces/presupuesto-contabilidad.model";
+} from "src/app/apps/cobranza.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
 import { PurchaseHistory } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";

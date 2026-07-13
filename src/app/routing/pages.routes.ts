@@ -135,7 +135,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza-nativa",
     loadChildren: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/cobranza-nativa/cobranza-nativa.routing").then(
+      import("src/app/apps/cobranza.luxuryapp/cobranza-nativa/cobranza-nativa.routing").then(
         (m) => m.COBRANZA_NATIVA_ROUTES,
       ),
     data: {
