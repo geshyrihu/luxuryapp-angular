@@ -132,12 +132,13 @@ export class ProductOutputList implements OnInit, OnDestroy {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
 
-    let url = `salidas-productos/GetPagedList?customerId=${customerId}`;
-    if (this.selectedDateControl.value) {
-      const month = this.selectedDateControl.value.getMonth() + 1;
-      const year = this.selectedDateControl.value.getFullYear();
-      url += `&month=${month}&year=${year}`;
-    }
+    const month = this.selectedDateControl.value
+      ? this.selectedDateControl.value.getMonth() + 1
+      : undefined;
+    const year = this.selectedDateControl.value
+      ? this.selectedDateControl.value.getFullYear()
+      : undefined;
+    const url = Endpoints.ProductOutputs.getPaged(customerId, month, year);
 
     this.paginationService.initialize(url, this.tablePrimeNgRows);
     // this.subscribeToPaginationObservables(); // Removed
@@ -164,14 +165,22 @@ export class ProductOutputList implements OnInit, OnDestroy {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
 
-    let url = `salidas-productos/GetPagedList?customerId=${customerId}&RecordsNumber=2147483647&Page=1`;
+    const month = this.selectedDateControl.value
+      ? this.selectedDateControl.value.getMonth() + 1
+      : undefined;
+    const year = this.selectedDateControl.value
+      ? this.selectedDateControl.value.getFullYear()
+      : undefined;
+    const url = Endpoints.ProductOutputs.getPaged(
+      customerId,
+      month,
+      year,
+      2147483647,
+      1,
+    );
     let reportName = "Reporte de Salidas.xlsx";
 
     if (this.selectedDateControl.value) {
-      const month = this.selectedDateControl.value.getMonth() + 1;
-      const year = this.selectedDateControl.value.getFullYear();
-      url += `&month=${month}&year=${year}`;
-
       const monthName = this.selectedDateControl.value.toLocaleString("es-MX", {
         month: "long",
       });
@@ -192,7 +201,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
 
   onDelete(id: any): void {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.salidaproductosById(id))
+      .onDelete(Endpoints.ProductOutputs.delete(id))
       .then((result: boolean) => {
         if (result) this.paginationService.refreshData();
       });

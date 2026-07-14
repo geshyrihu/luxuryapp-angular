@@ -268,7 +268,45 @@ export const EndpointsOperations = {
     getById: (id: string | number) => `inventario-producto/${id}`,
     listByWarehouse: (customerId: string, warehouseId: string | null) =>
       `inventario-producto/get-async-all/${customerId}/${warehouseId}`,
+    stockByProductAndWarehouse: (
+      customerId: string,
+      productId: string,
+      warehouseId: string,
+    ) =>
+      `inventario-producto/get-existencia-producto/${customerId}/${productId}/${warehouseId}`,
     update: (id: string | number) => `inventario-producto/${id}`,
+  },
+  ProductEntries: {
+    create: "entrada-producto",
+    delete: (id: string | number) => `entrada-producto/${id}`,
+    getById: (id: string) => `entrada-producto/${id}`,
+    listByCustomer: (customerId: string) =>
+      `entrada-producto/get-entrada-productos/${customerId}`,
+    update: (id: string, currentQuantity: number) =>
+      `entrada-producto/${id}/${currentQuantity}`,
+  },
+  ProductOutputs: {
+    create: "salidas-productos",
+    delete: (id: string | number) => `salidas-productos/${id}`,
+    getById: (id: string) => `salidas-productos/${id}`,
+    getPaged: (
+      customerId: string,
+      month?: number,
+      year?: number,
+      recordsNumber?: number,
+      page?: number,
+    ) => {
+      const params = [`customerId=${customerId}`];
+      if (month !== undefined) params.push(`month=${month}`);
+      if (year !== undefined) params.push(`year=${year}`);
+      if (recordsNumber !== undefined)
+        params.push(`RecordsNumber=${recordsNumber}`);
+      if (page !== undefined) params.push(`Page=${page}`);
+      return `salidas-productos/GetPagedList?${params.join("&")}`;
+    },
+    returnProduct: "salidaproductos/devolver",
+    update: (id: string, currentUsedQuantity: number) =>
+      `salidas-productos/${id}/${currentUsedQuantity}`,
   },
   PanicAlerts: {
     attend: (id: string) => `panic-alerts/${id}/attend`,

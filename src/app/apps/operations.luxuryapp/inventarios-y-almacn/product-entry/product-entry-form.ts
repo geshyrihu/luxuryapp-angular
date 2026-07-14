@@ -146,34 +146,34 @@ export class ProductEntryForm implements OnInit {
   private async loadMeasurementUnits(): Promise<void> {
     const data =
       await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        `getMeasurementUnits`,
+        Endpoints.SelectItems.measurementUnits,
       );
     this.cb_measurement_unit.set(data);
   }
 
   private async loadProviders(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `providers/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.providers(this.customerIdS.customerId()),
     );
     this.cb_providers.set(data);
   }
 
   private async loadAlmacenes(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `almacenes/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.almacenes(this.customerIdS.customerId()),
     );
     this.cb_almacenes.set(data);
   }
 
   private async loadProducts(): Promise<void> {
     const data = await this.apiResponseS.onGetList<SelectItemDto[]>(
-      `productos/getautocompleteselectitem/`,
+      Endpoints.Products.autoComplete,
     );
     this.cb_productos.set(data);
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = Endpoints.RefactorOperations.entradaProductoById(this.id());
+    const urlApi = Endpoints.ProductEntries.getById(this.id());
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     this.cantidadActual.set(result.cantidad);
@@ -205,8 +205,8 @@ export class ProductEntryForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint: isNew
-        ? `entrada-producto`
-        : `entrada-producto/${this.id()}/${this.cantidadActual()}`,
+        ? Endpoints.ProductEntries.create
+        : Endpoints.ProductEntries.update(this.id(), this.cantidadActual()),
       method: isNew ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,

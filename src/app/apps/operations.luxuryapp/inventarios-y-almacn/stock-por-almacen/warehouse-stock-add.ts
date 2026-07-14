@@ -97,7 +97,7 @@ export class WarehouseStockAdd implements OnInit {
 
   onLoadSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`getMeasurementUnits`)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: any) => {
         this.cb_UnidadMedida.set(response);
       });
@@ -128,7 +128,7 @@ export class WarehouseStockAdd implements OnInit {
 
     const customerId: string = this.customerIdS.customerId();
     const almacenId = this.config.data.almacenId; // Get almacenId from dialog config
-    const urlApi = `InventarioProducto/GetProductoDropdownPaged`;
+    const urlApi = Endpoints.Products.getAllPaged;
 
     const params = {
       page: page,

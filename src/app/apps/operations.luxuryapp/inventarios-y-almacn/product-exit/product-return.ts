@@ -83,10 +83,7 @@ export class ProductReturn implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost(
-        Endpoints.RefactorOperations.salidaproductosDevolver,
-        this.form.value,
-      )
+      .onPost(Endpoints.ProductOutputs.returnProduct, this.form.value)
       .then((result) => {
         if (result) {
           this.ref.close(true);

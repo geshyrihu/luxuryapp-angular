@@ -90,7 +90,7 @@ export class ProductOutputForm implements OnInit {
   }
   onLoadExistencia() {
     const urlApi =
-      Endpoints.RefactorOperations.inventarioProductoGetExistenciaProductoByIdByIdById(
+      Endpoints.InventarioProducto.stockByProductAndWarehouse(
         this.customerIdS.customerId(),
         this.config.data.idProducto,
         this.config.data.almacenId,
@@ -105,7 +105,7 @@ export class ProductOutputForm implements OnInit {
   }
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`getMeasurementUnits`)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: any) => {
         this.cb_measurement_unit.set(response);
       });
@@ -191,7 +191,7 @@ export class ProductOutputForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.salidaProductosById(this.id);
+    const urlApi = Endpoints.ProductOutputs.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.nombreProducto.set(result.producto);
       this.cantidadActualUsada.set(result.cantidad);
@@ -210,14 +210,14 @@ export class ProductOutputForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost(Endpoints.RefactorOperations.salidaProductos, payload)
+        .onPost(Endpoints.ProductOutputs.create, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorOperations.salidaProductosByIdById(
+          Endpoints.ProductOutputs.update(
             this.id,
             this.cantidadActualUsada(),
           ),

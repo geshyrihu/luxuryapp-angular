@@ -69,13 +69,13 @@ export class WarehouseStockEdit implements OnInit {
 
   onLoadProducts() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>("getMeasurementUnits")
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: SelectItemDto[]) => {
         this.cb_measurementUnits.set(response);
       });
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(
-        "almacenes/" + this.customerIdS.customerId(),
+        Endpoints.SelectItems.almacenes(this.customerIdS.customerId()),
       )
       .then((response: SelectItemDto[]) => {
         this.cb_almacenes.set(response);

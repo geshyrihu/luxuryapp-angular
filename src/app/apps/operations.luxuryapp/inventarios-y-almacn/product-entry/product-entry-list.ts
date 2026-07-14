@@ -84,10 +84,9 @@ export class ProductEntryList {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.entradaProductoGetEntradaProductosById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.ProductEntries.listByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);
@@ -96,7 +95,7 @@ export class ProductEntryList {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.entradaproductoById(id))
+      .onDelete(Endpoints.ProductEntries.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>
