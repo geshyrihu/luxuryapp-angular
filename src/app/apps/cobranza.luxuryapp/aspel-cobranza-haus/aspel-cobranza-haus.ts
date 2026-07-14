@@ -519,7 +519,7 @@ export class AspelCobranzaHaus {
     try {
       const status =
         await this.apiResponseS.onGetItem<AspelLocalStatusResponse>(
-          Endpoints.AspelCobranzaLocal.status(customerId, this.getSyncYear()),
+          Endpoints.CobranzaLocal.status(customerId, this.getSyncYear()),
         );
       this.localStatus.set(status);
     } finally {
@@ -864,8 +864,8 @@ export class AspelCobranzaHaus {
 
   private getAccountsEndpoint(customerId: string, year: number): string {
     return this.dataSource() === "local"
-      ? Endpoints.AspelCobranzaLocal.accounts(customerId, year)
-      : Endpoints.AspelCobranza.accounts(customerId, year);
+      ? Endpoints.CobranzaLocal.accounts(customerId, year)
+      : Endpoints.CobranzaLive.accounts(customerId, year);
   }
 
   private getEstadoCuentaEndpoint(
@@ -875,13 +875,13 @@ export class AspelCobranzaHaus {
     fechaFin: string,
   ): string {
     return this.dataSource() === "local"
-      ? Endpoints.AspelCobranzaLocal.estadoCuentaRango(
+      ? Endpoints.CobranzaLocal.estadoCuentaRango(
           customerId,
           numCta,
           fechaInicio,
           fechaFin,
         )
-      : Endpoints.AspelCobranza.estadoCuentaRango(
+      : Endpoints.CobranzaLive.estadoCuentaRango(
           customerId,
           numCta,
           fechaInicio,
@@ -894,13 +894,13 @@ export class AspelCobranzaHaus {
     numCta: string,
   ): string {
     return this.dataSource() === "local"
-      ? Endpoints.AspelCobranzaLocal.detalleCobranzaRango(customerId, numCta)
-      : Endpoints.AspelCobranza.detalleCobranzaRango(customerId, numCta);
+      ? Endpoints.CobranzaLocal.detalleCobranzaRango(customerId, numCta)
+      : Endpoints.CobranzaLive.detalleCobranzaRango(customerId, numCta);
   }
 
   private getDeudasActualesEndpoint(customerId: string): string {
     return this.dataSource() === "local"
-      ? Endpoints.AspelCobranzaLocal.deudasActuales(customerId)
-      : Endpoints.AspelCobranza.deudasActuales(customerId);
+      ? Endpoints.CobranzaLocal.deudasActuales(customerId)
+      : Endpoints.CobranzaLive.deudasActuales(customerId);
   }
 }

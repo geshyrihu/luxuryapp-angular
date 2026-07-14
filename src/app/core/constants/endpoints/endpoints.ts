@@ -41,4 +41,6 @@ export const Endpoints = {
   ...EndpointsShared,
   CobranzaNative: EndpointsCobranza.AccountingCoi.NativeCollection,
   CobranzaOnline: EndpointsCobranza.AccountingCoi.CobranzaOnline,
+  CobranzaLive: EndpointsCobranza.AspelCobranza,
+  CobranzaLocal: EndpointsCobranza.AspelCobranzaLocal,
 } as const;
