@@ -15,7 +15,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   CrudSubmitOptions,
   FormHelper,
@@ -32,11 +32,7 @@ interface ILevelThreeAccountForm {
   selector: "app-level-three-account-form",
   templateUrl: "./level-three-account-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    WebButtonLabelSave,
-    ],
+  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class LevelThreeAccountForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

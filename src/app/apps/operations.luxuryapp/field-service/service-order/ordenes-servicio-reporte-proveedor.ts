@@ -6,22 +6,26 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
   templateUrl: "./ordenes-servicio-reporte-proveedor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,WebButtonIconDelete, PrimeNgCustomTableEmptyMessage, TableModule],
+    AppIcon,
+    WebButtonIconDelete,
+    PrimeNgCustomTableEmptyMessage,
+    TableModule,
+  ],
 })
 export class OrdenesServicioReporteProveedor {
   config = inject(DynamicDialogConfig);

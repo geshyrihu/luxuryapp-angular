@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -25,9 +24,11 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
+import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -37,13 +38,12 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 import { TemplatesForm } from "./templates-form";
 
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 
 @Component({
   selector: "app-templates-list",
@@ -108,7 +108,10 @@ export class TemplatesList implements OnInit {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = Endpoints.RefactorOperations.customdocumentListByIdById(customerId, EDocumentType.Template);
+    const urlApi = Endpoints.RefactorOperations.customdocumentListByIdById(
+      customerId,
+      EDocumentType.Template,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -68,7 +68,10 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     }
 
     // Construimos la URL del endpoint que creamos en el backend
-    const urlApi = Endpoints.RefactorOperations.boardDirectorsFinancialReportsById(customerId);
+    const urlApi =
+      Endpoints.RefactorOperations.boardDirectorsFinancialReportsById(
+        customerId,
+      );
 
     this.apiResponseS
       .onGetList(urlApi)

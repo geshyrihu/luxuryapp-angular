@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +8,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -53,7 +53,10 @@ export class EntregaRecepcionEquipos {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entregarecepcionInventarioequiposById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorOperations.entregarecepcionInventarioequiposById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

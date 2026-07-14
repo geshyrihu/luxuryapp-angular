@@ -1,8 +1,8 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-test-email",
@@ -25,7 +25,9 @@ export class TestEmail {
     }
 
     // Endpoint: api/test/test-email/{email}
-    const urlApi = Endpoints.RefactorAdmin.sendEmailTestEmailById(this.emailControl.value);
+    const urlApi = Endpoints.RefactorAdmin.sendEmailTestEmailById(
+      this.emailControl.value,
+    );
 
     this.apiResponseS
       .onPost(urlApi, {})

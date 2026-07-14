@@ -13,18 +13,18 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   EvidenciaNominaDTO,
   TIPO_EVIDENCIA_COLORS,
   TIPO_EVIDENCIA_OPTIONS,
-} from '../interfaces/evidencia-nomina.interface';
-import { NominaEncabezadoDTO } from '../interfaces/nomina-encabezado.interface';
+} from "../interfaces/evidencia-nomina.interface";
+import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-evidencias-nomina",

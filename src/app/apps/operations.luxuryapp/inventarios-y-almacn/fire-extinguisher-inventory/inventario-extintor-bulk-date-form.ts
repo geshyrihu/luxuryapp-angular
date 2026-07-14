@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,6 +15,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface IBulkDateForm {
@@ -26,11 +26,7 @@ interface IBulkDateForm {
   selector: "app-inventario-extintor-bulk-date-form",
   templateUrl: "./inventario-extintor-bulk-date-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputDateSignal,
-    WebButtonLabelSave,
-  ],
+  imports: [ReactiveFormsModule, CustomInputDateSignal, WebButtonLabelSave],
 })
 export class InventarioExtintorBulkDateForm {
   apiResponseS = inject(ApiResponseService);
@@ -50,7 +46,10 @@ export class InventarioExtintorBulkDateForm {
     if (!this.apiResponseS.validateForm(this.form)) return;
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(Endpoints.RefactorOperations.inventarioExtintorBulkExpirationById(this.customerIdS.customerId()),
+      .onPut(
+        Endpoints.RefactorOperations.inventarioExtintorBulkExpirationById(
+          this.customerIdS.customerId(),
+        ),
         {
           expirationDate: this.form.value.expirationDate,
         },

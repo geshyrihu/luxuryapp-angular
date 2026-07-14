@@ -6,7 +6,7 @@ import {
   ElevenLabsSubscriptionStatus,
   ElevenLabsVoiceOption,
 } from "src/app/core/services/eleven-labs-settings.service";
-import { Endpoints } from "../constants/endpoints";
+import { Endpoints } from "../constants/endpoints/endpoints";
 
 interface ElevenLabsTextToSpeechResponse {
   audioBase64: string;
@@ -40,10 +40,9 @@ export class ElevenLabsService {
   }
 
   async getVoices(): Promise<ElevenLabsVoiceOption[]> {
-    const result =
-      await this.apiS.onGetListNotLoading<ElevenLabsVoiceOption[]>(
-        Endpoints.ElevenLabs.voices,
-      );
+    const result = await this.apiS.onGetListNotLoading<ElevenLabsVoiceOption[]>(
+      Endpoints.ElevenLabs.voices,
+    );
     return result ?? [];
   }
 

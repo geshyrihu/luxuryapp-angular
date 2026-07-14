@@ -8,13 +8,13 @@ import {
 } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-diagram-editor",

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,11 +7,12 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -22,8 +22,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",
@@ -86,7 +86,11 @@ export class ReporteEnvioFinancieros implements OnInit {
   // Función para cargar los datos de los reporte
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorContabilidad.financialReportReporteEnvioAnualById(this.selectedYear))
+      .onGetList(
+        Endpoints.RefactorContabilidad.financialReportReporteEnvioAnualById(
+          this.selectedYear,
+        ),
+      )
       .then((result: any) => {
         this.dataSignal.set(result);
       });

@@ -6,9 +6,9 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AccessEventDto } from "src/app/core/interfaces/access-event.dto";
 import { PagedResultDto } from "src/app/core/interfaces/paged-result.dto";

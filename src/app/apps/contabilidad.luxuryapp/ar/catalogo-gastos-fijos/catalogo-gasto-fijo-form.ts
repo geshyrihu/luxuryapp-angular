@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -18,6 +17,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -159,7 +159,9 @@ export class CatalogoGastoFijoForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosById(this.id());
+    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosById(
+      this.id(),
+    );
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     if (!result) return;

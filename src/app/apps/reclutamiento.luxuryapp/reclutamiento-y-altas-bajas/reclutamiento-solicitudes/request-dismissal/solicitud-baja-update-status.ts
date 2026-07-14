@@ -14,7 +14,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 // Assuming EStatus enum is available globally or imported
 // For this example, I'll define it here based on the C# enum.

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -45,11 +45,11 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-inventario-estacion-manual",
@@ -166,7 +166,10 @@ export class InventarioEstacionManual {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.inventarioEstacionManualListById(this.customerIdS.customerId()),
+      .onGetList(
+        Endpoints.RefactorOperations.inventarioEstacionManualListById(
+          this.customerIdS.customerId(),
+        ),
       )
       .then((result: any) => this.dataSignal.set(result));
   }

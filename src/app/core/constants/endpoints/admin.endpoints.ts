@@ -1,4 +1,27 @@
 export const EndpointsAdmin = {
+  UserAccounts: {
+    addRoleToUser: (id: string, allowedRoleType?: number | null) =>
+      allowedRoleType !== null && allowedRoleType !== undefined
+        ? `admin/user-accounts/add-role-to-user/${id}?allowedRoleType=${allowedRoleType}`
+        : `admin/user-accounts/add-role-to-user/${id}`,
+    createAccount: "admin/user-accounts/create-account",
+    delete: (id: string) => `admin/user-accounts/delete/${id}`,
+    deleteAccountAndRelations: (id: string) =>
+      `admin/user-accounts/delete/${id}`,
+    getAll: (state: boolean, typePerson: any) =>
+      `admin/user-accounts/list/${state}/${typePerson}`,
+    getById: (id: string) => `admin/user-accounts/${id}`,
+    getRoleUrl: (id: string, roleType: number | null) =>
+      roleType !== null
+        ? `admin/user-accounts/get-role/${id}/${roleType}`
+        : `admin/user-accounts/get-role/${id}`,
+    sendNewUserNameForEmail: (id: string) =>
+      `auth/account-recovery/send-new-user-name-for-email/${id}`,
+    toBlockAccount: (id: string) => `admin/user-accounts/to-block-account/${id}`,
+    toUnlockAccount: (id: string) =>
+      `admin/user-accounts/to-unlock-account/${id}`,
+    updateAccount: (id: string) => `admin/user-accounts/update-account/${id}`,
+  },
   AccessControlOperations: {
     events: "access-controls/events",
     eventsExport: "access-controls/events/export",
@@ -65,10 +88,12 @@ export const EndpointsAdmin = {
     preview: "junta-mensual-session-backfill/preview",
   },
   UpdateDataBase: {
-    backfillAgendaEvents: "update-data-base/backfill-agenda-events-from-meetings",
+    backfillAgendaEvents:
+      "update-data-base/backfill-agenda-events-from-meetings",
     backfillHistoricalMeetings:
       "update-data-base/backfill-historical-meeting-times",
-    importAsambleaChecklist: "update-data-base/import-asamblea-checklist-catalog",
+    importAsambleaChecklist:
+      "update-data-base/import-asamblea-checklist-catalog",
     resyncGoogleCalendar: "update-data-base/resync-google-calendar-event-times",
     seedNativeCollectionTestData:
       "update-data-base/seed-native-collection-test-data",

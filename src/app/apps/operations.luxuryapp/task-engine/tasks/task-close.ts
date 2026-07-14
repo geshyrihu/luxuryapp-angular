@@ -13,13 +13,13 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   CrudSubmitOptions,
   FormHelper,
@@ -152,7 +152,9 @@ export class TaskClose implements OnInit {
             const file = value as File;
             if (file instanceof File) formData.append(key, file, file.name);
           } else if (key === "customerId") {
-            formData.append("customerId", customerId || "");
+            if (customerId) {
+              formData.append("customerId", customerId);
+            }
           } else {
             formData.append(key, value != null ? value : "");
           }

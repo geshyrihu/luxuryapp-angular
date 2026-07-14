@@ -14,7 +14,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -24,9 +24,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CatalogoActivoForm } from "./catalogo-activo-form";
-import { CatalogAsset } from "./interfaces/catalog-asset.interface";
-import { CatalogAssetAddOrEdit } from "./interfaces/catalog-asset-add-or-edit.interface";
-import { AssetCategory } from "./interfaces/asset-category.enum";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -108,4 +105,3 @@ export class CatalogoActivoLista {
       });
   }
 }
-

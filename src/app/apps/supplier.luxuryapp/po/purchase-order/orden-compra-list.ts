@@ -21,9 +21,11 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
+import { PurchaseLinkManager } from "src/app/apps/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import {
   globalFilterFields,
@@ -33,8 +35,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
-import { PurchaseLinkManager } from "src/app/apps/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompra } from "./orden-compra";
 
@@ -227,7 +227,11 @@ export class OrdenCompraList {
     const statusCompra = this.statusCompra();
     const tipoGasto = this.tipoGasto();
 
-    const url = Endpoints.RefactorSupplier.ordenCompraListByIdByIdById(customerId, statusCompra, tipoGasto);
+    const url = Endpoints.RefactorSupplier.ordenCompraListByIdByIdById(
+      customerId,
+      statusCompra,
+      tipoGasto,
+    );
 
     this.apiResponseS
       .onGetList(url)

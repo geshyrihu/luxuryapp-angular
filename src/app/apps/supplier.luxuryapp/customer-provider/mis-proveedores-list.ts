@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -18,6 +17,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -73,7 +73,9 @@ export class MisProveedores {
 
   // Función para cargar los datos de los CustomerProviders
   onLoadData() {
-    const urlApi = Endpoints.RefactorSupplier.customerProviderById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorSupplier.customerProviderById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

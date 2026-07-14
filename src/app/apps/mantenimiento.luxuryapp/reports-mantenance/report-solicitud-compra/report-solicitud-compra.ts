@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,6 +11,7 @@ import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenanc
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
@@ -46,9 +46,11 @@ export class ReportSolicitudCompra {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportSolicitudinsumosByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ));
+    const urlApi =
+      Endpoints.RefactorMantenimiento.maintenanceReportSolicitudinsumosByIdById(
+        this.customerIdS.customerId(),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.solicitudes.set(result.solicitudes);
       this.ordenesCompra.set(result.ordenesCompra);

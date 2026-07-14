@@ -11,12 +11,12 @@ import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomerTaskItemConfig } from "src/app/core/interfaces/recurring-tasks/customer-task-item-config.interface";
 import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",

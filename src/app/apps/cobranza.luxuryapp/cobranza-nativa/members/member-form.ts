@@ -14,13 +14,14 @@ import {
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -28,10 +29,9 @@ import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { EMemberRole } from "../interfaces/enums";
 import {
-  CreatePropertyMemberDTO,
+  CreatePropertyMemberWithAccountDTO,
   UpdatePropertyMemberDTO,
 } from "../interfaces/property-member.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 // ETypePerson.Client = 2
 const E_TYPE_PERSON_CLIENT = 2;
@@ -82,7 +82,6 @@ export default class MemberForm implements OnInit {
 
   step = signal<1 | 2>(1);
   submitting = signal(false);
-  createdUserId = signal("");
 
   userForm: FormGroup<IUserForm>;
   memberForm: FormGroup<IMemberForm>;
@@ -139,27 +138,12 @@ export default class MemberForm implements OnInit {
   }
 
   async onNextStep() {
-    const result = await FormHelper.submitCrud({
-      form: this.userForm,
-      api: this.apiResponseS,
-      endpoint: Endpoints.ApplicationUsers.createAccount,
-      method: "POST",
-      submitting: this.submitting,
-      closeOnSuccess: false,
-      transformPayload: (raw) => ({
-        customerId: this.customerId,
-        typePerson: E_TYPE_PERSON_CLIENT,
-        firstName: raw.firstName,
-        lastName: raw.lastName,
-        email: raw.email,
-        phoneNumber: raw.phoneNumber,
-      }),
-    });
-
-    if (result && typeof result === "object") {
-      this.createdUserId.set(result.id ?? "");
-      this.step.set(2);
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+      return;
     }
+
+    this.step.set(2);
   }
 
   async loadData() {
@@ -183,7 +167,8 @@ export default class MemberForm implements OnInit {
         ? Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(
             this.id,
           )
-        : Endpoints.AccountingCoi.NativeCollection.PropertyMembers.create,
+        : Endpoints.AccountingCoi.NativeCollection.PropertyMembers
+            .createWithAccount,
       method: this.id ? "PUT" : "POST",
       ref: this.ref,
       submitting: this.submitting,
@@ -192,14 +177,18 @@ export default class MemberForm implements OnInit {
           return {
             customerId: this.customerId,
             propertyId: this.propertyId,
-            userId: this.createdUserId(),
+            typePerson: E_TYPE_PERSON_CLIENT,
+            firstName: this.userForm.controls.firstName.value,
+            lastName: this.userForm.controls.lastName.value,
+            email: this.userForm.controls.email.value,
+            phoneNumber: this.userForm.controls.phoneNumber.value,
             memberRole: raw.memberRole,
             isFinancialResponsible: raw.isFinancialResponsible,
             receiveNotifications: raw.receiveNotifications,
             startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
             endDate: this.dateS.getDateFormat(raw.endDate),
             notes: raw.notes,
-          } as CreatePropertyMemberDTO;
+          } as CreatePropertyMemberWithAccountDTO;
         } else {
           return {
             id: this.id,

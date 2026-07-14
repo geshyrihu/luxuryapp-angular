@@ -20,7 +20,7 @@ import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { FaqsFondeo } from "src/app/apps/contabilidad.luxuryapp/fondeos-y-reporteo/funding/faqs-fondeo";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -80,7 +80,9 @@ export class FundingList {
   }
 
   onLoadData(): void {
-    const urlApi = Endpoints.RefactorContabilidad.fundingListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorContabilidad.fundingListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

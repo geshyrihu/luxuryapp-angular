@@ -11,12 +11,12 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { GenerarNominaDTO } from '../../interfaces/nomina-encabezado.interface';
-import { PeriodoNominaDTO } from '../../interfaces/periodo-nomina.interface';
+import { GenerarNominaDTO } from "../../interfaces/nomina-encabezado.interface";
+import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 
 @Component({
   selector: "app-modal-generar-nomina",

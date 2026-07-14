@@ -11,13 +11,13 @@ import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   NominaDetalleDTO,
   NominaDetalleEditDTO,
-} from '../../interfaces/nomina-detalle.interface';
+} from "../../interfaces/nomina-detalle.interface";
 
 @Component({
   selector: "app-modal-editar-empleado-nomina",

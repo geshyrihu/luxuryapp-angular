@@ -10,18 +10,14 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-my-task-program",
   templateUrl: "./my-task-program.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputDateSignal,
-    WebButtonLabelSave,
-  ],
+  imports: [ReactiveFormsModule, CustomInputDateSignal, WebButtonLabelSave],
 })
 export class MyTaskProgram implements OnInit {
   private apiResponseS = inject(ApiResponseService);

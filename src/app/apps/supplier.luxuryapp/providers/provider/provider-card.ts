@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -6,6 +5,7 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
@@ -38,7 +38,11 @@ export class TarjetaProveedor implements OnInit {
   }
   onLoadItem() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorSupplier.providersByIdById(this.providerId, this.customerIdS.customerId()),
+      .onGetItem(
+        Endpoints.RefactorSupplier.providersByIdById(
+          this.providerId,
+          this.customerIdS.customerId(),
+        ),
       )
       .then((result: any) => {
         if (!result) return;

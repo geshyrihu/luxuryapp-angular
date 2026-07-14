@@ -16,8 +16,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionHidranteForm } from "../cycle-checklist-hidrante/fire-cycle-inspection-hidrante-form";
 
@@ -87,7 +87,9 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     Promise.all([
-      this.apiResponseS.onGetItem(Endpoints.FireInspectionPeriod.getById(this.periodId)),
+      this.apiResponseS.onGetItem(
+        Endpoints.FireInspectionPeriod.getById(this.periodId),
+      ),
       this.apiResponseS.onGetList(
         Endpoints.FireInspectionPeriodItems.hidranteList(this.periodId),
       ),
@@ -108,7 +110,10 @@ export class FireInspectionPeriodHidranteDetail implements OnInit, OnDestroy {
   async onAddItem() {
     if (!this.selectedEquipmentId) return;
     const result = await this.apiResponseS.onPost(
-      Endpoints.FireInspectionPeriodItems.hidranteDetail(this.periodId, this.selectedEquipmentId),
+      Endpoints.FireInspectionPeriodItems.hidranteDetail(
+        this.periodId,
+        this.selectedEquipmentId,
+      ),
       {},
     );
     if (result !== false) {

@@ -12,9 +12,9 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { IWorkPositionForm } from "src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/interfaces/work-position.model";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IWorkPositionForm } from 'src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/interfaces/work-position.model';
 
 interface IJobDescription {
   summary: string;

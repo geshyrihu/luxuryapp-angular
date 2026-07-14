@@ -19,7 +19,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -102,9 +102,9 @@ export class TicketLegalFormCliente implements OnInit {
     this.id = this.config.data.id ?? "";
     this.form.controls.id.setValue(this.id);
 
-    const legalMatters = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.TaskLegal.selectForAddTicket,
-    );
+    const legalMatters = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(Endpoints.TaskLegal.selectForAddTicket);
     this.cb_legal_matter.set(legalMatters as SelectItemDto[]);
 
     if (this.id !== "") {

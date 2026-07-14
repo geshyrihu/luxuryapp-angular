@@ -10,7 +10,7 @@ import { LxImage } from "@ui/adaptive/image/image";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomerImageDto } from "./interfaces/customer-image.dto";
 
@@ -33,8 +33,9 @@ export class CustomerImages implements OnInit {
   hasImages = computed(() => this.images().length > 0);
 
   ngOnInit() {
-    if (this.config.data?.id) {
-      this.customerId.set(this.config.data.id);
+    const id = this.config.data?.customerId || this.config.data?.id;
+    if (id) {
+      this.customerId.set(id);
       this.onLoadData();
     }
   }
@@ -81,16 +82,20 @@ export class CustomerImages implements OnInit {
   }
 
   async uploadFiles(files: File[]) {
+    if (!this.customerId()) {
+      return; // Prevenir error 400 'The value '' is not valid for CustomerId'
+    }
+
     this.uploading.set(true);
     const formData = new FormData();
     formData.append("customerId", this.customerId());
 
     files.forEach((file) => {
-      formData.append("files", file);
+      formData.append("images", file, file.name); // Explicitly pass the file name
     });
 
     const resp = await this.apiResponseS.onPostFile(
-      Endpoints.CustomerImages.create,
+      Endpoints.CustomerImages.createBulk,
       formData,
     );
     if (resp) {

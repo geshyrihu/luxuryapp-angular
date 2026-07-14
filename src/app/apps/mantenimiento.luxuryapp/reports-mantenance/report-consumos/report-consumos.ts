@@ -18,7 +18,7 @@ import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenanc
 import * as FileSaver from "file-saver";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Medidor } from "src/app/core/interfaces/medidor.interface";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";

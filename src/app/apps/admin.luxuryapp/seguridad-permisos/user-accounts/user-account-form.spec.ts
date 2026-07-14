@@ -11,11 +11,11 @@ import {
 import { of } from "rxjs";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { ApplicationUserForm } from "./application-user-form";
+import { UserAccountForm } from "./user-account-form";
 
-describe("ApplicationUserForm", () => {
-  let component: ApplicationUserForm;
-  let fixture: ComponentFixture<ApplicationUserForm>;
+describe("UserAccountForm", () => {
+  let component: UserAccountForm;
+  let fixture: ComponentFixture<UserAccountForm>;
 
   beforeEach(async () => {
     TestBed.overrideComponent(InputMask, {
@@ -26,7 +26,7 @@ describe("ApplicationUserForm", () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [ApplicationUserForm],
+      imports: [UserAccountForm],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
@@ -54,7 +54,7 @@ describe("ApplicationUserForm", () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ApplicationUserForm);
+    fixture = TestBed.createComponent(UserAccountForm);
     component = fixture.componentInstance;
   });
 

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -18,6 +17,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -76,7 +76,10 @@ export class ElevatorSparePartsChangeList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.elevatorSparePartsChangeListById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorMantenimiento.elevatorSparePartsChangeListById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -84,7 +87,9 @@ export class ElevatorSparePartsChangeList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorMantenimiento.elevatorSparePartsChangeById(id))
+      .onDelete(
+        Endpoints.RefactorMantenimiento.elevatorSparePartsChangeById(id),
+      )
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

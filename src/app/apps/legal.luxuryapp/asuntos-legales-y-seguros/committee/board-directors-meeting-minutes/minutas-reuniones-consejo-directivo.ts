@@ -1,11 +1,12 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -13,11 +14,9 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo",
-  imports: [
-    MobileListItem,TableModule, RouterModule, AppIcon],
+  imports: [MobileListItem, TableModule, RouterModule, AppIcon],
   templateUrl: "./minutas-reuniones-consejo-directivo.html",
 })
 export class MinutasReunionesConsejoDirectivo implements OnInit {
@@ -55,7 +54,8 @@ export class MinutasReunionesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las minutas que creamos en el backend
-    const urlApi = Endpoints.RefactorLegal.boardDirectorsMeetingMinutesById(customerId);
+    const urlApi =
+      Endpoints.RefactorLegal.boardDirectorsMeetingMinutesById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,6 +25,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
@@ -89,7 +89,12 @@ export class ProductOutputForm implements OnInit {
     return this.form.controls;
   }
   onLoadExistencia() {
-    const urlApi = Endpoints.RefactorOperations.inventarioProductoGetExistenciaProductoByIdByIdById(this.customerIdS.customerId(), this.config.data.idProducto, this.config.data.almacenId);
+    const urlApi =
+      Endpoints.RefactorOperations.inventarioProductoGetExistenciaProductoByIdByIdById(
+        this.customerIdS.customerId(),
+        this.config.data.idProducto,
+        this.config.data.almacenId,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result !== null) {
         this.existenciaAlmacen.set(result.existencia);
@@ -211,7 +216,11 @@ export class ProductOutputForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(Endpoints.RefactorOperations.salidaProductosByIdById(this.id, this.cantidadActualUsada()),
+        .onPut(
+          Endpoints.RefactorOperations.salidaProductosByIdById(
+            this.id,
+            this.cantidadActualUsada(),
+          ),
           payload,
         )
         .then((result: boolean) => {

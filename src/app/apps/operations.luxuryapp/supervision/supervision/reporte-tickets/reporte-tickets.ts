@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -64,9 +64,12 @@ export class ReporteTickets {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin));
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdByIdById(
+        this.customerIdS.customerId(),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

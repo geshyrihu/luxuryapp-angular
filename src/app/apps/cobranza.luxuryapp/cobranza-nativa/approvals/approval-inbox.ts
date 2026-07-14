@@ -17,7 +17,7 @@ import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -31,8 +31,8 @@ import {
 } from "../interfaces/enums";
 import { FinancialApprovalResponseDTO } from "../interfaces/financial-approval.dto";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-approval-inbox",

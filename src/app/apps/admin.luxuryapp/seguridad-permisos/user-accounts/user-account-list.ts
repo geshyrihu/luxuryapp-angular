@@ -26,8 +26,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { CardEmployee } from 'src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee';
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -38,16 +38,16 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ApplicationUserDto } from "./interfaces/application-user.dto";
-import { ApplicationUserForm } from "./application-user-form";
+import { UserAccountDto } from "./interfaces/user-account.dto";
 import { MdEditAccount } from "./md-edit-account";
+import { UserAccountForm } from "./user-account-form";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
-  selector: "app-application-user-list",
-  templateUrl: "./application-user-list.html",
+  selector: "app-user-account-list",
+  templateUrl: "./user-account-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MobileListItem,
@@ -72,14 +72,14 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     CustomInputSelectSignal,
   ],
 })
-export class ApplicationUserList implements OnInit {
+export class UserAccountList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   enumSelectS = inject(EnumSelectService);
   tableScrollHeightS = inject(TableScrollHeightService);
   // Signals
-  dataSignal = signal<ApplicationUserDto[]>([]);
-  filteredDataSignal = signal<ApplicationUserDto[]>([]);
+  dataSignal = signal<UserAccountDto[]>([]);
+  filteredDataSignal = signal<UserAccountDto[]>([]);
 
   searchText: string = ""; // Para almacenar el texto de bósqueda
   selectCustomerSignal = signal<SelectItemDto[]>([]);
@@ -129,10 +129,10 @@ export class ApplicationUserList implements OnInit {
 
   onLoadData(applicationUserState: boolean, typePerson: any): void {
     this.apiResponseS
-      .onGetList<ApplicationUserDto[]>(
-        Endpoints.ApplicationUsers.getAll(applicationUserState, typePerson),
+      .onGetList<UserAccountDto[]>(
+        Endpoints.UserAccounts.getAll(applicationUserState, typePerson),
       )
-      .then((result: ApplicationUserDto[]) => {
+      .then((result: UserAccountDto[]) => {
         if (result) {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
@@ -189,7 +189,7 @@ export class ApplicationUserList implements OnInit {
   onModalForm(applicationUserId: string, title: string) {
     this.dialogHandlerS
       .openDialog(
-        ApplicationUserForm,
+        UserAccountForm,
         { applicationUserId },
         title,
         this.dialogHandlerS.sizeLg,
@@ -217,7 +217,7 @@ export class ApplicationUserList implements OnInit {
 
   onToBlockAccount(applicationUserId: string): void {
     this.apiResponseS
-      .onGetItem(Endpoints.ApplicationUsers.toBlockAccount(applicationUserId))
+      .onGetItem(Endpoints.UserAccounts.toBlockAccount(applicationUserId))
       .then((result) => {
         if (result) {
           // Update nested property using update loop or map
@@ -242,7 +242,7 @@ export class ApplicationUserList implements OnInit {
 
   onToUnlockAccount(applicationUserId: string): void {
     this.apiResponseS
-      .onGetItem(Endpoints.ApplicationUsers.toUnlockAccount(applicationUserId))
+      .onGetItem(Endpoints.UserAccounts.toUnlockAccount(applicationUserId))
       .then((result) => {
         if (result) {
           // Update nested property using update loop or map
@@ -267,7 +267,9 @@ export class ApplicationUserList implements OnInit {
 
   onDelete(applicationUserId: string): void {
     this.apiResponseS
-      .onDelete(Endpoints.ApplicationUsers.delete(applicationUserId))
+      .onDelete(
+        Endpoints.UserAccounts.deleteAccountAndRelations(applicationUserId),
+      )
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>
@@ -282,7 +284,9 @@ export class ApplicationUserList implements OnInit {
 
   DeleteUserId(applicationUserId: string): void {
     this.apiResponseS
-      .onDelete(Endpoints.ApplicationUsers.delete(applicationUserId))
+      .onDelete(
+        Endpoints.UserAccounts.deleteAccountAndRelations(applicationUserId),
+      )
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>

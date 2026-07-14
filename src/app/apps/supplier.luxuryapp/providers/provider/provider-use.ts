@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -36,7 +36,8 @@ export class ProviderUse implements OnInit {
   }
 
   onLoadData(providerId: any) {
-    const urlApi = Endpoints.RefactorSupplier.providersCoincidenciasById(providerId);
+    const urlApi =
+      Endpoints.RefactorSupplier.providersCoincidenciasById(providerId);
     return this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

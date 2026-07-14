@@ -15,14 +15,14 @@ import { ButtonModule } from "primeng/button";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import { reportFilterState } from "../state/financial-report-filter.state";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 interface AiMessage {
   role: "user" | "assistant";

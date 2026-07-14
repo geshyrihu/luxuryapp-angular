@@ -13,9 +13,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 // PrimeNG Modules
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -24,11 +24,11 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DialogModule } from "primeng/dialog";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import {
   BulkUpdateTipoGastoDto,
   SatCfdiDto,
@@ -170,7 +170,10 @@ export class SatFundingDetailComponent implements OnInit {
     };
 
     this.apiResponseService
-      .onPut(Endpoints.RefactorContabilidad.satFundingBulkUpdateTipoGasto, request)
+      .onPut(
+        Endpoints.RefactorContabilidad.satFundingBulkUpdateTipoGasto,
+        request,
+      )
       .then(() => {
         this.onLoadData();
         this.selection = [];

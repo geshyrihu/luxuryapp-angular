@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,6 +17,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -76,7 +76,9 @@ export class PiscinaBitacoraList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.piscinabitacoraListById(this.piscinaId);
+    const urlApi = Endpoints.RefactorMantenimiento.piscinabitacoraListById(
+      this.piscinaId,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

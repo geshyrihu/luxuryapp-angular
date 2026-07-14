@@ -9,10 +9,11 @@ import {
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { UpdatePasswordDto } from "src/app/core/interfaces/user-info.interface";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+
 @Component({
   selector: "app-update-password-account",
   templateUrl: "./update-password-account.html",
@@ -63,7 +64,9 @@ export class UpdatePasswordAccount implements OnInit {
   sendOnlyPasswordEmail() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.Auth.sendNewPasswordForEmail(this.applicationUserId()),
+        Endpoints.Auth.recoverAccount.sendNewPasswordForEmail(
+          this.applicationUserId(),
+        ),
       )
       .then(() => {});
   }
@@ -71,7 +74,7 @@ export class UpdatePasswordAccount implements OnInit {
   onGenerateUserNameAndPassword() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.ApplicationUsers.sendNewUserNameForEmail(
+        Endpoints.UserAccounts.sendNewUserNameForEmail(
           this.applicationUserId(),
         ),
       )
@@ -83,7 +86,7 @@ export class UpdatePasswordAccount implements OnInit {
   onToBlockAccount() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.ApplicationUsers.toBlockAccount(this.applicationUserId()),
+        Endpoints.UserAccounts.toBlockAccount(this.applicationUserId()),
       )
       .then(() => {
         this.onLoadData();
@@ -93,7 +96,7 @@ export class UpdatePasswordAccount implements OnInit {
   onToUnlockAccount() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.ApplicationUsers.toUnlockAccount(this.applicationUserId()),
+        Endpoints.UserAccounts.toUnlockAccount(this.applicationUserId()),
       )
       .then(() => {
         this.onLoadData();

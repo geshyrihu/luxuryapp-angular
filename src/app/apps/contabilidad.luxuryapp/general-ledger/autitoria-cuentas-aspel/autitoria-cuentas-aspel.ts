@@ -14,7 +14,7 @@ import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-butt
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ReportFilterService } from "../espejo-aspel-full/financial-report-filter.service";
 import { AutitoriaCuentasAspelExportService } from "./autitoria-cuentas-aspel-export.service";

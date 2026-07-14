@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-operation-report-client",
@@ -41,7 +41,12 @@ export class OperationReportClient implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.taskReportGetReportClientByIdByIdById(this.customer, this.inicio, this.final);
+    const urlApi =
+      Endpoints.RefactorOperations.taskReportGetReportClientByIdByIdById(
+        this.customer,
+        this.inicio,
+        this.final,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       // Actualizamos el valor del signal con los datos recibidos
       this.data.set(result);

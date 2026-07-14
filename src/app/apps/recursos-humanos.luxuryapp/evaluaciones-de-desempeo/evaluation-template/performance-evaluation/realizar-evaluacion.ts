@@ -25,9 +25,9 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { Touchspin } from "@ui/web/touchspin/touchspin";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DateService } from "src/app/core/services/date.service";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
@@ -181,7 +181,9 @@ export class RealizarEvaluacion implements OnInit {
       }
 
       this.apiResponseS
-        .onGetItem(Endpoints.RefactorRecursosHumanos.templateEvaluationById(templateId))
+        .onGetItem(
+          Endpoints.RefactorRecursosHumanos.templateEvaluationById(templateId),
+        )
         .then((response: any) => {
           this.selectedTemplate = response;
           this.buildAnswersFormArray(); // Construye el FormArray
@@ -277,7 +279,12 @@ export class RealizarEvaluacion implements OnInit {
 
     if (this.isEditMode && this.evaluationId) {
       this.apiResponseS
-        .onPut(Endpoints.RefactorRecursosHumanos.performanceEvaluationsUpdateById(this.evaluationId), DTO)
+        .onPut(
+          Endpoints.RefactorRecursosHumanos.performanceEvaluationsUpdateById(
+            this.evaluationId,
+          ),
+          DTO,
+        )
         .then((result: any) => {
           if (result) {
             this.submitting.set(false);
@@ -285,7 +292,10 @@ export class RealizarEvaluacion implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPost(Endpoints.RefactorRecursosHumanos.performanceEvaluationsCreate, DTO)
+        .onPost(
+          Endpoints.RefactorRecursosHumanos.performanceEvaluationsCreate,
+          DTO,
+        )
         .then((result: any) => {
           if (result) {
             this.route.navigate(

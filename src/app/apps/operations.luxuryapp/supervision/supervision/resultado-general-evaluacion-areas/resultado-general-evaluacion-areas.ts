@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +9,7 @@ import {
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -57,7 +57,11 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
     });
   }
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasByIdById(fechaInicio, fechaFinal);
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasByIdById(
+        fechaInicio,
+        fechaFinal,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

@@ -2,11 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  ElementRef,
   inject,
   input,
   OnDestroy,
   output,
   signal,
+  viewChild,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -84,9 +87,15 @@ const COUNTDOWN_SECONDS = 5;
       }
     </button>
 
-    <!-- Ventana de cancelación: la alerta sale solo al llegar a 0 -->
+    <!-- Ventana de cancelación: la alerta sale solo al llegar a 0.
+         <dialog>.showModal() renderiza en el top layer del navegador:
+         inmune a transforms/z-index de ancestros (fix overlay tras router-outlet) -->
     @if (isCountingDown()) {
-    <div class="panic-countdown-overlay">
+    <dialog
+      #countdownDialog
+      class="panic-countdown-dialog"
+      (cancel)="onCancelCountdown()"
+    >
       <div class="panic-countdown">
         <app-icon icon="mdi:alert-circle" class="panic-countdown__icon" />
         <p class="panic-countdown__title">Enviando alerta de pánico en</p>
@@ -99,7 +108,7 @@ const COUNTDOWN_SECONDS = 5;
           Cancelar
         </button>
       </div>
-    </div>
+    </dialog>
     }
     }
   `,
@@ -190,16 +199,18 @@ const COUNTDOWN_SECONDS = 5;
       font-size: 28px;
     }
 
-    /* Cuenta regresiva cancelable */
-    .panic-countdown-overlay {
-      position: fixed;
-      inset: 0;
+    /* Cuenta regresiva cancelable (dialog nativo en top layer) */
+    .panic-countdown-dialog {
+      border: none;
+      padding: 0;
+      background: transparent;
+      max-width: 340px;
+      width: calc(100vw - 48px);
+      overflow: visible;
+    }
+
+    .panic-countdown-dialog::backdrop {
       background: rgba(0, 0, 0, 0.75);
-      z-index: 10001;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
     }
 
     .panic-countdown {
@@ -271,6 +282,20 @@ export class PanicButton implements OnDestroy {
   private progressTimer: ReturnType<typeof setInterval> | null = null;
   private countdownTimer: ReturnType<typeof setInterval> | null = null;
   private holdStartTime = 0;
+
+  private countdownDialog =
+    viewChild<ElementRef<HTMLDialogElement>>("countdownDialog");
+
+  constructor() {
+    // El @if crea el <dialog> al iniciar la cuenta; aquí se abre como modal
+    // (showModal solo puede llamarse con el elemento ya en el DOM)
+    effect(() => {
+      const dialog = this.countdownDialog()?.nativeElement;
+      if (dialog && !dialog.open) {
+        dialog.showModal();
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     this.clearTimers();

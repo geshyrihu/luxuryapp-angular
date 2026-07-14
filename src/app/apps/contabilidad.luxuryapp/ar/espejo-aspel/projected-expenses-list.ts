@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -20,6 +19,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -86,7 +86,11 @@ export default class ProjectedExpensesList {
   onLoadData() {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList(Endpoints.RefactorContabilidad.projectedExpensesById(this.customerIdS.customerId()))
+      .onGetList(
+        Endpoints.RefactorContabilidad.projectedExpensesById(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: any) => {
         this.dataSignal.set(result);
         this.loading.set(false);
@@ -95,7 +99,12 @@ export default class ProjectedExpensesList {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorContabilidad.projectedExpensesByIdById(this.customerIdS.customerId(), id))
+      .onDelete(
+        Endpoints.RefactorContabilidad.projectedExpensesByIdById(
+          this.customerIdS.customerId(),
+          id,
+        ),
+      )
       .then((result: boolean) => {
         if (result)
           this.dataSignal.set(

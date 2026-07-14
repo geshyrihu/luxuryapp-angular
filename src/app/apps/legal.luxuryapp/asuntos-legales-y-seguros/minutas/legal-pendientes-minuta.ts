@@ -25,8 +25,10 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -35,8 +37,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { ContMinutaSeguimientos } from "../../../../apps/contabilidad.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
 // import { ContMinutaSeguimientos } from "../../../accounting/general-ledger/pendientes-minuta/cont-minuta-seguimientos";

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,6 +14,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -22,13 +22,13 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskTemplateForm } from "../task-template-form/task-template-form";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-task-template-list",
@@ -70,7 +70,8 @@ export class TaskTemplateList implements OnInit {
 
   onLoadData(state: boolean = this.state()) {
     this.loading.set(true);
-    const urlApi = Endpoints.RefactorOperations.recurringTasksTemplatesListById(state);
+    const urlApi =
+      Endpoints.RefactorOperations.recurringTasksTemplatesListById(state);
     this.apiResponseS
       .onGetList<TaskTemplate[]>(urlApi)
       .then((response) => {

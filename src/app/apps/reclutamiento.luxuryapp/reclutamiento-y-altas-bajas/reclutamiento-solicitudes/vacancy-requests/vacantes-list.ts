@@ -20,7 +20,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Table, TableModule } from "primeng/table";
 
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,

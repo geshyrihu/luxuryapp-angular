@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -18,6 +17,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -96,7 +96,11 @@ export class FireInspectionPeriodList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorMantenimiento.fireInspectionPeriodListById(this.customerIdS.customerId()))
+      .onGetList(
+        Endpoints.RefactorMantenimiento.fireInspectionPeriodListById(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: any) => this.dataSignal.set(result));
   }
 

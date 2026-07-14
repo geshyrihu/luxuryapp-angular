@@ -9,18 +9,14 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Component({
   selector: "app-ticket-legal-actualizar-estado",
   templateUrl: "./ticket-legal-actualizar-estado.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputSelectSignal,
-    WebButtonLabel,
-  ],
+  imports: [ReactiveFormsModule, CustomInputSelectSignal, WebButtonLabel],
 })
 export class TicketLegalActualizarEstado implements OnInit {
   apiResponseS = inject(ApiResponseService);

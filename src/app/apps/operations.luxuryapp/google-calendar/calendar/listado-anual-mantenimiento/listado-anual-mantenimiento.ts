@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -19,10 +19,10 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -116,7 +116,10 @@ export class ListadoAnualMantenimiento {
   }
 
   onLoadData() {
-    const url = Endpoints.RefactorOperations.maintenanceCalendarsListByIdById(this.customerIdS.customerId(), this.monthControl.value);
+    const url = Endpoints.RefactorOperations.maintenanceCalendarsListByIdById(
+      this.customerIdS.customerId(),
+      this.monthControl.value,
+    );
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.dataSignal.set(result || []);
     });

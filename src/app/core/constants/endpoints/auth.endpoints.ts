@@ -13,34 +13,19 @@ export const EndpointsAuth = {
     getPdf: (id: string) => `application-roles/${id}/pdf`,
     update: (id: string) => `application-roles/${id}`,
   },
-  ApplicationUsers: {
-    addRoleToUser: (id: string) => `application-users/add-role-to-user/${id}`,
-    cardUser: (id: string) => `application-users/card-user/${id}`,
-    createAccount: "application-users/create-account",
-    delete: (id: string) => `application-users/delete/${id}`,
-    getAll: (state: boolean, typePerson: any) =>
-      `application-users/list/${state}/${typePerson}`,
-    getById: (id: string) => `application-users/${id}`,
-    getRoleUrl: (id: string, roleType: number | null) =>
-      roleType !== null
-        ? `application-users/get-role/${id}/${roleType}`
-        : `application-users/get-role/${id}`,
-    searchExistingPerson: (fullName: string) =>
-      `application-users/search-existing-person/${fullName}`,
-    searchExistingPhone: (phone: string) =>
-      `application-users/search-existing-phone/${phone}`,
-    sendNewUserNameForEmail: (id: string) =>
-      `application-users/send-new-user-name-for-email/${id}`,
-    toBlockAccount: (id: string) => `application-users/to-block-account/${id}`,
-    toUnlockAccount: (id: string) => `application-users/to-unlock-account/${id}`,
-    updateAccount: (id: string) => `application-users/update-account/${id}`,
-  },
   Auth: {
     login: "auth/login",
     logout: "auth/logout",
     refresh: "auth/refresh",
-    sendNewPasswordForEmail: (id: string) =>
-      `application-users/send-new-password-for-email/${id}`,
+    recoverPassword: "auth/recover-password",
+    confirmRecoverPassword: "auth/confirm-recover-password",
+    recoverAccount: {
+      sendMailRecoverPassword: "auth/account-recovery/send-mail-recover-password",
+      sendNewPasswordForEmail: (id: string) =>
+        `auth/account-recovery/send-new-password-for-email/${id}`,
+      sendNewUserNameForEmail: (id: string) =>
+        `auth/account-recovery/send-new-user-name-for-email/${id}`,
+    },
   },
   ModuleAppRoles: {
     assignments: (roleId: string) => `module-app-roles/assignments/${roleId}`,

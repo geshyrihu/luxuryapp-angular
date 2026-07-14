@@ -1,4 +1,5 @@
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ROUTES } from "src/app/routing/route-paths";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 
 export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
@@ -161,7 +162,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Cuotas Vigentes",
         description:
           "Registro de cuotas vigentes y plantillas de cargos recurrentes.",
-        route: "/cobranza-nativa/charge-templates",
+        route: ROUTES.COBRANZA_NATIVA.COBERTURA_PLANTILLA.join("/"),
         icon: "mdi:pencil-box-multiple",
         color: "#15803d",
         bgColor: "#dcfce7",

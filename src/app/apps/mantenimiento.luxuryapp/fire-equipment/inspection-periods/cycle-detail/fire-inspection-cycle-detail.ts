@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -12,6 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionDetectorForm } from "../cycle-checklist-detector/fire-cycle-inspection-detector-form";
@@ -51,7 +51,9 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.fireInspectionCycleById(this.cycleId))
+      .onGetItem(
+        Endpoints.RefactorMantenimiento.fireInspectionCycleById(this.cycleId),
+      )
       .then((result: any) => this.cycle.set(result));
   }
 
@@ -178,7 +180,9 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     } else {
       this.scanStatus.set("Identificando equipo...");
       const result: any = await this.apiResponseS
-        .onGetItem(Endpoints.RefactorMantenimiento.fireEquipmentResolveById(segments[0]))
+        .onGetItem(
+          Endpoints.RefactorMantenimiento.fireEquipmentResolveById(segments[0]),
+        )
         .catch(() => null);
       if (!result) {
         this.scanError.set("No se encontré el equipo en el sistema.");

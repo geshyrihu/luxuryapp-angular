@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -15,6 +14,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -32,7 +32,7 @@ import { DateService } from "src/app/core/services/date.service";
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    ],
+  ],
 })
 export class ElevatorSparePartsChangeForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -68,7 +68,9 @@ export class ElevatorSparePartsChangeForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.elevatorsparepartschangeById(this.id);
+    const urlApi = Endpoints.RefactorMantenimiento.elevatorsparepartschangeById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       const changeDate = this.dateS.getDateFormat(result.changeDate);
       result.changeDate = changeDate;
@@ -77,7 +79,10 @@ export class ElevatorSparePartsChangeForm implements OnInit {
   }
 
   onLoadDataElevators() {
-    const urlApi = Endpoints.RefactorMantenimiento.elevatorsparepartschangeElevatorsById(this.config.data.customerId);
+    const urlApi =
+      Endpoints.RefactorMantenimiento.elevatorsparepartschangeElevatorsById(
+        this.config.data.customerId,
+      );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.cb_elevators.set(result);
     });

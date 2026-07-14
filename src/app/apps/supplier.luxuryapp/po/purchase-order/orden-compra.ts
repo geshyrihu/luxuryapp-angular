@@ -25,19 +25,20 @@ import { TableModule } from "primeng/table";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service"; // Import added
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
 import { PurchaseLinkManager } from "src/app/apps/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
 import { OrdenCompraDatosAuthParcial } from "src/app/apps/supplier.luxuryapp/po/purchase-order/parcials/orden-compra-datos-auth-parcial";
 import { OrdenCompraDatosCotizacion } from "src/app/apps/supplier.luxuryapp/po/purchase-order/parcials/orden-compra-datos-cotizacion";
 import { OrdenCompraDatosPagoParcial } from "src/app/apps/supplier.luxuryapp/po/purchase-order/parcials/orden-compra-datos-pago-parcial";
 import { OrdenCompraStatusParcial } from "src/app/apps/supplier.luxuryapp/po/purchase-order/parcials/orden-compra-status-parcial";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service"; // Import added
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompraDatosPago } from "./forms/orden-compra-datos-pago";
 import { OrdenCompraDenegada } from "./forms/orden-compra-denegada";
 import { OrdenCompraDetalleAddProducto } from "./forms/orden-compra-detalle-add-producto";
@@ -48,7 +49,6 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-orden-compra",

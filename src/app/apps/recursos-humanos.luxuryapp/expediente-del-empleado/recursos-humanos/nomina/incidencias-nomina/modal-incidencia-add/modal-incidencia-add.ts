@@ -17,7 +17,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -25,7 +25,7 @@ import {
   IncidenciaNominaCreateDTO,
   TIPO_INCAPACIDAD_OPTIONS,
   TIPO_INCIDENCIA_OPTIONS,
-} from '../../interfaces/incidencia-nomina.interface';
+} from "../../interfaces/incidencia-nomina.interface";
 
 @Component({
   selector: "app-modal-incidencia-add",

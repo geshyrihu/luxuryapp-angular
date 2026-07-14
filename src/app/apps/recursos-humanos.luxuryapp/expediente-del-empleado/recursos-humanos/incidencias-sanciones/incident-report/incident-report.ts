@@ -12,8 +12,9 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import saveAs from "file-saver";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -22,8 +23,7 @@ import { DateService } from "src/app/core/services/date.service";
 import {
   IncidentPendingDTO,
   IncidentStatsDTO,
-} from './interfaces/incident-report.dto';
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+} from "./interfaces/incident-report.dto";
 
 interface IReportFilterForm {
   from: import("@angular/forms").FormControl<Date | null>;

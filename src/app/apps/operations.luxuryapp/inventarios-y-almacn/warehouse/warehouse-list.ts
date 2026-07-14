@@ -20,7 +20,7 @@ import { TableModule } from "primeng/table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -33,10 +33,10 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { WarehouseForm } from "./warehouse-form";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -103,15 +103,9 @@ export class WarehouseList implements OnInit {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
-    // CAMBIO: URL de la API apunta al controlador de Almacen, usando el customerId del usuario logueado
-    let urlApi = "";
-    if (this.isAdmin) {
-      // Los administradores obtienen todos los almacenes
-      urlApi = `almacen/customer/${customerId}`;
-    } else {
-      // Los usuarios regulares obtienen solo sus almacenes asignados
-      urlApi = `almacen/my-warehouses/${customerId}`;
-    }
+    const urlApi = this.isAdmin
+      ? Endpoints.Almacen.listByCustomer(customerId)
+      : Endpoints.Almacen.myWarehousesByCustomer(customerId);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

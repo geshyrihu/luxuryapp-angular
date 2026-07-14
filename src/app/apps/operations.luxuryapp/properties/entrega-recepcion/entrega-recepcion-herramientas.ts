@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,21 +8,21 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { ReportHeader } from "@ui/web/report-header/report-header";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ReportHeader } from "@ui/web/report-header/report-header";
 @Component({
   selector: "app-entrega-recepcion-herramientas",
   templateUrl: "./entrega-recepcion-herramientas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReportHeader,TableModule, FormsModule, CustomInputCheckSignal],
+  imports: [ReportHeader, TableModule, FormsModule, CustomInputCheckSignal],
 })
 export class EntregaRecepcionHerramientas {
   apiResponseS = inject(ApiResponseService);
@@ -46,7 +45,10 @@ export class EntregaRecepcionHerramientas {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entregaRecepcionInventarioHerramientasById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorOperations.entregaRecepcionInventarioHerramientasById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

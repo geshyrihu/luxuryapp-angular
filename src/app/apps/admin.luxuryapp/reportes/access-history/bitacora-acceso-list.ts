@@ -10,11 +10,13 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type.enum";
 import {
   rowsPerPageOptions,
@@ -23,8 +25,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-bitacora-acceso",
   templateUrl: "./bitacora-acceso-list.html",

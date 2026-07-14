@@ -14,6 +14,7 @@ import {
   throwError,
 } from "rxjs";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseDto } from "src/app/core/http/services/api-response.service";
 import {
   InfoAccountAuthDto,
@@ -23,7 +24,6 @@ import {
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",

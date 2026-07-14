@@ -130,8 +130,17 @@ export const EndpointsOperations = {
     create: "announcements",
     delete: (id: string) => `announcements/${id}`,
     downloadPdf: (id: string) => `announcements/${id}/pdf`,
+    generateDraft: "announcements/generate-draft",
+    generateOfficialDraft: "announcements/generate-official-draft",
     getById: (id: string) => `announcements/${id}`,
     update: (id: string) => `announcements/${id}`,
+  },
+  Dashboard: {
+    analyze: "dashboard/analyze",
+    sendExecutiveReport: (customerId: string) =>
+      `dashboard/send-executive-report/${customerId}`,
+    globalPendingItems: (customerId: string) =>
+      `dashboard/global-pending-items/${customerId}`,
   },
   DiagramDraw: {
     delete: (id: string) => `diagram-draw/${id}`,
@@ -248,6 +257,9 @@ export const EndpointsOperations = {
   Almacen: {
     delete: (id: string) => `almacen/${id}`,
     getById: (id: string) => `almacen/${id}`,
+    listByCustomer: (customerId: string) => `almacen/customer/${customerId}`,
+    myWarehousesByCustomer: (customerId: string) =>
+      `almacen/my-warehouses/${customerId}`,
     assignResponsibles: "almacen/assign-responsibles",
   },
   InventarioProducto: {

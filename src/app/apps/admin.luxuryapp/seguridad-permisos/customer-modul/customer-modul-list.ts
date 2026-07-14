@@ -16,7 +16,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -28,8 +28,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { CustomerModulEdit } from "./customer-modul-edit";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",

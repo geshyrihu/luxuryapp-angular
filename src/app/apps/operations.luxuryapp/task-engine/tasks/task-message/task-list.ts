@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxPopover } from "@ui/adaptive/popover/popover";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -42,11 +43,10 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -72,24 +72,24 @@ import {
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { InitialsAbbrPipe } from "src/app/shared/pipes/initials-abbr.pipe";
+import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
+import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskProgram } from "../task-program";
 import { TaskReadList } from "../task-read-list";
 import { TaskReopen } from "../task-reopen";
 import { TaskStatus } from "../task-status/task-status";
-import { SendOperationReport } from "../send-operation-report/send-operation-report";
-import { TaskFollowup } from "../task-follow-up/task-followup";
 import { ITaskResultDTO } from "./interfaces/task-message.dto";
 import { TaskForm } from "./task-form";
 
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-task-list",

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -12,6 +11,7 @@ import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
@@ -75,14 +75,22 @@ export class MinutasResumen implements OnInit {
 
   onLoadData(fehcaInicio: string, fechaFinal: string) {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralListaByIdById(fehcaInicio, fechaFinal),
+      .onGetList(
+        Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralListaByIdById(
+          fehcaInicio,
+          fechaFinal,
+        ),
       )
       .then((result: any) => {
         this.generalMinutasSignal.set(result);
       });
 
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralGrupoByIdById(fehcaInicio, fechaFinal),
+      .onGetList(
+        Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralGrupoByIdById(
+          fehcaInicio,
+          fechaFinal,
+        ),
       )
       .then((result: any) => {
         this.generalMinutasGrupoSignal.set(result);

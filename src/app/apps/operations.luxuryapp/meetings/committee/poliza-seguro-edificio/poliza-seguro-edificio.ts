@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -20,6 +19,7 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -57,7 +57,11 @@ export class PolizaSeguroEdificio {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorOperations.policyContractBuildingInsuranceById(customerId))
+      .onGetItem(
+        Endpoints.RefactorOperations.policyContractBuildingInsuranceById(
+          customerId,
+        ),
+      )
       .then((result) => {
         this.data.set(result);
       });

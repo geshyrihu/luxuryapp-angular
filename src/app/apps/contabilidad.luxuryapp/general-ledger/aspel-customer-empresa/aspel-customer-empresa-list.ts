@@ -6,6 +6,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
@@ -19,9 +20,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { ETypeEmpresa, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,

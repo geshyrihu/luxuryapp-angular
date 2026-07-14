@@ -16,7 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   CrudSubmitOptions,
   FormHelper,
@@ -34,11 +34,7 @@ interface IITaskMessageDTOReopenForm {
   selector: "app-task-reopen",
   templateUrl: "./task-reopen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextAreaSignal,
-    WebButtonLabelSave,
-  ],
+  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, WebButtonLabelSave],
 })
 export class TaskReopen implements OnInit {
   private authS = inject(AuthService);

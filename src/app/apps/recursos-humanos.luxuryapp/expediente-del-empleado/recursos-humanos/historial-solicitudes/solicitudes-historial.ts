@@ -18,7 +18,7 @@ import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -80,8 +80,8 @@ interface IHistorialSolicitud {
   approvalDate?: string | null;
 }
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

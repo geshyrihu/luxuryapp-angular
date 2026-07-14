@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +16,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskTemplateItem } from "src/app/core/interfaces/recurring-tasks/task-template-item.interface";
 import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
@@ -81,7 +81,9 @@ export class TaskTemplateItems implements OnInit {
 
   onDeleteItem(itemId: string) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.recurringTasksTemplatesItemsById(itemId))
+      .onDelete(
+        Endpoints.RefactorOperations.recurringTasksTemplatesItemsById(itemId),
+      )
       .then((result: boolean) => {
         if (result) {
           this.loadItems();
@@ -108,9 +110,14 @@ export class TaskTemplateItems implements OnInit {
     // The 'items' signal already holds the reordered array
     const itemIdsInOrder = this.items().map((item) => item.id);
     this.apiResponseS
-      .onPut(Endpoints.RefactorOperations.recurringTasksTemplatesByIdItemsReorder(this.templateId), {
-        itemIdsInOrder,
-      })
+      .onPut(
+        Endpoints.RefactorOperations.recurringTasksTemplatesByIdItemsReorder(
+          this.templateId,
+        ),
+        {
+          itemIdsInOrder,
+        },
+      )
       .then((result) => {
         if (result) {
           // Success toast handled by ApiResponseService

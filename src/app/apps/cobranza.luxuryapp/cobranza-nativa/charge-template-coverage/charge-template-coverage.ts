@@ -7,20 +7,19 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ECalculationMethod } from "../interfaces/enums";
 import { TemplateCoverageDTO } from "../interfaces/template-coverage.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-charge-template-coverage",
-  imports: [
-    AppIcon,TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
+  imports: [AppIcon, TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-coverage.html",
 })

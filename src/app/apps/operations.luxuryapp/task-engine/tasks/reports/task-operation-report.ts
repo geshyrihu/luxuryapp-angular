@@ -12,13 +12,13 @@ import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
+import { SendOperationReport } from "src/app/apps/operations.luxuryapp/task-engine/tasks/send-operation-report/send-operation-report";
 import { TaskDateRangeSelector } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
 import { TaskReportActions } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-report-actions/task-report-actions";
 import { TaskStatus } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-status/task-status";
-import { SendOperationReport } from "src/app/apps/operations.luxuryapp/task-engine/tasks/send-operation-report/send-operation-report";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -38,10 +38,10 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { TaskClose } from "../task-close";
-import { TaskReadList } from "../task-read-list";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { EITaskMessageDTOStatus } from "../task-message-status.enum";
 import { TaskForm } from "../task-message/task-form";
+import { TaskReadList } from "../task-read-list";
 
 @Component({
   selector: "app-task-operation-report",

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -61,7 +61,8 @@ export class MinutasReunionesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las minutas que creamos en el backend
-    const urlApi = Endpoints.RefactorOperations.boardDirectorsMeetingMinutesById(customerId);
+    const urlApi =
+      Endpoints.RefactorOperations.boardDirectorsMeetingMinutesById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -15,10 +15,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AccessPointDto } from "src/app/core/interfaces/access-point.dto";
 import { AccessScanResultDto } from "src/app/core/interfaces/access-scan-result.dto";

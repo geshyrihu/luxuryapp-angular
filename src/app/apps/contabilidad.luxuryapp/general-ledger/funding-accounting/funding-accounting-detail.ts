@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -11,6 +10,7 @@ import {
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { TableModule } from "primeng/table";
@@ -98,7 +98,10 @@ export class FundingAccountingDetail {
   }
 
   onLoadData(customerId: string) {
-    const urlApi = Endpoints.RefactorContabilidad.fundingDetailsByIdById(this.id, customerId);
+    const urlApi = Endpoints.RefactorContabilidad.fundingDetailsByIdById(
+      this.id,
+      customerId,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.fullData.set(result);
       this.onSetSignalProperty(result);
@@ -150,7 +153,9 @@ export class FundingAccountingDetail {
     this.apiResponseS.onDownloadFile(urlApi, nameReport);
   }
   onDownloadInvoces() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingfileInvoicesById(this.id); // Nota: "invoices" plural y coincidir con backend
+    const urlApi = Endpoints.RefactorContabilidad.fundingfileInvoicesById(
+      this.id,
+    ); // Nota: "invoices" plural y coincidir con backend
     const nameReport = this.periodo() + "_Facturas.zip";
     this.apiResponseS.onDownloadFile(urlApi, nameReport);
   }
@@ -164,7 +169,9 @@ export class FundingAccountingDetail {
     });
   }
   onRevokeConfirmation() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingRevokeConfirmationById(this.id);
+    const urlApi = Endpoints.RefactorContabilidad.fundingRevokeConfirmationById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.isConfirmed.set(false);
@@ -180,7 +187,9 @@ export class FundingAccountingDetail {
     });
   }
   onRevertComplete() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingRevertCompleteById(this.id);
+    const urlApi = Endpoints.RefactorContabilidad.fundingRevertCompleteById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.inProgress.set(false);
@@ -219,7 +228,10 @@ export class FundingAccountingDetail {
     );
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
-    const urlApi = Endpoints.RefactorContabilidad.fundingUpdatePurchasePaidStatusById(ordenId);
+    const urlApi =
+      Endpoints.RefactorContabilidad.fundingUpdatePurchasePaidStatusById(
+        ordenId,
+      );
     const body = { isPaid: nuevoEstado };
 
     // 2. Llamamos a nuestro nuevo y flamante método onPatch.

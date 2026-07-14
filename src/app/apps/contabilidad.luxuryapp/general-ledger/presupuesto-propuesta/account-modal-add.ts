@@ -11,7 +11,6 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,8 +28,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { RippleModule } from "primeng/ripple";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {

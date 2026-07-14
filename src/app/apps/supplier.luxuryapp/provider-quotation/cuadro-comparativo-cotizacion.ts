@@ -23,7 +23,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { debounceTime } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -83,14 +83,22 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   onGetCotizacioProveedor() {
     if (this.cotizacionProveedorId) {
       this.apiResponseS
-        .onGetItem(Endpoints.RefactorSupplier.cotizacionProveedorById(this.cotizacionProveedorId))
+        .onGetItem(
+          Endpoints.RefactorSupplier.cotizacionProveedorById(
+            this.cotizacionProveedorId,
+          ),
+        )
         .then((result: any) => {
           this.processProviderData(result);
         });
       return;
     }
 
-    const url = Endpoints.RefactorSupplier.cotizacionProveedorPosicionCotizacionByIdById(this.solicitudCompraId, this.posicionCotizacion);
+    const url =
+      Endpoints.RefactorSupplier.cotizacionProveedorPosicionCotizacionByIdById(
+        this.solicitudCompraId,
+        this.posicionCotizacion,
+      );
     this.apiResponseS.onGetItem(url).then((result: any) => {
       this.processProviderData(result);
     });
@@ -109,7 +117,9 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorSupplier.solicitudcompraById(this.solicitudCompraId);
+    const urlApi = Endpoints.RefactorSupplier.solicitudcompraById(
+      this.solicitudCompraId,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.solicitudCompra = result;
       this.solicitudCompraDetalle = result.solicitudCompraDetalle;
@@ -177,7 +187,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
 
     return this.apiResponseS
-      .onPut(Endpoints.RefactorSupplier.cotizacionProveedorUpdateProviderById(this.cotizacionProveedor.id),
+      .onPut(
+        Endpoints.RefactorSupplier.cotizacionProveedorUpdateProviderById(
+          this.cotizacionProveedor.id,
+        ),
         formData,
         showToast,
       )
@@ -193,7 +206,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     if (!this.cotizacionProveedor?.id) return;
 
     this.apiResponseS
-      .onDelete(Endpoints.RefactorSupplier.cotizacionProveedorRemoveFileById(this.cotizacionProveedor.id),
+      .onDelete(
+        Endpoints.RefactorSupplier.cotizacionProveedorRemoveFileById(
+          this.cotizacionProveedor.id,
+        ),
       )
       .then((success) => {
         if (success) {
@@ -227,7 +243,11 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
 
   onDeleteProvider() {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorSupplier.solicitudCompraDeleteproviderByIdById(this.solicitudCompraId, this.cotizacionProveedorId),
+      .onDelete(
+        Endpoints.RefactorSupplier.solicitudCompraDeleteproviderByIdById(
+          this.solicitudCompraId,
+          this.cotizacionProveedorId,
+        ),
       )
       .then((result: boolean) => {
         if (result) this.ref.close(true);
@@ -237,7 +257,6 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   onModalany() {
     this.ref.close(true);
     this.dialogHandlerS.openDialog(
-      
       {
         solicitudCompraId: this.solicitudCompra.id,
         folioSolicitudCompra: this.solicitudCompra.folio,
@@ -249,7 +268,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   onCotizacionesRelacionadas() {
-    const urlApi = Endpoints.RefactorSupplier.ordenCompraCotizacionesRelacionadasById(this.solicitudCompraId);
+    const urlApi =
+      Endpoints.RefactorSupplier.ordenCompraCotizacionesRelacionadasById(
+        this.solicitudCompraId,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.cotizacionesRelacionadas = result || [];
       this.cdr.detectChanges();

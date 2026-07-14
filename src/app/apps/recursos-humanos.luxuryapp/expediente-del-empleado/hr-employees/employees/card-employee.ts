@@ -10,7 +10,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { UserCard } from "src/app/core/interfaces/user-card.interface";
 @Component({
@@ -33,7 +33,7 @@ export class CardEmployee implements OnInit {
 
   onLoadData(applicationUserId: string) {
     this.apiResponseS
-      .onGetItem(Endpoints.ApplicationUsers.cardUser(applicationUserId))
+      .onGetItem(Endpoints.EmployeeInternal.cardUser(applicationUserId))
       .then((result: any) => {
         if (result) {
           this.applicationUser.set(result);

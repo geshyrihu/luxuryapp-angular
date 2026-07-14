@@ -20,14 +20,20 @@ import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
 import { TableModule } from "primeng/table";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
+import { CreateOrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra";
+import { CreateOrdenCompraWizard } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra-wizard/create-orden-compra-wizard";
+import { OrdenCompraDatosPago } from "src/app/apps/supplier.luxuryapp/po/purchase-order/forms/orden-compra-datos-pago";
+import { OrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra";
+import { PaymentVoucherModal } from "src/app/apps/supplier.luxuryapp/po/purchase-order/payment-voucher-modal/payment-voucher-modal";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -35,12 +41,6 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
-import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
-import { CreateOrdenCompraWizard } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra-wizard/create-orden-compra-wizard";
-import { PaymentVoucherModal } from "src/app/apps/supplier.luxuryapp/po/purchase-order/payment-voucher-modal/payment-voucher-modal";
-import { CreateOrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra";
-import { OrdenCompraDatosPago } from "src/app/apps/supplier.luxuryapp/po/purchase-order/forms/orden-compra-datos-pago";
-import { OrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/sat-reconciliation-dialog/sat-reconciliation-dialog";
@@ -228,7 +228,10 @@ export class FundingDetail {
   }
 
   onLoadData(customerId: string) {
-    const urlApi = Endpoints.RefactorContabilidad.fundingDetailsByIdById(this.id, customerId);
+    const urlApi = Endpoints.RefactorContabilidad.fundingDetailsByIdById(
+      this.id,
+      customerId,
+    );
     this.apiResponseS.onGetList<FundingDetailDTO>(urlApi).then((result) => {
       this.fullData.set(result);
       this.onSetSignalProperty(result);
@@ -307,7 +310,9 @@ export class FundingDetail {
     });
   }
   onUnvalidate() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingUnvalidateById(this.id);
+    const urlApi = Endpoints.RefactorContabilidad.fundingUnvalidateById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -317,7 +322,9 @@ export class FundingDetail {
   }
 
   onUnauthorize() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingUnauthorizeById(this.id);
+    const urlApi = Endpoints.RefactorContabilidad.fundingUnauthorizeById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -337,7 +344,9 @@ export class FundingDetail {
   }
 
   onRevokeConfirmation() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingRevokeConfirmationById(this.id);
+    const urlApi = Endpoints.RefactorContabilidad.fundingRevokeConfirmationById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -360,7 +369,10 @@ export class FundingDetail {
     );
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
-    const urlApi = Endpoints.RefactorContabilidad.fundingUpdatePurchasePaidStatusById(ordenId);
+    const urlApi =
+      Endpoints.RefactorContabilidad.fundingUpdatePurchasePaidStatusById(
+        ordenId,
+      );
     const body = { isPaid: nuevoEstado };
 
     // 2. Llamamos a nuestro nuevo y flamante método onPatch.
@@ -437,7 +449,11 @@ export class FundingDetail {
 
   onRemoveFueraFondeo(ordenCompraId: string): void {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorContabilidad.ordenCompraByIdFueraFondeo(ordenCompraId))
+      .onDelete(
+        Endpoints.RefactorContabilidad.ordenCompraByIdFueraFondeo(
+          ordenCompraId,
+        ),
+      )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
       });
@@ -574,7 +590,9 @@ export class FundingDetail {
       .map((orden) => orden.ordenCompraId);
 
     this.apiResponseS
-      .onPut(Endpoints.RefactorContabilidad.fundingUpdateOrder, { ids: allOrderedIds })
+      .onPut(Endpoints.RefactorContabilidad.fundingUpdateOrder, {
+        ids: allOrderedIds,
+      })
       .then(() => {
         this.onLoadData(this.customerIdS.customerId());
       });

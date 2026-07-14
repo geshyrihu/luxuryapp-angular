@@ -25,7 +25,7 @@ import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";

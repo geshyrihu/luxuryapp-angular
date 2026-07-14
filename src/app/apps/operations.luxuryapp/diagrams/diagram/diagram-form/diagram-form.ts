@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,6 +14,7 @@ import {
 } from "@angular/forms";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";

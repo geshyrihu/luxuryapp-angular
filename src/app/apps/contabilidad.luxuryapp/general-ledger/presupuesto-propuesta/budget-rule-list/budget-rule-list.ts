@@ -1,4 +1,4 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -12,7 +12,6 @@ import { Endpoints } from "src/app/core/constants/endpoints";
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -82,7 +81,8 @@ export class BudgetRuleList implements OnInit {
   onLoadData() {
     // Si viene customerId en config (opcional), usarlo, sino el del servicio
     const customerIdToLoad = this.config.data?.customerId || this.customerId;
-    const url = Endpoints.RefactorContabilidad.budgetAccountRulesById(customerIdToLoad);
+    const url =
+      Endpoints.RefactorContabilidad.budgetAccountRulesById(customerIdToLoad);
 
     this.apiResponseS
       .onGetList(url)

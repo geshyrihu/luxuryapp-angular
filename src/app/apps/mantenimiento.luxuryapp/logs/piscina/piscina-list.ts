@@ -19,7 +19,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -29,12 +29,12 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PiscinaForm } from "./piscina-form";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-piscina-list",
@@ -86,7 +86,9 @@ export class PiscinaList {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.piscinaListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorMantenimiento.piscinaListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

@@ -3,7 +3,7 @@ import { from, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { Endpoints } from "../constants/endpoints";
+import { Endpoints } from "../constants/endpoints/endpoints";
 @Injectable({
   providedIn: "root",
 })
@@ -17,7 +17,10 @@ export class EnumSelectService {
     nameEnum: string,
     defaultOption?: boolean,
   ): Observable<SelectItemDto[]> {
-    const urlApi = Endpoints.EnumSelectItems.selectItemEnum(nameEnum, defaultOption !== undefined ? String(defaultOption) : undefined);
+    const urlApi = Endpoints.EnumSelectItems.selectItemEnum(
+      nameEnum,
+      defaultOption !== undefined ? String(defaultOption) : undefined,
+    );
 
     return from(this.apiResponseS.onGetList<SelectItemDto[]>(urlApi)).pipe(
       map((result) => result || []),

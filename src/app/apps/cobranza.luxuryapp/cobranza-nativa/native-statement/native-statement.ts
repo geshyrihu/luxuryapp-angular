@@ -16,7 +16,7 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -142,7 +142,7 @@ export class NativeStatement implements OnInit {
 
   async loadProperties() {
     const res = await this.apiResponseS.onGetSelectItem<any[]>(
-      `properties/${this.customerId()}`,
+      Endpoints.RefactorResident.propertyListById(this.customerId()),
     );
     if (res) {
       this.properties.set(res.map((p) => ({ label: p.label, value: p.value })));

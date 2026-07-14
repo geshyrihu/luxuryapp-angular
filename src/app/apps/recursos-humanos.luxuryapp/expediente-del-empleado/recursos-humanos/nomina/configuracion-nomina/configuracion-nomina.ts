@@ -12,15 +12,15 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   ConfiguracionNominaDTO,
   ConfiguracionNominaUpdateDTO,
   FRECUENCIA_PAGO_OPTIONS,
-} from '../interfaces/configuracion-nomina.interface';
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+} from "../interfaces/configuracion-nomina.interface";
 @Component({
   selector: "app-configuracion-nomina",
   imports: [

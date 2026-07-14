@@ -6,12 +6,13 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -20,7 +21,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-minuta-pendientes",

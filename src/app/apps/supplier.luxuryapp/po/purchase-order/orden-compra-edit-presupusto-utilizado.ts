@@ -17,7 +17,7 @@ import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface IOrdenCompraPresupuestoForm {
   id: FormControl<string | null>;

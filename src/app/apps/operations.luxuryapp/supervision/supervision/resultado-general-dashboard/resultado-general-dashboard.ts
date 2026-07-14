@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -17,6 +16,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -95,38 +95,47 @@ export class ResultadoGeneralDashboard implements OnInit {
     this.reporteFiltro = "MINUTAS GENERAL";
     // Mostrar un mensaje de carga
 
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenMinutasByIdByIdById(this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin), this.nivelReporte);
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralReporteResumenMinutasByIdByIdById(
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
+        this.nivelReporte,
+      );
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataMinutaFiltro(AreaMinutasDetalles: number) {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenMinutasFiltroByIdByIdByIdById(this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ), this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoFin,
-    ), AreaMinutasDetalles, this.nivelReporte);
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralReporteResumenMinutasFiltroByIdByIdByIdById(
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
+        AreaMinutasDetalles,
+        this.nivelReporte,
+      );
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataPreventivos() {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenPreventivosByIdById(this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin));
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralReporteResumenPreventivosByIdById(
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
+      );
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
   onLoadDataTickets() {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdById(this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ), this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin));
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdById(
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
+      );
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
-import { IEmployee } from 'src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employees/interfaces/employee.interface';
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { IEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employees/interfaces/employee.interface";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 @Injectable({
@@ -200,13 +200,13 @@ export class EmployeeInternalService {
 
   searchExistingPerson(fullName: string) {
     return this._apiResponseS.onGetListNotLoading<any>(
-      Endpoints.ApplicationUsers.searchExistingPerson(fullName),
+      Endpoints.UserValidation.searchExistingPerson(fullName),
     );
   }
 
   searchExistingPhone(phone: string) {
     return this._apiResponseS.onGetListNotLoading<any>(
-      Endpoints.ApplicationUsers.searchExistingPhone(phone),
+      Endpoints.UserValidation.searchExistingPhone(phone),
     );
   }
 }

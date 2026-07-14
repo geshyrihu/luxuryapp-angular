@@ -5,11 +5,11 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateRangeStorageService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/date-range-storage.service";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Component({
   selector: "app-task-weekly-report-preview",

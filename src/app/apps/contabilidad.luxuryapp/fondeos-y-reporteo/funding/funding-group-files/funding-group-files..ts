@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,13 +7,14 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -152,7 +152,8 @@ export class FundingGroupFiles implements OnInit {
     const uniqueOrderIds = [...new Set(files.map((f: any) => f.ordenCompraId))];
     if (uniqueOrderIds.length === 0) return;
 
-    this.apiResponseS.onDownloadFilePost(Endpoints.RefactorContabilidad.fundingDownloadBulkInvoicesZip,
+    this.apiResponseS.onDownloadFilePost(
+      Endpoints.RefactorContabilidad.fundingDownloadBulkInvoicesZip,
       uniqueOrderIds,
       "Facturas_Agrupadas.zip",
     );

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -13,8 +12,9 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { UpdateSatFundingDetailDto } from "src/app/apps/contabilidad.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 interface ISatFundingInvoiceEditForm {
   id: FormControl<string>;

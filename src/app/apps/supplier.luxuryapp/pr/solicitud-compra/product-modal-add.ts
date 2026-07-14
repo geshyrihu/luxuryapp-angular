@@ -23,8 +23,9 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -33,7 +34,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service"; // Importar el nuevo servicio
-import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.

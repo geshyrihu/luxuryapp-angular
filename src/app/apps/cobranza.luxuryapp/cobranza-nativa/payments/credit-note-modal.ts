@@ -10,13 +10,13 @@ import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EPaymentMethod } from "../interfaces/enums";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface ICreditNoteForm {
   propertyId: FormControl<string>;
@@ -99,7 +99,7 @@ export default class CreditNoteModalComponent implements OnInit {
   async loadProperties() {
     const res = await this.apiResponseS.onGetSelectItem<
       { label: string; value: string }[]
-    >(`properties/${this.customerId}`);
+    >(Endpoints.RefactorResident.propertyListById(this.customerId));
     if (res) this.propertiesOptions.set(res);
   }
 

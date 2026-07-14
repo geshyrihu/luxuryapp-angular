@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomerIdService } from "../auth/services/customer-id.service";
-import { Endpoints } from "../constants/endpoints";
+import { Endpoints } from "../constants/endpoints/endpoints";
 
 export interface ChatSessionDto {
   id: string;
@@ -41,7 +41,9 @@ export class AiChatService {
   }
 
   async loadSessions() {
-    const res = await this.api.onGetList<ChatSessionDto[]>(Endpoints.AiChat.sessions);
+    const res = await this.api.onGetList<ChatSessionDto[]>(
+      Endpoints.AiChat.sessions,
+    );
     this.sessions.set(res || []);
   }
 

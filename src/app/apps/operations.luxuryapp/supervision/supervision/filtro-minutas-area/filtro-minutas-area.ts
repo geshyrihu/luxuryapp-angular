@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -14,6 +13,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -77,7 +77,12 @@ export class FiltroMinutasArea implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.dashboardFiltroMinutasAreaByIdByIdById(this.meetingId, this.area, this.estatus);
+    const urlApi =
+      Endpoints.RefactorOperations.dashboardFiltroMinutasAreaByIdByIdById(
+        this.meetingId,
+        this.area,
+        this.estatus,
+      );
 
     this.apiResponseS
       .onGetList(urlApi)

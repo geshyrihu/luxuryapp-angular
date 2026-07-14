@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +9,7 @@ import {
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMenu } from "@ui/adaptive/menu/menu";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
@@ -21,8 +21,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu } from "primeng/menu";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

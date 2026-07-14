@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenanc
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -58,9 +58,11 @@ export class ReportRecorridoDiario {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportBitacoradiariaByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ));
+    const urlApi =
+      Endpoints.RefactorMantenimiento.maintenanceReportBitacoradiariaByIdById(
+        this.customerIdS.customerId(),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

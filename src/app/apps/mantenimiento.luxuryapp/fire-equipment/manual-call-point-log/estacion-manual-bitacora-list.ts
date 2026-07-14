@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -17,6 +16,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -31,10 +31,10 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-estacion-manual-bitacora-list",
@@ -83,7 +83,11 @@ export class EstacionManualBitacoraList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorMantenimiento.bitacoraEstacionManualListById(this.stationId))
+      .onGetList(
+        Endpoints.RefactorMantenimiento.bitacoraEstacionManualListById(
+          this.stationId,
+        ),
+      )
       .then((result: any) => this.dataSignal.set(result));
   }
 

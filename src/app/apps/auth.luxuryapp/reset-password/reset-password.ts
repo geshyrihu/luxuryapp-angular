@@ -24,6 +24,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import Swal from "sweetalert2";
@@ -319,7 +320,7 @@ export class ResetPassword implements OnInit, OnDestroy {
     };
 
     this.dataConnectorS
-      .post("Auth/ConfirmRecoverPassword", body)
+      .post(Endpoints.Auth.confirmRecoverPassword, body)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           const msg =

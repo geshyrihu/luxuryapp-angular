@@ -12,12 +12,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { TableModule } from "primeng/table";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AccessPointDto } from "src/app/core/interfaces/access-point.dto";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";

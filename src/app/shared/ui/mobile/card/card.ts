@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,9 +9,14 @@ import { CardBase } from "@ui/base/card.base";
 @Component({
   selector: "ili-card",
 
+  imports: [NgTemplateOutlet],
   template: `
     <section class="ili-card" [class.ili-card-elevated]="elevated()">
-      @if (header() || subheader()) {
+      @if (headerTemplate()) {
+        <div class="ili-card-header-tpl">
+          <ng-container [ngTemplateOutlet]="headerTemplate() ?? null" />
+        </div>
+      } @else if (header() || subheader()) {
         <header class="ili-card-header">
           @if (header()) {
             <div class="ili-card-title">{{ header() }}</div>
@@ -21,7 +27,22 @@ import { CardBase } from "@ui/base/card.base";
         </header>
       }
       <div class="ili-card-body" [class.ili-card-body-unpadded]="!padded()">
-        <ng-content />
+        @if (titleTemplate()) {
+          <ng-container [ngTemplateOutlet]="titleTemplate() ?? null" />
+        }
+        @if (subtitleTemplate()) {
+          <ng-container [ngTemplateOutlet]="subtitleTemplate() ?? null" />
+        }
+        @if (contentTemplate()) {
+          <ng-container [ngTemplateOutlet]="contentTemplate() ?? null" />
+        } @else {
+          <ng-content />
+        }
+        @if (footerTemplate()) {
+          <div class="ili-card-footer-tpl">
+            <ng-container [ngTemplateOutlet]="footerTemplate() ?? null" />
+          </div>
+        }
       </div>
     </section>
   `,
@@ -60,6 +81,9 @@ import { CardBase } from "@ui/base/card.base";
       }
       .ili-card-body-unpadded {
         padding: 0;
+      }
+      .ili-card-footer-tpl {
+        margin-top: 0.9rem;
       }
     `,
   ],

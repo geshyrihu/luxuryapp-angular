@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -13,23 +12,24 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
 import { MenuItem } from "primeng/api";
-import { UpdatePasswordAccount } from "src/app/apps/admin.luxuryapp/seguridad-permisos/application-user/update-password-account";
-import { UpdateRole } from "src/app/apps/admin.luxuryapp/seguridad-permisos/application-user/update-role";
+import { EmployeeReclutamiento } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EmployeeReclutamiento } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento';
-import { IncidentList } from '../../recursos-humanos/incidencias-sanciones/incident/incident-list';
-import { EmployeeBankDataList } from '../employee-bank-data/employee-bank-data-list';
-import { EmployeeClinicalDataList } from '../employee-clinical-data/employee-clinical-data-list';
-import { EmployeeEmergencyContactList } from '../employee-emergency-contact/employee-emergency-contact-list';
-import { EmployeeAddressForm } from '../employee-internal/employee-address-form';
-import { EmployeeAvatarForm } from '../employee-internal/employee-avatar-form';
-import { EmployeeLaboralDataForm } from '../employee-internal/employee-laboral-data-form';
-import { EmployeePersonalDataForm } from '../employee-internal/employee-personal-data-form';
-import { EmployeePrincipalDataForm } from '../employee-internal/employee-principal-data-form';
+import { UpdatePasswordAccount } from "src/app/shared/user-account-access/update-password-account";
+import { UpdateRole } from "src/app/shared/user-account-access/update-role";
+import { IncidentList } from "../../recursos-humanos/incidencias-sanciones/incident/incident-list";
+import { EmployeeBankDataList } from "../employee-bank-data/employee-bank-data-list";
+import { EmployeeClinicalDataList } from "../employee-clinical-data/employee-clinical-data-list";
+import { EmployeeEmergencyContactList } from "../employee-emergency-contact/employee-emergency-contact-list";
+import { EmployeeAddressForm } from "../employee-internal/employee-address-form";
+import { EmployeeAvatarForm } from "../employee-internal/employee-avatar-form";
+import { EmployeeLaboralDataForm } from "../employee-internal/employee-laboral-data-form";
+import { EmployeePersonalDataForm } from "../employee-internal/employee-personal-data-form";
+import { EmployeePrincipalDataForm } from "../employee-internal/employee-principal-data-form";
 @Component({
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",
@@ -87,7 +87,11 @@ export class EmployeeForm implements OnInit {
         }
 
         this.apiResponseS
-          .onGetItem(Endpoints.RefactorRecursosHumanos.applicationUsersCardUserById(appUserId))
+          .onGetItem(
+            Endpoints.RefactorRecursosHumanos.applicationUsersCardUserById(
+              appUserId,
+            ),
+          )
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
@@ -257,7 +261,11 @@ export class EmployeeForm implements OnInit {
 
   onValidarAdminAsis() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorRecursosHumanos.employeesValidaradminasisById(this.authS.applicationUserId))
+      .onGetItem(
+        Endpoints.RefactorRecursosHumanos.employeesValidaradminasisById(
+          this.authS.applicationUserId,
+        ),
+      )
       .then((result: any) => {
         this.tienePermiso = result;
       });

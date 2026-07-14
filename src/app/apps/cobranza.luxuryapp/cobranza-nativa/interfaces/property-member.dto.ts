@@ -30,6 +30,22 @@ export interface CreatePropertyMemberDTO {
   notes: string | null;
 }
 
+export interface CreatePropertyMemberWithAccountDTO {
+  customerId: string;
+  propertyId: string;
+  typePerson: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  memberRole: EMemberRole;
+  isFinancialResponsible: boolean;
+  receiveNotifications: boolean;
+  startDate: string;
+  endDate: string | null;
+  notes: string | null;
+}
+
 export interface UpdatePropertyMemberDTO {
   id: string;
   memberRole: EMemberRole;

@@ -9,8 +9,8 @@ import {
   WritableSignal,
 } from "@angular/core";
 import { Subject } from "rxjs";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "../constants/endpoints";
 
 @Injectable({
   providedIn: "root",

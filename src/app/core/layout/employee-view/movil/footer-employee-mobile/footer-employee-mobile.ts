@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,6 +25,7 @@ import {
 } from "ionicons/icons";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -51,7 +51,7 @@ export class FooterEmployeeMobile implements OnInit {
   router = inject(Router);
   aspRoleS = inject(AspRoleService);
   menuCtrl = inject(MenuController);
-  
+
   messageInNotRead = signal<number>(0);
   footerItems = signal<FooterItem[]>([]);
 
@@ -72,7 +72,7 @@ export class FooterEmployeeMobile implements OnInit {
     this.setFooterItems();
     // Fetch once on init to get initial count
     this.onLoadNotification();
-    
+
     this.signalRService.messageReceived$.subscribe(() => {
       this.onLoadNotification();
     });

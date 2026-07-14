@@ -20,12 +20,14 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputNumberModule } from "primeng/inputnumber";
 
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { ProductosForm } from "src/app/apps/supplier.luxuryapp/product/productos-form";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import {
   rowsPerPageOptions,
@@ -34,8 +36,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ProductosForm } from "src/app/apps/supplier.luxuryapp/product/productos-form";
-import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 
 interface IOrdenCompraDetalleRowForm {
   productoId: FormControl<string | null>;

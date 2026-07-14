@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AddCustomerPermisoToUser } from "src/app/core/interfaces/add-customer-permiso-to-user.interface";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";

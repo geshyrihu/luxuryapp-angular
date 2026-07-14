@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -23,6 +22,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -84,7 +84,10 @@ export class OrdenCompraPagadas {
     });
   }
   onLoadData(type: any) {
-    const urlApi = Endpoints.RefactorSupplier.ordenCompraPagadasByIdById(this.customerIdS.customerId(), type);
+    const urlApi = Endpoints.RefactorSupplier.ordenCompraPagadasByIdById(
+      this.customerIdS.customerId(),
+      type,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

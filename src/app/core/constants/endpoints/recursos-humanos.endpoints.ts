@@ -271,6 +271,8 @@ export const EndpointsRecursosHumanos = {
     activate: (id: string) => `employee-internal/${id}/activate`,
     addressData: (employeeId: string | number) =>
       `employee-internal/address-data/${employeeId}`,
+    cardUser: (applicationUserId: string) =>
+      `employee-internal/card-user/${applicationUserId}`,
     dataForRecoveryPassword: (id: string) =>
       `employee-internal/data-for-recovery-password/${id}`,
     laboralData: (applicationUserId: string) =>
@@ -384,7 +386,7 @@ export const EndpointsRecursosHumanos = {
     performanceEvaluationsById: (id: any) => `performance-evaluations/${id}`,
     performanceEvaluationsUpdateById: (evaluationId: any) => `performance-evaluations/update/${evaluationId}`,
     performanceEvaluationsCreate: "performance-evaluations/create",
-    applicationUsersCardUserById: (appUserId: any) => `application-users/card-user/${appUserId}`,
+    applicationUsersCardUserById: (appUserId: any) => `employee-internal/card-user/${appUserId}`,
     employeesValidaradminasisById: (authS: any) => `employees/validaradminasis/${authS}`,
     hrNominaPeriodos: "hr/nomina/periodos",
     hrNominaPeriodosById: (p0: any) => `hr/nomina/periodos/${p0}`,

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -21,11 +21,7 @@ import { SignalRService } from "src/app/core/services/signalr.service";
   selector: "app-funding-form",
   templateUrl: "./funding-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputSelectSignal,
-    WebButtonLabelSave,
-  ],
+  imports: [ReactiveFormsModule, CustomInputSelectSignal, WebButtonLabelSave],
 })
 export class FundingForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -63,7 +59,9 @@ export class FundingForm implements OnInit {
       this.onLoadData();
     }
 
-    const urlApi = Endpoints.RefactorContabilidad.fundingPeriodById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorContabilidad.fundingPeriodById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: SelectItemDto[]) => {

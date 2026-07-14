@@ -24,7 +24,7 @@ import { firstValueFrom } from "rxjs";
 import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/employee-internal.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { imageToBase64 } from "src/app/core/helpers/enumeration";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";

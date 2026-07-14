@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -6,15 +5,22 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 @Component({
   selector: "app-funding-purchase-detail",
   imports: [
-    LxSpinner,CommonModule, WebButtonLabel, CurrencyPipe, DecimalPipe, LxTag],
+    LxSpinner,
+    CommonModule,
+    WebButtonLabel,
+    CurrencyPipe,
+    DecimalPipe,
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-purchase-detail.html",
 })
@@ -31,7 +37,9 @@ export class FundingPurchaseDetail {
     if (this.ordenCompraId !== "") this.onLoadData();
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingPurchaseDetailsById(this.ordenCompraId);
+    const urlApi = Endpoints.RefactorContabilidad.fundingPurchaseDetailsById(
+      this.ordenCompraId,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.data.set(result);
       this.submitting.set(false);

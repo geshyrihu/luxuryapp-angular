@@ -11,13 +11,13 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
+import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 @Component({
   selector: "app-juntas-mensuales-backfill",
@@ -184,18 +184,15 @@ export class JuntasMensualesBackfill {
   }
 
   private buildSelectionState(items: JuntaMensualSessionBackfillCandidate[]) {
-    return items.reduce<Record<string, BackfillSelectionState>>(
-      (acc, item) => {
-        acc[item.juntaMensualSessionId] = {
-          applyPresentation:
-            !!item.suggestedPresentation && !item.hasPresentationLinked,
-          applyMeeting: !!item.suggestedMeeting && !item.hasMeetingLinked,
-          applying: false,
-        };
-        return acc;
-      },
-      {},
-    );
+    return items.reduce<Record<string, BackfillSelectionState>>((acc, item) => {
+      acc[item.juntaMensualSessionId] = {
+        applyPresentation:
+          !!item.suggestedPresentation && !item.hasPresentationLinked,
+        applyMeeting: !!item.suggestedMeeting && !item.hasMeetingLinked,
+        applying: false,
+      };
+      return acc;
+    }, {});
   }
 
   private resolveSelectionState(sessionId: string): BackfillSelectionState {

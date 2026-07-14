@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,6 +21,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -31,8 +31,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
 
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -85,7 +85,9 @@ export class EstadoFinancieroList {
   }
 
   onLoadData(): void {
-    const urlApi = Endpoints.RefactorContabilidad.financialReportToCustomerById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorContabilidad.financialReportToCustomerById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -143,7 +145,11 @@ export class EstadoFinancieroList {
     this.processingAuthorize.set(currentSet);
 
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorContabilidad.financialReportAuthorizeByIdById(id, this.authS.applicationUserId),
+      .onGetItem(
+        Endpoints.RefactorContabilidad.financialReportAuthorizeByIdById(
+          id,
+          this.authS.applicationUserId,
+        ),
       )
       .then((_) => {
         this.onLoadData();
@@ -163,7 +169,9 @@ export class EstadoFinancieroList {
     this.processingDesauthorize.set(currentSet);
 
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorContabilidad.financialReportDesauthorizeById(id))
+      .onGetItem(
+        Endpoints.RefactorContabilidad.financialReportDesauthorizeById(id),
+      )
       .then((_) => {
         this.onLoadData();
       })
@@ -182,7 +190,11 @@ export class EstadoFinancieroList {
     this.processingSend.set(currentSet);
 
     this.apiResponseS
-      .onPost(Endpoints.RefactorContabilidad.financialReportSendByIdById(data.id, this.authS.applicationUserId),
+      .onPost(
+        Endpoints.RefactorContabilidad.financialReportSendByIdById(
+          data.id,
+          this.authS.applicationUserId,
+        ),
         null,
       )
       .then((_) => {

@@ -5,22 +5,21 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-task-read-list",
   templateUrl: "./task-read-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,TableModule, ],
+  imports: [AppIcon, TableModule],
 })
 export class TaskReadList implements OnInit {
   apiResponseS = inject(ApiResponseService);

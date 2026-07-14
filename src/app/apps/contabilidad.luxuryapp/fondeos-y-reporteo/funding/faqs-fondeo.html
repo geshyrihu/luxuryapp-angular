@@ -11,9 +11,9 @@
   </div>
 
   @if (filteredFaqs.length === 0) {
-  <lx-message severity="info" class="w-full"><ng-template #content>
-      <div class="text-center w-full">No se encontraron resultados.</div>
-    </ng-template></lx-message>
+  <lx-message severity="info" class="w-full">
+    <div class="text-center w-full">No se encontraron resultados.</div>
+  </lx-message>
   } @for (faq of filteredFaqs; track faq) {
   <lx-card class="mb-3">
 <ng-template #header>

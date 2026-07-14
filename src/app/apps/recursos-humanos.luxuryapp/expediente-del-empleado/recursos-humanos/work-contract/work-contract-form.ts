@@ -16,7 +16,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -25,7 +25,7 @@ import {
   EContractType,
   WorkContractAddOrEditDTO,
   WorkContractDetailDTO,
-} from './interfaces/work-contract.dto';
+} from "./interfaces/work-contract.dto";
 
 interface IWorkContractForm {
   employeeId: import("@angular/forms").FormControl<string>;

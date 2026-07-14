@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,8 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -20,7 +21,6 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
 
 @Component({
   selector: "app-service-history-machinery",
@@ -53,7 +53,10 @@ export class ServiceHistoryMachinery implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.machineriesServiceHistoryById(this.config.data.id);
+    const urlApi =
+      Endpoints.RefactorMantenimiento.machineriesServiceHistoryById(
+        this.config.data.id,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

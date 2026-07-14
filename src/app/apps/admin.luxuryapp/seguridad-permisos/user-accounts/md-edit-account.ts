@@ -9,9 +9,9 @@ import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { UpdatePasswordAccount } from "src/app/shared/user-account-access/update-password-account";
+import { UpdateRole } from "src/app/shared/user-account-access/update-role";
 import { AccessCustomer } from "../acceso-customer/access-customer";
-import { UpdatePasswordAccount } from "./update-password-account";
-import { UpdateRole } from "./update-role";
 @Component({
   selector: "app-md-edit-account",
   templateUrl: "./edit-account.html",

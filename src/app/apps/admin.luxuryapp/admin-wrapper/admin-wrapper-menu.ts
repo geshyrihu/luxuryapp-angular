@@ -15,7 +15,7 @@ export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
     visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
     label: "Usuarios",
     icon: "mdi:account",
-    routerLink: "/admin/application-user",
+    routerLink: "/admin/user-accounts",
   },
   {
     group: "Seguridad y Permisos",

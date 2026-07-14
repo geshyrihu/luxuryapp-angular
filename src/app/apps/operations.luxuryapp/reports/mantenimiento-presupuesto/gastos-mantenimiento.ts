@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,9 +5,11 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -18,13 +19,11 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-gastos-mantenimiento",
   templateUrl: "./gastos-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,TableModule],
+  imports: [AppIcon, TableModule],
 })
 export class GastosMantenimiento {
   apiResponseS = inject(ApiResponseService);
@@ -50,8 +49,14 @@ export class GastosMantenimiento {
   }
   onLoadData() {
     this.loading.set(true);
-    const urlApi = Endpoints.RefactorOperations.budgetMaintenanceSummaryOfExpensesById(this.customerIdS.customerId());
-    const urlApi2 = Endpoints.RefactorOperations.budgetMaintenanceResumengastosById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorOperations.budgetMaintenanceSummaryOfExpensesById(
+        this.customerIdS.customerId(),
+      );
+    const urlApi2 =
+      Endpoints.RefactorOperations.budgetMaintenanceResumengastosById(
+        this.customerIdS.customerId(),
+      );
 
     Promise.all([
       this.apiResponseS.onGetList(urlApi),

@@ -6,6 +6,7 @@ import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -14,7 +15,6 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
@@ -28,18 +28,18 @@ import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { MobileBadge } from "@ui/mobile/badge/badge";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
+import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 
@@ -260,7 +260,9 @@ export class CatalogoGastosFijosList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result);
       this.updateSelectedItems();
@@ -290,7 +292,11 @@ export class CatalogoGastosFijosList {
   }
 
   updateItemSelectionOnApi(id: any, value: any) {
-    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosUpdateValidationByIdById(id, value);
+    const urlApi =
+      Endpoints.RefactorContabilidad.catalogoGastosFijosUpdateValidationByIdById(
+        id,
+        value,
+      );
     this.apiResponseS.onGetListNotLoading(urlApi, null).then(() => {
       // Opcional: se podría volver a llamar a updateSelectedItems aquí si hubiera alguna duda,
       // pero ya se hace en el método que origina el cambio.
@@ -429,7 +435,13 @@ export class CatalogoGastosFijosList {
 
     const fundingPeriodId = monthData.quincenas[quincenaIndex].value;
 
-    const urlApi = Endpoints.RefactorContabilidad.ordenCompraGenerarOrdenCompraFijosByIdByIdByIdById(this.customerIdS.customerId(), quincenaIndex, this.fundingYear(), fundingPeriodId);
+    const urlApi =
+      Endpoints.RefactorContabilidad.ordenCompraGenerarOrdenCompraFijosByIdByIdByIdById(
+        this.customerIdS.customerId(),
+        quincenaIndex,
+        this.fundingYear(),
+        fundingPeriodId,
+      );
 
     this.apiResponseS.onPostNotLoading(urlApi, {}).then((result) => {
       if (result !== false) {

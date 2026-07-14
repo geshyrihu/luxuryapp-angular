@@ -16,7 +16,7 @@ import type { EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ChartType } from "src/app/core/interfaces/chart-type.interface";
 import { DataSet } from "src/app/core/interfaces/data-set.interface";

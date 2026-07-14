@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +16,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -75,7 +75,10 @@ export class ElevatorsEmergencyCallList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.elevatorsEmergencyCallListById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorMantenimiento.elevatorsEmergencyCallListById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

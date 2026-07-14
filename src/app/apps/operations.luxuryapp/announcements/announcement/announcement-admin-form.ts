@@ -28,7 +28,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -37,9 +37,9 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import {
+  Customer,
   IAnnouncement,
   IAttachment,
-  Customer,
   IRole,
 } from "./announcement.model";
 import { ImageGenerationDialog } from "./image-generation-dialog/image-generation-dialog";

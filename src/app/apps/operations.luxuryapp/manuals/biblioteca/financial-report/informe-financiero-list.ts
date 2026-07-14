@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,6 +11,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-informe-financiero",
@@ -41,7 +41,9 @@ export class InformeFinanciero {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.financialReportListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorOperations.financialReportListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((response: any) => {
       this.dataSignal.set(response);
     });

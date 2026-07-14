@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -9,6 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -36,10 +36,10 @@ import { DateService } from "src/app/core/services/date.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
@@ -91,7 +91,10 @@ export class ListaEvaluacionRealizada {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorRecursosHumanos.performanceEvaluationsCustomerByIdHistory(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorRecursosHumanos.performanceEvaluationsCustomerByIdHistory(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result || []));
@@ -99,7 +102,9 @@ export class ListaEvaluacionRealizada {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorRecursosHumanos.performanceEvaluationsById(id))
+      .onDelete(
+        Endpoints.RefactorRecursosHumanos.performanceEvaluationsById(id),
+      )
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

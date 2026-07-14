@@ -1,13 +1,15 @@
 export const EndpointsSupplier = {
   PurchaseRequests: {
+    analyzeComparativeChart: (id: string) =>
+      `solicitud-compra/analyze-comparative-chart/${id}`,
     addProduct: "purchase-request/add-product",
     addProductList: (purchaseRequestId: string) =>
       `purchaserequest/add-product/${purchaseRequestId}`,
     create: "purchaserequest",
     deleteProduct: (id: string | number) => `purchaserequest/delete-product/${id}`,
-    cuadroComparativo: (id: string) => `solicitudcompra/cuadrocomparativo/${id}`,
+    cuadroComparativo: (id: string) => `solicitud-compra/cuadro-comparativo/${id}`,
     cuadroComparativoUpdate: (id: string) => `solicitud-compra/cuadro-comparativo/${id}`,
-    delete: (id: string | number) => `solicitudcompra/${id}`,
+    delete: (id: string | number) => `solicitud-compra/${id}`,
     getById: (id: string | number) => `solicitud-compra/${id}`,
     getDetail: (id: string) => `purchaserequest/datail/${id}`,
     getIdByFolioAndCustomer: (folio: string, customerId: string) =>
@@ -17,7 +19,7 @@ export const EndpointsSupplier = {
     listByCustomerAndStatus: (customerId: string, status: number | string) =>
       `purchaserequest/list/${customerId}/${status}`,
     listSolicitudCompraByCustomerAndStatus: (customerId: string, status: number | string) =>
-      `solicitudcompra/list/${customerId}/${status}`,
+      `solicitud-compra/list/${customerId}/${status}`,
     presentation: (customerId: string) => `solicitud-compra/presentation/${customerId}`,
     presentationOrder: "solicitud-compra/presentation/order",
     presentationSelection: (id: string) => `solicitud-compra/presentation/${id}/selection`,
@@ -43,10 +45,10 @@ export const EndpointsSupplier = {
     addProductList: (solicitudCompraId: string) =>
       `solicitud-compra-detalle/add-product/${solicitudCompraId}`,
     create: "solicitud-compra-detalle",
-    delete: (id: string | number) => `solicitudcompradetalle/${id}`,
+    delete: (id: string | number) => `solicitud-compra-detalle/${id}`,
     updatePrice: (id: string) => `solicitud-compra-detalle/update-price/${id}`,
     editProduct: (id: string | number) =>
-      `solicitudcompradetalle/editproduct/${id}`,
+      `solicitud-compra-detalle/edit-product/${id}`,
     searchToAdd: (solicitudId: string) =>
       `solicitud-compra-detalle/search-to-add-request/${solicitudId}`,
     update: (id: string | number) => `solicitud-compra-detalle/${id}`,

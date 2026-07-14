@@ -7,10 +7,11 @@ import {
   signal,
 } from "@angular/core";
 import { LxPopover } from "@ui/adaptive/popover/popover";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
@@ -24,7 +25,6 @@ import {
   StatusHoja,
 } from "../interfaces/hoja-incidencias.interface";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-hoja-incidencias",
   imports: [AppIcon, LxTooltipDirective, LxPopover, WebButtonLabel],

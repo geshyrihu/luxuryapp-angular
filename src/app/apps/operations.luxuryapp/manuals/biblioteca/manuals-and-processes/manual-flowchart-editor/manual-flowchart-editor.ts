@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IManualDiagramSimpleDTO } from "../interfaces/manuals-and-processes.dto";
 

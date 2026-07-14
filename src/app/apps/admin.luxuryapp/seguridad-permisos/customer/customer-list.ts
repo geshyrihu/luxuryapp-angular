@@ -29,7 +29,7 @@ import {
 } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -42,10 +42,10 @@ import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
 import { CustomerDto } from "./interfaces/customer.dto";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomerAddress } from "./customer-address";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { CustomerAddress } from "./customer-address";
 
 @Component({
   selector: "app-customer-list",

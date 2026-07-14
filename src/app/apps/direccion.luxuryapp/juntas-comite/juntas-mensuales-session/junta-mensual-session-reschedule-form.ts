@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,6 +17,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 
@@ -97,13 +97,18 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(Endpoints.RefactorDireccion.juntaMensualSessionByIdReschedule(this.id()), {
-        startAt,
-        endAt,
-        modality: raw.modality,
-        location: raw.location ?? "",
-        description: raw.description ?? "",
-      })
+      .onPut(
+        Endpoints.RefactorDireccion.juntaMensualSessionByIdReschedule(
+          this.id(),
+        ),
+        {
+          startAt,
+          endAt,
+          modality: raw.modality,
+          location: raw.location ?? "",
+          description: raw.description ?? "",
+        },
+      )
       .then((result) => {
         if (result) {
           this.ref.close(true);

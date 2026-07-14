@@ -15,7 +15,9 @@ export const EndpointsReclutamiento = {
     reassign: "work-position-org-chart/reassign",
   },
   JobDescriptions: {
+    analyze: "job-descriptions/analyze",
     base: "job-descriptions",
+    generateProposal: "job-descriptions/generate-proposal",
     getById: (id: Id) => `job-descriptions/${id}`,
     getByWorkPosition: (workPositionId: Id) =>
       `job-descriptions/by-workposition/${workPositionId}`,

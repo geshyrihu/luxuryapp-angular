@@ -11,8 +11,9 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableModule } from "primeng/table";
 
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   IBaseAccountDto,
@@ -20,7 +21,6 @@ import {
 } from "../interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "../pipes/accounting-number.pipe";
 import { reportFilterState } from "../state/financial-report-filter.state";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const MONTH_NAMES = [
   "Enero",

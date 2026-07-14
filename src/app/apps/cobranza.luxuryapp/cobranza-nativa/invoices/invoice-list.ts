@@ -16,7 +16,7 @@ import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -25,9 +25,9 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { InvoiceResponseDTO } from "../interfaces/invoice.dto";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-invoice-list",

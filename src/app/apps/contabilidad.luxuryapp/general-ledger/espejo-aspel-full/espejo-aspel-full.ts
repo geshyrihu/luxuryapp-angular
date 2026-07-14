@@ -15,13 +15,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { SharedModule } from "primeng/api";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ReportFilterService } from "./financial-report-filter.service";
 import {
   IEspejoAspelFullResponseDTO,
   IEspejoFilaTabla,
 } from "./interfaces/espejo-aspel-full.interface";
-import { ReportFilterService } from "./financial-report-filter.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 

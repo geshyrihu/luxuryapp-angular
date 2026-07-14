@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,10 +6,11 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
@@ -44,7 +44,10 @@ export class GeneralAnualMantenimiento {
   }
 
   onLoadProveedores() {
-    const url = Endpoints.RefactorOperations.maintenanceCalendarsProveedoresCalendarioById(this.customerIdS.customerId());
+    const url =
+      Endpoints.RefactorOperations.maintenanceCalendarsProveedoresCalendarioById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.cb_providers.set([
         { label: "Todos", value: "" } as any,
@@ -55,7 +58,11 @@ export class GeneralAnualMantenimiento {
 
   onLoadData() {
     this.dataSignal.set([]);
-    const url = Endpoints.RefactorOperations.maintenanceCalendarsGeneralMantenimientoByIdById(this.customerIdS.customerId(), this.providerIdControl.value || "");
+    const url =
+      Endpoints.RefactorOperations.maintenanceCalendarsGeneralMantenimientoByIdById(
+        this.customerIdS.customerId(),
+        this.providerIdControl.value || "",
+      );
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.dataSignal.set(result || []);
     });

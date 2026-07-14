@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +16,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -71,7 +71,9 @@ export class FireInspectionPeriodForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.fireInspectionPeriodById(this.id))
+      .onGetItem(
+        Endpoints.RefactorMantenimiento.fireInspectionPeriodById(this.id),
+      )
       .then((result: any) => {
         this.form.patchValue({
           ...result,

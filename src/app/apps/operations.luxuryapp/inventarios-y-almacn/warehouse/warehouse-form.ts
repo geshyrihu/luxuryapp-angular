@@ -17,7 +17,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
@@ -140,7 +140,9 @@ export class WarehouseForm implements OnInit {
     return new Promise((resolve) => {
       const customerId: string = this.customerIdS.customerId();
       this.apiResponseS
-        .onGetSelectItem<SelectItemDto[]>(`application-users/${customerId}`)
+        .onGetSelectItem<SelectItemDto[]>(
+          Endpoints.SelectItems.applicationUsersByCustomer(customerId),
+        )
         .then((resp: any) => {
           this.allUsers = resp; // Guardamos la lista completa
           resolve();

@@ -12,7 +12,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -20,16 +20,16 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { NominaDetalleDTO } from '../interfaces/nomina-detalle.interface';
+import { NominaDetalleDTO } from "../interfaces/nomina-detalle.interface";
 import {
   NominaEncabezadoDTO,
   NominaResumenDTO,
-} from '../interfaces/nomina-encabezado.interface';
+} from "../interfaces/nomina-encabezado.interface";
 import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-editar-empleado-nomina";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

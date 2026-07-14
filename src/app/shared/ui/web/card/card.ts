@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,9 +9,14 @@ import { CardBase } from "@ui/base/card.base";
 @Component({
   selector: "app-card",
 
+  imports: [NgTemplateOutlet],
   template: `
     <section class="app-card" [class.app-card-elevated]="elevated()">
-      @if (header() || subheader()) {
+      @if (headerTemplate()) {
+        <div class="app-card-header-tpl">
+          <ng-container [ngTemplateOutlet]="headerTemplate() ?? null" />
+        </div>
+      } @else if (header() || subheader()) {
         <header class="app-card-header">
           @if (header()) {
             <div class="app-card-title">{{ header() }}</div>
@@ -21,7 +27,22 @@ import { CardBase } from "@ui/base/card.base";
         </header>
       }
       <div class="app-card-body" [class.app-card-body-unpadded]="!padded()">
-        <ng-content />
+        @if (titleTemplate()) {
+          <ng-container [ngTemplateOutlet]="titleTemplate() ?? null" />
+        }
+        @if (subtitleTemplate()) {
+          <ng-container [ngTemplateOutlet]="subtitleTemplate() ?? null" />
+        }
+        @if (contentTemplate()) {
+          <ng-container [ngTemplateOutlet]="contentTemplate() ?? null" />
+        } @else {
+          <ng-content />
+        }
+        @if (footerTemplate()) {
+          <div class="app-card-footer-tpl">
+            <ng-container [ngTemplateOutlet]="footerTemplate() ?? null" />
+          </div>
+        }
       </div>
     </section>
   `,
@@ -60,6 +81,9 @@ import { CardBase } from "@ui/base/card.base";
       }
       .app-card-body-unpadded {
         padding: 0;
+      }
+      .app-card-footer-tpl {
+        margin-top: 1rem;
       }
     `,
   ],

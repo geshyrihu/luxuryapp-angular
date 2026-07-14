@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,12 +8,13 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DrawerModule } from "primeng/drawer";
 import { OverlayBadge } from "primeng/overlaybadge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -80,7 +80,8 @@ export class NotificationsGadget implements OnInit {
 
   markAsRead(notificationId: string, url: string): void {
     this.drawerVisible.set(false);
-    const urlApi = Endpoints.RefactorShared.notificationsMarkAsReadById(notificationId);
+    const urlApi =
+      Endpoints.RefactorShared.notificationsMarkAsReadById(notificationId);
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigate([url]);

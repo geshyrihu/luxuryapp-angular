@@ -8,13 +8,13 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface ICustomerProviderForm {
   id: FormControl<string | null>;
@@ -32,7 +32,7 @@ interface ICustomerProviderForm {
     ReactiveFormsModule,
     InputAutocomplete,
     WebButtonLabelSave,
-    ],
+  ],
   templateUrl: "./customer-provider-form.html",
 })
 export class CustomerProviderForm implements OnInit {

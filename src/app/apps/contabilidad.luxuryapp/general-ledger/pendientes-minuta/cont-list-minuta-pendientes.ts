@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -10,6 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -25,8 +25,10 @@ import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { MessageService } from "primeng/api";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -35,8 +37,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
 @Component({
@@ -92,7 +92,11 @@ export class ContListMinutaPendientes implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorContabilidad.contabilidadMinutaListaMinutaByIdById(this.authS.userToken.infoUserAuthDTO.applicationUserId, this.statusFiltroControl.value),
+      .onGetList(
+        Endpoints.RefactorContabilidad.contabilidadMinutaListaMinutaByIdById(
+          this.authS.userToken.infoUserAuthDTO.applicationUserId,
+          this.statusFiltroControl.value,
+        ),
       )
       .then((result: any) => {
         this.dataSignal.set(result);

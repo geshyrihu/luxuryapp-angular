@@ -18,7 +18,7 @@ import { addIcons } from "ionicons";
 import { cardOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -34,8 +34,8 @@ import { ChargeForm } from "./charge-form";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 

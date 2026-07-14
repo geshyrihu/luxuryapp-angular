@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,6 +21,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
@@ -105,7 +105,9 @@ export class InventarioEstacionManualForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorOperations.inventarioEstacionManualById(this.id))
+      .onGetItem(
+        Endpoints.RefactorOperations.inventarioEstacionManualById(this.id),
+      )
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
         this.form.patchValue(result);
@@ -124,7 +126,10 @@ export class InventarioEstacionManualForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(Endpoints.RefactorOperations.inventarioEstacionManualById(this.id), formData)
+        .onPut(
+          Endpoints.RefactorOperations.inventarioEstacionManualById(this.id),
+          formData,
+        )
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

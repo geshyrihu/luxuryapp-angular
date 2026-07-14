@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -38,7 +38,9 @@ export class InventarioExtintorGroup {
 
   onLoadData() {
     const urlApi =
-      Endpoints.RefactorOperations.inventarioExtintorGetAllGroupById(this.customerIdS.customerId);
+      Endpoints.RefactorOperations.inventarioExtintorGetAllGroupById(
+        this.customerIdS.customerId,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

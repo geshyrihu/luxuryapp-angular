@@ -16,8 +16,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionDetectorForm } from "../cycle-checklist-detector/fire-cycle-inspection-detector-form";
 
@@ -80,7 +80,9 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     Promise.all([
-      this.apiResponseS.onGetItem(Endpoints.FireInspectionPeriod.getById(this.periodId)),
+      this.apiResponseS.onGetItem(
+        Endpoints.FireInspectionPeriod.getById(this.periodId),
+      ),
       this.apiResponseS.onGetList(
         Endpoints.FireInspectionPeriodItems.detectorList(this.periodId),
       ),
@@ -101,7 +103,10 @@ export class FireInspectionPeriodDetectorDetail implements OnInit, OnDestroy {
   async onAddItem() {
     if (!this.selectedEquipmentId) return;
     const result = await this.apiResponseS.onPost(
-      Endpoints.FireInspectionPeriodItems.detectorDetail(this.periodId, this.selectedEquipmentId),
+      Endpoints.FireInspectionPeriodItems.detectorDetail(
+        this.periodId,
+        this.selectedEquipmentId,
+      ),
       {},
     );
     if (result !== false) {

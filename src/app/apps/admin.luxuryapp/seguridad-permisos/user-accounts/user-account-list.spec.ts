@@ -4,15 +4,15 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
-import { ApplicationUserList } from './application-user-list';
+import { UserAccountList } from './user-account-list';
 
-describe('ApplicationUserList', () => {
-  let component: ApplicationUserList;
-  let fixture: ComponentFixture<ApplicationUserList>;
+describe('UserAccountList', () => {
+  let component: UserAccountList;
+  let fixture: ComponentFixture<UserAccountList>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApplicationUserList],
+      imports: [UserAccountList],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
@@ -24,7 +24,7 @@ describe('ApplicationUserList', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ApplicationUserList);
+    fixture = TestBed.createComponent(UserAccountList);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

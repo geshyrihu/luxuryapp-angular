@@ -20,9 +20,10 @@ import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import {
   rowsPerPageOptions,
@@ -31,7 +32,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<number>;
@@ -43,8 +43,8 @@ interface IWarehouseStockRowForm {
   errorMessage: FormControl<string | null>;
 }
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
   selector: "app-warehouse-stock-add",

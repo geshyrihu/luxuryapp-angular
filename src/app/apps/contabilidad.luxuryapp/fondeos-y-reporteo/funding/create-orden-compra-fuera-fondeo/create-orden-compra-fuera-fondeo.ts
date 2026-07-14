@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +18,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -88,9 +88,9 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
       fundingId,
     });
 
-    const result: any = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `providers/${this.customerIdS.customerId()}`,
-    );
+    const result: any = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(`providers/${this.customerIdS.customerId()}`);
     this.cb_providers.set(result as SelectItemDto[]);
   }
 
@@ -107,7 +107,10 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost(Endpoints.RefactorContabilidad.ordenCompraFueraFondeo, this.form.value)
+      .onPost(
+        Endpoints.RefactorContabilidad.ordenCompraFueraFondeo,
+        this.form.value,
+      )
       .then((result: any) => {
         if (result) {
           this.ref.close(true);

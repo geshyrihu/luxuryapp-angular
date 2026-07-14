@@ -21,7 +21,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -29,7 +29,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
-import { IEmployeeLaboralDataForm } from './interfaces/employee-laboral-data-form.interface';
+import { IEmployeeLaboralDataForm } from "./interfaces/employee-laboral-data-form.interface";
 
 @Component({
   selector: "app-employee-laboral-data-form",

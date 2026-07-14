@@ -12,11 +12,11 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ImageCompressionService } from "src/app/core/services/image-compression.service";
 import { SwalService } from "src/app/core/services/swal.service";
-import { IncidentAttachmentListDTO } from '../interfaces/incident.interfaces';
+import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
 const MAX_FILES_PER_INCIDENT = 10;

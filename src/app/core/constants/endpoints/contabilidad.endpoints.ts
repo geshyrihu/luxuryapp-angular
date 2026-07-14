@@ -50,6 +50,7 @@ export const EndpointsContabilidad = {
     explainAiContabilidadOnline: "contabilidad-online/explain-ai-contabilidad-online",
   },
   Presupuestos: {
+    analyze: "presupuesto/analyze",
     create: "presupuesto/create",
     toPurchaseOrder: (customerId: string, ordenCompraId: string, year: number) =>
       `presupuesto/to-purchase-order/${customerId}/${ordenCompraId}/${year}`,
@@ -102,8 +103,10 @@ export const EndpointsContabilidad = {
     update: (id: string) => `dynamic-reports/${id}`,
   },
   BudgetProposal: {
+    audit: "budget-proposal/audit",
     byCustomerYear: (customerId: string, fiscalYear: number) =>
       `budget-proposal?customerId=${customerId}&fiscalYear=${fiscalYear}`,
+    forecast: "budget-proposal/forecast",
     updateItem: (itemId: string) => `budget-proposal/${itemId}`,
     historyByItem: (itemId: string) => `budget-proposal/history/${itemId}`,
     availableAccounts: (

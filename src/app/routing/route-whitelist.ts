@@ -11,7 +11,7 @@ const ROUTE_WHITELIST = new Set([
   "/committee",
   "/direccion",
   "/admin",
-  "/admin/application-user",
+  "/admin/user-accounts",
   "/admin/customers",
   "/admin/customer-module",
   "/admin/roles",

@@ -23,6 +23,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -34,7 +35,6 @@ interface IRecoverPasswordForm {
 
 @Component({
   selector: "app-recover-password",
-
   templateUrl: "./recover-password.html",
   animations: [
     trigger("slideAnimation", [
@@ -111,7 +111,7 @@ export class RecoverPassword implements OnInit, OnDestroy {
       },
     });
 
-    const urlApi = "Auth/RecoverPassword";
+    const urlApi = Endpoints.Auth.recoverPassword;
     const body = this.form.value;
 
     this.dataConnectorS

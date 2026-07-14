@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +8,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
@@ -56,7 +56,10 @@ export class ResultadoGeneralPosicion {
   });
 
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralPosicionByIdById(fechaInicio, fechaFinal);
+    const urlApi = Endpoints.RefactorOperations.resumenGeneralPosicionByIdById(
+      fechaInicio,
+      fechaFinal,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.dataSignal.set(result);
     });

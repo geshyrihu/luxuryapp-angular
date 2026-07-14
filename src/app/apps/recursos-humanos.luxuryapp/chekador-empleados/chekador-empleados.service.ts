@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   IAprobarRechazarAnomaliaDTO,
@@ -7,7 +7,7 @@ import {
   IRegistroChecador,
   IResumenAsistencia,
   ISedeChecador,
-} from './interfaces/chekador-empleados.models';
+} from "./interfaces/chekador-empleados.models";
 
 @Injectable({ providedIn: "root" })
 export class ChekadorEmpleadosService {

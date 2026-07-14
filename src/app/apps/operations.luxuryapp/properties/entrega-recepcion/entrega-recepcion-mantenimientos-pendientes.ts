@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +7,7 @@ import {
 } from "@angular/core";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -38,7 +38,9 @@ export class EntregaRecepcionMantenimientosPendientes {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.EntregaRecepcionPendientesById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorOperations.EntregaRecepcionPendientesById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

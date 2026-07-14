@@ -97,7 +97,7 @@ Rutas de empleado que cargan módulos lazy:
 | Ruta                                                       | Componente                      |
 | ---------------------------------------------------------- | ------------------------------- |
 | `/admin`                                                   | SettingsHome                    |
-| `/settings/application-user`                               | ApplicationUserList             |
+| `/settings/user-accounts`                                  | UserAccountList                 |
 | `/settings/customers`                                      | CustomerList                    |
 | `/settings/customer-module`                                | CustomerModulList               |
 | `/settings/customer-module-edit/:customerId/:customerName` | CustomerModulEdit               |

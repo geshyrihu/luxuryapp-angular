@@ -1,7 +1,7 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
@@ -14,9 +14,9 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-poliza-seguro-edificio",
   imports: [
@@ -52,7 +52,9 @@ export class PolizaSeguroEdificio {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorLegal.policyContractBuildingInsuranceById(customerId))
+      .onGetItem(
+        Endpoints.RefactorLegal.policyContractBuildingInsuranceById(customerId),
+      )
       .then((result) => {
         this.data.set(result);
       });

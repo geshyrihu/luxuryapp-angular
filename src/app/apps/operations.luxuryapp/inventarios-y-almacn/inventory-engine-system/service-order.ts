@@ -1,18 +1,18 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LxEditor } from "@ui/adaptive/editor/editor";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmationService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { MantenimientoPreventivoForm } from "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { MantenimientoPreventivoForm } from "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 
 @Component({
   selector: "app-service-order",
@@ -52,7 +52,10 @@ export class ServiceOrder implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.maintenanceCalendarsListServiceById(this.idMachinery);
+    const urlApi =
+      Endpoints.RefactorOperations.maintenanceCalendarsListServiceById(
+        this.idMachinery,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.maintenanceCalendars = result.map((item: any) => ({
         ...item,
@@ -69,7 +72,8 @@ export class ServiceOrder implements OnInit {
       accept: () => {
         //confirm action
 
-        const urlApi = Endpoints.RefactorOperations.maintenanceCalendarsById(Id);
+        const urlApi =
+          Endpoints.RefactorOperations.maintenanceCalendarsById(Id);
         this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
           this.onLoadData();
         });

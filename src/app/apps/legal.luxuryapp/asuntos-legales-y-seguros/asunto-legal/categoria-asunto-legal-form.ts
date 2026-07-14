@@ -8,18 +8,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-categoria-asunto-legal-form",
   templateUrl: "./categoria-asunto-legal-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    WebButtonLabelSave,
-  ],
+  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
 })
 export class CategoriaAsuntoLegalForm {
   private apiResponseS = inject(ApiResponseService);

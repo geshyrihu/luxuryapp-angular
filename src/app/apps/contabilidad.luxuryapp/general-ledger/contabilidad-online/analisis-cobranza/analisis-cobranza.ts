@@ -7,7 +7,7 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   IAnalisisCobranzaOnlineDto,

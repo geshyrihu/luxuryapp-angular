@@ -9,15 +9,20 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-mis-inspecciones-agregar-imagenes",
-  imports: [WebButtonIcon, LxTooltipDirective, WebButtonLabel, NgbTooltipModule],
+  imports: [
+    WebButtonIcon,
+    LxTooltipDirective,
+    WebButtonLabel,
+    NgbTooltipModule,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })

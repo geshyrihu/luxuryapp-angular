@@ -6,22 +6,20 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IProyectosAprobadosDTO } from "../interfaces/aspel-budget.interface";
 import { reportFilterState } from "../state/financial-report-filter.state";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 
 @Component({
   selector: "app-proyectos-aprobados",
 
-  imports: [
-    LxSkeleton,
-    AppIcon,CommonModule, SkeletonModule, TableModule],
+  imports: [LxSkeleton, AppIcon, CommonModule, SkeletonModule, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados.html",
 })

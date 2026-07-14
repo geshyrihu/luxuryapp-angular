@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +8,7 @@ import {
 import { TreeNode } from "primeng/api";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-entrega-recepcion-organigrama",
@@ -28,7 +28,9 @@ export class EntregaRecepcionOrganigrama {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entregaRecepcionOrganigramaById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorOperations.entregaRecepcionOrganigramaById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

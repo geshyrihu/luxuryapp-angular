@@ -7,6 +7,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -22,11 +23,10 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -88,7 +88,9 @@ export class PropiedadesList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorResident.propertyListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorResident.propertyListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result || []);
     });
@@ -163,7 +165,9 @@ export class PropiedadesList {
       if (result.isConfirmed) {
         const formData = new FormData();
         formData.append("file", file, file.name);
-        const url = Endpoints.RefactorResident.propertyImportById(this.customerIdS.customerId());
+        const url = Endpoints.RefactorResident.propertyImportById(
+          this.customerIdS.customerId(),
+        );
         this.apiResponseS.onPostFile(url, formData).then((result) => {
           if (result) {
             this.onLoadData();

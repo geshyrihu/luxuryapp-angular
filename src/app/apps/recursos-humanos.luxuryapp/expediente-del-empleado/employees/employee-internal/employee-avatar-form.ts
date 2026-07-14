@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-employee-avatar-form",

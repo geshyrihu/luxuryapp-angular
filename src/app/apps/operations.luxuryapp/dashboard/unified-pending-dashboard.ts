@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -11,6 +10,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -19,9 +19,10 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { IconFieldModule } from "primeng/iconfield";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { TaskForm } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -31,21 +32,20 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
-import { TaskForm } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { TicketLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
-import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { SolicitudAltaStatusForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/solicitud-alta-status-form';
-import { SolicitudBajaUpdateStatus } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-update-status';
-import { ModificacionSalarioForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/modificacion-salario-form';
-import { VacanteForm } from 'src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/vacante-form';
+import { SolicitudAltaStatusForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/solicitud-alta-status-form";
+import { SolicitudBajaUpdateStatus } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-update-status";
+import { ModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/modificacion-salario-form";
+import { VacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/vacante-form";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -136,7 +136,8 @@ export class UnifiedPendingDashboard {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url = Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
+    const url =
+      Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
 
     this.apiResponseS
       .onGetList(url)
@@ -519,7 +520,12 @@ export class UnifiedPendingDashboard {
     this.swalService.showLoading("Enviando reporte ejecutivo...");
 
     this.apiResponseS
-      .onPost(Endpoints.RefactorOperations.dashboardSendExecutiveReportById(customerId), {})
+      .onPost(
+        Endpoints.RefactorOperations.dashboardSendExecutiveReportById(
+          customerId,
+        ),
+        {},
+      )
       .then(() => {
         this.swalService.success(
           "Reporte Enviado",

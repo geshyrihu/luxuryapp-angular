@@ -24,7 +24,7 @@ import { TableModule } from "primeng/table";
 import { ContMinutaSeguimientos } from "src/app/apps/contabilidad.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,

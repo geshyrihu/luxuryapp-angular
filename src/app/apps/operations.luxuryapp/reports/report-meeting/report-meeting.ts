@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -11,6 +10,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
@@ -18,12 +18,7 @@ import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
   selector: "app-report-meeting",
   templateUrl: "./report-meeting.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
-    SanitizeHtmlPipe,
-    TableModule,
-    AppSpinner,
-  ],
+  imports: [CommonModule, SanitizeHtmlPipe, TableModule, AppSpinner],
 })
 export class ReportMeeting {
   apiResponseS = inject(ApiResponseService);
@@ -59,7 +54,9 @@ export class ReportMeeting {
   }
 
   loadMeetingData() {
-    const urlApi = Endpoints.RefactorOperations.meetingsMeetingReportPdfById(this.meetingId);
+    const urlApi = Endpoints.RefactorOperations.meetingsMeetingReportPdfById(
+      this.meetingId,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       // Parse the date string into a Date object
       if (result && result.minuta && result.minuta.date) {

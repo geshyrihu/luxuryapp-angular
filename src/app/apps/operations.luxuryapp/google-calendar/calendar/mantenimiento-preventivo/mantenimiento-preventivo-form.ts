@@ -18,15 +18,14 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { SelectItem } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 interface IMantenimientoPreventivoForm {
@@ -59,7 +58,7 @@ interface IMantenimientoPreventivoForm {
     CustomInputTextAreaSignal,
     InputAutocomplete,
     WebButtonLabelSave,
-    ],
+  ],
 })
 export class MantenimientoPreventivoForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -211,7 +210,9 @@ export class MantenimientoPreventivoForm implements OnInit {
   async onGetMachinerySelectItem(): Promise<void> {
     if (this.config.data.idMachinery !== 0) {
       const result: any = await this.apiResponseS.onGetList(
-        Endpoints.Machineries.getMachinerySelectItem(this.config.data.idMachinery),
+        Endpoints.Machineries.getMachinerySelectItem(
+          this.config.data.idMachinery,
+        ),
       );
 
       const selectedMachinery = this.cb_machinery().find(

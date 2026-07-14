@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +18,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -83,7 +83,11 @@ export class FireCycleInspectionHidranteForm implements OnInit {
 
   onLoadExisting() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.fireCycleInspectionHidranteByIdById(this.cycleId, this.equipmentId),
+      .onGetItem(
+        Endpoints.RefactorMantenimiento.fireCycleInspectionHidranteByIdById(
+          this.cycleId,
+          this.equipmentId,
+        ),
       )
       .then((result: any) => {
         if (result) this.form.patchValue(result);

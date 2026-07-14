@@ -18,7 +18,7 @@ import { ChipModule } from "primeng/chip";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -32,9 +32,9 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { TaskStatus } from "../task-status/task-status";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
+import { TaskStatus } from "../task-status/task-status";
 import { TaskGroupService } from "../task.service";
 import { MyTaskForm } from "./my-task-form";
 

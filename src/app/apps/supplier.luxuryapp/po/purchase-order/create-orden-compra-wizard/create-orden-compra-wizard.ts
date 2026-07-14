@@ -15,7 +15,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 // PrimeNG Modules
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { MenuItem } from "primeng/api";
@@ -293,7 +293,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       // Changed from !== 0 to truthy check (non-empty string)
       this.apiResponseS
         .onGetSelectItem<SelectItemDto[]>(
-          Endpoints.SelectItems.accountingCatalogsByCustomerAndYear(
+          Endpoints.SelectItems.accountingCatalogsByCustomer(
             customerId,
             fiscalYear,
           ),
@@ -381,7 +381,9 @@ export class CreateOrdenCompraWizard implements OnInit {
     if (query.length < 3) return;
 
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.richProducts(query))
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.richProducts(query),
+      )
       .then((data) => {
         this.filteredRichProducts.set(data || []);
       });

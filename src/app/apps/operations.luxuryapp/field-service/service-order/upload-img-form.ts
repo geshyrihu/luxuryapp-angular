@@ -6,8 +6,8 @@ import {
 } from "@angular/core";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 @Component({
   selector: "app-upload-img-form",
   templateUrl: "./upload-img-form.html",
@@ -19,7 +19,9 @@ export class UploadImgForm {
   config = inject(DynamicDialogConfig);
   apiS = inject(ApiResponseService);
   maxFileSize: number = 30000000;
-  url: string = Endpoints.ServiceOrders.uploadImg(this.config.data.serviceOrderId);
+  url: string = Endpoints.ServiceOrders.uploadImg(
+    this.config.data.serviceOrderId,
+  );
   uploading = signal(false);
 
   onFilesSelected(event: any): void {

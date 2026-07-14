@@ -1,10 +1,10 @@
 export const EndpointsResident = {
   Properties: {
-    create: "property",
-    delete: (id: string) => `property/${id}`,
-    getById: (id: string) => `property/${id}`,
-    update: (id: string) => `property/${id}`,
-    downloadTemplate: (customerId: string) => `property/download-template/${customerId}`,
+    create: "properties",
+    delete: (id: string) => `properties/${id}`,
+    getById: (id: string) => `properties/${id}`,
+    update: (id: string) => `properties/${id}`,
+    downloadTemplate: (customerId: string) => `properties/download-template/${customerId}`,
   },
   ResidentesEdificio: {
     selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
@@ -16,8 +16,8 @@ export const EndpointsResident = {
   RefactorResident: {
     propertyOccupantById: (id: any) => `property-occupant/${id}`,
       ownerListById: (customerIdS: any) => `owner/list/${customerIdS}`,
-    propertyListById: (customerIdS: any) => `property/list/${customerIdS}`,
-    propertyImportById: (customerIdS: any) => `property/import/${customerIdS}`,
+    propertyListById: (customerIdS: any) => `properties/list/${customerIdS}`,
+    propertyImportById: (customerIdS: any) => `properties/import/${customerIdS}`,
 },
   AccessControlVisits: {
     create: "access-controls/visits",

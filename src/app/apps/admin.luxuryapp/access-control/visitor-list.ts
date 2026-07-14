@@ -12,11 +12,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { TableModule } from "primeng/table";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { VisitorDto } from "src/app/core/interfaces/visitor.dto";
 
@@ -79,7 +79,9 @@ export class VisitorList implements OnInit {
   edit(visitor: VisitorDto): void {
     // Carga fresca desde el backend antes de editar
     this.apiResponseS
-      .onGetItem<VisitorDto>(Endpoints.AccessControlVisitors.getById(visitor.id))
+      .onGetItem<VisitorDto>(
+        Endpoints.AccessControlVisitors.getById(visitor.id),
+      )
       .then((fresh) => {
         const v = fresh ?? visitor;
         this.editingId.set(v.id);

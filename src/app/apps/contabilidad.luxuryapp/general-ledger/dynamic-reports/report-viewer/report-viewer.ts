@@ -15,7 +15,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { AiAgentComponent } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad-online/ai-agent/ai-agent";
 import { reportFilterState } from "src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad-online/state/financial-report-filter.state";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {

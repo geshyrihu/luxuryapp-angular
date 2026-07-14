@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -10,6 +9,7 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-report-supervision",
@@ -49,7 +49,11 @@ export class ReportSupervision {
     this.loadingMinutas.set(true);
     this.minutas.set(null);
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.supervisionReportsPendingMinutesById(customerId))
+      .onGetList(
+        Endpoints.RefactorOperations.supervisionReportsPendingMinutesById(
+          customerId,
+        ),
+      )
       .then((result: any) => {
         this.minutas.set(result);
       })
@@ -66,7 +70,11 @@ export class ReportSupervision {
     this.loadingTickets.set(true);
     this.tickets.set(null);
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.supervisionReportsPendingTicketsById(customerId))
+      .onGetList(
+        Endpoints.RefactorOperations.supervisionReportsPendingTicketsById(
+          customerId,
+        ),
+      )
       .then((result: any) => {
         this.tickets.set(result);
       })
@@ -83,7 +91,11 @@ export class ReportSupervision {
     this.loadingPendingLegal.set(true);
     this.pendingLegal.set(null);
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.supervisionReportsPendingLegalById(customerId))
+      .onGetList(
+        Endpoints.RefactorOperations.supervisionReportsPendingLegalById(
+          customerId,
+        ),
+      )
       .then((result: any) => {
         this.pendingLegal.set(result);
       })
@@ -100,7 +112,11 @@ export class ReportSupervision {
     this.loadingEnvioFinancieros.set(true);
     this.envioFinancieros.set(null);
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.supervisionReportsEstadosFinancierosById(customerId))
+      .onGetList(
+        Endpoints.RefactorOperations.supervisionReportsEstadosFinancierosById(
+          customerId,
+        ),
+      )
       .then((result: any) => {
         this.envioFinancieros.set(result);
       })

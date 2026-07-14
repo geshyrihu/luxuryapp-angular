@@ -18,7 +18,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -41,7 +41,7 @@ interface IMedidorLecturaAdminForm {
     CustomInputDateSignal,
     CustomInputNumberSignal,
     CustomInputTextSignal,
-    ],
+  ],
 })
 export class MedidorLecturaAdminForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

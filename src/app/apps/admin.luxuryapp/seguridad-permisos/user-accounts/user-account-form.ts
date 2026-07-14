@@ -17,15 +17,15 @@ import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 @Component({
-  selector: "app-application-user-form",
-  templateUrl: "./application-user-form.html",
+  selector: "app-user-account-form",
+  templateUrl: "./user-account-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -35,7 +35,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
     WebButtonLabelSave,
   ],
 })
-export class ApplicationUserForm implements OnInit {
+export class UserAccountForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -85,7 +85,7 @@ export class ApplicationUserForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.ApplicationUsers.getById(this.applicationUserId);
+    const urlApi = Endpoints.UserAccounts.getById(this.applicationUserId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (result) {
         this.form.patchValue(result);
@@ -99,8 +99,8 @@ export class ApplicationUserForm implements OnInit {
       api: this.apiResponseS,
       endpoint:
         this.applicationUserId === ""
-          ? Endpoints.ApplicationUsers.createAccount
-          : Endpoints.ApplicationUsers.updateAccount(this.applicationUserId),
+          ? Endpoints.UserAccounts.createAccount
+          : Endpoints.UserAccounts.updateAccount(this.applicationUserId),
       method: this.applicationUserId === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,

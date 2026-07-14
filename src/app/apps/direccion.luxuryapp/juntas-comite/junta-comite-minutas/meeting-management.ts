@@ -6,7 +6,10 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -17,9 +20,6 @@ import {
 } from "./meeting-area-table/meeting-area-table";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-meeting-management",

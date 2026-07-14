@@ -26,7 +26,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 // Definimos la interfaz del DTO aqué mismo para simplicidad
 export interface IUniformFeeComparisonDTO {

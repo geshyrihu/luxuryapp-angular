@@ -26,7 +26,8 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -36,7 +37,6 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { IProductData } from "./product-data.interface";
 
 @Component({

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -12,6 +11,7 @@ import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { NgxEchartsDirective } from "ngx-echarts";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
@@ -153,7 +153,11 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(this.customerIdS.customerId()))
+      .onGetList(
+        Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: IRecepcionPipaAgua[]) => {
         const inicio = new Date(this.fechaInicio());
         const fin = new Date(this.fechaFin());

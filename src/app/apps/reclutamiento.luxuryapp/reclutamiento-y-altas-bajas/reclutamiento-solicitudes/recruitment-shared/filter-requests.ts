@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +13,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import saveAs from "file-saver";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -101,7 +101,8 @@ export class FilterRequests {
   }
 
   onSendReportVacants() {
-    const urlApi = Endpoints.RefactorReclutamiento.solicitudesreclutamientoSendreportvacants;
+    const urlApi =
+      Endpoints.RefactorReclutamiento.solicitudesreclutamientoSendreportvacants;
     this.apiResponseS.onPost(urlApi).then(() => {
       this.onLoadData();
     });

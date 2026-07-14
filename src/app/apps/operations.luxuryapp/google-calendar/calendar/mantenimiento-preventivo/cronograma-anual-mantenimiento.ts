@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -20,13 +19,14 @@ import { checkboxOutline, createOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { TooltipPlacement } from "src/app/core/enums/tooltip-placement.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TooltipPlacement } from "src/app/core/enums/tooltip-placement.enum";
 import { CronogramaMantenimientoService } from "src/app/core/services/cronograma-mantenimiento.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
@@ -161,7 +161,10 @@ export class CronogramaAnualMantenimiento {
   // --- Lígica de Carga y Filtro de Datos ---
   onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
-    let endpoint = Endpoints.RefactorOperations.maintenanceCalendarsCronogramaAnualById(customerId);
+    let endpoint =
+      Endpoints.RefactorOperations.maintenanceCalendarsCronogramaAnualById(
+        customerId,
+      );
     if (this.filtroId !== "") {
       endpoint += `/${this.filtroId}`;
     }
@@ -240,7 +243,10 @@ export class CronogramaAnualMantenimiento {
 
   exportExcel(): void {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorOperations.maintenanceCalendarsExportCalendarById(this.customerIdS.customerId()),
+      .onGetItem(
+        Endpoints.RefactorOperations.maintenanceCalendarsExportCalendarById(
+          this.customerIdS.customerId(),
+        ),
       )
       .then((dataToExport: any[]) => {
         import("xlsx").then((xlsx) => {

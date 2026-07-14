@@ -16,11 +16,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxToast } from "@ui/adaptive/toast/toast";
 import { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "primeng/api";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
@@ -39,8 +40,7 @@ import {
   IWorkPositionReassignRequest,
   IWorkPositionReassignResponse,
   ORG_CHART_VIRTUAL_ROOT_ID,
-} from './interfaces/org-chart.interfaces';
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+} from "./interfaces/org-chart.interfaces";
 
 @Component({
   selector: "app-org-chart",

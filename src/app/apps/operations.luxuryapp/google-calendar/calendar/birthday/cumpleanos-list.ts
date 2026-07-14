@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +13,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -69,7 +69,11 @@ export class Cumpleanos implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorOperations.birthdayByIdById(this.customerIdS.customerId(), this.selectedMonth()),
+      .onGetList(
+        Endpoints.RefactorOperations.birthdayByIdById(
+          this.customerIdS.customerId(),
+          this.selectedMonth(),
+        ),
       )
       .then((result: any) => {
         this.dataSignal.set(result);

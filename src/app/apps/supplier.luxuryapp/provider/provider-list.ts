@@ -15,6 +15,7 @@ import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -27,11 +28,11 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { CalificacionProveedor } from "src/app/apps/supplier.luxuryapp/providers/provider-qualification/calificacion-proveedor";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -41,7 +42,6 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { BusquedaProveedor } from "src/app/core/interfaces/busqueda-proveedor.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CalificacionProveedor } from "src/app/apps/supplier.luxuryapp/providers/provider-qualification/calificacion-proveedor";
 import { ProveedorForm } from "./proveedor-form";
 import { TarjetaProveedor } from "./provider-card";
 import { ProviderUse } from "./provider-use";
@@ -235,7 +235,8 @@ export class ListProvider implements OnInit {
 
   // Autoriza un proveedor
   onAutorizarProvider(providerId: any) {
-    const urlApi = Endpoints.RefactorSupplier.providersAutorizarById(providerId);
+    const urlApi =
+      Endpoints.RefactorSupplier.providersAutorizarById(providerId);
     this.apiResponseS.onGetList(urlApi).then(() => {
       this.onLoadData();
     });
@@ -297,7 +298,13 @@ export class ListProvider implements OnInit {
   // Cambia el estado (activo/inactivo) del proveedor
   onActivateProvider(data: any) {
     this.apiResponseS
-      .onPut(Endpoints.RefactorSupplier.providersChangeStateByIdById(data.providerId, data.state), null)
+      .onPut(
+        Endpoints.RefactorSupplier.providersChangeStateByIdById(
+          data.providerId,
+          data.state,
+        ),
+        null,
+      )
       .then(() => {
         this.onLoadData();
       });

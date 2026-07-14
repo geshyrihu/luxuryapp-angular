@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "../constants/endpoints";
 @Injectable({
   providedIn: "root",
 })
@@ -13,7 +13,7 @@ export class AiService {
   ): Promise<string> {
     try {
       const response = await this.apiResponseService.onPostNotLoading<string>(
-        "announcements/generate-draft",
+        Endpoints.Announcements.generateDraft,
         {
           prompt,
           tone,
@@ -41,7 +41,7 @@ export class AiService {
   }> {
     try {
       const response = await this.apiResponseService.onPostNotLoading<any>(
-        "announcements/generate-official-draft",
+        Endpoints.Announcements.generateOfficialDraft,
         {
           idea,
           buildingName,
@@ -79,7 +79,7 @@ export class AiService {
     tone: string = "Profesional",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "presupuesto/analyze",
+      Endpoints.Presupuestos.analyze,
       {
         context,
         tone,
@@ -99,7 +99,7 @@ export class AiService {
     tone: string = "Ejecutivo",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "dashboard/Analyze",
+      Endpoints.Dashboard.analyze,
       {
         context,
         tone,
@@ -119,7 +119,7 @@ export class AiService {
     tone: string = "Auditor Estricto",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "budget-proposal/Audit",
+      Endpoints.BudgetProposal.audit,
       {
         context,
         tone,
@@ -138,7 +138,7 @@ export class AiService {
     inflationRate: number = 5,
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "budget-proposal/Forecast",
+      Endpoints.BudgetProposal.forecast,
       {
         context,
         inflationRate,
@@ -157,7 +157,7 @@ export class AiService {
     customInstructions: string = "",
   ): Promise<any> {
     const response = await this.apiResponseService.onPostNotLoading<any>(
-      "job-descriptions/GenerateProposal",
+      Endpoints.JobDescriptions.generateProposal,
       {
         jobTitle,
         tone: "Profesional",
@@ -177,7 +177,7 @@ export class AiService {
     jobTitle: string,
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "job-descriptions/Analyze",
+      Endpoints.JobDescriptions.analyze,
       {
         description,
         jobTitle,
@@ -193,7 +193,7 @@ export class AiService {
 
   async consultDocument(documentId: string, query: string): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      "custom-documents/consult-with-ai",
+      Endpoints.CustomDocuments.consultWithAi,
       {
         documentId,
         query,
@@ -209,7 +209,7 @@ export class AiService {
 
   async analyzeComparativeChart(solicitudCompraId: any): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      `SolicitudCompra/analyze-comparative-chart/${solicitudCompraId}`,
+      Endpoints.PurchaseRequests.analyzeComparativeChart(solicitudCompraId),
       {},
     );
 

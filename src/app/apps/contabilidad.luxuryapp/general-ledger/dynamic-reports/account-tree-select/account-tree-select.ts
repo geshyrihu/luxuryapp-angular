@@ -14,7 +14,7 @@ import { LxTree } from "@ui/adaptive/tree/tree";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TreeNode } from "primeng/api";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -14,6 +13,7 @@ import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenanc
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -67,18 +67,30 @@ export class ReportTicket {
     );
     const customerId: string = this.customerIdS.customerId();
 
-    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportTicketByIdById(customerId, periodo);
+    const urlApi =
+      Endpoints.RefactorMantenimiento.maintenanceReportTicketByIdById(
+        customerId,
+        periodo,
+      );
 
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = Endpoints.RefactorMantenimiento.maintenanceReportTicketResponsableByIdById(customerId, periodo);
+    const urlApi2 =
+      Endpoints.RefactorMantenimiento.maintenanceReportTicketResponsableByIdById(
+        customerId,
+        periodo,
+      );
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataResponsable.set(result);
     });
 
-    const urlApi3 = Endpoints.RefactorMantenimiento.maintenanceReportCargaTicketByIdById(customerId, periodo);
+    const urlApi3 =
+      Endpoints.RefactorMantenimiento.maintenanceReportCargaTicketByIdById(
+        customerId,
+        periodo,
+      );
     this.apiResponseS.onGetList(urlApi3).then((result: any) => {
       this.dataCargaTicket.set(result);
     });

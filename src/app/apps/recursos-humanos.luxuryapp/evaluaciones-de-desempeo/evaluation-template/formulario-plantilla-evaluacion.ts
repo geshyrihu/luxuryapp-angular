@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CdkDragDrop,
   DragDropModule,
@@ -24,6 +23,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -33,8 +33,8 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
@@ -119,7 +119,9 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   }
 
   private onLoadData(): void {
-    const urlApi = Endpoints.RefactorRecursosHumanos.templateEvaluationById(this.id);
+    const urlApi = Endpoints.RefactorRecursosHumanos.templateEvaluationById(
+      this.id,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue({
         name: result.name,
@@ -228,7 +230,10 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     } else {
       // Editar existente
       this.apiResponseS
-        .onPut(Endpoints.RefactorRecursosHumanos.templateEvaluationById(this.id), formValue)
+        .onPut(
+          Endpoints.RefactorRecursosHumanos.templateEvaluationById(this.id),
+          formValue,
+        )
         .then(() => {
           this.submitting.set(false);
         });

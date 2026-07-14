@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,17 +22,18 @@ import {
   sparkles,
   ticketOutline,
 } from "ionicons/icons";
+import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { TicketLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { PolicyContractForm } from "src/app/apps/operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
-import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { TaskForm } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
-import { TicketLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 @Component({
@@ -93,7 +93,8 @@ export class UnifiedPendingDashboardMobile {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url = Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
+    const url =
+      Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
 
     this.apiResponseS
       .onGetList(url)

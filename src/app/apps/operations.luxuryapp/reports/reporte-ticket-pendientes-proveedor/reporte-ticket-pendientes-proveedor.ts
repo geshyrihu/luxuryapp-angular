@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -9,6 +8,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -48,7 +48,11 @@ export class ReporteTicketPendientesProveedor implements OnInit {
     this.onLoadData();
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.ticketGetreportpendingproviderByIdById(this.customerId, this.departamentId);
+    const urlApi =
+      Endpoints.RefactorOperations.ticketGetreportpendingproviderByIdById(
+        this.customerId,
+        this.departamentId,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

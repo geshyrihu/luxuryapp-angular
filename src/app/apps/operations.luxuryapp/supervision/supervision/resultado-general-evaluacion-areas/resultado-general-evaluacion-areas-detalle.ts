@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -14,6 +13,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -54,7 +54,12 @@ export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
   }
 
   onLoadData(fecha: string, area: number, status?: number) {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasDetalleByIdByIdById(fecha, area, status);
+    const urlApi =
+      Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasDetalleByIdByIdById(
+        fecha,
+        area,
+        status,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

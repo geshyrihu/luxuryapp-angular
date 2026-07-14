@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,6 +17,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { Recurrence } from "src/app/core/enums/recurrence.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -105,9 +105,9 @@ export class ProjectedExpensesForm implements OnInit {
   }
 
   private async loadProviders(): Promise<void> {
-    this.cb_providers = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `providers/${this.customerIdS.customerId()}`,
-    );
+    this.cb_providers = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(`providers/${this.customerIdS.customerId()}`);
   }
 
   private async loadMonths(): Promise<void> {
@@ -142,7 +142,11 @@ export class ProjectedExpensesForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorContabilidad.projectedExpensesByIdById(this.customerIdS.customerId(), this.id),
+      .onGetItem(
+        Endpoints.RefactorContabilidad.projectedExpensesByIdById(
+          this.customerIdS.customerId(),
+          this.id,
+        ),
       )
       .then((result: any) => {
         this.form.patchValue(result);
@@ -205,7 +209,10 @@ export class ProjectedExpensesForm implements OnInit {
       }
       formValue.initialMonth = formValue.executionMonth;
       this.apiResponseS
-        .onPost(Endpoints.RefactorContabilidad.projectedExpensesRecurrence, formValue)
+        .onPost(
+          Endpoints.RefactorContabilidad.projectedExpensesRecurrence,
+          formValue,
+        )
         .then((result) => {
           this.ref.close(true);
         })
@@ -223,7 +230,11 @@ export class ProjectedExpensesForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(Endpoints.RefactorContabilidad.projectedExpensesByIdById(this.customerIdS.customerId(), this.id),
+        .onPut(
+          Endpoints.RefactorContabilidad.projectedExpensesByIdById(
+            this.customerIdS.customerId(),
+            this.id,
+          ),
           formValue,
         )
         .then((result) => {

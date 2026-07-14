@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   signal,
 } from "@angular/core";
@@ -16,7 +17,7 @@ import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   BulkSetInitialBalanceDTO,
@@ -63,7 +64,12 @@ export default class InitialBalance {
 
   constructor() {
     addIcons({ walletOutline });
-    this.loadData();
+    effect(() => {
+      const customerId = this.customerIdS.customerId();
+      if (customerId) {
+        void this.loadData();
+      }
+    });
   }
 
   async loadData() {

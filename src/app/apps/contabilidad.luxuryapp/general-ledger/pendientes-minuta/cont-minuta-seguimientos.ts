@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -12,9 +11,10 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -45,7 +45,11 @@ export class ContMinutaSeguimientos implements OnInit {
   onLoadData() {
     // Mostrar un mensaje de carga
     this.apiResponseS
-      .onGetList(Endpoints.RefactorContabilidad.contabilidadMinutaListaSeguimientosById(this.id))
+      .onGetList(
+        Endpoints.RefactorContabilidad.contabilidadMinutaListaSeguimientosById(
+          this.id,
+        ),
+      )
       .then((result: any) => {
         this.dataSignal.set(result);
       });
@@ -53,7 +57,9 @@ export class ContMinutaSeguimientos implements OnInit {
 
   onDeleteSeguimiento(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorContabilidad.meetingDertailsSeguimientoById(id))
+      .onDelete(
+        Endpoints.RefactorContabilidad.meetingDertailsSeguimientoById(id),
+      )
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

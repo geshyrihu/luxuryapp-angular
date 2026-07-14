@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import {
@@ -21,7 +21,7 @@ import {
   PeriodoNominaDTO,
   PeriodoNominaUpdateDTO,
   QUINCENA_OPTIONS,
-} from '../../interfaces/periodo-nomina.interface';
+} from "../../interfaces/periodo-nomina.interface";
 
 @Component({
   selector: "app-modal-periodo-add",
@@ -111,7 +111,10 @@ export default class ModalPeriodoAdd implements OnInit {
       };
       this.submitting.set(true);
       this.apiResponseS
-        .onPut(Endpoints.RefactorRecursosHumanos.hrNominaPeriodosById(existing.id), dto)
+        .onPut(
+          Endpoints.RefactorRecursosHumanos.hrNominaPeriodosById(existing.id),
+          dto,
+        )
         .then((r) => {
           if (r) this.ref.close(true);
         })

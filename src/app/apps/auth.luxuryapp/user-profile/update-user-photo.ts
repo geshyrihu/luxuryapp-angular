@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,18 +9,18 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppIcon,LxCard, InputImg, WebButtonLabel],
+  imports: [AppIcon, LxCard, InputImg, WebButtonLabel],
 })
 export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -71,7 +70,10 @@ export class UpdateUserPhotoComponent implements OnInit {
     const formData = new FormData();
     formData.append("file", this.imgUpload);
     this.apiResponseS
-      .onPut(Endpoints.RefactorAuth.usersUpdateImageById(this.applicationUserId), formData)
+      .onPut(
+        Endpoints.RefactorAuth.usersUpdateImageById(this.applicationUserId),
+        formData,
+      )
       .then((result: any) => {
         if (result) {
           this.infoEmployeeDTO.photoPath = result.photoPath;

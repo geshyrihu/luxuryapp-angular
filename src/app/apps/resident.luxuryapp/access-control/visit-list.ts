@@ -7,10 +7,10 @@ import {
   signal,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { TableModule } from "primeng/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { PagedResultDto } from "src/app/core/interfaces/paged-result.dto";
 import { VisitDto } from "src/app/core/interfaces/visit.dto";

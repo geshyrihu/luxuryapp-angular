@@ -13,6 +13,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -77,7 +78,7 @@ export class BitacoraMantenimientoForm implements OnInit {
 
   async onLoadMachinery(): Promise<void> {
     const result: any = await this.apiResponseS.onGetSelectItem(
-      `ListadoInstalaciones/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.listadoInstalaciones(this.customerIdS.customerId()),
     );
     this.maquinarias.set(result as SelectItemDto[]);
   }

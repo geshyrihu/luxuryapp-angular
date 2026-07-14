@@ -23,7 +23,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -134,7 +134,8 @@ export class PolicyContractForm implements OnInit {
   }
 
   private async loadTypeOfContract(): Promise<void> {
-    const data = await this.apiResponseS.onGetEnumSelectItem(`e-type-of-contract`);
+    const data =
+      await this.apiResponseS.onGetEnumSelectItem(`e-type-of-contract`);
     this.cb_type_of_contract.set(data as SelectItemDto[]);
   }
 

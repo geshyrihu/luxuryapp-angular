@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule, formatDate } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -16,6 +15,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import FileSaver from "file-saver";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -130,7 +130,11 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
   onLoadData(): void {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(this.customerIdS.customerId()))
+      .onGetList(
+        Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: IRecepcionPipaAgua[]) => {
         this.allData = result ?? [];
         this.applyFilter();

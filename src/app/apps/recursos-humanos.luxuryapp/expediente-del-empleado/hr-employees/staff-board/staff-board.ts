@@ -22,12 +22,14 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "primeng/table";
+import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form";
+import { EmployeeProviderForm } from "src/app/apps/supplier.luxuryapp/providers/provider/pages/employee-provider-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { Department } from "src/app/core/enums/department.enum";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions as getRowsPerPageOptions,
@@ -35,8 +37,6 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeProviderForm } from "src/app/apps/supplier.luxuryapp/providers/provider/pages/employee-provider-form";
-import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form";
 // missing work-position
 // missing work-position
 // missing work-position
@@ -48,9 +48,9 @@ import { CardEmployee } from "../employees/pages/card-employee";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-staff-board",
@@ -339,7 +339,6 @@ export class StaffBoard {
 
   async onModalForm(data: { id: string; title: string }): Promise<void> {
     const res = await this.dialogHandlerS.openDialog<boolean>(
-      
       { id: data.id },
       data.title,
       DialogSize.full,
@@ -358,7 +357,6 @@ export class StaffBoard {
     applicationRoleName: string,
   ): Promise<void> {
     await this.dialogHandlerS.openDialog(
-      
       {
         workPositionId: id,
         id: jobDescriptionId,
@@ -371,7 +369,6 @@ export class StaffBoard {
 
   async onModalHoursWorkPosition(id: string): Promise<void> {
     await this.dialogHandlerS.openDialog(
-      
       { id },
       "Horarios de trabajo",
       DialogSize.md,

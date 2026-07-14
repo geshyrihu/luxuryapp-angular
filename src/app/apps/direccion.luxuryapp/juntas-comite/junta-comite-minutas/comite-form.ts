@@ -16,7 +16,7 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
@@ -59,7 +59,7 @@ export class ComiteForm implements OnInit {
   onLoadCB() {
     this.apiResponseS
       .onGetSelectItem(
-        Endpoints.MeetingComite.listCandidates(
+        Endpoints.SelectItems.comiteMinuta(
           this.customerIdS.customerId(),
           this.meetingId(),
         ),

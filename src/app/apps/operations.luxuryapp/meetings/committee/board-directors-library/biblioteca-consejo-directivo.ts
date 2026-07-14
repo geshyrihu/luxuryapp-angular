@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxImage } from "@ui/adaptive/image/image";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface DocumentCategory {
   title: string;

@@ -11,6 +11,7 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -30,20 +31,6 @@ import {
 } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { EquipmentInspectionQrPrintService } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
 import { EquipmentInspectionService } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
 import { EquipmentInspectionsShell } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
@@ -54,6 +41,19 @@ import { ServiceHistoryMachinery } from "src/app/apps/mantenimiento.luxuryapp/eq
 import { BitacoraIndividual } from "src/app/apps/mantenimiento.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "src/app/apps/mantenimiento.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
 import { MantenimientoPreventivoForm } from "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { AuthService } from "src/app/core/auth/services/auth.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { CurrencyMexicoPipe } from "src/app/shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 // ... el resto de las importaciones de componentes y mdulos ...
@@ -91,8 +91,8 @@ import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-equipos-list",

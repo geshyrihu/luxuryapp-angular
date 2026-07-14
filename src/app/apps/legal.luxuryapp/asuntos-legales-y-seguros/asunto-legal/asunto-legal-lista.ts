@@ -20,12 +20,12 @@ import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { AsuntoLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
+import { CategoriaAsuntoLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { AsuntoLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
-import { CategoriaAsuntoLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";

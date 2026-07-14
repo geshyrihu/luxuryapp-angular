@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { AiKnowledgeBaseDto } from "src/app/core/interfaces/ai-knowledge-base.dto";
 import { ApiResponse } from "src/app/core/interfaces/api-response.dto";
 import { environment } from "src/environments/environment";
-import { Endpoints } from "src/app/core/constants/endpoints";
 
 @Injectable({
   providedIn: "root",
@@ -36,12 +36,3 @@ export class AiKnowledgeBaseService {
     return this.http.delete<ApiResponse<boolean>>(`${this.baseUrl}/${id}`);
   }
 }
-
-
-
-
-
-
-
-
-

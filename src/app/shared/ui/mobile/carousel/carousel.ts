@@ -1,10 +1,11 @@
+import { NgTemplateOutlet } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { CarouselBase } from "@ui/base/carousel.base";
 
 @Component({
   selector: "ili-carousel",
 
-  imports: [],
+  imports: [NgTemplateOutlet],
   template: `
     <div class="ili-carousel">
       <div class="ili-carousel-track" #track (scroll)="onScroll(track)">
@@ -13,7 +14,10 @@ import { CarouselBase } from "@ui/base/carousel.base";
             class="ili-carousel-slide"
             [style.min-width.%]="100 / numVisible()"
           >
-            <ng-content />
+            <ng-container
+              [ngTemplateOutlet]="itemTemplate() ?? null"
+              [ngTemplateOutletContext]="{ $implicit: item }"
+            />
           </div>
         }
       </div>

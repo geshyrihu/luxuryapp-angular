@@ -16,7 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   CrudSubmitOptions,
   FormHelper,
@@ -35,7 +35,7 @@ import { TaskGroupCategoryFormGroup } from "./interfaces/task-group-category-for
     CustomInputTextSignal,
     CustomInputSelectSignal,
     WebButtonLabelSave,
-    ],
+  ],
 })
 export class TaskGroupCategoryForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

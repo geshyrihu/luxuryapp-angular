@@ -1,6 +1,7 @@
 import { DatePipe, DecimalPipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -16,9 +17,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,

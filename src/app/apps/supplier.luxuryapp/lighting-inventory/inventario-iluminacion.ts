@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +18,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -79,7 +79,11 @@ export class InventarioIluminacion {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.RefactorSupplier.inventarioIluminacionListById(this.customerIdS.customerId()))
+      .onGetList(
+        Endpoints.RefactorSupplier.inventarioIluminacionListById(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: any) => {
         this.dataSignal.set(result);
       });

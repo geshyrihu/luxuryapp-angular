@@ -28,8 +28,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
@@ -196,7 +196,10 @@ export class ProveedorForm implements OnInit {
 
   async getItem(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      Endpoints.Providers.getByIdAndCustomerAlt(this.id, this.customerIdS.customerId()),
+      Endpoints.Providers.getByIdAndCustomerAlt(
+        this.id,
+        this.customerIdS.customerId(),
+      ),
     );
 
     // Extraer bankId
@@ -272,7 +275,10 @@ export class ProveedorForm implements OnInit {
 
   onValidarRFC(valueRfc: string) {
     if (valueRfc.length > 5) {
-      const urlApi = Endpoints.RefactorSupplier.providersValidarRfcByIdById(valueRfc, this.customerIdS.customerId());
+      const urlApi = Endpoints.RefactorSupplier.providersValidarRfcByIdById(
+        valueRfc,
+        this.customerIdS.customerId(),
+      );
       this.apiResponseS.onGetList(urlApi).then((result: any) => {
         this.rfcCoincidente.set(result);
       });

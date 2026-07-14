@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 // Custom Inputs
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -22,13 +22,13 @@ import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 
 // Services
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { UpsertBillingConfigDTO } from "../interfaces/billing-config.dto";
 import { EBillingMode } from "../interfaces/enums";
 import { SaveNativeCollectionNotificationSettingsDTO } from "../interfaces/notification-settings.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-billing-config-modal",

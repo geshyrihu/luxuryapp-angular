@@ -16,8 +16,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { FireCycleInspectionExtintorForm } from "../cycle-checklist-extintor/fire-cycle-inspection-extintor-form";
 
@@ -82,7 +82,9 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     Promise.all([
-      this.apiResponseS.onGetItem(Endpoints.FireInspectionPeriod.getById(this.periodId)),
+      this.apiResponseS.onGetItem(
+        Endpoints.FireInspectionPeriod.getById(this.periodId),
+      ),
       this.apiResponseS.onGetList(
         Endpoints.FireInspectionPeriodItems.extintorList(this.periodId),
       ),
@@ -103,7 +105,10 @@ export class FireInspectionPeriodExtintorDetail implements OnInit, OnDestroy {
   async onAddItem() {
     if (!this.selectedEquipmentId) return;
     const result = await this.apiResponseS.onPost(
-      Endpoints.FireInspectionPeriodItems.extintorDetail(this.periodId, this.selectedEquipmentId),
+      Endpoints.FireInspectionPeriodItems.extintorDetail(
+        this.periodId,
+        this.selectedEquipmentId,
+      ),
       {},
     );
     if (result !== false) {

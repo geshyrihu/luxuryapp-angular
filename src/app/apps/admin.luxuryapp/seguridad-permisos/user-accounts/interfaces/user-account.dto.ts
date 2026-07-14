@@ -1,4 +1,4 @@
-export interface ApplicationUserDto {
+export interface UserAccountDto {
   id: string;
   customer: string;
   active: boolean;

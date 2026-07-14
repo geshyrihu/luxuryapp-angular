@@ -5,6 +5,7 @@ import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -12,9 +13,8 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -96,9 +96,7 @@ export class CedulaClienteList implements OnInit {
   onLoadCedulas() {
     this.apiResponseS
       .onGetSelectItem(
-        Endpoints.SelectItems.periodoPresupuestals(
-          this.customerIdS.customerId(),
-        ),
+        Endpoints.SelectItems.fundingPeriod(this.customerIdS.customerId()),
       )
       .then((result: any) => {
         this.cb_cedulas = result;

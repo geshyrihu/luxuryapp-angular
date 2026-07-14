@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,6 +20,7 @@ import { calculatorOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { FaqsFondeo } from "src/app/apps/contabilidad.luxuryapp/fondeos-y-reporteo/funding/faqs-fondeo";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -80,7 +80,9 @@ export class FundingAccountingList {
   }
 
   onLoadData(): void {
-    const urlApi = Endpoints.RefactorContabilidad.fundingaccountingListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorContabilidad.fundingaccountingListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result || []);
     });

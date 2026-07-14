@@ -19,7 +19,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -100,9 +100,9 @@ export class CreateOrdenCompra implements OnInit {
   }
 
   async onLoadSelectItemProvider(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.SelectItems.providers(this.customerIdS.customerId()),
-    );
+    const result: any = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(Endpoints.SelectItems.providers(this.customerIdS.customerId()));
     this.cb_providers.set(result as SelectItemDto[]);
   }
 

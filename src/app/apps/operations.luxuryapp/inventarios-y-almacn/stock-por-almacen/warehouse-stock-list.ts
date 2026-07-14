@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,9 +16,12 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { ProductOutputForm } from "src/app/apps/operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -28,16 +30,14 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ProductOutputForm } from "src/app/apps/operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
-import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppAvatar } from "../../../../shared/ui/web/avatar/avatar";
 
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -122,7 +122,11 @@ export class WarehouseStockList {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    let urlApi = Endpoints.RefactorOperations.inventarioProductoGetAsyncAllByIdById(customerId, this.almacenIdFromRoute);
+    let urlApi =
+      Endpoints.RefactorOperations.inventarioProductoGetAsyncAllByIdById(
+        customerId,
+        this.almacenIdFromRoute,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);

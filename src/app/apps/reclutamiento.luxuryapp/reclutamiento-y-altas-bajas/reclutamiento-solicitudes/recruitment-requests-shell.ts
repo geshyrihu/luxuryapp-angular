@@ -7,7 +7,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter, map, startWith } from "rxjs/operators";
-import { EndpointsReclutamiento } from "src/app/core/constants/reclutamiento.endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { FilterRequests } from "./recruitment-shared/filter-requests";
 
 const ROUTE_FILTER_CONFIG: Record<

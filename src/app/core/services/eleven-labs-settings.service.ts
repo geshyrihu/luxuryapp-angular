@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { StorageService } from "src/app/core/services/storage.service";
-import { Endpoints } from "../constants/endpoints";
+import { Endpoints } from "../constants/endpoints/endpoints";
 
 export interface ElevenLabsVoiceOption {
   voiceId: string;

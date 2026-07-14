@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,14 +8,15 @@ import {
 } from "@angular/core";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -63,7 +63,9 @@ export class ContractsPolicies {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.policyContractListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorOperations.policyContractListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

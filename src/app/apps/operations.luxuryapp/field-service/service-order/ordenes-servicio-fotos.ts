@@ -6,20 +6,19 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppImage } from "@ui/web/image/image";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [
-    AppIcon,WebButtonLabelDelete, AppImage],
+  imports: [AppIcon, WebButtonLabelDelete, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ConfirmationService, MessageService],
 })

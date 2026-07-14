@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -23,6 +22,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { RadioComunicacion } from "src/app/core/interfaces/radio-comunicacion.interface";
@@ -31,10 +31,10 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { RadioComunicacionForm } from "./radio-comunicacion-form";
 
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-radio-comunicacion-list",
@@ -82,7 +82,9 @@ export class RadioComunicacionList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.radioComunicacionListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorOperations.radioComunicacionListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

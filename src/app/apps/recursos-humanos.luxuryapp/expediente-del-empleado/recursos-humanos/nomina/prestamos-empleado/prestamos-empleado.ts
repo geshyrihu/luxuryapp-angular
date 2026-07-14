@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -13,6 +12,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -20,12 +20,12 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { PrestamoEmpleadoDTO } from '../interfaces/prestamo-empleado.interface';
+import { PrestamoEmpleadoDTO } from "../interfaces/prestamo-empleado.interface";
 import ModalPrestamoAdd from "./modal-prestamo-add/modal-prestamo-add";
 import ModalPrestamoDetalle from "./modal-prestamo-detalle/modal-prestamo-detalle";
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -116,7 +116,9 @@ export default class PrestamosEmpleado {
 
   onDelete(item: PrestamoEmpleadoDTO): void {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorRecursosHumanos.hrNominaPrestamosById(item.id))
+      .onDelete(
+        Endpoints.RefactorRecursosHumanos.hrNominaPrestamosById(item.id),
+      )
       .then((result) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
       });

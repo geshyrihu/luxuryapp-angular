@@ -6,18 +6,17 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { WorkContractDetailDTO } from './interfaces/work-contract.dto';
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { WorkContractDetailDTO } from "./interfaces/work-contract.dto";
 
 @Component({
   selector: "app-work-contract-detail",
   templateUrl: "./work-contract-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,DatePipe, CurrencyPipe],
+  imports: [AppIcon, DatePipe, CurrencyPipe],
 })
 export class WorkContractDetailComponent implements OnInit {
   apiS = inject(ApiResponseService);

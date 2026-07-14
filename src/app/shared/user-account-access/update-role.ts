@@ -8,15 +8,15 @@ import {
   signal,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { RoleType } from "src/app/core/enums/role-type.enum";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Roles } from "src/app/core/interfaces/roles.interface";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
 
 const roleTypeNames: { [key in RoleType]: string } = {
   [RoleType.System]: "Sistema",
-  [RoleType.Executive]: "Dirección",
+  [RoleType.Executive]: "Direccion",
   [RoleType.Corporate]: "Corporativo",
   [RoleType.Staff]: "Personal Operativo",
   [RoleType.Client]: "Cliente",
@@ -73,7 +73,7 @@ export class UpdateRole implements OnInit {
   }
 
   getRoles(roleType: RoleType | null = null) {
-    const urlApi = Endpoints.ApplicationUsers.getRoleUrl(
+    const urlApi = Endpoints.UserAccounts.getRoleUrl(
       this.applicationUserId(),
       roleType,
     );
@@ -84,7 +84,6 @@ export class UpdateRole implements OnInit {
         if (!result) return;
         const grouped = new Map<RoleType, Roles[]>();
 
-        // Agrupar roles por roleType
         for (const role of result) {
           if (!grouped.has(role.roleType)) {
             grouped.set(role.roleType, []);
@@ -92,12 +91,11 @@ export class UpdateRole implements OnInit {
           grouped.get(role.roleType)!.push(role);
         }
 
-        // Convertir el mapa a un array ordenado para la vista
         const groupedArray: GroupedRole[] = Array.from(grouped.entries())
           .map(([type, roles]) => ({
             groupName: roleTypeNames[type],
-            roles: roles.sort((a, b) => a.sortOrder - b.sortOrder), // <-- óAquó la nueva ordenación!
-            order: type, // Usar el valor del enum para ordenar
+            roles: roles.sort((a, b) => a.sortOrder - b.sortOrder),
+            order: type,
           }))
           .sort((a, b) => a.order - b.order);
 
@@ -119,13 +117,11 @@ export class UpdateRole implements OnInit {
         ...group,
         roles: group.roles.map((role) => {
           if (role.roleId === updatedRole.roleId) {
-            return updatedRole; // El rol que acabamos de cambiar
+            return updatedRole;
           }
-          // Si el nuevo rol esté seleccionado, deseleccionar todos los demós
           if (updatedRole.isSelected) {
             return { ...role, isSelected: false };
           }
-          // Si estamos deseleccionando, no afectamos a los otros roles
           return role;
         }),
       })),
@@ -133,12 +129,14 @@ export class UpdateRole implements OnInit {
 
     this.apiResponseS
       .onPost(
-        Endpoints.ApplicationUsers.addRoleToUser(this.applicationUserId()),
+        Endpoints.UserAccounts.addRoleToUser(
+          this.applicationUserId(),
+          this.roleType(),
+        ),
         updatedRole,
       )
       .catch((error) => {
         console.error("Error al actualizar el rol:", error);
-        // Opcional: Revertir el cambio en la UI si la API falla
         this.groupedRolesSignal.update((groups) =>
           groups.map((group) => ({
             ...group,

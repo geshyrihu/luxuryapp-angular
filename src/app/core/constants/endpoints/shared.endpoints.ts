@@ -5,6 +5,12 @@ export const EndpointsShared = {
       `files/download?filePath=${encodeURIComponent(filePath)}`,
     sidebarImages: "files/sidebar-images",
   },
+  UserValidation: {
+    searchExistingPerson: (fullName: string) =>
+      `user-validation/search-existing-person/${fullName}`,
+    searchExistingPhone: (phoneNumber: string) =>
+      `user-validation/search-existing-phone/${phoneNumber}`,
+  },
   Banks: {
     create: "banks",
     delete: (id: string) => `banks/${id}`,
@@ -41,37 +47,102 @@ export const EndpointsShared = {
       `select-item-enum/${nameEnum}${defaultOption ? "/" + defaultOption : ""}`,
   },
   SelectItems: {
-    accountingCatalogsByCustomerAndYear: (customerId: string, year: number) =>
-      `accounting-catalogs/${customerId}?fiscal-year=${year}`,
+    // ─── Catálogo completo de api/select-items/* (paths relativos) ───
+
+    // Sin parámetros
+    rolesForAnnouncements: "roles-for-announcements",
+    applicationRoles: "application-roles",
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
+    rolesByRoleType: (roleType: string) => `RolesByRoleType/${roleType}`,
+    roles: "roles",
+    legalMatterCategory: "LegalMatterCategory",
+    legalMatter: "LegalMatter",
+    selectForAddTicket: "SelectForAddTicket",
+    rolForDocument: "RolForDocument",
     applicationUser: "application-users",
-    applicationUsersByCustomer: (customerId: string) =>
-      `application-users/${customerId}`,
-    bank: "bank",
+    applicationUsers: "application-users",
     customersActive: "customers-active",
-    customersActiveNameShort: "customers-active-name-short",
+    customersActiveNameShort: "CustomersActiveNameShort",
+    customersInactive: "CustomersInactive",
+    customersAll: "CustomersAll",
+    nombreCorto: "NombreCorto",
+    customersAcceso: (applicationUserId: string) =>
+      `CustomersAcceso/${applicationUserId}`,
+    professions: "professions",
+    categories: "categories",
+    bank: "bank",
+    products: "getproducts",
+    measurementUnits: "getmeasurementunits",
+    useCFDI: "usecfdi",
+    wayToPay: "waytopay",
+    paymentMethod: "paymentmethod",
+    medidorCategoria: "medidorcategoria",
+    supervision: "getlistsupervision",
+    responsableSistemas: "responsablesistemas",
+    allEmployeesActive: "getallemployeeactive",
+    equipoCalendarioMaestro: "equipocalendariomaestro",
+    applicationUserProvider: "ApplicationUserProvider",
+    inspectionReviewsCatalog: "InspectionReviewsCatalog",
+    moduleApps: "module-apps",
+    equipoClasificacion: "EquipoClasificacion",
+    boolYesNo: "BoolYesNo",
+
+    // Con customerId
+    almacenes: (customerId: string) => `almacenes/${customerId}`,
+    fundingPeriod: (customerId: string) => `funding-period/${customerId}`,
+    properties: (customerId: string) => `properties/${customerId}`,
     employeesByCustomer: (customerId: string) => `employee/${customerId}`,
-    employeesByUserId: (userId: string) => `employee-by-user-id/${userId}`,
-    machineryActiveByCustomer: (customerId: string) =>
-      `machineries-active/${customerId}`,
-    measurementUnits: "get-measurement-units",
-    paymentMethod: "payment-method",
-    periodoPresupuestals: (customerId: string) =>
-      `periodo-presupuestals/${customerId}`,
-    properties: (customerId: string) => `select-items/properties/${customerId}`,
+    employeesByUserId: (customerId: string) =>
+      `employee-by-user-id/${customerId}`,
+    person: (customerId: string) => `person/${customerId}`,
+    personEmployee: (customerId: string) => `PersonEmployee/${customerId}`,
+    employeeActive: (customerId: string) => `employeeactivo/${customerId}`,
+    participantAdministration: (customerId: string) =>
+      `participantadministration/${customerId}`,
+    owners: (customerId: string) => `owners/${customerId}`,
     propertyMembersByCustomer: (customerId: string) =>
       `property-members/${customerId}`,
-    providers: (customerId: string) => `providers/${customerId}`,
-    richProducts: (term: string) => `get-rich-products?term=${term}`,
-    rolesForAnnouncements: "roles-for-announcements",
     toolsByCustomer: (customerId: string) => `tool/${customerId}`,
-    useCFDI: "use-cfdi",
-    usersByCustomer: (customerId: string) => `user-from-customer/${customerId}`,
-    wayToPay: "way-to-pay",
+    accountingCatalogs: (customerId: string) =>
+      `AccountingCatalogs/${customerId}`,
+    accountingCatalogsByCustomer: (customerId: string, _year?: number) =>
+      `AccountingCatalogs/${customerId}`,
+    listadoInstalaciones: (customerId: string) =>
+      `listadoinstalaciones/${customerId}`,
+    usersByCustomer: (customerId: string) => `UserFromCustomer/${customerId}`,
+    accountsByCustomer: (customerId: string) =>
+      `getlistaccountforcustomer/${customerId}`,
+    anioOrdenService: (customerId: string) => `anioordenservice/${customerId}`,
+    residentesEdificio: (customerId: string) =>
+      `ResidentesEdificio/${customerId}`,
+    allEmployeesActiveByCustomer: (customerId: string) =>
+      `getallemployeeactive/${customerId}`,
+    providers: (customerId: string) => `providers/${customerId}`,
+    machineriesAllByCustomer: (customerId: string) =>
+      `machineriesgetall/${customerId}`,
+    machineryActiveByCustomer: (customerId: string) =>
+      `machineries-active/${customerId}`,
+    customerInspections: (customerId: string) =>
+      `CustomerInspections/${customerId}`,
+    evaluationTemplates: (customerId: string) =>
+      `EvaluationTemplates/${customerId}`,
+    taskGroupCategory: (customerId: string, workGroupId?: string) =>
+      `task-group-category/${customerId}${workGroupId ? `?workGroupId=${workGroupId}` : ""}`,
+    taskGroupList: (customerId: string) => `task-group-list/${customerId}`,
+
+    // Compuestos
+    richProducts: (term: string) => `get-rich-products?term=${term}`,
+    applicationUsersByCustomer: (customerId: string) =>
+      `application-users/${customerId}`,
+    comiteMinuta: (customerId: string, meetingId: string) =>
+      `GetListComiteMinuta/${customerId}/${meetingId}`,
+    administracionMinuta: (customerId: string, meetingId: string) =>
+      `getlistadministracionminuta/${customerId}/${meetingId}`,
   },
 
   CustomDocuments: {
+    consultWithAi: "custom-documents/consult-with-ai",
     create: "custom-documents",
     delete: (id: string) => `custom-documents/${id}`,
     getById: (id: string) => `custom-documents/${id}`,

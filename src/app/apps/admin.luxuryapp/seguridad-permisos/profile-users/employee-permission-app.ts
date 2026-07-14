@@ -2,7 +2,7 @@ import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { PermissionDto } from "src/app/core/interfaces/permission.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -27,7 +27,11 @@ export class EmployeePermissionApp implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorAdmin.permissionPermissionUserAdminById(this.applicationUserId()))
+      .onGetItem(
+        Endpoints.RefactorAdmin.permissionPermissionUserAdminById(
+          this.applicationUserId(),
+        ),
+      )
       .then((result: any) => {
         this.data = result;
       });

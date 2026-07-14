@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,11 +6,16 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ActivosForm } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
+import { FichaTecnicaActivo } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { ServiceHistoryMachinery } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
+import { BitacoraIndividual } from "src/app/apps/mantenimiento.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -19,10 +23,6 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ActivosForm } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
-import { FichaTecnicaActivo } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
-import { ServiceHistoryMachinery } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
-import { BitacoraIndividual } from "src/app/apps/mantenimiento.luxuryapp/logs/maintenance-log/bitacora-individual";
 
 @Component({
   selector: "app-inventory-engine-system",
@@ -56,7 +56,9 @@ export class InventoryEngineSystem {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventoryEngineSystemListById(this.customerIdS.customerId());
+    const urlApi = Endpoints.RefactorOperations.inventoryEngineSystemListById(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result);
       this.filteredDataSignal.set(result);

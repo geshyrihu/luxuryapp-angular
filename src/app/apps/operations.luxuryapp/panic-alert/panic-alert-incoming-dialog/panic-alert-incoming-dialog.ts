@@ -7,14 +7,14 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { PanicAlertRealTimeDto } from "../interfaces/panic-alert-real-time.dto";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const RECIPIENT_ROLES: ApplicationRole[] = [
   ApplicationRole.Administrador,
@@ -29,59 +29,66 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (activeAlert()) {
-    <div class="panic-overlay" (click)="$event.stopPropagation()">
-      <div class="panic-dialog">
-        <div class="panic-dialog__header">
-          <app-icon icon="mdi:alert-circle" class="panic-dialog__icon" />
-          <span class="panic-dialog__title">Alerta de Pánico</span>
-        </div>
+      <div class="panic-overlay" (click)="$event.stopPropagation()">
+        <div class="panic-dialog">
+          <div class="panic-dialog__header">
+            <app-icon icon="mdi:alert-circle" class="panic-dialog__icon" />
+            <span class="panic-dialog__title">Alerta de Pánico</span>
+          </div>
 
-        <div class="panic-dialog__body">
-          <p class="panic-dialog__name">
-            {{ activeAlert()!.triggeredByName }}
-          </p>
-          <p class="panic-dialog__time">{{ formatTime(activeAlert()!.createdAt) }}</p>
+          <div class="panic-dialog__body">
+            <p class="panic-dialog__name">
+              {{ activeAlert()!.triggeredByName }}
+            </p>
+            <p class="panic-dialog__time">
+              {{ formatTime(activeAlert()!.createdAt) }}
+            </p>
 
-          @if (activeAlert()!.message) {
-          <p class="panic-dialog__message">{{ activeAlert()!.message }}</p>
-          }
+            @if (activeAlert()!.message) {
+              <p class="panic-dialog__message">{{ activeAlert()!.message }}</p>
+            }
 
-          @if (activeAlert()!.latitude && activeAlert()!.longitude) {
-          <a
-            class="panic-dialog__map-link"
-            [href]="getMapUrl(activeAlert()!)"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <app-icon icon="mdi:map-marker" class="text-sm" />
-            Ver ubicación en mapa
-          </a>
-          }
-        </div>
+            @if (activeAlert()!.latitude && activeAlert()!.longitude) {
+              <a
+                class="panic-dialog__map-link"
+                [href]="getMapUrl(activeAlert()!)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <app-icon icon="mdi:map-marker" class="text-sm" />
+                Ver ubicación en mapa
+              </a>
+            }
+          </div>
 
-        <div class="panic-dialog__actions">
-          <button
-            type="button"
-            class="panic-dialog__btn panic-dialog__btn--attend"
-            (click)="onAttend()"
-            [disabled]="isProcessing()"
-          >
-            <app-icon icon="mdi:check-circle" />
-            Atender
-          </button>
-          <button
-            type="button"
-            class="panic-dialog__btn panic-dialog__btn--close"
-            (click)="onClose()"
-          >
-            Cerrar
-          </button>
+          <div class="panic-dialog__actions">
+            <button
+              type="button"
+              class="panic-dialog__btn panic-dialog__btn--attend"
+              (click)="onAttend()"
+              [disabled]="isProcessing()"
+            >
+              <app-icon icon="mdi:check-circle" />
+              Atender
+            </button>
+            <button
+              type="button"
+              class="panic-dialog__btn panic-dialog__btn--close"
+              (click)="onClose()"
+            >
+              Cerrar
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Sonido de alerta -->
-    <audio #alertAudio src="assets/sounds/panic-alert.mp3" loop preload="auto"></audio>
+      <!-- Sonido de alerta -->
+      <audio
+        #alertAudio
+        src="assets/sounds/panic-alert.mp3"
+        loop
+        preload="auto"
+      ></audio>
     }
   `,
   styles: `
@@ -212,13 +219,24 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
     }
 
     @keyframes slideIn {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
     }
   `,
 })
@@ -263,7 +281,10 @@ export class PanicAlertIncomingDialog implements OnInit {
 
     this.isProcessing.set(true);
     try {
-      await this.apiResponseS.onPut(Endpoints.PanicAlerts.attend(alert.id), null);
+      await this.apiResponseS.onPut(
+        Endpoints.PanicAlerts.attend(alert.id),
+        null,
+      );
       this.onClose();
     } finally {
       this.isProcessing.set(false);

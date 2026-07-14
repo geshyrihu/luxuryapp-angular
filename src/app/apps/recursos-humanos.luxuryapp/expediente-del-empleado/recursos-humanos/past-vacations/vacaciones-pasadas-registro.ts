@@ -34,7 +34,7 @@ import {
 import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { GlobalErrorService } from "src/app/core/http/services/global-error.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -168,7 +168,9 @@ export class VacacionesPasadasRegistro implements OnInit {
 
   loadHolidays(year: number): void {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorRecursosHumanos.configuracionDiasFestivosById(year))
+      .onGetItem(
+        Endpoints.RefactorRecursosHumanos.configuracionDiasFestivosById(year),
+      )
       .then((response: { fecha: string }[]) => {
         const holidays = response.map((item) => {
           const date = new Date(item.fecha);
@@ -242,7 +244,11 @@ export class VacacionesPasadasRegistro implements OnInit {
   loadBalance(employeeId: number): void {
     this.loadingBalance.set(true);
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorRecursosHumanos.vacationRequestApprovalsByIdBalance(employeeId))
+      .onGetItem(
+        Endpoints.RefactorRecursosHumanos.vacationRequestApprovalsByIdBalance(
+          employeeId,
+        ),
+      )
       .then((response: VacationBalanceDTO) => {
         console.log("é” Balance Cargado:", response);
         this.balance.set(response);

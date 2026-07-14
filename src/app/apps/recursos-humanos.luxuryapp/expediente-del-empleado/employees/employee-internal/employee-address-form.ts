@@ -16,11 +16,11 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
-import { IEmployeeAddressForm } from './interfaces/employee-address-form.interface';
+import { IEmployeeAddressForm } from "./interfaces/employee-address-form.interface";
 
 @Component({
   selector: "app-employee-address-form",

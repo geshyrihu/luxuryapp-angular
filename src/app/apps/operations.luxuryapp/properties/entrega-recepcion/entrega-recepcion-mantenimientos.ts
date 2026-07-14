@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +8,7 @@ import {
 } from "@angular/core";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -43,7 +43,10 @@ export class EntregaRecepcionMantenimientos {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entregaRecepcionInventarioMantenimientosById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorOperations.entregaRecepcionInventarioMantenimientosById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

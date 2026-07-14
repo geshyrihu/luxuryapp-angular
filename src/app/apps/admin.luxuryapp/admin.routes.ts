@@ -30,10 +30,10 @@ export const adminRoutes: Routes = [
     },
   },
   {
-    path: "application-user",
+    path: "user-accounts",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/seguridad-permisos/application-user/application-user-list").then(
-        (m) => m.ApplicationUserList,
+      import("src/app/apps/admin.luxuryapp/seguridad-permisos/user-accounts/user-account-list").then(
+        (m) => m.UserAccountList,
       ),
     canActivate: [authGuard],
     data: {

@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 @Injectable({

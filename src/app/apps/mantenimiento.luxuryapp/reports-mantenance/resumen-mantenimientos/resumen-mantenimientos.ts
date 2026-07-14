@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +9,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -53,12 +53,20 @@ export class ResumenMantenimientos {
     );
     const customerId: string = this.customerIdS.customerId();
 
-    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportResumenByIdById(customerId, periodo);
+    const urlApi =
+      Endpoints.RefactorMantenimiento.maintenanceReportResumenByIdById(
+        customerId,
+        periodo,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 = Endpoints.RefactorMantenimiento.maintenanceReportProveedorByIdById(customerId, periodo);
+    const urlApi2 =
+      Endpoints.RefactorMantenimiento.maintenanceReportProveedorByIdById(
+        customerId,
+        periodo,
+      );
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataProviderSignal.set(result);
     });

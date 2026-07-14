@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -10,6 +9,7 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -59,7 +59,11 @@ export class MeetingDetailForm implements OnInit {
     return this.dateS.getDateFormat(item);
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorDireccion.meetingsDetailsDetallesFiltroByIdById(this.meetingId, this.status);
+    const urlApi =
+      Endpoints.RefactorDireccion.meetingsDetailsDetallesFiltroByIdById(
+        this.meetingId,
+        this.status,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

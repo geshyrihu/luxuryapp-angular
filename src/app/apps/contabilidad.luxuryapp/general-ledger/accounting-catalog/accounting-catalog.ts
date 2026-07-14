@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,6 +15,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { ConfirmationService } from "primeng/api";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -110,7 +110,10 @@ export class AccountingCatalog {
     const customerId = this.customerIdService.customerId();
     if (!customerId) return;
 
-    const urlApi = Endpoints.RefactorContabilidad.accountingCatalogCustomeryear(customerId, this.currentYear());
+    const urlApi = Endpoints.RefactorContabilidad.accountingCatalogCustomeryear(
+      customerId,
+      this.currentYear(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((response: GroupedAccountingCatalogDTO[]) => {

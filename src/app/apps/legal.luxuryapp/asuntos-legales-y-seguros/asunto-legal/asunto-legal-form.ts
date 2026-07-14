@@ -11,7 +11,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -68,9 +68,9 @@ export class AsuntoLegalForm implements OnInit {
   }
 
   async onCategories(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.LegalMatters.categories,
-    );
+    const result: any = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto[]
+    >(Endpoints.LegalMatters.categories);
     this.cb_categories.set(result as SelectItemDto[]);
   }
 

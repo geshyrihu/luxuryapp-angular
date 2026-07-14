@@ -1,11 +1,12 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -14,11 +15,9 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
-  imports: [
-    MobileListItem,TableModule, AppIcon],
+  imports: [MobileListItem, TableModule, AppIcon],
   templateUrl: "./informes-financieros-consejo-directivo.html",
 })
 export class InformesFinancierosConsejoDirectivo implements OnInit {
@@ -62,7 +61,8 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     }
 
     // Construimos la URL del endpoint que creamos en el backend
-    const urlApi = Endpoints.RefactorLegal.boardDirectorsFinancialReportsById(customerId);
+    const urlApi =
+      Endpoints.RefactorLegal.boardDirectorsFinancialReportsById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -8,7 +8,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
@@ -19,8 +19,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,WebButtonIcon, LxTooltipDirective],
+  imports: [AppIcon, WebButtonIcon, LxTooltipDirective],
 })
 export class ResultadoInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);

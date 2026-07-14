@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -20,6 +19,7 @@ import { TableModule } from "primeng/table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -53,7 +53,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ],
+  ],
 })
 export class ProductEntryList {
   apiResponseS = inject(ApiResponseService);
@@ -84,7 +84,10 @@ export class ProductEntryList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entradaProductoGetEntradaProductosById(this.customerIdS.customerId());
+    const urlApi =
+      Endpoints.RefactorOperations.entradaProductoGetEntradaProductosById(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);

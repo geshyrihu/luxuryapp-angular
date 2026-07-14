@@ -13,7 +13,7 @@ import { fromEvent } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MenuItemDto } from "src/app/core/interfaces/menu.interface";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";

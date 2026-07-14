@@ -23,7 +23,7 @@ import { TableModule } from "primeng/table";
 
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -172,7 +172,7 @@ export class Payments implements OnInit {
 
   async loadProperties() {
     const res = await this.apiResponseS.onGetSelectItem<any[]>(
-      `properties/${this.customerId()}`,
+      Endpoints.SelectItems.properties(this.customerId()),
     );
     if (res) {
       this.properties.set(res.map((p) => ({ label: p.label, value: p.value })));

@@ -1,9 +1,9 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
@@ -13,18 +13,12 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
-  imports: [
-    MobileListItem,
-    CommonModule,
-    AppIcon,
-    LxTag,
-    LxBadge,
-  ],
+  imports: [MobileListItem, CommonModule, AppIcon, LxTag, LxBadge],
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })
 export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
@@ -52,7 +46,10 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
   onLoadData(meetingMinuteId: string) {
     this.loading.set(true);
     // Usamos el endpoint específico para las minutas que creamos en el backend
-    const urlApi = Endpoints.RefactorLegal.boardDirectorsMeetingMinutesDetailById(meetingMinuteId);
+    const urlApi =
+      Endpoints.RefactorLegal.boardDirectorsMeetingMinutesDetailById(
+        meetingMinuteId,
+      );
 
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data.set(result);

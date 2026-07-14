@@ -472,7 +472,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/adjustments": {
+    "/api/cobranza/adjustments": {
       "post": {
         "tags": ["Adjustments"],
         "requestBody": {
@@ -523,7 +523,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/adjustments/credit-notes": {
+    "/api/cobranza/adjustments/credit-notes": {
       "post": {
         "tags": ["Adjustments"],
         "requestBody": {
@@ -574,7 +574,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/adjustments/credit-notes/property/{propertyId}/customer/{customerId}": {
+    "/api/cobranza/adjustments/credit-notes/property/{propertyId}/customer/{customerId}": {
       "get": {
         "tags": ["Adjustments"],
         "parameters": [
@@ -621,7 +621,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/adjustments/credit-notes/{id}/cancel": {
+    "/api/cobranza/adjustments/credit-notes/{id}/cancel": {
       "post": {
         "tags": ["Adjustments"],
         "parameters": [
@@ -1042,7 +1042,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "default": "Hola, ¿qué modelo eres? Responde brevemente."
+              "default": "Hola, Â¿quÃ© modelo eres? Responde brevemente."
             }
           }
         ],
@@ -4283,7 +4283,7 @@
         }
       }
     },
-    "/api/aspel-cobranza-local/customers": {
+    "/api/cobranza/local/customers": {
       "get": {
         "tags": ["AspelCobranzaHausLocal"],
         "responses": {
@@ -4310,7 +4310,7 @@
         }
       }
     },
-    "/api/aspel-cobranza-local/accounts": {
+    "/api/cobranza/local/accounts": {
       "get": {
         "tags": ["AspelCobranzaHausLocal"],
         "parameters": [
@@ -4355,7 +4355,7 @@
         }
       }
     },
-    "/api/aspel-cobranza-local/deudas-actuales": {
+    "/api/cobranza/local/deudas-actuales": {
       "get": {
         "tags": ["AspelCobranzaHausLocal"],
         "parameters": [
@@ -4400,7 +4400,7 @@
         }
       }
     },
-    "/api/aspel-cobranza-local/detalle-cobranza-rango": {
+    "/api/cobranza/local/detalle-cobranza-rango": {
       "get": {
         "tags": ["AspelCobranzaHausLocal"],
         "parameters": [
@@ -4444,7 +4444,7 @@
         }
       }
     },
-    "/api/aspel-cobranza-local/estado-cuenta-rango": {
+    "/api/cobranza/local/estado-cuenta-rango": {
       "get": {
         "tags": ["AspelCobranzaHausLocal"],
         "parameters": [
@@ -4504,7 +4504,7 @@
         }
       }
     },
-    "/api/aspel-cobranza-local/status": {
+    "/api/cobranza/local/status": {
       "get": {
         "tags": ["AspelCobranzaHausLocal"],
         "parameters": [
@@ -5446,7 +5446,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/billing-config/{customerId}": {
+    "/api/cobranza/billing-config/customer/{customerId}": {
       "get": {
         "tags": ["BillingConfig"],
         "parameters": [
@@ -5484,7 +5484,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/billing-config": {
+    "/api/cobranza/billing-config": {
       "post": {
         "tags": ["BillingConfig"],
         "requestBody": {
@@ -9638,7 +9638,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/customer/{customerId}": {
+    "/api/cobranza/charges/customer/{customerId}": {
       "get": {
         "tags": ["Charges"],
         "parameters": [
@@ -9676,7 +9676,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/{id}": {
+    "/api/cobranza/charges/{id}": {
       "get": {
         "tags": ["Charges"],
         "parameters": [
@@ -9774,7 +9774,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges": {
+    "/api/cobranza/charges": {
       "post": {
         "tags": ["Charges"],
         "requestBody": {
@@ -9825,7 +9825,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/{id}/cancel": {
+    "/api/cobranza/charges/{id}/cancel": {
       "post": {
         "tags": ["Charges"],
         "parameters": [
@@ -9863,7 +9863,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/generate-monthly": {
+    "/api/cobranza/charges/generate-monthly": {
       "post": {
         "tags": ["Charges"],
         "parameters": [
@@ -9916,7 +9916,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/calculate-late-fees": {
+    "/api/cobranza/charges/calculate-late-fees": {
       "post": {
         "tags": ["Charges"],
         "parameters": [
@@ -9953,7 +9953,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/bulk-import/saldo-inicial": {
+    "/api/cobranza/charges/bulk-import/saldo-inicial": {
       "post": {
         "tags": ["Charges"],
         "parameters": [
@@ -10010,7 +10010,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/initial-balance-status/customer/{customerId}": {
+    "/api/cobranza/charges/initial-balance-status/customer/{customerId}": {
       "get": {
         "tags": ["Charges"],
         "parameters": [
@@ -10048,7 +10048,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/charges/initial-balance/bulk": {
+    "/api/cobranza/charges/initial-balance/bulk": {
       "post": {
         "tags": ["Charges"],
         "requestBody": {
@@ -10099,7 +10099,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/templates/customer/{customerId}": {
+    "/api/cobranza/charge-templates/customer/{customerId}": {
       "get": {
         "tags": ["ChargeTemplates"],
         "parameters": [
@@ -10137,7 +10137,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/templates/{id}": {
+    "/api/cobranza/charge-templates/{id}": {
       "get": {
         "tags": ["ChargeTemplates"],
         "parameters": [
@@ -10271,7 +10271,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/templates": {
+    "/api/cobranza/charge-templates": {
       "post": {
         "tags": ["ChargeTemplates"],
         "requestBody": {
@@ -10322,7 +10322,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/templates/preview": {
+    "/api/cobranza/charge-templates/preview": {
       "post": {
         "tags": ["ChargeTemplates"],
         "requestBody": {
@@ -10373,7 +10373,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/templates/coverage/customer/{customerId}": {
+    "/api/cobranza/charge-templates/coverage/customer/{customerId}": {
       "get": {
         "tags": ["ChargeTemplates"],
         "parameters": [
@@ -10837,7 +10837,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/analytics/customer/{customerId}": {
+    "/api/cobranza/metrics/customer/{customerId}": {
       "get": {
         "tags": ["CobranzaMetricas"],
         "parameters": [
@@ -10884,7 +10884,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/accounts/tree/customer/{customerId}": {
+    "/api/cobranza/online/accounts/tree/customer/{customerId}": {
       "get": {
         "tags": ["CobranzaOnlineAccount"],
         "parameters": [
@@ -10922,45 +10922,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/accounts/tree/customer/{customerId}": {
-      "get": {
-        "tags": ["CobranzaOnlineAccount"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaAccountResponseDTOListApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaAccountResponseDTOListApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaAccountResponseDTOListApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/cobranza-online/balances/customer/{customerId}/year/{year}": {
+    "/api/cobranza/online/balances/customer/{customerId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlineBalance"],
         "parameters": [
@@ -11007,54 +10969,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/balances/customer/{customerId}/year/{year}": {
-      "get": {
-        "tags": ["CobranzaOnlineBalance"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaBalanceResponseDTOListApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaBalanceResponseDTOListApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaBalanceResponseDTOListApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/cobranza-online/cartera/customer/{customerId}/year/{year}": {
+    "/api/cobranza/online/cartera/customer/{customerId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlineCartera"],
         "parameters": [
@@ -11101,54 +11016,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/cartera/customer/{customerId}/year/{year}": {
-      "get": {
-        "tags": ["CobranzaOnlineCartera"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCarteraCondominoDTOListApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCarteraCondominoDTOListApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCarteraCondominoDTOListApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/cobranza-online/sync-status/customer/{customerId}/year/{year}": {
+    "/api/cobranza/online/sync-status/customer/{customerId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11195,7 +11063,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/dashboard/customer/{customerId}/year/{year}/month/{month}": {
+    "/api/cobranza/online/dashboard/customer/{customerId}/year/{year}/month/{month}": {
       "get": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11259,7 +11127,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/analysis/customer/{customerId}/year/{year}/month/{month}/day/{day}": {
+    "/api/cobranza/online/analysis/customer/{customerId}/year/{year}/month/{month}/day/{day}": {
       "get": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11324,7 +11192,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/inspection/customer/{customerId}/year/{year}/month/{month}": {
+    "/api/cobranza/online/inspection/customer/{customerId}/year/{year}/month/{month}": {
       "get": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11380,7 +11248,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/inspection-history/customer/{customerId}/year/{year}/account/{accountNumber}": {
+    "/api/cobranza/online/inspection-history/customer/{customerId}/year/{year}/account/{accountNumber}": {
       "get": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11435,7 +11303,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/excluded-accounts/customer/{customerId}/year/{year}": {
+    "/api/cobranza/online/excluded-accounts/customer/{customerId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11482,7 +11350,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/excluded-accounts/customer/{customerId}": {
+    "/api/cobranza/online/excluded-accounts/customer/{customerId}": {
       "put": {
         "tags": ["CobranzaOnlineDashboard"],
         "parameters": [
@@ -11544,7 +11412,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/movements/customer/{customerId}/year/{year}": {
+    "/api/cobranza/online/movements/customer/{customerId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlineMovement"],
         "parameters": [
@@ -11599,62 +11467,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/movements/customer/{customerId}/year/{year}": {
-      "get": {
-        "tags": ["CobranzaOnlineMovement"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "accountId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaMovementResponseDTOListApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaMovementResponseDTOListApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaMovementResponseDTOListApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/cobranza-online/policies/customer/{customerId}/year/{year}": {
+    "/api/cobranza/online/policies/customer/{customerId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlinePolicy"],
         "parameters": [
@@ -11701,54 +11514,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/policies/customer/{customerId}/year/{year}": {
-      "get": {
-        "tags": ["CobranzaOnlinePolicy"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaPolicyResponseDTOListApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaPolicyResponseDTOListApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaPolicyResponseDTOListApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/cobranza-online/statements/cuentas-nivel3/customer/{customerId}": {
+    "/api/cobranza/online/statements/cuentas-nivel3/customer/{customerId}": {
       "get": {
         "tags": ["CobranzaOnlineStatement"],
         "parameters": [
@@ -11786,45 +11552,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/statements/cuentas-nivel3/customer/{customerId}": {
-      "get": {
-        "tags": ["CobranzaOnlineStatement"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaAccountResponseDTOListApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaAccountResponseDTOListApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiCobranzaAccountResponseDTOListApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/cobranza-online/statements/customer/{customerId}/account/{accountId}/year/{year}": {
+    "/api/cobranza/online/statements/customer/{customerId}/account/{accountId}/year/{year}": {
       "get": {
         "tags": ["CobranzaOnlineStatement"],
         "parameters": [
@@ -11880,63 +11608,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/statements/customer/{customerId}/account/{accountId}/year/{year}": {
-      "get": {
-        "tags": ["CobranzaOnlineStatement"],
-        "parameters": [
-          {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "accountId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiEstadoCuentaResponseDTOApiResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiEstadoCuentaResponseDTOApiResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoiEstadoCuentaResponseDTOApiResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/accounting-coi/native-collection/payments/customer/{customerId}": {
+    "/api/cobranza/payments/customer/{customerId}": {
       "get": {
         "tags": ["CobranzaPayments"],
         "parameters": [
@@ -11974,7 +11646,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/payments/{id}": {
+    "/api/cobranza/payments/{id}": {
       "get": {
         "tags": ["CobranzaPayments"],
         "parameters": [
@@ -12072,7 +11744,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/payments": {
+    "/api/cobranza/payments": {
       "post": {
         "tags": ["CobranzaPayments"],
         "requestBody": {
@@ -12123,7 +11795,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/payments/pending-charges/property/{propertyId}/customer/{customerId}": {
+    "/api/cobranza/payments/pending-charges/property/{propertyId}/customer/{customerId}": {
       "get": {
         "tags": ["CobranzaPayments"],
         "parameters": [
@@ -12170,7 +11842,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/payments/apply-to-charges": {
+    "/api/cobranza/payments/apply-to-charges": {
       "post": {
         "tags": ["CobranzaPayments"],
         "requestBody": {
@@ -12221,7 +11893,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/payments/{id}/cancel": {
+    "/api/cobranza/payments/{id}/cancel": {
       "post": {
         "tags": ["CobranzaPayments"],
         "parameters": [
@@ -12283,7 +11955,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/payments/auto-apply-overpayments": {
+    "/api/cobranza/payments/auto-apply-overpayments": {
       "post": {
         "tags": ["CobranzaPayments"],
         "parameters": [
@@ -12328,7 +12000,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/mapping/customer/{customerId}": {
+    "/api/cobranza/online/mapping/customer/{customerId}": {
       "get": {
         "tags": ["CoiMapeo"],
         "parameters": [
@@ -12426,7 +12098,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/mapping/customer/{customerId}/properties": {
+    "/api/cobranza/online/mapping/customer/{customerId}/properties": {
       "get": {
         "tags": ["CoiMapeo"],
         "parameters": [
@@ -12464,7 +12136,7 @@
         }
       }
     },
-    "/api/accounting-coi/legacy-collection/mapping/customer/{customerId}/auto": {
+    "/api/cobranza/online/mapping/customer/{customerId}/auto": {
       "post": {
         "tags": ["CoiMapeo"],
         "parameters": [
@@ -12502,7 +12174,7 @@
         }
       }
     },
-    "/api/accounting-coi/cobranza-online/reporte-financiero/customer/{customerId}/year/{year}/from/{mesInicio}/to/{mesFin}": {
+    "/api/cobranza/online/reporte-financiero/customer/{customerId}/year/{year}/from/{mesInicio}/to/{mesFin}": {
       "get": {
         "tags": ["CoiReporteFinanciero"],
         "parameters": [
@@ -12567,7 +12239,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/collection-cases/customer/{customerId}": {
+    "/api/cobranza/collection-cases/customer/{customerId}": {
       "get": {
         "tags": ["CollectionCases"],
         "parameters": [
@@ -12605,7 +12277,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/collection-cases/{id}": {
+    "/api/cobranza/collection-cases/{id}": {
       "get": {
         "tags": ["CollectionCases"],
         "parameters": [
@@ -12703,7 +12375,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/collection-cases": {
+    "/api/cobranza/collection-cases": {
       "post": {
         "tags": ["CollectionCases"],
         "requestBody": {
@@ -12754,7 +12426,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/collection-cases/{id}/activity": {
+    "/api/cobranza/collection-cases/{id}/activity": {
       "post": {
         "tags": ["CollectionCases"],
         "parameters": [
@@ -12816,7 +12488,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/collection-cases/evaluate-and-escalate/{customerId}": {
+    "/api/cobranza/collection-cases/evaluate-and-escalate/{customerId}": {
       "post": {
         "tags": ["CollectionCases"],
         "parameters": [
@@ -24433,7 +24105,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/financial-approvals": {
+    "/api/cobranza/approvals": {
       "post": {
         "tags": ["FinancialApprovals"],
         "requestBody": {
@@ -24484,7 +24156,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/financial-approvals/{id}/approve": {
+    "/api/cobranza/approvals/{id}/approve": {
       "post": {
         "tags": ["FinancialApprovals"],
         "parameters": [
@@ -24546,7 +24218,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/financial-approvals/{id}/reject": {
+    "/api/cobranza/approvals/{id}/reject": {
       "post": {
         "tags": ["FinancialApprovals"],
         "parameters": [
@@ -24608,7 +24280,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/financial-approvals/{id}/cancel": {
+    "/api/cobranza/approvals/{id}/cancel": {
       "post": {
         "tags": ["FinancialApprovals"],
         "parameters": [
@@ -24670,7 +24342,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/financial-approvals/pending/customer/{customerId}": {
+    "/api/cobranza/approvals/pending/customer/{customerId}": {
       "get": {
         "tags": ["FinancialApprovals"],
         "parameters": [
@@ -24708,7 +24380,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/financial-approvals/property/{propertyId}/customer/{customerId}": {
+    "/api/cobranza/approvals/property/{propertyId}/customer/{customerId}": {
       "get": {
         "tags": ["FinancialApprovals"],
         "parameters": [
@@ -24755,7 +24427,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/audit/customer/{customerId}": {
+    "/api/cobranza/audit-logs/customer/{customerId}": {
       "get": {
         "tags": ["FinancialAudit"],
         "parameters": [
@@ -24809,7 +24481,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/audit/property/{propertyId}/customer/{customerId}": {
+    "/api/cobranza/audit-logs/property/{propertyId}/customer/{customerId}": {
       "get": {
         "tags": ["FinancialAudit"],
         "parameters": [
@@ -33775,7 +33447,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/invoices/charge/{chargeId}": {
+    "/api/cobranza/invoices/charge/{chargeId}": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -33813,7 +33485,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/invoices/{id}": {
+    "/api/cobranza/invoices/{id}": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -33851,7 +33523,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/invoices": {
+    "/api/cobranza/invoices": {
       "post": {
         "tags": ["Invoices"],
         "requestBody": {
@@ -33902,7 +33574,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/invoices/{id}/cancel": {
+    "/api/cobranza/invoices/{id}/cancel": {
       "post": {
         "tags": ["Invoices"],
         "parameters": [
@@ -34939,7 +34611,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/late-fee-policies/customer/{customerId}": {
+    "/api/cobranza/late-fee-policies/customer/{customerId}": {
       "get": {
         "tags": ["LateFeePolicies"],
         "parameters": [
@@ -34977,7 +34649,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/late-fee-policies/{id}": {
+    "/api/cobranza/late-fee-policies/{id}": {
       "get": {
         "tags": ["LateFeePolicies"],
         "parameters": [
@@ -35111,7 +34783,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/late-fee-policies": {
+    "/api/cobranza/late-fee-policies": {
       "post": {
         "tags": ["LateFeePolicies"],
         "requestBody": {
@@ -35615,7 +35287,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/ledger/property/{propertyId}/customer/{customerId}/balance": {
+    "/api/cobranza/ledger/property/{propertyId}/customer/{customerId}/balance": {
       "get": {
         "tags": ["Ledger"],
         "parameters": [
@@ -35670,7 +35342,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/ledger/charge/{chargeId}/balance": {
+    "/api/cobranza/ledger/charge/{chargeId}/balance": {
       "get": {
         "tags": ["Ledger"],
         "parameters": [
@@ -35716,7 +35388,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/ledger/property/{propertyId}/customer/{customerId}/entries": {
+    "/api/cobranza/ledger/property/{propertyId}/customer/{customerId}/entries": {
       "get": {
         "tags": ["Ledger"],
         "parameters": [
@@ -35779,7 +35451,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/ledger/batch/{batchId}": {
+    "/api/cobranza/ledger/batch/{batchId}": {
       "get": {
         "tags": ["Ledger"],
         "parameters": [
@@ -35817,7 +35489,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/ledger/integrity/customer/{customerId}": {
+    "/api/cobranza/ledger/integrity/customer/{customerId}": {
       "post": {
         "tags": ["Ledger"],
         "parameters": [
@@ -35855,7 +35527,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/ledger/integrity/customer/{customerId}/property/{propertyId}": {
+    "/api/cobranza/ledger/integrity/customer/{customerId}/property/{propertyId}": {
       "get": {
         "tags": ["Ledger"],
         "parameters": [
@@ -44098,7 +43770,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/statements/{propertyId}": {
+    "/api/cobranza/statements/{propertyId}": {
       "get": {
         "tags": ["NativeStatements"],
         "parameters": [
@@ -48397,7 +48069,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/period-closures/customer/{customerId}": {
+    "/api/cobranza/period-closures/customer/{customerId}": {
       "get": {
         "tags": ["PeriodClosures"],
         "parameters": [
@@ -48435,7 +48107,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/period-closures/customer/{customerId}/{year}/{month}/is-closed": {
+    "/api/cobranza/period-closures/customer/{customerId}/{year}/{month}/is-closed": {
       "get": {
         "tags": ["PeriodClosures"],
         "parameters": [
@@ -48491,7 +48163,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/period-closures/customer/{customerId}/close": {
+    "/api/cobranza/period-closures/customer/{customerId}/close": {
       "post": {
         "tags": ["PeriodClosures"],
         "parameters": [
@@ -48553,7 +48225,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/period-closures/customer/{customerId}/reopen": {
+    "/api/cobranza/period-closures/customer/{customerId}/reopen": {
       "post": {
         "tags": ["PeriodClosures"],
         "parameters": [
@@ -52341,7 +52013,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/customer/{customerId}": {
+    "/api/cobranza/property-fines/customer/{customerId}": {
       "get": {
         "tags": ["PropertyFines"],
         "parameters": [
@@ -52379,7 +52051,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/property/{propertyId}": {
+    "/api/cobranza/property-fines/property/{propertyId}": {
       "get": {
         "tags": ["PropertyFines"],
         "parameters": [
@@ -52417,7 +52089,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/{id}": {
+    "/api/cobranza/property-fines/{id}": {
       "get": {
         "tags": ["PropertyFines"],
         "parameters": [
@@ -52515,7 +52187,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines": {
+    "/api/cobranza/property-fines": {
       "post": {
         "tags": ["PropertyFines"],
         "requestBody": {
@@ -52566,7 +52238,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/issue-charge": {
+    "/api/cobranza/property-fines/issue-charge": {
       "post": {
         "tags": ["PropertyFines"],
         "requestBody": {
@@ -52617,7 +52289,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/{id}/void": {
+    "/api/cobranza/property-fines/{id}/void": {
       "post": {
         "tags": ["PropertyFines"],
         "parameters": [
@@ -52662,7 +52334,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/{fineId}/evidences": {
+    "/api/cobranza/property-fines/{fineId}/evidences": {
       "post": {
         "tags": ["PropertyFines"],
         "parameters": [
@@ -52720,7 +52392,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-fines/evidences/{evidenceId}": {
+    "/api/cobranza/property-fines/evidences/{evidenceId}": {
       "delete": {
         "tags": ["PropertyFines"],
         "parameters": [
@@ -52758,7 +52430,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-members/{id}": {
+    "/api/cobranza/property-members/{id}": {
       "get": {
         "tags": ["PropertyMembers"],
         "parameters": [
@@ -52856,7 +52528,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-members/customer/{customerId}": {
+    "/api/cobranza/property-members/customer/{customerId}": {
       "get": {
         "tags": ["PropertyMembers"],
         "parameters": [
@@ -52894,7 +52566,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-members/property/{propertyId}/customer/{customerId}": {
+    "/api/cobranza/property-members/property/{propertyId}/customer/{customerId}": {
       "get": {
         "tags": ["PropertyMembers"],
         "parameters": [
@@ -52941,7 +52613,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-members": {
+    "/api/cobranza/property-members": {
       "post": {
         "tags": ["PropertyMembers"],
         "requestBody": {
@@ -52992,7 +52664,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-members/{id}/end-membership": {
+    "/api/cobranza/property-members/{id}/end-membership": {
       "post": {
         "tags": ["PropertyMembers"],
         "parameters": [
@@ -53054,7 +52726,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/property-members/migrate-from-legacy/customer/{customerId}": {
+    "/api/cobranza/property-members/migrate-from-legacy/customer/{customerId}": {
       "post": {
         "tags": ["PropertyMembers"],
         "parameters": [
@@ -55588,7 +55260,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/reconciliation/unallocated": {
+    "/api/cobranza/reconciliations/unallocated": {
       "get": {
         "tags": ["Reconciliations"],
         "responses": {
@@ -55615,7 +55287,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/reconciliation/auto-apply-all": {
+    "/api/cobranza/reconciliations/auto-apply-all": {
       "post": {
         "tags": ["Reconciliations"],
         "responses": {
@@ -55642,7 +55314,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/regulation-articles/customer/{customerId}": {
+    "/api/cobranza/regulation-articles/customer/{customerId}": {
       "get": {
         "tags": ["RegulationArticles"],
         "parameters": [
@@ -55680,7 +55352,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/regulation-articles/{id}": {
+    "/api/cobranza/regulation-articles/{id}": {
       "get": {
         "tags": ["RegulationArticles"],
         "parameters": [
@@ -55814,7 +55486,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/regulation-articles": {
+    "/api/cobranza/regulation-articles": {
       "post": {
         "tags": ["RegulationArticles"],
         "requestBody": {
@@ -75221,7 +74893,7 @@
         }
       }
     },
-    "/api/accounting-coi/native-collection/webhooks/pasarela": {
+    "/api/cobranza/payment-webhooks/pasarela": {
       "post": {
         "tags": ["Webhooks"],
         "requestBody": {
@@ -148028,3 +147700,4 @@
     }
   ]
 }
+

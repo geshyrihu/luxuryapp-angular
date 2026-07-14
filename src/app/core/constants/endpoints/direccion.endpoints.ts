@@ -17,8 +17,6 @@ export const EndpointsDireccion = {
     addParticipant: (meetingId: string | number, participantId: string | number) =>
       `meeting-administracion/agregar-participantes-administracion/${meetingId}/${participantId}/1`,
     delete: (id: string | number) => `meeting-administracion/${id}`,
-    listCandidates: (customerId: string, meetingId: string | number) =>
-      `get-list-administracion-minuta/${customerId}/${meetingId}`,
     participants: (meetingId: string | number) =>
       `meeting-administracion/participantes-administracion/${meetingId}`,
   },
@@ -26,8 +24,6 @@ export const EndpointsDireccion = {
     addParticipant: (meetingId: string | number, participantId: string | number) =>
       `meeting-comite/agregar-participantes-comite/${meetingId}/${participantId}`,
     delete: (id: string | number) => `meeting-comite/${id}`,
-    listCandidates: (customerId: string, meetingId: string | number) =>
-      `get-list-comite-minuta/${customerId}/${meetingId}`,
     participants: (meetingId: string | number) =>
       `meeting-comite/participantes-comite/${meetingId}`,
   },

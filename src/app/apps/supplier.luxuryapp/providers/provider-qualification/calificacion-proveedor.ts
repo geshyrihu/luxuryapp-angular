@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,6 +15,7 @@ import { NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-calificacion-proveedor",
@@ -47,7 +47,10 @@ export class CalificacionProveedor implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorSupplier.qualificationProviderByIdById(this.authS.applicationUserId, this.providerId);
+    const urlApi = Endpoints.RefactorSupplier.qualificationProviderByIdById(
+      this.authS.applicationUserId,
+      this.providerId,
+    );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (result != null) {
         this.qualificationProviderId = result.id;
@@ -63,13 +66,19 @@ export class CalificacionProveedor implements OnInit {
 
     if (this.qualificationProviderId) {
       this.apiResponseS
-        .onPost(Endpoints.RefactorSupplier.qualificationProvider, this.form.value)
+        .onPost(
+          Endpoints.RefactorSupplier.qualificationProvider,
+          this.form.value,
+        )
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(Endpoints.RefactorSupplier.qualificationProviderById(this.qualificationProviderId),
+        .onPut(
+          Endpoints.RefactorSupplier.qualificationProviderById(
+            this.qualificationProviderId,
+          ),
           this.form.value,
         )
         .then((result: boolean) => {

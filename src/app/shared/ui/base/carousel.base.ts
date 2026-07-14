@@ -1,4 +1,4 @@
-import { Directive, input, output } from "@angular/core";
+import { Directive, input, output, TemplateRef } from "@angular/core";
 
 @Directive()
 export abstract class CarouselBase {
@@ -10,5 +10,7 @@ export abstract class CarouselBase {
   numScroll = input<number>(1);
   showIndicators = input<boolean>(true);
   showNavigators = input<boolean>(true);
+  /** Plantilla de cada slide; recibe el elemento como $implicit. */
+  itemTemplate = input<TemplateRef<unknown>>();
   onPage = output<any>();
 }

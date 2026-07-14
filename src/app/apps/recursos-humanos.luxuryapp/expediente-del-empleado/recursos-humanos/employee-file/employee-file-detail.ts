@@ -12,7 +12,7 @@ import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "primeng/table";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import {
@@ -27,12 +27,12 @@ import {
   EmployeeFileRequestsDTO,
   EmployeeFileVacationsLeavesDTO,
   EmployeeFileWorkPositionDTO,
-} from './interfaces/employee-file.interfaces';
+} from "./interfaces/employee-file.interfaces";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 @Component({
   selector: "app-employee-file-detail",

@@ -15,19 +15,19 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ECountry } from "src/app/core/enums/paises.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { IEmployeePersonalDataForm } from './interfaces/employee-personal-data-form.interface';
+import { IEmployeePersonalDataForm } from "./interfaces/employee-personal-data-form.interface";
 
 @Component({
   selector: "app-employee-personal-data-form",

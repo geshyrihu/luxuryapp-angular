@@ -14,7 +14,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -26,8 +26,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import {
   IncidenciaNominaDTO,
   SincronizarIncidenciasDTO,
-} from '../interfaces/incidencia-nomina.interface';
-import { PeriodoNominaDTO } from '../interfaces/periodo-nomina.interface';
+} from "../interfaces/incidencia-nomina.interface";
+import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import ModalIncidenciaAdd from "./modal-incidencia-add/modal-incidencia-add";
 
 import { LxTag } from "@ui/adaptive/tag/tag";

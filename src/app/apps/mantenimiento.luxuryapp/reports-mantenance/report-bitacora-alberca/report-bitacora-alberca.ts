@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,6 +10,7 @@ import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
@@ -43,9 +43,11 @@ export class ReportBitacoraAlberca {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.maintenanceReportBitacoraalbercaparametrosByIdById(this.customerIdS.customerId(), this.dateS.getDateFormat(
-      this.PeriodMonthService.getPeriodoInicio,
-    ));
+    const urlApi =
+      Endpoints.RefactorMantenimiento.maintenanceReportBitacoraalbercaparametrosByIdById(
+        this.customerIdS.customerId(),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.medidores.set(result);
     });

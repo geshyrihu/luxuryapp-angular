@@ -20,7 +20,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 export interface IOrdenCompraDetalleForm {
@@ -47,7 +47,7 @@ export interface IOrdenCompraDetalleForm {
     CustomInputCurrencySignal,
     CustomInputDecimal,
     WebButtonLabelSave,
-    ],
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush, // Add OnPush strategy
 })
 export class OrdenCompraEditDetalle implements OnInit {

@@ -23,7 +23,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions,
@@ -87,7 +87,10 @@ export class GastoFijoServicios implements OnInit {
     this.onLoadProductsAgregados();
   }
   onLoadProductsAgregados() {
-    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesDetallesOrdenCompraFijosById(this.catalogoGastosFijosId);
+    const urlApi =
+      Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesDetallesOrdenCompraFijosById(
+        this.catalogoGastosFijosId,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.productosAgregados.set(result);
       this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -103,7 +106,9 @@ export class GastoFijoServicios implements OnInit {
   }
   onLoadProducts() {
     const urlApi =
-      Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesProductsById(this.catalogoGastosFijosId);
+      Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesProductsById(
+        this.catalogoGastosFijosId,
+      );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.productos.set(result);
       this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -131,7 +136,10 @@ export class GastoFijoServicios implements OnInit {
 
   onUpdateProductoAgregado(item: any) {
     this.apiResponseS
-      .onPut(Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesById(item.id), item)
+      .onPut(
+        Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesById(item.id),
+        item,
+      )
       .then(() => {
         this.mensajeError = false;
         this.onLoadProducts();

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,6 +17,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface IProductReturnForm {
@@ -36,7 +36,7 @@ interface IProductReturnForm {
     CustomInputNumberSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    ],
+  ],
 })
 export class ProductReturn implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -83,7 +83,10 @@ export class ProductReturn implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost(Endpoints.RefactorOperations.salidaproductosDevolver, this.form.value)
+      .onPost(
+        Endpoints.RefactorOperations.salidaproductosDevolver,
+        this.form.value,
+      )
       .then((result) => {
         if (result) {
           this.ref.close(true);

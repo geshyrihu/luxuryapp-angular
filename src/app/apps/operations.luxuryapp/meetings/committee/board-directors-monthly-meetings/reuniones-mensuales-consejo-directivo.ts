@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -64,7 +64,10 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las juntas mensuales que creamos en el backend
-    const urlApi = Endpoints.RefactorOperations.boardDirectorsMonthlyMeetingsById(customerId);
+    const urlApi =
+      Endpoints.RefactorOperations.boardDirectorsMonthlyMeetingsById(
+        customerId,
+      );
 
     this.apiResponseS
       .onGetList(urlApi)

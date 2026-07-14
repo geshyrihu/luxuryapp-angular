@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
@@ -16,8 +16,8 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
@@ -50,7 +50,10 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
   onLoadData(meetingMinuteId: string) {
     this.loading.set(true);
     // Usamos el endpoint específico para las minutas que creamos en el backend
-    const urlApi = Endpoints.RefactorOperations.boardDirectorsMeetingMinutesDetailById(meetingMinuteId);
+    const urlApi =
+      Endpoints.RefactorOperations.boardDirectorsMeetingMinutesDetailById(
+        meetingMinuteId,
+      );
 
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data.set(result);

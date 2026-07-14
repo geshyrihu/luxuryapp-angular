@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -23,8 +22,9 @@ import {
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 // Definición de un ótem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {
@@ -185,7 +185,10 @@ export class FundingUploadInvoicesModal {
     };
 
     this.apiResponseService
-      .onPost(Endpoints.RefactorContabilidad.fundingCreateOrdersFromInvoices, requestDto)
+      .onPost(
+        Endpoints.RefactorContabilidad.fundingCreateOrdersFromInvoices,
+        requestDto,
+      )
       .then(() => {
         this.ref.close(true);
       })

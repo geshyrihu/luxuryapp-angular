@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,6 +5,7 @@ import {
   OnInit,
 } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FichaTecnicaActivoDto } from "src/app/core/interfaces/ficha-tecnica-activo.interface";
 @Component({
@@ -26,7 +26,9 @@ export class FichaTecnicaActivo implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.machineriesFichatecnicaById(this.id);
+    const urlApi = Endpoints.RefactorMantenimiento.machineriesFichatecnicaById(
+      this.id,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
     });

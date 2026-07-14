@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,6 +10,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-add-file-estado-financiero",
@@ -47,7 +47,11 @@ export class AddFileEstadoFinanciero implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPost(Endpoints.RefactorContabilidad.financialReportUploadFileByIdById(this.id, this.authS.applicationUserId),
+      .onPost(
+        Endpoints.RefactorContabilidad.financialReportUploadFileByIdById(
+          this.id,
+          this.authS.applicationUserId,
+        ),
         model,
       )
       .then((result: boolean) => {

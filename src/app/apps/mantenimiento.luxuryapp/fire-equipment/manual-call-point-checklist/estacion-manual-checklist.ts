@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +18,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ROUTES } from "src/app/routing/route-paths";
 // D:\repos\luxuryapp-api\client\angular\src\app\core\components\inputs\web\custom-input-autocomplete-multiple-signal.ts
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -103,7 +103,9 @@ export class EstacionManualChecklist implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.bitacoraEstacionManualById(this.id))
+      .onGetItem(
+        Endpoints.RefactorMantenimiento.bitacoraEstacionManualById(this.id),
+      )
       .then((result: any) => {
         this.form.patchValue(result);
       });

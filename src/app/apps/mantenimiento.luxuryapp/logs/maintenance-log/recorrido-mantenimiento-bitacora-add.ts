@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -13,6 +12,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface IRecorridoMantenimientoBitacoraAdd {
@@ -72,14 +72,20 @@ export class RecorridoMantenimientoBitacoraAdd implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPost(Endpoints.RefactorMantenimiento.bitacoraMantenimiento, this.form.getRawValue())
+      .onPost(
+        Endpoints.RefactorMantenimiento.bitacoraMantenimiento,
+        this.form.getRawValue(),
+      )
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });
   }
 
   onGetMachinerySelectItem(value: number) {
-    const urlApi = Endpoints.RefactorMantenimiento.machineriesGetMachinerySelectItemById(value);
+    const urlApi =
+      Endpoints.RefactorMantenimiento.machineriesGetMachinerySelectItemById(
+        value,
+      );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.machinery.set(result);
       this.form.patchValue({

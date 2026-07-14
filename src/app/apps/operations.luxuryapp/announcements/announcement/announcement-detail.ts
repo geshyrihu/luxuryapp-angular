@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxImage } from "@ui/adaptive/image/image";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IAnnouncement } from "./announcement.model";

@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +10,7 @@ import { CarouselModule } from "primeng/carousel";
 @Component({
   selector: "app-carousel",
 
-  imports: [CarouselModule],
+  imports: [CarouselModule, NgTemplateOutlet],
   template: `
     <p-carousel
       [value]="value()"
@@ -23,7 +24,12 @@ import { CarouselModule } from "primeng/carousel";
       (onPage)="onPage.emit($event)"
       styleClass="w-full"
     >
-      <ng-content />
+      <ng-template let-item #item>
+        <ng-container
+          [ngTemplateOutlet]="itemTemplate() ?? null"
+          [ngTemplateOutletContext]="{ $implicit: item }"
+        />
+      </ng-template>
     </p-carousel>
   `,
   styles: [

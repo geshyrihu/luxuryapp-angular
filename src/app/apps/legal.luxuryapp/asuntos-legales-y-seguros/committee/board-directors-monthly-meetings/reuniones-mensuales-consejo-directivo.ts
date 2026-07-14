@@ -1,11 +1,12 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -14,11 +15,9 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
-  imports: [
-    MobileListItem,TableModule, AppIcon],
+  imports: [MobileListItem, TableModule, AppIcon],
   templateUrl: "./reuniones-mensuales-consejo-directivo.html",
 })
 export class ReunionesMensualesConsejoDirectivo implements OnInit {
@@ -58,7 +57,8 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las juntas mensuales que creamos en el backend
-    const urlApi = Endpoints.RefactorLegal.boardDirectorsMonthlyMeetingsById(customerId);
+    const urlApi =
+      Endpoints.RefactorLegal.boardDirectorsMonthlyMeetingsById(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,6 +20,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
@@ -46,7 +46,7 @@ interface IPiscinaForm {
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    ],
+  ],
 })
 export class PiscinaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -120,7 +120,10 @@ export class PiscinaForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(Endpoints.RefactorMantenimiento.piscinaById(this.id()), formDataDTO)
+        .onPut(
+          Endpoints.RefactorMantenimiento.piscinaById(this.id()),
+          formDataDTO,
+        )
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

@@ -1,4 +1,3 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface IOrdenCompraDenegadaForm {
   id: FormControl<string | null>;
@@ -30,11 +30,7 @@ export interface IOrdenCompraDenegadaForm {
   selector: "app-orden-compra-denegada",
   templateUrl: "./orden-compra-denegada.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextAreaSignal,
-    WebButtonLabelSave,
-    ],
+  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, WebButtonLabelSave],
 })
 export class OrdenCompraDenegada implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -63,7 +59,11 @@ export class OrdenCompraDenegada implements OnInit {
   onSubmit() {
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(Endpoints.RefactorSupplier.ordenCompraAuthNoAutorizadaByIdById(this.ordenCompraAuthId, this.authS.applicationUserId),
+      .onPut(
+        Endpoints.RefactorSupplier.ordenCompraAuthNoAutorizadaByIdById(
+          this.ordenCompraAuthId,
+          this.authS.applicationUserId,
+        ),
         this.form.value,
       )
       .then((result: boolean) => {
