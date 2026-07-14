@@ -84,7 +84,7 @@ export class BudgetSupportDialog implements OnInit {
     // Fetch the BudgetProposalItem itself
     this.apiResponseS
       .onGetItem<BudgetProposalItemDTO>( // Fetch BudgetProposalItemDTO
-        Endpoints.BudgetProposalItemSupport.byItem(this.budgetProposalItemId),
+        Endpoints.BudgetingProposalSupport.byItem(this.budgetProposalItemId),
       )
       .then((response) => {
         if (response) {
@@ -160,7 +160,7 @@ export class BudgetSupportDialog implements OnInit {
           };
           this.apiResponseS
             .onPut<BudgetProposalItemDTO>(
-              Endpoints.BudgetProposalItemSupport.updateSupportInfo(
+              Endpoints.BudgetingProposalSupport.updateSupportInfo(
                 this.budgetProposalItemId,
               ),
               updateInfoDTO,
@@ -182,7 +182,7 @@ export class BudgetSupportDialog implements OnInit {
           });
           this.apiResponseS
             .onPost<BudgetProposalItemDTO>(
-              Endpoints.BudgetProposalItemSupport.uploadFiles,
+              Endpoints.BudgetingProposalSupport.uploadFiles,
               formData,
             )
             .then(() => resolve())
@@ -229,7 +229,7 @@ export class BudgetSupportDialog implements OnInit {
 
       this.apiResponseS
         .onPost<BudgetProposalItemDTO>(
-          Endpoints.BudgetProposalItemSupport.uploadFiles,
+          Endpoints.BudgetingProposalSupport.uploadFiles,
           formData,
         )
         .then(() => {
@@ -250,7 +250,7 @@ export class BudgetSupportDialog implements OnInit {
   onDeleteFile(fileId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onDelete(Endpoints.BudgetProposalItemSupport.deleteSupportFile(fileId))
+      .onDelete(Endpoints.BudgetingProposalSupport.deleteSupportFile(fileId))
       .then((response) => {
         if (response) {
           this.loadSupports(); // Reload supports

@@ -119,7 +119,7 @@ export class AiService {
     tone: string = "Auditor Estricto",
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      Endpoints.BudgetProposal.audit,
+      Endpoints.BudgetingProposal.audit,
       {
         context,
         tone,
@@ -138,7 +138,7 @@ export class AiService {
     inflationRate: number = 5,
   ): Promise<string> {
     const response = await this.apiResponseService.onPostNotLoading<string>(
-      Endpoints.BudgetProposal.forecast,
+      Endpoints.BudgetingProposal.forecast,
       {
         context,
         inflationRate,

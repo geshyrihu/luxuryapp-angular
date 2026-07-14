@@ -392,7 +392,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<BudgetProposalDTO>(
-        Endpoints.BudgetProposal.byCustomerYear(
+        Endpoints.BudgetingProposal.byCustomerYear(
           this.customerId,
           this.selectedFiscalYear,
         ),
@@ -882,7 +882,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     };
     this.apiResponseS
       .onPut<BudgetProposalItemDTO>(
-        Endpoints.BudgetProposal.updateItem(item.id),
+        Endpoints.BudgetingProposal.updateItem(item.id),
         updateDTO,
         false,
         false,
@@ -1313,7 +1313,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onPost<BudgetProposalItemDTO[]>(
-        Endpoints.BudgetProposal.addAccounts(currentProposal.id),
+        Endpoints.BudgetingProposal.addAccounts(currentProposal.id),
         accountNumbers,
       )
       .then((response) => {

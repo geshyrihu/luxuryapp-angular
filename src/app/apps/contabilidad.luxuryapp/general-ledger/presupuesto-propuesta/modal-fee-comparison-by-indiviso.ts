@@ -186,7 +186,7 @@ export class FeeComparisonByIndivisoModal implements OnInit {
       this.loading.set(true);
       this.apiResponseS
         .onGetList<IndivisoFeeComparisonDTO>(
-          Endpoints.BudgetProposal.feeComparisonByIndiviso(this.proposalId),
+          Endpoints.BudgetingProposal.feeComparisonByIndiviso(this.proposalId),
         )
         .then((response) => {
           if (response && response.propertyIndivisoDetails) {

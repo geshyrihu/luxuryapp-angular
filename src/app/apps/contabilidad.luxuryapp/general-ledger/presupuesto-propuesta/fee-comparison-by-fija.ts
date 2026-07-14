@@ -60,7 +60,7 @@ export class FeeComparisonByFija implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<IUniformFeeComparisonDTO>(
-        Endpoints.BudgetProposal.feeComparison(this.proposalId),
+        Endpoints.BudgetingProposal.feeComparison(this.proposalId),
       )
       .then((response) => {
         this.comparisonData.set(response);
