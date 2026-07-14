@@ -95,10 +95,7 @@ export class WarehouseStockEdit implements OnInit {
     this.submitting.set(true);
     if (this.id() === 0) {
       this.apiResponseS
-        .onPost(
-          Endpoints.RefactorOperations.inventarioProducto,
-          this.form.getRawValue(),
-        )
+        .onPost(Endpoints.InventarioProducto.create, this.form.getRawValue())
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
