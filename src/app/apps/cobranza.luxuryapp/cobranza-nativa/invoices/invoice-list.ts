@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -69,7 +69,7 @@ export default class InvoiceList {
 
   async loadCharges(customerId: string) {
     const res = await this.apiResponseS.onGetItem<any[]>(
-      Endpoints.AccountingCoi.NativeCollection.Charges.customer(customerId),
+      Endpoints.CobranzaNative.Charges.customer(customerId),
     );
     if (res) {
       this.charges.set(
@@ -85,7 +85,7 @@ export default class InvoiceList {
     const chargeId = this.chargeIdCtrl.value;
     if (!chargeId) return;
     const res = await this.apiResponseS.onGetItem<InvoiceResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.Invoices.byCharge(chargeId),
+      Endpoints.CobranzaNative.Invoices.byCharge(chargeId),
     );
     this.dataSignal.set(res ?? []);
   }
@@ -98,3 +98,4 @@ export default class InvoiceList {
     return map[status] ?? "bg-gray-100 text-gray-600";
   }
 }
+

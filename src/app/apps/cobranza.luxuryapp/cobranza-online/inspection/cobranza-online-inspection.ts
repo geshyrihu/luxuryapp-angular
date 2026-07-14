@@ -117,7 +117,7 @@ export class CobranzaOnlineInspection {
     this.loading.set(true);
     const response =
       await this.apiResponseS.onGetItem<CobranzaOnlineInspectionResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspection(
+        Endpoints.CobranzaOnline.Dashboard.inspection(
           customerId,
           this.currentYear(),
           this.currentMonth(),

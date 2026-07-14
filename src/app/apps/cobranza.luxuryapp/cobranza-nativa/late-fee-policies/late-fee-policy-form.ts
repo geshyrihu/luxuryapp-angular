@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -90,7 +90,7 @@ export class LateFeePolicyForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.getById(this.id),
+      Endpoints.CobranzaNative.LateFeePolicies.getById(this.id),
     );
     if (res) this.form.patchValue(res);
   }
@@ -99,7 +99,7 @@ export class LateFeePolicyForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.create,
+      endpoint: Endpoints.CobranzaNative.LateFeePolicies.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -112,3 +112,4 @@ export class LateFeePolicyForm implements OnInit {
     });
   }
 }
+

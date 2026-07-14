@@ -1,4 +1,4 @@
-import { DatePipe, DecimalPipe } from "@angular/common";
+﻿import { DatePipe, DecimalPipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -132,7 +132,7 @@ export default class PaymentList {
 
     const result = await this.apiResponseS.onGetItem<
       CobranzaPaymentResponseDTO[]
-    >(Endpoints.AccountingCoi.NativeCollection.Payments.customer(customerId));
+    >(Endpoints.CobranzaNative.Payments.customer(customerId));
 
     this.dataSignal.set(result ?? []);
   }
@@ -197,10 +197,11 @@ export default class PaymentList {
     }
 
     const success = await this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.NativeCollection.Payments.cancel(item.id),
+      Endpoints.CobranzaNative.Payments.cancel(item.id),
       { reason: reason.trim() },
     );
 
     if (success !== false) this.onLoadData();
   }
 }
+

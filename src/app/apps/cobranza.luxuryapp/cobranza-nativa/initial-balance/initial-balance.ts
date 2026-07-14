@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -76,7 +76,7 @@ export default class InitialBalance {
     this.loading.set(true);
     const customerId = this.customerIdS.customerId();
     const res = await this.apiS.onGetItem<PropertyInitialBalanceDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.Charges.initialBalanceStatus(
+      Endpoints.CobranzaNative.Charges.initialBalanceStatus(
         customerId,
       ),
     );
@@ -108,7 +108,7 @@ export default class InitialBalance {
     this.saving.set(true);
     const payload: BulkSetInitialBalanceDTO = { customerId, items };
     const res = await this.apiS.onPost(
-      Endpoints.AccountingCoi.NativeCollection.Charges.bulkSetInitialBalance,
+      Endpoints.CobranzaNative.Charges.bulkSetInitialBalance,
       payload,
     );
     this.saving.set(false);
@@ -118,3 +118,4 @@ export default class InitialBalance {
     }
   }
 }
+

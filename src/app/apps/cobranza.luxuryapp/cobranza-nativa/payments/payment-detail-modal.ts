@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -50,7 +50,7 @@ export class PaymentDetailModal implements OnInit {
   async loadData() {
     const id = this.config.data.id as string;
     const res = await this.apiResponseS.onGetItem<CobranzaPaymentResponseDTO>(
-      Endpoints.AccountingCoi.NativeCollection.Payments.getById(id),
+      Endpoints.CobranzaNative.Payments.getById(id),
     );
     this.payment.set(res ?? null);
     this.loading.set(false);
@@ -122,3 +122,4 @@ export class PaymentDetailModal implements OnInit {
     );
   }
 }
+

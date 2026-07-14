@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -107,7 +107,7 @@ export default class LedgerViewer {
       if (this.toCtrl.value) params = params.set("to", this.toCtrl.value);
 
       const url =
-        Endpoints.AccountingCoi.NativeCollection.Ledger.propertyEntries(
+        Endpoints.CobranzaNative.Ledger.propertyEntries(
           propertyId,
           customerId,
         ) + (params.toString() ? "?" + params.toString() : "");
@@ -181,3 +181,4 @@ export default class LedgerViewer {
     return "bg-yellow-100 text-yellow-800";
   }
 }
+

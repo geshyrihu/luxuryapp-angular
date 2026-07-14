@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -88,7 +88,7 @@ export default class ChargeTemplateList {
 
     const result = await this.apiResponseS.onGetItem<
       ChargeTemplateResponseDTO[]
-    >(Endpoints.AccountingCoi.NativeCollection.Templates.customer(customerId));
+    >(Endpoints.CobranzaNative.Templates.customer(customerId));
     if (result) {
       this.dataSignal.set(result);
     } else {
@@ -117,10 +117,11 @@ export default class ChargeTemplateList {
   async onDelete(item: ChargeTemplateResponseDTO) {
     this.apiResponseS
       .onDelete(
-        Endpoints.AccountingCoi.NativeCollection.Templates.delete(item.id),
+        Endpoints.CobranzaNative.Templates.delete(item.id),
       )
       .then((res) => {
         if (res) this.onLoadData();
       });
   }
 }
+

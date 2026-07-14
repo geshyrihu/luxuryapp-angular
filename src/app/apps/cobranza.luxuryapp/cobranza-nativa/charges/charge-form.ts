@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -142,7 +142,7 @@ export class ChargeForm implements OnInit {
     const res = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(
+      Endpoints.CobranzaNative.ChargeTypes.customer(
         this.customerId,
       ),
     );
@@ -176,7 +176,7 @@ export class ChargeForm implements OnInit {
 
   async loadTemplates() {
     const res = await this.apiResponseS.onGetItem<any[]>(
-      Endpoints.AccountingCoi.NativeCollection.Templates.customer(
+      Endpoints.CobranzaNative.Templates.customer(
         this.customerId,
       ),
     );
@@ -191,7 +191,7 @@ export class ChargeForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.Charges.getById(this.id),
+      Endpoints.CobranzaNative.Charges.getById(this.id),
     );
     if (res) {
       if (res.dueDate) res.dueDate = this.dateS.parseDate(res.dueDate);
@@ -226,7 +226,7 @@ export class ChargeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.Charges.create,
+      endpoint: Endpoints.CobranzaNative.Charges.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -251,3 +251,4 @@ export class ChargeForm implements OnInit {
     });
   }
 }
+

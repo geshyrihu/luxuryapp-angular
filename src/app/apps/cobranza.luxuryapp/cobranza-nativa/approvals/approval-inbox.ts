@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -81,7 +81,7 @@ export default class ApprovalInbox {
     const res = await this.apiResponseS.onGetItem<
       FinancialApprovalResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.FinancialApprovals.pending(
+      Endpoints.CobranzaNative.FinancialApprovals.pending(
         customerId,
       ),
     );
@@ -128,3 +128,4 @@ export default class ApprovalInbox {
     return EFinancialApprovalStatus[status] ?? String(status);
   }
 }
+

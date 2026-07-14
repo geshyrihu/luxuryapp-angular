@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -148,7 +148,7 @@ export default class MemberForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byId(this.id),
+      Endpoints.CobranzaNative.PropertyMembers.byId(this.id),
     );
     if (res) {
       this.memberForm.patchValue({
@@ -164,10 +164,10 @@ export default class MemberForm implements OnInit {
       form: this.memberForm,
       api: this.apiResponseS,
       endpoint: this.id
-        ? Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(
+        ? Endpoints.CobranzaNative.PropertyMembers.update(
             this.id,
           )
-        : Endpoints.AccountingCoi.NativeCollection.PropertyMembers
+        : Endpoints.CobranzaNative.PropertyMembers
             .createWithAccount,
       method: this.id ? "PUT" : "POST",
       ref: this.ref,
@@ -202,3 +202,4 @@ export default class MemberForm implements OnInit {
     });
   }
 }
+

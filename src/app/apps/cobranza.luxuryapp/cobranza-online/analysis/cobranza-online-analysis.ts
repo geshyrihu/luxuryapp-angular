@@ -220,7 +220,7 @@ export class CobranzaOnlineAnalysis {
     this.loading.set(true);
     const result =
       await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.analysis(
+        Endpoints.CobranzaOnline.Dashboard.analysis(
           customerId,
           year,
           month,

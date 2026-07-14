@@ -1,4 +1,4 @@
-import { CurrencyPipe } from "@angular/common";
+﻿import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -74,7 +74,7 @@ export default class RegulationArticleList {
     const result = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(
+      Endpoints.CobranzaNative.RegulationArticles.byCustomer(
         customerId,
       ),
     );
@@ -102,7 +102,7 @@ export default class RegulationArticleList {
   async onDelete(item: RegulationArticleResponseDTO) {
     this.apiResponseS
       .onDelete(
-        Endpoints.AccountingCoi.NativeCollection.RegulationArticles.delete(
+        Endpoints.CobranzaNative.RegulationArticles.delete(
           item.id,
         ),
       )
@@ -111,3 +111,4 @@ export default class RegulationArticleList {
       });
   }
 }
+

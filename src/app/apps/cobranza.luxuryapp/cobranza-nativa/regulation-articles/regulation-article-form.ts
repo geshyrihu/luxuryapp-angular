@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -80,7 +80,7 @@ export class RegulationArticleForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.getById(
+      Endpoints.CobranzaNative.RegulationArticles.getById(
         this.id,
       ),
     );
@@ -92,7 +92,7 @@ export class RegulationArticleForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint:
-        Endpoints.AccountingCoi.NativeCollection.RegulationArticles.create,
+        Endpoints.CobranzaNative.RegulationArticles.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -112,3 +112,4 @@ export class RegulationArticleForm implements OnInit {
     });
   }
 }
+

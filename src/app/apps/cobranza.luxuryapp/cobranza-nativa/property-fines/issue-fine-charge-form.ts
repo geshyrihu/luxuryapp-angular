@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -59,7 +59,7 @@ export class IssueFineChargeForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint:
-        Endpoints.AccountingCoi.NativeCollection.PropertyFines.issueCharge,
+        Endpoints.CobranzaNative.PropertyFines.issueCharge,
       id: "",
       ref: this.ref,
       submitting: this.submitting,
@@ -70,3 +70,4 @@ export class IssueFineChargeForm implements OnInit {
     });
   }
 }
+

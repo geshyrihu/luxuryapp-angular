@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -83,7 +83,7 @@ export class ChargeTypeForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<ChargeTypeCatalogResponseDTO>(
-      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.getById(this.id),
+      Endpoints.CobranzaNative.ChargeTypes.getById(this.id),
     );
 
     if (!res) return;
@@ -100,7 +100,7 @@ export class ChargeTypeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.ChargeTypes.create,
+      endpoint: Endpoints.CobranzaNative.ChargeTypes.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -122,3 +122,4 @@ export class ChargeTypeForm implements OnInit {
     });
   }
 }
+

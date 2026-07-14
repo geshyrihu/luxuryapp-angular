@@ -1,4 +1,4 @@
-import { CurrencyPipe, NgClass } from "@angular/common";
+﻿import { CurrencyPipe, NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -74,7 +74,7 @@ export default class ChargeTemplateCoverage {
     if (!customerId) return;
     this.apiResponseS
       .onGetItem<TemplateCoverageDTO[]>(
-        Endpoints.AccountingCoi.NativeCollection.Templates.coverage(customerId),
+        Endpoints.CobranzaNative.Templates.coverage(customerId),
       )
       .then((res) => this.dataSignal.set(res ?? []));
   }
@@ -89,3 +89,4 @@ export default class ChargeTemplateCoverage {
       : "bg-blue-100 text-blue-800";
   }
 }
+

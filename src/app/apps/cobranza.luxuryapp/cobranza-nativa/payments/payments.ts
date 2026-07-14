@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -189,7 +189,7 @@ export class Payments implements OnInit {
     this.loadingCharges.set(true);
     try {
       const res = await this.apiResponseS.onGetItem<PendingChargeDTO[]>(
-        Endpoints.AccountingCoi.NativeCollection.Payments.pendingCharges(
+        Endpoints.CobranzaNative.Payments.pendingCharges(
           propertyId,
           this.customerId(),
         ),
@@ -300,7 +300,7 @@ export class Payments implements OnInit {
 
       const paymentRes =
         await this.apiResponseS.onPost<CobranzaPaymentResponseDTO>(
-          Endpoints.AccountingCoi.NativeCollection.Payments.create,
+          Endpoints.CobranzaNative.Payments.create,
           paymentPayload,
         );
 
@@ -316,7 +316,7 @@ export class Payments implements OnInit {
         };
 
         const applyRes = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.Payments.applyToCharges,
+          Endpoints.CobranzaNative.Payments.applyToCharges,
           allocationPayload,
         );
 
@@ -346,3 +346,4 @@ export class Payments implements OnInit {
     }
   }
 }
+

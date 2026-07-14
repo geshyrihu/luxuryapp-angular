@@ -127,7 +127,7 @@ export class CobranzaOnlineExclusions {
     this.loading.set(true);
     const response =
       await this.apiResponseS.onGetItem<CobranzaOnlineExcludedAccountListResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.excludedAccounts(
+        Endpoints.CobranzaOnline.Dashboard.excludedAccounts(
           customerId,
           this.currentYear(),
         ),
@@ -164,7 +164,7 @@ export class CobranzaOnlineExclusions {
     };
 
     const result = await this.apiResponseS.onPut<boolean>(
-      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.updateExcludedAccount(
+      Endpoints.CobranzaOnline.Dashboard.updateExcludedAccount(
         customerId,
       ),
       payload,

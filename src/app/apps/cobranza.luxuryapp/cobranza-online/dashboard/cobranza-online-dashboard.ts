@@ -776,7 +776,7 @@ export class CobranzaOnlineDashboard {
 
     const dashboard =
       await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.get(
+        Endpoints.CobranzaOnline.Dashboard.get(
           customerId,
           this.currentYear(),
           this.currentMonth(),
@@ -852,7 +852,7 @@ export class CobranzaOnlineDashboard {
     try {
       const response =
         await this.apiResponseS.onPost<CobranzaOnlineSyncResponse>(
-          Endpoints.AccountingCoi.CobranzaOnline.Sync.cobranza(
+          Endpoints.CobranzaOnline.Sync.cobranza(
             customerId,
             this.currentYear(),
           ),
@@ -936,7 +936,7 @@ export class CobranzaOnlineDashboard {
 
     const statement =
       await this.apiResponseS.onGetItem<CobranzaOnlineStatementResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Statements.get(
+        Endpoints.CobranzaOnline.Statements.get(
           customerId,
           accountId,
           this.currentYear(),

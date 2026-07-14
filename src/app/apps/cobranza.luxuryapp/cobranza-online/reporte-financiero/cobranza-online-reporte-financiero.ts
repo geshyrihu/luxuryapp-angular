@@ -128,7 +128,7 @@ export class CobranzaOnlineReporteFinanciero {
   private async loadData(customerId: string) {
     this.loading.set(true);
     const result = await this.apiResponseS.onGetItem<ReporteFinancieroResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.ReporteFinanciero.get(
+      Endpoints.CobranzaOnline.ReporteFinanciero.get(
         customerId,
         this.currentYear(),
         this.mesInicio(),

@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -66,7 +66,7 @@ export default class ApprovalDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.FinancialApprovals.approve(
+        Endpoints.CobranzaNative.FinancialApprovals.approve(
           item.id,
         ),
         {
@@ -90,7 +90,7 @@ export default class ApprovalDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.FinancialApprovals.reject(
+        Endpoints.CobranzaNative.FinancialApprovals.reject(
           item.id,
         ),
         {
@@ -116,3 +116,4 @@ export default class ApprovalDetailModal implements OnInit {
     return labels[op] ?? String(op);
   }
 }
+

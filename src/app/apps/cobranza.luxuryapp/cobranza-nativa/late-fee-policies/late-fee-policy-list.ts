@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -85,7 +85,7 @@ export default class LateFeePolicyList {
     const result = await this.apiResponseS.onGetItem<
       LateFeePolicyResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.customer(
+      Endpoints.CobranzaNative.LateFeePolicies.customer(
         customerId,
       ),
     );
@@ -117,7 +117,7 @@ export default class LateFeePolicyList {
   async onDelete(item: LateFeePolicyResponseDTO) {
     this.apiResponseS
       .onDelete(
-        Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.delete(
+        Endpoints.CobranzaNative.LateFeePolicies.delete(
           item.id,
         ),
       )
@@ -126,3 +126,4 @@ export default class LateFeePolicyList {
       });
   }
 }
+

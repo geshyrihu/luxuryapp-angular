@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
@@ -63,7 +63,7 @@ export default class BulkImportModal implements OnInit {
     this.result = null;
 
     const res = await this.apiResponseS.onPostFile<BulkImportResult>(
-      Endpoints.AccountingCoi.NativeCollection.Charges.bulkImportSaldoInicial(
+      Endpoints.CobranzaNative.Charges.bulkImportSaldoInicial(
         this.customerId,
       ),
       formData,
@@ -91,3 +91,4 @@ export default class BulkImportModal implements OnInit {
     this.ref.close(this.result && this.result.successCount > 0);
   }
 }
+

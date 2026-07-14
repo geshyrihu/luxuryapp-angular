@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -88,7 +88,7 @@ export default class MemberList {
     if (!customerId) return;
     this.apiResponseS
       .onGetItem<PropertyMemberResponseDTO[]>(
-        Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byCustomer(
+        Endpoints.CobranzaNative.PropertyMembers.byCustomer(
           customerId,
         ),
       )
@@ -114,7 +114,7 @@ export default class MemberList {
 
   async onDeleteMember(item: PropertyMemberResponseDTO) {
     const res = await this.apiResponseS.onDelete(
-      Endpoints.AccountingCoi.NativeCollection.PropertyMembers.delete(item.id),
+      Endpoints.CobranzaNative.PropertyMembers.delete(item.id),
     );
     if (res) this.onLoadData();
   }
@@ -122,7 +122,7 @@ export default class MemberList {
   async onEndMembership(item: PropertyMemberResponseDTO) {
     const today = this.dateS.getDateFormat(new Date());
     const res = await this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.NativeCollection.PropertyMembers.endMembership(
+      Endpoints.CobranzaNative.PropertyMembers.endMembership(
         item.id,
       ),
       { endDate: today ?? "", updatedBy: "operador" },
@@ -136,3 +136,4 @@ export default class MemberList {
     );
   }
 }
+

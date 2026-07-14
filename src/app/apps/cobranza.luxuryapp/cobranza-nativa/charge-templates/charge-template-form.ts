@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -182,7 +182,7 @@ export class ChargeTemplateForm implements OnInit {
     const res = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(
+      Endpoints.CobranzaNative.ChargeTypes.customer(
         this.customerId,
       ),
     );
@@ -207,7 +207,7 @@ export class ChargeTemplateForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.Templates.getById(this.id),
+      Endpoints.CobranzaNative.Templates.getById(this.id),
     );
     if (res) {
       if (res.startDate) res.startDate = this.dateS.parseDate(res.startDate);
@@ -225,8 +225,8 @@ export class ChargeTemplateForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint: this.id
-        ? Endpoints.AccountingCoi.NativeCollection.Templates.update(this.id)
-        : Endpoints.AccountingCoi.NativeCollection.Templates.create,
+        ? Endpoints.CobranzaNative.Templates.update(this.id)
+        : Endpoints.CobranzaNative.Templates.create,
       method: this.id ? "PUT" : "POST",
       ref: this.ref,
       submitting: this.submitting,
@@ -283,7 +283,7 @@ export class ChargeTemplateForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        Endpoints.AccountingCoi.NativeCollection.Templates.preview,
+        Endpoints.CobranzaNative.Templates.preview,
         payload,
       )
       .then((res) => {
@@ -300,3 +300,4 @@ export class ChargeTemplateForm implements OnInit {
       });
   }
 }
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -99,7 +99,7 @@ export class PropertyFineForm implements OnInit {
     const arts = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(
+      Endpoints.CobranzaNative.RegulationArticles.byCustomer(
         this.customerId,
       ),
     );
@@ -117,7 +117,7 @@ export class PropertyFineForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.PropertyFines.getById(this.id),
+      Endpoints.CobranzaNative.PropertyFines.getById(this.id),
     );
     if (res) this.form.patchValue(res);
   }
@@ -126,7 +126,7 @@ export class PropertyFineForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.PropertyFines.create,
+      endpoint: Endpoints.CobranzaNative.PropertyFines.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -143,3 +143,4 @@ export class PropertyFineForm implements OnInit {
     });
   }
 }
+

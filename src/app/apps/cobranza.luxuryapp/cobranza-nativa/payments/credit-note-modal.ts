@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+﻿import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -107,7 +107,7 @@ export default class CreditNoteModalComponent implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.Payments.create,
+      endpoint: Endpoints.CobranzaNative.Payments.create,
       method: "POST",
       ref: this.ref,
       submitting: this.submitting,
@@ -124,3 +124,4 @@ export default class CreditNoteModalComponent implements OnInit {
     });
   }
 }
+

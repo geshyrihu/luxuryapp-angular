@@ -1,4 +1,4 @@
-import { NgClass } from "@angular/common";
+﻿import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -77,7 +77,7 @@ export default class ChargeTypeList {
     const result = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
     >(
-      Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(customerId),
+      Endpoints.CobranzaNative.ChargeTypes.customer(customerId),
     );
 
     this.dataSignal.set(result ?? []);
@@ -102,10 +102,11 @@ export default class ChargeTypeList {
 
     this.apiResponseS
       .onDelete(
-        Endpoints.AccountingCoi.NativeCollection.ChargeTypes.delete(item.id),
+        Endpoints.CobranzaNative.ChargeTypes.delete(item.id),
       )
       .then((res) => {
         if (res) this.onLoadData();
       });
   }
 }
+

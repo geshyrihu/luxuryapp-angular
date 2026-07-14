@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -84,7 +84,7 @@ export default class PropertyFineList {
     const customerId = this.customerIdS.customerId();
     if (!customerId) return;
     const result = await this.apiResponseS.onGetItem<PropertyFineResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.PropertyFines.byCustomer(
+      Endpoints.CobranzaNative.PropertyFines.byCustomer(
         customerId,
       ),
     );
@@ -127,7 +127,7 @@ export default class PropertyFineList {
     const reason = "Anulada por el administrador";
     this.apiResponseS
       .onDelete(
-        Endpoints.AccountingCoi.NativeCollection.PropertyFines.void(
+        Endpoints.CobranzaNative.PropertyFines.void(
           item.id,
           reason,
         ),
@@ -179,3 +179,4 @@ export default class PropertyFineList {
     return status !== EFineStatus.Pagada && status !== EFineStatus.Anulada;
   }
 }
+

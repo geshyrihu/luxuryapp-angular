@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -111,7 +111,7 @@ export default class PeriodClosureDashboard {
 
   async onLoadData(customerId: string) {
     const res = await this.apiResponseS.onGetItem<PeriodClosureResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.PeriodClosures.byCustomer(
+      Endpoints.CobranzaNative.PeriodClosures.byCustomer(
         customerId,
       ),
     );
@@ -124,7 +124,7 @@ export default class PeriodClosureDashboard {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.PeriodClosures.close(
+        Endpoints.CobranzaNative.PeriodClosures.close(
           customerId,
         ),
         {
@@ -149,7 +149,7 @@ export default class PeriodClosureDashboard {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.PeriodClosures.reopen(
+        Endpoints.CobranzaNative.PeriodClosures.reopen(
           customerId,
         ),
         {
@@ -171,3 +171,4 @@ export default class PeriodClosureDashboard {
     );
   }
 }
+

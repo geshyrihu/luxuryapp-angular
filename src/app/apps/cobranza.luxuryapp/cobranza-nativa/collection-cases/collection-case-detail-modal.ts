@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -61,7 +61,7 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.CollectionCases.logActivity(
+        Endpoints.CobranzaNative.CollectionCases.logActivity(
           item.id,
         ),
         { caseId: item.id, notes: this.notesCtrl.value, promisedDate: null },
@@ -79,3 +79,4 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.ref.close(false);
   }
 }
+

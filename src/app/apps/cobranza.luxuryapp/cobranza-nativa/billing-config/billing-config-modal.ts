@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
@@ -85,12 +85,12 @@ export default class BillingConfigModal implements OnInit {
   async loadData() {
     this.isLoading = true;
     const billingConfig = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.BillingConfig.customer(
+      Endpoints.CobranzaNative.BillingConfig.customer(
         this.customerId,
       ),
     );
     const notificationSettings = await this.apiResponseS.onGetItem<any>(
-      Endpoints.AccountingCoi.NativeCollection.NotificationSettings.byCustomer(
+      Endpoints.CobranzaNative.NotificationSettings.byCustomer(
         this.customerId,
       ),
     );
@@ -139,7 +139,7 @@ export default class BillingConfigModal implements OnInit {
       } as SaveNativeCollectionNotificationSettingsDTO;
 
       const billingResult = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.BillingConfig.save,
+        Endpoints.CobranzaNative.BillingConfig.save,
         billingPayload,
       );
 
@@ -148,7 +148,7 @@ export default class BillingConfigModal implements OnInit {
       }
 
       const notificationResult = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.NotificationSettings.save,
+        Endpoints.CobranzaNative.NotificationSettings.save,
         notificationPayload,
       );
 
@@ -166,3 +166,4 @@ export default class BillingConfigModal implements OnInit {
     this.ref.close(false);
   }
 }
+

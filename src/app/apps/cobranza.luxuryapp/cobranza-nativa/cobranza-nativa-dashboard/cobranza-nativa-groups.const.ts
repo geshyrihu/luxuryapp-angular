@@ -1,4 +1,4 @@
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+﻿import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { CobranzaGroup } from "../interfaces/cobranza-nativa.model";
 
 const pathOf = (path: string): string => `/${path}`;
@@ -10,13 +10,13 @@ const yearPlaceholder = "{year}" as unknown as number;
 const monthPlaceholder = "{month}" as unknown as number;
 
 const metricsPath = pathOf(
-  Endpoints.AccountingCoi.NativeCollection.Analytics.metrics(
+  Endpoints.CobranzaNative.Analytics.metrics(
     customerIdPlaceholder,
   ),
 ).replace("meses=", "meses={n}");
 
 const processNotificationsPath = pathOf(
-  Endpoints.AccountingCoi.NativeCollection.Notifications.process(
+  Endpoints.CobranzaNative.Notifications.process(
     customerIdPlaceholder,
   ),
 );
@@ -93,7 +93,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byProperty(
+              Endpoints.CobranzaNative.PropertyMembers.byProperty(
                 propertyIdPlaceholder,
                 customerIdPlaceholder,
               ),
@@ -103,14 +103,14 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyMembers.create,
+              Endpoints.CobranzaNative.PropertyMembers.create,
             ),
             description: "Vincular miembro",
           },
           {
             method: "PUT",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(
+              Endpoints.CobranzaNative.PropertyMembers.update(
                 "{id}",
               ),
             ),
@@ -119,7 +119,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyMembers.endMembership(
+              Endpoints.CobranzaNative.PropertyMembers.endMembership(
                 "{id}",
               ),
             ),
@@ -128,7 +128,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyMembers.migrateFromLegacy(
+              Endpoints.CobranzaNative.PropertyMembers.migrateFromLegacy(
                 customerIdPlaceholder,
               ),
             ),
@@ -157,7 +157,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.ChargeTypes.customer(
+              Endpoints.CobranzaNative.ChargeTypes.customer(
                 customerIdPlaceholder,
               ),
             ),
@@ -166,14 +166,14 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.ChargeTypes.create,
+              Endpoints.CobranzaNative.ChargeTypes.create,
             ),
             description: "Crear tipo de cargo",
           },
           {
             method: "PUT",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.ChargeTypes.update(
+              Endpoints.CobranzaNative.ChargeTypes.update(
                 "{id}",
               ),
             ),
@@ -182,7 +182,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "DELETE",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.ChargeTypes.delete(
+              Endpoints.CobranzaNative.ChargeTypes.delete(
                 "{id}",
               ),
             ),
@@ -210,7 +210,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Templates.customer(
+              Endpoints.CobranzaNative.Templates.customer(
                 customerIdPlaceholder,
               ),
             ),
@@ -219,21 +219,21 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Templates.create,
+              Endpoints.CobranzaNative.Templates.create,
             ),
             description: "Crear plantilla",
           },
           {
             method: "PUT",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Templates.update("{id}"),
+              Endpoints.CobranzaNative.Templates.update("{id}"),
             ),
             description: "Actualizar plantilla",
           },
           {
             method: "DELETE",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Templates.delete("{id}"),
+              Endpoints.CobranzaNative.Templates.delete("{id}"),
             ),
             description: "Eliminar plantilla",
           },
@@ -256,7 +256,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Templates.coverage(
+              Endpoints.CobranzaNative.Templates.coverage(
                 customerIdPlaceholder,
               ),
             ),
@@ -282,7 +282,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.customer(
+              Endpoints.CobranzaNative.LateFeePolicies.customer(
                 customerIdPlaceholder,
               ),
             ),
@@ -291,14 +291,14 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.create,
+              Endpoints.CobranzaNative.LateFeePolicies.create,
             ),
             description: "Crear politica",
           },
           {
             method: "PUT",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.update(
+              Endpoints.CobranzaNative.LateFeePolicies.update(
                 "{id}",
               ),
             ),
@@ -307,7 +307,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "DELETE",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.delete(
+              Endpoints.CobranzaNative.LateFeePolicies.delete(
                 "{id}",
               ),
             ),
@@ -363,7 +363,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges.customer(
+              Endpoints.CobranzaNative.Charges.customer(
                 customerIdPlaceholder,
               ),
             ),
@@ -372,28 +372,28 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges.create,
+              Endpoints.CobranzaNative.Charges.create,
             ),
             description: "Crear cargo manual",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges.cancel("{id}"),
+              Endpoints.CobranzaNative.Charges.cancel("{id}"),
             ),
             description: "Cancelar cargo",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges.generateMonthly,
+              Endpoints.CobranzaNative.Charges.generateMonthly,
             ),
             description: "Generar cargos del mes",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges
+              Endpoints.CobranzaNative.Charges
                 .calculateLateFees,
             ),
             description: "Calcular recargos mora",
@@ -417,7 +417,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges.initialBalanceStatus(
+              Endpoints.CobranzaNative.Charges.initialBalanceStatus(
                 customerIdPlaceholder,
               ),
             ),
@@ -426,7 +426,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Charges
+              Endpoints.CobranzaNative.Charges
                 .bulkSetInitialBalance,
             ),
             description: "Guardar saldos iniciales",
@@ -451,7 +451,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Payments.customer(
+              Endpoints.CobranzaNative.Payments.customer(
                 customerIdPlaceholder,
               ),
             ),
@@ -460,28 +460,28 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Payments.create,
+              Endpoints.CobranzaNative.Payments.create,
             ),
             description: "Registrar pago",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Payments.cancel("{id}"),
+              Endpoints.CobranzaNative.Payments.cancel("{id}"),
             ),
             description: "Cancelar pago",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Payments.applyToCharges,
+              Endpoints.CobranzaNative.Payments.applyToCharges,
             ),
             description: "Aplicar pago a cargos",
           },
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Adjustments.pendingCreditNotes(
+              Endpoints.CobranzaNative.Adjustments.pendingCreditNotes(
                 propertyIdPlaceholder,
                 customerIdPlaceholder,
               ),
@@ -509,7 +509,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Statements.get(
+              Endpoints.CobranzaNative.Statements.get(
                 propertyIdPlaceholder,
               ),
             ),
@@ -518,7 +518,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Statements.pdf(
+              Endpoints.CobranzaNative.Statements.pdf(
                 propertyIdPlaceholder,
               ),
             ),
@@ -552,7 +552,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Ledger.propertyEntries(
+              Endpoints.CobranzaNative.Ledger.propertyEntries(
                 propertyIdPlaceholder,
                 customerIdPlaceholder,
               ),
@@ -562,7 +562,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Ledger.propertyBalance(
+              Endpoints.CobranzaNative.Ledger.propertyBalance(
                 propertyIdPlaceholder,
                 customerIdPlaceholder,
               ),
@@ -572,7 +572,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Ledger.checkIntegrity(
+              Endpoints.CobranzaNative.Ledger.checkIntegrity(
                 customerIdPlaceholder,
               ),
             ),
@@ -605,7 +605,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Reconciliation
+              Endpoints.CobranzaNative.Reconciliation
                 .unallocated,
             ),
             description: "Pagos sin aplicar",
@@ -613,7 +613,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Reconciliation
+              Endpoints.CobranzaNative.Reconciliation
                 .autoApplyAll,
             ),
             description: "Ejecutar auto-conciliacion",
@@ -638,7 +638,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.FinancialApprovals.pending(
+              Endpoints.CobranzaNative.FinancialApprovals.pending(
                 customerIdPlaceholder,
               ),
             ),
@@ -647,7 +647,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.FinancialApprovals.approve(
+              Endpoints.CobranzaNative.FinancialApprovals.approve(
                 "{id}",
               ),
             ),
@@ -656,7 +656,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.FinancialApprovals.reject(
+              Endpoints.CobranzaNative.FinancialApprovals.reject(
                 "{id}",
               ),
             ),
@@ -683,7 +683,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PeriodClosures.byCustomer(
+              Endpoints.CobranzaNative.PeriodClosures.byCustomer(
                 customerIdPlaceholder,
               ),
             ),
@@ -692,7 +692,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PeriodClosures.close(
+              Endpoints.CobranzaNative.PeriodClosures.close(
                 customerIdPlaceholder,
               ),
             ),
@@ -701,7 +701,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PeriodClosures.reopen(
+              Endpoints.CobranzaNative.PeriodClosures.reopen(
                 customerIdPlaceholder,
               ),
             ),
@@ -710,7 +710,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PeriodClosures.isClosed(
+              Endpoints.CobranzaNative.PeriodClosures.isClosed(
                 customerIdPlaceholder,
                 yearPlaceholder,
                 monthPlaceholder,
@@ -739,7 +739,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.FinancialAudit.byCustomer(
+              Endpoints.CobranzaNative.FinancialAudit.byCustomer(
                 customerIdPlaceholder,
               ),
             ),
@@ -748,7 +748,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.FinancialAudit.byProperty(
+              Endpoints.CobranzaNative.FinancialAudit.byProperty(
                 propertyIdPlaceholder,
                 customerIdPlaceholder,
               ),
@@ -783,7 +783,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.CollectionCases.byCustomer(
+              Endpoints.CobranzaNative.CollectionCases.byCustomer(
                 customerIdPlaceholder,
               ),
             ),
@@ -792,7 +792,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.CollectionCases.logActivity(
+              Endpoints.CobranzaNative.CollectionCases.logActivity(
                 "{id}",
               ),
             ),
@@ -801,7 +801,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.CollectionCases.evaluateAndEscalate(
+              Endpoints.CobranzaNative.CollectionCases.evaluateAndEscalate(
                 customerIdPlaceholder,
               ),
             ),
@@ -829,7 +829,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(
+              Endpoints.CobranzaNative.RegulationArticles.byCustomer(
                 customerIdPlaceholder,
               ),
             ),
@@ -838,7 +838,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.RegulationArticles
+              Endpoints.CobranzaNative.RegulationArticles
                 .create,
             ),
             description: "Crear articulo",
@@ -846,7 +846,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "PUT",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.RegulationArticles.update(
+              Endpoints.CobranzaNative.RegulationArticles.update(
                 "{id}",
               ),
             ),
@@ -855,7 +855,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "DELETE",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.RegulationArticles.delete(
+              Endpoints.CobranzaNative.RegulationArticles.delete(
                 "{id}",
               ),
             ),
@@ -881,7 +881,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyFines.byCustomer(
+              Endpoints.CobranzaNative.PropertyFines.byCustomer(
                 customerIdPlaceholder,
               ),
             ),
@@ -890,7 +890,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyFines.byProperty(
+              Endpoints.CobranzaNative.PropertyFines.byProperty(
                 propertyIdPlaceholder,
               ),
             ),
@@ -899,14 +899,14 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyFines.create,
+              Endpoints.CobranzaNative.PropertyFines.create,
             ),
             description: "Emitir multa",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyFines
+              Endpoints.CobranzaNative.PropertyFines
                 .issueCharge,
             ),
             description: "Generar cargo financiero",
@@ -914,7 +914,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyFines.void(
+              Endpoints.CobranzaNative.PropertyFines.void(
                 "{id}",
                 "{reason}",
               ),
@@ -924,7 +924,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.PropertyFines.addEvidence(
+              Endpoints.CobranzaNative.PropertyFines.addEvidence(
                 "{id}",
               ),
             ),
@@ -951,7 +951,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Invoices.byCharge(
+              Endpoints.CobranzaNative.Invoices.byCharge(
                 chargeIdPlaceholder,
               ),
             ),
@@ -960,14 +960,14 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Invoices.generate,
+              Endpoints.CobranzaNative.Invoices.generate,
             ),
             description: "Emitir CFDI",
           },
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Invoices.cancel("{id}"),
+              Endpoints.CobranzaNative.Invoices.cancel("{id}"),
             ),
             description: "Cancelar CFDI",
           },
@@ -1001,7 +1001,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Automation
+              Endpoints.CobranzaNative.Automation
                 .generateMonthlyCharges,
             ),
             description: "Generacion de cargos",
@@ -1009,7 +1009,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Automation.calculateLateFees(
+              Endpoints.CobranzaNative.Automation.calculateLateFees(
                 customerIdPlaceholder,
               ),
             ),
@@ -1018,7 +1018,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Automation.evaluateCollectionCases(
+              Endpoints.CobranzaNative.Automation.evaluateCollectionCases(
                 customerIdPlaceholder,
               ),
             ),
@@ -1027,7 +1027,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "POST",
             path: pathOf(
-              Endpoints.AccountingCoi.NativeCollection.Automation.autoReconcile,
+              Endpoints.CobranzaNative.Automation.autoReconcile,
             ),
             description: "Auto-conciliacion",
           },
@@ -1079,3 +1079,4 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
     ],
   },
 ];
+

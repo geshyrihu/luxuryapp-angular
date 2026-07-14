@@ -1,4 +1,4 @@
-import {
+﻿import {
   CommonModule,
   CurrencyPipe,
   DatePipe,
@@ -156,7 +156,7 @@ export class NativeStatement implements OnInit {
     this.loading.set(true);
     try {
       const res = await this.apiResponseS.onGetItem<NativeStatementResponseDTO>(
-        Endpoints.AccountingCoi.NativeCollection.Statements.get(
+        Endpoints.CobranzaNative.Statements.get(
           propertyId,
           this.asOfCtrl.value
             ? this.asOfCtrl.value instanceof Date
@@ -182,7 +182,7 @@ export class NativeStatement implements OnInit {
   }
 
   private getStatementPdfUrl(propertyId: string): string {
-    return Endpoints.AccountingCoi.NativeCollection.Statements.pdf(
+    return Endpoints.CobranzaNative.Statements.pdf(
       propertyId,
       this.getAsOfValue(),
     );
@@ -232,7 +232,7 @@ export class NativeStatement implements OnInit {
     this.sendingStatement.set(true);
     try {
       await this.apiResponseS.onPost<boolean>(
-        Endpoints.AccountingCoi.NativeCollection.Notifications.sendStatement,
+        Endpoints.CobranzaNative.Notifications.sendStatement,
         {
           customerId: this.customerId(),
           propertyId,
@@ -259,7 +259,7 @@ export class NativeStatement implements OnInit {
     this.sendingBatchStatements.set(true);
     try {
       await this.apiResponseS.onPost<SendNativeStatementBatchResponseDTO>(
-        Endpoints.AccountingCoi.NativeCollection.Notifications
+        Endpoints.CobranzaNative.Notifications
           .sendStatementBatch,
         {
           customerId: this.customerId(),
@@ -281,7 +281,7 @@ export class NativeStatement implements OnInit {
     this.processingNotifications.set(true);
     try {
       await this.apiResponseS.onPost<number>(
-        Endpoints.AccountingCoi.NativeCollection.Notifications.process(
+        Endpoints.CobranzaNative.Notifications.process(
           this.customerId(),
         ),
       );
@@ -290,3 +290,4 @@ export class NativeStatement implements OnInit {
     }
   }
 }
+

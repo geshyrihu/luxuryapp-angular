@@ -1,4 +1,4 @@
-import { DatePipe, DecimalPipe } from "@angular/common";
+﻿import { DatePipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -121,7 +121,7 @@ export default class ChargeList {
     if (!customerId) return;
 
     const result = await this.apiResponseS.onGetItem<ChargeResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.Charges.customer(customerId),
+      Endpoints.CobranzaNative.Charges.customer(customerId),
     );
 
     this.dataSignal.set(result ?? []);
@@ -151,7 +151,7 @@ export default class ChargeList {
     }
 
     const res = await this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.NativeCollection.Charges.cancel(item.id),
+      Endpoints.CobranzaNative.Charges.cancel(item.id),
     );
 
     if (res !== false) this.onLoadData();
@@ -173,3 +173,4 @@ export default class ChargeList {
     });
   }
 }
+

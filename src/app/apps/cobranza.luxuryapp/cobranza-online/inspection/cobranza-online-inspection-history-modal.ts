@@ -129,7 +129,7 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
     this.loading.set(true);
     const response =
       await this.apiResponseS.onGetItem<CobranzaOnlineInspectionHistoryResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspectionHistory(
+        Endpoints.CobranzaOnline.Dashboard.inspectionHistory(
           this.customerId,
           this.year,
           this.row.accountNumber,

@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -66,7 +66,7 @@ export default class ReconciliationDashboard {
 
   async onLoadData() {
     const res = await this.apiResponseS.onGetItem<UnallocatedPayment[]>(
-      Endpoints.AccountingCoi.NativeCollection.Reconciliation.unallocated,
+      Endpoints.CobranzaNative.Reconciliation.unallocated,
     );
     this.dataSignal.set(res ?? []);
   }
@@ -75,7 +75,7 @@ export default class ReconciliationDashboard {
     this.reconciling.set(true);
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.AccountingCoi.NativeCollection.Reconciliation.autoApplyAll,
+        Endpoints.CobranzaNative.Reconciliation.autoApplyAll,
         {},
       );
       this.lastResult.set(typeof count === "number" ? count : 0);
@@ -85,3 +85,4 @@ export default class ReconciliationDashboard {
     }
   }
 }
+

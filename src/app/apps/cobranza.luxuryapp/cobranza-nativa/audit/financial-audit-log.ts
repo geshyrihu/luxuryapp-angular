@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -87,11 +87,11 @@ export default class FinancialAuditLog {
 
       const propertyId = this.propertyIdCtrl.value;
       const url = propertyId
-        ? Endpoints.AccountingCoi.NativeCollection.FinancialAudit.byProperty(
+        ? Endpoints.CobranzaNative.FinancialAudit.byProperty(
             propertyId,
             customerId,
           ) + qs
-        : Endpoints.AccountingCoi.NativeCollection.FinancialAudit.byCustomer(
+        : Endpoints.CobranzaNative.FinancialAudit.byCustomer(
             customerId,
           ) + qs;
 
@@ -109,3 +109,4 @@ export default class FinancialAuditLog {
       : "bg-red-100 text-red-800";
   }
 }
+

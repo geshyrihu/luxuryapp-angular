@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -74,7 +74,7 @@ export default class CollectionCaseList {
 
   async onLoadData(customerId: string) {
     const res = await this.apiResponseS.onGetItem<CollectionCaseResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.CollectionCases.byCustomer(
+      Endpoints.CobranzaNative.CollectionCases.byCustomer(
         customerId,
       ),
     );
@@ -87,7 +87,7 @@ export default class CollectionCaseList {
     this.escalating.set(true);
     try {
       const res = await this.apiResponseS.onPost<number>(
-        Endpoints.AccountingCoi.NativeCollection.CollectionCases.evaluateAndEscalate(
+        Endpoints.CobranzaNative.CollectionCases.evaluateAndEscalate(
           customerId,
         ),
         {},
@@ -129,3 +129,4 @@ export default class CollectionCaseList {
     return map[status] ?? "bg-gray-100 text-gray-600";
   }
 }
+

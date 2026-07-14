@@ -39,4 +39,6 @@ export const Endpoints = {
   ...EndpointsResident,
   ...EndpointsWeb,
   ...EndpointsShared,
+  CobranzaNative: EndpointsCobranza.AccountingCoi.NativeCollection,
+  CobranzaOnline: EndpointsCobranza.AccountingCoi.CobranzaOnline,
 } as const;
