@@ -10,7 +10,7 @@ export class AspelSyncService {
 
   syncCompleto(customerId: string, year: number) {
     return this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.Configuration.AspelSync.completo(
+      Endpoints.CobranzaSync.completo(
         customerId,
         year,
       ),
@@ -20,7 +20,7 @@ export class AspelSyncService {
 
   syncContabilidad(customerId: string, year: number) {
     return this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.Configuration.AspelSync.contabilidad(
+      Endpoints.CobranzaSync.contabilidad(
         customerId,
         year,
       ),
@@ -30,7 +30,7 @@ export class AspelSyncService {
 
   syncCobranza(customerId: string, year: number) {
     return this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.Configuration.AspelSync.cobranza(
+      Endpoints.CobranzaSync.cobranza(
         customerId,
         year,
       ),
