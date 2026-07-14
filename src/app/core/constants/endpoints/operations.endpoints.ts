@@ -264,6 +264,11 @@ export const EndpointsOperations = {
   },
   InventarioProducto: {
     create: "inventario-producto",
+    delete: (id: string | number) => `inventario-producto/${id}`,
+    getById: (id: string | number) => `inventario-producto/${id}`,
+    listByWarehouse: (customerId: string, warehouseId: string | null) =>
+      `inventario-producto/get-async-all/${customerId}/${warehouseId}`,
+    update: (id: string | number) => `inventario-producto/${id}`,
   },
   PanicAlerts: {
     attend: (id: string) => `panic-alerts/${id}/attend`,

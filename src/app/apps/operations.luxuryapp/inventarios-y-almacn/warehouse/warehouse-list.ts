@@ -146,8 +146,10 @@ export class WarehouseList implements OnInit {
   async onDownloadInventory(almacenId: string, warehouseName: string) {
     this.loading.set(true);
     const customerId: string = this.customerIdS.customerId();
-    // Use the exact endpoint from warehouse-stock-list.ts
-    const urlApi = `InventarioProducto/GetAsyncAll/${customerId}/${almacenId}`;
+    const urlApi = Endpoints.InventarioProducto.listByWarehouse(
+      customerId,
+      almacenId,
+    );
 
     try {
       // Fetch inventory data

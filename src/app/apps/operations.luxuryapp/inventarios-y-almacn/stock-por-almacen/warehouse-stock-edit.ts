@@ -83,9 +83,7 @@ export class WarehouseStockEdit implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventarioProductoById(
-      this.id(),
-    );
+    const urlApi = Endpoints.InventarioProducto.getById(this.id());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -107,7 +105,7 @@ export class WarehouseStockEdit implements OnInit {
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorOperations.inventarioProductoById(this.id()),
+          Endpoints.InventarioProducto.update(this.id()),
           this.form.getRawValue(),
         )
         .then((result: boolean) => {

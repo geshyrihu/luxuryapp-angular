@@ -34,6 +34,10 @@ export const EndpointsSystem = {
     deleteAll: "logs/all",
     getAll: "logs",
   },
+  AppImplementationTracking: {
+    triggerEmployeeValidation:
+      "app-implementation-tracking/trigger-employee-validation",
+  },
   Notifications: {
     getAll: "notifications",
     markAsRead: (notificationId: string) =>

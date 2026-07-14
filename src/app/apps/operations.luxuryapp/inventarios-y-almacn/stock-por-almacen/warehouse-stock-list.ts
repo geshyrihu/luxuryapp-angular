@@ -122,11 +122,10 @@ export class WarehouseStockList {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    let urlApi =
-      Endpoints.RefactorOperations.inventarioProductoGetAsyncAllByIdById(
-        customerId,
-        this.almacenIdFromRoute,
-      );
+    let urlApi = Endpoints.InventarioProducto.listByWarehouse(
+      customerId,
+      this.almacenIdFromRoute,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);
@@ -137,7 +136,7 @@ export class WarehouseStockList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.inventarioProductoById(id))
+      .onDelete(Endpoints.InventarioProducto.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>
