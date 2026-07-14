@@ -182,7 +182,7 @@ export class WarehouseForm implements OnInit {
     const savedWarehouse = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "almacen",
+      endpoint: Endpoints.Almacen.create,
       id: this.id,
       submitting: this.submitting,
       closeOnSuccess: false,

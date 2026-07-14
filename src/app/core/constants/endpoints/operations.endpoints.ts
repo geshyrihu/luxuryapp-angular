@@ -255,12 +255,22 @@ export const EndpointsOperations = {
     updateOrder: "special-document/update-order",
   },
   Almacen: {
+    create: "almacen",
     delete: (id: string) => `almacen/${id}`,
     getById: (id: string) => `almacen/${id}`,
     listByCustomer: (customerId: string) => `almacen/customer/${customerId}`,
     myWarehousesByCustomer: (customerId: string) =>
       `almacen/my-warehouses/${customerId}`,
     assignResponsibles: "almacen/assign-responsibles",
+  },
+  InventoryEngineSystems: {
+    listByCustomer: (customerId: string) =>
+      `inventory-engine-system/list/${customerId}`,
+  },
+  MaintenanceCalendars: {
+    delete: (id: string | number) => `maintenance-calendars/${id}`,
+    listServiceByMachinery: (machineryId: string | number) =>
+      `maintenance-calendars/list-service/${machineryId}`,
   },
   InventarioProducto: {
     create: "inventario-producto",
@@ -364,7 +374,10 @@ export const EndpointsOperations = {
   },
   RadioCommunication: {
     create: "radios-comunicacion",
+    delete: (id: string | number) => `radios-comunicacion/${id}`,
     getById: (id: string) => `radios-comunicacion/${id}`,
+    listByCustomer: (customerId: string) =>
+      `radios-comunicacion/list/${customerId}`,
     update: (id: string) => `radios-comunicacion/${id}`,
   },
   ServiceOrders: {

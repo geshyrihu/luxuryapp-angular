@@ -53,9 +53,7 @@ export class ServiceOrder implements OnInit {
 
   onLoadData() {
     const urlApi =
-      Endpoints.RefactorOperations.maintenanceCalendarsListServiceById(
-        this.idMachinery,
-      );
+      Endpoints.MaintenanceCalendars.listServiceByMachinery(this.idMachinery);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.maintenanceCalendars = result.map((item: any) => ({
         ...item,
@@ -72,8 +70,7 @@ export class ServiceOrder implements OnInit {
       accept: () => {
         //confirm action
 
-        const urlApi =
-          Endpoints.RefactorOperations.maintenanceCalendarsById(Id);
+        const urlApi = Endpoints.MaintenanceCalendars.delete(Id);
         this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
           this.onLoadData();
         });

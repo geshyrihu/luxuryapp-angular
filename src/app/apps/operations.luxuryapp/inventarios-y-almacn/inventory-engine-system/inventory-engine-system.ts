@@ -56,7 +56,7 @@ export class InventoryEngineSystem {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventoryEngineSystemListById(
+    const urlApi = Endpoints.InventoryEngineSystems.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {

@@ -82,7 +82,7 @@ export class RadioComunicacionList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.radioComunicacionListById(
+    const urlApi = Endpoints.RadioCommunication.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -91,7 +91,7 @@ export class RadioComunicacionList {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.radioComunicacionById(id))
+      .onDelete(Endpoints.RadioCommunication.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>
