@@ -159,7 +159,7 @@ export class InventarioHidrante {
     const formData = new FormData();
     formData.append("file", file);
     const result = await this.apiResponseS.onPost<number>(
-      `InventarioHidrante/import/${this.customerIdS.customerId()}`,
+      Endpoints.Hydrants.importByCustomer(this.customerIdS.customerId()),
       formData,
     );
     if (result !== false) this.onLoadData();
@@ -169,7 +169,7 @@ export class InventarioHidrante {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.inventarioHidranteListById(
+        Endpoints.Hydrants.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )
@@ -178,7 +178,7 @@ export class InventarioHidrante {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.inventarioHidranteById(id))
+      .onDelete(Endpoints.Hydrants.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

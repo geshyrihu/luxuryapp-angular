@@ -110,7 +110,7 @@ export class InventarioExtintorForm implements OnInit {
     }
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventarioExtintorById(this.id);
+    const urlApi = Endpoints.FireExtinguishers.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.urlBaseImg = result.currentPhoto;
       this.form.patchValue({
@@ -127,14 +127,14 @@ export class InventarioExtintorForm implements OnInit {
 
     if (!this.id) {
       this.apiResponseS
-        .onPost(Endpoints.RefactorOperations.inventarioExtintor, formData)
+        .onPost(Endpoints.FireExtinguishers.create, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorOperations.inventarioExtintorById(this.id),
+          Endpoints.FireExtinguishers.update(this.id),
           formData,
         )
         .then((result: boolean) => {

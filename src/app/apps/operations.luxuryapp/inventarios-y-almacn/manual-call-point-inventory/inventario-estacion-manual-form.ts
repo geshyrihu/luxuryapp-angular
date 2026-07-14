@@ -106,7 +106,7 @@ export class InventarioEstacionManualForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorOperations.inventarioEstacionManualById(this.id),
+        Endpoints.ManualCallPoints.getById(this.id),
       )
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
@@ -120,14 +120,14 @@ export class InventarioEstacionManualForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost(Endpoints.RefactorOperations.inventarioEstacionManual, formData)
+        .onPost(Endpoints.ManualCallPoints.create, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorOperations.inventarioEstacionManualById(this.id),
+          Endpoints.ManualCallPoints.update(this.id),
           formData,
         )
         .then((result: boolean) => {

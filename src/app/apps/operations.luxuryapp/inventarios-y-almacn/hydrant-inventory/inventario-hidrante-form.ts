@@ -105,7 +105,7 @@ export class InventarioHidranteForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorOperations.inventarioHidranteById(this.id))
+      .onGetItem(Endpoints.Hydrants.getById(this.id))
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
         this.form.patchValue(result);
@@ -118,14 +118,14 @@ export class InventarioHidranteForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost(Endpoints.RefactorOperations.inventarioHidrante, formData)
+        .onPost(Endpoints.Hydrants.create, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorOperations.inventarioHidranteById(this.id),
+          Endpoints.Hydrants.update(this.id),
           formData,
         )
         .then((result: boolean) => {

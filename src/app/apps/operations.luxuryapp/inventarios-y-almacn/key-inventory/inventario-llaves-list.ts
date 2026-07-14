@@ -80,7 +80,7 @@ export class InventarioLlavesList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventarioLlaveListById(
+    const urlApi = Endpoints.KeyInventory.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -89,7 +89,7 @@ export class InventarioLlavesList {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.inventarioLlaveById(id))
+      .onDelete(Endpoints.KeyInventory.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

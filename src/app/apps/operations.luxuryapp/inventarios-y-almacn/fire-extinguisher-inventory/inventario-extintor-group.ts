@@ -37,10 +37,9 @@ export class InventarioExtintorGroup {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.inventarioExtintorGetAllGroupById(
-        this.customerIdS.customerId,
-      );
+    const urlApi = Endpoints.FireExtinguishers.groupedByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

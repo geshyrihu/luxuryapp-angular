@@ -308,6 +308,53 @@ export const EndpointsOperations = {
     update: (id: string, currentUsedQuantity: number) =>
       `salidas-productos/${id}/${currentUsedQuantity}`,
   },
+  FireExtinguishers: {
+    bulkExpirationByCustomer: (customerId: string) =>
+      `inventario-extintor/bulk-expiration/${customerId}`,
+    create: "inventario-extintor",
+    delete: (id: string | number) => `inventario-extintor/${id}`,
+    getById: (id: string | number) => `inventario-extintor/${id}`,
+    groupedByCustomer: (customerId: string) =>
+      `inventario-extintor/get-all-group/${customerId}`,
+    listByCustomer: (customerId: string) => `inventario-extintor/list/${customerId}`,
+    update: (id: string | number) => `inventario-extintor/${id}`,
+  },
+  Hydrants: {
+    create: "inventario-hidrante",
+    delete: (id: string | number) => `inventario-hidrante/${id}`,
+    getById: (id: string | number) => `inventario-hidrante/${id}`,
+    importByCustomer: (customerId: string) =>
+      `InventarioHidrante/import/${customerId}`,
+    listByCustomer: (customerId: string) => `inventario-hidrante/list/${customerId}`,
+    update: (id: string | number) => `inventario-hidrante/${id}`,
+  },
+  KeyInventory: {
+    create: "inventario-llave",
+    delete: (id: string | number) => `inventario-llave/${id}`,
+    getById: (id: string | number) => `inventario-llave/${id}`,
+    listByCustomer: (customerId: string) => `inventario-llave/list/${customerId}`,
+    update: (id: string | number) => `inventario-llave/${id}`,
+  },
+  ManualCallPoints: {
+    create: "inventario-estacion-manual",
+    delete: (id: string | number) => `inventario-estacion-manual/${id}`,
+    getById: (id: string | number) => `inventario-estacion-manual/${id}`,
+    importByCustomer: (customerId: string) =>
+      `InventarioEstacionManual/import/${customerId}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-estacion-manual/list/${customerId}`,
+    update: (id: string | number) => `inventario-estacion-manual/${id}`,
+  },
+  SmokeDetectors: {
+    create: "inventario-detector-humo",
+    delete: (id: string | number) => `inventario-detector-humo/${id}`,
+    getById: (id: string | number) => `inventario-detector-humo/${id}`,
+    importByCustomer: (customerId: string) =>
+      `InventarioDetectorHumo/import/${customerId}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-detector-humo/list/${customerId}`,
+    update: (id: string | number) => `inventario-detector-humo/${id}`,
+  },
   PanicAlerts: {
     attend: (id: string) => `panic-alerts/${id}/attend`,
     resolve: (id: string) => `panic-alerts/${id}/resolve`,

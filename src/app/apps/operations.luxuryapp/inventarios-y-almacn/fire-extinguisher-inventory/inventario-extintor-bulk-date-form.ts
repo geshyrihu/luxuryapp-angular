@@ -47,7 +47,7 @@ export class InventarioExtintorBulkDateForm {
     this.submitting.set(true);
     this.apiResponseS
       .onPut(
-        Endpoints.RefactorOperations.inventarioExtintorBulkExpirationById(
+        Endpoints.FireExtinguishers.bulkExpirationByCustomer(
           this.customerIdS.customerId(),
         ),
         {

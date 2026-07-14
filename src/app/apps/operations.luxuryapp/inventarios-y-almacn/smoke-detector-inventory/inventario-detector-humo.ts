@@ -158,7 +158,9 @@ export class InventarioDetectorHumo {
     const formData = new FormData();
     formData.append("file", file);
     const result = await this.apiResponseS.onPost<number>(
-      `InventarioDetectorHumo/import/${this.customerIdS.customerId()}`,
+      Endpoints.SmokeDetectors.importByCustomer(
+        this.customerIdS.customerId(),
+      ),
       formData,
     );
     if (result !== false) this.onLoadData();
@@ -168,7 +170,7 @@ export class InventarioDetectorHumo {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.inventarioDetectorHumoListById(
+        Endpoints.SmokeDetectors.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )
@@ -177,7 +179,7 @@ export class InventarioDetectorHumo {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.inventarioDetectorHumoById(id))
+      .onDelete(Endpoints.SmokeDetectors.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

@@ -157,7 +157,9 @@ export class InventarioEstacionManual {
     const formData = new FormData();
     formData.append("file", file);
     const result = await this.apiResponseS.onPost<number>(
-      `InventarioEstacionManual/import/${this.customerIdS.customerId()}`,
+      Endpoints.ManualCallPoints.importByCustomer(
+        this.customerIdS.customerId(),
+      ),
       formData,
     );
     if (result !== false) this.onLoadData();
@@ -167,7 +169,7 @@ export class InventarioEstacionManual {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.inventarioEstacionManualListById(
+        Endpoints.ManualCallPoints.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )
@@ -176,7 +178,7 @@ export class InventarioEstacionManual {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.inventarioEstacionManualById(id))
+      .onDelete(Endpoints.ManualCallPoints.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

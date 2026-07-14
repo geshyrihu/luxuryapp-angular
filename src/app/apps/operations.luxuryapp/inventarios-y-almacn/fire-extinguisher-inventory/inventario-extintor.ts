@@ -151,7 +151,7 @@ export class InventarioExtintor {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventarioExtintorListById(
+    const urlApi = Endpoints.FireExtinguishers.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -161,7 +161,7 @@ export class InventarioExtintor {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.inventarioExtintorById(id))
+      .onDelete(Endpoints.FireExtinguishers.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

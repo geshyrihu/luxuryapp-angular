@@ -106,7 +106,7 @@ export class InventarioDetectorHumoForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorOperations.inventarioDetectorHumoById(this.id),
+        Endpoints.SmokeDetectors.getById(this.id),
       )
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
@@ -120,14 +120,14 @@ export class InventarioDetectorHumoForm implements OnInit {
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost(Endpoints.RefactorOperations.inventarioDetectorHumo, formData)
+        .onPost(Endpoints.SmokeDetectors.create, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorOperations.inventarioDetectorHumoById(this.id),
+          Endpoints.SmokeDetectors.update(this.id),
           formData,
         )
         .then((result: boolean) => {

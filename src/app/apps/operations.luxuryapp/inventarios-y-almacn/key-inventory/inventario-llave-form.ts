@@ -93,7 +93,7 @@ export class InventarioLlaveForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.inventarioLlaveById(this.id);
+    const urlApi = Endpoints.KeyInventory.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -102,7 +102,7 @@ export class InventarioLlaveForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "inventario-llave",
+      endpoint: Endpoints.KeyInventory.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -111,7 +111,7 @@ export class InventarioLlaveForm implements OnInit {
   }
 
   onLoadEquipoClasificacion() {
-    const urlApi = "equipo-clasificacion";
+    const urlApi = Endpoints.SelectItems.equipoClasificacion;
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: any) => {
