@@ -212,6 +212,8 @@ export const EndpointsOperations = {
   MeetingsDetails: {
     base: "meetings-details",
     delete: (id: string | number) => `meetings-details/${id}`,
+    detailFilter: (meetingId: string | number, status: string | number) =>
+      `meetings-details/detalles-filtro/${meetingId}/${status}`,
     getById: (id: string | number) => `meetings-details/${id}`,
   },
   MeetingDetailsTracking: {

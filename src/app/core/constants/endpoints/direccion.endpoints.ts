@@ -12,6 +12,7 @@ export const EndpointsDireccion = {
   },
   JuntaMensualSession: {
     detail: (sessionId: string) => `junta-mensual-sessions/${sessionId}/detail`,
+    reschedule: (id: string) => `junta-mensual-sessions/${id}/reschedule`,
   },
   MeetingAdministracion: {
     addParticipant: (meetingId: string | number, participantId: string | number) =>
@@ -35,6 +36,7 @@ export const EndpointsDireccion = {
       `meeting-invitado/participantes-invitado/${meetingId}`,
   },
   PresentacionJuntaComite: {
+    addFile: "presentaciones-junta-comite/add-file",
     addFecha: "presentaciones-junta-comite/add-fecha",
     authorize: (id: any, userId: string) =>
       `presentaciones-junta-comite/autorizar-presentacion/${id}/${userId}`,
@@ -44,9 +46,4 @@ export const EndpointsDireccion = {
     list: (customerId: string) => `presentaciones-junta-comite/list/${customerId}`,
     updateFecha: (id: string) => `presentaciones-junta-comite/add-fecha/${id}`,
   },
-  RefactorDireccion: {
-    juntaMensualSessionByIdReschedule: (id: any) => `junta-mensual-sessions/${id}/reschedule`,
-    presentacionJuntaComiteAddFile: "presentaciones-junta-comite/add-file",
-      meetingsDetailsDetallesFiltroByIdById: (meetingId: any, status: any) => `meetings-details/detalles-filtro/${meetingId}/${status}`,
-},
 } as const;

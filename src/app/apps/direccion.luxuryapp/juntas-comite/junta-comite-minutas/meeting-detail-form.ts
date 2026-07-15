@@ -60,7 +60,7 @@ export class MeetingDetailForm implements OnInit {
   }
   onLoadData() {
     const urlApi =
-      Endpoints.RefactorDireccion.meetingsDetailsDetallesFiltroByIdById(
+      Endpoints.MeetingsDetails.detailFilter(
         this.meetingId,
         this.status,
       );

@@ -98,7 +98,7 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     this.submitting.set(true);
     this.apiResponseS
       .onPut(
-        Endpoints.RefactorDireccion.juntaMensualSessionByIdReschedule(
+        Endpoints.JuntaMensualSession.reschedule(
           this.id(),
         ),
         {
