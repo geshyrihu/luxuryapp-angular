@@ -67,23 +67,23 @@ export class TaskTemplateItems implements OnInit {
 
   loadTemplateInfo() {
     this.apiResponseS
-      .onGetItem<TaskTemplate>(`recurring-tasks/templates/${this.templateId}`)
+      .onGetItem<TaskTemplate>(
+        Endpoints.RecurringTasks.Templates.getById(this.templateId),
+      )
       .then((response) => this.templateInfo.set(response));
   }
 
   loadItems() {
     this.apiResponseS
       .onGetList<TaskTemplateItem[]>(
-        `recurring-tasks/templates/${this.templateId}/items`,
+        Endpoints.RecurringTasks.Templates.itemsByTemplate(this.templateId),
       )
       .then((response) => this.items.set(response || []));
   }
 
   onDeleteItem(itemId: string) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorOperations.recurringTasksTemplatesItemsById(itemId),
-      )
+      .onDelete(Endpoints.RecurringTasks.Templates.itemById(itemId))
       .then((result: boolean) => {
         if (result) {
           this.loadItems();
@@ -111,9 +111,7 @@ export class TaskTemplateItems implements OnInit {
     const itemIdsInOrder = this.items().map((item) => item.id);
     this.apiResponseS
       .onPut(
-        Endpoints.RefactorOperations.recurringTasksTemplatesByIdItemsReorder(
-          this.templateId,
-        ),
+        Endpoints.RecurringTasks.Templates.reorderItems(this.templateId),
         {
           itemIdsInOrder,
         },

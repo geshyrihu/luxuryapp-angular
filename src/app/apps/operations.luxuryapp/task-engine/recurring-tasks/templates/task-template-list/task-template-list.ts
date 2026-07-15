@@ -70,8 +70,7 @@ export class TaskTemplateList implements OnInit {
 
   onLoadData(state: boolean = this.state()) {
     this.loading.set(true);
-    const urlApi =
-      Endpoints.RefactorOperations.recurringTasksTemplatesListById(state);
+    const urlApi = Endpoints.RecurringTasks.Templates.getByState(state);
     this.apiResponseS
       .onGetList<TaskTemplate[]>(urlApi)
       .then((response) => {
@@ -95,7 +94,7 @@ export class TaskTemplateList implements OnInit {
 
   onDelete(id: string) {
     // Implement confirmation dialog before deleting
-    const urlApi = `recurring-tasks/templates/${id}`;
+    const urlApi = Endpoints.RecurringTasks.Templates.delete(id);
     this.apiResponseS
       .onDelete(urlApi)
       .then((result: boolean) => {

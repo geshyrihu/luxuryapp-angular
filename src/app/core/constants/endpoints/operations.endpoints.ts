@@ -114,9 +114,17 @@ export const EndpointsOperations = {
   },
   RecurringTasks: {
     Templates: {
+      delete: (templateId: string) => `recurring-tasks/templates/${templateId}`,
+      getById: (templateId: string) => `recurring-tasks/templates/${templateId}`,
       getActiveList: "recurring-tasks/templates/list/true",
+      getByState: (state: boolean) => `recurring-tasks/templates/list/${state}`,
       customerConfig: (customerId: string) =>
         `recurring-tasks/templates/config/${customerId}`,
+      itemsByTemplate: (templateId: string) =>
+        `recurring-tasks/templates/${templateId}/items`,
+      itemById: (itemId: string) => `recurring-tasks/templates/items/${itemId}`,
+      reorderItems: (templateId: string) =>
+        `recurring-tasks/templates/${templateId}/items/reorder`,
       saveCustomerConfig: "recurring-tasks/templates/config",
     },
   },
