@@ -355,6 +355,9 @@ export const EndpointsOperations = {
     getById: (id: string) => `manual-flowcharts/${id}`,
     update: (id: string) => `manual-flowcharts/${id}`,
   },
+  MiEdificio: {
+    caratulaByCustomer: (customerId: string) => `mi-edificio/caratula/${customerId}`,
+  },
   SpecialDocuments: {
     updateOrder: "special-document/update-order",
   },

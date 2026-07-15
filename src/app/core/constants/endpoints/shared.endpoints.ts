@@ -169,6 +169,8 @@ export const EndpointsShared = {
     update: (id: string | number) => `categories/${id}`,
   },
   PolicyContracts: {
+    buildingInsurance: (customerId: string) =>
+      `policy-contract/building-insurance/${customerId}`,
     create: "policy-contract",
     delete: (id: string | number) => `policy-contract/${id}`,
     deleteDocument: (id: string | number) =>

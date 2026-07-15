@@ -39,9 +39,7 @@ export class MiEdificio {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.miEdificioCaratulaById(
-      this.customerIdS.customerId(),
-    );
+    const urlApi = Endpoints.MiEdificio.caratulaByCustomer(this.customerIdS.customerId());
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data.set(result);
     });
