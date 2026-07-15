@@ -63,14 +63,14 @@ export class NotificationsGadget implements OnInit {
 
   onLoadNotification(): void {
     this.apiResponseS
-      .onGetListNotLoading(Endpoints.RefactorShared.notifications)
+      .onGetListNotLoading(Endpoints.Notifications.getAll)
       .then((result: any) => {
         if (result) {
           this.notifications.set(result);
         }
       });
     this.apiResponseS
-      .onGetListNotLoading(Endpoints.RefactorShared.notificationsUnreadCount)
+      .onGetListNotLoading(Endpoints.Notifications.unreadCount)
       .then((result: any) => {
         if (result) {
           this.messageInNotRead.set(result);
@@ -81,7 +81,7 @@ export class NotificationsGadget implements OnInit {
   markAsRead(notificationId: string, url: string): void {
     this.drawerVisible.set(false);
     const urlApi =
-      Endpoints.RefactorShared.notificationsMarkAsReadById(notificationId);
+      Endpoints.Notifications.markAsRead(notificationId);
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigate([url]);

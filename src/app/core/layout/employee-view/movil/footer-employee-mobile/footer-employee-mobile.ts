@@ -145,7 +145,7 @@ export class FooterEmployeeMobile implements OnInit {
   }
 
   onLoadNotification() {
-    const urlApi = Endpoints.RefactorShared.notificationsUnreadCount;
+    const urlApi = Endpoints.Notifications.unreadCount;
     this.apiResponseS.onGetListNotLoading(urlApi).then((result: any) => {
       this.messageInNotRead.set(result);
     });

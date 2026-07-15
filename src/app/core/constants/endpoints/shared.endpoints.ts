@@ -226,10 +226,4 @@ export const EndpointsShared = {
     getById: (id: string | number) => `telefonos-emergencia/${id}`,
     update: (id: string | number) => `telefonos-emergencia/${id}`,
   },
-  RefactorShared: {
-    notifications: "notifications",
-    notificationsUnreadCount: "notifications/unread-count",
-    notificationsMarkAsReadById: (notificationId: any) =>
-      `notifications/mark-as-read/${notificationId}`,
-  },
 } as const;
